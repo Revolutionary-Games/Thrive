@@ -176,18 +176,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
     protected abstract IStageHUD BaseHUD { get; }
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        // Cancel auto-evo if it is running to not leave background runs from other games running if the player
-        // just loaded a save
-        if (!MovingToEditor)
-        {
-            GameWorld.ResetAutoEvoRun();
-        }
-    }
-
     public virtual void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -202,6 +190,18 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         lightCycle = new DayNightCycle();
 
         NodeReferencesResolved = true;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Cancel auto-evo if it is running to not leave background runs from other games running if the player
+        // just loaded a save
+        if (!MovingToEditor)
+        {
+            GameWorld.ResetAutoEvoRun();
+        }
     }
 
     public override void _Process(float delta)
@@ -276,6 +276,15 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         }
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
+                throw new InvalidOperationException("Stage not initialized properly");
+        }
+    }
+
     public abstract void StartMusic();
 
     public virtual void StartNewGame()
@@ -325,15 +334,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
-                throw new InvalidOperationException("Stage not initialized properly");
-        }
-    }
-
     [RunOnKeyDown("g_toggle_gui")]
     public void ToggleGUI()
     {
@@ -374,20 +374,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         UpdatePatchSettings();
         PatchExtinctionResolved();
         SpawnPlayer();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PauseMenuPath != null)
-            {
-                PauseMenuPath.Dispose();
-                HUDRootPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -544,6 +530,20 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         playerExtinctInCurrentPatch = true;
 
         BaseHUD.ShowPatchExtinctionBox();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PauseMenuPath != null)
+            {
+                PauseMenuPath.Dispose();
+                HUDRootPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void PatchExtinctionResolved()

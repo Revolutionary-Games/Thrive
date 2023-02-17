@@ -63,81 +63,6 @@ public class SpecifiedInputKey : ICloneable
     public bool PrefersGraphicalRepresentation =>
         Type is InputType.ControllerAxis or InputType.ControllerButton or InputType.MouseButton;
 
-    /// <summary>
-    ///   Creates a string for the button to show.
-    /// </summary>
-    /// <returns>A human readable string.</returns>
-    public override string ToString()
-    {
-        var text = string.Empty;
-
-        if (Control)
-            text += TranslationServer.Translate("CTRL") + "+";
-        if (Alt)
-            text += TranslationServer.Translate("ALT") + "+";
-        if (Shift)
-            text += TranslationServer.Translate("SHIFT") + "+";
-
-        if (Type == InputType.Key)
-        {
-            // If the key is not defined in KeyNames.cs, the string will just be returned unmodified by Translate()
-            text += KeyNames.Translate(Code);
-        }
-        else if (Type == InputType.MouseButton)
-        {
-            text += Code switch
-            {
-                1 => TranslationServer.Translate("LEFT_MOUSE"),
-                2 => TranslationServer.Translate("RIGHT_MOUSE"),
-                3 => TranslationServer.Translate("MIDDLE_MOUSE"),
-                4 => TranslationServer.Translate("WHEEL_UP"),
-                5 => TranslationServer.Translate("WHEEL_DOWN"),
-                6 => TranslationServer.Translate("WHEEL_LEFT"),
-                7 => TranslationServer.Translate("WHEEL_RIGHT"),
-                8 => TranslationServer.Translate("SPECIAL_MOUSE_1"),
-                9 => TranslationServer.Translate("SPECIAL_MOUSE_2"),
-                _ => TranslationServer.Translate("UNKNOWN_MOUSE"),
-            };
-        }
-        else if (Type == InputType.ControllerAxis)
-        {
-            // TODO: add translations for the text here
-            var (axis, direction, device) = UnpackAxis(Code);
-            text += direction < 0 ? "Negative " : "Positive ";
-            text += Input.GetJoyAxisString(axis);
-
-            if (device != -1)
-            {
-                text += $" Device {device + 1}";
-            }
-            else
-            {
-                text += " Any Device";
-            }
-        }
-        else if (Type == InputType.ControllerButton)
-        {
-            // TODO: and also translations here
-            var (button, device) = UnpackCodeAndDevice(Code);
-            text += Input.GetJoyButtonString(button);
-
-            if (device != -1)
-            {
-                text += $" Device {device + 1}";
-            }
-            else
-            {
-                text += " Any Device";
-            }
-        }
-        else
-        {
-            text += "Invalid input key type";
-        }
-
-        return text;
-    }
-
     public Control GenerateGraphicalRepresentation()
     {
         var container = new HBoxContainer();
@@ -251,18 +176,6 @@ public class SpecifiedInputKey : ICloneable
         }
     }
 
-    public object Clone()
-    {
-        return new SpecifiedInputKey
-        {
-            Alt = Alt,
-            Code = Code,
-            Control = Control,
-            Shift = Shift,
-            Type = Type,
-        };
-    }
-
     public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj))
@@ -279,6 +192,18 @@ public class SpecifiedInputKey : ICloneable
             Code == other.Code;
     }
 
+    public object Clone()
+    {
+        return new SpecifiedInputKey
+        {
+            Alt = Alt,
+            Code = Code,
+            Control = Control,
+            Shift = Shift,
+            Type = Type,
+        };
+    }
+
     public override int GetHashCode()
     {
         unchecked
@@ -290,6 +215,81 @@ public class SpecifiedInputKey : ICloneable
             hashCode = (hashCode * 397) ^ (int)Code;
             return hashCode;
         }
+    }
+
+    /// <summary>
+    ///   Creates a string for the button to show.
+    /// </summary>
+    /// <returns>A human readable string.</returns>
+    public override string ToString()
+    {
+        var text = string.Empty;
+
+        if (Control)
+            text += TranslationServer.Translate("CTRL") + "+";
+        if (Alt)
+            text += TranslationServer.Translate("ALT") + "+";
+        if (Shift)
+            text += TranslationServer.Translate("SHIFT") + "+";
+
+        if (Type == InputType.Key)
+        {
+            // If the key is not defined in KeyNames.cs, the string will just be returned unmodified by Translate()
+            text += KeyNames.Translate(Code);
+        }
+        else if (Type == InputType.MouseButton)
+        {
+            text += Code switch
+            {
+                1 => TranslationServer.Translate("LEFT_MOUSE"),
+                2 => TranslationServer.Translate("RIGHT_MOUSE"),
+                3 => TranslationServer.Translate("MIDDLE_MOUSE"),
+                4 => TranslationServer.Translate("WHEEL_UP"),
+                5 => TranslationServer.Translate("WHEEL_DOWN"),
+                6 => TranslationServer.Translate("WHEEL_LEFT"),
+                7 => TranslationServer.Translate("WHEEL_RIGHT"),
+                8 => TranslationServer.Translate("SPECIAL_MOUSE_1"),
+                9 => TranslationServer.Translate("SPECIAL_MOUSE_2"),
+                _ => TranslationServer.Translate("UNKNOWN_MOUSE"),
+            };
+        }
+        else if (Type == InputType.ControllerAxis)
+        {
+            // TODO: add translations for the text here
+            var (axis, direction, device) = UnpackAxis(Code);
+            text += direction < 0 ? "Negative " : "Positive ";
+            text += Input.GetJoyAxisString(axis);
+
+            if (device != -1)
+            {
+                text += $" Device {device + 1}";
+            }
+            else
+            {
+                text += " Any Device";
+            }
+        }
+        else if (Type == InputType.ControllerButton)
+        {
+            // TODO: and also translations here
+            var (button, device) = UnpackCodeAndDevice(Code);
+            text += Input.GetJoyButtonString(button);
+
+            if (device != -1)
+            {
+                text += $" Device {device + 1}";
+            }
+            else
+            {
+                text += " Any Device";
+            }
+        }
+        else
+        {
+            text += "Invalid input key type";
+        }
+
+        return text;
     }
 
     /// <summary>

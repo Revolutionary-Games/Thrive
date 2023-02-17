@@ -64,6 +64,11 @@ public class SpawnSystem : ISpawnSystem
         spawnTypes = new ShuffleBag<Spawner>(random);
     }
 
+    public void Init()
+    {
+        Clear();
+    }
+
     /// <summary>
     ///   Adds a new spawner. Sets up the spawn radius, this radius squared,
     ///   and frequency fields based on the parameters of this
@@ -87,11 +92,6 @@ public class SpawnSystem : ISpawnSystem
     public void RemoveSpawnType(Spawner spawner)
     {
         spawnTypes.Remove(spawner);
-    }
-
-    public void Init()
-    {
-        Clear();
     }
 
     public void Clear()

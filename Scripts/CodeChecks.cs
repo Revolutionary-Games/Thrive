@@ -30,6 +30,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
             { "cleanupcode", new CleanupCode() },
             { "localization", new LocalizationCheck(runLocalizationTool) },
             { "steam-build", new SteamBuildCheck() },
+            { "rewrite", new RewriteTool() },
         };
 
         FilePathsToAlwaysIgnore.Add(new Regex(@"/?third_party/", RegexOptions.IgnoreCase));

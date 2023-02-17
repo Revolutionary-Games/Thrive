@@ -38,31 +38,6 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
         this.formatStringArgs = formatStringArgs;
     }
 
-    public override string ToString()
-    {
-        return ToString(null, null);
-    }
-
-    public string ToString(string? format, IFormatProvider? formatProvider)
-    {
-        if (formatStringArgs == null || formatStringArgs.Length == 0)
-        {
-            return format ?? TranslationServer.Translate(translationKey);
-        }
-
-        try
-        {
-            return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
-                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
-        }
-        catch (FormatException e)
-        {
-            GD.PrintErr("Invalid translation format in string ", translationKey, " for current language, exception: ",
-                e);
-            return TranslationServer.Translate(translationKey);
-        }
-    }
-
     public override bool Equals(object? obj)
     {
         return Equals(obj as LocalizedString);
@@ -103,5 +78,30 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
         }
 
         return hashCode;
+    }
+
+    public override string ToString()
+    {
+        return ToString(null, null);
+    }
+
+    public string ToString(string? format, IFormatProvider? formatProvider)
+    {
+        if (formatStringArgs == null || formatStringArgs.Length == 0)
+        {
+            return format ?? TranslationServer.Translate(translationKey);
+        }
+
+        try
+        {
+            return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
+                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+        }
+        catch (FormatException e)
+        {
+            GD.PrintErr("Invalid translation format in string ", translationKey, " for current language, exception: ",
+                e);
+            return TranslationServer.Translate(translationKey);
+        }
     }
 }

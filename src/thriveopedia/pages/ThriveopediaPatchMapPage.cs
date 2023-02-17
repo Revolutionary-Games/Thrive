@@ -72,6 +72,18 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     {
     }
 
+    protected virtual void UpdateShownPatchDetails()
+    {
+        detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
+        detailsPanel.UpdateShownPatchDetails();
+    }
+
+    protected void OnTranslationsChanged()
+    {
+        UpdateShownPatchDetails();
+        UpdateSeedLabel();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -85,18 +97,6 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
         }
 
         base.Dispose(disposing);
-    }
-
-    protected virtual void UpdateShownPatchDetails()
-    {
-        detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
-        detailsPanel.UpdateShownPatchDetails();
-    }
-
-    protected void OnTranslationsChanged()
-    {
-        UpdateShownPatchDetails();
-        UpdateSeedLabel();
     }
 
     private void UpdatePlayerPatch(Patch? patch)

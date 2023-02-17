@@ -145,24 +145,6 @@ public sealed class SteamClient : ISteamClient
         lowPowerCallback = new Callback<LowBatteryPower_t>(t => receiver.LowPower(t.m_nMinutesBatteryLeft));
     }
 
-    public void Dispose()
-    {
-        overlayToggledCallback?.Dispose();
-        statsReceivedCallback?.Dispose();
-        statsStoredCallback?.Dispose();
-        shutdownCallback?.Dispose();
-        createItemCallback?.Dispose();
-        downloadItemCallback?.Dispose();
-        installItemCallback?.Dispose();
-        deleteItemCallback?.Dispose();
-        updateItemCallback?.Dispose();
-        apiCallCompletedCallback?.Dispose();
-        lowPowerCallback?.Dispose();
-
-        GD.Print("Shutting down Steam API");
-        SteamAPI.Shutdown();
-    }
-
     public void Process(float delta)
     {
         if (!IsLoaded)
@@ -445,6 +427,24 @@ public sealed class SteamClient : ISteamClient
 
         workshopUpdateCallback.Invoke(convertedResult);
         workshopUpdateCallback = null;
+    }
+
+    public void Dispose()
+    {
+        overlayToggledCallback?.Dispose();
+        statsReceivedCallback?.Dispose();
+        statsStoredCallback?.Dispose();
+        shutdownCallback?.Dispose();
+        createItemCallback?.Dispose();
+        downloadItemCallback?.Dispose();
+        installItemCallback?.Dispose();
+        deleteItemCallback?.Dispose();
+        updateItemCallback?.Dispose();
+        apiCallCompletedCallback?.Dispose();
+        lowPowerCallback?.Dispose();
+
+        GD.Print("Shutting down Steam API");
+        SteamAPI.Shutdown();
     }
 
     private void RefreshCurrentUserInfo()

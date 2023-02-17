@@ -73,22 +73,6 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     {
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MoveToLandPopupPath != null)
-            {
-                MoveToLandPopupPath.Dispose();
-                ToLandButtonPath.Dispose();
-                AwareButtonPath.Dispose();
-                AwakenButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
     {
         // TODO: player hitpoints
@@ -163,6 +147,22 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     protected override void UpdateAbilitiesHotBar()
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MoveToLandPopupPath != null)
+            {
+                MoveToLandPopupPath.Dispose();
+                ToLandButtonPath.Dispose();
+                AwareButtonPath.Dispose();
+                AwakenButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateAwareButton(MulticellularCreature player)

@@ -76,8 +76,8 @@ jobs:
           name: Jetbrains inspectcode
           command: dotnet run --project Scripts -- check inspectcode
       - run:
-          name: Jetbrains format
-          command: dotnet run --project Scripts -- check cleanupcode
+          name: Code reformatting
+          command: dotnet run --project Scripts -- check cleanupcode rewrite
       # dupfinder is deprecated, see: https://github.com/Revolutionary-Games/Thrive/issues/2953
       # - run:
       #     command: ./check_formatting.rb -c duplicatecode

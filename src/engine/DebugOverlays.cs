@@ -42,21 +42,6 @@ public partial class DebugOverlays : Control
 
     public static DebugOverlays Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-
-        Show();
-        InputManager.RegisterReceiver(this);
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        InputManager.UnregisterReceiver(this);
-    }
-
     public override void _Ready()
     {
         base._Ready();
@@ -72,6 +57,21 @@ public partial class DebugOverlays : Control
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
         fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        Show();
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        InputManager.UnregisterReceiver(this);
     }
 
     public override void _Process(float delta)

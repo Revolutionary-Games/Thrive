@@ -2,7 +2,7 @@
 
 public interface IMicrobeAI
 {
-    float TimeUntilNextAIUpdate { get; set; }
+    public float TimeUntilNextAIUpdate { get; set; }
 
     /// <summary>
     ///   Runs AI thinking on this microbe. Should only be called by the MicrobeAISystem.
@@ -12,5 +12,5 @@ public interface IMicrobeAI
     /// <param name="delta">Elapsed time in seconds.</param>
     /// <param name="random">Randomness source</param>
     /// <param name="data">Common data for AI agents, should not be modified</param>
-    void AIThink(float delta, Random random, MicrobeAICommonData data);
+    public void AIThink(float delta, Random random, MicrobeAICommonData data);
 }

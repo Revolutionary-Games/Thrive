@@ -184,6 +184,26 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public bool IsLoadedFromSave { get; set; }
 
+    /// <summary>
+    ///   Guards against adding this to the scene not through OnAddedToMicrobe
+    /// </summary>
+    public override void _Ready()
+    {
+        if (Definition == null)
+            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
+
+        if (ParentMicrobe == null)
+        {
+            throw new InvalidOperationException(
+                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
+        }
+
+        if (IsLoadedFromSave)
+            FinishAttachToMicrobe();
+
+        ApplyScale();
+    }
+
     public bool HasShape(uint searchShape)
     {
         return shapes.Contains(searchShape);
@@ -203,26 +223,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         return false;
-    }
-
-    /// <summary>
-    ///   Guards against adding this to the scene not through OnAddedToMicrobe
-    /// </summary>
-    public override void _Ready()
-    {
-        if (Definition == null)
-            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
-
-        if (ParentMicrobe == null)
-        {
-            throw new InvalidOperationException(
-                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
-        }
-
-        if (IsLoadedFromSave)
-            FinishAttachToMicrobe();
-
-        ApplyScale();
     }
 
     /// <summary>

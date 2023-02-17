@@ -122,6 +122,12 @@ public class GalleryViewer : CustomDialog
         }
     }
 
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        StopAllPlayback();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -136,12 +142,6 @@ public class GalleryViewer : CustomDialog
         }
 
         base.Dispose(disposing);
-    }
-
-    protected override void OnHidden()
-    {
-        base.OnHidden();
-        StopAllPlayback();
     }
 
     private void InitializeGallery()

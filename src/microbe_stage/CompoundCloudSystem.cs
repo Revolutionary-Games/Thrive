@@ -47,19 +47,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
     }
 
-    public override void _Process(float delta)
-    {
-        elapsed += delta;
-
-        // Limit the rate at which the clouds are processed as they
-        // are a major performance sink
-        if (elapsed >= Settings.Instance.CloudUpdateInterval)
-        {
-            UpdateCloudContents(elapsed);
-            elapsed = 0.0f;
-        }
-    }
-
     /// <summary>
     ///   Resets the cloud contents and positions as well as the compound types they store
     /// </summary>
@@ -138,6 +125,19 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
             --renderPriority;
             clouds[i].Translation = new Vector3(0, 0, 0);
+        }
+    }
+
+    public override void _Process(float delta)
+    {
+        elapsed += delta;
+
+        // Limit the rate at which the clouds are processed as they
+        // are a major performance sink
+        if (elapsed >= Settings.Instance.CloudUpdateInterval)
+        {
+            UpdateCloudContents(elapsed);
+            elapsed = 0.0f;
         }
     }
 

@@ -3,7 +3,7 @@
 /// </summary>
 public interface ISaveContext
 {
-    SimulationParameters Simulation { get; }
+    public SimulationParameters Simulation { get; }
 
-    GameWorld? World { get; }
+    public GameWorld? World { get; }
 }

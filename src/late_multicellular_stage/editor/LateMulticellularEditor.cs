@@ -173,27 +173,6 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         return false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ReportTabPath != null)
-            {
-                ReportTabPath.Dispose();
-                PatchMapTabPath.Dispose();
-                BodyPlanEditorTabPath.Dispose();
-                CellEditorTabPath.Dispose();
-                NoCellTypeSelectedPath.Dispose();
-                CellEditorCameraPath.Dispose();
-                CellEditorLightPath.Dispose();
-                Body3DEditorCameraPath.Dispose();
-                BodyEditorLightPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected override void ResolveDerivedTypeNodeReferences()
     {
         reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
@@ -207,11 +186,6 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
         body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
         bodyEditorLight = GetNode<Light>(BodyEditorLightPath);
-    }
-
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
-    {
-        // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets
     }
 
     protected override void InitEditor(bool fresh)
@@ -243,14 +217,6 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         wantsToSave = false;
     }
 
-    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
-    {
-        yield return reportTab;
-        yield return patchMapTab;
-        yield return bodyPlanEditorTab;
-        yield return cellEditorTab;
-    }
-
     protected override void InitEditorGUI(bool fresh)
     {
         reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
@@ -264,6 +230,19 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         }
 
         patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
+    }
+
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
+    {
+        // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets
+    }
+
+    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
+    {
+        yield return reportTab;
+        yield return patchMapTab;
+        yield return bodyPlanEditorTab;
+        yield return cellEditorTab;
     }
 
     protected override void OnEditorReady()
@@ -420,6 +399,27 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                BodyPlanEditorTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+                NoCellTypeSelectedPath.Dispose();
+                CellEditorCameraPath.Dispose();
+                CellEditorLightPath.Dispose();
+                Body3DEditorCameraPath.Dispose();
+                BodyEditorLightPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnSelectPatchForReportTab(Patch patch)

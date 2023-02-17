@@ -194,19 +194,6 @@ public class EvolutionaryTree : Control
         dirty = true;
     }
 
-    public void Clear()
-    {
-        speciesOrigin.Clear();
-        speciesNames.Clear();
-        generationTimes.Clear();
-        speciesNodes.Clear();
-        maxSpeciesId = 0;
-        latestGeneration = 0;
-        dragOffset = Vector2.Zero;
-
-        tree.QueueFreeChildren();
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -269,6 +256,19 @@ public class EvolutionaryTree : Control
         BuildTree();
 
         dirty = true;
+    }
+
+    public void Clear()
+    {
+        speciesOrigin.Clear();
+        speciesNames.Clear();
+        generationTimes.Clear();
+        speciesNodes.Clear();
+        maxSpeciesId = 0;
+        latestGeneration = 0;
+        dragOffset = Vector2.Zero;
+
+        tree.QueueFreeChildren();
     }
 
     protected override void Dispose(bool disposing)

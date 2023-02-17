@@ -218,6 +218,34 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         hoverMetaballData.Clear();
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (hoverMetaballDisplayer == null)
+            throw new InvalidOperationException($"{GetType().Name} not initialized");
+
+        // TODO: should we display the hover metaballs setup on the previous frame here?
+        hoverMetaballsChanged = true;
+        if (hoverMetaballsChanged)
+        {
+            hoverMetaballDisplayer.OverrideColourAlpha =
+                isPlacementProbablyValid ? DefaultHoverAlpha : CannotPlaceHoverAlpha;
+
+            // Remove excess hover metaball data
+            while (hoverMetaballData.Count > usedHoverMetaballIndex)
+                hoverMetaballData.RemoveAt(hoverMetaballData.Count - 1);
+
+            hoverMetaballDisplayer.DisplayFromList(hoverMetaballData);
+
+            hoverMetaballsChanged = false;
+        }
+
+        // Clear the hover metaballs for the concrete editor type to use
+        hoverMetaballsChanged = false;
+        usedHoverMetaballIndex = 0;
+    }
+
     public void ResetSymmetryButton()
     {
         componentBottomLeftButtons.ResetSymmetry();
@@ -426,34 +454,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
 
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        if (hoverMetaballDisplayer == null)
-            throw new InvalidOperationException($"{GetType().Name} not initialized");
-
-        // TODO: should we display the hover metaballs setup on the previous frame here?
-        hoverMetaballsChanged = true;
-        if (hoverMetaballsChanged)
-        {
-            hoverMetaballDisplayer.OverrideColourAlpha =
-                isPlacementProbablyValid ? DefaultHoverAlpha : CannotPlaceHoverAlpha;
-
-            // Remove excess hover metaball data
-            while (hoverMetaballData.Count > usedHoverMetaballIndex)
-                hoverMetaballData.RemoveAt(hoverMetaballData.Count - 1);
-
-            hoverMetaballDisplayer.DisplayFromList(hoverMetaballData);
-
-            hoverMetaballsChanged = false;
-        }
-
-        // Clear the hover metaballs for the concrete editor type to use
-        hoverMetaballsChanged = false;
-        usedHoverMetaballIndex = 0;
-    }
-
     public void OnNoPropertiesLoaded()
     {
         // Something is wrong if this is called
@@ -489,22 +489,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         {
             editorArrow.Translation = arrowPosition;
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (CameraPath != null)
-            {
-                CameraPath.Dispose();
-                EditorArrowPath.Dispose();
-                EditorGroundPath.Dispose();
-                IslandErrorPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     protected abstract MetaballLayout<TMetaball> CreateLayout();
@@ -785,6 +769,22 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected void UpdateSymmetryButton()
     {
         componentBottomLeftButtons.SymmetryEnabled = MovingPlacedMetaball == null;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CameraPath != null)
+            {
+                CameraPath.Dispose();
+                EditorArrowPath.Dispose();
+                EditorGroundPath.Dispose();
+                IslandErrorPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnCameraPositionChanged(Transform newPosition)

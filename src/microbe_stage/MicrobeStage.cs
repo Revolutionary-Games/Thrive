@@ -119,20 +119,6 @@ public class MicrobeStage : StageBase<Microbe>
         SetupStage();
     }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
-        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
-        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
-    }
-
     public override void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -159,46 +145,18 @@ public class MicrobeStage : StageBase<Microbe>
             worldLight, CurrentGame, lightCycle);
     }
 
-    public override void OnFinishTransitioning()
+    public override void _EnterTree()
     {
-        base.OnFinishTransitioning();
-
-        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
-        {
-            TutorialState.SendEvent(
-                TutorialEventType.EnteredMicrobeStage,
-                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
-        }
-        else
-        {
-            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
-        }
+        base._EnterTree();
+        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
     }
 
-    public override void OnFinishLoading(Save save)
+    public override void _ExitTree()
     {
-        OnFinishLoading();
-    }
-
-    public override void StartNewGame()
-    {
-        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
-
-        UpdatePatchSettings(!TutorialState.Enabled);
-
-        base.StartNewGame();
-    }
-
-    public override void StartMusic()
-    {
-        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
-            "EarlyMulticellularStage" :
-            "MicrobeStage");
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        FluidSystem.PhysicsProcess(delta);
+        base._ExitTree();
+        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void _Process(float delta)
@@ -296,6 +254,48 @@ public class MicrobeStage : StageBase<Microbe>
         }
 
         UpdateLinePlayerPosition();
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        FluidSystem.PhysicsProcess(delta);
+    }
+
+    public override void OnFinishTransitioning()
+    {
+        base.OnFinishTransitioning();
+
+        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
+        {
+            TutorialState.SendEvent(
+                TutorialEventType.EnteredMicrobeStage,
+                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+        }
+        else
+        {
+            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
+        }
+    }
+
+    public override void OnFinishLoading(Save save)
+    {
+        OnFinishLoading();
+    }
+
+    public override void StartNewGame()
+    {
+        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
+
+        UpdatePatchSettings(!TutorialState.Enabled);
+
+        base.StartNewGame();
+    }
+
+    public override void StartMusic()
+    {
+        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
+            "EarlyMulticellularStage" :
+            "MicrobeStage");
     }
 
     [RunOnKeyDown("g_pause")]
@@ -544,16 +544,6 @@ public class MicrobeStage : StageBase<Microbe>
         Player?.Damage(9999.0f, "suicide");
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            GuidanceLinePath?.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected override void SetupStage()
     {
         // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
@@ -691,6 +681,16 @@ public class MicrobeStage : StageBase<Microbe>
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateBackground()
