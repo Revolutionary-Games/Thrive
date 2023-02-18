@@ -65,8 +65,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
         headArgumentButton.Text = filter.HeadArgument.Value;
         headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
-        //TEMP
-        headArgumentButton.Popup.Connect("index_pressed", this, nameof(UpdateRightValueQuery));
+        leftValueQueryUI.Connect("CategoryChanged", this, nameof(UpdateRightValueQuery));
 
         dirty = true;
     }
@@ -93,7 +92,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
     ///     Prevents comparing e.g. agressivity with speed, which is weird.
     ///   <para>
     /// </remarks>
-    public void UpdateRightValueQuery(int c)
+    public void UpdateRightValueQuery()
     {
         rightValueQueryUI.UpdateButtonItems(c => c == leftValueQueryUI.CategoryName || c == ValueQueryUI.NUMBER_FIELD);
     }
