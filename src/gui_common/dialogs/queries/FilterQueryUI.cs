@@ -64,7 +64,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         headArgumentButton.CreateElements();
 
         headArgumentButton.Text = filter.HeadArgument.Value;
-        headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
+        headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewComparatorSelected));
         leftValueQueryUI.Connect("CategoryChanged", this, nameof(UpdateRightValueQuery));
 
         dirty = true;
@@ -82,8 +82,6 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         }
     }
 
-    // TODO FORMAT
-    //TODO REMOVE ARGE (only for connect to popup)
     /// <summary>
     ///   Update the right button to match the category of the left button.
     /// </summary>
@@ -118,8 +116,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         parentWindow.RemoveFilterLine(this);
     }
 
-    // TODO RENAME AS IT NOW FALLS ONTO COMPARISON
-    private void OnNewCategorySelected(int choiceIndex)
+    private void OnNewComparatorSelected(int choiceIndex)
     {
         var filterCategory = headArgumentButton.Popup.GetItemText(choiceIndex);
 
