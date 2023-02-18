@@ -9,10 +9,14 @@ using Godot;
 /// <TODO>
 ///   Allow for translations; ----> let valuequery handle it
 ///   Find a way to retrieve values for the value query item
+///   For some reason, changing head argument need to click apply twice...
 /// </TODO>
 public class ValueQueryUI : HBoxContainer, ISnapshotable
 {
     public static string NUMBER_FIELD = "NUMBER";
+
+    [Signal]
+    public delegate void CategoryChanged();
 
     [Export]
     public NodePath CategoryButtonPath = null!;
@@ -102,6 +106,7 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     public void OnNewCategorySelected(int choiceIndex)
     {
+        // We do not handle it here but with a factorized function to also handle category setting on launch
         ChangeCategory(categoryButton.Popup.GetItemText(choiceIndex));
     }
 
@@ -155,6 +160,8 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
             // Restore previous property value
             ChangeProperty(lastUsedProperties[newCategory]);
         }
+
+        EmitSignal("CategoryChanged");
     }
 
     private void ChangeProperty(string newProperty)
@@ -168,8 +175,6 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     private void OnSpinBoxValueChanged(float value)
     {
-        // WHY NEED DOUBLE APPLY FOR RESULTS?
-        GD.Print("changing value", value);
         valueQuery.CurrentNumericValue = value;
     }
 }
