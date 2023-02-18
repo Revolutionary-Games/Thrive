@@ -135,6 +135,7 @@ public class FilterWindow : CustomConfirmationDialog
     {
         filters.Remove(filterLine.Filter);
         filtersContainer.RemoveChild(filterLine);
+        filterLines.Remove(filterLine);
 
         if (!filterLinesSnapshot.Contains(filterLine))
         {
