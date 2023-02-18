@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   This class handles filter queries for the UI which allows to filter with a single criterion (e.g. activity > 50).
+///   Multiple such queries can be combined for selection on multiple criteria.
+/// </summary>
 public class FilterQueryUI : HBoxContainer, ISnapshotable
 {
     [Export]
