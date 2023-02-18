@@ -83,9 +83,16 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         }
     }
 
-    // TO MATCH LEFT QUERY
     // TODO FORMAT
     //TODO REMOVE ARGE (only for connect to popup)
+    /// <summary>
+    ///   Update the right button to match the category of the left button.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Prevents comparing e.g. agressivity with speed, which is weird.
+    ///   <para>
+    /// </remarks>
     public void UpdateRightValueQuery(int c)
     {
         rightValueQueryUI.UpdateButtonItems(c => c == leftValueQueryUI.CategoryName || c == ValueQueryUI.NUMBER_FIELD);
