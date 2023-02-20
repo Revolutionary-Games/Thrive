@@ -118,7 +118,7 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     private void OnFindCurrentPatchPressed()
     {
-        mapDrawer.CenterScroll();
+        mapDrawer.CenterToCurrentPatch();
         mapDrawer.SelectedPatch = mapDrawer.PlayerPatch;
     }
 
