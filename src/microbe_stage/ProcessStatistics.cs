@@ -285,6 +285,11 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         return 233 ^ Process.GetHashCode();
     }
 
+    public override string ToString()
+    {
+        return $"Single process speed {CurrentSpeed} for {Process}";
+    }
+
     /// <summary>
     ///   Single point in time when statistics were collected
     /// </summary>
@@ -363,5 +368,10 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public override int GetHashCode()
     {
         return 211 ^ owner.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return $"Average process speed {CurrentSpeed} for {Name}";
     }
 }

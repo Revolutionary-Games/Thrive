@@ -68,6 +68,11 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
         return 239 ^ Process.GetHashCode();
     }
 
+    public override string ToString()
+    {
+        return $"Process speed {CurrentSpeed} for {Process}";
+    }
+
     protected bool Equals(ProcessSpeedInformation other)
     {
         return Process.Equals(other.Process);
