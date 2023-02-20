@@ -24,7 +24,8 @@ public class DraggableScrollContainer : ScrollContainer
     private bool zooming;
 
     /// <summary>
-    ///   Whether we're currently centering to a specific coordinate, to prevent dragging while it's still happening.
+    ///   Whether we're currently centering (with Lerp) to a specific coordinate, to prevent dragging while
+    ///   still lerping.
     /// </summary>
     private bool centering;
 
@@ -204,11 +205,21 @@ public class DraggableScrollContainer : ScrollContainer
         Zoom(1, 1.0f);
     }
 
-    public void CenterTo(Vector2 coordinates)
+    public void CenterTo(Vector2 coordinates, bool smoothed)
     {
-        centering = true;
+        var viewCoords = coordinates - GetRect().End / 2.0f;
+
+        if (smoothed)
+        {
+            centering = true;
+            Pan(viewCoords, () => centering = false, 1.0f);
+        }
+        else
+        {
+            ImmediatePan(viewCoords);
+        }
+
         ResetZoom();
-        Pan(coordinates - GetRect().End / 2.0f, () => centering = false, 1.0f);
     }
 
     private void ImmediateZoom(float value)

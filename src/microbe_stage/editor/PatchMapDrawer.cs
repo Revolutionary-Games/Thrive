@@ -46,7 +46,7 @@ public class PatchMapDrawer : Control
     private Patch? playerPatch;
 
     [Signal]
-    public delegate void OnCurrentPatchCentered(Vector2 coordinates);
+    public delegate void OnCurrentPatchCentered(Vector2 coordinates, bool smoothed);
 
     public PatchMap? Map
     {
@@ -66,6 +66,9 @@ public class PatchMapDrawer : Control
         }
     }
 
+    /// <summary>
+    ///   The current patch the player is in.
+    /// </summary>
     public Patch? PlayerPatch
     {
         get => playerPatch;
@@ -150,14 +153,20 @@ public class PatchMapDrawer : Control
         // Scroll to player patch only when first drawn
         if (!alreadyDrawn)
         {
-            CenterScroll();
+            // Just snap, it can get pretty annoying otherwise
+            CenterToCurrentPatch(false);
+
             alreadyDrawn = true;
         }
     }
 
-    public void CenterScroll()
+    /// <summary>
+    ///   Centers the map to the coordinates of current patch.
+    /// </summary>
+    /// <param name="smoothed">If true, smoothly pans the view to the destination, otherwise just snaps.</param>
+    public void CenterToCurrentPatch(bool smoothed = true)
     {
-        EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates);
+        EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates, smoothed);
     }
 
     public void MarkDirty()
