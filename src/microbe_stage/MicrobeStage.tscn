@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=112 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/ingestedmatter.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/parts/slimeJetAction.png" type="Texture" id=19]
+[ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=40]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=41]
@@ -496,6 +497,7 @@ MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBo
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
+HUDMessagesPath = NodePath("HUDMessages")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
 FossilisationButtonScene = ExtResource( 97 )
@@ -2071,6 +2073,12 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
 anims/EditorButtonFlash = SubResource( 30 )
 
+[node name="HUDMessages" parent="MicrobeHUD" instance=ExtResource( 20 )]
+margin_left = 270.0
+margin_top = 90.0
+margin_right = -270.0
+margin_bottom = -525.0
+
 [node name="ProcessPanel" parent="MicrobeHUD" instance=ExtResource( 58 )]
 margin_left = 8.0
 margin_top = 72.0
@@ -2215,7 +2223,6 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
-visible = false
 
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
