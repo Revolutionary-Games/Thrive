@@ -83,6 +83,7 @@ public class HUDMessages : VBoxContainer
     {
         return duration switch
         {
+            DisplayDuration.Short => 2,
             DisplayDuration.Normal => 4,
             DisplayDuration.Long => 12,
             _ => throw new ArgumentOutOfRangeException(nameof(duration), duration, null),

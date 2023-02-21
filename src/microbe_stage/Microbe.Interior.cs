@@ -1447,6 +1447,9 @@ public partial class Microbe
                 if (!Enzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
                 {
                     EjectEngulfable(engulfable);
+                    OnNoticeMessage?.Invoke(this,
+                        new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_MISSING_ENZYME")
+                            .FormatSafe(engulfable.RequisiteEnzymeToDigest.Name)));
                     continue;
                 }
 
@@ -1498,6 +1501,10 @@ public partial class Microbe
                     {
                         lastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
                         Damage(MaxHitpoints * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
+
+                        OnNoticeMessage?.Invoke(this,
+                            new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
+                                DisplayDuration.Short));
                     }
                 }
 

@@ -266,6 +266,9 @@ public partial class Microbe
     [JsonProperty]
     public Action<Microbe>? OnEngulfmentStorageFull { get; set; }
 
+    [JsonProperty]
+    public Action<Microbe, IHUDMessage>? OnNoticeMessage { get; set; }
+
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
     ///   membrane rigidity into account.
@@ -376,6 +379,10 @@ public partial class Microbe
 
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
+            // TODO: if other damaging chunk types are added this needs updating (also see the above TODO)
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN")));
+
             // Divide damage by physical resistance
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
@@ -383,6 +390,10 @@ public partial class Microbe
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
             canApplyDamageReduction = false;
+
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_NO_ATP"),
+                    DisplayDuration.Short));
         }
         else if (source == "ice")
         {
@@ -1756,6 +1767,14 @@ public partial class Microbe
         else if (EngulfSize > engulfable.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ && full)
         {
             OnEngulfmentStorageFull?.Invoke(this);
+
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+        }
+        else if (EngulfSize < engulfable.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+        {
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
         }
     }
 

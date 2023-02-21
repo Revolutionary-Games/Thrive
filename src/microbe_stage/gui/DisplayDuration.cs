@@ -3,6 +3,7 @@
 /// </summary>
 public enum DisplayDuration
 {
+    Short,
     Normal,
     Long,
 }
