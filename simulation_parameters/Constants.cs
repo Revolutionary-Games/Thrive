@@ -117,6 +117,8 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
+    public const float MICROBE_DIGESTION_UPDATE_INTERVAL = 0.0333f;
+
     public const float CELL_BASE_ROTATION = 0.2f;
     public const float CELL_MAX_ROTATION = 0.40f;
     public const float CELL_MIN_ROTATION = 0.005f;

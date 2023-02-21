@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -207,7 +206,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         processList.ShowSpinners = false;
         processList.ProcessesTitleColour = new Color(1.0f, 0.83f, 0.0f);
         processList.MarkRedOnLimitingCompounds = true;
-        processList.ProcessesToShow = processes.Cast<IProcessDisplayInfo>().ToList();
+        processList.ProcessesToShow = processes;
     }
 
     /// <summary>
