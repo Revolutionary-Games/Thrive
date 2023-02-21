@@ -353,9 +353,10 @@ public partial class Microbe
             // Play the toxin sound
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
-            // We assume here that the "toxin" type won't be used microbes
-            OnNoticeMessage?.Invoke(this,
-                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN")));
+            // TODO: fix this, currently "toxin" is used both by microbes and chunks, as well as damage from ingested
+            // toxins
+            // OnNoticeMessage?.Invoke(this,
+            //     new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN")));
 
             // Divide damage by toxin resistance
             amount /= CellTypeProperties.MembraneType.ToxinResistance;
