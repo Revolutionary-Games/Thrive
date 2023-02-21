@@ -64,7 +64,8 @@ public class MicrobeColony
     {
         get
         {
-            UpdateDerivedProperties();
+            if (membersDirty)
+                UpdateDerivedProperties();
             return hexCount;
         }
     }
@@ -77,7 +78,8 @@ public class MicrobeColony
     {
         get
         {
-            UpdateDerivedProperties();
+            if (membersDirty)
+                UpdateDerivedProperties();
             return canEngulf;
         }
     }
@@ -178,9 +180,6 @@ public class MicrobeColony
 
     private void UpdateDerivedProperties()
     {
-        if (!membersDirty)
-            return;
-
         UpdateHexCount();
         UpdateCanEngulf();
 
