@@ -64,8 +64,7 @@ public class MicrobeColony
     {
         get
         {
-            if (membersDirty)
-                UpdateHexCount();
+            UpdateDerivedProperties();
             return hexCount;
         }
     }
@@ -78,8 +77,7 @@ public class MicrobeColony
     {
         get
         {
-            if (membersDirty)
-                UpdateCanEngulf();
+            UpdateDerivedProperties();
             return canEngulf;
         }
     }
@@ -178,6 +176,17 @@ public class MicrobeColony
         membersDirty = true;
     }
 
+    private void UpdateDerivedProperties()
+    {
+        if (!membersDirty)
+            return;
+
+        UpdateHexCount();
+        UpdateCanEngulf();
+
+        membersDirty = false;
+    }
+
     private void UpdateHexCount()
     {
         hexCount = 0;
@@ -194,10 +203,11 @@ public class MicrobeColony
 
         foreach (var member in ColonyMembers)
         {
-            canEngulf = member.CanEngulf;
+            if (!member.CanEngulf)
+                continue;
 
-            if (canEngulf)
-                break;
+            canEngulf = true;
+            break;
         }
     }
 }

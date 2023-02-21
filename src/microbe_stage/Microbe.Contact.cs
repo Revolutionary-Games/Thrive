@@ -193,7 +193,7 @@ public partial class Microbe
     ///   Just like <see cref="ICellProperties.CanEngulf"/> but decoupled from Species and is based on the local
     ///   condition of the microbe instead.
     /// </summary>
-    /// <returns>True if this cell fills all the requirements it needs to be able to enter engulf mode.</returns>
+    /// <returns>True if this cell fills all the requirements needed to enter engulf mode.</returns>
     [JsonIgnore]
     public bool CanEngulf => !Membrane.Type.CellWall;
 
@@ -1115,10 +1115,9 @@ public partial class Microbe
     /// </summary>
     private void HandleEngulfing(float delta)
     {
-        if (!CanEngulf)
-            return;
+        var actuallyEngulfing = State == MicrobeState.Engulf && CanEngulf;
 
-        if (State == MicrobeState.Engulf)
+        if (actuallyEngulfing)
         {
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
@@ -1134,7 +1133,7 @@ public partial class Microbe
         }
 
         // Play sound
-        if (State == MicrobeState.Engulf)
+        if (actuallyEngulfing)
         {
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
@@ -1165,7 +1164,7 @@ public partial class Microbe
         }
 
         // Movement modifier
-        if (State == MicrobeState.Engulf)
+        if (actuallyEngulfing)
         {
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }

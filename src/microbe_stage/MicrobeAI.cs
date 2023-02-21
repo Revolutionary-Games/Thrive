@@ -243,6 +243,7 @@ public class MicrobeAI
         }
 
         // If there are no threats, look for a chunk to eat
+        // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
         if (microbe.CanEngulf)
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
@@ -285,6 +286,7 @@ public class MicrobeAI
         FloatingChunk? chosenChunk = null;
 
         // If the microbe cannot absorb, no need for this
+        // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
         if (!microbe.CanEngulf)
         {
             return null;

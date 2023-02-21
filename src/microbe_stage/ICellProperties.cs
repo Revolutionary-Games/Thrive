@@ -14,7 +14,7 @@ public interface ICellProperties
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>
-    ///   Returns true if this cell fills all the requirements it needs to be able to engulf.
+    ///   Returns true if this cell fills all the requirements needed to engulf.
     /// </summary>
     public bool CanEngulf { get; }
 
