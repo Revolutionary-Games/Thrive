@@ -126,7 +126,7 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             stage.Player.State = MicrobeState.Normal;
         }
-        else if (stage.Player.HasEngulfCapability)
+        else if (stage.Player.CanEngulfInColony())
         {
             stage.Player.State = MicrobeState.Engulf;
         }

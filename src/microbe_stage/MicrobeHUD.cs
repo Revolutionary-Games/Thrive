@@ -344,7 +344,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             showSlime = player.SlimeJets.Count > 0;
         }
 
-        UpdateBaseAbilitiesBar(player.HasEngulfCapability, showToxin, showSlime,
+        UpdateBaseAbilitiesBar(player.CanEngulfInColony(), showToxin, showSlime,
             player.HasSignalingAgent, player.State == MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;

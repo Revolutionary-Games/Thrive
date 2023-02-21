@@ -190,19 +190,12 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true if this microbe or the colony this microbe is part of has the capability to engulf.
+    ///   Just like <see cref="ICellProperties.CanEngulf"/> but decoupled from Species and is based on the local
+    ///   condition of the microbe instead.
     /// </summary>
+    /// <returns>True if this cell fills all the requirements it needs to be able to enter engulf mode.</returns>
     [JsonIgnore]
-    public bool HasEngulfCapability
-    {
-        get
-        {
-            if (Colony != null)
-                return Colony.HasEngulfCapability;
-
-            return CheckEngulfCapability();
-        }
-    }
+    public bool CanEngulf => !Membrane.Type.CellWall;
 
     /// <summary>
     ///   Returns true when this microbe can enable binding mode. Multicellular species can't attach random cells
@@ -395,7 +388,7 @@ public partial class Microbe
     /// <summary>
     ///   Returns true when this microbe can engulf the target
     /// </summary>
-    public bool CanEngulf(IEngulfable target)
+    public bool CanEngulfObject(IEngulfable target)
     {
         if (target.PhagocytosisStep != PhagocytosisPhase.None)
             return false;
@@ -449,7 +442,7 @@ public partial class Microbe
             return false;
 
         // Membranes with Cell Wall cannot engulf
-        if (!CheckEngulfCapability())
+        if (!CanEngulf)
             return false;
 
         // Godmode grants player complete engulfment invulnerability
@@ -461,13 +454,14 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Just like <see cref="ICellProperties.CanEngulf"/> but decoupled from Species and is based on the local
-    ///   condition of the microbe instead.
+    ///   Returns true if this microbe OR the colony this microbe is part of has the capability to engulf.
     /// </summary>
-    /// <returns>True if this cell has all the requirements it needs for engulfing.</returns>
-    public bool CheckEngulfCapability()
+    public bool CanEngulfInColony()
     {
-        return !Membrane.Type.CellWall;
+        if (Colony != null)
+            return Colony.CanEngulf;
+
+        return CanEngulf;
     }
 
     public void OnAttemptedToBeEngulfed()
@@ -1121,7 +1115,7 @@ public partial class Microbe
     /// </summary>
     private void HandleEngulfing(float delta)
     {
-        if (!CheckEngulfCapability())
+        if (!CanEngulf)
             return;
 
         if (State == MicrobeState.Engulf)
@@ -1731,7 +1725,7 @@ public partial class Microbe
 
         var full = UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + engulfable.EngulfSize >= EngulfSize;
 
-        if (CanEngulf(engulfable))
+        if (CanEngulfObject(engulfable))
         {
             IngestEngulfable(engulfable);
         }

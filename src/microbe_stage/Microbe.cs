@@ -910,7 +910,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new ArgumentException("searchRadius must be >= 1");
 
         // If the microbe cannot absorb, no need for this
-        if (!CheckEngulfCapability())
+        if (!CanEngulf)
             return null;
 
         Vector3? nearestPoint = null;
@@ -930,7 +930,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 continue;
 
             // Skip non-engulfable entities
-            if (!CanEngulf(entity))
+            if (!CanEngulfObject(entity))
                 continue;
 
             // Skip entities that have no useful compounds
@@ -1024,7 +1024,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         SetMembraneFromSpecies();
 
-        if (!CheckEngulfCapability())
+        if (!CanEngulf)
         {
             // Reset engulf mode if the new membrane doesn't allow it
             if (State == MicrobeState.Engulf)

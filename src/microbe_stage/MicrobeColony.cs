@@ -10,9 +10,9 @@ public class MicrobeColony
 {
     private MicrobeState state;
 
-    private bool memberDirty = true;
+    private bool membersDirty = true;
     private float hexCount;
-    private bool hasEngulfCapability;
+    private bool canEngulf;
 
     [JsonConstructor]
     private MicrobeColony(Microbe master)
@@ -64,23 +64,23 @@ public class MicrobeColony
     {
         get
         {
-            if (memberDirty)
+            if (membersDirty)
                 UpdateHexCount();
             return hexCount;
         }
     }
 
     /// <summary>
-    ///   Whether one or more member of this colony has the capability to engulf.
+    ///   Whether one or more member of this colony is allowed to enter engulf mode.
     /// </summary>
     [JsonIgnore]
-    public bool HasEngulfCapability
+    public bool CanEngulf
     {
         get
         {
-            if (memberDirty)
-                UpdateEngulfCapability();
-            return hasEngulfCapability;
+            if (membersDirty)
+                UpdateCanEngulf();
+            return canEngulf;
         }
     }
 
@@ -157,7 +157,7 @@ public class MicrobeColony
         if (microbe != Master)
             Master.Mass -= microbe.Mass;
 
-        memberDirty = true;
+        membersDirty = true;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -175,7 +175,7 @@ public class MicrobeColony
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
 
-        memberDirty = true;
+        membersDirty = true;
     }
 
     private void UpdateHexCount()
@@ -188,17 +188,16 @@ public class MicrobeColony
         }
     }
 
-    private void UpdateEngulfCapability()
+    private void UpdateCanEngulf()
     {
-        hasEngulfCapability = false;
+        canEngulf = false;
 
         foreach (var member in ColonyMembers)
         {
-            if (member.CheckEngulfCapability())
-            {
-                hasEngulfCapability = true;
+            canEngulf = member.CanEngulf;
+
+            if (canEngulf)
                 break;
-            }
         }
     }
 }

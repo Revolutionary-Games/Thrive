@@ -243,7 +243,7 @@ public class MicrobeAI
         }
 
         // If there are no threats, look for a chunk to eat
-        if (microbe.CheckEngulfCapability())
+        if (microbe.CanEngulf)
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
             if (targetChunk != null && targetChunk.PhagocytosisStep == PhagocytosisPhase.None)
@@ -257,7 +257,7 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
-            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
+            bool engulfPrey = microbe.CanEngulfObject(possiblePrey) &&
                 DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
@@ -285,7 +285,7 @@ public class MicrobeAI
         FloatingChunk? chosenChunk = null;
 
         // If the microbe cannot absorb, no need for this
-        if (!microbe.CheckEngulfCapability())
+        if (!microbe.CanEngulf)
         {
             return null;
         }
