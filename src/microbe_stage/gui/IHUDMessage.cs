@@ -12,6 +12,11 @@
     public float OriginalTimeRemaining { get; set; }
 
     /// <summary>
+    ///   Used to track when a really long-lived message should be deleted
+    /// </summary>
+    public float TotalDisplayedTime { get; set; }
+
+    /// <summary>
     ///   Checks if this and the other message can be shown that that this message happened multiple times
     /// </summary>
     /// <param name="other">The other message to compare against</param>

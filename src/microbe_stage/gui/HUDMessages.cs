@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -7,6 +8,26 @@ using Godot;
 /// </summary>
 public class HUDMessages : VBoxContainer
 {
+#pragma warning disable CA2213
+    [Export]
+    public Font MessageFont = null!;
+#pragma warning restore CA2213
+
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color BaseMessageColour = new(1, 1, 1);
+
+    [Export]
+    public int MaxShownMessages = 4;
+
+    [Export]
+    public float MaxDisplayTimeBeforeForceFade = 60;
+
+    /// <summary>
+    ///   The alpha value that is reached by the midway point of a message
+    /// </summary>
+    [Export]
+    public float MidwayFadeValue = 0.65f;
+
     private readonly List<(IHUDMessage Message, Label Displayer)> hudMessages = new();
 
     private string multipliedMessageTemplate = string.Empty;
@@ -14,6 +35,12 @@ public class HUDMessages : VBoxContainer
     public override void _Ready()
     {
         multipliedMessageTemplate = TranslationServer.Translate("HUD_MESSAGE_MULTIPLE");
+
+        if (MaxShownMessages < 1)
+        {
+            GD.PrintErr($"{nameof(MaxShownMessages)} needs to be at least one");
+            MaxShownMessages = 1;
+        }
     }
 
     public override void _Process(float delta)
@@ -31,7 +58,12 @@ public class HUDMessages : VBoxContainer
                 continue;
             }
 
-            // TODO: update fade, first half should fade slower, and then again fade fast
+            message.TotalDisplayedTime += delta;
+
+            // Update fade
+            // TODO: should different types of messages (more urgent?) have different colours
+            displayer.SelfModulate = new Color(BaseMessageColour,
+                CalculateMessageAlpha(message.TimeRemaining, message.OriginalTimeRemaining));
         }
 
         if (clean)
@@ -45,33 +77,50 @@ public class HUDMessages : VBoxContainer
         {
             if (existingMessage.IsSameMessage(message))
             {
+                // Limit to only combining with not super long lived messages. This ensures that all messages will
+                // eventually disappear
+                if (existingMessage.TotalDisplayedTime > MaxDisplayTimeBeforeForceFade)
+                    continue;
+
                 existingMessage.UpdateFromOtherMessage(message);
                 existingLabel.Text = TextForMessage(existingMessage);
 
                 // Reset the fade time for the message that appeared again
                 existingMessage.TimeRemaining = existingMessage.OriginalTimeRemaining;
 
-                // TODO: should we have an absolute time cutoff that forces a message out if it's been visible for
-                // more than a minute?
-
                 return;
             }
         }
 
-        // Can't combine, need to add a new one
-        var label = new Label();
+        // Can't combine, need to add a new label to display this
+        var label = new Label
+        {
+            SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+            Align = Label.AlignEnum.Center,
+            Autowrap = true,
+            MouseFilter = MouseFilterEnum.Ignore,
+            Text = TextForMessage(message),
+        };
 
-        // TODO: allow export param to set the font
+        label.AddFontOverride("font", MessageFont);
 
-        label.SizeFlagsHorizontal = (int)SizeFlags.Expand;
-        label.Align = Label.AlignEnum.Center;
-        label.Autowrap = true;
-        label.MouseFilter = MouseFilterEnum.Ignore;
-
-        label.Text = TextForMessage(message);
         AddChild(label);
 
+        message.OriginalTimeRemaining = TimeToFadeFromDuration(message.Duration);
+        message.TimeRemaining = message.OriginalTimeRemaining;
+
         hudMessages.Add((message, label));
+
+        // If there's too many messages, remove the one with the least time remaining
+        while (hudMessages.Count > MaxShownMessages)
+        {
+            var toRemove = hudMessages.OrderBy(m => m.Message.TimeRemaining).First();
+
+            toRemove.Displayer.QueueFree();
+
+            if (!hudMessages.Remove(toRemove))
+                throw new Exception("Expected list item removal failed");
+        }
     }
 
     public void ShowMessage(string simpleMessage, DisplayDuration duration = DisplayDuration.Normal)
@@ -96,5 +145,18 @@ public class HUDMessages : VBoxContainer
             return message.ToString();
 
         return multipliedMessageTemplate.FormatSafe(message.ToString(), message.Multiplier);
+    }
+
+    private float CalculateMessageAlpha(float timeLeft, float originalTime)
+    {
+        // First half fades slower, and then again fade fast
+        float halfway = originalTime * 0.5f;
+        if (timeLeft >= halfway)
+        {
+            return MidwayFadeValue + (1 - MidwayFadeValue) *
+                (timeLeft - originalTime * 0.5f) / originalTime;
+        }
+
+        return MidwayFadeValue * (timeLeft / halfway);
     }
 }

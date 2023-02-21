@@ -16,6 +16,7 @@ public class SimpleHUDMessage : IHUDMessage
 
     public float TimeRemaining { get; set; }
     public float OriginalTimeRemaining { get; set; }
+    public float TotalDisplayedTime { get; set; }
 
     public bool IsSameMessage(IHUDMessage other)
     {
