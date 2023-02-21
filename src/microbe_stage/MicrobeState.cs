@@ -1,4 +1,4 @@
-public enum MicrobeState
+﻿public enum MicrobeState
 {
     /// <summary>
     ///   Not in any special state
