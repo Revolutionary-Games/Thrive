@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-13 20:52-0800\n"
+"POT-Creation-Date: 2023-02-21 15:12+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -56,7 +56,7 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abisma zono"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/EditorBase.cs:698
+#: ../src/general/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -97,8 +97,8 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobia Nitrogena Riparado"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1529
-#: ../src/microbe_stage/MicrobeStage.tscn:1603
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1533
+#: ../src/microbe_stage/MicrobeStage.tscn:1605
 msgid "AGENTS"
 msgstr "Agentoj"
 
@@ -145,7 +145,7 @@ msgstr "Organisma Statistiko"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Organisma Statistiko"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
 msgstr "Alt"
 
@@ -154,9 +154,9 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Media Volumo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1306
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1310
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1345
+#: ../src/microbe_stage/MicrobeStage.tscn:1347
 msgid "AMMONIA"
 msgstr "Amoniako"
 
@@ -246,12 +246,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP-bilanco"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:314
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktado"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:310
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:315
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
 
@@ -260,7 +260,7 @@ msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:569
+#: ../src/microbe_stage/MicrobeStage.tscn:571
 msgid "AT_CURSOR"
 msgstr "Ĉe Kursoro(montrilo):"
 
@@ -315,9 +315,9 @@ msgstr "Aŭto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Lanĉa stato:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:276
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
@@ -326,9 +326,9 @@ msgstr "Aŭtomata evolucio malsukcesis"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultoj de aŭtomata evoluo:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:277
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:232
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Lanĉa stato:"
 
@@ -350,7 +350,7 @@ msgstr "Distingivo:"
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1730
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1734
 msgid "AWAKEN"
 msgstr ""
 
@@ -386,7 +386,7 @@ msgstr "Reen"
 msgid "BASE_MOBILITY"
 msgstr "Movebleco"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:364
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
 msgid "BASE_MOVEMENT"
 msgstr "Baza Movado"
 
@@ -415,18 +415,18 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr "Batipelagika"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
 #, fuzzy
 msgid "BECOME_AWARE"
 msgstr "Biomo: {0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:470
-#: ../src/microbe_stage/MicrobeStage.tscn:1793
+#: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:434
-#: ../src/microbe_stage/MicrobeStage.tscn:1782
+#: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -648,27 +648,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr "Karbona duoksido"
 
-#: ../src/general/StageHUDBase.cs:1027
+#: ../src/general/StageHUDBase.cs:970
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1031
+#: ../src/general/StageHUDBase.cs:974
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1035
+#: ../src/general/StageHUDBase.cs:978
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1029
+#: ../src/general/StageHUDBase.cs:972
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1033
+#: ../src/general/StageHUDBase.cs:976
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1037
+#: ../src/general/StageHUDBase.cs:980
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -706,11 +706,11 @@ msgstr "Celulozo"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ĉi tiu membrano havas muron, kio rezultigas pli bonan protekton kontraŭ ĝenerala damaĝo kaj precipe kontraŭ fizika damaĝo. Ankaŭ kostas malpli da energio konservi sian formon, sed ne povas absorbi aĵojn rapide kaj estas pli malrapida."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:591
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:649
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:359 ../src/steam/SteamClient.cs:280
+#: ../src/modding/ModUploader.cs:359 ../src/steam/SteamClient.cs:262
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Priskribo:"
@@ -902,60 +902,60 @@ msgstr "Koloro"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kolorblinda o:"
 
-#: ../src/gui_common/TweakedColourPicker.cs:390
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:413
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:404
+#: ../src/gui_common/TweakedColourPicker.cs:410
 #, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:409
 #, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:391
+#: ../src/gui_common/TweakedColourPicker.cs:397
 #, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:402
 #, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:389
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:581
+#: ../src/gui_common/TweakedColourPicker.cs:587
 #, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:392
+#: ../src/gui_common/TweakedColourPicker.cs:398
 #, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:408
 #, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:403
 #, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:398
+#: ../src/gui_common/TweakedColourPicker.cs:404
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -983,12 +983,12 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "COMPILED_AT_COLON"
 msgstr "Kunmetaĵoj:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1156
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1160
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1201
+#: ../src/microbe_stage/MicrobeStage.tscn:1203
 msgid "COMPOUNDS"
 msgstr "Kunmetaĵoj"
 
@@ -997,8 +997,8 @@ msgstr "Kunmetaĵoj"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:568
-#: ../src/microbe_stage/MicrobeStage.tscn:620
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:572
+#: ../src/microbe_stage/MicrobeStage.tscn:622
 msgid "COMPOUNDS_COLON"
 msgstr "Kunmetaĵoj:"
 
@@ -1197,7 +1197,7 @@ msgstr "Kreante objektojn el konservado"
 msgid "CREDITS"
 msgstr "Kreditoj"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:229
 msgid "CTRL"
 msgstr "Ctrl"
 
@@ -1276,7 +1276,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi tion por ĉiam?"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:944
+#: ../src/microbe_stage/Microbe.Contact.cs:955
 msgid "DEATH"
 msgstr "morto"
 
@@ -1391,7 +1391,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:225
 msgid "DEVOURED"
 msgstr ""
 
@@ -1404,7 +1404,7 @@ msgstr ""
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:171
+#: ../src/general/WorldGenerationSettings.cs:156
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -1415,7 +1415,7 @@ msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:169
+#: ../src/general/WorldGenerationSettings.cs:154
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -1722,7 +1722,7 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 msgid "EDITOR"
 msgstr "Redaktilo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1961
+#: ../src/microbe_stage/MicrobeStage.tscn:1963
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -1762,23 +1762,23 @@ msgstr "Ebligu la redaktilon"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Eksteraj efikoj:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1796,8 +1796,8 @@ msgstr ""
 msgid "ENTITY_LABEL"
 msgstr "Biomo: {0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
-#: ../src/microbe_stage/MicrobeStage.tscn:738
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:694
+#: ../src/microbe_stage/MicrobeStage.tscn:740
 msgid "ENVIRONMENT"
 msgstr "Medio"
 
@@ -1858,7 +1858,7 @@ msgstr "Eraro de konservado"
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1208
+#: ../src/microbe_stage/Microbe.Contact.cs:1219
 msgid "ESCAPE_ENGULFING"
 msgstr "eskapu englutadon"
 
@@ -2040,8 +2040,8 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "kun koncentriĝo de"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2128
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2078
+#: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Pafu toksinon"
 
@@ -2093,7 +2093,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Manĝoĉeno"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2423
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2121,12 +2121,12 @@ msgstr "loĝantaro:"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:189
+#: ../src/microbe_stage/MicrobeHUD.cs:200
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:188
+#: ../src/microbe_stage/MicrobeHUD.cs:199
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2139,7 +2139,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:182
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
@@ -2228,9 +2228,9 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1254
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1258
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1299
+#: ../src/microbe_stage/MicrobeStage.tscn:1301
 msgid "GLUCOSE"
 msgstr "Glukozo"
 
@@ -2340,7 +2340,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:631
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -2366,10 +2366,14 @@ msgstr "SP:"
 msgid "HSV"
 msgstr ""
 
+#: ../src/microbe_stage/gui/HUDMessages.cs:37
+msgid "HUD_MESSAGE_MULTIPLE"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1410
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1414
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1446
+#: ../src/microbe_stage/MicrobeStage.tscn:1448
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogena Sulfido"
 
@@ -2415,7 +2419,7 @@ msgstr "Kunmetaĵoj"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1542
+#: ../src/microbe_stage/MicrobeStage.tscn:1544
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2491,9 +2495,9 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1466
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1492
+#: ../src/microbe_stage/MicrobeStage.tscn:1494
 msgid "IRON"
 msgstr "Fero"
 
@@ -2539,7 +2543,7 @@ msgstr ""
 msgid "KEY_BACK"
 msgstr "Reen"
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:137
+#: ../src/engine/input/key_mapping/InputGroupList.cs:158
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Estas konflikto kun {0}.\n"
@@ -2886,7 +2890,7 @@ msgstr ""
 msgid "LEFT_ARROW"
 msgstr "Maldekstra musbutono"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:244
 msgid "LEFT_MOUSE"
 msgstr "Maldekstra musbutono"
 
@@ -2934,8 +2938,8 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1014
-#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1018
+#: ../src/microbe_stage/MicrobeStage.tscn:1064
 msgid "LIGHT"
 msgstr "Lumo"
 
@@ -3105,7 +3109,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:521
 #, fuzzy
 msgid "LOOKING_AT"
 msgstr "Premu la malfaran butonon en la redaktilo por korekti eraron"
@@ -3200,7 +3204,7 @@ msgstr ""
 msgid "MEDIASTOP"
 msgstr ""
 
-#: ../src/auto-evo/EvolutionaryTree.cs:396
+#: ../src/auto-evo/EvolutionaryTree.cs:403
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
 #: ../src/microbe_stage/editor/TimelineTab.cs:232
 msgid "MEGA_YEARS"
@@ -3372,7 +3376,7 @@ msgstr "Libra Redaktilo de"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organisma Statistiko"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:182
+#: ../src/microbe_stage/MicrobeSpecies.cs:217
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3527,7 +3531,7 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:246
 msgid "MIDDLE_MOUSE"
 msgstr "Meza musbutono"
 
@@ -3828,12 +3832,12 @@ msgstr "Movu dekstren"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Moviĝu al ĉi tiu loko"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Moviĝu al ĉi tiu loko"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1778
+#: ../src/microbe_stage/MicrobeStage.tscn:1780
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -3845,11 +3849,11 @@ msgstr "Moviĝu al ĉi tiu loko"
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2126
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2125
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -3863,8 +3867,8 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
-#: ../src/microbe_stage/MicrobeStage.tscn:1708
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1644
+#: ../src/microbe_stage/MicrobeStage.tscn:1710
 msgid "MUCILAGE"
 msgstr ""
 
@@ -4059,10 +4063,38 @@ msgstr "Normala"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
-#: ../src/microbe_stage/MicrobeStage.tscn:595
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:547
+#: ../src/microbe_stage/MicrobeStage.tscn:597
 msgid "NOTHING_HERE"
 msgstr "Nenio estas ĉi tie"
+
+#: ../src/microbe_stage/Microbe.Contact.cs:358
+msgid "NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.Contact.cs:395
+msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.Interior.cs:1511
+msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.Interior.cs:1456
+msgid "NOTICE_ENGULF_MISSING_ENZYME"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.Contact.cs:1777
+msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.Contact.cs:1772
+msgid "NOTICE_ENGULF_STORAGE_FULL"
+msgstr ""
+
+#: ../src/general/StageHUDBase.cs:616
+msgid "NOTICE_READY_TO_EDIT"
+msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 #, fuzzy
@@ -4084,7 +4116,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4103,7 +4135,7 @@ msgid "NO_MODS_ENABLED"
 msgstr "Trompaĵoj estas ebligitaj"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:202
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Disloku organeton"
@@ -4155,8 +4187,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2306
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #, fuzzy
 msgid "N_A"
@@ -4259,11 +4291,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:231
 msgid "OPTIONS"
 msgstr "Agordoj"
 
-#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:230
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -4290,7 +4322,7 @@ msgstr "Piku aliajn ĉelojn per ĉi tio."
 msgid "ORGANISM_STATISTICS"
 msgstr "Organisma Statistiko"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:363
 msgid "OSMOREGULATION"
 msgstr "Osmoregado"
 
@@ -4383,8 +4415,8 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1593
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "OXYTOXY_NT"
 msgstr "OksiToksina NO"
 
@@ -4569,16 +4601,16 @@ msgid "PEACEFUL"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:724
-#: ../src/general/WorldGenerationSettings.cs:177
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:736
+#: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:266
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:231
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -4597,9 +4629,9 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekundo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1358
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1362
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1394
+#: ../src/microbe_stage/MicrobeStage.tscn:1396
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
@@ -4628,7 +4660,7 @@ msgstr "Disloku organeton"
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:189
+#: ../src/general/WorldGenerationSettings.cs:174
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
@@ -4643,7 +4675,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1245
+#: ../src/general/StageHUDBase.cs:1188
 msgid "PLAYER_CELL"
 msgstr "Ĉelo de la ludanto"
 
@@ -4656,7 +4688,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/StageBase.cs:496
+#: ../src/general/StageBase.cs:482
 msgid "PLAYER_DIED"
 msgstr "ludanto mortis"
 
@@ -4675,7 +4707,7 @@ msgstr "ludanto mortis"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "ludanto mortis"
 
-#: ../src/general/StageBase.cs:440
+#: ../src/general/StageBase.cs:426
 msgid "PLAYER_REPRODUCED"
 msgstr "ludanto reproduktita"
 
@@ -4708,8 +4740,8 @@ msgstr "Ludu Mikroban Enkondukon en ĉiu Nova Ludo"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1750
-#: ../src/microbe_stage/MicrobeStage.tscn:1813
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1754
+#: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACIO:"
 
@@ -4723,7 +4755,7 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 msgid "POPULATION_IN_PATCHES"
 msgstr "POPULACIO:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2287
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULACIO:"
@@ -4742,8 +4774,8 @@ msgstr "Rekomenci"
 msgid "PRESSURE"
 msgstr "Premo."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1069
-#: ../src/microbe_stage/MicrobeStage.tscn:1117
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1073
+#: ../src/microbe_stage/MicrobeStage.tscn:1119
 msgid "PRESSURE_SHORT"
 msgstr "Premo."
 
@@ -4886,12 +4918,12 @@ msgstr ""
 msgid "REPORT"
 msgstr "Ra"
 
-#: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:223
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Ra"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1116
+#: ../src/microbe_stage/Microbe.Interior.cs:1117
 msgid "REPRODUCED"
 msgstr "reproduktis"
 
@@ -5020,7 +5052,7 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "RIGHT_ARROW"
 msgstr "Dekstra musbutono"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:245
 msgid "RIGHT_MOUSE"
 msgstr "Dekstra musbutono"
 
@@ -5258,8 +5290,8 @@ msgid "SEA_FLOOR"
 msgstr "Marfundo"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2174
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2102
+#: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -5347,7 +5379,7 @@ msgstr ""
 msgid "SFX_VOLUME"
 msgstr "Volumo de sonefektoj"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:79
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:233
 msgid "SHIFT"
 msgstr "Shift"
 
@@ -5416,30 +5448,30 @@ msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energ
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:115
+#: ../src/microbe_stage/MicrobeHUD.cs:126
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:114
+#: ../src/microbe_stage/MicrobeHUD.cs:125
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:112
+#: ../src/microbe_stage/MicrobeHUD.cs:123
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:111
+#: ../src/microbe_stage/MicrobeHUD.cs:122
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:113
+#: ../src/microbe_stage/MicrobeHUD.cs:124
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:118
+#: ../src/microbe_stage/MicrobeHUD.cs:129
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
@@ -5526,7 +5558,7 @@ msgstr "Generu amoniakon"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:765
+#: ../src/microbe_stage/MicrobeStage.cs:767
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5538,11 +5570,11 @@ msgstr "Generu glukozon"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Generu fosfaton"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:97
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:251
 msgid "SPECIAL_MOUSE_1"
 msgstr "Musa Speciala 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:98
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:252
 msgid "SPECIAL_MOUSE_2"
 msgstr "Musa Specialaĵo 2"
 
@@ -5551,12 +5583,12 @@ msgstr "Musa Specialaĵo 2"
 msgid "SPECIES"
 msgstr "Listo de Specioj"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:608
-#: ../src/microbe_stage/MicrobeStage.tscn:660
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:612
+#: ../src/microbe_stage/MicrobeStage.tscn:662
 msgid "SPECIES_COLON"
 msgstr "Specioj:"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:290
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "Listo de Specioj"
@@ -5580,7 +5612,7 @@ msgstr "Specia nomo..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Specia nomo..."
 
-#: ../src/general/StageHUDBase.cs:1258
+#: ../src/general/StageHUDBase.cs:1201
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Listo de Specioj"
@@ -5773,15 +5805,15 @@ msgstr "Struktura"
 msgid "STRUCTURE"
 msgstr "Strukturo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:342
+#: ../src/microbe_stage/MicrobeHUD.cs:324
 msgid "STUFF_AT"
 msgstr "Aĵoj ĉe {0: F1}, {1: F1}:"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:763
+#: ../src/microbe_stage/Microbe.Contact.cs:774
 msgid "SUCCESSFUL_KILL"
 msgstr "sukcesa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:756
+#: ../src/microbe_stage/Microbe.Contact.cs:767
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "sukcesa ordaranĝado"
 
@@ -5864,8 +5896,8 @@ msgstr "Prenu ekrankopion"
 msgid "TEMPERATURE"
 msgstr "Temperaturo"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:958
-#: ../src/microbe_stage/MicrobeStage.tscn:1006
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:962
+#: ../src/microbe_stage/MicrobeStage.tscn:1008
 msgid "TEMPERATURE_SHORT"
 msgstr "Tеmp."
 
@@ -6056,7 +6088,7 @@ msgid "TITLE_COLON"
 msgstr "Grandeco:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2139
+#: ../src/microbe_stage/MicrobeStage.tscn:2147
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Ŝaltu engluton"
@@ -6067,8 +6099,8 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Ŝaltu engluton"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2115
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2064
+#: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Ŝaltu engluton"
 
@@ -6141,7 +6173,7 @@ msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa prod
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:180
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:188
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1714
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Devos ankoraŭ esti farita."
 
@@ -6367,7 +6399,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2151
+#: ../src/microbe_stage/MicrobeStage.tscn:2159
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -6404,7 +6436,7 @@ msgstr "Nekonata musbutono"
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Kapabloj"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:99
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:253
 msgid "UNKNOWN_MOUSE"
 msgstr "Nekonata musbutono"
 
@@ -6519,7 +6551,7 @@ msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉe
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/general/StageHUDBase.cs:725 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:737 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr ""
@@ -6606,7 +6638,7 @@ msgstr "Volumo de sonefektoj"
 msgid "VSYNC"
 msgstr "VSi"
 
-#: ../src/general/EditorBase.cs:264
+#: ../src/general/EditorBase.cs:256
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Atendante aŭtomata evolucion:"
 
@@ -6622,19 +6654,19 @@ msgstr "formortis de la planedo"
 msgid "WENT_EXTINCT_IN"
 msgstr "formortis je"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:94
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:248
 msgid "WHEEL_DOWN"
 msgstr "Rado malsupren"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:95
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:249
 msgid "WHEEL_LEFT"
 msgstr "Rado maldekstre"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:96
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:250
 msgid "WHEEL_RIGHT"
 msgstr "Rado dekstre"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Rado supren"
 
@@ -6708,7 +6740,7 @@ msgstr "Eraro de konservado"
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Organisma Statistiko"
 
-#: ../src/general/WorldGenerationSettings.cs:203
+#: ../src/general/WorldGenerationSettings.cs:188
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
