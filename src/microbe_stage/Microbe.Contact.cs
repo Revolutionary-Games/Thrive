@@ -98,29 +98,6 @@ public partial class Microbe
     [JsonProperty]
     private MicrobeState state;
 
-    public enum MicrobeState
-    {
-        /// <summary>
-        ///   Not in any special state
-        /// </summary>
-        Normal,
-
-        /// <summary>
-        ///   The microbe is currently in binding mode
-        /// </summary>
-        Binding,
-
-        /// <summary>
-        ///   The microbe is currently in unbinding mode and cannot move
-        /// </summary>
-        Unbinding,
-
-        /// <summary>
-        ///   The microbe is currently in engulf mode
-        /// </summary>
-        Engulf,
-    }
-
     /// <summary>
     ///   The colony this microbe is currently in
     /// </summary>
@@ -179,34 +156,11 @@ public partial class Microbe
     [JsonIgnore]
     public MicrobeState State
     {
-        get
-        {
-            if (Colony == null)
-                return state;
-
-            var colonyState = Colony.State;
-
-            // Override engulf mode in colony cells that can't engulf
-            if (colonyState == MicrobeState.Engulf && Membrane.Type.CellWall)
-                return MicrobeState.Normal;
-
-            return colonyState;
-        }
+        get => Colony?.State ?? state;
         set
         {
             if (state == value)
                 return;
-
-            // Engulfing is not legal for microbes will cell walls
-            if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
-            {
-                // Don't warn when in a multicellular colony as the other cells there can enter engulf mode
-                if (ColonyParent != null && IsMulticellular)
-                    return;
-
-                GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
-                return;
-            }
 
             state = value;
             if (Colony != null)
@@ -232,6 +186,21 @@ public partial class Microbe
                 return size * 0.5f;
 
             return size;
+        }
+    }
+
+    /// <summary>
+    ///   Returns true if this microbe or the colony this microbe is part of has the capability to engulf.
+    /// </summary>
+    [JsonIgnore]
+    public bool HasEngulfCapability
+    {
+        get
+        {
+            if (Colony != null)
+                return Colony.HasEngulfCapability;
+
+            return CheckEngulfCapability();
         }
     }
 
@@ -480,7 +449,7 @@ public partial class Microbe
             return false;
 
         // Membranes with Cell Wall cannot engulf
-        if (Membrane.Type.CellWall)
+        if (!CheckEngulfCapability())
             return false;
 
         // Godmode grants player complete engulfment invulnerability
@@ -489,6 +458,16 @@ public partial class Microbe
 
         // Needs to be big enough to engulf
         return EngulfSize > target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
+    }
+
+    /// <summary>
+    ///   Just like <see cref="ICellProperties.CanEngulf"/> but decoupled from Species and is based on the local
+    ///   condition of the microbe instead.
+    /// </summary>
+    /// <returns>True if this cell has all the requirements it needs for engulfing.</returns>
+    public bool CheckEngulfCapability()
+    {
+        return !Membrane.Type.CellWall;
     }
 
     public void OnAttemptedToBeEngulfed()
@@ -1142,6 +1121,9 @@ public partial class Microbe
     /// </summary>
     private void HandleEngulfing(float delta)
     {
+        if (!CheckEngulfCapability())
+            return;
+
         if (State == MicrobeState.Engulf)
         {
             // Drain atp

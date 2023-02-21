@@ -211,7 +211,7 @@ public class MicrobeAI
             case MicrobeSignalCommand.FleeFromMe:
                 if (signaler != null && DistanceFromMe(signaler.Translation) < Constants.AI_FLEE_DISTANCE_SQUARED)
                 {
-                    microbe.State = Microbe.MicrobeState.Normal;
+                    microbe.State = MicrobeState.Normal;
                     SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 
                     // Direction is calculated to be the opposite from where we should flee
@@ -243,7 +243,7 @@ public class MicrobeAI
         }
 
         // If there are no threats, look for a chunk to eat
-        if (!microbe.CellTypeProperties.MembraneType.CellWall)
+        if (microbe.CheckEngulfCapability())
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
             if (targetChunk != null && targetChunk.PhagocytosisStep == PhagocytosisPhase.None)
@@ -266,7 +266,7 @@ public class MicrobeAI
         }
 
         // There is no reason to be engulfing at this stage
-        microbe.State = Microbe.MicrobeState.Normal;
+        microbe.State = MicrobeState.Normal;
 
         // Otherwise just wander around and look for compounds
         if (!IsSessile)
@@ -285,7 +285,7 @@ public class MicrobeAI
         FloatingChunk? chosenChunk = null;
 
         // If the microbe cannot absorb, no need for this
-        if (microbe.Membrane.Type.CellWall)
+        if (!microbe.CheckEngulfCapability())
         {
             return null;
         }
@@ -476,7 +476,7 @@ public class MicrobeAI
 
     private void FleeFromPredators(Random random, Vector3 predatorLocation)
     {
-        microbe.State = Microbe.MicrobeState.Normal;
+        microbe.State = MicrobeState.Normal;
 
         targetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
 
@@ -511,7 +511,7 @@ public class MicrobeAI
 
     private void EngagePrey(Vector3 target, Random random, bool engulf)
     {
-        microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
+        microbe.State = engulf ? MicrobeState.Engulf : MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
         if (CanShootToxin())
@@ -721,11 +721,11 @@ public class MicrobeAI
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
         if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
-            microbe.State = Microbe.MicrobeState.Engulf;
+            microbe.State = MicrobeState.Engulf;
         }
         else
         {
-            microbe.State = Microbe.MicrobeState.Normal;
+            microbe.State = MicrobeState.Normal;
         }
     }
 
@@ -771,7 +771,7 @@ public class MicrobeAI
 
     private void MoveToLocation(Vector3 location)
     {
-        microbe.State = Microbe.MicrobeState.Normal;
+        microbe.State = MicrobeState.Normal;
         targetPosition = location;
         microbe.LookAtPoint = targetPosition;
         SetMoveSpeed(Constants.AI_BASE_MOVEMENT);

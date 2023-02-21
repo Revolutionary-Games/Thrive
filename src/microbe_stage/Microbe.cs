@@ -910,7 +910,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new ArgumentException("searchRadius must be >= 1");
 
         // If the microbe cannot absorb, no need for this
-        if (Membrane.Type.CellWall)
+        if (!CheckEngulfCapability())
             return null;
 
         Vector3? nearestPoint = null;
@@ -1024,7 +1024,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         SetMembraneFromSpecies();
 
-        if (Membrane.Type.CellWall)
+        if (!CheckEngulfCapability())
         {
             // Reset engulf mode if the new membrane doesn't allow it
             if (State == MicrobeState.Engulf)
