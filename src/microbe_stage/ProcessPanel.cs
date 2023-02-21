@@ -42,7 +42,7 @@ public class ProcessPanel : CustomDialog
         if (ShownData != null)
         {
             // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues()).ToList();
+            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues());
         }
         else
         {
