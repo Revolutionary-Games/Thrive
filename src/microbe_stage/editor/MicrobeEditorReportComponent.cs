@@ -500,13 +500,14 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     /// <summary>
     ///   Returns a chart which should contain the given compound.
     /// </summary>
+    /// <returns>Null if the given compound shouldn't be included in any chart.</returns>
     private LineChart? GetChartForCompound(string compoundName)
     {
         switch (compoundName)
         {
             case "atp":
-                return null;
             case "oxytoxy":
+            case "temperature":
                 return null;
             case "sunlight":
                 return sunlightChart;
