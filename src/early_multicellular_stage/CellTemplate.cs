@@ -49,6 +49,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     public float BaseRotationSpeed { get => CellType.BaseRotationSpeed; set => CellType.BaseRotationSpeed = value; }
 
     [JsonIgnore]
+    public bool CanEngulf => CellType.CanEngulf;
+
+    [JsonIgnore]
     public string FormattedName => CellType.TypeName;
 
     [JsonIgnore]
