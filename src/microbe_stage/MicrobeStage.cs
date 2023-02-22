@@ -505,6 +505,8 @@ public class MicrobeStage : StageBase<Microbe>
         // This is done first to ensure that the player colony is still intact for spawn separation calculation
         var daughter = Player!.Divide();
 
+        daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
+
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
         {
@@ -518,6 +520,14 @@ public class MicrobeStage : StageBase<Microbe>
 
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
+
+        var playerPosition = Player.GlobalTranslation;
+
+        // This is queued to run to reduce the massive lag spike that anyway happens on this frame
+        // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
+        // frame and won't be available on the next one
+        Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
+            rootOfDynamicallySpawned);
 
         if (!CurrentGame.TutorialState.Enabled)
         {

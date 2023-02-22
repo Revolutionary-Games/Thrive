@@ -203,6 +203,93 @@ public class SpawnSystem : ISpawnSystem
             Constants.REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER;
     }
 
+    /// <summary>
+    ///   Ensures that the entity limit is not overfilled by a lot after player reproduction by force despawning things
+    /// </summary>
+    public void EnsureEntityLimitAfterPlayerReproduction(Vector3 playerPosition, ISpawned? doNotDespawn)
+    {
+        // Take the just spawned thing we shouldn't despawn into account in the entity count as our estimate won't
+        // likely include it yet
+        var extra = doNotDespawn?.EntityWeight ?? 0;
+
+        var entityLimit = Settings.Instance.MaxSpawnedEntities.Value;
+
+        float limitExcess = estimateEntityCount + extra - entityLimit *
+            Constants.REPRODUCTION_PLAYER_ALLOWED_ENTITY_LIMIT_EXCEED;
+
+        if (limitExcess < 1)
+            return;
+
+        // We need to despawn something
+        GD.Print("After player reproduction entity limit is exceeded, will force despawn something");
+
+        float playerReproductionWeight = 0;
+
+        var playerReproducedEntities = new List<ISpawned>();
+
+        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.PLAYER_REPRODUCED_GROUP))
+        {
+            if (spawned.EntityNode.IsQueuedForDeletion())
+                continue;
+
+            playerReproductionWeight += spawned.EntityWeight;
+
+            if (spawned != doNotDespawn)
+            {
+                playerReproducedEntities.Add(spawned);
+            }
+        }
+
+        // Despawn one player reproduced copy first if the player reproduced copies are taking up a ton of space
+        if (playerReproductionWeight > entityLimit * Constants.PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER &&
+            playerReproducedEntities.Count > 0)
+        {
+            var despawn = playerReproducedEntities
+                .OrderByDescending(s => s.EntityNode.GlobalTranslation.DistanceSquaredTo(playerPosition)).First();
+
+            var weight = despawn.EntityWeight;
+            estimateEntityCount -= weight;
+            limitExcess -= weight;
+            despawn.DestroyDetachAndQueueFree();
+        }
+
+        if (limitExcess <= 1)
+            return;
+
+        // We take weight as well as distance into account here to not just despawn a ton of really far away objects
+        // with weight of 1
+        using var deSpawnableEntities = worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP)
+            .OrderByDescending(s =>
+                Math.Log(s.EntityNode.GlobalTranslation.DistanceSquaredTo(playerPosition)) + Math.Log(s.EntityWeight))
+            .GetEnumerator();
+
+        // Then try to despawn enough stuff for us to get under the limit
+        while (limitExcess >= 1)
+        {
+            ISpawned? bestCandidate = null;
+
+            if (deSpawnableEntities.MoveNext() && deSpawnableEntities.Current != null)
+                bestCandidate = deSpawnableEntities.Current;
+
+            if (bestCandidate == doNotDespawn || bestCandidate?.EntityNode.IsQueuedForDeletion() == true)
+                continue;
+
+            if (bestCandidate != null)
+            {
+                var weight = bestCandidate.EntityWeight;
+                estimateEntityCount -= weight;
+                limitExcess -= weight;
+                bestCandidate.DestroyDetachAndQueueFree();
+
+                continue;
+            }
+
+            // If we couldn't despawn anything sensible, give up
+            GD.PrintErr("Force despawning could not find enough things to despawn");
+            break;
+        }
+    }
+
     private void HandleQueuedSpawns(ref float spawnsLeftThisFrame, Vector3 playerPosition)
     {
         float spawned = 0.0f;

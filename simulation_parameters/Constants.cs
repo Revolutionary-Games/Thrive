@@ -159,6 +159,23 @@ public static class Constants
     public const float REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER = 1.15f;
 
     /// <summary>
+    ///   If the entity limit is over this once the player has reproduced, force despawning will happen
+    /// </summary>
+    public const float REPRODUCTION_PLAYER_ALLOWED_ENTITY_LIMIT_EXCEED = 1.25f;
+
+    /// <summary>
+    ///   Once reproduced player copies take this much or more of the overall entity limit, they are preferred to
+    ///   despawn first.
+    /// </summary>
+    public const float PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER = 0.30f;
+
+    /// <summary>
+    ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
+    ///   heavier than normal microbes, as such this is set pretty high.
+    /// </summary>
+    public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 1.15f;
+
+    /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
     ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
     /// </summary>
@@ -936,6 +953,8 @@ public static class Constants
     public const string AI_TAG_CHUNK = "chunk";
 
     public const string PLAYER_GROUP = "player";
+
+    public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
 
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
