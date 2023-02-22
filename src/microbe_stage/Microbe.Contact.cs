@@ -121,6 +121,18 @@ public partial class Microbe
         Engulf,
     }
 
+    public enum EngulfCheckResult
+    {
+        Ok,
+        NotInEngulfMode,
+        RecentlyExpelled,
+        TargetDead,
+        TargetTooBig,
+        IngestedMatterFull,
+        CannotCannibalize,
+        TargetInvulnerable,
+    }
+
     /// <summary>
     ///   The colony this microbe is currently in
     /// </summary>
@@ -438,25 +450,29 @@ public partial class Microbe
     /// <summary>
     ///   Returns true when this microbe can engulf the target
     /// </summary>
-    public bool CanEngulf(IEngulfable target)
+    public EngulfCheckResult CanEngulf(IEngulfable target)
     {
         if (target.PhagocytosisStep != PhagocytosisPhase.None)
-            return false;
+            return EngulfCheckResult.NotInEngulfMode;
+
+        // Membranes with Cell Wall cannot engulf
+        if (Membrane.Type.CellWall)
+            return EngulfCheckResult.NotInEngulfMode;
 
         // Can't engulf recently ejected objects, this act as a cooldown
         if (expelledObjects.Any(m => m.Object == target))
-            return false;
+            return EngulfCheckResult.RecentlyExpelled;
 
         var targetAsMicrobe = target as Microbe;
 
         // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
         // something is destroyed or not here (especially now that the Invoke the engulf start callback)
         if (targetAsMicrobe != null && targetAsMicrobe.destroyed)
-            return false;
+            return EngulfCheckResult.TargetDead;
 
         // Can't engulf dead microbes (unlikely to happen but this is fail-safe)
         if (targetAsMicrobe != null && targetAsMicrobe.Dead)
-            return false;
+            return EngulfCheckResult.TargetDead;
 
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
@@ -476,31 +492,32 @@ public partial class Microbe
                 loggedTouchedDisposeIssue = true;
             }
 
-            return false;
+            return EngulfCheckResult.TargetDead;
         }
 
-        // Limit amount of things that can be engulfed at once
-        if (UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + target.EngulfSize >= EngulfSize)
-            return false;
-
-        // Too many things attempted to be pulled in at once
-        if (UsedIngestionCapacity + attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize >= EngulfSize)
-            return false;
+        // The following checks are in a specific order to make sure the fail reporting logic gives sensible results
 
         // Disallow cannibalism
         if (targetAsMicrobe != null && targetAsMicrobe.Species == Species)
-            return false;
+            return EngulfCheckResult.CannotCannibalize;
 
-        // Membranes with Cell Wall cannot engulf
-        if (Membrane.Type.CellWall)
-            return false;
+        // Needs to be big enough to engulf
+        if (EngulfSize < target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+            return EngulfCheckResult.TargetTooBig;
+
+        // Limit amount of things that can be engulfed at once
+        if (UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + target.EngulfSize >= EngulfSize)
+            return EngulfCheckResult.IngestedMatterFull;
+
+        // Too many things attempted to be pulled in at once
+        if (UsedIngestionCapacity + attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize >= EngulfSize)
+            return EngulfCheckResult.IngestedMatterFull;
 
         // Godmode grants player complete engulfment invulnerability
         if (targetAsMicrobe != null && targetAsMicrobe.IsPlayerMicrobe && CheatManager.GodMode)
-            return false;
+            return EngulfCheckResult.TargetInvulnerable;
 
-        // Needs to be big enough to engulf
-        return EngulfSize > target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
+        return EngulfCheckResult.Ok;
     }
 
     public void OnAttemptedToBeEngulfed()
@@ -1759,20 +1776,20 @@ public partial class Microbe
             }
         }
 
-        var full = UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + engulfable.EngulfSize >= EngulfSize;
+        var canEngulf = CanEngulf(engulfable);
 
-        if (CanEngulf(engulfable))
+        if (canEngulf == EngulfCheckResult.Ok)
         {
             IngestEngulfable(engulfable);
         }
-        else if (EngulfSize > engulfable.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ && full)
+        else if (canEngulf == EngulfCheckResult.IngestedMatterFull)
         {
             OnEngulfmentStorageFull?.Invoke(this);
 
             OnNoticeMessage?.Invoke(this,
                 new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
         }
-        else if (EngulfSize < engulfable.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+        else if (canEngulf == EngulfCheckResult.TargetTooBig)
         {
             OnNoticeMessage?.Invoke(this,
                 new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));

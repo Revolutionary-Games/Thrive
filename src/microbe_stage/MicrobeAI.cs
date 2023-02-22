@@ -257,11 +257,12 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
-            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
-                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
-            Vector3? prey = possiblePrey.GlobalTransform.origin;
+            var prey = possiblePrey.GlobalTransform.origin;
 
-            EngagePrey(prey.Value, random, engulfPrey);
+            bool engulfPrey = microbe.CanEngulf(possiblePrey) == Microbe.EngulfCheckResult.Ok &&
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+
+            EngagePrey(prey, random, engulfPrey);
             return;
         }
 
