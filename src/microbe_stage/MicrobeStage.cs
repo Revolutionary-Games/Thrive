@@ -513,6 +513,7 @@ public class MicrobeStage : StageBase<Microbe>
             daughter.BecomeFullyGrownMulticellularColony();
 
             // TODO: add more extra offset between the player and the divided cell
+            // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
         }
 
         // Update the player's cell
