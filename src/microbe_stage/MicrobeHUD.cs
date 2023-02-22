@@ -344,13 +344,13 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             showSlime = player.SlimeJets.Count > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showSlime,
-            player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
+        UpdateBaseAbilitiesBar(player.CanEngulfInColony(), showToxin, showSlime,
+            player.HasSignalingAgent, player.State == MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;
         unbindAllHotkey.Visible = player.CanUnbind;
 
-        bindingModeHotkey.Pressed = player.State == Microbe.MicrobeState.Binding;
+        bindingModeHotkey.Pressed = player.State == MicrobeState.Binding;
         unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
     }
 

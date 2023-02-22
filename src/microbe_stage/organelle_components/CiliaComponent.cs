@@ -54,7 +54,7 @@ public class CiliaComponent : ExternallyPositionedComponent
         var rawRotation = previousCellRotation.Value.AngleTo(currentCellRotation);
         var rotationSpeed = rawRotation * Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
 
-        if (microbe.State == Microbe.MicrobeState.Engulf && attractorArea != null)
+        if (microbe.State == MicrobeState.Engulf && attractorArea != null)
         {
             // We are using cilia pulling, play animation at fixed rate
             targetSpeed = Constants.CILIA_CURRENT_GENERATION_ANIMATION_SPEED;
@@ -101,7 +101,7 @@ public class CiliaComponent : ExternallyPositionedComponent
         if (attractorArea != null)
         {
             // Enable cilia pulling force if parent cell is not in engulf mode and is not being engulfed
-            var enable = organelle!.ParentMicrobe!.State == Microbe.MicrobeState.Engulf &&
+            var enable = organelle!.ParentMicrobe!.State == MicrobeState.Engulf &&
                 organelle.ParentMicrobe.PhagocytosisStep == PhagocytosisPhase.None;
 
             // The approach of disabling the underlying collision shape or the Area's Monitoring property makes the

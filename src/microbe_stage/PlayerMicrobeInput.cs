@@ -52,7 +52,7 @@ public class PlayerMicrobeInput : NodeWithInput
         var player = stage.Player;
         if (player != null)
         {
-            if (player.State == Microbe.MicrobeState.Unbinding)
+            if (player.State == MicrobeState.Unbinding)
             {
                 // It's probably fine to not update the tutorial state here with events as this state doesn't last
                 // that long and the player needs a pretty long time to get so far in the game as to get here
@@ -122,13 +122,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.Engulf)
+        if (stage.Player.State == MicrobeState.Engulf)
         {
-            stage.Player.State = Microbe.MicrobeState.Normal;
+            stage.Player.State = MicrobeState.Normal;
         }
-        else if (!stage.Player.Membrane.Type.CellWall)
+        else if (stage.Player.CanEngulfInColony())
         {
-            stage.Player.State = Microbe.MicrobeState.Engulf;
+            stage.Player.State = MicrobeState.Engulf;
         }
     }
 
@@ -138,13 +138,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.Binding)
+        if (stage.Player.State == MicrobeState.Binding)
         {
-            stage.Player.State = Microbe.MicrobeState.Normal;
+            stage.Player.State = MicrobeState.Normal;
         }
         else if (stage.Player.CanBind)
         {
-            stage.Player.State = Microbe.MicrobeState.Binding;
+            stage.Player.State = MicrobeState.Binding;
         }
     }
 
@@ -154,15 +154,15 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+        if (stage.Player.State == MicrobeState.Unbinding)
         {
             stage.HUD.HintText = string.Empty;
-            stage.Player.State = Microbe.MicrobeState.Normal;
+            stage.Player.State = MicrobeState.Normal;
         }
         else if (stage.Player.Colony != null && !stage.Player.IsMulticellular)
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
-            stage.Player.State = Microbe.MicrobeState.Unbinding;
+            stage.Player.State = MicrobeState.Unbinding;
         }
     }
 
@@ -175,7 +175,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
     public bool AcceptUnbind()
     {
-        if (stage.Player?.State != Microbe.MicrobeState.Unbinding)
+        if (stage.Player?.State != MicrobeState.Unbinding)
             return false;
 
         if (stage.HoverInfo.HoveredMicrobes.Count == 0)

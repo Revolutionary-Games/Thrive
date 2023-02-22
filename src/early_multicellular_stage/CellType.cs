@@ -36,6 +36,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
         MembraneRigidity = microbeSpecies.MembraneRigidity;
         Colour = microbeSpecies.Colour;
         IsBacteria = microbeSpecies.IsBacteria;
+        CanEngulf = microbeSpecies.CanEngulf;
         TypeName = TranslationServer.Translate("STEM_CELL_NAME");
     }
 
@@ -50,6 +51,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
     public float BaseRotationSpeed { get; set; }
+    public bool CanEngulf { get; }
 
     /// <summary>
     ///   Total mass of all the organelles in this cell type
