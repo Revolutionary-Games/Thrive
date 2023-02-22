@@ -8,10 +8,11 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class MicrobeColony
 {
-    private Microbe.MicrobeState state;
+    private MicrobeState state;
 
-    private bool hexCountDirty = true;
+    private bool membersDirty = true;
     private float hexCount;
+    private bool canEngulf;
 
     [JsonConstructor]
     private MicrobeColony(Microbe master)
@@ -41,7 +42,7 @@ public class MicrobeColony
     public ColonyCompoundBag ColonyCompounds { get; private set; }
 
     [JsonProperty]
-    public Microbe.MicrobeState State
+    public MicrobeState State
     {
         get => state;
         set
@@ -63,9 +64,23 @@ public class MicrobeColony
     {
         get
         {
-            if (hexCountDirty)
-                UpdateHexCount();
+            if (membersDirty)
+                UpdateDerivedProperties();
             return hexCount;
+        }
+    }
+
+    /// <summary>
+    ///   Whether one or more member of this colony is allowed to enter engulf mode.
+    /// </summary>
+    [JsonIgnore]
+    public bool CanEngulf
+    {
+        get
+        {
+            if (membersDirty)
+                UpdateDerivedProperties();
+            return canEngulf;
         }
     }
 
@@ -114,8 +129,8 @@ public class MicrobeColony
         if (microbe.ColonyChildren == null)
             throw new ArgumentException("Invalid microbe with no colony children setup on it");
 
-        if (State == Microbe.MicrobeState.Unbinding)
-            State = Microbe.MicrobeState.Normal;
+        if (State == MicrobeState.Unbinding)
+            State = MicrobeState.Normal;
 
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
@@ -142,7 +157,7 @@ public class MicrobeColony
         if (microbe != Master)
             Master.Mass -= microbe.Mass;
 
-        hexCountDirty = true;
+        membersDirty = true;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -160,7 +175,15 @@ public class MicrobeColony
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
 
-        hexCountDirty = true;
+        membersDirty = true;
+    }
+
+    private void UpdateDerivedProperties()
+    {
+        UpdateHexCount();
+        UpdateCanEngulf();
+
+        membersDirty = false;
     }
 
     private void UpdateHexCount()
@@ -170,6 +193,20 @@ public class MicrobeColony
         foreach (var member in ColonyMembers)
         {
             hexCount += member.EngulfSize;
+        }
+    }
+
+    private void UpdateCanEngulf()
+    {
+        canEngulf = false;
+
+        foreach (var member in ColonyMembers)
+        {
+            if (!member.CanEngulf)
+                continue;
+
+            canEngulf = true;
+            break;
         }
     }
 }

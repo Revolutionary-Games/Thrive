@@ -52,19 +52,19 @@ public partial class DebugOverlays
             {
                 switch (microbe.State)
                 {
-                    case Microbe.MicrobeState.Binding:
+                    case MicrobeState.Binding:
                     {
                         label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
                         break;
                     }
 
-                    case Microbe.MicrobeState.Engulf:
+                    case MicrobeState.Engulf:
                     {
                         label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
                         break;
                     }
 
-                    case Microbe.MicrobeState.Unbinding:
+                    case MicrobeState.Unbinding:
                     {
                         label.AddColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
                         break;

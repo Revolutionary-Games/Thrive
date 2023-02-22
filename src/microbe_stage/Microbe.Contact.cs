@@ -98,29 +98,6 @@ public partial class Microbe
     [JsonProperty]
     private MicrobeState state;
 
-    public enum MicrobeState
-    {
-        /// <summary>
-        ///   Not in any special state
-        /// </summary>
-        Normal,
-
-        /// <summary>
-        ///   The microbe is currently in binding mode
-        /// </summary>
-        Binding,
-
-        /// <summary>
-        ///   The microbe is currently in unbinding mode and cannot move
-        /// </summary>
-        Unbinding,
-
-        /// <summary>
-        ///   The microbe is currently in engulf mode
-        /// </summary>
-        Engulf,
-    }
-
     public enum EngulfCheckResult
     {
         Ok,
@@ -191,34 +168,11 @@ public partial class Microbe
     [JsonIgnore]
     public MicrobeState State
     {
-        get
-        {
-            if (Colony == null)
-                return state;
-
-            var colonyState = Colony.State;
-
-            // Override engulf mode in colony cells that can't engulf
-            if (colonyState == MicrobeState.Engulf && Membrane.Type.CellWall)
-                return MicrobeState.Normal;
-
-            return colonyState;
-        }
+        get => Colony?.State ?? state;
         set
         {
             if (state == value)
                 return;
-
-            // Engulfing is not legal for microbes will cell walls
-            if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
-            {
-                // Don't warn when in a multicellular colony as the other cells there can enter engulf mode
-                if (ColonyParent != null && IsMulticellular)
-                    return;
-
-                GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
-                return;
-            }
 
             state = value;
             if (Colony != null)
@@ -246,6 +200,14 @@ public partial class Microbe
             return size;
         }
     }
+
+    /// <summary>
+    ///   Just like <see cref="ICellProperties.CanEngulf"/> but decoupled from Species and is based on the local
+    ///   condition of the microbe instead.
+    /// </summary>
+    /// <returns>True if this cell fills all the requirements needed to enter engulf mode.</returns>
+    [JsonIgnore]
+    public bool CanEngulf => !Membrane.Type.CellWall;
 
     /// <summary>
     ///   Returns true when this microbe can enable binding mode. Multicellular species can't attach random cells
@@ -450,13 +412,13 @@ public partial class Microbe
     /// <summary>
     ///   Returns true when this microbe can engulf the target
     /// </summary>
-    public EngulfCheckResult CanEngulf(IEngulfable target)
+    public EngulfCheckResult CanEngulfObject(IEngulfable target)
     {
         if (target.PhagocytosisStep != PhagocytosisPhase.None)
             return EngulfCheckResult.NotInEngulfMode;
 
         // Membranes with Cell Wall cannot engulf
-        if (Membrane.Type.CellWall)
+        if (!CanEngulf)
             return EngulfCheckResult.NotInEngulfMode;
 
         // Can't engulf recently ejected objects, this act as a cooldown
@@ -518,6 +480,17 @@ public partial class Microbe
             return EngulfCheckResult.TargetInvulnerable;
 
         return EngulfCheckResult.Ok;
+    }
+
+    /// <summary>
+    ///   Returns true if this microbe OR the colony this microbe is part of has the capability to engulf.
+    /// </summary>
+    public bool CanEngulfInColony()
+    {
+        if (Colony != null)
+            return Colony.CanEngulf;
+
+        return CanEngulf;
     }
 
     public void OnAttemptedToBeEngulfed()
@@ -1171,7 +1144,9 @@ public partial class Microbe
     /// </summary>
     private void HandleEngulfing(float delta)
     {
-        if (State == MicrobeState.Engulf)
+        var actuallyEngulfing = State == MicrobeState.Engulf && CanEngulf;
+
+        if (actuallyEngulfing)
         {
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
@@ -1187,7 +1162,7 @@ public partial class Microbe
         }
 
         // Play sound
-        if (State == MicrobeState.Engulf)
+        if (actuallyEngulfing)
         {
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
@@ -1218,7 +1193,7 @@ public partial class Microbe
         }
 
         // Movement modifier
-        if (State == MicrobeState.Engulf)
+        if (actuallyEngulfing)
         {
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
@@ -1776,20 +1751,20 @@ public partial class Microbe
             }
         }
 
-        var canEngulf = CanEngulf(engulfable);
+        var engulfCheckResult = CanEngulfObject(engulfable);
 
-        if (canEngulf == EngulfCheckResult.Ok)
+        if (engulfCheckResult == EngulfCheckResult.Ok)
         {
             IngestEngulfable(engulfable);
         }
-        else if (canEngulf == EngulfCheckResult.IngestedMatterFull)
+        else if (engulfCheckResult == EngulfCheckResult.IngestedMatterFull)
         {
             OnEngulfmentStorageFull?.Invoke(this);
 
             OnNoticeMessage?.Invoke(this,
                 new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
         }
-        else if (canEngulf == EngulfCheckResult.TargetTooBig)
+        else if (engulfCheckResult == EngulfCheckResult.TargetTooBig)
         {
             OnNoticeMessage?.Invoke(this,
                 new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));

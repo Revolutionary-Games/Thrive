@@ -77,6 +77,9 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
 
     [JsonIgnore]
+    public bool CanEngulf => !MembraneType.CellWall;
+
+    [JsonIgnore]
     public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
 
     public override void OnEdited()
