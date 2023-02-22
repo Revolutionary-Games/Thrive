@@ -8,6 +8,13 @@ using Godot;
 /// </summary>
 public class HUDMessages : VBoxContainer
 {
+    /// <summary>
+    ///   When this is true any new messages are added *above* existing messages. Otherwise new messages appear below
+    ///   existing messages.
+    /// </summary>
+    [Export]
+    public bool OrderMessagesBottomUp;
+
 #pragma warning disable CA2213
     [Export]
     public Font MessageFont = null!;
@@ -105,6 +112,11 @@ public class HUDMessages : VBoxContainer
         label.AddFontOverride("font", MessageFont);
 
         AddChild(label);
+
+        if (OrderMessagesBottomUp)
+        {
+            MoveChild(label, 0);
+        }
 
         message.OriginalTimeRemaining = TimeToFadeFromDuration(message.Duration);
         message.TimeRemaining = message.OriginalTimeRemaining;
