@@ -17,8 +17,8 @@ public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
     public NodePath FossilisationDialogPath = null!;
 
 #pragma warning disable CA2213
-    private SpeciesDetailsPanel speciesDetailsPanel = null!;
-    private Button? fossilisationButton;
+    private SpeciesDetailsPanel? speciesDetailsPanel;
+    private Button fossilisationButton = null!;
     private FossilisationDialog fossilisationDialog = null!;
 #pragma warning restore CA2213
 
@@ -33,9 +33,12 @@ public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
                 return;
 
             previewSpecies = value;
-            speciesDetailsPanel.PreviewSpecies = value;
 
-            UpdateFossilisationButtonState();
+            if (speciesDetailsPanel != null)
+            {
+                speciesDetailsPanel.PreviewSpecies = value;
+                UpdateFossilisationButtonState();
+            }
         }
     }
 
@@ -46,6 +49,8 @@ public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
         speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
         fossilisationButton = GetNode<Button>(FossilisationButtonPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
+
+        speciesDetailsPanel.PreviewSpecies = previewSpecies;
 
         UpdateFossilisationButtonState();
     }
@@ -76,7 +81,6 @@ public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 
     private void UpdateFossilisationButtonState()
     {
-        if (fossilisationButton != null)
-            fossilisationButton.Disabled = previewSpecies is not MicrobeSpecies;
+        fossilisationButton.Disabled = previewSpecies is not MicrobeSpecies;
     }
 }
