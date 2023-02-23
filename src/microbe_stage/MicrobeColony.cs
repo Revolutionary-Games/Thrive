@@ -13,6 +13,7 @@ public class MicrobeColony
     private bool membersDirty = true;
     private float hexCount;
     private bool canEngulf;
+    private float entityWeight;
 
     [JsonConstructor]
     private MicrobeColony(Microbe master)
@@ -81,6 +82,27 @@ public class MicrobeColony
             if (membersDirty)
                 UpdateDerivedProperties();
             return canEngulf;
+        }
+    }
+
+    /// <summary>
+    ///   Total entity weight of the colony. Colony member weights are modified with a multiplier to end up with
+    ///   this number;
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this doesn't include the <see cref="Master"/> weight as the intended use for this property is
+    ///     to be read through <see cref="Microbe.EntityWeight"/> where this is added on top for the colony lead cell.
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public float EntityWeight
+    {
+        get
+        {
+            if (membersDirty)
+                UpdateDerivedProperties();
+            return entityWeight;
         }
     }
 
@@ -180,19 +202,23 @@ public class MicrobeColony
 
     private void UpdateDerivedProperties()
     {
-        UpdateHexCount();
+        UpdateHexCountAndWeight();
         UpdateCanEngulf();
 
         membersDirty = false;
     }
 
-    private void UpdateHexCount()
+    private void UpdateHexCountAndWeight()
     {
         hexCount = 0;
+        entityWeight = 0;
 
         foreach (var member in ColonyMembers)
         {
             hexCount += member.EngulfSize;
+
+            if (member != Master)
+                entityWeight += member.EntityWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER;
         }
     }
 
