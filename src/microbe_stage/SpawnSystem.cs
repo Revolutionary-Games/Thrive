@@ -536,9 +536,8 @@ public class SpawnSystem : ISpawnSystem
                 continue;
 
             // Global position must be used here as otherwise colony members are despawned
-            // TODO: check if it would be better to remove the spawned group tag from colony members (and add it back
-            // when leaving the colony) or this could only get direct descendants of the world root and ignore nested
-            // nodes in the spawned group
+            // This should now just process the colony lead cells as this now uses GetChildrenToProcess, but
+            // GlobalTransform is kept here just for good measure to make sure the distances are accurate.
             var entityPosition = ((Spatial)spawned).GlobalTransform.origin;
             var squaredDistance = (playerPosition - entityPosition).LengthSquared();
 
