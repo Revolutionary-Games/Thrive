@@ -231,21 +231,21 @@ __meta__ = {
 anchor_left = 0.597
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 40.0
+margin_left = 45.0
 margin_top = 195.0
 margin_right = -30.0
 margin_bottom = -125.0
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 400.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 198.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -254,14 +254,14 @@ size_flags_vertical = 3
 [node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
 margin_top = 202.0
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 400.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -270,7 +270,7 @@ size_flags_vertical = 3
 [node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -303,7 +303,6 @@ focus_neighbour_top = NodePath(".")
 focus_neighbour_bottom = NodePath("../LoadGame")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "NEW_GAME"
 __meta__ = {
 "_editor_description_": ""
@@ -316,7 +315,6 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -326,7 +324,6 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "OPTIONS_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -335,7 +332,6 @@ margin_right = 250.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "TOOLS"
 
 [node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -344,7 +340,6 @@ margin_right = 250.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "VIEW_SOURCE_CODE"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -353,7 +348,6 @@ margin_right = 250.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -362,7 +356,6 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "CREDITS"
 
 [node name="Launcher" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -372,7 +365,6 @@ margin_bottom = 400.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "QUIT_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "EXIT_TO_LAUNCHER"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -385,7 +377,6 @@ focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath("../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "QUIT"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/MainMenu" instance=ExtResource( 56 )]
@@ -415,7 +406,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
@@ -427,7 +417,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "AUTO_EVO_EXPLORING_TOOL"
 __meta__ = {
@@ -442,7 +431,6 @@ margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BENCHMARKS"
 __meta__ = {
@@ -457,7 +445,6 @@ margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
 text = "???"
@@ -475,7 +462,6 @@ focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_top = NodePath("../AutoEvoExploring")
 focus_previous = NodePath("../AutoEvoExploring")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
@@ -507,7 +493,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "THRIVEOPEDIA"
 __meta__ = {
@@ -521,7 +506,6 @@ margin_right = 765.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MODS"
 __meta__ = {
@@ -535,7 +519,6 @@ margin_right = 765.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "ART_GALLERY"
 
@@ -546,7 +529,6 @@ margin_right = 765.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "LICENSES"
 __meta__ = {
@@ -560,7 +542,6 @@ margin_right = 771.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "VISIT_SUGGESTIONS_SITE"
 __meta__ = {
@@ -577,7 +558,6 @@ focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
@@ -608,7 +588,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MICROBE_BENCHMARK"
 
@@ -620,7 +599,6 @@ margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
 text = "???"
@@ -636,7 +614,6 @@ margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
@@ -784,15 +761,6 @@ SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
-
-[node name="PatchNotesPositioner" type="MarginContainer" parent="MenuContainers"]
-anchor_right = 0.401
-anchor_bottom = 1.0
-margin_left = 35.0
-margin_top = 195.0
-margin_right = -16.28
-margin_bottom = -110.0
-mouse_filter = 2
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0

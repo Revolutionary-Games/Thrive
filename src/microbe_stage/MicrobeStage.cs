@@ -618,6 +618,8 @@ public class MicrobeStage : StageBase<Microbe>
 
         Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
 
+        Player.OnNoticeMessage = OnPlayerNoticeMessage;
+
         Camera.ObjectToFollow = Player;
 
         spawner.DespawnAll();
@@ -839,6 +841,12 @@ public class MicrobeStage : StageBase<Microbe>
     private void OnPlayerEngulfmentLimitReached(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerNoticeMessage(Microbe player, IHUDMessage message)
+    {
+        HUD.HUDMessages.ShowMessage(message);
     }
 
     /// <summary>

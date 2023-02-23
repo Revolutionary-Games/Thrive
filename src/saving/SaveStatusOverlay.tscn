@@ -66,28 +66,22 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 StatusLabelPath = NodePath("CenterContainer/StatusLabel")
 AnimationPlayerPath = NodePath("CenterContainer/AnimationPlayer")
 ErrorDialogPath = NodePath("CenterContainer2/ErrorDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
-anchor_bottom = 0.332
+anchor_bottom = 0.5
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StatusLabel" type="Label" parent="CenterContainer"]
-margin_left = 512.0
-margin_top = 108.0
-margin_right = 768.0
-margin_bottom = 130.0
+margin_left = 509.0
+margin_top = 167.0
+margin_right = 770.0
+margin_bottom = 192.0
 text = "Saving status goes here..."
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -107,7 +101,7 @@ __meta__ = {
 }
 
 [node name="ErrorDialog" parent="CenterContainer2" instance=ExtResource( 3 )]
-margin_left = 613.0
-margin_top = 320.0
-margin_right = 667.0
-margin_bottom = 400.0
+margin_left = 640.0
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 360.0
