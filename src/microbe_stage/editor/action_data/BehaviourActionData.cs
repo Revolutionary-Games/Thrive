@@ -19,7 +19,7 @@ public class BehaviourActionData : EditorCombinableActionData
         return other is BehaviourActionData;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         // TODO: should this be free?
         return 0;

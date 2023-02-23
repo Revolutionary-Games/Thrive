@@ -19,7 +19,7 @@ public abstract class HexMoveActionData<THex> : EditorCombinableActionData
         NewRotation = newRotation;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         if (OldLocation == NewLocation && OldRotation == NewRotation)
             return 0;

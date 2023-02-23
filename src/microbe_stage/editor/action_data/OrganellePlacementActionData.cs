@@ -10,7 +10,7 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
     {
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         return PlacedHex.Definition.MPCost;
     }

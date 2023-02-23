@@ -51,7 +51,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string? displayName;
     private string? description;
     private string processesDescription = string.Empty;
-    private int mpCost;
+    private float mpCost;
     private bool requiresNucleus;
 
     [Export]
@@ -106,7 +106,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public int MutationPointCost
+    public float MutationPointCost
     {
         get => mpCost;
         set
@@ -334,7 +334,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = mpCost.ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = Math.Round(mpCost, 3).ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateRequiresNucleus()

@@ -71,7 +71,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
             m.NewPosition + offset, m.OldParent, m.NewParent, null)).ToList();
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         if (OldPosition.DistanceSquaredTo(NewPosition) < MathUtils.EPSILON && OldParent == NewParent)
             return 0;

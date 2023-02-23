@@ -106,7 +106,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return cellEditorTab.CancelCurrentAction();
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public override float WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return history.WhatWouldActionsCost(actions);
     }

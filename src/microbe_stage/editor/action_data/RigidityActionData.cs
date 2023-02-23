@@ -17,9 +17,9 @@ public class RigidityActionData : EditorCombinableActionData
         return other is RigidityActionData;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
-        return (int)Math.Round(Math.Abs(NewRigidity - PreviousRigidity) *
+        return (float)Math.Round(Math.Abs(NewRigidity - PreviousRigidity) *
             Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
     }
 

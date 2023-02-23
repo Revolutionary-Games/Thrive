@@ -139,7 +139,7 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     {
     }
 
-    public abstract void OnMutationPointsChanged(int mutationPoints);
+    public abstract void OnMutationPointsChanged(float mutationPoints);
 
     public virtual void OnLightLevelChanged(float lightLevel)
     {

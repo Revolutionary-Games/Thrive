@@ -9,7 +9,7 @@ public class EndCellTypeEditActionData : EditorCombinableActionData
         FinishedCellType = finishedCellType;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         return 0;
     }

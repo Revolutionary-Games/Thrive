@@ -114,7 +114,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         }
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
+    public override void OnMutationPointsChanged(float mutationPoints)
     {
     }
 

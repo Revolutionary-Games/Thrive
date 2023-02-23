@@ -47,7 +47,7 @@ public class SingleEditorAction<T> : EditorAction
         undo(SingleData);
     }
 
-    public override int CalculateCost()
+    public override float CalculateCost()
     {
         return SingleData.CalculateCost();
     }

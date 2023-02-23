@@ -17,7 +17,7 @@ public class ColourActionData : EditorCombinableActionData
         return other is ColourActionData;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         // Changing membrane colour has no cost
         return 0;

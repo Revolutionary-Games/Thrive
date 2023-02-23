@@ -23,7 +23,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <summary>
     ///   Calculates how much MP these actions would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public float WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return actions.Sum(WhatWouldActionCost);
     }
@@ -31,7 +31,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <summary>
     ///   Calculates how much MP this action would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionCost(EditorCombinableActionData combinableAction)
+    public float WhatWouldActionCost(EditorCombinableActionData combinableAction)
     {
         if (CheatManager.InfiniteMP)
             return 0;
@@ -42,7 +42,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <summary>
     ///   Calculates the remaining MP from the action history.
     /// </summary>
-    public int CalculateMutationPointsLeft()
+    public float CalculateMutationPointsLeft()
     {
         if (CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;
@@ -192,7 +192,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     ///   MinimumCostActionData is the action data to combine with (not yet combined);
     ///   Mode is the interference mode currentData has with MinimumCostActionData.
     /// </returns>
-    private static (int CostDelta, EditorCombinableActionData? MinimumCostActionData, ActionInterferenceMode Mode)
+    private static (float CostDelta, EditorCombinableActionData? MinimumCostActionData, ActionInterferenceMode Mode)
         FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
             IEnumerable<EditorCombinableActionData> previousData)
     {
@@ -222,7 +222,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         }).OrderByDescending(p => p.Item1.Priority).ThenBy(p => p.Item1.Cost);
 
         // Calculate actual cost delta by adding up all replacement refunds, and if any, the first non-replacement one
-        var costDelta = 0;
+        float costDelta = 0;
 
         // Get the first combination data and its type
         EditorCombinableActionData? firstData = null;

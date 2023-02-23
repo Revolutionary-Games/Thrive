@@ -106,7 +106,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
         return result;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         return Constants.METABALL_REMOVE_COST;
     }

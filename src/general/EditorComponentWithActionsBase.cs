@@ -68,7 +68,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
             Editor.MutationPoints, possibleMutationPoints);
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
+    public override void OnMutationPointsChanged(float mutationPoints)
     {
         UpdateMutationPointsBar(true);
     }
@@ -123,7 +123,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     /// <summary>
     ///   Calculates the cost of the current editor action (may be 0 if free or no active action)
     /// </summary>
-    protected abstract int CalculateCurrentActionCost();
+    protected abstract float CalculateCurrentActionCost();
 
     /// <summary>
     ///   Special enqueue that can have special logic in specific components to pre-process actions before passing

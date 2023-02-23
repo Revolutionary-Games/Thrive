@@ -12,7 +12,7 @@ public class StartCellTypeEditActionData : EditorCombinableActionData
         StartedCellTypeEdit = startedCellTypeEdit;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         return 0;
     }

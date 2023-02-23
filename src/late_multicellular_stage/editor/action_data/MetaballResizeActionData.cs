@@ -15,7 +15,7 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
         NewSize = newSize;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         if (Mathf.Abs(OldSize - NewSize) < MathUtils.EPSILON)
             return 0;

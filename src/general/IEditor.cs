@@ -9,7 +9,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <summary>
     ///   The number of mutation points left
     /// </summary>
-    public int MutationPoints { get; }
+    public float MutationPoints { get; }
 
     /// <summary>
     ///   When true nothing costs MP
@@ -60,7 +60,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <returns>True if canceled</returns>
     public bool CancelCurrentAction();
 
-    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
+    public float WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
 
     /// <summary>
     ///   Perform all actions through this to make undo and redo work
@@ -76,7 +76,7 @@ public interface IEditor : ISaveLoadedTracked
 
     public void NotifyUndoRedoStateChanged();
 
-    public bool CheckEnoughMPForAction(int cost);
+    public bool CheckEnoughMPForAction(float cost);
 
     public void OnInsufficientMP(bool playSound = true);
 

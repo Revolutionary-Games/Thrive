@@ -4,9 +4,9 @@ public abstract class EditorCombinableActionData : CombinableActionData
 {
     public float CostMultiplier { get; set; } = 1.0f;
 
-    public virtual int CalculateCost()
+    public virtual float CalculateCost()
     {
-        return (int)Math.Min(CalculateCostInternal() * CostMultiplier, 100);
+        return Math.Min(CalculateCostInternal() * CostMultiplier, 100);
     }
 
     public override CombinableActionData Combine(CombinableActionData other)
@@ -20,5 +20,5 @@ public abstract class EditorCombinableActionData : CombinableActionData
         return combined;
     }
 
-    protected abstract int CalculateCostInternal();
+    protected abstract float CalculateCostInternal();
 }

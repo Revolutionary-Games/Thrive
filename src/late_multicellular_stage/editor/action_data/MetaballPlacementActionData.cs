@@ -26,7 +26,7 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
         Parent = metaball.Parent;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         return Constants.METABALL_ADD_COST;
     }

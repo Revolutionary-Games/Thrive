@@ -133,7 +133,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         UpdateBackgrounds(patch);
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public override float WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return history.WhatWouldActionsCost(actions);
     }

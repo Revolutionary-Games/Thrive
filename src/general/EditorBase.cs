@@ -81,7 +81,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     private Control editorGUIBaseNode = null!;
 #pragma warning restore CA2213
 
-    private int? mutationPointsCache;
+    private float? mutationPointsCache;
 
     /// <summary>
     ///   The light level the editor is previewing things at
@@ -106,7 +106,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public bool TransitionFinished { get; protected set; }
 
     [JsonIgnore]
-    public int MutationPoints
+    public float MutationPoints
     {
         get => mutationPointsCache ?? CalculateMutationPointsLeft();
         set
@@ -399,7 +399,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public abstract bool CancelCurrentAction();
 
-    public abstract int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
+    public abstract float WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
 
     public virtual bool EnqueueAction(TAction action)
     {
@@ -428,7 +428,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return EnqueueAction((TAction)action);
     }
 
-    public bool CheckEnoughMPForAction(int cost)
+    public bool CheckEnoughMPForAction(float cost)
     {
         // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max
         // MP in a single go, and those wouldn't work without this freebuilding check here
@@ -848,7 +848,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     ///   Calculates the remaining MP from the action history
     /// </summary>
     /// <returns>The remaining MP</returns>
-    private int CalculateMutationPointsLeft()
+    private float CalculateMutationPointsLeft()
     {
         if (FreeBuilding || CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;

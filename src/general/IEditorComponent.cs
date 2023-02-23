@@ -46,7 +46,7 @@ public interface IEditorComponent
     /// <param name="freeBuilding">True if freebuild mode is on</param>
     public void NotifyFreebuild(bool freeBuilding);
 
-    public void OnMutationPointsChanged(int mutationPoints);
+    public void OnMutationPointsChanged(float mutationPoints);
 
     public void OnLightLevelChanged(float lightLevel);
 }

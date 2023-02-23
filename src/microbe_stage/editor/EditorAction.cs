@@ -11,7 +11,7 @@ public abstract class EditorAction : ReversibleAction
     [JsonIgnore]
     public abstract IEnumerable<EditorCombinableActionData> Data { get; }
 
-    public abstract int CalculateCost();
+    public abstract float CalculateCost();
 
     /// <summary>
     ///   Used to replace the data in this action with data that has been merged

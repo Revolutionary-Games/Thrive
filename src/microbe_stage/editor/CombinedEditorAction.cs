@@ -47,7 +47,7 @@ public class CombinedEditorAction : EditorAction
             action.UndoAction();
     }
 
-    public override int CalculateCost()
+    public override float CalculateCost()
     {
         return Actions.Sum(a => a.CalculateCost());
     }

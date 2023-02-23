@@ -95,7 +95,7 @@ public partial class CellEditorComponent
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
-    private void SetRigiditySliderTooltip(int rigidity)
+    private void SetRigiditySliderTooltip(float rigidity)
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
@@ -263,7 +263,7 @@ public partial class CellEditorComponent
         // Set the cost factor for each organelle button
         foreach (var entry in placeablePartSelectionElements)
         {
-            var cost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, 100);
+            var cost = Math.Min(entry.Key.MPCost * CostMultiplier, 100);
 
             entry.Value.MPCost = cost;
 
@@ -276,7 +276,7 @@ public partial class CellEditorComponent
         // Set the cost factor for each membrane button
         foreach (var entry in membraneSelectionElements)
         {
-            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, 100);
+            var cost = Math.Min(entry.Key.EditorCost * CostMultiplier, 100);
 
             entry.Value.MPCost = cost;
 
@@ -290,7 +290,7 @@ public partial class CellEditorComponent
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         if (rigidityTooltip != null)
         {
-            rigidityTooltip.MutationPointCost = (int)Math.Min(
+            rigidityTooltip.MutationPointCost = Math.Min(
                 Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         }
     }
@@ -427,14 +427,14 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.MPCost * CostMultiplier);
+            entry.Value.MPCost = entry.Key.MPCost * CostMultiplier;
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.EditorCost * CostMultiplier);
+            entry.Value.MPCost = entry.Key.EditorCost * CostMultiplier;
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }

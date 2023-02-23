@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using System.Globalization;
+using Godot;
 
 public class MutationPointsBar : HBoxContainer
 {
@@ -83,22 +85,26 @@ public class MutationPointsBar : HBoxContainer
         }
         else
         {
+            var currentMpString = Math.Round(currentMutationPoints, 3).ToString(CultureInfo.CurrentCulture);
+            var possibleMpString = Math.Round(possibleMutationPoints, 3).ToString(CultureInfo.CurrentCulture);
+            var baseMpString = $"/ {Constants.BASE_MUTATION_POINTS}";
+
             if (showResultingPoints)
             {
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"({currentMutationPoints:F0}";
-                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+                currentMutationPointsLabel.Text = currentMpString;
+                resultingMutationPointsLabel.Text = possibleMpString;
+                baseMutationPointsLabel.Text = baseMpString;
             }
             else
             {
                 mutationPointsArrow.Hide();
                 resultingMutationPointsLabel.Hide();
 
-                currentMutationPointsLabel.Text = $"{currentMutationPoints:F0}";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+                currentMutationPointsLabel.Text = currentMpString;
+                baseMutationPointsLabel.Text = baseMpString;
             }
         }
     }

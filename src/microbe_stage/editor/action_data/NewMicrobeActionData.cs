@@ -22,12 +22,12 @@ public class NewMicrobeActionData : EditorCombinableActionData
 
     public override bool ResetsHistory => true;
 
-    public override int CalculateCost()
+    public override float CalculateCost()
     {
         return -Constants.BASE_MUTATION_POINTS;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
         throw new NotSupportedException();
     }

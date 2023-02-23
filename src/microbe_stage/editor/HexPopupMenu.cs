@@ -42,7 +42,7 @@ public abstract class HexPopupMenu : PopupPanel
     [Signal]
     public delegate void ModifyPressed();
 
-    public Func<IEnumerable<EditorCombinableActionData>, int>? GetActionPrice { get; set; }
+    public Func<IEnumerable<EditorCombinableActionData>, float>? GetActionPrice { get; set; }
 
     public bool ShowPopup
     {

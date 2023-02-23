@@ -87,7 +87,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     {
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
+    public override void OnMutationPointsChanged(float mutationPoints)
     {
     }
 

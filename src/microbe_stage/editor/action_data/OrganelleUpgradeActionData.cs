@@ -19,9 +19,9 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData
         UpgradedOrganelle = upgradedOrganelle;
     }
 
-    protected override int CalculateCostInternal()
+    protected override float CalculateCostInternal()
     {
-        int cost = 0;
+        float cost = 0;
 
         // TODO: allow custom upgrades to have a cost
 

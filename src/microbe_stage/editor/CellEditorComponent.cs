@@ -944,9 +944,9 @@ public partial class CellEditorComponent :
         UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void OnRigidityChanged(int desiredRigidity)
+    public void OnRigidityChanged(float desiredRigidity)
     {
-        int previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        var previousRigidity = Mathf.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (MovingPlacedHex != null)
         {
@@ -955,10 +955,10 @@ public partial class CellEditorComponent :
             return;
         }
 
-        if (previousRigidity == desiredRigidity)
+        if (Mathf.IsEqualApprox(previousRigidity, desiredRigidity))
             return;
 
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+        var costPerStep = Mathf.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
         var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
         {
@@ -969,12 +969,12 @@ public partial class CellEditorComponent :
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
+            var stepsToCutOff = Mathf.Ceil((cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
                 Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
             // Action is enqueued or canceled here, so we don't need to go on.
-            UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+            UpdateRigiditySlider(Mathf.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
             return;
         }
 
@@ -1100,7 +1100,7 @@ public partial class CellEditorComponent :
                 actionData)));
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override float CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
@@ -1108,7 +1108,7 @@ public partial class CellEditorComponent :
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         // Calculated in this order to be consistent with placing unique organelles
-        var cost = (int)Math.Min(organelleDefinition.MPCost * CostMultiplier, 100);
+        var cost = Math.Min(organelleDefinition.MPCost * CostMultiplier, 100);
 
         if (MouseHoverPositions == null)
             return cost * Symmetry.PositionCount();
@@ -1165,7 +1165,7 @@ public partial class CellEditorComponent :
 
         // Update rigidity slider in case it was disabled
         // TODO: could come up with a bit nicer design here
-        int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        var intRigidity = Mathf.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
         UpdateRigiditySlider(intRigidity);
     }
 
@@ -1319,7 +1319,7 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
     }
 
-    private void UpdateRigiditySlider(int value)
+    private void UpdateRigiditySlider(float value)
     {
         rigiditySlider.Value = value;
         SetRigiditySliderTooltip(value);
@@ -1790,7 +1790,7 @@ public partial class CellEditorComponent :
 
     private void OnRigidityChanged()
     {
-        UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+        UpdateRigiditySlider(Mathf.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
@@ -1933,7 +1933,7 @@ public partial class CellEditorComponent :
         UpdateMembraneButtons(membrane.InternalName);
         SetMembraneTooltips(membrane);
 
-        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+        UpdateRigiditySlider(Mathf.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
         // TODO: put this call in some better place (also in CellBodyPlanEditorComponent)
         if (!IsMulticellularEditor)

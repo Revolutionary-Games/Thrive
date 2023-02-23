@@ -465,7 +465,7 @@ public partial class CellBodyPlanEditorComponent :
     {
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override float CalculateCurrentActionCost()
     {
         if (activeActionName == null || !Editor.ShowHover)
             return 0;

@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -17,7 +18,7 @@ public class MicrobePartSelection : MarginContainer
     private Label? nameLabel;
 #pragma warning restore CA2213
 
-    private int mpCost;
+    private float mpCost;
     private Texture? partIcon;
     private string name = "Error: unset";
     private bool locked;
@@ -32,7 +33,7 @@ public class MicrobePartSelection : MarginContainer
     public delegate void OnPartSelected(string name);
 
     [Export]
-    public int MPCost
+    public float MPCost
     {
         get => mpCost;
         set
@@ -156,7 +157,7 @@ public class MicrobePartSelection : MarginContainer
         if (mpLabel == null || nameLabel == null)
             return;
 
-        mpLabel.Text = MPCost.ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = Math.Round(MPCost, 3).ToString(CultureInfo.CurrentCulture);
         nameLabel.Text = PartName;
 
         mpLabel.Modulate = Colors.White;
