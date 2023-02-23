@@ -302,9 +302,11 @@ public class SpawnSystem : ISpawnSystem
             }
         }
 
-        // Only spawn microbes around the player if there is more than 20%
-        // of the max entities spawned left. This is to prioritize spawning in sectors.
-        if (estimateEntityCount < Settings.Instance.MaxSpawnedEntities.Value * 0.8f)
+        // Only spawn microbes around the player if below the threshold.
+        // This is to prioritize spawning in sectors.
+        float entitiesThreshold = Settings.Instance.MaxSpawnedEntities.Value *
+            Constants.ENTITY_SPAWNING_AROUND_PLAYER_THRESHOLD;
+        if (estimateEntityCount < entitiesThreshold)
         {
             SpawnMicrobesAroundPlayer(playerPosition, ref spawnsLeftThisFrame);
         }
