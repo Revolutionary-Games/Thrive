@@ -340,6 +340,10 @@
     <Compile Include="src\microbe_stage\Endosome.cs" />
     <Compile Include="src\microbe_stage\Enzyme.cs" />
     <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
+    <Compile Include="src\microbe_stage\gui\DisplayDuration.cs" />
+    <Compile Include="src\microbe_stage\gui\HUDMessages.cs" />
+    <Compile Include="src\microbe_stage\gui\IHUDMessage.cs" />
+    <Compile Include="src\microbe_stage\gui\SimpleHUDMessage.cs" />
     <Compile Include="src\microbe_stage\HoveredCompoundControl.cs" />
     <Compile Include="src\microbe_stage\HUDBottomBar.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
@@ -644,7 +648,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.0.0</Version>
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
