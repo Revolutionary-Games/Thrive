@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
 using Godot;
-using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -249,7 +249,7 @@ public class Save
         }
 
         using var fileStream = new GodotFileStream(file);
-        using Stream gzoStream = new GZipOutputStream(fileStream);
+        using Stream gzoStream = new GZipStream(fileStream, CompressionLevel.Optimal);
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
         TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
@@ -356,7 +356,7 @@ public class Save
             throw new ArgumentException("couldn't open the file for reading");
 
         using var stream = new GodotFileStream(reader);
-        using Stream gzoStream = new GZipInputStream(stream);
+        using Stream gzoStream = new GZipStream(stream, CompressionMode.Decompress);
         using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
 
         TarEntry tarEntry;
