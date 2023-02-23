@@ -49,6 +49,7 @@ margin_right = 137.0
 
 [node name="FocusGrabber" parent="VBoxContainer" index="1"]
 margin_right = 137.0
+NodeToGiveFocusTo = NodePath("../../VBoxContainer2/HBoxContainer/CancelButton")
 
 [node name="HBoxContainer" parent="VBoxContainer" index="2"]
 margin_right = 137.0
