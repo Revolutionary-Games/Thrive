@@ -47,6 +47,13 @@ public static class Constants
     public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
 
     /// <summary>
+    ///   Threshold under which entities start to spawn around the player
+    ///   The value is in the range 0-1 and is the fraction of the maximum
+    ///   allowed entities.
+    /// </summary>
+    public const float ENTITY_SPAWNING_AROUND_PLAYER_THRESHOLD = 0.8f;
+
+    /// <summary>
     ///   Scale factor for how dense microbes spawn (also affected by their populations).
     /// </summary>
     /// <remarks>
