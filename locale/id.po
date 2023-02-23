@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-21 15:21+0200\n"
+"POT-Creation-Date: 2023-02-24 00:51+0700\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -205,7 +205,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Seni oleh {0}"
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:523
 msgid "ART_GALLERY"
 msgstr "Galeri Seni"
 
@@ -305,7 +305,7 @@ msgstr "Save otomatis ketika bermain"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:421
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Alat Penjelajah Auto-Evo"
 
@@ -349,8 +349,8 @@ msgid "AWAKEN"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:480 ../src/general/MainMenu.tscn:582
-#: ../src/general/MainMenu.tscn:641 ../src/general/MainMenu.tscn:973
+#: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:618 ../src/general/MainMenu.tscn:941
 #: ../src/general/NewGameSettings.tscn:1184
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -412,12 +412,12 @@ msgstr "Batipelagik"
 msgid "BECOME_AWARE"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:470
+#: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:434
+#: ../src/microbe_stage/MicrobeHUD.cs:428
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -461,7 +461,7 @@ msgstr "Perilaku"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m di bawah permukaan laut"
 
-#: ../src/general/MainMenu.tscn:447
+#: ../src/general/MainMenu.tscn:435
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -633,27 +633,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Karbon Dioksida"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:962
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:974
+#: ../src/general/StageHUDBase.cs:966
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:978
+#: ../src/general/StageHUDBase.cs:970
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:972
+#: ../src/general/StageHUDBase.cs:964
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:976
+#: ../src/general/StageHUDBase.cs:968
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:980
+#: ../src/general/StageHUDBase.cs:972
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -930,20 +930,20 @@ msgstr "Nilai saturasi, jumlah abu-abu dari sebuah warna"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Nilai kecerahan, kecerahan atau intensitas dari warna"
 
-#: ../src/general/MainMenu.tscn:701
+#: ../src/general/MainMenu.tscn:678
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:696
+#: ../src/general/MainMenu.tscn:673
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:720
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:738
+#: ../src/general/MainMenu.tscn:715
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -1159,7 +1159,7 @@ msgstr "Cari..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Membuat obyek dari save"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:359
 msgid "CREDITS"
 msgstr "Kredit"
 
@@ -1242,9 +1242,13 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus ini secara permanen?"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:956
+#: ../src/microbe_stage/Microbe.Contact.cs:946
 msgid "DEATH"
 msgstr "mati"
+
+#: ../src/engine/DebugOverlays.cs:165
+msgid "DEBUG_COORDINATES"
+msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:85
 msgid "DEBUG_PANEL"
@@ -1335,12 +1339,12 @@ msgstr "Pendukung Devbuilds"
 msgid "DEVELOPERS"
 msgstr "Pengembang"
 
-#: ../src/general/MainMenu.tscn:715
+#: ../src/general/MainMenu.tscn:692
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Pengembangan didukung oleh Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:710
+#: ../src/general/MainMenu.tscn:687
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1349,12 +1353,12 @@ msgstr "Tambah keybind baru"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Pengembangan didukung oleh Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:729
+#: ../src/general/MainMenu.tscn:706
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Pengembang"
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:701
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1480,7 +1484,7 @@ msgstr ""
 "Ada organel yang tidak tersambung dengan yang lainnya.\n"
 "Mohon sambungkan semua organel atau batalkan perubahanmu."
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:864
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1495,7 +1499,7 @@ msgstr "Kecepatan:"
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/general/MainMenu.tscn:1084
+#: ../src/general/MainMenu.tscn:1052
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1544,7 +1548,7 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membran dengan dua lapis, memiliki perlindungan yang lebih baik terhadap kerusakan dan memerlukan lebih sedikit energi agar tak berubah bentuk. Namun, memperlambat sel dan mengurangi laju kemampuannya menyerap sumber daya."
 
-#: ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:995
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1818,7 +1822,7 @@ msgstr "Error Menyimpan"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1220
+#: ../src/microbe_stage/Microbe.Contact.cs:1212
 msgid "ESCAPE_ENGULFING"
 msgstr "lolos dari penelanan"
 
@@ -1859,7 +1863,7 @@ msgstr "Sebuah eksepsi terjadi saat sedang memuat data save"
 msgid "EXIT"
 msgstr "Keluar"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:368
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E"
@@ -1916,7 +1920,7 @@ msgstr "telah punah dari planet"
 msgid "EXTINCT_SPECIES"
 msgstr "KEPUNAHAN"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:351
 msgid "EXTRAS"
 msgstr "Lainnya"
 
@@ -1924,7 +1928,7 @@ msgstr "Lainnya"
 msgid "EXTRA_OPTIONS"
 msgstr "Pilihan Ekstra"
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:876
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -2172,7 +2176,7 @@ msgstr "Generasi"
 msgid "GENERATION_COLON"
 msgstr "Generasi:"
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:828
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -2181,11 +2185,11 @@ msgstr "Keluar dari permainan"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:961
 msgid "GLES2_MODE_WARNING"
 msgstr "Peringatan Mode GLES2"
 
-#: ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.tscn:963
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
 
@@ -2343,7 +2347,7 @@ msgstr "HP:"
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:37
+#: ../src/microbe_stage/gui/HUDMessages.cs:44
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
@@ -2481,7 +2485,7 @@ msgstr "Besi"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Kemolitoautotrofi Besi"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:804
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -2861,7 +2865,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:533
 msgid "LICENSES"
 msgstr ""
 
@@ -3030,12 +3034,12 @@ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 msgid "LOAD_FINISHED"
 msgstr "Selesai memuat"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Muat Permainan"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:199
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Muat permainan yang sudah disimpan"
 
@@ -3248,7 +3252,7 @@ msgid "MICROBES_COUNT"
 msgstr "Tahapan Mikrob"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:592
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editor Mikrob"
@@ -3314,7 +3318,7 @@ msgstr "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untu
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] juta tahun evolusi."
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Mikroba Bangun-bebas"
 
@@ -3324,7 +3328,7 @@ msgstr "Editor Mikroba Bangun-bebas"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistika Organisme"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:217
+#: ../src/microbe_stage/MicrobeSpecies.cs:220
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Fase[/b]\n"
@@ -3565,11 +3569,11 @@ msgstr "Hapus organel"
 msgid "MODIFY_TYPE"
 msgstr "Ubah Tipe"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:510
 msgid "MODS"
 msgstr "Mod"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:979
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3665,11 +3669,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr "Lisensi dan Libraries yang Digunakan"
 
-#: ../src/general/MainMenu.tscn:1051
+#: ../src/general/MainMenu.tscn:1019
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1052
+#: ../src/general/MainMenu.tscn:1020
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3915,7 +3919,7 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Populasi awal untuk spesies peningkat biodiversitas"
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:306
 msgid "NEW_GAME"
 msgstr "Permainan Baru"
 
@@ -4004,7 +4008,7 @@ msgstr "Bentuk membran yang paling dasar, mempunyai ketahanan yang kecil terhada
 msgid "NOTHING_HERE"
 msgstr "Tidak ada apa-apa disini"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:396
+#: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
@@ -4016,15 +4020,15 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1778
+#: ../src/microbe_stage/Microbe.Contact.cs:1770
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1773
+#: ../src/microbe_stage/Microbe.Contact.cs:1765
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:616
+#: ../src/general/StageHUDBase.cs:608
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4059,7 +4063,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Buka Direktori Save"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:966
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Aktifkan tombol cheat"
@@ -4127,16 +4131,16 @@ msgstr "N/A PM"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:687
+#: ../src/general/MainMenu.tscn:664
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:678
+#: ../src/general/MainMenu.tscn:655
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
+#: ../src/general/MainMenu.tscn:1009 ../src/general/MainMenu.tscn:1066
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4215,11 +4219,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:231
 msgid "OPTIONS"
 msgstr "Opsi"
 
-#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:230
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ubah setelan"
 
@@ -4482,7 +4486,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Seperti 99% dari segala spesies yang telah ada, spesiesmu telah mengalami kepunahan. Spesies lain akan mengisi relung-mu dan berkembang, tetapi itu bukan kamu. Kamu akan terlupakan, eksperimen gagal dalam evolusi."
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:816
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -4523,7 +4527,7 @@ msgid "PEACEFUL"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:736
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4596,7 +4600,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1188
+#: ../src/general/StageHUDBase.cs:1173
 msgid "PLAYER_CELL"
 msgstr "Sel Pemain"
 
@@ -4762,11 +4766,11 @@ msgstr "Muat cepat"
 msgid "QUICK_SAVE"
 msgstr "Simpan cepat"
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:380
 msgid "QUIT"
 msgstr "Keluar"
 
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
+#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:375
 #: ../src/general/PauseMenu.tscn:246
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -4809,7 +4813,7 @@ msgstr "Siap"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:852
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Lanjutkan"
@@ -4835,7 +4839,7 @@ msgstr "Dalam kasus kepunahan, migrasi kembali ke daerah target"
 msgid "REPORT"
 msgstr "Laporan"
 
-#: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:733 ../src/general/PauseMenu.tscn:223
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Laporan"
@@ -4957,7 +4961,7 @@ msgstr ""
 "Apakah kamu yakin ingin keluar ke menu utama?\n"
 "Progress yang tidak disave akan hilang."
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:779
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Oleh Revolutionary Games Studio"
@@ -5046,12 +5050,12 @@ msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida da
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/general/MainMenu.tscn:1047
+#: ../src/general/MainMenu.tscn:1015
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/general/MainMenu.tscn:1045
+#: ../src/general/MainMenu.tscn:1013
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5460,7 +5464,7 @@ msgstr "Munculkan amonia"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:767
+#: ../src/microbe_stage/MicrobeStage.cs:780
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5521,7 +5525,7 @@ msgstr "Nama spesies..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Nama spesies..."
 
-#: ../src/general/StageHUDBase.cs:1201
+#: ../src/general/StageHUDBase.cs:1186
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Daftar Spesies"
@@ -5642,24 +5646,24 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1102
+#: ../src/general/MainMenu.tscn:1070
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Gagal menyimpan! Terjadi eksepsi"
 
-#: ../src/general/MainMenu.tscn:1104
+#: ../src/general/MainMenu.tscn:1072
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Gagal memperbarui save karena error berikut:\n"
 "{0}"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:792
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Lanjutkan"
 
-#: ../src/early_multicellular_stage/CellType.cs:39
+#: ../src/early_multicellular_stage/CellType.cs:40
 msgid "STEM_CELL_NAME"
 msgstr "Induk"
 
@@ -5715,15 +5719,11 @@ msgstr "Struktural"
 msgid "STRUCTURE"
 msgstr "Struktur"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:324
-msgid "STUFF_AT"
-msgstr "Yang ada pada {0:F1}, {1:F1}:"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:775
+#: ../src/microbe_stage/Microbe.Contact.cs:765
 msgid "SUCCESSFUL_KILL"
 msgstr "sukses memburu"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:768
+#: ../src/microbe_stage/Microbe.Contact.cs:758
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "sukses mencari sumber daya"
 
@@ -5815,7 +5815,7 @@ msgstr "Suhu"
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
+#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1036
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -5830,7 +5830,7 @@ msgstr ""
 "\n"
 "Jika kamu menikmati game ini, tolong beritahu teman anda tentang kami."
 
-#: ../src/general/MainMenu.tscn:1058
+#: ../src/general/MainMenu.tscn:1026
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "KAMU TELAH BERKEMBANG!"
@@ -5892,7 +5892,7 @@ msgstr ""
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:497 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6041,7 +6041,7 @@ msgstr "Jeda"
 msgid "TOGGLE_UNBINDING"
 msgstr "Nyala/matikan pelepasan"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:335
 msgid "TOOLS"
 msgstr "Alat"
 
@@ -6076,8 +6076,8 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:180
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:188
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:174
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:182
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Untuk di implementasi."
@@ -6276,7 +6276,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/general/MainMenu.tscn:920
+#: ../src/general/MainMenu.tscn:888
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Ubah setelan"
@@ -6448,7 +6448,7 @@ msgstr "Vakuola adalah organel ber-membran internal yang digunakan untuk peyimpa
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Menambah ruang penyimpanan sel."
 
-#: ../src/general/StageHUDBase.cs:737 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:729 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr ""
@@ -6496,7 +6496,7 @@ msgstr "Gua"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Gua"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:343
 msgid "VIEW_SOURCE_CODE"
 msgstr "Lihat Kode Sumber"
 
@@ -6508,7 +6508,7 @@ msgstr "Pendukung VIP"
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
+#: ../src/general/MainMenu.tscn:546 ../src/general/MainMenu.tscn:751
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6669,7 +6669,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "tahun"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:840
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Lanjutkan"
@@ -6691,6 +6691,9 @@ msgstr "Perbesar"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#~ msgid "STUFF_AT"
+#~ msgstr "Yang ada pada {0:F1}, {1:F1}:"
 
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Rincian Spesies"

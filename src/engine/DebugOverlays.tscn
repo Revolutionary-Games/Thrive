@@ -10,8 +10,9 @@
 
 [node name="DebugOverlay" type="Control"]
 script = ExtResource( 3 )
-FPSCheckBoxPath = NodePath("DebugPanel/VBoxContainer/FPSCheckBox")
-PerformanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/PerformanceMetricsCheckBox")
+DebugCoordinatesPath = NodePath("DebugPanel/VBoxContainer/DebugCoordinates")
+FPSCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox")
+PerformanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox")
 DebugPanelDialogPath = NodePath("DebugPanel")
 FPSCounterPath = NodePath("FPSCounter")
 PerformanceMetricsPath = NodePath("PerformanceMetrics")
@@ -80,52 +81,70 @@ custom_fonts/font = ExtResource( 6 )
 text = "METRICS_CONTENT"
 
 [node name="DebugPanel" parent="." instance=ExtResource( 1 )]
+visible = true
 margin_left = 30.0
 margin_top = 30.0
+rect_min_size = Vector2( 391, 0 )
 WindowTitle = "DEBUG_PANEL"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel"]
 margin_right = 40.0
 margin_bottom = 40.0
+custom_constants/separation = 10
 
-[node name="FPSCheckBox" parent="DebugPanel/VBoxContainer" instance=ExtResource( 2 )]
-margin_right = 143.0
+[node name="DebugCoordinates" type="Label" parent="DebugPanel/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 4 )
+text = "DEBUG_COORDINATES"
+
+[node name="Checkboxes" type="VBoxContainer" parent="DebugPanel/VBoxContainer"]
+margin_top = 27.0
+margin_right = 200.0
+margin_bottom = 107.0
+
+[node name="FPSCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource( 2 )]
+margin_right = 200.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "FPS_DISPLAY"
 
-[node name="PerformanceMetricsCheckBox" parent="DebugPanel/VBoxContainer" instance=ExtResource( 2 )]
+[node name="PerformanceMetricsCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource( 2 )]
 margin_top = 21.0
-margin_right = 143.0
+margin_right = 200.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 4 )
 text = "METRICS"
 
-[node name="CollisionShapeCheckBox" parent="DebugPanel/VBoxContainer" instance=ExtResource( 2 )]
+[node name="CollisionShapeCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource( 2 )]
 margin_top = 42.0
-margin_right = 143.0
+margin_right = 200.0
 margin_bottom = 59.0
 custom_fonts/font = ExtResource( 4 )
 text = "COLLISION_SHAPE"
 
-[node name="EntityLabelCheckBox" parent="DebugPanel/VBoxContainer" instance=ExtResource( 2 )]
+[node name="EntityLabelCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource( 2 )]
 margin_top = 63.0
-margin_right = 143.0
+margin_right = 200.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
 text = "ENTITY_LABEL"
 
 [node name="Button" type="Button" parent="DebugPanel/VBoxContainer"]
-margin_top = 84.0
-margin_right = 143.0
-margin_bottom = 111.0
+margin_top = 117.0
+margin_right = 200.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 4 )
 text = "DUMP_SCENE_TREE"
 
 [node name="VBoxContainer" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
-margin_top = 115.0
-margin_right = 143.0
-margin_bottom = 132.0
+margin_top = 154.0
+margin_right = 200.0
+margin_bottom = 171.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 0
 
 [node name="RigidityLabel" type="Label" parent="DebugPanel/VBoxContainer/VBoxContainer"]
 margin_right = 110.0
@@ -135,7 +154,7 @@ text = "TRANSPARENCY"
 
 [node name="RigiditySlider" type="HSlider" parent="DebugPanel/VBoxContainer/VBoxContainer"]
 margin_left = 114.0
-margin_right = 143.0
+margin_right = 200.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
 max_value = 0.7
@@ -172,9 +191,9 @@ __meta__ = {
 }
 
 [connection signal="Closed" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
-[connection signal="toggled" from="DebugPanel/VBoxContainer/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
-[connection signal="toggled" from="DebugPanel/VBoxContainer/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
-[connection signal="toggled" from="DebugPanel/VBoxContainer/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
-[connection signal="toggled" from="DebugPanel/VBoxContainer/EntityLabelCheckBox" to="." method="OnEntityLabelCheckBoxToggled"]
+[connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
+[connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
+[connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
+[connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/EntityLabelCheckBox" to="." method="OnEntityLabelCheckBoxToggled"]
 [connection signal="pressed" from="DebugPanel/VBoxContainer/Button" to="." method="OnDumpSceneTreeButtonPressed"]
 [connection signal="value_changed" from="DebugPanel/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnTransparencySliderValueChanged"]

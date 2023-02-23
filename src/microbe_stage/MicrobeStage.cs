@@ -192,9 +192,11 @@ public class MicrobeStage : StageBase<Microbe>
 
         if (Player != null)
         {
-            var playerTransform = Player.GlobalTransform;
-            spawner.Process(delta, playerTransform.origin);
-            Clouds.ReportPlayerPosition(playerTransform.origin);
+            DebugOverlays.Instance.ReportPositionCoords(Player.GlobalTranslation);
+            DebugOverlays.Instance.ReportLookingAtCoords(Camera.CursorWorldPos);
+
+            spawner.Process(delta, Player.GlobalTranslation);
+            Clouds.ReportPlayerPosition(Player.GlobalTranslation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
