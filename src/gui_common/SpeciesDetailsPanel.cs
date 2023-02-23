@@ -12,11 +12,12 @@ public class SpeciesDetailsPanel : MarginContainer
     public NodePath HexPreviewPath = null!;
 
 #pragma warning disable CA2213
-    private CustomRichTextLabel speciesDetailsLabel = null!;
+    private CustomRichTextLabel? speciesDetailsLabel;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
-    private Species? previewSpecies;
 #pragma warning restore CA2213
+
+    private Species? previewSpecies;
 
     public Species? PreviewSpecies
     {
@@ -28,7 +29,7 @@ public class SpeciesDetailsPanel : MarginContainer
 
             previewSpecies = value;
 
-            if (previewSpecies != null && speciesPreview != null!)
+            if (previewSpecies != null && speciesDetailsLabel != null)
                 UpdateSpeciesPreview();
         }
     }
@@ -76,6 +77,6 @@ public class SpeciesDetailsPanel : MarginContainer
             GD.PrintErr("Unknown species type to preview: ", PreviewSpecies);
         }
 
-        speciesDetailsLabel.ExtendedBbcode = PreviewSpecies?.GetDetailString();
+        speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   This is an extended version of <see cref="SpeciesDetailsPanel"/>,
+///   adding fossilisation functionalities, including a button and a popup.
+/// </summary>
 public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 {
     [Export]
-    public NodePath SpeciesDetailsPanelPath = null!;
+    public NodePath? SpeciesDetailsPanelPath;
 
     [Export]
     public NodePath FossilisationButtonPath = null!;
@@ -50,9 +54,12 @@ public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
     {
         if (disposing)
         {
-            FossilisationButtonPath.Dispose();
-            FossilisationDialogPath.Dispose();
-            SpeciesDetailsPanelPath.Dispose();
+            if (SpeciesDetailsPanelPath != null)
+            {
+                FossilisationButtonPath.Dispose();
+                FossilisationDialogPath.Dispose();
+                SpeciesDetailsPanelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);
