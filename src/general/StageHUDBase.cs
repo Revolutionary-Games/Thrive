@@ -297,8 +297,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected TStage? stage;
 
     /// <summary>
-    ///   Show mouse coordinates data in the mouse
-    ///   hover box, useful during develop.
+    ///   Show mouse coordinates data in the mouse hover box, useful during develop.
     /// </summary>
 #pragma warning disable 649 // ignored until we get some GUI or something to change this
     protected bool showMouseCoordinates;
