@@ -930,7 +930,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 continue;
 
             // Skip non-engulfable entities
-            if (!CanEngulfObject(entity))
+            if (CanEngulfObject(entity) != EngulfCheckResult.Ok)
                 continue;
 
             // Skip entities that have no useful compounds

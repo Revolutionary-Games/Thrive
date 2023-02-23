@@ -173,6 +173,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath BottomLeftBarPath = null!;
 
     [Export]
+    public NodePath HUDMessagesPath = null!;
+
+    [Export]
     public NodePath FossilisationButtonLayerPath = null!;
 
     [Export]
@@ -306,6 +309,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private Control pausePrompt = null!;
     private CustomRichTextLabel pauseInfo = null!;
 
+    private HUDMessages hudMessages = null!;
+
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
     private VBoxContainer hoveredCellsContainer = null!;
@@ -394,6 +399,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [JsonIgnore]
     public bool Paused => paused;
 
+    [JsonIgnore]
+    public HUDMessages HUDMessages => hudMessages;
+
     /// <summary>
     ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
     /// </summary>
@@ -457,6 +465,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         pausePrompt = GetNode<Control>(PausePromptPath);
         pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
+
+        hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
 
         packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
@@ -602,6 +612,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
         editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
+
+        HUDMessages.ShowMessage(TranslationServer.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
 
     /// <summary>
@@ -1321,6 +1333,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
                 AgentsPanelBarContainerPath.Dispose();
                 FireToxinHotkeyPath.Dispose();
                 BottomLeftBarPath.Dispose();
+                HUDMessagesPath.Dispose();
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
