@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -24,7 +24,9 @@
 [ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=22]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=23]
 [ext_resource path="res://assets/textures/gui/bevel/parts/slimeJetAction.png" type="Texture" id=24]
+[ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=26]
+[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" type="PackedScene" id=27]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
@@ -442,11 +444,6 @@ PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBa
 EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
-MicrobePickupOrganelleSound = ExtResource( 18 )
-AmmoniaBW = ExtResource( 23 )
-PhosphatesBW = ExtResource( 15 )
-AmmoniaInv = ExtResource( 20 )
-PhosphatesInv = ExtResource( 21 )
 HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Eating")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
@@ -460,10 +457,17 @@ AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
-ExtinctionBoxScene = ExtResource( 70 )
-PatchExtinctionBoxScene = ExtResource( 16 )
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
+HUDMessagesPath = NodePath("HUDMessages")
+FossilisationButtonScene = ExtResource( 27 )
+MicrobePickupOrganelleSound = ExtResource( 18 )
+AmmoniaBW = ExtResource( 23 )
+PhosphatesBW = ExtResource( 15 )
+AmmoniaInv = ExtResource( 20 )
+PhosphatesInv = ExtResource( 21 )
+ExtinctionBoxScene = ExtResource( 70 )
+PatchExtinctionBoxScene = ExtResource( 16 )
 MoveToLandPopupPath = NodePath("MoveToLandConfirmation")
 ToLandButtonPath = NodePath("BottomRight/VBoxContainer/ToLand")
 AwareButtonPath = NodePath("BottomRight/VBoxContainer/Control/Aware")
@@ -2019,6 +2023,12 @@ anims/ShowCompoundsPanels = SubResource( 36 )
 [node name="EnvironmentPanelAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/HideEnvironmentPanel = SubResource( 37 )
 anims/ShowEnvironmentPanel = SubResource( 38 )
+
+[node name="HUDMessages" parent="." instance=ExtResource( 25 )]
+margin_left = 270.0
+margin_top = 90.0
+margin_right = -270.0
+margin_bottom = -525.0
 
 [node name="ProcessPanel" parent="." instance=ExtResource( 13 )]
 margin_left = 8.0

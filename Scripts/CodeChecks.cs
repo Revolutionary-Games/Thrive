@@ -21,7 +21,11 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
             {
                 "files",
                 new FileChecks(true,
-                    new BomChecker(BomChecker.Mode.Required, ".cs", ".json"),
+                    new BomChecker(BomChecker.Mode.Required, ".cs", ".json")
+                    {
+                        IgnoredFiles = new List<string> { "global.json" },
+                    },
+                    new BomChecker(BomChecker.Mode.Disallowed, "global.json"),
                     new CfgCheck(AssemblyInfoReader.ReadVersionFromAssemblyInfo()),
                     new DisallowedFileType(".gd", ".mo"))
             },
