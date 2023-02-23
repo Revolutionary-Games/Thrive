@@ -205,11 +205,6 @@ public class ShuffleBag<T> : IEnumerable<T?>
         object? IEnumerator.Current => Current;
 
         /// <summary>
-        ///   Handles the disposal of the enumerator, i.e. when closing the foreach loop that was using it.
-        /// </summary>
-        public void Dispose() { }
-
-        /// <summary>
         ///   Moves to the next element in the bag.
         /// </summary>
         /// <returns>Returns whether the bag still holds items afterwards.</returns>
@@ -232,5 +227,10 @@ public class ShuffleBag<T> : IEnumerable<T?>
         {
             sourceBag.FillAndShuffle();
         }
+
+        /// <summary>
+        ///   Handles the disposal of the enumerator, i.e. when closing the foreach loop that was using it.
+        /// </summary>
+        public void Dispose() { }
     }
 }

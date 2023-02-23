@@ -16,15 +16,15 @@ public interface IEntity
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    AliveMarker AliveMarker { get; }
+    public AliveMarker AliveMarker { get; }
 
     /// <summary>
     ///   The Node that this entity is in the game world as
     /// </summary>
     [JsonIgnore]
-    Spatial EntityNode { get; }
+    public Spatial EntityNode { get; }
 
-    void OnDestroyed();
+    public void OnDestroyed();
 
     // TODO: have this implementation here (and also for AliveMarker) once Godot updates their dotnet runtime version
     // requirement, currently this doesn't compile if this default implementation is uncommented

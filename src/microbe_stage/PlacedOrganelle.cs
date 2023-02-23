@@ -184,6 +184,26 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public bool IsLoadedFromSave { get; set; }
 
+    /// <summary>
+    ///   Guards against adding this to the scene not through OnAddedToMicrobe
+    /// </summary>
+    public override void _Ready()
+    {
+        if (Definition == null)
+            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
+
+        if (ParentMicrobe == null)
+        {
+            throw new InvalidOperationException(
+                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
+        }
+
+        if (IsLoadedFromSave)
+            FinishAttachToMicrobe();
+
+        ApplyScale();
+    }
+
     public bool HasShape(uint searchShape)
     {
         return shapes.Contains(searchShape);
@@ -203,26 +223,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         return false;
-    }
-
-    /// <summary>
-    ///   Guards against adding this to the scene not through OnAddedToMicrobe
-    /// </summary>
-    public override void _Ready()
-    {
-        if (Definition == null)
-            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
-
-        if (ParentMicrobe == null)
-        {
-            throw new InvalidOperationException(
-                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
-        }
-
-        if (IsLoadedFromSave)
-            FinishAttachToMicrobe();
-
-        ApplyScale();
     }
 
     /// <summary>
@@ -470,8 +470,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///  Returns the rotated position, as it should be in the colony.
-    ///  Used for re-parenting shapes to other microbes
+    ///   Returns the rotated position, as it should be in the colony.
+    ///   Used for re-parenting shapes to other microbes
     /// </summary>
     public Vector3 RotatedPositionInsideColony(Vector3 shapePosition)
     {
@@ -503,7 +503,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///  Re-parents the organelle shape to the "to" microbe.
+    ///   Re-parents the organelle shape to the "to" microbe.
     /// </summary>
     public void ReParentShapes(Microbe to, Vector3 offset)
     {

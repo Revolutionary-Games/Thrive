@@ -211,11 +211,16 @@ public partial class CellEditorComponent
     {
         foreach (var organelleInternalName in organelleEfficiency.Keys)
         {
-            if (organelleInternalName == protoplasm.InternalName)
+            var efficiency = organelleEfficiency[organelleInternalName];
+
+            if (efficiency.Organelle.Unimplemented ||
+                efficiency.Organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
+            {
                 continue;
+            }
 
             var tooltip = GetSelectionTooltip(organelleInternalName, "organelleSelection");
-            tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelleInternalName].Processes);
+            tooltip?.WriteOrganelleProcessList(efficiency.Processes);
         }
     }
 
@@ -224,7 +229,7 @@ public partial class CellEditorComponent
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
         foreach (var organelle in organelles)
         {
-            if (organelle.InternalName == protoplasm.InternalName)
+            if (organelle.Unimplemented || organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
                 continue;
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");

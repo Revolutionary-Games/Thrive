@@ -64,6 +64,27 @@ public class InputGroupList : VBoxContainer
             FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Vertical);
     }
 
+    public void InitGroupList()
+    {
+        this.QueueFreeChildren();
+
+        LoadFromData(Settings.Instance.CurrentControls);
+
+        foreach (var inputGroup in ActiveInputGroupList)
+        {
+            AddChild(inputGroup);
+        }
+
+        EnsureNavigationFlowIsCorrect();
+    }
+
+    public void ClearGroupList()
+    {
+        this.QueueFreeChildren();
+
+        activeInputGroupList = null;
+    }
+
     /// <summary>
     ///   Returns not only the applied controls, but the controls the user is currently editing before pressing save.
     /// </summary>
@@ -162,20 +183,6 @@ public class InputGroupList : VBoxContainer
     public bool IsConflictDialogOpen()
     {
         return conflictDialog.Visible;
-    }
-
-    public void InitGroupList()
-    {
-        this.QueueFreeChildren();
-
-        LoadFromData(Settings.Instance.CurrentControls);
-
-        foreach (var inputGroup in ActiveInputGroupList)
-        {
-            AddChild(inputGroup);
-        }
-
-        EnsureNavigationFlowIsCorrect();
     }
 
     internal void ControlsChanged()

@@ -173,6 +173,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath BottomLeftBarPath = null!;
 
     [Export]
+    public NodePath HUDMessagesPath = null!;
+
+    [Export]
     public NodePath FossilisationButtonLayerPath = null!;
 
     [Export]
@@ -294,8 +297,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected TStage? stage;
 
     /// <summary>
-    ///   Show mouse coordinates data in the mouse
-    ///   hover box, useful during develop.
+    ///   Show mouse coordinates data in the mouse hover box, useful during develop.
     /// </summary>
 #pragma warning disable 649 // ignored until we get some GUI or something to change this
     protected bool showMouseCoordinates;
@@ -305,6 +307,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 #pragma warning disable CA2213
     private Control pausePrompt = null!;
     private CustomRichTextLabel pauseInfo = null!;
+
+    private HUDMessages hudMessages = null!;
 
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
@@ -394,6 +398,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [JsonIgnore]
     public bool Paused => paused;
 
+    [JsonIgnore]
+    public HUDMessages HUDMessages => hudMessages;
+
     /// <summary>
     ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
     /// </summary>
@@ -458,6 +465,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         pausePrompt = GetNode<Control>(PausePromptPath);
         pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
 
+        hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
+
         packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
@@ -512,11 +521,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         stage = containedInStage;
     }
 
-    public void SendEditorButtonToTutorial(TutorialState tutorialState)
-    {
-        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
-    }
-
     public override void _Process(float delta)
     {
         if (stage == null)
@@ -539,6 +543,22 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         UpdatePanelSizing(delta);
 
         UpdateFossilisationButtons();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            foreach (var hoveredCompoundControl in hoveredCompoundControls)
+            {
+                hoveredCompoundControl.Value.UpdateTranslation();
+            }
+        }
+    }
+
+    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    {
+        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
     }
 
     public void PauseButtonPressed(bool buttonState)
@@ -591,6 +611,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
         editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
+
+        HUDMessages.ShowMessage(TranslationServer.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
 
     /// <summary>
@@ -629,17 +651,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         TransitionManager.Instance.AddSequence(
             ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stage.OnFinishTransitioning);
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            foreach (var hoveredCompoundControl in hoveredCompoundControls)
-            {
-                hoveredCompoundControl.Value.UpdateTranslation();
-            }
-        }
     }
 
     public void OnSuicide()
@@ -770,75 +781,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         {
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (CompoundsGroupAnimationPlayerPath != null)
-            {
-                CompoundsGroupAnimationPlayerPath.Dispose();
-                EnvironmentGroupAnimationPlayerPath.Dispose();
-                PanelsTweenPath.Dispose();
-                LeftPanelsPath.Dispose();
-                MouseHoverPanelPath.Dispose();
-                HoveredCellsContainerPath.Dispose();
-                MenuPath.Dispose();
-                AtpLabelPath.Dispose();
-                HpLabelPath.Dispose();
-                PopulationLabelPath.Dispose();
-                PatchOverlayPath.Dispose();
-                EditorButtonPath.Dispose();
-                EnvironmentPanelPath.Dispose();
-                OxygenBarPath.Dispose();
-                Co2BarPath.Dispose();
-                NitrogenBarPath.Dispose();
-                TemperaturePath.Dispose();
-                SunlightPath.Dispose();
-                PressurePath.Dispose();
-                EnvironmentPanelBarContainerPath.Dispose();
-                CompoundsPanelPath.Dispose();
-                GlucoseBarPath.Dispose();
-                AmmoniaBarPath.Dispose();
-                PhosphateBarPath.Dispose();
-                HydrogenSulfideBarPath.Dispose();
-                IronBarPath.Dispose();
-                EnvironmentPanelExpandButtonPath.Dispose();
-                EnvironmentPanelCompressButtonPath.Dispose();
-                CompoundsPanelExpandButtonPath.Dispose();
-                CompoundsPanelCompressButtonPath.Dispose();
-                CompoundsPanelBarContainerPath.Dispose();
-                AtpBarPath.Dispose();
-                HealthBarPath.Dispose();
-                AmmoniaReproductionBarPath.Dispose();
-                PhosphateReproductionBarPath.Dispose();
-                EditorButtonFlashPath.Dispose();
-                ProcessPanelPath.Dispose();
-                HintTextPath.Dispose();
-                HotBarPath.Dispose();
-                EngulfHotkeyPath.Dispose();
-                SecreteSlimeHotkeyPath.Dispose();
-                SignallingAgentsHotkeyPath.Dispose();
-                MicrobeControlRadialPath.Dispose();
-                PausePromptPath.Dispose();
-                PauseInfoPath.Dispose();
-                HoveredCompoundsContainerPath.Dispose();
-                HoverPanelSeparatorPath.Dispose();
-                AgentsPanelPath.Dispose();
-                OxytoxyBarPath.Dispose();
-                MucilageBarPath.Dispose();
-                AgentsPanelBarContainerPath.Dispose();
-                FireToxinHotkeyPath.Dispose();
-                BottomLeftBarPath.Dispose();
-                FossilisationButtonLayerPath.Dispose();
-                FossilisationDialogPath.Dispose();
-            }
-
-            compoundBars?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -1331,6 +1273,76 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             healthBarFlashDuration = 2.5f;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CompoundsGroupAnimationPlayerPath != null)
+            {
+                CompoundsGroupAnimationPlayerPath.Dispose();
+                EnvironmentGroupAnimationPlayerPath.Dispose();
+                PanelsTweenPath.Dispose();
+                LeftPanelsPath.Dispose();
+                MouseHoverPanelPath.Dispose();
+                HoveredCellsContainerPath.Dispose();
+                MenuPath.Dispose();
+                AtpLabelPath.Dispose();
+                HpLabelPath.Dispose();
+                PopulationLabelPath.Dispose();
+                PatchOverlayPath.Dispose();
+                EditorButtonPath.Dispose();
+                EnvironmentPanelPath.Dispose();
+                OxygenBarPath.Dispose();
+                Co2BarPath.Dispose();
+                NitrogenBarPath.Dispose();
+                TemperaturePath.Dispose();
+                SunlightPath.Dispose();
+                PressurePath.Dispose();
+                EnvironmentPanelBarContainerPath.Dispose();
+                CompoundsPanelPath.Dispose();
+                GlucoseBarPath.Dispose();
+                AmmoniaBarPath.Dispose();
+                PhosphateBarPath.Dispose();
+                HydrogenSulfideBarPath.Dispose();
+                IronBarPath.Dispose();
+                EnvironmentPanelExpandButtonPath.Dispose();
+                EnvironmentPanelCompressButtonPath.Dispose();
+                CompoundsPanelExpandButtonPath.Dispose();
+                CompoundsPanelCompressButtonPath.Dispose();
+                CompoundsPanelBarContainerPath.Dispose();
+                AtpBarPath.Dispose();
+                HealthBarPath.Dispose();
+                AmmoniaReproductionBarPath.Dispose();
+                PhosphateReproductionBarPath.Dispose();
+                EditorButtonFlashPath.Dispose();
+                ProcessPanelPath.Dispose();
+                HintTextPath.Dispose();
+                HotBarPath.Dispose();
+                EngulfHotkeyPath.Dispose();
+                SecreteSlimeHotkeyPath.Dispose();
+                SignallingAgentsHotkeyPath.Dispose();
+                MicrobeControlRadialPath.Dispose();
+                PausePromptPath.Dispose();
+                PauseInfoPath.Dispose();
+                HoveredCompoundsContainerPath.Dispose();
+                HoverPanelSeparatorPath.Dispose();
+                AgentsPanelPath.Dispose();
+                OxytoxyBarPath.Dispose();
+                MucilageBarPath.Dispose();
+                AgentsPanelBarContainerPath.Dispose();
+                FireToxinHotkeyPath.Dispose();
+                BottomLeftBarPath.Dispose();
+                HUDMessagesPath.Dispose();
+                FossilisationButtonLayerPath.Dispose();
+                FossilisationDialogPath.Dispose();
+            }
+
+            compoundBars?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Called when the player died out in a patch and selected a new one
     /// </summary>
@@ -1341,7 +1353,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     }
 
     /// <summary>
-    ///  Updates the different bars and panels that should be displayed to the screen
+    ///   Updates the different bars and panels that should be displayed to the screen
     /// </summary>
     private void UpdateBarVisibility(Func<Compound, bool> isUseful)
     {

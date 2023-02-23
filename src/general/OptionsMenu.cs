@@ -927,7 +927,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    /// Displays the current viewport resolution
+    ///   Displays the current viewport resolution
     /// </summary>
     private void DisplayResolution()
     {
@@ -940,7 +940,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    /// Displays the GPU name, the display driver name and used video memory
+    ///   Displays the GPU name, the display driver name and used video memory
     /// </summary>
     private void DisplayGpuInfo()
     {
@@ -1466,6 +1466,7 @@ public class OptionsMenu : ControlWithInput
             return false;
         }
 
+        ClearInputRebindingControls();
         EmitSignal(nameof(OnOptionsClosed));
         return true;
     }
@@ -2173,6 +2174,11 @@ public class OptionsMenu : ControlWithInput
     private void BuildInputRebindControls()
     {
         inputGroupList.InitGroupList();
+    }
+
+    private void ClearInputRebindingControls()
+    {
+        inputGroupList.ClearGroupList();
     }
 
     private void OnOpenScreenshotFolder()

@@ -60,7 +60,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <returns>True if canceled</returns>
     public bool CancelCurrentAction();
 
-    int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
+    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
 
     /// <summary>
     ///   Perform all actions through this to make undo and redo work

@@ -108,7 +108,7 @@ public class WorldGenerationSettings
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>
-    ///  Basic patch map generation type (procedural or the static classic map)
+    ///   Basic patch map generation type (procedural or the static classic map)
     /// </summary>
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
 
@@ -129,12 +129,12 @@ public class WorldGenerationSettings
     public float DaytimeFraction { get; set; }
 
     /// <summary>
-    ///  Whether the player can enter the Multicellular Stage in this game
+    ///   Whether the player can enter the Multicellular Stage in this game
     /// </summary>
     public bool IncludeMulticellular { get; set; } = true;
 
     /// <summary>
-    ///  Whether Easter eggs are enabled in this game
+    ///   Whether Easter eggs are enabled in this game
     /// </summary>
     public bool EasterEggs { get; set; } = true;
 
@@ -143,21 +143,6 @@ public class WorldGenerationSettings
     /// </summary>
     public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
         SimulationParameters.Instance.AutoEvoConfiguration;
-
-    public override string ToString()
-    {
-        return "World generation settings: [" +
-            $"LAWK: {LAWK}" +
-            $", Difficulty: {Difficulty.GetDescriptionString()}" +
-            $", Life origin: {Origin}" +
-            $", Seed: {Seed}" +
-            $", Map type: {MapType}" +
-            $", Day/night cycle enabled: {DayNightCycleEnabled}" +
-            $", Day length: {DayLength}" +
-            $", Include multicellular: {IncludeMulticellular}" +
-            $", Easter eggs: {EasterEggs}" +
-            "]";
-    }
 
     /// <summary>
     ///   Generates a formatted string containing translated difficulty details.
@@ -203,5 +188,20 @@ public class WorldGenerationSettings
         return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("WORLD_MISC_DETAILS_STRING"),
             TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
             TranslationHelper.TranslateFeatureFlag(EasterEggs));
+    }
+
+    public override string ToString()
+    {
+        return "World generation settings: [" +
+            $"LAWK: {LAWK}" +
+            $", Difficulty: {Difficulty.GetDescriptionString()}" +
+            $", Life origin: {Origin}" +
+            $", Seed: {Seed}" +
+            $", Map type: {MapType}" +
+            $", Day/night cycle enabled: {DayNightCycleEnabled}" +
+            $", Day length: {DayLength}" +
+            $", Include multicellular: {IncludeMulticellular}" +
+            $", Easter eggs: {EasterEggs}" +
+            "]";
     }
 }

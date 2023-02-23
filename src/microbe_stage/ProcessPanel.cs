@@ -42,12 +42,18 @@ public class ProcessPanel : CustomDialog
         if (ShownData != null)
         {
             // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues()).ToList();
+            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues());
         }
         else
         {
             processList.ProcessesToShow = null;
         }
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        EmitSignal(nameof(OnClosed));
     }
 
     protected override void Dispose(bool disposing)
@@ -62,12 +68,6 @@ public class ProcessPanel : CustomDialog
         }
 
         base.Dispose(disposing);
-    }
-
-    protected override void OnHidden()
-    {
-        base.OnHidden();
-        EmitSignal(nameof(OnClosed));
     }
 
     private void OnClosePressed()

@@ -65,6 +65,18 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
         }
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+
+        if (@event is InputEventJoypadMotion joypadMotion)
+        {
+            HandleController(joypadMotion.Axis, joypadMotion.AxisValue);
+        }
+
+        InputManager.ForwardInput(@event);
+    }
+
     /// <summary>
     ///   Starts showing input (until this becomes hidden)
     /// </summary>
@@ -90,18 +102,6 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
         secondaryVisualizerMapping.Clear();
 
         SetProcessInput(false);
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
-
-        if (@event is InputEventJoypadMotion joypadMotion)
-        {
-            HandleController(joypadMotion.Axis, joypadMotion.AxisValue);
-        }
-
-        InputManager.ForwardInput(@event);
     }
 
     /// <summary>

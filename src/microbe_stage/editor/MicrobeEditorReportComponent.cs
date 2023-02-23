@@ -210,6 +210,29 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
     }
 
+    protected override void OnTranslationsChanged()
+    {
+        Editor.SendAutoEvoResultsToReportComponent();
+        UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
+        UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
+        UpdateTimeline(Editor.SelectedPatch);
+        UpdateReportTabPatchSelector();
+        UpdateReportTabStatistics(Editor.CurrentPatch);
+    }
+
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        timeIndicator.RegisterToolTipForControl("timeIndicator", "editor");
+
+        var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
+        var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
+
+        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
+        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -237,29 +260,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         }
 
         base.Dispose(disposing);
-    }
-
-    protected override void OnTranslationsChanged()
-    {
-        Editor.SendAutoEvoResultsToReportComponent();
-        UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
-        UpdateTimeline(Editor.SelectedPatch);
-        UpdateReportTabPatchSelector();
-        UpdateReportTabStatistics(Editor.CurrentPatch);
-    }
-
-    protected override void RegisterTooltips()
-    {
-        base.RegisterTooltips();
-
-        timeIndicator.RegisterToolTipForControl("timeIndicator", "editor");
-
-        var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
-        var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
-
-        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
-        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
     }
 
     private void UpdateReportTabPatchSelectorSelection(int patchID)
@@ -500,13 +500,14 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     /// <summary>
     ///   Returns a chart which should contain the given compound.
     /// </summary>
+    /// <returns>Null if the given compound shouldn't be included in any chart.</returns>
     private LineChart? GetChartForCompound(string compoundName)
     {
         switch (compoundName)
         {
             case "atp":
-                return null;
             case "oxytoxy":
+            case "temperature":
                 return null;
             case "sunlight":
                 return sunlightChart;

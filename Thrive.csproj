@@ -45,6 +45,9 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\benchmark\BenchmarkHelpers.cs" />
+    <Compile Include="src\benchmark\DummySpawnSystem.cs" />
+    <Compile Include="src\benchmark\microbe\MicrobeBenchmark.cs" />
     <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
     <Compile Include="src\early_multicellular_stage\CellType.cs" />
@@ -338,6 +341,10 @@
     <Compile Include="src\microbe_stage\Endosome.cs" />
     <Compile Include="src\microbe_stage\Enzyme.cs" />
     <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
+    <Compile Include="src\microbe_stage\gui\DisplayDuration.cs" />
+    <Compile Include="src\microbe_stage\gui\HUDMessages.cs" />
+    <Compile Include="src\microbe_stage\gui\IHUDMessage.cs" />
+    <Compile Include="src\microbe_stage\gui\SimpleHUDMessage.cs" />
     <Compile Include="src\microbe_stage\HoveredCompoundControl.cs" />
     <Compile Include="src\microbe_stage\HUDBottomBar.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
@@ -365,6 +372,7 @@
     <Compile Include="src\microbe_stage\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\CompoundBalance.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\MicrobeState.cs" />
     <Compile Include="src\microbe_stage\MicrobeSystem.cs" />
     <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SlimeJetComponent.cs" />
@@ -424,6 +432,7 @@
     <Compile Include="src\microbe_stage\organelle_components\AgentVacuoleComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\MovementComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\PilusComponent.cs" />
+    <Compile Include="src\microbe_stage\StrictProcessDisplayInfoEquality.cs" />
     <Compile Include="src\microbe_stage\TweakedProcess.cs" />
     <Compile Include="src\microbe_stage\CompoundBag.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudSystem.cs" />
@@ -640,7 +649,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.0.0</Version>
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -657,6 +666,7 @@
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
+    <Content Include="simulation_parameters\common\patch_notes.yml" />
     <Content Include="simulation_parameters\common\translations_info.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />

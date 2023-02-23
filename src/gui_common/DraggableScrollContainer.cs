@@ -24,7 +24,8 @@ public class DraggableScrollContainer : ScrollContainer
     private bool zooming;
 
     /// <summary>
-    ///  Whether we're currently centering to a specific coordinate, to prevent dragging while it's still happening.
+    ///   Whether we're currently centering (with Lerp) to a specific coordinate, to prevent dragging while
+    ///   still lerping.
     /// </summary>
     private bool centering;
 
@@ -100,6 +101,18 @@ public class DraggableScrollContainer : ScrollContainer
         UpdateScrollbars();
     }
 
+    public override void _Draw()
+    {
+        base._Draw();
+
+        content.RectPivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
+        contentScale = Mathf.Clamp(contentScale, MinZoom, MaxZoom);
+        var pairValue = new Vector2(contentScale, contentScale);
+
+        if (content.RectScale != pairValue)
+            content.RectScale = pairValue;
+    }
+
     public override void _GuiInput(InputEvent @event)
     {
         if (!Visible || centering)
@@ -166,18 +179,6 @@ public class DraggableScrollContainer : ScrollContainer
         }
     }
 
-    public override void _Draw()
-    {
-        base._Draw();
-
-        content.RectPivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
-        contentScale = Mathf.Clamp(contentScale, MinZoom, MaxZoom);
-        var pairValue = new Vector2(contentScale, contentScale);
-
-        if (content.RectScale != pairValue)
-            content.RectScale = pairValue;
-    }
-
     public void Zoom(float value, float lerpDuration = 0.1f)
     {
         zooming = true;
@@ -204,11 +205,21 @@ public class DraggableScrollContainer : ScrollContainer
         Zoom(1, 1.0f);
     }
 
-    public void CenterTo(Vector2 coordinates)
+    public void CenterTo(Vector2 coordinates, bool smoothed)
     {
-        centering = true;
+        var viewCoords = coordinates - GetRect().End / 2.0f;
+
+        if (smoothed)
+        {
+            centering = true;
+            Pan(viewCoords, () => centering = false, 1.0f);
+        }
+        else
+        {
+            ImmediatePan(viewCoords);
+        }
+
         ResetZoom();
-        Pan(coordinates - GetRect().End / 2.0f, () => centering = false, 1.0f);
     }
 
     private void ImmediateZoom(float value)

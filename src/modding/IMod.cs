@@ -22,7 +22,7 @@ public interface IMod
     ///   True on success. If returns false a popup is shown telling the player that an error occurred.
     ///   On failure extra info should be printed to logs (GD.PrintErr) for the user to see what the problem is.
     /// </returns>
-    bool Initialize(IModInterface modInterface, ModInfo currentModInfo);
+    public bool Initialize(IModInterface modInterface, ModInfo currentModInfo);
 
     /// <summary>
     ///   Called when the mod should be unloaded. Note that code assemblies can't really be unloaded well so the mod
@@ -30,12 +30,12 @@ public interface IMod
     ///   to clean up as much as possible.
     /// </summary>
     /// <returns>True if successful, false if an error should be reported to the user</returns>
-    bool Unload();
+    public bool Unload();
 
     /// <summary>
     ///   Called when it is safe for mods to attach nodes (ie. initial Node setup has finished and new children can
     ///   be added without error)
     /// </summary>
     /// <param name="currentScene">The current root scene (should be the MainMenu)</param>
-    void CanAttachNodes(Node currentScene);
+    public void CanAttachNodes(Node currentScene);
 }

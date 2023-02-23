@@ -217,7 +217,11 @@ public abstract class Species : ICloneable
     ///   Gets info specific to the species for storing into a new container class.
     ///   Used for patch snapshots, but could be expanded
     /// </summary>
-    /// <remarks>TODO: Check overlap with ClonePropertiesTo</remarks>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: Check overlap with ClonePropertiesTo
+    ///   </para>
+    /// </remarks>
     public SpeciesInfo RecordSpeciesInfo()
     {
         return new SpeciesInfo
@@ -271,9 +275,14 @@ public abstract class Species : ICloneable
     /// </summary>
     public abstract object Clone();
 
-    public override string ToString()
+    /// <summary>
+    ///   Instead of overriding the GetHashCode method this is provided to make checking
+    ///   "is this species visually the same as this other one" possible by comparing the hashes.
+    /// </summary>
+    /// <returns>The visual hash code</returns>
+    public virtual int GetVisualHashCode()
     {
-        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
+        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
     }
 
     public virtual string GetDetailString()
@@ -288,14 +297,9 @@ public abstract class Species : ICloneable
                 Behaviour.Select(b => BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
     }
 
-    /// <summary>
-    ///   Instead of overriding the GetHashCode method this is provided to make checking
-    ///   "is this species visually the same as this other one" possible by comparing the hashes.
-    /// </summary>
-    /// <returns>The visual hash code</returns>
-    public virtual int GetVisualHashCode()
+    public override string ToString()
     {
-        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
+        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
     }
 
     internal virtual void CopyDataToConvertedSpecies(Species species)

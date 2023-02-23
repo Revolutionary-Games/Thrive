@@ -98,27 +98,16 @@ public partial class Microbe
     [JsonProperty]
     private MicrobeState state;
 
-    public enum MicrobeState
+    public enum EngulfCheckResult
     {
-        /// <summary>
-        ///   Not in any special state
-        /// </summary>
-        Normal,
-
-        /// <summary>
-        ///   The microbe is currently in binding mode
-        /// </summary>
-        Binding,
-
-        /// <summary>
-        ///   The microbe is currently in unbinding mode and cannot move
-        /// </summary>
-        Unbinding,
-
-        /// <summary>
-        ///   The microbe is currently in engulf mode
-        /// </summary>
-        Engulf,
+        Ok,
+        NotInEngulfMode,
+        RecentlyExpelled,
+        TargetDead,
+        TargetTooBig,
+        IngestedMatterFull,
+        CannotCannibalize,
+        TargetInvulnerable,
     }
 
     /// <summary>
@@ -179,34 +168,11 @@ public partial class Microbe
     [JsonIgnore]
     public MicrobeState State
     {
-        get
-        {
-            if (Colony == null)
-                return state;
-
-            var colonyState = Colony.State;
-
-            // Override engulf mode in colony cells that can't engulf
-            if (colonyState == MicrobeState.Engulf && Membrane.Type.CellWall)
-                return MicrobeState.Normal;
-
-            return colonyState;
-        }
+        get => Colony?.State ?? state;
         set
         {
             if (state == value)
                 return;
-
-            // Engulfing is not legal for microbes will cell walls
-            if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
-            {
-                // Don't warn when in a multicellular colony as the other cells there can enter engulf mode
-                if (ColonyParent != null && IsMulticellular)
-                    return;
-
-                GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
-                return;
-            }
 
             state = value;
             if (Colony != null)
@@ -234,6 +200,14 @@ public partial class Microbe
             return size;
         }
     }
+
+    /// <summary>
+    ///   Just like <see cref="ICellProperties.CanEngulf"/> but decoupled from Species and is based on the local
+    ///   condition of the microbe instead.
+    /// </summary>
+    /// <returns>True if this cell fills all the requirements needed to enter engulf mode.</returns>
+    [JsonIgnore]
+    public bool CanEngulf => !Membrane.Type.CellWall;
 
     /// <summary>
     ///   Returns true when this microbe can enable binding mode. Multicellular species can't attach random cells
@@ -265,6 +239,9 @@ public partial class Microbe
 
     [JsonProperty]
     public Action<Microbe>? OnEngulfmentStorageFull { get; set; }
+
+    [JsonProperty]
+    public Action<Microbe, IHUDMessage>? OnNoticeMessage { get; set; }
 
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
@@ -350,6 +327,11 @@ public partial class Microbe
             // Play the toxin sound
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
+            // TODO: fix this, currently "toxin" is used both by microbes and chunks, as well as damage from ingested
+            // toxins
+            // OnNoticeMessage?.Invoke(this,
+            //     new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN")));
+
             // Divide damage by toxin resistance
             amount /= CellTypeProperties.MembraneType.ToxinResistance;
         }
@@ -383,6 +365,10 @@ public partial class Microbe
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
             canApplyDamageReduction = false;
+
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_NO_ATP"),
+                    DisplayDuration.Short));
         }
         else if (source == "ice")
         {
@@ -413,27 +399,42 @@ public partial class Microbe
     }
 
     /// <summary>
+    ///   Overrides this microbe's health. Used by testing code to ensure microbes don't die when not wanted
+    /// </summary>
+    /// <param name="newHitpoints">
+    ///   The new health to set the microbe to. Setting to 0 won't immediately kill the microbe
+    /// </param>
+    public void TestOverrideHitpoints(float newHitpoints)
+    {
+        Hitpoints = Mathf.Clamp(newHitpoints, 0, MaxHitpoints);
+    }
+
+    /// <summary>
     ///   Returns true when this microbe can engulf the target
     /// </summary>
-    public bool CanEngulf(IEngulfable target)
+    public EngulfCheckResult CanEngulfObject(IEngulfable target)
     {
         if (target.PhagocytosisStep != PhagocytosisPhase.None)
-            return false;
+            return EngulfCheckResult.NotInEngulfMode;
+
+        // Membranes with Cell Wall cannot engulf
+        if (!CanEngulf)
+            return EngulfCheckResult.NotInEngulfMode;
 
         // Can't engulf recently ejected objects, this act as a cooldown
         if (expelledObjects.Any(m => m.Object == target))
-            return false;
+            return EngulfCheckResult.RecentlyExpelled;
 
         var targetAsMicrobe = target as Microbe;
 
         // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
         // something is destroyed or not here (especially now that the Invoke the engulf start callback)
         if (targetAsMicrobe != null && targetAsMicrobe.destroyed)
-            return false;
+            return EngulfCheckResult.TargetDead;
 
         // Can't engulf dead microbes (unlikely to happen but this is fail-safe)
         if (targetAsMicrobe != null && targetAsMicrobe.Dead)
-            return false;
+            return EngulfCheckResult.TargetDead;
 
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
@@ -453,31 +454,43 @@ public partial class Microbe
                 loggedTouchedDisposeIssue = true;
             }
 
-            return false;
+            return EngulfCheckResult.TargetDead;
         }
 
-        // Limit amount of things that can be engulfed at once
-        if (UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + target.EngulfSize >= EngulfSize)
-            return false;
-
-        // Too many things attempted to be pulled in at once
-        if (UsedIngestionCapacity + attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize >= EngulfSize)
-            return false;
+        // The following checks are in a specific order to make sure the fail reporting logic gives sensible results
 
         // Disallow cannibalism
         if (targetAsMicrobe != null && targetAsMicrobe.Species == Species)
-            return false;
+            return EngulfCheckResult.CannotCannibalize;
 
-        // Membranes with Cell Wall cannot engulf
-        if (Membrane.Type.CellWall)
-            return false;
+        // Needs to be big enough to engulf
+        if (EngulfSize < target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+            return EngulfCheckResult.TargetTooBig;
+
+        // Limit amount of things that can be engulfed at once
+        if (UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + target.EngulfSize >= EngulfSize)
+            return EngulfCheckResult.IngestedMatterFull;
+
+        // Too many things attempted to be pulled in at once
+        if (UsedIngestionCapacity + attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize >= EngulfSize)
+            return EngulfCheckResult.IngestedMatterFull;
 
         // Godmode grants player complete engulfment invulnerability
         if (targetAsMicrobe != null && targetAsMicrobe.IsPlayerMicrobe && CheatManager.GodMode)
-            return false;
+            return EngulfCheckResult.TargetInvulnerable;
 
-        // Needs to be big enough to engulf
-        return EngulfSize > target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
+        return EngulfCheckResult.Ok;
+    }
+
+    /// <summary>
+    ///   Returns true if this microbe OR the colony this microbe is part of has the capability to engulf.
+    /// </summary>
+    public bool CanEngulfInColony()
+    {
+        if (Colony != null)
+            return Colony.CanEngulf;
+
+        return CanEngulf;
     }
 
     public void OnAttemptedToBeEngulfed()
@@ -588,8 +601,8 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///  Public because it needs to be called by external organelles only.
-    ///  Not meant for other uses.
+    ///   Public because it needs to be called by external organelles only.
+    ///   Not meant for other uses.
     /// </summary>
     public void SendOrganellePositionsToMembrane()
     {
@@ -1131,7 +1144,9 @@ public partial class Microbe
     /// </summary>
     private void HandleEngulfing(float delta)
     {
-        if (State == MicrobeState.Engulf)
+        var actuallyEngulfing = State == MicrobeState.Engulf && CanEngulf;
+
+        if (actuallyEngulfing)
         {
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
@@ -1147,7 +1162,7 @@ public partial class Microbe
         }
 
         // Play sound
-        if (State == MicrobeState.Engulf)
+        if (actuallyEngulfing)
         {
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
@@ -1178,7 +1193,7 @@ public partial class Microbe
         }
 
         // Movement modifier
-        if (State == MicrobeState.Engulf)
+        if (actuallyEngulfing)
         {
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
@@ -1736,15 +1751,23 @@ public partial class Microbe
             }
         }
 
-        var full = UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + engulfable.EngulfSize >= EngulfSize;
+        var engulfCheckResult = CanEngulfObject(engulfable);
 
-        if (CanEngulf(engulfable))
+        if (engulfCheckResult == EngulfCheckResult.Ok)
         {
             IngestEngulfable(engulfable);
         }
-        else if (EngulfSize > engulfable.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ && full)
+        else if (engulfCheckResult == EngulfCheckResult.IngestedMatterFull)
         {
             OnEngulfmentStorageFull?.Invoke(this);
+
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+        }
+        else if (engulfCheckResult == EngulfCheckResult.TargetTooBig)
+        {
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
         }
     }
 

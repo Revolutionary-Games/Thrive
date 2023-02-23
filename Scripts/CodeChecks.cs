@@ -21,7 +21,11 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
             {
                 "files",
                 new FileChecks(true,
-                    new BomChecker(BomChecker.Mode.Required, ".cs", ".json"),
+                    new BomChecker(BomChecker.Mode.Required, ".cs", ".json")
+                    {
+                        IgnoredFiles = new List<string> { "global.json" },
+                    },
+                    new BomChecker(BomChecker.Mode.Disallowed, "global.json"),
                     new CfgCheck(AssemblyInfoReader.ReadVersionFromAssemblyInfo()),
                     new DisallowedFileType(".gd", ".mo"))
             },
@@ -30,6 +34,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
             { "cleanupcode", new CleanupCode() },
             { "localization", new LocalizationCheck(runLocalizationTool) },
             { "steam-build", new SteamBuildCheck() },
+            { "rewrite", new RewriteTool() },
         };
 
         FilePathsToAlwaysIgnore.Add(new Regex(@"/?third_party/", RegexOptions.IgnoreCase));

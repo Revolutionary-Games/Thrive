@@ -12,7 +12,9 @@ using Newtonsoft.Json;
 ///   ToString returns the translated text for the current locale.
 /// </summary>
 /// <remarks>
-///   This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
+///   <para>
+///     This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
+///   </para>
 /// </remarks>
 [JSONDynamicTypeAllowed]
 [TypeConverter(typeof(LocalizedStringTypeConverter))]
@@ -34,31 +36,6 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
     {
         this.translationKey = translationKey;
         this.formatStringArgs = formatStringArgs;
-    }
-
-    public override string ToString()
-    {
-        return ToString(null, null);
-    }
-
-    public string ToString(string? format, IFormatProvider? formatProvider)
-    {
-        if (formatStringArgs == null || formatStringArgs.Length == 0)
-        {
-            return format ?? TranslationServer.Translate(translationKey);
-        }
-
-        try
-        {
-            return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
-                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
-        }
-        catch (FormatException e)
-        {
-            GD.PrintErr("Invalid translation format in string ", translationKey, " for current language, exception: ",
-                e);
-            return TranslationServer.Translate(translationKey);
-        }
     }
 
     public override bool Equals(object? obj)
@@ -101,5 +78,30 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
         }
 
         return hashCode;
+    }
+
+    public override string ToString()
+    {
+        return ToString(null, null);
+    }
+
+    public string ToString(string? format, IFormatProvider? formatProvider)
+    {
+        if (formatStringArgs == null || formatStringArgs.Length == 0)
+        {
+            return format ?? TranslationServer.Translate(translationKey);
+        }
+
+        try
+        {
+            return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
+                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+        }
+        catch (FormatException e)
+        {
+            GD.PrintErr("Invalid translation format in string ", translationKey, " for current language, exception: ",
+                e);
+            return TranslationServer.Translate(translationKey);
+        }
     }
 }

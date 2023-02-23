@@ -108,6 +108,6 @@ public class PatchExtinctionBox : Control
     private void OnFindCurrentPatchPressed()
     {
         // Unlike the editor patch map, don't select the player patch here, since it's disabled
-        mapDrawer.CenterScroll();
+        mapDrawer.CenterToCurrentPatch();
     }
 }

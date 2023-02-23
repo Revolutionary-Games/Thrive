@@ -69,6 +69,23 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         dummySpawner = new SpawnSystem(rootOfDynamicallySpawned);
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (gameOver)
+            return;
+
+        if (playerExtinctInCurrentPatch)
+            return;
+
+        if (Player != null)
+        {
+        }
+
+        // TODO: notify metrics
+    }
+
     public override void StartMusic()
     {
         Jukebox.Instance.PlayCategory("LateMulticellularStage");
@@ -86,23 +103,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         UpdatePatchSettings();
 
         base.StartNewGame();
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        if (gameOver)
-            return;
-
-        if (playerExtinctInCurrentPatch)
-            return;
-
-        if (Player != null)
-        {
-        }
-
-        // TODO: notify metrics
     }
 
     // TODO: different pause key as space will be for jumping

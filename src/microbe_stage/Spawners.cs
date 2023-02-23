@@ -252,7 +252,7 @@ public class MicrobeSpawner : Spawner
     private readonly PackedScene microbeScene;
     private readonly CompoundCloudSystem cloudSystem;
     private readonly GameProperties currentGame;
-    private readonly Random random;
+    private readonly Random random = new();
 
     public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
@@ -261,8 +261,6 @@ public class MicrobeSpawner : Spawner
         microbeScene = SpawnHelpers.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
         this.currentGame = currentGame;
-
-        random = new Random();
     }
 
     public override bool SpawnsEntities => true;

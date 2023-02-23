@@ -5,7 +5,7 @@ using AutoEvo;
 using Godot;
 
 /// <summary>
-///    Thriveopedia page displaying an evolutionary tree of all species in the current game.
+///   Thriveopedia page displaying an evolutionary tree of all species in the current game.
 /// </summary>
 /// <remarks>
 ///   <para>

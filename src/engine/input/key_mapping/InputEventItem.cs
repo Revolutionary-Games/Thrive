@@ -130,15 +130,6 @@ public class InputEventItem : MarginContainer
     }
 
     /// <summary>
-    ///   Delete this event from the associated action and update the godot InputMap
-    /// </summary>
-    public void Delete()
-    {
-        Action?.Inputs.Remove(this);
-        GroupList?.ControlsChanged();
-    }
-
-    /// <summary>
     ///   Performs the key reassigning.
     ///   Checks if it is waiting for a user input and if there are any conflicts (opens a warning dialog
     ///   if there is any).
@@ -304,6 +295,15 @@ public class InputEventItem : MarginContainer
             return;
 
         OnKeybindingSuccessfullyChanged();
+    }
+
+    /// <summary>
+    ///   Delete this event from the associated action and update the godot InputMap
+    /// </summary>
+    public void Delete()
+    {
+        Action?.Inputs.Remove(this);
+        GroupList?.ControlsChanged();
     }
 
     public override bool Equals(object obj)

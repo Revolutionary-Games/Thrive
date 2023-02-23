@@ -26,6 +26,32 @@ public class TemporaryLoadedNodeDeleter : Node
         PauseMode = PauseModeEnum.Process;
     }
 
+    public override void _Process(float delta)
+    {
+        if (HoldDeletion)
+            return;
+
+        foreach (var node in nodesToDelete)
+        {
+            try
+            {
+                if (node.GetParent() != null)
+                {
+                    GD.PrintErr("TemporaryLoadedNodeDeleter was given a node with a parent, not deleting it");
+                    continue;
+                }
+
+                node.QueueFree();
+            }
+            catch (ObjectDisposedException)
+            {
+                GD.PrintErr("TemporaryLoadedNodeDeleter failed to delete a node because it was already disposed");
+            }
+        }
+
+        nodesToDelete.Clear();
+    }
+
     /// <summary>
     ///   Adds a deletion hold.
     /// </summary>
@@ -54,32 +80,6 @@ public class TemporaryLoadedNodeDeleter : Node
             return node;
 
         return null;
-    }
-
-    public override void _Process(float delta)
-    {
-        if (HoldDeletion)
-            return;
-
-        foreach (var node in nodesToDelete)
-        {
-            try
-            {
-                if (node.GetParent() != null)
-                {
-                    GD.PrintErr("TemporaryLoadedNodeDeleter was given a node with a parent, not deleting it");
-                    continue;
-                }
-
-                node.QueueFree();
-            }
-            catch (ObjectDisposedException)
-            {
-                GD.PrintErr("TemporaryLoadedNodeDeleter failed to delete a node because it was already disposed");
-            }
-        }
-
-        nodesToDelete.Clear();
     }
 
     /// <summary>

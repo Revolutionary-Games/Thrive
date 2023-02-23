@@ -77,6 +77,9 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
 
     [JsonIgnore]
+    public bool CanEngulf => !MembraneType.CellWall;
+
+    [JsonIgnore]
     public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
 
     public override void OnEdited()
@@ -158,6 +161,23 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         MembraneRigidity = casted.MembraneRigidity;
     }
 
+    public void ApplySceneParameters(Spatial instancedScene)
+    {
+        var microbe = (Microbe)instancedScene;
+        microbe.IsForPreviewOnly = true;
+
+        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
+        microbe._Ready();
+
+        microbe.ApplySpecies(this);
+    }
+
+    public float CalculatePhotographDistance(Spatial instancedScene)
+    {
+        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
+            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+    }
+
     public override object Clone()
     {
         var result = new MicrobeSpecies(ID, Genus, Epithet);
@@ -174,17 +194,6 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         }
 
         return result;
-    }
-
-    public override string GetDetailString()
-    {
-        return base.GetDetailString() + "\n" +
-            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                MembraneType.Name,
-                MembraneRigidity,
-                BaseSpeed,
-                BaseRotationSpeed,
-                BaseHexSize);
     }
 
     public override int GetVisualHashCode()
@@ -205,20 +214,14 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         return hash;
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public override string GetDetailString()
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
-
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        microbe.ApplySpecies(this);
-    }
-
-    public float CalculatePhotographDistance(Spatial instancedScene)
-    {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        return base.GetDetailString() + "\n" +
+            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
+                MembraneType.Name,
+                MembraneRigidity,
+                BaseSpeed,
+                BaseRotationSpeed,
+                BaseHexSize);
     }
 }

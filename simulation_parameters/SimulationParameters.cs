@@ -61,8 +61,10 @@ public class SimulationParameters : Node
     ///   Loads the simulation configuration parameters from JSON files
     /// </summary>
     /// <remarks>
-    ///   This is now loaded in _Ready as otherwise the <see cref="ModLoader"/>'s _Ready would run after simulation
-    ///   parameters are loaded causing some data that might want to be overridden by mods to be loaded too early.
+    ///   <para>
+    ///     This is now loaded in _Ready as otherwise the <see cref="ModLoader"/>'s _Ready would run after simulation
+    ///     parameters are loaded causing some data that might want to be overridden by mods to be loaded too early.
+    ///   </para>
     /// </remarks>
     public override void _Ready()
     {

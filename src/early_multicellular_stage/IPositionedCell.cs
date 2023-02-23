@@ -3,5 +3,5 @@
     /// <summary>
     ///   How many times this cell is rotated
     /// </summary>
-    int Orientation { get; set; }
+    public int Orientation { get; set; }
 }

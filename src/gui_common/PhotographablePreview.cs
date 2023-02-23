@@ -80,16 +80,6 @@ public abstract class PhotographablePreview : Control
         return finishedImage;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            TextureRectPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected void UpdatePreview()
     {
         textureRect.Texture = loadingTexture;
@@ -117,4 +107,14 @@ public abstract class PhotographablePreview : Control
     /// </example>
     /// <returns>An image task, or null if condition not satisfied</returns>
     protected abstract ImageTask? SetupImageTask();
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            TextureRectPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
 }

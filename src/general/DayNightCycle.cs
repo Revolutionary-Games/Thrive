@@ -28,7 +28,9 @@ public class DayNightCycle
     ///   Multiplier used for calculating DayLightFraction.
     /// </summary>
     /// <remarks>
-    ///   This exists as it only needs to be calculated once and the calculation for it is confusing.
+    ///   <para>
+    ///     This exists as it only needs to be calculated once and the calculation for it is confusing.
+    ///   </para>
     /// </remarks>
     [JsonIgnore]
     private float daytimeMultiplier;
@@ -94,7 +96,9 @@ public class DayNightCycle
     ///   Calculates sunlight value (on a scale from 0 to 1) at a given point during the day.
     /// </summary>
     /// <remarks>
-    ///   If this equation is changed, <see cref="IntegratePointwiseSunlight"/> must also be updated.
+    ///   <para>
+    ///     If this equation is changed, <see cref="IntegratePointwiseSunlight"/> must also be updated.
+    ///   </para>
     /// </remarks>
     /// <param name="x">Fraction of the day completed, between 0-1</param>
     private float CalculatePointwiseSunlight(float x)
@@ -122,7 +126,9 @@ public class DayNightCycle
     ///   Calculates the antiderivative of the sunlight function at a given point.
     /// </summary>
     /// <remarks>
-    ///   Based on <see cref="CalculatePointwiseSunlight"/>, so must be updated if that is updated.
+    ///   <para>
+    ///     Based on <see cref="CalculatePointwiseSunlight"/>, so must be updated if that is updated.
+    ///   </para>
     /// </remarks>
     /// <param name="x">Fraction of the day completed</param>
     private float IntegratePointwiseSunlight(float x)

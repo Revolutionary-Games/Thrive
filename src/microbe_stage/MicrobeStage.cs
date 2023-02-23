@@ -119,20 +119,6 @@ public class MicrobeStage : StageBase<Microbe>
         SetupStage();
     }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
-        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
-        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
-    }
-
     public override void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -159,46 +145,18 @@ public class MicrobeStage : StageBase<Microbe>
             worldLight, CurrentGame, lightCycle);
     }
 
-    public override void OnFinishTransitioning()
+    public override void _EnterTree()
     {
-        base.OnFinishTransitioning();
-
-        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
-        {
-            TutorialState.SendEvent(
-                TutorialEventType.EnteredMicrobeStage,
-                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
-        }
-        else
-        {
-            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
-        }
+        base._EnterTree();
+        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
     }
 
-    public override void OnFinishLoading(Save save)
+    public override void _ExitTree()
     {
-        OnFinishLoading();
-    }
-
-    public override void StartNewGame()
-    {
-        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
-
-        UpdatePatchSettings(!TutorialState.Enabled);
-
-        base.StartNewGame();
-    }
-
-    public override void StartMusic()
-    {
-        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
-            "EarlyMulticellularStage" :
-            "MicrobeStage");
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        FluidSystem.PhysicsProcess(delta);
+        base._ExitTree();
+        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void _Process(float delta)
@@ -296,6 +254,48 @@ public class MicrobeStage : StageBase<Microbe>
         }
 
         UpdateLinePlayerPosition();
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        FluidSystem.PhysicsProcess(delta);
+    }
+
+    public override void OnFinishTransitioning()
+    {
+        base.OnFinishTransitioning();
+
+        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
+        {
+            TutorialState.SendEvent(
+                TutorialEventType.EnteredMicrobeStage,
+                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+        }
+        else
+        {
+            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
+        }
+    }
+
+    public override void OnFinishLoading(Save save)
+    {
+        OnFinishLoading();
+    }
+
+    public override void StartNewGame()
+    {
+        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
+
+        UpdatePatchSettings(!TutorialState.Enabled);
+
+        base.StartNewGame();
+    }
+
+    public override void StartMusic()
+    {
+        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
+            "EarlyMulticellularStage" :
+            "MicrobeStage");
     }
 
     [RunOnKeyDown("g_pause")]
@@ -505,12 +505,15 @@ public class MicrobeStage : StageBase<Microbe>
         // This is done first to ensure that the player colony is still intact for spawn separation calculation
         var daughter = Player!.Divide();
 
+        daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
+
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
             // TODO: add more extra offset between the player and the divided cell
+            // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
         }
 
         // Update the player's cell
@@ -518,6 +521,14 @@ public class MicrobeStage : StageBase<Microbe>
 
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
+
+        var playerPosition = Player.GlobalTranslation;
+
+        // This is queued to run to reduce the massive lag spike that anyway happens on this frame
+        // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
+        // frame and won't be available on the next one
+        Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
+            rootOfDynamicallySpawned);
 
         if (!CurrentGame.TutorialState.Enabled)
         {
@@ -542,16 +553,6 @@ public class MicrobeStage : StageBase<Microbe>
     public override void OnSuicide()
     {
         Player?.Damage(9999.0f, "suicide");
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            GuidanceLinePath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     protected override void SetupStage()
@@ -616,6 +617,8 @@ public class MicrobeStage : StageBase<Microbe>
         Player.OnSuccessfulEngulfment = OnPlayerIngesting;
 
         Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
+
+        Player.OnNoticeMessage = OnPlayerNoticeMessage;
 
         Camera.ObjectToFollow = Player;
 
@@ -691,6 +694,16 @@ public class MicrobeStage : StageBase<Microbe>
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateBackground()
@@ -828,6 +841,12 @@ public class MicrobeStage : StageBase<Microbe>
     private void OnPlayerEngulfmentLimitReached(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerNoticeMessage(Microbe player, IHUDMessage message)
+    {
+        HUD.HUDMessages.ShowMessage(message);
     }
 
     /// <summary>

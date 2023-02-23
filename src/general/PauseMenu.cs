@@ -195,6 +195,20 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    public override void _Ready()
+    {
+        primaryMenu = GetNode<Control>(PrimaryMenuPath);
+        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
+        loadMenu = GetNode<Control>(LoadMenuPath);
+        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
+        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
+        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
+    }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -215,20 +229,6 @@ public class PauseMenu : CustomDialog
         Paused = false;
 
         GetTree().AutoAcceptQuit = true;
-    }
-
-    public override void _Ready()
-    {
-        primaryMenu = GetNode<Control>(PrimaryMenuPath);
-        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
-        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
-        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
-        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-
-        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
-        unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
     }
 
     public override void _Notification(int notification)
@@ -477,6 +477,11 @@ public class PauseMenu : CustomDialog
         GUICommon.Instance.PlayButtonPressSound();
 
         ActiveMenu = ActiveMenuType.Options;
+    }
+
+    private void OpenReportBugPressed()
+    {
+        OS.ShellOpen("https://community.revolutionarygamesstudio.com/c/bug-reports/13");
     }
 
     private void OnThriveopediaClosed()

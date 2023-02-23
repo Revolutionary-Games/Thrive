@@ -68,7 +68,14 @@ public class EvolutionaryTree : Control
     /// </summary>
     private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
 
-    // ReSharper disable RedundantNameQualifier
+    /// <summary>
+    ///   Stores the created nodes for species by the species ids
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     ReSharper disable RedundantNameQualifier
+    ///   </para>
+    /// </remarks>
     private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
@@ -122,7 +129,7 @@ public class EvolutionaryTree : Control
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///      <see cref="Control.RectScale"/> is not used here so that we know the drawn parts.
+    ///     <see cref="Control.RectScale"/> is not used here so that we know the drawn parts.
     ///   </para>
     /// </remarks>
     private float sizeFactor = 1.0f;
@@ -187,19 +194,6 @@ public class EvolutionaryTree : Control
         dirty = true;
     }
 
-    public void Clear()
-    {
-        speciesOrigin.Clear();
-        speciesNames.Clear();
-        generationTimes.Clear();
-        speciesNodes.Clear();
-        maxSpeciesId = 0;
-        latestGeneration = 0;
-        dragOffset = Vector2.Zero;
-
-        tree.QueueFreeChildren();
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -262,6 +256,19 @@ public class EvolutionaryTree : Control
         BuildTree();
 
         dirty = true;
+    }
+
+    public void Clear()
+    {
+        speciesOrigin.Clear();
+        speciesNames.Clear();
+        generationTimes.Clear();
+        speciesNodes.Clear();
+        maxSpeciesId = 0;
+        latestGeneration = 0;
+        dragOffset = Vector2.Zero;
+
+        tree.QueueFreeChildren();
     }
 
     protected override void Dispose(bool disposing)

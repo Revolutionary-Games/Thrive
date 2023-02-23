@@ -98,6 +98,17 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         }
     }
 
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateColonySizeForMulticellular();
+            UpdateColonySizeForMacroscopic();
+        }
+    }
+
     public void ShowSignalingCommandsMenu(Microbe player)
     {
         if (packControlRadial.Visible)
@@ -190,35 +201,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
             fossilisationButtonLayer.AddChild(button);
         }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateColonySizeForMulticellular();
-            UpdateColonySizeForMacroscopic();
-        }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MulticellularButtonPath != null)
-            {
-                MulticellularButtonPath.Dispose();
-                MulticellularConfirmPopupPath.Dispose();
-                MacroscopicButtonPath.Dispose();
-                IngestedMatterBarPath.Dispose();
-                BindingModeHotkeyPath.Dispose();
-                UnbindAllHotkeyPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -362,14 +344,32 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             showSlime = player.SlimeJets.Count > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showSlime,
-            player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
+        UpdateBaseAbilitiesBar(player.CanEngulfInColony(), showToxin, showSlime,
+            player.HasSignalingAgent, player.State == MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;
         unbindAllHotkey.Visible = player.CanUnbind;
 
-        bindingModeHotkey.Pressed = player.State == Microbe.MicrobeState.Binding;
+        bindingModeHotkey.Pressed = player.State == MicrobeState.Binding;
         unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MulticellularButtonPath != null)
+            {
+                MulticellularButtonPath.Dispose();
+                MulticellularConfirmPopupPath.Dispose();
+                MacroscopicButtonPath.Dispose();
+                IngestedMatterBarPath.Dispose();
+                BindingModeHotkeyPath.Dispose();
+                UnbindAllHotkeyPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnRadialItemSelected(int itemId)

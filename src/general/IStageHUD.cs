@@ -9,6 +9,8 @@ public interface IStageHUD
     /// </summary>
     public string HintText { get; set; }
 
+    public HUDMessages HUDMessages { get; }
+
     public void ShowPatchName(string localizedPatchName);
     public void ShowExtinctionBox();
     public void ShowPatchExtinctionBox();

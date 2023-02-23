@@ -47,12 +47,6 @@ public class PlaybackControls : HBoxContainer
         }
     }
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        StopPlayback();
-    }
-
     public override void _Ready()
     {
         playbackSlider = GetNode<HSlider>("PlaybackSlider");
@@ -61,6 +55,12 @@ public class PlaybackControls : HBoxContainer
 
         UpdatePlaybackState();
         UpdateSlider();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        StopPlayback();
     }
 
     public override void _Process(float delta)
