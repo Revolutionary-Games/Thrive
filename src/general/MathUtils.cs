@@ -141,21 +141,12 @@ public static class MathUtils
     /// </param>
     public static double RoundWithMinimalDecimals(double value, int threshold)
     {
-        double result;
-
         if (value > threshold)
-        {
-            result = Math.Round(value);
-        }
-        else if (value > 0.1f)
-        {
-            result = Math.Round(value, 1);
-        }
-        else
-        {
-            result = Math.Round(value, 3);
-        }
+            return Math.Round(value);
 
-        return (float)result;
+        if (value > 0.1f)
+            return Math.Round(value, 1);
+
+        return Math.Round(value, 3);
     }
 }
