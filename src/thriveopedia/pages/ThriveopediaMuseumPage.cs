@@ -48,9 +48,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         fossilDirectoryWarningBox = GetNode<CustomConfirmationDialog>(FossilDirectoryWarningBoxPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
-
-        // Hide the fossilise button
-        speciesPreviewPanel.GetNode<Button>(speciesPreviewPanel.FossilisationButtonPath).Visible = false;
     }
 
     public override void OnThriveopediaOpened()
