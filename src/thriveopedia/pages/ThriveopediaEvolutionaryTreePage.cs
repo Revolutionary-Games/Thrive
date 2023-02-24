@@ -28,7 +28,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 #pragma warning disable CA2213
     private VBoxContainer disabledWarning = null!;
     private EvolutionaryTree evolutionaryTree = null!;
-    private SpeciesDetailsPanel speciesDetailsPanel = null!;
+    private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 #pragma warning restore CA2213
 
     public override string PageName => "EvolutionaryTree";
@@ -42,7 +42,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
         disabledWarning = GetNode<VBoxContainer>(DisabledInFreebuildPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
-        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
+        speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
 
         UpdateCurrentWorldDetails();
     }
@@ -120,6 +120,6 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
-        speciesDetailsPanel.PreviewSpecies = speciesHistoryList[generation][id];
+        speciesDetailsPanelWithFossilisation.PreviewSpecies = speciesHistoryList[generation][id];
     }
 }

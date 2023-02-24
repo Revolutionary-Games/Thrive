@@ -240,7 +240,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     // Viewer controls
     private CustomDropDown speciesListMenu = null!;
     private EvolutionaryTree evolutionaryTree = null!;
-    private SpeciesDetailsPanel speciesDetailsPanel = null!;
+    private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
     private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
@@ -343,7 +343,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
-        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
+        speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
         exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
@@ -891,7 +891,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         var speciesName = speciesListMenu.Popup.GetItemText(index);
         var species = world.SpeciesHistoryList[generationDisplayed].Values.First(p => p.FormattedName == speciesName);
 
-        if (species == speciesDetailsPanel.PreviewSpecies)
+        if (species == speciesDetailsPanelWithFossilisation.PreviewSpecies)
             return;
 
         UpdateSpeciesPreview(species);
@@ -900,7 +900,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private void UpdateSpeciesPreview(Species species)
     {
         speciesListMenu.Text = species.FormattedName;
-        speciesDetailsPanel.PreviewSpecies = species;
+        speciesDetailsPanelWithFossilisation.PreviewSpecies = species;
     }
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)

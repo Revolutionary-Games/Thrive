@@ -1,7 +1,6 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
-public class SpeciesDetailsPanel : VBoxContainer
+public class SpeciesDetailsPanel : MarginContainer
 {
     [Export]
     public NodePath? SpeciesDetailsLabelPath;
@@ -12,18 +11,10 @@ public class SpeciesDetailsPanel : VBoxContainer
     [Export]
     public NodePath HexPreviewPath = null!;
 
-    [Export]
-    public NodePath FossilisationButtonPath = null!;
-
-    [Export]
-    public NodePath FossilisationDialogPath = null!;
-
 #pragma warning disable CA2213
-    private CustomRichTextLabel speciesDetailsLabel = null!;
-    private SpeciesPreview? speciesPreview;
+    private CustomRichTextLabel? speciesDetailsLabel;
+    private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
-    private Button fossilisationButton = null!;
-    private FossilisationDialog fossilisationDialog = null!;
 #pragma warning restore CA2213
 
     private Species? previewSpecies;
@@ -38,7 +29,7 @@ public class SpeciesDetailsPanel : VBoxContainer
 
             previewSpecies = value;
 
-            if (previewSpecies != null)
+            if (previewSpecies != null && speciesDetailsLabel != null)
                 UpdateSpeciesPreview();
         }
     }
@@ -50,8 +41,6 @@ public class SpeciesDetailsPanel : VBoxContainer
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
-        fossilisationButton = GetNode<Button>(FossilisationButtonPath);
-        fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
 
         if (previewSpecies != null)
             UpdateSpeciesPreview();
@@ -66,8 +55,6 @@ public class SpeciesDetailsPanel : VBoxContainer
                 SpeciesDetailsLabelPath.Dispose();
                 SpeciesPreviewPath.Dispose();
                 HexPreviewPath.Dispose();
-                FossilisationButtonPath.Dispose();
-                FossilisationDialogPath.Dispose();
             }
         }
 
@@ -79,31 +66,17 @@ public class SpeciesDetailsPanel : VBoxContainer
     /// </summary>
     private void UpdateSpeciesPreview()
     {
-        if (speciesPreview == null)
-            return;
-
         speciesPreview.PreviewSpecies = PreviewSpecies;
 
         if (PreviewSpecies is MicrobeSpecies microbeSpecies)
         {
             hexesPreview.PreviewSpecies = microbeSpecies;
-            fossilisationButton.Disabled = false;
         }
         else
         {
-            fossilisationButton.Disabled = true;
             GD.PrintErr("Unknown species type to preview: ", PreviewSpecies);
         }
 
-        speciesDetailsLabel.ExtendedBbcode = PreviewSpecies?.GetDetailString();
-    }
-
-    private void OnFossilisePressed()
-    {
-        if (speciesPreview!.PreviewSpecies is not MicrobeSpecies)
-            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
-
-        fossilisationDialog.SelectedSpecies = speciesPreview.PreviewSpecies;
-        fossilisationDialog.PopupCenteredShrink();
+        speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();
     }
 }
