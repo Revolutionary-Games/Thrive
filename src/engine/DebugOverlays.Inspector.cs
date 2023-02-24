@@ -2,23 +2,23 @@
 
 public partial class DebugOverlays
 {
-    private Vector3 positionCoords;
-    private Vector3 lookingAtCoords;
+    private Vector3 positionCoordinates;
+    private Vector3 lookingAtCoordinates;
 
-    public void ReportPositionCoordinates(Vector3 coords)
+    public void ReportPositionCoordinates(Vector3 coordinates)
     {
-        positionCoords = coords;
+        positionCoordinates = coordinates;
     }
 
-    public void ReportLookingAtCoordinates(Vector3 coords)
+    public void ReportLookingAtCoordinates(Vector3 coordinates)
     {
-        lookingAtCoords = coords;
+        lookingAtCoordinates = coordinates;
     }
 
     private void UpdateInspector()
     {
         debugCoordinates.Text = TranslationServer.Translate("DEBUG_COORDINATES").FormatSafe(
-            positionCoords, lookingAtCoords);
+            positionCoordinates, lookingAtCoordinates);
     }
 
     private void OnInspectorToggled()
