@@ -2282,7 +2282,7 @@ msgstr "HSV"
 
 #: ../src/microbe_stage/gui/HUDMessages.cs:44
 msgid "HUD_MESSAGE_MULTIPLE"
-msgstr ""
+msgstr "{0} (x{1})"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1414
@@ -2406,9 +2406,8 @@ msgstr "Инвертировать"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Вы играете в прототип последующей стадии, включённой в игру.\n"
-"Она может быть не до конца завершена, использовать заполнители текстур и быть необработанной в целом,\n"
-"и сейчас не очень играбельно. Так как сохранения в данный момент не доступны.\n"
-"Некоторые части прототипов имеют лимит сохранений."
+"Прототип до сей поры не завершен, использует примитивную графику и в принципе выглядит \"грубовато\",\n"
+"и не совсем играбельны, к примеру - функция сохранения может быть не доступна."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1466
@@ -3921,27 +3920,27 @@ msgstr "Здесь ничего нет"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr ""
+msgstr "Вы теряете здоровье из-за отсутствия АТФ"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1511
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr ""
+msgstr "Вы теряете здоровье из-за токсинов в поглощенном организме"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1456
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr ""
+msgstr "Не хватает {0} для поглощения организма"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1770
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr ""
+msgstr "Нынешний размер клетки слишком мал для поглощения данного организма"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1765
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "Недостаточно вместимости поглощенной материи для поглощения данного оргазма"
 
 #: ../src/general/StageHUDBase.cs:608
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "Редактор доступен для захода"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 msgid "NOT_FOUND_CHUNK"
