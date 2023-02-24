@@ -880,5 +880,73 @@
     "requiresNucleus": true,
     "editorButtonGroup": "Organelle",
     "editorButtonOrder": 5
+  },
+  "axon": {
+    "mpCost": 100,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "axon": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0,
+    "mass": 0.15,
+    "displayScene": "res://assets/models/organelles/Axon.tscn",
+    "name": "ORGANELLE_AXON",
+    "iconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Multicellular",
+    "editorButtonOrder": 1
+  },
+  "myofibril": {
+    "mpCost": 50,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": 1,
+        "q": 0
+      },
+      {
+        "r": 2,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      },
+      {
+        "r": -2,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "myofibril": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0,
+    "mass": 0.2,
+    "displayScene": "res://assets/models/organelles/Myofibril.tscn",
+    "name": "ORGANELLE_MYOFIBRIL",
+    "iconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Multicellular",
+    "editorButtonOrder": 2
   }
 }
