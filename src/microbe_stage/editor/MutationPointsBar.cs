@@ -84,10 +84,10 @@ public class MutationPointsBar : HBoxContainer
         }
         else
         {
-            var currentMpString = MathUtils.RoundWithMinimalDecimals(currentMutationPoints, 5).
-                ToString(CultureInfo.CurrentCulture);
-            var possibleMpString = MathUtils.RoundWithMinimalDecimals(possibleMutationPoints, 5).
-                ToString(CultureInfo.CurrentCulture);
+            var currentMpString = MathUtils.RoundWithMinimalDecimals(currentMutationPoints,
+                Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD).ToString(CultureInfo.CurrentCulture);
+            var possibleMpString = MathUtils.RoundWithMinimalDecimals(possibleMutationPoints,
+                Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD).ToString(CultureInfo.CurrentCulture);
             var baseMpString = $"/ {Constants.BASE_MUTATION_POINTS}";
 
             if (showResultingPoints)

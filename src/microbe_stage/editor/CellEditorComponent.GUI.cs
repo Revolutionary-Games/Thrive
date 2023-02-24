@@ -263,7 +263,8 @@ public partial class CellEditorComponent
         // Set the cost factor for each organelle button
         foreach (var entry in placeablePartSelectionElements)
         {
-            var cost = (float)MathUtils.RoundWithMinimalDecimals(Math.Min(entry.Key.MPCost * CostMultiplier, 100), 5);
+            var cost = (float)MathUtils.RoundWithMinimalDecimals(Math.Min(entry.Key.MPCost * CostMultiplier, 100),
+                Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD);
 
             entry.Value.MPCost = cost;
 
@@ -277,7 +278,8 @@ public partial class CellEditorComponent
         foreach (var entry in membraneSelectionElements)
         {
             var cost = (float)MathUtils.RoundWithMinimalDecimals(
-                Math.Min(entry.Key.EditorCost * CostMultiplier, 100), 5);
+                Math.Min(entry.Key.EditorCost * CostMultiplier, 100),
+                Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD);
 
             entry.Value.MPCost = cost;
 
@@ -292,7 +294,8 @@ public partial class CellEditorComponent
         if (rigidityTooltip != null)
         {
             rigidityTooltip.MutationPointCost = (float)MathUtils.RoundWithMinimalDecimals(Math.Min(
-                Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100), 5);
+                Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100),
+                Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD);
         }
     }
 

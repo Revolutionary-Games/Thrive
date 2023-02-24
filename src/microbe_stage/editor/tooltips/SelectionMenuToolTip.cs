@@ -334,7 +334,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = Math.Round(mpCost, 3).ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = MathUtils.RoundWithMinimalDecimals(mpCost, Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD)
+            .ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateRequiresNucleus()

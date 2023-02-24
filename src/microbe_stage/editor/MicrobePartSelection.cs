@@ -156,7 +156,8 @@ public class MicrobePartSelection : MarginContainer
         if (mpLabel == null || nameLabel == null)
             return;
 
-        mpLabel.Text = MathUtils.RoundWithMinimalDecimals(MPCost, 5).ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = MathUtils.RoundWithMinimalDecimals(MPCost, Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD)
+            .ToString(CultureInfo.CurrentCulture);
         nameLabel.Text = PartName;
 
         mpLabel.Modulate = Colors.White;

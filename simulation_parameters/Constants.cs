@@ -1182,6 +1182,8 @@ public static class Constants
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
+    public const int MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD = 5;
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
