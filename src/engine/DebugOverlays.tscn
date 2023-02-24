@@ -159,9 +159,9 @@ scrollable = false
 ticks_on_borders = true
 
 [node name="Inspector" parent="." instance=ExtResource( 1 )]
-margin_right = 321.0
+margin_right = 384.0
 margin_bottom = 0.0
-rect_min_size = Vector2( 321, 0 )
+rect_min_size = Vector2( 384, 0 )
 WindowTitle = "INSPECTOR"
 
 [node name="DebugCoordinates" type="Label" parent="Inspector"]

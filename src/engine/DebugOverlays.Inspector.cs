@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Inspector part of the debug overlay, displays debug coordinates, etc.
+/// </summary>
 public partial class DebugOverlays
 {
     private Vector3 positionCoordinates;
