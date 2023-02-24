@@ -1342,7 +1342,7 @@ msgstr "Зайти на WIKI разработчиков"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:225
 msgid "DEVOURED"
-msgstr "Поглощённый"
+msgstr "Поглощён"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "DEV_BUILD_PATRONS"
@@ -1451,7 +1451,7 @@ msgstr "Отсоединенные метасферы"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Среди размещённых клеток имеются несоединённые метасферы с остальными метасферами.\n"
+"Среди размещённых клеток имеются несоединённые метасферы что не объединены с остальными.\n"
 "Пожалуйста, соедините все размещённые метасферы с другими для продолжения."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
@@ -1492,7 +1492,7 @@ msgstr "Отображение фоновых частиц"
 
 #: ../src/general/OptionsMenu.tscn:627
 msgid "DISPLAY_PART_NAMES"
-msgstr "Показать название кнопок выбора частей"
+msgstr "Показать названия кнопок при выборе частей"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:41
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -3346,7 +3346,7 @@ msgstr "Ваша клетка использует [thrive:compound type=\"atp\"
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно собрать [thrive:compound type=\"ammonia\"][/thrive:compound] (оранжевое облако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (фиолетовое облако)."
+msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно оставаться в живых достаточно долго. Сбор [thrive:compound type=\"ammonia\"][/thrive:compound] (оОранжевое оОблако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (фФиолетовое оОблако) ускоряет рост."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -4714,9 +4714,8 @@ msgid "REPORT"
 msgstr "Отчёт"
 
 #: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:223
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "Отчёт"
+msgstr "Сообщить о баге"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1117
 msgid "REPRODUCED"
@@ -5483,8 +5482,8 @@ msgstr "Не удалось выполнить инициализацию кли
 #: ../src/general/MainMenu.tscn:1104
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
-"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны. \n"
-"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем"
+"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
+"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
 
 #: ../src/general/MainMenu.tscn:824
 msgid "STEAM_TOOLTIP"

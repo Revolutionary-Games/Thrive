@@ -3021,9 +3021,8 @@ msgid "MICROBE"
 msgstr "فترة الميكروبات"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
-#, fuzzy
 msgid "MICROBES_COUNT"
-msgstr "فترة الميكروبات"
+msgstr "عدد الميكروبات:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:613
@@ -3040,9 +3039,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفدت تموت"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -3070,9 +3068,20 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:217
-#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
-msgstr "فترة الميكروبات"
+msgstr ""
+"[b]مرحلة[/b]\n"
+" ميكروب \n"
+"[b]نوع الغشاء[/b]\n"
+"  {0}\n"
+"[b]صلابة الغشاء[/b]\n"
+"  {1}\n"
+"[b]السرعة الاساسية[/b]\n"
+"  {2}\n"
+"[b]سرعة الدوران الأساسية[/b]\n"
+"  {3}\n"
+"[b]حجم السداسي الاساسي[/b]\n"
+"  {4}"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
@@ -3093,9 +3102,13 @@ msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
-#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr "فترة الميكروبات"
+msgstr ""
+"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
+"\n"
+"يحل الليل عندما تظلم البيئة.\n"
+"التركيب الضوئي غير فعال خلال الليل.\n"
+"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -3125,14 +3138,12 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفدت تموت"
+msgstr "السيليلوز و الجدار الخلوي للكيتين لا يمكن هضمهما من دون الإنزيمات المطلوبة الذي يمكنه كسرهم أولا ."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفدت تموت"
+msgstr "مع ذلك,الليزوزومات توجد فقط في حقيقيات النواة,بدائيات النواة لا تملك هكذا عضيات و تهضم طعامها بطريقة غير فعالة.بالنسبة للخلايا الصغيرة فهو شيء عادي,لكن بالنسبة للخلايا الأكبر حجما,عدم وجود ليزوزومات هو غير ملائم جدا."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -5643,9 +5654,17 @@ msgid "TUTORIAL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:379
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "فترة الكائنات متعددة الخلايا"
+msgstr ""
+"مرحبا إلى المرحلة المتعددة الخلايا المبكرة! \n"
+"\n"
+"لقد نجحت في قيادة أنواعك في المرحلة أحادية الخلية. \n"
+"\n"
+"الغايمبلاي يتبع الآليات الأساسية لمرحلة الميكروب. ما زلت بحاجة إلى الاستمرار في تنمية الكائن الحي الخاص بك للتكاثر والوصول إلى المصمم. \n"
+"\n"
+"مع ذلك,يمكنك الآن تصميم مخطط الخلية المستعمرة في المصمم و يمكنك تخصيص خلاياك لعدة أدوار.لا تنسى أن أعضاء المستعمرة لا يستطيعون مشاركة [thrive:compound type=\"atp\"][/thrive:compound]. \n"
+"\n"
+"إذا كنت تستعمل التكاثر بالتبرعم (الطريقة التقليدية), ستبدأ بالتحكم في برعم صغير و ستحتاج لتنمية باقي مخطط الخلية."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-21 15:21+0200\n"
-"PO-Revision-Date: 2023-02-22 09:47+0200\n"
-"Last-Translator: Sur3 <sur3@gmx.de>\n"
+"PO-Revision-Date: 2023-02-24 07:16+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1457
@@ -2395,9 +2395,9 @@ msgstr "Inverted"
 #: ../src/saving/SaveHelper.cs:521
 msgid "IN_PROTOTYPE"
 msgstr ""
-"You are playing the later stage prototypes that are included with the game. \n"
+"You are playing the later stage prototypes that are included with the game.\n"
 "These may be very incomplete, use placeholder graphics, be very rough in general,\n"
-"and not always very playable. As such saving is not currently possible. \n"
+"and not always very playable. As such saving is not currently possible.\n"
 "Some parts of prototypes may allow limited saving."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
@@ -2958,7 +2958,7 @@ msgstr "Load previously saved games"
 #: ../src/saving/SaveList.tscn:129
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"The selected save to be loaded is a save made in a prototype with different Thrive version.\n"
+"The selected save to be loaded is a save made in a prototype with a different Thrive version.\n"
 "Because of that this save can't be loaded as prototype saves are not upgradeable.\n"
 "Maintaining save compatibility for prototypes would be a large burden as things are reworked often and writing save upgrades would slow down prototype development a lot."
 
@@ -5095,7 +5095,7 @@ msgstr "Selected save is incompatible"
 
 #: ../src/saving/SaveList.tscn:127
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "Selected save is incompatible prototype"
+msgstr "Selected save is from an incompatible prototype"
 
 #: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"

@@ -210,7 +210,7 @@ msgstr "Galeria"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Klasa konstrukcji jest wymagana przy wyszczególnieniu konstrukcji."
 
 #: ../src/modding/ModManager.cs:336
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
@@ -884,9 +884,9 @@ msgstr "Wybierz kolor z okna gry"
 #: ../src/gui_common/TweakedColourPicker.cs:587
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
-"Kolor: {0}\n"
-"Lewy Przycisk Myszy: Użyj tego ustawienia\n"
-"Prawy Przycisk Myszy: Usuń to ustawienie"
+"Kolor:{0}\n"
+"Lewy przycisk myszki: Użyj tego ustawienia\n"
+"Przwy przycisk myszki: Usuń to ustawienie"
 
 #: ../src/gui_common/TweakedColourPicker.cs:398
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
@@ -1300,28 +1300,24 @@ msgid "DEVELOPERS"
 msgstr "Developerzy"
 
 #: ../src/general/MainMenu.tscn:715
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
-msgstr "Rozwój Wspierany Przez Revolutionary Games Studio"
+msgstr "Forum Developerskie"
 
 #: ../src/general/MainMenu.tscn:710
-#, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "Wejdź do edytora i modyfikuj swój gatunek"
+msgstr "Zobacz aktualności na naszym forum developerskim"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Rozwój Wspierany Przez Revolutionary Games Studio"
 
 #: ../src/general/MainMenu.tscn:729
-#, fuzzy
 msgid "DEVELOPMENT_WIKI"
-msgstr "Developerzy"
+msgstr "Wiki Developerskie"
 
 #: ../src/general/MainMenu.tscn:724
-#, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "Pomoc"
+msgstr "Odwiedź nasze wiki developerskie"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:225
 msgid "DEVOURED"
@@ -1644,13 +1640,12 @@ msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Witaj w Edytorze Mikroba.\n"
+"Witaj w Edytorze Mikrobów.\n"
+"Tutaj możesz przeglądnąć co się działo od początku gry lub kiedy ostatni raz użyłeś/aś edytora. I wtedy wprowadzić zmiany w swoim gatunku.\n"
 "\n"
-"Tutaj możesz przejrzeć co się wydarzyło podczas poprzednich pokoleń, a następnie dokonać zmian w swoim gatunku.\n"
+"W tej zakładce możesz zobaczyć raport istniejących gatunków, gdzie i jak duża jest ich populacja. Możesz również zobaczyćzmiany klimatyczne na górze.\n"
 "\n"
-"Ta zakładka daje ci listę zmian w obszarze, który obecnie zasiedlasz. Wypróbuj rozmaite narzędzia w twojej dyspozycji żeby dowiedzieć się więcej na temat wydarzeń w twoim świecie!\n"
-"\n"
-"Gdy będziesz gotowy, naciśnij przycisk \"dalej\" w prawym dolnym rogu by kontynuować."
+"By przejść do następnej zakładki edytora, wciśnij przycisk \"następny\" w prawym dolnym rogu."
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "EIGHT_TIMES"
