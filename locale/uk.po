@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:28+0200\n"
+"POT-Creation-Date: 2023-02-24 15:37+0200\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Додаткові перевірки виявили проблему: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Додати нову прив'язку клавіші"
 
@@ -231,7 +231,7 @@ msgstr "Збірка модів обов'язкова, коли автомати
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Вважати, що гіперпотоковість ЦП увімкнена"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Його не можна автоматично, увімкнене гіперпотокове або ні.\n"
@@ -248,7 +248,7 @@ msgstr "Атмосферні гази"
 msgid "ATP"
 msgstr "АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:982
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
 
@@ -282,7 +282,7 @@ msgstr "Серпень"
 msgid "AUTO"
 msgstr "Авто"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ця панель відображає числа, за якими працює передбачення Авто-ево. Загальна енергія, яку вид може поглинути, і вартість на особину цього виду визначають фінальну популяцію. Авто-ево використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано величину енергії, яку вид отримує від нього. Додатково показується загальна енергія, що доступна з цього джерела. Частка, яку види отримують з цієї загальної енергії, базується на тому, наскільки є великою пристосованість у порівнянні з загальною пристосованістю. Пристосованість — це величина, що показує, наскільки добре вид засвоює це джерело їжі."
 
@@ -290,12 +290,12 @@ msgstr "Ця панель відображає числа, за якими пр�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} зміна населення {1} на {2} через: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноз Авто-ево"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1095
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ця панель показує очікувану чисельність популяції через Авто-ево (автоматичну еволюцію) для редагуємого виду.\n"
@@ -374,12 +374,12 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2707
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2874
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3121
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
 msgid "BASE_MOBILITY"
 msgstr "Базова мобільність"
 
@@ -475,7 +475,7 @@ msgstr "Фаза бенчмарку:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Результати:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1183
 msgid "BEST_PATCH_COLON"
 msgstr "Найкраща ділянка:"
 
@@ -560,11 +560,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Виробництва Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
 msgid "CALCIUM_CARBONATE"
 msgstr "Карбонат Кальцію"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має міцну оболонку з карбонату кальцію. Вона легше протистоїть пошкодженням і потребує менше енергії, щоб не деформуватись. Серед недоліків такої оболонки значна повільність та забирає більше часу для поглинання ресурсів."
 
@@ -581,7 +581,7 @@ msgstr "Скасувати"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1276
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "Скасувати дію"
 
@@ -600,10 +600,10 @@ msgstr "Тип клітини, який зараз використовуєть�
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Не можна видалити використовуваний тип клітини"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3045
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 msgid "CANNOT_ENGULF"
 msgstr "Не може поглинати"
 
@@ -674,11 +674,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "Целюлаза надає змогу клітині ламати целюлозні мембрани. Кожне додавання підвищить ефективність."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
 msgid "CELLULOSE"
 msgstr "Целюлоза"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має стінку, врезультаті чого краще захищає від пошкоджень, а особливо від фізичних. Це коштує менше енергії на збереження форми, але не так швидко поглинає ресурси і є повільнішим. [b]Целюлаза здатна перетравлювати цю стінку[/b] роблячи її вразливою для поглинання хижаками."
 
@@ -757,7 +757,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Хемосинтез"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
 msgid "CHITIN"
 msgstr "Хітин"
 
@@ -769,7 +769,7 @@ msgstr "Хітин"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Хітиназа надає змогу клітині ламати хітинові мембрани. Кожне додавання підвищить ефективність."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має стінку, що означатиме, що внеї кращий загальний захист, особливо від токсинів. Це коштує менше енергії на збереження форми, але не так швидко поглинає ресурси і є повільнішим.[b]Хітиназа здатна перетравлювати цю стінку[/b] роблячи її вразливою для поглинання хижаками."
 
@@ -824,7 +824,7 @@ msgstr "Очистити старі збереження"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -852,7 +852,7 @@ msgstr "Узбережжя"
 msgid "COLLISION_SHAPE"
 msgstr "Cпавнити сутності з формами зіткнення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:761
 msgid "COLOUR"
 msgstr "Колір"
 
@@ -1399,7 +1399,7 @@ msgstr "Нормальний"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Ефективність травлення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:915
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Ефективність травлення:"
 
@@ -1407,7 +1407,7 @@ msgstr "Ефективність травлення:"
 msgid "DIGESTION_SPEED"
 msgstr "Швидкість травлення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Швидкість травлення:"
 
@@ -1459,11 +1459,11 @@ msgstr ""
 "Тут розміщені метасфери, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені клітини аби продовжити."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Від'єднати органели"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1310
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Тут розміщені органели, які не з'єднання з рештою.\n"
@@ -1518,7 +1518,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
 msgid "DOUBLE"
 msgstr "Подвійна"
 
@@ -1526,7 +1526,7 @@ msgstr "Подвійна"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Двічі клікніть, щоб переглянути в повноекранні"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Двохшарова мембрана– це кращий захист від пошкоджень та потребує менше енергії, щоб не деформуватись. Проте вона уповільнює клітину та поглинання ресурсів."
 
@@ -1711,15 +1711,15 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить {0} з індивідуальною вартістю {1}, результатом чого є нескоригована популяція кількістю в {2}"
 
@@ -1893,7 +1893,7 @@ msgstr "Додаткові налаштування"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Відвідайте на сторінку Facebook"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1165
 msgid "FAILED"
 msgstr "Провалено"
 
@@ -1996,11 +1996,11 @@ msgstr "Використання [thrive:compound type=\"atp\"][/thrive:compound
 msgid "FLOATING_HAZARD"
 msgstr "Плавуча загроза"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
 msgid "FLUID"
 msgstr "Рухливість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:695
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Рухливість / Жорсткість"
 
@@ -2019,7 +2019,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Ланцюг живлення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2423
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергія: {1} (пристосованість: {2}) загальна доступна енергія: {3} (загальна пристосованість: {4})"
 
@@ -2112,7 +2112,7 @@ msgstr "Загальне"
 msgid "GENERATIONS"
 msgstr "Генерації"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:937
 msgid "GENERATION_COLON"
 msgstr "Генерація:"
 
@@ -2201,7 +2201,7 @@ msgstr "Графічна команда"
 msgid "GUI"
 msgstr "ГІК"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Вмикає світлові ефекти блимання в графічних інтерфейсах ( GUIs ) (наприклад кнопка редактора блимає)\n"
@@ -2218,12 +2218,12 @@ msgid "GUI_VOLUME"
 msgstr "Гучність ГІК"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2807
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3743
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 msgid "HEALTH"
 msgstr "Здоров'я"
 
@@ -2272,7 +2272,7 @@ msgstr "Горизонталь:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Горизонталь (Вісь: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:887
 msgid "HP_COLON"
 msgstr "Здоров'я:"
 
@@ -3098,7 +3098,7 @@ msgstr "Мембрани"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Жорсткість мембрани"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:677
 msgid "MEMBRANE_TYPES"
 msgstr "Типи Мембрани"
 
@@ -3806,11 +3806,11 @@ msgstr "Вимкнути"
 msgid "NAME"
 msgstr "Назва:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативний АТФ баланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш мікроб не виробляє недостатню кілбкість АТф для виживання.\n"
@@ -3862,7 +3862,7 @@ msgstr "Нова назва:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -3908,11 +3908,11 @@ msgid "NONE"
 msgstr "Нічого"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "NORMAL"
 msgstr "нормальний"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Найпростіша форма мембрани погано захищає від пошкоджень. Також потребує більше енергії, аби не деформуватись. Перевага в тому, що дозволяє клітині швидче рухатись та поглинати поживні речовини."
 
@@ -3962,7 +3962,7 @@ msgid "NO_AI"
 msgstr "Без ШІ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -4025,8 +4025,8 @@ msgstr "Перемикання числового регістрату(Num Lock)
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2306
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "Н/Є"
@@ -4139,6 +4139,33 @@ msgstr "Зміна ваших налаштувань"
 msgid "ORGANELLES"
 msgstr "Органели"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:904
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#, fuzzy
+msgid "ORGANELLE_AXON"
+msgstr "Органели"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
+#, fuzzy
+msgid "ORGANELLE_AXON_DESCRIPTION"
+msgstr "Ворсинки (однина: ворсинка) знаходяться на поверхні багатьох мікроорганізмів і нагадують тонкі волоски. Від десятків до сотень ворсинок можуть бути на поверхні мікроорганізму та виконувати кілька функцій, включаючи роль в хижацтві. Патогенні мікроорганізми використовують їх для ураження або прикріплення й зв'язування з тканинами господаря; або для проникнення крізь зовнішню мембрану, щоб отримати доступ до цитоплазми. Багато існує схожих ворсинок, але еволюційно ті не пов'язані, а є результатом конвергентної еволюції. Одному організму можуть бути притаманні різні ворсинки, а ті, які присутні на поверхні завжди змінюються й міняються."
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:636
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
+msgstr "Пізня Багатоклітинність"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:946
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL"
+msgstr "Хижі ворсинки"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
+msgstr "Ворсинки (однина: ворсинка) знаходяться на поверхні багатьох мікроорганізмів і нагадують тонкі волоски. Від десятків до сотень ворсинок можуть бути на поверхні мікроорганізму та виконувати кілька функцій, включаючи роль в хижацтві. Патогенні мікроорганізми використовують їх для ураження або прикріплення й зв'язування з тканинами господаря; або для проникнення крізь зовнішню мембрану, щоб отримати доступ до цитоплазми. Багато існує схожих ворсинок, але еволюційно ті не пов'язані, а є результатом конвергентної еволюції. Одному організму можуть бути притаманні різні ворсинки, а ті, які присутні на поверхні завжди змінюються й міняються."
+
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
@@ -4152,7 +4179,7 @@ msgstr "Ворсинки (однина: ворсинка) знаходяться
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Проштрихніть нею інші клітини."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:829
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Організму"
 
@@ -4184,12 +4211,12 @@ msgstr "Осморегуляція"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2909
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "OSMOREGULATION_COST"
 msgstr "Вартість осморегуляції"
 
@@ -4326,7 +4353,7 @@ msgstr "ВИМИРАННЯ В ДІЛЯНЦІ"
 msgid "PATCH_MAP"
 msgstr "Мапа Ділянок"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4089
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Клацніть, перетягуйте та маштабуйте для переміщення"
 
@@ -4459,9 +4486,9 @@ msgstr "Фотосинтез"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Фізичні умови"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3011
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Фізичний опір"
 
@@ -4569,7 +4596,7 @@ msgstr "популяція:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "популяція в ділянці:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2287
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2291
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4577,7 +4604,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Винищення {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1107
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Перегляньте детальну інформацію про прогноз"
 
@@ -4785,8 +4812,8 @@ msgstr "За замовчуванням"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Скинути до замовчування?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3077
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Стійкий до базового поглинання"
 
@@ -4794,12 +4821,12 @@ msgstr "Стійкий до базового поглинання"
 msgid "RESOLUTION"
 msgstr "Резолюції:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2774
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Швидкість поглинання ресурсів"
 
@@ -4852,7 +4879,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "ПКМ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:728
 msgid "RIGID"
 msgstr "Жорсткість"
 
@@ -4868,7 +4895,7 @@ msgstr "Повеніть ліворуч"
 msgid "ROTATE_RIGHT"
 msgstr "Поверніть праворуч"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:881
 msgid "ROTATION_COLON"
 msgstr "Обертання:"
 
@@ -5150,7 +5177,7 @@ msgstr "Вересень"
 msgid "SESSILE"
 msgstr "Пасивні"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Це значення стосується тільки до нових ігор розпочатих після зміни налаштування"
 
@@ -5190,7 +5217,7 @@ msgstr "Показати туторіали (в новій грі)"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Програвати попередження про незбережену гру"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Вмикає / вимикає спливаюче вікно з попередженням про незбережений прогрес, як гравець намагається покинути гру."
 
@@ -5236,11 +5263,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Сигнал для виведення"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3610
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
 msgid "SILICA"
 msgstr "Кремнезій"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має міцну стінку з кремнезію. Вона може опиратися загальним пошкодженням, і також особливо стійка до фізичної шкоди. Вона також вимагає менше енергії для утримання форми. Однак це сильно сповільнює клітину, і вона не так швидко поглинає ресурси."
 
@@ -5248,7 +5275,7 @@ msgstr "Ця мембрана має міцну стінку з кремнезі
 msgid "SIXTEEN_TIMES"
 msgstr "16х"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:893
 msgid "SIZE_COLON"
 msgstr "Розмір:"
 
@@ -5401,7 +5428,7 @@ msgstr "{0} з популяції: {1}"
 msgid "SPEED"
 msgstr "Швидкість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "SPEED_COLON"
 msgstr "Швидкість:"
 
@@ -5533,7 +5560,7 @@ msgstr "Стоп"
 msgid "STORAGE"
 msgstr "Збереження"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:899
 msgid "STORAGE_COLON"
 msgstr "Збереження:"
 
@@ -5572,7 +5599,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Суїцид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -5634,7 +5661,7 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -5885,7 +5912,7 @@ msgstr "Перемкнути роз'єднання"
 msgid "TOOLS"
 msgstr "Інструменти"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Загальна популяція:"
 
@@ -5893,9 +5920,9 @@ msgstr "Загальна популяція:"
 msgid "TOTAL_SAVES"
 msgstr "Загальні збереження:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3811
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
 msgid "TOXIN_RESISTANCE"
 msgstr "Опір токсинам"
 
@@ -6449,7 +6476,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Відносно світу"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1208
 msgid "WORST_PATCH_COLON"
 msgstr "Найгірша ділянка:"
 

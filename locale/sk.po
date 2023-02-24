@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:28+0200\n"
+"POT-Creation-Date: 2023-02-24 15:37+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -75,7 +75,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Pri dodatočných validáciách bol zistený problém: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -218,7 +218,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Predpokladať, že CPU má povolené hypervlákna"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -233,7 +233,7 @@ msgstr "Atmosférické plyny"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:982
 msgid "ATP_BALANCE"
 msgstr ""
 
@@ -268,7 +268,7 @@ msgstr "August"
 msgid "AUTO"
 msgstr "Automatická evolúcia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -277,12 +277,12 @@ msgstr ""
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populácia {0} sa zmenila o {1} za {2} v dôsledku: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo predpoveď"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1095
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
@@ -362,12 +362,12 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2707
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2874
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3121
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
 msgid "BASE_MOBILITY"
 msgstr "Základná mobilita"
 
@@ -472,7 +472,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1183
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Najlepšia oblasť:"
@@ -558,11 +558,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Od Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
 msgid "CALCIUM_CARBONATE"
 msgstr "Uhličitan vápenatý"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgstr "Zrušiť"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1276
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ZRUŠIŤ AKCIU"
 
@@ -598,10 +598,10 @@ msgstr "Nemožno odstrániť typ bunky, ktorý momentálne používaš"
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Nemožno odstrániť použitý typ bunky"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3045
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 #, fuzzy
 msgid "CANNOT_ENGULF"
 msgstr "Nedá sa pohltiť"
@@ -673,11 +673,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
 msgid "CELLULOSE"
 msgstr "Celulóza"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -756,7 +756,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Chemosyntéza"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
 msgid "CHITIN"
 msgstr "Chitín"
 
@@ -768,7 +768,7 @@ msgstr "Chitináza"
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -823,7 +823,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -852,7 +852,7 @@ msgstr "Pobrežie"
 msgid "COLLISION_SHAPE"
 msgstr "Umiestniť entity s kolíznymi tvarmi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:761
 msgid "COLOUR"
 msgstr "Farba"
 
@@ -1374,7 +1374,7 @@ msgstr "Normálna"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Efektívnosť trávenia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:915
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Efektívnosť trávenia:"
@@ -1383,7 +1383,7 @@ msgstr "Efektívnosť trávenia:"
 msgid "DIGESTION_SPEED"
 msgstr "Rýchlosť trávenia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Rýchlosť trávenia:"
 
@@ -1431,11 +1431,11 @@ msgstr ""
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Odpojené organely"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1310
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
@@ -1489,7 +1489,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
 msgid "DOUBLE"
 msgstr "Dvojitá"
 
@@ -1497,7 +1497,7 @@ msgstr "Dvojitá"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dvojitým kliknutím zobraziť na celej obrazovke"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -1677,15 +1677,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia v {0} pre {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1869,7 +1869,7 @@ msgstr "Extra nastavenia"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pozastaviť hru"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1165
 msgid "FAILED"
 msgstr ""
 
@@ -1987,11 +1987,11 @@ msgstr "Používa [thrive:compound type=\"atp\"][/thrive:compound] na zvýšenie
 msgid "FLOATING_HAZARD"
 msgstr "Plávajúce nebezpečenstvo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
 msgid "FLUID"
 msgstr "Tekutina"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:695
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Tekutosť / Tuhosť"
 
@@ -2007,7 +2007,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Potravový reťazec"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2423
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2103,7 +2103,7 @@ msgstr "Všeobecné"
 msgid "GENERATIONS"
 msgstr "Generácia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:937
 msgid "GENERATION_COLON"
 msgstr "Generácia:"
 
@@ -2193,7 +2193,7 @@ msgstr "Grafici"
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
@@ -2207,12 +2207,12 @@ msgid "GUI_VOLUME"
 msgstr "Hlasitosť GUI"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2807
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3743
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 msgid "HEALTH"
 msgstr "Zdravie"
 
@@ -2263,7 +2263,7 @@ msgstr "Verzia:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:887
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -3091,7 +3091,7 @@ msgstr "Membrána"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Tuhosť membrány"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:677
 msgid "MEMBRANE_TYPES"
 msgstr "Typy membrán"
 
@@ -3767,12 +3767,12 @@ msgstr "Stlmiť"
 msgid "NAME"
 msgstr "Meno:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 #, fuzzy
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Záporná bilancia ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
@@ -3821,7 +3821,7 @@ msgstr "Nové meno:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -3867,11 +3867,11 @@ msgid "NONE"
 msgstr "Žiadne"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "NORMAL"
 msgstr "Normálne"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -3923,7 +3923,7 @@ msgid "NO_AI"
 msgstr "Žiadne AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žiadne údaje na zobrazenie"
 
@@ -3987,8 +3987,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2306
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4097,6 +4097,33 @@ msgstr "Zmeniť nastavenia"
 msgid "ORGANELLES"
 msgstr "Organely"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:904
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#, fuzzy
+msgid "ORGANELLE_AXON"
+msgstr "Organely"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
+#, fuzzy
+msgid "ORGANELLE_AXON_DESCRIPTION"
+msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:636
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
+msgstr "Mnohobunkový"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:946
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL"
+msgstr "Dravý Pilus"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
+msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
+
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 #, fuzzy
@@ -4111,7 +4138,7 @@ msgstr ""
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:829
 msgid "ORGANISM_STATISTICS"
 msgstr "Štatistika organizmu"
 
@@ -4143,12 +4170,12 @@ msgstr "Osmoregulácia"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2909
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "OSMOREGULATION_COST"
 msgstr "Náklady na osmoreguláciu"
 
@@ -4288,7 +4315,7 @@ msgstr ""
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4089
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Kliknutím, ťahaním a priblížením sa môžete pohybovať"
 
@@ -4425,9 +4452,9 @@ msgstr "Fotosyntéza"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fyzické podmienky"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3011
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fyzická odolnosť"
 
@@ -4532,7 +4559,7 @@ msgstr "populácia:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populácia v oblastiach:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2287
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2291
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4541,7 +4568,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Dravosť {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1107
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Zobraziť podrobné informácie o predpovedi"
 
@@ -4754,8 +4781,8 @@ msgstr "Predvolené"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnoviť predvolené nastavenia?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3077
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -4763,12 +4790,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr "Rozlíšenie:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2774
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rýchlosť absorpcie zdrojov"
 
@@ -4822,7 +4849,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Pravé tlačidlo myši"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:728
 msgid "RIGID"
 msgstr "Tuhý"
 
@@ -4838,7 +4865,7 @@ msgstr "Otočiť doľava"
 msgid "ROTATE_RIGHT"
 msgstr "Otočiť doprava"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:881
 msgid "ROTATION_COLON"
 msgstr "Rotácia:"
 
@@ -5117,7 +5144,7 @@ msgstr "September"
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -5160,7 +5187,7 @@ msgstr "Zobraziť tutoriál (v nových hrách)"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobraziť upozornenie na neuložený postup"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
@@ -5207,11 +5234,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3610
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
 msgid "SILICA"
 msgstr "Oxid kremičitý"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -5219,7 +5246,7 @@ msgstr ""
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:893
 msgid "SIZE_COLON"
 msgstr "Veľkosť:"
 
@@ -5366,7 +5393,7 @@ msgstr "{0} s populáciou: {1}"
 msgid "SPEED"
 msgstr "Rýchlosť"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "SPEED_COLON"
 msgstr "Rýchlosť:"
 
@@ -5501,7 +5528,7 @@ msgstr "Stop"
 msgid "STORAGE"
 msgstr "Úložný priestor"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:899
 msgid "STORAGE_COLON"
 msgstr "Úložný priestor:"
 
@@ -5540,7 +5567,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Samovražda"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -5602,7 +5629,7 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Spraviť snímku obrazovky"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -5845,7 +5872,7 @@ msgstr "Prepnúť rozpájanie"
 msgid "TOOLS"
 msgstr "Nástroje"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Celková populácia:"
 
@@ -5853,9 +5880,9 @@ msgstr "Celková populácia:"
 msgid "TOTAL_SAVES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3811
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
 msgid "TOXIN_RESISTANCE"
 msgstr "Odolnosť voči toxínom"
 
@@ -6343,7 +6370,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Základný pohyb"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1208
 msgid "WORST_PATCH_COLON"
 msgstr "Najhoršia oblasť:"
 
