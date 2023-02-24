@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:45+0700\n"
+"POT-Creation-Date: 2023-02-24 16:13+0700\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D動作樣式："
 
@@ -31,7 +31,7 @@ msgstr "3D編輯器"
 msgid "3D_MOVEMENT"
 msgstr "3D移動"
 
-#: ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D動作樣式："
 
@@ -64,7 +64,7 @@ msgstr "正在進行其他動作"
 msgid "ACTIVE"
 msgstr "啟動"
 
-#: ../src/general/OptionsMenu.tscn:1093
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "當前線程："
 
@@ -150,7 +150,7 @@ msgstr "生物統計"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:740
+#: ../src/general/OptionsMenu.tscn:739
 msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
 
@@ -161,11 +161,11 @@ msgstr "環境音量"
 msgid "AMMONIA"
 msgstr "氨"
 
-#: ../src/general/OptionsMenu.tscn:1635
+#: ../src/general/OptionsMenu.tscn:1634
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "保留的自動存檔數量："
 
-#: ../src/general/OptionsMenu.tscn:1663
+#: ../src/general/OptionsMenu.tscn:1662
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "保留的快速存檔數量："
 
@@ -178,11 +178,11 @@ msgid "APPEARANCE"
 msgstr "出現"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
-#: ../src/modding/ModUploader.tscn:159
+#: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "應用"
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
 msgstr "應用變更"
 
@@ -190,11 +190,11 @@ msgstr "應用變更"
 msgid "APRIL"
 msgstr "四月"
 
-#: ../src/general/OptionsMenu.tscn:1998
+#: ../src/general/OptionsMenu.tscn:1997
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你確定要把「所有」設置都重置為默認值嗎？"
 
-#: ../src/general/OptionsMenu.tscn:2007
+#: ../src/general/OptionsMenu.tscn:2006
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "您確定要將輸入設置重置為默認嗎？"
 
@@ -224,7 +224,7 @@ msgstr "當指定裝配時，需要Mod裝配類"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "當指定裝配時，需要Mod裝配類"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "ASSUME_HYPERTHREADING"
 msgstr "假設CPU已啟用超線程"
 
@@ -245,7 +245,7 @@ msgstr "大氣氣體"
 msgid "ATP"
 msgstr "ATP(三磷酸線苷)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:974
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ATP_BALANCE"
 msgstr "ATP平衡"
 
@@ -267,7 +267,7 @@ msgstr "Auto-evo啟動失敗"
 msgid "AT_CURSOR"
 msgstr "鼠標指針處："
 
-#: ../src/general/OptionsMenu.tscn:857
+#: ../src/general/OptionsMenu.tscn:856
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "音頻輸出設備："
 
@@ -275,12 +275,12 @@ msgstr "音頻輸出設備："
 msgid "AUGUST"
 msgstr "八月"
 
-#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:597
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1476
+#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1475
 msgid "AUTO"
 msgstr "自動"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1362
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
@@ -288,12 +288,12 @@ msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "在{2}的人口從{0}變成{1}，原因:{3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1091
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1318
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo 預測"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1087
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "這個面板顯示了來自auto-evo對已編輯物種的預期種群數量。\n"
@@ -303,7 +303,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩餘。"
 
-#: ../src/general/OptionsMenu.tscn:1624
+#: ../src/general/OptionsMenu.tscn:1623
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "遊戲過程中自動保存"
 
@@ -342,11 +342,11 @@ msgstr "運行狀態："
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自動前進"
 
-#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:359
+#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:358
 msgid "AUTO_RESOLUTION"
 msgstr "自動（{0}x{1}）"
 
-#: ../src/modding/ModManager.tscn:124
+#: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
 msgstr "可用的MOD"
 
@@ -358,9 +358,9 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:562
 #: ../src/general/MainMenu.tscn:618 ../src/general/MainMenu.tscn:941
 #: ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1935 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:122
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr "返回"
@@ -434,7 +434,7 @@ msgstr "開始遊戲"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:542
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:541
 msgid "BEHAVIOUR"
 msgstr "行為"
 
@@ -471,20 +471,20 @@ msgstr "在海平面下方{0}-{1}米處"
 msgid "BENCHMARKS"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:156
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "加載完成"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:78
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "BEST_PATCH_COLON"
 msgstr "表現最好的區域："
 
@@ -519,7 +519,7 @@ msgstr "允許與其他細胞結合。這是邁向多細胞性的第一步。當
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按[thrive:input]g_toggle_binding[/thrive:input]來切換連接模式。在連接模式中，通過接觸同種細胞，你可以讓它成為你的細胞群的一員。要離開細胞群，按[thrive:input]g_unbind_all[/thrive:input]。"
 
-#: ../src/general/OptionsMenu.tscn:1279 ../src/general/OptionsMenu.tscn:1389
+#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -552,11 +552,11 @@ msgstr "生物群系：{0}"
 msgid "BRAVE"
 msgstr "勇敢"
 
-#: ../src/modding/ModUploader.tscn:260
+#: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
 msgstr "瀏覽"
 
-#: ../src/modding/ModManager.tscn:508
+#: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
 msgstr "瀏覽工作坊"
 
@@ -581,16 +581,16 @@ msgstr "這種膜有一層額外的碳酸鈣堅固外殼。它可以很容易地
 msgid "CAMERA"
 msgstr "視角"
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
-#: ../src/modding/NewModGUI.tscn:473
+#: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "取消"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1268
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
@@ -714,7 +714,7 @@ msgstr "改變對稱"
 msgid "CHEATS"
 msgstr "作弊"
 
-#: ../src/general/OptionsMenu.tscn:1717
+#: ../src/general/OptionsMenu.tscn:1716
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "啟用作弊鍵"
 
@@ -807,7 +807,7 @@ msgstr "產出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[t
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目標文件名{0}已存在。確定要覆蓋嗎？"
 
-#: ../src/general/OptionsMenu.tscn:439
+#: ../src/general/OptionsMenu.tscn:438
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
@@ -838,28 +838,28 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除舊存檔"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2161
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/charts/line/LineChart.tscn:262
+#: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1371
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:1002
+#: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "關閉"
 
-#: ../src/general/OptionsMenu.tscn:2016
+#: ../src/general/OptionsMenu.tscn:2015
 msgid "CLOSE_OPTIONS"
 msgstr "關閉選項菜單？"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "雲解像度除數："
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:963
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "模擬雲的最小時間間隔："
 
@@ -871,11 +871,11 @@ msgstr "海岸"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
 msgid "COLOUR"
 msgstr "顏色"
 
-#: ../src/general/OptionsMenu.tscn:401
+#: ../src/general/OptionsMenu.tscn:400
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
@@ -955,7 +955,7 @@ msgstr "我們的Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/OptionsMenu.tscn:1904
+#: ../src/general/OptionsMenu.tscn:1903
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "化合物："
@@ -983,7 +983,7 @@ msgstr "化合物："
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物平衡"
 
-#: ../src/general/OptionsMenu.tscn:949
+#: ../src/general/OptionsMenu.tscn:948
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
 
@@ -1050,7 +1050,7 @@ msgstr "暫停菜單"
 msgid "CONFIRM_NORMAL"
 msgstr "確認"
 
-#: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "文件夾{0}的內容將會上傳到創意工坊"
 
@@ -1072,7 +1072,7 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1448
+#: ../src/general/OptionsMenu.tscn:1447
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1086,11 +1086,11 @@ msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物�
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:579
+#: ../src/general/OptionsMenu.tscn:578
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1376
+#: ../src/general/OptionsMenu.tscn:1375
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1098,20 +1098,20 @@ msgstr ""
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "將錯誤複製到剪貼板"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
 #, fuzzy
 msgid "COPY_RESULTS"
 msgstr "Auto-evo自動模擬 結果："
 
-#: ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
 msgstr "紅綠色盲"
 
-#: ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
-#: ../src/modding/NewModGUI.tscn:466
+#: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
 msgstr "創建"
 
@@ -1127,7 +1127,7 @@ msgstr "創建平台："
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "建立一个新微生物"
 
-#: ../src/modding/ModUploader.tscn:122
+#: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
 msgstr "創建新的Mod"
 
@@ -1141,7 +1141,7 @@ msgstr "建立新存檔"
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "我極好的Mod"
 
-#: ../src/modding/NewModGUI.tscn:34
+#: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
 msgstr "創建新Mod"
 
@@ -1193,7 +1193,7 @@ msgstr "當前開發人員"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/general/OptionsMenu.tscn:1736
+#: ../src/general/OptionsMenu.tscn:1735
 msgid "CUSTOM_USERNAME"
 msgstr "自定義用戶名："
 
@@ -1337,7 +1337,7 @@ msgstr "描述太長"
 msgid "DESPAWN_ENTITIES"
 msgstr "生成敵人"
 
-#: ../src/general/OptionsMenu.tscn:1076
+#: ../src/general/OptionsMenu.tscn:1075
 msgid "DETECTED_CPU_COUNT"
 msgstr "檢測到的CPU數量："
 
@@ -1418,7 +1418,7 @@ msgstr "普通"
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "消化效率："
 
@@ -1427,7 +1427,7 @@ msgstr "消化效率："
 msgid "DIGESTION_SPEED"
 msgstr "資源吸收速度"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:897
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "速度："
@@ -1444,19 +1444,19 @@ msgstr "左"
 msgid "DIRECTIONR"
 msgstr "右"
 
-#: ../src/general/OptionsMenu.tscn:331 ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:330 ../src/general/OptionsMenu.tscn:331
 msgid "DISABLED"
 msgstr "已禁用"
 
-#: ../src/modding/ModManager.tscn:216
+#: ../src/modding/ModManager.tscn:215
 msgid "DISABLE_ALL"
 msgstr "禁用所有"
 
-#: ../src/general/OptionsMenu.tscn:2069
+#: ../src/general/OptionsMenu.tscn:2068
 msgid "DISCARD_AND_CONTINUE"
 msgstr "取消並繼續"
 
-#: ../src/modding/ModManager.tscn:589
+#: ../src/modding/ModManager.tscn:588
 msgid "DISCARD_CHANGES"
 msgstr "放棄變更"
 
@@ -1484,11 +1484,11 @@ msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1300
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "未連接的細胞器"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
@@ -1499,12 +1499,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
-#: ../src/general/OptionsMenu.tscn:1810
+#: ../src/general/OptionsMenu.tscn:1809
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "速度："
 
-#: ../src/general/OptionsMenu.tscn:1808 ../src/general/OptionsMenu.tscn:1817
+#: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1516,15 +1516,15 @@ msgstr ""
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "顯示能力界面"
 
-#: ../src/general/OptionsMenu.tscn:468
+#: ../src/general/OptionsMenu.tscn:467
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:627
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "顯示能力界面"
@@ -1721,15 +1721,15 @@ msgstr ""
 "\n"
 "要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/modding/ModManager.tscn:198
+#: ../src/modding/ModManager.tscn:197
 msgid "ENABLED_MODS"
 msgstr "啟用MODs"
 
-#: ../src/modding/ModManager.tscn:567
+#: ../src/modding/ModManager.tscn:566
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "啟用所有兼容Mods"
 
@@ -1737,7 +1737,7 @@ msgstr "啟用所有兼容Mods"
 msgid "ENABLE_EDITOR"
 msgstr "啟用編輯器"
 
-#: ../src/general/OptionsMenu.tscn:619
+#: ../src/general/OptionsMenu.tscn:618
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "啟用 GUI 光效效果"
 
@@ -1761,11 +1761,11 @@ msgstr "能量來源："
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的總能量為{0}，每個體的成本為{1}，在修正前的種群數量為{2}"
 
-#: ../src/modding/ModUploader.tscn:129
+#: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
 msgstr "輸入已有的編號"
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "輸入已有的創意工坊編號"
 
@@ -1797,7 +1797,7 @@ msgstr "顯示/隱藏環境和化合物"
 msgid "EPIPELAGIC"
 msgstr "遠洋表層帶"
 
-#: ../src/general/OptionsMenu.tscn:2097 ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
 msgstr "錯誤"
 
@@ -1809,7 +1809,7 @@ msgstr "為mod創建文件夾時出錯"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "創建MOD信息文件出錯"
 
-#: ../src/general/OptionsMenu.tscn:2107
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "錯誤：無法將新設置保存至配置文件。"
 
@@ -1857,12 +1857,12 @@ msgstr "由Revolutionary Games Studio製作"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "由Revolutionary Games Studio製作"
 
-#: ../src/general/OptionsMenu.tscn:1876
+#: ../src/general/OptionsMenu.tscn:1875
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "世代："
 
-#: ../src/general/OptionsMenu.tscn:1874 ../src/general/OptionsMenu.tscn:1885
+#: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "自殺"
@@ -1900,7 +1900,7 @@ msgstr "經過的時間：{0:#,#} 年"
 msgid "EXPORT_SUCCESS"
 msgstr "捕食{0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:618
 msgid "EXTERNAL"
 msgstr "外部"
 
@@ -1948,7 +1948,7 @@ msgstr "額外選項"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "暫停遊戲"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1157
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
 msgid "FAILED"
 msgstr "失敗"
 
@@ -2058,11 +2058,11 @@ msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]來增加細胞的
 msgid "FLOATING_HAZARD"
 msgstr "漂浮危害物"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:707
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
 msgid "FLUID"
 msgstr "流質"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:687
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流動性/剛性"
 
@@ -2085,11 +2085,11 @@ msgstr "食物鏈"
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（適應性：{2}）總可用能量：{3}（總適應性：{4}）"
 
-#: ../src/modding/ModUploader.tscn:287
+#: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
 msgstr "移除本地數據"
 
-#: ../src/modding/ModUploader.tscn:285
+#: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "刪除關於這個項目的本地數據。在你輸錯了ID或者想給不同的項目上傳一個新的版本時很有用。"
 
@@ -2125,14 +2125,14 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "沉着"
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "FOUR_TIMES"
 msgstr "4x"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
-#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:60
+#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
@@ -2161,11 +2161,11 @@ msgstr ""
 "並且對物質塊更有渴求。\n"
 "應變型微生物將更快的轉向新的目標。"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:284
 msgid "FULLSCREEN"
 msgstr "全螢幕"
 
-#: ../src/modding/ModManager.tscn:596
+#: ../src/modding/ModManager.tscn:595
 msgid "FULL_MOD_INFO"
 msgstr "完整的Mod信息"
 
@@ -2185,7 +2185,7 @@ msgstr "世代"
 msgid "GENERATIONS"
 msgstr "世代"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:929
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
 msgid "GENERATION_COLON"
 msgstr "世代："
 
@@ -2260,11 +2260,11 @@ msgstr "明白了"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL 許可文本如下："
 
-#: ../src/general/OptionsMenu.tscn:478
+#: ../src/general/OptionsMenu.tscn:477
 msgid "GPU_NAME"
 msgstr "GPU："
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:171
 msgid "GRAPHICS"
 msgstr "圖形"
 
@@ -2272,7 +2272,7 @@ msgstr "圖形"
 msgid "GRAPHICS_TEAM"
 msgstr "圖形團隊"
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:561
 msgid "GUI"
 msgstr ""
 
@@ -2289,7 +2289,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} 千"
 
-#: ../src/general/OptionsMenu.tscn:810
+#: ../src/general/OptionsMenu.tscn:809
 msgid "GUI_VOLUME"
 msgstr "界面音量"
 
@@ -2311,11 +2311,11 @@ msgstr "幫助"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "幫助"
 
-#: ../src/general/OptionsMenu.tscn:971 ../src/general/OptionsMenu.tscn:1021
+#: ../src/general/OptionsMenu.tscn:970 ../src/general/OptionsMenu.tscn:1020
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（數值越高越提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:316 ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:315 ../src/general/OptionsMenu.tscn:1178
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（設置越高越影響性能）"
 
@@ -2340,7 +2340,7 @@ msgstr ""
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "世代："
@@ -2350,7 +2350,7 @@ msgstr "世代："
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:879
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
 msgid "HP_COLON"
 msgstr "生命值："
 
@@ -2389,7 +2389,7 @@ msgstr "冰架"
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID無效"
 
-#: ../src/modding/ModUploader.tscn:153
+#: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "編號"
 
@@ -2419,11 +2419,11 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:204
 msgid "INPUTS"
 msgstr "輸入"
 
-#: ../src/gui_common/charts/line/LineChart.tscn:220
+#: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr "檢查"
 
@@ -2478,8 +2478,8 @@ msgstr "無效的網址格式"
 msgid "INVALID_URL_SCHEME"
 msgstr "無效的URL方案"
 
-#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1326
-#: ../src/general/OptionsMenu.tscn:1414 ../src/general/OptionsMenu.tscn:1437
+#: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
+#: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
 msgid "INVERTED"
 msgstr ""
 
@@ -2508,19 +2508,19 @@ msgstr "自殺"
 msgid "JANUARY"
 msgstr "一月"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1841
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug模式："
 
-#: ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "總是"
 
-#: ../src/general/OptionsMenu.tscn:1857 ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "自動"
 
-#: ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "從不"
 
@@ -2702,7 +2702,7 @@ msgstr "數字鍵盤 ."
 msgid "KPSUBTRACT"
 msgstr "數字鍵盤 -"
 
-#: ../src/general/OptionsMenu.tscn:886
+#: ../src/general/OptionsMenu.tscn:885
 msgid "LANGUAGE"
 msgstr "語言："
 
@@ -2874,7 +2874,7 @@ msgstr "首席理論家"
 msgid "LEAD_THEORISTS"
 msgstr "首席理論家"
 
-#: ../src/modding/ModManager.tscn:186
+#: ../src/modding/ModManager.tscn:185
 msgid "LEFT_ARROW"
 msgstr "←"
 
@@ -2936,11 +2936,11 @@ msgstr ""
 msgid "LIGHT"
 msgstr "光"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:390
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:389
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:348
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:347
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -2948,7 +2948,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:369
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:368
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "向右滾輪"
@@ -2958,7 +2958,7 @@ msgstr "向右滾輪"
 msgid "LIGHT_MAX"
 msgstr "光"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "額外內容"
@@ -2973,32 +2973,32 @@ msgstr "確認"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "確認"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1195 ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -3145,7 +3145,7 @@ msgstr "三月"
 msgid "MARINE_SNOW"
 msgstr "海洋雪(有機物碎屑)"
 
-#: ../src/general/OptionsMenu.tscn:654
+#: ../src/general/OptionsMenu.tscn:653
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
@@ -3153,15 +3153,15 @@ msgstr "主音量"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "強制滅絕前的物種上限"
 
-#: ../src/general/OptionsMenu.tscn:370
+#: ../src/general/OptionsMenu.tscn:369
 msgid "MAX_FPS"
 msgstr "最高FPS："
 
-#: ../src/general/OptionsMenu.tscn:385
+#: ../src/general/OptionsMenu.tscn:384
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "不受限"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "實體數量上限："
 
@@ -3200,7 +3200,7 @@ msgstr "媒體停止"
 msgid "MEGA_YEARS"
 msgstr "百萬年"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:520
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:519
 msgid "MEMBRANE"
 msgstr "細胞膜"
 
@@ -3208,7 +3208,7 @@ msgstr "細胞膜"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "膜剛性"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:669
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
 msgid "MEMBRANE_TYPES"
 msgstr "細胞膜類型"
 
@@ -3234,12 +3234,12 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。"
 
 #: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
-#: ../src/engine/PerformanceMetrics.tscn:31
+#: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "效能統計"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
-#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:77
+#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
@@ -3260,7 +3260,7 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:109
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 #, fuzzy
 msgid "MICROBES_COUNT"
 msgstr ""
@@ -3272,7 +3272,7 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:35
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:592
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
@@ -3520,7 +3520,7 @@ msgstr "{0} 百萬"
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "檢測的最小數量："
 
-#: ../src/modding/ModManager.tscn:418
+#: ../src/modding/ModManager.tscn:417
 msgid "MINIMUM_VERSION"
 msgstr "最低："
 
@@ -3529,7 +3529,7 @@ msgstr "最低："
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "不允許顯示少於 {0} 個數據集！"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:216
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
 msgid "MISC"
 msgstr "雜項"
 
@@ -3572,7 +3572,7 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/modding/NewModGUI.tscn:68
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Mod製作說明在"
 
@@ -3602,11 +3602,11 @@ msgstr "Mods"
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:938 ../src/modding/NewModGUI.tscn:395
+#: ../src/modding/ModManager.tscn:937 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr "Mod組裝："
 
-#: ../src/modding/ModManager.tscn:960 ../src/modding/NewModGUI.tscn:418
+#: ../src/modding/ModManager.tscn:959 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
 
@@ -3634,26 +3634,26 @@ msgstr "{0}: mod的裝配卸載方法調用失敗"
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod的裝配卸載方法調用失敗，出現異常。 {1}"
 
-#: ../src/modding/ModManager.tscn:287 ../src/modding/ModManager.tscn:680
-#: ../src/modding/NewModGUI.tscn:141
+#: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:679
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr "MOD作者："
 
-#: ../src/modding/ModManager.tscn:982
+#: ../src/modding/ModManager.tscn:981
 #, fuzzy
 msgid "MOD_AUTO_HARMONY"
 msgstr "MOD作者："
 
-#: ../src/modding/ModManager.tscn:1009
+#: ../src/modding/ModManager.tscn:1008
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod創建失敗"
 
-#: ../src/modding/ModManager.tscn:445 ../src/modding/ModManager.tscn:724
-#: ../src/modding/NewModGUI.tscn:187
+#: ../src/modding/ModManager.tscn:444 ../src/modding/ModManager.tscn:723
+#: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
 msgstr "Mod 描述："
 
-#: ../src/modding/ModManager.tscn:746 ../src/modding/NewModGUI.tscn:210
+#: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod的完整描述："
 
@@ -3671,19 +3671,19 @@ msgstr "{0}: mod的裝配卸載方法調用失敗，出現異常。 {1}"
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}：沒有可加載的資源"
 
-#: ../src/modding/ModManager.tscn:784 ../src/modding/NewModGUI.tscn:234
+#: ../src/modding/ModManager.tscn:783 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr "圖標文件："
 
-#: ../src/modding/ModManager.tscn:806 ../src/modding/NewModGUI.tscn:257
+#: ../src/modding/ModManager.tscn:805 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr "Mod信息URL："
 
-#: ../src/modding/ModManager.tscn:659 ../src/modding/NewModGUI.tscn:95
+#: ../src/modding/ModManager.tscn:658 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr "內部（文件夾）名稱："
 
-#: ../src/modding/ModManager.tscn:828 ../src/modding/NewModGUI.tscn:280
+#: ../src/modding/ModManager.tscn:827 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
 msgstr "Mod許可："
 
@@ -3695,60 +3695,60 @@ msgstr "Mod加載錯誤"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
 
-#: ../src/modding/ModManager.tscn:1018
+#: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "在加載或卸載一個或多個mod時發生錯誤。日誌可能包含其他信息。"
 
-#: ../src/modding/ModManager.tscn:540
+#: ../src/modding/ModManager.tscn:539
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "注意：許多mods需要重新啟動遊戲才能正常加載或卸載。只加載你信任的mods，因為它們可能包含可執行的問題代碼。"
 
-#: ../src/modding/ModManager.tscn:1025
+#: ../src/modding/ModManager.tscn:1024
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
 
-#: ../src/modding/ModManager.tscn:894 ../src/modding/NewModGUI.tscn:349
+#: ../src/modding/ModManager.tscn:893 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "最高要求的Thrive 版本："
 
-#: ../src/modding/ModManager.tscn:872 ../src/modding/NewModGUI.tscn:326
+#: ../src/modding/ModManager.tscn:871 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "最低要求的Thrive版本："
 
-#: ../src/modding/ModManager.tscn:637 ../src/modding/NewModGUI.tscn:118
+#: ../src/modding/ModManager.tscn:636 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
 msgstr "Mod名字："
 
-#: ../src/modding/ModManager.tscn:916 ../src/modding/NewModGUI.tscn:372
+#: ../src/modding/ModManager.tscn:915 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck 文件："
 
-#: ../src/modding/ModManager.tscn:850 ../src/modding/NewModGUI.tscn:303
+#: ../src/modding/ModManager.tscn:849 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "推薦的Thrive 版本："
 
-#: ../src/modding/ModUploader.tscn:85
+#: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
 msgstr "將上傳的Mod："
 
-#: ../src/modding/ModUploader.tscn:45 ../src/modding/ModUploader.tscn:308
+#: ../src/modding/ModUploader.tscn:44 ../src/modding/ModUploader.tscn:307
 msgid "MOD_UPLOADER"
 msgstr "Mod上傳工具"
 
-#: ../src/modding/ModManager.tscn:318 ../src/modding/ModManager.tscn:702
-#: ../src/modding/NewModGUI.tscn:164
+#: ../src/modding/ModManager.tscn:317 ../src/modding/ModManager.tscn:701
+#: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
 msgstr "MOD版本："
 
-#: ../src/modding/ModManager.tscn:477
+#: ../src/modding/ModManager.tscn:476
 msgid "MORE_INFO"
 msgstr "顯示更多信息"
 
-#: ../src/general/OptionsMenu.tscn:1258
+#: ../src/general/OptionsMenu.tscn:1257
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -3863,7 +3863,7 @@ msgstr "放置細胞器"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "放置細胞器"
 
-#: ../src/general/OptionsMenu.tscn:309
+#: ../src/general/OptionsMenu.tscn:308
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重採樣抗鋸齒："
 
@@ -3875,7 +3875,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "音樂"
 
-#: ../src/general/OptionsMenu.tscn:705
+#: ../src/general/OptionsMenu.tscn:704
 msgid "MUSIC_VOLUME"
 msgstr "音樂音量"
 
@@ -3899,9 +3899,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr "突變點數"
 
-#: ../src/general/OptionsMenu.tscn:683 ../src/general/OptionsMenu.tscn:734
-#: ../src/general/OptionsMenu.tscn:769 ../src/general/OptionsMenu.tscn:804
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:682 ../src/general/OptionsMenu.tscn:733
+#: ../src/general/OptionsMenu.tscn:768 ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:838
 msgid "MUTE"
 msgstr "靜音"
 
@@ -3909,17 +3909,17 @@ msgstr "靜音"
 msgid "NAME"
 msgstr "名字："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "負ATP平衡"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1294
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "你的微生物沒辦法產出足以維持生存的ATP量！\n"
 "你確定要繼續嗎？"
 
-#: ../src/modding/ModManager.tscn:524
+#: ../src/modding/ModManager.tscn:523
 msgid "NEW"
 msgstr "新增"
 
@@ -3968,7 +3968,7 @@ msgstr "速度："
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1284
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -4010,7 +4010,7 @@ msgstr "固氮質體是一種蛋白質，能夠利用氣態氮和氧以及ATP形
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]與[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。"
 
-#: ../src/general/OptionsMenu.tscn:417 ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
 msgid "NONE"
 msgstr "無"
 
@@ -4102,7 +4102,7 @@ msgstr "未找到存檔"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存檔目錄"
 
-#: ../src/general/OptionsMenu.tscn:2115
+#: ../src/general/OptionsMenu.tscn:2114
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截圖目錄"
 
@@ -4160,7 +4160,7 @@ msgstr "自殺"
 #: ../src/general/MainMenu.tscn:1009 ../src/general/MainMenu.tscn:1066
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:358
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "確認"
 
@@ -4172,7 +4172,7 @@ msgstr ""
 "你很可能會碰上各種問題，但它們不會是我們的首要解決對象。\n"
 "你確定要強行載入這個存檔嗎？"
 
-#: ../src/modding/ModManager.tscn:155
+#: ../src/modding/ModManager.tscn:154
 msgid "OPEN_FOLDER"
 msgstr "打開文件夾"
 
@@ -4194,11 +4194,11 @@ msgstr "打開幫助界面"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "自由編輯器"
 
-#: ../src/general/OptionsMenu.tscn:1771
+#: ../src/general/OptionsMenu.tscn:1770
 msgid "OPEN_LOGS_FOLDER"
 msgstr "打開日誌文件夾"
 
-#: ../src/modding/ModManager.tscn:485
+#: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "打開信息網址"
 
@@ -4210,7 +4210,7 @@ msgstr "打開細胞器菜單"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "打開存檔文件夾"
 
-#: ../src/general/OptionsMenu.tscn:1763
+#: ../src/general/OptionsMenu.tscn:1762
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "打開截圖文件夾"
 
@@ -4218,7 +4218,7 @@ msgstr "打開截圖文件夾"
 msgid "OPEN_THE_MENU"
 msgstr "打開主菜單"
 
-#: ../src/general/OptionsMenu.tscn:923
+#: ../src/general/OptionsMenu.tscn:922
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "幫忙翻譯這個遊戲"
 
@@ -4247,7 +4247,7 @@ msgstr "選項"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "幫助"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:628
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:627
 msgid "ORGANELLES"
 msgstr "細胞器"
 
@@ -4264,7 +4264,7 @@ msgstr "纖毛（單數：pilus）存在於許多微生物的表面，類似於�
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "用來刺其它細胞。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
@@ -4315,7 +4315,7 @@ msgstr "滲透調節消耗"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "滲透調節消耗"
 
-#: ../src/modding/NewModGUI.tscn:75
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
 msgstr "我們的Wiki"
 
@@ -4487,7 +4487,7 @@ msgstr "移除本地數據"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2125
+#: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4559,7 +4559,7 @@ msgstr "和平"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:194
+#: ../src/general/OptionsMenu.tscn:193
 msgid "PERFORMANCE"
 msgstr "性能"
 
@@ -4643,7 +4643,7 @@ msgstr "玩家分裂"
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已滅絕"
 
-#: ../src/general/OptionsMenu.tscn:1476
+#: ../src/general/OptionsMenu.tscn:1475
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "玩家已滅絕"
@@ -4658,23 +4658,23 @@ msgstr ""
 "玩家\n"
 "速度"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1600
+#: ../src/general/OptionsMenu.tscn:1599
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放開場動畫"
 
-#: ../src/general/OptionsMenu.tscn:1608
+#: ../src/general/OptionsMenu.tscn:1607
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在開始新遊戲時播放微生物開場動畫"
 
@@ -4704,7 +4704,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "查看預測背後的詳細信息"
 
@@ -4762,7 +4762,7 @@ msgstr ""
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:610
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:609
 msgid "PROTEINS"
 msgstr "蛋白質"
 
@@ -4827,7 +4827,7 @@ msgstr "讀取存檔數據中"
 msgid "READY"
 msgstr "已就緒"
 
-#: ../src/modding/ModManager.tscn:374
+#: ../src/modding/ModManager.tscn:373
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推薦Thrive："
 
@@ -4844,7 +4844,7 @@ msgstr "重做"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "重做上一個動作"
 
-#: ../src/modding/ModManager.tscn:147 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
 msgstr "刷新"
 
@@ -4894,7 +4894,7 @@ msgstr "繁殖："
 msgid "REQUIRES_NUCLEUS"
 msgstr "細胞核"
 
-#: ../src/general/OptionsMenu.tscn:904 ../src/general/OptionsMenu.tscn:1946
+#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:1945
 msgid "RESET"
 msgstr "重置"
 
@@ -4903,24 +4903,24 @@ msgstr "重置"
 msgid "RESET_DEADZONES"
 msgstr "重置為默認"
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2006
+#: ../src/general/OptionsMenu.tscn:2005
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "將輸入重置為默認？"
 
-#: ../src/general/OptionsMenu.tscn:1559
+#: ../src/general/OptionsMenu.tscn:1558
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "重置輸入"
 
-#: ../src/general/OptionsMenu.tscn:1986
+#: ../src/general/OptionsMenu.tscn:1985
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默認"
 
-#: ../src/general/OptionsMenu.tscn:1997
+#: ../src/general/OptionsMenu.tscn:1996
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置為默認？"
 
@@ -4929,7 +4929,7 @@ msgstr "重置為默認？"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:346
+#: ../src/general/OptionsMenu.tscn:345
 msgid "RESOLUTION"
 msgstr "解像度："
 
@@ -4951,7 +4951,7 @@ msgstr "有氧呼吸作用"
 msgid "RESPONSIVE"
 msgstr "響應"
 
-#: ../src/modding/ModManager.tscn:1023
+#: ../src/modding/ModManager.tscn:1022
 msgid "RESTART_REQUIRED"
 msgstr "需要重新啟動"
 
@@ -4985,7 +4985,7 @@ msgstr ""
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "由Revolutionary Games Studio製作"
 
-#: ../src/modding/ModManager.tscn:173
+#: ../src/modding/ModManager.tscn:172
 msgid "RIGHT_ARROW"
 msgstr "→"
 
@@ -4993,7 +4993,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "鼠標右鍵"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:720
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
 msgid "RIGID"
 msgstr "剛體"
 
@@ -5009,12 +5009,12 @@ msgstr "向左旋轉"
 msgid "ROTATE_RIGHT"
 msgstr "向右旋轉"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:873
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "總人口："
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲中啟用auto-evo"
 
@@ -5083,11 +5083,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "移除本地數據"
 
-#: ../src/general/OptionsMenu.tscn:1960 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "儲存"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2058
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存並繼續"
 
@@ -5190,21 +5190,21 @@ msgstr "當前情況下無法保存："
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1344
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "結合劑"
 
-#: ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1476 ../src/general/OptionsMenu.tscn:1509
-#: ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
+#: ../src/general/OptionsMenu.tscn:1509
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5212,7 +5212,7 @@ msgstr ""
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:594
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:593
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
@@ -5242,7 +5242,7 @@ msgstr "生物群系：{0}"
 msgid "SELECTED_COLON"
 msgstr "選取的："
 
-#: ../src/modding/ModManager.tscn:253
+#: ../src/modding/ModManager.tscn:252
 msgid "SELECTED_MOD"
 msgstr "被選取Mod："
 
@@ -5287,7 +5287,7 @@ msgstr "被選取Mod："
 msgid "SELECT_OPTION"
 msgstr "選取一個選項"
 
-#: ../src/modding/ModUploader.tscn:326
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "選擇預覽圖像"
 
@@ -5307,7 +5307,7 @@ msgstr "沉着"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "這個數值只對你改變選項後新開的存檔有效"
 
-#: ../src/general/OptionsMenu.tscn:775
+#: ../src/general/OptionsMenu.tscn:774
 msgid "SFX_VOLUME"
 msgstr "特效音量"
 
@@ -5319,12 +5319,12 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "顯示幫助"
 
-#: ../src/general/OptionsMenu.tscn:1788
+#: ../src/general/OptionsMenu.tscn:1787
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "洞穴"
 
-#: ../src/general/OptionsMenu.tscn:1786
+#: ../src/general/OptionsMenu.tscn:1785
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "洞穴"
@@ -5334,17 +5334,17 @@ msgstr "洞穴"
 msgid "SHOW_TUTORIALS"
 msgstr "顯示教學"
 
-#: ../src/general/OptionsMenu.tscn:1698
+#: ../src/general/OptionsMenu.tscn:1697
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "顯示教程（在當前遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:1690
+#: ../src/general/OptionsMenu.tscn:1689
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "顯示教程（在新遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:1705
+#: ../src/general/OptionsMenu.tscn:1704
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "顯示未保存的進度警告"
 
@@ -5352,7 +5352,7 @@ msgstr "顯示未保存的進度警告"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "當玩家試圖退出遊戲時，啟用/禁用未保存的進度警告彈出框。"
 
-#: ../src/general/OptionsMenu.tscn:1779
+#: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5407,11 +5407,11 @@ msgstr "二氧化矽"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "這種膜有一層堅固的二氧化矽細胞壁。它能很好地抵抗整體的損害，對物理損害的抵抗力很強。它還需要更少的能量來維持其形態。然而，它使細胞的速度降低了一大截，細胞吸收資源的速度也降低了。"
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
 msgid "SIZE_COLON"
 msgstr "大小："
 
@@ -5449,7 +5449,7 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:
 msgid "SMALL_IRON_CHUNK"
 msgstr "小鐵塊"
 
-#: ../src/general/OptionsMenu.tscn:183
+#: ../src/general/OptionsMenu.tscn:182
 msgid "SOUND"
 msgstr "聲音"
 
@@ -5561,7 +5561,7 @@ msgstr "物種人口"
 msgid "SPEED"
 msgstr "速度"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:867
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
 msgid "SPEED_COLON"
 msgstr "速度："
 
@@ -5697,7 +5697,7 @@ msgstr "停止"
 msgid "STORAGE"
 msgstr "儲存"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:891
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "儲存："
@@ -5710,13 +5710,13 @@ msgstr "已登錄為：{0}"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:601
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:600
 msgid "STRUCTURAL"
 msgstr "結構性"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:498
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:497
 msgid "STRUCTURE"
 msgstr "結構"
 
@@ -5738,7 +5738,7 @@ msgstr "自殺"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:321
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -5890,7 +5890,7 @@ msgstr "這是一個本地安裝的MOD"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "這個MOD是在Steam工作坊下載的"
 
-#: ../src/general/OptionsMenu.tscn:1125
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "THREADS"
 msgstr "線程："
 
@@ -6047,7 +6047,7 @@ msgstr "解除鏈接模式"
 msgid "TOOLS"
 msgstr "工具"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1163
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
 msgid "TOTAL_POPULATION_COLON"
 msgstr "總人口："
 
@@ -6109,7 +6109,7 @@ msgstr "嘗試截一些圖吧！"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "試著存個檔吧！"
 
-#: ../src/general/OptionsMenu.tscn:2117
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "嘗試截一些圖吧！"
 
@@ -6281,7 +6281,7 @@ msgstr "教學"
 msgid "TWITTER_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6290,11 +6290,11 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "生命值："
 
-#: ../src/modding/ModManager.tscn:587
+#: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "有未應用的變更"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:587
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要應用你的變更來加載或卸載任何mods。"
 
@@ -6348,11 +6348,11 @@ msgstr "此Mod的創意工坊編號未知"
 msgid "UNKNOWN_VERSION"
 msgstr "未知的版本"
 
-#: ../src/modding/ModUploader.tscn:110
+#: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "此Mod的創意工坊編號未知"
 
-#: ../src/general/OptionsMenu.tscn:2036
+#: ../src/general/OptionsMenu.tscn:2035
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改將被丟棄。\n"
@@ -6380,7 +6380,7 @@ msgstr "細胞的黏稠內臟。細胞質是離子，蛋白質和其他溶解水
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:516 ../src/modding/ModUploader.tscn:46
+#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
 msgstr "上傳"
 
@@ -6388,7 +6388,7 @@ msgstr "上傳"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "上傳中……"
 
-#: ../src/modding/ModUploader.tscn:337
+#: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
 msgstr "上傳成功"
 
@@ -6396,7 +6396,7 @@ msgstr "上傳成功"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "許可證和使用的庫"
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:507
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -6404,16 +6404,16 @@ msgstr ""
 msgid "USES_FEATURE"
 msgstr "是"
 
-#: ../src/modding/NewModGUI.tscn:442
+#: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:440
+#: ../src/modding/NewModGUI.tscn:439
 #, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/OptionsMenu.tscn:1725
+#: ../src/general/OptionsMenu.tscn:1724
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定義用戶名"
 
@@ -6421,11 +6421,11 @@ msgstr "使用自定義用戶名"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1114
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手動設置後台線程數"
 
-#: ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1358
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6451,7 +6451,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr "版本："
 
-#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "世代："
@@ -6461,11 +6461,11 @@ msgstr "世代："
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "速度（軸：{0}）"
 
-#: ../src/general/OptionsMenu.tscn:535
+#: ../src/general/OptionsMenu.tscn:534
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6479,12 +6479,12 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr "禁用所有"
 
-#: ../src/general/OptionsMenu.tscn:1796
+#: ../src/general/OptionsMenu.tscn:1795
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "洞穴"
 
-#: ../src/general/OptionsMenu.tscn:1794
+#: ../src/general/OptionsMenu.tscn:1793
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "洞穴"
@@ -6497,7 +6497,7 @@ msgstr "查看源代碼"
 msgid "VIP_PATRONS"
 msgstr "VIP 支持者"
 
-#: ../src/modding/ModUploader.tscn:210
+#: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
 msgstr "可見"
 
@@ -6521,7 +6521,7 @@ msgstr "静音"
 msgid "VOLUMEUP"
 msgstr "音量增加"
 
-#: ../src/general/OptionsMenu.tscn:277
+#: ../src/general/OptionsMenu.tscn:276
 msgid "VSYNC"
 msgstr "垂直同步"
 
@@ -6561,35 +6561,35 @@ msgstr "向上滾輪"
 msgid "WILL_YOU_THRIVE"
 msgstr "你能Thrive(茁壯繁盛)嗎？"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:83
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "你已經茁壯繁盛了!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:92
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "恭喜你贏得了這個版本的 \"茁壯成長\"! 如果你願意，你可以在這個屏幕關閉後繼續遊戲，或者在一個新的世界開始新的遊戲。"
 
-#: ../src/modding/ModUploader.tscn:295
+#: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "项目变更说明"
 
-#: ../src/modding/ModUploader.tscn:293 ../src/modding/ModUploader.tscn:302
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "這個項目的這個版本在在Steam創意工坊顯示的更新說明（可選）"
 
-#: ../src/modding/ModUploader.tscn:187
+#: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "項目描述："
 
-#: ../src/modding/ModUploader.tscn:234
+#: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr "項目預覽圖："
 
-#: ../src/modding/ModUploader.tscn:216
+#: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr "項目標籤（由英文逗號“,”分隔）："
 
-#: ../src/modding/ModUploader.tscn:169
+#: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "項目標題："
 
@@ -6605,7 +6605,7 @@ msgstr "項目已經上傳到了Steam創意工坊，但是在其變得可見之�
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "通過提交此項目，你表示你同意Steam創意工坊的[color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]服務條款[/url][/color]"
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr "一旦一個項目被設定成可見，它就會被所有人看到"
 
@@ -6627,24 +6627,24 @@ msgstr "生物統計"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1509
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1200
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
 msgid "WORST_PATCH_COLON"
 msgstr "表現最差的區域："
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_SERIES"
 msgstr ""
 

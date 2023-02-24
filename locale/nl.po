@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:45+0700\n"
+"POT-Creation-Date: 2023-02-24 16:13+0700\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D bewegingsstijl:"
 
@@ -31,7 +31,7 @@ msgstr "3D-Bewerker"
 msgid "3D_MOVEMENT"
 msgstr "3D-beweging"
 
-#: ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D bewegingsstijl:"
 
@@ -62,7 +62,7 @@ msgstr "Actie geblokkeerd terwijl een andere actie bezig is"
 msgid "ACTIVE"
 msgstr "Actief"
 
-#: ../src/general/OptionsMenu.tscn:1093
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Huidige threads:"
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:740
+#: ../src/general/OptionsMenu.tscn:739
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume omgeving"
 
@@ -166,11 +166,11 @@ msgstr "Volume omgeving"
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
-#: ../src/general/OptionsMenu.tscn:1635
+#: ../src/general/OptionsMenu.tscn:1634
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aantal automatische savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1663
+#: ../src/general/OptionsMenu.tscn:1662
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aantal savegames om te bewaren:"
 
@@ -183,11 +183,11 @@ msgid "APPEARANCE"
 msgstr "Uiterlijk"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
-#: ../src/modding/ModUploader.tscn:159
+#: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "Toepassen"
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
 msgstr "Pas wijzigingen toe"
 
@@ -195,11 +195,11 @@ msgstr "Pas wijzigingen toe"
 msgid "APRIL"
 msgstr "April"
 
-#: ../src/general/OptionsMenu.tscn:1998
+#: ../src/general/OptionsMenu.tscn:1997
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Weet je zeker dat je ALLE instellingen wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:2007
+#: ../src/general/OptionsMenu.tscn:2006
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Weet je zeker dat je de invoer wilt resetten?"
 
@@ -227,7 +227,7 @@ msgstr "Mod assembly klasse is vereist wanneer een assembly is gespecificeerd"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Mod assemble is vereist wanneer auto harmony is aangezet"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Veronderstel dat de CPU hyperthreading aan heeft staan"
 
@@ -248,7 +248,7 @@ msgstr "Atmosfeergassen"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:974
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ATP_BALANCE"
 msgstr "ATP-balans"
 
@@ -269,7 +269,7 @@ msgstr "De poging om het spel op te slaan is mislukt, het bestand kon niet gesch
 msgid "AT_CURSOR"
 msgstr "Bij Cursor:"
 
-#: ../src/general/OptionsMenu.tscn:857
+#: ../src/general/OptionsMenu.tscn:856
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio uitvoer apparaat:"
 
@@ -277,12 +277,12 @@ msgstr "Audio uitvoer apparaat:"
 msgid "AUGUST"
 msgstr "Augustus"
 
-#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:597
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1476
+#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1475
 msgid "AUTO"
 msgstr "Automatisch"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1362
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Dit paneel toont de waarden die auto-evo gebruikt. De totale energie die een soort kan verkrijgen, en de kosten per individu van de soort, bepalen de uiteindelijke bevolking. Auto-evo gebruikt een versimpeld model van de werkelijkheid om te berekenen hoe goed een soort zou presteren op basis van de energie die ze kunnen verkrijgen. Voor elke voedselbron wordt getoond hoeveel energie de soort er van verkrijgt. Verder wordt de totale hoeveelheid energie die van die bron beschikbaar is getoond. De fractie die de soort verkrijgt uit de totale energie is gebaseerd op hoe groot de fitheid is in vergelijking tot de totale fitheid. Fitheid is een metriek die toont hoe goed een soort een voedselbron kan gebruiken."
 
@@ -290,12 +290,12 @@ msgstr "Dit paneel toont de waarden die auto-evo gebruikt. De totale energie die
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Bevolking van {0} veranderd met {1} in {2} vanwege: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1091
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1318
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo Voorspelling"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1087
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dit paneel toont de verwachte bevolking van auto-evo voor de bewerkte soort.\n"
@@ -305,7 +305,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klaar. {1:n0}/{2:n0} stappen."
 
-#: ../src/general/OptionsMenu.tscn:1624
+#: ../src/general/OptionsMenu.tscn:1623
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
 
@@ -342,11 +342,11 @@ msgstr "Auto-Evo Status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Beweeg automatisch naar voren"
 
-#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:359
+#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:358
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
-#: ../src/modding/ModManager.tscn:124
+#: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
 msgstr "Beschikbare Mods"
 
@@ -358,9 +358,9 @@ msgstr "Ontwaak"
 #: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:562
 #: ../src/general/MainMenu.tscn:618 ../src/general/MainMenu.tscn:941
 #: ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1935 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:122
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr "Terug"
@@ -431,7 +431,7 @@ msgstr "Begin Thrive"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:542
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:541
 msgid "BEHAVIOUR"
 msgstr "Gedrag"
 
@@ -463,19 +463,19 @@ msgstr "{0}-{1}m onder zeeniveau"
 msgid "BENCHMARKS"
 msgstr "Prestatietests"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:156
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 msgid "BENCHMARK_FINISHED"
 msgstr "Prestatietest afgerond"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:78
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
 msgstr "Fase van prestatietest:"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Resultaten:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "BEST_PATCH_COLON"
 msgstr "Beste Plek:"
 
@@ -510,7 +510,7 @@ msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Druk op [thrive:input]g_toggle_binding[/thrive:input] om verbindingsmodus aan of uit te zetten. In verbindingsmodus kun je andere cellen van je soort aan je kolonie binden door tegen ze aan te bewegen. Om de kolonie te verlaten druk je op [thrive:input]g_unbind_all[/thrive:input]. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie."
 
-#: ../src/general/OptionsMenu.tscn:1279 ../src/general/OptionsMenu.tscn:1389
+#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind assen samen"
 
@@ -543,11 +543,11 @@ msgstr "Bioom: {0}"
 msgid "BRAVE"
 msgstr "Dapper"
 
-#: ../src/modding/ModUploader.tscn:260
+#: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
 msgstr "Blader"
 
-#: ../src/modding/ModManager.tscn:508
+#: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
 msgstr "Blader Workshop"
 
@@ -572,16 +572,16 @@ msgstr "Dit membraan heeft een sterke schelp gemaakt van calcium carbonaat. Het 
 msgid "CAMERA"
 msgstr "Camera"
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
-#: ../src/modding/NewModGUI.tscn:473
+#: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "Annuleer"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1268
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULEER ACTIE"
 
@@ -700,7 +700,7 @@ msgstr "Verander symmetrie"
 msgid "CHEATS"
 msgstr "Cheats"
 
-#: ../src/general/OptionsMenu.tscn:1717
+#: ../src/general/OptionsMenu.tscn:1716
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-toetsen ingeschakeld"
 
@@ -790,7 +790,7 @@ msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelhei
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "De gekozen bestandsnaam({0}) is al in gebruik. Overschrijven?"
 
-#: ../src/general/OptionsMenu.tscn:439
+#: ../src/general/OptionsMenu.tscn:438
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
@@ -819,28 +819,28 @@ msgstr "Verhoogt de draaisnelheid van grote cellen."
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Oude Opslagbestanden Opschonen"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2161
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/charts/line/LineChart.tscn:262
+#: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1371
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:1002
+#: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Sluiten"
 
-#: ../src/general/OptionsMenu.tscn:2016
+#: ../src/general/OptionsMenu.tscn:2015
 msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolk resolutiedeler:"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:963
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Wolksimulatie minimum interval:"
 
@@ -852,11 +852,11 @@ msgstr "Kust"
 msgid "COLLISION_SHAPE"
 msgstr "Plaats entiteiten met botsingsvorm"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
 msgid "COLOUR"
 msgstr "Kleur"
 
-#: ../src/general/OptionsMenu.tscn:401
+#: ../src/general/OptionsMenu.tscn:400
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kleurenblindheid-correctie:"
 
@@ -933,7 +933,7 @@ msgstr "Gemeenschapswiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Bezoek onze gemeenschapswiki"
 
-#: ../src/general/OptionsMenu.tscn:1904
+#: ../src/general/OptionsMenu.tscn:1903
 msgid "COMPILED_AT_COLON"
 msgstr "Gebouwd op:"
 
@@ -959,7 +959,7 @@ msgstr "Verbindingen:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Stofbalanzen"
 
-#: ../src/general/OptionsMenu.tscn:949
+#: ../src/general/OptionsMenu.tscn:948
 msgid "COMPOUND_CLOUDS"
 msgstr "Samenstellings-wolken"
 
@@ -1018,7 +1018,7 @@ msgstr "Sommige instellingen zijn ongeldig"
 msgid "CONFIRM_NORMAL"
 msgstr "Bevestigen"
 
-#: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshopinhoud zal geupload worden uit de map: {0}"
 
@@ -1044,7 +1044,7 @@ msgstr "Doorgaan naar de faseprototypen?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizatie Assen Spelbesturingsapparaat:"
 
-#: ../src/general/OptionsMenu.tscn:1448
+#: ../src/general/OptionsMenu.tscn:1447
 msgid "CONTROLLER_DEADZONES"
 msgstr "Deadzones Spelbesturingsapparaat"
 
@@ -1059,11 +1059,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Deadzone:"
 
-#: ../src/general/OptionsMenu.tscn:579
+#: ../src/general/OptionsMenu.tscn:578
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
 
-#: ../src/general/OptionsMenu.tscn:1376
+#: ../src/general/OptionsMenu.tscn:1375
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Gevoeligheid spelbesturingsapparaat"
 
@@ -1071,19 +1071,19 @@ msgstr "Gevoeligheid spelbesturingsapparaat"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopieer Fout naar Klembord"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
 msgid "COPY_RESULTS"
 msgstr "Kopieer Resultaten"
 
-#: ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopie (Rood-Groen)"
 
-#: ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Blauw-Geel)"
 
-#: ../src/modding/NewModGUI.tscn:466
+#: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
 msgstr "Creëer"
 
@@ -1099,7 +1099,7 @@ msgstr "Gemaakt op Platform:"
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Maak een nieuwe microbe"
 
-#: ../src/modding/ModUploader.tscn:122
+#: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
 msgstr "Maak Nieuw"
 
@@ -1111,7 +1111,7 @@ msgstr "Maak een nieuw celtype"
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Je kunt nieuwe soorten cellen maken door bestaande cellen te dupliceren en ze een nieuwe naam te geven. Celtypes kunnen aangepast worden om ze te specialiseren voor verschillende functies. Wanneer je een celtype aanpast zullen alle geplaatste cellen van dat type geüpdated worden."
 
-#: ../src/modding/NewModGUI.tscn:34
+#: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
 msgstr "Maak Nieuwe Mod"
 
@@ -1178,7 +1178,7 @@ msgstr ""
 "  Gemiddeld hexformaat: {9}\n"
 "[b]Algemene Organeldata:[/b]"
 
-#: ../src/general/OptionsMenu.tscn:1736
+#: ../src/general/OptionsMenu.tscn:1735
 msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam:"
 
@@ -1310,7 +1310,7 @@ msgstr "Beschrijving is te lang"
 msgid "DESPAWN_ENTITIES"
 msgstr "Verwijderen Alle Broedsels"
 
-#: ../src/general/OptionsMenu.tscn:1076
+#: ../src/general/OptionsMenu.tscn:1075
 msgid "DETECTED_CPU_COUNT"
 msgstr "Gedetecteerde CPU count:"
 
@@ -1399,7 +1399,7 @@ msgstr "Normaal"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Verteringsefficiëntie"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Verteringsefficiëntie:"
 
@@ -1407,7 +1407,7 @@ msgstr "Verteringsefficiëntie:"
 msgid "DIGESTION_SPEED"
 msgstr "Verteringssnelheid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:897
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Verteringssnelheid:"
 
@@ -1423,19 +1423,19 @@ msgstr "Links"
 msgid "DIRECTIONR"
 msgstr "Rechts"
 
-#: ../src/general/OptionsMenu.tscn:331 ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:330 ../src/general/OptionsMenu.tscn:331
 msgid "DISABLED"
 msgstr "Uitgeschakeld"
 
-#: ../src/modding/ModManager.tscn:216
+#: ../src/modding/ModManager.tscn:215
 msgid "DISABLE_ALL"
 msgstr "Schakel Alles Uit"
 
-#: ../src/general/OptionsMenu.tscn:2069
+#: ../src/general/OptionsMenu.tscn:2068
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuleren en doorgaan"
 
-#: ../src/modding/ModManager.tscn:589
+#: ../src/modding/ModManager.tscn:588
 msgid "DISCARD_CHANGES"
 msgstr "Annuleren en Doorgaan"
 
@@ -1459,11 +1459,11 @@ msgstr ""
 "Er zijn geplaatste metaballen die niet met de rest verbonden zijn.\n"
 "Gelieve alle geplaatste metaballen naast de anderen te plaatsen alvorens verder te gaan."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1300
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Losgekoppelde Organellen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Er zijn geplaatste organellen die niet aan de rest zijn verbonden.\n"
@@ -1473,11 +1473,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Word lid van onze gemeenschapsdiscordserver"
 
-#: ../src/general/OptionsMenu.tscn:1810
+#: ../src/general/OptionsMenu.tscn:1809
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Afgewezen popupvensters:"
 
-#: ../src/general/OptionsMenu.tscn:1808 ../src/general/OptionsMenu.tscn:1817
+#: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Dit toont hoeveel vensters permanent uitgezet zijn door de gebruiker.\n"
@@ -1487,15 +1487,15 @@ msgstr ""
 msgid "DISMISS_PERMANENTLY"
 msgstr "Dit niet nogmaals weergeven"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Toon Capaciteiten Balk"
 
-#: ../src/general/OptionsMenu.tscn:468
+#: ../src/general/OptionsMenu.tscn:467
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Achtergronddeeltjes weergeven"
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:627
 msgid "DISPLAY_PART_NAMES"
 msgstr "Toon knopnamen van onderdelenselectie"
 
@@ -1683,15 +1683,15 @@ msgstr ""
 "\n"
 "Wanneer je klaar bent, klik dan op de knop \"volgende\" rechtsonder om door te gaan."
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/modding/ModManager.tscn:198
+#: ../src/modding/ModManager.tscn:197
 msgid "ENABLED_MODS"
 msgstr "Aangezette Mods"
 
-#: ../src/modding/ModManager.tscn:567
+#: ../src/modding/ModManager.tscn:566
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Zet Alle Bruikbare Mods Aan"
 
@@ -1699,7 +1699,7 @@ msgstr "Zet Alle Bruikbare Mods Aan"
 msgid "ENABLE_EDITOR"
 msgstr "Schakel de editor in"
 
-#: ../src/general/OptionsMenu.tscn:619
+#: ../src/general/OptionsMenu.tscn:618
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
 
@@ -1723,11 +1723,11 @@ msgstr "Energy Bronnen:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Totale opgehaalde energie is {0} met een individuele kostenpost van {1}. Het resultaat is een niet bijgestelde bevolking van {2}"
 
-#: ../src/modding/ModUploader.tscn:129
+#: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
 msgstr "Vul Bestaande ID In"
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "Vul Bestaande Workshop ID In"
 
@@ -1756,7 +1756,7 @@ msgstr "Toon / verberg omgeving"
 msgid "EPIPELAGIC"
 msgstr "Epipelechisch"
 
-#: ../src/general/OptionsMenu.tscn:2097 ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
 msgstr "ERROR"
 
@@ -1768,7 +1768,7 @@ msgstr "Fout in het maken van map voor mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Fout met het maken van het mod informatiebestand"
 
-#: ../src/general/OptionsMenu.tscn:2107
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
 
@@ -1811,11 +1811,11 @@ msgstr ""
 "\n"
 "Als beiden niet van toepassing zijn, heeft zich een fout voorgedaan. In dat geval, gelieve het ontwikkelteam inlichten en spellogbestanden aanleveren."
 
-#: ../src/general/OptionsMenu.tscn:1876
+#: ../src/general/OptionsMenu.tscn:1875
 msgid "EXACT_VERSION_COLON"
 msgstr "Exacte Thrive Versie:"
 
-#: ../src/general/OptionsMenu.tscn:1874 ../src/general/OptionsMenu.tscn:1885
+#: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
@@ -1847,7 +1847,7 @@ msgstr "Exporteer alle data van deze wereld naar een komma-gescheiden waarden (c
 msgid "EXPORT_SUCCESS"
 msgstr "Export was Succesvol"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:618
 msgid "EXTERNAL"
 msgstr "Extern"
 
@@ -1893,7 +1893,7 @@ msgstr "Extra Opties"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Bezoek onze Facebookpagina"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1157
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
 msgid "FAILED"
 msgstr "Mislukt"
 
@@ -1996,11 +1996,11 @@ msgstr "Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de beweging
 msgid "FLOATING_HAZARD"
 msgstr "Drijvend gevaar"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:707
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
 msgid "FLUID"
 msgstr "Flexibel"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:687
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Vloeibaarheid / Stijfheid"
 
@@ -2023,11 +2023,11 @@ msgstr "Voedselketen"
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energie: {1} (fitheid: {2}) totale hoeveelheid energie {3} (totale fitheid: {4})"
 
-#: ../src/modding/ModUploader.tscn:287
+#: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
 msgstr "Verwijder Lokale Data"
 
-#: ../src/modding/ModUploader.tscn:285
+#: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Verwijder lokale data met betrekking tot dit item. Dit kan nuttig zijn als je een verkeerd ID hebt ingevuld of een nieuwe versie naar een ander item wil uploaden."
 
@@ -2057,14 +2057,14 @@ msgstr "Fossilizeer deze zoort (al gefossilizeerd)"
 msgid "FOSSILISE"
 msgstr "Fosillizeren"
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "FOUR_TIMES"
 msgstr "4x"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
-#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:60
+#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
@@ -2088,11 +2088,11 @@ msgstr "Beschikbare glucosewolk bij het verlaten van de bewerker"
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(start met een beschikbare glucosewolk in de buurt van elke generatie)"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:284
 msgid "FULLSCREEN"
 msgstr "Volledig Scherm"
 
-#: ../src/modding/ModManager.tscn:596
+#: ../src/modding/ModManager.tscn:595
 msgid "FULL_MOD_INFO"
 msgstr "Volledige Mod Info"
 
@@ -2112,7 +2112,7 @@ msgstr "Algemeen"
 msgid "GENERATIONS"
 msgstr "Generatie"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:929
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
 
@@ -2185,11 +2185,11 @@ msgstr "Ik snap het"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL Licentie text volgt:"
 
-#: ../src/general/OptionsMenu.tscn:478
+#: ../src/general/OptionsMenu.tscn:477
 msgid "GPU_NAME"
 msgstr "GPU:"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:171
 msgid "GRAPHICS"
 msgstr "Grafische Kwaliteit"
 
@@ -2197,7 +2197,7 @@ msgstr "Grafische Kwaliteit"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafisch Team"
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:561
 msgid "GUI"
 msgstr "GGI"
 
@@ -2213,7 +2213,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "UI Tabblad Navigatie"
 
-#: ../src/general/OptionsMenu.tscn:810
+#: ../src/general/OptionsMenu.tscn:809
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
@@ -2235,11 +2235,11 @@ msgstr "Hulp"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hoe het spel te spelen"
 
-#: ../src/general/OptionsMenu.tscn:971 ../src/general/OptionsMenu.tscn:1021
+#: ../src/general/OptionsMenu.tscn:970 ../src/general/OptionsMenu.tscn:1020
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(hogere waarden verbeteren prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:316 ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:315 ../src/general/OptionsMenu.tscn:1178
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(hogere waarden verlagen de prestatie)"
 
@@ -2263,7 +2263,7 @@ msgstr "Houdt [thrive:input]g_free_cursor[/thrive:input] ingedrukt voor muisaanw
 msgid "HOME"
 msgstr "Thuis"
 
-#: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
 msgid "HORIZONTAL_COLON"
 msgstr "Horizontaal:"
 
@@ -2272,7 +2272,7 @@ msgstr "Horizontaal:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Horizontaal (As: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:879
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -2311,7 +2311,7 @@ msgstr "Ijsplaat"
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID is niet een correct nummer"
 
-#: ../src/modding/ModUploader.tscn:153
+#: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "ID Nummer"
 
@@ -2339,11 +2339,11 @@ msgstr "Ingeslokte Materie"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Maak een nieuwe wereld"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:204
 msgid "INPUTS"
 msgstr "Invoer"
 
-#: ../src/gui_common/charts/line/LineChart.tscn:220
+#: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr "Inspecteer"
 
@@ -2397,8 +2397,8 @@ msgstr "Incorrect URL formaat"
 msgid "INVALID_URL_SCHEME"
 msgstr "Incorrect URL protocol"
 
-#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1326
-#: ../src/general/OptionsMenu.tscn:1414 ../src/general/OptionsMenu.tscn:1437
+#: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
+#: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
 msgid "INVERTED"
 msgstr "Omgekeerd"
 
@@ -2429,19 +2429,19 @@ msgstr "Bezoek onze Itch.io pagina"
 msgid "JANUARY"
 msgstr "Januari"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1841
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug modus:"
 
-#: ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Altijd"
 
-#: ../src/general/OptionsMenu.tscn:1857 ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nooit"
 
@@ -2623,7 +2623,7 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:886
+#: ../src/general/OptionsMenu.tscn:885
 msgid "LANGUAGE"
 msgstr "Taal:"
 
@@ -2789,7 +2789,7 @@ msgstr "Hoofd Theorist"
 msgid "LEAD_THEORISTS"
 msgstr "Hoofd Theoristen"
 
-#: ../src/modding/ModManager.tscn:186
+#: ../src/modding/ModManager.tscn:185
 msgid "LEFT_ARROW"
 msgstr "←"
 
@@ -2845,11 +2845,11 @@ msgstr "Hydrothermale bronnen"
 msgid "LIGHT"
 msgstr "Licht"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:390
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:389
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "Gemiddeld"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:348
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:347
 msgid "LIGHT_LEVEL_DAY"
 msgstr "Dag"
 
@@ -2857,7 +2857,7 @@ msgstr "Dag"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} om 12 uur"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:369
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:368
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Nacht"
 
@@ -2865,7 +2865,7 @@ msgstr "Nacht"
 msgid "LIGHT_MAX"
 msgstr "Maximum Licht"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_EXTREME"
 msgstr "Extreem"
 
@@ -2877,31 +2877,31 @@ msgstr "Beperk groei stofgebruik"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_HUGE"
 msgstr "Gigantisch"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_LARGE"
 msgstr "Groot"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_NORMAL"
 msgstr "Normaal"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_SMALL"
 msgstr "Klein"
 
-#: ../src/general/OptionsMenu.tscn:1195 ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_TINY"
 msgstr "Minuscuul"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_LARGE"
 msgstr "Zeer groot"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_SMALL"
 msgstr "Zeer klein"
 
@@ -3035,7 +3035,7 @@ msgstr "Maart"
 msgid "MARINE_SNOW"
 msgstr "Mariene sneeuw"
 
-#: ../src/general/OptionsMenu.tscn:654
+#: ../src/general/OptionsMenu.tscn:653
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
 
@@ -3043,15 +3043,15 @@ msgstr "Master Volume"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
 
-#: ../src/general/OptionsMenu.tscn:370
+#: ../src/general/OptionsMenu.tscn:369
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:385
+#: ../src/general/OptionsMenu.tscn:384
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ongelimiteerd"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum hoeveelheid entiteiten:"
 
@@ -3090,7 +3090,7 @@ msgstr "Media Stoppen"
 msgid "MEGA_YEARS"
 msgstr "Mjr"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:520
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:519
 msgid "MEMBRANE"
 msgstr "Membraan"
 
@@ -3098,7 +3098,7 @@ msgstr "Membraan"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membraan-stevigheid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:669
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
 msgid "MEMBRANE_TYPES"
 msgstr "Membraantypes"
 
@@ -3124,12 +3124,12 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. De snelheid schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
-#: ../src/engine/PerformanceMetrics.tscn:31
+#: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "Prestatietellers"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
-#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:77
+#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Procestijd: {0} s\n"
@@ -3159,11 +3159,11 @@ msgstr "{0} MiB"
 msgid "MICROBE"
 msgstr "Microbe"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:109
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 msgid "MICROBES_COUNT"
 msgstr "Hoeveelheid microben:"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:35
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:592
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbe Prestatietest"
@@ -3422,7 +3422,7 @@ msgstr "{0} Mln"
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Minimum Hoeveelheid om te Detecteren:"
 
-#: ../src/modding/ModManager.tscn:418
+#: ../src/modding/ModManager.tscn:417
 msgid "MINIMUM_VERSION"
 msgstr "Minimum:"
 
@@ -3431,7 +3431,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Niet toegestaan om minder dan {0} dataset(s) te tonen!"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:216
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
 msgid "MISC"
 msgstr "Overig"
 
@@ -3473,7 +3473,7 @@ msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:c
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Gemixt..."
 
-#: ../src/modding/NewModGUI.tscn:68
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Instructies voor modificeren zijn beschikbaar op"
 
@@ -3505,11 +3505,11 @@ msgstr ""
 "\n"
 "Mods moeten worden aangezet na het installeren. Bezoek de modbeheerder door op de mods-knop in het extrasmenu te klikken."
 
-#: ../src/modding/ModManager.tscn:938 ../src/modding/NewModGUI.tscn:395
+#: ../src/modding/ModManager.tscn:937 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Assembly:"
 
-#: ../src/modding/ModManager.tscn:960 ../src/modding/NewModGUI.tscn:418
+#: ../src/modding/ModManager.tscn:959 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Hoofdklasse van de Mod Assembly:"
 
@@ -3537,25 +3537,25 @@ msgstr "{0}: het aanroepen van de ontlaadfunctie van de assembly van de mod is m
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: het aanroepen van de ontlaadfunctie van de assembly van de mod is mislukt met uitzondering: {1}"
 
-#: ../src/modding/ModManager.tscn:287 ../src/modding/ModManager.tscn:680
-#: ../src/modding/NewModGUI.tscn:141
+#: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:679
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr "Auteur van de Mod:"
 
-#: ../src/modding/ModManager.tscn:982
+#: ../src/modding/ModManager.tscn:981
 msgid "MOD_AUTO_HARMONY"
 msgstr "Gebruikt Auto Harmony:"
 
-#: ../src/modding/ModManager.tscn:1009
+#: ../src/modding/ModManager.tscn:1008
 msgid "MOD_CREATION_FAILED"
 msgstr "Aanmaken Mod Mislukt"
 
-#: ../src/modding/ModManager.tscn:445 ../src/modding/ModManager.tscn:724
-#: ../src/modding/NewModGUI.tscn:187
+#: ../src/modding/ModManager.tscn:444 ../src/modding/ModManager.tscn:723
+#: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
 msgstr "Modbeschrijving:"
 
-#: ../src/modding/ModManager.tscn:746 ../src/modding/NewModGUI.tscn:210
+#: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Lange modbeschrijving:"
 
@@ -3571,19 +3571,19 @@ msgstr "{0}: mod's Harmony ontladen mislukt met uitzondering: {1}"
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: heeft geen laadbare bronnen"
 
-#: ../src/modding/ModManager.tscn:784 ../src/modding/NewModGUI.tscn:234
+#: ../src/modding/ModManager.tscn:783 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr "Icoonbestand:"
 
-#: ../src/modding/ModManager.tscn:806 ../src/modding/NewModGUI.tscn:257
+#: ../src/modding/ModManager.tscn:805 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr "Mod Info URL:"
 
-#: ../src/modding/ModManager.tscn:659 ../src/modding/NewModGUI.tscn:95
+#: ../src/modding/ModManager.tscn:658 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr "Interne (Map) Naam:"
 
-#: ../src/modding/ModManager.tscn:828 ../src/modding/NewModGUI.tscn:280
+#: ../src/modding/ModManager.tscn:827 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
 msgstr "Licentie van de Mod:"
 
@@ -3595,60 +3595,60 @@ msgstr "Foutmeldingen bij het laden van de mod"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er is een fout opgetreden bij het laden van een of meerdere mods. Logs kunnen bijkomende informatie bevatten."
 
-#: ../src/modding/ModManager.tscn:1018
+#: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Er hebben zich fouten voorgedaan tijdens het laden of ontladen van een of meerdere mods. Logboeken hebben mogelijk extra informatie."
 
-#: ../src/modding/ModManager.tscn:540
+#: ../src/modding/ModManager.tscn:539
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Notitie: meerdere mods vereisen het herstarten van het spel om correct te laden of ontladen. Laad alleen mods die je vertrouwd aangezien ze mogelijk uitvoerbare code bevatten."
 
-#: ../src/modding/ModManager.tscn:1025
+#: ../src/modding/ModManager.tscn:1024
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Een of meerdere mods hebben een herstart van het spel nodig om correct te laden of ontladen"
 
-#: ../src/modding/ModManager.tscn:894 ../src/modding/NewModGUI.tscn:349
+#: ../src/modding/ModManager.tscn:893 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximum Ondersteunde Thrive Versie:"
 
-#: ../src/modding/ModManager.tscn:872 ../src/modding/NewModGUI.tscn:326
+#: ../src/modding/ModManager.tscn:871 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Minimaal Benodigde Thrive Versie:"
 
-#: ../src/modding/ModManager.tscn:637 ../src/modding/NewModGUI.tscn:118
+#: ../src/modding/ModManager.tscn:636 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
 msgstr "Modnaam:"
 
-#: ../src/modding/ModManager.tscn:916 ../src/modding/NewModGUI.tscn:372
+#: ../src/modding/ModManager.tscn:915 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck Bestand:"
 
-#: ../src/modding/ModManager.tscn:850 ../src/modding/NewModGUI.tscn:303
+#: ../src/modding/ModManager.tscn:849 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Aangeraden Thrive Versie:"
 
-#: ../src/modding/ModUploader.tscn:85
+#: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
 msgstr "Mod om te Uploaden:"
 
-#: ../src/modding/ModUploader.tscn:45 ../src/modding/ModUploader.tscn:308
+#: ../src/modding/ModUploader.tscn:44 ../src/modding/ModUploader.tscn:307
 msgid "MOD_UPLOADER"
 msgstr "Mod Uploader"
 
-#: ../src/modding/ModManager.tscn:318 ../src/modding/ModManager.tscn:702
-#: ../src/modding/NewModGUI.tscn:164
+#: ../src/modding/ModManager.tscn:317 ../src/modding/ModManager.tscn:701
+#: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
 msgstr "Mod Versie:"
 
-#: ../src/modding/ModManager.tscn:477
+#: ../src/modding/ModManager.tscn:476
 msgid "MORE_INFO"
 msgstr "Toon Meer Info"
 
-#: ../src/general/OptionsMenu.tscn:1258
+#: ../src/general/OptionsMenu.tscn:1257
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Muis kijkgevoeligheid"
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Muisgevoeligheid schalen met vensterformaat"
 
@@ -3762,7 +3762,7 @@ msgstr "Meerdere Metaballen"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Meerdere Organellen"
 
-#: ../src/general/OptionsMenu.tscn:309
+#: ../src/general/OptionsMenu.tscn:308
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
 
@@ -3777,7 +3777,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Muziek"
 
-#: ../src/general/OptionsMenu.tscn:705
+#: ../src/general/OptionsMenu.tscn:704
 msgid "MUSIC_VOLUME"
 msgstr "Volume muziek"
 
@@ -3797,9 +3797,9 @@ msgstr "(kost van organellen, membranen en andere items in de editor)"
 msgid "MUTATION_POINTS"
 msgstr "Mutatiepunten"
 
-#: ../src/general/OptionsMenu.tscn:683 ../src/general/OptionsMenu.tscn:734
-#: ../src/general/OptionsMenu.tscn:769 ../src/general/OptionsMenu.tscn:804
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:682 ../src/general/OptionsMenu.tscn:733
+#: ../src/general/OptionsMenu.tscn:768 ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:838
 msgid "MUTE"
 msgstr "Demp"
 
@@ -3807,17 +3807,17 @@ msgstr "Demp"
 msgid "NAME"
 msgstr "Naam:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatieve ATP-balans"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1294
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Je microbe produceert niet genoeg ATP om te overleven!\n"
 "Wil je doorgaan?"
 
-#: ../src/modding/ModManager.tscn:524
+#: ../src/modding/ModManager.tscn:523
 msgid "NEW"
 msgstr "Nieuw"
 
@@ -3863,7 +3863,7 @@ msgstr "Nieuwe naam:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1284
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -3904,7 +3904,7 @@ msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compoun
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/OptionsMenu.tscn:417 ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
 msgid "NONE"
 msgstr "Geen"
 
@@ -3992,7 +3992,7 @@ msgstr "Geen Opslagen Bestanden Gevonden"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Geen map voor opslagbestanden gevonden"
 
-#: ../src/general/OptionsMenu.tscn:2115
+#: ../src/general/OptionsMenu.tscn:2114
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Geen screenshot directory gevonden"
 
@@ -4051,7 +4051,7 @@ msgstr "Bezoek de officiële Revolutionary Games website"
 #: ../src/general/MainMenu.tscn:1009 ../src/general/MainMenu.tscn:1066
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:358
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
@@ -4063,7 +4063,7 @@ msgstr ""
 "Je kan alle problemen die je tegenkomt melden, maar ze zijn momenteel niet de hoogste prioriteit.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
-#: ../src/modding/ModManager.tscn:155
+#: ../src/modding/ModManager.tscn:154
 msgid "OPEN_FOLDER"
 msgstr "Open Map"
 
@@ -4085,11 +4085,11 @@ msgstr "Open het hulpscherm"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Open in Vrije Bouwmodus"
 
-#: ../src/general/OptionsMenu.tscn:1771
+#: ../src/general/OptionsMenu.tscn:1770
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open logs Folder"
 
-#: ../src/modding/ModManager.tscn:485
+#: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "Open Info URL"
 
@@ -4101,7 +4101,7 @@ msgstr "Open organel menu"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Open Map voor Opslagbestanden"
 
-#: ../src/general/OptionsMenu.tscn:1763
+#: ../src/general/OptionsMenu.tscn:1762
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open screenshots"
 
@@ -4109,7 +4109,7 @@ msgstr "Open screenshots"
 msgid "OPEN_THE_MENU"
 msgstr "Open het menu"
 
-#: ../src/general/OptionsMenu.tscn:923
+#: ../src/general/OptionsMenu.tscn:922
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help met vertalen"
 
@@ -4136,7 +4136,7 @@ msgstr "Opties"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pas je instellingen aan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:628
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:627
 msgid "ORGANELLES"
 msgstr "Organellen"
 
@@ -4153,7 +4153,7 @@ msgstr "Pili (enkelvoud: pilus) zijn te vinden op het oppervlak van veel microor
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Kan worden gebruikt om andere cellen te steken of te verdedigen tegen gifstoffen."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistieken"
 
@@ -4202,7 +4202,7 @@ msgstr "Osmoregulatiekosten"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(kost van osmoregulatie van spelersoort)"
 
-#: ../src/modding/NewModGUI.tscn:75
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
 msgstr "onze Wiki"
 
@@ -4363,7 +4363,7 @@ msgstr "Je hebt op {0} voor het laatst Thrive gespeeld, er is één nieuwe uitga
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Je hebt op {0} voor het laatst Thrive gespeeld, er is waren {1} nieuwe uitgaven sinds die tijd"
 
-#: ../src/general/OptionsMenu.tscn:2125
+#: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 msgid "PATCH_NOTES_TITLE"
 msgstr "Patch Notities"
@@ -4430,7 +4430,7 @@ msgstr "Vreedzaam"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:194
+#: ../src/general/OptionsMenu.tscn:193
 msgid "PERFORMANCE"
 msgstr "Prestatie"
 
@@ -4519,7 +4519,7 @@ msgstr "Dupliceer Speler"
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
 
-#: ../src/general/OptionsMenu.tscn:1476
+#: ../src/general/OptionsMenu.tscn:1475
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Speler relatief"
 
@@ -4533,23 +4533,23 @@ msgstr ""
 "Speler\n"
 "Snelheid"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_3"
 msgstr "PlayStation 3"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
-#: ../src/general/OptionsMenu.tscn:1600
+#: ../src/general/OptionsMenu.tscn:1599
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Speel intro video"
 
-#: ../src/general/OptionsMenu.tscn:1608
+#: ../src/general/OptionsMenu.tscn:1607
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel intro bij nieuw spel"
 
@@ -4578,7 +4578,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predatie van {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Zie gedetaileerde informatie over de voorspelling"
 
@@ -4635,7 +4635,7 @@ msgstr "Bescherm recent gemigreerde soorten van soort cap"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Bescherm zojuist gecreëerde soorten van soort cap"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:610
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:609
 msgid "PROTEINS"
 msgstr "Eiwitten"
 
@@ -4697,7 +4697,7 @@ msgstr "Opslagdata wordt gelezen"
 msgid "READY"
 msgstr "Klaar"
 
-#: ../src/modding/ModManager.tscn:374
+#: ../src/modding/ModManager.tscn:373
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Aangeraden Thrive:"
 
@@ -4713,7 +4713,7 @@ msgstr "Opnieuw Doen"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "De laatste actie opnieuw doen"
 
-#: ../src/modding/ModManager.tscn:147 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
 msgstr "Ververs"
 
@@ -4758,7 +4758,7 @@ msgstr "Reproductiemethode:"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Vereist nucleus"
 
-#: ../src/general/OptionsMenu.tscn:904 ../src/general/OptionsMenu.tscn:1946
+#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:1945
 msgid "RESET"
 msgstr "Reset"
 
@@ -4766,23 +4766,23 @@ msgstr "Reset"
 msgid "RESET_DEADZONES"
 msgstr "Herstel Deadzones"
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Herstel Afgewezen Vensters"
 
-#: ../src/general/OptionsMenu.tscn:2006
+#: ../src/general/OptionsMenu.tscn:2005
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Invoer resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1559
+#: ../src/general/OptionsMenu.tscn:1558
 msgid "RESET_KEYBINDINGS"
 msgstr "Herstel Toetsbindingen"
 
-#: ../src/general/OptionsMenu.tscn:1986
+#: ../src/general/OptionsMenu.tscn:1985
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaard"
 
-#: ../src/general/OptionsMenu.tscn:1997
+#: ../src/general/OptionsMenu.tscn:1996
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
 
@@ -4791,7 +4791,7 @@ msgstr "Resetten naar standaard?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Weerstaat basale verzwelging"
 
-#: ../src/general/OptionsMenu.tscn:346
+#: ../src/general/OptionsMenu.tscn:345
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
@@ -4813,7 +4813,7 @@ msgstr "aërobe ademhaling"
 msgid "RESPONSIVE"
 msgstr "Responsief"
 
-#: ../src/modding/ModManager.tscn:1023
+#: ../src/modding/ModManager.tscn:1022
 msgid "RESTART_REQUIRED"
 msgstr "Herstarten Vereist"
 
@@ -4845,7 +4845,7 @@ msgstr ""
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Bezoek officiële Revolutionary Games sites"
 
-#: ../src/modding/ModManager.tscn:173
+#: ../src/modding/ModManager.tscn:172
 msgid "RIGHT_ARROW"
 msgstr "→"
 
@@ -4853,7 +4853,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Rechtermuisknop"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:720
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
 msgid "RIGID"
 msgstr "Rigide"
 
@@ -4869,11 +4869,11 @@ msgstr "Draai naar links"
 msgid "ROTATE_RIGHT"
 msgstr "Draai naar rechts"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:873
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "ROTATION_COLON"
 msgstr "Rotatie:"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
 
@@ -4942,11 +4942,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive is in Veilige Modus Gestart"
 
-#: ../src/general/OptionsMenu.tscn:1960 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Sla op"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2058
 msgid "SAVE_AND_CONTINUE"
 msgstr "Opslaan en doorgaan"
 
@@ -5044,20 +5044,20 @@ msgstr "Opslaan is op dit moment niet mogelijk door:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Opslaan is gelukt"
 
-#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_NONE"
 msgstr "Geen"
 
-#: ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_ON"
 msgstr "Geschaald"
 
-#: ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_ON_INVERSE"
 msgstr "Omgekeerd geschaald"
 
-#: ../src/general/OptionsMenu.tscn:1476 ../src/general/OptionsMenu.tscn:1509
-#: ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
+#: ../src/general/OptionsMenu.tscn:1509
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Relatief aan scherm"
 
@@ -5065,7 +5065,7 @@ msgstr "Relatief aan scherm"
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:594
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:593
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Zoeken..."
 
@@ -5094,7 +5094,7 @@ msgstr "Kiem van Planeet: {0}"
 msgid "SELECTED_COLON"
 msgstr "Geselecteerd:"
 
-#: ../src/modding/ModManager.tscn:253
+#: ../src/modding/ModManager.tscn:252
 msgid "SELECTED_MOD"
 msgstr "Geselecteerde Mod:"
 
@@ -5134,7 +5134,7 @@ msgstr "Selecteer Enzym:"
 msgid "SELECT_OPTION"
 msgstr "Selecteer Een Optie"
 
-#: ../src/modding/ModUploader.tscn:326
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Selecteer Voorbeeld Plaatje"
 
@@ -5154,7 +5154,7 @@ msgstr "Zittend"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Deze waarde wordt alleen toegepast op nieuwe spellen die gestart worden na het wijzigen van deze optie"
 
-#: ../src/general/OptionsMenu.tscn:775
+#: ../src/general/OptionsMenu.tscn:774
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
@@ -5166,11 +5166,11 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Open hulp"
 
-#: ../src/general/OptionsMenu.tscn:1788
+#: ../src/general/OptionsMenu.tscn:1787
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Toon nieuwe patchnotities automatisch"
 
-#: ../src/general/OptionsMenu.tscn:1786
+#: ../src/general/OptionsMenu.tscn:1785
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Toon patchnotities van nieuwe Thrive uitgaven automatisch in het hoofdmenu"
 
@@ -5178,15 +5178,15 @@ msgstr "Toon patchnotities van nieuwe Thrive uitgaven automatisch in het hoofdme
 msgid "SHOW_TUTORIALS"
 msgstr "Toon instructies"
 
-#: ../src/general/OptionsMenu.tscn:1698
+#: ../src/general/OptionsMenu.tscn:1697
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Toon instructies (in huidige spel)"
 
-#: ../src/general/OptionsMenu.tscn:1690
+#: ../src/general/OptionsMenu.tscn:1689
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Toon instructies (in nieuwe spellen)"
 
-#: ../src/general/OptionsMenu.tscn:1705
+#: ../src/general/OptionsMenu.tscn:1704
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Toon waarschuwing voor niet opgeslagen voortgang"
 
@@ -5194,7 +5194,7 @@ msgstr "Toon waarschuwing voor niet opgeslagen voortgang"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Zet het waarschuwingsvenster voor niet opgeslagen voortgang bij het sluiten van het spel aan of uit."
 
-#: ../src/general/OptionsMenu.tscn:1779
+#: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Toon Thrive nieuwsfeed (wordt van het internet gedownload)"
 
@@ -5244,11 +5244,11 @@ msgstr "Siliciumdioxide"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke celmuur van silica. Het kan zeer goed tegen schade en is zeer resistent voor fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel ernstig en de cel kan grondstoffen minder snel opnemen."
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
 msgid "SIZE_COLON"
 msgstr "Grootte:"
 
@@ -5284,7 +5284,7 @@ msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:c
 msgid "SMALL_IRON_CHUNK"
 msgstr "Klein stuk ijzer"
 
-#: ../src/general/OptionsMenu.tscn:183
+#: ../src/general/OptionsMenu.tscn:182
 msgid "SOUND"
 msgstr "Geluid"
 
@@ -5401,7 +5401,7 @@ msgstr "{0} met bevolking: {1}"
 msgid "SPEED"
 msgstr "Snelheid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:867
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
 msgid "SPEED_COLON"
 msgstr "Snelheid:"
 
@@ -5533,7 +5533,7 @@ msgstr "Stop"
 msgid "STORAGE"
 msgstr "Opslag"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:891
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
 msgid "STORAGE_COLON"
 msgstr "Opslag:"
 
@@ -5545,13 +5545,13 @@ msgstr "Ingelogd als: {0}"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Strikt niche competitie(fitnes verschillen zijn overdreven)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:601
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:600
 msgid "STRUCTURAL"
 msgstr "Structureel"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:498
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:497
 msgid "STRUCTURE"
 msgstr "Structuur"
 
@@ -5573,7 +5573,7 @@ msgstr "Verga meteen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:321
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -5719,7 +5719,7 @@ msgstr "Dit is een lokaal geinstalleerde mod"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Deze mod is gedownload van de Steam Workshop"
 
-#: ../src/general/OptionsMenu.tscn:1125
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "THREADS"
 msgstr "Threads:"
 
@@ -5883,7 +5883,7 @@ msgstr "Ontbinden aan/uit"
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1163
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Totale Bevolking:"
 
@@ -5943,7 +5943,7 @@ msgstr "Probeer enkele soorten te fossilizeren!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Probeer een opslagbestand te maken!"
 
-#: ../src/general/OptionsMenu.tscn:2117
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Maak een screenshot!"
 
@@ -6109,7 +6109,7 @@ msgstr "Bekijk Nu"
 msgid "TWITTER_TOOLTIP"
 msgstr "Bezoek onze Twitter feed"
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6117,11 +6117,11 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Type:"
 
-#: ../src/modding/ModManager.tscn:587
+#: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Er zijn niet toegepaste veranderingen"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:587
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Je moet je veranderingen toepassen om mods te laden of ontladen."
 
@@ -6170,11 +6170,11 @@ msgstr "Onbekend op Windows"
 msgid "UNKNOWN_VERSION"
 msgstr "Onbekende versie"
 
-#: ../src/modding/ModUploader.tscn:110
+#: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Onbekende Workshop ID Voor Deze Mod"
 
-#: ../src/general/OptionsMenu.tscn:2036
+#: ../src/general/OptionsMenu.tscn:2035
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen instellingen.\n"
@@ -6200,7 +6200,7 @@ msgstr "De standaard niet-geupgrade staat"
 msgid "UPGRADE_NAME_NONE"
 msgstr "Geen upgrade"
 
-#: ../src/modding/ModManager.tscn:516 ../src/modding/ModUploader.tscn:46
+#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
 msgstr "Uploaden"
 
@@ -6208,7 +6208,7 @@ msgstr "Uploaden"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Uploaden..."
 
-#: ../src/modding/ModUploader.tscn:337
+#: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload was Succesvol"
 
@@ -6216,7 +6216,7 @@ msgstr "Upload was Succesvol"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenties En Gebruikte Bibliotheken"
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:507
 msgid "USED_RENDERER_NAME"
 msgstr "Gebruikte Renderer:"
 
@@ -6224,15 +6224,15 @@ msgstr "Gebruikte Renderer:"
 msgid "USES_FEATURE"
 msgstr "Ja"
 
-#: ../src/modding/NewModGUI.tscn:442
+#: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
 msgstr "Gebruik Auto Harmony Laadmethode"
 
-#: ../src/modding/NewModGUI.tscn:440
+#: ../src/modding/NewModGUI.tscn:439
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet gespecificeerd te worden)"
 
-#: ../src/general/OptionsMenu.tscn:1725
+#: ../src/general/OptionsMenu.tscn:1724
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
 
@@ -6240,11 +6240,11 @@ msgstr "Gebruik een eigen naam"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Soorten die de biodiversiteit vergroten stelen bevolking van bestaande soorten"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1114
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Stel handmatig de nummers van achtergrond threads in"
 
-#: ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1358
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Gebruik virtueel vensterformaat"
 
@@ -6270,7 +6270,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Versie:"
 
-#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
 msgid "VERTICAL_COLON"
 msgstr "Verticaal:"
 
@@ -6279,11 +6279,11 @@ msgstr "Verticaal:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Verticaal (As: {0})"
 
-#: ../src/general/OptionsMenu.tscn:535
+#: ../src/general/OptionsMenu.tscn:534
 msgid "VIDEO_MEMORY"
 msgstr "Videogeheugen nu in gebruik:"
 
-#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -6296,11 +6296,11 @@ msgstr "Kijker"
 msgid "VIEW_ALL"
 msgstr "Toon alle"
 
-#: ../src/general/OptionsMenu.tscn:1796
+#: ../src/general/OptionsMenu.tscn:1795
 msgid "VIEW_PATCH_NOTES"
 msgstr "Zie Patchnotities"
 
-#: ../src/general/OptionsMenu.tscn:1794
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Zie nu meest recente of alle Thrive patchnotities"
 
@@ -6312,7 +6312,7 @@ msgstr "Ga naar broncode"
 msgid "VIP_PATRONS"
 msgstr "VIP Ondersteuners"
 
-#: ../src/modding/ModUploader.tscn:210
+#: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
 msgstr "Zichtbaar"
 
@@ -6336,7 +6336,7 @@ msgstr "Geluid Uit"
 msgid "VOLUMEUP"
 msgstr "Geluid Harder"
 
-#: ../src/general/OptionsMenu.tscn:277
+#: ../src/general/OptionsMenu.tscn:276
 msgid "VSYNC"
 msgstr "vSync"
 
@@ -6376,35 +6376,35 @@ msgstr "Scroll omhoog"
 msgid "WILL_YOU_THRIVE"
 msgstr "Zul jij overleven?"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:83
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "JE HEBT GETHRIVED!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:92
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Gefeliciteerd, je hebt deze versie van Thrive gewonnen! Je kunt verder spelen nadat dit bericht verdwijnt, of een nieuw spel in een nieuwe wereld beginnen. Je kunt ook bindingsmiddelen toevoegen om een celkolonie te starten en latere spelprototypen te proberen."
 
-#: ../src/modding/ModUploader.tscn:295
+#: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "Verandernotities Item"
 
-#: ../src/modding/ModUploader.tscn:293 ../src/modding/ModUploader.tscn:302
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "Verandernotities om te laten zien op de Steam workshop voor deze versie van dit item (optioneel)"
 
-#: ../src/modding/ModUploader.tscn:187
+#: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "Itembeschrijving:"
 
-#: ../src/modding/ModUploader.tscn:234
+#: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr "Item Voorbeeld Afbeelding:"
 
-#: ../src/modding/ModUploader.tscn:216
+#: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr "Item Etiketten (gescheiden met komma \",\"):"
 
-#: ../src/modding/ModUploader.tscn:169
+#: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "Itemtitel:"
 
@@ -6420,7 +6420,7 @@ msgstr "Het uploaden van het item naar de Steam Workshop was succesvol, maar je 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "Door dit item in te dienen, ga je akkoord met de [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]gebruiksvoorwaarden[/url][/color] van de Steam Workshop"
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr "Zodra een item zichtbaar is gemaakt zal het voor iedereen zichtbaar zijn"
 
@@ -6443,23 +6443,23 @@ msgstr ""
 "Voeg latere faseprototypen toe: {0}\n"
 "Voeg Paaseieren toe: {1}"
 
-#: ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1509
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1200
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtse Gebied:"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 

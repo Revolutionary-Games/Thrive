@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:45+0700\n"
+"POT-Creation-Date: 2023-02-24 16:13+0700\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr "3차원 편집기"
 msgid "3D_MOVEMENT"
 msgstr "3차원 이동"
 
-#: ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1093
+#: ../src/general/OptionsMenu.tscn:1092
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "저장 및 계속"
@@ -142,7 +142,7 @@ msgstr "생체 상태창"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:740
+#: ../src/general/OptionsMenu.tscn:739
 msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
 
@@ -153,11 +153,11 @@ msgstr "배경 음량"
 msgid "AMMONIA"
 msgstr "암모니아"
 
-#: ../src/general/OptionsMenu.tscn:1635
+#: ../src/general/OptionsMenu.tscn:1634
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "저장할 수 있는 자동저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:1663
+#: ../src/general/OptionsMenu.tscn:1662
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "저장할 수 있는 빠른저장 갯수:"
 
@@ -170,11 +170,11 @@ msgid "APPEARANCE"
 msgstr "외관"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
-#: ../src/modding/ModUploader.tscn:159
+#: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
 msgstr ""
 
@@ -182,11 +182,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1998
+#: ../src/general/OptionsMenu.tscn:1997
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:2007
+#: ../src/general/OptionsMenu.tscn:2006
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
@@ -216,7 +216,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
@@ -235,7 +235,7 @@ msgstr "대기 가스"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:974
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ATP_BALANCE"
 msgstr "ATP 균형"
 
@@ -257,7 +257,7 @@ msgstr "자동 진화 실행 실패"
 msgid "AT_CURSOR"
 msgstr "커서 위치에서:"
 
-#: ../src/general/OptionsMenu.tscn:857
+#: ../src/general/OptionsMenu.tscn:856
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -265,12 +265,12 @@ msgstr ""
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:597
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1476
+#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1475
 msgid "AUTO"
 msgstr "자동"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1362
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "이 패널은 Auto-Evo가 예측에 사용하는 숫자들을 보여줍니다. 하나의 종이 얻을 수 있는 에너지의 총량과 그 종의 한 개체당 필요한 에너지 비용이 최종 개체수를 결정합니다. Auto-Evo는 현실을 간략화한 모델을 사용하여 하나의 종이 얻을 수 있는 에너지로부터 그 종이 얼마나 잘 기능하고 있는지 계산합니다. 각각의 에너지원에 대해, 종이 해당 에너지원으로부터 얻는 에너지의 양이 표시됩니다. 이에 더하여 해당 에너지원으로부터 얻을 수 있는 에너지의 총량이 표시됩니다. 주어진 에너지의 총량에 비해 해당 종이 얻는 양의 비율은 해당 종의 적합도가 적합도 총량에 비해 얼마나 높은지에 따라 결정됩니다. 적합도는 종이 에너지원을 얼마나 잘 활용할 수 있는지 측정하는 지표입니다."
 
@@ -278,12 +278,12 @@ msgstr "이 패널은 Auto-Evo가 예측에 사용하는 숫자들을 보여줍�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "다음으로 인하여 {0} 개체수가 {2}에서 {1}(으)로 변함: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1091
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1318
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo 예측"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1087
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "이 패널은 Auto-Evo가 예측한 편집되는 종의 개체수를 보여줍니다.\n"
@@ -293,7 +293,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
 
-#: ../src/general/OptionsMenu.tscn:1624
+#: ../src/general/OptionsMenu.tscn:1623
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "진행 중 자동 저장"
 
@@ -332,12 +332,12 @@ msgstr "실행 상태:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "자동 앞으로 이동"
 
-#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:359
+#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:358
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "해상도:"
 
-#: ../src/modding/ModManager.tscn:124
+#: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
 msgstr ""
 
@@ -349,9 +349,9 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:562
 #: ../src/general/MainMenu.tscn:618 ../src/general/MainMenu.tscn:941
 #: ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1935 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:122
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr "뒤로"
@@ -427,7 +427,7 @@ msgstr "Thrive 시작"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:542
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:541
 #, fuzzy
 msgid "BEHAVIOUR"
 msgstr "행동"
@@ -465,20 +465,20 @@ msgstr "해수면으로부터 {0}-{1}m"
 msgid "BENCHMARKS"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:156
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "불러오기 완료"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:78
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "종:"
@@ -516,7 +516,7 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/general/OptionsMenu.tscn:1279 ../src/general/OptionsMenu.tscn:1389
+#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -549,11 +549,11 @@ msgstr "생태계: {0}"
 msgid "BRAVE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:260
+#: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:508
+#: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
@@ -578,16 +578,16 @@ msgstr "이 세포막은 탄산 칼슘으로 만든 강한 껍질을 가지고 �
 msgid "CAMERA"
 msgstr "카메라"
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
-#: ../src/modding/NewModGUI.tscn:473
+#: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "취소"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1268
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "확인"
@@ -712,7 +712,7 @@ msgstr "연대 변경"
 msgid "CHEATS"
 msgstr "치트"
 
-#: ../src/general/OptionsMenu.tscn:1717
+#: ../src/general/OptionsMenu.tscn:1716
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "치트 키 활성화"
 
@@ -810,7 +810,7 @@ msgstr "엽록체는 감광성 안료가 막낭에 쌓여있는 이중 막 구�
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "선택한 파일명 ({0}) 은 이미 존재합니다. 덮어쓰겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:439
+#: ../src/general/OptionsMenu.tscn:438
 msgid "CHROMATIC_ABERRATION"
 msgstr "색수차:"
 
@@ -843,28 +843,28 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2161
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/charts/line/LineChart.tscn:262
+#: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1371
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:1002
+#: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "닫기"
 
-#: ../src/general/OptionsMenu.tscn:2016
+#: ../src/general/OptionsMenu.tscn:2015
 msgid "CLOSE_OPTIONS"
 msgstr "설정을 종료합니까?"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "구름 해상도 인자:"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:963
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "최소 구름 시뮬레이션\n"
@@ -878,11 +878,11 @@ msgstr "해안"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
 msgid "COLOUR"
 msgstr "색"
 
-#: ../src/general/OptionsMenu.tscn:401
+#: ../src/general/OptionsMenu.tscn:400
 msgid "COLOURBLIND_CORRECTION"
 msgstr "색맹 교정:"
 
@@ -962,7 +962,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1904
+#: ../src/general/OptionsMenu.tscn:1903
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "화합물:"
@@ -991,7 +991,7 @@ msgstr "화합물:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
-#: ../src/general/OptionsMenu.tscn:949
+#: ../src/general/OptionsMenu.tscn:948
 msgid "COMPOUND_CLOUDS"
 msgstr "화합물 구름"
 
@@ -1057,7 +1057,7 @@ msgstr "새로운 키 배치 추가"
 msgid "CONFIRM_NORMAL"
 msgstr "확인"
 
-#: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
@@ -1078,7 +1078,7 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1448
+#: ../src/general/OptionsMenu.tscn:1447
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1093,11 +1093,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:579
+#: ../src/general/OptionsMenu.tscn:578
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1376
+#: ../src/general/OptionsMenu.tscn:1375
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1105,20 +1105,20 @@ msgstr ""
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "클립보드에 오류 복사"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
 #, fuzzy
 msgid "COPY_RESULTS"
 msgstr "Auto-evo 결과:"
 
-#: ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:466
+#: ../src/modding/NewModGUI.tscn:465
 #, fuzzy
 msgid "CREATE"
 msgstr "로 생성됨:"
@@ -1135,7 +1135,7 @@ msgstr "생성된 매체:"
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "새 미생물 생성"
 
-#: ../src/modding/ModUploader.tscn:122
+#: ../src/modding/ModUploader.tscn:121
 #, fuzzy
 msgid "CREATE_NEW"
 msgstr "새 저장 생성"
@@ -1150,7 +1150,7 @@ msgstr "새 저장 생성"
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
-#: ../src/modding/NewModGUI.tscn:34
+#: ../src/modding/NewModGUI.tscn:33
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "새 미생물 생성"
@@ -1203,7 +1203,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/general/OptionsMenu.tscn:1736
+#: ../src/general/OptionsMenu.tscn:1735
 msgid "CUSTOM_USERNAME"
 msgstr "임의 사용자 이름:"
 
@@ -1343,7 +1343,7 @@ msgstr "설명:"
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1076
+#: ../src/general/OptionsMenu.tscn:1075
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "선택됨:"
@@ -1422,7 +1422,7 @@ msgstr "보통"
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "설명:"
@@ -1432,7 +1432,7 @@ msgstr "설명:"
 msgid "DIGESTION_SPEED"
 msgstr "자원 흡수 속도"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:897
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "속도:"
@@ -1451,19 +1451,19 @@ msgstr "설명:"
 msgid "DIRECTIONR"
 msgstr "설명:"
 
-#: ../src/general/OptionsMenu.tscn:331 ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:330 ../src/general/OptionsMenu.tscn:331
 msgid "DISABLED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:216
+#: ../src/modding/ModManager.tscn:215
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2069
+#: ../src/general/OptionsMenu.tscn:2068
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
 
-#: ../src/modding/ModManager.tscn:589
+#: ../src/modding/ModManager.tscn:588
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "취소 및 계속"
@@ -1492,11 +1492,11 @@ msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1300
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "단절된 세포기관"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
@@ -1507,12 +1507,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1810
+#: ../src/general/OptionsMenu.tscn:1809
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "속도:"
 
-#: ../src/general/OptionsMenu.tscn:1808 ../src/general/OptionsMenu.tscn:1817
+#: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -1521,16 +1521,16 @@ msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:610
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "능력"
 
-#: ../src/general/OptionsMenu.tscn:468
+#: ../src/general/OptionsMenu.tscn:467
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:627
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "능력"
@@ -1724,17 +1724,17 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "마우스 오른쪽 버튼"
 
-#: ../src/modding/ModManager.tscn:198
+#: ../src/modding/ModManager.tscn:197
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "편집기 활성화"
 
-#: ../src/modding/ModManager.tscn:567
+#: ../src/modding/ModManager.tscn:566
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "선택된 저장은 호환되지 않습니다"
@@ -1743,7 +1743,7 @@ msgstr "선택된 저장은 호환되지 않습니다"
 msgid "ENABLE_EDITOR"
 msgstr "편집기 활성화"
 
-#: ../src/general/OptionsMenu.tscn:619
+#: ../src/general/OptionsMenu.tscn:618
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "외부 효과:"
@@ -1768,12 +1768,12 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:129
+#: ../src/modding/ModUploader.tscn:128
 #, fuzzy
 msgid "ENTER_EXISTING_ID"
 msgstr "저장 덮어쓰기:"
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
@@ -1804,7 +1804,7 @@ msgstr "새로운 키 배치 추가"
 msgid "EPIPELAGIC"
 msgstr "표해수층"
 
-#: ../src/general/OptionsMenu.tscn:2097 ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
 msgstr "오류"
 
@@ -1817,7 +1817,7 @@ msgstr "저장 오류"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2107
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
 
@@ -1860,12 +1860,12 @@ msgstr "진화 계보"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1876
+#: ../src/general/OptionsMenu.tscn:1875
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "세대:"
 
-#: ../src/general/OptionsMenu.tscn:1874 ../src/general/OptionsMenu.tscn:1885
+#: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -1901,7 +1901,7 @@ msgstr "새로운 키 배치 추가"
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:618
 msgid "EXTERNAL"
 msgstr "외부의"
 
@@ -1950,7 +1950,7 @@ msgstr "추가 설정"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1157
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
 #, fuzzy
 msgid "FAILED"
 msgstr "저장 실패"
@@ -2053,11 +2053,11 @@ msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 �
 msgid "FLOATING_HAZARD"
 msgstr "부동 위험"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:707
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:687
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
 msgid "FLUIDITY_RIGIDITY"
 msgstr "유동성 / 강도"
 
@@ -2077,11 +2077,11 @@ msgstr "먹이 사슬"
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:287
+#: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:285
+#: ../src/modding/ModUploader.tscn:284
 #, fuzzy
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "재개"
@@ -2115,14 +2115,14 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "FOUR_TIMES"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
-#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:60
+#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "최대 FPS:"
@@ -2148,11 +2148,11 @@ msgstr ""
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:284
 msgid "FULLSCREEN"
 msgstr "전체화면"
 
-#: ../src/modding/ModManager.tscn:596
+#: ../src/modding/ModManager.tscn:595
 msgid "FULL_MOD_INFO"
 msgstr ""
 
@@ -2172,7 +2172,7 @@ msgstr "일반"
 msgid "GENERATIONS"
 msgstr "세대"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:929
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
 msgid "GENERATION_COLON"
 msgstr "세대:"
 
@@ -2246,12 +2246,12 @@ msgstr "알겠습니다"
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:478
+#: ../src/general/OptionsMenu.tscn:477
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "동굴"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:171
 msgid "GRAPHICS"
 msgstr "그래픽"
 
@@ -2260,7 +2260,7 @@ msgstr "그래픽"
 msgid "GRAPHICS_TEAM"
 msgstr "그래픽"
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:561
 msgid "GUI"
 msgstr ""
 
@@ -2274,7 +2274,7 @@ msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 �
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} 천"
 
-#: ../src/general/OptionsMenu.tscn:810
+#: ../src/general/OptionsMenu.tscn:809
 msgid "GUI_VOLUME"
 msgstr "GUI 음량"
 
@@ -2297,11 +2297,11 @@ msgstr "도움말"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:971 ../src/general/OptionsMenu.tscn:1021
+#: ../src/general/OptionsMenu.tscn:970 ../src/general/OptionsMenu.tscn:1020
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(높은 값일수록 더 나은 성능)"
 
-#: ../src/general/OptionsMenu.tscn:316 ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:315 ../src/general/OptionsMenu.tscn:1178
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(값이 커질수록 성능이 저하됩니다)"
 
@@ -2325,7 +2325,7 @@ msgstr ""
 msgid "HOME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "세대:"
@@ -2335,7 +2335,7 @@ msgstr "세대:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:879
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
 msgid "HP_COLON"
 msgstr "생명력:"
 
@@ -2374,7 +2374,7 @@ msgstr "빙붕"
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:153
+#: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr ""
 
@@ -2405,11 +2405,11 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:204
 msgid "INPUTS"
 msgstr "입력"
 
-#: ../src/gui_common/charts/line/LineChart.tscn:220
+#: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr ""
 
@@ -2466,8 +2466,8 @@ msgstr ""
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1326
-#: ../src/general/OptionsMenu.tscn:1414 ../src/general/OptionsMenu.tscn:1437
+#: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
+#: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
 msgid "INVERTED"
 msgstr ""
 
@@ -2495,19 +2495,19 @@ msgstr "새로운 키 배치 추가"
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1841
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1857 ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -2696,7 +2696,7 @@ msgstr ""
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:886
+#: ../src/general/OptionsMenu.tscn:885
 msgid "LANGUAGE"
 msgstr "언어:"
 
@@ -2864,7 +2864,7 @@ msgstr ""
 msgid "LEAD_THEORISTS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:186
+#: ../src/modding/ModManager.tscn:185
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "마우스 왼쪽 버튼"
@@ -2922,11 +2922,11 @@ msgstr ""
 msgid "LIGHT"
 msgstr "빛"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:390
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:389
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:348
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:347
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -2934,7 +2934,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:369
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:368
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "휠 오른쪽으로"
@@ -2944,7 +2944,7 @@ msgstr "휠 오른쪽으로"
 msgid "LIGHT_MAX"
 msgstr "빛"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "추가요소"
@@ -2958,32 +2958,32 @@ msgstr "확인"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "확인"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1195 ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -3127,7 +3127,7 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "바다눈"
 
-#: ../src/general/OptionsMenu.tscn:654
+#: ../src/general/OptionsMenu.tscn:653
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
@@ -3135,16 +3135,16 @@ msgstr "주 음량"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
 
-#: ../src/general/OptionsMenu.tscn:370
+#: ../src/general/OptionsMenu.tscn:369
 msgid "MAX_FPS"
 msgstr "최대 FPS:"
 
-#: ../src/general/OptionsMenu.tscn:385
+#: ../src/general/OptionsMenu.tscn:384
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "최대 FPS:"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -3185,7 +3185,7 @@ msgstr ""
 msgid "MEGA_YEARS"
 msgstr "백만 년"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:520
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:519
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "세포막 유형"
@@ -3194,7 +3194,7 @@ msgstr "세포막 유형"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "세포막 강도"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:669
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
 msgid "MEMBRANE_TYPES"
 msgstr "세포막 유형"
 
@@ -3221,13 +3221,13 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
-#: ../src/engine/PerformanceMetrics.tscn:31
+#: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "FPS 표시 전환"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
-#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:77
+#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
@@ -3248,7 +3248,7 @@ msgstr ""
 "\n"
 "이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:109
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 #, fuzzy
 msgid "MICROBES_COUNT"
 msgstr ""
@@ -3260,7 +3260,7 @@ msgstr ""
 "\n"
 "이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:35
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:592
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
@@ -3501,7 +3501,7 @@ msgstr "{0} 백만"
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:418
+#: ../src/modding/ModManager.tscn:417
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "버전:"
@@ -3512,7 +3512,7 @@ msgstr "버전:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:216
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
 msgid "MISC"
 msgstr "기타"
 
@@ -3558,7 +3558,7 @@ msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 �
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/modding/NewModGUI.tscn:68
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
@@ -3588,11 +3588,11 @@ msgstr ""
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:938 ../src/modding/NewModGUI.tscn:395
+#: ../src/modding/ModManager.tscn:937 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:960 ../src/modding/NewModGUI.tscn:418
+#: ../src/modding/ModManager.tscn:959 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
@@ -3620,27 +3620,27 @@ msgstr ""
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:287 ../src/modding/ModManager.tscn:680
-#: ../src/modding/NewModGUI.tscn:141
+#: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:679
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:982
+#: ../src/modding/ModManager.tscn:981
 msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1009
+#: ../src/modding/ModManager.tscn:1008
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/modding/ModManager.tscn:445 ../src/modding/ModManager.tscn:724
-#: ../src/modding/NewModGUI.tscn:187
+#: ../src/modding/ModManager.tscn:444 ../src/modding/ModManager.tscn:723
+#: ../src/modding/NewModGUI.tscn:186
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "설명:"
 
-#: ../src/modding/ModManager.tscn:746 ../src/modding/NewModGUI.tscn:210
+#: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -3659,19 +3659,19 @@ msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소�
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:784 ../src/modding/NewModGUI.tscn:234
+#: ../src/modding/ModManager.tscn:783 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:806 ../src/modding/NewModGUI.tscn:257
+#: ../src/modding/ModManager.tscn:805 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:659 ../src/modding/NewModGUI.tscn:95
+#: ../src/modding/ModManager.tscn:658 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:828 ../src/modding/NewModGUI.tscn:280
+#: ../src/modding/ModManager.tscn:827 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
 msgstr ""
 
@@ -3683,65 +3683,65 @@ msgstr ""
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1018
+#: ../src/modding/ModManager.tscn:1017
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.tscn:540
+#: ../src/modding/ModManager.tscn:539
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.tscn:1025
+#: ../src/modding/ModManager.tscn:1024
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.tscn:894 ../src/modding/NewModGUI.tscn:349
+#: ../src/modding/ModManager.tscn:893 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:872 ../src/modding/NewModGUI.tscn:326
+#: ../src/modding/ModManager.tscn:871 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:637 ../src/modding/NewModGUI.tscn:118
+#: ../src/modding/ModManager.tscn:636 ../src/modding/NewModGUI.tscn:117
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "이름:"
 
-#: ../src/modding/ModManager.tscn:916 ../src/modding/NewModGUI.tscn:372
+#: ../src/modding/ModManager.tscn:915 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
 msgstr "모드 .pck 파일:"
 
-#: ../src/modding/ModManager.tscn:850 ../src/modding/NewModGUI.tscn:303
+#: ../src/modding/ModManager.tscn:849 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:85
+#: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:45 ../src/modding/ModUploader.tscn:308
+#: ../src/modding/ModUploader.tscn:44 ../src/modding/ModUploader.tscn:307
 msgid "MOD_UPLOADER"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:318 ../src/modding/ModManager.tscn:702
-#: ../src/modding/NewModGUI.tscn:164
+#: ../src/modding/ModManager.tscn:317 ../src/modding/ModManager.tscn:701
+#: ../src/modding/NewModGUI.tscn:163
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "버전:"
 
-#: ../src/modding/ModManager.tscn:477
+#: ../src/modding/ModManager.tscn:476
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1258
+#: ../src/general/OptionsMenu.tscn:1257
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -3854,7 +3854,7 @@ msgstr "세포 기관 배치"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "세포 기관 배치"
 
-#: ../src/general/OptionsMenu.tscn:309
+#: ../src/general/OptionsMenu.tscn:308
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "멀티샘플 안티-앨리어싱:"
 
@@ -3866,7 +3866,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "음악"
 
-#: ../src/general/OptionsMenu.tscn:705
+#: ../src/general/OptionsMenu.tscn:704
 msgid "MUSIC_VOLUME"
 msgstr "음악 음량"
 
@@ -3886,9 +3886,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr "변이 점수"
 
-#: ../src/general/OptionsMenu.tscn:683 ../src/general/OptionsMenu.tscn:734
-#: ../src/general/OptionsMenu.tscn:769 ../src/general/OptionsMenu.tscn:804
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:682 ../src/general/OptionsMenu.tscn:733
+#: ../src/general/OptionsMenu.tscn:768 ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:838
 msgid "MUTE"
 msgstr "음소거"
 
@@ -3896,17 +3896,17 @@ msgstr "음소거"
 msgid "NAME"
 msgstr "이름:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "부정적 ATP 균형"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1294
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "미생물이 생존에 필요한 만큼의 ATP를 생산하지 않습니다!\n"
 "계속하시겠습니까?"
 
-#: ../src/modding/ModManager.tscn:524
+#: ../src/modding/ModManager.tscn:523
 msgid "NEW"
 msgstr ""
 
@@ -3956,7 +3956,7 @@ msgstr "속도:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1284
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -4000,7 +4000,7 @@ msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
-#: ../src/general/OptionsMenu.tscn:417 ../src/general/OptionsMenu.tscn:418
+#: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
 msgid "NONE"
 msgstr ""
 
@@ -4094,7 +4094,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "저장 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:2115
+#: ../src/general/OptionsMenu.tscn:2114
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "스크린샷 폴더 열기"
@@ -4158,7 +4158,7 @@ msgstr "새로운 키 배치 추가"
 #: ../src/general/MainMenu.tscn:1009 ../src/general/MainMenu.tscn:1066
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:358
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "확인"
 
@@ -4170,7 +4170,7 @@ msgstr ""
 "문제를 보고하더라도, 지금 당장 해결되지 않을 것입니다.\n"
 "그래도 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.tscn:155
+#: ../src/modding/ModManager.tscn:154
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "로그 폴더 열기"
@@ -4193,11 +4193,11 @@ msgstr "도움말 열기"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "자유 구성"
 
-#: ../src/general/OptionsMenu.tscn:1771
+#: ../src/general/OptionsMenu.tscn:1770
 msgid "OPEN_LOGS_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/modding/ModManager.tscn:485
+#: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr ""
 
@@ -4209,7 +4209,7 @@ msgstr "세포 소기관 메뉴 열기"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "저장 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1763
+#: ../src/general/OptionsMenu.tscn:1762
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "스크린샷 폴더 열기"
 
@@ -4217,7 +4217,7 @@ msgstr "스크린샷 폴더 열기"
 msgid "OPEN_THE_MENU"
 msgstr "메뉴 열기"
 
-#: ../src/general/OptionsMenu.tscn:923
+#: ../src/general/OptionsMenu.tscn:922
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "게임을 번역하는 것을 도와주세요"
 
@@ -4242,7 +4242,7 @@ msgstr "설정"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:628
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:627
 msgid "ORGANELLES"
 msgstr "세포 기관"
 
@@ -4260,7 +4260,7 @@ msgstr "이것으로 다른 세포를 찌르세요."
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "이것으로 다른 세포를 찌르세요."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "생체 상태창"
 
@@ -4311,7 +4311,7 @@ msgstr "삼투압 비용"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "삼투압 비용"
 
-#: ../src/modding/NewModGUI.tscn:75
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
 msgstr ""
 
@@ -4480,7 +4480,7 @@ msgstr "세포 진행률"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2125
+#: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4553,7 +4553,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:194
+#: ../src/general/OptionsMenu.tscn:193
 msgid "PERFORMANCE"
 msgstr "성능"
 
@@ -4639,7 +4639,7 @@ msgstr "플레이어 사망함"
 msgid "PLAYER_EXTINCT"
 msgstr "플레이어 사망함"
 
-#: ../src/general/OptionsMenu.tscn:1476
+#: ../src/general/OptionsMenu.tscn:1475
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "플레이어 사망함"
@@ -4653,23 +4653,23 @@ msgstr "플레이어 복제됨"
 msgid "PLAYER_SPEED"
 msgstr "플레이어 사망함"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1600
+#: ../src/general/OptionsMenu.tscn:1599
 msgid "PLAY_INTRO_VIDEO"
 msgstr "인트로 영상 재생"
 
-#: ../src/general/OptionsMenu.tscn:1608
+#: ../src/general/OptionsMenu.tscn:1607
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "새 게임 시 미생물 인트로 재생"
 
@@ -4699,7 +4699,7 @@ msgstr "개체수:"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "재개"
@@ -4758,7 +4758,7 @@ msgstr "방금 이주한 개체군을 종 개수 제한으로부터 보호"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "방금 생성된 종을 종 개수 제한으로부터 보호"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:610
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:609
 msgid "PROTEINS"
 msgstr "단백질"
 
@@ -4822,7 +4822,7 @@ msgstr "저장된 데이터 읽는 중"
 msgid "READY"
 msgstr "준비"
 
-#: ../src/modding/ModManager.tscn:374
+#: ../src/modding/ModManager.tscn:373
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
@@ -4839,7 +4839,7 @@ msgstr "다시 실행"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "마지막 활동 되돌리기"
 
-#: ../src/modding/ModManager.tscn:147 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
 msgstr "새로 고침"
 
@@ -4891,7 +4891,7 @@ msgstr "생산"
 msgid "REQUIRES_NUCLEUS"
 msgstr "핵"
 
-#: ../src/general/OptionsMenu.tscn:904 ../src/general/OptionsMenu.tscn:1946
+#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:1945
 msgid "RESET"
 msgstr "초기화"
 
@@ -4900,24 +4900,24 @@ msgstr "초기화"
 msgid "RESET_DEADZONES"
 msgstr "기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2006
+#: ../src/general/OptionsMenu.tscn:2005
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1559
+#: ../src/general/OptionsMenu.tscn:1558
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "키 설정 초기화"
 
-#: ../src/general/OptionsMenu.tscn:1986
+#: ../src/general/OptionsMenu.tscn:1985
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "기본값"
 
-#: ../src/general/OptionsMenu.tscn:1997
+#: ../src/general/OptionsMenu.tscn:1996
 msgid "RESET_TO_DEFAULTS"
 msgstr "기본값으로 초기화하시겠습니까?"
 
@@ -4926,7 +4926,7 @@ msgstr "기본값으로 초기화하시겠습니까?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:346
+#: ../src/general/OptionsMenu.tscn:345
 msgid "RESOLUTION"
 msgstr "해상도:"
 
@@ -4948,7 +4948,7 @@ msgstr "호흡"
 msgid "RESPONSIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1023
+#: ../src/modding/ModManager.tscn:1022
 msgid "RESTART_REQUIRED"
 msgstr ""
 
@@ -4983,7 +4983,7 @@ msgstr ""
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/modding/ModManager.tscn:173
+#: ../src/modding/ModManager.tscn:172
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "마우스 오른쪽 버튼"
@@ -4992,7 +4992,7 @@ msgstr "마우스 오른쪽 버튼"
 msgid "RIGHT_MOUSE"
 msgstr "마우스 오른쪽 버튼"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:720
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
 msgid "RIGID"
 msgstr ""
 
@@ -5008,12 +5008,12 @@ msgstr "왼쪽으로 회전"
 msgid "ROTATE_RIGHT"
 msgstr "오른쪽으로 회전"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:873
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
 
@@ -5085,11 +5085,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1960 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "저장"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2058
 msgid "SAVE_AND_CONTINUE"
 msgstr "저장 및 계속"
 
@@ -5191,23 +5191,23 @@ msgstr "저장 실패! 예외 발생"
 msgid "SAVING_SUCCEEDED"
 msgstr "저장 성공"
 
-#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1344
 #, fuzzy
 msgid "SCALING_ON"
 msgstr ""
 "{0}에서 충돌이 있습니다.\n"
 "{1}에서 입력을 제거하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1345
+#: ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1476 ../src/general/OptionsMenu.tscn:1509
-#: ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
+#: ../src/general/OptionsMenu.tscn:1509
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "이동 속도 향상"
@@ -5216,7 +5216,7 @@ msgstr "이동 속도 향상"
 msgid "SCROLLLOCK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:594
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:593
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "검색..."
 
@@ -5246,7 +5246,7 @@ msgstr "생태계: {0}"
 msgid "SELECTED_COLON"
 msgstr "선택됨:"
 
-#: ../src/modding/ModManager.tscn:253
+#: ../src/modding/ModManager.tscn:252
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "선택됨:"
@@ -5292,7 +5292,7 @@ msgstr "선택됨:"
 msgid "SELECT_OPTION"
 msgstr "선택됨:"
 
-#: ../src/modding/ModUploader.tscn:326
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
@@ -5312,7 +5312,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:775
+#: ../src/general/OptionsMenu.tscn:774
 msgid "SFX_VOLUME"
 msgstr "효과음 음량"
 
@@ -5324,12 +5324,12 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "도움말 보기"
 
-#: ../src/general/OptionsMenu.tscn:1788
+#: ../src/general/OptionsMenu.tscn:1787
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "동굴"
 
-#: ../src/general/OptionsMenu.tscn:1786
+#: ../src/general/OptionsMenu.tscn:1785
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "동굴"
@@ -5339,17 +5339,17 @@ msgstr "동굴"
 msgid "SHOW_TUTORIALS"
 msgstr "튜토리얼 보기"
 
-#: ../src/general/OptionsMenu.tscn:1698
+#: ../src/general/OptionsMenu.tscn:1697
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "튜토리얼 보기(현재 진행중인 게임)"
 
-#: ../src/general/OptionsMenu.tscn:1690
+#: ../src/general/OptionsMenu.tscn:1689
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "튜토리얼 보기(새 게임 시작 시)"
 
-#: ../src/general/OptionsMenu.tscn:1705
+#: ../src/general/OptionsMenu.tscn:1704
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5363,7 +5363,7 @@ msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1779
+#: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5421,11 +5421,11 @@ msgstr "이산화규소"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 이산화규소로 이루어진 강력한 벽 입니다. 전반적인 손상에 잘 견딜 수 있으며 물리적 손상에 매우 강합니다. 또한 형태를 유지하는 데 더 적은 에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수합니다."
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
 msgid "SIZE_COLON"
 msgstr "크기:"
 
@@ -5463,7 +5463,7 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 msgid "SMALL_IRON_CHUNK"
 msgstr "작은 철 덩어리"
 
-#: ../src/general/OptionsMenu.tscn:183
+#: ../src/general/OptionsMenu.tscn:182
 msgid "SOUND"
 msgstr "소리"
 
@@ -5577,7 +5577,7 @@ msgstr "종:"
 msgid "SPEED"
 msgstr "속도"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:867
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
 msgid "SPEED_COLON"
 msgstr "속도:"
 
@@ -5715,7 +5715,7 @@ msgstr ""
 msgid "STORAGE"
 msgstr "저장소"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:891
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "저장소"
@@ -5728,13 +5728,13 @@ msgstr ""
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "엄격한 생태적 지위 경쟁 (적합도 차이가 과장됨)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:601
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:600
 msgid "STRUCTURAL"
 msgstr "구조의"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:498
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:497
 msgid "STRUCTURE"
 msgstr "구조"
 
@@ -5757,7 +5757,7 @@ msgstr "새로운 키 배치 추가"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:321
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -5901,7 +5901,7 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1125
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "THREADS"
 msgstr ""
 
@@ -6059,7 +6059,7 @@ msgstr "결합 해제 켜고 끄기"
 msgid "TOOLS"
 msgstr "도구"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1163
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -6124,7 +6124,7 @@ msgstr "스크린샷 촬영"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2117
+#: ../src/general/OptionsMenu.tscn:2116
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "스크린샷 촬영"
@@ -6296,7 +6296,7 @@ msgstr "튜토리얼"
 msgid "TWITTER_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -6305,11 +6305,11 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr "생명력:"
 
-#: ../src/modding/ModManager.tscn:587
+#: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:587
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기능이 거의 없습니다. 무너지지 않기 위해선 더 많은 에너지가 필요합니다. 장점은 세포가 더 빠르게 움직이고 영양분을 흡수 할 수 있다는 것입니다."
@@ -6366,12 +6366,12 @@ msgstr "마우스 미확인 키"
 msgid "UNKNOWN_VERSION"
 msgstr "버전:"
 
-#: ../src/modding/ModUploader.tscn:110
+#: ../src/modding/ModUploader.tscn:109
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.tscn:2036
+#: ../src/general/OptionsMenu.tscn:2035
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
@@ -6400,7 +6400,7 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:516 ../src/modding/ModUploader.tscn:46
+#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 #, fuzzy
 msgid "UPLOAD"
 msgstr "불러오기"
@@ -6410,7 +6410,7 @@ msgstr "불러오기"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "불러오는 중..."
 
-#: ../src/modding/ModUploader.tscn:337
+#: ../src/modding/ModUploader.tscn:336
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "저장 성공"
@@ -6419,7 +6419,7 @@ msgstr "저장 성공"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:507
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -6428,16 +6428,16 @@ msgstr ""
 msgid "USES_FEATURE"
 msgstr "온도"
 
-#: ../src/modding/NewModGUI.tscn:442
+#: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:440
+#: ../src/modding/NewModGUI.tscn:439
 #, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1725
+#: ../src/general/OptionsMenu.tscn:1724
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
 
@@ -6445,11 +6445,11 @@ msgstr "임의 사용자 이름 사용"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "생물 다양성을 증진하는 종의 생성 시 기존 종의 개체수를 빼앗음"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1114
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1358
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6477,7 +6477,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr "세대:"
 
-#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "세대:"
@@ -6488,11 +6488,11 @@ msgstr "세대:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "속도:"
 
-#: ../src/general/OptionsMenu.tscn:535
+#: ../src/general/OptionsMenu.tscn:534
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6505,12 +6505,12 @@ msgstr "뷰어"
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1796
+#: ../src/general/OptionsMenu.tscn:1795
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "동굴"
 
-#: ../src/general/OptionsMenu.tscn:1794
+#: ../src/general/OptionsMenu.tscn:1793
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "동굴"
@@ -6523,7 +6523,7 @@ msgstr "소스 코드 보기"
 msgid "VIP_PATRONS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:210
+#: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
 msgstr ""
 
@@ -6550,7 +6550,7 @@ msgstr "효과음 음량"
 msgid "VOLUMEUP"
 msgstr "효과음 음량"
 
-#: ../src/general/OptionsMenu.tscn:277
+#: ../src/general/OptionsMenu.tscn:276
 msgid "VSYNC"
 msgstr "수직동기화"
 
@@ -6590,38 +6590,38 @@ msgstr "휠 위로"
 msgid "WILL_YOU_THRIVE"
 msgstr "번영하시겠습니까?"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:83
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "번영했습니다!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:92
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "현재 버전의 Thrive에서 승리하신 것을 축하드립니다! 창이 닫히면 계속 진행하거나, 새로운 세계에서 새로운 시작을 하실 수 있습니다."
 
-#: ../src/modding/ModUploader.tscn:295
+#: ../src/modding/ModUploader.tscn:294
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.tscn:293 ../src/modding/ModUploader.tscn:302
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.tscn:187
+#: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "엽록체는 감광성 안료가 막낭에 쌓여있는 이중 막 구조입니다. 진핵 생물이 숙주로써 이용하기 위해 동화된 원핵 생물입니다. 엽록체의 안료는 빛의 에너지를 사용하여 광합성이라고하는 과정을 통해서 물과 기체 이산화탄소로부터 포도당을 생성 할 수 있습니다. 이 안료는 또한 독특한 색상을 제공합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다."
 
-#: ../src/modding/ModUploader.tscn:234
+#: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:216
+#: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:169
+#: ../src/modding/ModUploader.tscn:168
 #, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "번영했습니다!"
@@ -6638,7 +6638,7 @@ msgstr ""
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
@@ -6661,25 +6661,25 @@ msgstr "생체 상태창"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1509
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "이동 속도 향상"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1200
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "종:"
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597
+#: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_SERIES"
 msgstr ""
 
