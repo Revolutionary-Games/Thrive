@@ -296,13 +296,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// </summary>
     protected TStage? stage;
 
-    /// <summary>
-    ///   Show mouse coordinates data in the mouse hover box, useful during develop.
-    /// </summary>
-#pragma warning disable 649 // ignored until we get some GUI or something to change this
-    protected bool showMouseCoordinates;
-#pragma warning restore 649
-
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
     private Control pausePrompt = null!;
@@ -1146,13 +1139,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         // var mousePosLabel = container.GetNode<Label>("MousePos");
         var nothingHere = container.GetNode<MarginContainer>("NothingHere");
 
-        if (showMouseCoordinates)
-        {
-            throw new NotImplementedException();
-
-            // mousePosLabel.Text = GetMouseHoverCoordinateText() + "\n";
-        }
-
         var hoveredCompounds = GetHoveredCompounds();
 
         // Show hovered compound information in GUI
@@ -1216,8 +1202,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract IEnumerable<(bool Player, Species Species)> GetHoveredSpecies();
     protected abstract IReadOnlyDictionary<Compound, float> GetHoveredCompounds();
-
-    protected abstract string GetMouseHoverCoordinateText();
 
     protected void AddHoveredCellLabel(string cellInfo)
     {
