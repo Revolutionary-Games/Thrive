@@ -32,24 +32,20 @@ public class CellStatsIndicator : HBoxContainer
     private string? format;
     private float value;
 
-    private Vector2 changeIndicatorSize = new(10, 10);
-
     [JsonProperty]
     private float? initialValue;
 
     /// <summary>
-    ///   Gets or overrides the minimum rect size of the change indicator (the up/down arrow).
+    ///   The minimum rect size of the change indicator in normal state (the up/down arrow).
     /// </summary>
     [Export]
-    public Vector2 ChangeIndicatorSize
-    {
-        get => changeIndicatorSize;
-        set
-        {
-            changeIndicatorSize = value;
-            UpdateChangeIndicator();
-        }
-    }
+    public Vector2 ChangeIndicatorSize { get; set; } = new(10, 10);
+
+    /// <summary>
+    ///   The minimum rect size of the change indicator in invalid state.
+    /// </summary>
+    [Export]
+    public Vector2 InvalidIndicatorSize { get; set; } = new(23, 23);
 
     [Export]
     public string Description
@@ -128,15 +124,15 @@ public class CellStatsIndicator : HBoxContainer
         if (changeIndicator == null)
             return;
 
-        changeIndicator.RectMinSize = ChangeIndicatorSize;
-
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {
+            changeIndicator.RectMinSize = ChangeIndicatorSize;
             changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
             changeIndicator.Visible = Value != initialValue;
         }
         else
         {
+            changeIndicator.RectMinSize = InvalidIndicatorSize;
             changeIndicator.Texture = InvalidIcon;
             changeIndicator.Visible = true;
         }
