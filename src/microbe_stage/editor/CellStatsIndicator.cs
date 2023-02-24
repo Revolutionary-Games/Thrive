@@ -32,8 +32,24 @@ public class CellStatsIndicator : HBoxContainer
     private string? format;
     private float value;
 
+    private Vector2 changeIndicatorSize = new(10, 10);
+
     [JsonProperty]
     private float? initialValue;
+
+    /// <summary>
+    ///   Gets or overrides the minimum rect size of the change indicator (the up/down arrow).
+    /// </summary>
+    [Export]
+    public Vector2 ChangeIndicatorSize
+    {
+        get => changeIndicatorSize;
+        set
+        {
+            changeIndicatorSize = value;
+            UpdateChangeIndicator();
+        }
+    }
 
     [Export]
     public string Description
@@ -87,6 +103,7 @@ public class CellStatsIndicator : HBoxContainer
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
 
+        UpdateChangeIndicator();
         UpdateDescription();
         UpdateValue();
     }
@@ -106,6 +123,25 @@ public class CellStatsIndicator : HBoxContainer
         UpdateValue();
     }
 
+    private void UpdateChangeIndicator()
+    {
+        if (changeIndicator == null)
+            return;
+
+        changeIndicator.RectMinSize = ChangeIndicatorSize;
+
+        if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
+        {
+            changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
+            changeIndicator.Visible = Value != initialValue;
+        }
+        else
+        {
+            changeIndicator.Texture = InvalidIcon;
+            changeIndicator.Visible = true;
+        }
+    }
+
     private void UpdateDescription()
     {
         if (descriptionLabel == null)
@@ -119,16 +155,7 @@ public class CellStatsIndicator : HBoxContainer
         if (valueLabel == null || changeIndicator == null)
             return;
 
-        if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
-        {
-            changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
-            changeIndicator.Visible = Value != initialValue;
-        }
-        else
-        {
-            changeIndicator.Texture = InvalidIcon;
-            changeIndicator.Visible = true;
-        }
+        UpdateChangeIndicator();
 
         valueLabel.Text = string.IsNullOrEmpty(Format) ?
             Value.ToString(CultureInfo.CurrentCulture) :
