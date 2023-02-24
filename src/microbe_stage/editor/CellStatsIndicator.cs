@@ -45,7 +45,7 @@ public class CellStatsIndicator : HBoxContainer
     ///   The minimum rect size of the change indicator in invalid state.
     /// </summary>
     [Export]
-    public Vector2 InvalidIndicatorSize { get; set; } = new(23, 23);
+    public Vector2 InvalidIndicatorSize { get; set; } = new(10, 10);
 
     [Export]
     public string Description
