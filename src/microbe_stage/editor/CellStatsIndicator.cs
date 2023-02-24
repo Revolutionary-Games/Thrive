@@ -9,13 +9,23 @@ using Newtonsoft.Json;
 public class CellStatsIndicator : HBoxContainer
 {
 #pragma warning disable CA2213
+    /// <summary>
+    ///   The icon to be displayed when <see cref="Value"/> hasn't been assigned to or is <see langword="NaN"/>.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Uses question mark icon by default (if this isn't set).
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public Texture? InvalidIcon;
+
     private Label? descriptionLabel;
     private Label? valueLabel;
     private TextureRect? changeIndicator;
 
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
-    private Texture questionIcon = null!;
 #pragma warning restore CA2213
 
     private string description = "unset";
@@ -72,9 +82,10 @@ public class CellStatsIndicator : HBoxContainer
         valueLabel = GetNode<Label>("Value");
         changeIndicator = GetNode<TextureRect>("Indicator");
 
+        InvalidIcon ??= GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
+
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
-        questionIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
 
         UpdateDescription();
         UpdateValue();
@@ -115,7 +126,7 @@ public class CellStatsIndicator : HBoxContainer
         }
         else
         {
-            changeIndicator.Texture = questionIcon;
+            changeIndicator.Texture = InvalidIcon;
             changeIndicator.Visible = true;
         }
 

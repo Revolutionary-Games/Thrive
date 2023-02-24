@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=18]
 [ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/autoevo.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=23]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=25]
@@ -1160,6 +1161,7 @@ margin_top = 21.0
 margin_right = 255.0
 margin_bottom = 40.0
 Description = "TOTAL_POPULATION_COLON"
+InvalidIcon = ExtResource( 20 )
 
 [node name="Best" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 44.0
