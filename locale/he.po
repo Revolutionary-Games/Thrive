@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:36+0700\n"
+"POT-Creation-Date: 2023-02-24 15:45+0700\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -566,7 +566,7 @@ msgstr "מצלמה"
 #: ../src/general/OptionsMenu.tscn:2086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:473
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "ביטול"
 
@@ -988,11 +988,11 @@ msgstr "אשר"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "אשר יציאה"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -2030,12 +2030,12 @@ msgstr "הסר נתונים מקומיים לגבי פריט זה. שימושי 
 msgid "FORM_ERROR_MESSAGE"
 msgstr "שגיאה: {0}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 #, fuzzy
 msgid "FOSSILISATION"
 msgstr "אוכלוסיה:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2053,8 +2053,8 @@ msgstr ""
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "נייח"
@@ -2386,7 +2386,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "שם שמירה צריכה לא להכיל סימנים מיוחדים (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "שם המין חייב להתאים למערכת השמות הבינומית (סוג וכינוי)!"
 
@@ -3776,7 +3776,7 @@ msgstr "שכפל אברונים"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "החלקת גרפיקה:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -3978,7 +3978,7 @@ msgstr "אין מידע להציג"
 msgid "NO_EVENTS_RECORDED"
 msgstr "לא תעדו אירועים"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "לא נמצאה ספריית שמירות"
@@ -4080,7 +4080,7 @@ msgstr "פתח תיקייה"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "פתח תקיית קבצי לוג"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4088,7 +4088,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "פתח את מסך העזרה"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "ארגז חול"
@@ -4230,7 +4230,7 @@ msgstr "משכתב שמירה קיימת:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "לשכתב מחדש שמירה קיימת?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק אתה לצמיתות?"
@@ -5942,7 +5942,7 @@ msgstr "מקש Treble Down"
 msgid "TREBLEUP"
 msgstr "מקש Treble Up"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "נסה לצלם כמה צילומי מסך!"

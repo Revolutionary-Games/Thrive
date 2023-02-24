@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:36+0700\n"
+"POT-Creation-Date: 2023-02-24 15:45+0700\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -573,7 +573,7 @@ msgstr "Kamera"
 #: ../src/general/OptionsMenu.tscn:2086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:473
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "Zrušiť"
 
@@ -1001,11 +1001,11 @@ msgstr "POTVRDIŤ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Potvrdiť ukončenie"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -2024,11 +2024,11 @@ msgstr ""
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Chyba: {0}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 msgid "FOSSILISATION"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "(začiatočná poloha)"
@@ -2042,8 +2042,8 @@ msgstr ""
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 msgid "FOSSILISE"
 msgstr ""
 
@@ -2375,7 +2375,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -3728,7 +3728,7 @@ msgstr ""
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Viacvzorové vyhladzovanie:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -3931,7 +3931,7 @@ msgstr "Žiadne údaje na zobrazenie"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Žiadne zaznamenané udalosti"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Priečinok snímkov obrazovky nebol nájdený"
@@ -4030,7 +4030,7 @@ msgstr "Otvoriť priečinok"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Otvoriť priečinok protokolov"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4038,7 +4038,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Otvoriť nápovedu"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Voľná stavba"
@@ -4181,7 +4181,7 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
@@ -5897,7 +5897,7 @@ msgstr "Znížiť výšky"
 msgid "TREBLEUP"
 msgstr "Zvýšiť výšky"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Skús spraviť zopár snímiek obrazovky!"

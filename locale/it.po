@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:36+0700\n"
+"POT-Creation-Date: 2023-02-24 15:45+0700\n"
 "PO-Revision-Date: 2022-10-17 19:00+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -565,7 +565,7 @@ msgstr "Telecamera"
 #: ../src/general/OptionsMenu.tscn:2086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:473
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "Annulla"
 
@@ -991,11 +991,11 @@ msgstr "CONFERMA"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Conferma uscita"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -2041,12 +2041,12 @@ msgstr "Rimuovi i dati locali relativi a questo oggetto. Ciò è utile se hai in
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Errore: {0}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 #, fuzzy
 msgid "FOSSILISATION"
 msgstr "→ popolazione:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2064,8 +2064,8 @@ msgstr ""
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Sessile"
@@ -2399,7 +2399,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Il nome del salvataggio non può contenere caratteri speciali (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Il nome della specie deve essere conforme alla nomenclatura binomiale (genere ed epiteto)!"
 
@@ -3799,7 +3799,7 @@ msgstr "Organuli multipli"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multicampionamento [MSAA]:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4001,7 +4001,7 @@ msgstr "Nessun dato da mostrare"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Nessun evento registrato"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nessuna cartella dei salvataggi trovata"
@@ -4105,7 +4105,7 @@ msgstr "Apri cartella"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Apri la cartella dei log"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4113,7 +4113,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Apri la finestra di aiuto"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Modifica Libera"
@@ -4255,7 +4255,7 @@ msgstr "Sovrascrivi salvataggio esistente:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Sovrascrivere il salvataggio esistente?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
@@ -5980,7 +5980,7 @@ msgstr "Treble down (tasto audio)"
 msgid "TREBLEUP"
 msgstr "Treble up (tasto audio)"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Prova a scattare qualche screenshot!"

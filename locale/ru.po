@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:36+0700\n"
+"POT-Creation-Date: 2023-02-24 15:45+0700\n"
 "PO-Revision-Date: 2023-02-10 07:42+0000\n"
 "Last-Translator: Ilja Hlopushkin <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -575,7 +575,7 @@ msgstr "Камера"
 #: ../src/general/OptionsMenu.tscn:2086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:473
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "Отмена"
 
@@ -997,11 +997,11 @@ msgstr "ПОДТВЕРДИТЬ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Подтвердить выход"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Подтвердите перезапись"
 
@@ -1347,7 +1347,7 @@ msgstr "Зайти на WIKI разработчиков"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:225
 msgid "DEVOURED"
-msgstr "Поглощённый"
+msgstr "Поглощён"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "DEV_BUILD_PATRONS"
@@ -1456,7 +1456,7 @@ msgstr "Отсоединенные метасферы"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Среди размещённых клеток имеются несоединённые метасферы с остальными метасферами.\n"
+"Среди размещённых клеток имеются несоединённые метасферы что не объединены с остальными.\n"
 "Пожалуйста, соедините все размещённые метасферы с другими для продолжения."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1300
@@ -1497,7 +1497,7 @@ msgstr "Отображение фоновых частиц"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "DISPLAY_PART_NAMES"
-msgstr "Показать название кнопок выбора частей"
+msgstr "Показать названия кнопок при выборе частей"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:41
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -2035,11 +2035,11 @@ msgstr "Удалить локальные данные, касающиеся э�
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Ошибка: {0}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 msgid "FOSSILISATION"
 msgstr "Окаменение"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Окамените этот вид, чтобы сохранить его в музее. Вы можете получить доступ к музею из Thriveopedia или загрузить ископаемые виды в бесплатном редакторе."
 
@@ -2052,8 +2052,8 @@ msgstr "Ископаемые этого вида"
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Окаменелость этого вида (уже окаменелость)"
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 msgid "FOSSILISE"
 msgstr "Превратить в окаменелость"
 
@@ -2381,7 +2381,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Имя сохранения может не содержать специальных символов (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Название вида должно соответствовать биномиальной системе наименования (Род и Эпитет)!"
 
@@ -3356,7 +3356,7 @@ msgstr "Ваша клетка использует [thrive:compound type=\"atp\"
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно собрать [thrive:compound type=\"ammonia\"][/thrive:compound] (оранжевое облако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (фиолетовое облако)."
+msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно оставаться в живых достаточно долго. Сбор [thrive:compound type=\"ammonia\"][/thrive:compound] (оОранжевое оОблако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (фФиолетовое оОблако) ускоряет рост."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -3763,7 +3763,7 @@ msgstr "Разместить Органеллу"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множественная выборка сглаживания:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Добро пожаловать в музей! Здесь вы можете полюбоваться на виды, которых вы окаменели во время всех ваших прохождений. Вы даже можете играть за вид, открыв его в режиме свободного строительства.\n"
@@ -3968,7 +3968,7 @@ msgstr "Нет данных для отображения"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Никаких событий не зафиксировано"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Не найдена дирректория окаменелостей"
 
@@ -4068,7 +4068,7 @@ msgstr "Открыть папку"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Открыть папку с окаменелостями"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Вы уверены, что хотите начать новую игру за выбранный вид?\n"
@@ -4078,7 +4078,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Открыть экран помощи"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Открыть в свободном редакторе клеток"
 
@@ -4219,7 +4219,7 @@ msgstr "Перезаписать существующее сохранение:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Перезаписать существующее сохранение?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Окаменелый вид с таким названием уже существует.\n"
@@ -4724,9 +4724,8 @@ msgid "REPORT"
 msgstr "Отчёт"
 
 #: ../src/general/MainMenu.tscn:733 ../src/general/PauseMenu.tscn:223
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "Отчёт"
+msgstr "Сообщить о баге"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1117
 msgid "REPRODUCED"
@@ -5493,8 +5492,8 @@ msgstr "Не удалось выполнить инициализацию кли
 #: ../src/general/MainMenu.tscn:1072
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
-"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны. \n"
-"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем"
+"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
+"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
 
 #: ../src/general/MainMenu.tscn:792
 msgid "STEAM_TOOLTIP"
@@ -5934,7 +5933,7 @@ msgstr "TrebleDown"
 msgid "TREBLEUP"
 msgstr "TrebleUp"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Попробуйте сохранить окаменелости некоторых видов!"
 

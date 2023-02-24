@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:36+0700\n"
-"PO-Revision-Date: 2023-02-24 15:37+0700\n"
-"Last-Translator: Sur3 <sur3@gmx.de>\n"
+"POT-Creation-Date: 2023-02-24 15:45+0700\n"
+"PO-Revision-Date: 2023-02-24 15:47+0700\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -575,7 +575,7 @@ msgstr "Camera"
 #: ../src/general/OptionsMenu.tscn:2086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:473
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "Cancel"
 
@@ -997,11 +997,11 @@ msgstr "CONFIRM"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Confirm Exit"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Confirm Overwrite"
 
@@ -2037,11 +2037,11 @@ msgstr "Remove local data regarding this item. Useful if you entered the wrong I
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 msgid "FOSSILISATION"
 msgstr "Fossilisation"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Fossilise this species to save it in the museum. You can access the museum from the Thriveopedia, or load fossilised species in the freebuild editor."
 
@@ -2054,8 +2054,8 @@ msgstr "Fossilise this species"
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Fossilise this species (already fossilised)"
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 msgid "FOSSILISE"
 msgstr "Fossilise"
 
@@ -2382,7 +2382,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Save name may not contain special characters (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Species name must conform to binomial naming system (genus and epithet)!"
 
@@ -2406,9 +2406,9 @@ msgstr "Inverted"
 #: ../src/saving/SaveHelper.cs:521
 msgid "IN_PROTOTYPE"
 msgstr ""
-"You are playing the later stage prototypes that are included with the game. \n"
+"You are playing the later stage prototypes that are included with the game.\n"
 "These may be very incomplete, use placeholder graphics, be very rough in general,\n"
-"and not always very playable. As such saving is not currently possible. \n"
+"and not always very playable. As such saving is not currently possible.\n"
 "Some parts of prototypes may allow limited saving."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
@@ -2969,7 +2969,7 @@ msgstr "Load previously saved games"
 #: ../src/saving/SaveList.tscn:129
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"The selected save to be loaded is a save made in a prototype with different Thrive version.\n"
+"The selected save to be loaded is a save made in a prototype with a different Thrive version.\n"
 "Because of that this save can't be loaded as prototype saves are not upgradeable.\n"
 "Maintaining save compatibility for prototypes would be a large burden as things are reworked often and writing save upgrades would slow down prototype development a lot."
 
@@ -3767,7 +3767,7 @@ msgstr "Multiple Organelles"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Welcome to the museum! Here you can admire the many species you've fossilised across all your playthroughs. You can even play as a species by opening it in the freebuild editor.\n"
@@ -3972,7 +3972,7 @@ msgstr "No Data to Show"
 msgid "NO_EVENTS_RECORDED"
 msgstr "No events recorded"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "No fossils directory found"
 
@@ -4072,7 +4072,7 @@ msgstr "Open Folder"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Open Fossils Folder"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Are you sure you want to start a new game as the selected species?\n"
@@ -4082,7 +4082,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Open help screen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Open in Freebuild"
 
@@ -4223,7 +4223,7 @@ msgstr "Overwrite existing save:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Overwrite existing save?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "A fossilised species with this name already exists.\n"
@@ -5106,7 +5106,7 @@ msgstr "Selected save is incompatible"
 
 #: ../src/saving/SaveList.tscn:127
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "Selected save is incompatible prototype"
+msgstr "Selected save is from an incompatible prototype"
 
 #: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
@@ -5937,7 +5937,7 @@ msgstr "Treble Down"
 msgid "TREBLEUP"
 msgstr "Treble Up"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Try fossilising some species!"
 

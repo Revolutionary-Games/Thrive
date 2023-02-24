@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 15:36+0700\n"
+"POT-Creation-Date: 2023-02-24 15:45+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1458
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D judėjimo stilius:"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -27,11 +27,11 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:160
 msgid "3D_MOVEMENT"
-msgstr ""
+msgstr "3D Judėjimas"
 
 #: ../src/general/OptionsMenu.tscn:1490
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D judėjimo stilius:"
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
@@ -39,11 +39,11 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
-msgstr ""
+msgstr "Nutraukti"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
-msgstr ""
+msgstr "Nutrauktas."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
-msgstr ""
+msgstr "Aktyvus"
 
 #: ../src/general/OptionsMenu.tscn:1093
 msgid "ACTIVE_THREAD_COUNT"
@@ -99,7 +99,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Agresyvus"
 
 #: ../src/general/NewGameSettings.tscn:463
 msgid "AI_MUTATION_RATE"
@@ -159,7 +159,7 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
 msgid "APPEARANCE"
-msgstr ""
+msgstr "Išvaizda"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:159
@@ -172,7 +172,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "APRIL"
-msgstr ""
+msgstr "Balandis"
 
 #: ../src/general/OptionsMenu.tscn:1998
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
@@ -455,7 +455,7 @@ msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Rezultatai:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1175
 msgid "BEST_PATCH_COLON"
@@ -523,7 +523,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
-msgstr ""
+msgstr "Drąsus"
 
 #: ../src/modding/ModUploader.tscn:260
 msgid "BROWSE"
@@ -552,14 +552,14 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:78
 msgid "CAMERA"
-msgstr ""
+msgstr "Kamera"
 
 #: ../src/general/OptionsMenu.tscn:2086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:473
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
-msgstr ""
+msgstr "Atšaukti"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
@@ -608,7 +608,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:138
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:534
 msgid "CARBON_DIOXIDE"
-msgstr ""
+msgstr "Anglies Dioksidas"
 
 #: ../src/general/StageHUDBase.cs:962
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -636,11 +636,11 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "Atsargus"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:175
 msgid "CELL"
-msgstr ""
+msgstr "Ląstelė"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
@@ -758,7 +758,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
-msgstr ""
+msgstr "Chloroplastas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -795,7 +795,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Padidina didelių ląstelių sukimosi greitį."
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -812,11 +812,11 @@ msgstr ""
 #: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
-msgstr ""
+msgstr "Uždaryti"
 
 #: ../src/general/OptionsMenu.tscn:2016
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "Uždaryti parinktis?"
 
 #: ../src/general/OptionsMenu.tscn:1014
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -836,7 +836,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "COLOUR"
-msgstr ""
+msgstr "Spalva"
 
 #: ../src/general/OptionsMenu.tscn:401
 msgid "COLOURBLIND_CORRECTION"
@@ -973,15 +973,15 @@ msgstr ""
 
 #: ../src/general/EditorComponentBase.cs:74
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "PATVIRTINTI"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1045,7 +1045,7 @@ msgstr "Nukopijuoti klaidą į iškarpinę"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
 msgid "COPY_RESULTS"
-msgstr ""
+msgstr "Kopijuoti Rezultatus"
 
 #: ../src/general/OptionsMenu.tscn:418
 msgid "CORRECTION_PROTANOPE"
@@ -1154,7 +1154,7 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Dienos Ilgumas"
 
 #: ../src/general/NewGameSettings.tscn:1031
 #, fuzzy
@@ -1187,7 +1187,7 @@ msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:946
 msgid "DEATH"
-msgstr ""
+msgstr "mirtis"
 
 #: ../src/engine/DebugOverlays.Inspector.cs:20
 #: ../src/engine/DebugOverlays.tscn:173
@@ -1210,7 +1210,7 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Ištrinti"
 
 #: ../src/saving/SaveManagerGUI.cs:257
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
@@ -1246,7 +1246,7 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Aprašymas:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
 msgid "DESCRIPTION_COLON"
@@ -1441,7 +1441,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:969
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Ne"
 
 #: ../src/gui_common/CreditsScroll.cs:354
 msgid "DONATIONS"
@@ -1451,12 +1451,12 @@ msgstr ""
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
 #: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2677
 msgid "DOUBLE"
-msgstr ""
+msgstr "Dvigubas"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
@@ -1647,7 +1647,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "Energijos Šaltiniai:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
 msgid "ENERGY_SUMMARY_LINE"
@@ -1668,7 +1668,7 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:694
 #: ../src/microbe_stage/MicrobeStage.tscn:740
 msgid "ENVIRONMENT"
-msgstr ""
+msgstr "Aplinka"
 
 #: ../src/general/NewGameSettings.tscn:649
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -1689,7 +1689,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2097 ../src/general/OptionsMenu.tscn:2105
 msgid "ERROR"
-msgstr ""
+msgstr "Klaida"
 
 #: ../src/modding/ModManager.cs:1014
 msgid "ERROR_CREATING_FOLDER"
@@ -1761,7 +1761,7 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:247
 msgid "EXIT"
-msgstr ""
+msgstr "Išeiti"
 
 #: ../src/general/MainMenu.tscn:368
 msgid "EXIT_TO_LAUNCHER"
@@ -1841,15 +1841,15 @@ msgstr ""
 
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
-msgstr ""
+msgstr "Išjungtas"
 
 #: ../src/general/TranslationHelper.cs:84
 msgid "FEATURE_ENABLED"
-msgstr ""
+msgstr "Įjungtas"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 msgid "FEBRUARY"
-msgstr ""
+msgstr "Vasaris"
 
 #: ../src/general/ThriveNewsFeed.cs:183
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
@@ -1963,11 +1963,11 @@ msgstr ""
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Klaida: {0}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 msgid "FOSSILISATION"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "(pradžios vieta)"
@@ -1981,8 +1981,8 @@ msgstr ""
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 msgid "FOSSILISE"
 msgstr ""
 
@@ -2311,7 +2311,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -3566,7 +3566,7 @@ msgstr ""
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -3765,7 +3765,7 @@ msgstr "Nėra duomenų rodymui"
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
@@ -3860,7 +3860,7 @@ msgstr ""
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -3868,7 +3868,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Atidaryti pagalbos langą"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
@@ -4006,7 +4006,7 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
@@ -5673,7 +5673,7 @@ msgstr ""
 msgid "TREBLEUP"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
 
