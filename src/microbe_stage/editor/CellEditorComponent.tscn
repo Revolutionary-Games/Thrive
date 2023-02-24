@@ -25,7 +25,7 @@
 [ext_resource path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=34]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=35]
-[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=39]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" type="PackedScene" id=42]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=43]
 [ext_resource path="res://src/gui_common/SegmentedBar.tscn" type="PackedScene" id=44]
@@ -563,14 +563,14 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
 margin_right = 318.0
-margin_bottom = 126.0
+margin_bottom = 160.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
 margin_right = 308.0
-margin_bottom = 126.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/separation = 10
@@ -625,6 +625,15 @@ margin_top = 102.0
 margin_right = 308.0
 margin_bottom = 126.0
 DisplayName = "ORGANELLES"
+Columns = 3
+
+[node name="Multicellular" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 45 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 136.0
+margin_right = 308.0
+margin_bottom = 160.0
+DisplayName = "ORGANELLE_CATEGORY_MULTICELLULAR"
 Columns = 3
 
 [node name="Membrane" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -761,10 +770,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 312.0
-margin_top = 337.0
-margin_right = 628.0
-margin_bottom = 927.0
+margin_left = 316.0
+margin_top = 341.0
+margin_right = 632.0
+margin_bottom = 931.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]

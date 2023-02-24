@@ -207,6 +207,11 @@ public class OrganelleDefinition : IRegistryType
         Protein,
         External,
         Organelle,
+
+        /// <summary>
+        ///   Only available starting in multicellular
+        /// </summary>
+        Multicellular,
     }
 
     /// <summary>
@@ -507,6 +512,8 @@ public class OrganelleDefinition : IRegistryType
         public SignalingAgentComponentFactory? SignalingAgent;
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
+        public AxonComponentFactory? Axon;
+        public MyofibrilComponentFactory? Myofibril;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -601,6 +608,20 @@ public class OrganelleDefinition : IRegistryType
             {
                 Lysosome.Check(name);
                 allFactories.Add(Lysosome);
+                ++count;
+            }
+
+            if (Axon != null)
+            {
+                Axon.Check(name);
+                allFactories.Add(Axon);
+                ++count;
+            }
+
+            if (Myofibril != null)
+            {
+                Myofibril.Check(name);
+                allFactories.Add(Myofibril);
                 ++count;
             }
         }

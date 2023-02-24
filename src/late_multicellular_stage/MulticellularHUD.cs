@@ -139,12 +139,6 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         return new Dictionary<Compound, float>();
     }
 
-    protected override string GetMouseHoverCoordinateText()
-    {
-        // TODO: get world point for cursor
-        throw new NotImplementedException();
-    }
-
     protected override void UpdateAbilitiesHotBar()
     {
     }
