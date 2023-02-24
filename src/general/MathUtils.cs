@@ -139,7 +139,7 @@ public static class MathUtils
     /// <param name="threshold">
     ///   If <paramref name="value"/> is lower than this integer threshold, decimals will start being used.
     /// </param>
-    public static float RoundWithMinimalDecimals(float value, int threshold)
+    public static double RoundWithMinimalDecimals(double value, int threshold)
     {
         double result;
 
