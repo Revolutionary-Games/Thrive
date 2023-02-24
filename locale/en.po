@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 16:13+0700\n"
-"PO-Revision-Date: 2023-02-24 15:47+0700\n"
+"POT-Creation-Date: 2023-02-24 13:49+0200\n"
+"PO-Revision-Date: 2023-02-24 13:52+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Additional validations detected an issue: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Add a new key binding"
 
@@ -231,7 +231,7 @@ msgstr "Mod assembly is required when auto harmony is enabled"
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assume CPU has hyperthreading enabled"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "It cannot be automatically detected if hyperthreading is enabled or not.\n"
@@ -248,7 +248,7 @@ msgstr "Atmospheric Gases"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:982
 msgid "ATP_BALANCE"
 msgstr "ATP Balance"
 
@@ -282,7 +282,7 @@ msgstr "August"
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "This panel shows the numbers that the auto-evo prediction works from. The total energy a species is able to capture, and the cost per individual of the species, determines the final population. Auto-evo uses a simplified model of reality to calculate how well species are performing based on the energy they are able to gather. For each food source, it is shown much energy the species gains from it. Additionally the total energy that is available from that source is shown. The fraction the species gains out of the total energy is based on how large the fitness is compared to the total fitness. Fitness is a metric of how well the species can utilize that food source."
 
@@ -290,12 +290,12 @@ msgstr "This panel shows the numbers that the auto-evo prediction works from. Th
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo Prediction"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1095
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "This panel shows the expected population numbers from auto-evo for the edited species.\n"
@@ -374,12 +374,12 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2707
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2874
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3121
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
 msgid "BASE_MOBILITY"
 msgstr "Base Mobility"
 
@@ -475,7 +475,7 @@ msgstr "Benchmark phase:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Results:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1183
 msgid "BEST_PATCH_COLON"
 msgstr "Best Patch:"
 
@@ -560,11 +560,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "By Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
 msgid "CALCIUM_CARBONATE"
 msgstr "Calcium Carbonate"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a strong shell made from calcium carbonate. It can easily resist damage and requires less energy to not deform. The disadvantages of having such a heavy shell is that the cell is much slower and takes a while to absorb resources."
 
@@ -581,7 +581,7 @@ msgstr "Cancel"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1276
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL ACTION"
 
@@ -600,10 +600,10 @@ msgstr "A cell type that is currently used in your body plan cannot be deleted"
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Cannot Delete Used Cell Type"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3045
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 msgid "CANNOT_ENGULF"
 msgstr "Cannot engulf"
 
@@ -674,11 +674,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "Cellulase enables the cell to break down cellulose membrane. Each addition increases the effectiveness."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
 msgid "CELLULOSE"
 msgstr "Cellulose"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower. [b]Cellulase can digest this wall[/b] making it vulnerable to engulfment from predators."
 
@@ -757,7 +757,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Chemosynthesis"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
 msgid "CHITIN"
 msgstr "Chitin"
 
@@ -769,7 +769,7 @@ msgstr "Chitinase"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Chitinase enables the cell to break down chitin membrane. Each addition increases the effectiveness."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage. It also costs less energy to retain its form, but it is slower and cannot absorb resources quickly. [b]Chitinase can digest this wall[/b] making it vulnerable to engulfment from predators."
 
@@ -824,7 +824,7 @@ msgstr "Clean Up Old Saves"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -852,7 +852,7 @@ msgstr "Coastal"
 msgid "COLLISION_SHAPE"
 msgstr "Spawn entities with collision shapes"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:761
 msgid "COLOUR"
 msgstr "Colour"
 
@@ -1235,8 +1235,8 @@ msgstr "Deadzone Configuration"
 msgid "DEATH"
 msgstr "death"
 
-#: ../src/engine/DebugOverlays.Inspector.cs:20
-#: ../src/engine/DebugOverlays.tscn:173
+#: ../src/engine/DebugOverlays.Inspector.cs:23
+#: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
 "Position coords: {0}\n"
@@ -1401,7 +1401,7 @@ msgstr "Normal"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Digestion Efficiency"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:915
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Digestion Efficiency:"
 
@@ -1409,7 +1409,7 @@ msgstr "Digestion Efficiency:"
 msgid "DIGESTION_SPEED"
 msgstr "Digestion Speed"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Digestion Speed:"
 
@@ -1461,11 +1461,11 @@ msgstr ""
 "There are placed metaballs, which are not connected to the rest.\n"
 "Please move all placed metaballs next to other ones to continue."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Disconnected Organelles"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1310
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "There are placed organelles, which are not connected to the rest.\n"
@@ -1520,7 +1520,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
 msgid "DOUBLE"
 msgstr "Double"
 
@@ -1528,7 +1528,7 @@ msgstr "Double"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Double click to view in fullscreen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources."
 
@@ -1713,15 +1713,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
@@ -1895,7 +1895,7 @@ msgstr "Extra Options"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Visit our Facebook page"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1165
 msgid "FAILED"
 msgstr "Failed"
 
@@ -1998,11 +1998,11 @@ msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the mo
 msgid "FLOATING_HAZARD"
 msgstr "Floating Hazard"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
 msgid "FLUID"
 msgstr "Fluid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:695
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidity / Rigidity"
 
@@ -2021,7 +2021,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Food Chain"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2423
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
 
@@ -2114,7 +2114,7 @@ msgstr "General"
 msgid "GENERATIONS"
 msgstr "Generations"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:937
 msgid "GENERATION_COLON"
 msgstr "Generation:"
 
@@ -2203,7 +2203,7 @@ msgstr "Graphics Team"
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Enables the light flashing effects on GUIs (e.g editor button flash).\n"
@@ -2220,12 +2220,12 @@ msgid "GUI_VOLUME"
 msgstr "GUI volume"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2807
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3743
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 msgid "HEALTH"
 msgstr "Health"
 
@@ -2274,7 +2274,7 @@ msgstr "Horizontal:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Horizontal (Axis: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:887
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -2349,7 +2349,7 @@ msgstr "Inputs"
 msgid "INSPECT"
 msgstr "Inspect"
 
-#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:165
+#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
 msgid "INSPECTOR"
 msgstr "Inspector"
 
@@ -3099,7 +3099,7 @@ msgstr "Membrane"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membrane Rigidity"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:677
 msgid "MEMBRANE_TYPES"
 msgstr "Membrane Types"
 
@@ -3808,11 +3808,11 @@ msgstr "Mute"
 msgid "NAME"
 msgstr "Name:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negative ATP Balance"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Your microbe is not producing enough ATP for it to survive!\n"
@@ -3864,7 +3864,7 @@ msgstr "New Name:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -3910,11 +3910,11 @@ msgid "NONE"
 msgstr "None"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "NORMAL"
 msgstr "Normal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "The most basic form of membrane, it has little protection against damage. It also needs more energy to not deform. The advantage is that it allows the cell to move and absorb nutrients swiftly."
 
@@ -3964,7 +3964,7 @@ msgid "NO_AI"
 msgstr "No AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
@@ -4027,8 +4027,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2306
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4141,6 +4141,28 @@ msgstr "Change your settings"
 msgid "ORGANELLES"
 msgstr "Organelles"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:904
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+msgid "ORGANELLE_AXON"
+msgstr "Axon"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
+msgid "ORGANELLE_AXON_DESCRIPTION"
+msgstr "Axons are the nerve fibers that neurons use to connect to each other and communicate. Placing this organelle turns a cell type into brain tissue."
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:636
+msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
+msgstr "Multicellular"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:930
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+msgid "ORGANELLE_MYOFIBRIL"
+msgstr "Myofibril"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
+msgstr "Allows creating muscle cells. Currently does nothing in the prototype."
+
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
@@ -4154,7 +4176,7 @@ msgstr "Pili (singular: pilus) are found on the surface of many micro organisms 
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Can be used to stab the other cells or to defend against their toxins."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:829
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
 
@@ -4186,12 +4208,12 @@ msgstr "Osmoregulation"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2909
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulation Cost"
 
@@ -4328,7 +4350,7 @@ msgstr "PATCH EXTINCTION"
 msgid "PATCH_MAP"
 msgstr "Patch Map"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4089
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Click, drag and zoom to move around"
 
@@ -4461,9 +4483,9 @@ msgstr "Photosynthesis"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Physical Conditions"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3011
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Physical Resistance"
 
@@ -4571,7 +4593,7 @@ msgstr "population:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2287
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2291
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4579,7 +4601,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1107
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "View detailed information behind the prediction"
 
@@ -4787,8 +4809,8 @@ msgstr "Defaults"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Reset to defaults?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3077
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Resistant to basic engulfment"
 
@@ -4796,12 +4818,12 @@ msgstr "Resistant to basic engulfment"
 msgid "RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2774
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
@@ -4854,7 +4876,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Right mouse"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:728
 msgid "RIGID"
 msgstr "Rigid"
 
@@ -4870,7 +4892,7 @@ msgstr "Rotate left"
 msgid "ROTATE_RIGHT"
 msgstr "Rotate right"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:881
 msgid "ROTATION_COLON"
 msgstr "Rotation:"
 
@@ -5152,7 +5174,7 @@ msgstr "September"
 msgid "SESSILE"
 msgstr "Sessile"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "This value only applies to new games started after changing this option"
 
@@ -5192,7 +5214,7 @@ msgstr "Show tutorials (in new games)"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Show unsaved progress warning"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Enables / disables the unsaved progress warning popup for when the player tries to quit the game."
 
@@ -5238,11 +5260,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Signal To Emit"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3610
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
 msgid "SILICA"
 msgstr "Silica"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a strong wall of silica. It can resist overall damage well and is very resistant to physical damage. It also requires less energy to maintain its form. However, it slows the cell down by a large factor and the cell absorbs resources at a reduced rate."
 
@@ -5250,7 +5272,7 @@ msgstr "This membrane has a strong wall of silica. It can resist overall damage 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:893
 msgid "SIZE_COLON"
 msgstr "Size:"
 
@@ -5314,7 +5336,7 @@ msgstr "Spawn ammonia"
 msgid "SPAWN_ENEMY"
 msgstr "Spawn Enemy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:780
+#: ../src/microbe_stage/MicrobeStage.cs:782
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Can't use spawn enemy cheat because this patch does not contain any enemy species"
 
@@ -5403,7 +5425,7 @@ msgstr "{0} with population: {1}"
 msgid "SPEED"
 msgstr "Speed"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "SPEED_COLON"
 msgstr "Speed:"
 
@@ -5535,7 +5557,7 @@ msgstr "Stop"
 msgid "STORAGE"
 msgstr "Storage"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:899
 msgid "STORAGE_COLON"
 msgstr "Storage:"
 
@@ -5574,7 +5596,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Perish instantly"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -5634,7 +5656,7 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Take a screenshot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -5885,7 +5907,7 @@ msgstr "Toggle unbinding"
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Total Population:"
 
@@ -5893,9 +5915,9 @@ msgstr "Total Population:"
 msgid "TOTAL_SAVES"
 msgstr "Total saves:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3811
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin Resistance"
 
@@ -6449,7 +6471,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "World relative"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1208
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"
 

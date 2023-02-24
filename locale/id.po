@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 16:13+0700\n"
+"POT-Creation-Date: 2023-02-24 13:49+0200\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Auto-evo gagal bekerja"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
@@ -221,7 +221,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Asumsikan hyperthreading diaktifkan pada CPU"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Tidak dapat dideteksi secara otomatis apakah hyperthreading aktif atau tidak.\n"
@@ -238,7 +238,7 @@ msgstr "Gas Atmosfer"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:982
 msgid "ATP_BALANCE"
 msgstr "Keseimbangan ATP"
 
@@ -273,7 +273,7 @@ msgstr ""
 msgid "AUTO"
 msgstr "otomatis"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
@@ -282,13 +282,13 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} populasi berubah sebanyak {1} di {2} karena: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% selesai. {1:n0}/{2:n0} tahap."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1095
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
@@ -368,12 +368,12 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2707
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2874
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3121
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mobilitas"
@@ -478,7 +478,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1183
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Spesies:"
@@ -564,11 +564,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Oleh Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsium Karbonat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki kulit kuat yang terbuat dari kalsium karbonat. Sangat mudah menangkal kerusakan dan membutuhkan lebih sedikit energi agar tidak berubah bentuk. Kekurangan dari memiliki sebuah kulit yang berat adalah sel menjadi lebih lambat dan membutuhkan beberapa waktu untuk menyerap sumber daya."
 
@@ -585,7 +585,7 @@ msgstr "Batal"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1276
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "BATAL TINDAKAN"
 
@@ -604,10 +604,10 @@ msgstr "Sel ini merupakan bagian dari organisme anda dan tidak dapat dihilangkan
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Tidak Dapat Menghilangkan Sel Yang Sedang Dipakai"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3045
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 msgid "CANNOT_ENGULF"
 msgstr "Tidak bisa menelan"
 
@@ -681,11 +681,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "Vakuola adalah organel ber-membran internal yang digunakan untuk peyimpanan dalam sel. Mereka tersusun dari beberapa gelembung (vesikel), struktur ber-membran lebih kecil yang banyak digunakan oleh sel untuk penyimpanan, yang telah menyatu. Gelembung tersebut terisi air yang digunakan untuk menampung molekul, enzim, padatan dan zat lainnya. Bentuk mereka cair dan bervariasi antar sel."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
 msgid "CELLULOSE"
 msgstr "Selulosa"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
 
@@ -768,7 +768,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Kemosintesis"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
 msgid "CHITIN"
 msgstr "Kitin"
 
@@ -781,7 +781,7 @@ msgstr "Kitinase"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Membrane ini memiliki dinding, yang artinya membran ini memiliki perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan racun. Juga membutuhkan lebih sedikit energi untuk mempertahankan bentuk, tetapi memperlambat sel dan tidak dapat menyerap sumber daya dengan cepat."
 
@@ -839,7 +839,7 @@ msgstr "Bersihkan Save Lama"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -869,7 +869,7 @@ msgstr "Pesisir"
 msgid "COLLISION_SHAPE"
 msgstr "Munculkan entitas dengan bentukan pendeteksi benturan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:761
 msgid "COLOUR"
 msgstr "Warna"
 
@@ -1246,8 +1246,8 @@ msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin
 msgid "DEATH"
 msgstr "mati"
 
-#: ../src/engine/DebugOverlays.Inspector.cs:20
-#: ../src/engine/DebugOverlays.tscn:173
+#: ../src/engine/DebugOverlays.Inspector.cs:23
+#: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
 
@@ -1409,7 +1409,7 @@ msgstr "Sedang"
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:915
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Deskripsi:"
@@ -1419,7 +1419,7 @@ msgstr "Deskripsi:"
 msgid "DIGESTION_SPEED"
 msgstr "Kecepatan Serap Sumber Daya"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Kecepatan:"
@@ -1475,11 +1475,11 @@ msgstr ""
 "Ada organel yang tidak tersambung dengan yang lainnya.\n"
 "Mohon untuk menyambung semua organel dengan yang lainnya atau batal perubahanmu."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Organel Terputus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1310
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Ada organel yang tidak tersambung dengan yang lainnya.\n"
@@ -1537,7 +1537,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
 msgid "DOUBLE"
 msgstr "Ganda"
 
@@ -1545,7 +1545,7 @@ msgstr "Ganda"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membran dengan dua lapis, memiliki perlindungan yang lebih baik terhadap kerusakan dan memerlukan lebih sedikit energi agar tak berubah bentuk. Namun, memperlambat sel dan mengurangi laju kemampuannya menyerap sumber daya."
 
@@ -1736,15 +1736,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1934,7 +1934,7 @@ msgstr "Pilihan Ekstra"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1165
 #, fuzzy
 msgid "FAILED"
 msgstr "Gagal menyimpan"
@@ -2055,11 +2055,11 @@ msgstr "Menggunakan [thrive:compound type=\"atp\"][/thrive:compound] untuk menam
 msgid "FLOATING_HAZARD"
 msgstr "Bahaya Apung"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:695
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Kelenturan / Ketegaran"
 
@@ -2075,7 +2075,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Rantai Makanan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2423
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2173,7 +2173,7 @@ msgstr "Umum"
 msgid "GENERATIONS"
 msgstr "Generasi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:937
 msgid "GENERATION_COLON"
 msgstr "Generasi:"
 
@@ -2265,7 +2265,7 @@ msgstr "Grafik"
 msgid "GUI"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Mengaktifkan efek pendar di GUI (contohnya kedipan tombol editor).\n"
@@ -2283,12 +2283,12 @@ msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2807
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3743
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 msgid "HEALTH"
 msgstr "Kesehatan"
 
@@ -2340,7 +2340,7 @@ msgstr "Generasi:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:887
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -2417,7 +2417,7 @@ msgstr "Input"
 msgid "INSPECT"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:165
+#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
 msgid "INSPECTOR"
 msgstr ""
 
@@ -3189,7 +3189,7 @@ msgstr "Membran"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Ketegaran Membran"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:677
 msgid "MEMBRANE_TYPES"
 msgstr "Jenis Membran"
 
@@ -3896,11 +3896,11 @@ msgstr "Bisu"
 msgid "NAME"
 msgstr "Nama:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Keseimbangan ATP Negatif"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobamu tidak menghasilkan ATP yang cukup untuk bertahan hidup!\n"
@@ -3953,7 +3953,7 @@ msgstr "Nama Baru:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -4000,11 +4000,11 @@ msgid "NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "NORMAL"
 msgstr "Normal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Bentuk membran yang paling dasar, mempunyai ketahanan yang kecil terhadap kerusakan. Juga membutuhkan energi yang lebih banyak agar tak berubah bentuk. Keuntungannya adalah memungkinkan sel bergerak dan menyerap nutrisi dengan cepat."
 
@@ -4055,7 +4055,7 @@ msgid "NO_AI"
 msgstr "Nonaktifkan AI (kecerdasan buatan)"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "NO_DATA_TO_SHOW"
 msgstr "Tidak Ada Data Untuk Ditampilkan"
 
@@ -4121,8 +4121,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2306
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #, fuzzy
 msgid "N_A"
@@ -4236,6 +4236,33 @@ msgstr "Ubah setelan"
 msgid "ORGANELLES"
 msgstr "Organel"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:904
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#, fuzzy
+msgid "ORGANELLE_AXON"
+msgstr "Organel"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
+#, fuzzy
+msgid "ORGANELLE_AXON_DESCRIPTION"
+msgstr "Tusuk sel lain dengan ini."
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:636
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
+msgstr "Letakkan organel"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:930
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL"
+msgstr "Pilus"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
+msgstr "Tusuk sel lain dengan ini."
+
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
@@ -4250,7 +4277,7 @@ msgstr "Tusuk sel lain dengan ini."
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Tusuk sel lain dengan ini."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:829
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organisme"
 
@@ -4282,12 +4309,12 @@ msgstr "Osmoregulasi"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2909
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "OSMOREGULATION_COST"
 msgstr "Harga Osmoregulasi"
 
@@ -4432,7 +4459,7 @@ msgstr "KEPUNAHAN"
 msgid "PATCH_MAP"
 msgstr "Peta Daerah"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4089
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 #, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -4575,9 +4602,9 @@ msgstr "Fotosintesis"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Kondisi Fisik"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3011
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Kekebalan Fisik"
 
@@ -4683,7 +4710,7 @@ msgstr "populasi:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populasi di daerah-daerah:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2287
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2291
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULASI:"
@@ -4692,7 +4719,7 @@ msgstr "POPULASI:"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predasi {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1107
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Lanjutkan"
@@ -4909,8 +4936,8 @@ msgstr "Semula"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Setel ulang ke semula?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3077
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -4918,12 +4945,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr "Resolusi:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2774
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Kecepatan Serap Sumber Daya"
 
@@ -4979,7 +5006,7 @@ msgstr ""
 msgid "RIGHT_MOUSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:728
 msgid "RIGID"
 msgstr ""
 
@@ -4995,7 +5022,7 @@ msgstr "Putar kiri"
 msgid "ROTATE_RIGHT"
 msgstr "Putar kanan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:881
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "{0} populasi berubah {1} karena: {2}"
@@ -5289,7 +5316,7 @@ msgstr ""
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Nilai ini hanya berlaku untuk permainan baru setelah mengubah opsi ini"
 
@@ -5337,7 +5364,7 @@ msgstr ""
 "Kamu memiliki perubahan yang belum tersimpan yang akan dibuang.\n"
 "Apakah kamu ingin lanjut?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
@@ -5390,11 +5417,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Agen Pelekat"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3610
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
 msgid "SILICA"
 msgstr "Silika"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding kuat terbuat dari silika. Dapat menahan kerusakan secara keseluruhan dengan baik dan sangat kebal terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuk. Namun, sangat memperlambat sel dan juga memperlambat laju kemampuan sel menyerap sumber daya."
 
@@ -5402,7 +5429,7 @@ msgstr "Membran ini memiliki dinding kuat terbuat dari silika. Dapat menahan ker
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:893
 msgid "SIZE_COLON"
 msgstr "Ukuran:"
 
@@ -5469,7 +5496,7 @@ msgstr "Munculkan amonia"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:780
+#: ../src/microbe_stage/MicrobeStage.cs:782
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5561,7 +5588,7 @@ msgstr "Populasi Spesies"
 msgid "SPEED"
 msgstr "Kecepatan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "SPEED_COLON"
 msgstr "Kecepatan:"
 
@@ -5701,7 +5728,7 @@ msgstr "Stop"
 msgid "STORAGE"
 msgstr "Penyimpanan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:899
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Penyimpanan"
@@ -5742,7 +5769,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -5804,7 +5831,7 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Ambil tangkapan layar"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -6050,7 +6077,7 @@ msgstr "Nyala/matikan pelepasan"
 msgid "TOOLS"
 msgstr "Alat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "{0} populasi berubah {1} karena: {2}"
@@ -6059,9 +6086,9 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 msgid "TOTAL_SAVES"
 msgstr "Jumlah save total:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3811
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
 msgid "TOXIN_RESISTANCE"
 msgstr "Kekebalan Racun"
 
@@ -6649,7 +6676,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1208
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Spesies:"

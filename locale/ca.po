@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 16:13+0700\n"
+"POT-Creation-Date: 2023-02-24 13:49+0200\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Validacions addicionals han detectat un problema: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Afegir una nova vinculació de tecla"
 
@@ -222,7 +222,7 @@ msgstr "Es requereix l'ensamblatge de mod quan auto harmony està activat"
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assumir que la CPU té activat el hyperthreading"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "No pot ser automàticament detectat si el \"hyperthreading\" està activat o no.\n"
@@ -239,7 +239,7 @@ msgstr "Gasos Atmosfèrics"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:982
 msgid "ATP_BALANCE"
 msgstr "Equilibri d'ATP"
 
@@ -273,7 +273,7 @@ msgstr "Agost"
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer la seva predicció. L'energia total que una espècie pot recol·lectar i el cost energètic per individu d'aquesta espècie, en determinen la població final. L'algorisme auto-evo fa servir un model simplificat de la realitat per a calcular el rendiment de les espècies basat en l'energia que són capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta energia en guanya l'espècie. A més a més, es mostra l'energia total disponible per aquesta font. La fracció de l'energia total que guanyen les espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment total'. El 'rendiment' és una mètrica de com de bé les espècies poden utilitzar aquesta font d'alimentació."
 
@@ -281,12 +281,12 @@ msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} població ha variat en {1} a {2} degut a: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1099
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Predicció d'Auto-Evo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1095
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Aquest tauler mostra els nombres de població esperats pel sistema auto-evo per l'espècie editada.\n"
@@ -366,12 +366,12 @@ msgid "BACKSPACE"
 msgstr "Enrere"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2707
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2874
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3121
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
 msgid "BASE_MOBILITY"
 msgstr "Mobilitat base"
 
@@ -473,7 +473,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1183
 msgid "BEST_PATCH_COLON"
 msgstr "Millor Medi:"
 
@@ -558,11 +558,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Per Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonat de Calci"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una capa dura de Carbonat de Calci. Té una gran resistència a qualsevol agressió externa, ja sigui de naturalesa física o química. No consumeix gaire energia. Malgrat tot, la cèl·lula esdevé lenta i absorbeix els nutrients a poc a poc."
 
@@ -579,7 +579,7 @@ msgstr "Cancel·lar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1276
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL·LAR ACCIÓ"
 
@@ -598,10 +598,10 @@ msgstr "Un Tipus de Cèl·lula que s'utilitza actualment en el teu Pla Corporal 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "No es pot eliminar el Tipus de Cèl·lula"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3045
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 msgid "CANNOT_ENGULF"
 msgstr "No pot engolir"
 
@@ -672,11 +672,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "La cel·lulasa permet a la cèl·lula trencar membranes de cel·lulosa. Cada addició n'augmenta l'efectivitat."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
 msgid "CELLULOSE"
 msgstr "Cel·lulosa"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però no pot absorbir recursos ràpidament i és més lenta. [b]La cel·lulasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
 
@@ -755,7 +755,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Quimiosíntesi"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
 msgid "CHITIN"
 msgstr "Quitina"
 
@@ -767,7 +767,7 @@ msgstr "Quitinasa"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "La quitinasa permet a la cèl·lula digerir membranes de quitina. Cada addició n'augmenta l'efectivitat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, de manera que està més ben protegida, especialment contra agents externs, com ara Toxines. A més a més, consumeix poca energia. No obstant, la cèl·lula esdevé més lenta i absorbeix els nutrients més a poc a poc. [b]La quitinasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
 
@@ -822,7 +822,7 @@ msgstr "Netejar els arxius de guardat antics"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -850,7 +850,7 @@ msgstr "Zona costanera"
 msgid "COLLISION_SHAPE"
 msgstr "Generar entitats amb formes de col·lisió"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:761
 msgid "COLOUR"
 msgstr "Color"
 
@@ -1225,8 +1225,8 @@ msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segu
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/engine/DebugOverlays.Inspector.cs:20
-#: ../src/engine/DebugOverlays.tscn:173
+#: ../src/engine/DebugOverlays.Inspector.cs:23
+#: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
 
@@ -1383,7 +1383,7 @@ msgstr "Normal"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Eficiència de Digestió"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:915
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Eficiència de Digestió"
 
@@ -1391,7 +1391,7 @@ msgstr "Eficiència de Digestió"
 msgid "DIGESTION_SPEED"
 msgstr "Velocitat de Digestió"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Velocitat de Digestió:"
 
@@ -1443,11 +1443,11 @@ msgstr ""
 "Hi ha metaboles col·locades que no estan connectades a la resta.\n"
 "Siusplau, mou totes les metaboles col·locades al costat d'altres per continuar."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1310
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
@@ -1506,7 +1506,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
 msgid "DOUBLE"
 msgstr "Doble"
 
@@ -1514,7 +1514,7 @@ msgstr "Doble"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Doble clic per mostrar en pantalla completa"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana cel·lular formada per dues capes, que ofereix millor protecció i consumeix menys energia. No obstant, fa que la cèl·lula esdevingui més lenta. També redueix la velocitat a la qual s'absorbeixen els nutrients en entrar-hi en contacte."
 
@@ -1700,15 +1700,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "ENERGY_SOURCES"
 msgstr "Fonts d'energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
@@ -1890,7 +1890,7 @@ msgstr "Opcions Extra"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pausar el joc"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1165
 msgid "FAILED"
 msgstr "Error"
 
@@ -2014,11 +2014,11 @@ msgstr "Fa servir [thrive:compound type=\"atp\"][/thrive:compound] per augmentar
 msgid "FLOATING_HAZARD"
 msgstr "Perill flotant"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
 msgid "FLUID"
 msgstr "Fluidesa"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:695
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidesa / Rigidesa"
 
@@ -2037,7 +2037,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Cadena Alimentària o Tròfica"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2423
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (rendiment: {2}) energia total disponible: {3} (rendiment total: {4})"
 
@@ -2138,7 +2138,7 @@ msgstr "General"
 msgid "GENERATIONS"
 msgstr "Generació:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:937
 msgid "GENERATION_COLON"
 msgstr "Generació:"
 
@@ -2229,7 +2229,7 @@ msgstr "Equip de gràfics"
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4054
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Permet els efectes de llum intermitent als GUIs (e.g llum intermitent del botó d'editor).\n"
@@ -2247,12 +2247,12 @@ msgid "GUI_VOLUME"
 msgstr "Volum del GUI"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2807
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2977
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3469
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3743
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 msgid "HEALTH"
 msgstr "Salut"
 
@@ -2303,7 +2303,7 @@ msgstr "Versió:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:887
 msgid "HP_COLON"
 msgstr "Punts de salut:"
 
@@ -2378,7 +2378,7 @@ msgstr "Entrades"
 msgid "INSPECT"
 msgstr "Inspeccionar"
 
-#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:165
+#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
 #, fuzzy
 msgid "INSPECTOR"
 msgstr "Inspeccionar"
@@ -3136,7 +3136,7 @@ msgstr "Membrana"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Rigidesa de la membrana"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:677
 msgid "MEMBRANE_TYPES"
 msgstr "Tipus de Membrana"
 
@@ -3855,11 +3855,11 @@ msgstr "Mut"
 msgid "NAME"
 msgstr "Nom:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Equilibri d'ATP Negatiu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "El teu Microbi no consumeix més ATP que no pas pot arribar a produïr!\n"
@@ -3911,7 +3911,7 @@ msgstr "Nou nom:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -3957,11 +3957,11 @@ msgid "NONE"
 msgstr "Cap"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "NORMAL"
 msgstr "Normal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta és la forma més bàsica de la Membrana cel·lular, que ofereix poca protecció contra Agents externs i altres cèl·lules. També consumeix una quantitat important d'energia. Com a avantatge, permet a la cèl·lula moure's i absorbir nutrients ràpidament."
 
@@ -4012,7 +4012,7 @@ msgid "NO_AI"
 msgstr "No IA"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "NO_DATA_TO_SHOW"
 msgstr "No hi ha dades a mostrar"
 
@@ -4077,8 +4077,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2306
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4193,6 +4193,33 @@ msgstr "Canviar la configuració"
 msgid "ORGANELLES"
 msgstr "Orgànuls"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:904
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#, fuzzy
+msgid "ORGANELLE_AXON"
+msgstr "Orgànuls"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
+#, fuzzy
+msgid "ORGANELLE_AXON_DESCRIPTION"
+msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:636
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
+msgstr "Multicel·lular"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:930
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL"
+msgstr "Fibló"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+#, fuzzy
+msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
+msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
+
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
@@ -4206,7 +4233,7 @@ msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-org
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Apunyala altres cèl·lules amb aquesta part."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:829
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
@@ -4238,12 +4265,12 @@ msgstr "Osmoregulació"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2909
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "OSMOREGULATION_COST"
 msgstr "Cost d'Osmoregulació"
 
@@ -4384,7 +4411,7 @@ msgstr "EXTINCIÓ DE L'ECOSISTEMA"
 msgid "PATCH_MAP"
 msgstr "Mapa d'Indrets del món"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4089
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Clica, arrossega i fes zoom per moure't"
 
@@ -4524,9 +4551,9 @@ msgstr "Fotosíntesi"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condicions Físiques"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3011
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistència física"
 
@@ -4630,7 +4657,7 @@ msgstr "població:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "població a les zones:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2287
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2291
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4638,7 +4665,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predació de {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1107
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Veure informació detallada de la predicció"
 
@@ -4852,8 +4879,8 @@ msgstr "Per defecte"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetejar als valors per defecte?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3077
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -4861,12 +4888,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr "Resolució:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2605
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2774
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Velocitat d'Absorció de Recursos"
 
@@ -4920,7 +4947,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Clic dret del ratolí"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:728
 msgid "RIGID"
 msgstr "Rigidesa"
 
@@ -4936,7 +4963,7 @@ msgstr "Rotar cap a l'esquerra"
 msgid "ROTATE_RIGHT"
 msgstr "Rotar cap a la dreta"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:881
 msgid "ROTATION_COLON"
 msgstr "Rotació:"
 
@@ -5222,7 +5249,7 @@ msgstr "Setembre"
 msgid "SESSILE"
 msgstr "Sèssil"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Aquest valor només s'aplicarà a les partides iniciades després de canviar la opció"
 
@@ -5264,7 +5291,7 @@ msgstr "Mostrar tutorials (en noves partides)"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostra avís de progrés no guardat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Habilitar / deshabilitar la finestreta d'avís de progrés no guardat quan el jugador intenta sortir del joc."
 
@@ -5310,11 +5337,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Senyal a emetre"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3610
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
 msgid "SILICA"
 msgstr "Silici"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressions externes, sobretot les de naturalesa física. També consumeix poca energia. No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els nutrients a poc a poc."
 
@@ -5322,7 +5349,7 @@ msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressi
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:893
 msgid "SIZE_COLON"
 msgstr "Mida:"
 
@@ -5388,7 +5415,7 @@ msgstr "Fer aparéixer Amoníac"
 msgid "SPAWN_ENEMY"
 msgstr "Generar Enemic"
 
-#: ../src/microbe_stage/MicrobeStage.cs:780
+#: ../src/microbe_stage/MicrobeStage.cs:782
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No es pot fer servir el truc de generar un enemic ja que aquest medi no conté cap espècie enemiga"
 
@@ -5479,7 +5506,7 @@ msgstr "{0} amb població: {1}"
 msgid "SPEED"
 msgstr "Velocitat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "SPEED_COLON"
 msgstr "Velocitat:"
 
@@ -5612,7 +5639,7 @@ msgstr "Aturar"
 msgid "STORAGE"
 msgstr "Emmagatzematge"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:899
 msgid "STORAGE_COLON"
 msgstr "Emmagatzematge:"
 
@@ -5651,7 +5678,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicidi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -5713,7 +5740,7 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Fer una captura de pantalla"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -5955,7 +5982,7 @@ msgstr "Desactivar el mode d'unió"
 msgid "TOOLS"
 msgstr "Eines"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Població Total:"
 
@@ -5963,9 +5990,9 @@ msgstr "Població Total:"
 msgid "TOTAL_SAVES"
 msgstr "Nombre total d'arxius guardats:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3811
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistència a les Toxines"
 
@@ -6524,7 +6551,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per augmentar la"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1208
 msgid "WORST_PATCH_COLON"
 msgstr "Pitjor Medi:"
 
