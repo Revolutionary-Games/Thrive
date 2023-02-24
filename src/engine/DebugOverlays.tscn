@@ -10,7 +10,7 @@
 
 [node name="DebugOverlay" type="Control"]
 script = ExtResource( 3 )
-DebugCoordinatesPath = NodePath("Inspector/DebugCoordinates")
+DebugCoordinatesPath = NodePath("Inspector/ScrollContainer/DebugCoordinates")
 FPSCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox")
 PerformanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox")
 InspectorCheckboxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox")
@@ -159,18 +159,27 @@ scrollable = false
 ticks_on_borders = true
 
 [node name="Inspector" parent="." instance=ExtResource( 1 )]
-margin_right = 384.0
-margin_bottom = 0.0
-rect_min_size = Vector2( 384, 0 )
+margin_left = 310.0
+margin_right = 710.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
 WindowTitle = "INSPECTOR"
+Resizable = true
 
-[node name="DebugCoordinates" type="Label" parent="Inspector"]
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 230.0
-margin_bottom = 47.0
+[node name="ScrollContainer" type="ScrollContainer" parent="Inspector"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="DebugCoordinates" type="Label" parent="Inspector/ScrollContainer"]
+margin_right = 40.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "DEBUG_COORDINATES"
+clip_text = true
 
 [node name="FPSCounter" type="Control" parent="."]
 visible = false
