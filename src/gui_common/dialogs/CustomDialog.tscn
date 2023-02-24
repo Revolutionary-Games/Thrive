@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/CustomDialog.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.cs" type="Script" id=2]
 
 [node name="CustomDialog" type="Popup"]
 margin_right = 42.0

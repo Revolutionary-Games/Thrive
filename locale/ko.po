@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 10:06+0200\n"
+"POT-Creation-Date: 2023-02-24 16:13+0700\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -411,12 +411,12 @@ msgstr "심해수층"
 msgid "BECOME_AWARE"
 msgstr "생태계: {0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:470
+#: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:434
+#: ../src/microbe_stage/MicrobeHUD.cs:428
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -636,27 +636,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr "이산화탄소"
 
-#: ../src/general/StageHUDBase.cs:969
+#: ../src/general/StageHUDBase.cs:962
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:973
+#: ../src/general/StageHUDBase.cs:966
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:977
+#: ../src/general/StageHUDBase.cs:970
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:971
+#: ../src/general/StageHUDBase.cs:964
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:975
+#: ../src/general/StageHUDBase.cs:968
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:979
+#: ../src/general/StageHUDBase.cs:972
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -874,7 +874,7 @@ msgstr ""
 msgid "COASTAL"
 msgstr "해안"
 
-#: ../src/engine/DebugOverlays.tscn:109
+#: ../src/engine/DebugOverlays.tscn:117
 msgid "COLLISION_SHAPE"
 msgstr ""
 
@@ -1263,7 +1263,12 @@ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적�
 msgid "DEATH"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:85
+#: ../src/engine/DebugOverlays.Inspector.cs:20
+#: ../src/engine/DebugOverlays.tscn:173
+msgid "DEBUG_COORDINATES"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -1566,7 +1571,7 @@ msgstr "두 개의 층이있는 막으로써 피해로부터 더 잘 보호되�
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:123
+#: ../src/engine/DebugOverlays.tscn:138
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
@@ -1772,7 +1777,7 @@ msgstr "저장 덮어쓰기:"
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:116
+#: ../src/engine/DebugOverlays.tscn:124
 #, fuzzy
 msgid "ENTITY_LABEL"
 msgstr "생태계: {0}"
@@ -2117,12 +2122,12 @@ msgstr ""
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
-#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "최대 FPS:"
 
-#: ../src/engine/DebugOverlays.tscn:95
+#: ../src/engine/DebugOverlays.tscn:103
 msgid "FPS_DISPLAY"
 msgstr ""
 
@@ -2406,6 +2411,10 @@ msgstr "입력"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:165
+msgid "INSPECTOR"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
@@ -3211,14 +3220,14 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
+#: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
 #: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "FPS 표시 전환"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
-#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
@@ -4029,7 +4038,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:615
+#: ../src/general/StageHUDBase.cs:608
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4531,7 +4540,7 @@ msgid "PEACEFUL"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:735
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4604,7 +4613,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1187
+#: ../src/general/StageHUDBase.cs:1173
 msgid "PLAYER_CELL"
 msgstr "플레이어 세포"
 
@@ -5483,7 +5492,7 @@ msgstr "암모니아 배치"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:778
+#: ../src/microbe_stage/MicrobeStage.cs:780
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5536,7 +5545,7 @@ msgstr "종 명칭..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "종 명칭..."
 
-#: ../src/general/StageHUDBase.cs:1200
+#: ../src/general/StageHUDBase.cs:1186
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "존재하는 종"
@@ -5728,10 +5737,6 @@ msgstr "구조의"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:497
 msgid "STRUCTURE"
 msgstr "구조"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:324
-msgid "STUFF_AT"
-msgstr "{0:F1}, {1:F1}에 위치함:"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:765
 msgid "SUCCESSFUL_KILL"
@@ -6085,8 +6090,8 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:180
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:188
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:174
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:182
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
 msgid "TO_BE_IMPLEMENTED"
 msgstr "실행됨."
@@ -6096,7 +6101,7 @@ msgstr "실행됨."
 msgid "TRANSLATORS"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/engine/DebugOverlays.tscn:134
+#: ../src/engine/DebugOverlays.tscn:149
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "게임을 번역하는 것을 도와주세요"
@@ -6462,7 +6467,7 @@ msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소�
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/general/StageHUDBase.cs:736 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:729 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr ""
@@ -6706,6 +6711,9 @@ msgstr "확대"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#~ msgid "STUFF_AT"
+#~ msgstr "{0:F1}, {1:F1}에 위치함:"
 
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "종 세부 사항"

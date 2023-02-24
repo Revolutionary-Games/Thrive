@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 10:06+0200\n"
+"POT-Creation-Date: 2023-02-24 16:13+0700\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -405,12 +405,12 @@ msgstr "Батиал"
 msgid "BECOME_AWARE"
 msgstr "Осъзнаване"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:470
+#: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
 msgstr "Макроскопичен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:434
+#: ../src/microbe_stage/MicrobeHUD.cs:428
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "BECOME_MULTICELLULAR"
 msgstr "Многоклетъчен организъм ({0} от {1})"
@@ -619,27 +619,27 @@ msgstr "Клавиш „Caps Lock“"
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
-#: ../src/general/StageHUDBase.cs:969
+#: ../src/general/StageHUDBase.cs:962
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в изобилно количество"
 
-#: ../src/general/StageHUDBase.cs:973
+#: ../src/general/StageHUDBase.cs:966
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "в задоволително количество"
 
-#: ../src/general/StageHUDBase.cs:977
+#: ../src/general/StageHUDBase.cs:970
 msgid "CATEGORY_LITTLE"
 msgstr "в ограничено количество"
 
-#: ../src/general/StageHUDBase.cs:971
+#: ../src/general/StageHUDBase.cs:964
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "в обилно количество"
 
-#: ../src/general/StageHUDBase.cs:975
+#: ../src/general/StageHUDBase.cs:968
 msgid "CATEGORY_SOME"
 msgstr "в умерено количество"
 
-#: ../src/general/StageHUDBase.cs:979
+#: ../src/general/StageHUDBase.cs:972
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
@@ -839,7 +839,7 @@ msgstr "Минимален интервал на облачната симула
 msgid "COASTAL"
 msgstr "Крайбрежие"
 
-#: ../src/engine/DebugOverlays.tscn:109
+#: ../src/engine/DebugOverlays.tscn:117
 msgid "COLLISION_SHAPE"
 msgstr "Фигури на обектите"
 
@@ -1210,7 +1210,12 @@ msgstr "Мъртви зони на контролера"
 msgid "DEATH"
 msgstr "измиране"
 
-#: ../src/engine/DebugOverlays.tscn:85
+#: ../src/engine/DebugOverlays.Inspector.cs:20
+#: ../src/engine/DebugOverlays.tscn:173
+msgid "DEBUG_COORDINATES"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
 msgstr "Отстраняване на грешки"
 
@@ -1504,7 +1509,7 @@ msgstr "Това е мембрана с два слоя, която осигур
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Не предупреждавай за това отново"
 
-#: ../src/engine/DebugOverlays.tscn:123
+#: ../src/engine/DebugOverlays.tscn:138
 msgid "DUMP_SCENE_TREE"
 msgstr "Прочистване на възлите"
 
@@ -1701,7 +1706,7 @@ msgstr "Въвеждане на съществуващ идентификаци�
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "Въвеждане на съществуващ идентификационен № за работилницата"
 
-#: ../src/engine/DebugOverlays.tscn:116
+#: ../src/engine/DebugOverlays.tscn:124
 msgid "ENTITY_LABEL"
 msgstr "Надписи на обектите"
 
@@ -2057,11 +2062,11 @@ msgstr "4 пъти"
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
-#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "ЧКС: {0}"
 
-#: ../src/engine/DebugOverlays.tscn:95
+#: ../src/engine/DebugOverlays.tscn:103
 msgid "FPS_DISPLAY"
 msgstr "ЧКС"
 
@@ -2340,6 +2345,11 @@ msgstr "Контроли"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
+msgstr "Инспектиране"
+
+#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:165
+#, fuzzy
+msgid "INSPECTOR"
 msgstr "Инспектиране"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
@@ -3113,13 +3123,13 @@ msgstr "Метаболозомите са струпвания от протеи
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
+#: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
 #: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "Показатели за производителност"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
-#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Процесорно време: {0} с\n"
@@ -3934,7 +3944,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:615
+#: ../src/general/StageHUDBase.cs:608
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4416,7 +4426,7 @@ msgid "PEACEFUL"
 msgstr "Пасивно"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:735
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4494,7 +4504,7 @@ msgstr "Създаването на планетата е в процес на �
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволен идентификатор на планетата"
 
-#: ../src/general/StageHUDBase.cs:1187
+#: ../src/general/StageHUDBase.cs:1173
 msgid "PLAYER_CELL"
 msgstr "Вашето създание"
 
@@ -5318,7 +5328,7 @@ msgstr "Създаване на амоняк"
 msgid "SPAWN_ENEMY"
 msgstr "Съперничество"
 
-#: ../src/microbe_stage/MicrobeStage.cs:778
+#: ../src/microbe_stage/MicrobeStage.cs:780
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -5378,7 +5388,7 @@ msgstr "Наименование..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Наименованието е твърде дълго!"
 
-#: ../src/general/StageHUDBase.cs:1200
+#: ../src/general/StageHUDBase.cs:1186
 msgid "SPECIES_N_TIMES"
 msgstr "{0} ({1} индивида)"
 
@@ -5560,10 +5570,6 @@ msgstr "Строеж"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:497
 msgid "STRUCTURE"
 msgstr "Структура"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:324
-msgid "STUFF_AT"
-msgstr "Неща при {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:765
 msgid "SUCCESSFUL_KILL"
@@ -5925,8 +5931,8 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:180
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:188
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:174
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:182
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
 msgid "TO_BE_IMPLEMENTED"
 msgstr "В процес на разработка."
@@ -5935,7 +5941,7 @@ msgstr "В процес на разработка."
 msgid "TRANSLATORS"
 msgstr "Преводачи"
 
-#: ../src/engine/DebugOverlays.tscn:134
+#: ../src/engine/DebugOverlays.tscn:149
 msgid "TRANSPARENCY"
 msgstr "Прозрачност"
 
@@ -6276,7 +6282,7 @@ msgstr "Вакуолата е вътрешен мембранен органел
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Увеличава мястото за съхранение на хранителните вещества в клетката."
 
-#: ../src/general/StageHUDBase.cs:736 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:729 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6513,6 +6519,9 @@ msgstr "Приближаване"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "STUFF_AT"
+#~ msgstr "Неща при {0:F1}, {1:F1}:"
 
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Подробности"

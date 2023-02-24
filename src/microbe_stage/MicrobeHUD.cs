@@ -319,12 +319,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         return stage!.HoverInfo.HoveredCompounds;
     }
 
-    protected override string GetMouseHoverCoordinateText()
-    {
-        return TranslationServer.Translate("STUFF_AT")
-            .FormatSafe(stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
-    }
-
     protected override void UpdateAbilitiesHotBar()
     {
         var player = stage!.Player!;
