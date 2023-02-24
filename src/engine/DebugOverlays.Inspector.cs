@@ -5,12 +5,12 @@ public partial class DebugOverlays
     private Vector3 positionCoords;
     private Vector3 lookingAtCoords;
 
-    public void ReportPositionCoords(Vector3 coords)
+    public void ReportPositionCoordinates(Vector3 coords)
     {
         positionCoords = coords;
     }
 
-    public void ReportLookingAtCoords(Vector3 coords)
+    public void ReportLookingAtCoordinates(Vector3 coords)
     {
         lookingAtCoords = coords;
     }

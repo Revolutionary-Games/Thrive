@@ -192,14 +192,16 @@ public class MicrobeStage : StageBase<Microbe>
 
         if (Player != null)
         {
-            DebugOverlays.Instance.ReportPositionCoords(Player.GlobalTranslation);
-            DebugOverlays.Instance.ReportLookingAtCoords(Camera.CursorWorldPos);
+            var playerTransform = Player.GlobalTransform;
 
-            spawner.Process(delta, Player.GlobalTranslation);
-            Clouds.ReportPlayerPosition(Player.GlobalTranslation);
+            DebugOverlays.Instance.ReportPositionCoordinates(playerTransform.origin);
+            DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
+
+            spawner.Process(delta, playerTransform.origin);
+            Clouds.ReportPlayerPosition(playerTransform.origin);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
+                new RotationEventArgs(playerTransform.basis, Player.RotationDegrees), this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
                 new CompoundBagEventArgs(Player.Compounds), this);
@@ -222,7 +224,7 @@ public class MicrobeStage : StageBase<Microbe>
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerTransform.origin,
                             glucose)),
                         this);
                 }
@@ -242,7 +244,7 @@ public class MicrobeStage : StageBase<Microbe>
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.GlobalTransform.origin;
+                guidanceLine.LineStart = playerTransform.origin;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
