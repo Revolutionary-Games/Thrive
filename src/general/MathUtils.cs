@@ -131,4 +131,31 @@ public static class MathUtils
         double standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
         return (average, standardDeviation);
     }
+
+    /// <summary>
+    ///   Rounds the given value with decimals given sparingly.
+    /// </summary>
+    /// <param name="value">The value to be rounded.</param>
+    /// <param name="threshold">
+    ///   If <paramref name="value"/> is lower than this integer threshold, decimals will start being used.
+    /// </param>
+    public static float RoundWithMinimalDecimals(float value, int threshold)
+    {
+        double result;
+
+        if (value > threshold)
+        {
+            result = Math.Round(value);
+        }
+        else if (value > 0.1f)
+        {
+            result = Math.Round(value, 1);
+        }
+        else
+        {
+            result = Math.Round(value, 3);
+        }
+
+        return (float)result;
+    }
 }
