@@ -7,10 +7,16 @@
 public partial class DebugOverlays : Control
 {
     [Export]
-    public NodePath? FPSCheckBoxPath;
+    public NodePath? DebugCoordinatesPath;
+
+    [Export]
+    public NodePath FPSCheckBoxPath = null!;
 
     [Export]
     public NodePath PerformanceMetricsCheckBoxPath = null!;
+
+    [Export]
+    public NodePath InspectorCheckboxPath = null!;
 
     [Export]
     public NodePath DebugPanelDialogPath = null!;
@@ -24,12 +30,18 @@ public partial class DebugOverlays : Control
     [Export]
     public NodePath EntityLabelsPath = null!;
 
+    [Export]
+    public NodePath InspectorDialogPath = null!;
+
     private static DebugOverlays? instance;
 
 #pragma warning disable CA2213
+    private Label debugCoordinates = null!;
+    private CustomDialog inspectorDialog = null!;
     private CustomDialog debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
+    private CustomCheckBox inspectorCheckbox = null!;
     private Control fpsCounter = null!;
     private CustomDialog performanceMetrics = null!;
     private Control labelsLayer = null!;
@@ -46,6 +58,9 @@ public partial class DebugOverlays : Control
     {
         base._Ready();
 
+        debugCoordinates = GetNode<Label>(DebugCoordinatesPath);
+        inspectorDialog = GetNode<CustomDialog>(InspectorDialogPath);
+        inspectorCheckbox = GetNode<CustomCheckBox>(InspectorCheckboxPath);
         fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
         performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
         debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
@@ -77,6 +92,9 @@ public partial class DebugOverlays : Control
     public override void _Process(float delta)
     {
         base._Process(delta);
+
+        if (inspectorDialog.Visible)
+            UpdateInspector();
 
         // Entity label
         if (showEntityLabels)
@@ -120,14 +138,17 @@ public partial class DebugOverlays : Control
     {
         if (disposing)
         {
-            if (FPSCheckBoxPath != null)
+            if (DebugCoordinatesPath != null)
             {
+                DebugCoordinatesPath.Dispose();
                 FPSCheckBoxPath.Dispose();
                 FPSLabelPath.Dispose();
                 DeltaLabelPath.Dispose();
                 MetricsTextPath.Dispose();
+                InspectorDialogPath.Dispose();
 
                 PerformanceMetricsCheckBoxPath.Dispose();
+                InspectorCheckboxPath.Dispose();
                 DebugPanelDialogPath.Dispose();
                 FPSCounterPath.Dispose();
                 PerformanceMetricsPath.Dispose();

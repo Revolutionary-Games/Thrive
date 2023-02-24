@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-24 10:06+0200\n"
+"POT-Creation-Date: 2023-02-24 16:13+0700\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -415,12 +415,12 @@ msgstr "Придоння"
 msgid "BECOME_AWARE"
 msgstr "Стати обізнаним"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:470
+#: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:434
+#: ../src/microbe_stage/MicrobeHUD.cs:428
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітинності ({0}/{1})"
@@ -628,27 +628,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Вуглекислий газ"
 
-#: ../src/general/StageHUDBase.cs:969
+#: ../src/general/StageHUDBase.cs:962
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в достатку"
 
-#: ../src/general/StageHUDBase.cs:973
+#: ../src/general/StageHUDBase.cs:966
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "невелика кількість"
 
-#: ../src/general/StageHUDBase.cs:977
+#: ../src/general/StageHUDBase.cs:970
 msgid "CATEGORY_LITTLE"
 msgstr "мало"
 
-#: ../src/general/StageHUDBase.cs:971
+#: ../src/general/StageHUDBase.cs:964
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "нормально"
 
-#: ../src/general/StageHUDBase.cs:975
+#: ../src/general/StageHUDBase.cs:968
 msgid "CATEGORY_SOME"
 msgstr "трішки"
 
-#: ../src/general/StageHUDBase.cs:979
+#: ../src/general/StageHUDBase.cs:972
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "дуже мало"
 
@@ -848,7 +848,7 @@ msgstr "Мінімальний інтервал симуляції хмари:"
 msgid "COASTAL"
 msgstr "Узбережжя"
 
-#: ../src/engine/DebugOverlays.tscn:109
+#: ../src/engine/DebugOverlays.tscn:117
 msgid "COLLISION_SHAPE"
 msgstr "Cпавнити сутності з формами зіткнення"
 
@@ -1235,7 +1235,12 @@ msgstr "Конфігурація мертвої зони"
 msgid "DEATH"
 msgstr "Смерть"
 
-#: ../src/engine/DebugOverlays.tscn:85
+#: ../src/engine/DebugOverlays.Inspector.cs:20
+#: ../src/engine/DebugOverlays.tscn:173
+msgid "DEBUG_COORDINATES"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
 msgstr "панель налагоджування"
 
@@ -1529,7 +1534,7 @@ msgstr "Двохшарова мембрана– це кращий захист 
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Більше не нагадувати про це"
 
-#: ../src/engine/DebugOverlays.tscn:123
+#: ../src/engine/DebugOverlays.tscn:138
 msgid "DUMP_SCENE_TREE"
 msgstr "Вивантаження ДереваСцен"
 
@@ -1726,7 +1731,7 @@ msgstr "Введіть існуючий ID"
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "Введіть існуючий ID майстерні"
 
-#: ../src/engine/DebugOverlays.tscn:116
+#: ../src/engine/DebugOverlays.tscn:124
 msgid "ENTITY_LABEL"
 msgstr "Мітка сутності"
 
@@ -2059,11 +2064,11 @@ msgstr "4х"
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
-#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/DebugOverlays.tscn:95
+#: ../src/engine/DebugOverlays.tscn:103
 msgid "FPS_DISPLAY"
 msgstr "FPS диспей"
 
@@ -2340,6 +2345,11 @@ msgstr "Керування"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
+msgstr "Оглянути"
+
+#: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:165
+#, fuzzy
+msgid "INSPECTOR"
 msgstr "Оглянути"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
@@ -3113,13 +3123,13 @@ msgstr "Метаболосоми є скупченнями білків в бі�
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Перетворення [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить відд [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
+#: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
 #: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "Панель змін"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
-#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Час процесу: {0}с\n"
@@ -3931,7 +3941,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:615
+#: ../src/general/StageHUDBase.cs:608
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4406,7 +4416,7 @@ msgid "PEACEFUL"
 msgstr "Мирність"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:735
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4484,7 +4494,7 @@ msgstr "Генерація планети пройшла успішно!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
 
-#: ../src/general/StageHUDBase.cs:1187
+#: ../src/general/StageHUDBase.cs:1173
 msgid "PLAYER_CELL"
 msgstr "Клітина гравця"
 
@@ -5302,7 +5312,7 @@ msgstr "Спавн амоніаку"
 msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
 
-#: ../src/microbe_stage/MicrobeStage.cs:778
+#: ../src/microbe_stage/MicrobeStage.cs:780
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
@@ -5362,7 +5372,7 @@ msgstr "Назва виду..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Назва виду за довга!"
 
-#: ../src/general/StageHUDBase.cs:1200
+#: ../src/general/StageHUDBase.cs:1186
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -5544,10 +5554,6 @@ msgstr "Структурний"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:497
 msgid "STRUCTURE"
 msgstr "Структури"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:324
-msgid "STUFF_AT"
-msgstr "Нахилити на {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:765
 msgid "SUCCESSFUL_KILL"
@@ -5909,8 +5915,8 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирснути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли [thrive:compound type=\"oxytoxy\"][/thrive:compound] недостатньо, то постріл можливий, але шкода буде незначною."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:180
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:188
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:174
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:182
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізовано."
@@ -5919,7 +5925,7 @@ msgstr "Буде реалізовано."
 msgid "TRANSLATORS"
 msgstr "Перекладачі"
 
-#: ../src/engine/DebugOverlays.tscn:134
+#: ../src/engine/DebugOverlays.tscn:149
 msgid "TRANSPARENCY"
 msgstr "Прозорість"
 
@@ -6257,7 +6263,7 @@ msgstr "Вакуоля — це внутрішня мембранна орган
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Збільшує простір для зберігання у клітинні."
 
-#: ../src/general/StageHUDBase.cs:736 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:729 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6488,6 +6494,9 @@ msgstr "Приблизитись"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "STUFF_AT"
+#~ msgstr "Нахилити на {0:F1}, {1:F1}:"
 
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Деталі видів"
