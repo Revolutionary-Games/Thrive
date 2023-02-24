@@ -16,6 +16,9 @@ public partial class DebugOverlays : Control
     public NodePath PerformanceMetricsCheckBoxPath = null!;
 
     [Export]
+    public NodePath InspectorCheckboxPath = null!;
+
+    [Export]
     public NodePath DebugPanelDialogPath = null!;
 
     [Export]
@@ -27,20 +30,22 @@ public partial class DebugOverlays : Control
     [Export]
     public NodePath EntityLabelsPath = null!;
 
+    [Export]
+    public NodePath InspectorDialogPath = null!;
+
     private static DebugOverlays? instance;
 
 #pragma warning disable CA2213
     private Label debugCoordinates = null!;
+    private CustomDialog inspectorDialog = null!;
     private CustomDialog debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
+    private CustomCheckBox inspectorCheckbox = null!;
     private Control fpsCounter = null!;
     private CustomDialog performanceMetrics = null!;
     private Control labelsLayer = null!;
 #pragma warning restore CA2213
-
-    private Vector3 positionCoords;
-    private Vector3 lookingAtCoords;
 
     private DebugOverlays()
     {
@@ -54,6 +59,8 @@ public partial class DebugOverlays : Control
         base._Ready();
 
         debugCoordinates = GetNode<Label>(DebugCoordinatesPath);
+        inspectorDialog = GetNode<CustomDialog>(InspectorDialogPath);
+        inspectorCheckbox = GetNode<CustomCheckBox>(InspectorCheckboxPath);
         fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
         performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
         debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
@@ -86,8 +93,8 @@ public partial class DebugOverlays : Control
     {
         base._Process(delta);
 
-        if (debugPanelDialog.Visible)
-            UpdateDebugPanel();
+        if (inspectorDialog.Visible)
+            UpdateInspector();
 
         // Entity label
         if (showEntityLabels)
@@ -127,16 +134,6 @@ public partial class DebugOverlays : Control
         fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
     }
 
-    public void ReportPositionCoords(Vector3 coords)
-    {
-        positionCoords = coords;
-    }
-
-    public void ReportLookingAtCoords(Vector3 coords)
-    {
-        lookingAtCoords = coords;
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -148,8 +145,10 @@ public partial class DebugOverlays : Control
                 FPSLabelPath.Dispose();
                 DeltaLabelPath.Dispose();
                 MetricsTextPath.Dispose();
+                InspectorDialogPath.Dispose();
 
                 PerformanceMetricsCheckBoxPath.Dispose();
+                InspectorCheckboxPath.Dispose();
                 DebugPanelDialogPath.Dispose();
                 FPSCounterPath.Dispose();
                 PerformanceMetricsPath.Dispose();
@@ -159,12 +158,6 @@ public partial class DebugOverlays : Control
         }
 
         base.Dispose(disposing);
-    }
-
-    private void UpdateDebugPanel()
-    {
-        debugCoordinates.Text = TranslationServer.Translate("DEBUG_COORDINATES").FormatSafe(
-            positionCoords, lookingAtCoords);
     }
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)
