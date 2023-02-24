@@ -95,7 +95,7 @@ public partial class CellEditorComponent
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
-    private void SetRigiditySliderTooltip(float rigidity)
+    private void SetRigiditySliderTooltip(int rigidity)
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
@@ -294,7 +294,7 @@ public partial class CellEditorComponent
         if (rigidityTooltip != null)
         {
             rigidityTooltip.MutationPointCost = (float)MathUtils.RoundWithMinimalDecimals(Math.Min(
-                Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100),
+                    Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100),
                 Constants.MUTATION_POINT_DECIMALS_DISPLAY_THRESHOLD);
         }
     }
