@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-21 15:21+0200\n"
+"POT-Creation-Date: 2023-02-24 10:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -194,7 +194,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:523
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -288,7 +288,7 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:421
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -330,8 +330,8 @@ msgid "AWAKEN"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:480 ../src/general/MainMenu.tscn:582
-#: ../src/general/MainMenu.tscn:641 ../src/general/MainMenu.tscn:973
+#: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:618 ../src/general/MainMenu.tscn:941
 #: ../src/general/NewGameSettings.tscn:1184 ../src/general/OptionsMenu.tscn:1934
 #: ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -434,7 +434,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:447
+#: ../src/general/MainMenu.tscn:435
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -550,7 +550,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr ""
 
@@ -603,27 +603,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:969
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:974
+#: ../src/general/StageHUDBase.cs:973
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:978
+#: ../src/general/StageHUDBase.cs:977
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:972
+#: ../src/general/StageHUDBase.cs:971
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:976
+#: ../src/general/StageHUDBase.cs:975
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:980
+#: ../src/general/StageHUDBase.cs:979
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -882,19 +882,19 @@ msgstr ""
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:701
+#: ../src/general/MainMenu.tscn:678
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:696
+#: ../src/general/MainMenu.tscn:673
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:720
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:738
+#: ../src/general/MainMenu.tscn:715
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -962,11 +962,11 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1092,7 +1092,7 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:359
 msgid "CREDITS"
 msgstr ""
 
@@ -1169,7 +1169,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:956
+#: ../src/microbe_stage/Microbe.Contact.cs:946
 msgid "DEATH"
 msgstr ""
 
@@ -1251,11 +1251,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:715
+#: ../src/general/MainMenu.tscn:692
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:710
+#: ../src/general/MainMenu.tscn:687
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1263,11 +1263,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:729
+#: ../src/general/MainMenu.tscn:706
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:701
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1379,7 +1379,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:864
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -1391,7 +1391,7 @@ msgstr ""
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1084
+#: ../src/general/MainMenu.tscn:1052
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1438,7 +1438,7 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:995
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1693,7 +1693,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1220
+#: ../src/microbe_stage/Microbe.Contact.cs:1212
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1729,7 +1729,7 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:368
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -1779,7 +1779,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:351
 msgid "EXTRAS"
 msgstr ""
 
@@ -1787,7 +1787,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:876
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -1926,11 +1926,11 @@ msgstr ""
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 msgid "FOSSILISATION"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
 
@@ -1943,8 +1943,8 @@ msgstr ""
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 msgid "FOSSILISE"
 msgstr ""
 
@@ -2007,7 +2007,7 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:828
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -2015,11 +2015,11 @@ msgstr ""
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:961
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.tscn:963
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -2167,7 +2167,7 @@ msgstr ""
 msgid "HSV"
 msgstr ""
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:37
+#: ../src/microbe_stage/gui/HUDMessages.cs:44
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
@@ -2263,7 +2263,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -2299,7 +2299,7 @@ msgstr ""
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:804
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -2673,7 +2673,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:533
 msgid "LICENSES"
 msgstr ""
 
@@ -2832,12 +2832,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:199
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3014,7 +3014,7 @@ msgid "MICROBES_COUNT"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:592
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
@@ -3046,7 +3046,7 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -3055,7 +3055,7 @@ msgstr ""
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:217
+#: ../src/microbe_stage/MicrobeSpecies.cs:220
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -3243,11 +3243,11 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:510
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:979
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3333,11 +3333,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1051
+#: ../src/general/MainMenu.tscn:1019
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1052
+#: ../src/general/MainMenu.tscn:1020
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3507,7 +3507,7 @@ msgstr ""
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -3569,7 +3569,7 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:306
 msgid "NEW_GAME"
 msgstr ""
 
@@ -3656,7 +3656,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:396
+#: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
@@ -3668,15 +3668,15 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1778
+#: ../src/microbe_stage/Microbe.Contact.cs:1770
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1773
+#: ../src/microbe_stage/Microbe.Contact.cs:1765
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:616
+#: ../src/general/StageHUDBase.cs:615
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3705,11 +3705,11 @@ msgstr ""
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:966
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -3772,15 +3772,15 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:687
+#: ../src/general/MainMenu.tscn:664
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:678
+#: ../src/general/MainMenu.tscn:655
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
+#: ../src/general/MainMenu.tscn:1009 ../src/general/MainMenu.tscn:1066
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -3799,7 +3799,7 @@ msgstr ""
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -3807,7 +3807,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
@@ -3851,11 +3851,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:231
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:230
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3945,7 +3945,7 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
@@ -4099,7 +4099,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:816
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -4136,7 +4136,7 @@ msgid "PEACEFUL"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:736
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:735
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4208,7 +4208,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1188
+#: ../src/general/StageHUDBase.cs:1187
 msgid "PLAYER_CELL"
 msgstr ""
 
@@ -4366,11 +4366,11 @@ msgstr ""
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:380
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
+#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:375
 #: ../src/general/PauseMenu.tscn:246
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -4410,7 +4410,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:852
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -4435,7 +4435,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:733 ../src/general/PauseMenu.tscn:223
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -4548,7 +4548,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:779
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4634,11 +4634,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1047
+#: ../src/general/MainMenu.tscn:1015
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1045
+#: ../src/general/MainMenu.tscn:1013
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5006,7 +5006,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:767
+#: ../src/microbe_stage/MicrobeStage.cs:778
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5056,7 +5056,7 @@ msgstr ""
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1201
+#: ../src/general/StageHUDBase.cs:1200
 msgid "SPECIES_N_TIMES"
 msgstr ""
 
@@ -5171,19 +5171,19 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1102
+#: ../src/general/MainMenu.tscn:1070
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1104
+#: ../src/general/MainMenu.tscn:1072
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:792
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/CellType.cs:39
+#: ../src/early_multicellular_stage/CellType.cs:40
 msgid "STEM_CELL_NAME"
 msgstr ""
 
@@ -5241,11 +5241,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:775
+#: ../src/microbe_stage/Microbe.Contact.cs:765
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:768
+#: ../src/microbe_stage/Microbe.Contact.cs:758
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -5334,7 +5334,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
+#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1036
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -5342,7 +5342,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1058
+#: ../src/general/MainMenu.tscn:1026
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -5401,7 +5401,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:497 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -5548,7 +5548,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:335
 msgid "TOOLS"
 msgstr ""
 
@@ -5602,7 +5602,7 @@ msgstr ""
 msgid "TREBLEUP"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
 
@@ -5691,7 +5691,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:920
+#: ../src/general/MainMenu.tscn:888
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
@@ -5845,7 +5845,7 @@ msgstr ""
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:737 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:736 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr ""
@@ -5888,7 +5888,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:343
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -5900,7 +5900,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
+#: ../src/general/MainMenu.tscn:546 ../src/general/MainMenu.tscn:751
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6053,7 +6053,7 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:840
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 

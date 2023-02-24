@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-21 15:21+0200\n"
+"POT-Creation-Date: 2023-02-24 10:06+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -215,7 +215,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Arte por {0}"
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:523
 msgid "ART_GALLERY"
 msgstr "Galeria de Arte"
 
@@ -314,7 +314,7 @@ msgstr "Salvamento automático durante o jogo"
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:421
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Exploração da Auto-Evo"
 
@@ -356,8 +356,8 @@ msgid "AWAKEN"
 msgstr "Despertar"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:480 ../src/general/MainMenu.tscn:582
-#: ../src/general/MainMenu.tscn:641 ../src/general/MainMenu.tscn:973
+#: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:618 ../src/general/MainMenu.tscn:941
 #: ../src/general/NewGameSettings.tscn:1184
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -460,7 +460,7 @@ msgstr "Oportunismo"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sob o nível do mar"
 
-#: ../src/general/MainMenu.tscn:447
+#: ../src/general/MainMenu.tscn:435
 msgid "BENCHMARKS"
 msgstr "Testes de desempenho"
 
@@ -577,7 +577,7 @@ msgstr "Câmera"
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "Cancelar"
 
@@ -630,27 +630,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Dióxido de Carbono"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:969
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "uma abundância"
 
-#: ../src/general/StageHUDBase.cs:974
+#: ../src/general/StageHUDBase.cs:973
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "uma quantidade razoável"
 
-#: ../src/general/StageHUDBase.cs:978
+#: ../src/general/StageHUDBase.cs:977
 msgid "CATEGORY_LITTLE"
 msgstr "pouco"
 
-#: ../src/general/StageHUDBase.cs:972
+#: ../src/general/StageHUDBase.cs:971
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "um bocado"
 
-#: ../src/general/StageHUDBase.cs:976
+#: ../src/general/StageHUDBase.cs:975
 msgid "CATEGORY_SOME"
 msgstr "alguns"
 
-#: ../src/general/StageHUDBase.cs:980
+#: ../src/general/StageHUDBase.cs:979
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
@@ -919,19 +919,19 @@ msgstr "Valor de saturação, a quantidade de cinza em uma cor específica"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Brilho ou intensidade da cor"
 
-#: ../src/general/MainMenu.tscn:701
+#: ../src/general/MainMenu.tscn:678
 msgid "COMMUNITY_FORUM"
 msgstr "Fórum comunitário"
 
-#: ../src/general/MainMenu.tscn:696
+#: ../src/general/MainMenu.tscn:673
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Junte-se à comunidade em nosso fórum comunitário (em inglês)"
 
-#: ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:720
 msgid "COMMUNITY_WIKI"
 msgstr "Wiki comunitária"
 
-#: ../src/general/MainMenu.tscn:738
+#: ../src/general/MainMenu.tscn:715
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Visite a nossa wiki comunitária"
 
@@ -999,11 +999,11 @@ msgstr "CONFIRMAR"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar Saída"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Sobrescrever"
 
@@ -1137,7 +1137,7 @@ msgstr "Criando..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Criando objetos do jogo salvo"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:359
 msgid "CREDITS"
 msgstr "Créditos"
 
@@ -1233,7 +1233,7 @@ msgstr "A calibração da zona morta foi redefinida"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Configuração da zona morta"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:956
+#: ../src/microbe_stage/Microbe.Contact.cs:946
 msgid "DEATH"
 msgstr "morte"
 
@@ -1322,11 +1322,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Desenvolvedores"
 
-#: ../src/general/MainMenu.tscn:715
+#: ../src/general/MainMenu.tscn:692
 msgid "DEVELOPMENT_FORUM"
 msgstr "Fórum de desenvolvimento"
 
-#: ../src/general/MainMenu.tscn:710
+#: ../src/general/MainMenu.tscn:687
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Veja as novidades da criação do jogo em nosso fórum de desenvolvimento (em inglês)"
 
@@ -1334,11 +1334,11 @@ msgstr "Veja as novidades da criação do jogo em nosso fórum de desenvolviment
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Desenvolvimento Financiado por Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:729
+#: ../src/general/MainMenu.tscn:706
 msgid "DEVELOPMENT_WIKI"
 msgstr "Wiki de desenvolvimento"
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:701
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Visite a nossa wiki de desenvolvimento (em inglês)"
 
@@ -1466,7 +1466,7 @@ msgstr ""
 "Há organelas desconectadas do resto da célula.\n"
 "Por favor conecte todas as organelas ou desfaça suas mudanças."
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:864
 msgid "DISCORD_TOOLTIP"
 msgstr "Junte-se ao servidor Discord da comunidade"
 
@@ -1480,7 +1480,7 @@ msgstr ""
 "Isso mostra quantos pop-ups foram dispensados permanentemente pelo usuário.\n"
 "Se alguns dos pop-ups que necessita foram dispensados, o botão junto a isso pode ser usado para fazer todos os pop-ups reaparecerem."
 
-#: ../src/general/MainMenu.tscn:1084
+#: ../src/general/MainMenu.tscn:1052
 msgid "DISMISS_PERMANENTLY"
 msgstr "Não mostrar novamente"
 
@@ -1527,7 +1527,7 @@ msgstr "Clique duas vezes para ver em tela cheia"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem melhor proteção contra dano e leva menos energia para não se deformar. No entanto, diminui um pouco sua velocidade e diminui a taxa em que pode absorver recursos."
 
-#: ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:995
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Não mostrar novamente"
 
@@ -1789,7 +1789,7 @@ msgstr "Erro ao salvar"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1220
+#: ../src/microbe_stage/Microbe.Contact.cs:1212
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de predação"
 
@@ -1828,7 +1828,7 @@ msgstr "Uma exceção ocorreu ao carregar os dados salvos"
 msgid "EXIT"
 msgstr "Sair"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:368
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sair para o Lançador"
 
@@ -1878,7 +1878,7 @@ msgstr "extinta na região"
 msgid "EXTINCT_SPECIES"
 msgstr "Espécies Extintas"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:351
 msgid "EXTRAS"
 msgstr "Extras"
 
@@ -1886,7 +1886,7 @@ msgstr "Extras"
 msgid "EXTRA_OPTIONS"
 msgstr "Opções Extra"
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:876
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Visite a nossa página no Facebook"
 
@@ -2032,11 +2032,11 @@ msgstr "Remover dados locais referentes a esse item. Útil se o ID inserido est�
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erro: {0}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 msgid "FOSSILISATION"
 msgstr "Fossilização"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Fossilize essa espécie para salvá-la no museu. Você pode acessar o museu pela Thrivepédia ou pode carregar a espécie fossilizada por meio do editor livre."
 
@@ -2049,8 +2049,8 @@ msgstr "Fossilizar essa espécie"
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Fossilizar essa espécie (já fossilizada)"
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
 msgid "FOSSILISE"
 msgstr "Fossilizar"
 
@@ -2113,7 +2113,7 @@ msgstr "Gerações"
 msgid "GENERATION_COLON"
 msgstr "Geração:"
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:828
 msgid "GITHUB_TOOLTIP"
 msgstr "Visite o nosso repositório no GitHub"
 
@@ -2121,11 +2121,11 @@ msgstr "Visite o nosso repositório no GitHub"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:961
 msgid "GLES2_MODE_WARNING"
 msgstr "Aviso do Modo GLES2"
 
-#: ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.tscn:963
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Você está usando Thrive usando GLES2, que não é testado e pode causar problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD ou Nvidia."
 
@@ -2277,7 +2277,7 @@ msgstr "Saúde:"
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:37
+#: ../src/microbe_stage/gui/HUDMessages.cs:44
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
@@ -2373,7 +2373,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Nome salvo não pode conter caractéres especiais (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "O nome da espécie deve se adequar a nomenclatura binomial (Gênero e Epípeto)!"
 
@@ -2413,7 +2413,7 @@ msgstr "Ferro"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Quimiolitoautotrofia Férrica"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:804
 msgid "ITCH_TOOLTIP"
 msgstr "Visite a nossa página na Itch.io"
 
@@ -2789,7 +2789,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Botão esquerdo do mouse"
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:533
 msgid "LICENSES"
 msgstr "Licenças"
 
@@ -2948,12 +2948,12 @@ msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Carregar Jogo"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:199
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Carrega jogos salvos anteriormente"
 
@@ -3156,7 +3156,7 @@ msgid "MICROBES_COUNT"
 msgstr "Quantidade de micróbios:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:592
 msgid "MICROBE_BENCHMARK"
 msgstr "Teste de Desempenho de Micróbios"
 
@@ -3237,7 +3237,7 @@ msgstr "A cada geração, você tem 100 Pontos de Mutação (PM) para gastar, e 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Toda vez que reproduzir, você vai entrar no Editor de Micróbios, onde pode fazer mudanças na sua espécie (adicionando, movendo ou removendo organelas) para aumentar o sucesso de sua espécie. Cada visita ao editor no Estágio Microbial representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milhões de anos de evolução."
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor de Micróbio Livre"
 
@@ -3246,7 +3246,7 @@ msgstr "Editor de Micróbio Livre"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:217
+#: ../src/microbe_stage/MicrobeSpecies.cs:220
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Estágio[/b]\n"
@@ -3484,11 +3484,11 @@ msgstr "Modificar Organela"
 msgid "MODIFY_TYPE"
 msgstr "Modificar tipo"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:510
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:979
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Foram detectados mods instalados, mas nenhum está ativado.\n"
@@ -3577,11 +3577,11 @@ msgstr "Nome Interno (da Pasta):"
 msgid "MOD_LICENSE"
 msgstr "Licenças do Mod:"
 
-#: ../src/general/MainMenu.tscn:1051
+#: ../src/general/MainMenu.tscn:1019
 msgid "MOD_LOAD_ERRORS"
 msgstr "Erro ao Carregar Mods"
 
-#: ../src/general/MainMenu.tscn:1052
+#: ../src/general/MainMenu.tscn:1020
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Houve erros ao carregar um ou mais mods. Os logs podem conter mais informações."
 
@@ -3756,7 +3756,7 @@ msgstr "Múltiplas Organelas"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multi-amostras:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Bem-vindo ao museu! Aqui você pode admirar as espécies que você fossilizou durante os seus jogos. Você pode até jogar como uma delas ao carregá-la no editor livre.\n"
@@ -3825,7 +3825,7 @@ msgstr "NOTÍCIAS"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "População inicial para espécies que aumentam a biodiversidade"
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:306
 msgid "NEW_GAME"
 msgstr "Novo Jogo"
 
@@ -3912,7 +3912,7 @@ msgstr "A forma mais básica da membrana, tem pouca proteção contra dano. Tamb
 msgid "NOTHING_HERE"
 msgstr "Não há nada aqui"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:396
+#: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
@@ -3924,15 +3924,15 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1778
+#: ../src/microbe_stage/Microbe.Contact.cs:1770
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1773
+#: ../src/microbe_stage/Microbe.Contact.cs:1765
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:616
+#: ../src/general/StageHUDBase.cs:615
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -3961,11 +3961,11 @@ msgstr "Nenhum Dado a Exibir"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Nenhum evento registrado"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "O diretório de fósseis não foi encontrado"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:966
 msgid "NO_MODS_ENABLED"
 msgstr "Nenhum mod ativado"
 
@@ -4028,15 +4028,15 @@ msgstr "N/A PM"
 msgid "OCTOBER"
 msgstr "Outubro"
 
-#: ../src/general/MainMenu.tscn:687
+#: ../src/general/MainMenu.tscn:664
 msgid "OFFICIAL_WEBSITE"
 msgstr "Site oficial"
 
-#: ../src/general/MainMenu.tscn:678
+#: ../src/general/MainMenu.tscn:655
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Visite o site oficial do Revolutionary Games"
 
-#: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
+#: ../src/general/MainMenu.tscn:1009 ../src/general/MainMenu.tscn:1066
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4059,7 +4059,7 @@ msgstr "Abrir Pasta"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Abrir a Pasta de Fósseis"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Tem certeza que você quer começar um novo jogo com a espécie selecionada?\n"
@@ -4069,7 +4069,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Abrir a tela de ajuda"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Abrir no editor livre"
 
@@ -4116,11 +4116,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Oportunista"
 
-#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:231
 msgid "OPTIONS"
 msgstr "Opções"
 
-#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:230
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Muda as configurações do jogo"
 
@@ -4210,7 +4210,7 @@ msgstr "Sobrescrever jogo que já existe:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Sobrescrever jogo salvo existente?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Já existe uma espécie fossilizada com esse nome.\n"
@@ -4368,7 +4368,7 @@ msgstr "Mudanças:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Veja mais detalhes dessa versão no [color=#3796e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:816
 msgid "PATREON_TOOLTIP"
 msgstr "Visite a nossa página no Patreon"
 
@@ -4405,7 +4405,7 @@ msgid "PEACEFUL"
 msgstr "Pacífico"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:736
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:735
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4483,7 +4483,7 @@ msgstr "Geração de planetas em breve!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Seed aleatória do planeta"
 
-#: ../src/general/StageHUDBase.cs:1188
+#: ../src/general/StageHUDBase.cs:1187
 msgid "PLAYER_CELL"
 msgstr "Célula do jogador"
 
@@ -4643,11 +4643,11 @@ msgstr "Carregamento rápido"
 msgid "QUICK_SAVE"
 msgstr "Salvamento rápido"
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:380
 msgid "QUIT"
 msgstr "Sair"
 
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
+#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:375
 #: ../src/general/PauseMenu.tscn:246
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Sai do jogo"
@@ -4689,7 +4689,7 @@ msgstr "Pronto"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Versão Recomendada:"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:852
 msgid "REDDIT_TOOLTIP"
 msgstr "Visite o nosso subreddit"
 
@@ -4714,7 +4714,7 @@ msgstr "Reembolsar migrações em caso de extinção"
 msgid "REPORT"
 msgstr "Relatório"
 
-#: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:733 ../src/general/PauseMenu.tscn:223
 msgid "REPORT_BUG"
 msgstr "Informar um Problema"
 
@@ -4829,7 +4829,7 @@ msgstr ""
 "Tem certeza que você deseja sair para o menu?\n"
 "Você vai perder seu progresso não salvo."
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:779
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visite os sites oficiais do Revolutionary Games"
 
@@ -4915,7 +4915,7 @@ msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxig
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:1047
+#: ../src/general/MainMenu.tscn:1015
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive começou no modo seguro devido a um erro na inicialização do jogo.\n"
@@ -4927,7 +4927,7 @@ msgstr ""
 "\n"
 "Caso não solucionar o problema que causou o erro na inicialização, você deverá reiniciar e travar o jogo várias vezes para voltar ao modo seguro."
 
-#: ../src/general/MainMenu.tscn:1045
+#: ../src/general/MainMenu.tscn:1013
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive começou no modo seguro"
 
@@ -5301,7 +5301,7 @@ msgstr "Gerar amônia"
 msgid "SPAWN_ENEMY"
 msgstr "Gerar Inimigo"
 
-#: ../src/microbe_stage/MicrobeStage.cs:767
+#: ../src/microbe_stage/MicrobeStage.cs:778
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível usar comando para gerar inimigo pois essa região não contém nenhuma espécie inimiga"
 
@@ -5361,7 +5361,7 @@ msgstr "Nome da espécie…"
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "O nome da espécie é grande demais!"
 
-#: ../src/general/StageHUDBase.cs:1201
+#: ../src/general/StageHUDBase.cs:1200
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -5476,21 +5476,21 @@ msgstr "A Steam não está disponível no momento, tente novamente"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ocorreu um erro desconhecido da Steam"
 
-#: ../src/general/MainMenu.tscn:1102
+#: ../src/general/MainMenu.tscn:1070
 msgid "STEAM_INIT_FAILED"
 msgstr "A Inicialização da Biblioteca do Cliente Steam Falhou"
 
-#: ../src/general/MainMenu.tscn:1104
+#: ../src/general/MainMenu.tscn:1072
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "A inicialização da biblioteca do cliente Steam falhou. As funcionalidades do Steam estarão indisponíveis.\n"
 "Certifique-se de que o Steam esteja em execução e que você tenha feito o login na conta correta. Se o erro persistir, execute o jogo através do software do cliente Steam."
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:792
 msgid "STEAM_TOOLTIP"
 msgstr "Visite a nossa página na Steam"
 
-#: ../src/early_multicellular_stage/CellType.cs:39
+#: ../src/early_multicellular_stage/CellType.cs:40
 msgid "STEM_CELL_NAME"
 msgstr "Tronco"
 
@@ -5548,11 +5548,11 @@ msgstr "Estrutura"
 msgid "STUFF_AT"
 msgstr "Coisas em {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:775
+#: ../src/microbe_stage/Microbe.Contact.cs:765
 msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:768
+#: ../src/microbe_stage/Microbe.Contact.cs:758
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "busca de recursos bem-sucedida"
 
@@ -5641,7 +5641,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Equipe de Teste"
 
-#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
+#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1036
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Obrigado por apoiar o desenvolvimento de Thrive ao comprar essa cópia!\n"
@@ -5657,7 +5657,7 @@ msgstr ""
 "\n"
 "Se gostou, fale do jogo para seus amigos."
 
-#: ../src/general/MainMenu.tscn:1058
+#: ../src/general/MainMenu.tscn:1026
 msgid "THANK_YOU_TITLE"
 msgstr "Obrigado"
 
@@ -5716,7 +5716,7 @@ msgstr "Este mod foi instalado da Oficina Steam"
 msgid "THREADS"
 msgstr "Tarefas:"
 
-#: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:497 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr "Thrivepédia"
 
@@ -5872,7 +5872,7 @@ msgstr "Pausar"
 msgid "TOGGLE_UNBINDING"
 msgstr "Desativar modo de ligação"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:335
 msgid "TOOLS"
 msgstr "Ferramentas"
 
@@ -5928,7 +5928,7 @@ msgstr "Diminuir Agudos"
 msgid "TREBLEUP"
 msgstr "Aumentar Agudos"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Tente fossilizar algumas espécies!"
 
@@ -6098,7 +6098,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
 
-#: ../src/general/MainMenu.tscn:920
+#: ../src/general/MainMenu.tscn:888
 msgid "TWITTER_TOOLTIP"
 msgstr "Visite a nossa conta no Twitter"
 
@@ -6254,7 +6254,7 @@ msgstr "O vacúolo é uma organela membranosa interna usada para o armazenamento
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Aumenta o espaço de armazenamento da célula."
 
-#: ../src/general/StageHUDBase.cs:737 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:736 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6297,7 +6297,7 @@ msgstr "Ver as Notas de Atualização"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Ver todas as notas de atualização do jogo ou as mais recentes"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:343
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ver Código Fonte"
 
@@ -6309,7 +6309,7 @@ msgstr "Apoiadores VIP"
 msgid "VISIBLE"
 msgstr "Visível"
 
-#: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
+#: ../src/general/MainMenu.tscn:546 ../src/general/MainMenu.tscn:751
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Sugerir um recurso"
 
@@ -6464,7 +6464,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "anos"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:840
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visite o nosso canal no YouTube"
 
