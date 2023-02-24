@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class CompoundBag : ICompoundStorage
 {
-    [JsonProperty]
     private readonly HashSet<Compound> usefulCompounds = new();
 
     /// <summary>
