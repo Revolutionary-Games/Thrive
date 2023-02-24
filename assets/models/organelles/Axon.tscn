@@ -28,6 +28,6 @@ shader_param/dissolveTexture = ExtResource( 4 )
 [sub_resource type="CubeMesh" id=4]
 
 [node name="Axon" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3 )
 material_override = SubResource( 1 )
 mesh = SubResource( 4 )
