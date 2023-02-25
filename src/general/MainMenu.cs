@@ -59,9 +59,6 @@ public class MainMenu : NodeWithInput
     public NodePath ModsInstalledButNotEnabledWarningPath = null!;
 
     [Export]
-    public NodePath PermanentlyDismissModsNotEnabledWarningPath = null!;
-
-    [Export]
     public NodePath SocialMediaContainerPath = null!;
 
     [Export]
@@ -99,12 +96,6 @@ public class MainMenu : NodeWithInput
 
     [Export]
     public NodePath ThanksDialogPath = null!;
-
-    [Export]
-    public NodePath ThanksDialogTextPath = null!;
-
-    [Export]
-    public NodePath PermanentlyDismissThanksDialogPath = null!;
 
 #pragma warning disable CA2213
     private TextureRect background = null!;
@@ -150,12 +141,8 @@ public class MainMenu : NodeWithInput
 
     private CustomDialog safeModeWarning = null!;
 
-    private CustomDialog modsInstalledButNotEnabledWarning = null!;
-    private CustomCheckBox permanentlyDismissModsNotEnabledWarning = null!;
-
-    private CustomDialog thanksDialog = null!;
-    private CustomRichTextLabel thanksDialogText = null!;
-    private CustomCheckBox permanentlyDismissThanksDialog = null!;
+    private PermanentlyDismissableDialog modsInstalledButNotEnabledWarning = null!;
+    private PermanentlyDismissableDialog thanksDialog = null!;
 #pragma warning restore CA2213
 
     private Array? menuArray;
@@ -234,11 +221,11 @@ public class MainMenu : NodeWithInput
                     GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
 
                     // The text has a store link template, so we need to update the right links into it
-                    thanksDialogText.ExtendedBbcode =
+                    thanksDialog.DialogText =
                         TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
                     // This isn't strictly necessary but might make the fix to this popup more robust
-                    Invoke.Instance.Queue(() => thanksDialog.PopupCenteredShrink());
+                    thanksDialog.PopupCenteredShrink();
                 }
 
                 canShowThanks = false;
@@ -360,7 +347,6 @@ public class MainMenu : NodeWithInput
                 ModLoadFailuresPath.Dispose();
                 SafeModeWarningPath.Dispose();
                 ModsInstalledButNotEnabledWarningPath.Dispose();
-                PermanentlyDismissModsNotEnabledWarningPath.Dispose();
                 SocialMediaContainerPath.Dispose();
                 WebsiteButtonsContainerPath.Dispose();
                 ItchButtonPath.Dispose();
@@ -374,8 +360,6 @@ public class MainMenu : NodeWithInput
                 PatchNotesDisablerPath.Dispose();
                 FeedPositionerPath.Dispose();
                 ThanksDialogPath.Dispose();
-                ThanksDialogTextPath.Dispose();
-                PermanentlyDismissThanksDialogPath.Dispose();
             }
 
             menuArray?.Dispose();
@@ -435,12 +419,9 @@ public class MainMenu : NodeWithInput
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
-        modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
-        permanentlyDismissModsNotEnabledWarning = GetNode<CustomCheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
-
-        thanksDialog = GetNode<CustomDialog>(ThanksDialogPath);
-        thanksDialogText = GetNode<CustomRichTextLabel>(ThanksDialogTextPath);
-        permanentlyDismissThanksDialog = GetNode<CustomCheckBox>(PermanentlyDismissThanksDialogPath);
+        modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissableDialog>(
+            ModsInstalledButNotEnabledWarningPath);
+        thanksDialog = GetNode<PermanentlyDismissableDialog>(ThanksDialogPath);
 
         // Set initial menu
         SwitchMenu();
@@ -657,11 +638,10 @@ public class MainMenu : NodeWithInput
 
     private void WarnAboutNoEnabledMods()
     {
-        if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods() &&
-            !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.NoModsActiveButInstalled))
+        if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods())
         {
             GD.Print("Player has installed mods but no enabled ones, giving a heads up");
-            modsInstalledButNotEnabledWarning.PopupCenteredShrink();
+            modsInstalledButNotEnabledWarning.Popup();
         }
     }
 
@@ -908,18 +888,6 @@ public class MainMenu : NodeWithInput
     {
         GD.Print($"Opening social link: {url}");
         OS.ShellOpen(url);
-    }
-
-    private void OnNoEnabledModsNoticeClosed()
-    {
-        if (permanentlyDismissModsNotEnabledWarning.Pressed)
-            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.NoModsActiveButInstalled);
-    }
-
-    private void OnThanksDialogClosed()
-    {
-        if (permanentlyDismissThanksDialog.Pressed)
-            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.ThanksForBuying);
     }
 
     private void BenchmarksPressed()

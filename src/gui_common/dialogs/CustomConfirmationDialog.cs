@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Text;
+using Godot;
 
 /// <summary>
 ///   A custom reimplementation of ConfirmationDialog and AcceptDialog combined into one.
@@ -10,6 +11,9 @@ public class CustomConfirmationDialog : CustomDialog
     [Export]
     public bool HideOnOk = true;
 
+    [Export]
+    public bool CenterText = true;
+
     private bool hideCancelButton;
 
     private string dialogText = string.Empty;
@@ -17,7 +21,7 @@ public class CustomConfirmationDialog : CustomDialog
     private string cancelText = "CANCEL";
 
 #pragma warning disable CA2213
-    private Label? dialogLabel;
+    private CustomRichTextLabel? dialogLabel;
     private HBoxContainer buttonsContainer = null!;
     private Button? confirmButton;
     private Button? cancelButton;
@@ -96,7 +100,7 @@ public class CustomConfirmationDialog : CustomDialog
 
     public override void _Ready()
     {
-        dialogLabel = GetNode<Label>("VBoxContainer/Label");
+        dialogLabel = GetNode<CustomRichTextLabel>("VBoxContainer/Label");
         buttonsContainer = GetNode<HBoxContainer>("VBoxContainer/HBoxContainer");
         confirmButton = GetNode<Button>("VBoxContainer/HBoxContainer/ConfirmButton");
         cancelButton = GetNode<Button>("VBoxContainer/HBoxContainer/CancelButton");
@@ -139,7 +143,17 @@ public class CustomConfirmationDialog : CustomDialog
         if (dialogLabel == null)
             throw new SceneTreeAttachRequired();
 
-        dialogLabel.Text = TranslationServer.Translate(dialogText);
+        var text = new StringBuilder(100);
+
+        if (CenterText)
+            text.Append("[center]");
+
+        text.Append(TranslationServer.Translate(dialogText));
+
+        if (CenterText)
+            text.Append("[/center]");
+
+        dialogLabel.ExtendedBbcode = text.ToString();
     }
 
     private void UpdateButtons()

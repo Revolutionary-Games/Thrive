@@ -132,6 +132,9 @@ public class NewGameSettings : ControlWithInput
     [Export]
     public NodePath ConfirmButtonPath = null!;
 
+    [Export]
+    public NodePath ConfirmDialogPath = null!;
+
 #pragma warning disable CA2213
 
     // Main controls
@@ -147,6 +150,7 @@ public class NewGameSettings : ControlWithInput
     private Button basicButton = null!;
     private Button advancedButton = null!;
     private Button confirmButton = null!;
+    private CustomConfirmationDialog confirmDialog = null!;
 
     // Difficulty controls
     private OptionButton difficultyPresetButton = null!;
@@ -252,6 +256,7 @@ public class NewGameSettings : ControlWithInput
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
+        confirmDialog = GetNode<CustomConfirmationDialog>(ConfirmDialogPath);
 
         mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
         mpMultiplier.MaxValue = Constants.MAX_MP_MULTIPLIER;
@@ -382,6 +387,7 @@ public class NewGameSettings : ControlWithInput
                 IncludeMulticellularButtonPath.Dispose();
                 EasterEggsButtonPath.Dispose();
                 ConfirmButtonPath.Dispose();
+                ConfirmDialogPath.Dispose();
             }
         }
 
@@ -446,53 +452,8 @@ public class NewGameSettings : ControlWithInput
         selectedOptionsTab = selection;
     }
 
-    // GUI Control Callbacks
-
-    private void OnBackPressed()
+    private void StartGame()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        Exit();
-    }
-
-    private bool Exit()
-    {
-        EmitSignal(nameof(OnNewGameSettingsClosed));
-        return true;
-    }
-
-    private void OnAdvancedPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        ProcessAdvancedSelection();
-    }
-
-    private void ProcessAdvancedSelection()
-    {
-        basicOptions.Visible = false;
-        advancedButton.Visible = false;
-
-        advancedOptions.Visible = true;
-        basicButton.Visible = true;
-        tabButtons.Visible = true;
-    }
-
-    private void OnBasicPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        advancedOptions.Visible = false;
-        basicButton.Visible = false;
-        tabButtons.Visible = false;
-
-        advancedButton.Visible = true;
-        basicOptions.Visible = true;
-    }
-
-    private void OnConfirmPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
         var settings = new WorldGenerationSettings();
 
         var difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
@@ -557,9 +518,55 @@ public class NewGameSettings : ControlWithInput
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
             SceneManager.Instance.SwitchToScene(microbeStage);
         });
+    }
 
-        // Disable the button to prevent it being executed again.
-        confirmButton.Disabled = true;
+    // GUI Control Callbacks
+
+    private void OnBackPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        Exit();
+    }
+
+    private bool Exit()
+    {
+        EmitSignal(nameof(OnNewGameSettingsClosed));
+        return true;
+    }
+
+    private void OnAdvancedPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        ProcessAdvancedSelection();
+    }
+
+    private void ProcessAdvancedSelection()
+    {
+        basicOptions.Visible = false;
+        advancedButton.Visible = false;
+
+        advancedOptions.Visible = true;
+        basicButton.Visible = true;
+        tabButtons.Visible = true;
+    }
+
+    private void OnBasicPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        advancedOptions.Visible = false;
+        basicButton.Visible = false;
+        tabButtons.Visible = false;
+
+        advancedButton.Visible = true;
+        basicOptions.Visible = true;
+    }
+
+    private void OnConfirmPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        confirmDialog.PopupCenteredShrink();
     }
 
     private void OnDifficultyPresetSelected(int index)
