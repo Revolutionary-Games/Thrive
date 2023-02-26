@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-25 20:25+0700\n"
+"POT-Creation-Date: 2023-02-26 17:13+0700\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -80,11 +80,11 @@ msgstr "Додаткові перевірки виявили проблему: {
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Додати нову прив'язку клавіші"
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1223
 msgid "ADVANCED_VIEW"
 msgstr "Детальніше"
 
-#: ../src/general/NewGameSettings.tscn:1209
+#: ../src/general/NewGameSettings.tscn:1218
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Відкрити вікно розширених налаштувань"
 
@@ -387,11 +387,11 @@ msgstr "Базова мобільність"
 msgid "BASE_MOVEMENT"
 msgstr "Базова швидкість"
 
-#: ../src/general/NewGameSettings.tscn:1230
+#: ../src/general/NewGameSettings.tscn:1208
 msgid "BASIC_VIEW"
 msgstr "Базовий"
 
-#: ../src/general/NewGameSettings.tscn:1225
+#: ../src/general/NewGameSettings.tscn:1203
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Повернутися до базового вікна налаштувань"
 
@@ -1013,15 +1013,6 @@ msgstr "Увійти в гру з цими налаштуваннями"
 #: ../src/general/NewGameSettings.cs:338
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Якісь налаштування невірні"
-
-#: ../src/general/NewGameSettings.tscn:1242
-msgid "CONFIRM_NORMAL"
-msgstr "Підтвердити"
-
-#: ../src/general/NewGameSettings.tscn:1249
-#, fuzzy
-msgid "CONFIRM_SETTINGS"
-msgstr "Підтвердити вихід"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4443,7 +4434,7 @@ msgid "PEACEFUL"
 msgstr "Мирність"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:683 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -5440,6 +5431,11 @@ msgstr "поширено в ділянці:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузи"
 
+#: ../src/general/NewGameSettings.tscn:1242
+#, fuzzy
+msgid "START"
+msgstr "Почати"
+
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "Почати"
@@ -5447,10 +5443,6 @@ msgstr "Почати"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
 msgstr "Початок калібрування"
-
-#: ../src/general/NewGameSettings.tscn:1250
-msgid "START_NEW_GAME_CONFIRM_SETTINGS"
-msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
@@ -6525,6 +6517,9 @@ msgstr "Приблизитись"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "CONFIRM_NORMAL"
+#~ msgstr "Підтвердити"
 
 #~ msgid "DISMISS_PERMANENTLY"
 #~ msgstr "Більше не показувати"

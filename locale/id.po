@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-25 20:25+0700\n"
+"POT-Creation-Date: 2023-02-26 17:13+0700\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -80,11 +80,11 @@ msgstr "Auto-evo gagal bekerja"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1223
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1209
+#: ../src/general/NewGameSettings.tscn:1218
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -382,11 +382,11 @@ msgstr "Mobilitas"
 msgid "BASE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
-#: ../src/general/NewGameSettings.tscn:1230
+#: ../src/general/NewGameSettings.tscn:1208
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1225
+#: ../src/general/NewGameSettings.tscn:1203
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1035,16 +1035,6 @@ msgstr "Tambah keybind baru"
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Tambah keybind baru"
-
-#: ../src/general/NewGameSettings.tscn:1242
-#, fuzzy
-msgid "CONFIRM_NORMAL"
-msgstr "KONFIRMASI"
-
-#: ../src/general/NewGameSettings.tscn:1249
-#, fuzzy
-msgid "CONFIRM_SETTINGS"
-msgstr "Konfirmasi Keluar"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4559,7 +4549,7 @@ msgid "PEACEFUL"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:683 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -5601,16 +5591,17 @@ msgstr "menyebar ke daerah:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#: ../src/general/NewGameSettings.tscn:1242
+#, fuzzy
+msgid "START"
+msgstr "Memulai"
+
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "Memulai"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:1250
-msgid "START_NEW_GAME_CONFIRM_SETTINGS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
@@ -6727,6 +6718,10 @@ msgstr "Perbesar"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "CONFIRM_NORMAL"
+#~ msgstr "KONFIRMASI"
 
 #~ msgid "STUFF_AT"
 #~ msgstr "Yang ada pada {0:F1}, {1:F1}:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-25 20:25+0700\n"
+"POT-Creation-Date: 2023-02-26 17:13+0700\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -80,11 +80,11 @@ msgstr "额外验证检测到了一个问题：{0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "添加新的绑定键位"
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1223
 msgid "ADVANCED_VIEW"
 msgstr "高级"
 
-#: ../src/general/NewGameSettings.tscn:1209
+#: ../src/general/NewGameSettings.tscn:1218
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "打开高级菜单"
 
@@ -387,11 +387,11 @@ msgstr "基础移动能力"
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
-#: ../src/general/NewGameSettings.tscn:1230
+#: ../src/general/NewGameSettings.tscn:1208
 msgid "BASIC_VIEW"
 msgstr "基本"
 
-#: ../src/general/NewGameSettings.tscn:1225
+#: ../src/general/NewGameSettings.tscn:1203
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "回到基本菜单"
 
@@ -1014,15 +1014,6 @@ msgstr "以当前设定进入游戏"
 #: ../src/general/NewGameSettings.cs:338
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分设置无效"
-
-#: ../src/general/NewGameSettings.tscn:1242
-msgid "CONFIRM_NORMAL"
-msgstr "确认"
-
-#: ../src/general/NewGameSettings.tscn:1249
-#, fuzzy
-msgid "CONFIRM_SETTINGS"
-msgstr "确认退出"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4448,7 +4439,7 @@ msgid "PEACEFUL"
 msgstr "和平"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:683 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -5448,6 +5439,11 @@ msgstr "传播到的地区："
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暂停菜单"
 
+#: ../src/general/NewGameSettings.tscn:1242
+#, fuzzy
+msgid "START"
+msgstr "启动中"
+
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "启动中"
@@ -5455,10 +5451,6 @@ msgstr "启动中"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
 msgstr "开始校准"
-
-#: ../src/general/NewGameSettings.tscn:1250
-msgid "START_NEW_GAME_CONFIRM_SETTINGS"
-msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
@@ -6532,6 +6524,9 @@ msgstr "放大"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "CONFIRM_NORMAL"
+#~ msgstr "确认"
 
 #~ msgid "DISMISS_PERMANENTLY"
 #~ msgstr "不再显示"

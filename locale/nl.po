@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-25 20:25+0700\n"
+"POT-Creation-Date: 2023-02-26 17:13+0700\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -80,11 +80,11 @@ msgstr "Extra controles hebben een probleem ontdekt: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Voeg toetskoppeling toe"
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1223
 msgid "ADVANCED_VIEW"
 msgstr "Geavanceerd"
 
-#: ../src/general/NewGameSettings.tscn:1209
+#: ../src/general/NewGameSettings.tscn:1218
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Open de weergave voor geavanceerde instellingen"
 
@@ -387,11 +387,11 @@ msgstr "Basismobiliteit"
 msgid "BASE_MOVEMENT"
 msgstr "Basisbeweging"
 
-#: ../src/general/NewGameSettings.tscn:1230
+#: ../src/general/NewGameSettings.tscn:1208
 msgid "BASIC_VIEW"
 msgstr "Basis"
 
-#: ../src/general/NewGameSettings.tscn:1225
+#: ../src/general/NewGameSettings.tscn:1203
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Ga terug naar basisinstellingenweergave"
 
@@ -1013,15 +1013,6 @@ msgstr "Start het spel met deze instellingen"
 #: ../src/general/NewGameSettings.cs:338
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Sommige instellingen zijn ongeldig"
-
-#: ../src/general/NewGameSettings.tscn:1242
-msgid "CONFIRM_NORMAL"
-msgstr "Bevestigen"
-
-#: ../src/general/NewGameSettings.tscn:1249
-#, fuzzy
-msgid "CONFIRM_SETTINGS"
-msgstr "Bevestig Stoppen"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4445,7 +4436,7 @@ msgid "PEACEFUL"
 msgstr "Vreedzaam"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:683 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -5441,6 +5432,11 @@ msgstr "verspreid naar patches:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pauzeermenu"
 
+#: ../src/general/NewGameSettings.tscn:1242
+#, fuzzy
+msgid "START"
+msgstr "Starten"
+
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "Starten"
@@ -5448,10 +5444,6 @@ msgstr "Starten"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
 msgstr "Start Calibratie"
-
-#: ../src/general/NewGameSettings.tscn:1250
-msgid "START_NEW_GAME_CONFIRM_SETTINGS"
-msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
@@ -6524,6 +6516,9 @@ msgstr "Inzoomen"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "CONFIRM_NORMAL"
+#~ msgstr "Bevestigen"
 
 #~ msgid "DISMISS_PERMANENTLY"
 #~ msgstr "Dit niet nogmaals weergeven"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-25 20:25+0700\n"
+"POT-Creation-Date: 2023-02-26 17:13+0700\n"
 "PO-Revision-Date: 2022-10-14 05:59+0000\n"
 "Last-Translator: TomDev03 <tomascsilvapro@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -80,11 +80,11 @@ msgstr "Validações adicionais detectaram um problema: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Adicionar um novo atalho de teclado"
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1223
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1209
+#: ../src/general/NewGameSettings.tscn:1218
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
@@ -389,11 +389,11 @@ msgstr "Mobilidade"
 msgid "BASE_MOVEMENT"
 msgstr "Movimento Base"
 
-#: ../src/general/NewGameSettings.tscn:1230
+#: ../src/general/NewGameSettings.tscn:1208
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1225
+#: ../src/general/NewGameSettings.tscn:1203
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Suicídio"
@@ -1041,16 +1041,6 @@ msgstr "Menu de pausa"
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Menu de pausa"
-
-#: ../src/general/NewGameSettings.tscn:1242
-#, fuzzy
-msgid "CONFIRM_NORMAL"
-msgstr "CONFIRMAR"
-
-#: ../src/general/NewGameSettings.tscn:1249
-#, fuzzy
-msgid "CONFIRM_SETTINGS"
-msgstr "Confirmar Saída"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4537,7 +4527,7 @@ msgid "PEACEFUL"
 msgstr "Pacífico"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:683 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -5556,16 +5546,17 @@ msgstr "Espalhou para as regiões:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
 
+#: ../src/general/NewGameSettings.tscn:1242
+#, fuzzy
+msgid "START"
+msgstr "A iniciar"
+
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "A iniciar"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:1250
-msgid "START_NEW_GAME_CONFIRM_SETTINGS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
@@ -6674,6 +6665,10 @@ msgstr "Ampliar"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#, fuzzy
+#~ msgid "CONFIRM_NORMAL"
+#~ msgstr "CONFIRMAR"
 
 #~ msgid "STUFF_AT"
 #~ msgstr "Coisas em {0:F1}, {1:F1}:"

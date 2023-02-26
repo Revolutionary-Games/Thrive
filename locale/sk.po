@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-25 20:25+0700\n"
+"POT-Creation-Date: 2023-02-26 17:13+0700\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -79,11 +79,11 @@ msgstr "Pri dodatočných validáciách bol zistený problém: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1223
 msgid "ADVANCED_VIEW"
 msgstr "Rozšírené"
 
-#: ../src/general/NewGameSettings.tscn:1209
+#: ../src/general/NewGameSettings.tscn:1218
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otvoriť zobrazenie rozšírených nastavení"
 
@@ -375,11 +375,11 @@ msgstr "Základná mobilita"
 msgid "BASE_MOVEMENT"
 msgstr "Základný pohyb"
 
-#: ../src/general/NewGameSettings.tscn:1230
+#: ../src/general/NewGameSettings.tscn:1208
 msgid "BASIC_VIEW"
 msgstr "Základné"
 
-#: ../src/general/NewGameSettings.tscn:1225
+#: ../src/general/NewGameSettings.tscn:1203
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
 
@@ -1017,15 +1017,6 @@ msgstr "Vstúp do hry s týmito nastaveniami"
 #: ../src/general/NewGameSettings.cs:338
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Niektoré nastavenia sú neplatné"
-
-#: ../src/general/NewGameSettings.tscn:1242
-msgid "CONFIRM_NORMAL"
-msgstr "Potvrdiť"
-
-#: ../src/general/NewGameSettings.tscn:1249
-#, fuzzy
-msgid "CONFIRM_SETTINGS"
-msgstr "Potvrdiť ukončenie"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4409,7 +4400,7 @@ msgid "PEACEFUL"
 msgstr "Mierumilovný"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:683 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -5405,16 +5396,17 @@ msgstr "rozšírenie do oblastí:"
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:1242
+#, fuzzy
+msgid "START"
+msgstr "Spustenie"
+
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "Spustenie"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:1250
-msgid "START_NEW_GAME_CONFIRM_SETTINGS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
@@ -6420,6 +6412,9 @@ msgstr "Priblížiť"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#~ msgid "CONFIRM_NORMAL"
+#~ msgstr "Potvrdiť"
 
 #, fuzzy
 #~ msgid "STUFF_AT"
