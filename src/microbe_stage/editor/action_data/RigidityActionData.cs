@@ -17,6 +17,18 @@ public class RigidityActionData : EditorCombinableActionData
         return other is RigidityActionData;
     }
 
+    public override float CalculateCost()
+    {
+        if (Math.Abs(NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
+        {
+            // If there's no difference, this should be free, thus force the cost to be zero,
+            // otherwise the cost will be capped at a minimum which is usually bigger than zero
+            return 0;
+        }
+
+        return base.CalculateCost();
+    }
+
     protected override float CalculateCostInternal()
     {
         return (float)Math.Round(Math.Abs(NewRigidity - PreviousRigidity) *

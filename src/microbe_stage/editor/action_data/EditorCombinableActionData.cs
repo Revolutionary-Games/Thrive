@@ -1,12 +1,20 @@
 ﻿using System;
+using Godot;
 
 public abstract class EditorCombinableActionData : CombinableActionData
 {
     public float CostMultiplier { get; set; } = 1.0f;
 
+    /// <summary>
+    ///   Calculates cost adjusted by <see cref="CostMultiplier"/> and capped at a minimum and maximum.
+    /// </summary>
+    /// <returns>
+    ///   The calculated adjusted cost.
+    /// </returns>
     public virtual float CalculateCost()
     {
-        return Math.Min(CalculateCostInternal() * CostMultiplier, 100);
+        return Mathf.Clamp(CalculateCostInternal() * CostMultiplier, Constants.MINIMUM_MUTATION_POINTS_COST,
+            Constants.BASE_MUTATION_POINTS);
     }
 
     public override CombinableActionData Combine(CombinableActionData other)

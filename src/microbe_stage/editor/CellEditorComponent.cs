@@ -958,7 +958,7 @@ public partial class CellEditorComponent :
         if (previousRigidity == desiredRigidity)
             return;
 
-        int costPerStep = (int)Mathf.Clamp(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 1, 100);
+        var costPerStep = GetAdjustedCost(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP);
 
         var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
         {
@@ -969,12 +969,19 @@ public partial class CellEditorComponent :
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
-            data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
-                Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+            // TODO: This doesn't work correctly in low editor MP with significantly reduced costs.
+            //       Supposedly unaffordable sliding action makes the tooltip indicate stats changes (even though
+            //       the grabber itself doesn't seem to move) and I can't figure out the maths to fix it - kasterisk
+            //
+            // int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
+            // data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
+            //    Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+
+            // For now, just show that this action is unaffordable by showing insufficient MP feedback
+            OnInsufficientMP();
 
             // Action is enqueued or canceled here, so we don't need to go on.
-            UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+            UpdateRigiditySlider(previousRigidity);
             return;
         }
 
@@ -1100,6 +1107,19 @@ public partial class CellEditorComponent :
                 actionData)));
     }
 
+    /// <summary>
+    ///   Adjusts the given cost by a multiplier and clamps it to a minimum of
+    ///   <see cref="Constants.MINIMUM_MUTATION_POINTS_COST"/> and a maximum of
+    ///   <see cref="Constants.BASE_MUTATION_POINTS"/>.
+    /// </summary>
+    /// <param name="cost">The action cost.</param>
+    /// <returns>The adjusted cost.</returns>
+    protected float GetAdjustedCost(float cost)
+    {
+        return Mathf.Clamp(
+            cost * CostMultiplier, Constants.MINIMUM_MUTATION_POINTS_COST, Constants.BASE_MUTATION_POINTS);
+    }
+
     protected override float CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
@@ -1108,7 +1128,7 @@ public partial class CellEditorComponent :
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         // Calculated in this order to be consistent with placing unique organelles
-        var cost = Math.Min(organelleDefinition.MPCost * CostMultiplier, 100);
+        var cost = GetAdjustedCost(organelleDefinition.MPCost);
 
         if (MouseHoverPositions == null)
             return cost * Symmetry.PositionCount();

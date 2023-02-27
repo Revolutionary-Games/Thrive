@@ -590,6 +590,7 @@ public static class Constants
     public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int BASE_MUTATION_POINTS = 100;
+    public const float MINIMUM_MUTATION_POINTS_COST = 0.5f;
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;

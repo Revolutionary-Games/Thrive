@@ -58,14 +58,16 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
 
     public void UpdateMutationPointsBar(bool tween = true)
     {
-        float possibleMutationPoints = Editor.FreeBuilding ?
-            Constants.BASE_MUTATION_POINTS :
-            Editor.MutationPoints - CalculateCurrentActionCost();
+        var currentMp = Editor.MutationPoints;
+        var cost = Editor.FreeBuilding ? 0 : CalculateCurrentActionCost();
+        var possibleMutationPoints = currentMp - cost;
 
-        mutationPointsBar.UpdateBar(Editor.MutationPoints, possibleMutationPoints, tween);
+        mutationPointsBar.UpdateBar(currentMp, possibleMutationPoints, tween);
 
-        mutationPointsBar.UpdateMutationPoints(Editor.FreeBuilding, Editor.ShowHover && Editor.MutationPoints > 0,
-            Editor.MutationPoints, possibleMutationPoints);
+        var showResultingMutationPoints = Editor.ShowHover && currentMp > 0 &&
+            !Mathf.IsEqualApprox(currentMp, possibleMutationPoints, 0.5f);
+        mutationPointsBar.UpdateMutationPoints(
+            Editor.FreeBuilding, showResultingMutationPoints, currentMp, possibleMutationPoints);
     }
 
     public override void OnMutationPointsChanged(float mutationPoints)
