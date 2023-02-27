@@ -99,6 +99,9 @@ public class InputManager : Node
                      .attributes
                      .Where(p => p.Key.Method?.DeclaringType?.IsInstanceOfType(instance) == true))
         {
+            if (inputAttribute.Value.Any(i => i.Target == instance))
+                throw new InvalidOperationException("instance is already registered: " + instance.GetType().Name);
+
             inputAttribute.Value.Add(reference);
             registered = true;
         }

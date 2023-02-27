@@ -48,9 +48,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         fossilDirectoryWarningBox = GetNode<CustomConfirmationDialog>(FossilDirectoryWarningBoxPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
-
-        // Hide the fossilise button
-        speciesPreviewPanel.GetNode<Button>(speciesPreviewPanel.FossilisationButtonPath).Visible = false;
     }
 
     public override void OnThriveopediaOpened()
@@ -153,6 +150,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
+            MainMenu.OnEnteringGame();
+
             // Instantiate a new editor scene
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 

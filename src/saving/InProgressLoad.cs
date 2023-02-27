@@ -190,7 +190,7 @@ public class InProgressLoad
 
                 if (success)
                 {
-                    LastPlayedVersion.MarkCurrentVersionAsPlayed();
+                    MainMenu.OnEnteringGame();
 
                     TransitionManager.Instance.AddSequence(
                         ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);

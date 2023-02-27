@@ -2075,6 +2075,10 @@ public partial class CellEditorComponent :
 
             control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
         }
+
+        // Multicellular parts only available (visible) in multicellular
+        partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Multicellular.ToString())
+            .Visible = IsMulticellularEditor;
     }
 
     private void OnSpeciesNameChanged(string newText)

@@ -18,10 +18,12 @@ RightContainerPath = NodePath("RightIndicatorContainer")
 RightPaddingPath = NodePath("RightAlternativePadding")
 RightButtonIndicatorPath = NodePath("RightIndicatorContainer/KeyPrompt")
 TabButtonsContainerPath = NodePath("ButtonsContainer")
+TabButtonsContainerNoWrapPath = NodePath("ButtonsContainerNoWrap")
 
 [node name="LeftAlternativePadding" type="Control" parent="."]
 visible = false
 margin_right = 63.0
+margin_bottom = 42.0
 rect_min_size = Vector2( 63, 42 )
 
 [node name="LeftIndicatorContainer" type="HBoxContainer" parent="."]
@@ -52,6 +54,12 @@ visible = false
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
+[node name="ButtonsContainerNoWrap" type="HBoxContainer" parent="."]
+visible = false
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+
 [node name="RightIndicatorContainer" type="HBoxContainer" parent="."]
 visible = false
 margin_left = 67.0
@@ -78,6 +86,7 @@ __meta__ = {
 
 [node name="RightAlternativePadding" type="Control" parent="."]
 visible = false
-margin_left = 56.0
-margin_right = 119.0
+margin_left = 134.0
+margin_right = 197.0
+margin_bottom = 42.0
 rect_min_size = Vector2( 63, 42 )
