@@ -71,11 +71,10 @@ corner_radius_bottom_left = 5
 [sub_resource type="ButtonGroup" id=35]
 
 [node name="MicrobeEditorTabButtons" type="MarginContainer"]
-margin_top = -5.0
-margin_right = 511.0
-margin_bottom = 44.0
+margin_right = 278.0
+margin_bottom = 38.0
 custom_constants/margin_right = 5
-custom_constants/margin_top = 10
+custom_constants/margin_top = 5
 custom_constants/margin_left = 15
 custom_constants/margin_bottom = 5
 script = ExtResource( 2 )
@@ -89,13 +88,14 @@ CellTypeTabPath = NodePath("TabButtons/CellTypeEditorButton")
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 15.0
-margin_top = 10.0
-margin_right = 506.0
-margin_bottom = 44.0
+margin_top = 5.0
+margin_right = 273.0
+margin_bottom = 33.0
+NoWrap = true
 
 [node name="ReportButton" type="Button" parent="TabButtons"]
-margin_right = 119.0
-margin_bottom = 34.0
+margin_right = 60.0
+margin_bottom = 28.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -115,9 +115,9 @@ __meta__ = {
 }
 
 [node name="PatchMapButton" type="Button" parent="TabButtons"]
-margin_left = 123.0
-margin_right = 243.0
-margin_bottom = 34.0
+margin_left = 64.0
+margin_right = 152.0
+margin_bottom = 28.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -136,9 +136,9 @@ __meta__ = {
 }
 
 [node name="CellEditorButton" type="Button" parent="TabButtons"]
-margin_left = 247.0
-margin_right = 367.0
-margin_bottom = 34.0
+margin_left = 156.0
+margin_right = 213.0
+margin_bottom = 28.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -157,9 +157,9 @@ __meta__ = {
 }
 
 [node name="CellTypeEditorButton" type="Button" parent="TabButtons"]
-margin_left = 371.0
-margin_right = 491.0
-margin_bottom = 34.0
+margin_left = 217.0
+margin_right = 258.0
+margin_bottom = 28.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
