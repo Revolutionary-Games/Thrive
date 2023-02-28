@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class PermanentlyDismissableDialog : CustomConfirmationDialog
+public class PermanentlyDismissibleDialog : CustomConfirmationDialog
 {
     [Export]
     public DismissibleNotice NoticeType;
