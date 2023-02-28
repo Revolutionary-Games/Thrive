@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A custom reimplementation of ConfirmationDialog and AcceptDialog combined into one.
@@ -143,17 +142,8 @@ public class CustomConfirmationDialog : CustomDialog
         if (dialogLabel == null)
             throw new SceneTreeAttachRequired();
 
-        var text = new StringBuilder(100);
-
-        if (CenterText)
-            text.Append("[center]");
-
-        text.Append(TranslationServer.Translate(dialogText));
-
-        if (CenterText)
-            text.Append("[/center]");
-
-        dialogLabel.ExtendedBbcode = text.ToString();
+        var text = TranslationServer.Translate(dialogText);
+        dialogLabel.ExtendedBbcode = CenterText ? $"[center]{text}[/center]" : text;
     }
 
     private void UpdateButtons()
