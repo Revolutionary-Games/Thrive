@@ -137,8 +137,11 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
     {
         if (disposing)
         {
-            material?.Dispose();
-            metaballSphere.Dispose();
+            if (material != null)
+            {
+                material.Dispose();
+                metaballSphere.Dispose();
+            }
         }
 
         base.Dispose(disposing);
