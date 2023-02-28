@@ -2122,6 +2122,7 @@ visible = false
 visible = false
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource( 17 )]
+rect_min_size = Vector2( 450, 0 )
 WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
 DialogText = "MOVING_TO_LAND_PROTOTYPE"
 
@@ -2137,11 +2138,12 @@ DialogText = "MOVING_TO_LAND_PROTOTYPE"
 [connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
 [connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnBecomeMacroscopicPressed"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Aware" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+[connection signal="Confirmed" from="MoveToLandConfirmation" to="." method="OnMoveToLandConfirmed"]
 
 [editable path="PausePrompt"]
