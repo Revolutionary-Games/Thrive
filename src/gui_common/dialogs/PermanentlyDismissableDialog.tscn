@@ -8,6 +8,7 @@
 [node name="PermanentlyDismissableDialog" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
 NoticeType = 0
+DialogType = 0
 
 [node name="VBoxContainer" parent="." index="0"]
 margin_right = 193.0
@@ -44,7 +45,6 @@ margin_right = 178.0
 margin_bottom = 69.0
 custom_fonts/font = ExtResource( 4 )
 pressed = true
-text = "DO_NOT_SHOW_AGAIN"
 
 [node name="FocusGrabber" parent="VBoxContainer" index="6"]
 margin_top = 69.0
@@ -80,5 +80,3 @@ margin_right = 159.0
 [node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
 margin_left = 163.0
 margin_right = 178.0
-
-[connection signal="popup_hide" from="." to="." method="OnHide"]

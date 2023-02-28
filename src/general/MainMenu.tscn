@@ -961,6 +961,7 @@ WindowTitle = "NO_MODS_ENABLED"
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
 CenterText = false
+DialogType = 1
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
 rect_min_size = Vector2( 550, 370 )

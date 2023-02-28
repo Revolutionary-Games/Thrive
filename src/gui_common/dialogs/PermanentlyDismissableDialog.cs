@@ -5,15 +5,34 @@ public class PermanentlyDismissableDialog : CustomConfirmationDialog
     [Export]
     public DismissibleNotice NoticeType;
 
+    [Export]
+    public DialogTypeEnum DialogType;
+
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CustomCheckBox checkbox = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
+
+    public enum DialogTypeEnum
+    {
+        Information,
+        Warning,
+    }
 
     public override void _Ready()
     {
         base._Ready();
 
         checkbox = GetNode<CustomCheckBox>("VBoxContainer/CheckBox");
+
+        switch (DialogType)
+        {
+            case DialogTypeEnum.Information:
+                checkbox.Text = TranslationServer.Translate("DISMISS_INFORMATION_PERMANENTLY");
+                break;
+            case DialogTypeEnum.Warning:
+                checkbox.Text = TranslationServer.Translate("DISMISS_WARNING_PERMANENTLY");
+                break;
+        }
     }
 
     /// <summary>
