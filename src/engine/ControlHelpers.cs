@@ -18,7 +18,7 @@ public static class ControlHelpers
         // In case the popup sizing stuck (this happens sometimes)
         if (runSizeUnstuck)
         {
-            Invoke.Instance.Queue(() =>
+            void Unstuck()
             {
                 // "Refresh" the popup to correct its size
                 popup.RectSize = Vector2.Zero;
@@ -27,6 +27,12 @@ public static class ControlHelpers
 
                 // Re-center it
                 popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
+            }
+
+            Invoke.Instance.Queue(() =>
+            {
+                // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double delay
+                Invoke.Instance.Queue(Unstuck);
             });
         }
     }
