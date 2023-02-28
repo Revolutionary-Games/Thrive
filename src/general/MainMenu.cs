@@ -141,8 +141,8 @@ public class MainMenu : NodeWithInput
 
     private CustomDialog safeModeWarning = null!;
 
-    private PermanentlyDismissableDialog modsInstalledButNotEnabledWarning = null!;
-    private PermanentlyDismissableDialog thanksDialog = null!;
+    private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
+    private PermanentlyDismissibleDialog thanksDialog = null!;
 #pragma warning restore CA2213
 
     private Array? menuArray;
@@ -418,9 +418,9 @@ public class MainMenu : NodeWithInput
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
-        modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissableDialog>(
+        modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(
             ModsInstalledButNotEnabledWarningPath);
-        thanksDialog = GetNode<PermanentlyDismissableDialog>(ThanksDialogPath);
+        thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
 
         // Set initial menu
         SwitchMenu();
