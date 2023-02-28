@@ -21,7 +21,7 @@ public class PermanentlyDismissableDialog : CustomConfirmationDialog
     ///   permanently dismissed and if so cancels popup.
     /// </summary>
     /// <returns><see langword="true"/> if hasn't been permanently dismissed yet.</returns>
-    public bool Popup()
+    public bool PopupIfNotDismissed()
     {
         if (!Settings.Instance.IsNoticePermanentlyDismissed(NoticeType))
         {
@@ -32,9 +32,11 @@ public class PermanentlyDismissableDialog : CustomConfirmationDialog
         return false;
     }
 
-    private void OnHide()
+    protected override void OnHidden()
     {
         if (checkbox.Pressed)
             Settings.Instance.PermanentlyDismissNotice(NoticeType);
+
+        base.OnHidden();
     }
 }

@@ -224,7 +224,6 @@ public class MainMenu : NodeWithInput
                     thanksDialog.DialogText =
                         TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
-                    // This isn't strictly necessary but might make the fix to this popup more robust
                     thanksDialog.PopupCenteredShrink();
                 }
 
@@ -641,7 +640,7 @@ public class MainMenu : NodeWithInput
         if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods())
         {
             GD.Print("Player has installed mods but no enabled ones, giving a heads up");
-            modsInstalledButNotEnabledWarning.Popup();
+            modsInstalledButNotEnabledWarning.PopupIfNotDismissed();
         }
     }
 

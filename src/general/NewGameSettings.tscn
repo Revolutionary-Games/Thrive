@@ -76,7 +76,6 @@ GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/P
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
-ConfirmDialogPath = NodePath("")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -1227,19 +1226,19 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 287.0
-margin_right = 473.0
+margin_right = 409.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 1 )
 
 [node name="Start" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 477.0
+margin_left = 413.0
 margin_right = 550.0
 margin_bottom = 35.0
 hint_tooltip = "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 focus_neighbour_left = NodePath("../Advanced")
 focus_previous = NodePath("../Advanced")
-text = "START"
+text = "START_GAME"
 __meta__ = {
 "_edit_use_anchors_": false
 }

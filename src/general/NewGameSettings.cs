@@ -538,16 +538,16 @@ public class NewGameSettings : ControlWithInput
     private void OnAdvancedPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        SetAdvanced(true);
+        SetAdvancedView(true);
     }
 
     private void OnBasicPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        SetAdvanced(false);
+        SetAdvancedView(false);
     }
 
-    private void SetAdvanced(bool advanced)
+    private void SetAdvancedView(bool advanced)
     {
         advancedButton.Visible = !advanced;
         basicOptions.Visible = !advanced;
@@ -579,7 +579,7 @@ public class NewGameSettings : ControlWithInput
         if (preset.InternalName == custom.InternalName)
         {
             ChangeSettingsTab(SelectedOptionsTab.Difficulty.ToString());
-            SetAdvanced(true);
+            SetAdvancedView(true);
             return;
         }
 
