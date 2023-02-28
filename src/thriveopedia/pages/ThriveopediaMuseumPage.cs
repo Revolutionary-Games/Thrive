@@ -150,6 +150,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
+            MainMenu.OnEnteringGame();
+
             // Instantiate a new editor scene
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 

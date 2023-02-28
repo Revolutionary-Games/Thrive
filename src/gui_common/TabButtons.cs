@@ -13,6 +13,12 @@ public class TabButtons : HBoxContainer
     [Export]
     public bool TabsLoop;
 
+    /// <summary>
+    ///   When true, the tab buttons will not wrap if overflowing.
+    /// </summary>
+    [Export]
+    public bool NoWrap;
+
     [Export]
     public PressType TabChangeTriggerMethod = PressType.PressedSignal;
 
@@ -44,6 +50,9 @@ public class TabButtons : HBoxContainer
     [Export]
     public NodePath TabButtonsContainerPath = null!;
 
+    [Export]
+    public NodePath TabButtonsContainerNoWrapPath = null!;
+
     private readonly List<Control> tabButtons = new();
 
     private TabLevel levelOnScreen = TabLevel.Primary;
@@ -58,6 +67,7 @@ public class TabButtons : HBoxContainer
     private KeyPrompt rightButtonIndicator = null!;
 
     private Container tabButtonsContainer = null!;
+    private Container tabButtonsContainerNoWrap = null!;
 #pragma warning restore CA2213
 
     public enum PressType
@@ -89,7 +99,8 @@ public class TabButtons : HBoxContainer
         ResolveNodeReferences();
 
         // This is hidden in the editor to make other scenes nicer that use the tab buttons
-        tabButtonsContainer.Visible = true;
+        tabButtonsContainer.Visible = !NoWrap;
+        tabButtonsContainerNoWrap.Visible = NoWrap;
 
         UpdateChangeButtonActionNames();
 
@@ -112,6 +123,7 @@ public class TabButtons : HBoxContainer
         rightButtonIndicator = GetNode<KeyPrompt>(RightButtonIndicatorPath);
 
         tabButtonsContainer = GetNode<Container>(TabButtonsContainerPath);
+        tabButtonsContainerNoWrap = GetNode<Container>(TabButtonsContainerNoWrapPath);
 
         NodeReferencesResolved = true;
     }
@@ -145,7 +157,16 @@ public class TabButtons : HBoxContainer
     public void AddNewTab(Button button)
     {
         button.FocusMode = FocusModeEnum.None;
-        tabButtonsContainer.AddChild(button);
+
+        if (NoWrap)
+        {
+            tabButtonsContainerNoWrap.AddChild(button);
+        }
+        else
+        {
+            tabButtonsContainer.AddChild(button);
+        }
+
         tabButtons.Add(button);
     }
 
@@ -177,7 +198,8 @@ public class TabButtons : HBoxContainer
         if (inputString.StartsWith(tabPathString))
             inputString = inputString.Substring(tabPathString.Length + 1);
 
-        return new NodePath($"{tabPathString}/{tabButtonsContainer.Name}/{inputString}");
+        return new NodePath(
+            $"{tabPathString}/{(NoWrap ? tabButtonsContainerNoWrap.Name : tabButtonsContainer.Name)}/{inputString}");
     }
 
     // Due to the way our input system works, we need to listen to all the types of inputs at once and then after
@@ -253,6 +275,7 @@ public class TabButtons : HBoxContainer
                 RightPaddingPath.Dispose();
                 RightButtonIndicatorPath.Dispose();
                 TabButtonsContainerPath.Dispose();
+                TabButtonsContainerNoWrapPath.Dispose();
             }
         }
 
@@ -378,14 +401,14 @@ public class TabButtons : HBoxContainer
         {
             // Move all children that aren't our own scene set children to the buttons container
             if (child.Equals(leftContainer) || child.Equals(rightContainer) || child.Equals(tabButtonsContainer) ||
-                child.Equals(leftPadding) || child.Equals(rightPadding))
+                child.Equals(leftPadding) || child.Equals(rightPadding) || child.Equals(tabButtonsContainerNoWrap))
             {
                 continue;
             }
 
             // Found a button to move
             tabButtons.Add(child);
-            child.ReParent(tabButtonsContainer);
+            child.ReParent(NoWrap ? tabButtonsContainerNoWrap : tabButtonsContainer);
 
             // Make all of the added things visible, this is because line splitting doesn't work by default in the
             // editor so some scenes will want to hide the tab buttons in the editor
