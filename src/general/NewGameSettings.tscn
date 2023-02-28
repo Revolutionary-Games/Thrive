@@ -36,6 +36,7 @@ script = ExtResource( 2 )
 BasicOptionsPath = NodePath("CenterContainer/VBoxContainer/BasicOptions")
 AdvancedOptionsPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions")
 BasicButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Basic")
+BackButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Back")
 AdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Advanced")
 TabButtonsPath = NodePath("CenterContainer/VBoxContainer/TabButtons")
 DifficultyTabPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty")
@@ -74,7 +75,7 @@ GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxCon
 GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
-ConfirmButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Confirm")
+StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -1190,34 +1191,12 @@ __meta__ = {
 margin_left = 104.0
 margin_right = 104.0
 margin_bottom = 35.0
-NodeToGiveFocusTo = NodePath("../Confirm")
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 108.0
-margin_right = 180.0
-margin_bottom = 35.0
-size_flags_horizontal = 3
-custom_styles/separator = SubResource( 1 )
-
-[node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 184.0
-margin_right = 359.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 100, 35 )
-hint_tooltip = "ADVANCED_VIEW_BUTTON_TOOLTIP"
-focus_neighbour_left = NodePath("../Basic")
-focus_neighbour_right = NodePath("../Confirm")
-focus_next = NodePath("../Confirm")
-focus_previous = NodePath("../Basic")
-text = "ADVANCED_VIEW"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+NodeToGiveFocusTo = NodePath("../Start")
 
 [node name="Basic" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 visible = false
-margin_left = 290.0
-margin_right = 416.0
+margin_left = 108.0
+margin_right = 234.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 hint_tooltip = "BASIC_VIEW_BUTTON_TOOLTIP"
@@ -1230,14 +1209,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Confirm" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 363.0
+[node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 108.0
+margin_right = 283.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+hint_tooltip = "ADVANCED_VIEW_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath("../Basic")
+focus_neighbour_right = NodePath("../Start")
+focus_next = NodePath("../Start")
+focus_previous = NodePath("../Basic")
+text = "ADVANCED_VIEW"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 287.0
+margin_right = 409.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 1 )
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 413.0
 margin_right = 550.0
 margin_bottom = 35.0
 hint_tooltip = "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 focus_neighbour_left = NodePath("../Advanced")
 focus_previous = NodePath("../Advanced")
-text = "CONFIRM_NORMAL"
+text = "START_GAME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1271,6 +1272,6 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs" to="." method="OnEasterEggsToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Confirm" to="." method="OnConfirmPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Start" to="." method="OnConfirmPressed"]
