@@ -60,8 +60,16 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         {
             UpdateAwakenButton(stage.Player!);
 
-            // Hide the land button when already on the land in the prototype
-            toLandButton.Visible = stage.Player!.MovementMode == MovementMode.Swimming;
+            // If the player is already in the awakening stage they can't move to land anymore
+            if (stage.Player!.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+            {
+                toLandButton.Visible = false;
+            }
+            else
+            {
+                // Hide the land button when already on the land in the prototype
+                toLandButton.Visible = stage.Player!.MovementMode == MovementMode.Swimming;
+            }
         }
         else
         {
@@ -192,6 +200,8 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         GUICommon.Instance.PlayButtonPressSound();
 
         awakenConfirmPopup.PopupCenteredShrink();
+
+        // TODO: make the cursor visible while this popup is open
     }
 
     private void UpdateAwakenButton(MulticellularCreature player)
@@ -224,7 +234,6 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // TODO: awakening stage not done yet
-        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
+        stage!.MoveToAwakeningStage();
     }
 }

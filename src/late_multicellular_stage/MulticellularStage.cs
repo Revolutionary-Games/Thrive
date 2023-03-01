@@ -316,6 +316,21 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.3f, null, false);
     }
 
+    public void MoveToAwakeningStage()
+    {
+        if (Player == null)
+            return;
+
+        GD.Print("Moving player to awakening stage prototype");
+
+        Player.Species.MovePlayerToAwakenedStatus();
+
+        // Intentionally not translated prototype message
+        HUD.HUDMessages.ShowMessage(
+            "You are now in the awakening stage prototype. You can now interact with more world objects. " +
+            "Interact with tool parts to advance.");
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
