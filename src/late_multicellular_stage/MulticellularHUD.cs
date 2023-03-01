@@ -45,9 +45,6 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         toLandButton = GetNode<Button>(ToLandButtonPath);
         awareButton = GetNode<Button>(AwareButtonPath);
         awakenButton = GetNode<Button>(AwakenButtonPath);
-
-        // TODO: implement this button
-        toLandButton.Disabled = true;
     }
 
     public override void _Process(float delta)
@@ -61,11 +58,15 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         {
             UpdateAwareButton(stage.Player!);
             UpdateAwakenButton(stage.Player!);
+
+            // Hide the land button when already on the land in the prototype
+            toLandButton.Visible = stage.Player!.MovementMode == MovementMode.Swimming;
         }
         else
         {
             awareButton.Visible = false;
             awakenButton.Visible = false;
+            toLandButton.Visible = false;
         }
     }
 
@@ -164,6 +165,33 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         // TODO: condition
         awakenButton.Visible = true;
         awakenButton.Disabled = true;
+    }
+
+    private void OnMoveToLandPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        moveToLandPopup.PopupCenteredShrink();
+
+        // TODO: make the cursor visible while this popup is open
+    }
+
+    private void OnMoveToLandConfirmed()
+    {
+        if (stage?.Player == null)
+        {
+            GD.Print("Player is missing to move to land");
+            return;
+        }
+
+        GD.Print("Moving player to land");
+
+        toLandButton.Disabled = true;
+
+        EnsureGameIsUnpausedForEditor();
+
+        // TODO: this is entirely placeholder feature
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.TeleportToLand, false);
     }
 
     private void OnBecomeAwarePressed()
