@@ -81,6 +81,28 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
             TypeName = newName;
     }
 
+    /// <summary>
+    ///   Checks if this cell type is a brain tissue type
+    /// </summary>
+    /// <returns>True when this is brain tissue</returns>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: make this check much more comprehensive to make brain tissue type more distinct
+    ///   </para>
+    /// </remarks>
+    public bool IsBrainTissueType()
+    {
+        foreach (var organelle in Organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<AxonComponentFactory>())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void ApplySceneParameters(Spatial instancedScene)
     {
         new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)

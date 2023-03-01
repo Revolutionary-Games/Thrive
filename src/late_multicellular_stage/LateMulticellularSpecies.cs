@@ -28,6 +28,9 @@ public class LateMulticellularSpecies : Species
     /// </summary>
     public float Scale { get; set; } = 1.0f;
 
+    [JsonProperty]
+    public float BrainPower { get; private set; }
+
     /// <summary>
     ///   All organelles in all of the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
@@ -44,6 +47,7 @@ public class LateMulticellularSpecies : Species
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+        CalculateBrainPower();
     }
 
     public override void RepositionToOrigin()
@@ -140,5 +144,20 @@ public class LateMulticellularSpecies : Species
     {
         SetInitialCompoundsForDefault();
         InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 90);
+    }
+
+    private void CalculateBrainPower()
+    {
+        float result = 0;
+
+        foreach (var metaball in BodyLayout)
+        {
+            if (metaball.CellType.IsBrainTissueType())
+            {
+                result += metaball.Volume * Scale;
+            }
+        }
+
+        BrainPower = result;
     }
 }
