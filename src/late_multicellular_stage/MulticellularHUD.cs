@@ -16,17 +16,19 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     public NodePath ToLandButtonPath = null!;
 
     [Export]
-    public NodePath AwareButtonPath = null!;
+    public NodePath AwakenButtonPath = null!;
 
     [Export]
-    public NodePath AwakenButtonPath = null!;
+    public NodePath AwakenConfirmPopupPath = null!;
 
 #pragma warning disable CA2213
     private CustomDialog moveToLandPopup = null!;
     private Button toLandButton = null!;
-    private Button awareButton = null!;
     private Button awakenButton = null!;
+    private CustomDialog awakenConfirmPopup = null!;
 #pragma warning restore CA2213
+
+    private float? lastBrainPower;
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
@@ -43,8 +45,8 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
         moveToLandPopup = GetNode<CustomDialog>(MoveToLandPopupPath);
         toLandButton = GetNode<Button>(ToLandButtonPath);
-        awareButton = GetNode<Button>(AwareButtonPath);
         awakenButton = GetNode<Button>(AwakenButtonPath);
+        awakenConfirmPopup = GetNode<CustomDialog>(AwakenConfirmPopupPath);
     }
 
     public override void _Process(float delta)
@@ -56,7 +58,6 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
         if (stage.HasPlayer)
         {
-            UpdateAwareButton(stage.Player!);
             UpdateAwakenButton(stage.Player!);
 
             // Hide the land button when already on the land in the prototype
@@ -64,7 +65,6 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         }
         else
         {
-            awareButton.Visible = false;
             awakenButton.Visible = false;
             toLandButton.Visible = false;
         }
@@ -152,19 +152,12 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
             {
                 MoveToLandPopupPath.Dispose();
                 ToLandButtonPath.Dispose();
-                AwareButtonPath.Dispose();
                 AwakenButtonPath.Dispose();
+                AwakenConfirmPopupPath.Dispose();
             }
         }
 
         base.Dispose(disposing);
-    }
-
-    private void UpdateAwareButton(MulticellularCreature player)
-    {
-        // TODO: condition
-        awakenButton.Visible = true;
-        awakenButton.Disabled = true;
     }
 
     private void OnMoveToLandPressed()
@@ -194,25 +187,44 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.TeleportToLand, false);
     }
 
-    private void OnBecomeAwarePressed()
+    private void OnAwakenPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // TODO: aware stage not done yet
-        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
+        awakenConfirmPopup.PopupCenteredShrink();
     }
 
-    private void OnAwakenPressed()
+    private void UpdateAwakenButton(MulticellularCreature player)
+    {
+        if (player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+        {
+            awakenButton.Visible = false;
+            return;
+        }
+
+        float brainPower = player.Species.BrainPower;
+
+        // TODO: require being ready to reproduce? Or do we want the player first to play as an awakened creature
+        // before getting to the editor where they can still make some changes?
+
+        // Doesn't matter as this is just for updating the GUI
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (lastBrainPower == brainPower)
+            return;
+
+        lastBrainPower = brainPower;
+
+        var limit = Constants.BRAIN_POWER_REQUIRED_FOR_AWAKENING;
+
+        awakenButton.Disabled = brainPower < limit;
+        awakenButton.Text = TranslationServer.Translate("ACTION_AWAKEN").FormatSafe(brainPower, limit);
+    }
+
+    private void OnAwakenConfirmed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
         // TODO: awakening stage not done yet
         ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
-    }
-
-    private void UpdateAwakenButton(MulticellularCreature player)
-    {
-        // TODO: condition
-        awakenButton.Visible = false;
     }
 }

@@ -16,6 +16,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
 
+    /// <summary>
+    ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
+    ///   button as it should be only used after moving to land)
+    /// </summary>
+    [JsonProperty]
+    private MulticellularSpeciesType previousPlayerStage;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public MulticellularCamera PlayerCamera { get; private set; } = null!;
@@ -172,6 +179,24 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (!CurrentGame!.TutorialState.Enabled)
         {
             // tutorialGUI.EventReceiver?.OnTutorialDisabled();
+        }
+
+        // Update state transition triggers
+        if (Player.Species.MulticellularType != previousPlayerStage)
+        {
+            previousPlayerStage = Player.Species.MulticellularType;
+
+            if (previousPlayerStage == MulticellularSpeciesType.Aware)
+            {
+                // Intentionally not translatable as a placeholder prototype text
+                HUD.HUDMessages.ShowMessage(
+                    "You are now aware. This prototype has nothing extra yet, please move to the awakening stage",
+                    DisplayDuration.Long);
+            }
+            else if (previousPlayerStage == MulticellularSpeciesType.Awakened)
+            {
+                // TODO: something
+            }
         }
     }
 

@@ -860,6 +860,9 @@ public static class Constants
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
     public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
 
+    public const float BRAIN_POWER_REQUIRED_FOR_AWARE = 0.5f;
+    public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;
+
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
     ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>

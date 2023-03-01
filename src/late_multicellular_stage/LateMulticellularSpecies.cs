@@ -31,6 +31,9 @@ public class LateMulticellularSpecies : Species
     [JsonProperty]
     public float BrainPower { get; private set; }
 
+    [JsonProperty]
+    public MulticellularSpeciesType MulticellularType { get; private set; }
+
     /// <summary>
     ///   All organelles in all of the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
@@ -41,6 +44,24 @@ public class LateMulticellularSpecies : Species
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
+    public static MulticellularSpeciesType CalculateMulticellularTypeFromLayout(
+        MetaballLayout<MulticellularMetaball> layout, float scale)
+    {
+        var brainPower = CalculateBrainPowerFromLayout(layout, scale);
+
+        if (brainPower >= Constants.BRAIN_POWER_REQUIRED_FOR_AWAKENING)
+        {
+            return MulticellularSpeciesType.Awakened;
+        }
+
+        if (brainPower >= Constants.BRAIN_POWER_REQUIRED_FOR_AWARE)
+        {
+            return MulticellularSpeciesType.Aware;
+        }
+
+        return MulticellularSpeciesType.LateMulticellular;
+    }
+
     public override void OnEdited()
     {
         base.OnEdited();
@@ -48,6 +69,9 @@ public class LateMulticellularSpecies : Species
         RepositionToOrigin();
         UpdateInitialCompounds();
         CalculateBrainPower();
+
+        // Note that a few stage transitions are explicit for the player so the editor will override this
+        SetTypeFromBrainPower();
     }
 
     public override void RepositionToOrigin()
@@ -104,6 +128,21 @@ public class LateMulticellularSpecies : Species
         }
     }
 
+    /// <summary>
+    ///   Explicitly moves the player to awakened status, this is like this to make sure the player wouldn't get stuck
+    ///   underwater if they accidentally increased their brain power
+    /// </summary>
+    public void MovePlayerToAwakenedStatus()
+    {
+        MulticellularType = MulticellularSpeciesType.Awakened;
+    }
+
+    public void KeepPlayerInAwareStage()
+    {
+        if (MulticellularType == MulticellularSpeciesType.Awakened)
+            MulticellularType = MulticellularSpeciesType.Aware;
+    }
+
     public override object Clone()
     {
         var result = new LateMulticellularSpecies(ID, Genus, Epithet);
@@ -123,6 +162,26 @@ public class LateMulticellularSpecies : Species
         }
 
         return result;
+    }
+
+    private static float CalculateBrainPowerFromLayout(MetaballLayout<MulticellularMetaball> layout, float scale)
+    {
+        float result = 0;
+
+        foreach (var metaball in layout)
+        {
+            if (metaball.CellType.IsBrainTissueType())
+            {
+                result += metaball.Volume * scale;
+            }
+        }
+
+        return result;
+    }
+
+    private void SetTypeFromBrainPower()
+    {
+        MulticellularType = CalculateMulticellularTypeFromLayout(BodyLayout, Scale);
     }
 
     private void SetInitialCompoundsForDefault()
@@ -148,16 +207,6 @@ public class LateMulticellularSpecies : Species
 
     private void CalculateBrainPower()
     {
-        float result = 0;
-
-        foreach (var metaball in BodyLayout)
-        {
-            if (metaball.CellType.IsBrainTissueType())
-            {
-                result += metaball.Volume * Scale;
-            }
-        }
-
-        BrainPower = result;
+        BrainPower = CalculateBrainPowerFromLayout(BodyLayout, Scale);
     }
 }
