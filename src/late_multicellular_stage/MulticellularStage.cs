@@ -312,6 +312,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             Player.Translation = new Vector3(Player.Translation.x, 0.1f, Player.Translation.z);
         }
 
+        // Modify the player species to be on land
+        Player.Species.ReproductionLocation = ReproductionLocation.Land;
+
         // Fade back in after the "teleport"
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.3f, null, false);
     }
@@ -329,6 +332,18 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         HUD.HUDMessages.ShowMessage(
             "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
             "Interact with tool parts to advance.", DisplayDuration.Long);
+    }
+
+    public void AttemptPlayerWorldInteraction()
+    {
+        // TODO: we might in the future have somethings that an aware creature can interact with
+        if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
+            return;
+
+        // TODO: find nearby objects and open interaction menu if there's something to interact with
+
+        // Did not find anything for the player to interact with
+        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
     }
 
     protected override void SetupStage()

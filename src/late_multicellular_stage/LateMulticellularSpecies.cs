@@ -31,6 +31,13 @@ public class LateMulticellularSpecies : Species
     [JsonProperty]
     public float BrainPower { get; private set; }
 
+    /// <summary>
+    ///   Where this species reproduces, used to control also where individuals of this species spawn and where the
+    ///   player spawns
+    /// </summary>
+    [JsonProperty]
+    public ReproductionLocation ReproductionLocation { get; set; }
+
     [JsonProperty]
     public MulticellularSpeciesType MulticellularType { get; private set; }
 

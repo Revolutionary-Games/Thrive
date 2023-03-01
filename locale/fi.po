@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 15:01+0200\n"
+"POT-Creation-Date: 2023-03-01 16:03+0200\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D-liikkumisen tyyli:"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:192
 msgid "3D_EDITOR"
 msgstr "3D-editori"
 
-#: ../simulation_parameters/common/input_options.json:160
+#: ../simulation_parameters/common/input_options.json:164
 msgid "3D_MOVEMENT"
 msgstr "3D-liikkuminen"
 
@@ -52,13 +52,13 @@ msgstr "Peruutettu."
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssaalivyöhyke"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:230
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1724
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:231
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
 #, fuzzy
 msgid "ACTION_AWAKEN"
 msgstr "Herää"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Herää"
@@ -106,7 +106,7 @@ msgstr "Pysäytysmenu"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobinen typensidonta"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1533
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1532
 #: ../src/microbe_stage/MicrobeStage.tscn:1605
 msgid "AGENTS"
 msgstr "Välittäjäaineet"
@@ -167,7 +167,7 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Tunnelmaäänet"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1310
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1309
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1347
 msgid "AMMONIA"
@@ -421,12 +421,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr "Batypelaginen vyöhyke"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:464
+#: ../src/microbe_stage/MicrobeHUD.cs:467
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muutu Makroskooppiseksi ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:428
+#: ../src/microbe_stage/MicrobeHUD.cs:431
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "BECOME_MULTICELLULAR"
 msgstr "Muutu Monisoluiseksi ({0}/{1})"
@@ -580,7 +580,7 @@ msgstr "Kalsiumkarbonaatti"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:78
+#: ../simulation_parameters/common/input_options.json:82
 msgid "CAMERA"
 msgstr "Kamera"
 
@@ -597,7 +597,7 @@ msgstr "Peruuta"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "PERU"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Peruuta nykyinen toimenpide"
@@ -719,7 +719,7 @@ msgstr "Kuvaus:"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Vaihda symmetriamoodia"
 
-#: ../simulation_parameters/common/input_options.json:239
+#: ../simulation_parameters/common/input_options.json:243
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
@@ -729,7 +729,7 @@ msgstr "Huijauskoodit"
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Huijauskoodit aktiivisia"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:263
 msgid "CHEAT_MENU"
 msgstr "Huijausvalikko"
 
@@ -975,7 +975,7 @@ msgstr "Kuole"
 msgid "COMPILED_AT_COLON"
 msgstr "Käännetty ajanhetkellä:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1160
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1159
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
@@ -989,7 +989,7 @@ msgstr "Yhdisteet"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:572
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:571
 #: ../src/microbe_stage/MicrobeStage.tscn:622
 msgid "COMPOUNDS_COLON"
 msgstr "Yhdisteet:"
@@ -1305,7 +1305,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Poista vanhat tallennukset?"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "DELETE_ORGANELLE"
 msgstr "Poista soluelin"
 
@@ -1386,7 +1386,7 @@ msgstr "Kehittäjät"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:225
+#: ../src/microbe_stage/MicrobeHUD.cs:228
 msgid "DEVOURED"
 msgstr "Syöty"
 
@@ -1723,7 +1723,7 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:99
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "Editori"
@@ -1758,7 +1758,7 @@ msgstr "Avaa editorin lukitus"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Valittu tallennus ei ole yhteensopiva"
 
-#: ../simulation_parameters/common/input_options.json:243
+#: ../simulation_parameters/common/input_options.json:247
 msgid "ENABLE_EDITOR"
 msgstr "Avaa editorin lukitus"
 
@@ -1800,7 +1800,7 @@ msgstr ""
 msgid "ENTITY_LABEL"
 msgstr "Biomi: {0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:694
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:693
 #: ../src/microbe_stage/MicrobeStage.tscn:740
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
@@ -2053,7 +2053,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "konsentraatiosta riippuen"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2084
 #: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Ammu myrkkyä"
@@ -2139,12 +2139,12 @@ msgstr ""
 "Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
 "käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:200
+#: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:199
+#: ../src/microbe_stage/MicrobeHUD.cs:202
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2249,7 +2249,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} alueelle {2}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1258
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1257
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 #: ../src/microbe_stage/MicrobeStage.tscn:1301
 msgid "GLUCOSE"
@@ -2311,7 +2311,7 @@ msgstr "Käyttöliittymä"
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:214
+#: ../simulation_parameters/common/input_options.json:218
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} k"
@@ -2346,7 +2346,7 @@ msgstr "(suuremmat arvot lisäävät suorituskykyä)"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(suuremmat arvot heikentävät suorituskykyä)"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr ""
 
@@ -2354,11 +2354,11 @@ msgstr ""
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Pohjassapidettynä näytä lauman komentovalikko"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:184
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:631
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:630
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -2389,7 +2389,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1414
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1413
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 #: ../src/microbe_stage/MicrobeStage.tscn:1448
 msgid "HYDROGEN_SULFIDE"
@@ -2448,6 +2448,11 @@ msgstr "Lisää uusi syöte"
 #: ../src/general/OptionsMenu.tscn:204
 msgid "INPUTS"
 msgstr "Syötteet"
+
+#: ../simulation_parameters/common/input_options.json:72
+#, fuzzy
+msgid "INPUT_NAME_INTERACTION"
+msgstr "konsentraatiosta riippuen"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -2514,7 +2519,7 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1466
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1465
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 #: ../src/microbe_stage/MicrobeStage.tscn:1494
 msgid "IRON"
@@ -2957,7 +2962,7 @@ msgstr "Kuole"
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Mustat savuttajat"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1018
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1017
 #: ../src/microbe_stage/MicrobeStage.tscn:1064
 msgid "LIGHT"
 msgstr "Valo"
@@ -3119,7 +3124,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:521
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:520
 #, fuzzy
 msgid "LOOKING_AT"
 msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
@@ -3569,12 +3574,12 @@ msgstr "Ei ole lupaa näyttää vähempää kuin {0} datajoukko(a)!"
 msgid "MISC"
 msgstr "Muut"
 
-#: ../simulation_parameters/common/input_options.json:270
+#: ../simulation_parameters/common/input_options.json:274
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Muut"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:180
 #, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Muut"
@@ -3814,7 +3819,7 @@ msgstr ""
 msgid "MOVE_BACKWARDS"
 msgstr "Liiku taaksepäin"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Liiku alaspäin tai kyykisty"
 
@@ -3826,7 +3831,7 @@ msgstr "Liiku eteenpäin"
 msgid "MOVE_LEFT"
 msgstr "Liiku vasemmalle"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 msgid "MOVE_ORGANELLE"
 msgstr "Siirrä soluelintä"
 
@@ -3839,7 +3844,7 @@ msgstr "Liiku oikealle"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Siirry tälle alueelle"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1704
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Lähetettävä Modi:"
@@ -3852,23 +3857,23 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Siirry tälle alueelle"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:168
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Liiku ylöspäin tai hyppää"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2122
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2138
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2121
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2137
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2117
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2133
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2132
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -3882,7 +3887,7 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1644
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1643
 #: ../src/microbe_stage/MicrobeStage.tscn:1710
 msgid "MUCILAGE"
 msgstr ""
@@ -4074,10 +4079,14 @@ msgstr "Normaali"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:547
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:546
 #: ../src/microbe_stage/MicrobeStage.tscn:597
 msgid "NOTHING_HERE"
 msgstr "Ei mitään täällä"
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:340
+msgid "NOTHING_TO_INTERACT_WITH"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
@@ -4251,7 +4260,7 @@ msgstr "Avaa lokien kansio"
 msgid "OPEN_MOD_URL"
 msgstr "Avaa osoite"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Avaa soluelimen valikko"
 
@@ -4435,7 +4444,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1593
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1592
 #: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "OXYTOXY_NT"
 msgstr "Happimyrkky"
@@ -4472,23 +4481,23 @@ msgstr "Poista Paikallinen Data"
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Pangonialainen"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_DOWN"
 msgstr "Vieritä alaspäin"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_LEFT"
 msgstr "Vieritä vasemmalle"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_RESET"
 msgstr "Palauta kameran alkusijainti"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Siirrä kameraa oikealle"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_UP"
 msgstr "Siirrä kameraa ylöspäin"
 
@@ -4598,7 +4607,7 @@ msgstr "PYSÄYTETTY"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Palaa peliin"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:64
+#: ../src/microbe_stage/MicrobeHUD.cs:67
 msgid "PAUSE_PROMPT"
 msgstr ""
 
@@ -4630,7 +4639,7 @@ msgstr "Rauhallinen"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:231
+#: ../src/microbe_stage/MicrobeHUD.cs:234
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4648,7 +4657,7 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekunti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1362
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1361
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 #: ../src/microbe_stage/MicrobeStage.tscn:1396
 msgid "PHOSPHATE"
@@ -4670,7 +4679,7 @@ msgstr "Olosuhteet"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fyysinen kestävyys"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
@@ -4759,7 +4768,7 @@ msgstr "Näytä mikrobi-intro aloitettaessa uusi peli"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1744
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1743
 #: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
@@ -4789,7 +4798,7 @@ msgstr "Jatka"
 msgid "PRESSURE"
 msgstr "Paine"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1073
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1072
 #: ../src/microbe_stage/MicrobeStage.tscn:1119
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
@@ -4850,11 +4859,11 @@ msgstr "Protoplasma"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / ohjelmointi"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "QUICK_LOAD"
 msgstr "Lataa viimeisin tallennus"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "QUICK_SAVE"
 msgstr "Tee pika-tallennus"
 
@@ -4913,7 +4922,7 @@ msgstr "Thriven Suositeltu Versio:"
 msgid "REDDIT_TOOLTIP"
 msgstr "Jatka"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "REDO"
 msgstr "Tee uudelleen"
 
@@ -5077,11 +5086,11 @@ msgstr ""
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 msgid "ROTATE_LEFT"
 msgstr "Käännä vasemmalle"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:103
 msgid "ROTATE_RIGHT"
 msgstr "Käännä oikealle"
 
@@ -5296,7 +5305,7 @@ msgid "SEA_FLOOR"
 msgstr "Merenpohja"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2108
 #: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr ""
@@ -5389,7 +5398,7 @@ msgstr "Efektien voimakkuus"
 msgid "SHIFT"
 msgstr "Vaihto"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "SHOW_HELP"
 msgstr "Näytä apu"
 
@@ -5447,27 +5456,27 @@ msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun l
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Pidä [thrive:input]g_pack_commands[/thrive:input] pohjassa avataksesi valikon, josta voit jakaa lajisi soluille komentoja."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:126
+#: ../src/microbe_stage/MicrobeHUD.cs:129
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Muutu Agressiiviseksi"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:125
+#: ../src/microbe_stage/MicrobeHUD.cs:128
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:123
+#: ../src/microbe_stage/MicrobeHUD.cs:126
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Seuraa Minua"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:122
+#: ../src/microbe_stage/MicrobeHUD.cs:125
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Ei Käskyä"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:124
+#: ../src/microbe_stage/MicrobeHUD.cs:127
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Liiku Luokseni"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:129
+#: ../src/microbe_stage/MicrobeHUD.cs:132
 msgid "SIGNAL_TO_EMIT"
 msgstr "Viesti Erittää"
 
@@ -5542,7 +5551,7 @@ msgstr ""
 msgid "SPACE"
 msgstr "Välilyönti"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:255
 msgid "SPAWN_AMMONIA"
 msgstr "Luo ammoniakkia"
 
@@ -5555,11 +5564,11 @@ msgstr "Luo vihollinen"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Luo vihollinen"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:251
 msgid "SPAWN_GLUCOSE"
 msgstr "Luo glukoosia"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SPAWN_PHOSPHATES"
 msgstr "Luo fosfaattia"
 
@@ -5576,7 +5585,7 @@ msgstr "Hiiren erikoispainike 2"
 msgid "SPECIES"
 msgstr "Lista lajeista"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:612
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:611
 #: ../src/microbe_stage/MicrobeStage.tscn:662
 msgid "SPECIES_COLON"
 msgstr "Lajit:"
@@ -5833,15 +5842,15 @@ msgstr "Oikea super"
 msgid "SUPPORTER_PATRONS"
 msgstr "Tukijat"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr ""
 
@@ -5849,20 +5858,20 @@ msgstr ""
 msgid "SYSREQ"
 msgstr "SysRq"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:218
+#: ../simulation_parameters/common/input_options.json:222
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Käännä vasemmalle"
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Käännä oikealle"
@@ -5871,7 +5880,7 @@ msgstr "Käännä oikealle"
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "TAKE_SCREENSHOT"
 msgstr "Ota ruudunkaappaus"
 
@@ -5883,7 +5892,7 @@ msgstr "Ota ruudunkaappaus"
 msgid "TEMPERATURE"
 msgstr "Lämpötila"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:962
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:961
 #: ../src/microbe_stage/MicrobeStage.tscn:1008
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
@@ -6082,30 +6091,31 @@ msgstr "Koko:"
 msgid "TOGGLE_BINDING"
 msgstr "Aloita/lopeta kiinnittyminen"
 
-#: ../simulation_parameters/common/input_options.json:278
+#: ../simulation_parameters/common/input_options.json:282
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Aloita/lopeta nieleminen"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2055
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2070
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Aloita/lopeta nieleminen"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:286
 msgid "TOGGLE_FPS"
 msgstr "Näytä FPS-laskuri"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Vaihda koko näytön tilaa"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:314
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Näytä/Piilota HUD"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 msgid "TOGGLE_METRICS"
 msgstr "Näytä metriikat"
 
@@ -6113,7 +6123,7 @@ msgstr "Näytä metriikat"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:274
+#: ../simulation_parameters/common/input_options.json:278
 msgid "TOGGLE_PAUSE"
 msgstr "Pysäytä"
 
@@ -6155,7 +6165,6 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:238
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Tullaan toteuttamaan tulevaisuudessa."
 
@@ -6380,7 +6389,7 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr "Vedenalainen luola"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "UNDO"
 msgstr "Kumoa"
 
@@ -6745,11 +6754,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Voit tukea Thriven jatkokehitystä Patreonissa."
 
-#: ../simulation_parameters/common/input_options.json:86
+#: ../simulation_parameters/common/input_options.json:90
 msgid "ZOOM_IN"
 msgstr "Zoomaa sisään"
 
-#: ../simulation_parameters/common/input_options.json:82
+#: ../simulation_parameters/common/input_options.json:86
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 

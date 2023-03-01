@@ -21,11 +21,16 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     [Export]
     public NodePath AwakenConfirmPopupPath = null!;
 
+    [Export]
+    public NodePath InteractActionPath = null!;
+
 #pragma warning disable CA2213
     private CustomDialog moveToLandPopup = null!;
     private Button toLandButton = null!;
     private Button awakenButton = null!;
     private CustomDialog awakenConfirmPopup = null!;
+
+    private ActionButton interactAction = null!;
 #pragma warning restore CA2213
 
     private float? lastBrainPower;
@@ -37,6 +42,9 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     [Signal]
     public new delegate void OnOpenMenuToHelp();
 
+    [Signal]
+    public delegate void OnInteractButtonPressed();
+
     protected override string? UnPauseHelpText => null;
 
     public override void _Ready()
@@ -47,6 +55,8 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         toLandButton = GetNode<Button>(ToLandButtonPath);
         awakenButton = GetNode<Button>(AwakenButtonPath);
         awakenConfirmPopup = GetNode<CustomDialog>(AwakenConfirmPopupPath);
+
+        interactAction = GetNode<ActionButton>(InteractActionPath);
     }
 
     public override void _Process(float delta)
@@ -150,6 +160,8 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     protected override void UpdateAbilitiesHotBar()
     {
+        // This button is visible when the player is in the awakening stage
+        interactAction.Visible = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
     }
 
     protected override void Dispose(bool disposing)
@@ -162,6 +174,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
                 ToLandButtonPath.Dispose();
                 AwakenButtonPath.Dispose();
                 AwakenConfirmPopupPath.Dispose();
+                InteractActionPath.Dispose();
             }
         }
 
@@ -235,5 +248,10 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         GUICommon.Instance.PlayButtonPressSound();
 
         stage!.MoveToAwakeningStage();
+    }
+
+    private void ForwardInteractButton()
+    {
+        EmitSignal(nameof(OnInteractButtonPressed));
     }
 }

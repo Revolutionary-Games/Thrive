@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=26]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/actions/InteractAction.png" type="Texture" id=28]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
@@ -470,6 +471,7 @@ MoveToLandPopupPath = NodePath("MoveToLandConfirmation")
 ToLandButtonPath = NodePath("BottomRight/VBoxContainer/ToLand")
 AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
 AwakenConfirmPopupPath = NodePath("MoveToAwakeningConfirm")
+InteractActionPath = NodePath("ScrollContainer/HotBar/Interact")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -2044,10 +2046,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Interact" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_ENGULF"
+custom_styles/hover = SubResource( 33 )
+custom_styles/pressed = SubResource( 33 )
+custom_styles/normal = SubResource( 34 )
+ActionIcon = ExtResource( 28 )
+ActionName = "g_interact"
+
 [node name="Eating" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
 visible = false
-margin_left = 277.0
-margin_right = 323.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF"
 custom_styles/hover = SubResource( 33 )
@@ -2064,7 +2082,6 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "FIRE_TOXIN"
-focus_mode = 2
 ActionIcon = ExtResource( 19 )
 ActionName = "g_fire_toxin"
 
@@ -2088,7 +2105,6 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "SECRETE_SLIME"
-focus_mode = 2
 disabled = true
 ActionIcon = ExtResource( 24 )
 ActionName = "g_secrete_slime"
@@ -2136,6 +2152,7 @@ DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
 [connection signal="Confirmed" from="MoveToLandConfirmation" to="." method="OnMoveToLandConfirmed"]
 [connection signal="Confirmed" from="MoveToAwakeningConfirm" to="." method="OnAwakenConfirmed"]
 

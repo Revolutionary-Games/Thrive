@@ -139,6 +139,12 @@ public class PlayerMulticellularInput : NodeWithInput
         stage.RotateCamera(yawMovement, pitchMovement);
     }
 
+    [RunOnKeyDown("g_interact")]
+    public void InteractWithEnvironment()
+    {
+        stage.AttemptPlayerWorldInteraction();
+    }
+
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {

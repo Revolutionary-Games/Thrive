@@ -66,6 +66,7 @@ __meta__ = {
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 
+[connection signal="OnInteractButtonPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="InteractWithEnvironment"]
 [connection signal="OnOpenMenu" from="MulticellularHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MulticellularHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
