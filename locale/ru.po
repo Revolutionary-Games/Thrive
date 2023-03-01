@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 14:50+0200\n"
+"POT-Creation-Date: 2023-03-01 15:01+0200\n"
 "PO-Revision-Date: 2023-02-10 07:42+0000\n"
 "Last-Translator: Ilja Hlopushkin <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -50,6 +50,17 @@ msgstr "Отменено."
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "Абиссопелагический"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1724
+#, fuzzy
+msgid "ACTION_AWAKEN"
+msgstr "Пробудить"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#, fuzzy
+msgid "ACTION_AWAKEN_TOOLTIP"
+msgstr "Пробудить"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -178,7 +189,7 @@ msgstr "Количество записей быстрого сохранени�
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Анаэробная азотфиксация"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
 msgid "APPEARANCE"
 msgstr "Внешний вид"
 
@@ -350,10 +361,6 @@ msgstr "Авто ({0}x{1})"
 msgid "AVAILABLE_MODS"
 msgstr "Доступные моды"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1734
-msgid "AWAKEN"
-msgstr "Пробудить"
-
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -411,10 +418,6 @@ msgstr "BassUp"
 msgid "BATHYPELAGIC"
 msgstr "Батипелагический"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
-msgid "BECOME_AWARE"
-msgstr "Станьте осведомлены"
-
 #: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
@@ -430,7 +433,7 @@ msgid "BEGIN_THRIVING"
 msgstr "Начать Процветание"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
 msgid "BEHAVIOUR"
 msgstr "Поведение"
@@ -580,7 +583,7 @@ msgid "CANCEL"
 msgstr "Отмена"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТМЕНИТЬ ДЕЙСТВИЕ"
@@ -591,12 +594,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Отменить текущее действие"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Выбранный тип клеток в организме не может быть удалён"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Нельзя удалить выбранный тип клеток"
 
@@ -607,9 +610,17 @@ msgstr "Нельзя удалить выбранный тип клеток"
 msgid "CANNOT_ENGULF"
 msgstr "Не может поглощать"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Невозможно переместить метасферу в её древо потомков"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -661,7 +672,7 @@ msgid "CELL"
 msgstr "Клетка"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
 msgid "CELLS"
 msgstr "Целлюлоза"
 
@@ -1115,11 +1126,11 @@ msgstr "Создать новый мод"
 msgid "CREATE_NEW_SAVE"
 msgstr "Создать Новое Сохранение"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Создать новый тип ткани"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Вы можете создать новые типы тканей копируя уже существующие под новым названием. Ткани можно изменять в редакторе клеток, чтобы сделать их более подходящими под разные роли."
 
@@ -1251,7 +1262,7 @@ msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода по умолчанию"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Удалить"
@@ -1447,11 +1458,11 @@ msgstr ""
 "Среди размещённых клеток имеются несоединённые с остальными.\n"
 "Пожалуйста, соедините все размещённые клетки с другими для продолжения."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
 msgid "DISCONNECTED_METABALLS"
 msgstr "Отсоединенные метасферы"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Среди размещённых клеток имеются несоединённые метасферы что не объединены с остальными.\n"
@@ -1539,7 +1550,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr "Выбросить SceneTree"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
 msgstr "Дублировать Тип"
 
@@ -1964,7 +1975,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Симулировать {0} поколений"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2078
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
 #: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Выстрелить токсином"
@@ -2351,7 +2362,7 @@ msgstr "Проверить"
 msgid "INSPECTOR"
 msgstr "Инспектор"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
 msgstr "Внутренности"
 
@@ -3485,7 +3496,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Модифицировать Органеллу"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:471
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
 msgid "MODIFY_TYPE"
 msgstr "Изменить Вид"
 
@@ -3652,7 +3663,7 @@ msgid "MOVE"
 msgstr "Передвижение"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:386
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
 msgid "MOVEMENT"
 msgstr "Перемещение"
 
@@ -3688,7 +3699,7 @@ msgstr "Перемещение вправо"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Двигаться к любому биому"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1704
 msgid "MOVE_TO_LAND"
 msgstr "Переместиться на сушу"
 
@@ -3704,7 +3715,22 @@ msgstr "Двигаться к Этому Биому"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Двигаться вверх или прыгать"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2127
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2122
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE"
+msgstr ""
+"Вы собираетесь выбраться на сушу. Это требуется для дальнейшего прогресса в игре. Вернуться обратно будет нельзя.\n"
+"\n"
+"Сейчас переход к суше гораздо более резкий чем планируется в будущем, когда суша будет полноценно добавлена в игру.\n"
+"\n"
+"План в том, чтобы сделать переход на сушу постепенным, а не резким."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2121
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+msgstr "Переместиться на сушу?"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2117
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "Вы собираетесь выбраться на сушу. Это требуется для дальнейшего прогресса в игре. Вернуться обратно будет нельзя.\n"
@@ -3713,7 +3739,7 @@ msgstr ""
 "\n"
 "План в том, чтобы сделать переход на сушу постепенным, а не резким."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Переместиться на сушу?"
 
@@ -3847,17 +3873,17 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Мой потрясающий мод"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
 msgid "NEW_NAME"
 msgstr "Новое имя"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:698
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
 msgid "NEW_NAME_COLON"
 msgstr "Новое Название Колонии:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
@@ -4573,7 +4599,7 @@ msgstr "Проигрывать вступление микроба при нов
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Играть с текущими настройками"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1754
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1744
 #: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
@@ -4751,12 +4777,12 @@ msgid "REPRODUCED"
 msgstr "Воспроизведено"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
 msgid "REPRODUCTION"
 msgstr "Репродукция"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Бесполое"
 
@@ -4766,7 +4792,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Размножение"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
 
@@ -5095,7 +5121,7 @@ msgid "SEA_FLOOR"
 msgstr "Морское дно"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2102
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr "Выделить слизь"
@@ -5572,7 +5598,7 @@ msgid "STRUCTURAL"
 msgstr "Структурный"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Структура"
@@ -5868,7 +5894,7 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Переключить панель откладки"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Переключить поглощение"
@@ -5935,9 +5961,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] низкое, стрельба все еще возможна, но урон будет уменьшен."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:202
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:210
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:238
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Будет реализовано."
 
@@ -6514,6 +6538,9 @@ msgstr "Увеличить масштаб"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "BECOME_AWARE"
+#~ msgstr "Станьте осведомлены"
 
 #~ msgid "CONFIRM_NORMAL"
 #~ msgstr "Подтвердить"

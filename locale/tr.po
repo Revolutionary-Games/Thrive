@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 14:50+0200\n"
+"POT-Creation-Date: 2023-03-01 15:01+0200\n"
 "PO-Revision-Date: 2023-02-15 11:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -50,6 +50,17 @@ msgstr "Durduruldu."
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelajik"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1724
+#, fuzzy
+msgid "ACTION_AWAKEN"
+msgstr "Uyandır"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#, fuzzy
+msgid "ACTION_AWAKEN_TOOLTIP"
+msgstr "Uyandır"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -178,7 +189,7 @@ msgstr "Saklanacak çabuk kayıt miktarı:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Oksijensiz Azot Fiksasyonu"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
 msgid "APPEARANCE"
 msgstr "Görünüm"
 
@@ -350,10 +361,6 @@ msgstr "Otomatik ({0}x{1})"
 msgid "AVAILABLE_MODS"
 msgstr "Mevcut Modlar"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1734
-msgid "AWAKEN"
-msgstr "Uyandır"
-
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -411,10 +418,6 @@ msgstr "Bası Arttır"
 msgid "BATHYPELAGIC"
 msgstr "Batipelajik"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
-msgid "BECOME_AWARE"
-msgstr "Farkında Ol"
-
 #: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
@@ -430,7 +433,7 @@ msgid "BEGIN_THRIVING"
 msgstr "İlerlemeye Başla"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
 msgid "BEHAVIOUR"
 msgstr "Davranış"
@@ -580,7 +583,7 @@ msgid "CANCEL"
 msgstr "İptal"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "EYLEMİ İPTAL ET"
@@ -591,12 +594,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Mevcut eylemi iptal et"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Beden planında mevcut olarak kullanılan bir hücre türü silinemez"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Kullanılan Hücre Türü Silinemez"
 
@@ -607,9 +610,17 @@ msgstr "Kullanılan Hücre Türü Silinemez"
 msgid "CANNOT_ENGULF"
 msgstr "Yutamaz"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Bir damla formu, aynı soydan gelenlerin içine taşınamaz"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -661,7 +672,7 @@ msgid "CELL"
 msgstr "Hücre"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
 msgid "CELLS"
 msgstr "Hücreler"
 
@@ -1115,11 +1126,11 @@ msgstr "Yeni Mod Oluştur"
 msgid "CREATE_NEW_SAVE"
 msgstr "Yeni Kayıt Oluştur"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Yeni Doku Türü Oluştur"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Mevcut dokuları kopyalayarak ve onlara yeni bir isim vererek yeni doku türleri oluşturabilirsin. Doku türlerinde, farklı görevlerde özelleştirmek amacıyla, hücre düzenleyicisi aracılığıyla değişiklik yapılabilir."
 
@@ -1251,7 +1262,7 @@ msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Sil"
@@ -1447,11 +1458,11 @@ msgstr ""
 "Birbirine bağlı olmayan bir ya da daha fazla hücre var.\n"
 "Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbirine bağla."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
 msgid "DISCONNECTED_METABALLS"
 msgstr "Bağlı Olmayan Damla Formları"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş damla formları var.\n"
@@ -1537,7 +1548,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree dökümü al"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
 msgstr "Türü Kopyala"
 
@@ -1962,7 +1973,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Kuşağı Tamamla"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2078
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
 #: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Toksin ateşle"
@@ -2349,7 +2360,7 @@ msgstr "İncele"
 msgid "INSPECTOR"
 msgstr "Denetleyici"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
 msgstr "İç Organlar"
 
@@ -3487,7 +3498,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Organelde Değişiklik Yap"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:471
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
 msgid "MODIFY_TYPE"
 msgstr "Türde Değişiklik Yap"
 
@@ -3654,7 +3665,7 @@ msgid "MOVE"
 msgstr "Taşı"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:386
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
 msgid "MOVEMENT"
 msgstr "Hareket"
 
@@ -3690,7 +3701,7 @@ msgstr "Sağa doğru git"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Herhangi Bir Araziye Git"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1704
 msgid "MOVE_TO_LAND"
 msgstr "Karaya Çık"
 
@@ -3706,7 +3717,22 @@ msgstr "Bu Araziye Git"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Yukarı doğru git ya da zıpla"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2127
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2122
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE"
+msgstr ""
+"Karaya çıkmak üzeresin. Oyunda daha fazla ilerlemek için bu gerekli. Karaya çıktığında bir daha geri dönemezsin.\n"
+"\n"
+"Şu anki karaya geçiş, oyuna doğru düzgün ekleneceği zamankinde planlanandan, çok daha ani şekilde gerçekleşmekte.\n"
+"\n"
+"Planda olan, karaya çıkışı kademeli yapmak ve ani bir değişim ile yapmamak."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2121
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+msgstr "Karaya Çıkılsın mı?"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2117
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "Karaya çıkmak üzeresin. Oyunda daha fazla ilerlemek için bu gerekli. Karaya çıktığında bir daha geri dönemezsin.\n"
@@ -3715,7 +3741,7 @@ msgstr ""
 "\n"
 "Planda olan, karaya çıkışı kademeli yapmak ve ani bir değişim ile yapmamak."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Karaya Çıkılsın mı?"
 
@@ -3849,17 +3875,17 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Benim Harika Modum"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
 msgid "NEW_NAME"
 msgstr "Yeni İsim"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:698
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
 msgid "NEW_NAME_COLON"
 msgstr "Yeni İsim:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
@@ -4575,7 +4601,7 @@ msgstr "Yeni oyunda mikrop tanıtımını oynat"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1754
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1744
 #: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
@@ -4753,12 +4779,12 @@ msgid "REPRODUCED"
 msgstr "çoğaldı"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
 msgid "REPRODUCTION"
 msgstr "Üreme"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Eşeysiz"
 
@@ -4768,7 +4794,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Tomurcuklanma"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
 
@@ -5097,7 +5123,7 @@ msgid "SEA_FLOOR"
 msgstr "Deniz Tabanı"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2102
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr "Müsilaj salgıla"
@@ -5573,7 +5599,7 @@ msgid "STRUCTURAL"
 msgstr "Yapısal"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Yapı"
@@ -5869,7 +5895,7 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Hata ayıklama panelini aç"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Yutma moduna geç"
@@ -5936,9 +5962,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:202
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:210
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:238
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Henüz Eklenmedi."
 
@@ -6515,6 +6539,9 @@ msgstr "Yakınlaştır"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "BECOME_AWARE"
+#~ msgstr "Farkında Ol"
 
 #~ msgid "CONFIRM_NORMAL"
 #~ msgstr "Onayla"

@@ -1716,6 +1716,7 @@ margin_right = 139.0
 margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
+hint_tooltip = "ACTION_AWAKEN_TOOLTIP"
 focus_mode = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -2133,7 +2134,7 @@ DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 [connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnBecomeMacroscopicPressed"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnAwakenPressed"]
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]

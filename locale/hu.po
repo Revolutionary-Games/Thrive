@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 14:50+0200\n"
+"POT-Creation-Date: 2023-03-01 15:01+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -51,6 +51,16 @@ msgstr "Megszakítva."
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "Abisszopelágikus"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1724
+msgid "ACTION_AWAKEN"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#, fuzzy
+msgid "ACTION_AWAKEN_TOOLTIP"
+msgstr "Öngyilkosság"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -169,7 +179,7 @@ msgstr "Megtartható gyorsmentések mennyisége:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerob Nitrifikáció"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
 #, fuzzy
 msgid "APPEARANCE"
 msgstr "Teljesítmény"
@@ -345,10 +355,6 @@ msgstr "Auto ({0}x{1})"
 msgid "AVAILABLE_MODS"
 msgstr "Elérhető modok"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1734
-msgid "AWAKEN"
-msgstr ""
-
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -406,11 +412,6 @@ msgstr "Basszus növelése"
 msgid "BATHYPELAGIC"
 msgstr "Batipelágikus"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
-#, fuzzy
-msgid "BECOME_AWARE"
-msgstr "Biom: {0}"
-
 #: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
@@ -426,7 +427,7 @@ msgid "BEGIN_THRIVING"
 msgstr "A túlélés kezdése"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
 msgid "BEHAVIOUR"
 msgstr "Viselkedés"
@@ -582,7 +583,7 @@ msgid "CANCEL"
 msgstr "Mégse"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKCIÓ VISSZAVONÁSA"
@@ -593,12 +594,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Jelenlegi akció visszavonása"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "A használt sejttípust nem lehet törölni"
 
@@ -609,8 +610,16 @@ msgstr "A használt sejttípust nem lehet törölni"
 msgid "CANNOT_ENGULF"
 msgstr "Nem képes bekebelezésre"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:143
@@ -666,7 +675,7 @@ msgid "CELL"
 msgstr "Cellulóz"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
 msgid "CELLS"
 msgstr "Sejtek"
 
@@ -1131,12 +1140,12 @@ msgstr "Új mod létrehozása"
 msgid "CREATE_NEW_SAVE"
 msgstr "Új mentés létrehozása"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Új sejttípus létrehozása"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Új sejttípusokat hozhatsz létre úgy, hogy az eddigieket duplikálod, és új nevet adsz nekik. A sejttípusokat külön szerkesztheted különböző feladatok ellátására. Ha egy sejttípust szerkesztesz, akkor az eddig lerakott ugyanazon sejttípusból származó sejtek frissülni fognak."
@@ -1254,7 +1263,7 @@ msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Alap kimeneti eszköz"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Törlés"
@@ -1447,12 +1456,12 @@ msgstr ""
 "Vannak olyan sejtek, melyek nem kötődnek egymáshoz.\n"
 "Kérlek kapcsold össze a sejteket egymással a folytatáshoz."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
 #, fuzzy
 msgid "DISCONNECTED_METABALLS"
 msgstr "Levált sejtek"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 #, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
@@ -1543,7 +1552,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
 msgstr "Típus megkettőzése"
 
@@ -2004,7 +2013,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "{0} generáció befejezve"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2078
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
 #: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Méreg lövése"
@@ -2402,7 +2411,7 @@ msgstr "Ellenőriz"
 msgid "INSPECTOR"
 msgstr "Ellenőriz"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 #, fuzzy
 msgid "INTERNALS"
 msgstr "Külső"
@@ -3542,7 +3551,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Sejtalkotó szerkesztése"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:471
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
 msgid "MODIFY_TYPE"
 msgstr "Típus módosítása"
 
@@ -3712,7 +3721,7 @@ msgid "MOVE"
 msgstr "Mozgás"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:386
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
 msgid "MOVEMENT"
 msgstr "Mozgás"
 
@@ -3749,7 +3758,7 @@ msgstr "Mozgás jobbra"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Átvándorlás ebbe a patch-be"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1704
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Feltöltendő mod:"
@@ -3766,7 +3775,29 @@ msgstr "Átvándorlás ebbe a patch-be"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Mozgás felfelé vagy ugrás"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2127
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2122
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE"
+msgstr ""
+"Elérkeztél a Thrive \"teljes\" részének a végéhez.\n"
+"Ha szeretnéd, akkor továbbléphetsz a következő fázisok prototípusaiba. Ezek nagyon hiányosak lehetnek és \"placeholder\" grafikai elemeket használnak. A játék részeként szerepelnek, hogy bemutassák a játék lehetséges jövőbeli irányát és a fázisok összekapcsolásáról alkotott általános elképzelésünket.\n"
+"\n"
+"A legtöbb prototípusban nem fogsz tudni menteni ha folytatod, vagy ha később folytatni akarod. Szóval ha vissza szeretnél térni egyszer ehhez a szakaszhoz, akkor kérünk téged, mentsd el most a játékot, mielőtt folytatnád.\n"
+"\n"
+"Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2121
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+msgstr ""
+"Elérkeztél a Thrive \"teljes\" részének a végéhez.\n"
+"Ha szeretnéd, akkor továbbléphetsz a következő fázisok prototípusaiba. Ezek nagyon hiányosak lehetnek és \"placeholder\" grafikai elemeket használnak. A játék részeként szerepelnek, hogy bemutassák a játék lehetséges jövőbeli irányát és a fázisok összekapcsolásáról alkotott általános elképzelésünket.\n"
+"\n"
+"A legtöbb prototípusban nem fogsz tudni menteni ha folytatod, vagy ha később folytatni akarod. Szóval ha vissza szeretnél térni egyszer ehhez a szakaszhoz, akkor kérünk téged, mentsd el most a játékot, mielőtt folytatnád.\n"
+"\n"
+"Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2117
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -3777,7 +3808,7 @@ msgstr ""
 "\n"
 "Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
@@ -3918,17 +3949,17 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Az én király modom"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
 msgid "NEW_NAME"
 msgstr "Új név"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:698
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
 msgid "NEW_NAME_COLON"
 msgstr "Új név:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
@@ -4661,7 +4692,7 @@ msgstr "Új játék esetén az intró lejátszása"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1754
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1744
 #: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "POPULÁCIÓ:"
@@ -4843,12 +4874,12 @@ msgid "REPRODUCED"
 msgstr "reprodukálva"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
 msgid "REPRODUCTION"
 msgstr "Reprodukció"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Reprodukció"
@@ -4859,7 +4890,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Bimbózás"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
 
@@ -5194,7 +5225,7 @@ msgid "SEA_FLOOR"
 msgstr "Tengerfenék"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2102
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr ""
@@ -5693,7 +5724,7 @@ msgid "STRUCTURAL"
 msgstr "Strukturális"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Struktúra"
@@ -5984,7 +6015,7 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Debug panel be/ki"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Elnyelés be/ki"
@@ -6051,9 +6082,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:202
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:210
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:238
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Fejlesztés alatt."
 
@@ -6632,6 +6661,10 @@ msgstr "Közelítés"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "BECOME_AWARE"
+#~ msgstr "Biom: {0}"
 
 #~ msgid "CONFIRM_NORMAL"
 #~ msgstr "Elfogad"

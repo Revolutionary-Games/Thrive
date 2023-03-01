@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 14:50+0200\n"
+"POT-Creation-Date: 2023-03-01 15:01+0200\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -50,6 +50,17 @@ msgstr "Перервано."
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "морська безодня"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1724
+#, fuzzy
+msgid "ACTION_AWAKEN"
+msgstr "Пробудити"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#, fuzzy
+msgid "ACTION_AWAKEN_TOOLTIP"
+msgstr "Пробудити"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -178,7 +189,7 @@ msgstr "Кількість можливих швидких збережень:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Анаеробна фіксація азоту"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
 msgid "APPEARANCE"
 msgstr "Зовнішній вигляд"
 
@@ -350,10 +361,6 @@ msgstr "Автоматично ({0}x{1})"
 msgid "AVAILABLE_MODS"
 msgstr "Доступні моди"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1734
-msgid "AWAKEN"
-msgstr "Пробудити"
-
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -411,10 +418,6 @@ msgstr "Баси вгору"
 msgid "BATHYPELAGIC"
 msgstr "Придоння"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
-msgid "BECOME_AWARE"
-msgstr "Стати обізнаним"
-
 #: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
@@ -430,7 +433,7 @@ msgid "BEGIN_THRIVING"
 msgstr "Почніть процвітання"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
 msgid "BEHAVIOUR"
 msgstr "Поведінка"
@@ -580,7 +583,7 @@ msgid "CANCEL"
 msgstr "Скасувати"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "Скасувати дію"
@@ -591,12 +594,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Скасувати поточну дію"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Тип клітини, який зараз використовується на вашому плані тіла, неможливо видалити"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Не можна видалити використовуваний тип клітини"
 
@@ -607,9 +610,17 @@ msgstr "Не можна видалити використовуваний тип
 msgid "CANNOT_ENGULF"
 msgstr "Не може поглинати"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Неможна перемістити метасферу в цьому дереві нащадків"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -661,7 +672,7 @@ msgid "CELL"
 msgstr "Клітина"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
 msgid "CELLS"
 msgstr "Клітини"
 
@@ -1115,11 +1126,11 @@ msgstr "Створити новий мод"
 msgid "CREATE_NEW_SAVE"
 msgstr "Створити нове збереження"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Створити новий тип тканини"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Ви можете створювати новий тип тканин, дублюючи данні та надаючи їм нову назву. Типи тканин можна модифікувати за допомогою клітинного редактору, для спеціалізації їх до різних ролей."
 
@@ -1249,7 +1260,7 @@ msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення за замовчуванням"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Видалити"
@@ -1445,11 +1456,11 @@ msgstr ""
 "Тут розміщені клітини, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені клітини аби продовжити."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
 msgid "DISCONNECTED_METABALLS"
 msgstr "Від'єднати метасфери"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Тут розміщені метасфери, які не з'єднання з рештою.\n"
@@ -1537,7 +1548,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr "Вивантаження ДереваСцен"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
 msgstr "Дублювати тип"
 
@@ -1962,7 +1973,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Завершення {0} генерацій"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2078
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
 #: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
@@ -2350,7 +2361,7 @@ msgstr "Оглянути"
 msgid "INSPECTOR"
 msgstr "Оглянути"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
 msgstr "Внутрішні органи"
 
@@ -3487,7 +3498,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Модифікувати органелу"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:471
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
 msgid "MODIFY_TYPE"
 msgstr "Змінити тип"
 
@@ -3654,7 +3665,7 @@ msgid "MOVE"
 msgstr "Рух"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:386
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
 msgid "MOVEMENT"
 msgstr "Рух"
 
@@ -3690,7 +3701,7 @@ msgstr "Рухайтесь вправо"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Переміститися на будь-яку ділянку"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1704
 msgid "MOVE_TO_LAND"
 msgstr "Перейти на сушу"
 
@@ -3706,7 +3717,22 @@ msgstr "Переміститися на цю ділянку"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Перемістити вгору або різко підняти"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2127
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2122
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE"
+msgstr ""
+"Ви збираєтеся вийти на суходіл. Це потрібно для переходу на наступний етап гри. Вийшовши на сушу ви не повернетесь назад.\n"
+"\n"
+"Наразі цей перехід на сушу різкіший, аніж заплановано, щоб правильно додати.\n"
+"\n"
+"Планв в тому, щоб перехід був поступовий, а не різкий."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2121
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+msgstr "Перейти на сушу?"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2117
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "Ви збираєтеся вийти на суходіл. Це потрібно для переходу на наступний етап гри. Вийшовши на сушу ви не повернетесь назад.\n"
@@ -3715,7 +3741,7 @@ msgstr ""
 "\n"
 "Планв в тому, щоб перехід був поступовий, а не різкий."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Перейти на сушу?"
 
@@ -3849,17 +3875,17 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Мій класний мод"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
 msgid "NEW_NAME"
 msgstr "Нова назва"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:698
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
 msgid "NEW_NAME_COLON"
 msgstr "Нова назва:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
@@ -4580,7 +4606,7 @@ msgstr "програвати інтро з мікробом перед ново�
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Грати з поточними налаштуваннями"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1754
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1744
 #: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
@@ -4758,12 +4784,12 @@ msgid "REPRODUCED"
 msgstr "розмножено"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
 msgid "REPRODUCTION"
 msgstr "Розмноження"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Нестатевий"
 
@@ -4773,7 +4799,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Брункування"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr "Розмножено:"
 
@@ -5102,7 +5128,7 @@ msgid "SEA_FLOOR"
 msgstr "Морське дно"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2102
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr "Виділення слизу"
@@ -5579,7 +5605,7 @@ msgid "STRUCTURAL"
 msgstr "Структурний"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Структури"
@@ -5877,7 +5903,7 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Ввімкнути панель налагоджування"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
@@ -5944,9 +5970,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирснути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли [thrive:compound type=\"oxytoxy\"][/thrive:compound] недостатньо, то постріл можливий, але шкода буде незначною."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:202
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:210
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:238
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізовано."
 
@@ -6523,6 +6547,9 @@ msgstr "Приблизитись"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "BECOME_AWARE"
+#~ msgstr "Стати обізнаним"
 
 #~ msgid "CONFIRM_NORMAL"
 #~ msgstr "Підтвердити"

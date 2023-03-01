@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 14:50+0200\n"
+"POT-Creation-Date: 2023-03-01 15:01+0200\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -50,6 +50,16 @@ msgstr "Dibatalkan."
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagik"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1724
+msgid "ACTION_AWAKEN"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#, fuzzy
+msgid "ACTION_AWAKEN_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -166,7 +176,7 @@ msgstr "Jumlah save cepat tersimpan:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fiksasi Anaerob Nitrogen"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
 #, fuzzy
 msgid "APPEARANCE"
 msgstr "Performa"
@@ -344,10 +354,6 @@ msgstr "Resolusi:"
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1734
-msgid "AWAKEN"
-msgstr ""
-
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -407,11 +413,6 @@ msgstr "Bass Up"
 msgid "BATHYPELAGIC"
 msgstr "Batipelagik"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
-#, fuzzy
-msgid "BECOME_AWARE"
-msgstr "Bioma: {0}"
-
 #: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
@@ -427,7 +428,7 @@ msgid "BEGIN_THRIVING"
 msgstr "Mulai Berkembang"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
 msgid "BEHAVIOUR"
 msgstr "Perilaku"
@@ -584,7 +585,7 @@ msgid "CANCEL"
 msgstr "Batal"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "BATAL TINDAKAN"
@@ -595,12 +596,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Batal tindakan ini"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Sel ini merupakan bagian dari organisme anda dan tidak dapat dihilangkan"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Tidak Dapat Menghilangkan Sel Yang Sedang Dipakai"
 
@@ -611,8 +612,16 @@ msgstr "Tidak Dapat Menghilangkan Sel Yang Sedang Dipakai"
 msgid "CANNOT_ENGULF"
 msgstr "Tidak bisa menelan"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:143
@@ -667,7 +676,7 @@ msgid "CELL"
 msgstr "Selulosa"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
 msgid "CELLS"
 msgstr "Sel-sel"
 
@@ -1135,12 +1144,12 @@ msgstr "Buat mikroba baru"
 msgid "CREATE_NEW_SAVE"
 msgstr "Buat Save Baru"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Buat Save Baru"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
@@ -1259,7 +1268,7 @@ msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Perangkat output bawaan"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Hapus"
@@ -1458,12 +1467,12 @@ msgstr ""
 "Ada sel yang tidak tersambung.\n"
 "Mohon sambungkan semua sel untuk melanjut."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
 #, fuzzy
 msgid "DISCONNECTED_METABALLS"
 msgstr "Organel Terputus"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 #, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
@@ -1553,7 +1562,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
 msgstr "Gandakan Tipe"
 
@@ -2018,7 +2027,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Selesaikan {0} Generasi"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2078
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
 #: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Tembak toksin"
@@ -2416,7 +2425,7 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 #, fuzzy
 msgid "INTERNALS"
 msgstr "Bagian Luar"
@@ -3565,7 +3574,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Hapus organel"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:471
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
 msgid "MODIFY_TYPE"
 msgstr "Ubah Tipe"
 
@@ -3744,7 +3753,7 @@ msgid "MOVE"
 msgstr "Pindah"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:386
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
 msgid "MOVEMENT"
 msgstr "Gerakan"
 
@@ -3781,7 +3790,7 @@ msgstr "Gerak kanan"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Pindah ke Daerah Ini"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1704
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Pindah ke Daerah Ini"
@@ -3798,11 +3807,19 @@ msgstr "Pindah ke Daerah Ini"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Gerak keatas atau lompat"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2127
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2122
+msgid "MOVING_TO_AWAKENING_PROTOTYPE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2121
+msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2117
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -3937,17 +3954,17 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
 msgid "NEW_NAME"
 msgstr "Nama Baru"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:698
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
 msgid "NEW_NAME_COLON"
 msgstr "Nama Baru:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
@@ -4691,7 +4708,7 @@ msgstr "Putar Video Pengantar Mikroba saat Permainan Baru"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Main Dengan Pengaturan Saat Ini"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1754
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1744
 #: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "POPULASI:"
@@ -4875,12 +4892,12 @@ msgid "REPRODUCED"
 msgstr "bereproduksi"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
 msgid "REPRODUCTION"
 msgstr "Reproduksi"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Produksi ATP"
@@ -4891,7 +4908,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Tunas"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduksi:"
 
@@ -5231,7 +5248,7 @@ msgid "SEA_FLOOR"
 msgstr "Dasar Laut"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2102
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr ""
@@ -5745,7 +5762,7 @@ msgid "STRUCTURAL"
 msgstr "Struktural"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Struktur"
@@ -6039,7 +6056,7 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Nyala/matikan panel debug"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Nyala/matikan penelanan"
@@ -6107,9 +6124,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:202
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:210
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:238
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Untuk di implementasi."
 
@@ -6722,6 +6737,10 @@ msgstr "Perbesar"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "BECOME_AWARE"
+#~ msgstr "Bioma: {0}"
 
 #, fuzzy
 #~ msgid "CONFIRM_NORMAL"

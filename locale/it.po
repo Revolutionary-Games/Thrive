@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 14:50+0200\n"
+"POT-Creation-Date: 2023-03-01 15:01+0200\n"
 "PO-Revision-Date: 2022-10-17 19:00+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -50,6 +50,17 @@ msgstr "Processo abortito."
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelagico"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1724
+#, fuzzy
+msgid "ACTION_AWAKEN"
+msgstr "Risvegliati"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
+#, fuzzy
+msgid "ACTION_AWAKEN_TOOLTIP"
+msgstr "Risvegliati"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -166,7 +177,7 @@ msgstr "Numero di salvataggi rapidi da conservare:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Azotofissazione anaerobica"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
 msgid "APPEARANCE"
 msgstr "Aspetto"
 
@@ -339,10 +350,6 @@ msgstr "Automatica ({0}x{1})"
 msgid "AVAILABLE_MODS"
 msgstr "Mod disponibili"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1734
-msgid "AWAKEN"
-msgstr "Risvegliati"
-
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -400,10 +407,6 @@ msgstr "Bass up (tasto audio)"
 msgid "BATHYPELAGIC"
 msgstr "Batipelagico"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
-msgid "BECOME_AWARE"
-msgstr "Diventa Consapevole"
-
 #: ../src/microbe_stage/MicrobeHUD.cs:464
 #: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
@@ -419,7 +422,7 @@ msgid "BEGIN_THRIVING"
 msgstr "Inizia a prosperare"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
 msgid "BEHAVIOUR"
 msgstr "Comportamento"
@@ -570,7 +573,7 @@ msgid "CANCEL"
 msgstr "Annulla"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULLA AZIONE"
@@ -581,12 +584,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Annulla l'azione corrente"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Non puoi rimuovere tipi di cellule attualmente usate nel tuo piano corporale"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Impossibile cancellare tipo di cellula in uso"
 
@@ -597,9 +600,17 @@ msgstr "Impossibile cancellare tipo di cellula in uso"
 msgid "CANNOT_ENGULF"
 msgstr "Impedisce la fagocitazione"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Impossibile spostare una metasfera nell'albero delle sue discendenti"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -651,7 +662,7 @@ msgid "CELL"
 msgstr "Cellula"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
 msgid "CELLS"
 msgstr "Cellule"
 
@@ -1109,11 +1120,11 @@ msgstr "Crea una nuova mod"
 msgid "CREATE_NEW_SAVE"
 msgstr "Crea Nuovo Salvataggio"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Crea un nuovo tipo di tessuto"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Puoi creare nuovi tipi di tessuto duplicando e rinominando tipi esistenti. Ciascun tipo di tessuto può essere modificato affinché si specializzi in un determinato ruolo."
 
@@ -1230,7 +1241,7 @@ msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio di default"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Rimuovi"
@@ -1419,11 +1430,11 @@ msgstr ""
 "Ci sono una o più cellule non connesse.\n"
 "Connetti tutte le cellule l'una con l'altra per continuare."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
 msgid "DISCONNECTED_METABALLS"
 msgstr "Metasfere disconnesse"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Ci sono metasfere non connesse al resto dell'organismo.\n"
@@ -1513,7 +1524,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
 msgstr "Duplica tipo"
 
@@ -1966,7 +1977,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Completa {0} generazioni"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2078
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
 #: ../src/microbe_stage/MicrobeStage.tscn:2136
 msgid "FIRE_TOXIN"
 msgstr "Lancia tossine"
@@ -2366,7 +2377,7 @@ msgstr "Ispeziona"
 msgid "INSPECTOR"
 msgstr "Ispeziona"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
 msgstr "Viscere"
 
@@ -3512,7 +3523,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Modifica organulo"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:471
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
 msgid "MODIFY_TYPE"
 msgstr "Modifica tipo"
 
@@ -3676,7 +3687,7 @@ msgid "MOVE"
 msgstr "Sposta"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:386
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
 msgid "MOVEMENT"
 msgstr "Movimento"
 
@@ -3712,7 +3723,7 @@ msgstr "Muoviti a destra"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Sblocca la possibilità di trasferirti in qualsiasi zona"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1704
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Mod da caricare:"
@@ -3729,7 +3740,29 @@ msgstr "Trasferisciti in questa zona"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Muoviti verso l'alto o salta"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2127
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2122
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE"
+msgstr ""
+"Hai raggiunto la fine della parte \"completa\" di Thrive.\n"
+"Se lo desideri, puoi andare ai prototipi delle fasi future di gioco inclusi in questa versione. Questi potrebbero essere molto incompleti, generalmente grezzi, e utilizzare elementi grafici segnaposto. La loro funzione è quella di mostrare la potenziale direzione futura del gioco e la nostra visione generale di come le fasi saranno collegate.\n"
+"\n"
+"Non sarai in grado di salvare o tornare indietro una volta che continui. Se vuoi tornare al punto dove sei ora, salva ora prima di procedere.\n"
+"\n"
+"Se scegli di continuare, ti preghiamo di comprendere che le fasi successive sono prototipi e di non lamentarti di quanto siano incomplete."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2121
+#, fuzzy
+msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+msgstr ""
+"Hai raggiunto la fine della parte \"completa\" di Thrive.\n"
+"Se lo desideri, puoi andare ai prototipi delle fasi future di gioco inclusi in questa versione. Questi potrebbero essere molto incompleti, generalmente grezzi, e utilizzare elementi grafici segnaposto. La loro funzione è quella di mostrare la potenziale direzione futura del gioco e la nostra visione generale di come le fasi saranno collegate.\n"
+"\n"
+"Non sarai in grado di salvare o tornare indietro una volta che continui. Se vuoi tornare al punto dove sei ora, salva ora prima di procedere.\n"
+"\n"
+"Se scegli di continuare, ti preghiamo di comprendere che le fasi successive sono prototipi e di non lamentarti di quanto siano incomplete."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2117
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -3740,7 +3773,7 @@ msgstr ""
 "\n"
 "Se scegli di continuare, ti preghiamo di comprendere che le fasi successive sono prototipi e di non lamentarti di quanto siano incomplete."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
@@ -3878,17 +3911,17 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "La mia fantastica mod"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
 msgid "NEW_NAME"
 msgstr "Nuovo nome"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:698
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
 msgid "NEW_NAME_COLON"
 msgstr "Nuovo nome:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
@@ -4617,7 +4650,7 @@ msgstr "Riproduci filmato iniziale microbico in nuove partite"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Gioca nello scenario attuale"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1754
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1744
 #: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
@@ -4799,12 +4832,12 @@ msgid "REPRODUCED"
 msgstr "si è riprodotto"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
 msgid "REPRODUCTION"
 msgstr "Riproduzione"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asessuale"
 
@@ -4814,7 +4847,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmazione"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr "Riproduzione:"
 
@@ -5147,7 +5180,7 @@ msgid "SEA_FLOOR"
 msgstr "Fondale oceanico"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2102
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "SECRETE_SLIME"
 msgstr "Secerni mucillagine"
@@ -5629,7 +5662,7 @@ msgid "STRUCTURAL"
 msgstr "Strutturale"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Struttura"
@@ -5918,7 +5951,7 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Mostra/nascondi pannello di debug"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
 #: ../src/microbe_stage/MicrobeStage.tscn:2123
 msgid "TOGGLE_ENGULF"
 msgstr "Attiva/disattiva fagocitosi"
@@ -5985,9 +6018,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi rilasciare tali tossine premendo [thrive:input]g_fire_toxin[/thrive:input]. Il danno aumenta con la quantità disponibile."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:202
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:210
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:238
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Da implementare."
 
@@ -6573,6 +6604,9 @@ msgstr "Zoom avanti"
 #: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#~ msgid "BECOME_AWARE"
+#~ msgstr "Diventa Consapevole"
 
 #~ msgid "CONFIRM_NORMAL"
 #~ msgstr "Conferma"
