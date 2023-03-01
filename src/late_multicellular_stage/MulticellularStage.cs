@@ -186,6 +186,111 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         PlayerCamera.YRotation += yawMovement;
     }
 
+    /// <summary>
+    ///   Temporary land part of the prototype, called from the HUD
+    /// </summary>
+    public void TeleportToLand()
+    {
+        if (Player == null)
+        {
+            GD.PrintErr("Player has disappeared");
+            return;
+        }
+
+        // Despawn everything except the player
+        foreach (Node child in rootOfDynamicallySpawned.GetChildren())
+        {
+            if (child != Player)
+                child.QueueFree();
+        }
+
+        // And setup the land "environment"
+
+        // Ground plane
+        var ground = new StaticBody
+        {
+            PhysicsMaterialOverride = new PhysicsMaterial
+            {
+                Friction = 1,
+                Bounce = 0.1f,
+                Absorbent = true,
+                Rough = true,
+            },
+        };
+
+        ground.AddChild(new CollisionShape
+        {
+            Shape = new PlaneShape
+            {
+                Plane = new Plane(new Vector3(0, 1, 0), 0),
+            },
+        });
+
+        ground.AddChild(new MeshInstance
+        {
+            Mesh = new PlaneMesh
+            {
+                Size = new Vector2(200, 200),
+                Material = new SpatialMaterial
+                {
+                    // Not good style but this is like this so I could just quickly copy-paste from the Godot editor
+                    AlbedoColor = new Color("#321d09"),
+                },
+            },
+        });
+
+        rootOfDynamicallySpawned.AddChild(ground);
+
+        // A not super familiar (different than underwater) rock strewn around for reference
+        var rockShape = GD.Load<Shape>("res://assets/models/Iron4.shape");
+        var rockScene = GD.Load<PackedScene>("res://assets/models/Iron4.tscn");
+        var rockMaterial = new PhysicsMaterial
+        {
+            Friction = 1,
+            Bounce = 0.3f,
+            Absorbent = false,
+            Rough = false,
+        };
+
+        foreach (var position in new[]
+                 {
+                     new Vector3(10, 0, 5),
+                     new Vector3(15, 0, 5),
+                     new Vector3(10, 0, 8),
+                     new Vector3(-3, 0, 5),
+                     new Vector3(-8, 0, 6),
+                     new Vector3(18, 0, 11),
+                 })
+        {
+            var rock = new RigidBody
+            {
+                PhysicsMaterialOverride = rockMaterial,
+            };
+
+            rock.AddChild(new CollisionShape
+            {
+                Shape = rockShape,
+            });
+
+            rock.AddChild(rockScene.Instance());
+
+            rootOfDynamicallySpawned.AddChild(rock);
+
+            rock.Translation = new Vector3(position.x, 0.1f, position.z);
+        }
+
+        // Modify player state for being on land
+        Player.MovementMode = MovementMode.Walking;
+
+        if (Player.Translation.y <= 0)
+        {
+            Player.Translation = new Vector3(Player.Translation.x, 0.1f, Player.Translation.z);
+        }
+
+        // Fade back in after the "teleport"
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.3f, null, false);
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
