@@ -317,6 +317,7 @@ Code style rules
 - When trying to save dynamic type objects, the base type that is used in
   the containing object (even if it is an interface) needs to specify the
   thrive serializer using `[UseThriveSerializer]` attribute.
+  For more information see [saving_system.md](saving_system.md).
 
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it
