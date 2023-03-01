@@ -190,7 +190,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             {
                 // Intentionally not translatable as a placeholder prototype text
                 HUD.HUDMessages.ShowMessage(
-                    "You are now aware. This prototype has nothing extra yet, please move to the awakening stage",
+                    "You are now aware. This prototype has nothing extra yet, please move to the Awakening Stage.",
                     DisplayDuration.Long);
             }
             else if (previousPlayerStage == MulticellularSpeciesType.Awakened)
@@ -327,8 +327,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
-            "You are now in the awakening stage prototype. You can now interact with more world objects. " +
-            "Interact with tool parts to advance.");
+            "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
+            "Interact with tool parts to advance.", DisplayDuration.Long);
     }
 
     protected override void SetupStage()
