@@ -100,8 +100,8 @@ msgstr "Химические Агенты"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
-"Агрессивные микроорганизмы будут преследовать свою добычу на большее расстояние\n"
-"и более склонны бороться с хищниками, когда атакованы.\n"
+"Агрессивные микроорганизмы будут преследовать свою добычу на большем расстоянии\n"
+"и более склонны бороться с нападавшим, когда атакованы.\n"
 "Мирные микроорганизмы не будут нападать на других на больших дистанциях\n"
 "и менее склонны использовать токсины против хищников."
 
@@ -124,11 +124,11 @@ msgstr "Всё"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Разрешить видам не мигрировать (если не найдена хорошая миграция)"
+msgstr "Позволить видам не мигрировать (если не найдена хорошая миграция)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Разрешить видам не мутировать (если не найдена хорошая мутация)"
+msgstr "Позволить видам не мутировать (если не найдена хорошая мутация)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
@@ -1235,6 +1235,8 @@ msgstr "смерть"
 #: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
+"Координаты позиции: {0}\n"
+"Курсор на:{1}"
 
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
@@ -2346,9 +2348,8 @@ msgid "INSPECT"
 msgstr "Проверить"
 
 #: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
-#, fuzzy
 msgid "INSPECTOR"
-msgstr "Проверить"
+msgstr "Инспектор"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
 msgid "INTERNALS"
@@ -4135,30 +4136,25 @@ msgstr "Органеллы"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#, fuzzy
 msgid "ORGANELLE_AXON"
-msgstr "Органеллы"
+msgstr "Аксон"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
-#, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
-msgstr "Пили (единственное число: пиль) встречаются на поверхности многих микроорганизмов и напоминают тонкие волоски. Десятки-сотни пили могут присутствовать на поверхности микроорганизма и служить одной из нескольких целей, включая роль в хищничестве. Патогенные микроорганизмы используют пили для вирулентности либо для прикрепления и связывания с тканями хозяина, либо для проникновения через внешнюю мембрану, чтобы получить доступ к цитоплазме. Существует множество подобных пили, но они эволюционно не связаны и возникли в результате конвергентной эволюции. Один организм может обладать способностью экспрессировать несколько типов пили, и те, которые присутствуют на поверхности, постоянно изменяются и заменяются."
+msgstr "Аксоны - нервные волокна, что используются нейронами для подключения друг к другу и общению между собой. Размещение этой органеллы превращает тип клетки в ткань мозга."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:638
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
-msgstr "Поздний Этап Многоклеточного микроба"
+msgstr "Многоклеточный"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
-msgstr "Хищные пили"
+msgstr "Миофибрилла"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "Пили (единственное число: пиль) встречаются на поверхности многих микроорганизмов и напоминают тонкие волоски. Десятки-сотни пили могут присутствовать на поверхности микроорганизма и служить одной из нескольких целей, включая роль в хищничестве. Патогенные микроорганизмы используют пили для вирулентности либо для прикрепления и связывания с тканями хозяина, либо для проникновения через внешнюю мембрану, чтобы получить доступ к цитоплазме. Существует множество подобных пили, но они эволюционно не связаны и возникли в результате конвергентной эволюции. Один организм может обладать способностью экспрессировать несколько типов пили, и те, которые присутствуют на поверхности, постоянно изменяются и заменяются."
+msgstr "Позволяет создавать клетки мускул. Пока что в данном прототипе ничего не делает."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
@@ -4377,11 +4373,11 @@ msgstr "{0} {1}"
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
 #: ../src/gui_common/PatchNotesDisplayer.tscn:47
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Последний раз вы играли в Thrive версии {0} , с того момента доступен новый выпуск"
+msgstr "Последний раз вы играли в Thrive версии {0} , с того момента доступна новая версия"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr "Вы играли в Thrive последний раз {0} , с того момента доступно {1} новых релизов"
+msgstr "Вы играли в Thrive последний раз {0} , с того момента доступно {1} новых обновлений"
 
 #: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
@@ -6524,6 +6520,9 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "DO_NOT_SHOW_AGAIN"
 #~ msgstr "Больше не предупреждайте об этом"
+
+#~ msgid "DISMISS_PERMANENTLY"
+#~ msgstr "Не показывайте это снова"
 
 #~ msgid "STUFF_AT"
 #~ msgstr "Вещи в {0:F1}, {1:F1}:"
