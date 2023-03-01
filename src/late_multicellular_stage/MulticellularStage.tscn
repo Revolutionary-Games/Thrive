@@ -33,6 +33,8 @@ script = ExtResource( 84 )
 script = ExtResource( 4 )
 
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
+MenuPath = NodePath("../PauseMenu")
+MicrobeControlRadialPath = NodePath("../RadialPopup")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
 
