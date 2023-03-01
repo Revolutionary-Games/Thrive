@@ -4140,30 +4140,25 @@ msgstr "Organellen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#, fuzzy
 msgid "ORGANELLE_AXON"
-msgstr "Organellen"
+msgstr "Axon"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
-#, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
-msgstr "Pili (enkelvoud: pilus) zijn te vinden op het oppervlak van veel microorganismen en lijken op dunne haartjes. Het oppervlak van een microorganisme kan tienduizenden pili bevatten. Ze dienen meerdere rollen, waaronder predatie. Ziekmakende microorganisme gebruiken pili om te binden aan de weefsels van de gastheer, of om door het buitenste membraan te prikken om toegang tot het cytoplasma te krijgen. Verschillende soortgelijke pili bestaan maar deze zijn niet evolutionair aan elkaar gerelateerd. In plaats daarvan zijn ze ontstaan als een effect van convergerende evolutie. Een enkel organisme kan de mogelijkheid hebben om verschillende soorten pili tot uiting te brengen, en de pili op hun oppervlak zijn continu aan verandering of verplaatsing onderhevig."
+msgstr "Axonen zijn zenuwvezel die neuronen gebruiken om met elkaar te verbinden en communiceren. Het plaatsen van dit organel verandert het celtype naar breinweefsel."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:638
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
-msgstr "Late Meercellige"
+msgstr "Multicellulair"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
-msgstr "Jagende Pilus"
+msgstr "Myofibril"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "Pili (enkelvoud: pilus) zijn te vinden op het oppervlak van veel microorganismen en lijken op dunne haartjes. Het oppervlak van een microorganisme kan tienduizenden pili bevatten. Ze dienen meerdere rollen, waaronder predatie. Ziekmakende microorganisme gebruiken pili om te binden aan de weefsels van de gastheer, of om door het buitenste membraan te prikken om toegang tot het cytoplasma te krijgen. Verschillende soortgelijke pili bestaan maar deze zijn niet evolutionair aan elkaar gerelateerd. In plaats daarvan zijn ze ontstaan als een effect van convergerende evolutie. Een enkel organisme kan de mogelijkheid hebben om verschillende soorten pili tot uiting te brengen, en de pili op hun oppervlak zijn continu aan verandering of verplaatsing onderhevig."
+msgstr "Maakt het mogelijk spiercellen te maken. Doet op dit moment niets in het prototype."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
@@ -6528,6 +6523,9 @@ msgstr "Uitzoomen"
 
 #~ msgid "DO_NOT_SHOW_AGAIN"
 #~ msgstr "Niet nogmaals hierover waarschuwen"
+
+#~ msgid "DISMISS_PERMANENTLY"
+#~ msgstr "Dit niet nogmaals weergeven"
 
 #~ msgid "STUFF_AT"
 #~ msgstr "Spullen bij {0:F1}, {1:F1}:"
