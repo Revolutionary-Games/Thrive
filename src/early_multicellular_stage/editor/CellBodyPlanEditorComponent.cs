@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -122,6 +122,8 @@ public partial class CellBodyPlanEditorComponent :
     [Signal]
     public delegate void OnCellTypeToEditSelected(string name);
 
+    [Signal]
+    public delegate void OnCellTypeToSelect(string name);
     public enum SelectionMenuTab
     {
         Structure,
@@ -1127,7 +1129,15 @@ public partial class CellBodyPlanEditorComponent :
         Editor.EditedSpecies.CellTypes.Add(newType);
         GD.Print("New cell type created: ", newType.TypeName);
 
+        EmitSignal(nameof(OnCellTypeToSelect), newType.TypeName); 
+        
+        //activeActionName = newType.TypeName;
+        //OnCurrentActionChanged();
+        
+
         UpdateCellTypeSelections();
+
+        OnCellToPlaceSelected(newType.TypeName);
 
         duplicateCellTypeDialog.Hide();
     }
