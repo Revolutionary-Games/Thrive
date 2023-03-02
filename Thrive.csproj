@@ -45,6 +45,7 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
     <Compile Include="src\benchmark\BenchmarkHelpers.cs" />
     <Compile Include="src\benchmark\DummySpawnSystem.cs" />
     <Compile Include="src\benchmark\microbe\MicrobeBenchmark.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="src\engine\input\ControllerInputAxisVisualizationContainer.cs" />
     <Compile Include="src\engine\input\ControllerType.cs" />
     <Compile Include="src\engine\input\ControllerTypeDetection.cs" />
+    <Compile Include="src\engine\input\MouseCaptureManager.cs" />
     <Compile Include="src\engine\input\MouseInputScaling.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAndRepeatAttribute.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAttribute.cs" />

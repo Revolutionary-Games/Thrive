@@ -21,6 +21,7 @@ script = ExtResource( 7 )
 WindowTitle = "GALLERY_VIEWER"
 FullRect = true
 Movable = false
+PreventsMouseCaptureWhileOpen = false
 GalleryGridPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/GridContainer")
 TabButtonsPath = NodePath("MarginContainer/VBoxContainer/TabButtons")
 AssetsCategoryDropdownPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/OptionButton")

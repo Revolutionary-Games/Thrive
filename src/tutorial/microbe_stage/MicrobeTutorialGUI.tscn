@@ -28,13 +28,13 @@ MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
 MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
 MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
 GlucoseTutorialPath = NodePath("GlucoseTutorial")
-DayNightTutorialPath = NodePath("DayNightTutorial")
 StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
 LeaveColonyTutorialPath = NodePath("LeaveColonyTutorial")
 EarlyMulticellularWelcomePath = NodePath("EarlyMulticellularWelcome")
+DayNightTutorialPath = NodePath("DayNightTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
 EngulfmentExplanationPath = NodePath("EngulfmentTutorial")
 EngulfedExplanationPath = NodePath("EngulfedTutorial")
@@ -254,6 +254,7 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 260, 260 )
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 10 )]
@@ -265,6 +266,7 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 
 [node name="CheckHelpMenu" type="Popup" parent="."]
@@ -350,6 +352,7 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 260, 275 )
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 
 [node name="LeaveColonyTutorial" parent="." instance=ExtResource( 10 )]

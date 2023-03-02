@@ -74,6 +74,8 @@ public class CustomDialog : Popup, ICustomPopup
     private bool showCloseButton = true;
     private bool decorate = true;
 
+    private bool mouseUnCaptureActive;
+
     /// <summary>
     ///   NOTE: This is only emitted WHEN the close button (top right corner) is pressed, this doesn't account
     ///   for any other hiding behaviors.
@@ -177,6 +179,30 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
+    [Export]
+    public bool PreventsMouseCaptureWhileOpen { get; set; } = true;
+
+    private bool MouseUnCaptureActive
+    {
+        set
+        {
+            if (!PreventsMouseCaptureWhileOpen)
+            {
+                if (mouseUnCaptureActive)
+                {
+                    SetMouseCaptureModeInternal(false);
+                }
+
+                return;
+            }
+
+            if (mouseUnCaptureActive == value)
+                return;
+
+            SetMouseCaptureModeInternal(value);
+        }
+    }
+
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
@@ -200,6 +226,8 @@ public class CustomDialog : Popup, ICustomPopup
         GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
 
         base._ExitTree();
+
+        MouseUnCaptureActive = false;
     }
 
     public override void _Notification(int what)
@@ -394,6 +422,7 @@ public class CustomDialog : Popup, ICustomPopup
 
     protected virtual void OnShown()
     {
+        MouseUnCaptureActive = true;
     }
 
     /// <summary>
@@ -402,6 +431,7 @@ public class CustomDialog : Popup, ICustomPopup
     protected virtual void OnHidden()
     {
         closeHovered = false;
+        MouseUnCaptureActive = false;
     }
 
     protected Rect2 GetFullRect()
@@ -651,5 +681,25 @@ public class CustomDialog : Popup, ICustomPopup
         GUICommon.Instance.PlayButtonPressSound();
         CustomHide();
         EmitSignal(nameof(Closed));
+    }
+
+    /// <summary>
+    ///   Applies the mouse capture mode. Do not call directly, use <see cref="MouseUnCaptureActive"/>
+    /// </summary>
+    private void SetMouseCaptureModeInternal(bool captured)
+    {
+        mouseUnCaptureActive = captured;
+
+        // The name of this node is not allowed to change while visible, otherwise this will not work well
+        var key = $"{GetType().Name}_{Name}";
+
+        if (captured)
+        {
+            MouseCaptureManager.ReportOpenCapturePrevention(key);
+        }
+        else
+        {
+            MouseCaptureManager.ReportClosedCapturePrevention(key);
+        }
     }
 }

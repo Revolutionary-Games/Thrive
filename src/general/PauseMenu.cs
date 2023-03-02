@@ -47,6 +47,8 @@ public class PauseMenu : CustomDialog
 
     private bool paused;
 
+    private bool mouseUnCaptureActive;
+
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
     ///   game exit will be performed on exit confirmation.
@@ -195,8 +197,31 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    private bool MouseUnCaptureActive
+    {
+        set
+        {
+            if (mouseUnCaptureActive == value)
+                return;
+
+            mouseUnCaptureActive = value;
+
+            if (mouseUnCaptureActive)
+            {
+                MouseCaptureManager.ReportOpenCapturePrevention(nameof(PauseMenu));
+            }
+            else
+            {
+                MouseCaptureManager.ReportClosedCapturePrevention(nameof(PauseMenu));
+            }
+        }
+    }
+
     public override void _Ready()
     {
+        // We have our custom logic for this
+        PreventsMouseCaptureWhileOpen = false;
+
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
         thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
@@ -227,6 +252,7 @@ public class PauseMenu : CustomDialog
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
+        MouseUnCaptureActive = false;
 
         GetTree().AutoAcceptQuit = true;
     }
@@ -303,6 +329,7 @@ public class PauseMenu : CustomDialog
 
         animationPlayer.Play("Open");
         Paused = true;
+        MouseUnCaptureActive = true;
         exiting = false;
     }
 
@@ -313,6 +340,7 @@ public class PauseMenu : CustomDialog
 
         animationPlayer.Play("Close");
         Paused = false;
+        MouseUnCaptureActive = false;
     }
 
     public void OpenToHelp()
@@ -493,6 +521,8 @@ public class PauseMenu : CustomDialog
     {
         // Remove all pause locks before changing to the new game
         PauseManager.Instance.ForceClear();
+
+        MouseUnCaptureActive = false;
     }
 
     private void OnOptionsClosed()
@@ -523,6 +553,7 @@ public class PauseMenu : CustomDialog
         EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
         Paused = false;
+        MouseUnCaptureActive = false;
     }
 
     /// <summary>
@@ -530,6 +561,7 @@ public class PauseMenu : CustomDialog
     /// </summary>
     private void OnSwitchToMenu()
     {
+        MouseUnCaptureActive = false;
         SceneManager.Instance.ReturnToMenu();
     }
 
@@ -542,5 +574,6 @@ public class PauseMenu : CustomDialog
     {
         _ = saveName;
         Paused = false;
+        MouseUnCaptureActive = false;
     }
 }

@@ -15,6 +15,7 @@ __meta__ = {
 }
 WindowTitle = "PROCESS_PANEL_TITLE"
 Resizable = true
+PreventsMouseCaptureWhileOpen = false
 ProcessListPath = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ProcessList")
 CloseButtonContainerPath = NodePath("MarginContainer/VBoxContainer/BottomButtonContainer")
 
