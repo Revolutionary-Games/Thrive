@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" type="Script" id=4]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/awakening_stage/InteractableSystem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
@@ -14,6 +15,7 @@ process_priority = -1
 script = ExtResource( 1 )
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MulticellularHUD")
+InteractableSystemPath = NodePath("MulticellularHUD/InteractableSystem")
 
 [node name="World" type="Node" parent="."]
 
@@ -37,6 +39,8 @@ MenuPath = NodePath("../PauseMenu")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
+
+[node name="InteractableSystem" parent="MulticellularHUD" instance=ExtResource( 6 )]
 
 [node name="FossilisationButtonLayer" type="Control" parent="MulticellularHUD"]
 margin_right = 1280.0

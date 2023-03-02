@@ -12,9 +12,16 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class MulticellularStage : StageBase<MulticellularCreature>
 {
+    [Export]
+    public NodePath? InteractableSystemPath;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
+
+#pragma warning disable CA2213
+    private InteractableSystem interactableSystem = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
@@ -50,6 +57,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // HoverInfo.Init(Camera, Clouds);
 
+        interactableSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
+
         SetupStage();
     }
 
@@ -62,6 +71,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         HUD = GetNode<MulticellularHUD>("MulticellularHUD");
         HoverInfo = GetNode<PlayerHoverInfo>("PlayerLookingAtInfo");
+
+        interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -88,6 +99,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         if (Player != null)
         {
+            interactableSystem.UpdatePlayerPosition(Player.GlobalTranslation);
         }
 
         // TODO: notify metrics
@@ -458,6 +470,16 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     protected override void PerformQuickSave()
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            InteractableSystemPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void SaveGame(string name)
