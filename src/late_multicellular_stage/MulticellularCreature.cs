@@ -195,6 +195,22 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         metaballDisplayer.DisplayFromList(lateSpecies.BodyLayout);
     }
 
+    /// <summary>
+    ///   Applies the default movement mode this species has when spawned.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: we probably need to allow spawning in different modes for example amphibian creatures
+    ///   </para>
+    /// </remarks>
+    public void ApplyMovementModeFromSpecies()
+    {
+        if (Species.ReproductionLocation != ReproductionLocation.Water)
+        {
+            MovementMode = MovementMode.Walking;
+        }
+    }
+
     public void SetInitialCompounds()
     {
         compounds.AddCompound(atp, 50);

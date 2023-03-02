@@ -233,6 +233,7 @@ public static class SpawnHelpers
             creature.AddToGroup(Constants.AI_GROUP);
 
         creature.ApplySpecies(species);
+        creature.ApplyMovementModeFromSpecies();
 
         creature.SetInitialCompounds();
         return creature;
