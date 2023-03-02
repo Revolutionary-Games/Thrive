@@ -47,6 +47,13 @@ public static class Constants
     public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
 
     /// <summary>
+    ///   Threshold under which entities start to spawn around the player
+    ///   The value is in the range 0-1 and is the fraction of the maximum
+    ///   allowed entities.
+    /// </summary>
+    public const float ENTITY_SPAWNING_AROUND_PLAYER_THRESHOLD = 0.8f;
+
+    /// <summary>
     ///   Scale factor for how dense microbes spawn (also affected by their populations).
     /// </summary>
     /// <remarks>
@@ -157,6 +164,23 @@ public static class Constants
     ///   the spawn system has spawned things until the limit is full, the spawned things can still reproduce.
     /// </summary>
     public const float REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER = 1.15f;
+
+    /// <summary>
+    ///   If the entity limit is over this once the player has reproduced, force despawning will happen
+    /// </summary>
+    public const float REPRODUCTION_PLAYER_ALLOWED_ENTITY_LIMIT_EXCEED = 1.25f;
+
+    /// <summary>
+    ///   Once reproduced player copies take this much or more of the overall entity limit, they are preferred to
+    ///   despawn first.
+    /// </summary>
+    public const float PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER = 0.30f;
+
+    /// <summary>
+    ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
+    ///   heavier than normal microbes, as such this is set pretty high.
+    /// </summary>
+    public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 1.15f;
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
@@ -836,6 +860,9 @@ public static class Constants
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
     public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
 
+    public const float BRAIN_POWER_REQUIRED_FOR_AWARE = 0.5f;
+    public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;
+
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
     ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
@@ -936,6 +963,8 @@ public static class Constants
     public const string AI_TAG_CHUNK = "chunk";
 
     public const string PLAYER_GROUP = "player";
+
+    public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
 
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";

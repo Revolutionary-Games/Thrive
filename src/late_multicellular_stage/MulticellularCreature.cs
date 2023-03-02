@@ -89,6 +89,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public Vector3 MovementDirection { get; set; } = Vector3.Zero;
 
     [JsonProperty]
+    public MovementMode MovementMode { get; set; }
+
+    [JsonProperty]
     public float TimeUntilNextAIUpdate { get; set; }
 
     [JsonIgnore]
@@ -146,15 +149,26 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     {
         base._PhysicsProcess(delta);
 
-        // TODO: apply buoyancy (if this is underwater)
-
-        if (Translation.y < targetSwimLevel)
-            ApplyCentralImpulse(Mass * SwimUpForce * delta);
-
-        if (MovementDirection != Vector3.Zero)
+        if (MovementMode == MovementMode.Swimming)
         {
-            // TODO: movement force calculation
-            ApplyCentralImpulse(Mass * MovementDirection * delta);
+            // TODO: apply buoyancy (if this is underwater)
+
+            if (Translation.y < targetSwimLevel)
+                ApplyCentralImpulse(Mass * SwimUpForce * delta);
+
+            if (MovementDirection != Vector3.Zero)
+            {
+                // TODO: movement force calculation
+                ApplyCentralImpulse(Mass * MovementDirection * delta);
+            }
+        }
+        else
+        {
+            if (MovementDirection != Vector3.Zero)
+            {
+                // TODO: movement force calculation
+                ApplyCentralImpulse(Mass * MovementDirection * delta * 50);
+            }
         }
     }
 
@@ -179,6 +193,22 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // Setup graphics
         // TODO: handle lateSpecies.Scale
         metaballDisplayer.DisplayFromList(lateSpecies.BodyLayout);
+    }
+
+    /// <summary>
+    ///   Applies the default movement mode this species has when spawned.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: we probably need to allow spawning in different modes for example amphibian creatures
+    ///   </para>
+    /// </remarks>
+    public void ApplyMovementModeFromSpecies()
+    {
+        if (Species.ReproductionLocation != ReproductionLocation.Water)
+        {
+            MovementMode = MovementMode.Walking;
+        }
     }
 
     public void SetInitialCompounds()
@@ -280,11 +310,20 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     public void SwimUpOrJump(float delta)
     {
-        targetSwimLevel += upDownSwimSpeed * delta;
+        if (MovementMode == MovementMode.Swimming)
+        {
+            targetSwimLevel += upDownSwimSpeed * delta;
+        }
+        else
+        {
+            // TODO: only allow jumping when touching the ground
+            ApplyCentralImpulse(new Vector3(0, 1, 0) * delta * 1000);
+        }
     }
 
     public void SwimDownOrCrouch(float delta)
     {
+        // TODO: crouching
         targetSwimLevel -= upDownSwimSpeed * delta;
     }
 }

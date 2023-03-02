@@ -218,8 +218,24 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   Entity weight for microbes counts all organelles with a scaling factor.
     /// </summary>
     [JsonIgnore]
-    public float EntityWeight => organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
-        throw new InvalidOperationException("Organelles not initialised on microbe spawn");
+    public float EntityWeight
+    {
+        get
+        {
+            var weight = organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
+                throw new InvalidOperationException("Organelles not initialised on microbe spawn");
+
+            if (Colony != null)
+            {
+                // Only colony lead cells have the extra entity weight from the colony added
+                // As the colony reads this property on the other members, we do not throw here
+                if (Colony.Master == this)
+                    weight += Colony.EntityWeight;
+            }
+
+            return weight;
+        }
+    }
 
     /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
@@ -930,7 +946,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 continue;
 
             // Skip non-engulfable entities
-            if (!CanEngulfObject(entity))
+            if (CanEngulfObject(entity) != EngulfCheckResult.Ok)
                 continue;
 
             // Skip entities that have no useful compounds

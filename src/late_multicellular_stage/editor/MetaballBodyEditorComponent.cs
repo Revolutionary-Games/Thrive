@@ -63,6 +63,9 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     public NodePath MetaballPopupMenuPath = null!;
 
+    [Export]
+    public NodePath CannotReduceBrainPowerPopupPath = null!;
+
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
@@ -100,6 +103,8 @@ public partial class MetaballBodyEditorComponent :
     private ButtonGroup cellTypeButtonGroup = new();
 
     private MetaballPopupMenu metaballPopupMenu = null!;
+
+    private CustomConfirmationDialog cannotReduceBrainPowerPopup = null!;
 
     private PackedScene metaballDisplayerScene = null!;
 #pragma warning restore CA2213
@@ -195,6 +200,8 @@ public partial class MetaballBodyEditorComponent :
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
 
         metaballPopupMenu = GetNode<MetaballPopupMenu>(MetaballPopupMenuPath);
+
+        cannotReduceBrainPowerPopup = GetNode<CustomConfirmationDialog>(CannotReduceBrainPowerPopupPath);
     }
 
     public override void Init(LateMulticellularEditor owningEditor, bool fresh)
@@ -295,7 +302,17 @@ public partial class MetaballBodyEditorComponent :
             editedSpecies.BodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
+        var previousStage = editedSpecies.MulticellularType;
+
         editedSpecies.OnEdited();
+
+        // Make awakening an explicit step instead of automatic
+        if (previousStage != editedSpecies.MulticellularType &&
+            editedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        {
+            GD.Print("Player is now eligible for awakening, preventing automatic move there");
+            editedSpecies.KeepPlayerInAwareStage();
+        }
 
         editedSpecies.UpdateNameIfValid(newName);
 
@@ -307,6 +324,19 @@ public partial class MetaballBodyEditorComponent :
         var editorUserOverrides = userOverrides.ToList();
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
+
+        // TODO: hook this up once we have editing the creature scale in the editor
+        var creatureScale = 1.0f;
+        var newTypeWouldBe =
+            LateMulticellularSpecies.CalculateMulticellularTypeFromLayout(editedMetaballs, creatureScale);
+
+        // Disallow going back stages
+        if (newTypeWouldBe < Editor.EditedSpecies.MulticellularType)
+        {
+            GD.Print("Reducing brain power would go back a stage, not allowing");
+            cannotReduceBrainPowerPopup.PopupCenteredShrink();
+            return false;
+        }
 
         if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
             return true;
@@ -514,6 +544,7 @@ public partial class MetaballBodyEditorComponent :
                 DuplicateCellTypeDialogPath.Dispose();
                 DuplicateCellTypeNamePath.Dispose();
                 MetaballPopupMenuPath.Dispose();
+                CannotReduceBrainPowerPopupPath.Dispose();
             }
         }
 

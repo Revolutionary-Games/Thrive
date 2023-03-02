@@ -16,6 +16,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath BasicButtonPath = null!;
 
     [Export]
+    public NodePath BackButtonPath = null!;
+
+    [Export]
     public NodePath AdvancedButtonPath = null!;
 
     [Export]
@@ -130,7 +133,7 @@ public class NewGameSettings : ControlWithInput
     public NodePath EasterEggsButtonPath = null!;
 
     [Export]
-    public NodePath ConfirmButtonPath = null!;
+    public NodePath StartButtonPath = null!;
 
 #pragma warning disable CA2213
 
@@ -146,7 +149,8 @@ public class NewGameSettings : ControlWithInput
     private Button miscTabButton = null!;
     private Button basicButton = null!;
     private Button advancedButton = null!;
-    private Button confirmButton = null!;
+    private Button backButton = null!;
+    private Button startButton = null!;
 
     // Difficulty controls
     private OptionButton difficultyPresetButton = null!;
@@ -251,7 +255,8 @@ public class NewGameSettings : ControlWithInput
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
-        confirmButton = GetNode<Button>(ConfirmButtonPath);
+        backButton = GetNode<Button>(BackButtonPath);
+        startButton = GetNode<Button>(StartButtonPath);
 
         mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
         mpMultiplier.MaxValue = Constants.MAX_MP_MULTIPLIER;
@@ -322,15 +327,15 @@ public class NewGameSettings : ControlWithInput
         {
             GUICommon.MarkInputAsValid(gameSeed);
             GUICommon.MarkInputAsValid(gameSeedAdvanced);
-            confirmButton.Disabled = false;
-            confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
+            startButton.Disabled = false;
+            startButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
             GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
-            confirmButton.Disabled = true;
-            confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
+            startButton.Disabled = true;
+            startButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
     }
 
@@ -381,7 +386,8 @@ public class NewGameSettings : ControlWithInput
                 GameSeedAdvancedPath.Dispose();
                 IncludeMulticellularButtonPath.Dispose();
                 EasterEggsButtonPath.Dispose();
-                ConfirmButtonPath.Dispose();
+                BackButtonPath.Dispose();
+                StartButtonPath.Dispose();
             }
         }
 
@@ -446,53 +452,8 @@ public class NewGameSettings : ControlWithInput
         selectedOptionsTab = selection;
     }
 
-    // GUI Control Callbacks
-
-    private void OnBackPressed()
+    private void StartGame()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        Exit();
-    }
-
-    private bool Exit()
-    {
-        EmitSignal(nameof(OnNewGameSettingsClosed));
-        return true;
-    }
-
-    private void OnAdvancedPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        ProcessAdvancedSelection();
-    }
-
-    private void ProcessAdvancedSelection()
-    {
-        basicOptions.Visible = false;
-        advancedButton.Visible = false;
-
-        advancedOptions.Visible = true;
-        basicButton.Visible = true;
-        tabButtons.Visible = true;
-    }
-
-    private void OnBasicPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        advancedOptions.Visible = false;
-        basicButton.Visible = false;
-        tabButtons.Visible = false;
-
-        advancedButton.Visible = true;
-        basicOptions.Visible = true;
-    }
-
-    private void OnConfirmPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
         var settings = new WorldGenerationSettings();
 
         var difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
@@ -557,9 +518,53 @@ public class NewGameSettings : ControlWithInput
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
             SceneManager.Instance.SwitchToScene(microbeStage);
         });
+    }
+
+    // GUI Control Callbacks
+
+    private void OnBackPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        Exit();
+    }
+
+    private bool Exit()
+    {
+        EmitSignal(nameof(OnNewGameSettingsClosed));
+        return true;
+    }
+
+    private void OnAdvancedPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetAdvancedView(true);
+    }
+
+    private void OnBasicPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetAdvancedView(false);
+    }
+
+    private void SetAdvancedView(bool advanced)
+    {
+        advancedButton.Visible = !advanced;
+        basicOptions.Visible = !advanced;
+        backButton.Visible = !advanced;
+        basicButton.Visible = advanced;
+        advancedOptions.Visible = advanced;
+        tabButtons.Visible = advanced;
+    }
+
+    private void OnConfirmPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        StartGame();
 
         // Disable the button to prevent it being executed again.
-        confirmButton.Disabled = true;
+        startButton.Disabled = true;
     }
 
     private void OnDifficultyPresetSelected(int index)
@@ -574,7 +579,7 @@ public class NewGameSettings : ControlWithInput
         if (preset.InternalName == custom.InternalName)
         {
             ChangeSettingsTab(SelectedOptionsTab.Difficulty.ToString());
-            ProcessAdvancedSelection();
+            SetAdvancedView(true);
             return;
         }
 

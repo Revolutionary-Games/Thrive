@@ -193,11 +193,15 @@ public class MicrobeStage : StageBase<Microbe>
         if (Player != null)
         {
             var playerTransform = Player.GlobalTransform;
+
+            DebugOverlays.Instance.ReportPositionCoordinates(playerTransform.origin);
+            DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
+
             spawner.Process(delta, playerTransform.origin);
             Clouds.ReportPlayerPosition(playerTransform.origin);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
+                new RotationEventArgs(playerTransform.basis, Player.RotationDegrees), this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
                 new CompoundBagEventArgs(Player.Compounds), this);
@@ -220,7 +224,7 @@ public class MicrobeStage : StageBase<Microbe>
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerTransform.origin,
                             glucose)),
                         this);
                 }
@@ -240,7 +244,7 @@ public class MicrobeStage : StageBase<Microbe>
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.GlobalTransform.origin;
+                guidanceLine.LineStart = playerTransform.origin;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
@@ -505,12 +509,15 @@ public class MicrobeStage : StageBase<Microbe>
         // This is done first to ensure that the player colony is still intact for spawn separation calculation
         var daughter = Player!.Divide();
 
+        daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
+
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
             // TODO: add more extra offset between the player and the divided cell
+            // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
         }
 
         // Update the player's cell
@@ -518,6 +525,14 @@ public class MicrobeStage : StageBase<Microbe>
 
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
+
+        var playerPosition = Player.GlobalTranslation;
+
+        // This is queued to run to reduce the massive lag spike that anyway happens on this frame
+        // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
+        // frame and won't be available on the next one
+        Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
+            rootOfDynamicallySpawned);
 
         if (!CurrentGame.TutorialState.Enabled)
         {
@@ -606,6 +621,8 @@ public class MicrobeStage : StageBase<Microbe>
         Player.OnSuccessfulEngulfment = OnPlayerIngesting;
 
         Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
+
+        Player.OnNoticeMessage = OnPlayerNoticeMessage;
 
         Camera.ObjectToFollow = Player;
 
@@ -828,6 +845,12 @@ public class MicrobeStage : StageBase<Microbe>
     private void OnPlayerEngulfmentLimitReached(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerNoticeMessage(Microbe player, IHUDMessage message)
+    {
+        HUD.HUDMessages.ShowMessage(message);
     }
 
     /// <summary>

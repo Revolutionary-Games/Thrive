@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -41,7 +41,6 @@
 [ext_resource path="res://assets/textures/gui/social_media/discordActive.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/social_media/discordHover.png" type="Texture" id=40]
 [ext_resource path="res://assets/textures/gui/social_media/facebookHover.png" type="Texture" id=41]
-[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=42]
 [ext_resource path="res://assets/textures/gui/social_media/patreon.png" type="Texture" id=43]
 [ext_resource path="res://assets/textures/gui/social_media/patreonActive.png" type="Texture" id=44]
 [ext_resource path="res://assets/textures/gui/social_media/patreonHover.png" type="Texture" id=45]
@@ -50,14 +49,10 @@
 [ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" type="Texture" id=48]
 [ext_resource path="res://src/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=49]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=50]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=51]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=52]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=53]
-[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=54]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=55]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=56]
 [ext_resource path="res://src/gui_common/ThriveFeedDisplayer.tscn" type="PackedScene" id=57]
 [ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=58]
+[ext_resource path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" type="PackedScene" id=59]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -136,7 +131,6 @@ SteamFailedPopupPath = NodePath("SteamFailedDialog")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
-PermanentlyDismissModsNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning/VBoxContainer/CheckBox")
 SocialMediaContainerPath = NodePath("MenuContainers/SocialMedia")
 WebsiteButtonsContainerPath = NodePath("MenuContainers/WebsiteButtons")
 ItchButtonPath = NodePath("MenuContainers/SocialMedia/ItchButton")
@@ -150,8 +144,6 @@ PatchNotesPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNote
 PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler")
 FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
-ThanksDialogTextPath = NodePath("ThanksForBuyingDialog/VBoxContainer/ThanksText")
-PermanentlyDismissThanksDialogPath = NodePath("ThanksForBuyingDialog/VBoxContainer/CheckBox")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -231,21 +223,21 @@ __meta__ = {
 anchor_left = 0.597
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 40.0
+margin_left = 45.0
 margin_top = 195.0
 margin_right = -30.0
 margin_bottom = -125.0
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 400.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 198.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -254,14 +246,14 @@ size_flags_vertical = 3
 [node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
 margin_top = 202.0
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 400.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -270,7 +262,7 @@ size_flags_vertical = 3
 [node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 445.0
+margin_right = 440.0
 margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -303,7 +295,6 @@ focus_neighbour_top = NodePath(".")
 focus_neighbour_bottom = NodePath("../LoadGame")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "NEW_GAME"
 __meta__ = {
 "_editor_description_": ""
@@ -316,7 +307,6 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -326,7 +316,6 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "OPTIONS_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -335,7 +324,6 @@ margin_right = 250.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "TOOLS"
 
 [node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -344,7 +332,6 @@ margin_right = 250.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "VIEW_SOURCE_CODE"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -353,7 +340,6 @@ margin_right = 250.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -362,7 +348,6 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "CREDITS"
 
 [node name="Launcher" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -372,7 +357,6 @@ margin_bottom = 400.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "QUIT_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "EXIT_TO_LAUNCHER"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -385,7 +369,6 @@ focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath("../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
-size_flags_horizontal = 4
 text = "QUIT"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/MainMenu" instance=ExtResource( 56 )]
@@ -415,7 +398,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
@@ -427,7 +409,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "AUTO_EVO_EXPLORING_TOOL"
 __meta__ = {
@@ -442,7 +423,6 @@ margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BENCHMARKS"
 __meta__ = {
@@ -457,7 +437,6 @@ margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
 text = "???"
@@ -475,7 +454,6 @@ focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_top = NodePath("../AutoEvoExploring")
 focus_previous = NodePath("../AutoEvoExploring")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
@@ -507,7 +485,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "THRIVEOPEDIA"
 __meta__ = {
@@ -521,7 +498,6 @@ margin_right = 765.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MODS"
 __meta__ = {
@@ -535,7 +511,6 @@ margin_right = 765.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "ART_GALLERY"
 
@@ -546,7 +521,6 @@ margin_right = 765.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "LICENSES"
 __meta__ = {
@@ -560,7 +534,6 @@ margin_right = 771.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "VISIT_SUGGESTIONS_SITE"
 __meta__ = {
@@ -577,7 +550,6 @@ focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
@@ -608,7 +580,6 @@ rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MICROBE_BENCHMARK"
 
@@ -620,7 +591,6 @@ margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
 text = "???"
@@ -636,7 +606,6 @@ margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
@@ -784,15 +753,6 @@ SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
-
-[node name="PatchNotesPositioner" type="MarginContainer" parent="MenuContainers"]
-anchor_right = 0.401
-anchor_bottom = 1.0
-margin_left = 35.0
-margin_top = 195.0
-margin_right = -16.28
-margin_bottom = -110.0
-mouse_filter = 2
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
@@ -994,51 +954,14 @@ WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
-[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 42 )]
-WindowTitle = "NO_MODS_ENABLED"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ModsInstalledButNothingEnabledWarning"]
-margin_right = 500.0
-margin_bottom = 192.0
+[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 59 )]
+margin_right = 163.0
 rect_min_size = Vector2( 550, 0 )
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
-margin_right = 550.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
-custom_fonts/font = ExtResource( 52 )
-text = "MODS_INSTALLED_BUT_NOT_ENABLED"
-autowrap = true
-
-[node name="Spacer" type="Control" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
-margin_top = 104.0
-margin_right = 550.0
-margin_bottom = 109.0
-rect_min_size = Vector2( 0, 5 )
-mouse_filter = 2
-
-[node name="CheckBox" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer" instance=ExtResource( 54 )]
-margin_top = 113.0
-margin_right = 550.0
-margin_bottom = 130.0
-custom_fonts/font = ExtResource( 51 )
-pressed = true
-text = "DO_NOT_SHOW_AGAIN"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
-margin_top = 134.0
-margin_right = 550.0
-margin_bottom = 166.0
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer"]
-margin_left = 256.0
-margin_right = 293.0
-margin_bottom = 32.0
-size_flags_horizontal = 6
-custom_fonts/font = ExtResource( 53 )
-text = "OK"
+WindowTitle = "NO_MODS_ENABLED"
+HideCancelButton = true
+DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
+CenterText = false
+DialogType = 1
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
 rect_min_size = Vector2( 550, 370 )
@@ -1051,51 +974,14 @@ rect_min_size = Vector2( 400, 350 )
 WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
-[node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 42 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-popup_exclusive = true
-WindowTitle = "THANK_YOU_TITLE"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ThanksForBuyingDialog"]
-margin_right = 500.0
-margin_bottom = 192.0
+[node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 59 )]
+margin_right = 163.0
 rect_min_size = Vector2( 500, 0 )
-size_flags_horizontal = 3
-
-[node name="ThanksText" parent="ThanksForBuyingDialog/VBoxContainer" instance=ExtResource( 55 )]
-margin_right = 500.0
-ExtendedBbcode = "THANKS_FOR_BUYING_THRIVE"
-
-[node name="Spacer" type="Control" parent="ThanksForBuyingDialog/VBoxContainer"]
-margin_top = 26.0
-margin_right = 500.0
-margin_bottom = 135.0
-rect_min_size = Vector2( 0, 5 )
-mouse_filter = 2
-size_flags_vertical = 3
-
-[node name="CheckBox" parent="ThanksForBuyingDialog/VBoxContainer" instance=ExtResource( 54 )]
-margin_top = 139.0
-margin_right = 500.0
-margin_bottom = 156.0
-custom_fonts/font = ExtResource( 51 )
-pressed = true
-text = "DISMISS_PERMANENTLY"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ThanksForBuyingDialog/VBoxContainer"]
-margin_top = 160.0
-margin_right = 500.0
-margin_bottom = 192.0
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="ThanksForBuyingDialog/VBoxContainer/HBoxContainer"]
-margin_left = 231.0
-margin_right = 268.0
-margin_bottom = 32.0
-size_flags_horizontal = 6
-custom_fonts/font = ExtResource( 53 )
-text = "OK"
+WindowTitle = "THANK_YOU_TITLE"
+HideCancelButton = true
+DialogText = "THANKS_FOR_BUYING_THRIVE"
+CenterText = false
+NoticeType = 1
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
 rect_min_size = Vector2( 500, 0 )
@@ -1151,7 +1037,3 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
-[connection signal="Closed" from="ModsInstalledButNothingEnabledWarning" to="." method="OnNoEnabledModsNoticeClosed"]
-[connection signal="pressed" from="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer/Button" to="ModsInstalledButNothingEnabledWarning" method="OnCloseButtonPressed"]
-[connection signal="Closed" from="ThanksForBuyingDialog" to="." method="OnThanksDialogClosed"]
-[connection signal="pressed" from="ThanksForBuyingDialog/VBoxContainer/HBoxContainer/Button" to="ThanksForBuyingDialog" method="OnCloseButtonPressed"]

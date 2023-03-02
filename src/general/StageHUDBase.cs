@@ -173,6 +173,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath BottomLeftBarPath = null!;
 
     [Export]
+    public NodePath HUDMessagesPath = null!;
+
+    [Export]
     public NodePath FossilisationButtonLayerPath = null!;
 
     [Export]
@@ -293,18 +296,12 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// </summary>
     protected TStage? stage;
 
-    /// <summary>
-    ///   Show mouse coordinates data in the mouse
-    ///   hover box, useful during develop.
-    /// </summary>
-#pragma warning disable 649 // ignored until we get some GUI or something to change this
-    protected bool showMouseCoordinates;
-#pragma warning restore 649
-
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
     private Control pausePrompt = null!;
     private CustomRichTextLabel pauseInfo = null!;
+
+    private HUDMessages hudMessages = null!;
 
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
@@ -394,6 +391,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [JsonIgnore]
     public bool Paused => paused;
 
+    [JsonIgnore]
+    public HUDMessages HUDMessages => hudMessages;
+
     /// <summary>
     ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
     /// </summary>
@@ -457,6 +457,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         pausePrompt = GetNode<Control>(PausePromptPath);
         pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
+
+        hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
 
         packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
@@ -602,6 +604,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
         editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
+
+        HUDMessages.ShowMessage(TranslationServer.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
 
     /// <summary>
@@ -1135,13 +1139,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         // var mousePosLabel = container.GetNode<Label>("MousePos");
         var nothingHere = container.GetNode<MarginContainer>("NothingHere");
 
-        if (showMouseCoordinates)
-        {
-            throw new NotImplementedException();
-
-            // mousePosLabel.Text = GetMouseHoverCoordinateText() + "\n";
-        }
-
         var hoveredCompounds = GetHoveredCompounds();
 
         // Show hovered compound information in GUI
@@ -1205,8 +1202,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract IEnumerable<(bool Player, Species Species)> GetHoveredSpecies();
     protected abstract IReadOnlyDictionary<Compound, float> GetHoveredCompounds();
-
-    protected abstract string GetMouseHoverCoordinateText();
 
     protected void AddHoveredCellLabel(string cellInfo)
     {
@@ -1321,6 +1316,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
                 AgentsPanelBarContainerPath.Dispose();
                 FireToxinHotkeyPath.Dispose();
                 BottomLeftBarPath.Dispose();
+                HUDMessagesPath.Dispose();
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
