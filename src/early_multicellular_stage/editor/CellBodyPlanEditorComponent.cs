@@ -124,6 +124,7 @@ public partial class CellBodyPlanEditorComponent :
 
     [Signal]
     public delegate void OnCellTypeToSelect(string name);
+    
     public enum SelectionMenuTab
     {
         Structure,
@@ -1130,10 +1131,6 @@ public partial class CellBodyPlanEditorComponent :
         GD.Print("New cell type created: ", newType.TypeName);
 
         EmitSignal(nameof(OnCellTypeToSelect), newType.TypeName); 
-        
-        //activeActionName = newType.TypeName;
-        //OnCurrentActionChanged();
-        
 
         UpdateCellTypeSelections();
 
