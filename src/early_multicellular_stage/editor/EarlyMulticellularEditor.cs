@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -401,7 +401,17 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     {
         reportTab.UpdatePatchDetails(patch, patch);
     }
+    private void OnCellTypeToSelect(string name)
+    {
+        var newTypeToSelect = EditedSpecies.CellTypes.First(c => c.TypeName == name);
 
+        if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToSelect)
+        {
+            selectedCellTypeToEdit = newTypeToSelect;
+
+            cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+        }
+    }
     private void OnStartEditingCellType(string name)
     {
         if (CanCancelAction)
