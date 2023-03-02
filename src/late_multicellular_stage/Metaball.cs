@@ -19,6 +19,12 @@ public abstract class Metaball
     public float Radius => Size * 0.5f;
 
     /// <summary>
+    ///   Volume of the metaball sphere
+    /// </summary>
+    [JsonIgnore]
+    public float Volume => (float)(4.0f * Math.PI * Math.Pow(Radius, 3) / 3.0f);
+
+    /// <summary>
     ///   For animation and convolution surfaces we need to know the structure of metaballs
     /// </summary>
     public Metaball? Parent { get; set; }

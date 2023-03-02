@@ -195,6 +195,7 @@ CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewTissueTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 MetaballPopupMenuPath = NodePath("MetaballPopupMenu")
+CannotReduceBrainPowerPopupPath = NodePath("CannotReduceBrainPowerStage")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -665,6 +666,11 @@ DialogText = "DISCONNECTED_METABALLS_TEXT"
 WindowTitle = "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 HideCancelButton = true
 DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
+
+[node name="CannotReduceBrainPowerStage" parent="." instance=ExtResource( 7 )]
+WindowTitle = "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
+HideCancelButton = true
+DialogText = "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 
 [node name="NewTissueTypeSetup" parent="." instance=ExtResource( 7 )]
 rect_min_size = Vector2( 550, 90 )
