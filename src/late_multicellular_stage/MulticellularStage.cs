@@ -99,7 +99,16 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         if (Player != null)
         {
-            interactableSystem.UpdatePlayerPosition(Player.GlobalTranslation);
+            if (Player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+            {
+                // TODO: player interaction reach modifier from the species
+                interactableSystem.UpdatePlayerPosition(Player.GlobalTranslation, 0);
+                interactableSystem.SetActive(true);
+            }
+            else
+            {
+                interactableSystem.SetActive(false);
+            }
         }
 
         // TODO: notify metrics
@@ -279,15 +288,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         rootOfDynamicallySpawned.AddChild(ground);
 
         // A not super familiar (different than underwater) rock strewn around for reference
-        var rockShape = GD.Load<Shape>("res://assets/models/Iron4.shape");
-        var rockScene = GD.Load<PackedScene>("res://assets/models/Iron4.tscn");
-        var rockMaterial = new PhysicsMaterial
-        {
-            Friction = 1,
-            Bounce = 0.3f,
-            Absorbent = false,
-            Rough = false,
-        };
+        var rockResource = new SimpleWorldResource(GD.Load<PackedScene>("res://assets/models/Iron4.tscn"));
+        var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
         foreach (var position in new[]
                  {
@@ -297,23 +299,15 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                      new Vector3(-3, 0, 5),
                      new Vector3(-8, 0, 6),
                      new Vector3(18, 0, 11),
+                     new Vector3(38, 0, 11),
+                     new Vector3(-15, 0, 10),
+                     new Vector3(-15, 0, -15),
                  })
         {
-            var rock = new RigidBody
-            {
-                PhysicsMaterialOverride = rockMaterial,
-            };
-
-            rock.AddChild(new CollisionShape
-            {
-                Shape = rockShape,
-            });
-
-            rock.AddChild(rockScene.Instance());
-
-            rootOfDynamicallySpawned.AddChild(rock);
-
-            rock.Translation = new Vector3(position.x, 0.1f, position.z);
+            // But create it as a resource entity so that it can be interacted with
+            // TODO: is y-offset needed? still, maybe 0.01f
+            SpawnHelpers.SpawnResourceEntity(rockResource, new Transform(Basis.Identity, position),
+                rootOfDynamicallySpawned, resourceScene, true);
         }
 
         // Modify player state for being on land
@@ -352,10 +346,18 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
 
-        // TODO: find nearby objects and open interaction menu if there's something to interact with
+        var target = interactableSystem.GetInteractionTarget();
 
-        // Did not find anything for the player to interact with
-        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+        if (target == null)
+        {
+            // Did not find anything for the player to interact with
+            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+            return;
+        }
+
+        // Show interaction context menu for the player to do something with the target
+        // TODO: stuff
+        HUD.HUDMessages.ShowMessage("TODO: context menu", DisplayDuration.Short);
     }
 
     protected override void SetupStage()

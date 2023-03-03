@@ -368,12 +368,18 @@ public static class Constants
 
     public const float INTERACTION_BUTTONS_FULL_UPDATE_INTERVAL = 0.1f;
 
-    public const int INTERACTION_BUTTONS_MAX_COUNT = 20;
+    public const int INTERACTION_BUTTONS_MAX_COUNT = 50;
 
-    public const float INTERACTION_BUTTON_DEFAULT_Y_OFFSET = 0.5f;
+    public const float INTERACTION_BUTTON_DEFAULT_Y_OFFSET = 1.0f;
 
-    public const float INTERACTION_DEFAULT_VISIBILITY_DISTANCE = 10.5f;
-    public const float INTERACTION_DEFAULT_INTERACT_DISTANCE = 5.5f;
+    public const int INTERACTION_BUTTON_SIZE = 32;
+    public const int INTERACTION_BUTTON_X_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+    public const int INTERACTION_BUTTON_Y_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+
+    public const float INTERACTION_DEFAULT_VISIBILITY_DISTANCE = 20.0f;
+    public const float INTERACTION_DEFAULT_INTERACT_DISTANCE = 8.5f;
+
+    public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
 
     /// <summary>
     ///   This is used just as the default value for health and max

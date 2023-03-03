@@ -339,6 +339,8 @@ public class MicrobeStage : StageBase<Microbe>
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
+
+            // TODO: severely limit the MP points in awakening stage
         }
         else
         {

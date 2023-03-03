@@ -15,7 +15,7 @@ process_priority = -1
 script = ExtResource( 1 )
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MulticellularHUD")
-InteractableSystemPath = NodePath("MulticellularHUD/InteractableSystem")
+InteractableSystemPath = NodePath("InteractableSystem")
 
 [node name="World" type="Node" parent="."]
 
@@ -34,13 +34,14 @@ script = ExtResource( 84 )
 [node name="PlayerMulticellularInput" type="Node" parent="."]
 script = ExtResource( 4 )
 
+[node name="InteractableSystem" parent="." instance=ExtResource( 6 )]
+pause_mode = 1
+
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
 MenuPath = NodePath("../PauseMenu")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
-
-[node name="InteractableSystem" parent="MulticellularHUD" instance=ExtResource( 6 )]
 
 [node name="FossilisationButtonLayer" type="Control" parent="MulticellularHUD"]
 margin_right = 1280.0

@@ -7,7 +7,5 @@ public interface IInteractableEntity : IEntity
 {
     public float InteractDistanceOffset { get; }
 
-    public Vector3? OffsetToInteractCenter { get; }
-
     public Vector3? ExtraInteractOverlayOffset { get; }
 }

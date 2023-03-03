@@ -47,6 +47,9 @@
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
     <Compile Include="src\awakening_stage\InteractableSystem.cs" />
+    <Compile Include="src\awakening_stage\IWorldResource.cs" />
+    <Compile Include="src\awakening_stage\ResourceEntity.cs" />
+    <Compile Include="src\awakening_stage\SimpleWorldResource.cs" />
     <Compile Include="src\benchmark\BenchmarkHelpers.cs" />
     <Compile Include="src\benchmark\DummySpawnSystem.cs" />
     <Compile Include="src\benchmark\microbe\MicrobeBenchmark.cs" />
