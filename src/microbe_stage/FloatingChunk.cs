@@ -613,8 +613,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         {
             isFadingParticles = true;
 
-            var particles = GetNode("NodeToScale").GetChild<Particles>(0);
-
             // Disable collisions
             CollisionLayer = 0;
             CollisionMask = 0;

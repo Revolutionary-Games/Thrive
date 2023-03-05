@@ -86,7 +86,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         {
             var hoveredCompoundControl = mouseHoverPanel.AddItem("compounds", compound.Name, compound.LoadedIcon) ??
                 throw new InvalidOperationException("Failed to create the hover panel entry for compound: " +
-                compound.InternalName);
+                    compound.InternalName);
 
             hoveredCompoundControls.Add(compound, hoveredCompoundControl);
         }
