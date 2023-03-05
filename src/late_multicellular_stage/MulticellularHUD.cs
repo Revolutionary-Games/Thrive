@@ -146,16 +146,9 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         return stage!.Player!.ProcessStatistics;
     }
 
-    protected override IEnumerable<(bool Player, Species Species)> GetHoveredSpecies()
+    protected override void UpdateHoverInfo(float delta)
     {
-        // TODO: implement nearby species
-        return Array.Empty<(bool Player, Species Species)>();
-    }
-
-    protected override IReadOnlyDictionary<Compound, float> GetHoveredCompounds()
-    {
-        // TODO: implement nearby compounds
-        return new Dictionary<Compound, float>();
+        // TODO: implement nearby entities
     }
 
     protected override void UpdateAbilitiesHotBar()

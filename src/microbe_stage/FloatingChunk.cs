@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, IEngulfable
+public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntity
 {
 #pragma warning disable CA2213 // a shared resource from the chunk definition
     [Export]
@@ -40,6 +40,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
 #pragma warning disable CA2213
     private MeshInstance? chunkMesh;
+    private Particles? particles;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -53,9 +54,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
     [JsonProperty]
     private float dissolveEffectValue;
-
-    [JsonProperty]
-    private bool isParticles;
 
     [JsonProperty]
     private float elapsedSinceProcess;
@@ -75,7 +73,19 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public Spatial EntityNode => this;
 
     [JsonIgnore]
-    public GeometryInstance EntityGraphics => chunkMesh ?? throw new InstanceNotLoadedYetException();
+    public GeometryInstance EntityGraphics
+    {
+        get
+        {
+            if (chunkMesh != null)
+                return chunkMesh;
+
+            if (particles != null)
+                return particles;
+
+            throw new InstanceNotLoadedYetException();
+        }
+    }
 
     [JsonIgnore]
     public int RenderPriority
@@ -179,11 +189,14 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         }
     }
 
+    [JsonIgnore]
+    public string InspectableName => ChunkName;
+
     public override void _Ready()
     {
         InitGraphics();
 
-        if (chunkMesh == null && !isParticles)
+        if (chunkMesh == null && particles == null)
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
 
         InitPhysics();
@@ -401,6 +414,14 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         }
     }
 
+    public void OnMouseEnter(RaycastResult result)
+    {
+    }
+
+    public void OnMouseExit(RaycastResult result)
+    {
+    }
+
     private void InitGraphics()
     {
         var graphicsNode = GraphicsScene.Instance();
@@ -418,7 +439,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         }
         else if (graphicsNode.IsClass("Particles"))
         {
-            isParticles = true;
+            particles = (Particles)graphicsNode;
         }
         else
         {
@@ -588,7 +609,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         {
             isDissolving = true;
         }
-        else if (isParticles && !isFadingParticles)
+        else if (particles != null && !isFadingParticles)
         {
             isFadingParticles = true;
 
@@ -601,7 +622,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
             particles.Emitting = false;
             particleFadeTimer = particles.Lifetime;
         }
-        else if (!isParticles)
+        else if (particles == null)
         {
             this.DestroyDetachAndQueueFree();
         }

@@ -229,9 +229,17 @@ public class GUICommon : NodeWithInput
     }
 
     /// <summary>
-    ///   Creates an icon for the given compound.
+    ///   Creates an icon for the given compound name.
     /// </summary>
     public TextureRect CreateCompoundIcon(string compoundName, float sizeX = 20.0f, float sizeY = 20.0f)
+    {
+        return CreateIcon(SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon!, sizeX, sizeY);
+    }
+
+    /// <summary>
+    ///   Creates an icon from the given texture.
+    /// </summary>
+    public TextureRect CreateIcon(Texture texture, float sizeX = 20.0f, float sizeY = 20.0f)
     {
         var element = new TextureRect
         {
@@ -239,7 +247,7 @@ public class GUICommon : NodeWithInput
             RectMinSize = new Vector2(sizeX, sizeY),
             SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-            Texture = SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon,
+            Texture = texture,
         };
 
         return element;
