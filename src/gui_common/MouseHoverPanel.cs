@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using Godot;
-using Array = Godot.Collections.Array;
+﻿using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   The panel that shows what the player is hovering over/inspecting.
@@ -18,7 +17,7 @@ public class MouseHoverPanel : PanelContainer
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Dictionary<string, MouseHoverCategory> categories = new();
+    private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
     private Array categoriesOrdered = new();
 
     public override void _Ready()
