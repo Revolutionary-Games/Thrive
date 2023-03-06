@@ -46,7 +46,9 @@
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
+    <Compile Include="src\awakening_stage\InteractablePopup.cs" />
     <Compile Include="src\awakening_stage\InteractableSystem.cs" />
+    <Compile Include="src\awakening_stage\InteractionType.cs" />
     <Compile Include="src\awakening_stage\IWorldResource.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
     <Compile Include="src\awakening_stage\SimpleWorldResource.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="src\general\DictionaryWithFallback.cs" />
     <Compile Include="src\general\HtmlToBbCodeConverter.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
+    <Compile Include="src\general\IPlayerReadableName.cs" />
     <Compile Include="src\general\MarkdownToBbCodeConverter.cs" />
     <Compile Include="src\general\MultiCollection.cs" />
     <Compile Include="src\general\ThriveNewsFeed.cs" />

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" type="Script" id=4]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/awakening_stage/InteractableSystem.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/awakening_stage/InteractablePopup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
@@ -16,6 +17,7 @@ script = ExtResource( 1 )
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MulticellularHUD")
 InteractableSystemPath = NodePath("InteractableSystem")
+InteractionPopupPath = NodePath("InteractablePopup")
 
 [node name="World" type="Node" parent="."]
 
@@ -55,6 +57,8 @@ margin_left = 458.0
 margin_top = 120.0
 margin_right = 822.0
 margin_bottom = 540.0
+
+[node name="InteractablePopup" parent="." instance=ExtResource( 7 )]
 
 [node name="RadialPopup" parent="." instance=ExtResource( 87 )]
 

@@ -18,6 +18,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonProperty]
     private readonly CompoundBag compounds = new(0.0f);
 
+    [JsonProperty]
+    private readonly List<IInteractableEntity> carriedObjects = new();
+
     private Compound atp = null!;
     private Compound glucose = null!;
 
@@ -30,6 +33,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 #pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
 #pragma warning restore CA2213
+
+    // TODO: hand count based on body plan
+    [JsonProperty]
+    private int maximumCarriedObjects = 1;
 
     [JsonProperty]
     private float targetSwimLevel;
@@ -325,5 +332,38 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     {
         // TODO: crouching
         targetSwimLevel -= upDownSwimSpeed * delta;
+    }
+
+    /// <summary>
+    ///   Calculates the actions this creature can do on a target object
+    /// </summary>
+    /// <param name="target">The object to potentially do something for</param>
+    /// <returns>Enumerator of the possible actions</returns>
+    /// <remarks>
+    ///   <para>
+    ///     Somehow make sure when the AI can use this to that the text overrides don't need to be generated as those
+    ///     will waste performance for no reason. Maybe we just need two variants of the method?
+    ///   </para>
+    /// </remarks>
+    public IEnumerable<(InteractionType Interaction, bool Enabled, string? TextOverride)> CalculatePossibleActions(
+        IInteractableEntity target)
+    {
+        if (target.CanBeCarried)
+        {
+            bool full = FitsInCarryingCapacity(target);
+            yield return (InteractionType.Pickup, !full,
+                full ? TranslationServer.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
+        }
+
+        if (target is ResourceEntity)
+        {
+            // Assume all resources can be used in some kind of crafting
+            yield return (InteractionType.Craft, true, null);
+        }
+    }
+
+    public bool FitsInCarryingCapacity(IInteractableEntity interactableEntity)
+    {
+        return carriedObjects.Count + 1 <= maximumCarriedObjects;
     }
 }

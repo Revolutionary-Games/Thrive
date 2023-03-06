@@ -15,12 +15,16 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     [Export]
     public NodePath? InteractableSystemPath;
 
+    [Export]
+    public NodePath InteractionPopupPath = null!;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
 
 #pragma warning disable CA2213
     private InteractableSystem interactableSystem = null!;
+    private InteractablePopup interactionPopup = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -73,6 +77,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         HoverInfo = GetNode<PlayerHoverInfo>("PlayerLookingAtInfo");
 
         interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
+        interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -290,7 +295,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         rootOfDynamicallySpawned.AddChild(ground);
 
         // A not super familiar (different than underwater) rock strewn around for reference
-        var rockResource = new SimpleWorldResource(GD.Load<PackedScene>("res://assets/models/Iron4.tscn"));
+        var rockResource =
+            new SimpleWorldResource(GD.Load<PackedScene>("res://assets/models/Iron4.tscn"), "RESOURCE_ROCK");
         var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
         foreach (var position in new[]
@@ -358,8 +364,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         }
 
         // Show interaction context menu for the player to do something with the target
-        // TODO: stuff
-        HUD.HUDMessages.ShowMessage("TODO: context menu", DisplayDuration.Short);
+        interactionPopup.ShowForInteractable(target, Player.CalculatePossibleActions(target));
     }
 
     protected override void SetupStage()
@@ -480,7 +485,11 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         if (disposing)
         {
-            InteractableSystemPath?.Dispose();
+            if (InteractableSystemPath != null)
+            {
+                InteractableSystemPath.Dispose();
+                InteractionPopupPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

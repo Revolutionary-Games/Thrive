@@ -11,10 +11,13 @@
 /// </remarks>
 public class SimpleWorldResource : IWorldResource
 {
-    public SimpleWorldResource(PackedScene worldRepresentation)
+    public SimpleWorldResource(PackedScene worldRepresentation, string internalName)
     {
         WorldRepresentation = worldRepresentation;
+        InternalName = internalName;
     }
 
     public PackedScene WorldRepresentation { get; }
+    public string ReadableName => TranslationServer.Translate(InternalName);
+    public string InternalName { get; }
 }
