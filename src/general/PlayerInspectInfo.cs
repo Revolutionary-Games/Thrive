@@ -16,23 +16,15 @@ public class PlayerInspectInfo : Node
     private readonly List<RaycastResult> hits = new();
     private readonly HashSet<RaycastResult> previousHits = new();
 
-#pragma warning disable CA2213 // Disposable fields should be disposed
-    private Viewport viewport = null!;
-#pragma warning restore CA2213 // Disposable fields should be disposed
-
     /// <summary>
     ///   All inspectable entities the player is pointing at.
     /// </summary>
     public IEnumerable<IInspectableEntity> InspectableEntities =>
         hits.Select(h => h.Collider).OfType<IInspectableEntity>();
 
-    public override void _Ready()
-    {
-        viewport = GetViewport();
-    }
-
     public virtual void Process(float delta)
     {
+        var viewport = GetViewport();
         var space = viewport.World.DirectSpaceState;
         var mousePos = viewport.GetMousePosition();
         var camera = viewport.GetCamera();
