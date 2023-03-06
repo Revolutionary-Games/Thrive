@@ -24,7 +24,7 @@ public class PlayerInspectInfo : Node
     ///   All inspectable entities the player is pointing at.
     /// </summary>
     public IEnumerable<IInspectableEntity> InspectableEntities =>
-        hits.Select(h => h.Collider).OfType<IInspectableEntity>().ToList();
+        hits.Select(h => h.Collider).OfType<IInspectableEntity>();
 
     public override void _Ready()
     {
