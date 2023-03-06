@@ -280,8 +280,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                 Material = new SpatialMaterial
                 {
                     AlbedoTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Albedo.png"),
+                    NormalEnabled = true,
                     NormalTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Normals.png"),
-                    Uv1Scale = new Vector3(32, 32, 32),
+                    Uv1Scale = new Vector3(42, 42, 42),
                 },
             },
         });
