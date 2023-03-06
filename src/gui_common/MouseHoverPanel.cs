@@ -1,5 +1,7 @@
-﻿using Godot;
-using Godot.Collections;
+﻿using System;
+using System.Collections.Generic;
+using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The panel that shows what the player is hovering over/inspecting.
@@ -17,8 +19,12 @@ public class MouseHoverPanel : PanelContainer
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
-    private Array categoriesOrdered = new();
+    private Dictionary<string, MouseHoverCategory> categories = new();
+
+    /// <summary>
+    ///   The array of category controls oredered based on their position in the scene tree.
+    /// </summary>
+    private Array categoryControls = new();
 
     public override void _Ready()
     {
@@ -32,18 +38,15 @@ public class MouseHoverPanel : PanelContainer
 
         MouseHoverCategory? firstVisibleCategory = null;
 
-        foreach (MouseHoverCategory category in categoriesOrdered)
+        foreach (MouseHoverCategory category in categoryControls)
         {
             category.Visible = category.TotalEntriesCount > 0;
-            category.SeparatorVisible = true;
+            category.SeparatorVisible = firstVisibleCategory != null;
             visibleEntriesCount += category.TotalEntriesCount;
 
             if (firstVisibleCategory == null && category.Visible)
                 firstVisibleCategory = category;
         }
-
-        if (firstVisibleCategory != null)
-            firstVisibleCategory.SeparatorVisible = false;
 
         nothingHereContainer.Visible = visibleEntriesCount <= 0;
     }
@@ -52,39 +55,48 @@ public class MouseHoverPanel : PanelContainer
     {
         if (categories.ContainsKey(internalName))
         {
-            GD.Print("MouseHoverPanel: Category already exist for \"", internalName, "\"");
-            return;
+            throw new InvalidOperationException(
+                "MouseHoverPanel: Category already exist for \"" + internalName + "\"");
         }
 
         var categoryControl = new MouseHoverCategory(displayName);
         categories.Add(internalName, categoryControl);
         categoriesContainer.AddChild(categoryControl);
 
-        categoriesOrdered = categoriesContainer.GetChildren();
+        categoryControls = categoriesContainer.GetChildren();
     }
 
     public void MoveCategory(string internalName, int position)
     {
         if (!categories.TryGetValue(internalName, out MouseHoverCategory categoryControl))
         {
-            GD.Print("MouseHoverPanel: Category doesn't exist for \"", internalName, "\"");
-            return;
+            throw new InvalidOperationException(
+                "MouseHoverPanel: Category doesn't exist for \"" + internalName + "\"");
         }
 
         categoriesContainer.MoveChild(categoryControl, position);
 
-        categoriesOrdered = categoriesContainer.GetChildren();
+        categoryControls = categoriesContainer.GetChildren();
     }
 
-    public InspectedEntityLabel? AddItem(string category, string title, Texture? icon = null)
+    /// <summary>
+    ///   Adds a new inspected entity entry to the the given category. Throws <see cref="InvalidOperationException"/>
+    ///   if the category doesn't exist.
+    /// </summary>
+    /// <param name="category">The category the inspectable falls under.</param>
+    /// <param name="text">The inspectable's display name.</param>
+    /// <param name="icon">The icon representing the inspectable.</param>
+    /// <returns>The control created for the inspectable.</returns>
+    /// <exception cref="InvalidOperationException">If the given category doesn't exist.</exception>
+    public InspectedEntityLabel AddItem(string category, string text, Texture? icon = null)
     {
         if (!categories.TryGetValue(category, out MouseHoverCategory categoryControl))
         {
-            GD.Print("MouseHoverPanel: Can't add item, category doesn't exist for \"", category, "\"");
-            return null;
+            throw new InvalidOperationException(
+                "MouseHoverPanel: Can't add item, category doesn't exist for \"" + category + "\"");
         }
 
-        var label = new InspectedEntityLabel(title, icon);
+        var label = new InspectedEntityLabel(text, icon);
         categoryControl.EmplaceLabel(label);
 
         return label;
@@ -115,7 +127,7 @@ public class MouseHoverPanel : PanelContainer
         {
             CategoriesContainerPath.Dispose();
             NothingHereContainerPath.Dispose();
-            categoriesOrdered.Dispose();
+            categoryControls.Dispose();
         }
     }
 

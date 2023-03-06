@@ -502,7 +502,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hoverInfoTimeElapsed += delta;
         if (hoverInfoTimeElapsed > Constants.HOVER_PANEL_UPDATE_INTERVAL)
         {
-            UpdateHoverInfo(delta);
+            UpdateHoverInfo(hoverInfoTimeElapsed);
             hoverInfoTimeElapsed = 0;
         }
 

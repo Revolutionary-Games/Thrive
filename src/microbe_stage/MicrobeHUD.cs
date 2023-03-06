@@ -33,6 +33,11 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     [Export]
     public PackedScene WinBoxScene = null!;
 
+    // These are category keys for MouseHoverPanel
+    private const string COMPOUNDS_CATEGORY = "compounds";
+    private const string SPECIES_CATEGORY = "species";
+    private const string FLOATING_CHUNKS_CATEGORY = "chunks";
+
     private readonly Dictionary<(string Category, string Name), int> hoveredEntities = new();
     private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
 
@@ -78,16 +83,13 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
         unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
 
-        mouseHoverPanel.AddCategory("compounds", new LocalizedString("COMPOUNDS_COLON"));
-        mouseHoverPanel.AddCategory("species", new LocalizedString("SPECIES_COLON"));
-        mouseHoverPanel.AddCategory("chunk", new LocalizedString("FLOATING_CHUNK_COLON"));
+        mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
+        mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
+        mouseHoverPanel.AddCategory(FLOATING_CHUNKS_CATEGORY, new LocalizedString("FLOATING_CHUNKS_COLON"));
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
         {
-            var hoveredCompoundControl = mouseHoverPanel.AddItem("compounds", compound.Name, compound.LoadedIcon) ??
-                throw new InvalidOperationException("Failed to create the hover panel entry for compound: " +
-                    compound.InternalName);
-
+            var hoveredCompoundControl = mouseHoverPanel.AddItem("compounds", compound.Name, compound.LoadedIcon);
             hoveredCompoundControls.Add(compound, hoveredCompoundControl);
         }
 
@@ -378,8 +380,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         }
 
         // Refresh list
-        mouseHoverPanel.ClearEntries("species");
-        mouseHoverPanel.ClearEntries("chunk");
+        mouseHoverPanel.ClearEntries(SPECIES_CATEGORY);
+        mouseHoverPanel.ClearEntries(FLOATING_CHUNKS_CATEGORY);
 
         // Show the entity's name and count of hovered entities
         hoveredEntities.Clear();
@@ -393,20 +395,21 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 if (microbe.IsPlayerMicrobe)
                 {
                     // Special handling for player
-                    var label = mouseHoverPanel.AddItem("species", entity.InspectableName);
-                    label?.SetDescription(TranslationServer.Translate("PLAYER"));
+                    var label = mouseHoverPanel.AddItem(SPECIES_CATEGORY, entity.InspectableName);
+                    label.SetDescription(TranslationServer.Translate("PLAYER"));
                     continue;
                 }
 
-                category = "species";
+                category = SPECIES_CATEGORY;
             }
             else if (entity is FloatingChunk)
             {
-                category = "chunk";
+                category = FLOATING_CHUNKS_CATEGORY;
             }
 
-            hoveredEntities.TryGetValue((category, entity.InspectableName), out int count);
-            hoveredEntities[(category, entity.InspectableName)] = count + 1;
+            var key = (category, entity.InspectableName);
+            hoveredEntities.TryGetValue(key, out int count);
+            hoveredEntities[key] = count + 1;
         }
 
         foreach (var hoveredEntity in hoveredEntities)
@@ -414,7 +417,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             var item = mouseHoverPanel.AddItem(hoveredEntity.Key.Category, hoveredEntity.Key.Name);
 
             if (hoveredEntity.Value > 1)
-                item?.SetDescription(TranslationServer.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
+                item.SetDescription(TranslationServer.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
         }
     }
 

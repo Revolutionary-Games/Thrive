@@ -11,42 +11,51 @@ public class PlayerInspectInfo : Node
     ///   The distance for detection.
     /// </summary>
     [Export]
-    public float RayastDistance = 1000;
+    public float RaycastDistance = 1000;
 
     private readonly List<RaycastResult> hits = new();
     private readonly HashSet<RaycastResult> previousHits = new();
 
+#pragma warning disable CA2213 // Disposable fields should be disposed
+    private Viewport viewport = null!;
+#pragma warning restore CA2213 // Disposable fields should be disposed
+
     /// <summary>
-    ///   All inspectable entities the player is pointing.
+    ///   All inspectable entities the player is pointing at.
     /// </summary>
-    public IReadOnlyList<IInspectableEntity> InspectableEntities =>
+    public IEnumerable<IInspectableEntity> InspectableEntities =>
         hits.Select(h => h.Collider).OfType<IInspectableEntity>().ToList();
+
+    public override void _Ready()
+    {
+        viewport = GetViewport();
+    }
 
     public virtual void Process(float delta)
     {
-        var space = GetViewport().World.DirectSpaceState;
-        var mousePos = GetViewport().GetMousePosition();
-        var camera = GetViewport().GetCamera();
+        var space = viewport.World.DirectSpaceState;
+        var mousePos = viewport.GetMousePosition();
+        var camera = viewport.GetCamera();
 
         var from = camera.ProjectRayOrigin(mousePos);
-        var to = from + camera.ProjectRayNormal(mousePos) * RayastDistance;
+        var to = from + camera.ProjectRayNormal(mousePos) * RaycastDistance;
 
         hits.Clear();
 
         space.IntersectRay(hits, from, to);
 
-        foreach (var hit in previousHits.ToHashSet())
+        foreach (var hit in previousHits)
         {
             if (hits.Contains(hit))
                 continue;
-
-            previousHits.Remove(hit);
 
             if (hit.Collider is IInspectableEntity entity)
             {
                 entity.OnMouseExit(hit);
             }
         }
+
+        previousHits.RemoveWhere(m => !hits.Contains(m));
 
         foreach (var hit in hits)
         {
@@ -61,11 +70,18 @@ public class PlayerInspectInfo : Node
     }
 
     /// <summary>
-    ///   Returns the raycast data of the given raycasted inspectable entity.
+    ///   Returns the raycast data of the given raycast inspectable entity.
     /// </summary>
-    public RaycastResult GetRaycastData(IInspectableEntity entity)
+    /// <returns>The raycast data or null if not found.</returns>
+    public RaycastResult? GetRaycastData(IInspectableEntity entity)
     {
-        var result = hits.FirstOrDefault(h => h.Collider == entity);
-        return result;
+        try
+        {
+            return hits.First(h => h.Collider == entity);
+        }
+        catch
+        {
+            return null;
+        }
     }
 }

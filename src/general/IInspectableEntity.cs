@@ -1,7 +1,12 @@
 ﻿/// <summary>
 ///   A game entity the player can inspect (with mouse), for querying information and displayed on GUI
 /// </summary>
-public interface IInspectableEntity : IGraphicalEntity
+/// <remarks>
+///   <para>
+///     NOTE: Entity must have collision shapes thus be a collision object to be detected.
+///   </para>
+/// </remarks>
+public interface IInspectableEntity : IEntity
 {
     public string InspectableName { get; }
 
