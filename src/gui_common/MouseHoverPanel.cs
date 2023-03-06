@@ -18,7 +18,7 @@ public class MouseHoverPanel : PanelContainer
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private System.Collection.Generic.Dictionary<string, MouseHoverCategory> categories = new();
+    private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
 
     /// <summary>
     ///   The array of category controls oredered based on their position in the scene tree.
