@@ -276,11 +276,12 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         {
             Mesh = new PlaneMesh
             {
-                Size = new Vector2(200, 200),
+                Size = new Vector2(400, 400),
                 Material = new SpatialMaterial
                 {
-                    // Not good style but this is like this so I could just quickly copy-paste from the Godot editor
-                    AlbedoColor = new Color("#321d09"),
+                    AlbedoTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Albedo.png"),
+                    NormalTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Normals.png"),
+                    Uv1Scale = new Vector3(32, 32, 32),
                 },
             },
         });
