@@ -22,6 +22,7 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
 
     public AliveMarker AliveMarker { get; } = new();
 
+    [JsonIgnore]
     public string InspectableName => Properties?.ToString() ?? TranslationServer.Translate("N_A");
 
     [JsonProperty]

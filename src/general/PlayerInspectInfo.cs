@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -36,18 +37,20 @@ public class PlayerInspectInfo : Node
 
         space.IntersectRay(hits, from, to);
 
-        foreach (var hit in previousHits)
+        previousHits.RemoveWhere(m =>
         {
-            if (hits.Contains(hit))
-                continue;
-
-            if (hit.Collider is IInspectableEntity entity)
+            if (!hits.Contains(m))
             {
-                entity.OnMouseExit(hit);
-            }
-        }
+                if (m.Collider is IInspectableEntity entity)
+                {
+                    entity.OnMouseExit(m);
+                }
 
-        previousHits.RemoveWhere(m => !hits.Contains(m));
+                return true;
+            }
+
+            return false;
+        });
 
         foreach (var hit in hits)
         {
@@ -71,7 +74,7 @@ public class PlayerInspectInfo : Node
         {
             return hits.First(h => h.Collider == entity);
         }
-        catch
+        catch (InvalidOperationException)
         {
             return null;
         }

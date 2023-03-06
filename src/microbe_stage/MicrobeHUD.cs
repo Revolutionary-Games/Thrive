@@ -89,7 +89,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
         {
-            var hoveredCompoundControl = mouseHoverPanel.AddItem("compounds", compound.Name, compound.LoadedIcon);
+            var hoveredCompoundControl = mouseHoverPanel.AddItem(
+                COMPOUNDS_CATEGORY, compound.Name, compound.LoadedIcon);
             hoveredCompoundControls.Add(compound, hoveredCompoundControl);
         }
 
