@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -19,7 +18,7 @@ public class MouseHoverPanel : PanelContainer
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Dictionary<string, MouseHoverCategory> categories = new();
+    private System.Collection.Generic.Dictionary<string, MouseHoverCategory> categories = new();
 
     /// <summary>
     ///   The array of category controls oredered based on their position in the scene tree.
@@ -80,14 +79,14 @@ public class MouseHoverPanel : PanelContainer
     }
 
     /// <summary>
-    ///   Adds a new inspected entity entry to the the given category. Throws <see cref="InvalidOperationException"/>
-    ///   if the category doesn't exist.
+    ///   Adds a new inspected entity entry to the the given category. Throws
+    ///   <see cref="System.InvalidOperationException"/> if the category doesn't exist.
     /// </summary>
     /// <param name="category">The category the inspectable falls under.</param>
     /// <param name="text">The inspectable's display name.</param>
     /// <param name="icon">The icon representing the inspectable.</param>
     /// <returns>The control created for the inspectable.</returns>
-    /// <exception cref="InvalidOperationException">If the given category doesn't exist.</exception>
+    /// <exception cref="System.InvalidOperationException">If the given category doesn't exist.</exception>
     public InspectedEntityLabel AddItem(string category, string text, Texture? icon = null)
     {
         if (!categories.TryGetValue(category, out MouseHoverCategory categoryControl))
