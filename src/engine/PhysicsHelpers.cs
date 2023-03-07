@@ -39,7 +39,7 @@ public static class PhysicsHelpers
     ///   in <paramref name="hits"/>.
     /// </summary>
     public static void IntersectRay(this PhysicsDirectSpaceState space, List<RaycastResult> hits, Vector3 from,
-        Vector3 to, Array? exclude = null, uint collisionMask = 2147483647u, bool collideWithBodies = true,
+        Vector3 to, Array? exclude = null, uint collisionMask = uint.MaxValue, bool collideWithBodies = true,
         bool collideWithAreas = false)
     {
         exclude ??= new Array();
