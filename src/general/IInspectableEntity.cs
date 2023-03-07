@@ -6,10 +6,8 @@
 ///     NOTE: Entity must have collision shapes thus be a collision object to be detected.
 ///   </para>
 /// </remarks>
-public interface IInspectableEntity : IEntity
+public interface IInspectableEntity : IEntity, IPlayerReadableName
 {
-    public string InspectableName { get; }
-
     /// <summary>
     ///   Called when a raycast hits this entity.
     /// </summary>

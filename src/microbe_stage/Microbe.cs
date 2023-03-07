@@ -116,7 +116,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public bool IsPlayerMicrobe { get; private set; }
 
     [JsonIgnore]
-    public string InspectableName => Species.FormattedName;
+    public string ReadableName => Species.FormattedName;
+
+    [JsonIgnore]
+    public string InternalName => Species.FormattedIdentifier;
 
     [JsonIgnore]
     public bool IsHoveredOver { get; set; }
