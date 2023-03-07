@@ -53,10 +53,7 @@ public class MouseHoverPanel : PanelContainer
     public void AddCategory(string internalName, LocalizedString displayName)
     {
         if (categories.ContainsKey(internalName))
-        {
-            throw new InvalidOperationException(
-                "MouseHoverPanel: Category already exist for \"" + internalName + "\"");
-        }
+            throw new InvalidOperationException("Category already exist for \"" + internalName + "\"");
 
         var categoryControl = new MouseHoverCategory(displayName);
         categories.Add(internalName, categoryControl);
@@ -68,10 +65,7 @@ public class MouseHoverPanel : PanelContainer
     public void MoveCategory(string internalName, int position)
     {
         if (!categories.TryGetValue(internalName, out MouseHoverCategory categoryControl))
-        {
-            throw new InvalidOperationException(
-                "MouseHoverPanel: Category doesn't exist for \"" + internalName + "\"");
-        }
+            throw new InvalidOperationException("Category doesn't exist for \"" + internalName + "\"");
 
         categoriesContainer.MoveChild(categoryControl, position);
 
@@ -90,10 +84,7 @@ public class MouseHoverPanel : PanelContainer
     public InspectedEntityLabel AddItem(string category, string text, Texture? icon = null)
     {
         if (!categories.TryGetValue(category, out MouseHoverCategory categoryControl))
-        {
-            throw new InvalidOperationException(
-                "MouseHoverPanel: Can't add item, category doesn't exist for \"" + category + "\"");
-        }
+            throw new InvalidOperationException("Can't add item, category doesn't exist for \"" + category + "\"");
 
         var label = new InspectedEntityLabel(text, icon);
         categoryControl.EmplaceLabel(label);
