@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-06 18:07+0700\n"
+"POT-Creation-Date: 2023-03-07 16:37+0700\n"
 "PO-Revision-Date: 2023-02-15 11:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -107,6 +107,11 @@ msgstr "Oksijenli Azot Fiksasyonu"
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Ajanlar"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:90
+#, fuzzy
+msgid "AGENTS_COLON"
+msgstr "Durum:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 #, fuzzy
@@ -423,12 +428,12 @@ msgstr "Bası Arttır"
 msgid "BATHYPELAGIC"
 msgstr "Batipelajik"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopik Ol ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Çok Hücreli Ol ({0}/{1})"
@@ -966,7 +971,7 @@ msgstr "Bileşikler"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Bileşikleri göster / gizle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:86
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
 msgstr "Bileşikler:"
 
@@ -1358,7 +1363,7 @@ msgstr "Gelişme Vikisi"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Geliştirici vikimizi ziyaret et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
 msgstr "Yutuldun"
 
@@ -1995,7 +2000,7 @@ msgstr "Kamçı (veya Flagellum), hücrenin bir doğrultuda kıvrılması ve ile
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanır."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Dönme:"
@@ -2061,12 +2066,12 @@ msgstr "Fosilleşme"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Müzeye kaydetmek için bu türü fosilleştir. Thriveopedi'den müzeye erişebilirsin veya serbest yapım düzenleyicisinde fosilleşmiş türü yükleyebilirsin."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Bu türü fosilleştir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Bu türü fosilleştir (zaten fosilleştirildi)"
 
@@ -4062,11 +4067,11 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:25
+#: ../src/microbe_stage/AgentProjectile.cs:26
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:377
+#: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
 msgstr "Bilinmeyen"
 
@@ -4074,7 +4079,7 @@ msgstr "Bilinmeyen"
 msgid "N_A_MP"
 msgstr "Bilinmeyen MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeHUD.cs:427
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4460,7 +4465,7 @@ msgstr "DURAKLATILDI"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Oyuna devam et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:72
+#: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
 msgstr "[center]Oyuna devam etmek için [thrive:input]g_pause[/thrive:input] tuşuna bas[/center]"
 
@@ -4490,7 +4495,7 @@ msgstr "Barışçıl"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:252
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
@@ -4559,7 +4564,7 @@ msgstr "Gezegen oluşturma çok yakında!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:402
 #, fuzzy
 msgid "PLAYER"
 msgstr "Oyuncu Hücresi"
@@ -5277,27 +5282,27 @@ msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık v
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Türünün diğer üyelerine komut vermede kullanılan menüyü açmak için [thrive:input]g_pack_commands[/thrive:input] tuşunu basılı tut."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Agresif Ol"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:146
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Kaç"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Beni Takip Et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:140
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Komut Yok"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:142
+#: ../src/microbe_stage/MicrobeHUD.cs:145
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Bana Gel"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "SIGNAL_TO_EMIT"
 msgstr "Yollanacak Sinyal"
 
@@ -5402,7 +5407,7 @@ msgstr "Özel Fare Tuşu 2"
 msgid "SPECIES"
 msgstr "Türler"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "SPECIES_COLON"
 msgstr "Türler:"
 
@@ -6585,9 +6590,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "TOTAL_TIME_USED_COLON"
 #~ msgstr "Toplam geçen süre:"
-
-#~ msgid "STATUS_COLON"
-#~ msgstr "Durum:"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Mevcut oyunla ilgili bilgilendirici istatistikler"

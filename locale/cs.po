@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-06 18:07+0700\n"
+"POT-Creation-Date: 2023-03-07 16:37+0700\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -107,6 +107,11 @@ msgstr "Aerobní fixace dusíku"
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Činidlo"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:90
+#, fuzzy
+msgid "AGENTS_COLON"
+msgstr "Status:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 #, fuzzy
@@ -412,12 +417,12 @@ msgstr "Přidat basy"
 msgid "BATHYPELAGIC"
 msgstr "Batypelagiál (hloubka oceánu do 4000m)"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Stát se makroskopickým ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Stát se mnohobuněčným ({0}/{1})"
@@ -961,7 +966,7 @@ msgstr "Sloučeniny"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt prostředí a sloučeniny"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:86
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
 msgstr "Sloučeniny:"
 
@@ -1339,7 +1344,7 @@ msgstr "Vývojáři"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Nápověda"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
 msgstr "Sežrán"
 
@@ -2007,7 +2012,7 @@ msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, kte
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Využívá [thrive:compound type=\"atp\"][/thrive:compound] ke zvýšení rychlosti pohybu buňky."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Rotace:"
@@ -2079,12 +2084,12 @@ msgstr ""
 "Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -4094,11 +4099,11 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:25
+#: ../src/microbe_stage/AgentProjectile.cs:26
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:377
+#: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
 msgstr "N/A"
 
@@ -4106,7 +4111,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeHUD.cs:427
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4505,7 +4510,7 @@ msgstr "POZASTAVENO"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Návrat do hry"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:72
+#: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
 msgstr "[center]Zmáčkněte [thrive:input]g_pause[/thrive:input] pro obnovení hry[/center]"
 
@@ -4535,7 +4540,7 @@ msgstr "Mírumilovnost"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:252
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4599,7 +4604,7 @@ msgstr "Generováni planet již brzy!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodný seed planety"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:402
 #, fuzzy
 msgid "PLAYER"
 msgstr "Hráčská buňka"
@@ -5324,27 +5329,27 @@ msgstr "Signalizující látky umožnují buňkám vytvářet chemikálie na kte
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Podržte [thrive:input]g_pack_commands[/thrive:input] k otevření menu na udávání pokynů ostatním členům vašeho druhu."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Staňte se agresivní"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:146
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Utíkejte"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Následujte mě"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:140
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Žádný příkaz"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:142
+#: ../src/microbe_stage/MicrobeHUD.cs:145
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Přesuňte se ke mně"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signál k vyslání"
 
@@ -5451,7 +5456,7 @@ msgstr "Myš Speciál 2"
 msgid "SPECIES"
 msgstr "Druhy"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "SPECIES_COLON"
 msgstr "Druh:"
 
@@ -6631,9 +6636,6 @@ msgstr "Oddálit"
 
 #, fuzzy
 #~ msgid "TOTAL_TIME_USED_COLON"
-#~ msgstr "Status:"
-
-#~ msgid "STATUS_COLON"
 #~ msgstr "Status:"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

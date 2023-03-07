@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-06 18:07+0700\n"
+"POT-Creation-Date: 2023-03-07 16:37+0700\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -107,6 +107,11 @@ msgstr "호기성 질소 고정"
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "물질"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:90
+#, fuzzy
+msgid "AGENTS_COLON"
+msgstr "상태:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 #, fuzzy
@@ -417,12 +422,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr "심해수층"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -995,7 +1000,7 @@ msgstr "화합물"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:86
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
 msgstr "화합물:"
 
@@ -1386,7 +1391,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
 msgstr ""
 
@@ -2047,7 +2052,7 @@ msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 �
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 세포막에서 이어지는 채찍 모양의 단백질 섬유 다발입니다."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -2114,12 +2119,12 @@ msgstr "개체수:"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -4155,11 +4160,11 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:25
+#: ../src/microbe_stage/AgentProjectile.cs:26
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:377
+#: ../src/microbe_stage/MicrobeHUD.cs:380
 #, fuzzy
 msgid "N_A"
 msgstr "N/A 변이 점수"
@@ -4168,7 +4173,7 @@ msgstr "N/A 변이 점수"
 msgid "N_A_MP"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeHUD.cs:427
 #, fuzzy
 msgid "N_TIMES"
 msgstr "마우스 오른쪽 버튼"
@@ -4574,7 +4579,7 @@ msgstr ""
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "재개"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:72
+#: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
 msgstr ""
 
@@ -4606,7 +4611,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:252
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -4670,7 +4675,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:402
 #, fuzzy
 msgid "PLAYER"
 msgstr "플레이어 세포"
@@ -5440,30 +5445,30 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "{0}에서 충돌이 있습니다.\n"
 "{1}에서 입력을 제거하시겠습니까?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:146
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:140
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:142
+#: ../src/microbe_stage/MicrobeHUD.cs:145
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
@@ -5574,7 +5579,7 @@ msgstr "마우스 특수 키 2"
 msgid "SPECIES"
 msgstr "종"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "SPECIES_COLON"
 msgstr "종:"
 
@@ -6794,9 +6799,6 @@ msgstr "축소"
 
 #~ msgid "TOTAL_TIME_USED_COLON"
 #~ msgstr "총 소모 시간:"
-
-#~ msgid "STATUS_COLON"
-#~ msgstr "상태:"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

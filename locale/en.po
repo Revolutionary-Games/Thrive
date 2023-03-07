@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-06 18:07+0700\n"
-"PO-Revision-Date: 2023-03-06 18:08+0700\n"
+"POT-Creation-Date: 2023-03-07 16:37+0700\n"
+"PO-Revision-Date: 2023-03-07 16:37+0700\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -105,6 +105,10 @@ msgstr "Aerobic Nitrogen Fixation"
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Agents"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:90
+msgid "AGENTS_COLON"
+msgstr "Agents:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 msgid "AGENT_NAME"
@@ -420,12 +424,12 @@ msgstr "Bass Up"
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagic"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Become Multicellular ({0}/{1})"
@@ -963,7 +967,7 @@ msgstr "Compounds"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide compounds"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:86
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
 msgstr "Compounds:"
 
@@ -1355,7 +1359,7 @@ msgstr "Development Wiki"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Visit our developer wiki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
 msgstr "Devoured"
 
@@ -1992,7 +1996,7 @@ msgstr "The flagellum (plural: flagella) is a whip-like bundle of protein fibers
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the movement speed of the cell."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Floating Chunks:"
 
@@ -2057,12 +2061,12 @@ msgstr "Fossilisation"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Fossilise this species to save it in the museum. You can access the museum from the Thriveopedia, or load fossilised species in the freebuild editor."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Fossilise this species"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Fossilise this species (already fossilised)"
 
@@ -4055,11 +4059,11 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:25
+#: ../src/microbe_stage/AgentProjectile.cs:26
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:377
+#: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
 msgstr "N/A"
 
@@ -4067,7 +4071,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeHUD.cs:427
 msgid "N_TIMES"
 msgstr "x{0}"
 
@@ -4452,7 +4456,7 @@ msgstr "PAUSED"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Return to the game"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:72
+#: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
 msgstr "[center]Press [thrive:input]g_pause[/thrive:input] to unpause[/center]"
 
@@ -4482,7 +4486,7 @@ msgstr "Peaceful"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:252
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4551,7 +4555,7 @@ msgstr "Planet generation coming soon!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planet random seed"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:402
 msgid "PLAYER"
 msgstr "Player"
 
@@ -5268,27 +5272,27 @@ msgstr "Signaling agents allow cells to create chemicals that other cells can re
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Hold [thrive:input]g_pack_commands[/thrive:input] to open a menu to issue commands to other members of your species."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Become Aggressive"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:146
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Flee"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Follow Me"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:140
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "No Command"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:142
+#: ../src/microbe_stage/MicrobeHUD.cs:145
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Move To Me"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signal To Emit"
 
@@ -5393,7 +5397,7 @@ msgstr "Mouse Special 2"
 msgid "SPECIES"
 msgstr "Species"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "SPECIES_COLON"
 msgstr "Species:"
 
@@ -6585,9 +6589,6 @@ msgstr "Zoom out"
 
 #~ msgid "TOTAL_TIME_USED_COLON"
 #~ msgstr "Total time used:"
-
-#~ msgid "STATUS_COLON"
-#~ msgstr "Status:"
 
 #~ msgid "DAY"
 #~ msgstr "Day"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-06 18:07+0700\n"
+"POT-Creation-Date: 2023-03-07 16:37+0700\n"
 "PO-Revision-Date: 2023-02-02 07:29+0000\n"
 "Last-Translator: Raphael Franzen <franzen.raphael@hotmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -107,6 +107,11 @@ msgstr "Aerobe Stickstofffixierung"
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Mittel"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:90
+#, fuzzy
+msgid "AGENTS_COLON"
+msgstr "Status:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 #, fuzzy
@@ -424,12 +429,12 @@ msgstr "Bass Hoch"
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagial"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
@@ -967,7 +972,7 @@ msgstr "Substanzen"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Substanzen ein-/ausblenden"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:86
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
 msgstr "Substanzen:"
 
@@ -1339,7 +1344,7 @@ msgstr "Entwickler-Wiki"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Besuche unser Entwickler-Wiki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
 msgstr "Entrückt"
 
@@ -1999,7 +2004,7 @@ msgstr "Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein peitschena
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Verwendet [thrive:compound type=\"atp\"][/thrive:compound], um die Bewegungsgeschwindigkeit der Zelle zu erhöhen."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Drehung:"
@@ -2065,12 +2070,12 @@ msgstr "Fossilisation"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Mache diese Spezies zu einem Fossil um sie im Museum zu speichern. Du kannst von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor laden."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Diese Art fossilisieren"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Diese Art fossilisieren (ist bereits fossilisiert)"
 
@@ -4058,11 +4063,11 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:25
+#: ../src/microbe_stage/AgentProjectile.cs:26
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:377
+#: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
 msgstr "N/V"
 
@@ -4070,7 +4075,7 @@ msgstr "N/V"
 msgid "N_A_MP"
 msgstr "N/V MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeHUD.cs:427
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4466,7 +4471,7 @@ msgstr "PAUSIERT"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Spiel fortsetzen"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:72
+#: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
 msgstr "[center]Zum Fortfahren [thrive:input]g_pause[/thrive:input] drücken[/center]"
 
@@ -4496,7 +4501,7 @@ msgstr "Friedlich"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:252
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4565,7 +4570,7 @@ msgstr "Planetenerstellung kommt bald!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planetensamen Nummer (Zufallswert):"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:402
 #, fuzzy
 msgid "PLAYER"
 msgstr "Spielerzelle"
@@ -5291,27 +5296,27 @@ msgstr "Ermöglicht das Erstellen von Stoffen, auf die andere Zellen reagieren k
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Drücke [thrive:input]g_pack_commands[/thrive:input], um ein Menü zu öffnen mit dem du anderen Mitgliedern deiner Spezies Befehle erteilen kannst."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Werde aggressiv"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:146
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fliehe"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Folge mir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:140
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Kein Befehl"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:142
+#: ../src/microbe_stage/MicrobeHUD.cs:145
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Bewege dich zu mir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signal zum aussenden"
 
@@ -5416,7 +5421,7 @@ msgstr "Spezialmaustaste 2"
 msgid "SPECIES"
 msgstr "Arten"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "SPECIES_COLON"
 msgstr "Arten:"
 
@@ -6610,9 +6615,6 @@ msgstr "Herauszoomen"
 
 #, fuzzy
 #~ msgid "TOTAL_TIME_USED_COLON"
-#~ msgstr "Status:"
-
-#~ msgid "STATUS_COLON"
 #~ msgstr "Status:"
 
 #, fuzzy
