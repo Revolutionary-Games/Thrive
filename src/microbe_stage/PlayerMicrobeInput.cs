@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -178,11 +179,23 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player?.State != MicrobeState.Unbinding)
             return false;
 
-        if (stage.HoverInfo.HoveredMicrobes.Count == 0)
+        var inspectables = stage.HoverInfo.InspectableEntities.ToList();
+        if (inspectables.Count == 0)
             return false;
 
-        var target = stage.HoverInfo.HoveredMicrobes[0];
-        RemoveCellFromColony(target);
+        var target = inspectables[0];
+        if (target is not Microbe microbe)
+            return false;
+
+        var raycastData = stage.HoverInfo.GetRaycastData(target);
+        if (raycastData == null)
+            return false;
+
+        var actualMicrobe = microbe.GetMicrobeFromShape(raycastData.Value.Shape);
+        if (actualMicrobe == null)
+            return false;
+
+        RemoveCellFromColony(actualMicrobe);
 
         stage.HUD.HintText = string.Empty;
         return true;
