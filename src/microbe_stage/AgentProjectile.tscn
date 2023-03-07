@@ -36,7 +36,7 @@ size = Vector2( 5, 5 )
 
 [node name="AgentProjectile" type="RigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00433397, 0, 0.00440288 )
-collision_layer = 2147483648
+collision_layer = 1073741824
 collision_mask = 3
 mass = 0.5
 contacts_reported = 1
