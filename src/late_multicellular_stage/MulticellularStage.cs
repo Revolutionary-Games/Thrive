@@ -300,6 +300,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             new SimpleWorldResource(GD.Load<PackedScene>("res://assets/models/Iron4.tscn"), "RESOURCE_ROCK");
         var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
+        // TODO: remove once resource data is loaded from JSON
+        TranslationServer.Translate("RESOURCE_ROCK");
+
         foreach (var position in new[]
                  {
                      new Vector3(10, 0, 5),
