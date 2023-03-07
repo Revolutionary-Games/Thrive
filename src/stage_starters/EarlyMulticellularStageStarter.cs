@@ -1,9 +1,8 @@
 using System.Linq;
 using Godot;
 
-public class EarlyMulticellularStage : ComplexStageSwitcherBase
+public class EarlyMulticellularStageStarter : ComplexStageStarterBase
 {
-    protected override bool UsesScenePreModification => true;
     protected override MainGameState SimplyLoadableGameState => MainGameState.MicrobeStage;
 
     protected override void CustomizeLoadedScene(Node scene)

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://src/stage_starters/SimpleStageSwitcher.cs" type="Script" id=1]
-
-[node name="EarlyMulticellularEditor" type="Node"]
-script = ExtResource( 1 )
-StageToSwitchTo = 3

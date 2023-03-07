@@ -584,9 +584,11 @@
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
-    <Compile Include="src\stage_starters\ComplexStageSwitcherBase.cs" />
-    <Compile Include="src\stage_starters\EarlyMulticellularStage.cs" />
-    <Compile Include="src\stage_starters\SimpleStageSwitcher.cs" />
+    <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
+    <Compile Include="src\stage_starters\AwareStageStarter.cs" />
+    <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />
+    <Compile Include="src\stage_starters\EarlyMulticellularStageStarter.cs" />
+    <Compile Include="src\stage_starters\SimpleStageStarter.cs" />
     <Compile Include="src\steam\ISteamClient.cs" />
     <Compile Include="src\steam\ISteamSignalReceiver.cs" />
     <Compile Include="src\steam\SteamHandler.cs" />

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class SimpleStageSwitcher : Node
+public class SimpleStageStarter : Node
 {
     [Export]
     public MainGameState StageToSwitchTo = MainGameState.Invalid;

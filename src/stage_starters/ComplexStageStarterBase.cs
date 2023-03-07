@@ -1,16 +1,14 @@
 ﻿using Godot;
 
 /// <summary>
-///   Helper base class for making more complex stage starters than <see cref="SimpleStageSwitcher"/> can handle
+///   Helper base class for making more complex stage starters than <see cref="SimpleStageStarter"/> can handle
 /// </summary>
-public abstract class ComplexStageSwitcherBase : Node
+public abstract class ComplexStageStarterBase : Node
 {
     [Export]
     public bool FadeFromBlack = true;
 
     private bool switchStarted;
-
-    protected abstract bool UsesScenePreModification { get; }
 
     /// <summary>
     ///   When default <see cref="LoadScene"/> is used, this property determines which scene it loads
@@ -34,24 +32,15 @@ public abstract class ComplexStageSwitcherBase : Node
 
         switchStarted = true;
 
-        if (UsesScenePreModification)
-        {
-            GD.Print("Creating and modifying scene");
-            var scene = LoadScene();
+        GD.Print("Creating and modifying scene");
+        var scene = LoadScene();
 
-            CustomizeLoadedScene(scene);
+        CustomizeLoadedScene(scene);
 
-            GD.Print("Switching to target scene");
-            SceneManager.Instance.SwitchToScene(scene);
-        }
-        else
-        {
-            GD.Print("Switching to target scene");
-            var scene = SwitchToStageScene();
+        GD.Print("Switching to target scene");
+        SceneManager.Instance.SwitchToScene(scene);
 
-            GD.Print("Post modifying target scene");
-            CustomizeLoadedScene(scene);
-        }
+        CustomizeAttachedScene(scene);
     }
 
     protected virtual Node SwitchToStageScene()
@@ -69,8 +58,16 @@ public abstract class ComplexStageSwitcherBase : Node
 
     /// <summary>
     ///   Used by the derived classes to actually do the complex scene modification needed for this.
-    ///   When this is called depends on <see cref="UsesScenePreModification"/>
+    ///   This is called after loading the scene but before attaching it.
     /// </summary>
     /// <param name="scene">The loaded scene to customize</param>
     protected abstract void CustomizeLoadedScene(Node scene);
+
+    /// <summary>
+    ///   Extra scene modification step that is called after the scene has been attached
+    /// </summary>
+    /// <param name="scene">The attached scene</param>
+    protected virtual void CustomizeAttachedScene(Node scene)
+    {
+    }
 }
