@@ -26,8 +26,12 @@ public class InteractablePopup : Control
 
     private IInteractableEntity? openedFor;
 
-    [Signal]
+    /// <summary>
+    ///   Godot can't handle this interface type to be passed through its signals, so we use a native C# signal here
+    /// </summary>
     public delegate void OnInteractionSelected(IInteractableEntity entity, InteractionType interactionType);
+
+    public OnInteractionSelected? OnInteractionSelectedHandler { get; set; }
 
     public override void _Ready()
     {
@@ -118,6 +122,6 @@ public class InteractablePopup : Control
         GUICommon.Instance.PlayButtonPressSound();
         popup.Hide();
 
-        EmitSignal(nameof(OnInteractionSelected), openedFor, interactionType);
+        OnInteractionSelectedHandler?.Invoke(openedFor, interactionType);
     }
 }

@@ -62,6 +62,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // HoverInfo.Init(Camera, Clouds);
 
         interactableSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
+        interactionPopup.OnInteractionSelectedHandler += ForwardInteractionSelectionToPlayer;
 
         SetupStage();
     }
@@ -490,6 +491,11 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                 InteractableSystemPath.Dispose();
                 InteractionPopupPath.Dispose();
             }
+
+            interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
+
+            // TODO: remove, just testing that this doesn't cause issues
+            interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
         }
 
         base.Dispose(disposing);
@@ -517,5 +523,14 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     private void OnPlayerReproductionStatusChanged(MulticellularCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
+    }
+
+    private void ForwardInteractionSelectionToPlayer(IInteractableEntity entity, InteractionType interactionType)
+    {
+        if (Player == null)
+            return;
+
+        if (!Player.AttemptInteraction(entity, interactionType))
+            GD.Print("Player couldn't perform the selected action");
     }
 }

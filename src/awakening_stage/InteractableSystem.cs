@@ -127,6 +127,9 @@ public class InteractableSystem : Control
                 continue;
             }
 
+            if (interactable.InteractionDisabled)
+                continue;
+
             var distance = playerPosition.DistanceSquaredTo(interactable.EntityNode.GlobalTranslation);
 
             var offset = interactable.InteractDistanceOffset;
@@ -303,6 +306,7 @@ public class InteractableSystem : Control
         public bool Marked = true;
 
         public bool Highlighted;
+        public bool HiddenForBeingBehindCamera;
 
         public CreatedPrompt(KeyPrompt prompt, IInteractableEntity entity)
         {

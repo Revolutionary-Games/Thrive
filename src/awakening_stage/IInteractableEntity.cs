@@ -5,9 +5,21 @@
 /// </summary>
 public interface IInteractableEntity : IEntity, IPlayerReadableName
 {
+    /// <summary>
+    ///   Offset added to the distance at which it is possible to interact with this
+    /// </summary>
     public float InteractDistanceOffset { get; }
 
+    /// <summary>
+    ///   If not null this is added to the world position of this interactable when considering where the point to
+    ///   interact with is located
+    /// </summary>
     public Vector3? ExtraInteractOverlayOffset { get; }
+
+    /// <summary>
+    ///   Set to true when this interactable is disabled and nothing should be able to interact with this
+    /// </summary>
+    public bool InteractionDisabled { get; set; }
 
     // Interaction settings
 

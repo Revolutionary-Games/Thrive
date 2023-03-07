@@ -283,6 +283,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // {
         //     Hitpoints = 0.0f;
         //     Kill();
+        // TODO: kill method needs to call DropAll()
         // }
     }
 
@@ -324,6 +325,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         else
         {
             // TODO: only allow jumping when touching the ground
+            // TODO: suppress jump when the user just interacted with a dialog to confirm something, maybe jump should
+            // use the on press key thing to only trigger jumping once?
             ApplyCentralImpulse(new Vector3(0, 1, 0) * delta * 1000);
         }
     }
@@ -350,7 +353,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     {
         if (target.CanBeCarried)
         {
-            bool full = FitsInCarryingCapacity(target);
+            bool full = !FitsInCarryingCapacity(target);
             yield return (InteractionType.Pickup, !full,
                 full ? TranslationServer.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
         }
@@ -362,8 +365,93 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         }
     }
 
+    public bool AttemptInteraction(IInteractableEntity target, InteractionType interactionType)
+    {
+        // Make sure action is allowed first
+        if (!CalculatePossibleActions(target).Any(t => t.Enabled && t.Interaction == interactionType))
+            return false;
+
+        // Then perform it
+        switch (interactionType)
+        {
+            case InteractionType.Pickup:
+                return PickupObject(target);
+            case InteractionType.Craft:
+                throw new NotImplementedException("TODO: open crafting interface with this entity preselected");
+            default:
+                GD.PrintErr($"Unimplemented action handling for {interactionType}");
+                return false;
+        }
+
+        return true;
+    }
+
     public bool FitsInCarryingCapacity(IInteractableEntity interactableEntity)
     {
         return carriedObjects.Count + 1 <= maximumCarriedObjects;
+    }
+
+    public bool PickupObject(IInteractableEntity target)
+    {
+        if (!FitsInCarryingCapacity(target))
+            return false;
+
+        var targetNode = target.EntityNode;
+
+        // Remove the object from the world
+        targetNode.ReParent(this);
+
+        // TODO: better positioning and actually attaching it to the place the object is carried in
+        var offset = new Vector3(0, 3, 1) * (carriedObjects.Count + 1);
+
+        targetNode.Translation = offset;
+
+        // Add the object to be carried
+        carriedObjects.Add(target);
+
+        // Would be very annoying to keep getting the prompt to interact with the object
+        target.InteractionDisabled = true;
+
+        return true;
+    }
+
+    public void DropAll()
+    {
+        while (carriedObjects.Count > 0)
+        {
+            // TODO: the missing check that the dropped position is free of other physics objects is really going to be
+            // a problem here
+            DropObject(carriedObjects[carriedObjects.Count - 1]);
+        }
+    }
+
+    public bool DropObject(IInteractableEntity entity)
+    {
+        if (!carriedObjects.Remove(entity))
+        {
+            // We weren't carrying that
+            GD.PrintErr("Can't drop something creature isn't carrying");
+            return false;
+        }
+
+        var entityNode = entity.EntityNode;
+
+        // TODO: drop position based on creature size, and also confirm the drop point is free from other physics
+        // objects
+
+        var offset = new Vector3(0, 1.5f, -3);
+
+        // Assume our parent is the world
+        var world = GetParent() ?? throw new Exception("Creature has no parent to place dropped entity in");
+
+        var ourTransform = GlobalTransform;
+
+        entityNode.ReParent(world);
+        entityNode.GlobalTranslation = ourTransform.origin + ourTransform.basis.Quat().Xform(offset);
+
+        // Allow others to interact with the object again
+        entity.InteractionDisabled = false;
+
+        return true;
     }
 }

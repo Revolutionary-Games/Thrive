@@ -27,6 +27,9 @@ public class ResourceEntity : RigidBody, IInteractableEntity, IWorldResource
     [JsonIgnore]
     public Vector3? ExtraInteractOverlayOffset => null;
 
+    [JsonProperty]
+    public bool InteractionDisabled { get; set; }
+
     [JsonIgnore]
 
     // TODO: resources that are too heavy to carry
