@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 /// </summary>
 public class FullModDetails : IEquatable<FullModDetails>
 {
-    [JsonConstructor]
+
     public FullModDetails(string internalName, string folder, ModInfo info)
     {
         InternalName = internalName;
@@ -21,11 +21,21 @@ public class FullModDetails : IEquatable<FullModDetails>
         Folder = string.Empty;
     }
 
+    /// <summary>
+    ///     The compatibility with the current version of Thrive.
+    /// </summary>
     public enum VersionCompatibility
     {
+        /// <summary> It has been explicitly stated to be incompatible. </summary>
         Incompatible = -2,
+
+        /// <summary> It might not be compatible as it has not been explicitly stated to be compatible. </summary>
         NotExplicitlyCompatible,
+
+        /// <summary> The variable has not been set or no version compatibility has been stated. </summary>
         Unknown,
+
+        /// <summary> It has been explicitly stated to be compatible. </summary>
         Compatible,
     }
 
@@ -35,20 +45,6 @@ public class FullModDetails : IEquatable<FullModDetails>
     /// <summary>
     ///   Is the mod compatible with the current version of thrive?
     /// </summary>
-    /// <remarks>
-    ///    <para>
-    ///        1 = Compatible - It has been explicitly stated to be compatible.
-    ///    </para>
-    ///    <para>
-    ///        0 = Unknown - The variable has not been set or no version compatibility has been stated.
-    ///    </para>
-    ///    <para>
-    ///        -1 = Might Not Be Compatible - It has not been explicitly stated to be compatible.
-    ///    </para>
-    ///    <para>
-    ///        -2 = Not Compatible - It has been explicitly stated to be incompatible.
-    ///    </para>
-    /// </remarks>
     public VersionCompatibility IsCompatibleVersion { get; set; }
 
     /// <summary>

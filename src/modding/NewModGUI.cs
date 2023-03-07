@@ -4,6 +4,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Environment = System.Environment;
+using File = Godot.File;
 using Path = System.IO.Path;
 
 public class NewModGUI : Control
@@ -393,7 +394,8 @@ public class NewModGUI : Control
 
     private void IconFileDialogFileSelected(string path)
     {
-        if (Path.GetFileName(path) == iconFileDialog.CurrentFile)
+        using var file = new File();
+        if (!file.FileExists(iconFileDialog.CurrentFile))
         {
             iconFile.Text = iconFileDialog.CurrentFile;
         }
@@ -406,7 +408,8 @@ public class NewModGUI : Control
 
     private void PckFileDialogFileSelected(string path)
     {
-        if (Path.GetFileName(path) == pckFileDialog.CurrentFile)
+        using var file = new File();
+        if (!file.FileExists(pckFileDialog.CurrentFile))
         {
             pckName.Text = pckFileDialog.CurrentFile;
         }
@@ -419,7 +422,8 @@ public class NewModGUI : Control
 
     private void AssemblyFileDialogFileSelected(string path)
     {
-        if (Path.GetFileName(path) == assemblyFileDialog.CurrentFile)
+        using var file = new File();
+        if (!file.FileExists(assemblyFileDialog.CurrentFile))
         {
             modAssembly.Text = assemblyFileDialog.CurrentFile;
         }

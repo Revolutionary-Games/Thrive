@@ -96,25 +96,25 @@ public class ModInfo
     ///   Mods that is required for this one to load.
     ///   Like Dependencies except the load order does not matter.
     /// </summary>
-    [JsonProperty("Required Mods")]
+    [JsonProperty("Required")]
     public List<string>? RequiredMods { get; set; }
 
     /// <summary>
     ///   Mods that can not be loaded with this one.
     /// </summary>
-    [JsonProperty("Incompatible Mods")]
+    [JsonProperty("Incompatible")]
     public List<string>? IncompatibleMods { get; set; }
 
     /// <summary>
     ///   Mods that have to be loaded before this one. Different from dependencies as it won't error if not included.
     /// </summary>
-    [JsonProperty("Load Before")]
+    [JsonProperty("LoadedBeforeThis")]
     public List<string>? LoadBefore { get; set; }
 
     /// <summary>
-    ///   Mods that have to be loaded after this one. Different from dependencies as it won't error if not included.
+    ///   Mods that have to be loaded after this one but won't error if not included.
     /// </summary>
-    [JsonProperty("Load After")]
+    [JsonProperty("LoadedAfterThis")]
     public List<string>? LoadAfter { get; set; }
 
     // Start of technical properties
