@@ -44,7 +44,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     // TODO: create a multicellular equivalent class
     [JsonIgnore]
-    public PlayerHoverInfo HoverInfo { get; private set; } = null!;
+    public PlayerInspectInfo HoverInfo { get; private set; } = null!;
 
     protected override IStageHUD BaseHUD => HUD;
 
@@ -74,7 +74,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         base.ResolveNodeReferences();
 
         HUD = GetNode<MulticellularHUD>("MulticellularHUD");
-        HoverInfo = GetNode<PlayerHoverInfo>("PlayerLookingAtInfo");
+        HoverInfo = GetNode<PlayerInspectInfo>("PlayerLookingAtInfo");
 
         interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
         interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);

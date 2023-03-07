@@ -5,10 +5,10 @@
 [ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" type="Script" id=4]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/awakening_stage/InteractableSystem.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/awakening_stage/InteractablePopup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/general/PlayerInspectInfo.cs" type="Script" id=6]
+[ext_resource path="res://src/awakening_stage/InteractableSystem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/awakening_stage/InteractablePopup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 
 [node name="MulticellularStage" type="Node"]
@@ -31,12 +31,12 @@ shadow_enabled = true
 
 [node name="PlayerLookingAtInfo" type="Node" parent="."]
 pause_mode = 2
-script = ExtResource( 84 )
+script = ExtResource( 6 )
 
 [node name="PlayerMulticellularInput" type="Node" parent="."]
 script = ExtResource( 4 )
 
-[node name="InteractableSystem" parent="." instance=ExtResource( 6 )]
+[node name="InteractableSystem" parent="." instance=ExtResource( 7 )]
 pause_mode = 1
 
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
@@ -58,7 +58,7 @@ margin_top = 120.0
 margin_right = 822.0
 margin_bottom = 540.0
 
-[node name="InteractablePopup" parent="." instance=ExtResource( 7 )]
+[node name="InteractablePopup" parent="." instance=ExtResource( 8 )]
 
 [node name="RadialPopup" parent="." instance=ExtResource( 87 )]
 

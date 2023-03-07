@@ -182,7 +182,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             return;
 
         world = GetNode<Node>("World");
-        rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
+        rootOfDynamicallySpawned = world.GetNode<Node>("DynamicallySpawned");
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         hudRoot = GetNode<Control>(HUDRootPath);

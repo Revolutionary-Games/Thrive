@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 16:03+0200\n"
+"POT-Creation-Date: 2023-03-06 18:07+0700\n"
 "PO-Revision-Date: 2023-02-15 11:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -51,13 +51,13 @@ msgstr "Durduruldu."
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelajik"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:231
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:236
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
 #, fuzzy
 msgid "ACTION_AWAKEN"
 msgstr "Uyandır"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Uyandır"
@@ -103,10 +103,15 @@ msgstr "Gelişmiş kurulum görünümünü aç"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Oksijenli Azot Fiksasyonu"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1532
-#: ../src/microbe_stage/MicrobeStage.tscn:1605
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1393
+#: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Ajanlar"
+
+#: ../src/microbe_stage/AgentProperties.cs:20
+#, fuzzy
+msgid "AGENT_NAME"
+msgstr "{0} {1}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -171,9 +176,9 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Ortam seviyesi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1309
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1170
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1347
+#: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
 msgstr "Amonyak"
 
@@ -276,7 +281,7 @@ msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Kayıt dosyası yazma girişimi başarısız oldu. Girilen kayıt ismi çok uzun veya kayıt klasörüne yazma erişimin yok."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:571
+#: ../src/gui_common/MouseHoverPanel.tscn:46
 msgid "AT_CURSOR"
 msgstr "İmleç Üzerinde:"
 
@@ -418,13 +423,13 @@ msgstr "Bası Arttır"
 msgid "BATHYPELAGIC"
 msgstr "Batipelajik"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:467
-#: ../src/microbe_stage/MicrobeStage.tscn:1795
+#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopik Ol ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:431
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Çok Hücreli Ol ({0}/{1})"
 
@@ -639,27 +644,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Karbondioksit"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:926
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "bol miktarda"
 
-#: ../src/general/StageHUDBase.cs:966
+#: ../src/general/StageHUDBase.cs:930
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "makul miktarda"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:934
 msgid "CATEGORY_LITTLE"
 msgstr "az miktarda"
 
-#: ../src/general/StageHUDBase.cs:964
+#: ../src/general/StageHUDBase.cs:928
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "oldukça fazla"
 
-#: ../src/general/StageHUDBase.cs:968
+#: ../src/general/StageHUDBase.cs:932
 msgid "CATEGORY_SOME"
 msgstr "biraz"
 
-#: ../src/general/StageHUDBase.cs:972
+#: ../src/general/StageHUDBase.cs:936
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "çok az miktarda"
 
@@ -948,12 +953,12 @@ msgstr "Topluluk vikimizi ziyaret et"
 msgid "COMPILED_AT_COLON"
 msgstr "Derlenme tarihi:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1159
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1020
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1203
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
@@ -961,8 +966,7 @@ msgstr "Bileşikler"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Bileşikleri göster / gizle"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:571
-#: ../src/microbe_stage/MicrobeStage.tscn:622
+#: ../src/microbe_stage/MicrobeHUD.cs:86
 msgid "COMPOUNDS_COLON"
 msgstr "Bileşikler:"
 
@@ -1238,11 +1242,11 @@ msgstr "Ölü bölge kalibrasyonu sıfırlandı"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Ölü Bölge Yapılandırması"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:946
+#: ../src/microbe_stage/Microbe.Contact.cs:962
 msgid "DEATH"
 msgstr "ölüm"
 
-#: ../src/engine/DebugOverlays.Inspector.cs:23
+#: ../src/engine/DebugOverlays.Inspector.cs:24
 #: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1354,7 +1358,7 @@ msgstr "Gelişme Vikisi"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Geliştirici vikimizi ziyaret et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:228
+#: ../src/microbe_stage/MicrobeHUD.cs:243
 msgid "DEVOURED"
 msgstr "Yutuldun"
 
@@ -1677,7 +1681,7 @@ msgstr "(oyunda rastgele oluşan gizemler)"
 msgid "EDITOR"
 msgstr "Düzenleyici"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1963
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Düzenleyiciye gir ve türünde değişiklik yap"
 
@@ -1744,8 +1748,8 @@ msgstr "Mevcut Atölye ID'sini Gir"
 msgid "ENTITY_LABEL"
 msgstr "Varlık etiketi"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:693
-#: ../src/microbe_stage/MicrobeStage.tscn:740
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:554
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "Ortam"
 
@@ -1801,7 +1805,7 @@ msgstr "Kaydetme Hatası"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1212
+#: ../src/microbe_stage/Microbe.Contact.cs:1228
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -1973,8 +1977,8 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Kuşağı Tamamla"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2084
-#: ../src/microbe_stage/MicrobeStage.tscn:2136
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1944
+#: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Toksin ateşle"
 
@@ -1990,6 +1994,11 @@ msgstr "Kamçı (veya Flagellum), hücrenin bir doğrultuda kıvrılması ve ile
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanır."
+
+#: ../src/microbe_stage/MicrobeHUD.cs:88
+#, fuzzy
+msgid "FLOATING_CHUNKS_COLON"
+msgstr "Dönme:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2052,12 +2061,12 @@ msgstr "Fosilleşme"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Müzeye kaydetmek için bu türü fosilleştir. Thriveopedi'den müzeye erişebilirsin veya serbest yapım düzenleyicisinde fosilleşmiş türü yükleyebilirsin."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:203
+#: ../src/microbe_stage/MicrobeHUD.cs:218
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Bu türü fosilleştir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:202
+#: ../src/microbe_stage/MicrobeHUD.cs:217
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Bu türü fosilleştir (zaten fosilleştirildi)"
 
@@ -2154,9 +2163,9 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {2} arazisinden {1} arazisine göç etti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1257
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1118
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1301
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
@@ -2264,7 +2273,7 @@ msgstr "Komut takımı menüsünü göstermek için basılı tutun"
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "İmleci göstermek için basılı tut"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:630
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:491
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "İmleci göstermek için [thrive:input]g_free_cursor[/thrive:input] tuşunu basılı tut"
 
@@ -2294,9 +2303,9 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1413
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1274
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1448
+#: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
@@ -2340,7 +2349,7 @@ msgstr "Sonsuz Bileşik"
 msgid "INFINITE_MP"
 msgstr "Sonsuz MP"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1544
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
 msgstr "İçeri Alınmış Madde"
 
@@ -2424,9 +2433,9 @@ msgstr ""
 "Prototipin bazı kısımları kısıtlı olarak kaydetmeye izin verebilir."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1465
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1326
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1494
+#: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
 msgstr "Demir"
 
@@ -2853,8 +2862,8 @@ msgstr "Sadece BH etkinleştirildiğinde bazı ayarlar devre dışı kalabilir"
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hidrotermal bacalar"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1017
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:878
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "Işık"
 
@@ -3010,10 +3019,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "Y"
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:520
-msgid "LOOKING_AT"
-msgstr "Bakılan:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3706,11 +3711,11 @@ msgstr "Sağa doğru git"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Herhangi Bir Araziye Git"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1564
 msgid "MOVE_TO_LAND"
 msgstr "Karaya Çık"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1780
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre kolonin olduğunda açılır."
 
@@ -3722,7 +3727,7 @@ msgstr "Bu Araziye Git"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Yukarı doğru git ya da zıpla"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2138
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1996
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
@@ -3732,12 +3737,12 @@ msgstr ""
 "\n"
 "Planda olan, karaya çıkışı kademeli yapmak ve ani bir değişim ile yapmamak."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2137
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "Karaya Çıkılsın mı?"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2133
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "Karaya çıkmak üzeresin. Oyunda daha fazla ilerlemek için bu gerekli. Karaya çıktığında bir daha geri dönemezsin.\n"
@@ -3746,7 +3751,7 @@ msgstr ""
 "\n"
 "Planda olan, karaya çıkışı kademeli yapmak ve ani bir değişim ile yapmamak."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2132
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Karaya Çıkılsın mı?"
 
@@ -3760,8 +3765,8 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1643
-#: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1504
+#: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "Müsilaj"
 
@@ -3945,12 +3950,11 @@ msgstr "Normal"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Hücre zarının en temel formu. Hasara karşı koruyuculuğu çok azdır. Ayrıca şeklinin bozulmaması için fazla enerji gerektirir. Avantajı, hücrenin hareketine izin vermesi ve besinlerin çabuk emilimini sağlaması."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:546
-#: ../src/microbe_stage/MicrobeStage.tscn:597
+#: ../src/gui_common/MouseHoverPanel.tscn:72
 msgid "NOTHING_HERE"
 msgstr "Burada bir şey yok"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:340
+#: ../src/late_multicellular_stage/MulticellularStage.cs:346
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -3966,15 +3970,15 @@ msgstr "İçeri alınan maddedeki toksinler tarafından hasar alınıyor"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Hedefi yutmak için {0} eksik"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1770
+#: ../src/microbe_stage/Microbe.Contact.cs:1786
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Mevcut hücre büyüklüğü, hedefi yutmak için çok küçük"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1765
+#: ../src/microbe_stage/Microbe.Contact.cs:1781
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "İçeri alınan madde deposunda, hedefi yutmak için yeterli alan yok"
 
-#: ../src/general/StageHUDBase.cs:608
+#: ../src/general/StageHUDBase.cs:572
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Düzenleyici, şimdi girilmek için hazır"
 
@@ -4058,15 +4062,22 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
+#: ../src/microbe_stage/AgentProjectile.cs:25
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
+#: ../src/microbe_stage/MicrobeHUD.cs:377
 msgid "N_A"
 msgstr "Bilinmeyen"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
 msgid "N_A_MP"
 msgstr "Bilinmeyen MP"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:420
+#, fuzzy
+msgid "N_TIMES"
+msgstr "2x"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "OCTOBER"
@@ -4300,8 +4311,8 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1592
-#: ../src/microbe_stage/MicrobeStage.tscn:1662
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
@@ -4449,7 +4460,7 @@ msgstr "DURAKLATILDI"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Oyuna devam et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:67
+#: ../src/microbe_stage/MicrobeHUD.cs:72
 msgid "PAUSE_PROMPT"
 msgstr "[center]Oyuna devam etmek için [thrive:input]g_pause[/thrive:input] tuşuna bas[/center]"
 
@@ -4470,7 +4481,7 @@ msgid "PEACEFUL"
 msgstr "Barışçıl"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:692
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4479,7 +4490,7 @@ msgstr "Barışçıl"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:234
+#: ../src/microbe_stage/MicrobeHUD.cs:249
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
@@ -4497,9 +4508,9 @@ msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1361
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1222
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1396
+#: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
@@ -4548,8 +4559,9 @@ msgstr "Gezegen oluşturma çok yakında!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
 
-#: ../src/general/StageHUDBase.cs:1173
-msgid "PLAYER_CELL"
+#: ../src/microbe_stage/MicrobeHUD.cs:399
+#, fuzzy
+msgid "PLAYER"
 msgstr "Oyuncu Hücresi"
 
 #: ../src/general/NewGameSettings.tscn:588
@@ -4610,8 +4622,8 @@ msgstr "Yeni oyunda mikrop tanıtımını oynat"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1743
-#: ../src/microbe_stage/MicrobeStage.tscn:1815
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1604
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
@@ -4639,8 +4651,8 @@ msgstr "Tahminin ardındaki detaylı bilgiyi incele"
 msgid "PRESSURE"
 msgstr "Basınç"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1072
-#: ../src/microbe_stage/MicrobeStage.tscn:1119
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:933
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
@@ -5132,8 +5144,8 @@ msgid "SEA_FLOOR"
 msgstr "Deniz Tabanı"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2108
-#: ../src/microbe_stage/MicrobeStage.tscn:2182
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "Müsilaj salgıla"
 
@@ -5265,27 +5277,27 @@ msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık v
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Türünün diğer üyelerine komut vermede kullanılan menüyü açmak için [thrive:input]g_pack_commands[/thrive:input] tuşunu basılı tut."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:129
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Agresif Ol"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:128
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Kaç"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:126
+#: ../src/microbe_stage/MicrobeHUD.cs:141
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Beni Takip Et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:125
+#: ../src/microbe_stage/MicrobeHUD.cs:140
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Komut Yok"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:127
+#: ../src/microbe_stage/MicrobeHUD.cs:142
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Bana Gel"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:132
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 msgid "SIGNAL_TO_EMIT"
 msgstr "Yollanacak Sinyal"
 
@@ -5390,8 +5402,7 @@ msgstr "Özel Fare Tuşu 2"
 msgid "SPECIES"
 msgstr "Türler"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:611
-#: ../src/microbe_stage/MicrobeStage.tscn:662
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "SPECIES_COLON"
 msgstr "Türler:"
 
@@ -5425,10 +5436,6 @@ msgstr "Tür adı..."
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:284
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Tür adı çok uzun!"
-
-#: ../src/general/StageHUDBase.cs:1186
-msgid "SPECIES_N_TIMES"
-msgstr "{0} (x{1})"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:507
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
@@ -5613,11 +5620,11 @@ msgstr "Yapısal"
 msgid "STRUCTURE"
 msgstr "Yapı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:765
+#: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:758
+#: ../src/microbe_stage/Microbe.Contact.cs:774
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
@@ -5697,8 +5704,8 @@ msgstr "Ekran görüntüsü al"
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:961
-#: ../src/microbe_stage/MicrobeStage.tscn:1008
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:822
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "Sıc."
 
@@ -5895,7 +5902,7 @@ msgid "TITLE_COLON"
 msgstr "Başlık:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2147
+#: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "Bağ kurma moduna geç"
 
@@ -5904,9 +5911,9 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Hata ayıklama panelini aç"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2055
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2070
-#: ../src/microbe_stage/MicrobeStage.tscn:2123
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1916
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1930
+#: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Yutma moduna geç"
 
@@ -6182,11 +6189,11 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Herhangi bir modu yüklemek ya da kaldırmak için değişiklikleri uygulaman gerekir."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2159
+#: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "Hepsinin bağını kopar"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:164
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:165
 msgid "UNBIND_HELP_TEXT"
 msgstr "Bağ Koparma Modu"
 
@@ -6317,7 +6324,7 @@ msgstr "Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, 
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Hücrenin depo alanını arttırır."
 
-#: ../src/general/StageHUDBase.cs:729 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:693 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6548,6 +6555,12 @@ msgstr "Yakınlaştır"
 #: ../simulation_parameters/common/input_options.json:86
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "LOOKING_AT"
+#~ msgstr "Bakılan:"
+
+#~ msgid "SPECIES_N_TIMES"
+#~ msgstr "{0} (x{1})"
 
 #~ msgid "BECOME_AWARE"
 #~ msgstr "Farkında Ol"

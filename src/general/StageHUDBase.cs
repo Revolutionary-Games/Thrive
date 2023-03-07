@@ -29,9 +29,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath MouseHoverPanelPath = null!;
 
     [Export]
-    public NodePath HoveredCellsContainerPath = null!;
-
-    [Export]
     public NodePath MenuPath = null!;
 
     [Export]
@@ -149,12 +146,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath PauseInfoPath = null!;
 
     [Export]
-    public NodePath HoveredCompoundsContainerPath = null!;
-
-    [Export]
-    public NodePath HoverPanelSeparatorPath = null!;
-
-    [Export]
     public NodePath AgentsPanelPath = null!;
 
     [Export]
@@ -207,15 +198,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public PackedScene PatchExtinctionBoxScene = null!;
 #pragma warning restore CA2213
 
-    // Inspections and cleanup disagree here
-    // ReSharper disable RedundantNameQualifier
-    protected readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
-
-    protected readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
-        new();
-
-    // ReSharper restore RedundantNameQualifier
-
     protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 
     protected readonly List<Compound> allAgents = new();
@@ -237,7 +219,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 #pragma warning disable CA2213
     protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
     protected AnimationPlayer environmentGroupAnimationPlayer = null!;
-    protected MarginContainer mouseHoverPanel = null!;
+    protected MouseHoverPanel mouseHoverPanel = null!;
     protected Panel environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
     protected ActionButton engulfHotkey = null!;
@@ -303,9 +285,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private HUDMessages hudMessages = null!;
 
-    private VBoxContainer hoveredCompoundsContainer = null!;
-    private HSeparator hoveredCellsSeparator = null!;
-    private VBoxContainer hoveredCellsContainer = null!;
     private Panel compoundsPanel = null!;
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -408,7 +387,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
-        mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
+        mouseHoverPanel = GetNode<MouseHoverPanel>(MouseHoverPanelPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
 
         environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
@@ -446,9 +425,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         menu = GetNode<PauseMenu>(MenuPath);
         compoundsGroupAnimationPlayer = GetNode<AnimationPlayer>(CompoundsGroupAnimationPlayerPath);
         environmentGroupAnimationPlayer = GetNode<AnimationPlayer>(EnvironmentGroupAnimationPlayerPath);
-        hoveredCompoundsContainer = GetNode<VBoxContainer>(HoveredCompoundsContainerPath);
-        hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
-        hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchNameOverlay = GetNode<PatchNameOverlay>(PatchOverlayPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
@@ -476,13 +452,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
-
-        foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
-        {
-            var hoveredCompoundControl = new HoveredCompoundControl(compound);
-            hoveredCompoundControls.Add(compound, hoveredCompoundControl);
-            hoveredCompoundsContainer.AddChild(hoveredCompoundControl);
-        }
 
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         atp = SimulationParameters.Instance.GetCompound("atp");
@@ -529,24 +498,19 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         UpdateATP(delta);
         UpdateHealth(delta);
-        UpdateHoverInfo(delta);
+
+        hoverInfoTimeElapsed += delta;
+        if (hoverInfoTimeElapsed > Constants.HOVER_PANEL_UPDATE_INTERVAL)
+        {
+            UpdateHoverInfo(hoverInfoTimeElapsed);
+            hoverInfoTimeElapsed = 0;
+        }
 
         UpdatePopulation();
         UpdateProcessPanel();
         UpdatePanelSizing(delta);
 
         UpdateFossilisationButtons();
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            foreach (var hoveredCompoundControl in hoveredCompoundControls)
-            {
-                hoveredCompoundControl.Value.UpdateTranslation();
-            }
-        }
     }
 
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
@@ -1120,97 +1084,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     }
 
     /// <summary>
-    ///   Updates the mouse hover indicator / player look at box with stuff.
+    ///   Updates the mouse hover indicator / player look at box (inspector panel) with stuff.
     /// </summary>
-    protected virtual void UpdateHoverInfo(float delta)
-    {
-        hoverInfoTimeElapsed += delta;
-
-        if (hoverInfoTimeElapsed < Constants.HOVER_PANEL_UPDATE_INTERVAL)
-            return;
-
-        hoverInfoTimeElapsed = 0;
-
-        // Refresh cells list
-        hoveredCellsContainer.FreeChildren();
-
-        var container = mouseHoverPanel.GetNode("PanelContainer/MarginContainer/VBoxContainer");
-
-        // var mousePosLabel = container.GetNode<Label>("MousePos");
-        var nothingHere = container.GetNode<MarginContainer>("NothingHere");
-
-        var hoveredCompounds = GetHoveredCompounds();
-
-        // Show hovered compound information in GUI
-        bool anyCompoundVisible = false;
-        foreach (var compound in hoveredCompoundControls)
-        {
-            var compoundControl = compound.Value;
-            hoveredCompounds.TryGetValue(compound.Key, out float amount);
-
-            // It is not useful to show trace amounts of a compound, so those are skipped
-            if (amount < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
-            {
-                compoundControl.Visible = false;
-                continue;
-            }
-
-            compoundControl.Category = GetCompoundDensityCategory(amount);
-            compoundControl.CategoryColor = GetCompoundDensityCategoryColor(amount);
-            compoundControl.Visible = true;
-            anyCompoundVisible = true;
-        }
-
-        hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = anyCompoundVisible;
-
-        // Show the species name and count of hovered cells
-        hoveredSpeciesCounts.Clear();
-        foreach (var (isPlayer, species) in GetHoveredSpecies())
-        {
-            if (isPlayer)
-            {
-                AddHoveredCellLabel(species.FormattedName +
-                    " (" + TranslationServer.Translate("PLAYER_CELL") + ")");
-                continue;
-            }
-
-            hoveredSpeciesCounts.TryGetValue(species, out int count);
-            hoveredSpeciesCounts[species] = count + 1;
-        }
-
-        foreach (var hoveredSpeciesCount in hoveredSpeciesCounts)
-        {
-            if (hoveredSpeciesCount.Value > 1)
-            {
-                AddHoveredCellLabel(
-                    TranslationServer.Translate("SPECIES_N_TIMES").FormatSafe(hoveredSpeciesCount.Key.FormattedName,
-                        hoveredSpeciesCount.Value));
-            }
-            else
-            {
-                AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName);
-            }
-        }
-
-        hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
-            anyCompoundVisible;
-
-        hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
-
-        nothingHere.Visible = hoveredCellsContainer.GetChildCount() == 0 && !anyCompoundVisible;
-    }
-
-    protected abstract IEnumerable<(bool Player, Species Species)> GetHoveredSpecies();
-    protected abstract IReadOnlyDictionary<Compound, float> GetHoveredCompounds();
-
-    protected void AddHoveredCellLabel(string cellInfo)
-    {
-        hoveredCellsContainer.AddChild(new Label
-        {
-            Valign = Label.VAlign.Center,
-            Text = cellInfo,
-        });
-    }
+    protected abstract void UpdateHoverInfo(float delta);
 
     protected abstract void UpdateAbilitiesHotBar();
 
@@ -1268,7 +1144,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
                 PanelsTweenPath.Dispose();
                 LeftPanelsPath.Dispose();
                 MouseHoverPanelPath.Dispose();
-                HoveredCellsContainerPath.Dispose();
                 MenuPath.Dispose();
                 AtpLabelPath.Dispose();
                 HpLabelPath.Dispose();
@@ -1308,8 +1183,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
                 MicrobeControlRadialPath.Dispose();
                 PausePromptPath.Dispose();
                 PauseInfoPath.Dispose();
-                HoveredCompoundsContainerPath.Dispose();
-                HoverPanelSeparatorPath.Dispose();
                 AgentsPanelPath.Dispose();
                 OxytoxyBarPath.Dispose();
                 MucilageBarPath.Dispose();
