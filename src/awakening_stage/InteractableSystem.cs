@@ -213,12 +213,30 @@ public class InteractableSystem : Control
             if (extraOffset != null)
                 position += extraOffset.Value;
 
+            if (camera.IsPositionBehind(position))
+            {
+                // Hide interact buttons behind the camera
+                if (!createdPrompt.HiddenForBeingBehindCamera)
+                {
+                    createdPrompt.HiddenForBeingBehindCamera = true;
+                    createdPrompt.Prompt.Visible = false;
+                }
+
+                continue;
+            }
+
+            if (createdPrompt.HiddenForBeingBehindCamera)
+            {
+                // Reset hidden status if this was hidden before
+                createdPrompt.HiddenForBeingBehindCamera = false;
+                createdPrompt.Prompt.Visible = true;
+            }
+
             var screenPosition = camera.UnprojectPosition(position) +
                 new Vector2(Constants.INTERACTION_BUTTON_X_PIXEL_OFFSET, Constants.INTERACTION_BUTTON_Y_PIXEL_OFFSET);
 
-            // TODO: if the object is behind the camera, don't consider them interactable
-            // If that is done probably the angle check below (which doesn't really work) can be removed, though the
-            // priority for closer angled objects should be kept
+            // TODO: Now with that IsPositionBehind check the angle check below (which doesn't really work)
+            // can be probably be removed, though the priority for closer angled objects should be kept
 
             createdPrompt.Prompt.RectGlobalPosition = screenPosition;
 
