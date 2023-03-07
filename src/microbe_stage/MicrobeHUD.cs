@@ -37,6 +37,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     private const string COMPOUNDS_CATEGORY = "compounds";
     private const string SPECIES_CATEGORY = "species";
     private const string FLOATING_CHUNKS_CATEGORY = "chunks";
+    private const string AGENTS_CATEGORY = "agents";
 
     private readonly Dictionary<(string Category, string Name), int> hoveredEntities = new();
     private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
@@ -86,6 +87,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
         mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
         mouseHoverPanel.AddCategory(FLOATING_CHUNKS_CATEGORY, new LocalizedString("FLOATING_CHUNKS_COLON"));
+        mouseHoverPanel.AddCategory(AGENTS_CATEGORY, new LocalizedString("AGENTS_COLON"));
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
         {
@@ -383,6 +385,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         // Refresh list
         mouseHoverPanel.ClearEntries(SPECIES_CATEGORY);
         mouseHoverPanel.ClearEntries(FLOATING_CHUNKS_CATEGORY);
+        mouseHoverPanel.ClearEntries(AGENTS_CATEGORY);
 
         // Show the entity's name and count of hovered entities
         hoveredEntities.Clear();
@@ -406,6 +409,10 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             else if (entity is FloatingChunk)
             {
                 category = FLOATING_CHUNKS_CATEGORY;
+            }
+            else if (entity is AgentProjectile)
+            {
+                category = AGENTS_CATEGORY;
             }
 
             var key = (category, entity.InspectableName);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-06 18:07+0700\n"
+"POT-Creation-Date: 2023-03-07 16:37+0700\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -107,6 +107,11 @@ msgstr "有氧固氮"
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "物质"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:90
+#, fuzzy
+msgid "AGENTS_COLON"
+msgstr "状态："
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 #, fuzzy
@@ -423,12 +428,12 @@ msgstr "提高低音"
 msgid "BATHYPELAGIC"
 msgstr "半深海带"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
@@ -967,7 +972,7 @@ msgstr "化合物"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏化合物"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:86
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
@@ -1358,7 +1363,7 @@ msgstr "开发者wiki"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的开发者wiki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
 msgstr "被吞噬"
 
@@ -1997,7 +2002,7 @@ msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "旋转："
@@ -2063,12 +2068,12 @@ msgstr "化石"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "将该物种保存至化石中并存放到博物馆里。你可以通过Thrive百科进入博物馆，或在自由编辑器中加载这些化石中的物种。"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "保存该物种到化石中"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "保存该物种到化石中（已保存）"
 
@@ -4062,11 +4067,11 @@ msgstr "数字锁定"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:25
+#: ../src/microbe_stage/AgentProjectile.cs:26
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:377
+#: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
 msgstr "N/A"
 
@@ -4074,7 +4079,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "不消耗变异点"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeHUD.cs:427
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4470,7 +4475,7 @@ msgstr "暂停中"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "返回游戏"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:72
+#: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
 msgstr "[center]按[thrive:input]g_pause[/thrive:input]以解除暂停[/center]"
 
@@ -4500,7 +4505,7 @@ msgstr "和平"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:252
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4569,7 +4574,7 @@ msgstr "行星生成即将发布！"
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:402
 #, fuzzy
 msgid "PLAYER"
 msgstr "玩家细胞"
@@ -5290,27 +5295,27 @@ msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按[thrive:input]g_pack_commands[/thrive:input]来打开一个用于给你的物种中其它成员发号施令的菜单。"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "变得更有侵略性"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:146
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "逃跑"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "跟我来"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:140
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "无指令"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:142
+#: ../src/microbe_stage/MicrobeHUD.cs:145
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "到我这边来"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "SIGNAL_TO_EMIT"
 msgstr "要发出的信号"
 
@@ -5415,7 +5420,7 @@ msgstr "鼠标侧键2"
 msgid "SPECIES"
 msgstr "物种"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "SPECIES_COLON"
 msgstr "物种："
 
@@ -6597,9 +6602,6 @@ msgstr "缩小"
 
 #, fuzzy
 #~ msgid "TOTAL_TIME_USED_COLON"
-#~ msgstr "状态："
-
-#~ msgid "STATUS_COLON"
 #~ msgstr "状态："
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

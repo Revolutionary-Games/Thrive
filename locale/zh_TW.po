@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-06 18:07+0700\n"
+"POT-Creation-Date: 2023-03-07 16:37+0700\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -108,6 +108,11 @@ msgstr "有氧固氮"
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "劑"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:90
+#, fuzzy
+msgid "AGENTS_COLON"
+msgstr "物種："
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 #, fuzzy
@@ -424,12 +429,12 @@ msgstr "低音提高"
 msgid "BATHYPELAGIC"
 msgstr "半深海帶(遠洋中層)"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -988,7 +993,7 @@ msgstr "化合物"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示/隱藏環境和化合物"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:86
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
@@ -1382,7 +1387,7 @@ msgstr "開發者"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "幫助"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:243
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
 msgstr ""
 
@@ -2052,7 +2057,7 @@ msgstr "鞭毛是一種從細胞膜伸出的鞭狀蛋白纖維束，使用ATP沿
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]來增加細胞的移動速度。"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "總人口："
@@ -2123,12 +2128,12 @@ msgstr ""
 "和平型微生物不會在意更遠距離的其它微生物，\n"
 "並且不太可能使用毒素來對付捕食者。"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -4160,11 +4165,11 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:25
+#: ../src/microbe_stage/AgentProjectile.cs:26
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:377
+#: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
 msgstr "N/A"
 
@@ -4172,7 +4177,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A 變異點"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeHUD.cs:427
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4583,7 +4588,7 @@ msgstr ""
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "返回遊戲"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:72
+#: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
 msgstr ""
 
@@ -4614,7 +4619,7 @@ msgstr "和平"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:249
+#: ../src/microbe_stage/MicrobeHUD.cs:252
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4677,7 +4682,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:402
 #, fuzzy
 msgid "PLAYER"
 msgstr "玩家細胞"
@@ -5432,28 +5437,28 @@ msgstr "允許與其他細胞結合。這是邁向多細胞性的第一步。當
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按[thrive:input]g_toggle_binding[/thrive:input]來切換連接模式。在連接模式中，通過接觸同種細胞，你可以讓它成為你的細胞群的一員。要離開細胞群，按[thrive:input]g_unbind_all[/thrive:input]。"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "結合劑"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:146
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:141
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:140
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:142
+#: ../src/microbe_stage/MicrobeHUD.cs:145
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr "結合劑"
@@ -5562,7 +5567,7 @@ msgstr "鼠標側鍵2"
 msgid "SPECIES"
 msgstr "物種列表"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "SPECIES_COLON"
 msgstr "物種："
 
@@ -6765,10 +6770,6 @@ msgstr "縮小"
 
 #, fuzzy
 #~ msgid "TOTAL_TIME_USED_COLON"
-#~ msgstr "物種："
-
-#, fuzzy
-#~ msgid "STATUS_COLON"
 #~ msgstr "物種："
 
 #, fuzzy
