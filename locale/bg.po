@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-01 16:03+0200\n"
+"POT-Creation-Date: 2023-03-06 18:07+0700\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -51,13 +51,13 @@ msgstr "Прекратена."
 msgid "ABYSSOPELAGIC"
 msgstr "Абисал"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:231
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1723
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:236
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
 #, fuzzy
 msgid "ACTION_AWAKEN"
 msgstr "Пробуждане"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1718
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Пробуждане"
@@ -103,10 +103,15 @@ msgstr "Отваряне на разширените настройки"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аеробна азотна фиксация"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1532
-#: ../src/microbe_stage/MicrobeStage.tscn:1605
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1393
+#: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Химични агенти"
+
+#: ../src/microbe_stage/AgentProperties.cs:20
+#, fuzzy
+msgid "AGENT_NAME"
+msgstr "{0} — {1}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -160,9 +165,9 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Околна среда"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1309
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1170
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1347
+#: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
 msgstr "Амоняк"
 
@@ -265,7 +270,7 @@ msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Създаването е неуспешно. Наименованието на записа може да е твърде дълго или достъпът е отказан."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:571
+#: ../src/gui_common/MouseHoverPanel.tscn:46
 msgid "AT_CURSOR"
 msgstr "Под курсора:"
 
@@ -408,13 +413,13 @@ msgstr "Клавиш „Bass Up“"
 msgid "BATHYPELAGIC"
 msgstr "Батиал"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:467
-#: ../src/microbe_stage/MicrobeStage.tscn:1795
+#: ../src/microbe_stage/MicrobeHUD.cs:537
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Макроскопичен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:431
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeHUD.cs:501
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Многоклетъчен организъм ({0} от {1})"
 
@@ -630,27 +635,27 @@ msgstr "Клавиш „Caps Lock“"
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:926
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в изобилно количество"
 
-#: ../src/general/StageHUDBase.cs:966
+#: ../src/general/StageHUDBase.cs:930
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "в задоволително количество"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:934
 msgid "CATEGORY_LITTLE"
 msgstr "в ограничено количество"
 
-#: ../src/general/StageHUDBase.cs:964
+#: ../src/general/StageHUDBase.cs:928
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "в обилно количество"
 
-#: ../src/general/StageHUDBase.cs:968
+#: ../src/general/StageHUDBase.cs:932
 msgid "CATEGORY_SOME"
 msgstr "в умерено количество"
 
-#: ../src/general/StageHUDBase.cs:972
+#: ../src/general/StageHUDBase.cs:936
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
@@ -939,12 +944,12 @@ msgstr "Отваряне на обществената Уикипедия на �
 msgid "COMPILED_AT_COLON"
 msgstr "Създадена на:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1159
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1020
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1203
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
 
@@ -952,8 +957,7 @@ msgstr "Химични съединения"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Превключване на химичните съединения"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:571
-#: ../src/microbe_stage/MicrobeStage.tscn:622
+#: ../src/microbe_stage/MicrobeHUD.cs:86
 msgid "COMPOUNDS_COLON"
 msgstr "Има химични съединения:"
 
@@ -1213,11 +1217,11 @@ msgstr "Калибрирането е нулирано"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Мъртви зони на контролера"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:946
+#: ../src/microbe_stage/Microbe.Contact.cs:962
 msgid "DEATH"
 msgstr "измиране"
 
-#: ../src/engine/DebugOverlays.Inspector.cs:23
+#: ../src/engine/DebugOverlays.Inspector.cs:24
 #: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1327,7 +1331,7 @@ msgstr "Частна Уикипедия"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на частната Уикипедия на „Thrive“"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:228
+#: ../src/microbe_stage/MicrobeHUD.cs:243
 msgid "DEVOURED"
 msgstr "Погълнат"
 
@@ -1652,7 +1656,7 @@ msgstr "(на произволен принцип)"
 msgid "EDITOR"
 msgstr "Редактор"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1963
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
@@ -1719,8 +1723,8 @@ msgstr "Въвеждане на съществуващ идентификаци�
 msgid "ENTITY_LABEL"
 msgstr "Надписи на обектите"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:693
-#: ../src/microbe_stage/MicrobeStage.tscn:740
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:554
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "Околна среда"
 
@@ -1778,7 +1782,7 @@ msgstr "Грешка по време на запазването"
 msgid "ESCAPE"
 msgstr "Клавиш „Esc“"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1212
+#: ../src/microbe_stage/Microbe.Contact.cs:1228
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -1971,8 +1975,8 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "{0} поколения"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2084
-#: ../src/microbe_stage/MicrobeStage.tscn:2136
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1944
+#: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Изстрелване на токсин"
 
@@ -1988,6 +1992,11 @@ msgstr "Камшичето е протеин с формата на камшик
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да увеличи скоростта на движение на клетката."
+
+#: ../src/microbe_stage/MicrobeHUD.cs:88
+#, fuzzy
+msgid "FLOATING_CHUNKS_COLON"
+msgstr "Завъртане:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2050,12 +2059,12 @@ msgstr "Вкаменяване"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:203
+#: ../src/microbe_stage/MicrobeHUD.cs:218
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Вкаменяване на тези създания"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:202
+#: ../src/microbe_stage/MicrobeHUD.cs:217
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Вкаменяване на тези създания (вече са вкаменени)"
 
@@ -2152,9 +2161,9 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в {1} от {2}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1257
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1118
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1301
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -2263,7 +2272,7 @@ msgstr "Отваряне командното меню чрез задържан
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Показване на курсора чрез задържане"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:630
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:491
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Задръжте [thrive:input]g_free_cursor[/thrive:input] за показване на курсора"
 
@@ -2293,9 +2302,9 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1413
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1274
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1448
+#: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
@@ -2339,7 +2348,7 @@ msgstr "Пиршество"
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1544
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
 msgstr "Погълнати обекти"
 
@@ -2425,9 +2434,9 @@ msgstr ""
 "Запазването в момента не винаги е възможно."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1465
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1326
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1494
+#: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
 msgstr "Желязо"
 
@@ -2854,8 +2863,8 @@ msgstr "Зависи от включването на „Земеподобен 
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Хидротермални комини"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1017
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:878
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "Светлина"
 
@@ -3011,10 +3020,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "М"
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:520
-msgid "LOOKING_AT"
-msgstr "В тази посока:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3709,11 +3714,11 @@ msgstr "Надясно"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Преселение"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1703
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1564
 msgid "MOVE_TO_LAND"
 msgstr "Колонизиране"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1780
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Трябва да създадете достатъчно голяма клетъчна колония за да превърнете Вашите създания в многоклетъчен организъм."
 
@@ -3725,7 +3730,7 @@ msgstr "Преселване"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Нагоре или скачане"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2138
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1996
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
@@ -3735,12 +3740,12 @@ msgstr ""
 "\n"
 "Планът за в бъдеще е колонизирането сушата да бъде постепенно."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2137
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "Колонизиране на сушата?"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2133
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "Вашите създания ще колонизират сушата. Това действие е необходимо, за да преминете в следващите етапи играта и е необратимо.\n"
@@ -3749,7 +3754,7 @@ msgstr ""
 "\n"
 "Планът за в бъдеще е колонизирането сушата да бъде постепенно."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2132
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Колонизиране на сушата?"
 
@@ -3763,8 +3768,8 @@ msgid "MP_COST"
 msgstr "{0} МТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1643
-#: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1504
+#: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "Слуз"
 
@@ -3948,12 +3953,11 @@ msgstr "Обикновена"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Това е най-обикновена мембрана, която не осигурява добра защита на клетката. Освен това, тя се нуждае от повече енергия за да не се деформира. Предмиството ѝ е, че позволява на клетката да усвоява хранителните вещества по-бързо."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:546
-#: ../src/microbe_stage/MicrobeStage.tscn:597
+#: ../src/gui_common/MouseHoverPanel.tscn:72
 msgid "NOTHING_HERE"
 msgstr "Няма нищо"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:340
+#: ../src/late_multicellular_stage/MulticellularStage.cs:346
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -3969,15 +3973,15 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1770
+#: ../src/microbe_stage/Microbe.Contact.cs:1786
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1765
+#: ../src/microbe_stage/Microbe.Contact.cs:1781
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:608
+#: ../src/general/StageHUDBase.cs:572
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4062,15 +4066,22 @@ msgstr "Клавиш „Num Lock“"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
+#: ../src/microbe_stage/AgentProjectile.cs:25
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
+#: ../src/microbe_stage/MicrobeHUD.cs:377
 msgid "N_A"
 msgstr "Няма"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
 msgid "N_A_MP"
 msgstr "Няма МТ"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:420
+#, fuzzy
+msgid "N_TIMES"
+msgstr "2 пъти"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "OCTOBER"
@@ -4310,8 +4321,8 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1592
-#: ../src/microbe_stage/MicrobeStage.tscn:1662
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "Окситоксин"
 
@@ -4464,7 +4475,7 @@ msgstr "НА ПАУЗА"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Продължаване на играта"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:67
+#: ../src/microbe_stage/MicrobeHUD.cs:72
 msgid "PAUSE_PROMPT"
 msgstr "[center]Натиснете [thrive:input]g_pause[/thrive:input] за да продължите играта[/center]"
 
@@ -4485,7 +4496,7 @@ msgid "PEACEFUL"
 msgstr "Пасивно"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:728
+#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:692
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4494,7 +4505,7 @@ msgstr "Пасивно"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:234
+#: ../src/microbe_stage/MicrobeHUD.cs:249
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
@@ -4512,9 +4523,9 @@ msgid "PER_SECOND_SLASH"
 msgstr "/в секунда"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1361
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1222
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1396
+#: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
@@ -4563,8 +4574,9 @@ msgstr "Създаването на планетата е в процес на �
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволен идентификатор на планетата"
 
-#: ../src/general/StageHUDBase.cs:1173
-msgid "PLAYER_CELL"
+#: ../src/microbe_stage/MicrobeHUD.cs:399
+#, fuzzy
+msgid "PLAYER"
 msgstr "Вашето създание"
 
 #: ../src/general/NewGameSettings.tscn:588
@@ -4626,8 +4638,8 @@ msgstr "Начално видео при започване на нова игр
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Нова игра"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1743
-#: ../src/microbe_stage/MicrobeStage.tscn:1815
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1604
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
 
@@ -4655,8 +4667,8 @@ msgstr "Отваряне на подробна информация за про�
 msgid "PRESSURE"
 msgstr "Налягане"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1072
-#: ../src/microbe_stage/MicrobeStage.tscn:1119
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:933
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
@@ -5151,8 +5163,8 @@ msgid "SEA_FLOOR"
 msgstr "Морско дъно"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2108
-#: ../src/microbe_stage/MicrobeStage.tscn:2182
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "Освобождаване на слуз"
 
@@ -5286,27 +5298,27 @@ msgstr "Сигнализиращият агент се използва от к�
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Излъчва различни видове сигнали чрез командното меню, с задържане на [thrive:input]g_pack_commands[/thrive:input]."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:129
+#: ../src/microbe_stage/MicrobeHUD.cs:144
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Бъдете агресивни"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:128
+#: ../src/microbe_stage/MicrobeHUD.cs:143
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Разпръснете се"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:126
+#: ../src/microbe_stage/MicrobeHUD.cs:141
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Следвайте ме"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:125
+#: ../src/microbe_stage/MicrobeHUD.cs:140
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Продължавайте"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:127
+#: ../src/microbe_stage/MicrobeHUD.cs:142
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Приближете се"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:132
+#: ../src/microbe_stage/MicrobeHUD.cs:147
 msgid "SIGNAL_TO_EMIT"
 msgstr "Сигнал за излъчване"
 
@@ -5411,8 +5423,7 @@ msgstr "Специален бутон №2"
 msgid "SPECIES"
 msgstr "Създания"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:611
-#: ../src/microbe_stage/MicrobeStage.tscn:662
+#: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "SPECIES_COLON"
 msgstr "Има създания:"
 
@@ -5446,10 +5457,6 @@ msgstr "Наименование..."
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:284
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Наименованието е твърде дълго!"
-
-#: ../src/general/StageHUDBase.cs:1186
-msgid "SPECIES_N_TIMES"
-msgstr "{0} ({1} индивида)"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:507
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
@@ -5635,11 +5642,11 @@ msgstr "Строеж"
 msgid "STRUCTURE"
 msgstr "Структура"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:765
+#: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:758
+#: ../src/microbe_stage/Microbe.Contact.cs:774
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно плячкосване"
 
@@ -5721,8 +5728,8 @@ msgstr "Снимка на екрана"
 msgid "TEMPERATURE"
 msgstr "Температура"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:961
-#: ../src/microbe_stage/MicrobeStage.tscn:1008
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:822
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
@@ -5919,7 +5926,7 @@ msgid "TITLE_COLON"
 msgstr "Заглавие:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2147
+#: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "Свързване"
 
@@ -5928,9 +5935,9 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Превключване на отстраняването на грешки"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2055
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2070
-#: ../src/microbe_stage/MicrobeStage.tscn:2123
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1916
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1930
+#: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Поглъщане"
 
@@ -6207,11 +6214,11 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Трябва да приложите Вашите промени за смяна на модификациите."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2159
+#: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "Разпадане"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:164
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:165
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим на отделяне"
 
@@ -6344,7 +6351,7 @@ msgstr "Вакуолата е вътрешен мембранен органел
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Увеличава мястото за съхранение на хранителните вещества в клетката."
 
-#: ../src/general/StageHUDBase.cs:729 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:693 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6581,6 +6588,12 @@ msgstr "Приближаване"
 #: ../simulation_parameters/common/input_options.json:86
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "LOOKING_AT"
+#~ msgstr "В тази посока:"
+
+#~ msgid "SPECIES_N_TIMES"
+#~ msgstr "{0} ({1} индивида)"
 
 #~ msgid "BECOME_AWARE"
 #~ msgstr "Осъзнаване"

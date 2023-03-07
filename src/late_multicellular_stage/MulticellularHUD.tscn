@@ -1,14 +1,13 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/MouseHoverPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=10]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.cs" type="Script" id=11]
 [ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=12]
@@ -61,9 +60,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=76]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=78]
-
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
@@ -411,8 +407,7 @@ CompoundsGroupAnimationPlayerPath = NodePath("CompoundsPanelAnimationPlayer")
 EnvironmentGroupAnimationPlayerPath = NodePath("EnvironmentPanelAnimationPlayer")
 PanelsTweenPath = NodePath("BottomLeft/LeftPanels/PanelsTween")
 LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
-MouseHoverPanelPath = NodePath("MouseHoverPanel")
-HoveredCellsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/List")
+MouseHoverPanelPath = NodePath("TopRight/MouseHoverPanel")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
@@ -450,8 +445,6 @@ SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
-HoveredCompoundsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/List")
-HoverPanelSeparatorPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/SpeciesSeparator")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
@@ -473,154 +466,21 @@ AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
 AwakenConfirmPopupPath = NodePath("MoveToAwakeningConfirm")
 InteractActionPath = NodePath("ScrollContainer/HotBar/Interact")
 
-[node name="MouseHoverPanel" type="MarginContainer" parent="."]
+[node name="TopRight" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -300.0
+margin_left = -260.0
+margin_bottom = -641.0
 grow_horizontal = 0
 mouse_filter = 2
 theme = ExtResource( 5 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="MouseHoverPanel"]
+[node name="MouseHoverPanel" parent="TopRight" instance=ExtResource( 6 )]
 margin_top = 10.0
-margin_right = 250.0
-margin_bottom = 79.0
-rect_min_size = Vector2( 250, 0 )
-mouse_filter = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="MouseHoverPanel/PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 249.0
-margin_bottom = 68.0
-mouse_filter = 2
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 238.0
-margin_bottom = 57.0
-mouse_filter = 2
-
-[node name="LookedAt" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 228.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 6 )
-text = "LOOKING_AT"
-align = 1
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="TitleSeparator" type="HSeparator" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 23.0
-margin_right = 228.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 0, 5 )
-mouse_filter = 2
-
-[node name="NothingHere" type="MarginContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 32.0
-margin_right = 228.0
-margin_bottom = 52.0
-mouse_filter = 2
-custom_constants/margin_left = 10
-
-[node name="NothingHereLabel" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/NothingHere"]
-margin_left = 10.0
-margin_right = 228.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 9 )
-text = "NOTHING_HERE"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HoveredCompounds" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 56.0
-margin_right = 218.0
-margin_bottom = 80.0
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
-margin_right = 218.0
-margin_bottom = 20.0
-mouse_filter = 2
-custom_constants/margin_left = 10
-
-[node name="CompoundsLabel" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/MarginContainer"]
-margin_left = 10.0
-margin_right = 218.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 9 )
-text = "COMPOUNDS_COLON"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="List" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
-margin_top = 24.0
-margin_right = 218.0
-margin_bottom = 24.0
-mouse_filter = 2
-theme = SubResource( 1 )
-
-[node name="SpeciesSeparator" type="HSeparator" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 56.0
-margin_right = 218.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 0, 5 )
-mouse_filter = 2
-
-[node name="HoveredCells" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 56.0
-margin_right = 208.0
-margin_bottom = 97.0
-mouse_filter = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells"]
-margin_right = 208.0
-margin_bottom = 20.0
-mouse_filter = 2
-custom_constants/margin_left = 10
-
-[node name="SpeciesLabel" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/MarginContainer2"]
-margin_left = 10.0
-margin_right = 208.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 9 )
-text = "SPECIES_COLON"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="List" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells"]
-margin_top = 24.0
-margin_right = 208.0
-margin_bottom = 41.0
-mouse_filter = 2
-theme = SubResource( 1 )
+margin_bottom = 83.0
 
 [node name="TopLeft" type="Control" parent="."]
 margin_right = 469.0

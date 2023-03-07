@@ -2,6 +2,7 @@
 
 /// <summary>
 ///   Inspector part of the debug overlay, displays debug coordinates, etc.
+///   Debug equivalent of <see cref="PlayerInspectInfo"/>.
 /// </summary>
 public partial class DebugOverlays
 {

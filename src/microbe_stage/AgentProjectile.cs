@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
-public class AgentProjectile : RigidBody, ITimedLife, IEntity
+public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
 {
 #pragma warning disable CA2213
     private Particles particles = null!;
@@ -21,6 +21,9 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
     public Spatial EntityNode => this;
 
     public AliveMarker AliveMarker { get; } = new();
+
+    [JsonIgnore]
+    public string InspectableName => Properties?.ToString() ?? TranslationServer.Translate("N_A");
 
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
@@ -59,6 +62,14 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
+    }
+
+    public void OnMouseEnter(RaycastResult raycastResult)
+    {
+    }
+
+    public void OnMouseExit(RaycastResult raycastResult)
+    {
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)

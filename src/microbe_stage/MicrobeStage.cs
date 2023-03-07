@@ -84,7 +84,7 @@ public class MicrobeStage : StageBase<Microbe>
     public MicrobeHUD HUD { get; private set; } = null!;
 
     [JsonIgnore]
-    public PlayerHoverInfo HoverInfo { get; private set; } = null!;
+    public MicrobeInspectInfo HoverInfo { get; private set; } = null!;
 
     [JsonIgnore]
     public TutorialState TutorialState =>
@@ -113,7 +113,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
-        HoverInfo.Init(Camera, Clouds);
+        HoverInfo.Init(Clouds, Camera);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
@@ -128,7 +128,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
-        HoverInfo = GetNode<PlayerHoverInfo>("PlayerHoverInfo");
+        HoverInfo = GetNode<MicrobeInspectInfo>("PlayerHoverInfo");
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
