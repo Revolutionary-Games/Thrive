@@ -402,7 +402,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         targetNode.ReParent(this);
 
         // TODO: better positioning and actually attaching it to the place the object is carried in
-        var offset = new Vector3(0, 3, 1) * (carriedObjects.Count + 1);
+        var offset = new Vector3(-0.5f, 3, 4) * (carriedObjects.Count + 1);
 
         targetNode.Translation = offset;
 
@@ -411,6 +411,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         // Would be very annoying to keep getting the prompt to interact with the object
         target.InteractionDisabled = true;
+
+        // Surprise surprise, the physics detach bug can also hit here
+        if (targetNode is RigidBody entityPhysics)
+            entityPhysics.Mode = ModeEnum.Kinematic;
 
         return true;
     }
@@ -439,7 +443,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // TODO: drop position based on creature size, and also confirm the drop point is free from other physics
         // objects
 
-        var offset = new Vector3(0, 1.5f, -3);
+        var offset = new Vector3(0, 1.5f, 3.6f);
 
         // Assume our parent is the world
         var world = GetParent() ?? throw new Exception("Creature has no parent to place dropped entity in");
@@ -451,6 +455,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         // Allow others to interact with the object again
         entity.InteractionDisabled = false;
+
+        if (entityNode is RigidBody entityPhysics)
+            entityPhysics.Mode = ModeEnum.Rigid;
 
         return true;
     }

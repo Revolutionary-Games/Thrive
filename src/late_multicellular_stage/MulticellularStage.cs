@@ -493,9 +493,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             }
 
             interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
-
-            // TODO: remove, just testing that this doesn't cause issues
-            interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
         }
 
         base.Dispose(disposing);
