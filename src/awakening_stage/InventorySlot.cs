@@ -53,5 +53,7 @@ public class InventorySlot : Button
     public override void _Ready()
     {
         tooHeavyIndicator = GetNode<Control>("Overlays/TooHeavyToCarry");
+
+        // TODO: tooltip for showing the name of the item / extra details if any exist
     }
 }

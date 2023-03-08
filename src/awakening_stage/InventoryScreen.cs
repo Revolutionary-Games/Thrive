@@ -34,7 +34,7 @@ public class InventoryScreen : ControlWithInput
     private PackedScene inventorySlotScene = null!;
 #pragma warning restore CA2213
 
-    private MulticellularCreature? displayingInventoryOf;
+    private ICharacterInventory? displayingInventoryOf;
 
     private bool groundPanelManuallyHidden;
     private bool craftingPanelManuallyHidden = true;
@@ -63,7 +63,7 @@ public class InventoryScreen : ControlWithInput
         // TODO: refresh the ground objects at some interval here
     }
 
-    public void OpenInventory(MulticellularCreature creature)
+    public void OpenInventory(ICharacterInventory creature)
     {
         if (!inventoryPopup.Visible)
             inventoryPopup.Show();
@@ -159,6 +159,8 @@ public class InventoryScreen : ControlWithInput
                 GroundPanelPopupPath.Dispose();
                 GroundSlotContainerPath.Dispose();
             }
+
+            inventorySlotGroup.Dispose();
         }
 
         base.Dispose(disposing);
@@ -178,11 +180,13 @@ public class InventoryScreen : ControlWithInput
         groundInventorySlots.Add(slot);
     }
 
-    private void SetInventoryDataFrom(MulticellularCreature creature)
+    private void SetInventoryDataFrom(ICharacterInventory creature)
     {
         displayingInventoryOf = creature;
 
-        // TODO: showing inventory contents
+        foreach (var slotData in creature.ListInventoryContents())
+        {
+        }
     }
 
     private InventorySlot CreateInventorySlot()
@@ -194,5 +198,55 @@ public class InventoryScreen : ControlWithInput
         // TODO: callbacks
 
         return slot;
+    }
+
+    private void ToggleCraftingPanel(bool pressed)
+    {
+        if (craftingPanelPopup.Visible == pressed)
+            return;
+
+        if (craftingPanelPopup.Visible)
+        {
+            craftingPanelPopup.CustomHide();
+            craftingPanelManuallyHidden = true;
+        }
+        else
+        {
+            craftingPanelPopup.Show();
+            craftingPanelManuallyHidden = false;
+        }
+    }
+
+    private void ToggleGroundPanel(bool pressed)
+    {
+        if (groundPanelPopup.Visible == pressed)
+            return;
+
+        if (groundPanelPopup.Visible)
+        {
+            groundPanelPopup.CustomHide();
+            groundPanelManuallyHidden = true;
+        }
+        else
+        {
+            groundPanelPopup.Show();
+            groundPanelManuallyHidden = false;
+        }
+    }
+
+    private void OnGroundPanelClosed()
+    {
+        groundPanelManuallyHidden = true;
+    }
+
+    private void OnCraftingPanelClosed()
+    {
+        craftingPanelManuallyHidden = true;
+    }
+
+    private void OnInventoryPanelClosed()
+    {
+        // Closing the inventory panel closes the entire thing
+        Close();
     }
 }

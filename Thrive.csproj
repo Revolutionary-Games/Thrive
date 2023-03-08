@@ -45,6 +45,8 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\awakening_stage\EquipmentSlotType.cs" />
+    <Compile Include="src\awakening_stage\ICharacterInventory.cs" />
     <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
     <Compile Include="src\awakening_stage\IInventoryItem.cs" />
     <Compile Include="src\awakening_stage\InteractablePopup.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="src\awakening_stage\InteractionType.cs" />
     <Compile Include="src\awakening_stage\InventorySlot.cs" />
     <Compile Include="src\awakening_stage\InventoryScreen.cs" />
+    <Compile Include="src\awakening_stage\InventorySlotData.cs" />
     <Compile Include="src\awakening_stage\IWorldResource.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
     <Compile Include="src\awakening_stage\SimpleWorldResource.cs" />

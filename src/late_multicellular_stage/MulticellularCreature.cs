@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked
+public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
 
@@ -34,9 +34,18 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
 #pragma warning restore CA2213
 
+    // TODO: a real system for determining the hand and equipment slots
     // TODO: hand count based on body plan
     [JsonProperty]
-    private int maximumCarriedObjects = 1;
+    private InventorySlotData handSlot = new(1, EquipmentSlotType.Hand, new Vector2(0.8f, 0.5f));
+
+    // TODO: increase inventory slots based on equipment
+    [JsonProperty]
+    private InventorySlotData[] inventorySlots =
+    {
+        new(2),
+        new(3),
+    };
 
     [JsonProperty]
     private float targetSwimLevel;
@@ -378,7 +387,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         switch (interactionType)
         {
             case InteractionType.Pickup:
-                return PickupObject(target);
+                return PickupItem(target);
             case InteractionType.Craft:
                 if (RequestCraftingInterfaceFor == null)
                 {
@@ -399,57 +408,73 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     public bool FitsInCarryingCapacity(IInteractableEntity interactableEntity)
     {
-        return carriedObjects.Count + 1 <= maximumCarriedObjects;
+        return this.HasEmptySlot();
     }
 
-    public bool PickupObject(IInteractableEntity target)
+    /// <summary>
+    ///   Pickup item to the first available slot
+    /// </summary>
+    public bool PickupItem(IInteractableEntity item)
     {
-        if (!FitsInCarryingCapacity(target))
-            return false;
+        // Find an empty slot to put the thing in
+        // Prefer hand slots
+        foreach (var slot in inventorySlots.Prepend(handSlot))
+        {
+            if (slot.ContainedItem == null)
+            {
+                return PickUpItem(item, slot.Id);
+            }
+        }
 
-        var targetNode = target.EntityNode;
+        // No empty slots
+        return false;
+    }
 
-        // Remove the object from the world
-        targetNode.ReParent(this);
+    public bool PickUpItem(IInteractableEntity item, int slotId)
+    {
+        // Find the slot to put the item in
+        if (handSlot.Id == slotId)
+            return PickupToSlot(item, handSlot);
 
-        // TODO: better positioning and actually attaching it to the place the object is carried in
-        var offset = new Vector3(-0.5f, 3, 4) * (carriedObjects.Count + 1);
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.Id == slotId)
+                return PickupToSlot(item, slot);
+        }
 
-        targetNode.Translation = offset;
-
-        // Add the object to be carried
-        carriedObjects.Add(target);
-
-        // Would be very annoying to keep getting the prompt to interact with the object
-        target.InteractionDisabled = true;
-
-        // Surprise surprise, the physics detach bug can also hit here
-        if (targetNode is RigidBody entityPhysics)
-            entityPhysics.Mode = ModeEnum.Kinematic;
-
-        return true;
+        return false;
     }
 
     public void DropAll()
     {
-        while (carriedObjects.Count > 0)
+        var thingsToDrop = this.ListAllItems().Select(s => s.ContainedItem).WhereNotNull().ToList();
+
+        foreach (var entity in thingsToDrop)
         {
             // TODO: the missing check that the dropped position is free of other physics objects is really going to be
             // a problem here
-            DropObject(carriedObjects[carriedObjects.Count - 1]);
+            DropItem(entity);
         }
     }
 
-    public bool DropObject(IInteractableEntity entity)
+    public bool DropItem(IInteractableEntity item)
     {
-        if (!carriedObjects.Remove(entity))
+        var slot = this.SlotWithItem(item);
+
+        if (slot == null)
+        {
+            GD.PrintErr("Trying to drop item we can't find in our inventory slots");
+            return false;
+        }
+
+        if (!carriedObjects.Remove(item))
         {
             // We weren't carrying that
             GD.PrintErr("Can't drop something creature isn't carrying");
             return false;
         }
 
-        var entityNode = entity.EntityNode;
+        var entityNode = item.EntityNode;
 
         // TODO: drop position based on creature size, and also confirm the drop point is free from other physics
         // objects
@@ -465,10 +490,56 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         entityNode.GlobalTranslation = ourTransform.origin + ourTransform.basis.Quat().Xform(offset);
 
         // Allow others to interact with the object again
-        entity.InteractionDisabled = false;
+        item.InteractionDisabled = false;
 
         if (entityNode is RigidBody entityPhysics)
             entityPhysics.Mode = ModeEnum.Rigid;
+
+        slot.ContainedItem = null;
+
+        return true;
+    }
+
+    public IEnumerable<InventorySlotData> ListInventoryContents()
+    {
+        return inventorySlots;
+    }
+
+    public IEnumerable<InventorySlotData> ListHandContents()
+    {
+        yield return handSlot;
+    }
+
+    private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)
+    {
+        if (slot.ContainedItem != null)
+            return false;
+
+        slot.ContainedItem = item;
+
+        var targetNode = item.EntityNode;
+
+        // Remove the object from the world
+        targetNode.ReParent(this);
+
+        // TODO: inventory carried items should not be shown in the world
+
+        // TODO: better positioning and actually attaching it to the place the object is carried in
+        // TODO: this also has a problem when items are removed and added back in random order (gaps and conflicting
+        // positions)
+        var offset = new Vector3(-0.5f, 3, 4) * (carriedObjects.Count + 1);
+
+        targetNode.Translation = offset;
+
+        // Add the object to be carried
+        carriedObjects.Add(item);
+
+        // Would be very annoying to keep getting the prompt to interact with the object
+        item.InteractionDisabled = true;
+
+        // Surprise surprise, the physics detach bug can also hit here
+        if (targetNode is RigidBody entityPhysics)
+            entityPhysics.Mode = ModeEnum.Kinematic;
 
         return true;
     }

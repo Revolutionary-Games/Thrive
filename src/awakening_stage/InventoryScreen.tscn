@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/awakening_stage/InventoryScreen.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/gui/CreaturePlaceholder.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=4]
 
 [node name="InventoryScreen" type="Control"]
 visible = false
@@ -21,14 +23,14 @@ anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 27.2
 margin_right = -1138.0
-margin_bottom = -140.0
+margin_bottom = -130.0
 WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
 Resizable = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 240, 60 )
+margin_right = 240.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 240, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5
@@ -43,12 +45,57 @@ margin_bottom = -559.0
 WindowTitle = "INVENTORY_TITLE"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainInventory"]
+[node name="BaseInventoryContainer" type="HBoxContainer" parent="MainInventory"]
 margin_left = 2.0
 margin_top = -4.0
 margin_right = 402.0
 margin_bottom = 396.0
 rect_min_size = Vector2( 400, 400 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainInventory/BaseInventoryContainer"]
+margin_right = 800.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EquipmentSlots" type="Control" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
+margin_right = 800.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots"]
+margin_right = 800.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Ground" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+toggle_mode = true
+text = "INVENTORY_TOGGLE_GROUND"
+
+[node name="Crafting" type="Button" parent="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+toggle_mode = true
+text = "INVENTORY_TOGGLE_CRAFTING"
+
+[node name="Inventory" type="HFlowContainer" parent="MainInventory/BaseInventoryContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -71,3 +118,52 @@ margin_bottom = 427.0
 rect_min_size = Vector2( 400, 400 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CraftingPanel/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+text = "CRAFTING_KNOWN_ITEM"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CraftingPanel/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
+
+[node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+text = "CRAFTING_FILTER_INPUTS
+"
+
+[node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 20, 35 )
+icon = ExtResource( 4 )
+icon_align = 1
+expand_icon = true
+
+[node name="CraftingOutputs" type="HBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelClosed"]
+[connection signal="Closed" from="MainInventory" to="." method="OnInventoryPanelClosed"]
+[connection signal="Closed" from="CraftingPanel" to="." method="OnCraftingPanelClosed"]

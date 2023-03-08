@@ -182,7 +182,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     protected override void UpdateHoverInfo(float delta)
     {
-        // TODO: implement nearby entities
+        // TODO: implement looked at entities
     }
 
     protected override void UpdateAbilitiesHotBar()

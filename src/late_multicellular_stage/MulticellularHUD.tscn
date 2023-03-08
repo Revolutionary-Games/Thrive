@@ -1879,12 +1879,6 @@ anims/ShowCompoundsPanels = SubResource( 36 )
 anims/HideEnvironmentPanel = SubResource( 37 )
 anims/ShowEnvironmentPanel = SubResource( 38 )
 
-[node name="HUDMessages" parent="." instance=ExtResource( 25 )]
-margin_left = 270.0
-margin_top = 90.0
-margin_right = -270.0
-margin_bottom = -525.0
-
 [node name="ProcessPanel" parent="." instance=ExtResource( 13 )]
 margin_left = 8.0
 margin_top = 72.0
@@ -1998,10 +1992,16 @@ __meta__ = {
 [node name="PausePrompt" parent="." instance=ExtResource( 77 )]
 visible = false
 
+[node name="InventoryScreen" parent="." instance=ExtResource( 29 )]
+
 [node name="PatchNameOverlay" parent="." instance=ExtResource( 12 )]
 visible = false
 
-[node name="InventoryScreen" parent="." instance=ExtResource( 29 )]
+[node name="HUDMessages" parent="." instance=ExtResource( 25 )]
+margin_left = 270.0
+margin_top = 90.0
+margin_right = -270.0
+margin_bottom = -525.0
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource( 17 )]
 rect_min_size = Vector2( 450, 0 )
