@@ -33,6 +33,15 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     [Export]
     public PackedScene WinBoxScene = null!;
 
+    // These are category keys for MouseHoverPanel
+    private const string COMPOUNDS_CATEGORY = "compounds";
+    private const string SPECIES_CATEGORY = "species";
+    private const string FLOATING_CHUNKS_CATEGORY = "chunks";
+    private const string AGENTS_CATEGORY = "agents";
+
+    private readonly Dictionary<(string Category, string Name), int> hoveredEntities = new();
+    private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
+
     private ActionButton bindingModeHotkey = null!;
     private ActionButton unbindAllHotkey = null!;
 
@@ -74,6 +83,18 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
         unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
+
+        mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
+        mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
+        mouseHoverPanel.AddCategory(FLOATING_CHUNKS_CATEGORY, new LocalizedString("FLOATING_CHUNKS_COLON"));
+        mouseHoverPanel.AddCategory(AGENTS_CATEGORY, new LocalizedString("AGENTS_COLON"));
+
+        foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
+        {
+            var hoveredCompoundControl = mouseHoverPanel.AddItem(
+                COMPOUNDS_CATEGORY, compound.Name, compound.LoadedIcon);
+            hoveredCompoundControls.Add(compound, hoveredCompoundControl);
+        }
 
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
@@ -309,16 +330,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         stage!.Player!.CalculateReproductionProgress(out gatheredCompounds, out totalNeededCompounds);
     }
 
-    protected override IEnumerable<(bool Player, Species Species)> GetHoveredSpecies()
-    {
-        return stage!.HoverInfo.HoveredMicrobes.Select(m => (m.IsPlayerMicrobe, m.Species));
-    }
-
-    protected override IReadOnlyDictionary<Compound, float> GetHoveredCompounds()
-    {
-        return stage!.HoverInfo.HoveredCompounds;
-    }
-
     protected override void UpdateAbilitiesHotBar()
     {
         var player = stage!.Player!;
@@ -346,6 +357,76 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
         bindingModeHotkey.Pressed = player.State == MicrobeState.Binding;
         unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+    }
+
+    protected override void UpdateHoverInfo(float delta)
+    {
+        stage!.HoverInfo.Process(delta);
+
+        // Show hovered compound information in GUI
+        foreach (var compound in hoveredCompoundControls)
+        {
+            var compoundControl = compound.Value;
+            stage.HoverInfo.HoveredCompounds.TryGetValue(compound.Key, out float amount);
+
+            // It is not useful to show trace amounts of a compound, so those are skipped
+            if (amount < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
+            {
+                compoundControl.Visible = false;
+                continue;
+            }
+
+            compoundControl.SetText(compound.Key.Name);
+            compoundControl.SetDescription(GetCompoundDensityCategory(amount) ?? TranslationServer.Translate("N_A"));
+            compoundControl.SetDescriptionColor(GetCompoundDensityCategoryColor(amount));
+            compoundControl.Visible = true;
+        }
+
+        // Refresh list
+        mouseHoverPanel.ClearEntries(SPECIES_CATEGORY);
+        mouseHoverPanel.ClearEntries(FLOATING_CHUNKS_CATEGORY);
+        mouseHoverPanel.ClearEntries(AGENTS_CATEGORY);
+
+        // Show the entity's name and count of hovered entities
+        hoveredEntities.Clear();
+
+        foreach (var entity in stage.HoverInfo.InspectableEntities)
+        {
+            var category = string.Empty;
+
+            if (entity is Microbe microbe)
+            {
+                if (microbe.IsPlayerMicrobe)
+                {
+                    // Special handling for player
+                    var label = mouseHoverPanel.AddItem(SPECIES_CATEGORY, entity.InspectableName);
+                    label.SetDescription(TranslationServer.Translate("PLAYER"));
+                    continue;
+                }
+
+                category = SPECIES_CATEGORY;
+            }
+            else if (entity is FloatingChunk)
+            {
+                category = FLOATING_CHUNKS_CATEGORY;
+            }
+            else if (entity is AgentProjectile)
+            {
+                category = AGENTS_CATEGORY;
+            }
+
+            var key = (category, entity.InspectableName);
+            hoveredEntities.TryGetValue(key, out int count);
+            hoveredEntities[key] = count + 1;
+        }
+
+        foreach (var hoveredEntity in hoveredEntities)
+        {
+            var item = mouseHoverPanel.AddItem(hoveredEntity.Key.Category, hoveredEntity.Key.Name);
+
+            if (hoveredEntity.Value > 1)
+                item.SetDescription(TranslationServer.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
+        }
     }
 
     protected override void Dispose(bool disposing)

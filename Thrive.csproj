@@ -86,6 +86,7 @@
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
+    <Compile Include="src\engine\RaycastResult.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
     <Compile Include="src\engine\SafeModeStartupHandler.cs" />
     <Compile Include="src\engine\StartupAttemptInfo.cs" />
@@ -102,7 +103,7 @@
     <Compile Include="src\engine\LocalizedString.cs" />
     <Compile Include="src\engine\LocalizedStringBuilder.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
-    <Compile Include="src\engine\CollisionObjectHelpers.cs" />
+    <Compile Include="src\engine\PhysicsHelpers.cs" />
     <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\FileDropHandler.cs" />
@@ -153,14 +154,18 @@
     <Compile Include="src\general\DictionaryWithFallback.cs" />
     <Compile Include="src\general\HtmlToBbCodeConverter.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
+    <Compile Include="src\general\IInspectableEntity.cs" />
     <Compile Include="src\general\MarkdownToBbCodeConverter.cs" />
     <Compile Include="src\general\MultiCollection.cs" />
+    <Compile Include="src\general\PlayerInspectInfo.cs" />
     <Compile Include="src\general\ThriveNewsFeed.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\dialogs\PermanentlyDismissibleDialog.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
+    <Compile Include="src\gui_common\InspectedEntityLabel.cs" />
+    <Compile Include="src\gui_common\MouseHoverPanel.cs" />
     <Compile Include="src\gui_common\PatchNotesDisplayer.cs" />
     <Compile Include="src\gui_common\PatchNotesList.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
@@ -350,7 +355,6 @@
     <Compile Include="src\microbe_stage\gui\HUDMessages.cs" />
     <Compile Include="src\microbe_stage\gui\IHUDMessage.cs" />
     <Compile Include="src\microbe_stage\gui\SimpleHUDMessage.cs" />
-    <Compile Include="src\microbe_stage\HoveredCompoundControl.cs" />
     <Compile Include="src\microbe_stage\HUDBottomBar.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
@@ -377,6 +381,7 @@
     <Compile Include="src\microbe_stage\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\CompoundBalance.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\MicrobeInspectInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeState.cs" />
     <Compile Include="src\microbe_stage\MicrobeSystem.cs" />
     <Compile Include="src\microbe_stage\organelle_components\AxonComponent.cs" />
@@ -414,7 +419,6 @@
     <Compile Include="src\microbe_stage\PatchNameOverlay.cs" />
     <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
-    <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />

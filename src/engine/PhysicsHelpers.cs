@@ -1,9 +1,11 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
+using Godot.Collections;
 
 /// <summary>
-///   Common helper operations for CollisionObjects
+///   Common helper operations for CollisionObjects and other physics stuff
 /// </summary>
-public static class CollisionObjectHelpers
+public static class PhysicsHelpers
 {
     /// <summary>
     ///   Creates and returns a new shape owner for a shape and the given entity.
@@ -30,5 +32,34 @@ public static class CollisionObjectHelpers
         var shape = oldParent.ShapeOwnerGetShape(oldShapeOwnerId, 0);
         var newShapeOwnerId = CreateShapeOwnerWithTransform(newParent, transform, shape);
         return newShapeOwnerId;
+    }
+
+    /// <summary>
+    ///   Extension of <see cref="PhysicsDirectSpaceState.IntersectRay"/>. Results from intersections will be stored
+    ///   in <paramref name="hits"/>.
+    /// </summary>
+    public static void IntersectRay(this PhysicsDirectSpaceState space, List<RaycastResult> hits, Vector3 from,
+        Vector3 to, Array? exclude = null, uint collisionMask = 2147483647u, bool collideWithBodies = true,
+        bool collideWithAreas = false)
+    {
+        exclude ??= new Array();
+
+        while (true)
+        {
+            var hit = space.IntersectRay(from, to, exclude, collisionMask, collideWithBodies, collideWithAreas);
+            if (hit.Count <= 0)
+                break;
+
+            var result = new RaycastResult(
+                hit["collider"],
+                (int)hit["collider_id"],
+                (Vector3)hit["normal"],
+                (Vector3)hit["position"],
+                (RID)hit["rid"],
+                (int)hit["shape"]);
+
+            hits.Add(result);
+            exclude.Add(result.Collider);
+        }
     }
 }
