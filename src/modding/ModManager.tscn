@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=16]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/modding/ModUploader.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -150,12 +151,12 @@ margin_bottom = 683.0
 
 [node name="InfoBoxSplit" type="VSplitContainer" parent="MainMarginContainer/VBoxContainer"]
 margin_right = 1441.0
-margin_bottom = 624.0
+margin_bottom = 620.0
 size_flags_vertical = 3
 
 [node name="ModContainer" type="TabContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit"]
 margin_right = 1441.0
-margin_bottom = 306.0
+margin_bottom = 304.0
 size_flags_vertical = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color_bg = Color( 1, 1, 1, 1 )
@@ -181,16 +182,16 @@ custom_constants/margin_bottom = 5
 margin_left = 15.0
 margin_top = 5.0
 margin_right = 1424.0
-margin_bottom = 264.0
+margin_bottom = 262.0
 
 [node name="ItemListContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer"]
 margin_right = 1409.0
-margin_bottom = 200.0
+margin_bottom = 198.0
 size_flags_vertical = 3
 
 [node name="UnloadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer"]
 margin_right = 627.0
-margin_bottom = 200.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 
 [node name="UnloadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/UnloadedContainer"]
@@ -204,7 +205,7 @@ __meta__ = {
 [node name="UnloadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/UnloadedContainer"]
 margin_top = 29.0
 margin_right = 627.0
-margin_bottom = 200.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
@@ -216,14 +217,14 @@ fixed_icon_size = Vector2( 32, 32 )
 [node name="CenterBar" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer"]
 margin_left = 631.0
 margin_right = 777.0
-margin_bottom = 200.0
+margin_bottom = 198.0
 custom_constants/separation = 15
 alignment = 1
 
 [node name="MoveLeftButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/CenterBar"]
-margin_top = 25.0
+margin_top = 24.0
 margin_right = 146.0
-margin_bottom = 60.0
+margin_bottom = 59.0
 hint_tooltip = "LEFT_ARROW_TOOLTIP"
 text = "LEFT_ARROW"
 expand_icon = true
@@ -232,9 +233,9 @@ __meta__ = {
 }
 
 [node name="OrderButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/CenterBar"]
-margin_top = 75.0
+margin_top = 74.0
 margin_right = 146.0
-margin_bottom = 125.0
+margin_bottom = 124.0
 alignment = 1
 
 [node name="MoveUpButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer"]
@@ -252,9 +253,9 @@ hint_tooltip = "DOWN_ARROW_TOOLTIP"
 icon = ExtResource( 9 )
 
 [node name="MoveRightButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/CenterBar"]
-margin_top = 140.0
+margin_top = 139.0
 margin_right = 146.0
-margin_bottom = 175.0
+margin_bottom = 174.0
 hint_tooltip = "RIGHT_ARROW_TOOLTIP"
 text = "RIGHT_ARROW"
 __meta__ = {
@@ -264,7 +265,7 @@ __meta__ = {
 [node name="LoadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer"]
 margin_left = 781.0
 margin_right = 1409.0
-margin_bottom = 200.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 
 [node name="LoadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/LoadedContainer"]
@@ -278,7 +279,7 @@ __meta__ = {
 [node name="LoadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/LoadedContainer"]
 margin_top = 29.0
 margin_right = 628.0
-margin_bottom = 200.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
@@ -291,9 +292,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer"]
-margin_top = 204.0
+margin_top = 202.0
 margin_right = 1409.0
-margin_bottom = 259.0
+margin_bottom = 257.0
 mouse_filter = 1
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
@@ -364,11 +365,11 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1428.0
-margin_bottom = 254.0
+margin_bottom = 252.0
 
 [node name="ErrorModItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrorTab/HSplitContainer"]
 margin_right = 705.0
-margin_bottom = 249.0
+margin_bottom = 247.0
 size_flags_horizontal = 3
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
@@ -382,7 +383,7 @@ __meta__ = {
 [node name="ErrorInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrorTab/HSplitContainer"]
 margin_left = 717.0
 margin_right = 1423.0
-margin_bottom = 249.0
+margin_bottom = 247.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrorTab/HSplitContainer/ErrorInfoPanel"]
@@ -419,16 +420,16 @@ __meta__ = {
 }
 
 [node name="ModInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit"]
-margin_top = 318.0
+margin_top = 316.0
 margin_right = 1441.0
-margin_bottom = 624.0
+margin_bottom = 620.0
 size_flags_vertical = 3
 
 [node name="InfoBox" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1440.0
-margin_bottom = 305.0
+margin_bottom = 303.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 12
 custom_constants/margin_left = 12
@@ -438,7 +439,7 @@ custom_constants/margin_bottom = 12
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 1427.0
-margin_bottom = 292.0
+margin_bottom = 290.0
 custom_constants/separation = 10
 
 [node name="MainModInfoContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
@@ -811,7 +812,7 @@ __meta__ = {
 [node name="ModInfoDescription" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer" instance=ExtResource( 5 )]
 margin_top = 216.0
 margin_right = 1415.0
-margin_bottom = 280.0
+margin_bottom = 278.0
 focus_mode = 2
 size_flags_vertical = 3
 custom_colors/selection_color = Color( 0.0588235, 0.376471, 0.321569, 0.666667 )
@@ -836,9 +837,9 @@ selection_enabled = true
 ExtendedBbcode = "[thrive:input]g_move_forward[/thrive:input]"
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer"]
-margin_top = 628.0
+margin_top = 624.0
 margin_right = 1441.0
-margin_bottom = 663.0
+margin_bottom = 659.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -916,14 +917,25 @@ margin_left = 1154.0
 margin_right = 1209.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
+focus_mode = 0
 text = "NEW"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "This is not focusable due to controller input getting stuck in the new form"
+}
+
+[node name="FocusGrabber" parent="MainMarginContainer/VBoxContainer" instance=ExtResource( 19 )]
+margin_top = 663.0
+margin_right = 1441.0
+margin_bottom = 663.0
+NodeToGiveFocusTo = NodePath("../InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/ItemListContainer/UnloadedContainer/UnloadedItemList")
+
+[node name="NewModGUI" parent="." instance=ExtResource( 6 )]
+visible = false
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
-
-[node name="NewModGUI" parent="." instance=ExtResource( 6 )]
-visible = false
 
 [node name="UnAppliedChangesWarning" parent="." instance=ExtResource( 3 )]
 margin_top = 28.0

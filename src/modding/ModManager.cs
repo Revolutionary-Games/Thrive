@@ -601,6 +601,12 @@ public class ModManager : Control
     }
 
     public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateTabTitles();
+        }
+    }
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -652,14 +658,6 @@ public class ModManager : Control
         }
 
         base.Dispose(disposing);
-    }
-
-    private static bool IsAllowedModPath(string path)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateTabTitles();
-        }
     }
 
     public void UpdateLoadPosition(int startIndex = 0)
