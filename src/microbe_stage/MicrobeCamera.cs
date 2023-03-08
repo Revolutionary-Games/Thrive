@@ -13,15 +13,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     public Spatial? ObjectToFollow;
 
     /// <summary>
-    ///   Background plane that is moved farther away from the camera when zooming out
-    /// </summary>
-    [JsonIgnore]
-    public Spatial? BackgroundPlane;
-
-    [JsonIgnore]
-    public Particles? BackgroundParticles;
-
-    /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
     [Export]
@@ -56,6 +47,18 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [Export]
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
+
+#pragma warning disable CA2213
+
+    /// <summary>
+    ///   Background plane that is moved farther away from the camera when zooming out
+    /// </summary>
+    [JsonIgnore]
+    private Spatial? backgroundPlane;
+
+    [JsonIgnore]
+    private Particles? backgroundParticles;
+#pragma warning restore CA2213
 
     private ShaderMaterial? materialToUpdate;
 
@@ -140,6 +143,17 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         UpdateLightLevel();
     }
 
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
+
+        if (HasNode("BackgroundPlane"))
+            backgroundPlane = GetNode<Spatial>("BackgroundPlane");
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -156,15 +170,42 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
     }
 
-    public void ResolveNodeReferences()
+    /// <summary>
+    ///   Updates camera position to follow the object
+    /// </summary>
+    public override void _PhysicsProcess(float delta)
     {
-        if (NodeReferencesResolved)
-            return;
+        var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
+        var currentCameraHeight = new Vector3(0, Translation.y, 0);
+        var newCameraHeight = new Vector3(0, CameraHeight, 0);
 
-        NodeReferencesResolved = true;
+        if (ObjectToFollow != null)
+        {
+            var newFloorPosition = new Vector3(
+                ObjectToFollow.GlobalTransform.origin.x, 0, ObjectToFollow.GlobalTransform.origin.z);
 
-        if (HasNode("BackgroundPlane"))
-            BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
+            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+
+            Translation = target;
+        }
+        else
+        {
+            var target = new Vector3(Translation.x, 0, Translation.z)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+
+            Translation = target;
+        }
+
+        if (backgroundPlane != null)
+        {
+            var target = new Vector3(0, 0, -15 - CameraHeight);
+
+            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(
+                target, InterpolateZoomSpeed);
+        }
+
+        cursorDirty = true;
     }
 
     public void ResetHeight()
@@ -215,44 +256,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Updates camera position to follow the object
-    /// </summary>
-    public override void _PhysicsProcess(float delta)
-    {
-        var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
-        var currentCameraHeight = new Vector3(0, Translation.y, 0);
-        var newCameraHeight = new Vector3(0, CameraHeight, 0);
-
-        if (ObjectToFollow != null)
-        {
-            var newFloorPosition = new Vector3(
-                ObjectToFollow.GlobalTransform.origin.x, 0, ObjectToFollow.GlobalTransform.origin.z);
-
-            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
-                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
-
-            Translation = target;
-        }
-        else
-        {
-            var target = new Vector3(Translation.x, 0, Translation.z)
-                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
-
-            Translation = target;
-        }
-
-        if (BackgroundPlane != null)
-        {
-            var target = new Vector3(0, 0, -15 - CameraHeight);
-
-            BackgroundPlane.Translation = BackgroundPlane.Translation.LinearInterpolate(
-                target, InterpolateZoomSpeed);
-        }
-
-        cursorDirty = true;
-    }
-
-    /// <summary>
     ///   Set the used background images and particles
     /// </summary>
     public void SetBackground(Background background)
@@ -267,20 +270,20 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
         }
 
-        BackgroundParticles?.DetachAndQueueFree();
+        backgroundParticles?.DetachAndQueueFree();
 
-        BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
-        BackgroundParticles.Rotation = Rotation;
-        BackgroundParticles.LocalCoords = false;
+        backgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+        backgroundParticles.Rotation = Rotation;
+        backgroundParticles.LocalCoords = false;
 
-        AddChild(BackgroundParticles);
+        AddChild(backgroundParticles);
 
         OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 
     private void OnDisplayBackgroundParticlesChanged(bool displayed)
     {
-        if (BackgroundParticles == null)
+        if (backgroundParticles == null)
         {
             GD.PrintErr("MicrobeCamera didn't find background particles on settings change");
             return;
@@ -290,15 +293,15 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         if (!Current)
             displayed = false;
 
-        BackgroundParticles.Emitting = displayed;
+        backgroundParticles.Emitting = displayed;
 
         if (displayed)
         {
-            BackgroundParticles.Show();
+            backgroundParticles.Show();
         }
         else
         {
-            BackgroundParticles.Hide();
+            backgroundParticles.Hide();
         }
     }
 
@@ -329,10 +332,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private void UpdateBackgroundVisibility()
     {
-        if (BackgroundPlane != null)
-            BackgroundPlane.Visible = Current;
+        if (backgroundPlane != null)
+            backgroundPlane.Visible = Current;
 
-        if (BackgroundParticles != null)
+        if (backgroundParticles != null)
             OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 

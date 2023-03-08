@@ -7,7 +7,7 @@ using Godot;
 public class SaveStatusOverlay : Control
 {
     [Export]
-    public NodePath StatusLabelPath = null!;
+    public NodePath? StatusLabelPath;
 
     [Export]
     public NodePath AnimationPlayerPath = null!;
@@ -17,10 +17,12 @@ public class SaveStatusOverlay : Control
 
     private static SaveStatusOverlay? instance;
 
+#pragma warning disable CA2213
     private Label statusLabel = null!;
     private AnimationPlayer animationPlayer = null!;
 
     private ErrorDialog errorDialog = null!;
+#pragma warning restore CA2213
 
     private float hideTimer;
     private bool hidden;
@@ -45,6 +47,29 @@ public class SaveStatusOverlay : Control
 
         Visible = false;
         hidden = true;
+    }
+
+    public override void _Process(float delta)
+    {
+        if (hideTimer > 0)
+        {
+            if (skipNextDelta)
+            {
+                skipNextDelta = false;
+            }
+            else
+            {
+                hideTimer -= delta;
+            }
+        }
+        else
+        {
+            if (!hidden)
+            {
+                animationPlayer.Play("SavingStatusFadeOut");
+                hidden = true;
+            }
+        }
     }
 
     /// <summary>
@@ -79,31 +104,19 @@ public class SaveStatusOverlay : Control
         errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
     }
 
-    public override void _Process(float delta)
+    protected override void Dispose(bool disposing)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
+        if (disposing)
+        {
+            if (StatusLabelPath != null)
+            {
+                StatusLabelPath.Dispose();
+                AnimationPlayerPath.Dispose();
+                ErrorDialogPath.Dispose();
+            }
+        }
 
-        if (hideTimer > 0)
-        {
-            if (skipNextDelta)
-            {
-                skipNextDelta = false;
-            }
-            else
-            {
-                hideTimer -= delta;
-            }
-        }
-        else
-        {
-            if (!hidden)
-            {
-                animationPlayer.Play("SavingStatusFadeOut");
-                hidden = true;
-            }
-        }
+        base.Dispose(disposing);
     }
 
     private void ExternalSetStatus(bool visible)

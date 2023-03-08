@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -24,6 +24,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [Export]
     public NodePath NoCellTypeSelectedPath = null!;
 
+#pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -40,10 +41,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [AssignOnlyChildItemsOnDeserialize]
     private CellEditorComponent cellEditorTab = null!;
 
+    private Control noCellTypeSelected = null!;
+#pragma warning restore CA2213
+
     [JsonProperty]
     private EarlyMulticellularSpecies? editedSpecies;
-
-    private Control noCellTypeSelected = null!;
 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
@@ -162,11 +164,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
     }
 
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
-    {
-        // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets
-    }
-
     protected override void InitEditor(bool fresh)
     {
         patchMapTab.SetMap(CurrentGame.GameWorld.Map);
@@ -196,14 +193,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         wantsToSave = false;
     }
 
-    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
-    {
-        yield return reportTab;
-        yield return patchMapTab;
-        yield return bodyPlanEditorTab;
-        yield return cellEditorTab;
-    }
-
     protected override void InitEditorGUI(bool fresh)
     {
         reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
@@ -217,6 +206,19 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         }
 
         patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
+    }
+
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
+    {
+        // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets
+    }
+
+    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
+    {
+        yield return reportTab;
+        yield return patchMapTab;
+        yield return bodyPlanEditorTab;
+        yield return cellEditorTab;
     }
 
     protected override void OnEditorReady()
@@ -378,6 +380,23 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         base.OnEditorExitTransitionFinished();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                BodyPlanEditorTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+                NoCellTypeSelectedPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnSelectPatchForReportTab(Patch patch)
     {
         reportTab.UpdatePatchDetails(patch, patch);
@@ -467,6 +486,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 case RigidityActionData:
                 case NewMicrobeActionData:
                 case ColourActionData:
+                case OrganelleUpgradeActionData:
                     affectedACell = true;
                     break;
             }

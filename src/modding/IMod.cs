@@ -30,12 +30,12 @@ public interface IMod
     ///   to clean up as much as possible.
     /// </summary>
     /// <returns>True if successful, false if an error should be reported to the user</returns>
-    bool Unload();
+    public bool Unload();
 
     /// <summary>
     ///   Called when it is safe for mods to attach nodes (ie. initial Node setup has finished and new children can
     ///   be added without error)
     /// </summary>
     /// <param name="currentScene">The current root scene (should be the MainMenu)</param>
-    void CanAttachNodes(Node currentScene);
+    public void CanAttachNodes(Node currentScene);
 }

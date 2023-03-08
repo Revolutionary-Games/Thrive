@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 public class MicrobeStage : StageBase<Microbe>
 {
     [Export]
-    public NodePath GuidanceLinePath = null!;
+    public NodePath? GuidanceLinePath;
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
@@ -32,8 +32,10 @@ public class MicrobeStage : StageBase<Microbe>
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
+#pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
+#pragma warning restore CA2213
     private Vector3? guidancePosition;
 
     private List<GuidanceLine> chemoreceptionLines = new();
@@ -117,20 +119,6 @@ public class MicrobeStage : StageBase<Microbe>
         SetupStage();
     }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
-        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
-        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
-    }
-
     public override void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -155,6 +143,126 @@ public class MicrobeStage : StageBase<Microbe>
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
             worldLight, CurrentGame, lightCycle);
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        FluidSystem.Process(delta);
+        TimedLifeSystem.Process(delta);
+        ProcessSystem.Process(delta);
+        floatingChunkSystem.Process(delta, Player?.Translation);
+        microbeAISystem.Process(delta);
+        microbeSystem.Process(delta);
+
+        elapsedSinceLightLevelUpdate += delta;
+        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
+        {
+            elapsedSinceLightLevelUpdate = 0;
+
+            if (GameWorld.Map.CurrentPatch != null)
+            {
+                patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+                patchManager.UpdateAllPatchLightLevels();
+                HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+                UpdateDayLightEffects();
+            }
+        }
+
+        if (gameOver)
+            return;
+
+        if (playerExtinctInCurrentPatch)
+            return;
+
+        if (Player != null)
+        {
+            var playerTransform = Player.GlobalTransform;
+
+            DebugOverlays.Instance.ReportPositionCoordinates(playerTransform.origin);
+            DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
+
+            spawner.Process(delta, playerTransform.origin);
+            Clouds.ReportPlayerPosition(playerTransform.origin);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
+                new RotationEventArgs(playerTransform.basis, Player.RotationDegrees), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
+                new CompoundBagEventArgs(Player.Compounds), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
+                new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
+
+            // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
+            // relevant, for example only when in a colony or just leaving a colony should the player colony
+            // info be sent
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
+                new MicrobeColonyEventArgs(Player.Colony), this);
+
+            elapsedSinceEntityPositionCheck += delta;
+
+            if (elapsedSinceEntityPositionCheck > Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL)
+            {
+                elapsedSinceEntityPositionCheck = 0;
+
+                if (TutorialState.WantsNearbyCompoundInfo())
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerTransform.origin,
+                            glucose)),
+                        this);
+                }
+
+                if (TutorialState.WantsNearbyEngulfableInfo())
+                {
+                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
+                    var engulfables = entities.OfType<IEngulfable>().ToList();
+
+                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
+                        new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
+                }
+
+                guidancePosition = TutorialState.GetPlayerGuidancePosition();
+            }
+
+            if (guidancePosition != null)
+            {
+                guidanceLine.Visible = true;
+                guidanceLine.LineStart = playerTransform.origin;
+                guidanceLine.LineEnd = guidancePosition.Value;
+            }
+            else
+            {
+                guidanceLine.Visible = false;
+            }
+        }
+        else
+        {
+            guidanceLine.Visible = false;
+        }
+
+        UpdateLinePlayerPosition();
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        FluidSystem.PhysicsProcess(delta);
     }
 
     public override void OnFinishTransitioning()
@@ -192,112 +300,6 @@ public class MicrobeStage : StageBase<Microbe>
         Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
             "EarlyMulticellularStage" :
             "MicrobeStage");
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        FluidSystem.PhysicsProcess(delta);
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        FluidSystem.Process(delta);
-        TimedLifeSystem.Process(delta);
-        ProcessSystem.Process(delta);
-        floatingChunkSystem.Process(delta, Player?.Translation);
-        microbeAISystem.Process(delta);
-        microbeSystem.Process(delta);
-
-        elapsedSinceLightLevelUpdate += delta;
-        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
-        {
-            elapsedSinceLightLevelUpdate = 0;
-
-            if (GameWorld.Map.CurrentPatch != null)
-            {
-                patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-                patchManager.UpdateAllPatchLightLevels();
-                HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
-                UpdateDayLightEffects();
-            }
-        }
-
-        if (gameOver)
-            return;
-
-        if (playerExtinctInCurrentPatch)
-            return;
-
-        if (Player != null)
-        {
-            var playerTransform = Player.GlobalTransform;
-            spawner.Process(delta, playerTransform.origin);
-            Clouds.ReportPlayerPosition(playerTransform.origin);
-
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
-
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
-                new CompoundBagEventArgs(Player.Compounds), this);
-
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
-                new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
-
-            // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
-            // relevant, for example only when in a colony or just leaving a colony should the player colony
-            // info be sent
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                new MicrobeColonyEventArgs(Player.Colony), this);
-
-            elapsedSinceEntityPositionCheck += delta;
-
-            if (elapsedSinceEntityPositionCheck > Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL)
-            {
-                elapsedSinceEntityPositionCheck = 0;
-
-                if (TutorialState.WantsNearbyCompoundInfo())
-                {
-                    TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
-                            glucose)),
-                        this);
-                }
-
-                if (TutorialState.WantsNearbyEngulfableInfo())
-                {
-                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
-                    var engulfables = entities.OfType<IEngulfable>().ToList();
-
-                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                        new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
-                }
-
-                guidancePosition = TutorialState.GetPlayerGuidancePosition();
-            }
-
-            if (guidancePosition != null)
-            {
-                guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.GlobalTransform.origin;
-                guidanceLine.LineEnd = guidancePosition.Value;
-            }
-            else
-            {
-                guidanceLine.Visible = false;
-            }
-        }
-        else
-        {
-            guidanceLine.Visible = false;
-        }
-
-        UpdateLinePlayerPosition();
     }
 
     [RunOnKeyDown("g_pause")]
@@ -507,12 +509,15 @@ public class MicrobeStage : StageBase<Microbe>
         // This is done first to ensure that the player colony is still intact for spawn separation calculation
         var daughter = Player!.Divide();
 
+        daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
+
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
             // TODO: add more extra offset between the player and the divided cell
+            // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
         }
 
         // Update the player's cell
@@ -521,9 +526,31 @@ public class MicrobeStage : StageBase<Microbe>
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
 
+        var playerPosition = Player.GlobalTranslation;
+
+        // This is queued to run to reduce the massive lag spike that anyway happens on this frame
+        // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
+        // frame and won't be available on the next one
+        Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
+            rootOfDynamicallySpawned);
+
         if (!CurrentGame.TutorialState.Enabled)
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
+        }
+        else
+        {
+            // Show day/night cycle tutorial when entering a patch with sunlight
+            if (GameWorld.WorldSettings.DayNightCycleEnabled)
+            {
+                var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+                var patchSunlight = GameWorld.Map.CurrentPatch!.GetCompoundAmount(sunlight, CompoundAmountType.Biome);
+
+                if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+                }
+            }
         }
     }
 
@@ -594,6 +621,8 @@ public class MicrobeStage : StageBase<Microbe>
         Player.OnSuccessfulEngulfment = OnPlayerIngesting;
 
         Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
+
+        Player.OnNoticeMessage = OnPlayerNoticeMessage;
 
         Camera.ObjectToFollow = Player;
 
@@ -669,6 +698,16 @@ public class MicrobeStage : StageBase<Microbe>
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateBackground()
@@ -806,6 +845,12 @@ public class MicrobeStage : StageBase<Microbe>
     private void OnPlayerEngulfmentLimitReached(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerNoticeMessage(Microbe player, IHUDMessage message)
+    {
+        HUD.HUDMessages.ShowMessage(message);
     }
 
     /// <summary>

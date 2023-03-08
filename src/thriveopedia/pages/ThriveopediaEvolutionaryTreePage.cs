@@ -5,7 +5,7 @@ using AutoEvo;
 using Godot;
 
 /// <summary>
-///    Thriveopedia page displaying an evolutionary tree of all species in the current game.
+///   Thriveopedia page displaying an evolutionary tree of all species in the current game.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -15,27 +15,21 @@ using Godot;
 public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 {
     [Export]
-    public NodePath DisabledInFreebuildPath = null!;
+    public NodePath? DisabledInFreebuildPath;
 
     [Export]
     public NodePath EvolutionaryTreePath = null!;
 
     [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
-
-    [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
+    public NodePath SpeciesDetailsPanelPath = null!;
 
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
+#pragma warning disable CA2213
     private VBoxContainer disabledWarning = null!;
     private EvolutionaryTree evolutionaryTree = null!;
-    private CustomRichTextLabel speciesDetailsLabel = null!;
-    private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
+    private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
+#pragma warning restore CA2213
 
     public override string PageName => "EvolutionaryTree";
 
@@ -48,9 +42,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
         disabledWarning = GetNode<VBoxContainer>(DisabledInFreebuildPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
+        speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
 
         UpdateCurrentWorldDetails();
     }
@@ -75,68 +67,45 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     {
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (DisabledInFreebuildPath != null)
+            {
+                DisabledInFreebuildPath.Dispose();
+                EvolutionaryTreePath.Dispose();
+                SpeciesDetailsPanelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Clear and then rebuild the evolutionary tree each time we open the page. This way, we ensure the tree is
     ///   always up to date.
     /// </summary>
-    public void RebuildTree()
+    private void RebuildTree()
     {
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game is null");
 
-        // TODO: fix the tree for freebuild
-        if (CurrentGame.FreeBuild)
-        {
-            OnTreeFailedToBuild("Tree opened in freebuild mode");
-            return;
-        }
-
-        // Building the tree relies on the existence of a full history of generations stored in the current game. Since
-        // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
-        // TODO: avoid an ugly try/catch block by actually checking the original save version?
-        var generationHistory = CurrentGame.GameWorld.GenerationHistory;
-        if (generationHistory.Count < 1)
-        {
-            OnTreeFailedToBuild("Generation history is empty");
-            return;
-        }
-
         try
         {
-            evolutionaryTree.Clear();
+            CurrentGame.GameWorld.BuildEvolutionaryTree(evolutionaryTree);
+
             speciesHistoryList.Clear();
 
-            foreach (var generation in generationHistory)
+            foreach (var generation in CurrentGame.GameWorld.GenerationHistory)
             {
-                var record = generation.Value;
-
-                if (generation.Key == 0)
-                {
-                    var playerSpeciesID = CurrentGame!.GameWorld.PlayerSpecies.ID;
-                    var playerSpeciesData = record.AllSpeciesData[playerSpeciesID];
-
-                    // Player species data should never be null for any generation
-                    evolutionaryTree.Init(
-                        playerSpeciesData.Species!,
-                        CurrentGame.GameWorld.PlayerSpecies.FormattedName);
-                    speciesHistoryList.Add(new Dictionary<uint, Species>
-                    {
-                        { playerSpeciesID, playerSpeciesData.Species! },
-                    });
-                    continue;
-                }
-
-                // Recover all omitted species data for this generation so we can fill the tree
-                var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
-                    s => s.Key,
-                    s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, generationHistory));
-
-                evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(updatedSpeciesData, generation.Key,
-                    record.TimeElapsed, CurrentGame.GameWorld.PlayerSpecies.ID);
-                speciesHistoryList.Add(updatedSpeciesData.ToDictionary(s => s.Key, s => s.Value.Species));
+                var updatedSpeciesData = generation.Value.AllSpeciesData.ToDictionary(s => s.Key,
+                    s => GenerationRecord
+                        .GetFullSpeciesRecord(s.Key, generation.Key, CurrentGame.GameWorld.GenerationHistory).Species);
+                speciesHistoryList.Add(updatedSpeciesData);
             }
         }
-        catch (KeyNotFoundException e)
+        catch (Exception e)
         {
             OnTreeFailedToBuild(e.ToString());
         }
@@ -149,29 +118,8 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         disabledWarning.Visible = true;
     }
 
-    private void UpdateSpeciesPreview(Species species)
-    {
-        speciesPreview.PreviewSpecies = species;
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", species);
-        }
-
-        UpdateSpeciesDetail(species);
-    }
-
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
-        UpdateSpeciesPreview(speciesHistoryList[generation][id]);
-    }
-
-    private void UpdateSpeciesDetail(Species species)
-    {
-        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
+        speciesDetailsPanelWithFossilisation.PreviewSpecies = speciesHistoryList[generation][id];
     }
 }

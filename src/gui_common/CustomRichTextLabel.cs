@@ -62,6 +62,14 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _Ready()
+    {
+        // Make sure bbcode is enabled
+        BbcodeEnabled = true;
+
+        Connect("meta_clicked", this, nameof(OnMetaClicked));
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
@@ -71,14 +79,6 @@ public class CustomRichTextLabel : RichTextLabel
             InputDataList.InputsRemapped -= OnInputsRemapped;
             registeredForInputChanges = false;
         }
-    }
-
-    public override void _Ready()
-    {
-        // Make sure bbcode is enabled
-        BbcodeEnabled = true;
-
-        Connect("meta_clicked", this, nameof(OnMetaClicked));
     }
 
     public override void _Draw()
@@ -404,7 +404,8 @@ public class CustomRichTextLabel : RichTextLabel
                     registeredForInputChanges = true;
                 }
 
-                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input), 30, 0, 9);
+                // TODO: add support for showing the overlay image / text saying the direction for axis type inputs
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0, 9);
 
                 break;
             }

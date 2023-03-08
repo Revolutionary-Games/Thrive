@@ -90,6 +90,7 @@ public partial class Microbe
     private bool allOrganellesDivided;
 
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+    private float timeUntilDigestionUpdate = Constants.MICROBE_DIGESTION_UPDATE_INTERVAL;
 
     private bool organelleMaxRenderPriorityDirty = true;
     private int cachedOrganelleMaxRenderPriority;
@@ -1410,8 +1411,12 @@ public partial class Microbe
     /// </summary>
     private void HandleDigestion(float delta)
     {
-        if (Dead)
+        timeUntilDigestionUpdate -= delta;
+
+        if (timeUntilDigestionUpdate > 0 || Dead)
             return;
+
+        timeUntilDigestionUpdate = Constants.MICROBE_DIGESTION_UPDATE_INTERVAL;
 
         var compoundTypes = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
@@ -1447,6 +1452,9 @@ public partial class Microbe
                 if (!Enzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
                 {
                     EjectEngulfable(engulfable);
+                    OnNoticeMessage?.Invoke(this,
+                        new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_MISSING_ENZYME")
+                            .FormatSafe(engulfable.RequisiteEnzymeToDigest.Name)));
                     continue;
                 }
 
@@ -1498,6 +1506,10 @@ public partial class Microbe
                     {
                         lastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
                         Damage(MaxHitpoints * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
+
+                        OnNoticeMessage?.Invoke(this,
+                            new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
+                                DisplayDuration.Short));
                     }
                 }
 

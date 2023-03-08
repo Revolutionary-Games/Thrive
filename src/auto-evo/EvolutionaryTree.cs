@@ -18,7 +18,7 @@ using Array = Godot.Collections.Array;
 public class EvolutionaryTree : Control
 {
     [Export]
-    public NodePath TimelinePath = null!;
+    public NodePath? TimelinePath;
 
     [Export]
     public NodePath TreePath = null!;
@@ -68,7 +68,14 @@ public class EvolutionaryTree : Control
     /// </summary>
     private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
 
-    // ReSharper disable RedundantNameQualifier
+    /// <summary>
+    ///   Stores the created nodes for species by the species ids
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     ReSharper disable RedundantNameQualifier
+    ///   </para>
+    /// </remarks>
     private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
@@ -85,6 +92,8 @@ public class EvolutionaryTree : Control
     /// </summary>
     private readonly ButtonGroup nodesGroup = new();
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Timeline part of <see cref="EvolutionaryTree"/>. Consists of an axis and multiple time marks.
     /// </summary>
@@ -100,6 +109,7 @@ public class EvolutionaryTree : Control
     private Font latoSmallRegular = null!;
 
     private PackedScene treeNodeScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Drag offset relative to tree.
@@ -119,7 +129,7 @@ public class EvolutionaryTree : Control
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///      <see cref="Control.RectScale"/> is not used here so that we know the drawn parts.
+    ///     <see cref="Control.RectScale"/> is not used here so that we know the drawn parts.
     ///   </para>
     /// </remarks>
     private float sizeFactor = 1.0f;
@@ -135,6 +145,13 @@ public class EvolutionaryTree : Control
 
     [Signal]
     public delegate void SpeciesSelected(int generation, uint id);
+
+    /// <summary>
+    ///   Allows access to tree-generated data. This helps with data exporting, for example.
+    /// </summary>
+    public IReadOnlyDictionary<uint, string> CurrentWorldSpecies => speciesNames;
+
+    public IReadOnlyDictionary<uint, (uint ParentSpeciesId, int SplitGeneration)> SpeciesOrigin => speciesOrigin;
 
     private Vector2 TreeSize =>
         new(latestGeneration * GENERATION_SEPARATION + 200, maxSpeciesId * SPECIES_SEPARATION + 100);
@@ -156,25 +173,25 @@ public class EvolutionaryTree : Control
         latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
 
-    public void Init(Species luca, string? updatedLUCAName = null)
+    public void Init(IEnumerable<Species> initialSpecies, uint playerSpeciesId = 1,
+        string? updatedPlayerSpeciesName = null)
     {
-        SetupTreeNode(luca, null, 0);
+        foreach (var species in initialSpecies)
+        {
+            SetupTreeNode(species, null, 0);
 
-        speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
-        speciesNames.Add(luca.ID, updatedLUCAName ?? luca.FormattedName);
+            speciesOrigin.Add(species.ID, (uint.MaxValue, 0));
+            speciesNames.Add(species.ID, species.FormattedName);
+        }
+
+        if (speciesNames.Count == 0)
+            throw new ArgumentException("No initial species provided");
+
+        if (updatedPlayerSpeciesName != null)
+            speciesNames[playerSpeciesId] = updatedPlayerSpeciesName;
+
         generationTimes.Add(0, 0);
-
         dirty = true;
-    }
-
-    public void Clear()
-    {
-        speciesOrigin.Clear();
-        speciesNames.Clear();
-        generationTimes.Clear();
-        speciesNodes.Clear();
-
-        tree.QueueFreeChildren();
     }
 
     public override void _Process(float delta)
@@ -193,9 +210,8 @@ public class EvolutionaryTree : Control
         }
     }
 
-    public void UpdateEvolutionaryTreeWithRunResults(
-        System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records, int generation, double time,
-        uint playerSpeciesID)
+    public void Update(System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records, int generation,
+        double time, uint playerSpeciesID)
     {
         foreach (var speciesRecordPair in records.OrderBy(r => r.Key))
         {
@@ -242,32 +258,63 @@ public class EvolutionaryTree : Control
         dirty = true;
     }
 
+    public void Clear()
+    {
+        speciesOrigin.Clear();
+        speciesNames.Clear();
+        generationTimes.Clear();
+        speciesNodes.Clear();
+        maxSpeciesId = 0;
+        latestGeneration = 0;
+        dragOffset = Vector2.Zero;
+
+        tree.QueueFreeChildren();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TimelinePath != null)
+            {
+                TimelinePath.Dispose();
+                TreePath.Dispose();
+                nodesGroup.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
         bool isLastGeneration = false)
     {
-        var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
+        var position = new Vector2(generation * GENERATION_SEPARATION, 0);
+
+        if (!speciesNodes.TryGetValue(species.ID, out var speciesNodeList))
+        {
+            speciesNodeList = new List<EvolutionaryTreeNode>();
+            speciesNodes.Add(species.ID, speciesNodeList);
+        }
+
+        // If there is already one, update it; otherwise, add a new one.
+        var existing = speciesNodeList.FirstOrDefault(n => (n.Position - position).Length() < MathUtils.EPSILON);
+        var node = existing ?? treeNodeScene.Instance<EvolutionaryTreeNode>();
+
         node.Generation = generation;
         node.SpeciesID = species.ID;
-        node.LastGeneration = false;
         node.ParentNode = parent;
-        node.Position = new Vector2(generation * GENERATION_SEPARATION, 0);
+        node.Position = position;
         node.LastGeneration = isLastGeneration;
+
+        // The remaining part only needs to be done when it is a new node.
+        if (existing != null)
+            return;
+
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
-        if (!speciesNodes.ContainsKey(species.ID))
-        {
-            speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
-        }
-        else if (speciesNodes[species.ID].Any(n => (n.Position - node.Position).Length() < MathUtils.EPSILON))
-        {
-            // Remove the existing node in this position so we can replace it (e.g. with an extinct node)
-            var existingNode = speciesNodes[species.ID].Where(n => n.Position == node.Position).First();
-            speciesNodes[species.ID].Remove(existingNode);
-            existingNode.DetachAndQueueFree();
-        }
-
-        speciesNodes[species.ID].Add(node);
+        speciesNodeList.Add(node);
         tree.AddChild(node);
     }
 
@@ -289,7 +336,11 @@ public class EvolutionaryTree : Control
     private void BuildTree()
     {
         uint index = 0;
-        BuildTree(speciesNodes.First().Key, ref index);
+
+        foreach (var root in speciesOrigin.Where(o => o.Value.ParentSpeciesID == uint.MaxValue))
+        {
+            BuildTree(root.Key, ref index);
+        }
     }
 
     private void BuildTree(uint id, ref uint index)

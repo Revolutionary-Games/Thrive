@@ -26,10 +26,17 @@ public class OrbitCamera : Spatial
     [Export]
     public float InterpolateZoomSpeed = 5.0f;
 
+#pragma warning disable CA2213
     private Camera camera = null!;
+#pragma warning restore CA2213
 
     private Vector3 rotation;
     private Vector2 moveSpeed;
+
+    public override void _Ready()
+    {
+        camera = GetNode<Camera>("Camera");
+    }
 
     public override void _EnterTree()
     {
@@ -41,18 +48,6 @@ public class OrbitCamera : Spatial
     {
         base._ExitTree();
         InputManager.UnregisterReceiver(this);
-    }
-
-    public override void _Ready()
-    {
-        camera = GetNode<Camera>("Camera");
-    }
-
-    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true,
-        OnlyUnhandled = false)]
-    public void Zoom(float delta, float value)
-    {
-        Distance += ZoomSpeed * value * delta * 165;
     }
 
     public override void _Process(float delta)
@@ -79,5 +74,12 @@ public class OrbitCamera : Spatial
         {
             moveSpeed = motion.Relative;
         }
+    }
+
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true,
+        OnlyUnhandled = false)]
+    public void Zoom(float delta, float value)
+    {
+        Distance += ZoomSpeed * value * delta * 165;
     }
 }

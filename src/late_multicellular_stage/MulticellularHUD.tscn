@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -23,8 +23,11 @@
 [ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=22]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/parts/slimeJetAction.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" type="Texture" id=24]
+[ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=26]
+[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/actions/InteractAction.png" type="Texture" id=28]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
@@ -410,7 +413,6 @@ PanelsTweenPath = NodePath("BottomLeft/LeftPanels/PanelsTween")
 LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
 MouseHoverPanelPath = NodePath("MouseHoverPanel")
 HoveredCellsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/List")
-MenuPath = NodePath("../PauseMenu")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
@@ -442,16 +444,10 @@ PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBa
 EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
-MicrobePickupOrganelleSound = ExtResource( 18 )
-AmmoniaBW = ExtResource( 23 )
-PhosphatesBW = ExtResource( 15 )
-AmmoniaInv = ExtResource( 20 )
-PhosphatesInv = ExtResource( 21 )
 HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Eating")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
-MicrobeControlRadialPath = NodePath("../RadialPopup")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 HoveredCompoundsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/List")
@@ -460,14 +456,22 @@ AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
-ExtinctionBoxScene = ExtResource( 70 )
-PatchExtinctionBoxScene = ExtResource( 16 )
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
+HUDMessagesPath = NodePath("HUDMessages")
+FossilisationButtonScene = ExtResource( 27 )
+MicrobePickupOrganelleSound = ExtResource( 18 )
+AmmoniaBW = ExtResource( 23 )
+PhosphatesBW = ExtResource( 15 )
+AmmoniaInv = ExtResource( 20 )
+PhosphatesInv = ExtResource( 21 )
+ExtinctionBoxScene = ExtResource( 70 )
+PatchExtinctionBoxScene = ExtResource( 16 )
 MoveToLandPopupPath = NodePath("MoveToLandConfirmation")
 ToLandButtonPath = NodePath("BottomRight/VBoxContainer/ToLand")
-AwareButtonPath = NodePath("BottomRight/VBoxContainer/Control/Aware")
 AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
+AwakenConfirmPopupPath = NodePath("MoveToAwakeningConfirm")
+InteractActionPath = NodePath("ScrollContainer/HotBar/Interact")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -1693,41 +1697,31 @@ margin_right = 219.0
 margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
 text = "MOVE_TO_LAND"
 
 [node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer"]
-margin_left = 86.0
+margin_left = 80.0
 margin_top = 38.0
 margin_right = 219.0
 margin_bottom = 68.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Aware" type="Button" parent="BottomRight/VBoxContainer/Control"]
-margin_right = 133.0
-margin_bottom = 30.0
-grow_horizontal = 0
-grow_vertical = 0
-hint_tooltip = "TO_BE_IMPLEMENTED"
-size_flags_horizontal = 8
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 7 )
-disabled = true
-text = "BECOME_AWARE"
-
 [node name="Awaken" type="Button" parent="BottomRight/VBoxContainer/Control"]
-margin_left = 59.0
-margin_right = 133.0
+margin_right = 139.0
 margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
+hint_tooltip = "ACTION_AWAKEN_TOOLTIP"
+focus_mode = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
-text = "AWAKEN"
+text = "ACTION_AWAKEN"
 
 [node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
 margin_left = 88.0
@@ -2020,6 +2014,12 @@ anims/ShowCompoundsPanels = SubResource( 36 )
 anims/HideEnvironmentPanel = SubResource( 37 )
 anims/ShowEnvironmentPanel = SubResource( 38 )
 
+[node name="HUDMessages" parent="." instance=ExtResource( 25 )]
+margin_left = 270.0
+margin_top = 90.0
+margin_right = -270.0
+margin_bottom = -525.0
+
 [node name="ProcessPanel" parent="." instance=ExtResource( 13 )]
 margin_left = 8.0
 margin_top = 72.0
@@ -2046,10 +2046,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Interact" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_ENGULF"
+custom_styles/hover = SubResource( 33 )
+custom_styles/pressed = SubResource( 33 )
+custom_styles/normal = SubResource( 34 )
+ActionIcon = ExtResource( 28 )
+ActionName = "g_interact"
+
 [node name="Eating" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
 visible = false
-margin_left = 277.0
-margin_right = 323.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF"
 custom_styles/hover = SubResource( 33 )
@@ -2066,7 +2082,6 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "FIRE_TOXIN"
-focus_mode = 2
 ActionIcon = ExtResource( 19 )
 ActionName = "g_fire_toxin"
 
@@ -2090,7 +2105,6 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "SECRETE_SLIME"
-focus_mode = 2
 disabled = true
 ActionIcon = ExtResource( 24 )
 ActionName = "g_secrete_slime"
@@ -2112,8 +2126,14 @@ visible = false
 visible = false
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource( 17 )]
+rect_min_size = Vector2( 450, 0 )
 WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
 DialogText = "MOVING_TO_LAND_PROTOTYPE"
+
+[node name="MoveToAwakeningConfirm" parent="." instance=ExtResource( 17 )]
+rect_min_size = Vector2( 450, 0 )
+WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
@@ -2127,11 +2147,13 @@ DialogText = "MOVING_TO_LAND_PROTOTYPE"
 [connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
 [connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnBecomeMacroscopicPressed"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Aware" to="." method="OnBecomeMulticellularPressed"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnBecomeMacroscopicPressed"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnAwakenPressed"]
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
+[connection signal="Confirmed" from="MoveToLandConfirmation" to="." method="OnMoveToLandConfirmed"]
+[connection signal="Confirmed" from="MoveToAwakeningConfirm" to="." method="OnAwakenConfirmed"]
 
 [editable path="PausePrompt"]

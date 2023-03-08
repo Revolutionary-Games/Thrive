@@ -16,6 +16,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
 
+    /// <summary>
+    ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
+    ///   button as it should be only used after moving to land)
+    /// </summary>
+    [JsonProperty]
+    private MulticellularSpeciesType previousPlayerStage;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public MulticellularCamera PlayerCamera { get; private set; } = null!;
@@ -69,6 +76,23 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         dummySpawner = new SpawnSystem(rootOfDynamicallySpawned);
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (gameOver)
+            return;
+
+        if (playerExtinctInCurrentPatch)
+            return;
+
+        if (Player != null)
+        {
+        }
+
+        // TODO: notify metrics
+    }
+
     public override void StartMusic()
     {
         Jukebox.Instance.PlayCategory("LateMulticellularStage");
@@ -86,27 +110,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         UpdatePatchSettings();
 
         base.StartNewGame();
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        if (gameOver)
-            return;
-
-        if (playerExtinctInCurrentPatch)
-            return;
-
-        if (Player != null)
-        {
-        }
-
-        // TODO: notify metrics
     }
 
     // TODO: different pause key as space will be for jumping
@@ -177,6 +180,24 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         {
             // tutorialGUI.EventReceiver?.OnTutorialDisabled();
         }
+
+        // Update state transition triggers
+        if (Player.Species.MulticellularType != previousPlayerStage)
+        {
+            previousPlayerStage = Player.Species.MulticellularType;
+
+            if (previousPlayerStage == MulticellularSpeciesType.Aware)
+            {
+                // Intentionally not translatable as a placeholder prototype text
+                HUD.HUDMessages.ShowMessage(
+                    "You are now aware. This prototype has nothing extra yet, please move to the Awakening Stage.",
+                    DisplayDuration.Long);
+            }
+            else if (previousPlayerStage == MulticellularSpeciesType.Awakened)
+            {
+                // TODO: something
+            }
+        }
     }
 
     public override void OnSuicide()
@@ -188,6 +209,141 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         PlayerCamera.XRotation += pitchMovement;
         PlayerCamera.YRotation += yawMovement;
+    }
+
+    /// <summary>
+    ///   Temporary land part of the prototype, called from the HUD
+    /// </summary>
+    public void TeleportToLand()
+    {
+        if (Player == null)
+        {
+            GD.PrintErr("Player has disappeared");
+            return;
+        }
+
+        // Despawn everything except the player
+        foreach (Node child in rootOfDynamicallySpawned.GetChildren())
+        {
+            if (child != Player)
+                child.QueueFree();
+        }
+
+        // And setup the land "environment"
+
+        // Ground plane
+        var ground = new StaticBody
+        {
+            PhysicsMaterialOverride = new PhysicsMaterial
+            {
+                Friction = 1,
+                Bounce = 0.1f,
+                Absorbent = true,
+                Rough = true,
+            },
+        };
+
+        ground.AddChild(new CollisionShape
+        {
+            Shape = new PlaneShape
+            {
+                Plane = new Plane(new Vector3(0, 1, 0), 0),
+            },
+        });
+
+        ground.AddChild(new MeshInstance
+        {
+            Mesh = new PlaneMesh
+            {
+                Size = new Vector2(200, 200),
+                Material = new SpatialMaterial
+                {
+                    // Not good style but this is like this so I could just quickly copy-paste from the Godot editor
+                    AlbedoColor = new Color("#321d09"),
+                },
+            },
+        });
+
+        rootOfDynamicallySpawned.AddChild(ground);
+
+        // A not super familiar (different than underwater) rock strewn around for reference
+        var rockShape = GD.Load<Shape>("res://assets/models/Iron4.shape");
+        var rockScene = GD.Load<PackedScene>("res://assets/models/Iron4.tscn");
+        var rockMaterial = new PhysicsMaterial
+        {
+            Friction = 1,
+            Bounce = 0.3f,
+            Absorbent = false,
+            Rough = false,
+        };
+
+        foreach (var position in new[]
+                 {
+                     new Vector3(10, 0, 5),
+                     new Vector3(15, 0, 5),
+                     new Vector3(10, 0, 8),
+                     new Vector3(-3, 0, 5),
+                     new Vector3(-8, 0, 6),
+                     new Vector3(18, 0, 11),
+                 })
+        {
+            var rock = new RigidBody
+            {
+                PhysicsMaterialOverride = rockMaterial,
+            };
+
+            rock.AddChild(new CollisionShape
+            {
+                Shape = rockShape,
+            });
+
+            rock.AddChild(rockScene.Instance());
+
+            rootOfDynamicallySpawned.AddChild(rock);
+
+            rock.Translation = new Vector3(position.x, 0.1f, position.z);
+        }
+
+        // Modify player state for being on land
+        Player.MovementMode = MovementMode.Walking;
+
+        if (Player.Translation.y <= 0)
+        {
+            Player.Translation = new Vector3(Player.Translation.x, 0.1f, Player.Translation.z);
+        }
+
+        // Modify the player species to be on land
+        Player.Species.ReproductionLocation = ReproductionLocation.Land;
+
+        // Fade back in after the "teleport"
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.3f, null, false);
+    }
+
+    public void MoveToAwakeningStage()
+    {
+        if (Player == null)
+            return;
+
+        GD.Print("Moving player to awakening stage prototype");
+
+        Player.Species.MovePlayerToAwakenedStatus();
+
+        // Intentionally not translated prototype message
+        HUD.HUDMessages.ShowMessage(
+            "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
+            "Interact with tool parts to advance.", DisplayDuration.Long);
+    }
+
+    public void AttemptPlayerWorldInteraction()
+    {
+        // TODO: we might in the future have somethings that an aware creature can interact with
+        if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
+            return;
+
+        // TODO: find nearby objects and open interaction menu if there's something to interact with
+
+        // Did not find anything for the player to interact with
+        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
     }
 
     protected override void SetupStage()

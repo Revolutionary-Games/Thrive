@@ -19,7 +19,7 @@ public class ControllerAxisVisualizer : MarginContainer
     public float CrossLineWidth = 2;
 
     [Export]
-    public NodePath DrawerNodePath = null!;
+    public NodePath? DrawerNodePath;
 
     [Export]
     public NodePath HorizontalLabelPath = null!;
@@ -46,6 +46,7 @@ public class ControllerAxisVisualizer : MarginContainer
     [Export]
     public NodePath VerticalDeadzoneDisplayerPath = null!;
 
+#pragma warning disable CA2213
     private Control drawerNode = null!;
     private Label horizontalLabel = null!;
     private Label horizontalRawValue = null!;
@@ -55,6 +56,7 @@ public class ControllerAxisVisualizer : MarginContainer
     private Label verticalDeadzoneValue = null!;
     private Control verticalRawDisplayer = null!;
     private Control verticalDeadzoneDisplayer = null!;
+#pragma warning restore CA2213
 
     private int horizontalAxis = -1;
     private float horizontalValue;
@@ -154,7 +156,7 @@ public class ControllerAxisVisualizer : MarginContainer
     }
 
     /// <summary>
-    ///  Adds a new axis to track. Each instance can only track 2 axes.
+    ///   Adds a new axis to track. Each instance can only track 2 axes.
     /// </summary>
     /// <param name="axis">The axis ID</param>
     public void AddAxis(int axis)
@@ -212,6 +214,27 @@ public class ControllerAxisVisualizer : MarginContainer
         {
             ReadDeadzone(verticalDeadzoneValue, verticalAxis, newValue);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (DrawerNodePath != null)
+            {
+                DrawerNodePath.Dispose();
+                HorizontalLabelPath.Dispose();
+                HorizontalRawValuePath.Dispose();
+                HorizontalDeadzoneValuePath.Dispose();
+                VerticalLabelPath.Dispose();
+                VerticalRawValuePath.Dispose();
+                VerticalDeadzoneValuePath.Dispose();
+                VerticalRawDisplayerPath.Dispose();
+                VerticalDeadzoneDisplayerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void Draw()

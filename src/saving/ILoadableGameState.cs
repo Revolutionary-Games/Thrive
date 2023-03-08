@@ -5,7 +5,7 @@
 /// </summary>
 public interface ILoadableGameState : ISaveLoadedTracked
 {
-    Node GameStateRoot { get; }
+    public Node GameStateRoot { get; }
 
-    void OnFinishLoading(Save save);
+    public void OnFinishLoading(Save save);
 }

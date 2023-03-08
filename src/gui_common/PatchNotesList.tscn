@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/gui_common/PatchNotesList.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=4]
+
+[node name="PatchNotesList" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 15
+script = ExtResource( 1 )
+ShowAll = false
+TitleFont = ExtResource( 4 )
+SubHeadingFont = ExtResource( 3 )
+TrailingVisitLinkFont = ExtResource( 2 )

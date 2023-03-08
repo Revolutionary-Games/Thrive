@@ -9,9 +9,12 @@ public partial class DebugOverlays
 {
     private readonly Dictionary<IEntity, Label> entityLabels = new();
 
-    private bool showEntityLabels;
+#pragma warning disable CA2213
     private Font smallerFont = null!;
     private Camera? activeCamera;
+#pragma warning restore CA2213
+
+    private bool showEntityLabels;
 
     private bool ShowEntityLabels
     {
@@ -21,6 +24,16 @@ public partial class DebugOverlays
             showEntityLabels = value;
             labelsLayer.Visible = value;
         }
+    }
+
+    private void InitiateEntityLabels()
+    {
+        var rootTree = GetTree();
+
+        SearchSceneTreeForEntity(rootTree.Root);
+
+        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
+        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
     }
 
     private void UpdateLabelColour(IEntity entity, Label label)
@@ -39,19 +52,19 @@ public partial class DebugOverlays
             {
                 switch (microbe.State)
                 {
-                    case Microbe.MicrobeState.Binding:
+                    case MicrobeState.Binding:
                     {
                         label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
                         break;
                     }
 
-                    case Microbe.MicrobeState.Engulf:
+                    case MicrobeState.Engulf:
                     {
                         label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
                         break;
                     }
 
-                    case Microbe.MicrobeState.Unbinding:
+                    case MicrobeState.Unbinding:
                     {
                         label.AddColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
                         break;
@@ -169,16 +182,6 @@ public partial class DebugOverlays
 
         foreach (Node child in node.GetChildren())
             SearchSceneTreeForEntity(child);
-    }
-
-    private void InitiateEntityLabels()
-    {
-        var rootTree = GetTree();
-
-        SearchSceneTreeForEntity(rootTree.Root);
-
-        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
-        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
     }
 
     private void CleanEntityLabels()

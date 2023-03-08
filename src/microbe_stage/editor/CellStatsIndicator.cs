@@ -8,13 +8,25 @@ using Newtonsoft.Json;
 /// </summary>
 public class CellStatsIndicator : HBoxContainer
 {
+#pragma warning disable CA2213
+    /// <summary>
+    ///   The icon to be displayed when <see cref="Value"/> hasn't been assigned to or is <see langword="NaN"/>.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Uses question mark icon by default (if this isn't set).
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public Texture? InvalidIcon;
+
     private Label? descriptionLabel;
     private Label? valueLabel;
     private TextureRect? changeIndicator;
 
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
-    private Texture questionIcon = null!;
+#pragma warning restore CA2213
 
     private string description = "unset";
     private string? format;
@@ -22,6 +34,18 @@ public class CellStatsIndicator : HBoxContainer
 
     [JsonProperty]
     private float? initialValue;
+
+    /// <summary>
+    ///   The minimum rect size of the change indicator in normal state (the up/down arrow).
+    /// </summary>
+    [Export]
+    public Vector2 ChangeIndicatorSize { get; set; } = new(10, 10);
+
+    /// <summary>
+    ///   The minimum rect size of the change indicator in invalid state.
+    /// </summary>
+    [Export]
+    public Vector2 InvalidIndicatorSize { get; set; } = new(10, 10);
 
     [Export]
     public string Description
@@ -70,10 +94,12 @@ public class CellStatsIndicator : HBoxContainer
         valueLabel = GetNode<Label>("Value");
         changeIndicator = GetNode<TextureRect>("Indicator");
 
+        InvalidIcon ??= GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
+
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
-        questionIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
 
+        UpdateChangeIndicator();
         UpdateDescription();
         UpdateValue();
     }
@@ -93,6 +119,25 @@ public class CellStatsIndicator : HBoxContainer
         UpdateValue();
     }
 
+    private void UpdateChangeIndicator()
+    {
+        if (changeIndicator == null)
+            return;
+
+        if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
+        {
+            changeIndicator.RectMinSize = ChangeIndicatorSize;
+            changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
+            changeIndicator.Visible = Value != initialValue;
+        }
+        else
+        {
+            changeIndicator.RectMinSize = InvalidIndicatorSize;
+            changeIndicator.Texture = InvalidIcon;
+            changeIndicator.Visible = true;
+        }
+    }
+
     private void UpdateDescription()
     {
         if (descriptionLabel == null)
@@ -106,16 +151,7 @@ public class CellStatsIndicator : HBoxContainer
         if (valueLabel == null || changeIndicator == null)
             return;
 
-        if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
-        {
-            changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
-            changeIndicator.Visible = Value != initialValue;
-        }
-        else
-        {
-            changeIndicator.Texture = questionIcon;
-            changeIndicator.Visible = true;
-        }
+        UpdateChangeIndicator();
 
         valueLabel.Text = string.IsNullOrEmpty(Format) ?
             Value.ToString(CultureInfo.CurrentCulture) :

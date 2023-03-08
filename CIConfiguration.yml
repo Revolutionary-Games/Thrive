@@ -2,15 +2,15 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v20
+    image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v4-{Branch}-build
-        - v4-master-build
-      writeTo: v4-{Branch}-build
+        - v5-{Branch}-build
+        - v5-master-build
+      writeTo: v5-{Branch}-build
       shared:
         .git/lfs: v3-lfs
-        .import: v5-import
+        .import: v6-import
         builds: v2-builds
       system:
         /root/.nuget: v2-nuget
@@ -33,15 +33,15 @@ jobs:
           name: Upload devbuilds
           command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v20
+    image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v2-{Branch}-jetbrains
-        - v2-master-jetbrains
-      writeTo: v2-{Branch}-jetbrains
+        - v3-{Branch}-jetbrains
+        - v3-master-jetbrains
+      writeTo: v3-{Branch}-jetbrains
       shared:
         .git/lfs: v3-lfs
-        .import: v5-import
+        .import: v6-import
         builds: v2-jetbrains-dummy-builds
       system:
         /root/.nuget: v2-nuget
@@ -76,8 +76,8 @@ jobs:
           name: Jetbrains inspectcode
           command: dotnet run --project Scripts -- check inspectcode
       - run:
-          name: Jetbrains format
-          command: dotnet run --project Scripts -- check cleanupcode
+          name: Code reformatting
+          command: dotnet run --project Scripts -- check cleanupcode rewrite
       # dupfinder is deprecated, see: https://github.com/Revolutionary-Games/Thrive/issues/2953
       # - run:
       #     command: ./check_formatting.rb -c duplicatecode
@@ -96,12 +96,12 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_script:
-    image: thrive/godot-ci:v20
+    image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v2-{Branch}-format
-        - v2-master-format
-      writeTo: v2-{Branch}-format
+        - v3-{Branch}-format
+        - v3-master-format
+      writeTo: v3-{Branch}-format
       shared:
         .git/lfs: v3-lfs
       system:

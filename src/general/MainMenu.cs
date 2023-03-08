@@ -17,7 +17,7 @@ public class MainMenu : NodeWithInput
     public uint CurrentMenuIndex;
 
     [Export]
-    public NodePath ThriveLogoPath = null!;
+    public NodePath? ThriveLogoPath;
 
     [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
     [Export]
@@ -28,6 +28,9 @@ public class MainMenu : NodeWithInput
 
     [Export]
     public NodePath AutoEvoExploringButtonPath = null!;
+
+    [Export]
+    public NodePath MicrobeBenchmarkButtonPath = null!;
 
     [Export]
     public NodePath ExitToLauncherButtonPath = null!;
@@ -45,6 +48,9 @@ public class MainMenu : NodeWithInput
     public NodePath GLES2PopupPath = null!;
 
     [Export]
+    public NodePath SteamFailedPopupPath = null!;
+
+    [Export]
     public NodePath ModLoadFailuresPath = null!;
 
     [Export]
@@ -52,9 +58,6 @@ public class MainMenu : NodeWithInput
 
     [Export]
     public NodePath ModsInstalledButNotEnabledWarningPath = null!;
-
-    [Export]
-    public NodePath PermanentlyDismissModsNotEnabledWarningPath = null!;
 
     [Export]
     public NodePath SocialMediaContainerPath = null!;
@@ -78,18 +81,25 @@ public class MainMenu : NodeWithInput
     public NodePath GalleryViewerPath = null!;
 
     [Export]
+    public NodePath NewsFeedPath = null!;
+
+    [Export]
+    public NodePath NewsFeedDisablerPath = null!;
+
+    [Export]
+    public NodePath PatchNotesPath = null!;
+
+    [Export]
+    public NodePath PatchNotesDisablerPath = null!;
+
+    [Export]
+    public NodePath FeedPositionerPath = null!;
+
+    [Export]
     public NodePath ThanksDialogPath = null!;
 
-    [Export]
-    public NodePath ThanksDialogTextPath = null!;
-
-    [Export]
-    public NodePath PermanentlyDismissThanksDialogPath = null!;
-
-    public Array? MenuArray;
-    public TextureRect Background = null!;
-
-    public bool IsReturningToMenu;
+#pragma warning disable CA2213
+    private TextureRect background = null!;
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -100,11 +110,20 @@ public class MainMenu : NodeWithInput
     private ModManager modManager = null!;
     private GalleryViewer galleryViewer = null!;
 
+    private ThriveFeedDisplayer newsFeed = null!;
+    private Control newsFeedDisabler = null!;
+
+    private PatchNotesDisplayer patchNotes = null!;
+    private Control patchNotesDisabler = null!;
+
+    private Control feedPositioner = null!;
+
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
+    private Button microbeBenchmarkButton = null!;
 
     private Button exitToLauncherButton = null!;
 
@@ -119,14 +138,15 @@ public class MainMenu : NodeWithInput
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
 
+    private CustomConfirmationDialog steamFailedPopup = null!;
+
     private CustomDialog safeModeWarning = null!;
 
-    private CustomDialog modsInstalledButNotEnabledWarning = null!;
-    private CustomCheckBox permanentlyDismissModsNotEnabledWarning = null!;
+    private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
+    private PermanentlyDismissibleDialog thanksDialog = null!;
+#pragma warning restore CA2213
 
-    private CustomDialog thanksDialog = null!;
-    private CustomRichTextLabel thanksDialogText = null!;
-    private CustomCheckBox permanentlyDismissThanksDialog = null!;
+    private Array? menuArray;
 
     private bool introVideoPassed;
 
@@ -142,10 +162,13 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
 
+    public bool IsReturningToMenu { get; set; }
+
     public static void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
         SaveHelper.ClearLastSaveTime();
+        LastPlayedVersion.MarkCurrentVersionAsPlayed();
     }
 
     public override void _Ready()
@@ -172,6 +195,14 @@ public class MainMenu : NodeWithInput
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
+
+        // Start this early here to make sure this is ready as soon as possible
+        // In the case where patch notes take up the news feed, this is still not a complete waste as if the player
+        // exits to the menu after playing a bit they'll see the news feed
+        if (Settings.Instance.ThriveNewsFeedEnabled)
+        {
+            ThriveNewsFeed.GetFeedContents();
+        }
     }
 
     public override void _Process(float delta)
@@ -185,16 +216,16 @@ public class MainMenu : NodeWithInput
             if (canShowThanks)
             {
                 if (!IsReturningToMenu &&
-                    !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying))
+                    !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying)
+                    && !SteamFailed())
                 {
                     GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
 
                     // The text has a store link template, so we need to update the right links into it
-                    thanksDialogText.ExtendedBbcode =
+                    thanksDialog.DialogText =
                         TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
-                    // This isn't strictly necessary but might make the fix to this popup more robust
-                    Invoke.Instance.Queue(() => thanksDialog.PopupCenteredShrink());
+                    thanksDialog.PopupCenteredShrink();
                 }
 
                 canShowThanks = false;
@@ -208,6 +239,12 @@ public class MainMenu : NodeWithInput
                 {
                     CheckStartupSuccess();
                     WarnAboutNoEnabledMods();
+
+                    if (SteamFailed())
+                    {
+                        GD.PrintErr("Steam init has failed, showing failure popup");
+                        steamFailedPopup.PopupCenteredShrink();
+                    }
                 }
             }
         }
@@ -236,16 +273,17 @@ public class MainMenu : NodeWithInput
     /// <param name="slide">If false then the menu slide animation will not be played</param>
     public void SetCurrentMenu(uint index, bool slide = true)
     {
-        if (MenuArray == null)
+        if (menuArray == null)
             throw new InvalidOperationException("Main menu has not been initialized");
 
         // Hide the website button container whenever anything else is pressed, and only display the social media icons
         // if a menu is visible
         websiteButtonsContainer.Visible = false;
         socialMediaContainer.Visible = index != uint.MaxValue;
+        feedPositioner.Visible = index != uint.MaxValue;
 
         // Allow disabling all the menus for going to the options menu
-        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
+        if (index > menuArray.Count - 1 && index != uint.MaxValue)
         {
             GD.PrintErr("Selected menu index is out of range!");
             return;
@@ -290,16 +328,57 @@ public class MainMenu : NodeWithInput
         return false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ThriveLogoPath != null)
+            {
+                ThriveLogoPath.Dispose();
+                FreebuildButtonPath.Dispose();
+                AutoEvoExploringButtonPath.Dispose();
+                MicrobeBenchmarkButtonPath.Dispose();
+                ExitToLauncherButtonPath.Dispose();
+                CreditsContainerPath.Dispose();
+                CreditsScrollPath.Dispose();
+                LicensesDisplayPath.Dispose();
+                GLES2PopupPath.Dispose();
+                SteamFailedPopupPath.Dispose();
+                ModLoadFailuresPath.Dispose();
+                SafeModeWarningPath.Dispose();
+                ModsInstalledButNotEnabledWarningPath.Dispose();
+                SocialMediaContainerPath.Dispose();
+                WebsiteButtonsContainerPath.Dispose();
+                ItchButtonPath.Dispose();
+                PatreonButtonPath.Dispose();
+                StoreLoggedInDisplayPath.Dispose();
+                ModManagerPath.Dispose();
+                GalleryViewerPath.Dispose();
+                NewsFeedPath.Dispose();
+                NewsFeedDisablerPath.Dispose();
+                PatchNotesPath.Dispose();
+                PatchNotesDisablerPath.Dispose();
+                FeedPositionerPath.Dispose();
+                ThanksDialogPath.Dispose();
+            }
+
+            menuArray?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Setup the main menu.
     /// </summary>
     private void RunMenuSetup()
     {
-        Background = GetNode<TextureRect>("Background");
+        background = GetNode<TextureRect>("Background");
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
+        microbeBenchmarkButton = GetNode<Button>(MicrobeBenchmarkButtonPath);
         exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
@@ -307,18 +386,23 @@ public class MainMenu : NodeWithInput
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
+        newsFeed = GetNode<ThriveFeedDisplayer>(NewsFeedPath);
+        newsFeedDisabler = GetNode<Control>(NewsFeedDisablerPath);
+        patchNotes = GetNode<PatchNotesDisplayer>(PatchNotesPath);
+        patchNotesDisabler = GetNode<Control>(PatchNotesDisablerPath);
+        feedPositioner = GetNode<Control>(FeedPositionerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
         websiteButtonsContainer = GetNode<PopupPanel>(WebsiteButtonsContainerPath);
 
         itchButton = GetNode<TextureButton>(ItchButtonPath);
         patreonButton = GetNode<TextureButton>(PatreonButtonPath);
 
-        MenuArray?.Clear();
+        menuArray?.Clear();
 
         // Get all of menu items
-        MenuArray = GetTree().GetNodesInGroup("MenuItem");
+        menuArray = GetTree().GetNodesInGroup("MenuItem");
 
-        if (MenuArray == null)
+        if (menuArray == null)
         {
             GD.PrintErr("Failed to find all the menu items!");
             return;
@@ -333,13 +417,11 @@ public class MainMenu : NodeWithInput
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
+        steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
-        modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
-        permanentlyDismissModsNotEnabledWarning = GetNode<CustomCheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
-
-        thanksDialog = GetNode<CustomDialog>(ThanksDialogPath);
-        thanksDialogText = GetNode<CustomRichTextLabel>(ThanksDialogTextPath);
-        permanentlyDismissThanksDialog = GetNode<CustomCheckBox>(PermanentlyDismissThanksDialogPath);
+        modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(
+            ModsInstalledButNotEnabledWarningPath);
+        thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
 
         // Set initial menu
         SwitchMenu();
@@ -352,6 +434,16 @@ public class MainMenu : NodeWithInput
 
         UpdateStoreVersionStatus();
         UpdateLauncherState();
+
+        // Hide patch notes when it does not want to be shown
+        if (!Settings.Instance.ShowNewPatchNotes)
+        {
+            patchNotesDisabler.Visible = false;
+        }
+        else
+        {
+            ShowPatchInfoIfPossible();
+        }
     }
 
     /// <summary>
@@ -359,16 +451,16 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private void RandomizeBackground()
     {
-        Random rand = new Random();
+        var random = new Random();
 
-        var chosenBackground = MenuBackgrounds.Random(rand);
+        var chosenBackground = MenuBackgrounds.Random(random);
 
         SetBackground(chosenBackground);
     }
 
     private void SetBackground(Texture backgroundImage)
     {
-        Background.Texture = backgroundImage;
+        background.Texture = backgroundImage;
     }
 
     private void UpdateStoreVersionStatus()
@@ -424,6 +516,11 @@ public class MainMenu : NodeWithInput
         }
     }
 
+    private bool SteamFailed()
+    {
+        return SteamHandler.IsTaggedSteamRelease() && !SteamHandler.Instance.IsLoaded;
+    }
+
     private void UpdateLauncherState()
     {
         if (!LaunchOptions.LaunchedThroughLauncher)
@@ -459,7 +556,7 @@ public class MainMenu : NodeWithInput
         thriveLogo.Hide();
 
         // Hide other menus and only show the one of the current index
-        foreach (Control menu in MenuArray!)
+        foreach (Control menu in menuArray!)
         {
             menu.Hide();
 
@@ -504,13 +601,47 @@ public class MainMenu : NodeWithInput
         SafeModeStartupHandler.ReportGameStartSuccessful();
     }
 
+    /// <summary>
+    ///   Updates feed visibilities if settings have been changed
+    /// </summary>
+    private void UpdateFeedVisibilities()
+    {
+        var settings = Settings.Instance;
+
+        if (!settings.ShowNewPatchNotes && patchNotesDisabler.Visible)
+        {
+            patchNotesDisabler.Visible = false;
+            newsFeedDisabler.Visible = true;
+        }
+        else if (settings.ShowNewPatchNotes && !patchNotesDisabler.Visible)
+        {
+            ShowPatchInfoIfPossible();
+        }
+    }
+
+    private void ShowPatchInfoIfPossible()
+    {
+        if (patchNotes.ShowIfNewPatchNotesExist())
+        {
+            GD.Print("We are playing a new version of Thrive for the first time, showing patch notes");
+
+            // Hide the news when patch notes are visible (and there's something to show there)
+            newsFeedDisabler.Visible = false;
+
+            patchNotesDisabler.Visible = true;
+        }
+        else
+        {
+            patchNotesDisabler.Visible = false;
+        }
+    }
+
     private void WarnAboutNoEnabledMods()
     {
-        if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods() &&
-            !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.NoModsActiveButInstalled))
+        if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods())
         {
             GD.Print("Player has installed mods but no enabled ones, giving a heads up");
-            modsInstalledButNotEnabledWarning.PopupCenteredShrink();
+            modsInstalledButNotEnabledWarning.PopupIfNotDismissed();
         }
     }
 
@@ -615,6 +746,10 @@ public class MainMenu : NodeWithInput
     {
         options.Visible = false;
         SetCurrentMenu(0, false);
+
+        // In case news settings are changed, update that state
+        UpdateFeedVisibilities();
+        newsFeed.CheckStartFetchNews();
     }
 
     private void OnReturnFromNewGameSettings()
@@ -755,15 +890,27 @@ public class MainMenu : NodeWithInput
         OS.ShellOpen(url);
     }
 
-    private void OnNoEnabledModsNoticeClosed()
+    private void BenchmarksPressed()
     {
-        if (permanentlyDismissModsNotEnabledWarning.Pressed)
-            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.NoModsActiveButInstalled);
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetCurrentMenu(3, true);
     }
 
-    private void OnThanksDialogClosed()
+    private void OnReturnFromBenchmarks()
     {
-        if (permanentlyDismissThanksDialog.Pressed)
-            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.ThanksForBuying);
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetCurrentMenu(1, true);
+    }
+
+    private void MicrobeBenchmarkPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        microbeBenchmarkButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene("res://src/benchmark/microbe/MicrobeBenchmark.tscn"); }, false);
     }
 }

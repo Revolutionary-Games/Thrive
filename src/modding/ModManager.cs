@@ -14,7 +14,7 @@ using Path = System.IO.Path;
 public class ModManager : Control
 {
     [Export]
-    public NodePath LeftArrowPath = null!;
+    public NodePath? LeftArrowPath;
 
     [Export]
     public NodePath RightArrowPath = null!;
@@ -240,6 +240,7 @@ public class ModManager : Control
     private List<FullModDetails>? notEnabledMods;
     private List<FullModDetails>? enabledMods;
 
+#pragma warning disable CA2213
     private Button leftArrow = null!;
     private Button rightArrow = null!;
 
@@ -328,6 +329,7 @@ public class ModManager : Control
     private ErrorDialog modErrorDialog = null!;
 
     private CustomDialog restartRequired = null!;
+#pragma warning restore CA2213
 
     private FullModDetails? selectedMod;
 
@@ -599,6 +601,60 @@ public class ModManager : Control
     }
 
     public override void _Notification(int what)
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (LeftArrowPath != null)
+            {
+                LeftArrowPath.Dispose();
+                RightArrowPath.Dispose();
+                AvailableModsContainerPath.Dispose();
+                EnabledModsContainerPath.Dispose();
+                OpenModInfoButtonPath.Dispose();
+                OpenModUrlButtonPath.Dispose();
+                DisableAllModsButtonPath.Dispose();
+                SelectedModNamePath.Dispose();
+                SelectedModIconPath.Dispose();
+                SelectedModAuthorPath.Dispose();
+                SelectedModVersionPath.Dispose();
+                SelectedModRecommendedThriveVersionPath.Dispose();
+                SelectedModMinimumThriveVersionPath.Dispose();
+                SelectedModDescriptionPath.Dispose();
+                ApplyChangesButtonPath.Dispose();
+                UnAppliedChangesWarningPath.Dispose();
+                ModFullInfoPopupPath.Dispose();
+                FullInfoNamePath.Dispose();
+                FullInfoInternalNamePath.Dispose();
+                FullInfoAuthorPath.Dispose();
+                FullInfoVersionPath.Dispose();
+                FullInfoDescriptionPath.Dispose();
+                FullInfoLongDescriptionPath.Dispose();
+                FullInfoFromWorkshopPath.Dispose();
+                FullInfoIconFilePath.Dispose();
+                FullInfoInfoUrlPath.Dispose();
+                FullInfoLicensePath.Dispose();
+                FullInfoRecommendedThrivePath.Dispose();
+                FullInfoMinimumThrivePath.Dispose();
+                FullInfoMaximumThrivePath.Dispose();
+                FullInfoPckNamePath.Dispose();
+                FullInfoModAssemblyPath.Dispose();
+                FullInfoAssemblyModClassPath.Dispose();
+                FullInfoAutoHarmonyPath.Dispose();
+                OpenWorkshopButtonPath.Dispose();
+                ModUploaderButtonPath.Dispose();
+                NewModGUIPath.Dispose();
+                ModCreateErrorDialogPath.Dispose();
+                ModUploaderPath.Dispose();
+                ModErrorDialogPath.Dispose();
+                RestartRequiredPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private static bool IsAllowedModPath(string path)
     {
         if (what == NotificationTranslationChanged)
         {

@@ -25,9 +25,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new(0, 0, 0);
 
+#pragma warning disable CA2213
     private HybridAudioPlayer engulfAudio = null!;
     private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;
+#pragma warning restore CA2213
+
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
@@ -84,10 +87,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     [JsonProperty]
     private MicrobeAI? ai;
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
     private Listener? listener;
+#pragma warning restore CA2213
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
@@ -103,7 +109,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public CellType? MulticellularCellType { get; private set; }
 
     /// <summary>
-    ///    True when this is the player's microbe
+    ///   True when this is the player's microbe
     /// </summary>
     [JsonProperty]
     public bool IsPlayerMicrobe { get; private set; }
@@ -212,8 +218,24 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   Entity weight for microbes counts all organelles with a scaling factor.
     /// </summary>
     [JsonIgnore]
-    public float EntityWeight => organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
-        throw new InvalidOperationException("Organelles not initialised on microbe spawn");
+    public float EntityWeight
+    {
+        get
+        {
+            var weight = organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
+                throw new InvalidOperationException("Organelles not initialised on microbe spawn");
+
+            if (Colony != null)
+            {
+                // Only colony lead cells have the extra entity weight from the colony added
+                // As the colony reads this property on the other members, we do not throw here
+                if (Colony.Master == this)
+                    weight += Colony.EntityWeight;
+            }
+
+            return weight;
+        }
+    }
 
     /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
@@ -308,24 +330,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             cachedMulticellularSpecies = (EarlyMulticellularSpecies)Species;
             return cachedMulticellularSpecies;
         }
-    }
-
-    /// <summary>
-    ///   Must be called when spawned to provide access to the needed systems
-    /// </summary>
-    public void Init(CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
-        bool isPlayer)
-    {
-        this.cloudSystem = cloudSystem;
-        this.spawnSystem = spawnSystem;
-        CurrentGame = currentGame;
-        IsPlayerMicrobe = isPlayer;
-
-        if (!isPlayer)
-            ai = new MicrobeAI(this);
-
-        // Needed for immediately applying the species
-        _Ready();
     }
 
     public override void _Ready()
@@ -464,6 +468,92 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         ApplyRenderPriority();
 
         onReadyCalled = true;
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        if (IsPlayerMicrobe)
+            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (IsPlayerMicrobe)
+            CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
+    }
+
+    /// <summary>
+    ///   Must be called when spawned to provide access to the needed systems
+    /// </summary>
+    public void Init(CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
+        bool isPlayer)
+    {
+        this.cloudSystem = cloudSystem;
+        this.spawnSystem = spawnSystem;
+        CurrentGame = currentGame;
+        IsPlayerMicrobe = isPlayer;
+
+        if (!isPlayer)
+            ai = new MicrobeAI(this);
+
+        // Needed for immediately applying the species
+        _Ready();
+    }
+
+    public override void _Process(float delta)
+    {
+        if (usesExternalProcess)
+        {
+            GD.PrintErr("_Process was called for microbe that uses external processing");
+            return;
+        }
+
+        ProcessEarlyAsync(delta);
+        ProcessSync(delta);
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
+
+        // Movement
+        if (ColonyParent == null && !IsForPreviewOnly)
+        {
+            HandleMovement(delta);
+        }
+        else
+        {
+            Colony?.Master.AddMovementForce(queuedMovementForce);
+        }
+
+        lastLinearVelocity = LinearVelocity;
+        lastLinearAcceleration = linearAcceleration;
+    }
+
+    public override void _IntegrateForces(PhysicsDirectBodyState physicsState)
+    {
+        if (ColonyParent != null)
+            return;
+
+        // TODO: should movement also be applied here?
+
+        physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+
+        // Reset total sum from previous collisions
+        collisionForce = 0.0f;
+
+        // Sum impulses from all contact points
+        for (var i = 0; i < physicsState.GetContactCount(); ++i)
+        {
+            // TODO: Godot currently does not provide a convenient way to access a collision impulse, this
+            // for example is luckily available only in Bullet which makes things a bit easier. Would need
+            // proper handling for this in the future.
+            collisionForce += physicsState.GetContactImpulse(i);
+        }
     }
 
     /// <summary>
@@ -779,56 +869,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
-    public override void _Process(float delta)
-    {
-        if (usesExternalProcess)
-        {
-            GD.PrintErr("_Process was called for microbe that uses external processing");
-            return;
-        }
-
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        ProcessEarlyAsync(delta);
-        ProcessSync(delta);
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
-
-        // Movement
-        if (ColonyParent == null && !IsForPreviewOnly)
-        {
-            HandleMovement(delta);
-        }
-        else
-        {
-            Colony?.Master.AddMovementForce(queuedMovementForce);
-        }
-
-        lastLinearVelocity = LinearVelocity;
-        lastLinearAcceleration = linearAcceleration;
-    }
-
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-
-        if (IsPlayerMicrobe)
-            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        if (IsPlayerMicrobe)
-            CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
-    }
-
     public void AIThink(float delta, Random random, MicrobeAICommonData data)
     {
         if (IsPlayerMicrobe)
@@ -846,28 +886,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 #pragma warning restore CA1031
         {
             GD.PrintErr("Microbe AI failure! ", e);
-        }
-    }
-
-    public override void _IntegrateForces(PhysicsDirectBodyState physicsState)
-    {
-        if (ColonyParent != null)
-            return;
-
-        // TODO: should movement also be applied here?
-
-        physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
-
-        // Reset total sum from previous collisions
-        collisionForce = 0.0f;
-
-        // Sum impulses from all contact points
-        for (var i = 0; i < physicsState.GetContactCount(); ++i)
-        {
-            // TODO: Godot currently does not provide a convenient way to access a collision impulse, this
-            // for example is luckily available only in Bullet which makes things a bit easier. Would need
-            // proper handling for this in the future.
-            collisionForce += physicsState.GetContactImpulse(i);
         }
     }
 
@@ -908,7 +926,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new ArgumentException("searchRadius must be >= 1");
 
         // If the microbe cannot absorb, no need for this
-        if (Membrane.Type.CellWall)
+        if (!CanEngulf)
             return null;
 
         Vector3? nearestPoint = null;
@@ -928,7 +946,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 continue;
 
             // Skip non-engulfable entities
-            if (!CanEngulf(entity))
+            if (CanEngulfObject(entity) != EngulfCheckResult.Ok)
                 continue;
 
             // Skip entities that have no useful compounds
@@ -1022,7 +1040,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         SetMembraneFromSpecies();
 
-        if (Membrane.Type.CellWall)
+        if (!CanEngulf)
         {
             // Reset engulf mode if the new membrane doesn't allow it
             if (State == MicrobeState.Engulf)

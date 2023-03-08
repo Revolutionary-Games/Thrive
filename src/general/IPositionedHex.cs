@@ -1,4 +1,4 @@
 ﻿public interface IPositionedHex
 {
-    Hex Position { get; set; }
+    public Hex Position { get; set; }
 }

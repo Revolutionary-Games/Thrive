@@ -16,7 +16,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonProperty]
     private List<CompoundCloudPlane> clouds = new();
 
+#pragma warning disable CA2213
     private PackedScene cloudScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   This is the point in the center of the middle cloud. This is
@@ -43,19 +45,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     public override void _Ready()
     {
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
-    }
-
-    public override void _Process(float delta)
-    {
-        elapsed += delta;
-
-        // Limit the rate at which the clouds are processed as they
-        // are a major performance sink
-        if (elapsed >= Settings.Instance.CloudUpdateInterval)
-        {
-            UpdateCloudContents(elapsed);
-            elapsed = 0.0f;
-        }
     }
 
     /// <summary>
@@ -136,6 +125,19 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
             --renderPriority;
             clouds[i].Translation = new Vector3(0, 0, 0);
+        }
+    }
+
+    public override void _Process(float delta)
+    {
+        elapsed += delta;
+
+        // Limit the rate at which the clouds are processed as they
+        // are a major performance sink
+        if (elapsed >= Settings.Instance.CloudUpdateInterval)
+        {
+            UpdateCloudContents(elapsed);
+            elapsed = 0.0f;
         }
     }
 

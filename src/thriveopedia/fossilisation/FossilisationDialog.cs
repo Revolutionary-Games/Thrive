@@ -8,29 +8,24 @@ using Godot;
 public class FossilisationDialog : CustomDialog
 {
     [Export]
-    public NodePath NameEditPath = null!;
+    public NodePath? NameEditPath;
 
     [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
+    public NodePath SpeciesDetailsPanelPath = null!;
 
     [Export]
     public NodePath FossiliseButtonPath = null!;
 
     [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
-
-    [Export]
     public NodePath OverwriteNameConfirmationDialogPath = null!;
 
+#pragma warning disable CA2213
     private LineEdit speciesNameEdit = null!;
-    private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
-    private CustomRichTextLabel speciesDetailsLabel = null!;
+    private SpeciesDetailsPanel speciesDetailsPanel = null!;
     private Button fossiliseButton = null!;
     private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
+    private SpeciesPreview speciesPreview = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The species currently open in the dialog.
@@ -53,10 +48,9 @@ public class FossilisationDialog : CustomDialog
         set
         {
             selectedSpecies = value;
+            speciesDetailsPanel.PreviewSpecies = value;
 
             SetNewName(selectedSpecies.FormattedName);
-            UpdateSpeciesPreview();
-            UpdateSpeciesDetails();
         }
     }
 
@@ -65,11 +59,10 @@ public class FossilisationDialog : CustomDialog
         base._Ready();
 
         speciesNameEdit = GetNode<LineEdit>(NameEditPath);
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
+        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
         fossiliseButton = GetNode<Button>(FossiliseButtonPath);
         overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
+        speciesPreview = speciesDetailsPanel.GetNode<SpeciesPreview>(speciesDetailsPanel.SpeciesPreviewPath);
 
         // For saving a preview image of the species we need this preview object to keep hold of the raw rendered image
         speciesPreview.KeepPlainImageInMemory = true;
@@ -115,6 +108,22 @@ public class FossilisationDialog : CustomDialog
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (NameEditPath != null)
+            {
+                NameEditPath.Dispose();
+                SpeciesDetailsPanelPath.Dispose();
+                FossiliseButtonPath.Dispose();
+                OverwriteNameConfirmationDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnNameTextChanged(string newText)
     {
         ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX));
@@ -154,25 +163,6 @@ public class FossilisationDialog : CustomDialog
 
         speciesNameEdit.Text = randomizedName;
         OnNameTextChanged(randomizedName);
-    }
-
-    private void UpdateSpeciesPreview()
-    {
-        speciesPreview.PreviewSpecies = SelectedSpecies;
-
-        switch (SelectedSpecies)
-        {
-            case MicrobeSpecies microbeSpecies:
-            {
-                hexesPreview.PreviewSpecies = microbeSpecies;
-                break;
-            }
-        }
-    }
-
-    private void UpdateSpeciesDetails()
-    {
-        speciesDetailsLabel.ExtendedBbcode = SelectedSpecies.GetDetailString();
     }
 
     private void OnCancelPressed()

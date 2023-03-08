@@ -5,9 +5,11 @@
 /// </summary>
 public class PlaybackControls : HBoxContainer
 {
+#pragma warning disable CA2213
     private HSlider? playbackSlider;
     private PlayButton? playButton;
     private Button? stopButton;
+#pragma warning restore CA2213
 
     private float playbackProgress;
     private bool sliderAutoUpdate;
@@ -45,12 +47,6 @@ public class PlaybackControls : HBoxContainer
         }
     }
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        StopPlayback();
-    }
-
     public override void _Ready()
     {
         playbackSlider = GetNode<HSlider>("PlaybackSlider");
@@ -59,6 +55,12 @@ public class PlaybackControls : HBoxContainer
 
         UpdatePlaybackState();
         UpdateSlider();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        StopPlayback();
     }
 
     public override void _Process(float delta)

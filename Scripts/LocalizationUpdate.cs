@@ -1,6 +1,5 @@
 ﻿namespace Scripts;
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,13 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
+using ScriptsBase.Translation;
 using ScriptsBase.Utilities;
-using SharedBase.Utilities;
 
 public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase>
 {
-    private const string BABEL_CONFIG_FILE = "babelrc";
-
     // List of locales, edit this to add new ones:
     private static readonly List<string> ThriveLocales = new()
     {
@@ -59,6 +56,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "sr_Latn",
         "sv",
         "th_TH",
+        "tok",
         "tr",
         "uk",
         "vi",
@@ -69,44 +67,55 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     };
 
     /// <summary>
-    ///   This variable holds what the translation system is looking for. Method names, JSON property names that need
-    ///   to be translated have to be listed here.
+    ///   This variable holds what the translation system is looking for in C# code files
     /// </summary>
-    private static readonly IEnumerable<string> FunctionsAndPropertiesThatAreTranslated = new List<string>
+    private static readonly IReadOnlyCollection<string> TranslatedFunctionNames = new List<string>
+    {
+        "Description",
+        "LocalizedString",
+        "TranslationServer.Translate",
+    };
+
+    /// <summary>
+    ///   This lists properties in Godot scenes that are translated
+    /// </summary>
+    private static readonly IReadOnlyCollection<string> TranslatedSceneProperties = new List<string>
     {
         "CancelText",
         "ChartName",
         "ConfirmText",
         "Description",
+        "DescriptionForController",
         "DialogText",
         "DisplayName",
         "ErrorMessage",
         "ExtendedBbcode",
         "LineEdit",
-        "LocalizedString",
         "PauseButtonTooltip",
         "PlayButtonTooltip",
         "ProcessesDescription",
-        "TranslationServer.Translate",
         "WindowTitle",
         "dialog_text",
         "hint_tooltip",
+        "items",
         "placeholder_text",
         "text",
         "window_title",
     };
 
     /// <summary>
-    ///   List of folders relative to <see cref="LocaleFolder"/> location to extract translations in
+    ///   This has JSON object key's that contain translatable values
     /// </summary>
-    private static readonly IEnumerable<string> FoldersToExtractFrom = new List<string>
+    private static readonly IReadOnlyCollection<string> TranslatedJSONKeys = new List<string>
     {
-        "../simulation_parameters",
-        "../assets",
-        "../src",
+        "Description",
+        "DisplayName",
+        "GroupName",
+        "Message",
+        "Name",
     };
 
-    // This constructor is needed for checks to be able to
+    // This constructor is needed for checks to be able to run this
     public LocalizationUpdate(LocalizationOptionsBase opts) : base(opts)
     {
     }
@@ -115,8 +124,22 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     {
     }
 
+    /// <summary>
+    ///   List of folders to extract translations in
+    /// </summary>
+    protected override IEnumerable<string> PathsToExtractFrom => new List<string>
+    {
+        "simulation_parameters",
+        "assets",
+        "src",
+    };
+
     protected override IReadOnlyList<string> Locales => ThriveLocales;
     protected override string LocaleFolder => "locale";
+    protected override bool AlphabeticallySortTranslationTemplate => true;
+
+    protected override string ProjectName => "Thrive";
+    protected override string ProjectOrganization => "Revolutionary Games Studio";
 
     protected override Task<bool> RunTranslationCreate(string locale, string targetFile,
         CancellationToken cancellationToken)
@@ -161,40 +184,14 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         return RunTranslationTool(startInfo, cancellationToken);
     }
 
-    protected override ProcessStartInfo GetParametersToRunExtraction()
+    protected override List<TranslationExtractorBase> GetTranslationExtractors()
     {
-        var pyBabel = ExecutableFinder.Which("pybabel");
-
-        if (pyBabel == null)
+        return new List<TranslationExtractorBase>
         {
-            ColourConsole.WriteErrorLine(
-                "pybabel is missing. Please install it and retry (and make sure it is in PATH)");
-            throw new Exception("pybabel not found");
-        }
-
-        var startInfo = new ProcessStartInfo(pyBabel)
-        {
-            WorkingDirectory = LocaleFolder,
+            new CSharpTranslationExtractor(TranslatedFunctionNames),
+            new JsonTranslationExtractor(TranslatedJSONKeys),
+            new GodotSceneTranslationExtractor(TranslatedSceneProperties),
         };
-        startInfo.ArgumentList.Add("extract");
-        startInfo.ArgumentList.Add("-F");
-        startInfo.ArgumentList.Add(BABEL_CONFIG_FILE);
-
-        foreach (var extractable in FunctionsAndPropertiesThatAreTranslated)
-        {
-            startInfo.ArgumentList.Add("-k");
-            startInfo.ArgumentList.Add(extractable);
-        }
-
-        startInfo.ArgumentList.Add("-o");
-        startInfo.ArgumentList.Add(TranslationTemplateFileName);
-
-        foreach (var folder in FoldersToExtractFrom)
-        {
-            startInfo.ArgumentList.Add(folder);
-        }
-
-        return startInfo;
     }
 
     protected override async Task<bool> PostProcessTranslations(CancellationToken cancellationToken)

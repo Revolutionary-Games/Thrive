@@ -2,11 +2,22 @@
 
 [ext_resource path="res://src/gui_common/KeyPrompt.cs" type="Script" id=1]
 
-[node name="KeyPrompt" type="TextureRect"]
+[node name="KeyPrompt" type="CenterContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
-expand = true
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Primary" type="TextureRect" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
+expand = true
+
+[node name="Secondary" type="TextureRect" parent="."]
+visible = false
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
+expand = true

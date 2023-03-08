@@ -4,5 +4,5 @@
 /// </summary>
 public interface ISaveApplyable : ISaveLoadedTracked
 {
-    void ApplySave(object loaded, ISaveContext context);
+    public void ApplySave(object loaded, ISaveContext context);
 }

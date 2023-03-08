@@ -4,7 +4,12 @@ using Godot;
 /// <summary>
 ///   Shows a key prompt that reacts to being pressed down
 /// </summary>
-public class KeyPrompt : TextureRect
+/// <remarks>
+///   <para>
+///     This is a <see cref="CenterContainer"/> so that this can show two images layered on top of each other
+///   </para>
+/// </remarks>
+public class KeyPrompt : CenterContainer
 {
     /// <summary>
     ///   Name of the action this key prompt shows
@@ -30,16 +35,27 @@ public class KeyPrompt : TextureRect
     [Export]
     public Color PressedColour = new(0.7f, 0.7f, 0.7f, 1);
 
-    // public override void _Ready()
-    // {
-    //
-    // }
+#pragma warning disable CA2213
+    private TextureRect? primaryIcon;
+    private TextureRect secondaryIcon = null!;
+#pragma warning restore CA2213
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        primaryIcon = GetNode<TextureRect>("Primary");
+        secondaryIcon = GetNode<TextureRect>("Secondary");
+
+        Refresh();
+    }
 
     public override void _EnterTree()
     {
         base._EnterTree();
 
-        // TODO: should this rather happen in _Ready and unregister happen in dispose?
+        // TODO: should this rather happen in _Ready and unregister happen in dispose? (seems to perform fine enough
+        // currently)
         KeyPromptHelper.IconsChanged += OnIconsChanged;
         InputDataList.InputsRemapped += OnIconsChanged;
         Refresh();
@@ -53,21 +69,6 @@ public class KeyPrompt : TextureRect
         InputDataList.InputsRemapped -= OnIconsChanged;
     }
 
-    /// <summary>
-    ///   Refreshes this buttons icon. If you change ActionName you need to call this
-    /// </summary>
-    public void Refresh()
-    {
-        if (string.IsNullOrEmpty(ActionName))
-        {
-            Texture = null;
-        }
-        else
-        {
-            Texture = KeyPromptHelper.GetTextureForAction(ActionName);
-        }
-    }
-
     public override void _Process(float delta)
     {
         if (!ShowPress)
@@ -75,12 +76,65 @@ public class KeyPrompt : TextureRect
 
         if (string.IsNullOrEmpty(ActionName) || !Input.IsActionPressed(ActionName))
         {
-            SelfModulate = UnpressedColour;
+            primaryIcon!.SelfModulate = UnpressedColour;
         }
         else
         {
-            SelfModulate = PressedColour;
+            primaryIcon!.SelfModulate = PressedColour;
         }
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationResized)
+        {
+            if (primaryIcon != null)
+                ApplySize();
+        }
+    }
+
+    /// <summary>
+    ///   Refreshes this buttons icon. If you change ActionName you need to call this
+    /// </summary>
+    public void Refresh()
+    {
+        if (primaryIcon == null)
+            return;
+
+        ApplySize();
+
+        if (string.IsNullOrEmpty(ActionName))
+        {
+            primaryIcon.Texture = null;
+            secondaryIcon.Visible = false;
+        }
+        else
+        {
+            var (primaryTexture, secondaryTexture) = KeyPromptHelper.GetTextureForAction(ActionName);
+
+            primaryIcon.Texture = primaryTexture;
+
+            if (secondaryTexture != null)
+            {
+                // TODO: we need to somehow scale the primary icon down when it is the mouse wheel up or down action...
+
+                secondaryIcon.Texture = secondaryTexture;
+                secondaryIcon.Visible = true;
+            }
+            else
+            {
+                secondaryIcon.Visible = false;
+            }
+        }
+    }
+
+    private void ApplySize()
+    {
+        var size = RectSize;
+        primaryIcon!.RectMinSize = size;
+        secondaryIcon.RectMinSize = size;
     }
 
     private void OnIconsChanged(object sender, EventArgs args)

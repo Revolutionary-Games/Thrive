@@ -3,17 +3,19 @@
 public class GalleryCard : Button
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath TextureRectPath = null!;
 
+#pragma warning disable CA2213
     [Export]
     public Texture MissingTexture = null!;
 
     private Label? titleLabel;
     private TextureRect? imagePreview;
     private Texture? thumbnail;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnFullscreenView(GalleryCard item);
@@ -56,6 +58,20 @@ public class GalleryCard : Button
                 EmitSignal(nameof(OnFullscreenView), this);
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                TextureRectPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdatePreview()

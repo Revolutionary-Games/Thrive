@@ -22,7 +22,7 @@ public class MicrobeAISystem
         clouds = cloudSystem;
     }
 
-    public void Process(float delta)
+    public void Process(float delta, Random? random = null)
     {
         if (CheatManager.NoAI)
             return;
@@ -39,7 +39,7 @@ public class MicrobeAISystem
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
-        var random = new Random();
+        random ??= new Random();
 
         for (int i = 0; i < nodes.Count; i += Constants.MICROBE_AI_OBJECTS_PER_TASK)
         {

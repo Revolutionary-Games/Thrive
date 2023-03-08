@@ -66,6 +66,10 @@
       {
         "InputName": "g_perform_unbinding",
         "Name": "PERFORM_UNBINDING"
+      },
+      {
+        "InputName": "g_interact",
+        "Name": "INPUT_NAME_INTERACTION"
       }
     ]
   },
@@ -202,6 +206,32 @@
       {
         "InputName": "e_camera_top",
         "Name": "SWITCH_TO_TOP_CAMERA"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "GUI",
+      "Editor",
+      "3DEditor"
+    ],
+    "GroupName": "GUI_TAB_NAVIGATION",
+    "Actions": [
+      {
+        "InputName": "ui_tab_left",
+        "Name": "TAB_SWITCH_LEFT"
+      },
+      {
+        "InputName": "ui_tab_right",
+        "Name": "TAB_SWITCH_RIGHT"
+      },
+      {
+        "InputName": "ui_tab_secondary_left",
+        "Name": "TAB_SECONDARY_SWITCH_LEFT"
+      },
+      {
+        "InputName": "ui_tab_secondary_right",
+        "Name": "TAB_SECONDARY_SWITCH_RIGHT"
       }
     ]
   },

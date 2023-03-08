@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=12]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -27,6 +28,7 @@ MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
 MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
 MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
 GlucoseTutorialPath = NodePath("GlucoseTutorial")
+DayNightTutorialPath = NodePath("DayNightTutorial")
 StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
@@ -78,20 +80,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="MicrobeWelcome/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
-margin_right = 420.0
+margin_right = 870.0
+margin_bottom = 24.0
 custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 420.0
-margin_bottom = 310.0
+margin_top = 28.0
+margin_right = 870.0
+margin_bottom = 710.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_top = 314.0
-margin_right = 420.0
-margin_bottom = 334.0
+margin_top = 714.0
+margin_right = 870.0
+margin_bottom = 734.0
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_right = 10.0
@@ -106,11 +109,19 @@ custom_fonts/font = ExtResource( 5 )
 pressed = true
 text = "SHOW_TUTORIALS"
 
+[node name="FocusGrabber" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
+margin_left = 178.0
+margin_right = 178.0
+margin_bottom = 20.0
+Priority = 2
+NodeToGiveFocusTo = NodePath("../../Button")
+GrabFocusWhenBecomingVisible = true
+
 [node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
-margin_left = 129.0
-margin_top = 338.0
-margin_right = 290.0
-margin_bottom = 370.0
+margin_left = 354.0
+margin_top = 738.0
+margin_right = 515.0
+margin_bottom = 770.0
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 6 )
 text = "BEGIN_THRIVING"
@@ -128,8 +139,10 @@ anchor_bottom = 0.5
 margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
-margin_bottom = 61.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 260, 274 )
 Description = "MICROBE_STAGE_CONTROL_TEXT"
+DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
 visible = false
@@ -189,6 +202,17 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
 Description = "MICROBE_STAGE_COLLECT_TEXT"
+
+[node name="DayNightTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource( 10 )]
 anchor_left = 1.0
@@ -363,7 +387,7 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer"]
 margin_right = 450.0
-margin_bottom = 400.0
+margin_bottom = 460.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -395,6 +419,8 @@ text = "CONTINUE_THRIVING"
 [connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
 [connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="hide" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
+[connection signal="popup_hide" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
 [connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]

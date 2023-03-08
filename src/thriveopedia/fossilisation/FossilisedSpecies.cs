@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using Godot;
-using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Directory = Godot.Directory;
@@ -12,7 +12,7 @@ using File = Godot.File;
 using Path = System.IO.Path;
 
 /// <summary>
-///    A species saved by the user. Contains helper methods for saving/loading species on the disk.
+///   A species saved by the user. Contains helper methods for saving/loading species on the disk.
 /// </summary>
 public class FossilisedSpecies
 {
@@ -175,7 +175,7 @@ public class FossilisedSpecies
         }
 
         using var fileStream = new GodotFileStream(file);
-        using Stream gzoStream = new GZipOutputStream(fileStream);
+        using Stream gzoStream = new GZipStream(fileStream, CompressionLevel.Optimal);
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
         TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
@@ -240,7 +240,7 @@ public class FossilisedSpecies
             throw new ArgumentException("couldn't open the file for reading");
 
         using var stream = new GodotFileStream(reader);
-        using Stream gzoStream = new GZipInputStream(stream);
+        using Stream gzoStream = new GZipStream(stream, CompressionMode.Decompress);
         using var tar = new TarInputStream(gzoStream, Encoding.UTF8);
 
         TarEntry tarEntry;

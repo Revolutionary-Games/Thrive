@@ -39,8 +39,10 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private MembraneType? type;
 
+#pragma warning disable CA2213
     private Texture? albedoTexture;
     private Texture noiseTexture = null!;
+#pragma warning restore CA2213
 
     private string? currentlyLoadedAlbedoTexture;
 
@@ -378,113 +380,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
         return (closestOrganelle - target) * power;
     }
 
-    // Vector2 GetMovementForCellWall(Vector2 target, Vector2 closestOrganelle);
-
-    /// <summary>
-    ///   Cheaper version of contains for absorbing stuff.Calculates a
-    ///   circle radius that contains all the points (when it is
-    ///   placed at 0,0 local coordinate).
-    /// </summary>
-    private float CalculateEncompassingCircleRadius()
-    {
-        if (Dirty)
-            Update();
-
-        float distanceSquared = 0;
-
-        foreach (var vertex in vertices2D)
-        {
-            var currentDistance = vertex.LengthSquared();
-            if (currentDistance > distanceSquared)
-                distanceSquared = currentDistance;
-        }
-
-        return Mathf.Sqrt(distanceSquared);
-    }
-
-    /// <summary>
-    ///   Updates things and marks as not dirty
-    /// </summary>
-    private void Update()
-    {
-        Dirty = false;
-        InitializeMesh();
-        ApplyAllMaterialParameters();
-    }
-
-    private void ApplyAllMaterialParameters()
-    {
-        ApplyWiggly();
-        ApplyMovementWiggly();
-        ApplyHealth();
-        ApplyTint();
-        ApplyTextures();
-        ApplyDissolveEffect();
-    }
-
-    private void ApplyWiggly()
-    {
-        if (MaterialToEdit == null)
-            return;
-
-        // Don't apply wigglyness too early if this is dirty as getting the circle radius forces membrane position
-        // calculation, which we don't want to do twice when initializing a microbe
-        if (Dirty)
-            return;
-
-        float wigglyNessToApply =
-            WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
-
-        MaterialToEdit.SetShaderParam("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
-    }
-
-    private void ApplyMovementWiggly()
-    {
-        if (MaterialToEdit == null)
-            return;
-
-        // See comment in ApplyWiggly
-        if (Dirty)
-            return;
-
-        float wigglyNessToApply =
-            MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
-
-        MaterialToEdit.SetShaderParam("movementWigglyNess", Mathf.Min(MovementWigglyNess, wigglyNessToApply));
-    }
-
-    private void ApplyHealth()
-    {
-        MaterialToEdit?.SetShaderParam("healthFraction", HealthFraction);
-    }
-
-    private void ApplyTint()
-    {
-        MaterialToEdit?.SetShaderParam("tint", Tint);
-    }
-
-    private void ApplyTextures()
-    {
-        // We must update the texture on already-existing membranes, due to the membrane texture changing
-        // for the player microbe.
-        if (albedoTexture != null && currentlyLoadedAlbedoTexture == Type.AlbedoTexture)
-            return;
-
-        albedoTexture = Type.LoadedAlbedoTexture;
-
-        MaterialToEdit!.SetShaderParam("albedoTexture", albedoTexture);
-        MaterialToEdit.SetShaderParam("normalTexture", Type.LoadedNormalTexture);
-        MaterialToEdit.SetShaderParam("damagedTexture", Type.LoadedDamagedTexture);
-        MaterialToEdit.SetShaderParam("dissolveTexture", noiseTexture);
-
-        currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
-    }
-
-    private void ApplyDissolveEffect()
-    {
-        MaterialToEdit?.SetShaderParam("dissolveValue", DissolveEffectValue);
-    }
-
     /// <summary>
     ///   First generates the 2D vertices and then builds the 3D mesh
     /// </summary>
@@ -566,6 +461,152 @@ public class Membrane : MeshInstance, IComputedMembraneData
         BuildMesh();
     }
 
+    private int InitializeCorrectMembrane(int writeIndex, Vector3[] vertices,
+        Vector2[] uvs)
+    {
+        // common variables
+        float height = 0.1f;
+        float multiplier = 2.0f * Mathf.Pi;
+        var center = new Vector2(0.5f, 0.5f);
+
+        // cell walls need obvious inner/outer membranes (we can worry
+        // about chitin later)
+        if (Type.CellWall)
+        {
+            height = 0.05f;
+            multiplier = Mathf.Pi;
+        }
+
+        vertices[writeIndex] = new Vector3(0, height / 2, 0);
+        uvs[writeIndex] = center;
+        ++writeIndex;
+
+        for (int i = 0, end = vertices2D.Count; i < end + 1; i++)
+        {
+            // Finds the UV coordinates be projecting onto a plane and
+            // stretching to fit a circle.
+
+            float currentRadians = multiplier * i / end;
+
+            vertices[writeIndex] = new Vector3(vertices2D[i % end].x, height / 2,
+                vertices2D[i % end].y);
+
+            uvs[writeIndex] = center +
+                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
+
+            ++writeIndex;
+        }
+
+        return writeIndex;
+    }
+
+    /// <summary>
+    ///   Updates things and marks as not dirty
+    /// </summary>
+    private void Update()
+    {
+        Dirty = false;
+        InitializeMesh();
+        ApplyAllMaterialParameters();
+    }
+
+    // Vector2 GetMovementForCellWall(Vector2 target, Vector2 closestOrganelle);
+
+    /// <summary>
+    ///   Cheaper version of contains for absorbing stuff.Calculates a
+    ///   circle radius that contains all the points (when it is
+    ///   placed at 0,0 local coordinate).
+    /// </summary>
+    private float CalculateEncompassingCircleRadius()
+    {
+        if (Dirty)
+            Update();
+
+        float distanceSquared = 0;
+
+        foreach (var vertex in vertices2D)
+        {
+            var currentDistance = vertex.LengthSquared();
+            if (currentDistance > distanceSquared)
+                distanceSquared = currentDistance;
+        }
+
+        return Mathf.Sqrt(distanceSquared);
+    }
+
+    private void ApplyAllMaterialParameters()
+    {
+        ApplyWiggly();
+        ApplyMovementWiggly();
+        ApplyHealth();
+        ApplyTint();
+        ApplyTextures();
+        ApplyDissolveEffect();
+    }
+
+    private void ApplyWiggly()
+    {
+        if (MaterialToEdit == null)
+            return;
+
+        // Don't apply wigglyness too early if this is dirty as getting the circle radius forces membrane position
+        // calculation, which we don't want to do twice when initializing a microbe
+        if (Dirty)
+            return;
+
+        float wigglyNessToApply =
+            WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
+
+        MaterialToEdit.SetShaderParam("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
+    }
+
+    private void ApplyMovementWiggly()
+    {
+        if (MaterialToEdit == null)
+            return;
+
+        // See comment in ApplyWiggly
+        if (Dirty)
+            return;
+
+        float wigglyNessToApply =
+            MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
+
+        MaterialToEdit.SetShaderParam("movementWigglyNess", Mathf.Min(MovementWigglyNess, wigglyNessToApply));
+    }
+
+    private void ApplyHealth()
+    {
+        MaterialToEdit?.SetShaderParam("healthFraction", HealthFraction);
+    }
+
+    private void ApplyTint()
+    {
+        MaterialToEdit?.SetShaderParam("tint", Tint);
+    }
+
+    private void ApplyTextures()
+    {
+        // We must update the texture on already-existing membranes, due to the membrane texture changing
+        // for the player microbe.
+        if (albedoTexture != null && currentlyLoadedAlbedoTexture == Type.AlbedoTexture)
+            return;
+
+        albedoTexture = Type.LoadedAlbedoTexture;
+
+        MaterialToEdit!.SetShaderParam("albedoTexture", albedoTexture);
+        MaterialToEdit.SetShaderParam("normalTexture", Type.LoadedNormalTexture);
+        MaterialToEdit.SetShaderParam("damagedTexture", Type.LoadedDamagedTexture);
+        MaterialToEdit.SetShaderParam("dissolveTexture", noiseTexture);
+
+        currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
+    }
+
+    private void ApplyDissolveEffect()
+    {
+        MaterialToEdit?.SetShaderParam("dissolveValue", DissolveEffectValue);
+    }
+
     private void CopyMeshFromCache(ComputedMembraneData cached)
     {
         // TODO: check if it would be better for us to just keep readonly data in the membrane cache so we could
@@ -638,45 +679,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
         SetSurfaceMaterial(surfaceIndex, MaterialToEdit);
 
         ProceduralDataCache.Instance.WriteMembraneData(CreateDataForCache(generatedMesh, surfaceIndex));
-    }
-
-    private int InitializeCorrectMembrane(int writeIndex, Vector3[] vertices,
-        Vector2[] uvs)
-    {
-        // common variables
-        float height = 0.1f;
-        float multiplier = 2.0f * Mathf.Pi;
-        var center = new Vector2(0.5f, 0.5f);
-
-        // cell walls need obvious inner/outer membranes (we can worry
-        // about chitin later)
-        if (Type.CellWall)
-        {
-            height = 0.05f;
-            multiplier = Mathf.Pi;
-        }
-
-        vertices[writeIndex] = new Vector3(0, height / 2, 0);
-        uvs[writeIndex] = center;
-        ++writeIndex;
-
-        for (int i = 0, end = vertices2D.Count; i < end + 1; i++)
-        {
-            // Finds the UV coordinates be projecting onto a plane and
-            // stretching to fit a circle.
-
-            float currentRadians = multiplier * i / end;
-
-            vertices[writeIndex] = new Vector3(vertices2D[i % end].x, height / 2,
-                vertices2D[i % end].y);
-
-            uvs[writeIndex] = center +
-                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
-
-            ++writeIndex;
-        }
-
-        return writeIndex;
     }
 
     private void DrawCorrectMembrane(float cellDimensions, List<Vector2> sourceBuffer, List<Vector2> targetBuffer)

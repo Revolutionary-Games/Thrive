@@ -22,7 +22,9 @@ public class ToolTipManager : CanvasLayer
 
     private readonly Dictionary<string, Control> groupsByName = new();
 
+#pragma warning disable CA2213
     private Control groupHolder = null!;
+#pragma warning restore CA2213
 
     private bool display;
     private float displayTimer;
@@ -96,10 +98,6 @@ public class ToolTipManager : CanvasLayer
     public override void _Process(float delta)
     {
         if (MainToolTip == null)
-            return;
-
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
             return;
 
         // Wait for duration of the delay and then show the tooltip

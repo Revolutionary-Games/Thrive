@@ -14,16 +14,18 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     where TPlayer : class
 {
     [Export]
-    public NodePath PauseMenuPath = null!;
+    public NodePath? PauseMenuPath;
 
     [Export]
     public NodePath HUDRootPath = null!;
 
+#pragma warning disable CA2213
     protected Node world = null!;
     protected Node rootOfDynamicallySpawned = null!;
     protected DirectionalLight worldLight = null!;
     protected PauseMenu pauseMenu = null!;
     protected Control hudRoot = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -174,18 +176,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
     protected abstract IStageHUD BaseHUD { get; }
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        // Cancel auto-evo if it is running to not leave background runs from other games running if the player
-        // just loaded a save
-        if (!MovingToEditor)
-        {
-            GameWorld.ResetAutoEvoRun();
-        }
-    }
-
     public virtual void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -200,6 +190,18 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         lightCycle = new DayNightCycle();
 
         NodeReferencesResolved = true;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Cancel auto-evo if it is running to not leave background runs from other games running if the player
+        // just loaded a save
+        if (!MovingToEditor)
+        {
+            GameWorld.ResetAutoEvoRun();
+        }
     }
 
     public override void _Process(float delta)
@@ -274,6 +276,15 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         }
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
+                throw new InvalidOperationException("Stage not initialized properly");
+        }
+    }
+
     public abstract void StartMusic();
 
     public virtual void StartNewGame()
@@ -321,15 +332,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             wantsToSave = true;
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
-                throw new InvalidOperationException("Stage not initialized properly");
-        }
     }
 
     [RunOnKeyDown("g_toggle_gui")]
@@ -528,6 +530,20 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         playerExtinctInCurrentPatch = true;
 
         BaseHUD.ShowPatchExtinctionBox();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PauseMenuPath != null)
+            {
+                PauseMenuPath.Dispose();
+                HUDRootPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void PatchExtinctionResolved()

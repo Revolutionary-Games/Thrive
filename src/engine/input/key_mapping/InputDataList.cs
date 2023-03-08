@@ -44,15 +44,15 @@ public class InputDataList : ICloneable
     /// </summary>
     internal void ApplyToGodotInputMap()
     {
-        var preservedControllerActions = new List<InputEvent>();
-
         foreach (var action in Data)
         {
-            // TODO: add support for controller input binding changing, for now leave those as is
-            foreach (InputEvent actionListItem in InputMap.GetActionList(action.Key))
+            // Skip destroying ui actions to keep the UI usable even with bad inputs
+            // This doesn't seem to happen and luckily it seems controller navigation is intact for loading settings
+            // made in previous versions
+            if (action.Key.StartsWith("ui_") && action.Value.Count < 1)
             {
-                if (actionListItem is InputEventJoypadButton or InputEventJoypadMotion or InputEventGesture)
-                    preservedControllerActions.Add(actionListItem);
+                GD.PrintErr("Skipping clearing an UI input action");
+                return;
             }
 
             // Clear all old input keys
@@ -67,13 +67,6 @@ public class InputDataList : ICloneable
 
                 InputMap.ActionAddEvent(action.Key, inputEvent.ToInputEvent());
             }
-
-            foreach (var preservedAction in preservedControllerActions)
-            {
-                InputMap.ActionAddEvent(action.Key, preservedAction);
-            }
-
-            preservedControllerActions.Clear();
         }
 
         InputsRemapped?.Invoke(this, EventArgs.Empty);

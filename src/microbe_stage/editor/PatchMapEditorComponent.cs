@@ -17,7 +17,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     where TEditor : IEditorWithPatches
 {
     [Export]
-    public NodePath MapDrawerPath = null!;
+    public NodePath? MapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
@@ -34,9 +34,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [JsonProperty]
     protected Patch playerPatchOnEntry = null!;
 
+#pragma warning disable CA2213
     protected PatchMapDrawer mapDrawer = null!;
     protected PatchDetailsPanel detailsPanel = null!;
     private Label seedLabel = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -145,6 +147,21 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         UpdateSeedLabel();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MapDrawerPath != null)
+            {
+                MapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                SeedLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Returns true when the player is allowed to move to the specified patch
     /// </summary>
@@ -220,7 +237,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void OnFindCurrentPatchPressed()
     {
-        mapDrawer.CenterScroll();
+        mapDrawer.CenterToCurrentPatch();
         mapDrawer.SelectedPatch = mapDrawer.PlayerPatch;
     }
 

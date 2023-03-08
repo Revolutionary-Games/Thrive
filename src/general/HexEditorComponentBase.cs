@@ -17,7 +17,7 @@ public abstract class
     where THexMove : class, IActionHex
 {
     [Export]
-    public NodePath CameraPath = null!;
+    public NodePath? CameraPath;
 
     [Export]
     public NodePath EditorArrowPath = null!;
@@ -56,6 +56,8 @@ public abstract class
     /// </summary>
     protected readonly List<SceneDisplayer> placedModels = new();
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Object camera is over. Used to move the camera around
     /// </summary>
@@ -77,6 +79,7 @@ public abstract class
     protected PackedScene modelScene = null!;
 
     protected AudioStream hexPlacementSound = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     protected string? activeActionName;
@@ -97,7 +100,10 @@ public abstract class
     [JsonProperty]
     protected int placementRotation;
 
+    // This is separate from the other Godot resources as this is private and they are protected
+#pragma warning disable CA2213
     private CustomConfirmationDialog islandPopup = null!;
+#pragma warning restore CA2213
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
@@ -257,6 +263,47 @@ public abstract class
         // indicates a programming bug
         if (placedHexes.Count > 0 || placedModels.Count > 0)
             throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // We move all the hexes and the hover hexes to 0,0,0 so that
+        // the editor is free to replace them wherever
+        // TODO: it would be way better if we didn't have to do this and instead only updated
+        // the hover hexes and models when there is some change to them
+        foreach (var hex in hoverHexes)
+        {
+            hex.Translation = new Vector3(0, 0, 0);
+            hex.Visible = false;
+        }
+
+        foreach (var model in hoverModels)
+        {
+            model.Translation = new Vector3(0, 0, 0);
+            model.Visible = false;
+        }
+
+        // This is also highly non-optimal to update the hex locations
+        // and materials all the time
+
+        // Reset the material of hexes that have been hovered over
+        foreach (var entry in hoverOverriddenMaterials)
+        {
+            entry.Key.MaterialOverride = entry.Value;
+        }
+
+        hoverOverriddenMaterials.Clear();
+
+        usedHoverHex = 0;
+        usedHoverModel = 0;
+
+        if (!Visible)
+            return;
+
+        editorGrid.Translation = camera!.CursorWorldPos;
+        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
     }
 
     public void ResetSymmetryButton()
@@ -593,47 +640,6 @@ public abstract class
     public override void OnValidAction()
     {
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        // We move all the hexes and the hover hexes to 0,0,0 so that
-        // the editor is free to replace them wherever
-        // TODO: it would be way better if we didn't have to do this and instead only updated
-        // the hover hexes and models when there is some change to them
-        foreach (var hex in hoverHexes)
-        {
-            hex.Translation = new Vector3(0, 0, 0);
-            hex.Visible = false;
-        }
-
-        foreach (var model in hoverModels)
-        {
-            model.Translation = new Vector3(0, 0, 0);
-            model.Visible = false;
-        }
-
-        // This is also highly non-optimal to update the hex locations
-        // and materials all the time
-
-        // Reset the material of hexes that have been hovered over
-        foreach (var entry in hoverOverriddenMaterials)
-        {
-            entry.Key.MaterialOverride = entry.Value;
-        }
-
-        hoverOverriddenMaterials.Clear();
-
-        usedHoverHex = 0;
-        usedHoverModel = 0;
-
-        if (!Visible)
-            return;
-
-        editorGrid.Translation = camera!.CursorWorldPos;
-        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
     }
 
     public void OnNoPropertiesLoaded()
@@ -1052,6 +1058,23 @@ public abstract class
     protected void UpdateSymmetryButton()
     {
         componentBottomLeftButtons.SymmetryEnabled = MovingPlacedHex == null;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CameraPath != null)
+            {
+                CameraPath.Dispose();
+                EditorArrowPath.Dispose();
+                EditorGridPath.Dispose();
+                CameraFollowPath.Dispose();
+                IslandErrorPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

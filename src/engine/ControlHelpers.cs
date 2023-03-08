@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using Godot.Collections;
 
 /// <summary>
@@ -17,7 +18,7 @@ public static class ControlHelpers
         // In case the popup sizing stuck (this happens sometimes)
         if (runSizeUnstuck)
         {
-            Invoke.Instance.Queue(() =>
+            void Unstuck()
             {
                 // "Refresh" the popup to correct its size
                 popup.RectSize = Vector2.Zero;
@@ -26,6 +27,12 @@ public static class ControlHelpers
 
                 // Re-center it
                 popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
+            }
+
+            Invoke.Instance.Queue(() =>
+            {
+                // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double delay
+                Invoke.Instance.Queue(Unstuck);
             });
         }
     }
@@ -130,6 +137,52 @@ public static class ControlHelpers
         control.Connect("draw", GUICommon.Instance, nameof(GUICommon.ProxyDrawFocus), new Array(control));
         control.Connect("focus_entered", control, "update");
         control.Connect("focus_exited", control, "update");
+    }
+
+    /// <summary>
+    ///   Returns the given control or the first child (depth first) that is focusable. Doesn't traverse over non
+    ///   <see cref="Control"/> nodes.
+    /// </summary>
+    /// <param name="control">The control to start checking from</param>
+    /// <returns>The found focusable control or null if nothing is focusable</returns>
+    public static Control? FirstFocusableControl(this Control control)
+    {
+        if (control.FocusMode != Control.FocusModeEnum.None)
+            return control;
+
+        int count = control.GetChildCount();
+
+        for (int i = 0; i < count; ++i)
+        {
+            var child = control.GetChild(i);
+
+            if (child is Control childAsControl)
+            {
+                var childResult = FirstFocusableControl(childAsControl);
+
+                if (childResult != null)
+                    return childResult;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    ///   Maps each given control to its first child (depth first) that is focusable. If something has no focusable
+    ///   children it is not output at all.
+    /// </summary>
+    /// <param name="controlsToMap">The list of controls to find the first focusable child of</param>
+    /// <returns>The focusable children</returns>
+    public static IEnumerable<Control> SelectFirstFocusableChild(this IEnumerable<Control> controlsToMap)
+    {
+        foreach (var control in controlsToMap)
+        {
+            var mapped = control.FirstFocusableControl();
+
+            if (mapped != null)
+                yield return mapped;
+        }
     }
 
     public static void DrawCustomFocusBorderIfFocused(this Control control)

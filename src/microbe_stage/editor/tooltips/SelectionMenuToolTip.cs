@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -11,7 +10,7 @@ using Godot;
 public class SelectionMenuToolTip : Control, ICustomToolTip
 {
     [Export]
-    public NodePath NameLabelPath = null!;
+    public NodePath? NameLabelPath;
 
     [Export]
     public NodePath MpLabelPath = null!;
@@ -36,6 +35,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     private readonly List<ModifierInfoLabel> modifierInfos = new();
 
+#pragma warning disable CA2213
     private PackedScene modifierInfoScene = null!;
     private Font latoBoldFont = null!;
 
@@ -46,6 +46,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
+#pragma warning restore CA2213
 
     private string? displayName;
     private string? description;
@@ -205,7 +206,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         processList.ShowSpinners = false;
         processList.ProcessesTitleColour = new Color(1.0f, 0.83f, 0.0f);
         processList.MarkRedOnLimitingCompounds = true;
-        processList.ProcessesToShow = processes.Cast<IProcessDisplayInfo>().ToList();
+        processList.ProcessesToShow = processes;
     }
 
     /// <summary>
@@ -274,6 +275,26 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 modifier.AdjustValueColor(deltaValue);
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (NameLabelPath != null)
+            {
+                NameLabelPath.Dispose();
+                MpLabelPath.Dispose();
+                RequiresNucleusPath.Dispose();
+                DescriptionLabelPath.Dispose();
+                ProcessesDescriptionLabelPath.Dispose();
+                ModifierListPath.Dispose();
+                ProcessListPath.Dispose();
+                modifierInfoScene.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateName()

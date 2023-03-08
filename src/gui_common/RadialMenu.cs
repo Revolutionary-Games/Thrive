@@ -5,7 +5,7 @@ using Godot;
 public class RadialMenu : CenterContainer
 {
     [Export]
-    public NodePath CenterLabelPath = null!;
+    public NodePath? CenterLabelPath;
 
     [Export]
     public NodePath DynamicLabelsContainerPath = null!;
@@ -13,8 +13,10 @@ public class RadialMenu : CenterContainer
     [Export]
     public NodePath IndicatorPath = null!;
 
+#pragma warning disable CA2213
     [Export]
     public Texture HoveredItemHighlightBackground = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   For some reason I couldn't figure out the math to get the background to position perfectly without this
@@ -56,9 +58,11 @@ public class RadialMenu : CenterContainer
 
     private readonly List<LabelWithId> createdLabels = new();
 
+#pragma warning disable CA2213
     private Label? centerLabel;
     private Node dynamicLabelsContainer = null!;
     private TextureRect indicator = null!;
+#pragma warning restore CA2213
 
     private string centerText = TranslationServer.Translate("SELECT_OPTION");
 
@@ -126,25 +130,6 @@ public class RadialMenu : CenterContainer
         foreach (var label in createdLabels)
         {
             label.AddColorOverride("font_color", label.Id == HoveredItem ? CircleHighlightColour : Colors.White);
-        }
-    }
-
-    public override void _GuiInput(InputEvent @event)
-    {
-        base._GuiInput(@event);
-
-        if (@event is InputEventMouseMotion mouseMotion)
-        {
-            // Position is relative to us since we use _GuiInput
-            relativeMousePosition = mouseMotion.Position;
-        }
-        else if (@event is InputEventMouseButton mouseButton)
-        {
-            if (mouseButton.Pressed && mouseButton.ButtonIndex == (int)ButtonList.Left)
-            {
-                if (AcceptHoveredItem())
-                    GetTree().SetInputAsHandled();
-            }
         }
     }
 
@@ -225,6 +210,25 @@ public class RadialMenu : CenterContainer
         }
     }
 
+    public override void _GuiInput(InputEvent @event)
+    {
+        base._GuiInput(@event);
+
+        if (@event is InputEventMouseMotion mouseMotion)
+        {
+            // Position is relative to us since we use _GuiInput
+            relativeMousePosition = mouseMotion.Position;
+        }
+        else if (@event is InputEventMouseButton mouseButton)
+        {
+            if (mouseButton.Pressed && mouseButton.ButtonIndex == (int)ButtonList.Left)
+            {
+                if (AcceptHoveredItem())
+                    GetTree().SetInputAsHandled();
+            }
+        }
+    }
+
     public void ShowWithItems(IEnumerable<(string Text, int Id)> items)
     {
         if (centerLabel == null)
@@ -261,6 +265,21 @@ public class RadialMenu : CenterContainer
         EmitSignal(nameof(OnItemSelected), HoveredItem.Value);
         Visible = false;
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CenterLabelPath != null)
+            {
+                CenterLabelPath.Dispose();
+                DynamicLabelsContainerPath.Dispose();
+                IndicatorPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateCenterText()

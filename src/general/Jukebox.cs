@@ -82,6 +82,28 @@ public class Jukebox : Node
         NewPlayer();
     }
 
+    public override void _Process(float delta)
+    {
+        if (paused)
+            return;
+
+        // Process actions
+        if (operations.Count > 0)
+        {
+            if (operations.Peek().Action(delta))
+                operations.Dequeue();
+        }
+
+        foreach (var player in audioPlayers)
+        {
+            if (player.Operations.Count > 0)
+            {
+                if (player.Operations.Peek().Action(delta))
+                    player.Operations.Dequeue();
+            }
+        }
+    }
+
     /// <summary>
     ///   Starts playing tracks from the provided category
     /// </summary>
@@ -161,32 +183,6 @@ public class Jukebox : Node
                 StopStreams();
                 return true;
             }));
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        if (paused)
-            return;
-
-        // Process actions
-        if (operations.Count > 0)
-        {
-            if (operations.Peek().Action(delta))
-                operations.Dequeue();
-        }
-
-        foreach (var player in audioPlayers)
-        {
-            if (player.Operations.Count > 0)
-            {
-                if (player.Operations.Peek().Action(delta))
-                    player.Operations.Dequeue();
-            }
         }
     }
 

@@ -7,10 +7,10 @@ public interface ISpawned : IEntity
     ///   If the squared distance to the player of this object is
     ///   greater than this, it is despawned.
     /// </summary>
-    int DespawnRadiusSquared { get; set; }
+    public int DespawnRadiusSquared { get; set; }
 
     /// <summary>
     ///   How much this entity contributes to the entity limit relative to a single node
     /// </summary>
-    float EntityWeight { get; }
+    public float EntityWeight { get; }
 }

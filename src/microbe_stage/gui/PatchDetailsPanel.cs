@@ -7,7 +7,7 @@ using Godot;
 public class PatchDetailsPanel : PanelContainer
 {
     [Export]
-    public NodePath NothingSelectedPath = null!;
+    public NodePath? NothingSelectedPath;
 
     [Export]
     public NodePath DetailsPath = null!;
@@ -90,6 +90,7 @@ public class PatchDetailsPanel : PanelContainer
     [Export]
     public NodePath PhosphateSituationPath = null!;
 
+#pragma warning disable CA2213
     private Control nothingSelected = null!;
     private Control details = null!;
     private Control playerHere = null!;
@@ -120,6 +121,10 @@ public class PatchDetailsPanel : PanelContainer
     private TextureRect ammoniaSituation = null!;
     private TextureRect phosphateSituation = null!;
 
+    private Texture increaseIcon = null!;
+    private Texture decreaseIcon = null!;
+#pragma warning restore CA2213
+
     private Compound ammoniaCompound = null!;
     private Compound carbondioxideCompound = null!;
     private Compound glucoseCompound = null!;
@@ -129,9 +134,6 @@ public class PatchDetailsPanel : PanelContainer
     private Compound oxygenCompound = null!;
     private Compound phosphatesCompound = null!;
     private Compound sunlightCompound = null!;
-
-    private Texture increaseIcon = null!;
-    private Texture decreaseIcon = null!;
 
     private Patch? targetPatch;
     private Patch? currentPatch;
@@ -246,6 +248,46 @@ public class PatchDetailsPanel : PanelContainer
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (NothingSelectedPath != null)
+            {
+                NothingSelectedPath.Dispose();
+                DetailsPath.Dispose();
+                NamePath.Dispose();
+                PlayerHerePath.Dispose();
+                BiomePath.Dispose();
+                DepthPath.Dispose();
+                TemperaturePath.Dispose();
+                PressurePath.Dispose();
+                LightPath.Dispose();
+                LightMaxPath.Dispose();
+                OxygenPath.Dispose();
+                NitrogenPath.Dispose();
+                CO2Path.Dispose();
+                HydrogenSulfidePath.Dispose();
+                AmmoniaPath.Dispose();
+                GlucosePath.Dispose();
+                PhosphatePath.Dispose();
+                IronPath.Dispose();
+                SpeciesListBoxPath.Dispose();
+                MoveToPatchHSeparatorPath.Dispose();
+                MoveToPatchButtonPath.Dispose();
+                TemperatureSituationPath.Dispose();
+                LightSituationPath.Dispose();
+                HydrogenSulfideSituationPath.Dispose();
+                GlucoseSituationPath.Dispose();
+                IronSituationPath.Dispose();
+                AmmoniaSituationPath.Dispose();
+                PhosphateSituationPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Updates patch-specific GUI elements with data from a patch
     /// </summary>
@@ -330,8 +372,10 @@ public class PatchDetailsPanel : PanelContainer
     }
 
     /// <remarks>
-    ///   TODO: this function should be cleaned up by generalizing the adding the increase or decrease icons in order
-    ///   to remove the duplicated logic here
+    ///   <para>
+    ///     TODO: this function should be cleaned up by generalizing the adding the increase or decrease icons in order
+    ///     to remove the duplicated logic here
+    ///   </para>
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches()
     {

@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 public class MicrobeHUD : StageHUDBase<MicrobeStage>
 {
     [Export]
-    public NodePath MulticellularButtonPath = null!;
+    public NodePath? MulticellularButtonPath;
 
     [Export]
     public NodePath MulticellularConfirmPopupPath = null!;
@@ -24,13 +24,14 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     public NodePath IngestedMatterBarPath = null!;
 
     [Export]
-    public PackedScene WinBoxScene = null!;
-
-    [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
     [Export]
     public NodePath UnbindAllHotkeyPath = null!;
+
+#pragma warning disable CA2213
+    [Export]
+    public PackedScene WinBoxScene = null!;
 
     private ActionButton bindingModeHotkey = null!;
     private ActionButton unbindAllHotkey = null!;
@@ -42,6 +43,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     private ProgressBar ingestedMatterBar = null!;
 
     private CustomDialog? winBox;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
@@ -93,6 +95,17 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         {
             multicellularButton.Visible = false;
             macroscopicButton.Visible = false;
+        }
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateColonySizeForMulticellular();
+            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -187,17 +200,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 TranslationServer.Translate("FOSSILISATION_HINT");
 
             fossilisationButtonLayer.AddChild(button);
-        }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateColonySizeForMulticellular();
-            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -317,12 +319,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         return stage!.HoverInfo.HoveredCompounds;
     }
 
-    protected override string GetMouseHoverCoordinateText()
-    {
-        return TranslationServer.Translate("STUFF_AT")
-            .FormatSafe(stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
-    }
-
     protected override void UpdateAbilitiesHotBar()
     {
         var player = stage!.Player!;
@@ -342,14 +338,32 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             showSlime = player.SlimeJets.Count > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showSlime,
-            player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
+        UpdateBaseAbilitiesBar(player.CanEngulfInColony(), showToxin, showSlime,
+            player.HasSignalingAgent, player.State == MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;
         unbindAllHotkey.Visible = player.CanUnbind;
 
-        bindingModeHotkey.Pressed = player.State == Microbe.MicrobeState.Binding;
+        bindingModeHotkey.Pressed = player.State == MicrobeState.Binding;
         unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MulticellularButtonPath != null)
+            {
+                MulticellularButtonPath.Dispose();
+                MulticellularConfirmPopupPath.Dispose();
+                MacroscopicButtonPath.Dispose();
+                IngestedMatterBarPath.Dispose();
+                BindingModeHotkeyPath.Dispose();
+                UnbindAllHotkeyPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnRadialItemSelected(int itemId)

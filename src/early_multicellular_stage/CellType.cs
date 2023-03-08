@@ -36,6 +36,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
         MembraneRigidity = microbeSpecies.MembraneRigidity;
         Colour = microbeSpecies.Colour;
         IsBacteria = microbeSpecies.IsBacteria;
+        CanEngulf = microbeSpecies.CanEngulf;
         TypeName = TranslationServer.Translate("STEM_CELL_NAME");
     }
 
@@ -50,6 +51,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
     public float BaseRotationSpeed { get; set; }
+    public bool CanEngulf { get; }
 
     /// <summary>
     ///   Total mass of all the organelles in this cell type
@@ -77,6 +79,28 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     {
         if (!string.IsNullOrWhiteSpace(newName))
             TypeName = newName;
+    }
+
+    /// <summary>
+    ///   Checks if this cell type is a brain tissue type
+    /// </summary>
+    /// <returns>True when this is brain tissue</returns>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: make this check much more comprehensive to make brain tissue type more distinct
+    ///   </para>
+    /// </remarks>
+    public bool IsBrainTissueType()
+    {
+        foreach (var organelle in Organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<AxonComponentFactory>())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void ApplySceneParameters(Spatial instancedScene)

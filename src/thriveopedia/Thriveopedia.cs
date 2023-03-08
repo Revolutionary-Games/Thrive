@@ -10,7 +10,7 @@ using Godot;
 public class Thriveopedia : ControlWithInput
 {
     [Export]
-    public NodePath BackButtonPath = null!;
+    public NodePath? BackButtonPath;
 
     [Export]
     public NodePath ForwardButtonPath = null!;
@@ -33,6 +33,7 @@ public class Thriveopedia : ControlWithInput
     [Export]
     public NodePath HomePagePath = null!;
 
+#pragma warning disable CA2213
     private TextureButton backButton = null!;
     private TextureButton forwardButton = null!;
     private MarginContainer pageContainer = null!;
@@ -41,12 +42,13 @@ public class Thriveopedia : ControlWithInput
     private Label pageTitle = null!;
     private Tree pageTree = null!;
 
-    private bool treeCollapsed;
-
     /// <summary>
     ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
     /// </summary>
     private ThriveopediaHomePage homePage = null!;
+#pragma warning restore CA2213
+
+    private bool treeCollapsed;
 
     /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu.
@@ -211,6 +213,26 @@ public class Thriveopedia : ControlWithInput
         ChangePage(pageName, true, true);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (BackButtonPath != null)
+            {
+                BackButtonPath.Dispose();
+                ForwardButtonPath.Dispose();
+                PageContainerPath.Dispose();
+                PageTreeContainerPath.Dispose();
+                PageTreeContainerAnimPath.Dispose();
+                PageTitlePath.Dispose();
+                PageTreePath.Dispose();
+                HomePagePath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Updates navigation elements in the Thriveopedia UI to reflect a newly selected page.
     /// </summary>
@@ -295,7 +317,7 @@ public class Thriveopedia : ControlWithInput
     }
 
     /// <summary>
-    ///    Opens an existing Thriveopedia page, optionally adding it to the page history.
+    ///   Opens an existing Thriveopedia page, optionally adding it to the page history.
     /// </summary>
     /// <param name="pageName">The name of the page</param>
     /// <param name="addToHistory">Whether this page should be added to the history</param>

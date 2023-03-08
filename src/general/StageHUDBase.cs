@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -15,7 +14,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     where TStage : Object, IStage
 {
     [Export]
-    public NodePath CompoundsGroupAnimationPlayerPath = null!;
+    public NodePath? CompoundsGroupAnimationPlayerPath;
 
     [Export]
     public NodePath EnvironmentGroupAnimationPlayerPath = null!;
@@ -129,21 +128,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath HintTextPath = null!;
 
     [Export]
-    public AudioStream MicrobePickupOrganelleSound = null!;
-
-    [Export]
-    public Texture AmmoniaBW = null!;
-
-    [Export]
-    public Texture PhosphatesBW = null!;
-
-    [Export]
-    public Texture AmmoniaInv = null!;
-
-    [Export]
-    public Texture PhosphatesInv = null!;
-
-    [Export]
     public NodePath HotBarPath = null!;
 
     [Export]
@@ -183,25 +167,45 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath AgentsPanelBarContainerPath = null!;
 
     [Export]
-    public PackedScene ExtinctionBoxScene = null!;
-
-    [Export]
-    public PackedScene PatchExtinctionBoxScene = null!;
-
-    [Export]
     public NodePath FireToxinHotkeyPath = null!;
 
     [Export]
     public NodePath BottomLeftBarPath = null!;
 
     [Export]
+    public NodePath HUDMessagesPath = null!;
+
+    [Export]
     public NodePath FossilisationButtonLayerPath = null!;
 
+    [Export]
+    public NodePath FossilisationDialogPath = null!;
+
+#pragma warning disable CA2213
     [Export]
     public PackedScene FossilisationButtonScene = null!;
 
     [Export]
-    public NodePath FossilisationDialogPath = null!;
+    public AudioStream MicrobePickupOrganelleSound = null!;
+
+    [Export]
+    public Texture AmmoniaBW = null!;
+
+    [Export]
+    public Texture PhosphatesBW = null!;
+
+    [Export]
+    public Texture AmmoniaInv = null!;
+
+    [Export]
+    public Texture PhosphatesInv = null!;
+
+    [Export]
+    public PackedScene ExtinctionBoxScene = null!;
+
+    [Export]
+    public PackedScene PatchExtinctionBoxScene = null!;
+#pragma warning restore CA2213
 
     // Inspections and cleanup disagree here
     // ReSharper disable RedundantNameQualifier
@@ -229,6 +233,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
     protected Compound temperature = null!;
+
+#pragma warning disable CA2213
     protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
     protected AnimationPlayer environmentGroupAnimationPlayer = null!;
     protected MarginContainer mouseHoverPanel = null!;
@@ -237,10 +243,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton signallingAgentsHotkey = null!;
-
-    // Store these statefully for after player death
-    protected float maxHP = 1.0f;
-    protected float maxATP = 1.0f;
 
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;
@@ -283,22 +285,39 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected Control fossilisationButtonLayer = null!;
     protected FossilisationDialog fossilisationDialog = null!;
+#pragma warning restore CA2213
+
+    // Store these statefully for after player death
+    protected float maxHP = 1.0f;
+    protected float maxATP = 1.0f;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as well as call some player initiated actions.
     /// </summary>
     protected TStage? stage;
 
-    /// <summary>
-    ///   Show mouse coordinates data in the mouse
-    ///   hover box, useful during develop.
-    /// </summary>
-#pragma warning disable 649 // ignored until we get some GUI or something to change this
-    protected bool showMouseCoordinates;
-#pragma warning restore 649
-
+    // This block of controls is split from the reset as some controls are protected and these are private
+#pragma warning disable CA2213
     private Control pausePrompt = null!;
     private CustomRichTextLabel pauseInfo = null!;
+
+    private HUDMessages hudMessages = null!;
+
+    private VBoxContainer hoveredCompoundsContainer = null!;
+    private HSeparator hoveredCellsSeparator = null!;
+    private VBoxContainer hoveredCellsContainer = null!;
+    private Panel compoundsPanel = null!;
+    private HBoxContainer hotBar = null!;
+    private ActionButton fireToxinHotkey = null!;
+    private Control agentsPanel = null!;
+    private ProgressBar oxytoxyBar = null!;
+    private ProgressBar mucilageBar = null!;
+    private CustomDialog? extinctionBox;
+    private PatchExtinctionBox? patchExtinctionBox;
+    private ProcessPanel processPanel = null!;
+#pragma warning restore CA2213
+
+    private Array? compoundBars;
 
     /// <summary>
     ///   For toggling paused with the pause button.
@@ -313,21 +332,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private bool compoundsPanelActive;
 
     private bool environmentPanelActive;
-
-    private VBoxContainer hoveredCompoundsContainer = null!;
-    private HSeparator hoveredCellsSeparator = null!;
-    private VBoxContainer hoveredCellsContainer = null!;
-    private Panel compoundsPanel = null!;
-    private HBoxContainer hotBar = null!;
-    private ActionButton fireToxinHotkey = null!;
-    private Control agentsPanel = null!;
-    private ProgressBar oxytoxyBar = null!;
-    private ProgressBar mucilageBar = null!;
-    private CustomDialog? extinctionBox;
-    private PatchExtinctionBox? patchExtinctionBox;
-
-    private Array compoundBars = null!;
-    private ProcessPanel processPanel = null!;
 
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
@@ -386,6 +390,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     [JsonIgnore]
     public bool Paused => paused;
+
+    [JsonIgnore]
+    public HUDMessages HUDMessages => hudMessages;
 
     /// <summary>
     ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
@@ -451,6 +458,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         pausePrompt = GetNode<Control>(PausePromptPath);
         pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
 
+        hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
+
         packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
@@ -505,11 +514,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         stage = containedInStage;
     }
 
-    public void SendEditorButtonToTutorial(TutorialState tutorialState)
-    {
-        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
-    }
-
     public override void _Process(float delta)
     {
         if (stage == null)
@@ -532,6 +536,22 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         UpdatePanelSizing(delta);
 
         UpdateFossilisationButtons();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            foreach (var hoveredCompoundControl in hoveredCompoundControls)
+            {
+                hoveredCompoundControl.Value.UpdateTranslation();
+            }
+        }
+    }
+
+    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    {
+        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
     }
 
     public void PauseButtonPressed(bool buttonState)
@@ -584,6 +604,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
         editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
+
+        HUDMessages.ShowMessage(TranslationServer.Translate("NOTICE_READY_TO_EDIT"), DisplayDuration.Long);
     }
 
     /// <summary>
@@ -622,17 +644,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         TransitionManager.Instance.AddSequence(
             ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stage.OnFinishTransitioning);
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            foreach (var hoveredCompoundControl in hoveredCompoundControls)
-            {
-                hoveredCompoundControl.Value.UpdateTranslation();
-            }
-        }
     }
 
     public void OnSuicide()
@@ -871,10 +882,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected virtual void UpdateHealth(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var hp = 0.0f;
 
         // Update to the player's current HP, unless the player does not exist
@@ -976,32 +983,38 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         GUICommon.SmoothlyUpdateBar(glucoseBar, compounds.GetCompoundAmount(glucose), delta);
-        glucoseBar.GetNode<Label>("Value").Text = glucoseBar.Value + " / " + glucoseBar.MaxValue;
+        glucoseBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(glucoseBar.Value, glucoseBar.MaxValue);
 
         ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
         GUICommon.SmoothlyUpdateBar(ammoniaBar, compounds.GetCompoundAmount(ammonia), delta);
-        ammoniaBar.GetNode<Label>("Value").Text = ammoniaBar.Value + " / " + ammoniaBar.MaxValue;
+        ammoniaBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(ammoniaBar.Value, ammoniaBar.MaxValue);
 
         phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
         GUICommon.SmoothlyUpdateBar(phosphateBar, compounds.GetCompoundAmount(phosphates), delta);
-        phosphateBar.GetNode<Label>("Value").Text = phosphateBar.Value + " / " + phosphateBar.MaxValue;
+        phosphateBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(phosphateBar.Value, phosphateBar.MaxValue);
 
         hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
         GUICommon.SmoothlyUpdateBar(hydrogenSulfideBar, compounds.GetCompoundAmount(hydrogensulfide), delta);
-        hydrogenSulfideBar.GetNode<Label>("Value").Text = hydrogenSulfideBar.Value + " / " +
-            hydrogenSulfideBar.MaxValue;
+        hydrogenSulfideBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(hydrogenSulfideBar.Value, hydrogenSulfideBar.MaxValue);
 
         ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         GUICommon.SmoothlyUpdateBar(ironBar, compounds.GetCompoundAmount(iron), delta);
-        ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
+        ironBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(ironBar.Value, ironBar.MaxValue);
 
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
-        oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
+        oxytoxyBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(oxytoxyBar.Value, oxytoxyBar.MaxValue);
 
         mucilageBar.MaxValue = compounds.GetCapacityForCompound(mucilage);
         GUICommon.SmoothlyUpdateBar(mucilageBar, compounds.GetCompoundAmount(mucilage), delta);
-        mucilageBar.GetNode<Label>("Value").Text = mucilageBar.Value + " / " + mucilageBar.MaxValue;
+        mucilageBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(mucilageBar.Value, mucilageBar.MaxValue);
     }
 
     protected void UpdateReproductionProgress()
@@ -1043,10 +1056,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected void UpdateATP(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var atpAmount = 0.0f;
 
         // Update to the player's current ATP, unless the player does not exist
@@ -1067,8 +1076,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
-        var atpText = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
-            + maxATP.ToString("F1", CultureInfo.CurrentCulture);
+
+        var atpText = StringUtils.SlashSeparatedNumbersFormat(atpAmount, maxATP);
         atpLabel.Text = atpText;
         atpLabel.HintTooltip = atpText;
     }
@@ -1087,10 +1096,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected void UpdatePanelSizing(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
         var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
         var agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
@@ -1133,13 +1138,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         // var mousePosLabel = container.GetNode<Label>("MousePos");
         var nothingHere = container.GetNode<MarginContainer>("NothingHere");
-
-        if (showMouseCoordinates)
-        {
-            throw new NotImplementedException();
-
-            // mousePosLabel.Text = GetMouseHoverCoordinateText() + "\n";
-        }
 
         var hoveredCompounds = GetHoveredCompounds();
 
@@ -1205,8 +1203,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected abstract IEnumerable<(bool Player, Species Species)> GetHoveredSpecies();
     protected abstract IReadOnlyDictionary<Compound, float> GetHoveredCompounds();
 
-    protected abstract string GetMouseHoverCoordinateText();
-
     protected void AddHoveredCellLabel(string cellInfo)
     {
         hoveredCellsContainer.AddChild(new Label
@@ -1261,6 +1257,76 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             healthBarFlashDuration = 2.5f;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CompoundsGroupAnimationPlayerPath != null)
+            {
+                CompoundsGroupAnimationPlayerPath.Dispose();
+                EnvironmentGroupAnimationPlayerPath.Dispose();
+                PanelsTweenPath.Dispose();
+                LeftPanelsPath.Dispose();
+                MouseHoverPanelPath.Dispose();
+                HoveredCellsContainerPath.Dispose();
+                MenuPath.Dispose();
+                AtpLabelPath.Dispose();
+                HpLabelPath.Dispose();
+                PopulationLabelPath.Dispose();
+                PatchOverlayPath.Dispose();
+                EditorButtonPath.Dispose();
+                EnvironmentPanelPath.Dispose();
+                OxygenBarPath.Dispose();
+                Co2BarPath.Dispose();
+                NitrogenBarPath.Dispose();
+                TemperaturePath.Dispose();
+                SunlightPath.Dispose();
+                PressurePath.Dispose();
+                EnvironmentPanelBarContainerPath.Dispose();
+                CompoundsPanelPath.Dispose();
+                GlucoseBarPath.Dispose();
+                AmmoniaBarPath.Dispose();
+                PhosphateBarPath.Dispose();
+                HydrogenSulfideBarPath.Dispose();
+                IronBarPath.Dispose();
+                EnvironmentPanelExpandButtonPath.Dispose();
+                EnvironmentPanelCompressButtonPath.Dispose();
+                CompoundsPanelExpandButtonPath.Dispose();
+                CompoundsPanelCompressButtonPath.Dispose();
+                CompoundsPanelBarContainerPath.Dispose();
+                AtpBarPath.Dispose();
+                HealthBarPath.Dispose();
+                AmmoniaReproductionBarPath.Dispose();
+                PhosphateReproductionBarPath.Dispose();
+                EditorButtonFlashPath.Dispose();
+                ProcessPanelPath.Dispose();
+                HintTextPath.Dispose();
+                HotBarPath.Dispose();
+                EngulfHotkeyPath.Dispose();
+                SecreteSlimeHotkeyPath.Dispose();
+                SignallingAgentsHotkeyPath.Dispose();
+                MicrobeControlRadialPath.Dispose();
+                PausePromptPath.Dispose();
+                PauseInfoPath.Dispose();
+                HoveredCompoundsContainerPath.Dispose();
+                HoverPanelSeparatorPath.Dispose();
+                AgentsPanelPath.Dispose();
+                OxytoxyBarPath.Dispose();
+                MucilageBarPath.Dispose();
+                AgentsPanelBarContainerPath.Dispose();
+                FireToxinHotkeyPath.Dispose();
+                BottomLeftBarPath.Dispose();
+                HUDMessagesPath.Dispose();
+                FossilisationButtonLayerPath.Dispose();
+                FossilisationDialogPath.Dispose();
+            }
+
+            compoundBars?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Called when the player died out in a patch and selected a new one
     /// </summary>
@@ -1271,7 +1337,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     }
 
     /// <summary>
-    ///  Updates the different bars and panels that should be displayed to the screen
+    ///   Updates the different bars and panels that should be displayed to the screen
     /// </summary>
     private void UpdateBarVisibility(Func<Compound, bool> isUseful)
     {
@@ -1283,6 +1349,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         {
             agentsPanel.Hide();
         }
+
+        if (compoundBars == null)
+            throw new InvalidOperationException("This HUD is not initialized");
 
         foreach (ProgressBar bar in compoundBars)
         {
