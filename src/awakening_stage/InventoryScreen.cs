@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Player inventory and crafting screen for the awakening stage
 /// </summary>
-public class InventoryScreen : Control
+public class InventoryScreen : ControlWithInput
 {
     [Export]
     public NodePath? InventoryPopupPath;
@@ -77,16 +77,30 @@ public class InventoryScreen : Control
             craftingPanelPopup.Show();
     }
 
-    public void Close()
+    [RunOnKeyDown("ui_cancel")]
+    public bool Close()
     {
+        bool closedSomething = false;
+
         if (groundPanelPopup.Visible)
+        {
             groundPanelPopup.Hide();
+            closedSomething = true;
+        }
 
         if (craftingPanelPopup.Visible)
+        {
             craftingPanelPopup.Hide();
+            closedSomething = true;
+        }
 
         if (inventoryPopup.Visible)
+        {
             inventoryPopup.Hide();
+            closedSomething = true;
+        }
+
+        return closedSomething;
     }
 
     public void UpdateGroundItems(IEnumerable<IInteractableEntity> groundObjects)
