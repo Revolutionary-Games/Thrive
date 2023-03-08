@@ -145,6 +145,12 @@ public class PlayerMulticellularInput : NodeWithInput
         stage.AttemptPlayerWorldInteraction();
     }
 
+    [RunOnKeyDown("g_inventory")]
+    public void OpenInventory()
+    {
+        stage.TogglePlayerInventory();
+    }
+
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {

@@ -3,7 +3,13 @@
 /// <summary>
 ///   A game entity the player can interact with
 /// </summary>
-public interface IInteractableEntity : IEntity, IPlayerReadableName
+/// <remarks>
+///   <para>
+///     This requires <see cref="IInventoryItem"/> as for now all interactables are assumed to be visible in the
+///     inventory screen. If that is not the case in the future some different interface splitting will be needed.
+///   </para>
+/// </remarks>
+public interface IInteractableEntity : IEntity, IPlayerReadableName, IInventoryItem
 {
     /// <summary>
     ///   Offset added to the distance at which it is possible to interact with this

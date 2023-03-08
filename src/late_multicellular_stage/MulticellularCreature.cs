@@ -65,6 +65,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonProperty]
     public Action<MulticellularCreature, bool>? OnReproductionStatus { get; set; }
 
+    [JsonProperty]
+    public Action<MulticellularCreature, IInteractableEntity>? RequestCraftingInterfaceFor { get; set; }
+
     /// <summary>
     ///   The species of this creature. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
     ///   random stuff in this instance won't work
@@ -377,13 +380,21 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             case InteractionType.Pickup:
                 return PickupObject(target);
             case InteractionType.Craft:
-                throw new NotImplementedException("TODO: open crafting interface with this entity preselected");
+                if (RequestCraftingInterfaceFor == null)
+                {
+                    // AI should directly use the crafting methods to create the crafter products
+                    GD.PrintErr(
+                        $"Only player creature can open crafting ({nameof(RequestCraftingInterfaceFor)} is unset)");
+                    return false;
+                }
+
+                // Request the crafting interface to be opened with the target pre-selected
+                RequestCraftingInterfaceFor.Invoke(this, target);
+                return true;
             default:
                 GD.PrintErr($"Unimplemented action handling for {interactionType}");
                 return false;
         }
-
-        return true;
     }
 
     public bool FitsInCarryingCapacity(IInteractableEntity interactableEntity)

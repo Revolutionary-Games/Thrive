@@ -297,7 +297,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // A not super familiar (different than underwater) rock strewn around for reference
         var rockResource =
-            new SimpleWorldResource(GD.Load<PackedScene>("res://assets/models/Iron4.tscn"), "RESOURCE_ROCK");
+            new SimpleWorldResource(GD.Load<PackedScene>("res://assets/models/Iron4.tscn"), "RESOURCE_ROCK",
+                GD.Load<Texture>("res://assets/textures/gui/bevel/iron.png"));
         var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
         // TODO: remove once resource data is loaded from JSON
@@ -369,6 +370,33 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // Show interaction context menu for the player to do something with the target
         interactionPopup.ShowForInteractable(target, Player.CalculatePossibleActions(target));
+    }
+
+    public bool TogglePlayerInventory()
+    {
+        if (Player == null)
+            return false;
+
+        if (HUD.IsInventoryOpen)
+        {
+            HUD.CloseInventory();
+            return true;
+        }
+
+        try
+        {
+            // Refresh the items on the ground near the player to show in the inventory screen
+            var groundObjects = interactableSystem.GetAllNearbyObjects();
+
+            HUD.OpenInventory(Player, groundObjects);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Problem trying to show inventory: {e}");
+            return false;
+        }
+
+        return true;
     }
 
     protected override void SetupStage()
@@ -457,6 +485,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
+        Player.RequestCraftingInterfaceFor = OnOpenCraftingInterfaceFor;
+
         PlayerCamera.FollowedNode = Player;
 
         // spawner.DespawnAll();
@@ -532,5 +562,17 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         if (!Player.AttemptInteraction(entity, interactionType))
             GD.Print("Player couldn't perform the selected action");
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnOpenCraftingInterfaceFor(MulticellularCreature player, IInteractableEntity target)
+    {
+        if (!TogglePlayerInventory())
+        {
+            GD.Print("Couldn't open player inventory to then select a craftable resource");
+            return;
+        }
+
+        HUD.SelectItemForCrafting(target);
     }
 }

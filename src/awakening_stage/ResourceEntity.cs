@@ -15,6 +15,11 @@ public class ResourceEntity : RigidBody, IInteractableEntity, IWorldResource
     [JsonProperty]
     private string untranslatedName = string.Empty;
 
+    [JsonProperty]
+    private string? iconPath;
+
+    private Texture? icon;
+
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
@@ -41,7 +46,21 @@ public class ResourceEntity : RigidBody, IInteractableEntity, IWorldResource
     [JsonIgnore]
     public string InternalName => untranslatedName;
 
+    [JsonIgnore]
     public PackedScene WorldRepresentation => resourceScene ?? throw new NotSupportedException("Not initialized yet");
+
+    [JsonIgnore]
+    public Texture Icon
+    {
+        get
+        {
+            if (iconPath == null)
+                throw new NotSupportedException("Icon path is not initialized");
+
+            icon ??= GD.Load<Texture>(iconPath);
+            return icon;
+        }
+    }
 
     public void OnDestroyed()
     {
@@ -57,6 +76,9 @@ public class ResourceEntity : RigidBody, IInteractableEntity, IWorldResource
 
         resourceScene = resourceType.WorldRepresentation;
         untranslatedName = resourceType.InternalName;
+
+        iconPath = resourceType.Icon.ResourcePath;
+        icon = resourceType.Icon;
 
         AddChild(resourceScene.Instance());
     }

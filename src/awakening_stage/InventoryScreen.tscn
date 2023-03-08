@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/awakening_stage/InventoryScreen.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
+
+[node name="InventoryScreen" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+InventoryPopupPath = NodePath("MainInventory")
+CraftingPanelPopupPath = NodePath("CraftingPanel")
+GroundPanelPopupPath = NodePath("GroundPanel")
+GroundSlotContainerPath = NodePath("GroundPanel/HBoxContainer")
+
+[node name="GroundPanel" parent="." instance=ExtResource( 2 )]
+anchor_top = 0.74
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 27.2
+margin_right = -1138.0
+margin_bottom = -140.0
+WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
+Resizable = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 240, 60 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="MainInventory" parent="." instance=ExtResource( 2 )]
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -465.0
+margin_bottom = -559.0
+WindowTitle = "INVENTORY_TITLE"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainInventory"]
+margin_left = 2.0
+margin_top = -4.0
+margin_right = 402.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 400, 400 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CraftingPanel" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 100.0
+margin_right = -538.0
+margin_bottom = -600.0
+WindowTitle = "CRAFTING_TITLE"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel"]
+margin_left = 667.0
+margin_top = 27.0
+margin_right = 1067.0
+margin_bottom = 427.0
+rect_min_size = Vector2( 400, 400 )
+size_flags_horizontal = 3
+size_flags_vertical = 3

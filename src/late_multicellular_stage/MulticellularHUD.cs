@@ -24,6 +24,12 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     [Export]
     public NodePath InteractActionPath = null!;
 
+    [Export]
+    public NodePath InventoryButtonPath = null!;
+
+    [Export]
+    public NodePath InventoryScreenPath = null!;
+
 #pragma warning disable CA2213
     private CustomDialog moveToLandPopup = null!;
     private Button toLandButton = null!;
@@ -31,6 +37,9 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     private CustomDialog awakenConfirmPopup = null!;
 
     private ActionButton interactAction = null!;
+    private ActionButton inventoryButton = null!;
+
+    private InventoryScreen inventoryScreen = null!;
 #pragma warning restore CA2213
 
     private float? lastBrainPower;
@@ -45,6 +54,12 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     [Signal]
     public delegate void OnInteractButtonPressed();
 
+    [Signal]
+    public delegate void OnOpenInventoryPressed();
+
+    [JsonIgnore]
+    public bool IsInventoryOpen => inventoryScreen.IsOpen;
+
     protected override string? UnPauseHelpText => null;
 
     public override void _Ready()
@@ -57,6 +72,9 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         awakenConfirmPopup = GetNode<CustomDialog>(AwakenConfirmPopupPath);
 
         interactAction = GetNode<ActionButton>(InteractActionPath);
+        inventoryButton = GetNode<ActionButton>(InventoryButtonPath);
+
+        inventoryScreen = GetNode<InventoryScreen>(InventoryScreenPath);
     }
 
     public override void _Process(float delta)
@@ -90,6 +108,22 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     public override void ShowFossilisationButtons()
     {
+    }
+
+    public void OpenInventory(MulticellularCreature creature, IEnumerable<IInteractableEntity> groundObjects)
+    {
+        inventoryScreen.OpenInventory(creature);
+        inventoryScreen.UpdateGroundItems(groundObjects);
+    }
+
+    public void CloseInventory()
+    {
+        inventoryScreen.Close();
+    }
+
+    public void SelectItemForCrafting(IInteractableEntity target)
+    {
+        inventoryScreen.AddItemToCrafting(target);
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -154,7 +188,12 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     protected override void UpdateAbilitiesHotBar()
     {
         // This button is visible when the player is in the awakening stage
-        interactAction.Visible = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
+        bool isAwakened = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
+        interactAction.Visible = isAwakened;
+        inventoryButton.Visible = isAwakened;
+
+        // TODO: figure out why this doesn't display correctly in the UI
+        inventoryButton.Pressed = IsInventoryOpen;
     }
 
     protected override void Dispose(bool disposing)
@@ -168,6 +207,8 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
                 AwakenButtonPath.Dispose();
                 AwakenConfirmPopupPath.Dispose();
                 InteractActionPath.Dispose();
+                InventoryButtonPath.Dispose();
+                InventoryScreenPath.Dispose();
             }
         }
 
@@ -246,5 +287,10 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     private void ForwardInteractButton()
     {
         EmitSignal(nameof(OnInteractButtonPressed));
+    }
+
+    private void ForwardOpenInventory()
+    {
+        EmitSignal(nameof(OnOpenInventoryPressed));
     }
 }
