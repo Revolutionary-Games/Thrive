@@ -5,15 +5,13 @@ using Godot;
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-[SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification =
-    "We don't manually dispose Godot derived types")]
 public class PauseMenu : CustomDialog
 {
     [Export]
     public string HelpCategory = null!;
 
     [Export]
-    public NodePath PrimaryMenuPath = null!;
+    public NodePath? PrimaryMenuPath;
 
     [Export]
     public NodePath ThriveopediaPath = null!;
@@ -36,6 +34,7 @@ public class PauseMenu : CustomDialog
     [Export]
     public NodePath UnsavedProgressWarningPath = null!;
 
+#pragma warning disable CA2213
     private Control primaryMenu = null!;
     private Thriveopedia thriveopedia = null!;
     private HelpScreen helpScreen = null!;
@@ -44,6 +43,7 @@ public class PauseMenu : CustomDialog
     private NewSaveMenu saveMenu = null!;
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
+#pragma warning restore CA2213
 
     private bool paused;
 
@@ -369,6 +369,26 @@ public class PauseMenu : CustomDialog
         }
 
         SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PrimaryMenuPath != null)
+            {
+                PrimaryMenuPath.Dispose();
+                ThriveopediaPath.Dispose();
+                HelpScreenPath.Dispose();
+                LoadMenuPath.Dispose();
+                OptionsMenuPath.Dispose();
+                SaveMenuPath.Dispose();
+                LoadSaveListPath.Dispose();
+                UnsavedProgressWarningPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private Control? GetControlFromMenuEnum(ActiveMenuType value)
