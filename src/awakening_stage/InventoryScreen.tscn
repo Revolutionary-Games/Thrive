@@ -23,6 +23,8 @@ EquipmentBackgroundImagePath = NodePath("MainInventory/BaseInventoryContainer/VB
 CraftingPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting")
 GroundPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground")
 CraftingPanelPopupPath = NodePath("CraftingPanel")
+CraftingSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/CraftingInputs")
+CraftingResultSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/CraftingResults")
 GroundPanelPopupPath = NodePath("GroundPanel")
 GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 
@@ -135,8 +137,6 @@ margin_top = 27.0
 margin_right = 1067.0
 margin_bottom = 427.0
 rect_min_size = Vector2( 400, 400 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
@@ -149,9 +149,11 @@ margin_right = 40.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
+size_flags_stretch_ratio = 2.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
+[node name="RecipesList" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
+margin_bottom = 40.0
+size_flags_vertical = 3
 
 [node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
@@ -164,28 +166,33 @@ custom_fonts/font = ExtResource( 9 )
 text = "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 autowrap = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
+[node name="CraftingItemsSection" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
+[node name="LeftSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="InputsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="InputsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
 margin_right = 40.0
 margin_bottom = 25.0
 text = "CRAFTING_FILTER_INPUTS"
 
-[node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="ClearInputs" type="TextureButton" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="ClearInputs" type="TextureButton" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 hint_tooltip = "CRAFTING_CLEAR_INPUTS"
 size_flags_horizontal = 4
 disabled = true
@@ -196,24 +203,33 @@ texture_disabled = ExtResource( 6 )
 texture_focused = ExtResource( 7 )
 expand = true
 
-[node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
+[node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
 margin_right = 30.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
+rect_min_size = Vector2( 45, 35 )
 size_flags_vertical = 4
 icon = ExtResource( 4 )
 icon_align = 1
 expand_icon = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
+[node name="RightSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="CraftingOutputs" type="HBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="ResultsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
+margin_right = 250.0
+margin_bottom = 25.0
+text = "CRAFTING_RESULTS"
+
+[node name="CraftingResults" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Take" type="Button" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Take" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
 margin_right = 10.0
 margin_bottom = 35.0
 text = "CRAFTING_TAKE_ALL"

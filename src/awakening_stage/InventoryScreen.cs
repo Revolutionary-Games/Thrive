@@ -29,6 +29,12 @@ public class InventoryScreen : ControlWithInput
     public NodePath CraftingPanelPopupPath = null!;
 
     [Export]
+    public NodePath CraftingSlotsContainerPath = null!;
+
+    [Export]
+    public NodePath CraftingResultSlotsContainerPath = null!;
+
+    [Export]
     public NodePath GroundPanelPopupPath = null!;
 
     [Export]
@@ -56,6 +62,8 @@ public class InventoryScreen : ControlWithInput
     private Button groundPanelButton = null!;
 
     private CustomDialog craftingPanelPopup = null!;
+    private Container craftingSlotsContainer = null!;
+    private Container craftingResultSlotsContainer = null!;
 
     private CustomDialog groundPanelPopup = null!;
     private Container groundSlotContainer = null!;
@@ -67,6 +75,10 @@ public class InventoryScreen : ControlWithInput
 
     private bool groundPanelManuallyHidden;
     private bool craftingPanelManuallyHidden = true;
+
+    private bool craftingPanelSetup;
+    private Vector2 craftingPanelDefaultPosition;
+
     public bool IsOpen => inventoryPopup.Visible;
 
     public override void _Ready()
@@ -79,6 +91,8 @@ public class InventoryScreen : ControlWithInput
         groundPanelButton = GetNode<Button>(GroundPanelButtonPath);
 
         craftingPanelPopup = GetNode<CustomDialog>(CraftingPanelPopupPath);
+        craftingSlotsContainer = GetNode<Container>(CraftingSlotsContainerPath);
+        craftingResultSlotsContainer = GetNode<Container>(CraftingResultSlotsContainerPath);
 
         groundPanelPopup = GetNode<CustomDialog>(GroundPanelPopupPath);
         groundSlotContainer = GetNode<Container>(GroundSlotContainerPath);
@@ -88,6 +102,8 @@ public class InventoryScreen : ControlWithInput
         // TODO: a background that allows dropping by dragging items outside the inventory
 
         Visible = true;
+
+        craftingPanelDefaultPosition = craftingPanelPopup.RectPosition;
     }
 
     public override void _Process(float delta)
@@ -107,10 +123,11 @@ public class InventoryScreen : ControlWithInput
             groundPanelPopup.Show();
 
         if (!craftingPanelPopup.Visible && !craftingPanelManuallyHidden)
-            craftingPanelPopup.Show();
+        {
+            ShowCraftingPanel();
+        }
 
-        craftingPanelButton.Pressed = craftingPanelPopup.Visible;
-        groundPanelButton.Pressed = groundPanelPopup.Visible;
+        UpdateToggleButtonStatus();
     }
 
     [RunOnKeyDown("ui_cancel")]
@@ -179,7 +196,7 @@ public class InventoryScreen : ControlWithInput
         craftingPanelManuallyHidden = false;
 
         if (!craftingPanelPopup.Visible)
-            craftingPanelPopup.Show();
+            ShowCraftingPanel();
 
         throw new NotImplementedException();
     }
@@ -197,6 +214,8 @@ public class InventoryScreen : ControlWithInput
                 CraftingPanelButtonPath.Dispose();
                 GroundPanelButtonPath.Dispose();
                 CraftingPanelPopupPath.Dispose();
+                CraftingSlotsContainerPath.Dispose();
+                CraftingResultSlotsContainerPath.Dispose();
                 GroundPanelPopupPath.Dispose();
                 GroundSlotContainerPath.Dispose();
             }
@@ -320,13 +339,81 @@ public class InventoryScreen : ControlWithInput
             SetEquipmentDataFrom(displayingInventoryOf);
     }
 
+    private void SetupCraftingPanel()
+    {
+        if (craftingPanelSetup)
+            return;
+
+        craftingPanelSetup = true;
+
+        EnsureCraftingPanelHasEmptyInputSlot();
+        EnsureCraftingResultHasEmptySlots(1);
+
+        // Something messes with the crafting panel not being the right size when opened, so we need to do some size
+        // unstuck fixing here
+        Invoke.Instance.QueueForObject(() =>
+        {
+            craftingPanelPopup.RectSize = Vector2.Zero;
+            craftingPanelPopup.RectPosition = craftingPanelDefaultPosition;
+        }, craftingPanelPopup);
+    }
+
+    private void EnsureCraftingPanelHasEmptyInputSlot()
+    {
+        foreach (var slot in craftingSlots)
+        {
+            if (slot.Item == null)
+                return;
+        }
+
+        // New slot needed as all previous ones are filled
+        var newSlot = CreateInventorySlot();
+
+        craftingSlotsContainer.AddChild(newSlot);
+        craftingSlots.Add(newSlot);
+    }
+
+    private bool HasAnyCraftingResultSlotsWithItems()
+    {
+        foreach (var slot in craftingResultSlots)
+        {
+            if (slot.Item != null)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void EnsureCraftingResultHasEmptySlots(int required)
+    {
+        foreach (var slot in craftingResultSlots)
+        {
+            if (slot.Item == null)
+            {
+                --required;
+            }
+        }
+
+        while (required > 0)
+        {
+            var newSlot = CreateInventorySlot();
+
+            craftingResultSlotsContainer.AddChild(newSlot);
+            craftingResultSlots.Add(newSlot);
+
+            // TODO: crafting output should only allow moving items out of it
+
+            --required;
+        }
+    }
+
     private InventorySlot CreateInventorySlot()
     {
         var slot = inventorySlotScene.Instance<InventorySlot>();
 
         slot.Group = inventorySlotGroup;
 
-        // TODO: callbacks
+        // TODO: callbacks for drag and for click to detect item moves
 
         return slot;
     }
@@ -343,8 +430,7 @@ public class InventoryScreen : ControlWithInput
         }
         else
         {
-            craftingPanelPopup.Show();
-            craftingPanelManuallyHidden = false;
+            ShowCraftingPanel();
         }
     }
 
@@ -365,19 +451,38 @@ public class InventoryScreen : ControlWithInput
         }
     }
 
+    private void ShowCraftingPanel()
+    {
+        // Setup the panel the first time it is opened to ensure the sizing is immediately correct
+        SetupCraftingPanel();
+
+        craftingPanelPopup.Show();
+        craftingPanelManuallyHidden = false;
+
+        UpdateToggleButtonStatus();
+    }
+
     private void OnGroundPanelClosed()
     {
         groundPanelManuallyHidden = true;
+        UpdateToggleButtonStatus();
     }
 
     private void OnCraftingPanelClosed()
     {
         craftingPanelManuallyHidden = true;
+        UpdateToggleButtonStatus();
     }
 
     private void OnInventoryPanelClosed()
     {
         // Closing the inventory panel closes the entire thing
         Close();
+    }
+
+    private void UpdateToggleButtonStatus()
+    {
+        craftingPanelButton.Pressed = craftingPanelPopup.Visible;
+        groundPanelButton.Pressed = groundPanelPopup.Visible;
     }
 }
