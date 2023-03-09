@@ -8,14 +8,14 @@ public interface ICharacterInventory
 
     public IEnumerable<InventorySlotData> ListInventoryContents();
 
-    public IEnumerable<InventorySlotData> ListHandContents();
+    public IEnumerable<InventorySlotData> ListEquipmentContents();
 }
 
 public static class CharacterInventoryHelpers
 {
     public static IEnumerable<InventorySlotData> ListAllItems(this ICharacterInventory inventory)
     {
-        foreach (var content in inventory.ListHandContents())
+        foreach (var content in inventory.ListEquipmentContents())
         {
             yield return content;
         }

@@ -505,7 +505,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         return inventorySlots;
     }
 
-    public IEnumerable<InventorySlotData> ListHandContents()
+    public IEnumerable<InventorySlotData> ListEquipmentContents()
     {
         yield return handSlot;
     }

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/awakening_stage/InventoryScreen.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/textures/gui/CreaturePlaceholder.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=8]
 
 [node name="InventoryScreen" type="Control"]
 visible = false
@@ -12,6 +16,11 @@ anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 1 )
 InventoryPopupPath = NodePath("MainInventory")
+InventorySlotContainerPath = NodePath("MainInventory/BaseInventoryContainer/Inventory")
+EquipmentSlotParentPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots")
+EquipmentBackgroundImagePath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots/CreatureImage")
+CraftingPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting")
+GroundPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground")
 CraftingPanelPopupPath = NodePath("CraftingPanel")
 GroundPanelPopupPath = NodePath("GroundPanel")
 GroundSlotContainerPath = NodePath("GroundPanel/HBoxContainer")
@@ -61,14 +70,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="EquipmentSlots" type="Control" parent="MainInventory/BaseInventoryContainer/VBoxContainer"]
-margin_right = 800.0
-margin_bottom = 800.0
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots"]
-margin_right = 800.0
-margin_bottom = 800.0
+[node name="CreatureImage" type="TextureRect" parent="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
@@ -96,6 +105,7 @@ text = "INVENTORY_TOGGLE_CRAFTING"
 [node name="Inventory" type="HFlowContainer" parent="MainInventory/BaseInventoryContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -134,6 +144,12 @@ margin_bottom = 40.0
 margin_right = 40.0
 margin_bottom = 4.0
 
+[node name="CraftingProblemLabel" type="Label" parent="CraftingPanel/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+text = "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
+autowrap = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -152,6 +168,19 @@ text = "CRAFTING_FILTER_INPUTS
 margin_right = 40.0
 margin_bottom = 40.0
 
+[node name="ClearInputs" type="TextureButton" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+hint_tooltip = "CRAFTING_CLEAR_INPUTS"
+size_flags_horizontal = 4
+disabled = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 7 )
+expand = true
+
 [node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 35.0
@@ -160,10 +189,22 @@ icon = ExtResource( 4 )
 icon_align = 1
 expand_icon = true
 
-[node name="CraftingOutputs" type="HBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
 
+[node name="CraftingOutputs" type="HBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Take" type="Button" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 10.0
+margin_bottom = 35.0
+text = "CRAFTING_TAKE_ALL"
+
 [connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelClosed"]
 [connection signal="Closed" from="MainInventory" to="." method="OnInventoryPanelClosed"]
+[connection signal="resized" from="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots" to="." method="UpdateEquipmentSlotPositions"]
+[connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground" to="." method="ToggleGroundPanel"]
+[connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting" to="." method="ToggleCraftingPanel"]
 [connection signal="Closed" from="CraftingPanel" to="." method="OnCraftingPanelClosed"]

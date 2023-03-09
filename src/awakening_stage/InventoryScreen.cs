@@ -10,6 +10,21 @@ public class InventoryScreen : ControlWithInput
     public NodePath? InventoryPopupPath;
 
     [Export]
+    public NodePath InventorySlotContainerPath = null!;
+
+    [Export]
+    public NodePath EquipmentSlotParentPath = null!;
+
+    [Export]
+    public NodePath EquipmentBackgroundImagePath = null!;
+
+    [Export]
+    public NodePath CraftingPanelButtonPath = null!;
+
+    [Export]
+    public NodePath GroundPanelButtonPath = null!;
+
+    [Export]
     public NodePath CraftingPanelPopupPath = null!;
 
     [Export]
@@ -23,8 +38,21 @@ public class InventoryScreen : ControlWithInput
     private readonly List<IInteractableEntity> objectsOnGround = new();
     private readonly List<InventorySlot> groundInventorySlots = new();
 
+    private readonly List<InventorySlot> inventorySlots = new();
+
+    private readonly List<InventorySlot> equipmentSlots = new();
+
+    private readonly List<InventorySlot> craftingSlots = new();
+
+    private readonly List<InventorySlot> craftingResultSlots = new();
+
 #pragma warning disable CA2213
     private CustomDialog inventoryPopup = null!;
+    private Container inventorySlotContainer = null!;
+    private Control equipmentSlotParent = null!;
+    private TextureRect equipmentBackgroundImage = null!;
+    private Button craftingPanelButton = null!;
+    private Button groundPanelButton = null!;
 
     private CustomDialog craftingPanelPopup = null!;
 
@@ -43,6 +71,11 @@ public class InventoryScreen : ControlWithInput
     public override void _Ready()
     {
         inventoryPopup = GetNode<CustomDialog>(InventoryPopupPath);
+        inventorySlotContainer = GetNode<Container>(InventorySlotContainerPath);
+        equipmentSlotParent = GetNode<Control>(EquipmentSlotParentPath);
+        equipmentBackgroundImage = GetNode<TextureRect>(EquipmentBackgroundImagePath);
+        craftingPanelButton = GetNode<Button>(CraftingPanelButtonPath);
+        groundPanelButton = GetNode<Button>(GroundPanelButtonPath);
 
         craftingPanelPopup = GetNode<CustomDialog>(CraftingPanelPopupPath);
 
@@ -50,8 +83,6 @@ public class InventoryScreen : ControlWithInput
         groundSlotContainer = GetNode<Container>(GroundSlotContainerPath);
 
         inventorySlotScene = GD.Load<PackedScene>("res://src/awakening_stage/InventorySlot.tscn");
-
-        // TODO: add buttons for toggling the crafting and ground panels from the inventory screen
 
         // TODO: a background that allows dropping by dragging items outside the inventory
 
@@ -69,12 +100,16 @@ public class InventoryScreen : ControlWithInput
             inventoryPopup.Show();
 
         SetInventoryDataFrom(creature);
+        SetEquipmentDataFrom(creature);
 
         if (!groundPanelPopup.Visible && !groundPanelManuallyHidden)
             groundPanelPopup.Show();
 
         if (!craftingPanelPopup.Visible && !craftingPanelManuallyHidden)
             craftingPanelPopup.Show();
+
+        craftingPanelButton.Pressed = craftingPanelPopup.Visible;
+        groundPanelButton.Pressed = groundPanelPopup.Visible;
     }
 
     [RunOnKeyDown("ui_cancel")]
@@ -155,6 +190,11 @@ public class InventoryScreen : ControlWithInput
             if (InventoryPopupPath != null)
             {
                 InventoryPopupPath.Dispose();
+                InventorySlotContainerPath.Dispose();
+                EquipmentSlotParentPath.Dispose();
+                EquipmentBackgroundImagePath.Dispose();
+                CraftingPanelButtonPath.Dispose();
+                GroundPanelButtonPath.Dispose();
                 CraftingPanelPopupPath.Dispose();
                 GroundPanelPopupPath.Dispose();
                 GroundSlotContainerPath.Dispose();
@@ -184,9 +224,97 @@ public class InventoryScreen : ControlWithInput
     {
         displayingInventoryOf = creature;
 
+        int nextIndex = 0;
+
         foreach (var slotData in creature.ListInventoryContents())
         {
+            InventorySlot slot;
+            if (nextIndex >= inventorySlots.Count)
+            {
+                slot = CreateInventorySlot();
+
+                inventorySlotContainer.AddChild(slot);
+                inventorySlots.Add(slot);
+            }
+            else
+            {
+                slot = inventorySlots[nextIndex];
+            }
+
+            slot.Item = slotData.ContainedItem;
+            slot.SlotId = slotData.Id;
+
+            ++nextIndex;
         }
+
+        // Remove excess slots
+        while (nextIndex < inventorySlots.Count)
+        {
+            var slot = inventorySlots[inventorySlots.Count - 1];
+
+            inventorySlotContainer.RemoveChild(slot);
+            inventorySlots.RemoveAt(inventorySlots.Count - 1);
+        }
+    }
+
+    private void SetEquipmentDataFrom(ICharacterInventory creature)
+    {
+        int nextIndex = 0;
+
+        var areaSize = equipmentSlotParent.RectSize;
+
+        equipmentBackgroundImage.RectSize = areaSize;
+
+        foreach (var slotData in creature.ListEquipmentContents())
+        {
+            InventorySlot slot;
+            if (nextIndex >= equipmentSlots.Count)
+            {
+                slot = CreateInventorySlot();
+
+                equipmentSlotParent.AddChild(slot);
+                equipmentSlots.Add(slot);
+            }
+            else
+            {
+                slot = equipmentSlots[nextIndex];
+            }
+
+            slot.Item = slotData.ContainedItem;
+            slot.SlotId = slotData.Id;
+
+            // Position this correctly on the creature image
+            Vector2 position;
+
+            if (slotData.EquipmentPosition == null)
+            {
+                GD.PrintErr("Equipment slot doesn't have specified position");
+                position = new Vector2(0, 0);
+            }
+            else
+            {
+                position = slotData.EquipmentPosition.Value;
+            }
+
+            slot.RectPosition = new Vector2(position.x * areaSize.x, position.y * areaSize.y) - slot.RectSize * 0.5f;
+
+            ++nextIndex;
+        }
+
+        // Remove excess slots
+        while (nextIndex < equipmentSlots.Count)
+        {
+            var slot = equipmentSlots[equipmentSlots.Count - 1];
+
+            equipmentSlotParent.RemoveChild(slot);
+            equipmentSlots.RemoveAt(equipmentSlots.Count - 1);
+        }
+    }
+
+    private void UpdateEquipmentSlotPositions()
+    {
+        if (displayingInventoryOf != null)
+            SetEquipmentDataFrom(displayingInventoryOf);
     }
 
     private InventorySlot CreateInventorySlot()

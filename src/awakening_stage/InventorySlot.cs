@@ -50,6 +50,11 @@ public class InventorySlot : Button
         }
     }
 
+    /// <summary>
+    ///   Slot ID metadata to tie this to the inventory slot IDs in the "backend" data
+    /// </summary>
+    public int SlotId { get; set; }
+
     public override void _Ready()
     {
         tooHeavyIndicator = GetNode<Control>("Overlays/TooHeavyToCarry");
