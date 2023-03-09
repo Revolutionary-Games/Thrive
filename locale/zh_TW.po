@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-07 16:29+0200\n"
+"POT-Creation-Date: 2023-03-09 11:17+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D動作樣式："
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "3D_EDITOR"
 msgstr "3D編輯器"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:168
 msgid "3D_MOVEMENT"
 msgstr "3D移動"
 
@@ -52,12 +52,12 @@ msgstr "取消。"
 msgid "ABYSSOPELAGIC"
 msgstr "深海"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:236
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "自殺"
@@ -104,7 +104,7 @@ msgstr "開啟進階選單"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "有氧固氮"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1393
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1398
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "劑"
@@ -175,7 +175,7 @@ msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1170
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1175
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
@@ -592,7 +592,7 @@ msgstr "碳酸鈣"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "這種膜有一層額外的碳酸鈣堅固外殼。它可以很容易地抵禦破壞，並且需要較少的能量才能不變形。擁有如此沉重的外殼的缺點是，細胞的速度更慢，需要一段時間來吸收資源。"
 
-#: ../simulation_parameters/common/input_options.json:82
+#: ../simulation_parameters/common/input_options.json:86
 msgid "CAMERA"
 msgstr "視角"
 
@@ -610,7 +610,7 @@ msgstr "取消"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "取消當前操作"
@@ -732,7 +732,7 @@ msgstr "更改說明太長了"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改變對稱"
 
-#: ../simulation_parameters/common/input_options.json:243
+#: ../simulation_parameters/common/input_options.json:247
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
@@ -742,7 +742,7 @@ msgstr "作弊"
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "啟用作弊鍵"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:267
 msgid "CHEAT_MENU"
 msgstr "作弊菜單"
 
@@ -984,7 +984,7 @@ msgstr "自殺"
 msgid "COMPILED_AT_COLON"
 msgstr "化合物："
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1020
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1025
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
@@ -1128,6 +1128,33 @@ msgstr "紅綠色盲"
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:189
+msgid "CRAFTING_CLEAR_INPUTS"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:180
+#, fuzzy
+msgid "CRAFTING_FILTER_INPUTS"
+msgstr "缺少標題"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:144
+#, fuzzy
+msgid "CRAFTING_KNOWN_ITEMS"
+msgstr "創建MOD信息文件出錯"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:164
+msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:219
+msgid "CRAFTING_TAKE_ALL"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:129
+#, fuzzy
+msgid "CRAFTING_TITLE"
+msgstr "缺少標題"
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
@@ -1312,7 +1339,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "刪除舊存檔嗎？"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
 msgstr "刪除細胞器"
 
@@ -1718,7 +1745,7 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:103
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "編輯器"
@@ -1751,7 +1778,7 @@ msgstr "啟用MODs"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "啟用所有兼容Mods"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:251
 msgid "ENABLE_EDITOR"
 msgstr "啟用編輯器"
 
@@ -1792,7 +1819,7 @@ msgstr "輸入已有的創意工坊編號"
 msgid "ENTITY_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:554
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:559
 #: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "環境"
@@ -2044,7 +2071,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "濃度為"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1944
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "發射毒素"
@@ -2242,7 +2269,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b]人口的一部分已從 {2} 遷移到 {1}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1118
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1123
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 #: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
@@ -2307,7 +2334,7 @@ msgstr ""
 "如果你遇到編輯器按鈕部分消失的問題，\n"
 "可以試試禁用這個功能，問題可能會消失。"
 
-#: ../simulation_parameters/common/input_options.json:218
+#: ../simulation_parameters/common/input_options.json:222
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} 千"
@@ -2342,7 +2369,7 @@ msgstr "（數值越高越提升性能）"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（設置越高越影響性能）"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "按住以在平移與旋轉模式間切換"
 
@@ -2350,11 +2377,11 @@ msgstr "按住以在平移與旋轉模式間切換"
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "按住以顯示群體指令菜單"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:188
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "按住以顯示光標"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:491
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:496
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -2386,7 +2413,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1274
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1279
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 #: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
@@ -2451,6 +2478,11 @@ msgstr "輸入"
 msgid "INPUT_NAME_INTERACTION"
 msgstr "濃度為"
 
+#: ../simulation_parameters/common/input_options.json:76
+#, fuzzy
+msgid "INPUT_NAME_OPEN_INVENTORY"
+msgstr "濃度為"
+
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr "檢查"
@@ -2469,7 +2501,7 @@ msgstr "突變點數"
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:358
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2519,6 +2551,23 @@ msgstr "無效的網址格式"
 msgid "INVALID_URL_SCHEME"
 msgstr "無效的URL方案"
 
+#: ../src/awakening_stage/InventoryScreen.tscn:37
+msgid "INVENTORY_ITEMS_ON_GROUND"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:63
+#, fuzzy
+msgid "INVENTORY_TITLE"
+msgstr "\"{0}\" - {1}"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:112
+msgid "INVENTORY_TOGGLE_CRAFTING"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:106
+msgid "INVENTORY_TOGGLE_GROUND"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
 #: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
 msgid "INVERTED"
@@ -2530,7 +2579,7 @@ msgid "IN_PROTOTYPE"
 msgstr "紅綠色盲"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1326
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1331
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 #: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
@@ -2972,7 +3021,7 @@ msgstr "自殺"
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:878
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:883
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "光"
@@ -3569,12 +3618,12 @@ msgstr "不允許顯示少於 {0} 個數據集！"
 msgid "MISC"
 msgstr "雜項"
 
-#: ../simulation_parameters/common/input_options.json:274
+#: ../simulation_parameters/common/input_options.json:278
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "雜項"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:184
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "3D階段雜項"
 
@@ -3805,7 +3854,7 @@ msgstr ""
 msgid "MOVE_BACKWARDS"
 msgstr "後退"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "向下移動或下蹲"
 
@@ -3817,7 +3866,7 @@ msgstr "前進"
 msgid "MOVE_LEFT"
 msgstr "左移"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_ORGANELLE"
 msgstr "移動細胞器"
 
@@ -3830,7 +3879,7 @@ msgstr "右移"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "移動到這個區域"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1564
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1569
 msgid "MOVE_TO_LAND"
 msgstr "移動到陸地"
 
@@ -3842,26 +3891,26 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移動到這個區域"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "MOVE_UP_OR_JUMP"
 msgstr "向上移動或起跳"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1996
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2014
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr "紅綠色盲"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2013
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "移動去陸地？"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2009
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr "紅綠色盲"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2008
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "移動去陸地？"
 
@@ -3875,7 +3924,7 @@ msgid "MP_COST"
 msgstr "{0} 變異點"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1504
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1509
 #: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr ""
@@ -4073,7 +4122,7 @@ msgstr "最基礎的細胞膜的形式，它抵抗傷害的能力很少。同時
 msgid "NOTHING_HERE"
 msgstr "這裡什麼都沒有"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:366
+#: ../src/late_multicellular_stage/MulticellularStage.cs:367
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4257,7 +4306,7 @@ msgstr "打開日誌文件夾"
 msgid "OPEN_MOD_URL"
 msgstr "打開信息網址"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "打開細胞器菜單"
 
@@ -4441,7 +4490,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。可以通過按下[thrive:input]g_fire_toxin[/thrive:input]來釋放毒素。"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1458
 #: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
@@ -4478,23 +4527,23 @@ msgstr "移除本地數據"
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_DOWN"
 msgstr "向下平移"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_LEFT"
 msgstr "向左平移"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_RESET"
 msgstr "重置視角"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_RIGHT"
 msgstr "向右平移"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
@@ -4655,7 +4704,7 @@ msgid "PER_SECOND_SLASH"
 msgstr "/秒"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1222
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1227
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 #: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
@@ -4677,7 +4726,7 @@ msgstr "物理條件"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物理抵抗力"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PLACE_ORGANELLE"
 msgstr "放置細胞器"
 
@@ -4765,7 +4814,7 @@ msgstr "在開始新遊戲時播放微生物開場動畫"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1604
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1609
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "POPULATION_CAPITAL"
 msgstr "人口："
@@ -4795,7 +4844,7 @@ msgstr "查看預測背後的詳細信息"
 msgid "PRESSURE"
 msgstr "壓強"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:933
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:938
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "壓強"
@@ -4857,11 +4906,11 @@ msgstr "原生質"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "合併請求/編程"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "QUICK_LOAD"
 msgstr "快速讀檔"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "QUICK_SAVE"
 msgstr "快速存檔"
 
@@ -4875,7 +4924,7 @@ msgstr "離開"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/PauseMenu.cs:427
+#: ../src/general/PauseMenu.cs:446
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "你確定要退出遊戲嗎？\n"
@@ -4919,7 +4968,7 @@ msgstr "推薦Thrive："
 msgid "REDDIT_TOOLTIP"
 msgstr "返回遊戲"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "REDO"
 msgstr "重做"
 
@@ -5025,7 +5074,7 @@ msgstr "解像度："
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "資源吸收速度"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:304
+#: ../src/late_multicellular_stage/MulticellularStage.cs:305
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "查看源代碼"
@@ -5062,7 +5111,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "返回主菜單"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:408
+#: ../src/general/PauseMenu.cs:427
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "你確定要退出到主菜單嗎？\n"
@@ -5089,11 +5138,11 @@ msgstr "剛體"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "更剛性的細胞膜有助於抵抗擋傷，但是也會讓細胞更難移動。"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "ROTATE_LEFT"
 msgstr "向左旋轉"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 msgid "ROTATE_RIGHT"
 msgstr "向右旋轉"
 
@@ -5313,7 +5362,7 @@ msgid "SEA_FLOOR"
 msgstr "海床"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1977
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "分泌粘液"
@@ -5403,7 +5452,7 @@ msgstr "特效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "SHOW_HELP"
 msgstr "顯示幫助"
 
@@ -5557,7 +5606,7 @@ msgstr "聲音團隊負責人"
 msgid "SPACE"
 msgstr "空格"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SPAWN_AMMONIA"
 msgstr "生成氨"
 
@@ -5569,11 +5618,11 @@ msgstr "生成敵人"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:255
 msgid "SPAWN_GLUCOSE"
 msgstr "生成葡萄糖"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸鹽"
 
@@ -5844,15 +5893,15 @@ msgstr "Super Right"
 msgid "SUPPORTER_PATRONS"
 msgstr "支持者"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "切換至正視圖"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "切換至右視圖"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "切換至俯視圖"
 
@@ -5860,20 +5909,20 @@ msgstr "切換至俯視圖"
 msgid "SYSREQ"
 msgstr "SysRq"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:238
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "向左旋轉"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "向右旋轉"
@@ -5882,7 +5931,7 @@ msgstr "向右旋轉"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "標籤裡只有空格"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "TAKE_SCREENSHOT"
 msgstr "截圖"
 
@@ -5894,7 +5943,7 @@ msgstr "截圖"
 msgid "TEMPERATURE"
 msgstr "溫度"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:822
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:827
 #: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "溫度"
@@ -6092,31 +6141,32 @@ msgstr "大小："
 msgid "TOGGLE_BINDING"
 msgstr "切換連接模式"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:286
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1916
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1930
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1915
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1929
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "切換吞噬模式"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 msgid "TOGGLE_FPS"
 msgstr "切換FPS顯示"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:314
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切換全螢幕"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:318
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切換HUD"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "TOGGLE_METRICS"
 msgstr "切換參數顯示"
 
@@ -6124,7 +6174,7 @@ msgstr "切換參數顯示"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:278
+#: ../simulation_parameters/common/input_options.json:282
 msgid "TOGGLE_PAUSE"
 msgstr "暫停"
 
@@ -6404,7 +6454,7 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr "水下洞穴"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "UNDO"
 msgstr "撤銷"
 
@@ -6757,11 +6807,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "你可以在 Patreon 上支持 Thrive 未來的發展。"
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_IN"
 msgstr "放大"
 
-#: ../simulation_parameters/common/input_options.json:86
+#: ../simulation_parameters/common/input_options.json:90
 msgid "ZOOM_OUT"
 msgstr "縮小"
 

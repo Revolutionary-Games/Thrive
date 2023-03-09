@@ -37,7 +37,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     // TODO: a real system for determining the hand and equipment slots
     // TODO: hand count based on body plan
     [JsonProperty]
-    private InventorySlotData handSlot = new(1, EquipmentSlotType.Hand, new Vector2(0.8f, 0.5f));
+    private InventorySlotData handSlot = new(1, EquipmentSlotType.Hand, new Vector2(0.82f, 0.43f));
 
     // TODO: increase inventory slots based on equipment
     [JsonProperty]

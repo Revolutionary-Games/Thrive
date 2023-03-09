@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/awakening_stage/InventoryScreen.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=8]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=9]
 
 [node name="InventoryScreen" type="Control"]
 visible = false
@@ -23,7 +24,7 @@ CraftingPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxCon
 GroundPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground")
 CraftingPanelPopupPath = NodePath("CraftingPanel")
 GroundPanelPopupPath = NodePath("GroundPanel")
-GroundSlotContainerPath = NodePath("GroundPanel/HBoxContainer")
+GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 
 [node name="GroundPanel" parent="." instance=ExtResource( 2 )]
 anchor_top = 0.74
@@ -32,14 +33,22 @@ anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 27.2
 margin_right = -1138.0
-margin_bottom = -130.0
+margin_bottom = -120.0
 WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
 Resizable = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GroundPanel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 240, 40 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_vertical_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel/ScrollContainer"]
 margin_right = 240.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 240, 30 )
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5
@@ -129,14 +138,18 @@ rect_min_size = Vector2( 400, 400 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CraftingPanel/VBoxContainer"]
+[node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 25.0
-text = "CRAFTING_KNOWN_ITEM"
+text = "CRAFTING_KNOWN_ITEMS"
+align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
 
@@ -147,22 +160,24 @@ margin_bottom = 4.0
 [node name="CraftingProblemLabel" type="Label" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
 text = "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Label" type="Label" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="InputsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 25.0
-text = "CRAFTING_FILTER_INPUTS
-"
+text = "CRAFTING_FILTER_INPUTS"
 
 [node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 40.0
@@ -182,9 +197,10 @@ texture_focused = ExtResource( 7 )
 expand = true
 
 [node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/HBoxContainer"]
-margin_right = 20.0
+margin_right = 30.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 20, 35 )
+rect_min_size = Vector2( 35, 35 )
+size_flags_vertical = 4
 icon = ExtResource( 4 )
 icon_align = 1
 expand_icon = true

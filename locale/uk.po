@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-07 16:29+0200\n"
+"POT-Creation-Date: 2023-03-09 11:17+0200\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Стиль 2D-пересування:"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "3D_EDITOR"
 msgstr "3D редактор"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:168
 msgid "3D_MOVEMENT"
 msgstr "3D переміщення"
 
@@ -51,13 +51,13 @@ msgstr "Перервано."
 msgid "ABYSSOPELAGIC"
 msgstr "морська безодня"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:236
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 #, fuzzy
 msgid "ACTION_AWAKEN"
 msgstr "Пробудити"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Пробудити"
@@ -103,7 +103,7 @@ msgstr "Відкрити вікно розширених налаштувань"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аеробна фіксація азоту"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1393
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1398
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Агенти"
@@ -181,7 +181,7 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Гучність оточення"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1170
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1175
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
@@ -585,7 +585,7 @@ msgstr "Карбонат Кальцію"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має міцну оболонку з карбонату кальцію. Вона легше протистоїть пошкодженням і потребує менше енергії, щоб не деформуватись. Серед недоліків такої оболонки значна повільність та забирає більше часу для поглинання ресурсів."
 
-#: ../simulation_parameters/common/input_options.json:82
+#: ../simulation_parameters/common/input_options.json:86
 msgid "CAMERA"
 msgstr "Камера"
 
@@ -603,7 +603,7 @@ msgstr "Скасувати"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "Скасувати дію"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Скасувати поточну дію"
@@ -720,7 +720,7 @@ msgstr "Нотатки змін надто довгі"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Змінити симетрію"
 
-#: ../simulation_parameters/common/input_options.json:243
+#: ../simulation_parameters/common/input_options.json:247
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
@@ -730,7 +730,7 @@ msgstr "Чити"
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Кнопки ввімкнення читів"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:267
 msgid "CHEAT_MENU"
 msgstr "Меню читів"
 
@@ -963,7 +963,7 @@ msgstr "Відвідайте наше wiki спільноти"
 msgid "COMPILED_AT_COLON"
 msgstr "Збірка в:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1020
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1025
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
@@ -1103,6 +1103,33 @@ msgstr "Протаноп (червоно-зелений)"
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританоп (блакитно-жовтий)"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:189
+msgid "CRAFTING_CLEAR_INPUTS"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:180
+#, fuzzy
+msgid "CRAFTING_FILTER_INPUTS"
+msgstr "Назва відсутня"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:144
+#, fuzzy
+msgid "CRAFTING_KNOWN_ITEMS"
+msgstr "Жоден"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:164
+msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:219
+msgid "CRAFTING_TAKE_ALL"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:129
+#, fuzzy
+msgid "CRAFTING_TITLE"
+msgstr "Назва відсутня"
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
@@ -1291,7 +1318,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Видалити старі збереження?"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
 msgstr "Видалити органелу"
 
@@ -1686,7 +1713,7 @@ msgstr "Додання великодок"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(рандомно заспавнені секрети в грі)"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:103
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "Редактор"
@@ -1718,7 +1745,7 @@ msgstr "Увімкнути моди"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Увімкнути всі сумісні моди"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:251
 msgid "ENABLE_EDITOR"
 msgstr "Увімкнути редактор"
 
@@ -1758,7 +1785,7 @@ msgstr "Введіть існуючий ID майстерні"
 msgid "ENTITY_LABEL"
 msgstr "Мітка сутності"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:554
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:559
 #: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "Оточення"
@@ -1987,7 +2014,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Завершення {0} генерацій"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1944
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
@@ -2173,7 +2200,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Частина популуляції [b][u]{0}[/u][/b] мігрувала до {1} з {2}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1118
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1123
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 #: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
@@ -2237,7 +2264,7 @@ msgstr ""
 "Якщо у вас виникла помилка, де частини кнопки редактору зникають, то ви можете спробувати вимкнути його,\n"
 "щоб перевірити зникнення проблеми."
 
-#: ../simulation_parameters/common/input_options.json:218
+#: ../simulation_parameters/common/input_options.json:222
 msgid "GUI_TAB_NAVIGATION"
 msgstr "Навігація по таблиці UI"
 
@@ -2271,7 +2298,7 @@ msgstr "(вищі значення покращать продуктивніст
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(вищі значення погіршать продуктивність)"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Утримуйте для перемикання між панорамним та обертальним режимами"
 
@@ -2279,11 +2306,11 @@ msgstr "Утримуйте для перемикання між панорамн
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Утримуйте для показу меню пакету команд"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:188
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Утримуйте [thrive:input]g_free_cursor[/thrive:input] для курсору"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:491
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:496
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Утримуйте [thrive:input]g_free_cursor[/thrive:input] для курсору"
 
@@ -2313,7 +2340,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1274
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1279
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 #: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
@@ -2376,6 +2403,11 @@ msgstr "Керування"
 msgid "INPUT_NAME_INTERACTION"
 msgstr "Кінець однієї генерації"
 
+#: ../simulation_parameters/common/input_options.json:76
+#, fuzzy
+msgid "INPUT_NAME_OPEN_INVENTORY"
+msgstr "Кінець однієї генерації"
+
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr "Оглянути"
@@ -2394,7 +2426,7 @@ msgstr "Частота мутацій від ШІ"
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:358
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2443,6 +2475,23 @@ msgstr "Недійсний URL формат"
 msgid "INVALID_URL_SCHEME"
 msgstr "Недійсна схема URL"
 
+#: ../src/awakening_stage/InventoryScreen.tscn:37
+msgid "INVENTORY_ITEMS_ON_GROUND"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:63
+#, fuzzy
+msgid "INVENTORY_TITLE"
+msgstr "\"{0}\" - {1}"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:112
+msgid "INVENTORY_TOGGLE_CRAFTING"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:106
+msgid "INVENTORY_TOGGLE_GROUND"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
 #: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
 msgid "INVERTED"
@@ -2457,7 +2506,7 @@ msgstr ""
 "Деякі частини прототипів можуть дозволяти обмежені збереження."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1326
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1331
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 #: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
@@ -2886,7 +2935,7 @@ msgstr "Деякі налаштування можуть бути вимкнен
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гідротермальні джерела"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:878
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:883
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "Світло"
@@ -3476,12 +3525,12 @@ msgstr "Не дозволено показувати менше {0} наборі
 msgid "MISC"
 msgstr "Інше"
 
-#: ../simulation_parameters/common/input_options.json:274
+#: ../simulation_parameters/common/input_options.json:278
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Різне"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:184
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Різнобічний 3D етап"
 
@@ -3710,7 +3759,7 @@ msgstr "Переміщення спроб на вид"
 msgid "MOVE_BACKWARDS"
 msgstr "Рухайтесь назад"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Перемістити вниз або швидко опустити"
 
@@ -3722,7 +3771,7 @@ msgstr "Рухайтесь вперед"
 msgid "MOVE_LEFT"
 msgstr "Рухайтесь вліво"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_ORGANELLE"
 msgstr "перемістити органелу"
 
@@ -3734,7 +3783,7 @@ msgstr "Рухайтесь вправо"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Переміститися на будь-яку ділянку"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1564
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1569
 msgid "MOVE_TO_LAND"
 msgstr "Перейти на сушу"
 
@@ -3746,11 +3795,11 @@ msgstr "Перейдіть до наступного сходинки гри (б
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Переміститися на цю ділянку"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Перемістити вгору або різко підняти"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1996
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2014
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
@@ -3760,12 +3809,12 @@ msgstr ""
 "\n"
 "Планв в тому, щоб перехід був поступовий, а не різкий."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2013
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "Перейти на сушу?"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2009
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "Ви збираєтеся вийти на суходіл. Це потрібно для переходу на наступний етап гри. Вийшовши на сушу ви не повернетесь назад.\n"
@@ -3774,7 +3823,7 @@ msgstr ""
 "\n"
 "Планв в тому, щоб перехід був поступовий, а не різкий."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2008
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Перейти на сушу?"
 
@@ -3788,7 +3837,7 @@ msgid "MP_COST"
 msgstr "{0} ОM"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1504
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1509
 #: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "Слиз"
@@ -3977,7 +4026,7 @@ msgstr "Найпростіша форма мембрани погано захи
 msgid "NOTHING_HERE"
 msgstr "Тут нічого"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:366
+#: ../src/late_multicellular_stage/MulticellularStage.cs:367
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4158,7 +4207,7 @@ msgstr "Відкрити теку журналів"
 msgid "OPEN_MOD_URL"
 msgstr "Відкрити інформацію про URL"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Відкрити меню органел"
 
@@ -4339,7 +4388,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирскнути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли кількість [thrive:compound type=\"oxytoxy\"][/thrive:compound] невелика, то постріл можливий, але шкода буде незначною."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1458
 #: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "Окситоксин"
@@ -4373,23 +4422,23 @@ msgstr "Назва сторінки"
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Пангонський"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_DOWN"
 msgstr "Повернути панораму вниз"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_LEFT"
 msgstr "Повернути панораму вліво"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_RESET"
 msgstr "Скинути камеру"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Повернути панораму вправо"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_UP"
 msgstr "Повернути панораму вгору"
 
@@ -4536,7 +4585,7 @@ msgid "PER_SECOND_SLASH"
 msgstr "/секунду"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1222
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1227
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 #: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
@@ -4558,7 +4607,7 @@ msgstr "Фізичні умови"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Фізичний опір"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PLACE_ORGANELLE"
 msgstr "Місце для органели"
 
@@ -4650,7 +4699,7 @@ msgstr "програвати інтро з мікробом перед ново�
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Грати з поточними налаштуваннями"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1604
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1609
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
@@ -4679,7 +4728,7 @@ msgstr "Перегляньте детальну інформацію про пр
 msgid "PRESSURE"
 msgstr "Тиск"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:933
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:938
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "Тиск"
@@ -4740,11 +4789,11 @@ msgstr "Протоплазма"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Програмування"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "QUICK_LOAD"
 msgstr "Швидке завантаження"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "QUICK_SAVE"
 msgstr "Швидке збереження"
 
@@ -4757,7 +4806,7 @@ msgstr "Вихід"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Вихід з гри"
 
-#: ../src/general/PauseMenu.cs:427
+#: ../src/general/PauseMenu.cs:446
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Ви хочете покинути гру?\n"
@@ -4798,7 +4847,7 @@ msgstr "Рекомендовані Thrive:"
 msgid "REDDIT_TOOLTIP"
 msgstr "Відвідайте наш subreddit"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "REDO"
 msgstr "Повторити"
 
@@ -4897,7 +4946,7 @@ msgstr "Резолюції:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Швидкість поглинання ресурсів"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:304
+#: ../src/late_multicellular_stage/MulticellularStage.cs:305
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Перегляд вихідного коду"
@@ -4933,7 +4982,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Вийти до головного меню"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:408
+#: ../src/general/PauseMenu.cs:427
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ви впевнені, що хочете вийти до головного меню?\n"
@@ -4959,11 +5008,11 @@ msgstr "Жорсткість"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Чим жорсткішою є мембранна, тим стійкішою вона є до пошкоджень, але це ускладнить пересування."
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "ROTATE_LEFT"
 msgstr "Повеніть ліворуч"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 msgid "ROTATE_RIGHT"
 msgstr "Поверніть праворуч"
 
@@ -5177,7 +5226,7 @@ msgid "SEA_FLOOR"
 msgstr "Морське дно"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1977
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "Виділення слизу"
@@ -5261,7 +5310,7 @@ msgstr "Гучність SFX"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "SHOW_HELP"
 msgstr "Надати допомогу"
 
@@ -5403,7 +5452,7 @@ msgstr "Головні із звукосупроводу"
 msgid "SPACE"
 msgstr "Пробіл"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SPAWN_AMMONIA"
 msgstr "Спавн амоніаку"
 
@@ -5415,11 +5464,11 @@ msgstr "Спавн ворога"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:255
 msgid "SPAWN_GLUCOSE"
 msgstr "Спавн глюкози"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_PHOSPHATES"
 msgstr "Спавн фосфатів"
 
@@ -5690,15 +5739,15 @@ msgstr "Супер Вправо"
 msgid "SUPPORTER_PATRONS"
 msgstr "Ті що підтримали"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Перемкнути на вигляд передньої камери"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "Перемкнути на вигляд правої камери"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Перемкнути на вигляд верхньої камери"
 
@@ -5706,20 +5755,20 @@ msgstr "Перемкнути на вигляд верхньої камери"
 msgid "SYSREQ"
 msgstr "Кл.SysRq"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:238
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Повеніть ліворуч"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Поверніть праворуч"
@@ -5728,7 +5777,7 @@ msgstr "Поверніть праворуч"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Теги містять лише пробіли"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
 
@@ -5740,7 +5789,7 @@ msgstr "Зробити знімок екрана"
 msgid "TEMPERATURE"
 msgstr "Температура"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:822
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:827
 #: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
@@ -5942,30 +5991,31 @@ msgstr "Назва:"
 msgid "TOGGLE_BINDING"
 msgstr "Перемкнути з'єднування"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:286
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Ввімкнути панель налагоджування"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1916
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1930
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1915
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1929
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 msgid "TOGGLE_FPS"
 msgstr "Перемикання FPS дисплаю"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:314
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Змінити повноекранність"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:318
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Перемкнути HUD"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "TOGGLE_METRICS"
 msgstr "Увімкнути панель показників"
 
@@ -5973,7 +6023,7 @@ msgstr "Увімкнути панель показників"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Перемкнути навігаційне дерево"
 
-#: ../simulation_parameters/common/input_options.json:278
+#: ../simulation_parameters/common/input_options.json:282
 msgid "TOGGLE_PAUSE"
 msgstr "Пауза"
 
@@ -6241,7 +6291,7 @@ msgstr "Це збірка налагоджувань, де інформація 
 msgid "UNDERWATERCAVE"
 msgstr "Підводна печера"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "UNDO"
 msgstr "Скасувати"
 
@@ -6584,11 +6634,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Ви можете підтримати майбутню розробку на Patreon цієї гри (Thrive)."
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_IN"
 msgstr "Приблизитись"
 
-#: ../simulation_parameters/common/input_options.json:86
+#: ../simulation_parameters/common/input_options.json:90
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 

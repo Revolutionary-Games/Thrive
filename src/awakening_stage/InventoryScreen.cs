@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -180,7 +181,7 @@ public class InventoryScreen : ControlWithInput
         if (!craftingPanelPopup.Visible)
             craftingPanelPopup.Show();
 
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     protected override void Dispose(bool disposing)
@@ -295,6 +296,8 @@ public class InventoryScreen : ControlWithInput
             {
                 position = slotData.EquipmentPosition.Value;
             }
+
+            // TODO: take image alignment to the center into account at certain aspect ratios
 
             slot.RectPosition = new Vector2(position.x * areaSize.x, position.y * areaSize.y) - slot.RectSize * 0.5f;
 
