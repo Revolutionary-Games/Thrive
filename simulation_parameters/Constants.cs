@@ -381,6 +381,8 @@ public static class Constants
 
     public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
 
+    public const float INVENTORY_DRAG_START_ALLOWANCE = 0.15f;
+
     /// <summary>
     ///   This is used just as the default value for health and max
     ///   health of a microbe. The default membrane actually

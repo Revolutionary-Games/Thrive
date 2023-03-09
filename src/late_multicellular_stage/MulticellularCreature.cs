@@ -510,6 +510,22 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         yield return handSlot;
     }
 
+    public bool IsItemSlotMoveAllowed(int fromSlotId, int toSlotId)
+    {
+        // TODO: implement slot type restrictions
+        return true;
+    }
+
+    public void MoveItemSlots(int fromSlotId, int toSlotId)
+    {
+        var from = this.SlotWithId(fromSlotId) ?? throw new ArgumentException("Invalid from slot");
+        var to = this.SlotWithId(toSlotId) ?? throw new ArgumentException("Invalid to slot");
+
+        (from.ContainedItem, to.ContainedItem) = (to.ContainedItem, from.ContainedItem);
+
+        // TODO: when slot contents are displayed differently, we need to handle that here
+    }
+
     private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)
     {
         if (slot.ContainedItem != null)
@@ -525,9 +541,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // TODO: inventory carried items should not be shown in the world
 
         // TODO: better positioning and actually attaching it to the place the object is carried in
-        // TODO: this also has a problem when items are removed and added back in random order (gaps and conflicting
-        // positions)
-        var offset = new Vector3(-0.5f, 3, 4) * (carriedObjects.Count + 1);
+        var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
 
         targetNode.Translation = offset;
 

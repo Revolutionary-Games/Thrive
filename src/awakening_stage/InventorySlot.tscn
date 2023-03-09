@@ -105,3 +105,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 texture = ExtResource( 2 )
 expand = true
+
+[connection signal="pressed" from="." to="." method="OnPress"]
+[connection signal="toggled" from="." to="." method="OnToggle"]

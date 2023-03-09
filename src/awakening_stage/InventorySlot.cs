@@ -99,7 +99,7 @@ public class InventorySlot : Button
     /// <summary>
     ///   Slot ID metadata to tie this to the inventory slot IDs in the "backend" data
     /// </summary>
-    public int SlotId { get; set; }
+    public int SlotId { get; set; } = -1;
 
     public static Control CreateDragPreviewForItem(IInventoryItem item)
     {

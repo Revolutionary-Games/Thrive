@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Player inventory and crafting screen for the awakening stage
@@ -73,6 +75,11 @@ public class InventoryScreen : ControlWithInput
 
     private ICharacterInventory? displayingInventoryOf;
 
+    private InventorySlot? previouslySelectedSlot;
+    private float timeUntilSlotSwap = -1;
+    private InventorySlot? slotSwapFrom;
+    private InventorySlot? slotSwapTo;
+
     private bool groundPanelManuallyHidden;
     private bool craftingPanelManuallyHidden = true;
 
@@ -109,6 +116,26 @@ public class InventoryScreen : ControlWithInput
     public override void _Process(float delta)
     {
         // TODO: refresh the ground objects at some interval here
+
+        // Perform slot swap once timer has expired for that
+        if (timeUntilSlotSwap > 0)
+        {
+            timeUntilSlotSwap -= delta;
+
+            if (timeUntilSlotSwap <= 0)
+            {
+                timeUntilSlotSwap = -1;
+
+                if (slotSwapTo == null || slotSwapFrom == null || slotSwapTo == slotSwapFrom)
+                {
+                    GD.PrintErr("Slot swap was incorrectly setup");
+                }
+                else
+                {
+                    SwapSlotContentsIfPossible(slotSwapFrom, slotSwapTo);
+                }
+            }
+        }
     }
 
     public void OpenInventory(ICharacterInventory creature)
@@ -221,6 +248,14 @@ public class InventoryScreen : ControlWithInput
             }
 
             inventorySlotGroup.Dispose();
+
+            // Unhook all C# callbacks
+            foreach (var slot in groundInventorySlots.Concat(inventorySlots).Concat(equipmentSlots)
+                         .Concat(craftingSlots).Concat(craftingResultSlots))
+            {
+                slot.AllowDropHandler -= CheckIsDropAllowed;
+                slot.PerformDropHandler -= OnDropPerformed;
+            }
         }
 
         base.Dispose(disposing);
@@ -398,6 +433,9 @@ public class InventoryScreen : ControlWithInput
         {
             var newSlot = CreateInventorySlot();
 
+            // Crafting results can't have random stuff put in them
+            newSlot.TakeOnly = true;
+
             craftingResultSlotsContainer.AddChild(newSlot);
             craftingResultSlots.Add(newSlot);
 
@@ -413,7 +451,15 @@ public class InventoryScreen : ControlWithInput
 
         slot.Group = inventorySlotGroup;
 
-        // TODO: callbacks for drag and for click to detect item moves
+        // Connect the required signals
+        var binds = new Array();
+        binds.Add(slot);
+        slot.Connect(nameof(InventorySlot.OnSelected), this, nameof(OnInventorySlotSelected), binds);
+
+        slot.Connect(nameof(InventorySlot.OnDragStarted), this, nameof(OnInventoryDragStarted));
+
+        slot.AllowDropHandler += CheckIsDropAllowed;
+        slot.PerformDropHandler += OnDropPerformed;
 
         return slot;
     }
@@ -484,5 +530,189 @@ public class InventoryScreen : ControlWithInput
     {
         craftingPanelButton.Pressed = craftingPanelPopup.Visible;
         groundPanelButton.Pressed = groundPanelPopup.Visible;
+    }
+
+    private void OnInventorySlotSelected(InventorySlot slot)
+    {
+        if (previouslySelectedSlot != null && previouslySelectedSlot != slot)
+        {
+            // When a second inventory slot is clicked after clicking another one, the contents of the two slots are
+            // swapped. This is done with a delay to allow drag to work
+            timeUntilSlotSwap = Constants.INVENTORY_DRAG_START_ALLOWANCE;
+            slotSwapFrom = previouslySelectedSlot;
+            slotSwapTo = slot;
+        }
+
+        previouslySelectedSlot = slot;
+    }
+
+    private void OnInventoryDragStarted()
+    {
+        // Cancel any pending click swaps when dragging starts
+        timeUntilSlotSwap = -1;
+    }
+
+    private bool CheckIsDropAllowed(InventorySlot toSlot, InventoryDragData dragData)
+    {
+        return CanSwapContents(dragData.FromSlot, toSlot);
+    }
+
+    private DragResult OnDropPerformed(InventorySlot toSlot, InventoryDragData dragData)
+    {
+        SwapSlotContentsIfPossible(dragData.FromSlot, toSlot);
+        return DragResult.AlreadyHandled;
+    }
+
+    /// <summary>
+    ///   Handles keeping the backend data up to date when we swap things in slots
+    /// </summary>
+    /// <param name="from">The moved from slot</param>
+    /// <param name="to">The target slot</param>
+    private void OnSlotSwapHappened(InventorySlot from, InventorySlot to)
+    {
+        // Moving within a single category (when on ground or crafting) requires no action
+        if (AreSlotsInCategory(from, to, groundInventorySlots) || AreSlotsInCategory(from, to, craftingSlots))
+            return;
+
+        // Putting things in the crafting panel doesn't need any action
+        if (craftingSlots.Contains(to))
+            return;
+
+        // When moving things from the crafting slots, we need to care about the original status of the items
+        if (craftingSlots.Contains(from))
+        {
+            // When originally a ground item is moved to the inventory, it needs to be picked up
+            // TODO: handling for these cases
+            throw new NotImplementedException();
+
+            return;
+        }
+
+        if (displayingInventoryOf == null)
+            throw new InvalidOperationException("Not opened to display inventory of anything");
+
+        // Moving between inventory and equipment
+        if ((equipmentSlots.Contains(from) || equipmentSlots.Contains(to)) &&
+            (inventorySlots.Contains(from) || inventorySlots.Contains(to)))
+        {
+            displayingInventoryOf.MoveItemSlots(from.SlotId, to.SlotId);
+            return;
+        }
+
+        // Moving within inventory or equipment
+        if (AreSlotsInCategory(from, to, equipmentSlots) || AreSlotsInCategory(from, to, inventorySlots))
+        {
+            displayingInventoryOf.MoveItemSlots(from.SlotId, to.SlotId);
+            return;
+        }
+
+        // Moving from ground to creature
+        if (groundInventorySlots.Contains(from) && (inventorySlots.Contains(to) || equipmentSlots.Contains(to)))
+        {
+            HandleDropTypeSlotMove(to, from);
+            return;
+        }
+
+        // Moving from inventory to ground
+        if (groundInventorySlots.Contains(to) && (inventorySlots.Contains(from) || equipmentSlots.Contains(from)))
+        {
+            HandleDropTypeSlotMove(from, to);
+            return;
+        }
+
+        GD.PrintErr("Unknown slot move! Data may be out of order now");
+    }
+
+    private void HandleDropTypeSlotMove(InventorySlot creatureSlot, InventorySlot groundSlot)
+    {
+        IInteractableEntity? toPickup = null;
+
+        // Detect first if something was picked up
+        if (creatureSlot.Item != null)
+        {
+            toPickup = creatureSlot.Item as IInteractableEntity;
+
+            if (toPickup == null)
+            {
+                GD.PrintErr("Picked up a non-interactable when swapping with a ground slot item");
+                UndoSwap(creatureSlot, groundSlot);
+                return;
+            }
+        }
+
+        // Drop first to make room
+        if (groundSlot.Item != null)
+        {
+            // TODO: we should check in swap that dropping is only allowed for interactables
+            if (groundSlot.Item is not IInteractableEntity entity)
+            {
+                GD.PrintErr("Can't drop non-interactable item, TODO: handle this better");
+                UndoSwap(creatureSlot, groundSlot);
+                return;
+            }
+
+            if (!displayingInventoryOf!.DropItem(entity))
+            {
+                GD.PrintErr("Dropping item failed");
+                UndoSwap(creatureSlot, groundSlot);
+                return;
+            }
+        }
+
+        // Then pickup the swapped item if any (it'll fit better in the inventory this way around)
+        if (toPickup != null)
+        {
+            if (!displayingInventoryOf!.PickUpItem(toPickup, creatureSlot.SlotId))
+            {
+                GD.PrintErr("Failed to pick up item when swapping inventory slot contents with ground");
+
+                // Clear the failed to be picked up item to not be in inconsistent state
+                creatureSlot.Item = null;
+            }
+        }
+
+        // Ensure there are enough ground slots if the player wants to drop many things at once
+        EnsureAtLeastOneEmptyGroundSlot();
+    }
+
+    private bool AreSlotsInCategory(InventorySlot slot1, InventorySlot slot2,
+        IReadOnlyCollection<InventorySlot> category)
+    {
+        return category.Contains(slot1) && category.Contains(slot2);
+    }
+
+    private void SwapSlotContentsIfPossible(InventorySlot fromSlot, InventorySlot toSlot)
+    {
+        if (!CanSwapContents(fromSlot, toSlot))
+            return;
+
+        (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
+
+        OnSlotSwapHappened(fromSlot, toSlot);
+    }
+
+    private bool CanSwapContents(InventorySlot fromSlot, InventorySlot toSlot)
+    {
+        if (toSlot.TakeOnly || fromSlot.Locked || toSlot.Locked)
+            return false;
+
+        if (displayingInventoryOf == null)
+            throw new InvalidOperationException("Not opened to display inventory of anything");
+
+        var slotId1 = fromSlot.SlotId;
+        var slotId2 = toSlot.SlotId;
+
+        if (slotId1 != -1 && slotId2 != -1 && !displayingInventoryOf.IsItemSlotMoveAllowed(slotId1, slotId2))
+            return false;
+
+        // TODO: extra checks, check pick up weight or some other things?
+
+        return true;
+    }
+
+    private void UndoSwap(InventorySlot fromSlot, InventorySlot toSlot)
+    {
+        GD.Print("Undoing item swap that was not allowed after all");
+        (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
     }
 }

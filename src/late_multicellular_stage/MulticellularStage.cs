@@ -370,6 +370,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // Show interaction context menu for the player to do something with the target
         interactionPopup.ShowForInteractable(target, Player.CalculatePossibleActions(target));
+
+        // TODO: somehow refresh the inventory screen if it is open and the player decided to do a pick up action
     }
 
     public bool TogglePlayerInventory()
