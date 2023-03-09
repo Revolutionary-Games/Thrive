@@ -52,6 +52,7 @@
     <Compile Include="src\awakening_stage\InteractablePopup.cs" />
     <Compile Include="src\awakening_stage\InteractableSystem.cs" />
     <Compile Include="src\awakening_stage\InteractionType.cs" />
+    <Compile Include="src\awakening_stage\InventoryDragData.cs" />
     <Compile Include="src\awakening_stage\InventorySlot.cs" />
     <Compile Include="src\awakening_stage\InventoryScreen.cs" />
     <Compile Include="src\awakening_stage\InventorySlotData.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\dialogs\PermanentlyDismissibleDialog.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
+    <Compile Include="src\gui_common\DragResult.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
     <Compile Include="src\gui_common\InspectedEntityLabel.cs" />
