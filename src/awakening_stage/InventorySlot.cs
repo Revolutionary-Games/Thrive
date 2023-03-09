@@ -159,44 +159,32 @@ public class InventorySlot : Button
         if (PerformDropHandler != null)
         {
             result = PerformDropHandler.Invoke(this, inventoryDragData);
+
+            if (result == DragResult.AlreadyHandled)
+                return;
         }
         else
         {
             // Default handling
             result = DragResult.Success;
-
-            if (Item != null)
-                result = DragResult.Replaced;
         }
 
         if (result == DragResult.Failure)
             return;
 
-        InventoryDragData? restartDragWith = null;
-
-        if (result == DragResult.Replaced)
-        {
-            if (Item != null)
-            {
-                restartDragWith = new InventoryDragData(this, Item);
-            }
-            else
-            {
-                GD.PrintErr($"Can't replace drag without having an item in {nameof(InventorySlot)}");
-            }
-        }
+        // If our item is not null, we need to swap with the other slot
+        var oldItem = Item;
 
         Item = inventoryDragData.Item;
 
-        // Unset from the original slot
-        if (inventoryDragData.FromSlot.Item == Item)
-            inventoryDragData.FromSlot.Item = null;
-
-        if (restartDragWith != null)
+        if (oldItem != null)
         {
-            // TODO: how do we ensure the drag data is not lost if it cannot be dropped on anything?
-
-            ForceDrag(restartDragWith, CreateDragPreviewForItem(restartDragWith.Item));
+            inventoryDragData.FromSlot.Item = oldItem;
+        }
+        else if (inventoryDragData.FromSlot.Item == Item)
+        {
+            // Clear the old slot to make sure the data doesn't exist in multiple places
+            inventoryDragData.FromSlot.Item = null;
         }
     }
 

@@ -4,7 +4,7 @@
     Failure,
 
     /// <summary>
-    ///   The dropped item is accepted but the target's item should start a forced drag
+    ///   Special callback already handled the drag, default action is blocked
     /// </summary>
-    Replaced,
+    AlreadyHandled,
 }
