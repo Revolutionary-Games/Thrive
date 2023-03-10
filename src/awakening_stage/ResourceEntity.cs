@@ -5,21 +5,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A clump of some resource that can be found in the world
 /// </summary>
-public class ResourceEntity : RigidBody, IInteractableEntity, IWorldResource
+public class ResourceEntity : RigidBody, IInteractableEntity
 {
-    [JsonProperty]
-    private bool resourceTypeSet;
-
-    private PackedScene? resourceScene;
-
-    [JsonProperty]
-    private string untranslatedName = string.Empty;
-
-    [JsonProperty]
-    private string? iconPath;
-
-    private Texture? icon;
-
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
@@ -40,46 +27,30 @@ public class ResourceEntity : RigidBody, IInteractableEntity, IWorldResource
     // TODO: resources that are too heavy to carry
     public bool CanBeCarried => true;
 
-    [JsonIgnore]
-    public string ReadableName => TranslationServer.Translate(untranslatedName);
+    [JsonProperty]
+    public WorldResource? ResourceType { get; private set; }
 
     [JsonIgnore]
-    public string InternalName => untranslatedName;
+    public string ReadableName => ResourceType?.ReadableName ?? throw new NotSupportedException("Not initialized yet");
 
     [JsonIgnore]
-    public PackedScene WorldRepresentation => resourceScene ?? throw new NotSupportedException("Not initialized yet");
+    public Texture Icon => ResourceType?.Icon ?? throw new NotSupportedException("Not initialized yet");
 
     [JsonIgnore]
-    public Texture Icon
-    {
-        get
-        {
-            if (iconPath == null)
-                throw new NotSupportedException("Icon path is not initialized");
-
-            icon ??= GD.Load<Texture>(iconPath);
-            return icon;
-        }
-    }
+    public WeakReference<InventorySlot>? LastNonTransientSlot { get; set; }
 
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
     }
 
-    public void SetResource(IWorldResource resourceType)
+    public void SetResource(WorldResource resourceType)
     {
-        if (resourceTypeSet)
+        if (ResourceType != null)
             throw new NotSupportedException("Resource type is already set");
 
-        resourceTypeSet = true;
+        ResourceType = resourceType;
 
-        resourceScene = resourceType.WorldRepresentation;
-        untranslatedName = resourceType.InternalName;
-
-        iconPath = resourceType.Icon.ResourcePath;
-        icon = resourceType.Icon;
-
-        AddChild(resourceScene.Instance());
+        AddChild(ResourceType.WorldRepresentation.Instance());
     }
 }

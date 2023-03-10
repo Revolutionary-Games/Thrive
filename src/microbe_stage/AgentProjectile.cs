@@ -25,9 +25,6 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
     [JsonIgnore]
     public string ReadableName => Properties?.ToString() ?? TranslationServer.Translate("N_A");
 
-    [JsonIgnore]
-    public string InternalName => Name;
-
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
 

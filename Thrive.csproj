@@ -22,8 +22,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\BuildInfo.cs" />
-    <Compile Include="simulation_parameters\CompoundLoader.cs" />
-    <Compile Include="simulation_parameters\EnzymeLoader.cs" />
+    <Compile Include="simulation_parameters\DirectTypeLoadOverride.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\IRegistryAssignable.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
@@ -45,6 +44,11 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\awakening_stage\CraftingRecipe.cs" />
+    <Compile Include="src\awakening_stage\Equipment.cs" />
+    <Compile Include="src\awakening_stage\EquipmentCategory.cs" />
+    <Compile Include="src\awakening_stage\EquipmentDefinition.cs" />
+    <Compile Include="src\awakening_stage\EquipmentSlot.cs" />
     <Compile Include="src\awakening_stage\EquipmentSlotType.cs" />
     <Compile Include="src\awakening_stage\ICharacterInventory.cs" />
     <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
@@ -56,9 +60,9 @@
     <Compile Include="src\awakening_stage\InventorySlot.cs" />
     <Compile Include="src\awakening_stage\InventoryScreen.cs" />
     <Compile Include="src\awakening_stage\InventorySlotData.cs" />
-    <Compile Include="src\awakening_stage\IWorldResource.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
-    <Compile Include="src\awakening_stage\SimpleWorldResource.cs" />
+    <Compile Include="src\awakening_stage\WorldResource.cs" />
+    <Compile Include="src\awakening_stage\Technology.cs" />
     <Compile Include="src\benchmark\BenchmarkHelpers.cs" />
     <Compile Include="src\benchmark\DummySpawnSystem.cs" />
     <Compile Include="src\benchmark\microbe\MicrobeBenchmark.cs" />
@@ -692,6 +696,9 @@
     <Content Include="global.json" />
     <Content Include="RevolutionaryGamesCommon\stylecop.json" />
     <Content Include="RevolutionaryGamesCommon\StyleCop.ruleset" />
+    <Content Include="simulation_parameters\awakening_stage\crafting_recipes.json" />
+    <Content Include="simulation_parameters\awakening_stage\equipment.json" />
+    <Content Include="simulation_parameters\awakening_stage\technologies.json" />
     <Content Include="simulation_parameters\awakening_stage\world_resources.json" />
     <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />

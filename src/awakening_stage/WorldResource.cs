@@ -1,17 +1,21 @@
 ﻿using System;
+using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   A simple defined world resource
+///   A defined world resource
 /// </summary>
-public class SimpleWorldResource : IWorldResource, IRegistryType
+[TypeConverter(typeof(WorldResourceStringConverter))]
+public class WorldResource : IRegistryType, IPlayerReadableName
 {
     private readonly Lazy<PackedScene> worldRepresentation;
     private readonly Lazy<Texture> icon;
 
+    private string untranslatedName = null!;
+
     [JsonConstructor]
-    public SimpleWorldResource(string name)
+    public WorldResource(string name)
     {
         Name = name;
 
@@ -20,7 +24,7 @@ public class SimpleWorldResource : IWorldResource, IRegistryType
     }
 
     [JsonProperty]
-    [TranslateFrom(nameof(InternalName))]
+    [TranslateFrom(nameof(untranslatedName))]
     public string Name { get; private set; }
 
     [JsonProperty]

@@ -244,7 +244,7 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
     }
 
-    public static ResourceEntity SpawnResourceEntity(IWorldResource resourceType, Transform location, Node worldNode,
+    public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform location, Node worldNode,
         PackedScene entityScene, bool randomizeRotation = false, Random? random = null)
     {
         var resourceEntity = (ResourceEntity)entityScene.Instance();

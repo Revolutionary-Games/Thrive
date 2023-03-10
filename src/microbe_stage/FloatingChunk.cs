@@ -192,9 +192,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     [JsonIgnore]
     public string ReadableName => TranslationServer.Translate(ChunkName);
 
-    [JsonIgnore]
-    public string InternalName => ChunkName;
-
     public override void _Ready()
     {
         InitGraphics();
