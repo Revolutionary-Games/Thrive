@@ -296,9 +296,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         rootOfDynamicallySpawned.AddChild(ground);
 
         // A not super familiar (different than underwater) rock strewn around for reference
-        var rockResource =
-            new SimpleWorldResource(GD.Load<PackedScene>("res://assets/models/Iron4.tscn"), "RESOURCE_ROCK",
-                GD.Load<Texture>("res://assets/textures/gui/bevel/iron.png"));
+        var rockResource = SimulationParameters.Instance.GetWorldResource("rock");
         var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
         // TODO: remove once resource data is loaded from JSON
@@ -318,7 +316,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                  })
         {
             // But create it as a resource entity so that it can be interacted with
-            // TODO: is y-offset needed? still, maybe 0.01f
             SpawnHelpers.SpawnResourceEntity(rockResource, new Transform(Basis.Identity, position),
                 rootOfDynamicallySpawned, resourceScene, true);
         }

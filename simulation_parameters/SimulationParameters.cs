@@ -38,6 +38,7 @@ public class SimulationParameters : Node
     private BuildInfo? buildInfo;
     private Dictionary<string, VersionPatchNotes> oldVersionNotes = null!;
     private Dictionary<string, VersionPatchNotes> newerVersionNotes = null!;
+    private Dictionary<string, SimpleWorldResource> worldResources = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -123,6 +124,9 @@ public class SimulationParameters : Node
 
         newerVersionNotes =
             LoadYamlFile<Dictionary<string, VersionPatchNotes>>("res://simulation_parameters/common/patch_notes.yml");
+
+        worldResources =
+            LoadRegistry<SimpleWorldResource>("res://simulation_parameters/awakening_stage/world_resources.json");
 
         // Build info is only loaded if the file is present
         using var directory = new Directory();
@@ -377,6 +381,11 @@ public class SimulationParameters : Node
             yield return note;
     }
 
+    public IWorldResource GetWorldResource(string name)
+    {
+        return worldResources[name];
+    }
+
     /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
@@ -396,6 +405,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(difficultyPresets);
         ApplyRegistryObjectTranslations(oldVersionNotes);
         ApplyRegistryObjectTranslations(newerVersionNotes);
+        ApplyRegistryObjectTranslations(worldResources);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -532,6 +542,7 @@ public class SimulationParameters : Node
         CheckRegistryType(difficultyPresets);
         CheckRegistryType(oldVersionNotes);
         CheckRegistryType(newerVersionNotes);
+        CheckRegistryType(worldResources);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -586,8 +597,7 @@ public class SimulationParameters : Node
 
         BuildOrganelleChances();
 
-        // TODO: there could also be a check for making sure
-        // non-existent compounds, processes etc. are not used
+        // TODO: there could also be a check for making sure non-existent compounds, processes etc. are not used
     }
 
     private void BuildOrganelleChances()
