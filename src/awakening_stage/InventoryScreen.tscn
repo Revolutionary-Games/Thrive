@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/awakening_stage/InventoryScreen.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
@@ -9,6 +9,36 @@
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Flash"
+tracks/0/type = "value"
+tracks/0/path = NodePath("VBoxContainer/CraftingProblemLabel:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.678431, 0.152941, 0.152941, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("VBoxContainer/CraftingProblemLabel:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="InventoryScreen" type="Control"]
 visible = false
@@ -25,6 +55,10 @@ GroundPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxConta
 CraftingPanelPopupPath = NodePath("CraftingPanel")
 CraftingSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/CraftingInputs")
 CraftingResultSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/CraftingResults")
+CraftingErrorStatusLabelPath = NodePath("CraftingPanel/VBoxContainer/CraftingProblemLabel")
+CraftingAnimationPlayerPath = NodePath("CraftingPanel/AnimationPlayer")
+TakeAllCraftingResultsPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/Take")
+ClearCraftingInputsPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs")
 GroundPanelPopupPath = NodePath("GroundPanel")
 GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 
@@ -139,59 +173,67 @@ margin_bottom = 427.0
 rect_min_size = Vector2( 400, 400 )
 
 [node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer"]
-margin_right = 40.0
+margin_right = 511.0
 margin_bottom = 25.0
 text = "CRAFTING_KNOWN_ITEMS"
 align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CraftingPanel/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 29.0
+margin_right = 511.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="RecipesList" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
-margin_bottom = 40.0
+margin_bottom = 225.0
 size_flags_vertical = 3
 
 [node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 4.0
+margin_top = 258.0
+margin_right = 511.0
+margin_bottom = 262.0
 
 [node name="CraftingProblemLabel" type="Label" parent="CraftingPanel/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 25.0
+margin_top = 266.0
+margin_right = 511.0
+margin_bottom = 283.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 9 )
 text = "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 autowrap = true
 
 [node name="CraftingItemsSection" type="HBoxContainer" parent="CraftingPanel/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 287.0
+margin_right = 511.0
+margin_bottom = 400.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LeftSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 250.0
+margin_bottom = 113.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="InputsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
-margin_right = 40.0
+margin_right = 250.0
 margin_bottom = 25.0
 text = "CRAFTING_FILTER_INPUTS"
 
 [node name="CraftingInputs" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 29.0
+margin_right = 250.0
+margin_bottom = 69.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ClearInputs" type="TextureButton" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 105.0
+margin_top = 73.0
+margin_right = 145.0
+margin_bottom = 113.0
 rect_min_size = Vector2( 40, 40 )
 hint_tooltip = "CRAFTING_CLEAR_INPUTS"
 size_flags_horizontal = 4
@@ -204,8 +246,10 @@ texture_focused = ExtResource( 7 )
 expand = true
 
 [node name="CraftButton" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
-margin_right = 30.0
-margin_bottom = 35.0
+margin_left = 254.0
+margin_top = 39.0
+margin_right = 299.0
+margin_bottom = 74.0
 rect_min_size = Vector2( 45, 35 )
 size_flags_vertical = 4
 icon = ExtResource( 4 )
@@ -213,26 +257,33 @@ icon_align = 1
 expand_icon = true
 
 [node name="RightSide" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 303.0
+margin_right = 511.0
+margin_bottom = 113.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ResultsTitleLabel" type="Label" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
-margin_right = 250.0
+margin_right = 208.0
 margin_bottom = 25.0
 text = "CRAFTING_RESULTS"
 
 [node name="CraftingResults" type="HFlowContainer" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 29.0
+margin_right = 208.0
+margin_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Take" type="Button" parent="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide"]
-margin_right = 10.0
-margin_bottom = 35.0
+margin_top = 78.0
+margin_right = 208.0
+margin_bottom = 113.0
 text = "CRAFTING_TAKE_ALL"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CraftingPanel"]
+anims/Flash = SubResource( 1 )
+anims/RESET = SubResource( 2 )
 
 [connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelClosed"]
 [connection signal="Closed" from="MainInventory" to="." method="OnInventoryPanelClosed"]
@@ -240,3 +291,6 @@ text = "CRAFTING_TAKE_ALL"
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground" to="." method="ToggleGroundPanel"]
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting" to="." method="ToggleCraftingPanel"]
 [connection signal="Closed" from="CraftingPanel" to="." method="OnCraftingPanelClosed"]
+[connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs" to="." method="ClearCraftingInputs"]
+[connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/CraftButton" to="." method="TryToCraft"]
+[connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/Take" to="." method="TakeAllCraftingResults"]

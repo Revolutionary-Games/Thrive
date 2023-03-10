@@ -37,6 +37,18 @@ public class InventoryScreen : ControlWithInput
     public NodePath CraftingResultSlotsContainerPath = null!;
 
     [Export]
+    public NodePath CraftingErrorStatusLabelPath = null!;
+
+    [Export]
+    public NodePath CraftingAnimationPlayerPath = null!;
+
+    [Export]
+    public NodePath TakeAllCraftingResultsPath = null!;
+
+    [Export]
+    public NodePath ClearCraftingInputsPath = null!;
+
+    [Export]
     public NodePath GroundPanelPopupPath = null!;
 
     [Export]
@@ -66,6 +78,10 @@ public class InventoryScreen : ControlWithInput
     private CustomDialog craftingPanelPopup = null!;
     private Container craftingSlotsContainer = null!;
     private Container craftingResultSlotsContainer = null!;
+    private Label craftingErrorStatusLabel = null!;
+    private AnimationPlayer craftingAnimationPlayer = null!;
+    private Button takeAllCraftingResults = null!;
+    private TextureButton clearCraftingInputs = null!;
 
     private CustomDialog groundPanelPopup = null!;
     private Container groundSlotContainer = null!;
@@ -100,6 +116,10 @@ public class InventoryScreen : ControlWithInput
         craftingPanelPopup = GetNode<CustomDialog>(CraftingPanelPopupPath);
         craftingSlotsContainer = GetNode<Container>(CraftingSlotsContainerPath);
         craftingResultSlotsContainer = GetNode<Container>(CraftingResultSlotsContainerPath);
+        craftingErrorStatusLabel = GetNode<Label>(CraftingErrorStatusLabelPath);
+        craftingAnimationPlayer = GetNode<AnimationPlayer>(CraftingAnimationPlayerPath);
+        takeAllCraftingResults = GetNode<Button>(TakeAllCraftingResultsPath);
+        clearCraftingInputs = GetNode<TextureButton>(ClearCraftingInputsPath);
 
         groundPanelPopup = GetNode<CustomDialog>(GroundPanelPopupPath);
         groundSlotContainer = GetNode<Container>(GroundSlotContainerPath);
@@ -180,6 +200,9 @@ public class InventoryScreen : ControlWithInput
             closedSomething = true;
         }
 
+        // TODO: if crafting *output* slots contain something, it needs to be dropped to the ground, otherwise it will
+        // disappear / can be weirdly infinitely be kept there
+
         return closedSomething;
     }
 
@@ -209,6 +232,7 @@ public class InventoryScreen : ControlWithInput
             }
 
             slot.Item = objectOnGround;
+            objectOnGround.LastNonTransientSlot = new WeakReference<InventorySlot>(slot);
 
             // TODO: update too heavy / not enough space indicator
 
@@ -243,6 +267,10 @@ public class InventoryScreen : ControlWithInput
                 CraftingPanelPopupPath.Dispose();
                 CraftingSlotsContainerPath.Dispose();
                 CraftingResultSlotsContainerPath.Dispose();
+                CraftingErrorStatusLabelPath.Dispose();
+                CraftingAnimationPlayerPath.Dispose();
+                TakeAllCraftingResultsPath.Dispose();
+                ClearCraftingInputsPath.Dispose();
                 GroundPanelPopupPath.Dispose();
                 GroundSlotContainerPath.Dispose();
             }
@@ -505,6 +533,9 @@ public class InventoryScreen : ControlWithInput
         craftingPanelPopup.Show();
         craftingPanelManuallyHidden = false;
 
+        ResetCraftingErrorLabel();
+        UpdateCraftingGUIState();
+
         UpdateToggleButtonStatus();
     }
 
@@ -620,7 +651,7 @@ public class InventoryScreen : ControlWithInput
             return;
         }
 
-        GD.PrintErr("Unknown slot move! Data may be out of order now");
+        GD.PrintErr("Unknown slot move! Inventory data may be out of sync now.");
     }
 
     private void HandleDropTypeSlotMove(InventorySlot creatureSlot, InventorySlot groundSlot)
@@ -681,10 +712,10 @@ public class InventoryScreen : ControlWithInput
         return category.Contains(slot1) && category.Contains(slot2);
     }
 
-    private void SwapSlotContentsIfPossible(InventorySlot fromSlot, InventorySlot toSlot)
+    private bool SwapSlotContentsIfPossible(InventorySlot fromSlot, InventorySlot toSlot)
     {
         if (!CanSwapContents(fromSlot, toSlot))
-            return;
+            return false;
 
         (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
 
@@ -696,8 +727,17 @@ public class InventoryScreen : ControlWithInput
         if (toSlot.TakeOnly || fromSlot.Locked || toSlot.Locked)
             return false;
 
+        // Can't swap items when a to slot would end up with a new item
+        if (fromSlot.TakeOnly && toSlot.Item != null)
+            return false;
+
         if (displayingInventoryOf == null)
             throw new InvalidOperationException("Not opened to display inventory of anything");
+
+        // TODO: allow this by putting the crafting result in the inventory or on the ground automatically
+        // For now user needs to press the take all button
+        if (craftingResultSlots.Contains(fromSlot) && craftingSlots.Contains(toSlot))
+            return false;
 
         var slotId1 = fromSlot.SlotId;
         var slotId2 = toSlot.SlotId;
@@ -714,5 +754,172 @@ public class InventoryScreen : ControlWithInput
     {
         GD.Print("Undoing item swap that was not allowed after all");
         (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
+    }
+
+    private void UpdateCraftingGUIState()
+    {
+        bool hasCraftingResults = false;
+
+        foreach (var resultSlot in craftingResultSlots)
+        {
+            // Lock all crafting result slots that are empty
+            if (resultSlot.Item != null)
+            {
+                hasCraftingResults = true;
+                resultSlot.Locked = false;
+            }
+            else
+            {
+                resultSlot.Locked = true;
+            }
+        }
+
+        takeAllCraftingResults.Disabled = !hasCraftingResults;
+
+        clearCraftingInputs.Disabled = craftingSlots.All(s => s.Item == null);
+    }
+
+    private void TryToCraft()
+    {
+        // TODO: implement selecting the resource to actually craft
+        // if (selectedRecipe == null)
+        {
+            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_RECIPE_SELECTED"));
+
+            // return;
+        }
+
+        /*if (!TakeAllCraftingResults())
+        {
+            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
+            return;
+        }*/
+
+        // throw new NotImplementedException();
+    }
+
+    /// <summary>
+    ///   Attempts to take all the crafting results into inventory (and equipment slots)
+    /// </summary>
+    /// <returns>True when crafting results are now empty, false if there wasn't enough space for the results</returns>
+    private bool TakeAllCraftingResults()
+    {
+        bool anyLeft = false;
+
+        foreach (var slot in craftingSlots)
+        {
+            if (slot.Item == null)
+                continue;
+
+            if (!TryToMoveToInventory(slot, true))
+            {
+                anyLeft = true;
+            }
+        }
+
+        UpdateCraftingGUIState();
+
+        return !anyLeft;
+    }
+
+    private bool ClearCraftingInputs()
+    {
+        bool anyLeft = false;
+
+        // Move crafting inputs back to the slots they are from originally
+        foreach (var slot in craftingSlots)
+        {
+            if (slot.Item == null)
+                continue;
+
+            if (slot.Item.LastNonTransientSlot != null)
+            {
+                if (slot.Item.LastNonTransientSlot.TryGetTarget(out var originalSlot))
+                {
+                    if (!originalSlot.Transient && originalSlot.Item == null)
+                    {
+                        // Can try to move this back to the original slot
+                        if (SwapSlotContentsIfPossible(slot, originalSlot))
+                            continue;
+                    }
+                }
+            }
+
+            anyLeft = true;
+        }
+
+        // If some could not be moved, then try to move them to inventory slots
+        if (anyLeft)
+        {
+            anyLeft = false;
+
+            foreach (var slot in craftingSlots)
+            {
+                if (slot.Item == null)
+                    continue;
+
+                if (!TryToMoveToInventory(slot))
+                {
+                    anyLeft = true;
+
+                    // Once we run out of inventory space we can just end here
+                    // TODO: if slots in the future can fit different stuff (like a total weight limit), this needs to
+                    // be rethought
+                    break;
+                }
+            }
+        }
+
+        UpdateCraftingGUIState();
+
+        if (!anyLeft)
+        {
+            // Moves succeeded
+            return true;
+        }
+
+        // If still no space, then fail
+        return false;
+    }
+
+    private bool TryToMoveToInventory(InventorySlot fromSlot, bool alsoEquip = false)
+    {
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.Item != null)
+                continue;
+
+            // Empty slot to move to
+            if (SwapSlotContentsIfPossible(fromSlot, slot))
+                return true;
+        }
+
+        if (!alsoEquip)
+            return false;
+
+        foreach (var slot in equipmentSlots)
+        {
+            if (slot.Item != null)
+                continue;
+
+            // Equipment slot that could potentially hold this item
+            if (SwapSlotContentsIfPossible(fromSlot, slot))
+                return true;
+        }
+
+        return false;
+    }
+
+    private void SetCraftingError(string message, bool flash = true)
+    {
+        craftingErrorStatusLabel.Text = message;
+
+        if (flash)
+            craftingAnimationPlayer.Play("Flash");
+    }
+
+    private void ResetCraftingErrorLabel()
+    {
+        craftingErrorStatusLabel.Text = TranslationServer.Translate("CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER");
     }
 }

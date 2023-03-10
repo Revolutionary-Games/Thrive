@@ -513,6 +513,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public bool IsItemSlotMoveAllowed(int fromSlotId, int toSlotId)
     {
         // TODO: implement slot type restrictions
+
+        // TODO: non-hand equipment slots should only take equipment of the right type
+
         return true;
     }
 
