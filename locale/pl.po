@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-07 16:37+0700\n"
-"PO-Revision-Date: 2022-10-28 14:00+0000\n"
+"PO-Revision-Date: 2023-03-10 06:53+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -939,9 +939,8 @@ msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
 #: ../src/general/MainMenu.tscn:712
-#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr "Nasza strona Wiki"
+msgstr "Wiki Społeczności"
 
 #: ../src/general/MainMenu.tscn:707
 #, fuzzy
@@ -1017,7 +1016,7 @@ msgstr "Potwierdź Wyjście"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Potwierdź Nadpisanie"
 
 #: ../src/general/NewGameSettings.cs:331
 #: ../src/general/NewGameSettings.tscn:1238
@@ -1082,9 +1081,8 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Skopiuj Błąd Do Schowka"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Rezultat Auto-Ewolucji:"
+msgstr "Kopiuj Wyniki"
 
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
@@ -1163,9 +1161,8 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUALNA LOKALIZACJA"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Obecni Developerzy"
+msgstr "Obecni Świat"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:959
 #, fuzzy
@@ -1195,7 +1192,7 @@ msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzaj
 
 #: ../src/general/NewGameSettings.tscn:984
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Długość Dnia"
 
 #: ../src/general/NewGameSettings.tscn:1032
 #, fuzzy
@@ -1204,7 +1201,7 @@ msgstr "(losowo generowane sekrety w grze)"
 
 #: ../src/general/NewGameSettings.tscn:958
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "Włącz cykl dnia i nocy"
 
 #: ../src/general/NewGameSettings.tscn:966
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
@@ -1822,7 +1819,7 @@ msgstr "Wyjdź do Launchera"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Eksportuj Wszystkie Światy"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
 #, fuzzy
@@ -1898,14 +1895,12 @@ msgstr ""
 "i nie zawahają się kontratakować."
 
 #: ../src/general/TranslationHelper.cs:85
-#, fuzzy
 msgid "FEATURE_DISABLED"
-msgstr "Wył"
+msgstr "Wyłączony"
 
 #: ../src/general/TranslationHelper.cs:84
-#, fuzzy
 msgid "FEATURE_ENABLED"
-msgstr "Klawisze oszustw włączone"
+msgstr "Włączony"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 msgid "FEBRUARY"
@@ -1939,7 +1934,7 @@ msgstr ""
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Opublikowany o {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
@@ -2073,9 +2068,8 @@ msgstr ""
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
-#, fuzzy
 msgid "FOSSILISE"
-msgstr "Osiadłość"
+msgstr "Zachowaj jako skamieniałość"
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "FOUR_TIMES"
@@ -2143,7 +2137,7 @@ msgstr "Opuść grę"
 
 #: ../src/general/OptionsMenu.cs:952
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/MainMenu.tscn:953
 msgid "GLES2_MODE_WARNING"
@@ -2155,7 +2149,7 @@ msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopod
 
 #: ../src/general/OptionsMenu.cs:957
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
 msgid "GLOBAL_INITIAL_LETTER"
@@ -2359,9 +2353,8 @@ msgid "INGESTED_MATTER"
 msgstr "Wchłonięta Materia"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Upłynęło {0:#,#} lat"
+msgstr "Stwórz nowy świat"
 
 #: ../src/general/OptionsMenu.tscn:204
 msgid "INPUTS"
@@ -2889,9 +2882,8 @@ msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
-#, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
-msgstr "Koło w prawo"
+msgstr "Noc"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
 #, fuzzy
@@ -3502,9 +3494,8 @@ msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Mieszane..."
 
 #: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
@@ -3753,9 +3744,8 @@ msgstr ""
 "Planujemy sprawić by przejście na ląd było stopniowe a nie gwałtowną zmianą."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr "Przenieść Się na Ląd?"
+msgstr "Przenieść Się do Etapu Przebudzenia?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 msgid "MOVING_TO_LAND_PROTOTYPE"
@@ -3874,7 +3864,7 @@ msgstr ""
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
-msgstr ""
+msgstr "NEWSY"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
@@ -4088,9 +4078,8 @@ msgid "N_A_MP"
 msgstr "N/A MP"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:427
-#, fuzzy
 msgid "N_TIMES"
-msgstr "2x"
+msgstr "x{0}"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "OCTOBER"
@@ -4198,9 +4187,8 @@ msgstr "Organella komórkowe"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#, fuzzy
 msgid "ORGANELLE_AXON"
-msgstr "Organella komórkowe"
+msgstr "Akson"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
 #, fuzzy
@@ -4214,14 +4202,12 @@ msgstr "Wielokomórkowe"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
-msgstr "Drapieżny Pilus"
+msgstr "Miofibryle"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "Dźgaj tym inne komórki."
+msgstr "Umożliwiają tworzenie komórek mięśniowych. W tym prototypie nie robi nic."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
@@ -4348,19 +4334,16 @@ msgid "PAGEUP"
 msgstr "Przesuń w górę"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:232
-#, fuzzy
 msgid "PAGE_BACK"
-msgstr "Wróć"
+msgstr "Tył"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:251
-#, fuzzy
 msgid "PAGE_FORWARD"
-msgstr "Poruszanie do przodu"
+msgstr "Przód"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:294
-#, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
+msgstr "Tytuł Strony"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PANGONIAN_REGION_NAME"
@@ -4457,11 +4440,11 @@ msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Zmiany:"
 
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
@@ -4471,9 +4454,8 @@ msgstr ""
 "Lecz to nie koniec, wciąż możesz wybrać nowy obszar do zabawy!"
 
 #: ../src/general/MainMenu.tscn:808
-#, fuzzy
 msgid "PATREON_TOOLTIP"
-msgstr "Zapauzuj"
+msgstr "Odwiedź naszego Patreona"
 
 #: ../src/gui_common/CreditsScroll.cs:331
 msgid "PATRONS"
@@ -4582,9 +4564,8 @@ msgid "PLANET_RANDOM_SEED"
 msgstr "Losowe ziarno planety"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:402
-#, fuzzy
 msgid "PLAYER"
-msgstr "Komórka Gracza"
+msgstr "Gracz"
 
 #: ../src/general/NewGameSettings.tscn:588
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
@@ -4607,9 +4588,8 @@ msgid "PLAYER_EXTINCT"
 msgstr "gracz wyginął"
 
 #: ../src/general/OptionsMenu.tscn:1475
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "gracz wyginął"
+msgstr "Krewny gracza"
 
 #: ../src/general/StageBase.cs:426
 msgid "PLAYER_REPRODUCED"
@@ -4622,19 +4602,16 @@ msgstr ""
 "Gracza"
 
 #: ../src/general/OptionsMenu.tscn:596
-#, fuzzy
 msgid "PLAYSTATION_3"
-msgstr "populacja:"
+msgstr "PlayStation 3"
 
 #: ../src/general/OptionsMenu.tscn:596
-#, fuzzy
 msgid "PLAYSTATION_4"
-msgstr "populacja:"
+msgstr "PlayStation 4"
 
 #: ../src/general/OptionsMenu.tscn:596
-#, fuzzy
 msgid "PLAYSTATION_5"
-msgstr "populacja:"
+msgstr "PlayStation 5"
 
 #: ../src/general/OptionsMenu.tscn:1599
 msgid "PLAY_INTRO_VIDEO"
@@ -4793,9 +4770,8 @@ msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Zalecana Wersja Gry:"
 
 #: ../src/general/MainMenu.tscn:844
-#, fuzzy
 msgid "REDDIT_TOOLTIP"
-msgstr "Wznów"
+msgstr "Odwiedź nasz subreddit"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "REDO"
@@ -4819,9 +4795,8 @@ msgid "REPORT"
 msgstr "Raport"
 
 #: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:223
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "Raport"
+msgstr "Zgłoś Buga"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1117
 msgid "REPRODUCED"
@@ -4861,7 +4836,7 @@ msgstr "Resetuj Strefy Martwe"
 
 #: ../src/general/OptionsMenu.tscn:1831
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Zresetuj Odrzucone Popupy"
 
 #: ../src/general/OptionsMenu.tscn:2005
 msgid "RESET_INPUTS_TO_DEFAULTS"
@@ -4935,9 +4910,8 @@ msgstr ""
 "Utracisz cały niezapisany postęp."
 
 #: ../src/general/MainMenu.tscn:771
-#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr "Wykonane Przez Revolutionary Games Studio"
+msgstr "Odwiedź oficjalne strony Revolutionary Games"
 
 #: ../src/modding/ModManager.tscn:172
 msgid "RIGHT_ARROW"
@@ -5589,9 +5563,8 @@ msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Aktualizacja wybranego zapisu zawiodła przez następujący błąd:"
 
 #: ../src/general/MainMenu.tscn:784
-#, fuzzy
 msgid "STEAM_TOOLTIP"
-msgstr "Zapauzuj"
+msgstr "Odwiedź naszą stronę Steam"
 
 #: ../src/early_multicellular_stage/CellType.cs:40
 msgid "STEM_CELL_NAME"
@@ -5759,9 +5732,8 @@ msgstr ""
 "Jeżeli Ci się spodobało, opowiedz o nas swoim znajomym."
 
 #: ../src/general/MainMenu.tscn:980
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "PRZETRWAŁEŚ!"
+msgstr "Dziękujemy"
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "THEORY_TEAM"
@@ -5804,7 +5776,7 @@ msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
-msgstr ""
+msgstr "Disturbaniec"
 
 #: ../src/modding/ModManager.cs:957
 msgid "THIS_IS_LOCAL_MOD"
@@ -5824,15 +5796,15 @@ msgstr "Thrivopedia"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:24
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "Obecny Świat"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:37
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Drzewo Filogenetyczne"
 
 #: ../src/general/PauseMenu.tscn:207
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
-msgstr ""
+msgstr "Otwórz Thriveopedia'ę"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
@@ -5840,15 +5812,15 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "Dom"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Muzeum"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:32
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr ""
+msgstr "Mapa Obszarów"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:31
 msgid "THRIVE_LICENSES"
@@ -5956,7 +5928,7 @@ msgstr "Przełącz wyświetlacz Metryki"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:198
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr ""
+msgstr "Włącz drzewko nawigacji"
 
 #: ../simulation_parameters/common/input_options.json:278
 msgid "TOGGLE_PAUSE"
@@ -6436,7 +6408,7 @@ msgstr "Czekanie na auto-ewolucje:"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "Witam w Thriveopedia'i"
 
 #: ../src/auto-evo/RunResults.cs:862
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -6544,15 +6516,15 @@ msgstr "Najgorzej radzi sobie w:"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX360"
-msgstr ""
+msgstr "Xbox 360"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_SERIES"
-msgstr ""
+msgstr "Xbox Series X"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
@@ -6563,9 +6535,8 @@ msgid "YEARS"
 msgstr "lata"
 
 #: ../src/general/MainMenu.tscn:832
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Zapauzuj"
+msgstr "Odwiedź nasz kanał Youtube"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
