@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-07 16:37+0700\n"
+"POT-Creation-Date: 2023-03-10 15:58+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -53,14 +53,12 @@ msgstr "Abyssopelagisch"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:236
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
-#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "Ontwaak"
+msgstr "Ontwaak ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Ontwaak"
+msgstr "Ga door naar de Ontwaakfase. Beschikbaar wanneer je genoeg breinkracht hebt (weefseltype met axonen)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -428,12 +426,12 @@ msgstr "Bass Harder"
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisch"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:544
+#: ../src/microbe_stage/MicrobeHUD.cs:545
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Wordt Macrosopisch ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:508
+#: ../src/microbe_stage/MicrobeHUD.cs:509
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Wordt Meercellig ({0}/{1})"
@@ -626,11 +624,11 @@ msgstr "Kan metabal niet naar de afstammelingenboom verplaatsen"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "De hoeveelheid breinkracht is nu te laag om in deze fase te blijven. Het is op dit moment niet toegestaan om naar vorige fasen te gaan. Gelieve de breinkracht te vergroten om verder te gaan."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Kan Niet Breinkracht Reduceren Om Terug Naar Eerdere Fasen Te Gaan"
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -1502,14 +1500,12 @@ msgstr ""
 "Het kan zijn dat sommige wenselijke vensters per ongelijk uitgezet zijn. De knop hiernaast kan gebruikt worden om alle uitgezette vensters weer aan te zetten."
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
-#, fuzzy
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "Dit niet nogmaals weergeven"
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
-#, fuzzy
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr "Dit niet nogmaals weergeven"
+msgstr "Niet nogmaals hierover waarschuwen"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2369,9 +2365,8 @@ msgid "INPUTS"
 msgstr "Invoer"
 
 #: ../simulation_parameters/common/input_options.json:72
-#, fuzzy
 msgid "INPUT_NAME_INTERACTION"
-msgstr "één generatie geindigt"
+msgstr "Reageer op object"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -3735,19 +3730,17 @@ msgid "MOVE_UP_OR_JUMP"
 msgstr "Opwaarts bewegen of springen"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1996
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
-"Je staat op het punt om op land te bewegen. Dit is noodzakelijk om later in het spel verder te gaan. Zodra je op land gaat kun je niet meer terug.\n"
+"Je staat op het punt om naar de Ontwaakfase te gaan. Als je doorgaat naar deze fase kun je niet meer terug.\n"
 "\n"
-"Op dit moment is de transitie naar land veel abrupter dan is gepland zodra het fatsoenlijk is toegevoegd.\n"
+"Als je op dit moment onder water bent, zul je daar permanent vast komen te zitten en kun je het spel niet afmaken.\n"
 "\n"
-"Het plan is om het migreren naar land geleidelijk te laten verlopen, en geen abrupte verandering te laten zijn."
+"Ben dus voorzichtig als je nog niet naar het land bent gemigreerd."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr "Migreer naar Land?"
+msgstr "Ga naar Ontwaakfase?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 msgid "MOVING_TO_LAND_PROTOTYPE"
@@ -3963,7 +3956,7 @@ msgstr "Niets hier"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:346
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "Niets om op te reageren"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
@@ -4081,7 +4074,7 @@ msgstr "Geen Enkele"
 msgid "N_A_MP"
 msgstr "Geen MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:427
+#: ../src/microbe_stage/MicrobeHUD.cs:428
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4566,7 +4559,7 @@ msgstr "Generatie van planeet komt snel!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Willekeurige kiem voor de planeet"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:402
+#: ../src/microbe_stage/MicrobeHUD.cs:403
 #, fuzzy
 msgid "PLAYER"
 msgstr "Spelercel"
@@ -5489,9 +5482,8 @@ msgid "START_CALIBRATION"
 msgstr "Start Calibratie"
 
 #: ../src/general/NewGameSettings.tscn:1241
-#, fuzzy
 msgid "START_GAME"
-msgstr "Sla spel op"
+msgstr "Start Spel"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
@@ -6569,6 +6561,9 @@ msgstr "Uitzoomen"
 #~ msgid "SPECIES_N_TIMES"
 #~ msgstr "{0} (x{1})"
 
+#~ msgid "PLAYER_CELL"
+#~ msgstr "Spelercel"
+
 #~ msgid "BECOME_AWARE"
 #~ msgstr "Wordt Zelfbewust"
 
@@ -6782,3 +6777,7 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Terug"
+
+#, fuzzy
+#~ msgid "STATUS_COLON"
+#~ msgstr "Soorten:"

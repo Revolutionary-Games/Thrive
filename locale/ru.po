@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-07 16:37+0700\n"
+"POT-Creation-Date: 2023-03-10 15:58+0200\n"
 "PO-Revision-Date: 2023-02-10 07:42+0000\n"
 "Last-Translator: Ilja Hlopushkin <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -53,21 +53,19 @@ msgstr "Абиссопелагический"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:236
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
-#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "Пробудить"
+msgstr "Пробужден {0:F1}/{1:F1}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Пробудить"
+msgstr "Переместиться на Стадию Пробуждения. Доступно только если у вас есть достаточное количество развитости мозга (Поместите аксон в какой либо тип клетки)"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Действие заблокировано до окончания предыдущего"
+msgstr "Действие заблокировано, поскольку другое еще совершается"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -109,14 +107,12 @@ msgid "AGENTS"
 msgstr "Химические Агенты"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Создатель:"
+msgstr "Агенты:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "{0} {1}"
+msgstr "{0} Агент"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -428,12 +424,12 @@ msgstr "BassUp"
 msgid "BATHYPELAGIC"
 msgstr "Батипелагический"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:544
+#: ../src/microbe_stage/MicrobeHUD.cs:545
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стать макроскопическим ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:508
+#: ../src/microbe_stage/MicrobeHUD.cs:509
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Стать многоклеточным ({0}/{1})"
@@ -626,11 +622,11 @@ msgstr "Невозможно переместить метасферу в её �
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "Ныне Развитость мозга мала для того дабы остаться в текущей стадии. Переходить на прошлые стадии не разрешено, пожалуйста, повысьте развитость мозга для продолжения."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Невозможно снизить развитость мозга для возвращения на прошлые стадии"
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -1502,14 +1498,12 @@ msgstr ""
 "Если некоторые всплывающие окна, которые действительно нужны, будут отклонены, можно использовать кнопку рядом с этим, чтобы все отклоненные всплывающие окна снова появились."
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
-#, fuzzy
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr "Не показывайте это снова"
+msgstr "Не показывать это снова"
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
-#, fuzzy
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr "Не показывайте это снова"
+msgstr "Не сообщать об этом снова"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2003,9 +1997,8 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Использует [thrive:compound type=\"atp\"][/thrive:compound] чтобы повысить скорость передвижения клетки."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
-#, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
-msgstr "Популяция:"
+msgstr "Окружающие фрагменты:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2369,9 +2362,8 @@ msgid "INPUTS"
 msgstr "Клавиши"
 
 #: ../simulation_parameters/common/input_options.json:72
-#, fuzzy
 msgid "INPUT_NAME_INTERACTION"
-msgstr "Симулировать одно поколение"
+msgstr "Взаимодействовать с объектом"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -2436,7 +2428,8 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 "Вы играете в прототип последующей стадии, включённой в игру.\n"
 "Прототип до сей поры не завершен, использует примитивную графику и в принципе выглядит \"грубовато\",\n"
-"и не совсем играбельны, к примеру - функция сохранения может быть не доступна."
+"и не совсем играбельны, к примеру - функция сохранения может быть не доступна.\n"
+"Впрочем, некоторые части прототипов всё же сохраняются."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1326
@@ -3731,19 +3724,17 @@ msgid "MOVE_UP_OR_JUMP"
 msgstr "Двигаться вверх или прыгать"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1996
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
-"Вы собираетесь выбраться на сушу. Это требуется для дальнейшего прогресса в игре. Вернуться обратно будет нельзя.\n"
+"Вы собираетесь переместиться к Стадии Пробуждения. Как только вы перейдете в новую стадию пути назад уже не будет. \n"
 "\n"
-"Сейчас переход к суше гораздо более резкий чем планируется в будущем, когда суша будет полноценно добавлена в игру.\n"
+"Если вы сейчас находитесь под водой, вы застрянете здесь навечно и не сможете завершить игру.\n"
 "\n"
-"План в том, чтобы сделать переход на сушу постепенным, а не резким."
+"Так что переходите на следующую фазу с умом, точно так же как ваш вид переходит из стадии животного в стадию разумного существа."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr "Переместиться на сушу?"
+msgstr "Переместиться на Стадию Пробуждения?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 msgid "MOVING_TO_LAND_PROTOTYPE"
@@ -3959,7 +3950,7 @@ msgstr "Здесь ничего нет"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:346
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "Не с чем взаимодействовать"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
@@ -4077,10 +4068,9 @@ msgstr "Нет данных"
 msgid "N_A_MP"
 msgstr "Н/Д МP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:427
-#, fuzzy
+#: ../src/microbe_stage/MicrobeHUD.cs:428
 msgid "N_TIMES"
-msgstr "2x"
+msgstr "x{0}"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "OCTOBER"
@@ -4562,10 +4552,9 @@ msgstr "Генерация планеты в разработке!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Сид планеты"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:402
-#, fuzzy
+#: ../src/microbe_stage/MicrobeHUD.cs:403
 msgid "PLAYER"
-msgstr "Клетка Игрока"
+msgstr "Игрок"
 
 #: ../src/general/NewGameSettings.tscn:588
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
@@ -5486,9 +5475,8 @@ msgid "START_CALIBRATION"
 msgstr "Начать настройку"
 
 #: ../src/general/NewGameSettings.tscn:1241
-#, fuzzy
 msgid "START_GAME"
-msgstr "Сохранить игру"
+msgstr "Начать игру"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
@@ -6569,6 +6557,12 @@ msgstr "Уменьшить масштаб"
 #~ msgid "BECOME_AWARE"
 #~ msgstr "Станьте осведомлены"
 
+#~ msgid "PLAYER_CELL"
+#~ msgstr "Клетка Игрока"
+
+#~ msgid "AWAKEN"
+#~ msgstr "Пробудить"
+
 #~ msgid "CONFIRM_NORMAL"
 #~ msgstr "Подтвердить"
 
@@ -6909,3 +6903,7 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 #~ msgstr "Пангонская Толща Воды (от 2 км)"
+
+#, fuzzy
+#~ msgid "STATUS_COLON"
+#~ msgstr "Создатель:"
