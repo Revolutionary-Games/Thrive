@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-10 15:58+0200\n"
-"PO-Revision-Date: 2022-12-15 06:57+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"PO-Revision-Date: 2023-03-13 09:01+0000\n"
+"Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -487,7 +487,7 @@ msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "结果："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
 msgid "BEST_PATCH_COLON"
@@ -627,11 +627,11 @@ msgstr "无法移动金属球到其自己的树形子节点"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "大脑能力过低以至于不足以继续停留在当前阶段。退回先前的阶段在目前的游戏中不被允许，请增加您的脑力以继续游戏。"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "无法通过减少脑力退回先前阶段"
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -1502,14 +1502,12 @@ msgstr ""
 "如果有一些你想要看到的弹出窗口被禁用了，旁边的那个按钮可以使所有被禁用的弹出窗口再次出现。"
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
-#, fuzzy
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "不再显示"
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
-#, fuzzy
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr "不再显示"
+msgstr "不再警告"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2003,9 +2001,8 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
-#, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
-msgstr "旋转："
+msgstr "漂浮的碎块："
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2369,9 +2366,8 @@ msgid "INPUTS"
 msgstr "输入"
 
 #: ../simulation_parameters/common/input_options.json:72
-#, fuzzy
 msgid "INPUT_NAME_INTERACTION"
-msgstr "完成一次世代"
+msgstr "与物体交互"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -3961,31 +3957,31 @@ msgstr "这里啥都没有"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:346
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "没有可以交互的物体"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr ""
+msgstr "因ATP耗尽而受伤"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1511
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr ""
+msgstr "由于摄入物体中的毒素而受伤"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1456
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr ""
+msgstr "没有用于吞噬目标的 {0}"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1786
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr ""
+msgstr "目前细胞大小不足以吞噬目标"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1781
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "没有足够存储空间以摄入被吞噬的目标"
 
 #: ../src/general/StageHUDBase.cs:572
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "现在可以进入编辑器"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 msgid "NOT_FOUND_CHUNK"
@@ -4189,30 +4185,25 @@ msgstr "细胞器"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#, fuzzy
 msgid "ORGANELLE_AXON"
-msgstr "细胞器"
+msgstr "轴突"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
-#, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
-msgstr "纤毛存在于许多微生物的表面，类似于细毛。一个微生物的表面可能有几十到几百个纤毛，其有多种用途，包括捕食。致病性微生物利用纤毛来提高毒性，或者附着并结合在宿主组织上，或者穿过外膜侵入细胞质。纤毛有很多相似的变种，但在进化上没有关系，是趋同进化的结果。一个生物体可能有能力表达几种类型的纤毛，那些存在于表面的纤毛通常会不断的改变和替换。"
+msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有该细胞器的细胞会被认定为脑组织。"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:638
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
-msgstr "后期多细胞生物"
+msgstr "多细胞生物"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
-msgstr "掠食性菌毛"
+msgstr "肌原纤维"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "纤毛存在于许多微生物的表面，类似于细毛。一个微生物的表面可能有几十到几百个纤毛，其有多种用途，包括捕食。致病性微生物利用纤毛来提高毒性，或者附着并结合在宿主组织上，或者穿过外膜侵入细胞质。纤毛有很多相似的变种，但在进化上没有关系，是趋同进化的结果。一个生物体可能有能力表达几种类型的纤毛，那些存在于表面的纤毛通常会不断的改变和替换。"
+msgstr "用于创造肌肉细胞。在目前游戏中没有用。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
@@ -4807,9 +4798,8 @@ msgid "REPORT"
 msgstr "报告"
 
 #: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:223
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "报告"
+msgstr "报告一个bug"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1117
 msgid "REPRODUCED"
@@ -5501,9 +5491,8 @@ msgid "START_CALIBRATION"
 msgstr "开始校准"
 
 #: ../src/general/NewGameSettings.tscn:1241
-#, fuzzy
 msgid "START_GAME"
-msgstr "保存游戏"
+msgstr "开始游戏"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
