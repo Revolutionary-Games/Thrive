@@ -210,7 +210,7 @@ public class InventorySlot : Button
 
     public override string ToString()
     {
-        return $"{base.ToString()} {Category} (slot: {SlotId}){(Transient ? "Transient" : string.Empty)}";
+        return $"{base.ToString()} {Category} (slot: {SlotId}){(Transient ? " Transient" : string.Empty)}";
     }
 
     private void ApplyIcon()

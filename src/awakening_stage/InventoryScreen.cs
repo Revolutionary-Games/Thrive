@@ -626,73 +626,45 @@ public class InventoryScreen : ControlWithInput
         if (from.Item == null && to.Item == null)
             return;
 
-        // Moving between transient slots requires no special handling (only when moving an item out of a transient
-        // slot does something happen)
-        if (from.Transient && to.Transient)
-            return;
-
-        // If one side of the move is transient, then we need to actually do something
-        if (from.Transient || to.Transient)
-        {
-            // We need to first undo the ghost item status, and then act as if the move was from the non-transient
-            // slot(s)
-            if (from.Item is { ShownAsGhostIn: { } } &&
-                from.Item.ShownAsGhostIn.TryGetTarget(out var toNonTransient))
-            {
-                var item = from.Item;
-
-                if (toNonTransient.GhostItem != item ||
-                    (toNonTransient.Item != null && toNonTransient.Item != item))
-                {
-                    GD.PrintErr("Ghost item status incorrect in from non-transient slot");
-                }
-
-                // Update ghost status
-                toNonTransient.GhostItem = null;
-                item.ShownAsGhostIn = null;
-
-                // Update the to moved data to be about the non-transient slot
-                var movedOtherSideItem = to.Item;
-                to.Item = null;
-                toNonTransient.Item = movedOtherSideItem;
-                to = toNonTransient;
-            }
-
-            if (to.Item is { ShownAsGhostIn: { } } &&
-                to.Item.ShownAsGhostIn.TryGetTarget(out var fromNonTransient))
-            {
-                var item = to.Item;
-
-                if (fromNonTransient.GhostItem != item ||
-                    (fromNonTransient.Item != null && fromNonTransient.Item != item))
-                {
-                    GD.PrintErr("Ghost item status incorrect in to non-transient slot");
-                }
-
-                // Update ghost status
-                fromNonTransient.GhostItem = null;
-                item.ShownAsGhostIn = null;
-
-                // Update the from moved data to be about the non-transient slot
-                var movedOtherSideItem = from.Item;
-                from.Item = null;
-                fromNonTransient.Item = movedOtherSideItem;
-                from = fromNonTransient;
-            }
-
-            // We fall through here to do the normal processing after resolving the ghost / transient statuses
-        }
-
-        // Sanity check about ghost items
-        if (from.Item is { ShownAsGhostIn: { } })
-            GD.PrintErr("Ghost item status not unset correctly in from item");
-
-        if (to.Item is { ShownAsGhostIn: { } })
-            GD.PrintErr("Ghost item status not unset correctly in to item");
-
         // Transient slot resolving can result in a move from slot to itself
         if (to == from)
             return;
+
+        // Moving between transient slots requires no special handling (only when moving an item out of a transient
+        // slot does something special need to happen)
+        if (from.Transient || to.Transient)
+        {
+            if (from.Transient && to.Transient)
+                return;
+
+            // Moving an item to a transient slot needs to be specifically allowed here
+
+            bool isAllowed = true;
+
+            if (to is { Transient: true, Item: { } })
+            {
+                if (to.Item.ShownAsGhostIn != null)
+                    isAllowed = false;
+            }
+
+            if (from is { Transient: true, Item: { } })
+            {
+                if (from.Item.ShownAsGhostIn != null)
+                    isAllowed = false;
+            }
+
+            if (isAllowed)
+                return;
+
+            GD.PrintErr("We seem to be running a logically incorrect transient slot move");
+        }
+
+        // Sanity check that preprocess has run correctly
+        if (from.Item is { ShownAsGhostIn: { } } || from.Transient)
+            GD.PrintErr("Ghost item / transient status not unset correctly in from item");
+
+        if (to.Item is { ShownAsGhostIn: { } } || to.Transient)
+            GD.PrintErr("Ghost item / transient status not unset correctly in to item");
 
         // Moving within a single category (when on ground) requires no action
         if (AreSlotsInCategory(from, to, InventorySlotCategory.Ground))
@@ -735,6 +707,66 @@ public class InventoryScreen : ControlWithInput
         }
 
         GD.PrintErr("Unknown slot move! Inventory data may be out of sync now.");
+    }
+
+    /// <summary>
+    ///   Preprocessing of a swap to take transient and ghost items into account
+    /// </summary>
+    /// <param name="from">The original from slot</param>
+    /// <param name="to">The original to slot</param>
+    /// <returns>Adjusted from and to slots (with data modified to work)</returns>
+    /// <remarks>
+    ///   <para>
+    ///     This is implemented as a preprocessing step as this was much easier to think about than extending
+    ///     <see cref="OnSlotSwapHappened"/> to handle this
+    ///   </para>
+    /// </remarks>
+    private (InventorySlot AdjustedFromSlot, InventorySlot AdjustedToSlot) HandleTransientSlots(InventorySlot from,
+        InventorySlot to)
+    {
+        // Moving within transient slots (or non-transient slots) or with no items set, requires no special handling
+        if (from.Transient == to.Transient || (from.Item == null && to.Item == null))
+            return (from, to);
+
+        // If one sides of the move is transient, then we need to actually do something
+
+        from = GetAdjustedSlotAndRemoveGhostStatus(from);
+        to = GetAdjustedSlotAndRemoveGhostStatus(to);
+
+        // Return the adjusted slots
+        return (from, to);
+    }
+
+    private InventorySlot GetAdjustedSlotAndRemoveGhostStatus(InventorySlot original)
+    {
+        if (original.Item is { ShownAsGhostIn: { } } &&
+            original.Item.ShownAsGhostIn.TryGetTarget(out var originalNonTransient))
+        {
+            // We need to first undo the ghost item status, and then act as if the move was original the non-transient
+            // slot(s)
+            var item = original.Item;
+
+            if (originalNonTransient.GhostItem != item ||
+                (originalNonTransient.Item != null && originalNonTransient.Item != item))
+            {
+                GD.PrintErr("Ghost item status incorrect in non-transient slot");
+            }
+
+            // Reset ghost status
+            originalNonTransient.GhostItem = null;
+            item.ShownAsGhostIn = null;
+
+            // Copy the data to the "real" slot this move is happening
+            if (originalNonTransient.Item != null)
+                GD.PrintErr("Original item in non-transient slot is filled for some reason, losing data");
+
+            originalNonTransient.Item = item;
+            original.Item = null;
+            return originalNonTransient;
+        }
+
+        // This was not a transient slot needing handling
+        return original;
     }
 
     private void HandleDropTypeSlotMove(InventorySlot creatureSlot, InventorySlot groundSlot)
@@ -799,6 +831,8 @@ public class InventoryScreen : ControlWithInput
     {
         if (!CanSwapContents(fromSlot, toSlot))
             return false;
+
+        (fromSlot, toSlot) = HandleTransientSlots(fromSlot, toSlot);
 
         (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
 
