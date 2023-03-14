@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:21+0200\n"
-"PO-Revision-Date: 2022-11-17 16:00+0000\n"
-"Last-Translator: Alexia Diana Cojocaru <alexia.d.cojocaru@gmail.com>\n"
+"POT-Creation-Date: 2023-03-14 14:53+0200\n"
+"PO-Revision-Date: 2023-03-13 09:01+0000\n"
+"Last-Translator: Yehoslav Rudenco <yehoslavrudenco@protonmail.com>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -21,27 +21,28 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "stil de mișcare 2D:"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "3D_EDITOR"
-msgstr ""
+msgstr "Editor 3D"
 
 #: ../simulation_parameters/common/input_options.json:168
+#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr ""
+msgstr "Mișcare în 3D"
 
 #: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "stil de mișcare în 3D:"
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
-msgstr ""
+msgstr "Abilități"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
-msgstr ""
+msgstr "Renunță"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -65,11 +66,11 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Acțiune blocată în timp ce alta este în progres"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
-msgstr ""
+msgstr "Activ"
 
 #: ../src/general/OptionsMenu.tscn:1092
 msgid "ACTIVE_THREAD_COUNT"
@@ -81,7 +82,7 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr ""
+msgstr "Validările adiționale au detectat o problemă: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"

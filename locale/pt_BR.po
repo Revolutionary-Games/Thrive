@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:21+0200\n"
-"PO-Revision-Date: 2023-02-17 07:30+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"POT-Creation-Date: 2023-03-14 14:53+0200\n"
+"PO-Revision-Date: 2023-03-09 06:58+0000\n"
+"Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -53,14 +53,12 @@ msgstr "Abissopelágico"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:277
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
-#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "Despertar"
+msgstr "Despertar ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Despertar"
+msgstr "Ir para o Estágio Desperto. Disponível ao ter capacidade mental suficiente (representados por tecidos com axônios)"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
@@ -109,14 +107,12 @@ msgid "AGENTS"
 msgstr "Agentes"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Estado:"
+msgstr "Agentes:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "{1} {0}"
+msgstr "Agente {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -625,7 +621,7 @@ msgstr "Não é possível excluír tipos de células em uso"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 msgid "CANNOT_ENGULF"
-msgstr "Não pode engolir"
+msgstr "Não é possível realizar a fagocitose"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -633,11 +629,11 @@ msgstr "Não é possível mover uma metaball na sua árvore de descendentes"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "A capacidade mental está muito baixa para permanecer no estágio atual. Retroceder estágios não é permitido por enquanto, por isso, aumente a capacidade mental da espécie para continuar."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Não é possível reduzir a capacidade mental para voltar estágios"
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -708,7 +704,7 @@ msgstr "Celulose"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Essa membrana tem uma parede feita de celulose, resultando em uma melhor proteção contra danos, especialmente contra danos físicos. E leva menos energia para manter sua forma, mas não absorve recursos rapidamente e deixa a célula mais lenta."
+msgstr "Essa membrana tem uma parede feita de celulose, resultando em uma melhor proteção contra danos, especialmente contra danos físicos. Ela requer menos energia para manter sua forma, mas não absorve recursos rapidamente e deixa a célula mais lenta. [b]A celulase pode digerir essa parede[/b], fazendo o organismo ficar mais vulnerável à fagocitose por parte dos predadores."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:649
 msgid "CELL_TYPE_NAME"
@@ -799,7 +795,7 @@ msgstr "A quitinase permite que sua célula quebre membranas de quitina. Cada ad
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "Essa membrana tem uma parede feita de quitina, resultando em uma melhor proteção contra danos, especialmente causados por toxinas. E leva menos energia para manter sua forma, mas deixa a célula lenta e não absorve recursos rapidamente."
+msgstr "Essa membrana tem uma parede feita de quitina, resultando em uma melhor proteção contra danos, especialmente causados por toxinas. E leva menos energia para manter sua forma, mas deixa a célula lenta e não absorve recursos rapidamente. [b]A quitinase pode digerir essa parede[/b], fazendo o organismo ficar mais vulnerável à fagocitose por parte dos predadores."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
@@ -1111,19 +1107,17 @@ msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
 #: ../src/awakening_stage/InventoryScreen.tscn:223
-#, fuzzy
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr "Falta um título"
+msgstr ""
 
 #: ../src/awakening_stage/InventoryScreen.tscn:178
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr "Nenhum"
+msgstr "Inversamente proporcional"
 
 #: ../src/awakening_stage/InventoryScreen.cs:968
-#, fuzzy
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr "Falta um título"
+msgstr ""
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
@@ -1132,7 +1126,7 @@ msgstr ""
 #: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Falta um título"
+msgstr "Copiar Resultados"
 
 #: ../src/awakening_stage/InventoryScreen.cs:1105
 #: ../src/awakening_stage/InventoryScreen.tscn:204
@@ -1304,6 +1298,8 @@ msgstr "morte"
 #: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
+"Coordenadas de posição: {0}\n"
+"Olhando para as coordenadas: {1}"
 
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
@@ -1549,14 +1545,12 @@ msgstr ""
 "Se alguns dos pop-ups que necessita foram dispensados, o botão junto a isso pode ser usado para fazer todos os pop-ups reaparecerem."
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
-#, fuzzy
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "Não mostrar novamente"
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
-#, fuzzy
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr "Não mostrar novamente"
+msgstr "Não avisar sobre isso novamente"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_ABILITIES_BAR"
@@ -1640,7 +1634,7 @@ msgstr "Aqui vai uma dica, quanto mais flagelos você tem, o mais rápido você 
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Aqui vai uma dica, você pode engolir pedaços, de ferro ou outros."
+msgstr "Aqui vai uma dica, você pode ingerir pedaços de ferro ou de outras células."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
@@ -1676,7 +1670,7 @@ msgstr "O líder da equipe sonora do jogo já fez várias músicas que ainda nã
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Aqui vai uma dica, se sua célula é composta por 150 hexágonos, você pode engolir pedaços grandes de ferro."
+msgstr "Aqui vai uma dica, se sua célula é composta por 150 hexágonos, você pode fagocitar pedaços grandes de ferro."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
@@ -1712,7 +1706,7 @@ msgstr "Aqui vai uma dica, algumas vezes é melhor fugir de outras células."
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Aqui vai uma dica, se uma célula é mais ou menos a metade do seu tamanho, você pode engolir ela."
+msgstr "Aqui vai uma dica, se uma célula tiver cerca de metade do seu tamanho, você pode fagocitá-la."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
@@ -1861,7 +1855,7 @@ msgstr "Esc"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1228
 msgid "ESCAPE_ENGULFING"
-msgstr "escapou de predação"
+msgstr "escapou da fagocitose"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1840
 msgid "ESTUARY"
@@ -2050,9 +2044,8 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Usa [thrive:compound type=\"atp\"][/thrive:compound] para aumentar a velocidade de movimento da célula."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
-#, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
-msgstr "Rotação:"
+msgstr "Pedaços Flutuantes:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2354,7 +2347,7 @@ msgstr "HSV"
 
 #: ../src/microbe_stage/gui/HUDMessages.cs:44
 msgid "HUD_MESSAGE_MULTIPLE"
-msgstr ""
+msgstr "{0} (x{1})"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1279
@@ -2416,21 +2409,19 @@ msgid "INPUTS"
 msgstr "Entradas"
 
 #: ../simulation_parameters/common/input_options.json:72
-#, fuzzy
 msgid "INPUT_NAME_INTERACTION"
-msgstr "Completar uma geração"
+msgstr "Interagir com o objeto"
 
 #: ../simulation_parameters/common/input_options.json:76
 #, fuzzy
 msgid "INPUT_NAME_OPEN_INVENTORY"
-msgstr "Completar uma geração"
+msgstr "Interagir com o objeto"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr "Inspecionar"
 
 #: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
-#, fuzzy
 msgid "INSPECTOR"
 msgstr "Inspecionar"
 
@@ -3301,7 +3292,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Assim que o engolimento terminar, os objetos pegos serão mantidos dentro da membrana para serem digeridos, se possível. Caso contrário, eles serão expulsos, por isso tenha certeza que você tenha as mutações necessárias para processá-los. As enzimas, contidas no lisossomo, ajudam a digestão se tornar mais eficiente."
+msgstr "Assim que a fagocitose terminar, os objetos pegos serão mantidos dentro da membrana para serem digeridos, se possível. Caso contrário, eles serão expulsos, por isso certifique que você tenha as mutações necessárias para processá-los. As enzimas ajudam na digestão e são fornecidas pelo lisossomo; evolua esta organela para tornar a digestão mais eficiente."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -3429,7 +3420,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "Use [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] e o mouse para se mover. Pressione [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] se você tiver um vacúolo de toxinas. Aperte [thrive:input]g_toggle_engulf[/thrive:input] para ativar ou desativar o modo de engolir. Você pode ampliar ou reduzir a câmera com a roda do mouse."
+msgstr "Use [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] e o mouse para se mover. Pressione [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] se você tiver um vacúolo de toxinas. Aperte [thrive:input]g_toggle_engulf[/thrive:input] para ativar ou desativar a fagocitose. Você pode ampliar ou reduzir a câmera com a roda do mouse."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
@@ -3470,7 +3461,7 @@ msgstr "Para desbloquear o editor e reproduzir é preciso ficar vivo por tempo s
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Você também pode engolir células, bactérias, pedaços de ferro e de células menores que você pressionando [thrive:input]g_toggle_engulf[/thrive:input]. Isso custará [thrive:compound type=\"atp\"][/thrive:compound] adicional e sua célula irá mover mais lentamente. Não se esqueça de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez para parar de engolir."
+msgstr "Você também pode ingerir células, bactérias, pedaços de ferro e de células menores que você pressionando [thrive:input]g_toggle_engulf[/thrive:input]. Isso custará [thrive:compound type=\"atp\"][/thrive:compound] adicional e sua célula irá mover mais lentamente. Não se esqueça de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez para parar a fagocitose."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -3816,19 +3807,17 @@ msgid "MOVE_UP_OR_JUMP"
 msgstr "Ir para cima ou pular"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2014
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
-"Você está prestes a migrar para a terra firme. Isto é necessário para avançar no jogo. Assim que você ir para a superfície você não poderá mais voltar.\n"
+"Você está prestes a ir para o Estágio Desperto. Assim que avançar, você não poderá mais voltar.\n"
 "\n"
-"Atualmente, a transição para a próxima parte é mais abrupta do que foi planejado.\n"
+"Se estiver debaixo d’água, você ficará preso permanentemente e não poderá terminar o jogo.\n"
 "\n"
-"O plano é que a mudança seja gradual e não abrupta."
+"Por isso, proceda com cuidado se não estiver em terra firme."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2013
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr "Migrar para a terra?"
+msgstr "Ir para o Estágio Desperto?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2009
 msgid "MOVING_TO_LAND_PROTOTYPE"
@@ -4044,31 +4033,31 @@ msgstr "Não há nada aqui"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "Não há nada para interagir"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr ""
+msgstr "Ferido devido à falta de ATP"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1511
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr ""
+msgstr "Ferido por toxinas devido à ingestão de matéria"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1456
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr ""
+msgstr "Falta {0} para fagocitar o alvo"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1786
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr ""
+msgstr "A célula é muito pequena para fagocitar o alvo"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1781
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "Não há espaço suficiente para fagocitar o alvo"
 
 #: ../src/general/StageHUDBase.cs:572
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "O editor está pronto para ser utilizado"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 msgid "NOT_FOUND_CHUNK"
@@ -4161,9 +4150,8 @@ msgid "N_A_MP"
 msgstr "N/A PM"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:428
-#, fuzzy
 msgid "N_TIMES"
-msgstr "2x"
+msgstr "x{0}"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "OCTOBER"
@@ -4248,9 +4236,9 @@ msgstr "Pausado."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:243
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"Os micróbios oportunistas vão competir com os rivais por causa de alimentos\n"
-"e tentarão caçar suas presas usando toxinas se não puderem engoli-las.\n"
-"Enquanto isso, os micróbios mais cautelosos podem não se colocar em perigo por alimentos."
+"Os micróbios oportunistas competirão com os rivais por causa de alimentos\n"
+"e tentarão caçar suas presas usando toxinas se não puderem fagocitá-las.\n"
+"Enquanto isso, os micróbios mais cautelosos tendem a não se colocar em perigo por alimentos."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
 msgid "OPPORTUNISTIC"
@@ -4270,30 +4258,25 @@ msgstr "Organelas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#, fuzzy
 msgid "ORGANELLE_AXON"
-msgstr "Organelas"
+msgstr "Axônio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
-#, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
-msgstr "Pili (singular: pilus) são estruturas similares a cabelos vistos em vários micro-organismos. Eles podem ser usados para diversos fins, como predação. Micro-organismos patógenos usam pili tanto para se fixar aos tecidos de suas vítimas, quanto para passar através da membrana celular para o citoplasma. Existem vários tipos de pili, e muitos deles não têm vínculos evolutivos, sendo resultados da convergência evolutiva. Cada organismo pode ter vários tipos de pili, e aqueles na superfície são constantemente substituídos."
+msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e comunicar com outros neurônios. Essa organela transforma o tipo da célula em um tecido cerebral."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:638
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
-msgstr "Multicelular avançado"
+msgstr "Multicelular"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
-msgstr "Pilus Predatório"
+msgstr "Miofibrila"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "Pili (singular: pilus) são estruturas similares a cabelos vistos em vários micro-organismos. Eles podem ser usados para diversos fins, como predação. Micro-organismos patógenos usam pili tanto para se fixar aos tecidos de suas vítimas, quanto para passar através da membrana celular para o citoplasma. Existem vários tipos de pili, e muitos deles não têm vínculos evolutivos, sendo resultados da convergência evolutiva. Cada organismo pode ter vários tipos de pili, e aqueles na superfície são constantemente substituídos."
+msgstr "Permite a criação de células musculares. Por enquanto, não faz nada no protótipo."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
@@ -4651,9 +4634,8 @@ msgid "PLANET_RANDOM_SEED"
 msgstr "Seed aleatória do planeta"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:403
-#, fuzzy
 msgid "PLAYER"
-msgstr "Célula do jogador"
+msgstr "Jogador"
 
 #: ../src/general/NewGameSettings.tscn:588
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
@@ -4945,7 +4927,7 @@ msgstr "Redefinir para as configurações padrão?"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr "Resistente ao engolimento básico"
+msgstr "Resistente à fagocitose básica"
 
 #: ../src/general/OptionsMenu.tscn:345
 msgid "RESOLUTION"
@@ -5580,9 +5562,8 @@ msgid "START_CALIBRATION"
 msgstr "Iniciar a calibração"
 
 #: ../src/general/NewGameSettings.tscn:1241
-#, fuzzy
 msgid "START_GAME"
-msgstr "Salvar Jogo"
+msgstr "Começar Jogo"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
@@ -6018,7 +5999,7 @@ msgstr "Exibir painel de depuração"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
-msgstr "Engolir"
+msgstr "Fagocitar"
 
 #: ../simulation_parameters/common/input_options.json:290
 msgid "TOGGLE_FPS"
@@ -6229,16 +6210,16 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:332
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"A sua célula tem uma capacidade limitada para objetos que podem ser engolidos de uma vez. Esse limite é relativo ao seu tamanho; células menores têm menos capacidade.\n"
+"A sua célula tem uma capacidade limitada para objetos que podem ser fagocitados de uma vez. Esse limite é relativo ao seu tamanho; células menores têm menos capacidade.\n"
 "\n"
-"Quando cheio, um micróbio não pode engolir mais. É preciso esperar que pelo menos um objeto seja digerido."
+"Quando cheio, um micróbio não pode fagocitar mais. É preciso esperar que pelo menos um objeto seja digerido."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Engula coisas ao passar por cima deles no modo apropriado. Ative e desative esse modo ao apertar [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"Fagocite coisas ao passar por cima deles no modo apropriado. Ative e desative esse modo ao apertar [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"Pare de engolir quando o objeto esteja sendo puxado.\n"
+"Pare de fagocitar quando o objeto estiver sendo puxado.\n"
 "\n"
 "Siga a linha da sua célula para o objeto mais próximo."
 
@@ -6360,7 +6341,7 @@ msgstr "Cílios Atrativos"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Ao tentar engolir algo ([thrive:input]g_toggle_engulf[/thrive:input]), esse tipo de cílios causa vórtices na água que puxam objetos próximos para si. É útil para capturar presas."
+msgstr "Ao tentar fagocitar algo ([thrive:input]g_toggle_engulf[/thrive:input]), esse tipo de cílios causa vórtices na água que puxam objetos próximos para si. É útil para capturar presas."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_DESCRIPTION_NONE"
@@ -6668,6 +6649,9 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "SPECIES_N_TIMES"
 #~ msgstr "{0} (x{1})"
+
+#~ msgid "PLAYER_CELL"
+#~ msgstr "Célula do jogador"
 
 #~ msgid "BECOME_AWARE"
 #~ msgstr "Tornar-se Ciente"
@@ -7027,3 +7011,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 #~ msgstr "Batipelágico Pangoniano"
+
+#~ msgid "STATUS_COLON"
+#~ msgstr "Estado:"
