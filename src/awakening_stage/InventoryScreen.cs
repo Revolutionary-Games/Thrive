@@ -193,10 +193,7 @@ public class InventoryScreen : ControlWithInput
 
         if (craftingPanelPopup.Visible)
         {
-            ClearCraftingInputs();
-            if (!TakeAllCraftingResults())
-                DropCraftedItems();
-
+            PerformCraftingCloseActions();
             craftingPanelPopup.Hide();
             closedSomething = true;
         }
@@ -557,6 +554,12 @@ public class InventoryScreen : ControlWithInput
     {
         craftingPanelManuallyHidden = true;
 
+        PerformCraftingCloseActions();
+    }
+
+    private void PerformCraftingCloseActions()
+    {
+        ClearCraftingInputs();
         if (!TakeAllCraftingResults())
             DropCraftedItems();
 
