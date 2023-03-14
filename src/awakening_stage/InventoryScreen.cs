@@ -730,43 +730,51 @@ public class InventoryScreen : ControlWithInput
 
         // If one sides of the move is transient, then we need to actually do something
 
-        from = GetAdjustedSlotAndRemoveGhostStatus(from);
-        to = GetAdjustedSlotAndRemoveGhostStatus(to);
+        from = GetAdjustedSlotAndRemoveGhostStatus(from, false);
+        to = GetAdjustedSlotAndRemoveGhostStatus(to, true);
 
         // Return the adjusted slots
         return (from, to);
     }
 
-    private InventorySlot GetAdjustedSlotAndRemoveGhostStatus(InventorySlot original)
+    private InventorySlot GetAdjustedSlotAndRemoveGhostStatus(InventorySlot original, bool targetSlot)
     {
-        if (original.Item is { ShownAsGhostIn: { } } &&
-            original.Item.ShownAsGhostIn.TryGetTarget(out var originalNonTransient))
+        // Skip if ghost data doesn't exist, the data missing is a valid case when something is moved to a transient
+        // slot for the first time
+        if (original.Item is not { ShownAsGhostIn: { } } ||
+            !original.Item.ShownAsGhostIn.TryGetTarget(out var originalNonTransient))
         {
-            // We need to first undo the ghost item status, and then act as if the move was original the non-transient
-            // slot(s)
-            var item = original.Item;
-
-            if (originalNonTransient.GhostItem != item ||
-                (originalNonTransient.Item != null && originalNonTransient.Item != item))
-            {
-                GD.PrintErr("Ghost item status incorrect in non-transient slot");
-            }
-
-            // Reset ghost status
-            originalNonTransient.GhostItem = null;
-            item.ShownAsGhostIn = null;
-
-            // Copy the data to the "real" slot this move is happening
-            if (originalNonTransient.Item != null)
-                GD.PrintErr("Original item in non-transient slot is filled for some reason, losing data");
-
-            originalNonTransient.Item = item;
-            original.Item = null;
-            return originalNonTransient;
+            // This was not a transient slot needing handling
+            return original;
         }
 
-        // This was not a transient slot needing handling
-        return original;
+        // We need to first undo the ghost item status, and then act as if the move was original the non-transient
+        // slot(s)
+        var item = original.Item;
+
+        if (originalNonTransient.GhostItem != item ||
+            (originalNonTransient.Item != null && originalNonTransient.Item != item))
+        {
+            GD.PrintErr("Ghost item status incorrect in non-transient slot");
+        }
+
+        // Reset ghost status
+        originalNonTransient.GhostItem = null;
+        item.ShownAsGhostIn = null;
+
+        // Copy the data to the "real" slot this move is happening
+        if (originalNonTransient.Item != null)
+            GD.PrintErr("Original item in non-transient slot is filled for some reason, losing data");
+
+        originalNonTransient.Item = item;
+        original.Item = null;
+
+        // When we target a transient slot, we need to do the above to reset the ghost item status, but in that
+        // case we still want the real move to happen to the actual target slot
+        if (targetSlot)
+            return original;
+
+        return originalNonTransient;
     }
 
     private void HandleDropTypeSlotMove(InventorySlot creatureSlot, InventorySlot groundSlot)
