@@ -9,7 +9,9 @@ public class Technology : IRegistryType
     private readonly Lazy<Texture> lockedIcon;
     private readonly Lazy<Texture> unlockedIcon;
 
-    private string untranslatedName = null!;
+#pragma warning disable 169,649 // Used through reflection
+    private string? untranslatedName;
+#pragma warning restore 169,649
 
     [JsonProperty]
     private HashSet<string> requiresTechnologies = new();

@@ -9,7 +9,9 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(CraftingRecipeStringConverter))]
 public class CraftingRecipe : IRegistryType
 {
-    private string untranslatedName = null!;
+#pragma warning disable 169,649 // Used through reflection
+    private string? untranslatedName;
+#pragma warning restore 169,649
 
     [JsonConstructor]
     public CraftingRecipe(string name)

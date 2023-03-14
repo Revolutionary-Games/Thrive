@@ -18,7 +18,9 @@ public class EquipmentDefinition : IRegistryType
     private readonly Lazy<PackedScene> worldRepresentation;
     private readonly Lazy<Texture> icon;
 
-    private string untranslatedName = null!;
+#pragma warning disable 169,649 // Used through reflection
+    private string? untranslatedName;
+#pragma warning restore 169,649
 
     [JsonConstructor]
     public EquipmentDefinition(string name)

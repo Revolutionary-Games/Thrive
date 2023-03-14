@@ -9,7 +9,7 @@ public class Enzyme : IRegistryType
     /// <summary>
     ///   User visible pretty name
     /// </summary>
-    [TranslateFrom("untranslatedName")]
+    [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
     /// <summary>
@@ -17,9 +17,9 @@ public class Enzyme : IRegistryType
     /// </summary>
     public EnzymeProperty Property = EnzymeProperty.Hydrolytic;
 
-#pragma warning disable 169 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169
+#pragma warning restore 169,649
 
     public enum EnzymeProperty
     {

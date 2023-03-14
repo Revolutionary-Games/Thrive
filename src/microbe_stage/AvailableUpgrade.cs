@@ -7,10 +7,10 @@ using Newtonsoft.Json;
 /// </summary>
 public class AvailableUpgrade : IRegistryType
 {
-#pragma warning disable CS0169,CS0649 // used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
     private string? untranslatedDescription;
-#pragma warning restore CS0169,CS0649
+#pragma warning restore 169,649
 
     /// <summary>
     ///   When true this is the default upgrade shown in the upgrade GUI for reverting upgrades
