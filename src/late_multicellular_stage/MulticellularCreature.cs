@@ -526,7 +526,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         (from.ContainedItem, to.ContainedItem) = (to.ContainedItem, from.ContainedItem);
 
-        // TODO: when slot contents are displayed differently, we need to handle that here
+        if (from.ContainedItem != null)
+            SetItemPositionInSlot(from, from.ContainedItem.EntityNode);
+
+        if (to.ContainedItem != null)
+            SetItemPositionInSlot(to, to.ContainedItem.EntityNode);
     }
 
     private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)
@@ -541,12 +545,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // Remove the object from the world
         targetNode.ReParent(this);
 
-        // TODO: inventory carried items should not be shown in the world
-
-        // TODO: better positioning and actually attaching it to the place the object is carried in
-        var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
-
-        targetNode.Translation = offset;
+        SetItemPositionInSlot(slot, targetNode);
 
         // Add the object to be carried
         carriedObjects.Add(item);
@@ -559,5 +558,15 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             entityPhysics.Mode = ModeEnum.Kinematic;
 
         return true;
+    }
+
+    private void SetItemPositionInSlot(InventorySlotData slot, Spatial node)
+    {
+        // TODO: inventory carried items should not be shown in the world
+
+        // TODO: better positioning and actually attaching it to the place the object is carried in
+        var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
+
+        node.Translation = offset;
     }
 }
