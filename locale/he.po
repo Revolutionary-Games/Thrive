@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-09 13:37+0200\n"
+"POT-Creation-Date: 2023-03-14 14:21+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1096,34 +1096,44 @@ msgstr "פרוטנופ (אדום-ירוק)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "טריטנופ (כחול - צהוב)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:197
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:185
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 #, fuzzy
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "חסרה כותרת"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:146
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "שום דבר"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:226
+#: ../src/awakening_stage/InventoryScreen.cs:968
+#, fuzzy
+msgid "CRAFTING_NO_RECIPE_SELECTED"
+msgstr "חסרה כותרת"
+
+#: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
+msgid "CRAFTING_RECIPE_HAND_AXE"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "חסרה כותרת"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:166
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:237
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:131
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "חסרה כותרת"
@@ -1936,12 +1946,12 @@ msgstr ""
 "מיקרובים אמיצים לא יפחדו מטורפים לידם\n"
 "והם נוטים לתקוף חזרה."
 
-#: ../src/general/TranslationHelper.cs:85
+#: ../src/general/TranslationHelper.cs:81
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "כבוי"
 
-#: ../src/general/TranslationHelper.cs:84
+#: ../src/general/TranslationHelper.cs:80
 #, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "מקשי קודים מופעלים"
@@ -2483,20 +2493,20 @@ msgstr "פורמט של כתובת אתר אינו חוקי"
 msgid "INVALID_URL_SCHEME"
 msgstr "סכימת כתובת URL לא חוקית"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:39
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:65
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:114
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:108
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -4037,7 +4047,7 @@ msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט ה
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:367
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4962,7 +4972,8 @@ msgstr "רזולוציה:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "מהירות ספיגת משאבים"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:305
+#: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "צפה בקוד מקור"
@@ -5798,6 +5809,10 @@ msgstr "תגיות מכילים רק רווחים"
 msgid "TAKE_SCREENSHOT"
 msgstr "צלם מסך"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:3
+msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
@@ -6042,6 +6057,10 @@ msgstr "בטל מצב קישור"
 #: ../src/general/MainMenu.tscn:327
 msgid "TOOLS"
 msgstr "כלים"
+
+#: ../simulation_parameters/awakening_stage/equipment.json:3
+msgid "TOOL_HAND_AXE"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 msgid "TOTAL_POPULATION_COLON"

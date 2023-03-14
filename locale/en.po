@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-09 13:37+0200\n"
-"PO-Revision-Date: 2023-03-09 13:37+0200\n"
+"POT-Creation-Date: 2023-03-14 14:21+0200\n"
+"PO-Revision-Date: 2023-03-14 14:24+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1100,31 +1100,40 @@ msgstr "Protanope (Red-Green)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blue-Yellow)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:197
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Clear selected inputs"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:185
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Inputs"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:146
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Known Recipes"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:226
+#: ../src/awakening_stage/InventoryScreen.cs:968
+msgid "CRAFTING_NO_RECIPE_SELECTED"
+msgstr "Please select a recipe above to craft first"
+
+#: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
+msgid "CRAFTING_RECIPE_HAND_AXE"
+msgstr "Stone Hand Axe"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 msgid "CRAFTING_RESULTS"
 msgstr "Results"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:166
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr "Select crafting recipe or add items to filter"
+msgstr "Select a crafting recipe or add items to filter"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:237
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Take All"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:131
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 msgid "CRAFTING_TITLE"
 msgstr "Crafting"
 
@@ -1956,11 +1965,11 @@ msgstr ""
 "Brave microbes are not intimidated by nearby predators\n"
 "and will more likely attack back."
 
-#: ../src/general/TranslationHelper.cs:85
+#: ../src/general/TranslationHelper.cs:81
 msgid "FEATURE_DISABLED"
 msgstr "Disabled"
 
-#: ../src/general/TranslationHelper.cs:84
+#: ../src/general/TranslationHelper.cs:80
 msgid "FEATURE_ENABLED"
 msgstr "Enabled"
 
@@ -2467,19 +2476,19 @@ msgstr "Invalid URL format"
 msgid "INVALID_URL_SCHEME"
 msgstr "Invalid URL scheme"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:39
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr "Items on the Ground"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:65
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 msgid "INVENTORY_TITLE"
 msgstr "Inventory"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:114
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr "Crafting"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:108
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Ground"
 
@@ -4016,7 +4025,7 @@ msgstr "The most basic form of membrane, it has little protection against damage
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:367
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Nothing to interact with"
 
@@ -4929,7 +4938,8 @@ msgstr "Resolution:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:305
+#: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 msgid "RESOURCE_ROCK"
 msgstr "Rock"
 
@@ -5760,6 +5770,10 @@ msgstr "Tags contain only whitespace"
 msgid "TAKE_SCREENSHOT"
 msgstr "Take a screenshot"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:3
+msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr "Simple Stone Tools"
+
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
@@ -6013,6 +6027,10 @@ msgstr "Toggle unbinding"
 #: ../src/general/MainMenu.tscn:327
 msgid "TOOLS"
 msgstr "Tools"
+
+#: ../simulation_parameters/awakening_stage/equipment.json:3
+msgid "TOOL_HAND_AXE"
+msgstr "Hand Axe"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 msgid "TOTAL_POPULATION_COLON"

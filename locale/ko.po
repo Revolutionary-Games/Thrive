@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-09 13:37+0200\n"
+"POT-Creation-Date: 2023-03-14 14:21+0200\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -1136,34 +1136,44 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:197
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:185
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 #, fuzzy
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "번영했습니다!"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:146
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "번영했습니다!"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:226
+#: ../src/awakening_stage/InventoryScreen.cs:968
+#, fuzzy
+msgid "CRAFTING_NO_RECIPE_SELECTED"
+msgstr "번영했습니다!"
+
+#: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
+msgid "CRAFTING_RECIPE_HAND_AXE"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "번영했습니다!"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:166
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:237
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:131
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "번영했습니다!"
@@ -2013,11 +2023,11 @@ msgstr ""
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
-#: ../src/general/TranslationHelper.cs:85
+#: ../src/general/TranslationHelper.cs:81
 msgid "FEATURE_DISABLED"
 msgstr ""
 
-#: ../src/general/TranslationHelper.cs:84
+#: ../src/general/TranslationHelper.cs:80
 #, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "치트 키 활성화"
@@ -2544,20 +2554,20 @@ msgstr ""
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:39
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:65
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "번영했습니다!"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:114
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:108
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -4115,7 +4125,7 @@ msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기�
 msgid "NOTHING_HERE"
 msgstr "아무것도 없음"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:367
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5074,7 +5084,8 @@ msgstr "해상도:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "자원 흡수 속도"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:305
+#: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "소스 코드 보기"
@@ -5956,6 +5967,10 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "스크린샷 촬영"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:3
+msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
@@ -6199,6 +6214,10 @@ msgstr "결합 해제 켜고 끄기"
 #: ../src/general/MainMenu.tscn:327
 msgid "TOOLS"
 msgstr "도구"
+
+#: ../simulation_parameters/awakening_stage/equipment.json:3
+msgid "TOOL_HAND_AXE"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 #, fuzzy

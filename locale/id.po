@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-09 13:37+0200\n"
+"POT-Creation-Date: 2023-03-14 14:21+0200\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -1119,34 +1119,44 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:197
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:185
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 #, fuzzy
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "KAMU TELAH BERKEMBANG!"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:146
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "KAMU TELAH BERKEMBANG!"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:226
+#: ../src/awakening_stage/InventoryScreen.cs:968
+#, fuzzy
+msgid "CRAFTING_NO_RECIPE_SELECTED"
+msgstr "KAMU TELAH BERKEMBANG!"
+
+#: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
+msgid "CRAFTING_RECIPE_HAND_AXE"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "KAMU TELAH BERKEMBANG!"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:166
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:237
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:131
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "KAMU TELAH BERKEMBANG!"
@@ -1997,11 +2007,11 @@ msgstr ""
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
-#: ../src/general/TranslationHelper.cs:85
+#: ../src/general/TranslationHelper.cs:81
 msgid "FEATURE_DISABLED"
 msgstr ""
 
-#: ../src/general/TranslationHelper.cs:84
+#: ../src/general/TranslationHelper.cs:80
 #, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "Aktifkan tombol cheat"
@@ -2548,20 +2558,20 @@ msgstr ""
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:39
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:65
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:114
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:108
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -4110,7 +4120,7 @@ msgstr "Bentuk membran yang paling dasar, mempunyai ketahanan yang kecil terhada
 msgid "NOTHING_HERE"
 msgstr "Tidak ada apa-apa disini"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:367
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5062,7 +5072,8 @@ msgstr "Resolusi:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Kecepatan Serap Sumber Daya"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:305
+#: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Lihat Kode Sumber"
@@ -5942,6 +5953,10 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Ambil tangkapan layar"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:3
+msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
@@ -6190,6 +6205,10 @@ msgstr "Nyala/matikan pelepasan"
 #: ../src/general/MainMenu.tscn:327
 msgid "TOOLS"
 msgstr "Alat"
+
+#: ../simulation_parameters/awakening_stage/equipment.json:3
+msgid "TOOL_HAND_AXE"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 #, fuzzy

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-09 13:37+0200\n"
+"POT-Creation-Date: 2023-03-14 14:21+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1102,34 +1102,44 @@ msgstr "Protanopia (červeno-zelená)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (modro-žltá)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:197
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:185
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 #, fuzzy
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Chýba názov"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:146
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Chýba názov"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:226
+#: ../src/awakening_stage/InventoryScreen.cs:968
+#, fuzzy
+msgid "CRAFTING_NO_RECIPE_SELECTED"
+msgstr "Chýba názov"
+
+#: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
+msgid "CRAFTING_RECIPE_HAND_AXE"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Chýba názov"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:166
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:237
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:131
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "Chýba názov"
@@ -1933,12 +1943,12 @@ msgstr "Bojazlivý"
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
-#: ../src/general/TranslationHelper.cs:85
+#: ../src/general/TranslationHelper.cs:81
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "Vypnuté"
 
-#: ../src/general/TranslationHelper.cs:84
+#: ../src/general/TranslationHelper.cs:80
 #, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "Cheaty povolené"
@@ -2469,20 +2479,20 @@ msgstr "Neplatný formát adresy URL"
 msgid "INVALID_URL_SCHEME"
 msgstr "Neplatná schéma adresy URL"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:39
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:65
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:114
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:108
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -3978,7 +3988,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr "Tu nič nie je"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:367
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4908,7 +4918,8 @@ msgstr "Rozlíšenie:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rýchlosť absorpcie zdrojov"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:305
+#: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Zobraziť zdrojový kód"
@@ -5742,6 +5753,10 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Spraviť snímku obrazovky"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:3
+msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
@@ -5987,6 +6002,10 @@ msgstr "Prepnúť rozpájanie"
 #: ../src/general/MainMenu.tscn:327
 msgid "TOOLS"
 msgstr "Nástroje"
+
+#: ../simulation_parameters/awakening_stage/equipment.json:3
+msgid "TOOL_HAND_AXE"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 msgid "TOTAL_POPULATION_COLON"
