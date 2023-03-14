@@ -74,19 +74,13 @@ public class InventorySlot : Button
     public bool Locked
     {
         get => Disabled;
-        set
-        {
-            Disabled = value;
-        }
+        set => Disabled = value;
     }
 
     public bool ShowTooHeavyIcon
     {
         get => tooHeavyIndicator.Visible;
-        set
-        {
-            tooHeavyIndicator.Visible = value;
-        }
+        set => tooHeavyIndicator.Visible = value;
     }
 
     /// <summary>
