@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -92,7 +91,7 @@ public class InventoryScreen : ControlWithInput
 
     private ICharacterInventory? displayingInventoryOf;
 
-    private CraftingRecipe? selectedRecipe;
+    // private CraftingRecipe? selectedRecipe;
 
     private InventorySlot? previouslySelectedSlot;
     private float timeUntilSlotSwap = -1;
@@ -559,7 +558,9 @@ public class InventoryScreen : ControlWithInput
 
     private void PerformCraftingCloseActions()
     {
-        ClearCraftingInputs();
+        if (!ClearCraftingInputs())
+            GD.PrintErr("Could not clear crafting inputs");
+
         if (!TakeAllCraftingResults())
             DropCraftedItems();
 
