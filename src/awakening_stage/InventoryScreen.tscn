@@ -173,6 +173,7 @@ margin_bottom = 427.0
 rect_min_size = Vector2( 400, 400 )
 
 [node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer"]
+visible = false
 margin_right = 511.0
 margin_bottom = 25.0
 text = "CRAFTING_KNOWN_ITEMS"
@@ -184,7 +185,7 @@ margin_right = 511.0
 margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 1.7
 
 [node name="RecipesList" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
 margin_bottom = 225.0
