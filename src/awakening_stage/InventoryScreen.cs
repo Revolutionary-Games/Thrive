@@ -525,6 +525,7 @@ public class InventoryScreen : ControlWithInput
         {
             craftingPanelPopup.CustomHide();
             craftingPanelManuallyHidden = true;
+            OnCraftingPanelClosed();
         }
         else
         {
