@@ -11,12 +11,15 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked
+public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
 
     [JsonProperty]
     private readonly CompoundBag compounds = new(0.0f);
+
+    [JsonProperty]
+    private readonly List<IInteractableEntity> carriedObjects = new();
 
     private Compound atp = null!;
     private Compound glucose = null!;
@@ -30,6 +33,19 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 #pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
 #pragma warning restore CA2213
+
+    // TODO: a real system for determining the hand and equipment slots
+    // TODO: hand count based on body plan
+    [JsonProperty]
+    private InventorySlotData handSlot = new(1, EquipmentSlotType.Hand, new Vector2(0.82f, 0.43f));
+
+    // TODO: increase inventory slots based on equipment
+    [JsonProperty]
+    private InventorySlotData[] inventorySlots =
+    {
+        new(2),
+        new(3),
+    };
 
     [JsonProperty]
     private float targetSwimLevel;
@@ -57,6 +73,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     [JsonProperty]
     public Action<MulticellularCreature, bool>? OnReproductionStatus { get; set; }
+
+    [JsonProperty]
+    public Action<MulticellularCreature, IInteractableEntity>? RequestCraftingInterfaceFor { get; set; }
 
     /// <summary>
     ///   The species of this creature. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
@@ -276,6 +295,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // {
         //     Hitpoints = 0.0f;
         //     Kill();
+        // TODO: kill method needs to call DropAll()
         // }
     }
 
@@ -317,6 +337,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         else
         {
             // TODO: only allow jumping when touching the ground
+            // TODO: suppress jump when the user just interacted with a dialog to confirm something, maybe jump should
+            // use the on press key thing to only trigger jumping once?
             ApplyCentralImpulse(new Vector3(0, 1, 0) * delta * 1000);
         }
     }
@@ -325,5 +347,226 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     {
         // TODO: crouching
         targetSwimLevel -= upDownSwimSpeed * delta;
+    }
+
+    /// <summary>
+    ///   Calculates the actions this creature can do on a target object
+    /// </summary>
+    /// <param name="target">The object to potentially do something for</param>
+    /// <returns>Enumerator of the possible actions</returns>
+    /// <remarks>
+    ///   <para>
+    ///     Somehow make sure when the AI can use this to that the text overrides don't need to be generated as those
+    ///     will waste performance for no reason. Maybe we just need two variants of the method?
+    ///   </para>
+    /// </remarks>
+    public IEnumerable<(InteractionType Interaction, bool Enabled, string? TextOverride)> CalculatePossibleActions(
+        IInteractableEntity target)
+    {
+        if (target.CanBeCarried)
+        {
+            bool full = !FitsInCarryingCapacity(target);
+            yield return (InteractionType.Pickup, !full,
+                full ? TranslationServer.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
+        }
+
+        if (target is ResourceEntity)
+        {
+            // Assume all resources can be used in some kind of crafting
+            yield return (InteractionType.Craft, true, null);
+        }
+    }
+
+    public bool AttemptInteraction(IInteractableEntity target, InteractionType interactionType)
+    {
+        // Make sure action is allowed first
+        if (!CalculatePossibleActions(target).Any(t => t.Enabled && t.Interaction == interactionType))
+            return false;
+
+        // Then perform it
+        switch (interactionType)
+        {
+            case InteractionType.Pickup:
+                return PickupItem(target);
+            case InteractionType.Craft:
+                if (RequestCraftingInterfaceFor == null)
+                {
+                    // AI should directly use the crafting methods to create the crafter products
+                    GD.PrintErr(
+                        $"Only player creature can open crafting ({nameof(RequestCraftingInterfaceFor)} is unset)");
+                    return false;
+                }
+
+                // Request the crafting interface to be opened with the target pre-selected
+                RequestCraftingInterfaceFor.Invoke(this, target);
+                return true;
+            default:
+                GD.PrintErr($"Unimplemented action handling for {interactionType}");
+                return false;
+        }
+    }
+
+    public bool FitsInCarryingCapacity(IInteractableEntity interactableEntity)
+    {
+        return this.HasEmptySlot();
+    }
+
+    /// <summary>
+    ///   Pickup item to the first available slot
+    /// </summary>
+    public bool PickupItem(IInteractableEntity item)
+    {
+        // Find an empty slot to put the thing in
+        // Prefer hand slots
+        foreach (var slot in inventorySlots.Prepend(handSlot))
+        {
+            if (slot.ContainedItem == null)
+            {
+                return PickUpItem(item, slot.Id);
+            }
+        }
+
+        // No empty slots
+        return false;
+    }
+
+    public bool PickUpItem(IInteractableEntity item, int slotId)
+    {
+        // Find the slot to put the item in
+        if (handSlot.Id == slotId)
+            return PickupToSlot(item, handSlot);
+
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.Id == slotId)
+                return PickupToSlot(item, slot);
+        }
+
+        return false;
+    }
+
+    public void DropAll()
+    {
+        var thingsToDrop = this.ListAllItems().Select(s => s.ContainedItem).WhereNotNull().ToList();
+
+        foreach (var entity in thingsToDrop)
+        {
+            // TODO: the missing check that the dropped position is free of other physics objects is really going to be
+            // a problem here
+            DropItem(entity);
+        }
+    }
+
+    public bool DropItem(IInteractableEntity item)
+    {
+        var slot = this.SlotWithItem(item);
+
+        if (slot == null)
+        {
+            GD.PrintErr("Trying to drop item we can't find in our inventory slots");
+            return false;
+        }
+
+        if (!carriedObjects.Remove(item))
+        {
+            // We weren't carrying that
+            GD.PrintErr("Can't drop something creature isn't carrying");
+            return false;
+        }
+
+        var entityNode = item.EntityNode;
+
+        // TODO: drop position based on creature size, and also confirm the drop point is free from other physics
+        // objects
+
+        var offset = new Vector3(0, 1.5f, 3.6f);
+
+        // Assume our parent is the world
+        var world = GetParent() ?? throw new Exception("Creature has no parent to place dropped entity in");
+
+        var ourTransform = GlobalTransform;
+
+        entityNode.ReParent(world);
+        entityNode.GlobalTranslation = ourTransform.origin + ourTransform.basis.Quat().Xform(offset);
+
+        // Allow others to interact with the object again
+        item.InteractionDisabled = false;
+
+        if (entityNode is RigidBody entityPhysics)
+            entityPhysics.Mode = ModeEnum.Rigid;
+
+        slot.ContainedItem = null;
+
+        return true;
+    }
+
+    public IEnumerable<InventorySlotData> ListInventoryContents()
+    {
+        return inventorySlots;
+    }
+
+    public IEnumerable<InventorySlotData> ListEquipmentContents()
+    {
+        yield return handSlot;
+    }
+
+    public bool IsItemSlotMoveAllowed(int fromSlotId, int toSlotId)
+    {
+        // TODO: implement slot type restrictions
+
+        // TODO: non-hand equipment slots should only take equipment of the right type
+
+        return true;
+    }
+
+    public void MoveItemSlots(int fromSlotId, int toSlotId)
+    {
+        var from = this.SlotWithId(fromSlotId) ?? throw new ArgumentException("Invalid from slot");
+        var to = this.SlotWithId(toSlotId) ?? throw new ArgumentException("Invalid to slot");
+
+        (from.ContainedItem, to.ContainedItem) = (to.ContainedItem, from.ContainedItem);
+
+        if (from.ContainedItem != null)
+            SetItemPositionInSlot(from, from.ContainedItem.EntityNode);
+
+        if (to.ContainedItem != null)
+            SetItemPositionInSlot(to, to.ContainedItem.EntityNode);
+    }
+
+    private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)
+    {
+        if (slot.ContainedItem != null)
+            return false;
+
+        slot.ContainedItem = item;
+
+        var targetNode = item.EntityNode;
+
+        // Remove the object from the world
+        targetNode.ReParent(this);
+
+        SetItemPositionInSlot(slot, targetNode);
+
+        // Add the object to be carried
+        carriedObjects.Add(item);
+
+        // Would be very annoying to keep getting the prompt to interact with the object
+        item.InteractionDisabled = true;
+
+        // Surprise surprise, the physics detach bug can also hit here
+        if (targetNode is RigidBody entityPhysics)
+            entityPhysics.Mode = ModeEnum.Kinematic;
+
+        return true;
+    }
+
+    private void SetItemPositionInSlot(InventorySlotData slot, Spatial node)
+    {
+        // TODO: inventory carried items should not be shown in the world
+
+        // TODO: better positioning and actually attaching it to the place the object is carried in
+        var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
+
+        node.Translation = offset;
     }
 }

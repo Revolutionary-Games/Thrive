@@ -47,6 +47,7 @@ script = ExtResource( 7 )
 Movable = false
 ShowCloseButton = false
 Decorate = false
+PreventsMouseCaptureWhileOpen = false
 SlideTextureRectPath = NodePath("Overlay/SlideableTextureRect")
 SlideToolbarPath = NodePath("Overlay/Toolbar")
 SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")

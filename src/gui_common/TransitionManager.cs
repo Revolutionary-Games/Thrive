@@ -163,6 +163,18 @@ public class TransitionManager : ControlWithInput
     }
 
     /// <summary>
+    ///   Instantly fades out the screen, used in game initialization situations where otherwise a brief flash of
+    ///   the game content would appear
+    /// </summary>
+    public void FadeOutInstantly()
+    {
+        var fader = CreateScreenFade(ScreenFade.FadeType.FadeOut, 0);
+
+        AddSequence(fader, null, false, true);
+        fader.SetToEndState();
+    }
+
+    /// <summary>
     ///   Skips all the running and remaining transition sequences.
     /// </summary>
     private void CancelSequences()

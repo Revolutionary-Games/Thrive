@@ -42,7 +42,7 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
             return false;
 
         // Ignore if mouse is not captured
-        if (Input.MouseMode != Input.MouseModeEnum.Captured)
+        if (!MouseCaptureManager.Captured)
             return false;
 
         var relative = mouseMotion.Relative;

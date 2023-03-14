@@ -30,16 +30,32 @@ public class SceneManager : Node
     ///   Switches to a game state
     /// </summary>
     /// <param name="state">The game state to switch to, this automatically looks up the right scene</param>
-    public void SwitchToScene(MainGameState state)
+    /// <returns>The scene that was switched to</returns>
+    public Node SwitchToScene(MainGameState state)
     {
-        SwitchToScene(LoadScene(state).Instance());
+        var scene = LoadScene(state).Instance();
+        SwitchToScene(scene);
+
+        return scene;
     }
 
-    public void SwitchToScene(string scenePath)
+    public Node SwitchToScene(string scenePath)
     {
-        SwitchToScene(LoadScene(scenePath).Instance());
+        var scene = LoadScene(scenePath).Instance();
+        SwitchToScene(scene);
+
+        return scene;
     }
 
+    /// <summary>
+    ///   Switched to a new scene
+    /// </summary>
+    /// <param name="newSceneRoot">The new scene root</param>
+    /// <param name="keepOldRoot">If true the old root is preserved (not freed)</param>
+    /// <returns>
+    ///   When keeping the old root, this will be a reference to the old scene. When not null this must be switched
+    ///   back to later or freed manually by the code calling this.
+    /// </returns>
     public Node? SwitchToScene(Node newSceneRoot, bool keepOldRoot = false)
     {
         var oldRoot = GetTree().CurrentScene;

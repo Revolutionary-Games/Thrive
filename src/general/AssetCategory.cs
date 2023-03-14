@@ -2,14 +2,14 @@
 
 public class AssetCategory : IRegistryType
 {
-#pragma warning disable 169 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169
+#pragma warning restore 169,649
 
     /// <summary>
     ///   The user readable name
     /// </summary>
-    [TranslateFrom("untranslatedName")]
+    [TranslateFrom(nameof(untranslatedName))]
     public string Name { get; set; } = null!;
 
     public List<Asset> Assets { get; set; } = null!;

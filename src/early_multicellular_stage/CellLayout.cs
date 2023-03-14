@@ -5,7 +5,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   A list of positioned organelles. Verifies that they don't overlap
+///   A list of positioned cells. Verifies that they don't overlap
 /// </summary>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 [UseThriveSerializer]

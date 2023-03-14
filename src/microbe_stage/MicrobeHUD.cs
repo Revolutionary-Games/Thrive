@@ -399,7 +399,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 if (microbe.IsPlayerMicrobe)
                 {
                     // Special handling for player
-                    var label = mouseHoverPanel.AddItem(SPECIES_CATEGORY, entity.InspectableName);
+                    var label = mouseHoverPanel.AddItem(SPECIES_CATEGORY, entity.ReadableName);
                     label.SetDescription(TranslationServer.Translate("PLAYER"));
                     continue;
                 }
@@ -415,7 +415,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 category = AGENTS_CATEGORY;
             }
 
-            var key = (category, entity.InspectableName);
+            var key = (category, entity.ReadableName);
             hoveredEntities.TryGetValue(key, out int count);
             hoveredEntities[key] = count + 1;
         }

@@ -419,8 +419,7 @@ public class OrganelleDefinition : IRegistryType
     }
 
     /// <summary>
-    ///   Resolves references to external resources so that during
-    ///   runtime they don't need to be looked up
+    ///   Resolves references to external resources so that during runtime they don't need to be looked up
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
