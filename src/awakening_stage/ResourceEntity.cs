@@ -37,7 +37,7 @@ public class ResourceEntity : RigidBody, IInteractableEntity
     public Texture Icon => ResourceType?.Icon ?? throw new NotSupportedException("Not initialized yet");
 
     [JsonIgnore]
-    public WeakReference<InventorySlot>? LastNonTransientSlot { get; set; }
+    public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }
 
     public void OnDestroyed()
     {

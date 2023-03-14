@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -90,6 +91,8 @@ public class InventoryScreen : ControlWithInput
 #pragma warning restore CA2213
 
     private ICharacterInventory? displayingInventoryOf;
+
+    private CraftingRecipe? selectedRecipe;
 
     private InventorySlot? previouslySelectedSlot;
     private float timeUntilSlotSwap = -1;
@@ -190,6 +193,10 @@ public class InventoryScreen : ControlWithInput
 
         if (craftingPanelPopup.Visible)
         {
+            ClearCraftingInputs();
+            if (!TakeAllCraftingResults())
+                DropCraftedItems();
+
             craftingPanelPopup.Hide();
             closedSomething = true;
         }
@@ -221,7 +228,7 @@ public class InventoryScreen : ControlWithInput
             InventorySlot slot;
             if (nextIndex >= groundInventorySlots.Count)
             {
-                slot = CreateInventorySlot();
+                slot = CreateInventorySlot(InventorySlotCategory.Ground, false);
 
                 groundSlotContainer.AddChild(slot);
                 groundInventorySlots.Add(slot);
@@ -232,7 +239,6 @@ public class InventoryScreen : ControlWithInput
             }
 
             slot.Item = objectOnGround;
-            objectOnGround.LastNonTransientSlot = new WeakReference<InventorySlot>(slot);
 
             // TODO: update too heavy / not enough space indicator
 
@@ -297,7 +303,7 @@ public class InventoryScreen : ControlWithInput
                 return;
         }
 
-        var slot = CreateInventorySlot();
+        var slot = CreateInventorySlot(InventorySlotCategory.Ground, false);
 
         groundSlotContainer.AddChild(slot);
         groundInventorySlots.Add(slot);
@@ -314,7 +320,7 @@ public class InventoryScreen : ControlWithInput
             InventorySlot slot;
             if (nextIndex >= inventorySlots.Count)
             {
-                slot = CreateInventorySlot();
+                slot = CreateInventorySlot(InventorySlotCategory.Inventory, false);
 
                 inventorySlotContainer.AddChild(slot);
                 inventorySlots.Add(slot);
@@ -353,7 +359,7 @@ public class InventoryScreen : ControlWithInput
             InventorySlot slot;
             if (nextIndex >= equipmentSlots.Count)
             {
-                slot = CreateInventorySlot();
+                slot = CreateInventorySlot(InventorySlotCategory.Equipment, false);
 
                 equipmentSlotParent.AddChild(slot);
                 equipmentSlots.Add(slot);
@@ -430,7 +436,7 @@ public class InventoryScreen : ControlWithInput
         }
 
         // New slot needed as all previous ones are filled
-        var newSlot = CreateInventorySlot();
+        var newSlot = CreateInventorySlot(InventorySlotCategory.CraftingInput, true);
 
         craftingSlotsContainer.AddChild(newSlot);
         craftingSlots.Add(newSlot);
@@ -459,7 +465,7 @@ public class InventoryScreen : ControlWithInput
 
         while (required > 0)
         {
-            var newSlot = CreateInventorySlot();
+            var newSlot = CreateInventorySlot(InventorySlotCategory.CraftingResult, false);
 
             // Crafting results can't have random stuff put in them
             newSlot.TakeOnly = true;
@@ -473,9 +479,11 @@ public class InventoryScreen : ControlWithInput
         }
     }
 
-    private InventorySlot CreateInventorySlot()
+    private InventorySlot CreateInventorySlot(InventorySlotCategory category, bool transient)
     {
         var slot = inventorySlotScene.Instance<InventorySlot>();
+        slot.Transient = transient;
+        slot.Category = category;
 
         slot.Group = inventorySlotGroup;
 
@@ -548,6 +556,10 @@ public class InventoryScreen : ControlWithInput
     private void OnCraftingPanelClosed()
     {
         craftingPanelManuallyHidden = true;
+
+        if (!TakeAllCraftingResults())
+            DropCraftedItems();
+
         UpdateToggleButtonStatus();
     }
 
@@ -599,53 +611,124 @@ public class InventoryScreen : ControlWithInput
     /// </summary>
     /// <param name="from">The moved from slot</param>
     /// <param name="to">The target slot</param>
+    /// <remarks>
+    ///   <para>
+    ///     Note that when this is called the new item is already in the to slot and the old content is swapped to the
+    ///     from slot.
+    ///   </para>
+    /// </remarks>
     private void OnSlotSwapHappened(InventorySlot from, InventorySlot to)
     {
-        // Moving within a single category (when on ground or crafting) requires no action
-        if (AreSlotsInCategory(from, to, groundInventorySlots) || AreSlotsInCategory(from, to, craftingSlots))
-            return;
-
-        // Putting things in the crafting panel doesn't need any action
-        if (craftingSlots.Contains(to))
-            return;
-
-        // When moving things from the crafting slots, we need to care about the original status of the items
-        if (craftingSlots.Contains(from))
-        {
-            // When originally a ground item is moved to the inventory, it needs to be picked up
-            // TODO: handling for these cases
-            throw new NotImplementedException();
-
-            return;
-        }
-
         if (displayingInventoryOf == null)
             throw new InvalidOperationException("Not opened to display inventory of anything");
 
+        // If two slots that are both empty were swapped, absolutely nothing needs to be done
+        if (from.Item == null && to.Item == null)
+            return;
+
+        // Moving between transient slots requires no special handling (only when moving an item out of a transient
+        // slot does something happen)
+        if (from.Transient && to.Transient)
+            return;
+
+        // If one side of the move is transient, then we need to actually do something
+        if (from.Transient || to.Transient)
+        {
+            // We need to first undo the ghost item status, and then act as if the move was from the non-transient
+            // slot(s)
+            if (from.Item is { ShownAsGhostIn: { } } &&
+                from.Item.ShownAsGhostIn.TryGetTarget(out var toNonTransient))
+            {
+                var item = from.Item;
+
+                if (toNonTransient.GhostItem != item ||
+                    (toNonTransient.Item != null && toNonTransient.Item != item))
+                {
+                    GD.PrintErr("Ghost item status incorrect in from non-transient slot");
+                }
+
+                // Update ghost status
+                toNonTransient.GhostItem = null;
+                item.ShownAsGhostIn = null;
+
+                // Update the to moved data to be about the non-transient slot
+                var movedOtherSideItem = to.Item;
+                to.Item = null;
+                toNonTransient.Item = movedOtherSideItem;
+                to = toNonTransient;
+            }
+
+            if (to.Item is { ShownAsGhostIn: { } } &&
+                to.Item.ShownAsGhostIn.TryGetTarget(out var fromNonTransient))
+            {
+                var item = to.Item;
+
+                if (fromNonTransient.GhostItem != item ||
+                    (fromNonTransient.Item != null && fromNonTransient.Item != item))
+                {
+                    GD.PrintErr("Ghost item status incorrect in to non-transient slot");
+                }
+
+                // Update ghost status
+                fromNonTransient.GhostItem = null;
+                item.ShownAsGhostIn = null;
+
+                // Update the from moved data to be about the non-transient slot
+                var movedOtherSideItem = from.Item;
+                from.Item = null;
+                fromNonTransient.Item = movedOtherSideItem;
+                from = fromNonTransient;
+            }
+
+            // We fall through here to do the normal processing after resolving the ghost / transient statuses
+        }
+
+        // Sanity check about ghost items
+        if (from.Item is { ShownAsGhostIn: { } })
+            GD.PrintErr("Ghost item status not unset correctly in from item");
+
+        if (to.Item is { ShownAsGhostIn: { } })
+            GD.PrintErr("Ghost item status not unset correctly in to item");
+
+        // Transient slot resolving can result in a move from slot to itself
+        if (to == from)
+            return;
+
+        // Moving within a single category (when on ground) requires no action
+        if (AreSlotsInCategory(from, to, InventorySlotCategory.Ground))
+            return;
+
+        // Putting things in the crafting panel doesn't need any action
+        if (to.Category == InventorySlotCategory.CraftingInput)
+            return;
+
         // Moving between inventory and equipment
-        if ((equipmentSlots.Contains(from) || equipmentSlots.Contains(to)) &&
-            (inventorySlots.Contains(from) || inventorySlots.Contains(to)))
+        if ((from.Category == InventorySlotCategory.Equipment || to.Category == InventorySlotCategory.Equipment) &&
+            (from.Category == InventorySlotCategory.Inventory || to.Category == InventorySlotCategory.Inventory))
         {
             displayingInventoryOf.MoveItemSlots(from.SlotId, to.SlotId);
             return;
         }
 
         // Moving within inventory or equipment
-        if (AreSlotsInCategory(from, to, equipmentSlots) || AreSlotsInCategory(from, to, inventorySlots))
+        if (AreSlotsInCategory(from, to, InventorySlotCategory.Equipment) ||
+            AreSlotsInCategory(from, to, InventorySlotCategory.Inventory))
         {
             displayingInventoryOf.MoveItemSlots(from.SlotId, to.SlotId);
             return;
         }
 
         // Moving from ground to creature
-        if (groundInventorySlots.Contains(from) && (inventorySlots.Contains(to) || equipmentSlots.Contains(to)))
+        if (from.Category == InventorySlotCategory.Ground &&
+            to.Category is InventorySlotCategory.Inventory or InventorySlotCategory.Equipment)
         {
             HandleDropTypeSlotMove(to, from);
             return;
         }
 
         // Moving from inventory to ground
-        if (groundInventorySlots.Contains(to) && (inventorySlots.Contains(from) || equipmentSlots.Contains(from)))
+        if (to.Category == InventorySlotCategory.Ground &&
+            from.Category is InventorySlotCategory.Inventory or InventorySlotCategory.Equipment)
         {
             HandleDropTypeSlotMove(from, to);
             return;
@@ -707,9 +790,9 @@ public class InventoryScreen : ControlWithInput
     }
 
     private bool AreSlotsInCategory(InventorySlot slot1, InventorySlot slot2,
-        IReadOnlyCollection<InventorySlot> category)
+        InventorySlotCategory category)
     {
-        return category.Contains(slot1) && category.Contains(slot2);
+        return slot1.Category == category && slot2.Category == category;
     }
 
     private bool SwapSlotContentsIfPossible(InventorySlot fromSlot, InventorySlot toSlot)
@@ -720,6 +803,46 @@ public class InventoryScreen : ControlWithInput
         (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
 
         OnSlotSwapHappened(fromSlot, toSlot);
+
+        // Update ghost items in slots
+        if (fromSlot is { Transient: true, Item: { } } && !toSlot.Transient)
+        {
+            if (toSlot.GhostItem != null)
+                GD.PrintErr("Overriding ghost item incorrectly for from slot");
+
+            fromSlot.Item.ShownAsGhostIn = new WeakReference<InventorySlot>(toSlot);
+            toSlot.GhostItem = fromSlot.Item;
+        }
+
+        if (toSlot is { Transient: true, Item: { } } && !fromSlot.Transient)
+        {
+            if (fromSlot.GhostItem != null)
+                GD.PrintErr("Overriding ghost item incorrectly for to slot");
+
+            toSlot.Item.ShownAsGhostIn = new WeakReference<InventorySlot>(fromSlot);
+            fromSlot.GhostItem = toSlot.Item;
+        }
+
+        // Reset ghost item states when doing moves that undo those
+        // Moving an item to the slot that has it as the ghost item resets the state
+        if (fromSlot.Item == fromSlot.GhostItem)
+        {
+            if (fromSlot.GhostItem != null)
+                fromSlot.GhostItem.ShownAsGhostIn = null;
+
+            fromSlot.GhostItem = null;
+        }
+
+        if (toSlot.Item == toSlot.GhostItem)
+        {
+            if (toSlot.GhostItem != null)
+                toSlot.GhostItem.ShownAsGhostIn = null;
+
+            toSlot.GhostItem = null;
+        }
+
+        UpdateCraftingGUIState();
+        return true;
     }
 
     private bool CanSwapContents(InventorySlot fromSlot, InventorySlot toSlot)
@@ -731,13 +854,23 @@ public class InventoryScreen : ControlWithInput
         if (fromSlot.TakeOnly && toSlot.Item != null)
             return false;
 
+        // Fail if trying to overwrite a ghost item with something that wasn't it originally
+        if (fromSlot.GhostItem != null && fromSlot.GhostItem != toSlot.Item)
+            return false;
+
+        if (toSlot.GhostItem != null && toSlot.GhostItem != fromSlot.Item)
+            return false;
+
         if (displayingInventoryOf == null)
             throw new InvalidOperationException("Not opened to display inventory of anything");
 
         // TODO: allow this by putting the crafting result in the inventory or on the ground automatically
         // For now user needs to press the take all button
-        if (craftingResultSlots.Contains(fromSlot) && craftingSlots.Contains(toSlot))
+        if (fromSlot.Category == InventorySlotCategory.CraftingResult &&
+            toSlot.Category == InventorySlotCategory.CraftingInput)
+        {
             return false;
+        }
 
         var slotId1 = fromSlot.SlotId;
         var slotId2 = toSlot.SlotId;
@@ -752,7 +885,7 @@ public class InventoryScreen : ControlWithInput
 
     private void UndoSwap(InventorySlot fromSlot, InventorySlot toSlot)
     {
-        GD.Print("Undoing item swap that was not allowed after all");
+        GD.PrintErr("Undoing item swap that was not allowed after all");
         (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
     }
 
@@ -775,6 +908,8 @@ public class InventoryScreen : ControlWithInput
         }
 
         takeAllCraftingResults.Disabled = !hasCraftingResults;
+
+        EnsureCraftingPanelHasEmptyInputSlot();
 
         clearCraftingInputs.Disabled = craftingSlots.All(s => s.Item == null);
     }
@@ -806,7 +941,7 @@ public class InventoryScreen : ControlWithInput
     {
         bool anyLeft = false;
 
-        foreach (var slot in craftingSlots)
+        foreach (var slot in craftingResultSlots)
         {
             if (slot.Item == null)
                 continue;
@@ -822,6 +957,18 @@ public class InventoryScreen : ControlWithInput
         return !anyLeft;
     }
 
+    private void DropCraftedItems()
+    {
+        foreach (var slot in craftingResultSlots)
+        {
+            if (slot.Item == null)
+                continue;
+
+            // TODO: implement this
+            GD.PrintErr("Losing a crafted item as it is not able to be properly dropped yet");
+        }
+    }
+
     private bool ClearCraftingInputs()
     {
         bool anyLeft = false;
@@ -832,43 +979,32 @@ public class InventoryScreen : ControlWithInput
             if (slot.Item == null)
                 continue;
 
-            if (slot.Item.LastNonTransientSlot != null)
+            if (slot.Item.ShownAsGhostIn != null)
             {
-                if (slot.Item.LastNonTransientSlot.TryGetTarget(out var originalSlot))
+                if (slot.Item.ShownAsGhostIn.TryGetTarget(out var originalSlot))
                 {
                     if (!originalSlot.Transient && originalSlot.Item == null)
                     {
-                        // Can try to move this back to the original slot
+                        // When working correctly this should never fail
                         if (SwapSlotContentsIfPossible(slot, originalSlot))
                             continue;
+
+                        GD.PrintErr("Moving transient slot item back to original slot failed");
+                    }
+                    else
+                    {
+                        GD.PrintErr("Transient slot item's original slot is either also transient or " +
+                            "taken up for some reason");
                     }
                 }
             }
 
+            GD.PrintErr("Item in crafting slot doesn't have ghosted slot to return to");
             anyLeft = true;
         }
 
-        // If some could not be moved, then try to move them to inventory slots
-        if (anyLeft)
-        {
-            anyLeft = false;
-
-            foreach (var slot in craftingSlots)
-            {
-                if (slot.Item == null)
-                    continue;
-
-                if (!TryToMoveToInventory(slot))
-                {
-                    anyLeft = true;
-
-                    // Once we run out of inventory space we can just end here
-                    // TODO: if slots in the future can fit different stuff (like a total weight limit), this needs to
-                    // be rethought
-                    break;
-                }
-            }
-        }
+        // We don't use TryToMoveToInventory as a fallback here as the ghost in slot functionality when working should
+        // be totally enough
 
         UpdateCraftingGUIState();
 

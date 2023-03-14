@@ -11,6 +11,7 @@ public class InventorySlot : Button
 #pragma warning restore CA2213
 
     private IInventoryItem? item;
+    private IInventoryItem? ghostItem;
 
     private bool takeOnly;
 
@@ -41,21 +42,29 @@ public class InventorySlot : Button
                 return;
 
             item = value;
+            ApplyIcon();
+        }
+    }
 
-            if (item != null)
-            {
-                Icon = item.Icon;
+    /// <summary>
+    ///   When working with transient slots, the originals need to have ghost item placeholders in them to give some
+    ///   kind of chance we can get the inventory logic working.
+    /// </summary>
+    public IInventoryItem? GhostItem
+    {
+        get => ghostItem;
+        set
+        {
+            if (ghostItem == value)
+                return;
 
-                if (TakeOnly)
-                    Locked = false;
-            }
-            else
-            {
-                Icon = null;
+            ghostItem = value;
 
-                if (TakeOnly)
-                    Locked = true;
-            }
+            // TODO: should we have checks like this:
+            // if (ghostItem != null && item != null)
+            //     throw new InvalidOperationException("Can't set ghost item when normal item exists");
+
+            ApplyIcon();
         }
     }
 
@@ -97,9 +106,20 @@ public class InventorySlot : Button
     }
 
     /// <summary>
+    ///   The category this slot is in, higher level controls than this use this information
+    /// </summary>
+    public InventorySlotCategory Category { get; set; }
+
+    /// <summary>
     ///   Slot ID metadata to tie this to the inventory slot IDs in the "backend" data
     /// </summary>
     public int SlotId { get; set; } = -1;
+
+    /// <summary>
+    ///   Game logic needs to know about transient slots that don't "really" contain the items they have (for example
+    ///   crafting slots)
+    /// </summary>
+    public bool Transient { get; set; }
 
     public static Control CreateDragPreviewForItem(IInventoryItem item)
     {
@@ -185,6 +205,39 @@ public class InventorySlot : Button
         {
             // Clear the old slot to make sure the data doesn't exist in multiple places
             inventoryDragData.FromSlot.Item = null;
+        }
+    }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()} {Category} (slot: {SlotId}){(Transient ? "Transient" : string.Empty)}";
+    }
+
+    private void ApplyIcon()
+    {
+        if (item != null)
+        {
+            Icon = item.Icon;
+            SelfModulate = new Color(1, 1, 1, 1);
+
+            if (TakeOnly)
+                Locked = false;
+        }
+        else
+        {
+            if (ghostItem != null)
+            {
+                Icon = ghostItem.Icon;
+                SelfModulate = new Color(1, 1, 1, 0.7f);
+            }
+            else
+            {
+                Icon = null;
+                SelfModulate = new Color(1, 1, 1, 1);
+            }
+
+            if (TakeOnly)
+                Locked = true;
         }
     }
 

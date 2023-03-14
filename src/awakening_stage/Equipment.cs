@@ -37,7 +37,7 @@ public class Equipment : RigidBody, IInteractableEntity
     public Texture Icon => Definition.Icon;
 
     [JsonIgnore]
-    public WeakReference<InventorySlot>? LastNonTransientSlot { get; set; }
+    public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }
 
     [JsonIgnore]
     public float InteractDistanceOffset => 0;
