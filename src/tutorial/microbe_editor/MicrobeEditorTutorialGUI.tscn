@@ -38,6 +38,7 @@ margin_top = -184.0
 margin_right = -173.0
 margin_bottom = 156.0
 rect_min_size = Vector2( 360, 345 )
+PreventsMouseCaptureWhileOpen = true
 Description = "EDITOR_TUTORIAL_EDITOR_TEXT"
 ShowDelay = 0.7
 
@@ -51,6 +52,7 @@ margin_top = -184.0
 margin_right = -173.0
 margin_bottom = 161.0
 rect_min_size = Vector2( 360, 340 )
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 
 [node name="CellEditorIntro" parent="." instance=ExtResource( 8 )]
@@ -63,6 +65,7 @@ margin_top = -134.0
 margin_right = -43.0
 margin_bottom = 206.0
 rect_min_size = Vector2( 360, 340 )
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 ShowDelay = 0.7
 
@@ -77,6 +80,7 @@ margin_right = -43.0
 margin_bottom = 206.0
 rect_min_size = Vector2( 360, 340 )
 ShowCloseButton = false
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 ShowDelay = 0.3
 
@@ -94,6 +98,7 @@ margin_right = -95.0
 margin_bottom = 225.0
 rect_min_size = Vector2( 360, 375 )
 ShowCloseButton = false
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 ShowDelay = 0.3
 
@@ -167,6 +172,7 @@ margin_right = 180.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 360, 390 )
 ShowCloseButton = false
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 ShowDelay = 0.7
 

@@ -243,6 +243,40 @@ public static class SpawnHelpers
     {
         return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
     }
+
+    public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform location, Node worldNode,
+        PackedScene entityScene, bool randomizeRotation = false, Random? random = null)
+    {
+        var resourceEntity = (ResourceEntity)entityScene.Instance();
+
+        if (randomizeRotation)
+        {
+            random ??= new Random();
+
+            // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
+            // scale, but entities shouldn't anyway be allowed to have a root node scale
+            location = new Transform(
+                new Basis(location.basis.Quat() *
+                    new Quat(
+                        new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
+                        random.NextFloat() * Mathf.Pi + 0.01f)), location.origin);
+        }
+
+        // Apply settings
+        resourceEntity.SetResource(resourceType);
+
+        worldNode.AddChild(resourceEntity);
+
+        resourceEntity.Transform = location;
+
+        resourceEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        return resourceEntity;
+    }
+
+    public static PackedScene LoadResourceEntityScene()
+    {
+        return GD.Load<PackedScene>("res://src/awakening_stage/ResourceEntity.tscn");
+    }
 }
 
 /// <summary>

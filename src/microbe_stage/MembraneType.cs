@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -10,7 +9,7 @@ public class MembraneType : IRegistryType
     /// <summary>
     ///   User readable name
     /// </summary>
-    [TranslateFrom("untranslatedName")]
+    [TranslateFrom(nameof(UntranslatedName))]
     public string Name = null!;
 
     [JsonRequired]
@@ -49,15 +48,10 @@ public class MembraneType : IRegistryType
     [JsonIgnore]
     public Texture? LoadedIcon;
 
-#pragma warning disable 169,649 // Used through reflection
-    private string? untranslatedName;
-#pragma warning restore 169,649
-
     public string InternalName { get; set; } = null!;
 
     [JsonIgnore]
-    public string UntranslatedName =>
-        untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
+    public string UntranslatedName { get; private set; } = null!;
 
     public void Check(string name)
     {

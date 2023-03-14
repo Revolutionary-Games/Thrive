@@ -83,6 +83,8 @@ public class TutorialDialog : CustomDialog
 
     protected override void OnShown()
     {
+        base.OnShown();
+
         // Don't animate if currently running inside the editor
         if (Engine.EditorHint)
             return;

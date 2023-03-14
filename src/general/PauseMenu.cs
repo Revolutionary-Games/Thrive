@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-[SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification =
-    "We don't manually dispose Godot derived types")]
 public class PauseMenu : CustomDialog
 {
     [Export]
     public string HelpCategory = null!;
 
     [Export]
-    public NodePath PrimaryMenuPath = null!;
+    public NodePath? PrimaryMenuPath;
 
     [Export]
     public NodePath ThriveopediaPath = null!;
@@ -36,6 +33,7 @@ public class PauseMenu : CustomDialog
     [Export]
     public NodePath UnsavedProgressWarningPath = null!;
 
+#pragma warning disable CA2213
     private Control primaryMenu = null!;
     private Thriveopedia thriveopedia = null!;
     private HelpScreen helpScreen = null!;
@@ -44,8 +42,11 @@ public class PauseMenu : CustomDialog
     private NewSaveMenu saveMenu = null!;
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
+#pragma warning restore CA2213
 
     private bool paused;
+
+    private bool mouseUnCaptureActive;
 
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
@@ -195,8 +196,31 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    private bool MouseUnCaptureActive
+    {
+        set
+        {
+            if (mouseUnCaptureActive == value)
+                return;
+
+            mouseUnCaptureActive = value;
+
+            if (mouseUnCaptureActive)
+            {
+                MouseCaptureManager.ReportOpenCapturePrevention(nameof(PauseMenu));
+            }
+            else
+            {
+                MouseCaptureManager.ReportClosedCapturePrevention(nameof(PauseMenu));
+            }
+        }
+    }
+
     public override void _Ready()
     {
+        // We have our custom logic for this
+        PreventsMouseCaptureWhileOpen = false;
+
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
         thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
@@ -227,6 +251,7 @@ public class PauseMenu : CustomDialog
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
+        MouseUnCaptureActive = false;
 
         GetTree().AutoAcceptQuit = true;
     }
@@ -303,6 +328,7 @@ public class PauseMenu : CustomDialog
 
         animationPlayer.Play("Open");
         Paused = true;
+        MouseUnCaptureActive = true;
         exiting = false;
     }
 
@@ -313,6 +339,7 @@ public class PauseMenu : CustomDialog
 
         animationPlayer.Play("Close");
         Paused = false;
+        MouseUnCaptureActive = false;
     }
 
     public void OpenToHelp()
@@ -341,6 +368,26 @@ public class PauseMenu : CustomDialog
         }
 
         SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PrimaryMenuPath != null)
+            {
+                PrimaryMenuPath.Dispose();
+                ThriveopediaPath.Dispose();
+                HelpScreenPath.Dispose();
+                LoadMenuPath.Dispose();
+                OptionsMenuPath.Dispose();
+                SaveMenuPath.Dispose();
+                LoadSaveListPath.Dispose();
+                UnsavedProgressWarningPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private Control? GetControlFromMenuEnum(ActiveMenuType value)
@@ -493,6 +540,8 @@ public class PauseMenu : CustomDialog
     {
         // Remove all pause locks before changing to the new game
         PauseManager.Instance.ForceClear();
+
+        MouseUnCaptureActive = false;
     }
 
     private void OnOptionsClosed()
@@ -523,6 +572,7 @@ public class PauseMenu : CustomDialog
         EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
         Paused = false;
+        MouseUnCaptureActive = false;
     }
 
     /// <summary>
@@ -530,6 +580,7 @@ public class PauseMenu : CustomDialog
     /// </summary>
     private void OnSwitchToMenu()
     {
+        MouseUnCaptureActive = false;
         SceneManager.Instance.ReturnToMenu();
     }
 
@@ -542,5 +593,6 @@ public class PauseMenu : CustomDialog
     {
         _ = saveName;
         Paused = false;
+        MouseUnCaptureActive = false;
     }
 }

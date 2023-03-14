@@ -151,6 +151,11 @@ public class BiomeConditions : ICloneable, ISaveLoadable
                     $"Density {chunk.Value.Density} invalid for {chunk.Key} " +
                     $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
             }
+
+            if (string.IsNullOrEmpty(chunk.Value.Name))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name, "Missing name for chunk type");
+            }
         }
     }
 

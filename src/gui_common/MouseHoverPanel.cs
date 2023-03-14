@@ -8,7 +8,7 @@ using Array = Godot.Collections.Array;
 public class MouseHoverPanel : PanelContainer
 {
     [Export]
-    public NodePath CategoriesContainerPath = null!;
+    public NodePath? CategoriesContainerPath;
 
     [Export]
     public NodePath NothingHereContainerPath = null!;
@@ -21,7 +21,7 @@ public class MouseHoverPanel : PanelContainer
     private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
 
     /// <summary>
-    ///   The array of category controls oredered based on their position in the scene tree.
+    ///   The array of category controls ordered based on their position in the scene tree.
     /// </summary>
     private Array categoryControls = new();
 
@@ -115,9 +115,12 @@ public class MouseHoverPanel : PanelContainer
     {
         if (disposing)
         {
-            CategoriesContainerPath.Dispose();
-            NothingHereContainerPath.Dispose();
-            categoryControls.Dispose();
+            if (CategoriesContainerPath != null)
+            {
+                CategoriesContainerPath.Dispose();
+                NothingHereContainerPath.Dispose();
+                categoryControls.Dispose();
+            }
         }
     }
 

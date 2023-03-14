@@ -26,7 +26,7 @@ public class PlayerMulticellularInput : NodeWithInput
         base._ExitTree();
 
         // Release our mouse capture, _Process shouldn't get called again after this exited the tree
-        SetMouseCapture(false);
+        MouseCaptureManager.SetGameStateWantedCaptureState(false);
     }
 
     public override void _Process(float delta)
@@ -34,7 +34,7 @@ public class PlayerMulticellularInput : NodeWithInput
         base._Process(delta);
 
         // Handle the GUI mouse capture
-        SetMouseCapture(!mouseUnCapturePressed && !PauseManager.Instance.Paused);
+        MouseCaptureManager.SetGameStateWantedCaptureState(!mouseUnCapturePressed && !PauseManager.Instance.Paused);
     }
 
     [RunOnKeyDown("g_hold_forward")]
@@ -145,6 +145,12 @@ public class PlayerMulticellularInput : NodeWithInput
         stage.AttemptPlayerWorldInteraction();
     }
 
+    [RunOnKeyDown("g_inventory")]
+    public void OpenInventory()
+    {
+        stage.TogglePlayerInventory();
+    }
+
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {
@@ -203,14 +209,5 @@ public class PlayerMulticellularInput : NodeWithInput
         {
             stage.HUD.ShowReproductionDialog();
         }
-    }
-
-    private void SetMouseCapture(bool captured)
-    {
-        // TODO: if we use controller input mouse should be Input.MouseModeEnum.Hidden
-        var wanted = captured ? Input.MouseModeEnum.Captured : Input.MouseModeEnum.Visible;
-
-        if (Input.MouseMode != wanted)
-            Input.MouseMode = wanted;
     }
 }

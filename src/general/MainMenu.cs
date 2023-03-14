@@ -174,6 +174,7 @@ public class MainMenu : NodeWithInput
     {
         // Unpause the game as the MainMenu should never be paused.
         PauseManager.Instance.ForceClear();
+        MouseCaptureManager.ForceDisableCapture();
 
         RunMenuSetup();
 
