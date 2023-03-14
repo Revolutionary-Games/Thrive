@@ -106,6 +106,9 @@ public class InventoryScreen : ControlWithInput
 
     public bool IsOpen => inventoryPopup.Visible;
 
+    private IEnumerable<InventorySlot> AllSlots => groundInventorySlots.Concat(inventorySlots).Concat(equipmentSlots)
+        .Concat(craftingSlots).Concat(craftingResultSlots);
+
     public override void _Ready()
     {
         inventoryPopup = GetNode<CustomDialog>(InventoryPopupPath);
@@ -251,7 +254,25 @@ public class InventoryScreen : ControlWithInput
         if (!craftingPanelPopup.Visible)
             ShowCraftingPanel();
 
-        throw new NotImplementedException();
+        var targetSlot = craftingSlots.FirstOrDefault(s => s.Item == null);
+
+        if (targetSlot == null)
+        {
+            GD.PrintErr("Could not find target slot to open crafting screen with");
+            return;
+        }
+
+        // Find the item to craft
+        InventorySlot? fromSlot = AllSlots.FirstOrDefault(s => s.Item == target);
+
+        if (fromSlot == null)
+        {
+            GD.Print("Could not find item to move to crafting input");
+            return;
+        }
+
+        if (!SwapSlotContentsIfPossible(fromSlot, targetSlot))
+            GD.PrintErr("Failed to put an item to a crafting slot");
     }
 
     protected override void Dispose(bool disposing)
@@ -280,8 +301,7 @@ public class InventoryScreen : ControlWithInput
             inventorySlotGroup.Dispose();
 
             // Unhook all C# callbacks
-            foreach (var slot in groundInventorySlots.Concat(inventorySlots).Concat(equipmentSlots)
-                         .Concat(craftingSlots).Concat(craftingResultSlots))
+            foreach (var slot in AllSlots)
             {
                 slot.AllowDropHandler -= CheckIsDropAllowed;
                 slot.PerformDropHandler -= OnDropPerformed;
