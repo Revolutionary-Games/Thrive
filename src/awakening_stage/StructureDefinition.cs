@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Godot;
-using Godot.Collections;
 using Newtonsoft.Json;
 
 [TypeConverter(typeof(StructureStringConverter))]
@@ -60,8 +60,8 @@ public class StructureDefinition : IRegistryType
         if (RequiredResources.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required resource amount");
 
-        if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
-            throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");
+        /*if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");*/
     }
 
     public void ApplyTranslations()
