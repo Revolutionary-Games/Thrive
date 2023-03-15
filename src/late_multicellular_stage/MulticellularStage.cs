@@ -218,18 +218,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                 // Intentionally not translatable as a placeholder prototype text
                 HUD.HUDMessages.ShowMessage(
                     "You are now aware. This prototype has nothing extra yet, please move to the Awakening Stage.",
-                    DisplayDuration.Long);
-            }
-            else if (previousPlayerStage == MulticellularSpeciesType.Awakened)
-            {
-                // TODO: implement an "inspect" action for inspecting world objects that can unlock primitive
-                // technologies
-                // For now just add some default unlocks for the prototype
-
-                GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("simpleStoneTools"));
-
-                // TODO: proper society center unlock conditions
-                GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("societyCenter"));
+                    DisplayDuration.ExtraLong);
             }
         }
     }
@@ -351,10 +340,19 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         Player.Species.MovePlayerToAwakenedStatus();
 
+        // TODO: implement an "inspect" action for inspecting world objects that can unlock primitive
+        // technologies
+        // For now just add some default unlocks for the prototype
+
+        GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("simpleStoneTools"));
+
+        // TODO: proper society center unlock conditions
+        GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("societyCenter"));
+
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
             "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
-            "Interact with tool parts to advance.", DisplayDuration.Long);
+            "Interact with tool parts to advance.", DisplayDuration.ExtraLong);
     }
 
     public void AttemptPlayerWorldInteraction()

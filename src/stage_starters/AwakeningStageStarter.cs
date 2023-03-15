@@ -21,5 +21,6 @@ public class AwakeningStageStarter : AwareStageStarter
 
         // TODO: remove this once the going to land part is implemented properly
         stage.TeleportToLand();
+        stage.MoveToAwakeningStage();
     }
 }
