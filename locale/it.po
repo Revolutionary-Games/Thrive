@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:53+0200\n"
+"POT-Creation-Date: 2023-03-15 11:28+0200\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1098,19 +1098,19 @@ msgstr "Protanopica (Rosso-Verde)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopica (Blu-Giallo)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:238
+#: ../src/awakening_stage/InventoryScreen.tscn:239
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:223
+#: ../src/awakening_stage/InventoryScreen.tscn:224
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:178
+#: ../src/awakening_stage/InventoryScreen.tscn:179
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.cs:968
+#: ../src/awakening_stage/InventoryScreen.cs:989
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
@@ -1118,17 +1118,17 @@ msgstr ""
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:269
+#: ../src/awakening_stage/InventoryScreen.tscn:270
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Risultati dell'Auto-Evo:"
 
-#: ../src/awakening_stage/InventoryScreen.cs:1105
-#: ../src/awakening_stage/InventoryScreen.tscn:204
+#: ../src/awakening_stage/InventoryScreen.cs:1126
+#: ../src/awakening_stage/InventoryScreen.tscn:205
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:282
+#: ../src/awakening_stage/InventoryScreen.tscn:283
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
@@ -4074,7 +4074,7 @@ msgstr "La forma più basilare di membrana. Offre poca protezione ai danni e ha 
 msgid "NOTHING_HERE"
 msgstr "Qui nulla"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:364
+#: ../src/late_multicellular_stage/MulticellularStage.cs:371
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5009,9 +5009,14 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Velocità di assorbimento delle risorse"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:303
+#: ../src/late_multicellular_stage/MulticellularStage.cs:310
 #, fuzzy
 msgid "RESOURCE_ROCK"
+msgstr "Vedi codice sorgente"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:8
+#, fuzzy
+msgid "RESOURCE_WOOD"
 msgstr "Vedi codice sorgente"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
@@ -5773,6 +5778,10 @@ msgstr "Strutturale"
 msgid "STRUCTURE"
 msgstr "Struttura"
 
+#: ../simulation_parameters/awakening_stage/structures.json:3
+msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr "uccisione riuscita"
@@ -5853,6 +5862,14 @@ msgstr "Cattura la schermata [screenshot]"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:12
+msgid "TECHNOLOGY_SOCIETY_CENTER"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:593
+msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180

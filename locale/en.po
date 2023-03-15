@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:21+0200\n"
-"PO-Revision-Date: 2023-03-14 14:24+0200\n"
+"POT-Creation-Date: 2023-03-15 11:28+0200\n"
+"PO-Revision-Date: 2023-03-15 11:28+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1100,19 +1100,19 @@ msgstr "Protanope (Red-Green)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blue-Yellow)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:238
+#: ../src/awakening_stage/InventoryScreen.tscn:239
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Clear selected inputs"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:223
+#: ../src/awakening_stage/InventoryScreen.tscn:224
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Inputs"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:178
+#: ../src/awakening_stage/InventoryScreen.tscn:179
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Known Recipes"
 
-#: ../src/awakening_stage/InventoryScreen.cs:968
+#: ../src/awakening_stage/InventoryScreen.cs:989
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr "Please select a recipe above to craft first"
 
@@ -1120,16 +1120,16 @@ msgstr "Please select a recipe above to craft first"
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Stone Hand Axe"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:269
+#: ../src/awakening_stage/InventoryScreen.tscn:270
 msgid "CRAFTING_RESULTS"
 msgstr "Results"
 
-#: ../src/awakening_stage/InventoryScreen.cs:1105
-#: ../src/awakening_stage/InventoryScreen.tscn:204
+#: ../src/awakening_stage/InventoryScreen.cs:1126
+#: ../src/awakening_stage/InventoryScreen.tscn:205
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Select a crafting recipe or add items to filter"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:282
+#: ../src/awakening_stage/InventoryScreen.tscn:283
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Take All"
 
@@ -4025,7 +4025,7 @@ msgstr "The most basic form of membrane, it has little protection against damage
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:364
+#: ../src/late_multicellular_stage/MulticellularStage.cs:371
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Nothing to interact with"
 
@@ -4939,9 +4939,13 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:303
+#: ../src/late_multicellular_stage/MulticellularStage.cs:310
 msgid "RESOURCE_ROCK"
 msgstr "Rock"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:8
+msgid "RESOURCE_WOOD"
+msgstr "Wood"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:111
@@ -5694,6 +5698,10 @@ msgstr "Structural"
 msgid "STRUCTURE"
 msgstr "Structure"
 
+#: ../simulation_parameters/awakening_stage/structures.json:3
+msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr "Society Center"
+
 #: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
@@ -5773,6 +5781,14 @@ msgstr "Take a screenshot"
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
 msgstr "Simple Stone Tools"
+
+#: ../simulation_parameters/awakening_stage/technologies.json:12
+msgid "TECHNOLOGY_SOCIETY_CENTER"
+msgstr "Building Society Center"
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:593
+msgid "TECHNOLOGY_UNLOCKED_NOTICE"
+msgstr "Unlocked technology: {0}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123

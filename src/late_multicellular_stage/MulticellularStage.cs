@@ -222,7 +222,14 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             }
             else if (previousPlayerStage == MulticellularSpeciesType.Awakened)
             {
-                // TODO: something
+                // TODO: implement an "inspect" action for inspecting world objects that can unlock primitive
+                // technologies
+                // For now just add some default unlocks for the prototype
+
+                GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("simpleStoneTools"));
+
+                // TODO: proper society center unlock conditions
+                GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("societyCenter"));
             }
         }
     }
@@ -405,6 +412,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // if (!IsLoadedFromSave)
         //     spawner.Init();
 
+        GameWorld.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
+
         // TODO: implement
         if (!IsLoadedFromSave)
         {
@@ -525,6 +534,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             }
 
             interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
+
+            if (CurrentGame != null)
+                GameWorld.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
         }
 
         base.Dispose(disposing);
@@ -573,5 +585,12 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         }
 
         HUD.SelectItemForCrafting(target);
+    }
+
+    private void ShowTechnologyUnlockMessage(Technology technology)
+    {
+        HUD.HUDMessages.ShowMessage(
+            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+            DisplayDuration.Long);
     }
 }

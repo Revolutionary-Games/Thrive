@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:53+0200\n"
+"POT-Creation-Date: 2023-03-15 11:28+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1100,19 +1100,19 @@ msgstr "Protanopie (Červená-Zelená)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Modrá-Žlutá)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:238
+#: ../src/awakening_stage/InventoryScreen.tscn:239
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:223
+#: ../src/awakening_stage/InventoryScreen.tscn:224
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:178
+#: ../src/awakening_stage/InventoryScreen.tscn:179
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.cs:968
+#: ../src/awakening_stage/InventoryScreen.cs:989
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
@@ -1120,17 +1120,17 @@ msgstr ""
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:269
+#: ../src/awakening_stage/InventoryScreen.tscn:270
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Výsledky Auto-evo:"
 
-#: ../src/awakening_stage/InventoryScreen.cs:1105
-#: ../src/awakening_stage/InventoryScreen.tscn:204
+#: ../src/awakening_stage/InventoryScreen.cs:1126
+#: ../src/awakening_stage/InventoryScreen.tscn:205
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:282
+#: ../src/awakening_stage/InventoryScreen.tscn:283
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
@@ -4068,7 +4068,7 @@ msgstr "Nejzákladnější forma membrány, má malou ochranu proti poškození.
 msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:364
+#: ../src/late_multicellular_stage/MulticellularStage.cs:371
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4997,9 +4997,14 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rychlost absorpce zdrojů"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:303
+#: ../src/late_multicellular_stage/MulticellularStage.cs:310
 #, fuzzy
 msgid "RESOURCE_ROCK"
+msgstr "Zdrojový kód"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:8
+#, fuzzy
+msgid "RESOURCE_WOOD"
 msgstr "Zdrojový kód"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
@@ -5762,6 +5767,10 @@ msgstr "Strukturální"
 msgid "STRUCTURE"
 msgstr "Struktura"
 
+#: ../simulation_parameters/awakening_stage/structures.json:3
+msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr "úspěšné zabití"
@@ -5842,6 +5851,14 @@ msgstr "Udělat screenshot"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:12
+msgid "TECHNOLOGY_SOCIETY_CENTER"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:593
+msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180

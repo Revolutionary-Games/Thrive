@@ -32,6 +32,21 @@ public class CraftingRecipe : IRegistryType
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
 
+    public bool MatchesFilter(IReadOnlyCollection<(WorldResource Resource, int Count)> filter)
+    {
+        foreach (var (filterResource, filterCount) in filter)
+        {
+            if (!RequiredResources.TryGetValue(filterResource, out var amount))
+                return false;
+
+            // Filter doesn't match if filter wants 2 of some resource but this only takes one
+            if (amount < filterCount)
+                return false;
+        }
+
+        return true;
+    }
+
     public void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:53+0200\n"
+"POT-Creation-Date: 2023-03-15 11:28+0200\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1106,20 +1106,20 @@ msgstr "红绿色盲"
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:238
+#: ../src/awakening_stage/InventoryScreen.tscn:239
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:223
+#: ../src/awakening_stage/InventoryScreen.tscn:224
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:178
+#: ../src/awakening_stage/InventoryScreen.tscn:179
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "成反比"
 
-#: ../src/awakening_stage/InventoryScreen.cs:968
+#: ../src/awakening_stage/InventoryScreen.cs:989
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
@@ -1127,17 +1127,17 @@ msgstr ""
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:269
+#: ../src/awakening_stage/InventoryScreen.tscn:270
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo结果："
 
-#: ../src/awakening_stage/InventoryScreen.cs:1105
-#: ../src/awakening_stage/InventoryScreen.tscn:204
+#: ../src/awakening_stage/InventoryScreen.cs:1126
+#: ../src/awakening_stage/InventoryScreen.tscn:205
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:282
+#: ../src/awakening_stage/InventoryScreen.tscn:283
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
@@ -4035,7 +4035,7 @@ msgstr "最基础的细胞膜，基本没啥保护能力。同时也需要很多
 msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:364
+#: ../src/late_multicellular_stage/MulticellularStage.cs:371
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "没有可以交互的物体"
 
@@ -4956,9 +4956,14 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "物质吸收速度"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:303
+#: ../src/late_multicellular_stage/MulticellularStage.cs:310
 #, fuzzy
 msgid "RESOURCE_ROCK"
+msgstr "查看源代码"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:8
+#, fuzzy
+msgid "RESOURCE_WOOD"
 msgstr "查看源代码"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
@@ -5714,6 +5719,10 @@ msgstr "结构"
 msgid "STRUCTURE"
 msgstr "结构"
 
+#: ../simulation_parameters/awakening_stage/structures.json:3
+msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
@@ -5792,6 +5801,14 @@ msgstr "截图"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:12
+msgid "TECHNOLOGY_SOCIETY_CENTER"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:593
+msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180

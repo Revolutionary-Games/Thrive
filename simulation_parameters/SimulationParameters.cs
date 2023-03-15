@@ -41,6 +41,7 @@ public class SimulationParameters : Node
     private Dictionary<string, WorldResource> worldResources = null!;
     private Dictionary<string, EquipmentDefinition> equipment = null!;
     private Dictionary<string, CraftingRecipe> craftingRecipes = null!;
+    private Dictionary<string, StructureDefinition> structures = null!;
     private Dictionary<string, Technology> technologies = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
@@ -143,6 +144,10 @@ public class SimulationParameters : Node
         craftingRecipes =
             LoadRegistry<CraftingRecipe>("res://simulation_parameters/awakening_stage/crafting_recipes.json",
                 new JsonConverter[] { new DirectTypeLoadOverride(typeof(CraftingRecipe), null) });
+
+        structures =
+            LoadRegistry<StructureDefinition>("res://simulation_parameters/awakening_stage/structures.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(StructureDefinition), null) });
 
         technologies =
             LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
@@ -415,6 +420,11 @@ public class SimulationParameters : Node
         return craftingRecipes[name];
     }
 
+    public StructureDefinition GetStructure(string name)
+    {
+        return structures[name];
+    }
+
     public Technology GetTechnology(string name)
     {
         return technologies[name];
@@ -442,6 +452,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(worldResources);
         ApplyRegistryObjectTranslations(equipment);
         ApplyRegistryObjectTranslations(craftingRecipes);
+        ApplyRegistryObjectTranslations(structures);
         ApplyRegistryObjectTranslations(technologies);
     }
 
@@ -582,6 +593,7 @@ public class SimulationParameters : Node
         CheckRegistryType(worldResources);
         CheckRegistryType(equipment);
         CheckRegistryType(craftingRecipes);
+        CheckRegistryType(structures);
         CheckRegistryType(technologies);
 
         NameGenerator.Check(string.Empty);

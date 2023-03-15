@@ -118,6 +118,10 @@ public class GameWorld : ISaveLoadable
     [JsonProperty]
     public PatchMap Map { get; private set; } = null!;
 
+    // Not saved for now as this is only in prototypes
+    [JsonIgnore]
+    public TechWeb TechWeb { get; private set; } = new();
+
     /// <summary>
     ///   This probably needs to be changed to a huge precision number
     ///   depending on what timespans we'll end up using.
