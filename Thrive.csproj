@@ -54,12 +54,12 @@
     <Compile Include="src\awakening_stage\ICharacterInventory.cs" />
     <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
     <Compile Include="src\awakening_stage\IInventoryItem.cs" />
-    <Compile Include="src\awakening_stage\InteractablePopup.cs" />
+    <Compile Include="src\awakening_stage\gui\InteractablePopup.cs" />
     <Compile Include="src\awakening_stage\InteractableSystem.cs" />
     <Compile Include="src\awakening_stage\InteractionType.cs" />
-    <Compile Include="src\awakening_stage\InventoryDragData.cs" />
-    <Compile Include="src\awakening_stage\InventorySlot.cs" />
-    <Compile Include="src\awakening_stage\InventoryScreen.cs" />
+    <Compile Include="src\awakening_stage\gui\InventoryDragData.cs" />
+    <Compile Include="src\awakening_stage\gui\InventorySlot.cs" />
+    <Compile Include="src\awakening_stage\gui\InventoryScreen.cs" />
     <Compile Include="src\awakening_stage\InventorySlotCategory.cs" />
     <Compile Include="src\awakening_stage\InventorySlotData.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />

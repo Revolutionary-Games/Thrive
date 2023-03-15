@@ -67,6 +67,8 @@ public class InventoryScreen : ControlWithInput
 
     private readonly List<InventorySlot> craftingResultSlots = new();
 
+    // private readonly List<>
+
 #pragma warning disable CA2213
     private CustomDialog inventoryPopup = null!;
     private Container inventorySlotContainer = null!;
@@ -91,7 +93,8 @@ public class InventoryScreen : ControlWithInput
 
     private ICharacterInventory? displayingInventoryOf;
 
-    // private CraftingRecipe? selectedRecipe;
+    private IAvailableRecipes? craftingDataSource;
+    private CraftingRecipe? selectedRecipe;
 
     private InventorySlot? previouslySelectedSlot;
     private float timeUntilSlotSwap = -1;
@@ -129,7 +132,7 @@ public class InventoryScreen : ControlWithInput
         groundPanelPopup = GetNode<CustomDialog>(GroundPanelPopupPath);
         groundSlotContainer = GetNode<Container>(GroundSlotContainerPath);
 
-        inventorySlotScene = GD.Load<PackedScene>("res://src/awakening_stage/InventorySlot.tscn");
+        inventorySlotScene = GD.Load<PackedScene>("res://src/awakening_stage/gui/InventorySlot.tscn");
 
         // TODO: a background that allows dropping by dragging items outside the inventory
 
@@ -141,6 +144,7 @@ public class InventoryScreen : ControlWithInput
     public override void _Process(float delta)
     {
         // TODO: refresh the ground objects at some interval here
+        // If ground items change UpdateRecipesWeHaveMaterialsFor needs to be called
 
         // Perform slot swap once timer has expired for that
         if (timeUntilSlotSwap > 0)
@@ -163,10 +167,14 @@ public class InventoryScreen : ControlWithInput
         }
     }
 
-    public void OpenInventory(ICharacterInventory creature)
+    public void OpenInventory(ICharacterInventory creature, IAvailableRecipes? craftingRecipes)
     {
         if (!inventoryPopup.Visible)
             inventoryPopup.Show();
+
+        // TODO: we need a technologies changed callback to refresh the list of available recipes if the player unlocks
+        // something new while being in the inventory
+        craftingDataSource = craftingRecipes;
 
         SetInventoryDataFrom(creature);
         SetEquipmentDataFrom(creature);
@@ -177,10 +185,13 @@ public class InventoryScreen : ControlWithInput
         if (!craftingPanelPopup.Visible && !craftingPanelManuallyHidden)
         {
             ShowCraftingPanel();
+            RefreshRecipesList();
         }
 
         UpdateToggleButtonStatus();
     }
+
+
 
     [RunOnKeyDown("ui_cancel")]
     public bool Close()
@@ -495,6 +506,8 @@ public class InventoryScreen : ControlWithInput
         }
     }
 
+
+
     private InventorySlot CreateInventorySlot(InventorySlotCategory category, bool transient)
     {
         var slot = inventorySlotScene.Instance<InventorySlot>();
@@ -663,20 +676,15 @@ public class InventoryScreen : ControlWithInput
                 return;
 
             // Moving an item to a transient slot needs to be specifically allowed here
-
+            // Inspection disabled as it looks way more difficult to read that way
+            // ReSharper disable once ReplaceWithSingleAssignment.True
             bool isAllowed = true;
 
-            if (to is { Transient: true, Item: { } })
-            {
-                if (to.Item.ShownAsGhostIn != null)
-                    isAllowed = false;
-            }
+            if (to is { Transient: true, Item: { ShownAsGhostIn: { } } })
+                isAllowed = false;
 
-            if (from is { Transient: true, Item: { } })
-            {
-                if (from.Item.ShownAsGhostIn != null)
-                    isAllowed = false;
-            }
+            if (from is { Transient: true, Item: { ShownAsGhostIn: { } } })
+                isAllowed = false;
 
             if (isAllowed)
                 return;
@@ -983,21 +991,35 @@ public class InventoryScreen : ControlWithInput
 
     private void TryToCraft()
     {
-        // TODO: implement selecting the resource to actually craft
-        // if (selectedRecipe == null)
+        if (selectedRecipe == null)
         {
             SetCraftingError(TranslationServer.Translate("CRAFTING_NO_RECIPE_SELECTED"));
-
-            // return;
+            return;
         }
 
-        /*if (!TakeAllCraftingResults())
+        if (!TakeAllCraftingResults())
         {
             SetCraftingError(TranslationServer.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
             return;
-        }*/
+        }
 
-        // throw new NotImplementedException();
+        // Check for enough materials
+
+
+        // Everything is fine, perform the craft
+
+        // Items have changed due to crafting something
+        UpdateRecipesWeHaveMaterialsFor();
+    }
+
+    private void RefreshRecipesList()
+    {
+
+    }
+
+    private void UpdateRecipesWeHaveMaterialsFor()
+    {
+
     }
 
     /// <summary>
