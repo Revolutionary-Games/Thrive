@@ -47,6 +47,28 @@ public class CraftingRecipe : IRegistryType
         return true;
     }
 
+    public bool CanCraft(IReadOnlyDictionary<WorldResource, int> availableMaterials)
+    {
+        foreach (var required in RequiredResources)
+        {
+            if (!availableMaterials.TryGetValue(required.Key, out var amount))
+                return false;
+
+            if (amount < required.Value)
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool HasEnoughResource(WorldResource resource, int availableAmount)
+    {
+        if (!RequiredResources.TryGetValue(resource, out var requiredAmount))
+            return false;
+
+        return availableAmount >= requiredAmount;
+    }
+
     public void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
