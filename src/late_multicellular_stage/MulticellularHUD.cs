@@ -110,9 +110,10 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     {
     }
 
-    public void OpenInventory(MulticellularCreature creature, IEnumerable<IInteractableEntity> groundObjects)
+    public void OpenInventory(MulticellularCreature creature, IEnumerable<IInteractableEntity> groundObjects,
+        bool playerTechnologies = true)
     {
-        inventoryScreen.OpenInventory(creature);
+        inventoryScreen.OpenInventory(creature, playerTechnologies ? stage!.CurrentGame!.TechWeb : null);
         inventoryScreen.UpdateGroundItems(groundObjects);
     }
 

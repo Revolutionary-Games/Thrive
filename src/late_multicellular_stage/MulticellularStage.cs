@@ -344,10 +344,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // technologies
         // For now just add some default unlocks for the prototype
 
-        GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("simpleStoneTools"));
+        CurrentGame!.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("simpleStoneTools"));
 
         // TODO: proper society center unlock conditions
-        GameWorld.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("societyCenter"));
+        CurrentGame.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("societyCenter"));
 
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
@@ -410,14 +410,14 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // if (!IsLoadedFromSave)
         //     spawner.Init();
 
-        GameWorld.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
+        CurrentGame!.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
 
         // TODO: implement
         if (!IsLoadedFromSave)
         {
             // If this is a new game (first time entering the stage), start the camera in top down view
             // as a learning tool
-            if (!CurrentGame!.IsBoolSet("played_multicellular"))
+            if (!CurrentGame.IsBoolSet("played_multicellular"))
             {
                 CurrentGame.SetBool("played_multicellular", true);
 
@@ -534,7 +534,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
 
             if (CurrentGame != null)
-                GameWorld.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
+                CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
         }
 
         base.Dispose(disposing);
