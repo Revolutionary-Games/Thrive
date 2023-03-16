@@ -18,6 +18,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     [Export]
     public NodePath InteractionPopupPath = null!;
 
+    [Export]
+    public NodePath WorldEnvironmentNodePath = null!;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
@@ -25,6 +28,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 #pragma warning disable CA2213
     private InteractableSystem interactableSystem = null!;
     private InteractablePopup interactionPopup = null!;
+
+    private WorldEnvironment worldEnvironmentNode = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -79,6 +84,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
         interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);
+        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -257,6 +263,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         }
 
         // And setup the land "environment"
+
+        // Clear the underwater background
+        // TODO: above water panorama backgrounds
+        worldEnvironmentNode.Environment = null;
 
         // Ground plane
         var ground = new StaticBody
@@ -522,6 +532,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             {
                 InteractableSystemPath.Dispose();
                 InteractionPopupPath.Dispose();
+                WorldEnvironmentNodePath.Dispose();
             }
 
             interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
