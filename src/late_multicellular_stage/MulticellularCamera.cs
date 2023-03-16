@@ -107,6 +107,9 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     }
 
     [JsonIgnore]
+    public Camera CameraNode => camera;
+
+    [JsonIgnore]
     public bool NodeReferencesResolved { get; set; }
 
     public Spatial? FollowedNode { get; set; }

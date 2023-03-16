@@ -22,8 +22,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\BuildInfo.cs" />
-    <Compile Include="simulation_parameters\CompoundLoader.cs" />
-    <Compile Include="simulation_parameters\EnzymeLoader.cs" />
+    <Compile Include="simulation_parameters\DirectTypeLoadOverride.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\IRegistryAssignable.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
@@ -45,6 +44,26 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\awakening_stage\CraftingRecipe.cs" />
+    <Compile Include="src\awakening_stage\Equipment.cs" />
+    <Compile Include="src\awakening_stage\EquipmentCategory.cs" />
+    <Compile Include="src\awakening_stage\EquipmentDefinition.cs" />
+    <Compile Include="src\awakening_stage\EquipmentSlot.cs" />
+    <Compile Include="src\awakening_stage\EquipmentSlotType.cs" />
+    <Compile Include="src\awakening_stage\ICharacterInventory.cs" />
+    <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
+    <Compile Include="src\awakening_stage\IInventoryItem.cs" />
+    <Compile Include="src\awakening_stage\InteractablePopup.cs" />
+    <Compile Include="src\awakening_stage\InteractableSystem.cs" />
+    <Compile Include="src\awakening_stage\InteractionType.cs" />
+    <Compile Include="src\awakening_stage\InventoryDragData.cs" />
+    <Compile Include="src\awakening_stage\InventorySlot.cs" />
+    <Compile Include="src\awakening_stage\InventoryScreen.cs" />
+    <Compile Include="src\awakening_stage\InventorySlotCategory.cs" />
+    <Compile Include="src\awakening_stage\InventorySlotData.cs" />
+    <Compile Include="src\awakening_stage\ResourceEntity.cs" />
+    <Compile Include="src\awakening_stage\WorldResource.cs" />
+    <Compile Include="src\awakening_stage\Technology.cs" />
     <Compile Include="src\benchmark\BenchmarkHelpers.cs" />
     <Compile Include="src\benchmark\DummySpawnSystem.cs" />
     <Compile Include="src\benchmark\microbe\MicrobeBenchmark.cs" />
@@ -76,6 +95,7 @@
     <Compile Include="src\engine\input\ControllerInputAxisVisualizationContainer.cs" />
     <Compile Include="src\engine\input\ControllerType.cs" />
     <Compile Include="src\engine\input\ControllerTypeDetection.cs" />
+    <Compile Include="src\engine\input\MouseCaptureManager.cs" />
     <Compile Include="src\engine\input\MouseInputScaling.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAndRepeatAttribute.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAttribute.cs" />
@@ -155,6 +175,7 @@
     <Compile Include="src\general\HtmlToBbCodeConverter.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\general\IInspectableEntity.cs" />
+    <Compile Include="src\general\IPlayerReadableName.cs" />
     <Compile Include="src\general\MarkdownToBbCodeConverter.cs" />
     <Compile Include="src\general\MultiCollection.cs" />
     <Compile Include="src\general\PlayerInspectInfo.cs" />
@@ -162,6 +183,7 @@
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\dialogs\PermanentlyDismissibleDialog.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
+    <Compile Include="src\gui_common\DragResult.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
     <Compile Include="src\gui_common\InspectedEntityLabel.cs" />
@@ -576,6 +598,11 @@
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
+    <Compile Include="src\stage_starters\AwareStageStarter.cs" />
+    <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />
+    <Compile Include="src\stage_starters\EarlyMulticellularStageStarter.cs" />
+    <Compile Include="src\stage_starters\SimpleStageStarter.cs" />
     <Compile Include="src\steam\ISteamClient.cs" />
     <Compile Include="src\steam\ISteamSignalReceiver.cs" />
     <Compile Include="src\steam\SteamHandler.cs" />
@@ -661,7 +688,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.0.1</Version>
+      <Version>13.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -671,6 +698,10 @@
     <Content Include="global.json" />
     <Content Include="RevolutionaryGamesCommon\stylecop.json" />
     <Content Include="RevolutionaryGamesCommon\StyleCop.ruleset" />
+    <Content Include="simulation_parameters\awakening_stage\crafting_recipes.json" />
+    <Content Include="simulation_parameters\awakening_stage\equipment.json" />
+    <Content Include="simulation_parameters\awakening_stage\technologies.json" />
+    <Content Include="simulation_parameters\awakening_stage\world_resources.json" />
     <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
     <Content Include="simulation_parameters\common\difficulty_presets.json" />

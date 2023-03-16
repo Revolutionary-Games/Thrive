@@ -25,6 +25,21 @@ public class RegistryTypeStringConverter : TypeConverter
                 new SupportedRegistryType(typeof(Enzyme), "enzyme",
                     name => SimulationParameters.Instance.GetEnzyme(name))
             },
+            {
+                "worldResource",
+                new SupportedRegistryType(typeof(WorldResource), "worldResource",
+                    name => SimulationParameters.Instance.GetWorldResource(name))
+            },
+            {
+                "equipment",
+                new SupportedRegistryType(typeof(EquipmentDefinition), "equipment",
+                    name => SimulationParameters.Instance.GetBaseEquipmentDefinition(name))
+            },
+            {
+                "recipe",
+                new SupportedRegistryType(typeof(CraftingRecipe), "recipe",
+                    name => SimulationParameters.Instance.GetCraftingRecipe(name))
+            },
         };
 
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -141,4 +156,28 @@ public class CompoundStringConverter : RegistryTypeStringSingleTypeConverter<Com
 public class EnzymeStringConverter : RegistryTypeStringSingleTypeConverter<Enzyme>
 {
     protected override string TypeName => "enzyme";
+}
+
+/// <summary>
+///   Specific converter for <see cref="WorldResource"/>
+/// </summary>
+public class WorldResourceStringConverter : RegistryTypeStringSingleTypeConverter<WorldResource>
+{
+    protected override string TypeName => "worldResource";
+}
+
+/// <summary>
+///   Specific converter for <see cref="EquipmentDefinition"/>
+/// </summary>
+public class EquipmentDefinitionStringConverter : RegistryTypeStringSingleTypeConverter<EquipmentDefinition>
+{
+    protected override string TypeName => "equipment";
+}
+
+/// <summary>
+///   Specific converter for <see cref="CraftingRecipe"/>
+/// </summary>
+public class CraftingRecipeStringConverter : RegistryTypeStringSingleTypeConverter<CraftingRecipe>
+{
+    protected override string TypeName => "recipe";
 }

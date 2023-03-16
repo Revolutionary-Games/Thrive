@@ -25,7 +25,7 @@ public static class LastPlayedVersion
 
         if (LastPlayed != null && VersionUtils.Compare(version, LastPlayed) <= 0)
         {
-            GD.Print("We are playing a lower Thrive version than latest, not updating latest");
+            GD.Print("We are not playing a newer Thrive version than last played, not updating latest");
             return;
         }
 

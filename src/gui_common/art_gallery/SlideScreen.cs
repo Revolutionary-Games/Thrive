@@ -151,9 +151,6 @@ public class SlideScreen : CustomDialog
                 toolbarTween.Start();
             }
 
-            if (Input.MouseMode == Input.MouseModeEnum.Hidden)
-                Input.MouseMode = Input.MouseModeEnum.Visible;
-
             if (toolbarHideTimer < 0)
             {
                 toolbarTween.InterpolateProperty(
@@ -161,7 +158,11 @@ public class SlideScreen : CustomDialog
                 toolbarTween.InterpolateProperty(
                     closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                 toolbarTween.Start();
-                Input.MouseMode = Input.MouseModeEnum.Hidden;
+                MouseCaptureManager.SetMouseHideState(true);
+            }
+            else
+            {
+                MouseCaptureManager.SetMouseHideState(false);
             }
         }
 
@@ -287,7 +288,7 @@ public class SlideScreen : CustomDialog
     {
         base.OnHidden();
         SlideshowMode = false;
-        Input.MouseMode = Input.MouseModeEnum.Visible;
+        MouseCaptureManager.SetMouseHideState(false);
     }
 
     protected override void Dispose(bool disposing)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-10 15:58+0200\n"
+"POT-Creation-Date: 2023-03-14 14:53+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "3D_EDITOR"
 msgstr "עורך תלת-מימדי"
 
-#: ../simulation_parameters/common/input_options.json:164
+#: ../simulation_parameters/common/input_options.json:168
 msgid "3D_MOVEMENT"
 msgstr "תנועה תלת-מימדית"
 
@@ -51,13 +51,13 @@ msgstr "הופל."
 msgid "ABYSSOPELAGIC"
 msgstr "אביסלפלגיים"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:236
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 #, fuzzy
 msgid "ACTION_AWAKEN"
 msgstr "מודע"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "מודע"
@@ -103,7 +103,7 @@ msgstr "פתח את תצוגת ההגדרה המתקדם"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "קיבוע חנקן אירובי"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1393
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1398
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "חומרים"
@@ -170,7 +170,7 @@ msgid "AMBIANCE_VOLUME"
 msgstr "עוצמת אווירה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1170
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1175
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
@@ -543,6 +543,10 @@ msgstr "חלולית של ביולומינסנציה"
 msgid "BIOME_LABEL"
 msgstr "ביומה: {0}"
 
+#: ../src/general/GameProperties.cs:132
+msgid "BRAIN_CELL_NAME_DEFAULT"
+msgstr ""
+
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
 msgstr "אמיץ"
@@ -572,10 +576,11 @@ msgstr "סידן פחמתי"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש קליפה חזקה העשויה מסידן פחמתי. הוא מסוגל בקלות לעמוד בפני נזק ודורש פחות אנרגיה כדי לא לעוות. החסרונות זה שמעטפת כה כבדה עד שהיא גורמת לתא לנוע באטיות הרבה יותר וגם לוקח יותר זמן לספוג משאבים."
 
-#: ../simulation_parameters/common/input_options.json:82
+#: ../simulation_parameters/common/input_options.json:86
 msgid "CAMERA"
 msgstr "מצלמה"
 
+#: ../src/awakening_stage/InteractablePopup.tscn:49
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
@@ -589,7 +594,7 @@ msgstr "ביטול"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "בטל פעולה"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "בטל פעולה נוכחית"
@@ -706,7 +711,7 @@ msgstr "הערות שינוי ארוכות מידי"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "שנה סימטריה"
 
-#: ../simulation_parameters/common/input_options.json:243
+#: ../simulation_parameters/common/input_options.json:247
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
@@ -716,7 +721,7 @@ msgstr "קודים"
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "מקשי קודים מופעלים"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:267
 msgid "CHEAT_MENU"
 msgstr "תפריט קודים"
 
@@ -833,14 +838,14 @@ msgstr "נקה שמירות ישנות"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1382
-#: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:230
 msgid "CLOSE"
 msgstr "סגור"
 
@@ -949,7 +954,7 @@ msgstr "ראו את ויקי הקהילתי שלנו"
 msgid "COMPILED_AT_COLON"
 msgstr "נבנה ב:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1020
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1025
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
@@ -1029,7 +1034,7 @@ msgstr "חלק מההגדרות אינם חוקיות"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "תוכן הWorkshop יעלו מהתיקייה: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:413
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:416
 msgid "CONTINUE_THRIVING"
 msgstr "המשך לשגשג"
 
@@ -1091,6 +1096,46 @@ msgstr "פרוטנופ (אדום-ירוק)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "טריטנופ (כחול - צהוב)"
 
+#: ../src/awakening_stage/InventoryScreen.tscn:238
+msgid "CRAFTING_CLEAR_INPUTS"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:223
+msgid "CRAFTING_FILTER_INPUTS"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:178
+#, fuzzy
+msgid "CRAFTING_KNOWN_ITEMS"
+msgstr "בקנה מידה הפוך"
+
+#: ../src/awakening_stage/InventoryScreen.cs:968
+msgid "CRAFTING_NO_RECIPE_SELECTED"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
+msgid "CRAFTING_RECIPE_HAND_AXE"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:269
+#, fuzzy
+msgid "CRAFTING_RESULTS"
+msgstr "תוצאות מפתח אוטומטי:"
+
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
+msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:282
+msgid "CRAFTING_TAKE_ALL"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:165
+#, fuzzy
+msgid "CRAFTING_TITLE"
+msgstr "חסרה כותרת"
+
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
 msgstr "ליצור"
@@ -1139,7 +1184,7 @@ msgstr "אתה יכול ליצור סוגי רקמות חדשות על ידי ש
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "יוצר..."
 
-#: ../src/saving/InProgressLoad.cs:104
+#: ../src/saving/InProgressLoad.cs:107
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "יוצר אובייקטים משמירה"
 
@@ -1262,7 +1307,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "למחוק שמירות ישנות?"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
 msgstr "הסר אברון"
 
@@ -1650,7 +1695,7 @@ msgstr "לכלול ביצי פסחא"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(באקראי מייצר סודות במשחק)"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:103
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "עורך"
@@ -1659,7 +1704,7 @@ msgstr "עורך"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "כנס לעורך ושנה את המין שלך"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "ברוך הבא לעורך המיקרובי.\n"
@@ -1682,7 +1727,7 @@ msgstr "מודים מופעלים"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "הפעל את כל המודים התואמים"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:251
 msgid "ENABLE_EDITOR"
 msgstr "הפעל את העורך"
 
@@ -1722,7 +1767,7 @@ msgstr "הכנס Workshop ID קיים"
 msgid "ENTITY_LABEL"
 msgstr "תווית ישות"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:554
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:559
 #: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "סביבה"
@@ -1769,7 +1814,7 @@ msgstr "(באקראי מייצר סודות במשחק)"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "תקלה ביצירת מידע על המוד"
 
-#: ../src/saving/InProgressLoad.cs:203
+#: ../src/saving/InProgressLoad.cs:206
 msgid "ERROR_LOADING"
 msgstr "טוען שגיאה"
 
@@ -1806,11 +1851,11 @@ msgstr "גרסת Thrive מדויקת:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:171
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "משהו חריג אירע במהלך עיבוד טעינת אובייקטים"
 
-#: ../src/saving/InProgressLoad.cs:113
+#: ../src/saving/InProgressLoad.cs:116
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "חריג אירע בעת טעינת נתוני שמירה"
 
@@ -1899,12 +1944,12 @@ msgstr ""
 "מיקרובים אמיצים לא יפחדו מטורפים לידם\n"
 "והם נוטים לתקוף חזרה."
 
-#: ../src/general/TranslationHelper.cs:85
+#: ../src/general/TranslationHelper.cs:81
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "כבוי"
 
-#: ../src/general/TranslationHelper.cs:84
+#: ../src/general/TranslationHelper.cs:80
 #, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "מקשי קודים מופעלים"
@@ -1948,7 +1993,7 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:70
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "סננן לפי קטגוריה:"
 
@@ -1975,7 +2020,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "סיים {0} דורות"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1944
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
@@ -2168,7 +2213,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה מ{1} ל{2}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1118
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1123
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 #: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
@@ -2200,7 +2245,7 @@ msgstr "מצב אלוהים"
 msgid "GOOGLY_EYE_CELL"
 msgstr "עיניי תא מרשרשות"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:159
 msgid "GOT_IT"
 msgstr "הבנתי"
 
@@ -2232,7 +2277,7 @@ msgstr ""
 "אם אתה נתקל בבאג בזמן שחלקים מהכפתור העורך נעלמים,\n"
 "נסה להשבות את זה בשביל לראות אם הבעיה נעלמה."
 
-#: ../simulation_parameters/common/input_options.json:218
+#: ../simulation_parameters/common/input_options.json:222
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} אלפים"
@@ -2267,7 +2312,7 @@ msgstr "(ערכים גבוהים יותר מגדילים ביצועים)"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ערכים גבוהים מדרדר ביצועים)"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "החזק בשביל להחליף בין מצב גלילה לסיבוב"
 
@@ -2275,11 +2320,11 @@ msgstr "החזק בשביל להחליף בין מצב גלילה לסיבוב"
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "החזק כדי להציג את תפריט פקודות"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:188
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "החזק בשביל להראות את סמן העכבר"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:491
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:496
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "החזק [thrive:input]g_free_cursor[/thrive:input] עבור סמן העכבר"
 
@@ -2310,7 +2355,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1274
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1279
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 #: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
@@ -2374,6 +2419,11 @@ msgstr "קלטים"
 msgid "INPUT_NAME_INTERACTION"
 msgstr "סיים דור אחד"
 
+#: ../simulation_parameters/common/input_options.json:76
+#, fuzzy
+msgid "INPUT_NAME_OPEN_INVENTORY"
+msgstr "סיים דור אחד"
+
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr "לבדוק"
@@ -2382,6 +2432,19 @@ msgstr "לבדוק"
 #, fuzzy
 msgid "INSPECTOR"
 msgstr "לבדוק"
+
+#: ../src/awakening_stage/InteractionType.cs:8
+#, fuzzy
+msgid "INTERACTION_CRAFT"
+msgstr "קצב מוטציות של AI"
+
+#: ../src/awakening_stage/InteractionType.cs:5
+msgid "INTERACTION_PICK_UP"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
+msgid "INTERACTION_PICK_UP_CANNOT_FULL"
+msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
@@ -2428,6 +2491,23 @@ msgstr "פורמט של כתובת אתר אינו חוקי"
 msgid "INVALID_URL_SCHEME"
 msgstr "סכימת כתובת URL לא חוקית"
 
+#: ../src/awakening_stage/InventoryScreen.tscn:73
+msgid "INVENTORY_ITEMS_ON_GROUND"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:99
+#, fuzzy
+msgid "INVENTORY_TITLE"
+msgstr "\"{0}\" - {1}"
+
+#: ../src/awakening_stage/InventoryScreen.tscn:148
+msgid "INVENTORY_TOGGLE_CRAFTING"
+msgstr ""
+
+#: ../src/awakening_stage/InventoryScreen.tscn:142
+msgid "INVENTORY_TOGGLE_GROUND"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
 #: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
 msgid "INVERTED"
@@ -2442,7 +2522,7 @@ msgstr ""
 "חלקים מהאבטיפוס ניתן לשמור באופן חלקי."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1326
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1331
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 #: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
@@ -2872,7 +2952,7 @@ msgstr "חלק מהאפשרויות היו מבוטלים לשינוי אם LAWK
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "נביעות הידרותרמיות"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:878
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:883
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "אור"
@@ -2968,8 +3048,8 @@ msgstr "טוען..."
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "טוען עורך הקדם רב-תאי"
 
-#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
-#: ../src/saving/InProgressLoad.cs:151
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
+#: ../src/saving/InProgressLoad.cs:154
 msgid "LOADING_GAME"
 msgstr "טוען משחק"
 
@@ -2986,7 +3066,7 @@ msgstr "טוען עורך הרב-תאי"
 msgid "LOADING_TIP"
 msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
 
-#: ../src/saving/InProgressLoad.cs:174
+#: ../src/saving/InProgressLoad.cs:177
 msgid "LOAD_FINISHED"
 msgstr "טעינה הסתיימה"
 
@@ -3466,12 +3546,12 @@ msgstr "לא ניתן להציג פחות מ{0} נתונים!"
 msgid "MISC"
 msgstr "שונות"
 
-#: ../simulation_parameters/common/input_options.json:274
+#: ../simulation_parameters/common/input_options.json:278
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "שונות"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:184
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "שלב 3D שונות"
 
@@ -3701,7 +3781,7 @@ msgstr "ניסיונות מעבר למין"
 msgid "MOVE_BACKWARDS"
 msgstr "זוז אחורה"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "נוע מטה או תתכופף"
 
@@ -3713,7 +3793,7 @@ msgstr "זוז קדימה"
 msgid "MOVE_LEFT"
 msgstr "זוז שמאלה"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_ORGANELLE"
 msgstr "הזז אברון"
 
@@ -3725,7 +3805,7 @@ msgstr "זוז ימינה"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "לזוז לכל אזור"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1564
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1569
 msgid "MOVE_TO_LAND"
 msgstr "עבור ליבשה"
 
@@ -3737,11 +3817,11 @@ msgstr "עבור לשלב הבא של המשחק (רב תא). זמין ברגע 
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "תעבור לאזור זה"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "MOVE_UP_OR_JUMP"
 msgstr "נוע מעלה או קפוץ"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1996
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2014
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
@@ -3751,12 +3831,12 @@ msgstr ""
 "\n"
 "התוכנית הוא לעשות את המעבר ליבשה בהדרגה ולא כשינוי פתאומי."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1995
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2013
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "לנוע ליבשה?"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2009
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "אתה נעת לתוך היבשה. זה נדרש בשביל להתקדם יותר מאוחר לתוך המשחק. ברגע שאתה על היבשה, לא תוכל לחזור אחורה.\n"
@@ -3765,7 +3845,7 @@ msgstr ""
 "\n"
 "התוכנית הוא לעשות את המעבר ליבשה בהדרגה ולא כשינוי פתאומי."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2008
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "לנוע ליבשה?"
 
@@ -3779,7 +3859,7 @@ msgid "MP_COST"
 msgstr "{0} נקמ\"ו"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1504
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1509
 #: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "ריר"
@@ -3965,7 +4045,7 @@ msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט ה
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:346
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4147,7 +4227,7 @@ msgstr "פתח תקיית קבצי לוג"
 msgid "OPEN_MOD_URL"
 msgstr "פתח כתובת מידע"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "פתח תפריט האברון"
 
@@ -4327,7 +4407,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1458
 #: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
@@ -4364,23 +4444,23 @@ msgstr "Thrive הופעל במצב בטוח"
 msgid "PANGONIAN_REGION_NAME"
 msgstr "פאנגוניה"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_DOWN"
 msgstr "זוז מטה"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_LEFT"
 msgstr "זוז שמאלה"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_RESET"
 msgstr "אפס מצלמה"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_RIGHT"
 msgstr "זוז ימינה"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_UP"
 msgstr "זוז מעלה"
 
@@ -4532,7 +4612,7 @@ msgid "PER_SECOND_SLASH"
 msgstr "\\לשנייה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1222
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1227
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 #: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
@@ -4554,7 +4634,7 @@ msgstr "מצב פיזי"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "עמידות מפגיעה פיזית"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PLACE_ORGANELLE"
 msgstr "הוסף אברון"
 
@@ -4642,7 +4722,7 @@ msgstr "הפעל פתיח שלב המיקרוב במשחק חדש"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "שחק עם ההגדרות הנוכחות"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1604
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1609
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
@@ -4671,7 +4751,7 @@ msgstr "הצג מידע מפורט מאחורי החיזוי"
 msgid "PRESSURE"
 msgstr "לחץ"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:933
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:938
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "לחץ."
@@ -4692,7 +4772,7 @@ msgstr "תמונה מקדימה כבדה מידי"
 msgid "PREVIOUS_COLON"
 msgstr "קודם:"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "מעלה אובייקטים"
 
@@ -4732,11 +4812,11 @@ msgstr "פרוטופלזמה"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "בקשות דרישה / תיכנות"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "QUICK_LOAD"
 msgstr "טעינה מהירה"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "QUICK_SAVE"
 msgstr "שמירה מהירה"
 
@@ -4749,7 +4829,7 @@ msgstr "יציאה"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "צא מהמשחק"
 
-#: ../src/general/PauseMenu.cs:399
+#: ../src/general/PauseMenu.cs:446
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "האם אתה בטוח שרוצה לצאת מהמשחק?\n"
@@ -4790,7 +4870,7 @@ msgstr "המלצת Thrive:"
 msgid "REDDIT_TOOLTIP"
 msgstr "ראו בתת-נושא הרדייט שלנו"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "REDO"
 msgstr "עשה מחדש"
 
@@ -4890,6 +4970,12 @@ msgstr "רזולוציה:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "מהירות ספיגת משאבים"
 
+#: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
+#, fuzzy
+msgid "RESOURCE_ROCK"
+msgstr "צפה בקוד מקור"
+
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:111
 msgid "RESPIRATION"
@@ -4921,7 +5007,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "צא לתפריט הראשי"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:380
+#: ../src/general/PauseMenu.cs:427
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "האם אתה בטוח שאתה רוצה לצאת לתפריט הראשי?\n"
@@ -4947,11 +5033,11 @@ msgstr "קשיח"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "קרום נוקשה עמיד יותר בפני נזקים, אך מקשה על התא לנוע."
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "ROTATE_LEFT"
 msgstr "סובב שמאלה"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 msgid "ROTATE_RIGHT"
 msgstr "סובב ימינה"
 
@@ -5065,7 +5151,7 @@ msgstr ""
 "הגרסה שאתה מנסה לטעון אינה תואמת את גרסת המשחק.\n"
 "אנא טען את השמירה באופן ידני דרך התפריט."
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:143
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "לשמירה סצנת משחק לא תקפה"
 
@@ -5073,7 +5159,7 @@ msgstr "לשמירה סצנת משחק לא תקפה"
 msgid "SAVE_INVALID"
 msgstr "לא תקף"
 
-#: ../src/saving/InProgressLoad.cs:139
+#: ../src/saving/InProgressLoad.cs:142
 msgid "SAVE_IS_INVALID"
 msgstr "השמירה אינו תקפה"
 
@@ -5085,7 +5171,7 @@ msgstr ""
 "אם אתה מדלג על שדרוג, השמירה תנסה לעלות בדרך הרגילה.\n"
 "האם לשדרג שמירה זו?"
 
-#: ../src/saving/InProgressLoad.cs:242
+#: ../src/saving/InProgressLoad.cs:245
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "נכשל לפנות חומרים מועלים: {0}"
 
@@ -5164,7 +5250,7 @@ msgid "SEA_FLOOR"
 msgstr "קרקעית הים"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1977
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "הפרש ריר"
@@ -5248,7 +5334,7 @@ msgstr "עוצמת אפקטים"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "SHOW_HELP"
 msgstr "הצג עזרה"
 
@@ -5340,8 +5426,8 @@ msgstr "16x"
 msgid "SIZE_COLON"
 msgstr "גודל:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:128
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:176
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:129
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:177
 msgid "SLIDESHOW"
 msgstr "מצגת"
 
@@ -5392,7 +5478,7 @@ msgstr "מובילי צוות סאונד"
 msgid "SPACE"
 msgstr "רווח"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SPAWN_AMMONIA"
 msgstr "זמן אמוניה"
 
@@ -5400,15 +5486,15 @@ msgstr "זמן אמוניה"
 msgid "SPAWN_ENEMY"
 msgstr "זמן אויב"
 
-#: ../src/microbe_stage/MicrobeStage.cs:782
+#: ../src/microbe_stage/MicrobeStage.cs:784
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:255
 msgid "SPAWN_GLUCOSE"
 msgstr "זמן גלוקוז"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_PHOSPHATES"
 msgstr "זמן פוספט"
 
@@ -5625,7 +5711,7 @@ msgstr "אחסון"
 msgid "STORAGE_COLON"
 msgstr "אחסון:"
 
-#: ../src/general/MainMenu.cs:506
+#: ../src/general/MainMenu.cs:507
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
 
@@ -5679,15 +5765,15 @@ msgstr "מקש Super Right"
 msgid "SUPPORTER_PATRONS"
 msgstr "תומכים"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "החלף לתצוגת מצלמה קדמית"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "החלף לתצוגת מצלמה ימנית"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "החלף לתצוגת מצלמה עליונה"
 
@@ -5695,20 +5781,20 @@ msgstr "החלף לתצוגת מצלמה עליונה"
 msgid "SYSREQ"
 msgstr "מקש SysRq"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:238
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "סובב שמאלה"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "סובב ימינה"
@@ -5717,9 +5803,13 @@ msgstr "סובב ימינה"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "תגיות מכילים רק רווחים"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "TAKE_SCREENSHOT"
 msgstr "צלם מסך"
+
+#: ../simulation_parameters/awakening_stage/technologies.json:3
+msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
@@ -5729,7 +5819,7 @@ msgstr "צלם מסך"
 msgid "TEMPERATURE"
 msgstr "טמפרטורה"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:822
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:827
 #: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "טמפ'."
@@ -5738,7 +5828,7 @@ msgstr "טמפ'."
 msgid "TESTING_TEAM"
 msgstr "צוות בודקים"
 
-#: ../src/general/MainMenu.cs:225 ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:982
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -5922,30 +6012,31 @@ msgstr "כותרת:"
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב קישור"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:286
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "החלף חלונית דיבאג"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1916
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1930
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1915
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1929
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 msgid "TOGGLE_FPS"
 msgstr "אפשר תצוגת FPS"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:314
 msgid "TOGGLE_FULLSCREEN"
 msgstr "מסך מלא"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:318
 msgid "TOGGLE_HUD_HIDE"
 msgstr "החלף HUD"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "TOGGLE_METRICS"
 msgstr "החלף את תצוגת המדדים"
 
@@ -5953,7 +6044,7 @@ msgstr "החלף את תצוגת המדדים"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:278
+#: ../simulation_parameters/common/input_options.json:282
 msgid "TOGGLE_PAUSE"
 msgstr "עצור"
 
@@ -5964,6 +6055,10 @@ msgstr "בטל מצב קישור"
 #: ../src/general/MainMenu.tscn:327
 msgid "TOOLS"
 msgstr "כלים"
+
+#: ../simulation_parameters/awakening_stage/equipment.json:3
+msgid "TOOL_HAND_AXE"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 msgid "TOTAL_POPULATION_COLON"
@@ -6028,15 +6123,15 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "נסה לצלם כמה צילומי מסך!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:378
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL"
 msgstr "מדריך"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:379
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:382
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "ברוכים הבאים לשלב הרב תאי הקדמוני!\n"
@@ -6049,7 +6144,7 @@ msgstr ""
 "\n"
 "אם אתה משתמש בצורת רבייה מסוג הנצה (ברירת המחדל), אתה מתחיל בכך שאתה שלוט בניצן קטן ומצריך אותך לגדל את שאר פריסת המושבה שלך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "לוח זה מציג את התחזית העתידית של האוכלוסייה שלך. מספרים ללו הם מהדמיות של האוכלוסייה מהמפתח האוטומטי.\n"
@@ -6060,7 +6155,7 @@ msgstr ""
 "\n"
 "אתה יכול להציג מידע מפורט יותר מאחורי החיזוי על ידי לחיצה על כפתור סימן השאלה בלוח. לחץ עליו כדי להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "זהו עורך התא שבו אתה יכול לפתח את המין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו). על כל דור תמיד היה לך 100 נקמ\"ו לבזבז, כך שאין סיבה לשמור!.\n"
@@ -6069,7 +6164,7 @@ msgstr ""
 "\n"
 "בשביל להמשיך, בחר חלק מהכרטיסייה השמאלית. לאחר מיכן לחץ על הלחצן השמאלי בתוך המשושה הרצוי בשביל להניח אותו. אתה יכול לסובב חלקים על ידי [thrive:input]e_rotate_left[/thrive:input] ו[thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "אלו כל הדברים הבסיסים על עריכת המין שלך. ולסיום, אתה יכול לשנות את שם המין שלך על ידי לחיצה על השם בצד שמאל למטה ועריכת הטקסט.\n"
@@ -6080,7 +6175,7 @@ msgstr ""
 "\n"
 "בהצלחה!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "זהו מפת האזורים.\n"
@@ -6091,7 +6186,7 @@ msgstr ""
 "\n"
 "נסה לבחור אזור בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:84
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך, אלו אם הם נוספו בעריכה הנוכחית. \n"
@@ -6102,7 +6197,7 @@ msgstr ""
 "\n"
 "לחץ על הכפתור בטל בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "כשאתה בוחר חלקים בתפריט, הסתכל קרוב לתיבת המידע שצץ בשביל להבין מה הם עושים. חלקים יכולים לעשות יותר נזק מתועלת אם אתה מתעלם מתפקידם.\n"
@@ -6111,7 +6206,7 @@ msgstr ""
 "\n"
 "לחץ על כפתור עשה מחדש (זה שליד כפתור בטל) על מנת להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:195
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "כדאי לך להתמקד בהתמחות על מנת לשרוד על מקור אנרגיה אחד או שניים, כך שלא תזדקק למשאבים רבים ושונים בבת אחת כדי לקיים את עצמך.\n"
@@ -6120,7 +6215,7 @@ msgstr ""
 "\n"
 "אסטרטגיה אפשרית אחת זהו להישאר משושה של ציטופלזמה אחת ורק להגיע לאזורים של פני הים המלאים באור לפני שמוסיפים אברונים שעושים פוטוסינתזה."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "אתה שרדת מספיק זמן בשביל לגרום לתא שלך להתרבות.\n"
@@ -6129,21 +6224,21 @@ msgstr ""
 "\n"
 "בשביל להיכנס לעורך, לחץ על הכפתור הגדול המהבהב בימין תחתון."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:353
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "התא שלך נבלע ומתחיל להתעכל. תהליך מוצג על מד החיים. התא שלך יוגדר כמת ברגע שהתהליך יסתיים או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
 "\n"
 "אתה יכול להשתמש בכפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:332
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "לתא שלך מוגבל עד כמה אובייקטים מסוגלים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא; תא קטן מכיל פחות מקום.\n"
 "\n"
 "כאשר שתא שלך מלא, הוא לא מסוגל לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעוכלו לחלוטין אובייקט אחד או יותר."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "לבלוע אובייקטים על ידי תנועה עליהם בזמן שמצב בליעה פועל. את מצב הבליעה מופעל על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6152,14 +6247,14 @@ msgstr ""
 "\n"
 "עקוב אחר הקו מהתא שלך אל ליד אובייקט שניתן לעיכול."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "מתקשה? אתה יכול לבדוק בתפריט העזרה. אתה יכול אותו בעזרת הכפתור שמסומן עליו סימן שאלה בתחתון שמאלה.\n"
 "\n"
 "טיפ נוסף: אתה יכול לעשות זום אאוט עם גלגלת העכבר שלך בשביל להרחיב את שדה הראיה שלך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:365
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "אתה מלא בthrive:compound type=\"ammonia\"][/thrive:compound] ו[thrive:compound type=\"phosphates\"][/thrive:compound]. אך מכיוון שאתה במושבה שאינה רב תאים, אתה לא יכול להתרבות.\n"
@@ -6174,14 +6269,14 @@ msgstr ""
 "\n"
 "תסתכל על האינדיקטור העגלגל שבצד השמאלית התחתונה בשביל לראות עד כמה התקדמת. האינדיקטור הופך ללבן מתי שהוא מוכן."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
@@ -6222,7 +6317,7 @@ msgstr "זהו בניית די-באג כאשר שהמידע מתחת ככל הנ
 msgid "UNDERWATERCAVE"
 msgstr "מערה תת-מימית"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "UNDO"
 msgstr "בטל"
 
@@ -6571,11 +6666,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "אתה יכול לתמוך בפיתוח עתידי של Thrive בפטריון."
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_IN"
 msgstr "להתמקד"
 
-#: ../simulation_parameters/common/input_options.json:86
+#: ../simulation_parameters/common/input_options.json:90
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 

@@ -12,9 +12,20 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class MulticellularStage : StageBase<MulticellularCreature>
 {
+    [Export]
+    public NodePath? InteractableSystemPath;
+
+    [Export]
+    public NodePath InteractionPopupPath = null!;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
+
+#pragma warning disable CA2213
+    private InteractableSystem interactableSystem = null!;
+    private InteractablePopup interactionPopup = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
@@ -50,6 +61,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // HoverInfo.Init(Camera, Clouds);
 
+        interactableSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
+        interactionPopup.OnInteractionSelectedHandler += ForwardInteractionSelectionToPlayer;
+
         SetupStage();
     }
 
@@ -62,6 +76,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         HUD = GetNode<MulticellularHUD>("MulticellularHUD");
         HoverInfo = GetNode<PlayerInspectInfo>("PlayerLookingAtInfo");
+
+        interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
+        interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -88,6 +105,16 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         if (Player != null)
         {
+            if (Player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+            {
+                // TODO: player interaction reach modifier from the species
+                interactableSystem.UpdatePlayerPosition(Player.GlobalTranslation, 0);
+                interactableSystem.SetActive(true);
+            }
+            else
+            {
+                interactableSystem.SetActive(false);
+            }
         }
 
         // TODO: notify metrics
@@ -255,11 +282,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         {
             Mesh = new PlaneMesh
             {
-                Size = new Vector2(200, 200),
+                Size = new Vector2(400, 400),
                 Material = new SpatialMaterial
                 {
-                    // Not good style but this is like this so I could just quickly copy-paste from the Godot editor
-                    AlbedoColor = new Color("#321d09"),
+                    AlbedoTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Albedo.png"),
+                    NormalEnabled = true,
+                    NormalTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Normals.png"),
+                    Uv1Scale = new Vector3(42, 42, 42),
                 },
             },
         });
@@ -267,15 +296,11 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         rootOfDynamicallySpawned.AddChild(ground);
 
         // A not super familiar (different than underwater) rock strewn around for reference
-        var rockShape = GD.Load<Shape>("res://assets/models/Iron4.shape");
-        var rockScene = GD.Load<PackedScene>("res://assets/models/Iron4.tscn");
-        var rockMaterial = new PhysicsMaterial
-        {
-            Friction = 1,
-            Bounce = 0.3f,
-            Absorbent = false,
-            Rough = false,
-        };
+        var rockResource = SimulationParameters.Instance.GetWorldResource("rock");
+        var resourceScene = SpawnHelpers.LoadResourceEntityScene();
+
+        // TODO: remove once resource data is loaded from JSON
+        TranslationServer.Translate("RESOURCE_ROCK");
 
         foreach (var position in new[]
                  {
@@ -285,23 +310,14 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                      new Vector3(-3, 0, 5),
                      new Vector3(-8, 0, 6),
                      new Vector3(18, 0, 11),
+                     new Vector3(38, 0, 11),
+                     new Vector3(-15, 0, 10),
+                     new Vector3(-15, 0, -15),
                  })
         {
-            var rock = new RigidBody
-            {
-                PhysicsMaterialOverride = rockMaterial,
-            };
-
-            rock.AddChild(new CollisionShape
-            {
-                Shape = rockShape,
-            });
-
-            rock.AddChild(rockScene.Instance());
-
-            rootOfDynamicallySpawned.AddChild(rock);
-
-            rock.Translation = new Vector3(position.x, 0.1f, position.z);
+            // But create it as a resource entity so that it can be interacted with
+            SpawnHelpers.SpawnResourceEntity(rockResource, new Transform(Basis.Identity, position),
+                rootOfDynamicallySpawned, resourceScene, true);
         }
 
         // Modify player state for being on land
@@ -340,10 +356,46 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
 
-        // TODO: find nearby objects and open interaction menu if there's something to interact with
+        var target = interactableSystem.GetInteractionTarget();
 
-        // Did not find anything for the player to interact with
-        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+        if (target == null)
+        {
+            // Did not find anything for the player to interact with
+            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+            return;
+        }
+
+        // Show interaction context menu for the player to do something with the target
+        interactionPopup.ShowForInteractable(target, Player.CalculatePossibleActions(target));
+
+        // TODO: somehow refresh the inventory screen if it is open and the player decided to do a pick up action
+    }
+
+    public bool TogglePlayerInventory()
+    {
+        if (Player == null)
+            return false;
+
+        if (HUD.IsInventoryOpen)
+        {
+            HUD.CloseInventory();
+            return true;
+        }
+
+        try
+        {
+            // Refresh the items on the ground near the player to show in the inventory screen
+            var groundObjects = interactableSystem.GetAllNearbyObjects();
+
+            HUD.OpenInventory(Player, groundObjects);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Problem trying to show inventory: {e}");
+            return false;
+        }
+
+        return true;
     }
 
     protected override void SetupStage()
@@ -432,6 +484,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
+        Player.RequestCraftingInterfaceFor = OnOpenCraftingInterfaceFor;
+
         PlayerCamera.FollowedNode = Player;
 
         // spawner.DespawnAll();
@@ -460,6 +514,22 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (InteractableSystemPath != null)
+            {
+                InteractableSystemPath.Dispose();
+                InteractionPopupPath.Dispose();
+            }
+
+            interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void SaveGame(string name)
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
@@ -482,5 +552,26 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     private void OnPlayerReproductionStatusChanged(MulticellularCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
+    }
+
+    private void ForwardInteractionSelectionToPlayer(IInteractableEntity entity, InteractionType interactionType)
+    {
+        if (Player == null)
+            return;
+
+        if (!Player.AttemptInteraction(entity, interactionType))
+            GD.Print("Player couldn't perform the selected action");
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnOpenCraftingInterfaceFor(MulticellularCreature player, IInteractableEntity target)
+    {
+        if (!TogglePlayerInventory())
+        {
+            GD.Print("Couldn't open player inventory to then select a craftable resource");
+            return;
+        }
+
+        HUD.SelectItemForCrafting(target);
     }
 }

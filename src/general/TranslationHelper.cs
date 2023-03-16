@@ -58,9 +58,7 @@ public static class TranslationHelper
 
             var data = (TranslateFromAttribute)attributes[0];
 
-            var source = GetTargetField(type, data);
-
-            source.SetValue(instance, field.GetValue(instance));
+            SetValue((string)field.GetValue(instance), type, instance, data);
         }
 
         foreach (var property in type.GetProperties(VALID_VISIBILITY_FOR_CHECKS))
@@ -72,9 +70,7 @@ public static class TranslationHelper
 
             var data = (TranslateFromAttribute)attributes[0];
 
-            var source = GetTargetField(type, data);
-
-            source.SetValue(instance, property.GetValue(instance));
+            SetValue((string)property.GetValue(instance), type, instance, data);
         }
     }
 
@@ -85,23 +81,65 @@ public static class TranslationHelper
             TranslationServer.Translate("FEATURE_DISABLED");
     }
 
-    private static string GetTranslatedText(Type type, object instance, object[] attributes)
+    private static string GetTranslatedText(Type type, object instance, object[] translateAttributes)
     {
-        var data = (TranslateFromAttribute)attributes[0];
+        var data = (TranslateFromAttribute)translateAttributes[0];
 
-        var source = GetTargetField(type, data);
+        var source = GetValue(type, instance, data);
 
-        return TranslationServer.Translate((string)source.GetValue(instance));
+        if (string.IsNullOrWhiteSpace(source))
+            throw new Exception("Text to translate from is empty");
+
+        return TranslationServer.Translate(source);
     }
 
-    private static FieldInfo GetTargetField(Type type, TranslateFromAttribute data)
+    private static string? GetValue(Type type, object instance, TranslateFromAttribute data)
     {
-        var source = type.GetField(data.SourceField, VALID_VISIBILITY_FOR_CHECKS);
+        // Try field first
+        var field = GetTargetField(type, data);
 
-        if (source == null)
-            throw new NullReferenceException($"could not find translate source field: ${data.SourceField}");
+        if (field != null)
+        {
+            return (string?)field.GetValue(instance);
+        }
 
-        return source;
+        // Then property
+        var property = GetTargetProperty(type, data);
+
+        if (property == null)
+            throw new NullReferenceException($"could not find translate source field or property: ${data.SourceField}");
+
+        return (string?)property.GetValue(instance);
+    }
+
+    private static void SetValue(string value, Type type, object instance, TranslateFromAttribute data)
+    {
+        // Try field first
+        var field = GetTargetField(type, data);
+
+        if (field != null)
+        {
+            field.SetValue(instance, value);
+            return;
+        }
+
+        // Then property
+        var property = GetTargetProperty(type, data);
+
+        if (property == null)
+            throw new NullReferenceException($"could not find translate target field or property: ${data.SourceField}");
+
+        property.SetValue(instance, value);
+    }
+
+    private static FieldInfo? GetTargetField(Type type, TranslateFromAttribute data)
+    {
+        return type.GetField(data.SourceField, VALID_VISIBILITY_FOR_CHECKS);
+    }
+
+    private static PropertyInfo? GetTargetProperty(Type type, TranslateFromAttribute data)
+    {
+        return type.GetProperty(data.SourceField, VALID_VISIBILITY_FOR_CHECKS);
     }
 }
 

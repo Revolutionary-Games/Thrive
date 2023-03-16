@@ -366,6 +366,23 @@ public static class Constants
 
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
 
+    public const float INTERACTION_BUTTONS_FULL_UPDATE_INTERVAL = 0.1f;
+
+    public const int INTERACTION_BUTTONS_MAX_COUNT = 50;
+
+    public const float INTERACTION_BUTTON_DEFAULT_Y_OFFSET = 1.0f;
+
+    public const int INTERACTION_BUTTON_SIZE = 32;
+    public const int INTERACTION_BUTTON_X_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+    public const int INTERACTION_BUTTON_Y_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+
+    public const float INTERACTION_DEFAULT_VISIBILITY_DISTANCE = 20.0f;
+    public const float INTERACTION_DEFAULT_INTERACT_DISTANCE = 8.5f;
+
+    public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
+
+    public const float INVENTORY_DRAG_START_ALLOWANCE = 0.15f;
+
     /// <summary>
     ///   This is used just as the default value for health and max
     ///   health of a microbe. The default membrane actually
@@ -965,6 +982,8 @@ public static class Constants
     public const string PLAYER_GROUP = "player";
 
     public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
+
+    public const string INTERACTABLE_GROUP = "interactable";
 
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";

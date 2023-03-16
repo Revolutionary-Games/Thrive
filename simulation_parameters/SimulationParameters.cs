@@ -38,6 +38,10 @@ public class SimulationParameters : Node
     private BuildInfo? buildInfo;
     private Dictionary<string, VersionPatchNotes> oldVersionNotes = null!;
     private Dictionary<string, VersionPatchNotes> newerVersionNotes = null!;
+    private Dictionary<string, WorldResource> worldResources = null!;
+    private Dictionary<string, EquipmentDefinition> equipment = null!;
+    private Dictionary<string, CraftingRecipe> craftingRecipes = null!;
+    private Dictionary<string, Technology> technologies = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -76,7 +80,11 @@ public class SimulationParameters : Node
         // Loading compounds and enzymes needs a custom JSON deserializer that can load their respective objects, but
         // the loader can't always be active because that breaks saving
         {
-            var deserializers = new JsonConverter[] { new CompoundLoader(null), new EnzymeLoader(null) };
+            var deserializers = new JsonConverter[]
+            {
+                new DirectTypeLoadOverride(typeof(Compound), null),
+                new DirectTypeLoadOverride(typeof(Enzyme), null),
+            };
 
             compounds = LoadRegistry<Compound>(
                 "res://simulation_parameters/microbe_stage/compounds.json", deserializers);
@@ -123,6 +131,21 @@ public class SimulationParameters : Node
 
         newerVersionNotes =
             LoadYamlFile<Dictionary<string, VersionPatchNotes>>("res://simulation_parameters/common/patch_notes.yml");
+
+        worldResources =
+            LoadRegistry<WorldResource>("res://simulation_parameters/awakening_stage/world_resources.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(WorldResource), null) });
+
+        equipment =
+            LoadRegistry<EquipmentDefinition>("res://simulation_parameters/awakening_stage/equipment.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(EquipmentDefinition), null) });
+
+        craftingRecipes =
+            LoadRegistry<CraftingRecipe>("res://simulation_parameters/awakening_stage/crafting_recipes.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(CraftingRecipe), null) });
+
+        technologies =
+            LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
 
         // Build info is only loaded if the file is present
         using var directory = new Directory();
@@ -377,6 +400,26 @@ public class SimulationParameters : Node
             yield return note;
     }
 
+    public WorldResource GetWorldResource(string name)
+    {
+        return worldResources[name];
+    }
+
+    public EquipmentDefinition GetBaseEquipmentDefinition(string name)
+    {
+        return equipment[name];
+    }
+
+    public CraftingRecipe GetCraftingRecipe(string name)
+    {
+        return craftingRecipes[name];
+    }
+
+    public Technology GetTechnology(string name)
+    {
+        return technologies[name];
+    }
+
     /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
@@ -396,6 +439,10 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(difficultyPresets);
         ApplyRegistryObjectTranslations(oldVersionNotes);
         ApplyRegistryObjectTranslations(newerVersionNotes);
+        ApplyRegistryObjectTranslations(worldResources);
+        ApplyRegistryObjectTranslations(equipment);
+        ApplyRegistryObjectTranslations(craftingRecipes);
+        ApplyRegistryObjectTranslations(technologies);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -532,6 +579,10 @@ public class SimulationParameters : Node
         CheckRegistryType(difficultyPresets);
         CheckRegistryType(oldVersionNotes);
         CheckRegistryType(newerVersionNotes);
+        CheckRegistryType(worldResources);
+        CheckRegistryType(equipment);
+        CheckRegistryType(craftingRecipes);
+        CheckRegistryType(technologies);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -582,12 +633,16 @@ public class SimulationParameters : Node
             entry.Value.Resolve();
         }
 
+        foreach (var entry in technologies)
+        {
+            entry.Value.Resolve(this);
+        }
+
         NameGenerator.Resolve(this);
 
         BuildOrganelleChances();
 
-        // TODO: there could also be a check for making sure
-        // non-existent compounds, processes etc. are not used
+        // TODO: there could also be a check for making sure non-existent compounds, processes etc. are not used
     }
 
     private void BuildOrganelleChances()
