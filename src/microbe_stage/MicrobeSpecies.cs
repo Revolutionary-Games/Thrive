@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -101,45 +102,23 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
     }
 
-    public void SetInitialCompoundsForDefault()
-    {
-        InitialCompounds.Clear();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("atp"), 30);
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("glucose"), 10);
-    }
-
-    public void SetInitialCompoundsForIron()
-    {
-        SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("iron"), 10);
-    }
-
-    public void SetInitialCompoundsForChemo()
-    {
-        SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 10);
-    }
-
     public override void UpdateInitialCompounds()
     {
-        var simulation = SimulationParameters.Instance;
+        // Since the initial compounds are only set once per species they can't be calculated for each Biome.
+        // So, the compound balance calculation uses the default biome.
+        var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
+        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
+            biomeConditions, CompoundAmountType.Current);
 
-        var rusticyanin = simulation.GetOrganelleType("rusticyanin");
-        var chemo = simulation.GetOrganelleType("chemoplast");
-        var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
+        InitialCompounds.Clear();
 
-        if (Organelles.Any(o => o.Definition == rusticyanin))
+        foreach (var compoundBalance in compoundBalances)
         {
-            SetInitialCompoundsForIron();
-        }
-        else if (Organelles.Any(o => o.Definition == chemo ||
-                     o.Definition == chemoProtein))
-        {
-            SetInitialCompoundsForChemo();
-        }
-        else
-        {
-            SetInitialCompoundsForDefault();
+            // The cell should survive a minimum amount of time.
+            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * 30;
+            if (compoundInitialAmount > StorageCapacity)
+                compoundInitialAmount = StorageCapacity;
+            InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
     }
 
