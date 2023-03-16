@@ -252,9 +252,6 @@ public class InventoryScreen : ControlWithInput
         objectsOnGround.Clear();
         objectsOnGround.AddRange(groundObjects);
 
-        if (!groundPanelPopup.Visible)
-            return;
-
         int nextIndex = 0;
 
         foreach (var objectOnGround in objectsOnGround)
@@ -272,6 +269,10 @@ public class InventoryScreen : ControlWithInput
                 slot = groundInventorySlots[nextIndex];
             }
 
+            // Reset ghost status before clearing
+            if (slot.GhostItem != null)
+                MoveGhostItemBack(slot.GhostItem);
+
             slot.Item = objectOnGround;
 
             // TODO: update too heavy / not enough space indicator
@@ -279,7 +280,19 @@ public class InventoryScreen : ControlWithInput
             ++nextIndex;
         }
 
+        // Clear ground slots we didn't use
+        for (; nextIndex < groundInventorySlots.Count; ++nextIndex)
+        {
+            var slot = groundInventorySlots[nextIndex];
+
+            if (slot.GhostItem != null)
+                MoveGhostItemBack(slot.GhostItem);
+
+            slot.Item = null;
+        }
+
         EnsureAtLeastOneEmptyGroundSlot();
+        UpdateRecipesWeHaveMaterialsFor();
     }
 
     public void AddItemToCrafting(IInteractableEntity target)
@@ -1136,6 +1149,8 @@ public class InventoryScreen : ControlWithInput
 
     private void UpdateRecipesWeHaveMaterialsFor()
     {
+        CalculateAllAvailableMaterials();
+
         foreach (var recipeListItem in shownAvailableRecipes.GetChildren())
         {
             recipeListItem.AvailableMaterials = availableCraftingMaterials;
@@ -1188,25 +1203,8 @@ public class InventoryScreen : ControlWithInput
             if (slot.Item == null)
                 continue;
 
-            if (slot.Item.ShownAsGhostIn != null)
-            {
-                if (slot.Item.ShownAsGhostIn.TryGetTarget(out var originalSlot))
-                {
-                    if (!originalSlot.Transient && originalSlot.Item == null)
-                    {
-                        // When working correctly this should never fail
-                        if (SwapSlotContentsIfPossible(slot, originalSlot))
-                            continue;
-
-                        GD.PrintErr("Moving transient slot item back to original slot failed");
-                    }
-                    else
-                    {
-                        GD.PrintErr("Transient slot item's original slot is either also transient or " +
-                            "taken up for some reason");
-                    }
-                }
-            }
+            if (MoveGhostSlotItemBack(slot))
+                continue;
 
             GD.PrintErr("Item in crafting slot doesn't have ghosted slot to return to");
             anyLeft = true;
@@ -1224,6 +1222,48 @@ public class InventoryScreen : ControlWithInput
         }
 
         // If still no space, then fail
+        return false;
+    }
+
+    private void MoveGhostItemBack(IInventoryItem item)
+    {
+        if (item.ShownAsGhostIn != null)
+        {
+            var currentSlot = AllSlots.First(s => s.Item == item);
+
+            MoveGhostSlotItemBack(currentSlot);
+        }
+    }
+
+    private bool MoveGhostSlotItemBack(InventorySlot currentlyOccupiedSlot)
+    {
+        if (currentlyOccupiedSlot.Item == null)
+            return true;
+
+        if (currentlyOccupiedSlot.Item.ShownAsGhostIn != null)
+        {
+            if (currentlyOccupiedSlot.Item.ShownAsGhostIn.TryGetTarget(out var originalSlot))
+            {
+                if (!originalSlot.Transient && originalSlot.Item == null)
+                {
+                    // When working correctly this should never fail
+                    if (SwapSlotContentsIfPossible(currentlyOccupiedSlot, originalSlot))
+                        return true;
+
+                    GD.PrintErr("Moving transient slot item back to original slot failed");
+                }
+                else
+                {
+                    GD.PrintErr("Transient slot item's original slot is either also transient or " +
+                        "taken up for some reason");
+                }
+            }
+            else
+            {
+                GD.PrintErr("Couldn't get shown as ghost in slot data");
+            }
+        }
+
         return false;
     }
 
