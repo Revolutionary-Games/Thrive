@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-15 11:28+0200\n"
+"POT-Creation-Date: 2023-03-16 11:16+0200\n"
 "PO-Revision-Date: 2022-12-02 16:07+0000\n"
 "Last-Translator: cesco <lothindir@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -51,7 +51,7 @@ msgstr "Abandonné."
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopélagique"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:278
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 #, fuzzy
 msgid "ACTION_AWAKEN"
@@ -556,7 +556,7 @@ msgstr "Vacuole bioluminescente"
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
 
-#: ../src/general/GameProperties.cs:132
+#: ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -593,7 +593,7 @@ msgstr "Cette membrane a une coque résistante faite de carbonate de calcium. El
 msgid "CAMERA"
 msgstr "Caméra"
 
-#: ../src/awakening_stage/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
@@ -1111,42 +1111,57 @@ msgstr "Protanopie (Rouge-Vert)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Bleue-Jaune)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:239
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:240
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:224
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:225
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:179
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:180
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Inversement proportionnel"
 
-#: ../src/awakening_stage/InventoryScreen.cs:989
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1032
+#, fuzzy
+msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
+msgstr "Inversement proportionnel"
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1015
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1021
+msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
+msgstr ""
+
+#: ../src/awakening_stage/gui/RecipeListItem.cs:128
+#: ../src/awakening_stage/gui/RecipeListItem.tscn:55
+#, fuzzy
+msgid "CRAFTING_RECIPE_DISPLAY"
+msgstr "Résultats de copie :"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:270
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:271
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Résultats de copie :"
 
-#: ../src/awakening_stage/InventoryScreen.cs:1126
-#: ../src/awakening_stage/InventoryScreen.tscn:205
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1261
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:206
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:283
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:284
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:165
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:166
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "Titre manquant"
@@ -2554,20 +2569,20 @@ msgstr "Format d'URL invalide"
 msgid "INVALID_URL_SCHEME"
 msgstr "Schéma d'URL invalide"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:73
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:74
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:99
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:100
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:148
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:149
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:142
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:143
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -4140,7 +4155,7 @@ msgstr "Étant la forme de membrane la plus simple, elle n'offre que très peu d
 msgid "NOTHING_HERE"
 msgstr "Rien ici"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:371
+#: ../src/late_multicellular_stage/MulticellularStage.cs:379
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5087,7 +5102,7 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Vitesse d'absorption des ressources"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:310
+#: ../src/late_multicellular_stage/MulticellularStage.cs:309
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Voir le code source"
@@ -5975,7 +5990,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:593
+#: ../src/late_multicellular_stage/MulticellularStage.cs:602
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 

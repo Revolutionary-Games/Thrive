@@ -23,7 +23,7 @@ border_color = Color( 0.0666667, 1, 0.835294, 1 )
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.6, 0.6, 0.6, 0.509804 )
+bg_color = Color( 0, 0.290196, 0.34902, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -41,14 +41,23 @@ Button/styles/pressed = SubResource( 5 )
 [node name="RecipeListItem" type="Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 10, 25 )
+rect_clip_content = true
 size_flags_horizontal = 3
 theme = SubResource( 2 )
+toggle_mode = true
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Clipping children is on to make sure line wrapping text doesn't overflow"
+}
 
 [node name="Label" parent="." instance=ExtResource( 3 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1258.0
 margin_bottom = -698.0
+mouse_filter = 2
 size_flags_horizontal = 3
 text = "CRAFTING_RECIPE_DISPLAY"
+
+[connection signal="toggled" from="." to="." method="OnToggledChanged"]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-15 11:28+0200\n"
+"POT-Creation-Date: 2023-03-16 11:16+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -52,7 +52,7 @@ msgstr "Prerušené."
 msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:278
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 #, fuzzy
 msgid "ACTION_AWAKEN"
@@ -549,7 +549,7 @@ msgstr "Bioluminiscenčná vakuola"
 msgid "BIOME_LABEL"
 msgstr "Bióm: {0}"
 
-#: ../src/general/GameProperties.cs:132
+#: ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -586,7 +586,7 @@ msgstr ""
 msgid "CAMERA"
 msgstr "Kamera"
 
-#: ../src/awakening_stage/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
@@ -1102,41 +1102,55 @@ msgstr "Protanopia (červeno-zelená)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (modro-žltá)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:239
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:240
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:224
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:225
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:179
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:180
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.cs:989
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1032
+msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
+msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1015
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1021
+msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
+msgstr ""
+
+#: ../src/awakening_stage/gui/RecipeListItem.cs:128
+#: ../src/awakening_stage/gui/RecipeListItem.tscn:55
+#, fuzzy
+msgid "CRAFTING_RECIPE_DISPLAY"
+msgstr "Výsledok automatickej evolúcie:"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:270
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:271
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Výsledok automatickej evolúcie:"
 
-#: ../src/awakening_stage/InventoryScreen.cs:1126
-#: ../src/awakening_stage/InventoryScreen.tscn:205
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1261
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:206
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:283
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:284
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:165
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:166
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "Chýba názov"
@@ -2476,20 +2490,20 @@ msgstr "Neplatný formát adresy URL"
 msgid "INVALID_URL_SCHEME"
 msgstr "Neplatná schéma adresy URL"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:73
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:74
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:99
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:100
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:148
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:149
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:142
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:143
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -3985,7 +3999,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr "Tu nič nie je"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:371
+#: ../src/late_multicellular_stage/MulticellularStage.cs:379
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4916,7 +4930,7 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rýchlosť absorpcie zdrojov"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:310
+#: ../src/late_multicellular_stage/MulticellularStage.cs:309
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Zobraziť zdrojový kód"
@@ -5767,7 +5781,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:593
+#: ../src/late_multicellular_stage/MulticellularStage.cs:602
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 

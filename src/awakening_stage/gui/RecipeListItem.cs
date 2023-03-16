@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Godot;
 
 public class RecipeListItem : Button
 {
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color UncraftableItemColor = new(0.5f, 0.5f, 0.5f);
+
+    [Export]
+    public int MarginAroundLabel = 3;
+
     private readonly StringBuilder topLevelStringBuilder = new();
     private readonly StringBuilder materialsStringBuilder = new();
 
@@ -14,6 +19,9 @@ public class RecipeListItem : Button
 
     private CraftingRecipe? displayedRecipe;
     private IReadOnlyDictionary<WorldResource, int> availableMaterials = new Dictionary<WorldResource, int>();
+
+    [Signal]
+    public delegate void OnSelected();
 
     public CraftingRecipe? DisplayedRecipe
     {
@@ -66,7 +74,11 @@ public class RecipeListItem : Button
     private void SetLabelSize()
     {
         if (textLabel != null)
-            textLabel.RectSize = RectSize - new Vector2(2, 2);
+        {
+            textLabel.RectSize = RectSize - new Vector2(MarginAroundLabel, MarginAroundLabel);
+            var halfMargin = MarginAroundLabel / 2;
+            textLabel.RectPosition = new Vector2(halfMargin, halfMargin);
+        }
     }
 
     private void UpdateShownRecipe()
@@ -80,12 +92,15 @@ public class RecipeListItem : Button
             return;
         }
 
-        bool canCraft = displayedRecipe.CanCraft(availableMaterials);
+        materialsStringBuilder.Clear();
+        topLevelStringBuilder.Clear();
+
+        bool canCraft = displayedRecipe.CanCraft(availableMaterials) == null;
 
         if (!canCraft)
         {
             // Apply a different colour to show uncraftable status
-            topLevelStringBuilder.Append("[color=]");
+            topLevelStringBuilder.Append($"[color=#{UncraftableItemColor.ToHtml(false)}]");
         }
 
         // Setup the materials list display
@@ -98,31 +113,44 @@ public class RecipeListItem : Button
                 materialsStringBuilder.Append(", ");
             }
 
-            if (!displayedRecipe.HasEnoughResource(tuple.Key, tuple.Value))
+            availableMaterials.TryGetValue(tuple.Key, out var availableAmount);
+
+            if (!displayedRecipe.HasEnoughResource(tuple.Key, availableAmount))
             {
                 // Show not enough icon
-                throw new NotImplementedException();
+                materialsStringBuilder.Append("[thrive:icon]ConditionInsufficient[/thrive:icon]");
             }
             else
             {
                 // Has enough
-                throw new NotImplementedException();
+                materialsStringBuilder.Append("[thrive:icon]ConditionFulfilled[/thrive:icon]");
             }
 
             materialsStringBuilder.Append(tuple.Value);
 
             // Icon for this material
-            throw new NotImplementedException();
+            materialsStringBuilder.Append($"[thrive:resource type=\"{tuple.Key.InternalName}\"][/thrive:resource]");
 
             first = false;
         }
 
-        TranslationServer.Translate("CRAFTING_RECIPE_DISPLAY").FormatSafe(displayedRecipe.Name, materialsStringBuilder);
+        topLevelStringBuilder.Append(TranslationServer.Translate("CRAFTING_RECIPE_DISPLAY")
+            .FormatSafe(displayedRecipe.Name, materialsStringBuilder));
+
+        // TODO: display for recipes that require tools to be present but won't consume them
 
         if (!canCraft)
         {
             // Reset the top level colour
             topLevelStringBuilder.Append("[/color]");
         }
+
+        textLabel.ExtendedBbcode = topLevelStringBuilder.ToString();
+    }
+
+    private void OnToggledChanged(bool pressed)
+    {
+        if (pressed)
+            EmitSignal(nameof(OnSelected));
     }
 }

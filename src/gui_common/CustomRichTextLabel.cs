@@ -36,6 +36,16 @@ public class CustomRichTextLabel : RichTextLabel
         ///   Retrieves value by key. Special handling for every key. Expandable.
         /// </summary>
         Constant,
+
+        /// <summary>
+        ///   A crafting resource (icon) by key
+        /// </summary>
+        Resource,
+
+        /// <summary>
+        ///   A general purpose icon from a specific set of available icons
+        /// </summary>
+        Icon,
     }
 
     /// <summary>
@@ -411,6 +421,7 @@ public class CustomRichTextLabel : RichTextLabel
             }
 
             case ThriveBbCode.Constant:
+            {
                 var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
                 parsedAttributes.TryGetValue("format", out string format);
 
@@ -475,6 +486,87 @@ public class CustomRichTextLabel : RichTextLabel
                 }
 
                 break;
+            }
+
+            case ThriveBbCode.Resource:
+            {
+                var internalName = string.Empty;
+
+                if (pairs.TryGetValue("type", out string value))
+                {
+                    if (!value.StartsAndEndsWith("\""))
+                        break;
+
+                    internalName = value.Substring(1, value.Length - 2);
+                }
+
+                if (string.IsNullOrEmpty(internalName))
+                {
+                    GD.PrintErr("Resource: Type not specified in bbcode");
+                    break;
+                }
+
+                // Check compound existence and aborts if it's not valid
+                if (!simulationParameters.DoesWorldResourceExist(internalName))
+                {
+                    GD.PrintErr($"Resource: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                var resource = simulationParameters.GetWorldResource(internalName);
+
+                // Resources by default don't show the name
+                bool showName = false;
+
+                if (pairs.TryGetValue("type", out value))
+                {
+                    showName = string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+                }
+
+                if (!showName)
+                {
+                    output = GetResizedImage(resource.InventoryIcon, 20, 0, 3);
+                }
+                else
+                {
+                    // When override text is not used, use the default name
+                    if (string.IsNullOrEmpty(input))
+                        input = resource.Name;
+
+                    output = $"[b]{input}[/b] {GetResizedImage(resource.InventoryIcon, 20, 0, 3)}";
+                }
+
+                break;
+            }
+
+            case ThriveBbCode.Icon:
+            {
+                // TODO: allow overriding size or width (Constant handling has parsing for custom format)
+
+                switch (input)
+                {
+                    case "ConditionInsufficient":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/RequirementInsufficient.png", 20, 0,
+                            3);
+                        break;
+                    }
+
+                    case "ConditionFulfilled":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/RequirementFulfilled.png", 20, 0, 3);
+                        break;
+                    }
+
+                    default:
+                    {
+                        GD.PrintErr($"Icon: \"{input}\" doesn't exist, referenced in bbcode");
+                        break;
+                    }
+                }
+
+                break;
+            }
         }
 
         return output;

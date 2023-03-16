@@ -410,6 +410,11 @@ public class SimulationParameters : Node
         return worldResources[name];
     }
 
+    public bool DoesWorldResourceExist(string name)
+    {
+        return worldResources.ContainsKey(name);
+    }
+
     public EquipmentDefinition GetBaseEquipmentDefinition(string name)
     {
         return equipment[name];

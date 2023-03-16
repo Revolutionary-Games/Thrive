@@ -31,6 +31,9 @@ public class InventoryScreen : ControlWithInput
     public NodePath CraftingPanelPopupPath = null!;
 
     [Export]
+    public NodePath CraftingRecipesContainerPath = null!;
+
+    [Export]
     public NodePath CraftingSlotsContainerPath = null!;
 
     [Export]
@@ -55,6 +58,7 @@ public class InventoryScreen : ControlWithInput
     public NodePath GroundSlotContainerPath = null!;
 
     private readonly ButtonGroup inventorySlotGroup = new();
+    private readonly ButtonGroup recipeSelectionGroup = new();
 
     private readonly List<IInteractableEntity> objectsOnGround = new();
     private readonly List<InventorySlot> groundInventorySlots = new();
@@ -67,8 +71,6 @@ public class InventoryScreen : ControlWithInput
 
     private readonly List<InventorySlot> craftingResultSlots = new();
 
-    // private readonly List<>
-
 #pragma warning disable CA2213
     private CustomDialog inventoryPopup = null!;
     private Container inventorySlotContainer = null!;
@@ -78,6 +80,7 @@ public class InventoryScreen : ControlWithInput
     private Button groundPanelButton = null!;
 
     private CustomDialog craftingPanelPopup = null!;
+    private Container craftingRecipesContainer = null!;
     private Container craftingSlotsContainer = null!;
     private Container craftingResultSlotsContainer = null!;
     private Label craftingErrorStatusLabel = null!;
@@ -89,7 +92,10 @@ public class InventoryScreen : ControlWithInput
     private Container groundSlotContainer = null!;
 
     private PackedScene inventorySlotScene = null!;
+    private PackedScene recipeListItemScene = null!;
 #pragma warning restore CA2213
+
+    private ChildObjectCache<CraftingRecipe, RecipeListItem> shownAvailableRecipes = null!;
 
     private ICharacterInventory? displayingInventoryOf;
 
@@ -107,10 +113,26 @@ public class InventoryScreen : ControlWithInput
     private bool craftingPanelSetup;
     private Vector2 craftingPanelDefaultPosition;
 
+    /// <summary>
+    ///   Cache of available crafting materials. This is stored in a variable to ensure that
+    ///   <see cref="CreateRecipeListItem"/> can initialize the recipe with up to date info
+    /// </summary>
+    private Dictionary<WorldResource, int> availableCraftingMaterials = new();
+
     public bool IsOpen => inventoryPopup.Visible;
 
     private IEnumerable<InventorySlot> AllSlots => groundInventorySlots.Concat(inventorySlots).Concat(equipmentSlots)
         .Concat(craftingSlots).Concat(craftingResultSlots);
+
+    public static WorldResource? ResourceFromItem(IInventoryItem item)
+    {
+        if (item is ResourceEntity resourceEntity)
+        {
+            return resourceEntity.ResourceType ?? throw new Exception("World resource with no type set");
+        }
+
+        return null;
+    }
 
     public override void _Ready()
     {
@@ -122,6 +144,7 @@ public class InventoryScreen : ControlWithInput
         groundPanelButton = GetNode<Button>(GroundPanelButtonPath);
 
         craftingPanelPopup = GetNode<CustomDialog>(CraftingPanelPopupPath);
+        craftingRecipesContainer = GetNode<Container>(CraftingRecipesContainerPath);
         craftingSlotsContainer = GetNode<Container>(CraftingSlotsContainerPath);
         craftingResultSlotsContainer = GetNode<Container>(CraftingResultSlotsContainerPath);
         craftingErrorStatusLabel = GetNode<Label>(CraftingErrorStatusLabelPath);
@@ -133,6 +156,10 @@ public class InventoryScreen : ControlWithInput
         groundSlotContainer = GetNode<Container>(GroundSlotContainerPath);
 
         inventorySlotScene = GD.Load<PackedScene>("res://src/awakening_stage/gui/InventorySlot.tscn");
+        recipeListItemScene = GD.Load<PackedScene>("res://src/awakening_stage/gui/RecipeListItem.tscn");
+
+        shownAvailableRecipes =
+            new ChildObjectCache<CraftingRecipe, RecipeListItem>(craftingRecipesContainer, CreateRecipeListItem);
 
         // TODO: a background that allows dropping by dragging items outside the inventory
 
@@ -185,13 +212,10 @@ public class InventoryScreen : ControlWithInput
         if (!craftingPanelPopup.Visible && !craftingPanelManuallyHidden)
         {
             ShowCraftingPanel();
-            RefreshRecipesList();
         }
 
         UpdateToggleButtonStatus();
     }
-
-
 
     [RunOnKeyDown("ui_cancel")]
     public bool Close()
@@ -299,6 +323,7 @@ public class InventoryScreen : ControlWithInput
                 CraftingPanelButtonPath.Dispose();
                 GroundPanelButtonPath.Dispose();
                 CraftingPanelPopupPath.Dispose();
+                CraftingRecipesContainerPath.Dispose();
                 CraftingSlotsContainerPath.Dispose();
                 CraftingResultSlotsContainerPath.Dispose();
                 CraftingErrorStatusLabelPath.Dispose();
@@ -310,6 +335,7 @@ public class InventoryScreen : ControlWithInput
             }
 
             inventorySlotGroup.Dispose();
+            recipeSelectionGroup.Dispose();
 
             // Unhook all C# callbacks
             foreach (var slot in AllSlots)
@@ -506,8 +532,6 @@ public class InventoryScreen : ControlWithInput
         }
     }
 
-
-
     private InventorySlot CreateInventorySlot(InventorySlotCategory category, bool transient)
     {
         var slot = inventorySlotScene.Instance<InventorySlot>();
@@ -573,6 +597,7 @@ public class InventoryScreen : ControlWithInput
 
         ResetCraftingErrorLabel();
         UpdateCraftingGUIState();
+        RefreshRecipesList();
 
         UpdateToggleButtonStatus();
     }
@@ -1004,9 +1029,19 @@ public class InventoryScreen : ControlWithInput
         }
 
         // Check for enough materials
+        CalculateAllAvailableMaterials();
 
+        var missingMaterial = selectedRecipe.CanCraft(availableCraftingMaterials);
+
+        if (missingMaterial != null)
+        {
+            SetCraftingError(TranslationServer.Translate("CRAFTING_NOT_ENOUGH_MATERIAL")
+                .FormatSafe(missingMaterial.Name));
+            return;
+        }
 
         // Everything is fine, perform the craft
+        throw new NotImplementedException();
 
         // Items have changed due to crafting something
         UpdateRecipesWeHaveMaterialsFor();
@@ -1014,12 +1049,97 @@ public class InventoryScreen : ControlWithInput
 
     private void RefreshRecipesList()
     {
+        shownAvailableRecipes.UnMarkAll();
+        bool sawSelected = false;
 
+        if (craftingDataSource != null)
+        {
+            var filter = CalculateRecipeFilter();
+            CalculateAllAvailableMaterials();
+
+            foreach (var recipe in craftingDataSource.GetAvailableRecipes(filter))
+            {
+                var item = shownAvailableRecipes.GetChild(recipe);
+                item.AvailableMaterials = availableCraftingMaterials;
+
+                if (recipe == selectedRecipe)
+                {
+                    sawSelected = true;
+                    item.Pressed = true;
+                }
+                else
+                {
+                    item.Pressed = false;
+                }
+            }
+        }
+
+        shownAvailableRecipes.DeleteUnmarked();
+
+        if (!sawSelected && selectedRecipe != null)
+        {
+            GD.Print("Our selected crafting recipe is no longer valid, clearing it");
+            selectedRecipe = null;
+        }
+    }
+
+    private List<(WorldResource Resource, int Count)>? CalculateRecipeFilter()
+    {
+        List<WorldResource>? rawResourceResults = null;
+
+        foreach (var slot in craftingSlots)
+        {
+            if (slot.Item == null)
+                continue;
+
+            var resource = ResourceFromItem(slot.Item);
+
+            if (resource != null)
+            {
+                rawResourceResults ??= new List<WorldResource>();
+
+                rawResourceResults.Add(resource);
+            }
+        }
+
+        if (rawResourceResults == null || rawResourceResults.Count < 1)
+            return null;
+
+        return rawResourceResults.GroupBy(r => r).Select(g => (g.Key, g.Count())).ToList();
+    }
+
+    private void CalculateAllAvailableMaterials()
+    {
+        var newMaterials = new Dictionary<WorldResource, int>();
+        availableCraftingMaterials.Clear();
+
+        foreach (var slot in AllSlots)
+        {
+            // We don't need to skip transient slots as the original slot will have the item null that is contained in
+            // the transient slot
+            if (slot.Item == null)
+                continue;
+
+            var resource = ResourceFromItem(slot.Item);
+
+            if (resource != null)
+            {
+                newMaterials.TryGetValue(resource, out var count);
+                newMaterials[resource] = count + 1;
+            }
+        }
+
+        // Only update the available materials if the data actually changed
+        if (!newMaterials.SequenceEqual(availableCraftingMaterials))
+            availableCraftingMaterials = newMaterials;
     }
 
     private void UpdateRecipesWeHaveMaterialsFor()
     {
-
+        foreach (var recipeListItem in shownAvailableRecipes.GetChildren())
+        {
+            recipeListItem.AvailableMaterials = availableCraftingMaterials;
+        }
     }
 
     /// <summary>
@@ -1146,5 +1266,25 @@ public class InventoryScreen : ControlWithInput
     private void ResetCraftingErrorLabel()
     {
         craftingErrorStatusLabel.Text = TranslationServer.Translate("CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER");
+    }
+
+    private RecipeListItem CreateRecipeListItem(CraftingRecipe recipe)
+    {
+        var item = recipeListItemScene.Instance<RecipeListItem>();
+        item.Group = recipeSelectionGroup;
+        item.DisplayedRecipe = recipe;
+        item.AvailableMaterials = availableCraftingMaterials;
+
+        var binds = new Array();
+        binds.Add(item);
+
+        item.Connect(nameof(RecipeListItem.OnSelected), this, nameof(OnCraftingRecipeSelected), binds);
+
+        return item;
+    }
+
+    private void OnCraftingRecipeSelected(RecipeListItem recipeItem)
+    {
+        selectedRecipe = recipeItem.DisplayedRecipe;
     }
 }

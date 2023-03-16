@@ -47,18 +47,23 @@ public class CraftingRecipe : IRegistryType
         return true;
     }
 
-    public bool CanCraft(IReadOnlyDictionary<WorldResource, int> availableMaterials)
+    /// <summary>
+    ///   Checks if can craft this recipe
+    /// </summary>
+    /// <param name="availableMaterials">The materials that are available</param>
+    /// <returns>Null if can craft, otherwise the material type that is missing</returns>
+    public WorldResource? CanCraft(IReadOnlyDictionary<WorldResource, int> availableMaterials)
     {
         foreach (var required in RequiredResources)
         {
             if (!availableMaterials.TryGetValue(required.Key, out var amount))
-                return false;
+                return required.Key;
 
             if (amount < required.Value)
-                return false;
+                return required.Key;
         }
 
-        return true;
+        return null;
     }
 
     public bool HasEnoughResource(WorldResource resource, int availableAmount)
