@@ -23,6 +23,11 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
     /// <summary>
+    ///   How long the initial compounds should last
+    /// </summary>
+    public const float INITIAL_COMPOUND_TIME = 30.0f;
+
+    /// <summary>
     ///   The maximum duration the player is shown being ingested before they are auto respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;

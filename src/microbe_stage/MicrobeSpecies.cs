@@ -118,7 +118,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
                 continue;
 
             // Initial compounds should suffice for a fixed amount of time.
-            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * 30;
+            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * Constants.INITIAL_COMPOUND_TIME;
             if (compoundInitialAmount > StorageCapacity)
                 compoundInitialAmount = StorageCapacity;
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
