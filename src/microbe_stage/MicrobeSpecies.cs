@@ -114,7 +114,10 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
         foreach (var compoundBalance in compoundBalances)
         {
-            // The cell should survive a minimum amount of time.
+            if (compoundBalance.Value.Balance >= 0)
+                continue;
+
+            // Initial compounds should suffice for a fixed amount of time.
             var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * 30;
             if (compoundInitialAmount > StorageCapacity)
                 compoundInitialAmount = StorageCapacity;
