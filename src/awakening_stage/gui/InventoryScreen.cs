@@ -777,6 +777,42 @@ public class InventoryScreen : ControlWithInput
             return;
         }
 
+        // Moving from crafting results to ground
+        if (from.Category == InventorySlotCategory.CraftingResult && to.Category == InventorySlotCategory.Ground)
+        {
+            if (to.Item is IInteractableEntity entity)
+            {
+                displayingInventoryOf.DirectlyDropEntity(entity);
+            }
+            else
+            {
+                GD.PrintErr("Dropped crafted item that is not interactable, can't create the world entity");
+            }
+
+            return;
+        }
+
+        // Moving from crafting results to inventory / equipment
+        if (from.Category == InventorySlotCategory.CraftingResult &&
+            to.Category is InventorySlotCategory.Equipment or InventorySlotCategory.Inventory)
+        {
+            if (to.Item is IInteractableEntity entity)
+            {
+                if (!displayingInventoryOf.PickUpItem(entity, to.SlotId))
+                {
+                    GD.PrintErr("Failed to pick up just crafted item to inventory / equipment");
+                }
+            }
+            else
+            {
+                GD.PrintErr("Crafted item is not interactable, can't put in inventory");
+            }
+
+            return;
+        }
+
+        // TODO: allow moving from crafting results to crafting inputs
+
         GD.PrintErr("Unknown slot move! Inventory data may be out of sync now.");
     }
 
@@ -1032,6 +1068,8 @@ public class InventoryScreen : ControlWithInput
         if (selectedRecipe == null)
         {
             SetCraftingError(TranslationServer.Translate("CRAFTING_NO_RECIPE_SELECTED"));
+
+            // TODO: invalid action sound would be nice to have in GUICommon to play here
             return;
         }
 
@@ -1053,11 +1091,176 @@ public class InventoryScreen : ControlWithInput
             return;
         }
 
+        GUICommon.Instance.PlayButtonPressSound();
+
         // Everything is fine, perform the craft
-        throw new NotImplementedException();
+        PerformCrafting();
+    }
+
+    private void PerformCrafting()
+    {
+        if (selectedRecipe == null || displayingInventoryOf == null)
+            throw new InvalidOperationException("No recipe set / not opened correctly");
+
+        // Begin by finding the items to consume
+        var slotsToConsumeFrom = FindSlotsToConsumeCraftingInputsFrom();
+
+        if (slotsToConsumeFrom == null)
+        {
+            SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_TAKING_ITEMS"));
+            return;
+        }
+
+        bool error = false;
+
+        // All items found, now we can consume them
+        foreach (var slot in slotsToConsumeFrom)
+        {
+            if (slot.SlotId >= 0)
+            {
+                // Use inventory consume
+                if (!displayingInventoryOf.DeleteItem(slot.SlotId))
+                {
+                    error = true;
+                    break;
+                }
+            }
+            else
+            {
+                // Assume it is a ground item
+                // TODO: handle this cast in a nicer way with interfaces
+                if (!displayingInventoryOf.DeleteWorldEntity((IInteractableEntity)slot.Item!))
+                {
+                    error = true;
+                    break;
+                }
+            }
+
+            slot.Item = null;
+        }
+
+        if (error)
+        {
+            SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"));
+            GD.PrintErr(
+                "Ran into an item consume problem before crafting, some items may have already permanently " +
+                "disappeared. This is a bug");
+            return;
+        }
+
+        // And finally add the crafted item
+        AddCraftingResults(CraftingHelpers.CreateCraftingResult(selectedRecipe));
 
         // Items have changed due to crafting something
         UpdateRecipesWeHaveMaterialsFor();
+    }
+
+    private void AddCraftingResults(IReadOnlyCollection<IInventoryItem> items)
+    {
+        // First ensure enough slots
+        EnsureCraftingResultHasEmptySlots(items.Count);
+
+        // Then fill up the empty slots in sequence
+        int nextIndex = 0;
+        foreach (var item in items)
+        {
+            while (true)
+            {
+                var slot = craftingResultSlots[nextIndex];
+
+                if (slot.Item != null)
+                {
+                    ++nextIndex;
+                    continue;
+                }
+
+                slot.Item = item;
+                slot.Locked = false;
+                ++nextIndex;
+                break;
+            }
+        }
+    }
+
+    private List<InventorySlot>? FindSlotsToConsumeCraftingInputsFrom()
+    {
+        if (selectedRecipe == null)
+            throw new InvalidOperationException("No recipe selected");
+
+        var slotsToConsumeFrom = new List<InventorySlot>();
+
+        var requiredItems = selectedRecipe.RequiredResources.CloneShallow();
+
+        // Preferably take items from the crafting slots
+        foreach (var slot in craftingSlots)
+        {
+            var item = slot.Item;
+            if (item == null)
+                continue;
+
+            var resource = ResourceFromItem(item);
+
+            if (resource != null && requiredItems.TryGetValue(resource, out var required))
+            {
+                if (item.ShownAsGhostIn?.TryGetTarget(out var originalSlot) != true || originalSlot == null)
+                {
+                    GD.PrintErr("Crafting input slot is in invalid state (missing ghost status)");
+                    continue;
+                }
+
+                --required;
+
+                if (required <= 0)
+                {
+                    requiredItems.Remove(resource);
+                }
+                else
+                {
+                    requiredItems[resource] = required;
+                }
+
+                MoveGhostSlotItemBack(slot);
+
+                if (originalSlot.Item != item)
+                    GD.PrintErr("Ghost status remove failed to correctly move crafting input back");
+
+                slotsToConsumeFrom.Add(originalSlot);
+            }
+        }
+
+        // Then take from any slots not yet used
+        foreach (var slot in AllSlots)
+        {
+            if (slot.Transient || slot.Item == null)
+                continue;
+
+            var resource = ResourceFromItem(slot.Item);
+
+            if (resource == null || !requiredItems.TryGetValue(resource, out var required))
+                continue;
+
+            // Don't take from the same slot multiple times
+            if (slotsToConsumeFrom.Contains(slot))
+                continue;
+
+            --required;
+
+            if (required <= 0)
+            {
+                requiredItems.Remove(resource);
+            }
+            else
+            {
+                requiredItems[resource] = required;
+            }
+
+            slotsToConsumeFrom.Add(slot);
+        }
+
+        if (requiredItems.Count > 0)
+            return null;
+
+        return slotsToConsumeFrom;
     }
 
     private void RefreshRecipesList()
@@ -1183,13 +1386,16 @@ public class InventoryScreen : ControlWithInput
 
     private void DropCraftedItems()
     {
+        if (displayingInventoryOf == null)
+            throw new InvalidOperationException("Can't drop items to world without knowing whose inventory this is");
+
         foreach (var slot in craftingResultSlots)
         {
             if (slot.Item == null)
                 continue;
 
-            // TODO: implement this
-            GD.PrintErr("Losing a crafted item as it is not able to be properly dropped yet");
+            // TODO: make this cast better with a different design
+            displayingInventoryOf.DirectlyDropEntity((IInteractableEntity)slot.Item);
         }
     }
 

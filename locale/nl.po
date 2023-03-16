@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-16 11:16+0200\n"
+"POT-Creation-Date: 2023-03-16 15:15+0200\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -1102,34 +1102,43 @@ msgstr "Protanopie (Rood-Groen)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Blauw-Geel)"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:240
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:225
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1144
+msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
+msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1110
+#, fuzzy
+msgid "CRAFTING_ERROR_TAKING_ITEMS"
+msgstr "Omgekeerd geschaald"
+
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:180
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Omgekeerd geschaald"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1032
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1089
 #, fuzzy
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Omgekeerd geschaald"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1015
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1070
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1021
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1078
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/RecipeListItem.cs:128
-#: ../src/awakening_stage/gui/RecipeListItem.tscn:55
+#: ../src/awakening_stage/gui/RecipeListItem.cs:137
+#: ../src/awakening_stage/gui/RecipeListItem.tscn:61
 #, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
 msgstr "Kopieer Resultaten"
@@ -1138,21 +1147,21 @@ msgstr "Kopieer Resultaten"
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:271
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Kopieer Resultaten"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1261
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:206
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1514
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:284
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:166
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "Titel mist"
@@ -2498,20 +2507,20 @@ msgstr "Incorrect URL formaat"
 msgid "INVALID_URL_SCHEME"
 msgstr "Incorrect URL protocol"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:74
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:100
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:149
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:143
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
