@@ -112,6 +112,7 @@ public class InventoryScreen : ControlWithInput
 
     private bool craftingPanelSetup;
     private Vector2 craftingPanelDefaultPosition;
+    private bool craftingRecipeListDirty = true;
 
     /// <summary>
     ///   Cache of available crafting materials. This is stored in a variable to ensure that
@@ -191,6 +192,11 @@ public class InventoryScreen : ControlWithInput
                     SwapSlotContentsIfPossible(slotSwapFrom, slotSwapTo);
                 }
             }
+        }
+        else if (craftingRecipeListDirty)
+        {
+            RefreshRecipesList();
+            craftingRecipeListDirty = false;
         }
     }
 
@@ -610,7 +616,7 @@ public class InventoryScreen : ControlWithInput
 
         ResetCraftingErrorLabel();
         UpdateCraftingGUIState();
-        RefreshRecipesList();
+        craftingRecipeListDirty = true;
 
         UpdateToggleButtonStatus();
     }
@@ -702,10 +708,6 @@ public class InventoryScreen : ControlWithInput
         if (from.Item == null && to.Item == null)
             return;
 
-        // Transient slot resolving can result in a move from slot to itself
-        if (to == from)
-            return;
-
         // Moving between transient slots requires no special handling (only when moving an item out of a transient
         // slot does something special need to happen)
         if (from.Transient || to.Transient)
@@ -729,6 +731,10 @@ public class InventoryScreen : ControlWithInput
 
             GD.PrintErr("We seem to be running a logically incorrect transient slot move");
         }
+
+        // Transient slot resolving can result in a move from slot to itself
+        if (to == from)
+            return;
 
         // Sanity check that preprocess has run correctly
         if (from.Item is { ShownAsGhostIn: { } } || from.Transient)
@@ -947,6 +953,15 @@ public class InventoryScreen : ControlWithInput
         if (!CanSwapContents(fromSlot, toSlot))
             return false;
 
+        // If either slot is a crafting input and the other is not a crafting input, we need to refresh our item
+        // filters
+        // This is done before any adjustments to make this check the simplest it can be
+        if (fromSlot.Category != toSlot.Category && (fromSlot.Category == InventorySlotCategory.CraftingInput ||
+                toSlot.Category == InventorySlotCategory.CraftingInput))
+        {
+            craftingRecipeListDirty = true;
+        }
+
         (fromSlot, toSlot) = HandleTransientSlots(fromSlot, toSlot);
 
         (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
@@ -1073,12 +1088,6 @@ public class InventoryScreen : ControlWithInput
             return;
         }
 
-        if (!TakeAllCraftingResults())
-        {
-            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
-            return;
-        }
-
         // Check for enough materials
         CalculateAllAvailableMaterials();
 
@@ -1088,6 +1097,13 @@ public class InventoryScreen : ControlWithInput
         {
             SetCraftingError(TranslationServer.Translate("CRAFTING_NOT_ENOUGH_MATERIAL")
                 .FormatSafe(missingMaterial.Name));
+            return;
+        }
+
+        // Only take the results once we are pretty sure we can craft the thing
+        if (!TakeAllCraftingResults())
+        {
+            SetCraftingError(TranslationServer.Translate("CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"));
             return;
         }
 
@@ -1152,7 +1168,7 @@ public class InventoryScreen : ControlWithInput
         AddCraftingResults(CraftingHelpers.CreateCraftingResult(selectedRecipe));
 
         // Items have changed due to crafting something
-        UpdateRecipesWeHaveMaterialsFor();
+        craftingRecipeListDirty = true;
     }
 
     private void AddCraftingResults(IReadOnlyCollection<IInventoryItem> items)
@@ -1273,6 +1289,8 @@ public class InventoryScreen : ControlWithInput
             var filter = CalculateRecipeFilter();
             CalculateAllAvailableMaterials();
 
+            // TODO: add a limit like 100 to shown recipes at once to avoid lag with massive amounts of recipes
+            // And if the limit is hit there should be a text saying so
             foreach (var recipe in craftingDataSource.GetAvailableRecipes(filter))
             {
                 var item = shownAvailableRecipes.GetChild(recipe);
@@ -1301,6 +1319,8 @@ public class InventoryScreen : ControlWithInput
 
     private List<(WorldResource Resource, int Count)>? CalculateRecipeFilter()
     {
+        // TODO: add a checkbox for showing only currently craftable recipes
+
         List<WorldResource>? rawResourceResults = null;
 
         foreach (var slot in craftingSlots)
