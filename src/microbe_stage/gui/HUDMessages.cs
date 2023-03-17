@@ -147,6 +147,7 @@ public class HUDMessages : VBoxContainer
             DisplayDuration.Short => 2,
             DisplayDuration.Normal => 4,
             DisplayDuration.Long => 12,
+            DisplayDuration.ExtraLong => 25,
             _ => throw new ArgumentOutOfRangeException(nameof(duration), duration, null),
         };
     }

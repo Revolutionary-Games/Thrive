@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -375,6 +376,27 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             // Assume all resources can be used in some kind of crafting
             yield return (InteractionType.Craft, true, null);
         }
+
+        var harvesting = target.GetHarvestingInfo();
+
+        if (harvesting != null)
+        {
+            var availableTools = this.GetAllCategoriesOfEquippedItems();
+
+            // Do we have the required tools
+            var missingTool = harvesting.CheckRequiredTool(availableTools);
+            if (missingTool == null)
+            {
+                yield return (InteractionType.Harvest, true, null);
+            }
+            else
+            {
+                var message = TranslationServer.Translate("INTERACTION_HARVEST_CANNOT_MISSING_TOOL").FormatSafe(
+                    TranslationServer.Translate(missingTool.GetAttribute<DescriptionAttribute>().Description));
+
+                yield return (InteractionType.Harvest, false, message);
+            }
+        }
     }
 
     public bool AttemptInteraction(IInteractableEntity target, InteractionType interactionType)
@@ -400,6 +422,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 // Request the crafting interface to be opened with the target pre-selected
                 RequestCraftingInterfaceFor.Invoke(this, target);
                 return true;
+            case InteractionType.Harvest:
+                return this.HarvestEntity(target);
             default:
                 GD.PrintErr($"Unimplemented action handling for {interactionType}");
                 return false;
@@ -476,28 +500,44 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         var entityNode = item.EntityNode;
 
-        // TODO: drop position based on creature size, and also confirm the drop point is free from other physics
-        // objects
-
-        var offset = new Vector3(0, 1.5f, 3.6f);
-
-        // Assume our parent is the world
-        var world = GetParent() ?? throw new Exception("Creature has no parent to place dropped entity in");
-
-        var ourTransform = GlobalTransform;
-
-        entityNode.ReParent(world);
-        entityNode.GlobalTranslation = ourTransform.origin + ourTransform.basis.Quat().Xform(offset);
-
-        // Allow others to interact with the object again
-        item.InteractionDisabled = false;
-
-        if (entityNode is RigidBody entityPhysics)
-            entityPhysics.Mode = ModeEnum.Rigid;
+        HandleEntityDrop(item, entityNode);
 
         slot.ContainedItem = null;
 
         return true;
+    }
+
+    public bool DeleteItem(int slotId)
+    {
+        var slot = this.SlotWithId(slotId);
+
+        if (slot == null)
+        {
+            GD.Print("Trying to delete item in non-existent slot");
+            return false;
+        }
+
+        if (slot.ContainedItem == null)
+            return false;
+
+        slot.ContainedItem.DestroyAndQueueFree();
+
+        slot.ContainedItem = null;
+        return true;
+    }
+
+    public bool DeleteWorldEntity(IInteractableEntity entity)
+    {
+        // TODO: could verify the interact distance etc. here
+        // If the above TODO is done then probably the crafting action should have test methods to verify that it can
+        // consume all of the items first, before attempting the craft to not consume partial resources
+        entity.DestroyDetachAndQueueFree();
+        return true;
+    }
+
+    public void DirectlyDropEntity(IInteractableEntity entity)
+    {
+        HandleEntityDrop(entity, entity.EntityNode);
     }
 
     public IEnumerable<InventorySlotData> ListInventoryContents()
@@ -542,8 +582,16 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         var targetNode = item.EntityNode;
 
-        // Remove the object from the world
-        targetNode.ReParent(this);
+        if (targetNode.GetParent() != null)
+        {
+            // Remove the object from the world
+            targetNode.ReParent(this);
+        }
+        else
+        {
+            // We are picking up a crafting result or another entity that is not in the world
+            AddChild(targetNode);
+        }
 
         SetItemPositionInSlot(slot, targetNode);
 
@@ -558,6 +606,37 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             entityPhysics.Mode = ModeEnum.Kinematic;
 
         return true;
+    }
+
+    private void HandleEntityDrop(IInteractableEntity item, Spatial entityNode)
+    {
+        // TODO: drop position based on creature size, and also confirm the drop point is free from other physics
+        // objects
+
+        var offset = new Vector3(0, 1.5f, 3.6f);
+
+        // Assume our parent is the world
+        var world = GetParent() ?? throw new Exception("Creature has no parent to place dropped entity in");
+
+        var ourTransform = GlobalTransform;
+
+        // Handle directly dropped entities that haven't been anywhere yet
+        if (entityNode.GetParent() == null)
+        {
+            world.AddChild(entityNode);
+        }
+        else
+        {
+            entityNode.ReParent(world);
+        }
+
+        entityNode.GlobalTranslation = ourTransform.origin + ourTransform.basis.Quat().Xform(offset);
+
+        // Allow others to interact with the object again
+        item.InteractionDisabled = false;
+
+        if (entityNode is RigidBody entityPhysics)
+            entityPhysics.Mode = ModeEnum.Rigid;
     }
 
     private void SetItemPositionInSlot(InventorySlotData slot, Spatial node)

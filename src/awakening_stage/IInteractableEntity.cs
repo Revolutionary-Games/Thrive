@@ -33,4 +33,10 @@ public interface IInteractableEntity : IEntity, IPlayerReadableName, IInventoryI
 
     // TODO: add some kind of weight or size limit for carrying to limit how much stuff a creature can carry based
     // on its strength
+
+    /// <summary>
+    ///   Returns the harvesting data for this entity if this can be harvested
+    /// </summary>
+    /// <returns>Null if can't be harvested or the harvesting related info if can be</returns>
+    public IHarvestAction? GetHarvestingInfo();
 }
