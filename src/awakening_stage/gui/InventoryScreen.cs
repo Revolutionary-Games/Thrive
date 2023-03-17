@@ -1169,6 +1169,7 @@ public class InventoryScreen : ControlWithInput
 
         // Items have changed due to crafting something
         craftingRecipeListDirty = true;
+        UpdateCraftingGUIState();
     }
 
     private void AddCraftingResults(IReadOnlyCollection<IInventoryItem> items)
