@@ -7,6 +7,9 @@ using Godot;
 /// </summary>
 public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
 {
+    private const float AnimationDuration = 1.5f;
+    private const float PostAnimationDuration = 4;
+
     private readonly WorldResource woodResource = SimulationParameters.Instance.GetWorldResource("wood");
 
     private bool harvested;
@@ -39,15 +42,14 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
 
         // Play some kind of falling animation, not a very good one
         animationTime += delta;
-        float animationDuration = 1.5f;
 
-        if (animationTime > animationDuration)
+        if (animationTime > AnimationDuration + PostAnimationDuration)
         {
             this.DestroyAndQueueFree();
         }
         else
         {
-            var progress = animationTime / animationDuration;
+            var progress = Math.Min(animationTime / AnimationDuration, 1);
 
             Transform = animationStart.InterpolateWith(animationEnd, progress);
         }
@@ -81,11 +83,13 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
 
         // Setup a really simple falling animation
         animationStart = Transform;
-        animationEnd = new Transform(new Basis(animationStart.basis.Quat() * new Quat(0, 0, 1, Mathf.Pi * 0.5f)),
+        animationEnd = new Transform(
+            new Basis(animationStart.basis.Quat() * new Quat(new Vector3(0, 0, 1), Mathf.Pi * 0.5f)),
             animationStart.origin - new Vector3(0, -0.3f, 0));
 
         // Disable collision while being destroyed
         CollisionLayer = 0;
+        CollisionMask = 0;
 
         // Create the resource entities to drop
         var result = new List<IInteractableEntity>();
