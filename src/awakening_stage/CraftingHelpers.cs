@@ -14,7 +14,7 @@ public static class CraftingHelpers
         {
             for (int i = 0; i < producedTuple.Value; ++i)
             {
-                result.Add(CreateEquipmentEntity(producedTuple.Key));
+                result.Add(SpawnHelpers.CreateEquipmentEntity(producedTuple.Key));
             }
         }
 
@@ -24,12 +24,5 @@ public static class CraftingHelpers
         }
 
         return result;
-    }
-
-    public static IInteractableEntity CreateEquipmentEntity(EquipmentDefinition equipmentDefinition)
-    {
-        var entity = new Equipment(equipmentDefinition);
-
-        return entity;
     }
 }

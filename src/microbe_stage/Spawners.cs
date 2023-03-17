@@ -294,6 +294,14 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/awakening_stage/ResourceEntity.tscn");
     }
 
+    public static IInteractableEntity CreateEquipmentEntity(EquipmentDefinition equipmentDefinition)
+    {
+        var entity = new Equipment(equipmentDefinition);
+
+        entity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        return entity;
+    }
+
     private static Quat RandomRotationForResourceEntity(Random random)
     {
         return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
