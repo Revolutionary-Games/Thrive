@@ -88,6 +88,8 @@ public class LateMulticellularSpecies : Species
 
     public override void UpdateInitialCompounds()
     {
+        // TODO: change this to be dynamic similar to microbe stage
+
         var simulation = SimulationParameters.Instance;
 
         var rusticyanin = simulation.GetOrganelleType("rusticyanin");
