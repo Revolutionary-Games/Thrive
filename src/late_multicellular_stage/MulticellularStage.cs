@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -428,7 +429,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             // Refresh the items on the ground near the player to show in the inventory screen
             var groundObjects = interactableSystem.GetAllNearbyObjects();
 
-            HUD.OpenInventory(Player, groundObjects);
+            // Filter to only carriable objects to not let the player to pick up trees and stuff
+            HUD.OpenInventory(Player, groundObjects.Where(o => o.CanBeCarried));
         }
         catch (Exception e)
         {
