@@ -55,6 +55,7 @@ msgstr "Abysal"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:278
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
 msgid "ACTION_AWAKEN"
 msgstr "Przebudzony ({0:F1} / {1:F1})"
 
@@ -564,13 +565,13 @@ msgstr "Zwiększający bioróżnorodność gatunek mutuje na utworzeniu"
 #: ../simulation_parameters/microbe_stage/organelles.json:762
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr "Bioluminescencyjna Wakuola"
+msgstr "Świecąca Wakuola"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:299
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:136 ../src/general/GameProperties.cs:132
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -616,6 +617,7 @@ msgstr "Kamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/awakening_stage/InteractablePopup.tscn:49
 msgid "CANCEL"
 msgstr "Anuluj"
 
@@ -811,17 +813,16 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Białka Chemosyntezy"
+msgstr "Białka Chemosyntezujące"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"Białka chemosyntezy (określane też jako \"białka chemosyntezujące\") są "
-"małymi białkowymi strukturami, które umieją przekształcać [thrive:compound "
-"type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound "
-"type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound "
-"type=\"glucose\"][/thrive:compound] w procesie nazywającym się "
-"[b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound "
+"Białka chemosyntezujące są małymi białkowymi strukturami, które umieją "
+"przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], "
+"gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wodę w "
+"[thrive:compound type=\"glucose\"][/thrive:compound] w procesie nazywającym "
+"się [b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound "
 "type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:"
 "compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka "
 "chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn "
@@ -1200,6 +1201,7 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Niebieski-Żółty)"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
@@ -1213,10 +1215,12 @@ msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Skalowany odwrotnie"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Skalowany odwrotnie"
@@ -1227,6 +1231,7 @@ msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Skalowany odwrotnie"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1085
+#: ../src/awakening_stage/InventoryScreen.cs:968
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
@@ -1245,20 +1250,25 @@ msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Kopiuj Wyniki"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1534
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "Brak tytułu"
@@ -1656,7 +1666,7 @@ msgstr "Upłynęło {0:#,#} lat"
 
 #: ../src/general/OptionsMenu.tscn:1809
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Ukryte pop-up'y:"
+msgstr "Ukryte popupy:"
 
 #: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
 msgid "DISMISSED_POPUPS_EXPLANATION"
@@ -1797,7 +1807,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Ciekawostka! Ameba poluje i łapie ofiary za pomocą 'odnóg' nazywanych "
-"nibynóżkami, chcemy je kiedyś dodać do \"Thrive\"."
+"nibynóżkami, chcemy je kiedyś dodać do Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
@@ -1834,7 +1844,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Ciekawy Fakt, Thrive zrobione jest w open source-owym silniku Godot!"
+msgstr "Ciekawostka, Thrive zrobione jest w open source-owym silniku Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
@@ -2231,7 +2241,7 @@ msgstr "Zakończ {0} Pokoleń"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
-msgstr "Strzał toksyną"
+msgstr "Strzel toksyną"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:387
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
@@ -2675,6 +2685,7 @@ msgid "INTERACTION_PICK_UP"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:371
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2725,19 +2736,23 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Niepoprawny schemat URL"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -2904,7 +2919,7 @@ msgstr "W górę"
 
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
-msgstr "{0} K"
+msgstr "{0} tys."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
@@ -4473,6 +4488,7 @@ msgid "NOTHING_HERE"
 msgstr "Nic tu nie ma"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:406
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5419,6 +5435,7 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Szybkość Absorbcji Zasobów"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Zobacz Kod Źródłowy"
