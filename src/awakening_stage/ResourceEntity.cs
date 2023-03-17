@@ -53,4 +53,10 @@ public class ResourceEntity : RigidBody, IInteractableEntity
 
         AddChild(ResourceType.WorldRepresentation.Instance());
     }
+
+    public IHarvestAction? GetHarvestingInfo()
+    {
+        // TODO: some resources should probably be breakable into different parts
+        return null;
+    }
 }

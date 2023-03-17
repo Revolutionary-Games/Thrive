@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -375,6 +376,27 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             // Assume all resources can be used in some kind of crafting
             yield return (InteractionType.Craft, true, null);
         }
+
+        var harvesting = target.GetHarvestingInfo();
+
+        if (harvesting != null)
+        {
+            var availableTools = this.GetAllCategoriesOfEquippedItems();
+
+            // Do we have the required tools
+            var missingTool = harvesting.CheckRequiredTool(availableTools);
+            if (missingTool == null)
+            {
+                yield return (InteractionType.Harvest, true, null);
+            }
+            else
+            {
+                var message = TranslationServer.Translate("INTERACTION_HARVEST_CANNOT_MISSING_TOOL").FormatSafe(
+                    TranslationServer.Translate(missingTool.GetAttribute<DescriptionAttribute>().Description));
+
+                yield return (InteractionType.Harvest, false, message);
+            }
+        }
     }
 
     public bool AttemptInteraction(IInteractableEntity target, InteractionType interactionType)
@@ -400,6 +422,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 // Request the crafting interface to be opened with the target pre-selected
                 RequestCraftingInterfaceFor.Invoke(this, target);
                 return true;
+            case InteractionType.Harvest:
+                return this.HarvestEntity(target);
             default:
                 GD.PrintErr($"Unimplemented action handling for {interactionType}");
                 return false;

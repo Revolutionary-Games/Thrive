@@ -78,6 +78,15 @@ public static class CharacterInventoryHelpers
         }
     }
 
+    public static IEnumerable<Equipment> ListAllEquipment(this ICharacterInventory inventory)
+    {
+        foreach (var content in inventory.ListEquipmentContents())
+        {
+            if (content.ContainedItem is Equipment equipment)
+                yield return equipment;
+        }
+    }
+
     public static bool HasEmptySlot(this ICharacterInventory inventory)
     {
         return inventory.ListAllItems().Any(s => s.ContainedItem == null);
@@ -94,5 +103,41 @@ public static class CharacterInventoryHelpers
             throw new ArgumentException("Invalid slot ID given", nameof(id));
 
         return inventory.ListAllItems().FirstOrDefault(s => s.Id == id);
+    }
+
+    public static HashSet<EquipmentCategory> GetAllCategoriesOfEquippedItems(this ICharacterInventory inventory)
+    {
+        var result = new HashSet<EquipmentCategory>();
+
+        foreach (var equipment in inventory.ListAllEquipment())
+        {
+            result.Add(equipment.Definition.Category);
+        }
+
+        return result;
+    }
+
+    public static bool HarvestEntity(this ICharacterInventory harvester, IInteractableEntity target)
+    {
+        var harvestInfo = target.GetHarvestingInfo();
+
+        if (harvestInfo == null)
+            return false;
+
+        var tools = harvester.GetAllCategoriesOfEquippedItems();
+
+        if (harvestInfo.CheckRequiredTool(tools) != null)
+            return false;
+
+        // Harvesting is allowed
+        var harvestedEntities = harvestInfo.PerformHarvest();
+
+        foreach (var entity in harvestedEntities)
+        {
+            // TODO: would be nice to have some extra guarantees on not dropping overlapping items
+            harvester.DirectlyDropEntity(entity);
+        }
+
+        return true;
     }
 }

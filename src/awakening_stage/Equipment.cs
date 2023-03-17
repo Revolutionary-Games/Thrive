@@ -51,6 +51,11 @@ public class Equipment : RigidBody, IInteractableEntity
     [JsonIgnore]
     public bool CanBeCarried => true;
 
+    public IHarvestAction? GetHarvestingInfo()
+    {
+        return null;
+    }
+
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
