@@ -54,6 +54,7 @@ msgstr "深海带"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:278
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
 #, fuzzy
 msgid "ACTION_AWAKEN"
 msgstr "唤醒"
@@ -566,7 +567,7 @@ msgstr "生物发光液泡"
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:136 ../src/general/GameProperties.cs:132
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神经元"
 
@@ -610,6 +611,7 @@ msgstr "视角"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/awakening_stage/InteractablePopup.tscn:49
 msgid "CANCEL"
 msgstr "取消"
 
@@ -1162,6 +1164,7 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "清除选中的材料"
 
@@ -1175,10 +1178,12 @@ msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "成反比"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "输入材料"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "已知合成配方"
 
@@ -1188,6 +1193,7 @@ msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "成反比"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1085
+#: ../src/awakening_stage/InventoryScreen.cs:968
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr "请先选择一个合成配方"
 
@@ -1206,20 +1212,25 @@ msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "石质手斧"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo结果："
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1534
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 msgid "CRAFTING_TITLE"
 msgstr "合成"
 
@@ -2579,6 +2590,7 @@ msgid "INTERACTION_PICK_UP"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:371
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2628,19 +2640,23 @@ msgid "INVALID_URL_SCHEME"
 msgstr "无效的URL Schemes"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "“{0}” - {1}"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -4287,6 +4303,7 @@ msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:406
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "没有可以交互的物体"
 
@@ -5226,6 +5243,7 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "物质吸收速度"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "查看源代码"
