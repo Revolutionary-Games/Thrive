@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/awakening_stage/InteractablePopup.cs" type="Script" id=2]
+[ext_resource path="res://src/awakening_stage/gui/InteractablePopup.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
 
 [node name="InteractablePopup" type="Control"]

@@ -247,7 +247,7 @@ public static class SpawnHelpers
     public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform location, Node worldNode,
         PackedScene entityScene, bool randomizeRotation = false, Random? random = null)
     {
-        var resourceEntity = (ResourceEntity)entityScene.Instance();
+        var resourceEntity = CreateHarvestedResourceEntity(resourceType, entityScene, false);
 
         if (randomizeRotation)
         {
@@ -256,18 +256,34 @@ public static class SpawnHelpers
             // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
             // scale, but entities shouldn't anyway be allowed to have a root node scale
             location = new Transform(
-                new Basis(location.basis.Quat() *
-                    new Quat(
-                        new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
-                        random.NextFloat() * Mathf.Pi + 0.01f)), location.origin);
+                new Basis(location.basis.Quat() * RandomRotationForResourceEntity(random)), location.origin);
         }
-
-        // Apply settings
-        resourceEntity.SetResource(resourceType);
 
         worldNode.AddChild(resourceEntity);
 
         resourceEntity.Transform = location;
+
+        return resourceEntity;
+    }
+
+    /// <summary>
+    ///   Creates a resource entity to be placed in the world later. Used for example to create items to drop.
+    /// </summary>
+    /// <returns>The entity ready to be placed in the world</returns>
+    public static ResourceEntity CreateHarvestedResourceEntity(WorldResource resourceType, PackedScene entityScene,
+        bool randomizeRotation = true, Random? random = null)
+    {
+        var resourceEntity = (ResourceEntity)entityScene.Instance();
+
+        // Apply settings
+        resourceEntity.SetResource(resourceType);
+
+        if (randomizeRotation)
+        {
+            random ??= new Random();
+
+            resourceEntity.Transform = new Transform(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
+        }
 
         resourceEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
         return resourceEntity;
@@ -276,6 +292,20 @@ public static class SpawnHelpers
     public static PackedScene LoadResourceEntityScene()
     {
         return GD.Load<PackedScene>("res://src/awakening_stage/ResourceEntity.tscn");
+    }
+
+    public static IInteractableEntity CreateEquipmentEntity(EquipmentDefinition equipmentDefinition)
+    {
+        var entity = new Equipment(equipmentDefinition);
+
+        entity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        return entity;
+    }
+
+    private static Quat RandomRotationForResourceEntity(Random random)
+    {
+        return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
+            random.NextFloat() * Mathf.Pi + 0.01f);
     }
 }
 

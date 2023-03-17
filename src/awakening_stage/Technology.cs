@@ -41,6 +41,9 @@ public class Technology : IRegistryType
     [JsonProperty]
     public IReadOnlyList<CraftingRecipe> GrantsRecipes { get; private set; } = new List<CraftingRecipe>();
 
+    [JsonProperty]
+    public IReadOnlyList<StructureDefinition> GrantsStructures { get; private set; } = new List<StructureDefinition>();
+
     [JsonIgnore]
     public IReadOnlyList<Technology> RequiresTechnologies { get; private set; } = new List<Technology>();
 

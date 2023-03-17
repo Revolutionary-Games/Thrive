@@ -40,6 +40,11 @@ public class RegistryTypeStringConverter : TypeConverter
                 new SupportedRegistryType(typeof(CraftingRecipe), "recipe",
                     name => SimulationParameters.Instance.GetCraftingRecipe(name))
             },
+            {
+                "structure",
+                new SupportedRegistryType(typeof(StructureDefinition), "structure",
+                    name => SimulationParameters.Instance.GetStructure(name))
+            },
         };
 
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -180,4 +185,12 @@ public class EquipmentDefinitionStringConverter : RegistryTypeStringSingleTypeCo
 public class CraftingRecipeStringConverter : RegistryTypeStringSingleTypeConverter<CraftingRecipe>
 {
     protected override string TypeName => "recipe";
+}
+
+/// <summary>
+///   Specific converter for <see cref="StructureDefinition"/>
+/// </summary>
+public class StructureStringConverter : RegistryTypeStringSingleTypeConverter<StructureDefinition>
+{
+    protected override string TypeName => "structure";
 }

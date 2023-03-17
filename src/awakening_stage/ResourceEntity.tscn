@@ -6,6 +6,7 @@
 bounce = 0.1
 
 [sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.5, 0.5, 0.5 )
 
 [node name="ResourceEntity" type="RigidBody"]
 physics_material_override = SubResource( 2 )

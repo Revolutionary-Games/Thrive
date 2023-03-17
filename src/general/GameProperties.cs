@@ -56,6 +56,10 @@ public class GameProperties
     /// </summary>
     public bool InPrototypes { get; private set; }
 
+    // Not saved for now as this is only in prototypes
+    [JsonIgnore]
+    public TechWeb TechWeb { get; private set; } = new();
+
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>
