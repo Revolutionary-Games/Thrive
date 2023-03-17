@@ -80,6 +80,7 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
     public List<IInteractableEntity> PerformHarvest()
     {
         harvested = true;
+        InteractionDisabled = true;
 
         // Setup a really simple falling animation
         animationStart = Transform;
