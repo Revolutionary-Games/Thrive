@@ -212,6 +212,16 @@ public class NewModGUI : Control
                 AssemblyModClassPath.Dispose();
                 AssemblyModAutoHarmonyPath.Dispose();
                 ErrorDisplayPath.Dispose();
+                DependenciesPath.Dispose();
+                RequiredModsPath.Dispose();
+                LoadBeforePath.Dispose();
+                LoadAfterPath.Dispose();
+                IncompatibleModsPath.Dispose();
+                IconFileDialogPath.Dispose();
+                PckFileDialogPath.Dispose();
+                AssemblyFileDialogPath.Dispose();
+                PreviewFileDialogPath.Dispose();
+                PreviewImagesFilePath.Dispose();
             }
         }
 

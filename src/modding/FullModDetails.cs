@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 /// </summary>
 public class FullModDetails : IEquatable<FullModDetails>
 {
-
     public FullModDetails(string internalName, string folder, ModInfo info)
     {
         InternalName = internalName;

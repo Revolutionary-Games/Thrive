@@ -607,6 +607,18 @@ public class ModManager : Control
             UpdateTabTitles();
         }
     }
+
+    public void UpdateLoadPosition(int startIndex = 0)
+    {
+        if (enabledMods != null)
+        {
+            for (int index = startIndex; index < enabledMods.Count; ++index)
+            {
+                enabledMods[index].LoadPosition = index;
+            }
+        }
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -654,21 +666,43 @@ public class ModManager : Control
                 ModUploaderPath.Dispose();
                 ModErrorDialogPath.Dispose();
                 RestartRequiredPath.Dispose();
+                GalleryLeftButtonPath.Dispose();
+                MoveModUpButtonPath.Dispose();
+                MoveModDownButtonPath.Dispose();
+                ResetButtonPath.Dispose();
+                DependencyButtonPath.Dispose();
+                RequiredModsButtonPath.Dispose();
+                IncompatibleButtonPath.Dispose();
+                LoadOrderButtonPath.Dispose();
+                CheckButtonPath.Dispose();
+                GalleryLabelPath.Dispose();
+                SelectedModRecommendedThriveVersionContainerPath.Dispose();
+                SelectedModMinimumThriveVersionContainerPath.Dispose();
+                SelectedModThriveVersionContainerPath.Dispose();
+                SelectedModThriveVersionHSeparatorPath.Dispose();
+                ModCheckResultDialogPath.Dispose();
+                LoadWarningDialogPath.Dispose();
+                OtherModInfoDialogPath.Dispose();
+                ModErrorsContainerPath.Dispose();
+                ErrorInfoLabelPath.Dispose();
+                OneshotLoadingCheckboxPath.Dispose();
+                ModLoaderContainerPath.Dispose();
+                EnableAllModsButtonPath.Dispose();
+                SelectedModInfoBoxPath.Dispose();
+                SelectedModPreviewImagesContainerPath.Dispose();
+                SelectedModGalleryContainerPath.Dispose();
+                FullInfoDependenciesPath.Dispose();
+                FullInfoPreviewImagesFilePath.Dispose();
+                FullInfoRequiredModsPath.Dispose();
+                FullInfoLoadBeforePath.Dispose();
+                FullInfoLoadAfterPath.Dispose();
+                FullInfoIncompatibleModsPath.Dispose();
+                SelectedModFromWorkshopPath.Dispose();
+                GalleryRightButtonPath.Dispose();
             }
         }
 
         base.Dispose(disposing);
-    }
-
-    public void UpdateLoadPosition(int startIndex = 0)
-    {
-        if (enabledMods != null)
-        {
-            for (int index = startIndex; index < enabledMods.Count; ++index)
-            {
-                enabledMods[index].LoadPosition = index;
-            }
-        }
     }
 
     private static bool IsAllowedModPath(string path)
