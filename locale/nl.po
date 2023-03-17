@@ -597,7 +597,7 @@ msgstr "Bioluminescente Vacuole"
 msgid "BIOME_LABEL"
 msgstr "Bioom: {0}"
 
-#: ../src/general/GameProperties.cs:132
+#: ../src/general/GameProperties.cs:132 ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Zenuwcel"
 
@@ -1253,6 +1253,7 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Blauw-Geel)"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:238
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Wis geselecteerde invulvelden"
 
@@ -1266,10 +1267,12 @@ msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Omgekeerd geschaald"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:223
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Invulvelden"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:178
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Bekende Recepten"
 
@@ -1279,6 +1282,7 @@ msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Omgekeerd geschaald"
 
 #: ../src/awakening_stage/InventoryScreen.cs:968
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1085
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr "Gelieve eerst hierboven een recept te selecteren om te vervaardigen"
 
@@ -1297,19 +1301,24 @@ msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Stenen Handbijl"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:269
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
 msgid "CRAFTING_RESULTS"
 msgstr "Resultaten"
 
 #: ../src/awakening_stage/InventoryScreen.cs:1105
 #: ../src/awakening_stage/InventoryScreen.tscn:204
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1534
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Selecteer een recept om te vervaardigen of voeg items to aan filter"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:282
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Neem Alles"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:165
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
 msgid "CRAFTING_TITLE"
 msgstr "Vervaardigen"
 
@@ -2813,18 +2822,22 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Incorrect URL protocol"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:73
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr "Items op de Grond"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:99
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
 msgid "INVENTORY_TITLE"
 msgstr "Inventaris"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:148
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr "Vervaardigen"
 
 #: ../src/awakening_stage/InventoryScreen.tscn:142
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Grond"
 
