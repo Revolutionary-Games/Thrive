@@ -550,7 +550,7 @@ msgstr "Биом: {0}"
 
 #: ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Нейрон"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
@@ -767,7 +767,7 @@ msgstr "Хемосинтезирующие белки"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "Хемосинтезирующие белки - это небольшие скопления белков в цитоплазме, которые способны превращать сероводород, воду и газообразный углекислый газ в глюкозу в процессе, называемом Хемосинтезом Сероводорода. Скорость его выработки глюкозы зависит от концентрации углекислого газа. Поскольку хемосинтезирующие белки находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть гликолиза."
+msgstr "Хемосинтезирующие белки - небольшие скопления белков внутри цитоплазмы, что могут преобразовывать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] , газообразный [thrive:compound type=\"carbondioxide\"][/thrive:compound], да воду в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе что именуется [b]Сероводородном хемосинтезе[/b]. Скорость переработки [thrive:compound type=\"glucose\"][/thrive:compound] умножается с концентрацией [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Поскольку хемосинтезирующие белки находятся непосредственно в цитоплазме, от чего и происходит [b]гликолиз[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
@@ -1101,8 +1101,9 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (Син.-Жел.)"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#, fuzzy
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr ""
+msgstr "Очистить выбранное"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1160
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
@@ -1115,12 +1116,11 @@ msgstr "Уменьшать"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:231
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr ""
+msgstr "Вложения"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:181
-#, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr "Уменьшать"
+msgstr "Известные Рецепты"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 #, fuzzy
@@ -1129,7 +1129,7 @@ msgstr "Уменьшать"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1085
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr ""
+msgstr "Пожалуйста, выберите рецепт сверху для возможности созидания"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1106
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
@@ -1143,26 +1143,24 @@ msgstr "Копировать Результаты"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
-msgstr ""
+msgstr "Ручной каменный топор"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:277
-#, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Копировать Результаты"
+msgstr "Результаты"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1534
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "Выберите рецепт созидания или добавьте предметы для фильтрации вариантов созидания"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:290
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "Взять всё"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:167
-#, fuzzy
 msgid "CRAFTING_TITLE"
-msgstr "Название отсутствует"
+msgstr "\"Ремесло\""
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
@@ -1539,7 +1537,7 @@ msgstr "Отсоединенные метасферы"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Среди размещённых клеток имеются несоединённые метасферы что не объединены с остальными.\n"
+"Среди размещённых клеток имеются метасферы что не объединены с остальными.\n"
 "Пожалуйста, соедините все размещённые метасферы с другими для продолжения."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1311
@@ -2439,9 +2437,8 @@ msgid "INPUT_NAME_INTERACTION"
 msgstr "Взаимодействовать с объектом"
 
 #: ../simulation_parameters/common/input_options.json:76
-#, fuzzy
 msgid "INPUT_NAME_OPEN_INVENTORY"
-msgstr "Взаимодействовать с объектом"
+msgstr "Включить меню инвентаря"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -2452,9 +2449,8 @@ msgid "INSPECTOR"
 msgstr "Инспектор"
 
 #: ../src/awakening_stage/InteractionType.cs:8
-#, fuzzy
 msgid "INTERACTION_CRAFT"
-msgstr "Вероятность мутации ИИ"
+msgstr "Создать..."
 
 #: ../src/awakening_stage/InteractionType.cs:11
 #, fuzzy
@@ -2467,11 +2463,11 @@ msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "Поднять"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:371
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Поднять (ПОЛНОСТЬЮ)"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
@@ -2520,20 +2516,19 @@ msgstr "Неверная схема URL-адреса"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:75
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Предметы на полу"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
-#, fuzzy
 msgid "INVENTORY_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "Инвентарь"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "Ремесло"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:144
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "Поверхность"
 
 #: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
 #: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
@@ -3426,6 +3421,8 @@ msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Для управления клеткой используйте клавиши, показанные рядом с клеткой (в центре экрана), и мышь для управления ориентацией клетки.\n"
 "\n"
+"Тип передвижения может быть изменён в меню опций. \n"
+"\n"
 "Попробуйте все клавиши в течении нескольких секунд, чтобы продолжить."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
@@ -3439,7 +3436,7 @@ msgstr ""
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "Следите за количеством доступного света на панели окружающей среды.\n"
-"\n"
+".\n"
 "В ночное время фотосинтез менее эффективен из-за малого количества солнечного света.\n"
 "Убедитесь, что собрано достаточно глюкозы для производства АТФ."
 
@@ -3490,7 +3487,7 @@ msgstr "Ваша клетка использует [thrive:compound type=\"atp\"
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно оставаться в живых достаточно долго. Сбор [thrive:compound type=\"ammonia\"][/thrive:compound] (оОранжевое оОблако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (фФиолетовое оОблако) ускоряет рост."
+msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно оставаться в живых достаточно долго. Сбор [thrive:compound type=\"ammonia\"][/thrive:compound] (Оранжевое Облако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (Фиолетовое Облако) ускоряет рост."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -4979,9 +4976,8 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорость Поглощения Ресурсов"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#, fuzzy
 msgid "RESOURCE_ROCK"
-msgstr "Открыть исходный код"
+msgstr "Камень"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:8
 #, fuzzy
@@ -5821,7 +5817,7 @@ msgstr "Сделать снимок экрана"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
-msgstr ""
+msgstr "Базовые инструменты из камня"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:12
 msgid "TECHNOLOGY_SOCIETY_CENTER"
@@ -6087,7 +6083,7 @@ msgstr "Инструменты"
 
 #: ../simulation_parameters/awakening_stage/equipment.json:3
 msgid "TOOL_HAND_AXE"
-msgstr ""
+msgstr "Ручной Топор"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 msgid "TOTAL_POPULATION_COLON"
