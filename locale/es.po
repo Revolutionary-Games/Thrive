@@ -54,6 +54,7 @@ msgstr "Abisopelágico"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:278
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
 #, fuzzy
 msgid "ACTION_AWAKEN"
 msgstr "Despertar"
@@ -592,7 +593,7 @@ msgstr "Vacuola Bioluminiscente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:136 ../src/general/GameProperties.cs:132
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -637,6 +638,7 @@ msgstr "Cámara"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/awakening_stage/InteractablePopup.tscn:49
 msgid "CANCEL"
 msgstr "Cancelar"
 
@@ -1215,6 +1217,7 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanomalía (Azul-Amarillo)"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/InventoryScreen.tscn:238
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
@@ -1228,10 +1231,12 @@ msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Escalado inversamente"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/InventoryScreen.tscn:223
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/InventoryScreen.tscn:178
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Escalado inversamente"
@@ -1242,6 +1247,7 @@ msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Escalado inversamente"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1085
+#: ../src/awakening_stage/InventoryScreen.cs:968
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
@@ -1260,20 +1266,25 @@ msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/InventoryScreen.tscn:269
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Resultados de auto-evo:"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1534
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/InventoryScreen.cs:1105
+#: ../src/awakening_stage/InventoryScreen.tscn:204
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/InventoryScreen.tscn:282
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/InventoryScreen.tscn:165
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "Falta Título"
@@ -2712,6 +2723,7 @@ msgid "INTERACTION_PICK_UP"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:371
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2764,19 +2776,23 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Esquema URL inválido"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/InventoryScreen.tscn:73
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/InventoryScreen.tscn:99
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/InventoryScreen.tscn:148
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/InventoryScreen.tscn:142
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -4533,6 +4549,7 @@ msgid "NOTHING_HERE"
 msgstr "No hay nada aquí"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:406
+#: ../src/late_multicellular_stage/MulticellularStage.cs:364
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5496,6 +5513,7 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Velocidad de Absorción de Recursos"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
+#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Ver código fuente"
