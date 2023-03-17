@@ -305,9 +305,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         var rockResource = SimulationParameters.Instance.GetWorldResource("rock");
         var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
-        // TODO: remove once resource data is loaded from JSON
-        TranslationServer.Translate("RESOURCE_ROCK");
-
         foreach (var position in new[]
                  {
                      new Vector3(10, 0, 5),
@@ -319,11 +316,40 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                      new Vector3(38, 0, 11),
                      new Vector3(-15, 0, 10),
                      new Vector3(-15, 0, -15),
+                     new Vector3(-25, 0, -15),
+                     new Vector3(-35, 0, -15),
+                     new Vector3(25, 0, -5),
+                     new Vector3(29, 0, -5),
+                     new Vector3(32, 0, -5),
+                     new Vector3(35, 0, 5),
                  })
         {
             // But create it as a resource entity so that it can be interacted with
             SpawnHelpers.SpawnResourceEntity(rockResource, new Transform(Basis.Identity, position),
                 rootOfDynamicallySpawned, resourceScene, true);
+        }
+
+        // Placeholder trees
+        var treeScene = GD.Load<PackedScene>("res://assets/models/PlaceholderTree.tscn");
+
+        foreach (var position in new[]
+                 {
+                     new Vector3(15, 0, 9),
+                     new Vector3(25, 0, 35),
+                     new Vector3(50, 0, 10),
+                     new Vector3(-30, 0, 5),
+                     new Vector3(18, 0, -20),
+                     new Vector3(-48, 0, 27),
+                 })
+        {
+            // TODO: proper interactable plants, this is a temporary manually created placeholder tree
+            var tree = treeScene.Instance<PlaceholderTree>();
+
+            rootOfDynamicallySpawned.AddChild(tree);
+            tree.GlobalTransform =
+                new Transform(new Basis(new Quat(new Vector3(0, 1, 0), Mathf.Pi * random.NextFloat())), position);
+
+            tree.AddToGroup(Constants.INTERACTABLE_GROUP);
         }
 
         // Modify player state for being on land
