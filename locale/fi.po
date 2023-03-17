@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-16 15:15+0200\n"
+"POT-Creation-Date: 2023-03-17 12:07+0200\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1139,11 +1139,11 @@ msgstr "Tritanopia (sininen-keltainen)"
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1144
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1160
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1110
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1126
 #, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Käänteisesti skaalattu"
@@ -1157,16 +1157,16 @@ msgstr ""
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Käänteisesti skaalattu"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1089
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 #, fuzzy
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Käänteisesti skaalattu"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1070
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1085
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1078
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1106
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
@@ -1185,7 +1185,7 @@ msgstr ""
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo tulokset:"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1514
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1534
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -1901,6 +1901,10 @@ msgstr "Näytä / piilota ympäristö ja yhdisteet"
 msgid "EPIPELAGIC"
 msgstr "Epipelaginen vyöhyke"
 
+#: ../src/awakening_stage/EquipmentCategory.cs:9
+msgid "EQUIPMENT_TYPE_AXE"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
 msgstr "Virhe"
@@ -2555,11 +2559,20 @@ msgstr ""
 msgid "INTERACTION_CRAFT"
 msgstr "Mutaatiopisteet"
 
+#: ../src/awakening_stage/InteractionType.cs:11
+#, fuzzy
+msgid "INTERACTION_HARVEST"
+msgstr "Mutaatiopisteet"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:394
+msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
+msgstr ""
+
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:371
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -4196,7 +4209,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr "Ei mitään täällä"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:379
+#: ../src/late_multicellular_stage/MulticellularStage.cs:406
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5146,7 +5159,6 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resurssien imeytymisen nopeus"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:309
 #, fuzzy
 msgid "RESOURCE_ROCK"
 msgstr "Katsele lähdekoodia"
@@ -6022,7 +6034,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:602
+#: ../src/late_multicellular_stage/MulticellularStage.cs:630
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
