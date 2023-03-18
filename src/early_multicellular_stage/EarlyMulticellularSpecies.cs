@@ -67,9 +67,9 @@ public class EarlyMulticellularSpecies : Species
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
         // So, the compound balance calculation uses the default biome.
         var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
-        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
+        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Cells[0].Organelles,
             biomeConditions, CompoundAmountType.Current);
-        var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Organelles);
+        var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Cells[0].Organelles);
 
         InitialCompounds.Clear();
 
@@ -79,8 +79,7 @@ public class EarlyMulticellularSpecies : Species
                 continue;
 
             // Initial compounds should suffice for a fixed amount of time.
-            var compoundInitialAmount = (Math.Abs(compoundBalance.Value.Balance) / Cells.Count) *
-                Constants.INITIAL_COMPOUND_TIME;
+            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * Constants.INITIAL_COMPOUND_TIME;
             if (compoundInitialAmount > storageCapacity)
                 compoundInitialAmount = storageCapacity;
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
