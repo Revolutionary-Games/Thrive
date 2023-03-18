@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:53+0200\n"
+"POT-Creation-Date: 2023-03-17 15:32+0200\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Magnus Norling Svane <magn665e@icloud.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 msgid "ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:278
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 msgid "ACTION_AWAKEN"
 msgstr ""
@@ -525,7 +525,7 @@ msgstr ""
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/general/GameProperties.cs:132
+#: ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "CAMERA"
 msgstr ""
 
-#: ../src/awakening_stage/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
@@ -1060,40 +1060,61 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:238
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:223
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1160
+msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
+msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1126
+msgid "CRAFTING_ERROR_TAKING_ITEMS"
+msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:178
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.cs:968
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
+msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1085
 msgid "CRAFTING_NO_RECIPE_SELECTED"
+msgstr ""
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1106
+msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
+msgstr ""
+
+#: ../src/awakening_stage/gui/RecipeListItem.cs:137
+#: ../src/awakening_stage/gui/RecipeListItem.tscn:61
+msgid "CRAFTING_RECIPE_DISPLAY"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:269
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
 msgid "CRAFTING_RESULTS"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.cs:1105
-#: ../src/awakening_stage/InventoryScreen.tscn:204
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1535
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:282
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:165
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
 msgid "CRAFTING_TITLE"
 msgstr ""
 
@@ -1720,6 +1741,10 @@ msgstr ""
 msgid "EPIPELAGIC"
 msgstr ""
 
+#: ../src/awakening_stage/EquipmentCategory.cs:9
+msgid "EQUIPMENT_TYPE_AXE"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
 msgstr ""
@@ -2317,11 +2342,19 @@ msgstr ""
 msgid "INTERACTION_CRAFT"
 msgstr ""
 
+#: ../src/awakening_stage/InteractionType.cs:11
+msgid "INTERACTION_HARVEST"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:394
+msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
+msgstr ""
+
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:371
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2370,19 +2403,19 @@ msgstr ""
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:73
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:99
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
 msgid "INVENTORY_TITLE"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:148
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/InventoryScreen.tscn:142
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -3766,7 +3799,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:364
+#: ../src/late_multicellular_stage/MulticellularStage.cs:406
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4655,8 +4688,11 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 msgid "RESOURCE_ROCK"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:8
+msgid "RESOURCE_WOOD"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
@@ -5382,6 +5418,10 @@ msgstr ""
 msgid "STRUCTURE"
 msgstr ""
 
+#: ../simulation_parameters/awakening_stage/structures.json:3
+msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr ""
+
 #: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr ""
@@ -5460,6 +5500,14 @@ msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:12
+msgid "TECHNOLOGY_SOCIETY_CENTER"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:630
+msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180

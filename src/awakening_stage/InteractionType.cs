@@ -7,4 +7,7 @@ public enum InteractionType
 
     [Description("INTERACTION_CRAFT")]
     Craft,
+
+    [Description("INTERACTION_HARVEST")]
+    Harvest,
 }

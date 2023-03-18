@@ -17,7 +17,7 @@ public class Equipment : RigidBody, IInteractableEntity
         var owner = CreateShapeOwner(this);
         ShapeOwnerAddShape(owner, new BoxShape
         {
-            Extents = new Vector3(1.0f, 1.0f, 1.0f),
+            Extents = new Vector3(0.5f, 0.5f, 0.5f),
         });
     }
 
@@ -50,6 +50,11 @@ public class Equipment : RigidBody, IInteractableEntity
 
     [JsonIgnore]
     public bool CanBeCarried => true;
+
+    public IHarvestAction? GetHarvestingInfo()
+    {
+        return null;
+    }
 
     public void OnDestroyed()
     {

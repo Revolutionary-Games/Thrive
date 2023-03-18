@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 14:21+0200\n"
-"PO-Revision-Date: 2023-03-14 14:24+0200\n"
+"POT-Creation-Date: 2023-03-17 15:32+0200\n"
+"PO-Revision-Date: 2023-03-17 12:48+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -51,7 +51,7 @@ msgstr "Aborted."
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagic"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:277
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:278
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 msgid "ACTION_AWAKEN"
 msgstr "Awaken ({0:F1} / {1:F1})"
@@ -548,7 +548,7 @@ msgstr "Bioluminescent Vacuole"
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../src/general/GameProperties.cs:132
+#: ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
 
@@ -585,7 +585,7 @@ msgstr "This membrane has a strong shell made from calcium carbonate. It can eas
 msgid "CAMERA"
 msgstr "Camera"
 
-#: ../src/awakening_stage/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
@@ -1100,40 +1100,61 @@ msgstr "Protanope (Red-Green)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blue-Yellow)"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:238
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Clear selected inputs"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:223
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1160
+msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
+msgstr "Error: internal bug in crafting item consuming"
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1126
+msgid "CRAFTING_ERROR_TAKING_ITEMS"
+msgstr "Could not find crafting input items"
+
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Inputs"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:178
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Known Recipes"
 
-#: ../src/awakening_stage/InventoryScreen.cs:968
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
+msgstr "Not enough {0} to craft recipe"
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1085
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr "Please select a recipe above to craft first"
+
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1106
+msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
+msgstr "No space to take all crafting results"
+
+#: ../src/awakening_stage/gui/RecipeListItem.cs:137
+#: ../src/awakening_stage/gui/RecipeListItem.tscn:61
+msgid "CRAFTING_RECIPE_DISPLAY"
+msgstr "{0} ({1})"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Stone Hand Axe"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:269
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
 msgid "CRAFTING_RESULTS"
 msgstr "Results"
 
-#: ../src/awakening_stage/InventoryScreen.cs:1105
-#: ../src/awakening_stage/InventoryScreen.tscn:204
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1535
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Select a crafting recipe or add items to filter"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:282
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Take All"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:165
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
 msgid "CRAFTING_TITLE"
 msgstr "Crafting"
 
@@ -1812,6 +1833,10 @@ msgstr "Show / hide environment"
 msgid "EPIPELAGIC"
 msgstr "Epipelagic"
 
+#: ../src/awakening_stage/EquipmentCategory.cs:9
+msgid "EQUIPMENT_TYPE_AXE"
+msgstr "Axe"
+
 #: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
 msgstr "Error"
@@ -2423,11 +2448,19 @@ msgstr "Inspector"
 msgid "INTERACTION_CRAFT"
 msgstr "Craft..."
 
+#: ../src/awakening_stage/InteractionType.cs:11
+msgid "INTERACTION_HARVEST"
+msgstr "Harvest"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:394
+msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
+msgstr "Harvest (MISSING EQUIPMENT: {0})"
+
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
 msgstr "Pick up"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:370
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:371
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Pick up (FULL)"
 
@@ -2476,19 +2509,19 @@ msgstr "Invalid URL format"
 msgid "INVALID_URL_SCHEME"
 msgstr "Invalid URL scheme"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:73
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr "Items on the Ground"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:99
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
 msgid "INVENTORY_TITLE"
 msgstr "Inventory"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:148
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr "Crafting"
 
-#: ../src/awakening_stage/InventoryScreen.tscn:142
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Ground"
 
@@ -4025,7 +4058,7 @@ msgstr "The most basic form of membrane, it has little protection against damage
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:364
+#: ../src/late_multicellular_stage/MulticellularStage.cs:406
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Nothing to interact with"
 
@@ -4939,9 +4972,12 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#: ../src/late_multicellular_stage/MulticellularStage.cs:303
 msgid "RESOURCE_ROCK"
 msgstr "Rock"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:8
+msgid "RESOURCE_WOOD"
+msgstr "Wood"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:111
@@ -5694,6 +5730,10 @@ msgstr "Structural"
 msgid "STRUCTURE"
 msgstr "Structure"
 
+#: ../simulation_parameters/awakening_stage/structures.json:3
+msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr "Society Center"
+
 #: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
@@ -5773,6 +5813,14 @@ msgstr "Take a screenshot"
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
 msgstr "Simple Stone Tools"
+
+#: ../simulation_parameters/awakening_stage/technologies.json:12
+msgid "TECHNOLOGY_SOCIETY_CENTER"
+msgstr "Building Society Center"
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:630
+msgid "TECHNOLOGY_UNLOCKED_NOTICE"
+msgstr "Unlocked technology: {0}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123

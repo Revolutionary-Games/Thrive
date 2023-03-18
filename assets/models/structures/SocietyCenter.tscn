@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 5, 2.5, 5 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.439216, 0.262745, 0.0392157, 1 )
+
+[node name="SocietyCenter" type="StaticBody"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+shape = SubResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14652, 2.5, 0 )
+width = 9.64129
+height = 5.0
+depth = 9.99854
+material = SubResource( 2 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.05608, 0.0899892, 0 )
+height = 0.139425
+
+[node name="CSGBox3" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17795, 3.27105, 0 )
+height = 0.139425
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86954, 1.69911, -0.801795 )
+radius = 0.146265
+height = 3.21133
+sides = 16
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86954, 1.69911, 0.787029 )
+radius = 0.146265
+height = 3.21133
+sides = 16
+
+[node name="CSGBox4" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69427, 1.53981, 0.00289637 )
+width = 0.126274
+height = 2.72474
+depth = 1.0982

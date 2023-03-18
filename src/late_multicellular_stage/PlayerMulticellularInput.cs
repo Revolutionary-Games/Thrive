@@ -180,6 +180,8 @@ public class PlayerMulticellularInput : NodeWithInput
     [RunOnKeyDown("g_pack_commands")]
     public bool ShowSignalingCommandsMenu()
     {
+        // TODO: implement the communication technology that unlocks when using the commands
+
         // TODO: implement
 
         // if (stage.Player?.HasSignalingAgent != true)

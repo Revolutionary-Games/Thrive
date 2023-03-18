@@ -44,6 +44,7 @@ Code style rules
   - `rot`
   - `str`
   - `rect` (when related to class names and variables holding instances of those classes)
+  - `tech` (short for technology)
 
 - Variables and functions are camelCase or PascalCase depending on
   their visibility. Classes are PascalCase with leading upper
