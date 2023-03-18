@@ -79,7 +79,9 @@ public class EarlyMulticellularSpecies : Species
                 continue;
 
             // Initial compounds should suffice for a fixed amount of time.
-            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * Constants.INITIAL_COMPOUND_TIME;
+            // Some extra is given to accommodate multicell growth
+            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) *
+                Constants.INITIAL_COMPOUND_TIME * 1.5f;
             if (compoundInitialAmount > storageCapacity)
                 compoundInitialAmount = storageCapacity;
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
