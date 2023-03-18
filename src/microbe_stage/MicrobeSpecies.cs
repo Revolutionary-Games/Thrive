@@ -114,6 +114,13 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
         foreach (var compoundBalance in compoundBalances)
         {
+            if (compoundBalance.Key == SimulationParameters.Instance.GetCompound("glucose") &&
+                Organelles.Count <= 3 && IsBacteria)
+            {
+                InitialCompounds.Add(compoundBalance.Key, StorageCapacity);
+                continue;
+            }
+
             if (compoundBalance.Value.Balance >= 0)
                 continue;
 
