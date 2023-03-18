@@ -109,13 +109,14 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
             biomeConditions, CompoundAmountType.Current);
+        var glucose = SimulationParameters.Instance.GetCompound("glucose");
+        bool giveBonusGlucose = Organelles.Count <= 3 && IsBacteria;
 
         InitialCompounds.Clear();
 
         foreach (var compoundBalance in compoundBalances)
         {
-            if (compoundBalance.Key == SimulationParameters.Instance.GetCompound("glucose") &&
-                Organelles.Count <= 3 && IsBacteria)
+            if (compoundBalance.Key == glucose && giveBonusGlucose)
             {
                 InitialCompounds.Add(compoundBalance.Key, StorageCapacity);
                 continue;
