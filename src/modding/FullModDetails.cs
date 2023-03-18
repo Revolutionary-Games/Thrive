@@ -13,13 +13,6 @@ public class FullModDetails : IEquatable<FullModDetails>
         Info = info;
     }
 
-    public FullModDetails(string internalName)
-    {
-        InternalName = internalName;
-        Info = new ModInfo();
-        Folder = string.Empty;
-    }
-
     /// <summary>
     ///     The compatibility with the current version of Thrive.
     /// </summary>

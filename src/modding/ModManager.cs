@@ -797,7 +797,7 @@ public class ModManager : Control
             }
 
             result.Add(new FullModDetails(name, modFolder, info)
-            { IsCompatibleVersion = ModHelpers.GetVersionCompatibility(info) });
+                { IsCompatibleVersion = ModHelpers.GetVersionCompatibility(info) });
         }
 
         var previousLength = result.Count;
@@ -918,9 +918,17 @@ public class ModManager : Control
 
         for (int index = 0; index < modErrors.Count; index++)
         {
-            var mod = modErrors[index].Mod;
-            modErrorsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
-            modErrorsContainer.SetItemMetadata(index, modErrors[index].ErrorMessage);
+            var error = modErrors[index];
+            if (error.ModDetails is null)
+            {
+                modErrorsContainer.AddItem(error.ModInternalName);
+            }
+            else
+            {
+                modErrorsContainer.AddItem(error.ModInternalName, LoadModIcon(error.ModDetails));
+            }
+
+            modErrorsContainer.SetItemMetadata(index, error.ErrorMessage);
         }
     }
 
