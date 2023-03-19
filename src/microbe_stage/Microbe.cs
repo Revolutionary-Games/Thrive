@@ -907,7 +907,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         var detections = new List<(Compound Compound, Color Colour, Vector3 Target)>();
         foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
         {
-            var detectedCompound = clouds.FindCompoundNearPoint(Translation, compound, range, minAmount);
+            var detectedCompound = clouds.FindCompoundNearPoint(GlobalTranslation, compound, range, minAmount);
 
             if (detectedCompound != null)
             {
