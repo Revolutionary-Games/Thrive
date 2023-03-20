@@ -23,6 +23,15 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
     /// <summary>
+    ///   How long the initial compounds should last (in seconds)
+    /// </summary>
+    public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
+
+    public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
+
+    /// <summary>
     ///   The maximum duration the player is shown being ingested before they are auto respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
