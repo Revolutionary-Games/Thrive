@@ -108,9 +108,12 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         // So, the compound balance calculation uses the default biome.
         var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
-            biomeConditions, CompoundAmountType.Current);
+            biomeConditions, CompoundAmountType.Biome);
+
         var glucose = SimulationParameters.Instance.GetCompound("glucose");
-        bool giveBonusGlucose = Organelles.Count <= 3 && IsBacteria;
+        bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
+
+        var cachedCapacity = StorageCapacity;
 
         InitialCompounds.Clear();
 
@@ -118,7 +121,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         {
             if (compoundBalance.Key == glucose && giveBonusGlucose)
             {
-                InitialCompounds.Add(compoundBalance.Key, StorageCapacity);
+                InitialCompounds.Add(compoundBalance.Key, cachedCapacity);
                 continue;
             }
 
@@ -127,8 +130,9 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
             // Initial compounds should suffice for a fixed amount of time.
             var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * Constants.INITIAL_COMPOUND_TIME;
-            if (compoundInitialAmount > StorageCapacity)
-                compoundInitialAmount = StorageCapacity;
+            if (compoundInitialAmount > cachedCapacity)
+                compoundInitialAmount = cachedCapacity;
+
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
     }
