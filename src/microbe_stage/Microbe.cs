@@ -909,8 +909,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         foreach (var colonyMicrobe in colonyMicrobes)
         {
-            // This creates duplicate Compounds because Range/MinAmount changes the hash
-            colonyCompoundDetections.UnionWith(colonyMicrobe.activeCompoundDetections);
+            foreach (var activeCompoundDetection in colonyMicrobe.activeCompoundDetections)
+            {
+                // For multiple Range/MinAmount settings this just chooses the first one
+                if (!colonyCompoundDetections.Any(o => o.Compound == activeCompoundDetection.Compound))
+                    colonyCompoundDetections.Add(activeCompoundDetection);
+            }
         }
 
         var detections = new List<(Compound Compound, Color Colour, Vector3 Target)>();
@@ -920,7 +924,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             var detectedCompound = clouds.FindCompoundNearPoint(position, compound, range, minAmount);
 
-            if (detectedCompound != null && !detections.Contains((compound, colour, detectedCompound.Value)))
+            if (detectedCompound != null)
             {
                 detections.Add((compound, colour, detectedCompound.Value));
             }
