@@ -32,6 +32,48 @@ public class CraftingRecipe : IRegistryType
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
 
+    public bool MatchesFilter(IReadOnlyCollection<(WorldResource Resource, int Count)> filter)
+    {
+        foreach (var (filterResource, filterCount) in filter)
+        {
+            if (!RequiredResources.TryGetValue(filterResource, out var amount))
+                return false;
+
+            // Filter doesn't match if filter wants 2 of some resource but this only takes one
+            if (amount < filterCount)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Checks if can craft this recipe
+    /// </summary>
+    /// <param name="availableMaterials">The materials that are available</param>
+    /// <returns>Null if can craft, otherwise the material type that is missing</returns>
+    public WorldResource? CanCraft(IReadOnlyDictionary<WorldResource, int> availableMaterials)
+    {
+        foreach (var required in RequiredResources)
+        {
+            if (!availableMaterials.TryGetValue(required.Key, out var amount))
+                return required.Key;
+
+            if (amount < required.Value)
+                return required.Key;
+        }
+
+        return null;
+    }
+
+    public bool HasEnoughResource(WorldResource resource, int availableAmount)
+    {
+        if (!RequiredResources.TryGetValue(resource, out var requiredAmount))
+            return false;
+
+        return availableAmount >= requiredAmount;
+    }
+
     public void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))

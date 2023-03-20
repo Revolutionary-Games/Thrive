@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -224,11 +225,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                 // Intentionally not translatable as a placeholder prototype text
                 HUD.HUDMessages.ShowMessage(
                     "You are now aware. This prototype has nothing extra yet, please move to the Awakening Stage.",
-                    DisplayDuration.Long);
-            }
-            else if (previousPlayerStage == MulticellularSpeciesType.Awakened)
-            {
-                // TODO: something
+                    DisplayDuration.ExtraLong);
             }
         }
     }
@@ -309,9 +306,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         var rockResource = SimulationParameters.Instance.GetWorldResource("rock");
         var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
-        // TODO: remove once resource data is loaded from JSON
-        TranslationServer.Translate("RESOURCE_ROCK");
-
         foreach (var position in new[]
                  {
                      new Vector3(10, 0, 5),
@@ -323,11 +317,40 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                      new Vector3(38, 0, 11),
                      new Vector3(-15, 0, 10),
                      new Vector3(-15, 0, -15),
+                     new Vector3(-25, 0, -15),
+                     new Vector3(-35, 0, -15),
+                     new Vector3(25, 0, -5),
+                     new Vector3(29, 0, -5),
+                     new Vector3(32, 0, -5),
+                     new Vector3(35, 0, 5),
                  })
         {
             // But create it as a resource entity so that it can be interacted with
             SpawnHelpers.SpawnResourceEntity(rockResource, new Transform(Basis.Identity, position),
                 rootOfDynamicallySpawned, resourceScene, true);
+        }
+
+        // Placeholder trees
+        var treeScene = GD.Load<PackedScene>("res://assets/models/PlaceholderTree.tscn");
+
+        foreach (var position in new[]
+                 {
+                     new Vector3(15, 0, 9),
+                     new Vector3(25, 0, 35),
+                     new Vector3(50, 0, 10),
+                     new Vector3(-30, 0, 5),
+                     new Vector3(18, 0, -20),
+                     new Vector3(-48, 0, 27),
+                 })
+        {
+            // TODO: proper interactable plants, this is a temporary manually created placeholder tree
+            var tree = treeScene.Instance<PlaceholderTree>();
+
+            rootOfDynamicallySpawned.AddChild(tree);
+            tree.GlobalTransform =
+                new Transform(new Basis(new Quat(new Vector3(0, 1, 0), Mathf.Pi * random.NextFloat())), position);
+
+            tree.AddToGroup(Constants.INTERACTABLE_GROUP);
         }
 
         // Modify player state for being on land
@@ -354,10 +377,19 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         Player.Species.MovePlayerToAwakenedStatus();
 
+        // TODO: implement an "inspect" action for inspecting world objects that can unlock primitive
+        // technologies
+        // For now just add some default unlocks for the prototype
+
+        CurrentGame!.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("simpleStoneTools"));
+
+        // TODO: proper society center unlock conditions
+        CurrentGame.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("societyCenter"));
+
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
             "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
-            "Interact with tool parts to advance.", DisplayDuration.Long);
+            "Interact with tool parts to advance.", DisplayDuration.ExtraLong);
     }
 
     public void AttemptPlayerWorldInteraction()
@@ -397,7 +429,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             // Refresh the items on the ground near the player to show in the inventory screen
             var groundObjects = interactableSystem.GetAllNearbyObjects();
 
-            HUD.OpenInventory(Player, groundObjects);
+            // Filter to only carriable objects to not let the player to pick up trees and stuff
+            HUD.OpenInventory(Player, groundObjects.Where(o => o.CanBeCarried));
         }
         catch (Exception e)
         {
@@ -415,12 +448,14 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // if (!IsLoadedFromSave)
         //     spawner.Init();
 
+        CurrentGame!.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
+
         // TODO: implement
         if (!IsLoadedFromSave)
         {
             // If this is a new game (first time entering the stage), start the camera in top down view
             // as a learning tool
-            if (!CurrentGame!.IsBoolSet("played_multicellular"))
+            if (!CurrentGame.IsBoolSet("played_multicellular"))
             {
                 CurrentGame.SetBool("played_multicellular", true);
 
@@ -536,6 +571,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             }
 
             interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
+
+            if (CurrentGame != null)
+                CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
         }
 
         base.Dispose(disposing);
@@ -584,5 +622,12 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         }
 
         HUD.SelectItemForCrafting(target);
+    }
+
+    private void ShowTechnologyUnlockMessage(Technology technology)
+    {
+        HUD.HUDMessages.ShowMessage(
+            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+            DisplayDuration.Long);
     }
 }

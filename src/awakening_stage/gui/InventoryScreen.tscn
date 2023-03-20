@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/awakening_stage/InventoryScreen.cs" type="Script" id=1]
+[ext_resource path="res://src/awakening_stage/gui/InventoryScreen.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/textures/gui/CreaturePlaceholder.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=4]
@@ -45,6 +45,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 1 )
 InventoryPopupPath = NodePath("MainInventory")
 InventorySlotContainerPath = NodePath("MainInventory/BaseInventoryContainer/Inventory")
@@ -53,6 +54,7 @@ EquipmentBackgroundImagePath = NodePath("MainInventory/BaseInventoryContainer/VB
 CraftingPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting")
 GroundPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground")
 CraftingPanelPopupPath = NodePath("CraftingPanel")
+CraftingRecipesContainerPath = NodePath("CraftingPanel/VBoxContainer/ScrollContainer/RecipesList")
 CraftingSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/CraftingInputs")
 CraftingResultSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/CraftingResults")
 CraftingErrorStatusLabelPath = NodePath("CraftingPanel/VBoxContainer/CraftingProblemLabel")
@@ -173,6 +175,7 @@ margin_bottom = 427.0
 rect_min_size = Vector2( 400, 400 )
 
 [node name="RecipesTitle" type="Label" parent="CraftingPanel/VBoxContainer"]
+visible = false
 margin_right = 511.0
 margin_bottom = 25.0
 text = "CRAFTING_KNOWN_ITEMS"
@@ -184,10 +187,15 @@ margin_right = 511.0
 margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 1.7
+follow_focus = true
+scroll_horizontal_enabled = false
 
 [node name="RecipesList" type="VBoxContainer" parent="CraftingPanel/VBoxContainer/ScrollContainer"]
+margin_right = 511.0
 margin_bottom = 225.0
+mouse_filter = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HSeparator" type="HSeparator" parent="CraftingPanel/VBoxContainer"]
