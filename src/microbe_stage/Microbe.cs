@@ -904,14 +904,23 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </returns>
     public List<(Compound Compound, Color Colour, Vector3 Target)> GetDetectedCompounds(CompoundCloudSystem clouds)
     {
+        var colonyMicrobes = Colony?.ColonyMembers ?? new List<Microbe> { this };
+        HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> colonyCompoundDetections = new();
+
+        foreach (var colonyMicrobe in colonyMicrobes)
+        {
+            // This creates duplicate Compounds because Range/MinAmount changes the hash
+            colonyCompoundDetections.UnionWith(colonyMicrobe.activeCompoundDetections);
+        }
+
         var detections = new List<(Compound Compound, Color Colour, Vector3 Target)>();
         var position = GlobalTranslation;
 
-        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        foreach (var (compound, range, minAmount, colour) in colonyCompoundDetections)
         {
             var detectedCompound = clouds.FindCompoundNearPoint(position, compound, range, minAmount);
 
-            if (detectedCompound != null)
+            if (detectedCompound != null && !detections.Contains((compound, colour, detectedCompound.Value)))
             {
                 detections.Add((compound, colour, detectedCompound.Value));
             }
