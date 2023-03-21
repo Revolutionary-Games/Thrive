@@ -904,10 +904,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </returns>
     public List<(Compound Compound, Color Colour, Vector3 Target)> GetDetectedCompounds(CompoundCloudSystem clouds)
     {
-        HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> colonyCompoundDetections = new();
+        HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> colonyCompoundDetections;
 
         if (Colony != null)
         {
+            colonyCompoundDetections = new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
             var colonyMicrobes = Colony.ColonyMembers;
             foreach (var colonyMicrobe in colonyMicrobes)
             {
