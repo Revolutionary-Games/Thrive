@@ -125,16 +125,6 @@ public class InventoryScreen : ControlWithInput
     private IEnumerable<InventorySlot> AllSlots => groundInventorySlots.Concat(inventorySlots).Concat(equipmentSlots)
         .Concat(craftingSlots).Concat(craftingResultSlots);
 
-    public static WorldResource? ResourceFromItem(IInventoryItem item)
-    {
-        if (item is ResourceEntity resourceEntity)
-        {
-            return resourceEntity.ResourceType ?? throw new Exception("World resource with no type set");
-        }
-
-        return null;
-    }
-
     public override void _Ready()
     {
         inventoryPopup = GetNode<CustomDialog>(InventoryPopupPath);
@@ -1212,12 +1202,11 @@ public class InventoryScreen : ControlWithInput
         foreach (var slot in craftingSlots)
         {
             var item = slot.Item;
-            if (item == null)
+            var resource = item?.ResourceFromItem();
+            if (resource == null || item == null)
                 continue;
 
-            var resource = ResourceFromItem(item);
-
-            if (resource != null && requiredItems.TryGetValue(resource, out var required))
+            if (requiredItems.TryGetValue(resource, out var required))
             {
                 if (item.ShownAsGhostIn?.TryGetTarget(out var originalSlot) != true || originalSlot == null)
                 {
@@ -1251,7 +1240,7 @@ public class InventoryScreen : ControlWithInput
             if (slot.Transient || slot.Item == null)
                 continue;
 
-            var resource = ResourceFromItem(slot.Item);
+            var resource = slot.Item.ResourceFromItem();
 
             if (resource == null || !requiredItems.TryGetValue(resource, out var required))
                 continue;
@@ -1326,10 +1315,7 @@ public class InventoryScreen : ControlWithInput
 
         foreach (var slot in craftingSlots)
         {
-            if (slot.Item == null)
-                continue;
-
-            var resource = ResourceFromItem(slot.Item);
+            var resource = slot.Item?.ResourceFromItem();
 
             if (resource != null)
             {
@@ -1347,6 +1333,7 @@ public class InventoryScreen : ControlWithInput
 
     private void CalculateAllAvailableMaterials()
     {
+        // TODO: this is almost the same as IInventory.CalculateAvailableResources
         var newMaterials = new Dictionary<WorldResource, int>();
         availableCraftingMaterials.Clear();
 
@@ -1354,10 +1341,7 @@ public class InventoryScreen : ControlWithInput
         {
             // We don't need to skip transient slots as the original slot will have the item null that is contained in
             // the transient slot
-            if (slot.Item == null)
-                continue;
-
-            var resource = ResourceFromItem(slot.Item);
+            var resource = slot.Item?.ResourceFromItem();
 
             if (resource != null)
             {

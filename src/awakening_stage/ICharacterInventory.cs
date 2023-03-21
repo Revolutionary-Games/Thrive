@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public interface ICharacterInventory
+public interface ICharacterInventory : IInventory
 {
     /// <summary>
     ///   Pick up an item to the inventory.
@@ -22,15 +22,8 @@ public interface ICharacterInventory
     public bool DropItem(IInteractableEntity item);
 
     /// <summary>
-    ///   Consumes (i.e. destroys) an item in a slot
-    /// </summary>
-    /// <param name="slotId">The slot id of the item to consume</param>
-    /// <returns>True on success, false if the slot was empty</returns>
-    public bool DeleteItem(int slotId);
-
-    /// <summary>
-    ///   <see cref="DeleteItem"/> equivalent for a nearby world item to be consumed. This is needed to allow crafting
-    ///   with items that are on the ground near the player.
+    ///   <see cref="IInventory.DeleteItem"/> equivalent for a nearby world item to be consumed.
+    ///   This is needed to allow crafting with items that are on the ground near the player.
     /// </summary>
     /// <param name="entity">The entity to consume</param>
     /// <returns>True on success, false otherwise</returns>
@@ -42,10 +35,6 @@ public interface ICharacterInventory
     /// </summary>
     /// <param name="entity">The entity to place in the world this character is in</param>
     public void DirectlyDropEntity(IInteractableEntity entity);
-
-    public IEnumerable<InventorySlotData> ListInventoryContents();
-
-    public IEnumerable<InventorySlotData> ListEquipmentContents();
 
     /// <summary>
     ///   Checks whether moving item (or nothing) from slot to to slot is allowed (and if target has an item it is
@@ -65,57 +54,7 @@ public interface ICharacterInventory
 
 public static class CharacterInventoryHelpers
 {
-    public static IEnumerable<InventorySlotData> ListAllItems(this ICharacterInventory inventory)
-    {
-        foreach (var content in inventory.ListEquipmentContents())
-        {
-            yield return content;
-        }
 
-        foreach (var content in inventory.ListInventoryContents())
-        {
-            yield return content;
-        }
-    }
-
-    public static IEnumerable<Equipment> ListAllEquipment(this ICharacterInventory inventory)
-    {
-        foreach (var content in inventory.ListEquipmentContents())
-        {
-            if (content.ContainedItem is Equipment equipment)
-                yield return equipment;
-        }
-    }
-
-    public static bool HasEmptySlot(this ICharacterInventory inventory)
-    {
-        return inventory.ListAllItems().Any(s => s.ContainedItem == null);
-    }
-
-    public static InventorySlotData? SlotWithItem(this ICharacterInventory inventory, IInteractableEntity item)
-    {
-        return inventory.ListAllItems().FirstOrDefault(s => s.ContainedItem == item);
-    }
-
-    public static InventorySlotData? SlotWithId(this ICharacterInventory inventory, int id)
-    {
-        if (id < 0)
-            throw new ArgumentException("Invalid slot ID given", nameof(id));
-
-        return inventory.ListAllItems().FirstOrDefault(s => s.Id == id);
-    }
-
-    public static HashSet<EquipmentCategory> GetAllCategoriesOfEquippedItems(this ICharacterInventory inventory)
-    {
-        var result = new HashSet<EquipmentCategory>();
-
-        foreach (var equipment in inventory.ListAllEquipment())
-        {
-            result.Add(equipment.Definition.Category);
-        }
-
-        return result;
-    }
 
     public static bool HarvestEntity(this ICharacterInventory harvester, IInteractableEntity target)
     {
