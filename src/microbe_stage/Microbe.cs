@@ -904,19 +904,26 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </returns>
     public List<(Compound Compound, Color Colour, Vector3 Target)> GetDetectedCompounds(CompoundCloudSystem clouds)
     {
-        var colonyMicrobes = Colony?.ColonyMembers ?? new List<Microbe> { this };
         HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> colonyCompoundDetections = new();
 
-        foreach (var colonyMicrobe in colonyMicrobes)
+        if (Colony != null)
         {
-            foreach (var activeCompoundDetection in colonyMicrobe.activeCompoundDetections)
+            var colonyMicrobes = Colony.ColonyMembers;
+            foreach (var colonyMicrobe in colonyMicrobes)
             {
-                // This is necessary to prevent duplicates for one compound because
-                // changing any value of the tuple in the hashset like Range/MinAmount makes the element unique.
-                // For multiple Range/MinAmount settings this just chooses the first one.
-                if (!colonyCompoundDetections.Any(o => o.Compound == activeCompoundDetection.Compound))
-                    colonyCompoundDetections.Add(activeCompoundDetection);
+                foreach (var activeCompoundDetection in colonyMicrobe.activeCompoundDetections)
+                {
+                    // This is necessary to prevent duplicates for one compound because
+                    // changing any value of the tuple in the hashset like Range/MinAmount makes the element unique.
+                    // For multiple Range/MinAmount settings this just chooses the first one.
+                    if (!colonyCompoundDetections.Any(o => o.Compound == activeCompoundDetection.Compound))
+                        colonyCompoundDetections.Add(activeCompoundDetection);
+                }
             }
+        }
+        else
+        {
+            colonyCompoundDetections = activeCompoundDetections;
         }
 
         var detections = new List<(Compound Compound, Color Colour, Vector3 Target)>();
