@@ -50,11 +50,25 @@ public class StructureDefinition : IRegistryType
     [JsonProperty]
     public Vector3 InteractOffset { get; private set; }
 
+    /// <summary>
+    ///   The cost to finish this structure once scaffolding is placed
+    /// </summary>
     [JsonProperty]
     public Dictionary<WorldResource, int> RequiredResources { get; private set; } = new();
 
+    /// <summary>
+    ///   The cost of placing this structure after which <see cref="RequiredResources"/> need to be added to finish
+    ///   the construction
+    /// </summary>
     [JsonProperty]
     public Dictionary<WorldResource, int> ScaffoldingCost { get; private set; } = new();
+
+    /// <summary>
+    ///   The total resource cost of building this structure
+    /// </summary>
+    [JsonIgnore]
+    public IReadOnlyDictionary<WorldResource, int> FullCost { get; private set; } =
+        new Dictionary<WorldResource, int>();
 
     [JsonIgnore]
     public PackedScene WorldRepresentation => worldRepresentation.Value;
@@ -70,6 +84,26 @@ public class StructureDefinition : IRegistryType
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
+
+    public WorldResource? CanStart(IReadOnlyDictionary<WorldResource, int> availableMaterials)
+    {
+        return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, ScaffoldingCost);
+    }
+
+    public WorldResource? CanFullyBuild(IReadOnlyDictionary<WorldResource, int> availableMaterials)
+    {
+        return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, FullCost);
+    }
+
+    public bool HasEnoughResourceToStart(WorldResource resource, int availableAmount)
+    {
+        return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, ScaffoldingCost);
+    }
+
+    public bool HasEnoughResourceToFullyBuild(WorldResource resource, int availableAmount)
+    {
+        return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, FullCost);
+    }
 
     public void Check(string name)
     {
@@ -104,6 +138,11 @@ public class StructureDefinition : IRegistryType
 
         /*if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");*/
+    }
+
+    public void Resolve()
+    {
+        FullCost = ScaffoldingCost.AsMerged(RequiredResources);
     }
 
     public void ApplyTranslations()
