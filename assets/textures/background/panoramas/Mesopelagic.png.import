@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Mesopelagic.png-806c07a4177947cf81fdec2cde3cb62a.s3tc.stex"
-path.etc2="res://.import/Mesopelagic.png-806c07a4177947cf81fdec2cde3cb62a.etc2.stex"
+path="res://.import/Mesopelagic.png-806c07a4177947cf81fdec2cde3cb62a.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/background/panoramas/Mesopelagic.png"
-dest_files=[ "res://.import/Mesopelagic.png-806c07a4177947cf81fdec2cde3cb62a.s3tc.stex", "res://.import/Mesopelagic.png-806c07a4177947cf81fdec2cde3cb62a.etc2.stex" ]
+dest_files=[ "res://.import/Mesopelagic.png-806c07a4177947cf81fdec2cde3cb62a.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
