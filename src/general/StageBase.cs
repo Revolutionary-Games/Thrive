@@ -320,6 +320,10 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         BaseHUD.OnEnterStageTransition(false, true);
         BaseHUD.HideReproductionDialog();
 
+        // Pass some extra time to hud messages to make short lived messages from the previous life (like editor ready
+        // disappear)
+        BaseHUD.HUDMessages.PassExtraTime(Constants.HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR);
+
         StartMusic();
 
         // Reset locale to assure the stage's language.
