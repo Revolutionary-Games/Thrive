@@ -911,14 +911,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             var colonyMicrobes = Colony.ColonyMembers;
             foreach (var colonyMicrobe in colonyMicrobes)
             {
-                foreach (var activeCompoundDetection in colonyMicrobe.activeCompoundDetections)
-                {
-                    // This is necessary to prevent duplicates for one compound because
-                    // changing any value of the tuple in the hashset like Range/MinAmount makes the element unique.
-                    // For multiple Range/MinAmount settings this just chooses the first one.
-                    if (!colonyCompoundDetections.Any(o => o.Compound == activeCompoundDetection.Compound))
-                        colonyCompoundDetections.Add(activeCompoundDetection);
-                }
+                colonyCompoundDetections.UnionWith(colonyMicrobe.activeCompoundDetections);
             }
         }
         else
