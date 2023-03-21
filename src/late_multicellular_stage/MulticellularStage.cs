@@ -413,6 +413,14 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // TODO: somehow refresh the inventory screen if it is open and the player decided to do a pick up action
     }
 
+    public void OpenBuildMenu()
+    {
+        if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
+            return;
+
+        // TODO: show build menu
+    }
+
     public bool TogglePlayerInventory()
     {
         if (Player == null)

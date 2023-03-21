@@ -2,6 +2,9 @@
   "societyCenter": {
     "Name": "STRUCTURE_SOCIETY_CENTER",
     "WorldRepresentationScene": "res://assets/structures/SocietyCenter.tscn",
+    "GhostScenePath": "res://assets/structures/SocietyCenter.tscn",
+    "ScaffoldingScenePath": "res://assets/structures/SocietyCenter.tscn",
+    "BuildingIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
     "WorldSize": {
       "x": 10,
       "y": 5,
@@ -14,6 +17,10 @@
     },
     "RequiredResources": {
       "rock": 3,
+      "wood": 2
+    },
+    "ScaffoldingCost": {
+      "rock": 1,
       "wood": 2
     }
   }
