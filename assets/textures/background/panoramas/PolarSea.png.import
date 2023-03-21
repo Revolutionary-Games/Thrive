@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/PolarSea.png-dc700d0afbf08f1a76475fd1b9603898.s3tc.stex"
-path.etc2="res://.import/PolarSea.png-dc700d0afbf08f1a76475fd1b9603898.etc2.stex"
+path="res://.import/PolarSea.png-dc700d0afbf08f1a76475fd1b9603898.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/background/panoramas/PolarSea.png"
-dest_files=[ "res://.import/PolarSea.png-dc700d0afbf08f1a76475fd1b9603898.s3tc.stex", "res://.import/PolarSea.png-dc700d0afbf08f1a76475fd1b9603898.etc2.stex" ]
+dest_files=[ "res://.import/PolarSea.png-dc700d0afbf08f1a76475fd1b9603898.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

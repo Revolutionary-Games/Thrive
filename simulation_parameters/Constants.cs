@@ -1176,6 +1176,12 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    /// <summary>
+    ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
+    ///   than the long message time as defined in <see cref="HUDMessages.TimeToFadeFromDuration"/>
+    /// </summary>
+    public const float HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR = 11.2f;
+
     public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
     public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
 
