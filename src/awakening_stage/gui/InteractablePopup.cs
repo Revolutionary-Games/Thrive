@@ -51,6 +51,8 @@ public class InteractablePopup : Control
         buttonsContainer.QueueFreeChildren();
         Button? firstButton = null;
 
+        // TODO: add a selection wheel as an alternative for more sane controller input
+
         foreach (var (interactionType, enabled, textOverride) in availableInteractions)
         {
             // TODO: add a different visual style to reduce the visual complexity from all of these being full-blown
