@@ -909,8 +909,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (Colony != null)
         {
             colonyCompoundDetections = new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
-            var colonyMicrobes = Colony.ColonyMembers;
-            foreach (var colonyMicrobe in colonyMicrobes)
+
+            foreach (var colonyMicrobe in Colony.ColonyMembers)
             {
                 colonyCompoundDetections.UnionWith(colonyMicrobe.activeCompoundDetections);
             }
