@@ -20,6 +20,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     public NodePath InteractionPopupPath = null!;
 
     [Export]
+    public NodePath SelectBuildingPopupPath = null!;
+
+    [Export]
     public NodePath WorldEnvironmentNodePath = null!;
 
     [JsonProperty]
@@ -29,6 +32,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 #pragma warning disable CA2213
     private InteractableSystem interactableSystem = null!;
     private InteractablePopup interactionPopup = null!;
+
+    private SelectBuildingPopup selectBuildingPopup = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
 #pragma warning restore CA2213
@@ -85,6 +90,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
         interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);
+        selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
@@ -418,7 +424,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
 
-        // TODO: show build menu
+        selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
     }
 
     public bool TogglePlayerInventory()
@@ -575,6 +581,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             {
                 InteractableSystemPath.Dispose();
                 InteractionPopupPath.Dispose();
+                SelectBuildingPopupPath.Dispose();
                 WorldEnvironmentNodePath.Dispose();
             }
 

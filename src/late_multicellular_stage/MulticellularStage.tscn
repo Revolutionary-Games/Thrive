@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/awakening_stage/InteractableSystem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/awakening_stage/gui/InteractablePopup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/textures/background/panoramas/Epipelagic.png" type="Texture" id=9]
+[ext_resource path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 
@@ -77,6 +78,8 @@ margin_right = 822.0
 margin_bottom = 540.0
 
 [node name="InteractablePopup" parent="." instance=ExtResource( 8 )]
+
+[node name="SelectBuildingPopup" parent="." instance=ExtResource( 10 )]
 
 [node name="RadialPopup" parent="." instance=ExtResource( 87 )]
 

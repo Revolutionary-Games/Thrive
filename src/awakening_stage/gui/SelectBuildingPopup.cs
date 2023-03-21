@@ -1,0 +1,203 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Godot;
+using Array = Godot.Collections.Array;
+
+/// <summary>
+///   Allows selecting a structure type from a list of available ones
+/// </summary>
+public class SelectBuildingPopup : Control
+{
+    [Export]
+    public NodePath? PopupPath;
+
+    [Export]
+    public NodePath ButtonsContainerPath = null!;
+
+    [Export]
+    public NodePath CancelButtonPath = null!;
+
+    private readonly List<StructureDefinition> validDefinitions = new();
+
+    private readonly StringBuilder stringBuilder = new();
+
+#pragma warning disable CA2213
+    private CustomDialog popup = null!;
+    private Container buttonsContainer = null!;
+    private Button cancelButton = null!;
+
+    private PackedScene richTextScene = null!;
+#pragma warning restore CA2213
+
+    private IStructureSelectionReceiver? receiver;
+
+    public override void _Ready()
+    {
+        popup = GetNode<CustomDialog>(PopupPath);
+        buttonsContainer = GetNode<Container>(ButtonsContainerPath);
+        cancelButton = GetNode<Button>(CancelButtonPath);
+
+        richTextScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
+
+        // This is invisible in the editor to make it nicer to edit things
+        Visible = true;
+    }
+
+    /// <summary>
+    ///   Opens this popup to allow selecting from the available structures
+    /// </summary>
+    /// <param name="availableStructures">Which structures to show as available</param>
+    /// <param name="selectionReceiver">
+    ///   Object receiving the selected structure. This is used instead of signals to allow passing a C# object that is
+    ///   not necessarily a Godot object.
+    /// </param>
+    /// <param name="availableResources">Available resources to determine which structures are buildable</param>
+    public void OpenWithStructures(IEnumerable<StructureDefinition> availableStructures,
+        IStructureSelectionReceiver selectionReceiver, IInventory availableResources)
+    {
+        validDefinitions.Clear();
+        validDefinitions.AddRange(availableStructures);
+        receiver = selectionReceiver;
+
+        var allResources = availableResources.CalculateAvailableResources();
+
+        // Update the structure buttons
+        // TODO: cache buttons we can reuse
+        buttonsContainer.QueueFreeChildren();
+
+        // createdButtons.Clear();
+
+        // TODO: add a selection wheel as an alternative for more sane controller input
+        Control? firstButton = null;
+
+        foreach (var availableStructure in validDefinitions)
+        {
+            var structureContent = new HBoxContainer();
+
+            // TODO: adjust the button visuals / make the text clickable like for a crafting recipe selection
+            var button = new Button
+            {
+                SizeFlagsHorizontal = 0,
+                Icon = availableStructure.Icon,
+                IconAlign = Button.TextAlign.Center,
+                ExpandIcon = true,
+                RectMinSize = new Vector2(32, 32),
+            };
+
+            structureContent.AddChild(button);
+            structureContent.AddChild(new Control
+            {
+                RectMinSize = new Vector2(5, 0),
+            });
+
+            var richText = richTextScene.Instance<CustomRichTextLabel>();
+
+            structureContent.AddChild(richText);
+
+            var createdButtonHolder = new CreatedButton(availableStructure, button, richText);
+
+            // createdButtons.Add(availableStructure, createdButtonHolder);
+            createdButtonHolder.UpdateResourceCost(allResources, stringBuilder);
+            buttonsContainer.AddChild(structureContent);
+
+            if (!createdButtonHolder.Disabled)
+            {
+                var binds = new Array();
+                binds.Add(availableStructure.InternalName);
+                button.Connect("pressed", this, nameof(OnStructureSelected), binds);
+
+                firstButton ??= button;
+            }
+        }
+
+        // TODO: sort the buttons based on some criteria
+
+        popup.PopupCenteredShrink();
+
+        // Focus needs to be adjusted after opening, select the first available thing to build
+        if (firstButton == null)
+        {
+            cancelButton.GrabFocus();
+            cancelButton.GrabClickFocus();
+        }
+        else
+        {
+            firstButton.GrabFocus();
+            firstButton.GrabClickFocus();
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PopupPath != null)
+            {
+                PopupPath.Dispose();
+                ButtonsContainerPath.Dispose();
+                CancelButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void OnStructureSelected(string internalName)
+    {
+        var selected = validDefinitions.FirstOrDefault(d => d.InternalName == internalName);
+
+        if (selected == null)
+        {
+            GD.PrintErr($"Invalid structure selected: {internalName}");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+        popup.Visible = false;
+
+        if (receiver == null)
+        {
+            GD.PrintErr("No structure receiver set");
+            return;
+        }
+
+        receiver.OnStructureTypeSelected(selected);
+    }
+
+    private class CreatedButton
+    {
+        private readonly StructureDefinition structureDefinition;
+        private readonly Button nativeNode;
+        private readonly CustomRichTextLabel customRichTextLabel;
+
+        public CreatedButton(StructureDefinition structureDefinition, Button nativeNode,
+            CustomRichTextLabel customRichTextLabel)
+        {
+            this.structureDefinition = structureDefinition;
+            this.nativeNode = nativeNode;
+            this.customRichTextLabel = customRichTextLabel;
+        }
+
+        public bool Disabled
+        {
+            get => nativeNode.Disabled;
+            set => nativeNode.Disabled = value;
+        }
+
+        public void UpdateResourceCost(Dictionary<WorldResource, int> allResources, StringBuilder stringBuilder)
+        {
+            // Disabled if can't start the building
+            Disabled = structureDefinition.CanStart(allResources) != null;
+
+            stringBuilder.Clear();
+
+            ResourceAmountHelpers.CreateRichTextForResourceAmounts(structureDefinition.ScaffoldingCost, allResources,
+                stringBuilder);
+
+            customRichTextLabel.ExtendedBbcode = TranslationServer.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
+                .FormatSafe(structureDefinition.Name, stringBuilder.ToString());
+        }
+    }
+}

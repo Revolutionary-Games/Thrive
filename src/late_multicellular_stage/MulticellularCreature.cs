@@ -12,7 +12,8 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory
+public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory,
+    IStructureSelectionReceiver, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
 
@@ -53,6 +54,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     [JsonProperty]
     private float upDownSwimSpeed = 3;
+
+    private bool actionHasSucceeded;
 
     // TODO: implement
     [JsonIgnore]
@@ -130,6 +133,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
+
+    public bool ActionInProgress { get; private set; }
+    public float ActionProgress { get; private set; }
 
     public override void _Ready()
     {
@@ -571,6 +577,22 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         if (to.ContainedItem != null)
             SetItemPositionInSlot(to, to.ContainedItem.EntityNode);
+    }
+
+    public void OnStructureTypeSelected(StructureDefinition structureDefinition)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool GetAndConsumeActionSuccess()
+    {
+        if (actionHasSucceeded)
+        {
+            actionHasSucceeded = false;
+            return true;
+        }
+
+        return false;
     }
 
     private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)
