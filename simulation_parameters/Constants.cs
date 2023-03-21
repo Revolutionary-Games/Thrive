@@ -23,6 +23,15 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
     /// <summary>
+    ///   How long the initial compounds should last (in seconds)
+    /// </summary>
+    public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
+
+    public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
+
+    /// <summary>
     ///   The maximum duration the player is shown being ingested before they are auto respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
@@ -1166,6 +1175,12 @@ public static class Constants
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+
+    /// <summary>
+    ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
+    ///   than the long message time as defined in <see cref="HUDMessages.TimeToFadeFromDuration"/>
+    /// </summary>
+    public const float HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR = 11.2f;
 
     public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
     public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;

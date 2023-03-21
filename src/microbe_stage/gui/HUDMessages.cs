@@ -39,6 +39,8 @@ public class HUDMessages : VBoxContainer
 
     private string multipliedMessageTemplate = string.Empty;
 
+    private float extraTime;
+
     public override void _Ready()
     {
         multipliedMessageTemplate = TranslationServer.Translate("HUD_MESSAGE_MULTIPLE");
@@ -53,6 +55,12 @@ public class HUDMessages : VBoxContainer
     public override void _Process(float delta)
     {
         bool clean = false;
+
+        if (extraTime > 0)
+        {
+            delta += extraTime;
+            extraTime = 0;
+        }
 
         foreach (var (message, displayer) in hudMessages)
         {
@@ -138,6 +146,14 @@ public class HUDMessages : VBoxContainer
     public void ShowMessage(string simpleMessage, DisplayDuration duration = DisplayDuration.Normal)
     {
         ShowMessage(new SimpleHUDMessage(simpleMessage, duration));
+    }
+
+    /// <summary>
+    ///   Causes extra time for fading to elapse
+    /// </summary>
+    public void PassExtraTime(float extraDelta)
+    {
+        extraTime += extraDelta;
     }
 
     private static float TimeToFadeFromDuration(DisplayDuration duration)
