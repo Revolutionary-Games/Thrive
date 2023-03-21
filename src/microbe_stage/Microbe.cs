@@ -906,7 +906,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     {
         HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> collectedUniqueCompoundDetections;
 
-        if (Colony != null)
+        // Colony lead cell uses all the chemoreceptors in the colony to make them all work
+        if (Colony != null && Colony.Master == this)
         {
             collectedUniqueCompoundDetections =
                 new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
