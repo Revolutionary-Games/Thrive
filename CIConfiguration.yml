@@ -5,12 +5,12 @@ jobs:
     image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v5-{Branch}-build
-        - v5-master-build
-      writeTo: v5-{Branch}-build
+        - v6-{Branch}-build
+        - v6-master-build
+      writeTo: v6-{Branch}-build
       shared:
         .git/lfs: v3-lfs
-        .import: v6-import
+        .import: v7-import
         builds: v2-builds
       system:
         /root/.nuget: v2-nuget
@@ -41,7 +41,7 @@ jobs:
       writeTo: v3-{Branch}-jetbrains
       shared:
         .git/lfs: v3-lfs
-        .import: v6-import
+        .import: v7-import
         builds: v2-jetbrains-dummy-builds
       system:
         /root/.nuget: v2-nuget
