@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 5, 2.5, 5 )
+extents = Vector3( 10, 5, 10 )
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.439216, 0.262745, 0.0392157, 1 )
@@ -9,38 +9,40 @@ albedo_color = Color( 0.439216, 0.262745, 0.0392157, 1 )
 [node name="SocietyCenter" type="StaticBody"]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91965, 0 )
 shape = SubResource( 1 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14652, 2.5, 0 )
-width = 9.64129
-height = 5.0
-depth = 9.99854
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.94949, 0.326528 )
+width = 20.1413
+height = 10.2473
+depth = 19.0519
 material = SubResource( 2 )
 
 [node name="CSGBox2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.05608, 0.0899892, 0 )
-height = 0.139425
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0231349, 0.0899892, -9.02117 )
+height = 0.81
+depth = 6.39
 
 [node name="CSGBox3" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17795, 3.27105, 0 )
-height = 0.139425
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0231349, 8.09533, -9.14304 )
+height = 0.281146
+depth = 6.36864
 
 [node name="CSGCylinder" type="CSGCylinder" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86954, 1.69911, -0.801795 )
-radius = 0.146265
-height = 3.21133
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.795, 4.21566, -9.61876 )
+radius = 0.305107
+height = 7.64628
 sides = 16
 
 [node name="CSGCylinder2" type="CSGCylinder" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86954, 1.69911, 0.787029 )
-radius = 0.146265
-height = 3.21133
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.75669, 4.21566, -9.61876 )
+radius = 0.305107
+height = 7.64628
 sides = 16
 
 [node name="CSGBox4" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69427, 1.53981, 0.00289637 )
-width = 0.126274
-height = 2.72474
-depth = 1.0982
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.019322, 3.95701, -9.28844 )
+width = 0.49926
+height = 6.81411
+depth = 4.11755

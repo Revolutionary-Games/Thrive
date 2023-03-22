@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-22 10:09+0200\n"
+"POT-Creation-Date: 2023-03-22 15:42+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -2555,7 +2555,7 @@ msgstr "Mutatsioonipunktid"
 msgid "INTERACTION_HARVEST"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:400
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:415
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2563,7 +2563,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:377
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:392
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -5957,11 +5957,15 @@ msgstr "Struktuurne"
 msgid "STRUCTURE"
 msgstr "Struktuur"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:213
+#: ../src/awakening_stage/PlacedStructure.cs:35
+msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
+msgstr ""
+
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:208
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
@@ -6055,7 +6059,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:645
+#: ../src/late_multicellular_stage/MulticellularStage.cs:665
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 

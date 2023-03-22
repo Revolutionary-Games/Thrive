@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-22 10:09+0200\n"
-"PO-Revision-Date: 2023-03-22 10:10+0200\n"
+"POT-Creation-Date: 2023-03-22 15:42+0200\n"
+"PO-Revision-Date: 2023-03-22 15:42+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2457,7 +2457,7 @@ msgstr "Craft..."
 msgid "INTERACTION_HARVEST"
 msgstr "Harvest"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:400
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:415
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr "Harvest (MISSING EQUIPMENT: {0})"
 
@@ -2465,7 +2465,7 @@ msgstr "Harvest (MISSING EQUIPMENT: {0})"
 msgid "INTERACTION_PICK_UP"
 msgstr "Pick up"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:377
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:392
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Pick up (FULL)"
 
@@ -5739,11 +5739,15 @@ msgstr "Structural"
 msgid "STRUCTURE"
 msgstr "Structure"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:213
+#: ../src/awakening_stage/PlacedStructure.cs:35
+msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
+msgstr "Constructing: {0}"
+
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (start cost: {1}, total: {2})"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:208
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (NOT ENOUGH TO START: {1}, total: {2})"
 
@@ -5835,7 +5839,7 @@ msgstr "Simple Stone Tools"
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Building Society Center"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:645
+#: ../src/late_multicellular_stage/MulticellularStage.cs:665
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Unlocked technology: {0}"
 

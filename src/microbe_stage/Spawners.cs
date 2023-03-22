@@ -302,6 +302,26 @@ public static class SpawnHelpers
         return entity;
     }
 
+    public static PlacedStructure SpawnStructure(StructureDefinition structureDefinition, Transform location,
+        Node worldNode, PackedScene entityScene)
+    {
+        var structureEntity = entityScene.Instance<PlacedStructure>();
+
+        worldNode.AddChild(structureEntity);
+        structureEntity.Init(structureDefinition);
+
+        structureEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+
+        structureEntity.Transform = location;
+
+        return structureEntity;
+    }
+
+    public static PackedScene LoadStructureScene()
+    {
+        return GD.Load<PackedScene>("res://src/awakening_stage/PlacedStructure.tscn");
+    }
+
     private static Quat RandomRotationForResourceEntity(Random random)
     {
         return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),

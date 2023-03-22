@@ -419,12 +419,32 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // TODO: somehow refresh the inventory screen if it is open and the player decided to do a pick up action
     }
 
-    public void OpenBuildMenu()
+    public void PerformBuildOrOpenMenu()
     {
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
 
+        if (Player.IsPlacingStructure)
+        {
+            Player.AttemptStructurePlace();
+            return;
+        }
+
         selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
+
+        // TODO: when a structure is being placed, should we have some kind of indicator on screen what to press to
+        // cancel?
+    }
+
+    public bool CancelBuildingPlaceIfInProgress()
+    {
+        if (Player?.IsPlacingStructure != true)
+        {
+            return false;
+        }
+
+        Player.CancelStructurePlacing();
+        return true;
     }
 
     public bool TogglePlayerInventory()

@@ -2,6 +2,9 @@
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   A structure placed in the world. May or may not be fully constructed
+/// </summary>
 public class PlacedStructure : Spatial, IInteractableEntity
 {
 #pragma warning disable CA2213
@@ -21,7 +24,17 @@ public class PlacedStructure : Spatial, IInteractableEntity
     public StructureDefinition? Definition { get; private set; }
 
     [JsonIgnore]
-    public string ReadableName => Definition?.Name ?? throw new InvalidOperationException("Not initialized");
+    public string ReadableName
+    {
+        get
+        {
+            var typeName = Definition?.Name ?? throw new InvalidOperationException("Not initialized");
+            if (Completed)
+                return typeName;
+
+            return TranslationServer.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
+        }
+    }
 
     [JsonIgnore]
     public Texture Icon => Definition?.Icon ?? throw new InvalidOperationException("Not initialized");
@@ -44,7 +57,7 @@ public class PlacedStructure : Spatial, IInteractableEntity
     public override void _Ready()
     {
         scaffoldingParent = GetNode<Spatial>("ScaffoldingHolder");
-        visualsParent = GetNode<Spatial>("VisualsHolder");
+        visualsParent = GetNode<Spatial>("VisualSceneHolder");
     }
 
     public void Init(StructureDefinition definition)

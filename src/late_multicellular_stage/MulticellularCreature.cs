@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using InvalidOperationException = System.InvalidOperationException;
 
 /// <summary>
 ///   Main script on each multicellular creature in the game
@@ -26,6 +27,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     private Compound atp = null!;
     private Compound glucose = null!;
 
+    private StructureDefinition? buildingTypeToPlace;
+
     [JsonProperty]
     private CreatureAI? ai;
 
@@ -34,6 +37,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
 #pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
+
+    private Spatial? buildingToPlaceGhost;
 #pragma warning restore CA2213
 
     // TODO: a real system for determining the hand and equipment slots
@@ -137,6 +142,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public bool ActionInProgress { get; private set; }
     public float ActionProgress { get; private set; }
 
+    [JsonIgnore]
+    public bool IsPlacingStructure => buildingTypeToPlace != null;
+
     public override void _Ready()
     {
         base._Ready();
@@ -195,6 +203,13 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * delta * 50);
             }
+        }
+
+        // This is in physics process as this follows the player physics entity
+        if (IsPlacingStructure && buildingToPlaceGhost != null)
+        {
+            // Position the preview
+            buildingToPlaceGhost.GlobalTransform = GetStructurePlacementLocation();
         }
     }
 
@@ -302,7 +317,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // {
         //     Hitpoints = 0.0f;
         //     Kill();
-        // TODO: kill method needs to call DropAll()
+        // TODO: kill method needs to call DropAll() and CancelStructurePlacing
         // }
     }
 
@@ -581,7 +596,48 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     public void OnStructureTypeSelected(StructureDefinition structureDefinition)
     {
-        throw new NotImplementedException();
+        // Just to be safe, cancel existing placing
+        CancelStructurePlacing();
+
+        buildingTypeToPlace = structureDefinition;
+
+        // Show the ghost where it is about to be placed
+        buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instance<Spatial>();
+
+        // TODO: should we add the ghost to our child or keep it in the world?
+        GetParent().AddChild(buildingToPlaceGhost);
+
+        buildingToPlaceGhost.GlobalTransform = GetStructurePlacementLocation();
+
+        // TODO: disallow placing when overlaps with physics objects (and show ghost with red tint)
+    }
+
+    public void AttemptStructurePlace()
+    {
+        if (buildingTypeToPlace == null)
+            return;
+
+        // TODO: check placement location being valid
+        var location = GetStructurePlacementLocation();
+
+        // Create the structure entity
+        var structureScene = SpawnHelpers.LoadStructureScene();
+
+        SpawnHelpers.SpawnStructure(buildingTypeToPlace, location, GetParent(), structureScene);
+
+        // Stop showing the ghost
+        CancelStructurePlacing();
+    }
+
+    public void CancelStructurePlacing()
+    {
+        if (!IsPlacingStructure)
+            return;
+
+        buildingToPlaceGhost?.QueueFree();
+        buildingToPlaceGhost = null;
+
+        buildingTypeToPlace = null;
     }
 
     public bool GetAndConsumeActionSuccess()
@@ -669,5 +725,22 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
 
         node.Translation = offset;
+    }
+
+    private Transform GetStructurePlacementLocation()
+    {
+        if (buildingTypeToPlace == null)
+            throw new InvalidOperationException("No structure type selected");
+
+        var relative = new Vector3(0, 0, 1) * buildingTypeToPlace.WorldSize.z * 1.3f;
+
+        // TODO: a raycast to get the structure on the ground
+        // Also for player creature, taking the camera direction into account instead of the creature rotation would
+        // be better
+        var transform = GlobalTransform;
+        var rotation = transform.basis.Quat();
+
+        var worldTransform = new Transform(new Basis(rotation), transform.origin + rotation.Xform(relative));
+        return worldTransform;
     }
 }
