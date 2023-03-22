@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   Allows selecting a structure type from a list of available ones
@@ -21,7 +20,9 @@ public class SelectBuildingPopup : Control
 
     private readonly List<StructureDefinition> validDefinitions = new();
 
+    // Cached string builders used to generate the structure button labels
     private readonly StringBuilder stringBuilder = new();
+    private readonly StringBuilder stringBuilder2 = new();
 
 #pragma warning disable CA2213
     private CustomDialog popup = null!;
@@ -74,16 +75,20 @@ public class SelectBuildingPopup : Control
 
         foreach (var availableStructure in validDefinitions)
         {
-            var structureContent = new HBoxContainer();
+            var structureContent = new HBoxContainer
+            {
+                SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+            };
 
             // TODO: adjust the button visuals / make the text clickable like for a crafting recipe selection
             var button = new Button
             {
                 SizeFlagsHorizontal = 0,
+                SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
                 Icon = availableStructure.Icon,
                 IconAlign = Button.TextAlign.Center,
                 ExpandIcon = true,
-                RectMinSize = new Vector2(32, 32),
+                RectMinSize = new Vector2(42, 42),
             };
 
             structureContent.AddChild(button);
@@ -93,13 +98,14 @@ public class SelectBuildingPopup : Control
             });
 
             var richText = richTextScene.Instance<CustomRichTextLabel>();
+            richText.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
 
             structureContent.AddChild(richText);
 
             var createdButtonHolder = new CreatedButton(availableStructure, button, richText);
 
             // createdButtons.Add(availableStructure, createdButtonHolder);
-            createdButtonHolder.UpdateResourceCost(allResources, stringBuilder);
+            createdButtonHolder.UpdateResourceCost(allResources, stringBuilder, stringBuilder2);
             buttonsContainer.AddChild(structureContent);
 
             if (!createdButtonHolder.Disabled)
@@ -183,21 +189,37 @@ public class SelectBuildingPopup : Control
         public bool Disabled
         {
             get => nativeNode.Disabled;
-            set => nativeNode.Disabled = value;
+            private set => nativeNode.Disabled = value;
         }
 
-        public void UpdateResourceCost(Dictionary<WorldResource, int> allResources, StringBuilder stringBuilder)
+        public void UpdateResourceCost(System.Collections.Generic.Dictionary<WorldResource, int> allResources,
+            StringBuilder stringBuilder,
+            StringBuilder stringBuilder2)
         {
             // Disabled if can't start the building
-            Disabled = structureDefinition.CanStart(allResources) != null;
+            bool canStart = structureDefinition.CanStart(allResources) == null;
+            Disabled = !canStart;
 
             stringBuilder.Clear();
+            stringBuilder2.Clear();
 
             ResourceAmountHelpers.CreateRichTextForResourceAmounts(structureDefinition.ScaffoldingCost, allResources,
                 stringBuilder);
 
-            customRichTextLabel.ExtendedBbcode = TranslationServer.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
-                .FormatSafe(structureDefinition.Name, stringBuilder.ToString());
+            ResourceAmountHelpers.CreateRichTextForResourceAmounts(structureDefinition.TotalCost, allResources,
+                stringBuilder2);
+
+            if (!canStart)
+            {
+                customRichTextLabel.ExtendedBbcode = TranslationServer.Translate(
+                        "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES")
+                    .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
+            }
+            else
+            {
+                customRichTextLabel.ExtendedBbcode = TranslationServer.Translate("STRUCTURE_SELECTION_MENU_ENTRY")
+                    .FormatSafe(structureDefinition.Name, stringBuilder.ToString(), stringBuilder2.ToString());
+            }
         }
     }
 }

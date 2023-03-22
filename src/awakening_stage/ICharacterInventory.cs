@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-public interface ICharacterInventory : IInventory
+﻿public interface ICharacterInventory : IInventory
 {
     /// <summary>
     ///   Pick up an item to the inventory.
@@ -54,8 +50,6 @@ public interface ICharacterInventory : IInventory
 
 public static class CharacterInventoryHelpers
 {
-
-
     public static bool HarvestEntity(this ICharacterInventory harvester, IInteractableEntity target)
     {
         var harvestInfo = target.GetHarvestingInfo();

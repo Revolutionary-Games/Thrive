@@ -67,7 +67,7 @@ public class StructureDefinition : IRegistryType
     ///   The total resource cost of building this structure
     /// </summary>
     [JsonIgnore]
-    public IReadOnlyDictionary<WorldResource, int> FullCost { get; private set; } =
+    public IReadOnlyDictionary<WorldResource, int> TotalCost { get; private set; } =
         new Dictionary<WorldResource, int>();
 
     [JsonIgnore]
@@ -92,7 +92,7 @@ public class StructureDefinition : IRegistryType
 
     public WorldResource? CanFullyBuild(IReadOnlyDictionary<WorldResource, int> availableMaterials)
     {
-        return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, FullCost);
+        return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, TotalCost);
     }
 
     public bool HasEnoughResourceToStart(WorldResource resource, int availableAmount)
@@ -102,7 +102,7 @@ public class StructureDefinition : IRegistryType
 
     public bool HasEnoughResourceToFullyBuild(WorldResource resource, int availableAmount)
     {
-        return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, FullCost);
+        return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, TotalCost);
     }
 
     public void Check(string name)
@@ -142,7 +142,7 @@ public class StructureDefinition : IRegistryType
 
     public void Resolve()
     {
-        FullCost = ScaffoldingCost.AsMerged(RequiredResources);
+        TotalCost = ScaffoldingCost.AsMerged(RequiredResources);
     }
 
     public void ApplyTranslations()

@@ -33,6 +33,7 @@ PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MulticellularHUD")
 InteractableSystemPath = NodePath("InteractableSystem")
 InteractionPopupPath = NodePath("InteractablePopup")
+SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
 WorldEnvironmentNodePath = NodePath("World/WorldEnvironment")
 
 [node name="World" type="Node" parent="."]
