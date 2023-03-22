@@ -208,13 +208,17 @@ public class InteractableSystem : Control
                 continue;
             }
 
-            var position = entity.EntityNode.GlobalTranslation +
+            var entityTransform = entity.EntityNode.GlobalTransform;
+            var position = entityTransform.origin +
                 new Vector3(0, Constants.INTERACTION_BUTTON_DEFAULT_Y_OFFSET, 0);
 
             var extraOffset = entity.ExtraInteractOverlayOffset;
 
             if (extraOffset != null)
-                position += extraOffset.Value;
+            {
+                // Extra offset is relative to a non-rotated state of the object, so we need to correct that here
+                position += entityTransform.basis.Xform(extraOffset.Value);
+            }
 
             if (camera.IsPositionBehind(position))
             {
