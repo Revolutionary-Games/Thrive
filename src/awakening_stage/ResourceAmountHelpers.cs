@@ -34,7 +34,8 @@ public static class ResourceAmountHelpers
     }
 
     public static void CreateRichTextForResourceAmounts(IReadOnlyDictionary<WorldResource, int> requiredResources,
-        IReadOnlyDictionary<WorldResource, int> availableResources, StringBuilder stringBuilder)
+        IReadOnlyDictionary<WorldResource, int> availableResources, StringBuilder stringBuilder,
+        bool requirementMetIconFirst = true)
     {
         bool first = true;
 
@@ -47,16 +48,10 @@ public static class ResourceAmountHelpers
 
             availableResources.TryGetValue(tuple.Key, out var availableAmount);
 
-            if (!HasEnoughResource(tuple.Key, availableAmount, requiredResources))
-            {
-                // Show not enough icon
-                stringBuilder.Append("[thrive:icon]ConditionInsufficient[/thrive:icon]");
-            }
-            else
-            {
-                // Has enough
-                stringBuilder.Append("[thrive:icon]ConditionFulfilled[/thrive:icon]");
-            }
+            bool enough = HasEnoughResource(tuple.Key, availableAmount, requiredResources);
+
+            if (requirementMetIconFirst)
+                AddRequirementConditionFulfillIcon(stringBuilder, enough);
 
             stringBuilder.Append(tuple.Value);
 
@@ -64,7 +59,15 @@ public static class ResourceAmountHelpers
             // TODO: make these clickable to show what the required material is
             stringBuilder.Append($"[thrive:resource type=\"{tuple.Key.InternalName}\"][/thrive:resource]");
 
+            if (!requirementMetIconFirst)
+                AddRequirementConditionFulfillIcon(stringBuilder, enough);
+
             first = false;
         }
+    }
+
+    private static void AddRequirementConditionFulfillIcon(StringBuilder stringBuilder, bool enough)
+    {
+        stringBuilder.Append(GUICommon.RequirementFulfillmentIconRichText(enough));
     }
 }

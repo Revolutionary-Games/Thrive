@@ -85,6 +85,16 @@ public class GUICommon : NodeWithInput
         return GD.Load(file) as Texture;
     }
 
+    public static string RequirementFulfillmentIconRichText(bool fulfilled)
+    {
+        if (fulfilled)
+        {
+            return "[thrive:icon]ConditionFulfilled[/thrive:icon]";
+        }
+
+        return "[thrive:icon]ConditionInsufficient[/thrive:icon]";
+    }
+
     public static void MarkInputAsInvalid(LineEdit control)
     {
         control.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
