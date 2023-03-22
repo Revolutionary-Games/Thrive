@@ -107,18 +107,20 @@ public class StructureDefinition : IRegistryType
 
     public void Check(string name)
     {
+        using var file = new File();
+
         if (string.IsNullOrEmpty(Name))
             throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
 
-        if (string.IsNullOrEmpty(WorldRepresentationScene))
+        if (string.IsNullOrEmpty(WorldRepresentationScene) || !file.FileExists(WorldRepresentationScene))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing world representation scene");
 
-        if (string.IsNullOrEmpty(GhostScenePath))
+        if (string.IsNullOrEmpty(GhostScenePath) || !file.FileExists(GhostScenePath))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing ghost scene");
 
-        if (string.IsNullOrEmpty(ScaffoldingScenePath))
+        if (string.IsNullOrEmpty(ScaffoldingScenePath) || !file.FileExists(ScaffoldingScenePath))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing scaffolding scene");
 
         if (string.IsNullOrEmpty(BuildingIcon))
@@ -136,8 +138,8 @@ public class StructureDefinition : IRegistryType
         if (ScaffoldingCost.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required scaffolding resource amount");
 
-        /*if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
-            throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");*/
+        if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");
     }
 
     public void Resolve()
