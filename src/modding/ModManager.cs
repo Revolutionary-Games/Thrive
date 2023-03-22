@@ -797,7 +797,7 @@ public class ModManager : Control
             }
 
             result.Add(new FullModDetails(name, modFolder, info)
-                { IsCompatibleVersion = ModHelpers.GetVersionCompatibility(info) });
+                { IsCompatibleVersion = info.GetVersionCompatibility() });
         }
 
         var previousLength = result.Count;

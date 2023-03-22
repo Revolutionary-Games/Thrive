@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using static FullModDetails;
 
 /// <summary>
 ///   The info each mod's info JSON needs to contain
@@ -147,4 +148,35 @@ public class ModInfo
     ///   If true the mod specifies that the game needs to be restarted for the mod to properly load / unload
     /// </summary>
     public bool RequiresRestart { get; set; }
+
+    public VersionCompatibility GetVersionCompatibility()
+    {
+        var isVersionAboveMin = false;
+        var isVersionBelowMax = false;
+
+        var isVersionMinDefined = !string.IsNullOrEmpty(MinimumThriveVersion);
+        var isVersionMaxDefined = !string.IsNullOrEmpty(MaximumThriveVersion);
+
+        if (isVersionMinDefined)
+        {
+            isVersionAboveMin = VersionUtils.Compare(Constants.Version, MinimumThriveVersion ?? string.Empty) >= 0;
+        }
+
+        if (isVersionMaxDefined)
+        {
+            isVersionBelowMax = VersionUtils.Compare(Constants.Version, MaximumThriveVersion ?? string.Empty) <= 0;
+        }
+
+        if ((isVersionAboveMin && isVersionMinDefined) || (isVersionBelowMax && isVersionMaxDefined))
+        {
+            return VersionCompatibility.Compatible;
+        }
+
+        if (!isVersionMinDefined && !isVersionMaxDefined)
+        {
+            return VersionCompatibility.NotExplicitlyCompatible;
+        }
+
+        return VersionCompatibility.Incompatible;
+    }
 }

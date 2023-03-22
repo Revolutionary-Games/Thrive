@@ -63,10 +63,9 @@ public class ModLoader : Node
         IncompatibleVersion,
         Unknown = 0,
         Valid,
-        EmptyList,
     }
 
-    public static ModLoader Instance => instance!;
+    public static ModLoader Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   The mod interface the game uses to trigger events that mods can react to
@@ -79,9 +78,9 @@ public class ModLoader : Node
     public bool RequiresRestart { get; private set; }
 
     /// <summary>
-    ///   Mod assembnlies for all of the loaded mods used to communicate with the mod
+    ///   Mod assemblies for all of the loaded mods used to communicate between mods
     /// </summary>
-    public Dictionary<string, IMod> LoadedModAssemblies => loadedModAssemblies;
+    public IReadOnlyDictionary<string, IMod> LoadedModAssemblies => loadedModAssemblies;
 
     /// <summary>
     ///   Errors that occurred when loading or unloading mods
@@ -172,21 +171,16 @@ public class ModLoader : Node
     }
 
     /// <summary>
-    ///   This checks if all of the mod in the list is compatible with each other
+    ///   This checks if all of the mod in the list are compatible with each other
     /// </summary>
-    /// <returns>
-    ///  The 1st index returns the error type (Look at CheckErrorStatus enum for more explanation)
-    ///  Tht 2nd index returns the mod that is causing the error
-    ///  The 3rd index returns the other mod that is causing the error, if there is one
-    /// </returns>
-    public static (int ErrorType, int ModIndex, int OtherModIndex) IsValidModList(List<FullModDetails> modsToCheck)
+    public static ModListValidationError IsValidModList(List<FullModDetails> modsToCheck)
     {
-        var isValidList = (ErrorType: (int)CheckErrorStatus.Unknown, ModIndex: -1, OtherModIndex: -1);
+        var isValidList = new ModListValidationError(CheckErrorStatus.Unknown);
 
         // Make sure the list is not empty
         if (modsToCheck.Count < 1)
         {
-            return ((int)CheckErrorStatus.EmptyList, -1, -1);
+            return new ModListValidationError(CheckErrorStatus.Valid);
         }
 
         // Store the mod in a dictionary for faster look-up when actually checking
@@ -195,8 +189,7 @@ public class ModLoader : Node
         for (int index = 0; index < modsToCheck.Count; ++index)
         {
             FullModDetails currentMod = modsToCheck[index];
-            int[] validMod = IsModValid(currentMod, tempModDictionary);
-            isValidList = (validMod[0], index, validMod[1]);
+            isValidList = IsModValid(currentMod, tempModDictionary);
 
             // TODO: allow for multiple mod errors to show up
             if (isValidList.ErrorType <= 0)
@@ -206,9 +199,9 @@ public class ModLoader : Node
         }
 
         // If there were no errors then the list is valid
-        if (isValidList.ErrorType == (int)CheckErrorStatus.Unknown)
+        if (isValidList.ErrorType == CheckErrorStatus.Unknown)
         {
-            isValidList = ((int)CheckErrorStatus.Valid, -1, -1);
+            isValidList = new ModListValidationError(CheckErrorStatus.Valid);
         }
 
         return isValidList;
@@ -218,25 +211,17 @@ public class ModLoader : Node
     ///   This checks if the mod is valid in dictionary of mods
     ///   If you want to check if a mod is valid in a list use of the above functions
     /// </summary>
-    /// <returns>
-    ///  The 1st index returns the error type (Look at CheckErrorStatus enum for more explanation)
-    ///  The 2nd index returns the mod that is causing the error, if there is one
-    /// </returns>
-    public static int[] IsModValid(FullModDetails currentMod, Dictionary<string, FullModDetails> modDictionary)
+    public static ModListValidationError IsModValid(FullModDetails currentMod, Dictionary<string, FullModDetails> modDictionary)
     {
         var currentModInfo = currentMod.Info;
 
         if (!currentMod.IsCompatibleVersion.IsCompatible())
         {
-            return new[]
-            {
-                (int)CheckErrorStatus.IncompatibleVersion, -1,
-            };
+            return new ModListValidationError(CheckErrorStatus.IncompatibleVersion, currentModInfo);
         }
 
         if (currentModInfo.Dependencies != null)
         {
-            var dependencyIndex = 0;
             foreach (string dependencyName in currentModInfo.Dependencies)
             {
                 if (!string.IsNullOrWhiteSpace(dependencyName))
@@ -246,43 +231,39 @@ public class ModLoader : Node
                         // See if the dependency is loaded before this mod
                         if (currentMod.LoadPosition < modDictionary[dependencyName].LoadPosition)
                         {
-                            return new[]
-                            {
-                                (int)CheckErrorStatus.InvalidDependencyOrder,
-                                modDictionary[dependencyName].LoadPosition,
-                            };
+                            return new ModListValidationError(CheckErrorStatus.InvalidDependencyOrder,
+                                currentModInfo, modDictionary[dependencyName].Info);
                         }
                     }
                     else
                     {
-                        return new[]
-                        {
-                            (int)CheckErrorStatus.DependencyNotFound, dependencyIndex,
-                        };
+                        return new ModListValidationError(CheckErrorStatus.DependencyNotFound,
+                            currentModInfo,
+                            new ModInfo()
+                            {
+                                Name = dependencyName,
+                            });
                     }
                 }
-
-                ++dependencyIndex;
             }
         }
 
         if (currentModInfo.RequiredMods != null)
         {
-            var requiredModsIndex = 0;
             foreach (string requiredModsName in currentModInfo.RequiredMods)
             {
                 if (!string.IsNullOrWhiteSpace(requiredModsName))
                 {
                     if (!modDictionary.ContainsKey(requiredModsName))
                     {
-                        return new[]
-                        {
-                            (int)CheckErrorStatus.RequiredModsNotFound, requiredModsIndex,
-                        };
+                        return new ModListValidationError(CheckErrorStatus.RequiredModsNotFound,
+                            currentModInfo,
+                            new ModInfo()
+                            {
+                                Name = requiredModsName,
+                            });
                     }
                 }
-
-                ++requiredModsIndex;
             }
         }
 
@@ -294,10 +275,9 @@ public class ModLoader : Node
                 {
                     if (modDictionary.ContainsKey(incompatibleName))
                     {
-                        return new[]
-                        {
-                            (int)CheckErrorStatus.IncompatibleMod, modDictionary[incompatibleName].LoadPosition,
-                        };
+                        return new ModListValidationError(CheckErrorStatus.IncompatibleMod,
+                            currentModInfo,
+                            modDictionary[incompatibleName].Info);
                     }
                 }
             }
@@ -313,11 +293,9 @@ public class ModLoader : Node
                     {
                         if (currentMod.LoadPosition > modDictionary[loadBeforeName].LoadPosition)
                         {
-                            return new[]
-                            {
-                                (int)CheckErrorStatus.InvalidLoadOrderBefore,
-                                modDictionary[loadBeforeName].LoadPosition,
-                            };
+                            return new ModListValidationError(CheckErrorStatus.InvalidLoadOrderBefore,
+                                currentModInfo,
+                                modDictionary[loadBeforeName].Info);
                         }
                     }
                 }
@@ -334,18 +312,16 @@ public class ModLoader : Node
                     {
                         if (currentMod.LoadPosition < modDictionary[loadAfterName].LoadPosition)
                         {
-                            return new[]
-                            {
-                                (int)CheckErrorStatus.InvalidLoadOrderAfter,
-                                modDictionary[loadAfterName].LoadPosition,
-                            };
+                            return new ModListValidationError(CheckErrorStatus.InvalidLoadOrderAfter,
+                                currentModInfo,
+                                modDictionary[loadAfterName].Info);
                         }
                     }
                 }
             }
         }
 
-        return new[] { (int)CheckErrorStatus.Valid, -1 };
+        return new ModListValidationError(CheckErrorStatus.Valid);
     }
 
     public override void _Ready()
@@ -382,7 +358,7 @@ public class ModLoader : Node
     {
         var newMods = Settings.Instance.EnabledMods.Value.ToHashSet();
 
-        foreach (var unload in loadedMods.ToList())
+        foreach (var unload in loadedMods)
         {
             GD.Print("Unloading mod: ", unload);
 
@@ -403,7 +379,7 @@ public class ModLoader : Node
         UnhandledExceptionLogger.ReportModsEnabled();
         SafeModeStartupHandler.ReportModLoadingStart();
 
-        foreach (var load in newMods.Except(loadedMods).ToList())
+        foreach (var load in newMods.Except(loadedMods))
         {
             GD.Print("Loading mod: ", load);
             LoadMod(load);
