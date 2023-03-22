@@ -114,11 +114,13 @@ public class InventoryScreen : ControlWithInput
     private Vector2 craftingPanelDefaultPosition;
     private bool craftingRecipeListDirty = true;
 
+    // Need to disable this as checks and inspections disagree here
+    // ReSharper disable once RedundantNameQualifier
     /// <summary>
     ///   Cache of available crafting materials. This is stored in a variable to ensure that
     ///   <see cref="CreateRecipeListItem"/> can initialize the recipe with up to date info
     /// </summary>
-    private Dictionary<WorldResource, int> availableCraftingMaterials = new();
+    private System.Collections.Generic.Dictionary<WorldResource, int> availableCraftingMaterials = new();
 
     public bool IsOpen => inventoryPopup.Visible;
 
