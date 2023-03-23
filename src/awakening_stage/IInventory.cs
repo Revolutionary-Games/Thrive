@@ -108,4 +108,54 @@ public static class InventoryHelpers
 
         return result;
     }
+
+    public static List<InventorySlotData>? FindRequiredResources(this IInventory inventory,
+        Dictionary<WorldResource, int> requiredResources)
+    {
+        var availableItems = inventory.ListAllItems().ToList();
+
+        var usedSlots = new List<InventorySlotData>();
+
+        foreach (var requiredResource in requiredResources)
+        {
+            var amountLeft = requiredResource.Value;
+
+            // Find items to satisfy the amount left
+            while (amountLeft > 0)
+            {
+                bool foundSomething = false;
+
+                foreach (var availableItem in availableItems)
+                {
+                    if (availableItem.ContainedItem == null)
+                        continue;
+
+                    var resource = availableItem.ContainedItem.ResourceFromItem();
+
+                    if (resource != requiredResource.Key)
+                        continue;
+
+                    // Don't allow taking from the same slot twice
+                    if (usedSlots.Contains(availableItem))
+                        continue;
+
+                    // Found an item to use
+                    --amountLeft;
+                    usedSlots.Add(availableItem);
+                    foundSomething = true;
+
+                    if (amountLeft <= 0)
+                        break;
+                }
+
+                if (!foundSomething)
+                {
+                    // Not enough of this resource type
+                    return null;
+                }
+            }
+        }
+
+        return usedSlots;
+    }
 }

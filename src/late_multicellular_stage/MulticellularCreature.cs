@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using InvalidOperationException = System.InvalidOperationException;
 
 /// <summary>
 ///   Main script on each multicellular creature in the game
@@ -619,6 +618,26 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         // TODO: check placement location being valid
         var location = GetStructurePlacementLocation();
+
+        // Take the resources the construction takes
+        var usedResources = this.FindRequiredResources(buildingTypeToPlace.ScaffoldingCost);
+
+        if (usedResources == null)
+        {
+            GD.Print("Not enough resources to start structure after all");
+
+            // TODO: play invalid placement sound
+            return;
+        }
+
+        foreach (var usedResource in usedResources)
+        {
+            if (!DeleteItem(usedResource.Id))
+            {
+                GD.PrintErr("Resource for placing structure consuming failed");
+                return;
+            }
+        }
 
         // Create the structure entity
         var structureScene = SpawnHelpers.LoadStructureScene();
