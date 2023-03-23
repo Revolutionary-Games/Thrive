@@ -417,6 +417,26 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 yield return (InteractionType.Harvest, false, message);
             }
         }
+
+        if (target is IAcceptsResourceDeposit deposit)
+        {
+            bool takesItems = deposit.GetWantedItems(this) != null;
+
+            yield return (InteractionType.DepositResources, takesItems,
+                takesItems ?
+                    null :
+                    TranslationServer.Translate("INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"));
+        }
+
+        if (target is IConstructable constructable && !constructable.Completed)
+        {
+            bool canBeBuilt = constructable.HasRequiredResourcesToConstruct;
+
+            yield return (InteractionType.Construct, canBeBuilt,
+                canBeBuilt ?
+                    null :
+                    TranslationServer.Translate("INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"));
+        }
     }
 
     public bool AttemptInteraction(IInteractableEntity target, InteractionType interactionType)
@@ -444,6 +464,46 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 return true;
             case InteractionType.Harvest:
                 return this.HarvestEntity(target);
+            case InteractionType.DepositResources:
+                // TODO: instead of closing, just update the interaction popup to allow finishing construction
+                // immediately
+                if (target is IAcceptsResourceDeposit deposit)
+                {
+                    if (!deposit.AutoTakesResources)
+                    {
+                        // TODO: allow selecting items
+                        GD.Print("TODO: selecting items to deposit interface is not done");
+                    }
+
+                    var itemsToDeposit = deposit.GetWantedItems(this);
+
+                    if (itemsToDeposit != null)
+                    {
+                        var slots = itemsToDeposit.ToList();
+                        deposit.DepositItems(slots.Select(i => i.ContainedItem).WhereNotNull());
+
+                        foreach (var slot in slots)
+                        {
+                            if (!DeleteItem(slot))
+                                GD.PrintErr("Failed to delete deposited item");
+                        }
+
+                        return true;
+                    }
+                }
+
+                GD.PrintErr("Deposit action failed due to bad target or currently held items");
+                return false;
+
+            case InteractionType.Construct:
+                if (target is IConstructable constructable && !constructable.Completed &&
+                    constructable.HasRequiredResourcesToConstruct)
+                {
+                    // TODO: start action for constructing
+                    return true;
+                }
+
+                return false;
             default:
                 GD.PrintErr($"Unimplemented action handling for {interactionType}");
                 return false;
@@ -537,6 +597,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             return false;
         }
 
+        return DeleteItem(slot);
+    }
+
+    public bool DeleteItem(InventorySlotData slot)
+    {
         if (slot.ContainedItem == null)
             return false;
 
@@ -632,7 +697,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         foreach (var usedResource in usedResources)
         {
-            if (!DeleteItem(usedResource.Id))
+            if (!DeleteItem(usedResource))
             {
                 GD.PrintErr("Resource for placing structure consuming failed");
                 return;

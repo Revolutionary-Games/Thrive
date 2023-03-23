@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 12:30+0200\n"
+"POT-Creation-Date: 2023-03-23 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -570,7 +570,7 @@ msgstr ""
 msgid "CAMERA"
 msgstr "Kamera"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:58
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
@@ -2389,6 +2389,11 @@ msgstr "Peržiūrėti"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "DI mutacijos greitis"
 
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:438
+#, fuzzy
+msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
+msgstr "DI mutacijos greitis"
+
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
 msgid "INTERACTION_CRAFT"
@@ -2397,6 +2402,11 @@ msgstr "DI mutacijos greitis"
 #: ../src/awakening_stage/InteractionType.cs:14
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr "DI mutacijos greitis"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:428
+#, fuzzy
+msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "DI mutacijos greitis"
 
 #: ../src/awakening_stage/InteractionType.cs:11
@@ -5516,6 +5526,10 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
+msgstr ""
+
+#: ../src/awakening_stage/PlacedStructure.cs:65
+msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:40

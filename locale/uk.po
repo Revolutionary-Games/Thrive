@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 12:30+0200\n"
+"POT-Creation-Date: 2023-03-23 15:33+0200\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -589,7 +589,7 @@ msgstr "Ця мембрана має міцну оболонку з карбон
 msgid "CAMERA"
 msgstr "Камера"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:58
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
@@ -2469,6 +2469,11 @@ msgstr "Оглянути"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Частота мутацій від ШІ"
 
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:438
+#, fuzzy
+msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
+msgstr "Частота мутацій від ШІ"
+
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
 msgid "INTERACTION_CRAFT"
@@ -2477,6 +2482,11 @@ msgstr "Частота мутацій від ШІ"
 #: ../src/awakening_stage/InteractionType.cs:14
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr "Частота мутацій від ШІ"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:428
+#, fuzzy
+msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Частота мутацій від ШІ"
 
 #: ../src/awakening_stage/InteractionType.cs:11
@@ -5782,6 +5792,10 @@ msgstr "Структурний"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Структури"
+
+#: ../src/awakening_stage/PlacedStructure.cs:65
+msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
+msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"

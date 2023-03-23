@@ -3,6 +3,11 @@
 /// </summary>
 public interface IConstructable : IAcceptsResourceDeposit
 {
+    /// <summary>
+    ///   True when this is completed and no longer needs to be built
+    /// </summary>
+    public bool Completed { get; }
+
     public bool HasRequiredResourcesToConstruct { get; }
 
     /// <summary>

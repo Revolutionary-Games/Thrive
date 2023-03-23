@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 12:30+0200\n"
+"POT-Creation-Date: 2023-03-23 15:33+0200\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -590,7 +590,7 @@ msgstr "这个细胞膜额外配置了一层碳酸钙组成的强力外壳。它
 msgid "CAMERA"
 msgstr "视角"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:58
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
@@ -2463,6 +2463,11 @@ msgstr "检查"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "AI突变率"
 
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:438
+#, fuzzy
+msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
+msgstr "AI突变率"
+
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
 msgid "INTERACTION_CRAFT"
@@ -2471,6 +2476,11 @@ msgstr "AI突变率"
 #: ../src/awakening_stage/InteractionType.cs:14
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr "AI突变率"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:428
+#, fuzzy
+msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "AI突变率"
 
 #: ../src/awakening_stage/InteractionType.cs:11
@@ -5775,6 +5785,10 @@ msgstr "结构"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "结构"
+
+#: ../src/awakening_stage/PlacedStructure.cs:65
+msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
+msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"

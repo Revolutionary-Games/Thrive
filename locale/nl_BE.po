@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 12:30+0200\n"
+"POT-Creation-Date: 2023-03-23 15:33+0200\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -601,7 +601,7 @@ msgstr "Dit membraan heeft een sterke schelp gemaakt van calciumcarbonaat. Het k
 msgid "CAMERA"
 msgstr "Camera"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:58
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
@@ -2563,6 +2563,11 @@ msgstr ""
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Mutatiepunten"
 
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:438
+#, fuzzy
+msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
+msgstr "Mutatiepunten"
+
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
 msgid "INTERACTION_CRAFT"
@@ -2571,6 +2576,11 @@ msgstr "Mutatiepunten"
 #: ../src/awakening_stage/InteractionType.cs:14
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr "Mutatiepunten"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:428
+#, fuzzy
+msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Mutatiepunten"
 
 #: ../src/awakening_stage/InteractionType.cs:11
@@ -5944,6 +5954,10 @@ msgstr "Structureel"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "STRUCTURE"
 msgstr "Structuur"
+
+#: ../src/awakening_stage/PlacedStructure.cs:65
+msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
+msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
