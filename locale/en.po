@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-22 15:42+0200\n"
-"PO-Revision-Date: 2023-03-22 15:42+0200\n"
+"POT-Creation-Date: 2023-03-23 12:30+0200\n"
+"PO-Revision-Date: 2023-03-23 12:31+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -585,7 +585,7 @@ msgstr "This membrane has a strong shell made from calcium carbonate. It can eas
 msgid "CAMERA"
 msgstr "Camera"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:58
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
@@ -1105,11 +1105,11 @@ msgstr "Tritanope (Blue-Yellow)"
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Clear selected inputs"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1150
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr "Error: internal bug in crafting item consuming"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1116
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Could not find crafting input items"
 
@@ -1121,15 +1121,15 @@ msgstr "Inputs"
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Known Recipes"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1088
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Not enough {0} to craft recipe"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1075
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr "Please select a recipe above to craft first"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1096
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr "No space to take all crafting results"
 
@@ -1146,7 +1146,7 @@ msgstr "Stone Hand Axe"
 msgid "CRAFTING_RESULTS"
 msgstr "Results"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1519
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Select a crafting recipe or add items to filter"
@@ -2449,15 +2449,23 @@ msgstr "Inspect"
 msgid "INSPECTOR"
 msgstr "Inspector"
 
+#: ../src/awakening_stage/InteractionType.cs:17
+msgid "INTERACTION_CONSTRUCT"
+msgstr "Finish Construction"
+
 #: ../src/awakening_stage/InteractionType.cs:8
 msgid "INTERACTION_CRAFT"
 msgstr "Craft..."
+
+#: ../src/awakening_stage/InteractionType.cs:14
+msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr "Deposit Materials"
 
 #: ../src/awakening_stage/InteractionType.cs:11
 msgid "INTERACTION_HARVEST"
 msgstr "Harvest"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:415
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:414
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr "Harvest (MISSING EQUIPMENT: {0})"
 
@@ -2465,7 +2473,7 @@ msgstr "Harvest (MISSING EQUIPMENT: {0})"
 msgid "INTERACTION_PICK_UP"
 msgstr "Pick up"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:392
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:391
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Pick up (FULL)"
 
@@ -4976,6 +4984,10 @@ msgstr "Resolution:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
+#: ../src/awakening_stage/PlacedStructure.cs:68
+msgid "RESOURCE_AMOUNT_SHORT"
+msgstr "{0}: {1}"
+
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
 msgstr "Rock"
@@ -5739,9 +5751,13 @@ msgstr "Structural"
 msgid "STRUCTURE"
 msgstr "Structure"
 
-#: ../src/awakening_stage/PlacedStructure.cs:35
+#: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Constructing: {0}"
+
+#: ../src/awakening_stage/PlacedStructure.cs:70
+msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
+msgstr "Needed materials before construction can be finished: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"

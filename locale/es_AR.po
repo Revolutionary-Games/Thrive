@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-22 15:42+0200\n"
+"POT-Creation-Date: 2023-03-23 12:30+0200\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -580,7 +580,7 @@ msgstr ""
 msgid "CAMERA"
 msgstr "Cámara"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:58
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
@@ -1092,11 +1092,11 @@ msgstr "Tritanopia (Azul-Amarillo)"
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1150
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1116
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
 #, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "\" {0} \" - {1}"
@@ -1109,15 +1109,15 @@ msgstr ""
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1088
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1075
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1096
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
@@ -1134,7 +1134,7 @@ msgstr ""
 msgid "CRAFTING_RESULTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1519
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -2438,15 +2438,24 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
+#: ../src/awakening_stage/InteractionType.cs:17
+msgid "INTERACTION_CONSTRUCT"
+msgstr ""
+
 #: ../src/awakening_stage/InteractionType.cs:8
 msgid "INTERACTION_CRAFT"
 msgstr ""
+
+#: ../src/awakening_stage/InteractionType.cs:14
+#, fuzzy
+msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr "Depredación de {0}"
 
 #: ../src/awakening_stage/InteractionType.cs:11
 msgid "INTERACTION_HARVEST"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:415
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:414
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2454,7 +2463,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:392
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:391
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -4961,6 +4970,10 @@ msgstr "Resolución:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
+#: ../src/awakening_stage/PlacedStructure.cs:68
+msgid "RESOURCE_AMOUNT_SHORT"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
 msgstr ""
@@ -5728,8 +5741,12 @@ msgstr ""
 msgid "STRUCTURE"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:35
+#: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
+msgstr ""
+
+#: ../src/awakening_stage/PlacedStructure.cs:70
+msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220

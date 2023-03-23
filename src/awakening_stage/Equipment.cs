@@ -46,6 +46,9 @@ public class Equipment : RigidBody, IInteractableEntity
     public Vector3? ExtraInteractOverlayOffset => null;
 
     [JsonIgnore]
+    public string? ExtraInteractionPopupDescription => null;
+
+    [JsonIgnore]
     public bool InteractionDisabled { get; set; }
 
     [JsonIgnore]

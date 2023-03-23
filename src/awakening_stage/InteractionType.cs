@@ -10,4 +10,10 @@ public enum InteractionType
 
     [Description("INTERACTION_HARVEST")]
     Harvest,
+
+    [Description("INTERACTION_DEPOSIT_RESOURCES")]
+    DepositResources,
+
+    [Description("INTERACTION_CONSTRUCT")]
+    Construct,
 }

@@ -23,6 +23,11 @@ public interface IInteractableEntity : IEntity, IPlayerReadableName, IInventoryI
     public Vector3? ExtraInteractOverlayOffset { get; }
 
     /// <summary>
+    ///   If not null, the interaction popup will have this extra text in it. For now this doesn't support rich text.
+    /// </summary>
+    public string? ExtraInteractionPopupDescription { get; }
+
+    /// <summary>
     ///   Set to true when this interactable is disabled and nothing should be able to interact with this
     /// </summary>
     public bool InteractionDisabled { get; set; }

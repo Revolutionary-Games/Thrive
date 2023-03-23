@@ -19,6 +19,9 @@ public class ResourceEntity : RigidBody, IInteractableEntity
     [JsonIgnore]
     public Vector3? ExtraInteractOverlayOffset => null;
 
+    [JsonIgnore]
+    public string? ExtraInteractionPopupDescription => null;
+
     [JsonProperty]
     public bool InteractionDisabled { get; set; }
 

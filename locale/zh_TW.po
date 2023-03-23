@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-22 15:42+0200\n"
+"POT-Creation-Date: 2023-03-23 12:30+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -596,7 +596,7 @@ msgstr "這種膜有一層額外的碳酸鈣堅固外殼。它可以很容易地
 msgid "CAMERA"
 msgstr "視角"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:58
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
@@ -1134,11 +1134,11 @@ msgstr "蓝黄色盲"
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1150
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1116
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
 #, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "缺少標題"
@@ -1151,15 +1151,15 @@ msgstr ""
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1088
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1075
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1096
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
@@ -1178,7 +1178,7 @@ msgstr ""
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo自動模擬 結果："
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1519
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -2537,9 +2537,19 @@ msgstr "檢查"
 msgid "INSPECTOR"
 msgstr "檢查"
 
+#: ../src/awakening_stage/InteractionType.cs:17
+#, fuzzy
+msgid "INTERACTION_CONSTRUCT"
+msgstr "突變點數"
+
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
 msgid "INTERACTION_CRAFT"
+msgstr "突變點數"
+
+#: ../src/awakening_stage/InteractionType.cs:14
+#, fuzzy
+msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "突變點數"
 
 #: ../src/awakening_stage/InteractionType.cs:11
@@ -2547,7 +2557,7 @@ msgstr "突變點數"
 msgid "INTERACTION_HARVEST"
 msgstr "突變點數"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:415
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:414
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2555,7 +2565,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:392
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:391
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -5128,6 +5138,11 @@ msgstr "解像度："
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "資源吸收速度"
 
+#: ../src/awakening_stage/PlacedStructure.cs:68
+#, fuzzy
+msgid "RESOURCE_AMOUNT_SHORT"
+msgstr "壓強"
+
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 #, fuzzy
 msgid "RESOURCE_ROCK"
@@ -5920,8 +5935,12 @@ msgstr "結構性"
 msgid "STRUCTURE"
 msgstr "結構"
 
-#: ../src/awakening_stage/PlacedStructure.cs:35
+#: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
+msgstr ""
+
+#: ../src/awakening_stage/PlacedStructure.cs:70
+msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220

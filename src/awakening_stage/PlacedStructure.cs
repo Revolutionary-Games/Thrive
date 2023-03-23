@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -11,6 +13,9 @@ public class PlacedStructure : Spatial, IInteractableEntity
     private Spatial scaffoldingParent = null!;
     private Spatial visualsParent = null!;
 #pragma warning restore CA2213
+
+    [JsonProperty]
+    private Dictionary<WorldResource, int>? missingResourcesToFullyConstruct;
 
     [JsonProperty]
     public bool Completed { get; private set; }
@@ -49,6 +54,26 @@ public class PlacedStructure : Spatial, IInteractableEntity
     public Vector3? ExtraInteractOverlayOffset =>
         Definition?.InteractOffset ?? throw new InvalidOperationException("Not initialized");
 
+    public string? ExtraInteractionPopupDescription
+    {
+        get
+        {
+            if (Completed)
+                return null;
+
+            if (missingResourcesToFullyConstruct == null)
+                return "Error: resources are null";
+
+            // Display the still required resources
+            string resourceAmountFormat = TranslationServer.Translate("RESOURCE_AMOUNT_SHORT");
+
+            return TranslationServer.Translate("STRUCTURE_REQUIRED_RESOURCES_TO_FINISH")
+                .FormatSafe(string.Join(", ",
+                    missingResourcesToFullyConstruct.Select(r =>
+                        resourceAmountFormat.FormatSafe(r.Key.Name, r.Value))));
+        }
+    }
+
     public bool InteractionDisabled { get; set; }
 
     [JsonIgnore]
@@ -60,16 +85,27 @@ public class PlacedStructure : Spatial, IInteractableEntity
         visualsParent = GetNode<Spatial>("VisualSceneHolder");
     }
 
-    public void Init(StructureDefinition definition)
+    public void Init(StructureDefinition definition, bool fullyConstructed = false)
     {
         Definition = definition;
 
-        // Setup scaffolding
-        scaffoldingParent.AddChild(definition.ScaffoldingScene.Instance());
-
-        // And the real visuals but placed really low to play a simple building animation
         visualsParent.AddChild(definition.WorldRepresentation.Instance());
-        visualsParent.Translation = new Vector3(0, definition.WorldSize.y * -0.9f, 0);
+
+        if (!fullyConstructed)
+        {
+            missingResourcesToFullyConstruct = definition.RequiredResources;
+
+            // Setup scaffolding
+            scaffoldingParent.AddChild(definition.ScaffoldingScene.Instance());
+
+            // And the real visuals but placed really low to play a simple building animation
+
+            visualsParent.Translation = new Vector3(0, definition.WorldSize.y * -0.9f, 0);
+        }
+        else
+        {
+            Completed = true;
+        }
     }
 
     public void OnDestroyed()
