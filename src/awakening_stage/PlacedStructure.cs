@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A structure placed in the world. May or may not be fully constructed
 /// </summary>
-public class PlacedStructure : Spatial, IInteractableEntity
+public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 {
 #pragma warning disable CA2213
     private Spatial scaffoldingParent = null!;
@@ -62,7 +62,7 @@ public class PlacedStructure : Spatial, IInteractableEntity
                 return null;
 
             if (missingResourcesToFullyConstruct == null)
-                return "Error: resources are null";
+                return TranslationServer.Translate("STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD");
 
             // Display the still required resources
             string resourceAmountFormat = TranslationServer.Translate("RESOURCE_AMOUNT_SHORT");
@@ -78,6 +78,15 @@ public class PlacedStructure : Spatial, IInteractableEntity
 
     [JsonIgnore]
     public bool CanBeCarried => false;
+
+    [JsonIgnore]
+    public bool AutoTakesResources => true;
+
+    [JsonIgnore]
+    public bool HasRequiredResourcesToConstruct => missingResourcesToFullyConstruct == null;
+
+    [JsonIgnore]
+    public float ConstructionDuration => 3;
 
     public override void _Ready()
     {
@@ -99,7 +108,6 @@ public class PlacedStructure : Spatial, IInteractableEntity
             scaffoldingParent.AddChild(definition.ScaffoldingScene.Instance());
 
             // And the real visuals but placed really low to play a simple building animation
-
             visualsParent.Translation = new Vector3(0, definition.WorldSize.y * -0.9f, 0);
         }
         else
@@ -118,9 +126,74 @@ public class PlacedStructure : Spatial, IInteractableEntity
         return null;
     }
 
+    public IEnumerable<InventorySlotData>? GetWantedItems(IInventory availableItems)
+    {
+        if (missingResourcesToFullyConstruct == null)
+            return null;
+
+        return availableItems.FindAvailableResources(missingResourcesToFullyConstruct);
+    }
+
+    public void DepositItems(IEnumerable<IInventoryItem> items)
+    {
+        if (missingResourcesToFullyConstruct == null)
+        {
+            GD.PrintErr("Items attempted to be given to a structure that isn't missing anything");
+            return;
+        }
+
+        // Mark off resources that are now given
+        foreach (var item in items)
+        {
+            var resource = item.ResourceFromItem();
+
+            if (resource == null)
+            {
+                GD.PrintErr("Structure given an item that is not a resource");
+                continue;
+            }
+
+            if (!missingResourcesToFullyConstruct.TryGetValue(resource, out var missingAmount))
+            {
+                GD.PrintErr("Structure given an item it didn't ask for, this item is lost!");
+                continue;
+            }
+
+            --missingAmount;
+
+            if (missingAmount <= 0)
+            {
+                missingResourcesToFullyConstruct.Remove(resource);
+            }
+            else
+            {
+                missingResourcesToFullyConstruct[resource] = missingAmount;
+            }
+        }
+    }
+
+    public void ReportConstructionActionProgress(float progress)
+    {
+        if (Definition == null)
+            throw new InvalidOperationException("Not initialized");
+
+        // Update the construction animation
+        // TODO: slerp if this can be too jittery otherwise
+        visualsParent.Translation = new Vector3(0, Definition.WorldSize.y * (-0.9f + 0.9f * progress), 0);
+    }
+
+    public void OnFinishConstruction()
+    {
+        if (missingResourcesToFullyConstruct != null)
+            GD.PrintErr("Structure force completed even though it still needs resources");
+
+        OnCompleted();
+    }
+
     private void OnCompleted()
     {
         Completed = true;
+        missingResourcesToFullyConstruct = null;
 
         // Remove the scaffolding
         scaffoldingParent.QueueFreeChildren();

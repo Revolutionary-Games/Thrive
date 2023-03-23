@@ -110,7 +110,7 @@ public static class InventoryHelpers
     }
 
     public static List<InventorySlotData>? FindRequiredResources(this IInventory inventory,
-        Dictionary<WorldResource, int> requiredResources)
+        IReadOnlyDictionary<WorldResource, int> requiredResources)
     {
         var availableItems = inventory.ListAllItems().ToList();
 
@@ -155,6 +155,66 @@ public static class InventoryHelpers
                 }
             }
         }
+
+        return usedSlots;
+    }
+
+    /// <summary>
+    ///   Finds any resources that are available given in the required list, as compared to
+    ///   <see cref="FindRequiredResources"/> which only finds things when every required item can be found
+    /// </summary>
+    /// <param name="inventory">Where to look items</param>
+    /// <param name="requiredResources">The needed items</param>
+    /// <returns>The found resources that were asked for by <see cref="requiredResources"/></returns>
+    public static List<InventorySlotData>? FindAvailableResources(this IInventory inventory,
+        Dictionary<WorldResource, int> requiredResources)
+    {
+        var availableItems = inventory.ListAllItems().ToList();
+
+        var usedSlots = new List<InventorySlotData>();
+
+        foreach (var requiredResource in requiredResources)
+        {
+            var amountLeft = requiredResource.Value;
+
+            // Find items to satisfy the amount left
+            while (amountLeft > 0)
+            {
+                bool foundSomething = false;
+
+                foreach (var availableItem in availableItems)
+                {
+                    if (availableItem.ContainedItem == null)
+                        continue;
+
+                    var resource = availableItem.ContainedItem.ResourceFromItem();
+
+                    if (resource != requiredResource.Key)
+                        continue;
+
+                    // Don't allow taking from the same slot twice
+                    if (usedSlots.Contains(availableItem))
+                        continue;
+
+                    // Found an item to use
+                    --amountLeft;
+                    usedSlots.Add(availableItem);
+                    foundSomething = true;
+
+                    if (amountLeft <= 0)
+                        break;
+                }
+
+                if (!foundSomething)
+                {
+                    // Not enough of this resource type
+                    break;
+                }
+            }
+        }
+
+        if (usedSlots.Count < 1)
+            return null;
 
         return usedSlots;
     }
