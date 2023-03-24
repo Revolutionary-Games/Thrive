@@ -393,10 +393,10 @@ public static class Constants
     public const float WORLD_PROGRESS_BAR_FULL_UPDATE_INTERVAL = 0.1f;
     public const float WORLD_PROGRESS_BAR_MAX_DISTANCE = 15.0f;
     public const float WORLD_PROGRESS_BAR_MAX_COUNT = 15;
-    public const float WORLD_PROGRESS_BAR_DEFAULT_WIDTH = 50;
-    public const float WORLD_PROGRESS_BAR_MIN_WIDTH_TO_SHOW = 10;
-    public const float WORLD_PROGRESS_BAR_DEFAULT_HEIGHT = 15;
-    public const float WORLD_PROGRESS_BAR_MIN_HEIGHT = 4;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_WIDTH = 125;
+    public const float WORLD_PROGRESS_BAR_MIN_WIDTH_TO_SHOW = 20;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_HEIGHT = 18;
+    public const float WORLD_PROGRESS_BAR_MIN_HEIGHT = 6;
     public const float WORLD_PROGRESS_BAR_DISTANCE_SIZE_SCALE = 1.0f;
     public const float WORLD_PROGRESS_DEFAULT_Y_OFFSET = 3.5f;
 
