@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-24 14:19+0200\n"
-"PO-Revision-Date: 2023-03-13 09:01+0000\n"
+"POT-Creation-Date: 2023-03-24 15:05+0200\n"
+"PO-Revision-Date: 2023-03-24 12:38+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1057,7 +1057,7 @@ msgstr ""
 "\n"
 "如果你继续下去，你将无法保存或返回。如果你想返回这个阶段，请在继续之前现在进行保存。\n"
 "\n"
-"如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
+"阶段原型中对控制器的支持也远不及先前阶段完整。如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
@@ -1115,9 +1115,8 @@ msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1118
-#, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr "成反比"
+msgstr "找不到合成原料"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:231
 msgid "CRAFTING_FILTER_INPUTS"
@@ -1128,9 +1127,8 @@ msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "已知合成配方"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1090
-#, fuzzy
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
-msgstr "成反比"
+msgstr "没有足够的{0}用于合成该配方"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1077
 msgid "CRAFTING_NO_RECIPE_SELECTED"
@@ -1138,13 +1136,12 @@ msgstr "请先选择一个合成配方"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr ""
+msgstr "没有空间以存放所有的合成产物"
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
-#, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr "Auto-evo结果："
+msgstr "{0} ({1})"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
@@ -1843,7 +1840,7 @@ msgstr "上远洋带"
 
 #: ../src/awakening_stage/EquipmentCategory.cs:9
 msgid "EQUIPMENT_TYPE_AXE"
-msgstr ""
+msgstr "斧头"
 
 #: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
@@ -1962,7 +1959,7 @@ msgstr "在这个地区里灭绝了"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "从这个星球上灭绝了"
 
-#: ../src/general/StageBase.cs:558
+#: ../src/general/StageBase.cs:562
 msgid "EXTINCT_IN_PATCH"
 msgstr "在这个地区里灭绝了"
 
@@ -2373,7 +2370,7 @@ msgstr "生命上限："
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:44
+#: ../src/microbe_stage/gui/HUDMessages.cs:46
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
@@ -2461,49 +2458,46 @@ msgstr "检查"
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
-msgstr "AI突变率"
+msgstr "合成..."
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:463
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr "AI突变率"
+msgstr "收割（缺少工具：{0}）"
 
 #: ../src/awakening_stage/InteractionType.cs:8
-#, fuzzy
 msgid "INTERACTION_CRAFT"
-msgstr "AI突变率"
+msgstr "合成..."
 
 #: ../src/awakening_stage/InteractionType.cs:14
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
-msgstr "AI突变率"
+msgstr "捡起"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:453
-#, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr "AI突变率"
+msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:23
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr "AI突变率"
+msgstr "合成..."
 
 #: ../src/awakening_stage/InteractionType.cs:11
-#, fuzzy
 msgid "INTERACTION_HARVEST"
-msgstr "AI突变率"
+msgstr "收割"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "收割（缺少工具：{0}）"
 
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "捡起"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:416
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "捡起（物品栏已满）"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
@@ -2552,20 +2546,19 @@ msgstr "无效的URL Schemes"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:75
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "在地上的物品"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
-#, fuzzy
 msgid "INVENTORY_TITLE"
-msgstr "“{0}” - {1}"
+msgstr "物品栏"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "合成"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:144
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "地面"
 
 #: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
 #: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
@@ -4220,9 +4213,8 @@ msgid "N_A_MP"
 msgstr "不消耗变异点"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:428
-#, fuzzy
 msgid "N_TIMES"
-msgstr "2x"
+msgstr "x{0}"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "OCTOBER"
@@ -4722,7 +4714,7 @@ msgstr "玩家死亡惩罚"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "（当玩家死亡时玩家物种的种群数量下降的系数）"
 
-#: ../src/general/StageBase.cs:482
+#: ../src/general/StageBase.cs:486
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -4738,7 +4730,7 @@ msgstr "玩家已灭绝"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相对于玩家"
 
-#: ../src/general/StageBase.cs:426
+#: ../src/general/StageBase.cs:430
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -5019,20 +5011,18 @@ msgstr "分辨率："
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "物质吸收速度"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "压力"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#, fuzzy
 msgid "RESOURCE_ROCK"
-msgstr "查看源代码"
+msgstr "石头"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:8
-#, fuzzy
 msgid "RESOURCE_WOOD"
-msgstr "查看源代码"
+msgstr "木材"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:111
@@ -5791,7 +5781,7 @@ msgstr "结构"
 msgid "STRUCTURE"
 msgstr "结构"
 
-#: ../src/awakening_stage/PlacedStructure.cs:65
+#: ../src/awakening_stage/PlacedStructure.cs:66
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
@@ -5799,13 +5789,14 @@ msgstr ""
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:70
+#: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr ""
+msgstr "社会中心"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
@@ -5813,7 +5804,7 @@ msgstr ""
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr ""
+msgstr "社会中心"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:781
 msgid "SUCCESSFUL_KILL"
@@ -5893,15 +5884,15 @@ msgstr "截图"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
-msgstr ""
+msgstr "简单石质工具"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:12
 msgid "TECHNOLOGY_SOCIETY_CENTER"
-msgstr ""
+msgstr "社会中心建设"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:678
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
-msgstr ""
+msgstr "解锁的科技：{0}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
@@ -6160,7 +6151,7 @@ msgstr "工具"
 
 #: ../simulation_parameters/awakening_stage/equipment.json:3
 msgid "TOOL_HAND_AXE"
-msgstr ""
+msgstr "手斧"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
 msgid "TOTAL_POPULATION_COLON"

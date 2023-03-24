@@ -7,38 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-24 14:19+0200\n"
-"PO-Revision-Date: 2021-01-03 09:13+0000\n"
-"Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
+"POT-Creation-Date: 2023-03-24 15:05+0200\n"
+"PO-Revision-Date: 2023-03-24 12:38+0000\n"
+"Last-Translator: AliquisDeNusquam <culhaneb9@gmail.com>\n"
 "Language-Team: Latin <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/la/>\n"
 "Language: la\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D motus modus:"
 
 #: ../simulation_parameters/common/input_options.json:200
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "3D Editor"
 
 #: ../simulation_parameters/common/input_options.json:172
 msgid "3D_MOVEMENT"
-msgstr ""
+msgstr "3D Motus"
 
 #: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D motus modus:"
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
-msgstr ""
+msgstr "Potestates"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
@@ -46,11 +45,11 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
-msgstr ""
+msgstr "Abortum est."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Profundi regio"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
@@ -59,26 +58,28 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
+msgstr "Movere ad Gradum Excitantem. In promptu cum semel satis mentis potentem habes (textus coporis generem cum axonibus)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Actio obstat donec alia est in progressionem"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
-msgstr ""
+msgstr "Activus"
 
 #: ../src/general/OptionsMenu.tscn:1092
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "Usitatae probabiliter novae sententiae:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Activa microbia cursabunt atque volvent dum nihil usitatis accidit.\n"
+"Sessilia microbia immota erint et manebunt circumjectui mutare."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -86,65 +87,70 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Addere novum botonem relegationis"
 
 #: ../src/general/NewGameSettings.tscn:1222
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Provectum"
 
 #: ../src/general/NewGameSettings.tscn:1217
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Aperire systemae provectae conspectum"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:90
+#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aerobicum Nitrogenii Fingentem"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
-msgstr ""
+msgstr "Actores"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
 msgid "AGENTS_COLON"
-msgstr ""
+msgstr "Actores:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 msgid "AGENT_NAME"
-msgstr ""
+msgstr "{0} Actor"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Hostilies microbia praedam trans distantias maiores persequetur \n"
+"et magis probabiliter pugnare praedatores sunt quando appugnanda. \n"
+"Tranquilla microbia alios non trans distantias maiores proeliabitur \n"
+"et minus probabiliter toxica contra predatores uti."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Hostilis"
 
 #: ../src/general/NewGameSettings.tscn:464
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "AI mutationis celeritas"
 
 #: ../src/general/NewGameSettings.tscn:509
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
+msgstr "(velocitas ad quam AI species mutantes)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:372
 msgid "ALL"
-msgstr ""
+msgstr "Omnes"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "Permittere speciebus non migrare (si nulla migratio bona cognoscitur)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
+msgstr "Permittere speciebus non mutare (si nulla mutatio bona cognoscitur)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "Generales Census Mundorum Omnium"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 msgid "ALL_WORLDS_STATISTICS"
@@ -152,7 +158,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/general/OptionsMenu.tscn:739
 msgid "AMBIANCE_VOLUME"
@@ -1876,7 +1882,7 @@ msgstr ""
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/general/StageBase.cs:558
+#: ../src/general/StageBase.cs:562
 msgid "EXTINCT_IN_PATCH"
 msgstr ""
 
@@ -2276,7 +2282,7 @@ msgstr ""
 msgid "HSV"
 msgstr ""
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:44
+#: ../src/microbe_stage/gui/HUDMessages.cs:46
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
@@ -3277,9 +3283,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] et mus movere. [thrive:input]g_fire_toxin[/thrive:input] conjicere [thrive:compound type=\"oxytoxy\"][/thrive:compound] si toxicum vacuole habes. [thrive:input]g_toggle_engulf[/thrive:input] modum absorbentem mutare. Despectum tuum cum muris rota ampliare aut minuere potes."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
@@ -3315,44 +3320,46 @@ msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si v
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Cellula tua utitur [thrive:compound type=\"atp\"][/thrive:compound] velut vis origo sua, si ea deficit morieris."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Solvere editorem ac reseminare vivus satis diu remanere requiris. Legens [thrive:compound type=\"ammonia\"][/thrive:compound] (orange cloud) etiam [thrive:compound type=\"phosphates\"][/thrive:compound] (purple cloud) incrementum accelerant."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Quoque cellulas, bacterias, partes fereas, et partes cellularum, quas parviores ac te, absorbere potes per prementem [thrive:input]g_toggle_engulf[/thrive:input]. Hoc requirit addititium [thrive:compound type=\"atp\"][/thrive:compound] atque te tardat. Non obliviscere premere [thrive:input]g_toggle_engulf[/thrive:input] tempus secundum desistere abdorbentem."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Osmoregulatio requirit [thrive:compound type=\"atp\"][/thrive:compound], quod significat largior cellula tua est, plus mitochondriam, metabolosomes or rusticyanin (or cytoplasm, which does glycolysis) requiris vitare amittentem [thrive:compound type=\"atp\"][/thrive:compound] dum stativus es."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Illa organella multa in editorem tibi evolvere sunt, permittentes comprensionem amplam generum diversorum ludentis."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Si numerum tuum incolarum ad nihil cadit, extinctus fies."
 
 #: ../simulation_parameters/common/help_texts.json:42
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
+"Nubes variae compositae sunt:\n"
+"\n"
+"Albus – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Flavus – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Arantius – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Purpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Ferrugineus – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"\n"
+"[thrive:compound type=\"glucose\"][/thrive:compound] facit [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
@@ -4464,7 +4471,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/StageBase.cs:482
+#: ../src/general/StageBase.cs:486
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -4480,7 +4487,7 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/StageBase.cs:426
+#: ../src/general/StageBase.cs:430
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4757,7 +4764,7 @@ msgstr ""
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr ""
 
@@ -5496,7 +5503,7 @@ msgstr ""
 msgid "STRUCTURE"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:65
+#: ../src/awakening_stage/PlacedStructure.cs:66
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
@@ -5504,7 +5511,7 @@ msgstr ""
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:70
+#: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 

@@ -78,7 +78,10 @@
                         }
                         else
                         {
-                            keyPromptRotation = -((RotationEventArgs)args).RotationInDegrees.y;
+                            var rotationDegrees = -((RotationEventArgs)args).RotationInDegrees.y;
+                            var lerped = Mathf.LerpAngle(
+                                Mathf.Deg2Rad(keyPromptRotation), Mathf.Deg2Rad(rotationDegrees), 0.1f);
+                            keyPromptRotation = Mathf.Rad2Deg(lerped);
                         }
 
                         consumed = true;
