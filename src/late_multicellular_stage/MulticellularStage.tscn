@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/textures/background/panoramas/Epipelagic.png" type="Texture" id=9]
 [ext_resource path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 
 [sub_resource type="PanoramaSky" id=1]
@@ -33,6 +34,7 @@ PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MulticellularHUD")
 InteractableSystemPath = NodePath("InteractableSystem")
 InteractionPopupPath = NodePath("InteractablePopup")
+ProgressBarSystemPath = NodePath("ProgressBarSystem")
 SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
 WorldEnvironmentNodePath = NodePath("World/WorldEnvironment")
 
@@ -55,6 +57,8 @@ script = ExtResource( 6 )
 
 [node name="PlayerMulticellularInput" type="Node" parent="."]
 script = ExtResource( 4 )
+
+[node name="ProgressBarSystem" parent="." instance=ExtResource( 12 )]
 
 [node name="InteractableSystem" parent="." instance=ExtResource( 7 )]
 pause_mode = 1

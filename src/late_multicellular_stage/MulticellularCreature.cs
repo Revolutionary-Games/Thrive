@@ -159,6 +159,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonIgnore]
     public float ActionProgress => totalActionRequiredTime != 0 ? performedActionTime / totalActionRequiredTime : 0;
 
+    // TODO: make this creature height dependent
+    [JsonIgnore]
+    public Vector3? ExtraProgressBarWorldOffset => null;
+
     [JsonIgnore]
     public bool IsPlacingStructure => buildingTypeToPlace != null;
 

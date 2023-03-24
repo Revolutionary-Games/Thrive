@@ -228,6 +228,7 @@ public static class SpawnHelpers
 
         creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
         creature.AddToGroup(Constants.PROCESS_GROUP);
+        creature.AddToGroup(Constants.PROGRESS_ENTITY_GROUP);
 
         if (aiControlled)
             creature.AddToGroup(Constants.AI_GROUP);
