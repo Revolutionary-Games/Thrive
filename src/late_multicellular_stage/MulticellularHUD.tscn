@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" type="PackedScene" id=27]
 [ext_resource path="res://assets/textures/gui/bevel/actions/InteractAction.png" type="Texture" id=28]
 [ext_resource path="res://src/awakening_stage/gui/InventoryScreen.tscn" type="PackedScene" id=29]
+[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=30]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
@@ -469,6 +470,7 @@ AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
 AwakenConfirmPopupPath = NodePath("MoveToAwakeningConfirm")
 InteractActionPath = NodePath("ScrollContainer/HotBar/Interact")
 InventoryButtonPath = NodePath("ScrollContainer/HotBar/Inventory")
+BuildButtonPath = NodePath("ScrollContainer/HotBar/Build")
 InventoryScreenPath = NodePath("InventoryScreen")
 
 [node name="TopRight" type="MarginContainer" parent="."]
@@ -1930,6 +1932,18 @@ hint_tooltip = "TOGGLE_ENGULF"
 ActionIcon = ExtResource( 9 )
 ActionName = "g_inventory"
 
+[node name="Build" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_ENGULF"
+focus_mode = 2
+ActionIcon = ExtResource( 30 )
+ActionName = "g_build_structure"
+
 [node name="Eating" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
 visible = false
 anchor_right = 0.0
@@ -2032,6 +2046,7 @@ DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Inventory" to="." method="ForwardOpenInventory"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildPressed"]
 [connection signal="Confirmed" from="MoveToLandConfirmation" to="." method="OnMoveToLandConfirmed"]
 [connection signal="Confirmed" from="MoveToAwakeningConfirm" to="." method="OnAwakenConfirmed"]
 

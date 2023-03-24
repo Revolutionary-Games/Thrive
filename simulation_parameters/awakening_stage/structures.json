@@ -1,19 +1,26 @@
 ﻿{
   "societyCenter": {
     "Name": "STRUCTURE_SOCIETY_CENTER",
-    "WorldRepresentationScene": "res://assets/structures/SocietyCenter.tscn",
+    "WorldRepresentationScene": "res://assets/models/structures/SocietyCenter.tscn",
+    "GhostScenePath": "res://assets/models/structures/SocietyCenterGhost.tscn",
+    "ScaffoldingScenePath": "res://assets/models/structures/StructureScaffolding_20x20.tscn",
+    "BuildingIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
     "WorldSize": {
-      "x": 10,
-      "y": 5,
-      "z": 10
+      "x": 20,
+      "y": 10,
+      "z": 20
     },
     "InteractOffset": {
-      "x": -5,
-      "y": 0,
-      "z": 0
+      "x": 0,
+      "y": 1,
+      "z": -10
     },
     "RequiredResources": {
       "rock": 3,
+      "wood": 2
+    },
+    "ScaffoldingCost": {
+      "rock": 1,
       "wood": 2
     }
   }

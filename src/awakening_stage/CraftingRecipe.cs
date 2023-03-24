@@ -54,24 +54,12 @@ public class CraftingRecipe : IRegistryType
     /// <returns>Null if can craft, otherwise the material type that is missing</returns>
     public WorldResource? CanCraft(IReadOnlyDictionary<WorldResource, int> availableMaterials)
     {
-        foreach (var required in RequiredResources)
-        {
-            if (!availableMaterials.TryGetValue(required.Key, out var amount))
-                return required.Key;
-
-            if (amount < required.Value)
-                return required.Key;
-        }
-
-        return null;
+        return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, RequiredResources);
     }
 
     public bool HasEnoughResource(WorldResource resource, int availableAmount)
     {
-        if (!RequiredResources.TryGetValue(resource, out var requiredAmount))
-            return false;
-
-        return availableAmount >= requiredAmount;
+        return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, RequiredResources);
     }
 
     public void Check(string name)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -46,6 +47,9 @@ public class Equipment : RigidBody, IInteractableEntity
     public Vector3? ExtraInteractOverlayOffset => null;
 
     [JsonIgnore]
+    public string? ExtraInteractionPopupDescription => null;
+
+    [JsonIgnore]
     public bool InteractionDisabled { get; set; }
 
     [JsonIgnore]
@@ -54,6 +58,16 @@ public class Equipment : RigidBody, IInteractableEntity
     public IHarvestAction? GetHarvestingInfo()
     {
         return null;
+    }
+
+    public IEnumerable<(InteractionType Type, string? DisabledAlternativeText)>? GetExtraAvailableActions()
+    {
+        return null;
+    }
+
+    public bool PerformExtraAction(InteractionType interactionType)
+    {
+        return false;
     }
 
     public void OnDestroyed()

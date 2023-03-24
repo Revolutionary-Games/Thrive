@@ -11,3 +11,16 @@ public interface IInventoryItem
     /// </summary>
     public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }
 }
+
+public static class InventoryItemHelpers
+{
+    public static WorldResource? ResourceFromItem(this IInventoryItem item)
+    {
+        if (item is ResourceEntity resourceEntity)
+        {
+            return resourceEntity.ResourceType ?? throw new Exception("World resource with no type set");
+        }
+
+        return null;
+    }
+}
