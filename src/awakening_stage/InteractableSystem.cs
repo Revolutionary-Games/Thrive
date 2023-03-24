@@ -97,7 +97,7 @@ public class InteractableSystem : Control
 
     public IInteractableEntity? GetInteractionTarget()
     {
-        return bestInteractable?.Entity;
+        return bestInteractable?.Entity?.Value;
     }
 
     public IReadOnlyCollection<IInteractableEntity> GetAllNearbyObjects()
@@ -175,7 +175,7 @@ public class InteractableSystem : Control
         // Clear the entities from prompts that are excess
         foreach (var createdPrompt in createdKeyPromptButtons)
         {
-            if (createdPrompt.Marked || createdPrompt.Entity == null)
+            if (createdPrompt.Marked || ReferenceEquals(createdPrompt.Entity, null))
                 continue;
 
             createdPrompt.ClearEntity();
@@ -195,14 +195,16 @@ public class InteractableSystem : Control
 
         foreach (var createdPrompt in createdKeyPromptButtons)
         {
-            var entity = createdPrompt.Entity;
+            var entityWrapper = createdPrompt.Entity;
 
             // Skip the prompts that have no entity for them to use (when entity is cleared the prompts are hidden)
-            if (entity == null)
+            if (ReferenceEquals(entityWrapper, null))
                 continue;
 
             // We don't clear things each frame so we need to skip removed things for a few frames until the full update
-            if (entity.AliveMarker.Alive == false)
+            var entity = entityWrapper.Value;
+
+            if (entity == null)
             {
                 createdPrompt.ClearEntity();
                 continue;
@@ -305,7 +307,7 @@ public class InteractableSystem : Control
     private class CreatedPrompt
     {
         public readonly KeyPrompt Prompt;
-        public IInteractableEntity? Entity;
+        public EntityReference<IInteractableEntity>? Entity;
 
         public bool Marked = true;
 
@@ -315,7 +317,7 @@ public class InteractableSystem : Control
         public CreatedPrompt(KeyPrompt prompt, IInteractableEntity entity)
         {
             Prompt = prompt;
-            Entity = entity;
+            Entity = new EntityReference<IInteractableEntity>(entity);
         }
 
         public void ClearEntity()
@@ -326,10 +328,10 @@ public class InteractableSystem : Control
 
         public void SetEntity(IInteractableEntity interactable)
         {
-            if (Entity == null)
+            if (Entity?.Value == null)
                 Prompt.Visible = true;
 
-            Entity = interactable;
+            Entity = new EntityReference<IInteractableEntity>(interactable);
             Marked = true;
         }
     }
