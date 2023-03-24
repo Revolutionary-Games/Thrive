@@ -247,6 +247,9 @@ public class InteractableSystem : Control
             // TODO: Now with that IsPositionBehind check the angle check below (which doesn't really work)
             // can be probably be removed, though the priority for closer angled objects should be kept
 
+            // TODO: position smoothing somehow as when the camera moves slightly when the player wobbles, the prompts
+            // move quite a bit. Same fix should also be added to the ProgressBarSystem
+
             createdPrompt.Prompt.RectGlobalPosition = screenPosition;
 
             if (createdPrompt.Highlighted)
