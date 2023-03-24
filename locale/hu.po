@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 15:33+0200\n"
+"POT-Creation-Date: 2023-03-24 14:19+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -2517,7 +2517,7 @@ msgstr "Ellenőriz"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "MI mutációs mértéke"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:438
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:463
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr "MI mutációs mértéke"
@@ -2532,9 +2532,14 @@ msgstr "MI mutációs mértéke"
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "MI mutációs mértéke"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:428
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:453
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
+msgstr "MI mutációs mértéke"
+
+#: ../src/awakening_stage/InteractionType.cs:23
+#, fuzzy
+msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "MI mutációs mértéke"
 
 #: ../src/awakening_stage/InteractionType.cs:11
@@ -2542,7 +2547,7 @@ msgstr "MI mutációs mértéke"
 msgid "INTERACTION_HARVEST"
 msgstr "MI mutációs mértéke"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:414
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2550,7 +2555,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:391
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:416
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -4173,7 +4178,7 @@ msgstr "A membrán legalapabb formája, ami kis védelmet nyújt sérülés elle
 msgid "NOTHING_HERE"
 msgstr "Semmi nincs itt"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:412
+#: ../src/late_multicellular_stage/MulticellularStage.cs:424
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -6019,7 +6024,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:665
+#: ../src/late_multicellular_stage/MulticellularStage.cs:678
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 

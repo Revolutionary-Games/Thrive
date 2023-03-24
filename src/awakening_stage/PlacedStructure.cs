@@ -50,6 +50,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     [JsonIgnore]
     public float InteractDistanceOffset => 0;
 
+    // TODO: a separate interact offset for when constructing versus when built
     [JsonIgnore]
     public Vector3? ExtraInteractOverlayOffset =>
         Definition?.InteractOffset ?? throw new InvalidOperationException("Not initialized");
@@ -127,6 +128,26 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     public IHarvestAction? GetHarvestingInfo()
     {
         return null;
+    }
+
+    public IEnumerable<(InteractionType Type, string? DisabledAlternativeText)>? GetExtraAvailableActions()
+    {
+        if (!Completed)
+            return null;
+
+        return new (InteractionType Type, string? DisabledAlternativeText)[]
+        {
+            (InteractionType.FoundSettlement, null),
+        };
+    }
+
+    public bool PerformExtraAction(InteractionType interactionType)
+    {
+        if (!Completed || interactionType != InteractionType.FoundSettlement)
+            return false;
+
+        // TODO: communicate to the stage somehow the founding of the settlement
+        return true;
     }
 
     public IEnumerable<InventorySlotData>? GetWantedItems(IInventory availableItems)

@@ -69,6 +69,16 @@ public class PlaceholderTree : StaticBody, IInteractableEntity, IHarvestAction
         return this;
     }
 
+    public IEnumerable<(InteractionType Type, string? DisabledAlternativeText)>? GetExtraAvailableActions()
+    {
+        return null;
+    }
+
+    public bool PerformExtraAction(InteractionType interactionType)
+    {
+        return false;
+    }
+
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;

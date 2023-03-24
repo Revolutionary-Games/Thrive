@@ -462,6 +462,17 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                     null :
                     TranslationServer.Translate("INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"));
         }
+
+        // Add the extra interactions the entity provides
+        var extraInteractions = target.GetExtraAvailableActions();
+
+        if (extraInteractions != null)
+        {
+            foreach (var (interaction, disabledText) in extraInteractions)
+            {
+                yield return (interaction, disabledText == null, disabledText);
+            }
+        }
     }
 
     public bool AttemptInteraction(IInteractableEntity target, InteractionType interactionType)
@@ -475,7 +486,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         {
             case InteractionType.Pickup:
                 return PickupItem(target);
+            case InteractionType.Harvest:
+                return this.HarvestEntity(target);
             case InteractionType.Craft:
+            {
                 if (RequestCraftingInterfaceFor == null)
                 {
                     // AI should directly use the crafting methods to create the crafter products
@@ -487,9 +501,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 // Request the crafting interface to be opened with the target pre-selected
                 RequestCraftingInterfaceFor.Invoke(this, target);
                 return true;
-            case InteractionType.Harvest:
-                return this.HarvestEntity(target);
+            }
+
             case InteractionType.DepositResources:
+            {
                 // TODO: instead of closing, just update the interaction popup to allow finishing construction
                 // immediately
                 if (target is IAcceptsResourceDeposit deposit)
@@ -519,8 +534,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
                 GD.PrintErr("Deposit action failed due to bad target or currently held items");
                 return false;
+            }
 
             case InteractionType.Construct:
+            {
                 if (target is IConstructable { Completed: false, HasRequiredResourcesToConstruct: true } constructable)
                 {
                     // Start action for constructing, the action when finished will pick what it does based on the
@@ -530,9 +547,26 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 }
 
                 return false;
+            }
+
             default:
+            {
+                // This might be an extra interaction
+                var extraInteractions = target.GetExtraAvailableActions();
+
+                if (extraInteractions != null)
+                {
+                    foreach (var (extraInteraction, _) in extraInteractions)
+                    {
+                        if (extraInteraction == interactionType)
+                            return target.PerformExtraAction(extraInteraction);
+                    }
+                }
+
+                // Unknown action type and not an extra action provided by the target
                 GD.PrintErr($"Unimplemented action handling for {interactionType}");
                 return false;
+            }
         }
     }
 

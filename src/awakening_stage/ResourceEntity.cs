@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -61,5 +62,15 @@ public class ResourceEntity : RigidBody, IInteractableEntity
     {
         // TODO: some resources should probably be breakable into different parts
         return null;
+    }
+
+    public IEnumerable<(InteractionType Type, string? DisabledAlternativeText)>? GetExtraAvailableActions()
+    {
+        return null;
+    }
+
+    public bool PerformExtraAction(InteractionType interactionType)
+    {
+        return false;
     }
 }

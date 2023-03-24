@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 15:33+0200\n"
-"PO-Revision-Date: 2023-03-23 15:35+0200\n"
+"POT-Creation-Date: 2023-03-24 14:19+0200\n"
+"PO-Revision-Date: 2023-03-24 14:29+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2453,7 +2453,7 @@ msgstr "Inspector"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Finish Construction"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:438
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:463
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr "Finish Construction (missing required materials)"
 
@@ -2465,15 +2465,19 @@ msgstr "Craft..."
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Deposit Materials"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:428
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:453
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Deposit Materials (no suitable carried items)"
+
+#: ../src/awakening_stage/InteractionType.cs:23
+msgid "INTERACTION_FOUND_SETTLEMENT"
+msgstr "Found a Settlement"
 
 #: ../src/awakening_stage/InteractionType.cs:11
 msgid "INTERACTION_HARVEST"
 msgstr "Harvest"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:414
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr "Harvest (MISSING EQUIPMENT: {0})"
 
@@ -2481,7 +2485,7 @@ msgstr "Harvest (MISSING EQUIPMENT: {0})"
 msgid "INTERACTION_PICK_UP"
 msgstr "Pick up"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:391
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:416
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Pick up (FULL)"
 
@@ -4079,7 +4083,7 @@ msgstr "The most basic form of membrane, it has little protection against damage
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:412
+#: ../src/late_multicellular_stage/MulticellularStage.cs:424
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Nothing to interact with"
 
@@ -5867,7 +5871,7 @@ msgstr "Simple Stone Tools"
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Building Society Center"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:665
+#: ../src/late_multicellular_stage/MulticellularStage.cs:678
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Unlocked technology: {0}"
 

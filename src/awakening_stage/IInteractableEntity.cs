@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   A game entity the player can interact with
@@ -44,4 +45,21 @@ public interface IInteractableEntity : IEntity, IPlayerReadableName, IInventoryI
     /// </summary>
     /// <returns>Null if can't be harvested or the harvesting related info if can be</returns>
     public IHarvestAction? GetHarvestingInfo();
+
+    /// <summary>
+    ///   Returns custom actions supported by this entity
+    /// </summary>
+    /// <returns>
+    ///   List of tuples (or null if nothing is supported) where the tuple contains the type and then an alternative
+    ///   text to show to the user, if the action is disabled. So if the string is not null, then the action must be
+    ///   handled as not available.
+    /// </returns>
+    public IEnumerable<(InteractionType Type, string? DisabledAlternativeText)>? GetExtraAvailableActions();
+
+    /// <summary>
+    ///   Performs an action returned by <see cref="GetExtraAvailableActions"/>
+    /// </summary>
+    /// <param name="interactionType">The type of interaction to perform</param>
+    /// <returns>True when the action succeeds, false if it failed for some reason</returns>
+    public bool PerformExtraAction(InteractionType interactionType);
 }
