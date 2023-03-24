@@ -390,6 +390,16 @@ public static class Constants
 
     public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
 
+    public const float WORLD_PROGRESS_BAR_FULL_UPDATE_INTERVAL = 0.1f;
+    public const float WORLD_PROGRESS_BAR_MAX_DISTANCE = 15.0f;
+    public const float WORLD_PROGRESS_BAR_MAX_COUNT = 15;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_WIDTH = 125;
+    public const float WORLD_PROGRESS_BAR_MIN_WIDTH_TO_SHOW = 20;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_HEIGHT = 18;
+    public const float WORLD_PROGRESS_BAR_MIN_HEIGHT = 6;
+    public const float WORLD_PROGRESS_BAR_DISTANCE_SIZE_SCALE = 1.0f;
+    public const float WORLD_PROGRESS_DEFAULT_Y_OFFSET = 3.5f;
+
     public const float INVENTORY_DRAG_START_ALLOWANCE = 0.15f;
 
     /// <summary>
@@ -890,6 +900,11 @@ public static class Constants
     public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;
 
     /// <summary>
+    ///   Squared distance after which a timed action is canceled due to moving too much
+    /// </summary>
+    public const float ACTION_CANCEL_DISTANCE = 5;
+
+    /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
     ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
     /// </summary>
@@ -993,6 +1008,11 @@ public static class Constants
     public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
 
     public const string INTERACTABLE_GROUP = "interactable";
+
+    /// <summary>
+    ///   Group for entities that can show a progress bar above them in the GUI
+    /// </summary>
+    public const string PROGRESS_ENTITY_GROUP = "progress";
 
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";

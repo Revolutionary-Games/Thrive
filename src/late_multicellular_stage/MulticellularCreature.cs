@@ -12,7 +12,8 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory
+public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory,
+    IStructureSelectionReceiver, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
 
@@ -25,6 +26,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     private Compound atp = null!;
     private Compound glucose = null!;
 
+    private StructureDefinition? buildingTypeToPlace;
+
     [JsonProperty]
     private CreatureAI? ai;
 
@@ -33,6 +36,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
 #pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
+
+    private Spatial? buildingToPlaceGhost;
 #pragma warning restore CA2213
 
     // TODO: a real system for determining the hand and equipment slots
@@ -49,10 +54,27 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     };
 
     [JsonProperty]
+    private EntityReference<IInteractableEntity>? actionTarget;
+
+    [JsonProperty]
+    private float performedActionTime;
+
+    [JsonProperty]
+    private float totalActionRequiredTime;
+
+    /// <summary>
+    ///   Where an action was started, used to detect if the creature moves too much and the action should be canceled
+    /// </summary>
+    [JsonProperty]
+    private Vector3 startedActionPosition;
+
+    [JsonProperty]
     private float targetSwimLevel;
 
     [JsonProperty]
     private float upDownSwimSpeed = 3;
+
+    private bool actionHasSucceeded;
 
     // TODO: implement
     [JsonIgnore]
@@ -131,6 +153,19 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
 
+    [JsonProperty]
+    public bool ActionInProgress { get; private set; }
+
+    [JsonIgnore]
+    public float ActionProgress => totalActionRequiredTime != 0 ? performedActionTime / totalActionRequiredTime : 0;
+
+    // TODO: make this creature height dependent
+    [JsonIgnore]
+    public Vector3? ExtraProgressBarWorldOffset => null;
+
+    [JsonIgnore]
+    public bool IsPlacingStructure => buildingTypeToPlace != null;
+
     public override void _Ready()
     {
         base._Ready();
@@ -163,6 +198,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         // TODO: implement growth
         OnReproductionStatus?.Invoke(this, true);
+
+        UpdateActionStatus(delta);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -189,6 +226,13 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * delta * 50);
             }
+        }
+
+        // This is in physics process as this follows the player physics entity
+        if (IsPlacingStructure && buildingToPlaceGhost != null)
+        {
+            // Position the preview
+            buildingToPlaceGhost.GlobalTransform = GetStructurePlacementLocation();
         }
     }
 
@@ -296,7 +340,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // {
         //     Hitpoints = 0.0f;
         //     Kill();
-        // TODO: kill method needs to call DropAll()
+        // TODO: kill method needs to call DropAll() and CancelStructurePlacing
         // }
     }
 
@@ -357,8 +401,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     /// <returns>Enumerator of the possible actions</returns>
     /// <remarks>
     ///   <para>
-    ///     Somehow make sure when the AI can use this to that the text overrides don't need to be generated as those
-    ///     will waste performance for no reason. Maybe we just need two variants of the method?
+    ///     TODO: Somehow make sure when the AI can use this to that the text overrides don't need to be generated
+    ///     as those will waste performance for no reason. Maybe we just need two variants of the method?
+    ///     Also the player when checking if a selected action is still allowed, will result in extra text lookups.
     ///   </para>
     /// </remarks>
     public IEnumerable<(InteractionType Interaction, bool Enabled, string? TextOverride)> CalculatePossibleActions(
@@ -397,6 +442,37 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 yield return (InteractionType.Harvest, false, message);
             }
         }
+
+        if (target is IAcceptsResourceDeposit { DepositActionAllowed: true } deposit)
+        {
+            bool takesItems = deposit.GetWantedItems(this) != null;
+
+            yield return (InteractionType.DepositResources, takesItems,
+                takesItems ?
+                    null :
+                    TranslationServer.Translate("INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"));
+        }
+
+        if (target is IConstructable { Completed: false } constructable)
+        {
+            bool canBeBuilt = constructable.HasRequiredResourcesToConstruct;
+
+            yield return (InteractionType.Construct, canBeBuilt,
+                canBeBuilt ?
+                    null :
+                    TranslationServer.Translate("INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"));
+        }
+
+        // Add the extra interactions the entity provides
+        var extraInteractions = target.GetExtraAvailableActions();
+
+        if (extraInteractions != null)
+        {
+            foreach (var (interaction, disabledText) in extraInteractions)
+            {
+                yield return (interaction, disabledText == null, disabledText);
+            }
+        }
     }
 
     public bool AttemptInteraction(IInteractableEntity target, InteractionType interactionType)
@@ -410,7 +486,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         {
             case InteractionType.Pickup:
                 return PickupItem(target);
+            case InteractionType.Harvest:
+                return this.HarvestEntity(target);
             case InteractionType.Craft:
+            {
                 if (RequestCraftingInterfaceFor == null)
                 {
                     // AI should directly use the crafting methods to create the crafter products
@@ -422,11 +501,72 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 // Request the crafting interface to be opened with the target pre-selected
                 RequestCraftingInterfaceFor.Invoke(this, target);
                 return true;
-            case InteractionType.Harvest:
-                return this.HarvestEntity(target);
+            }
+
+            case InteractionType.DepositResources:
+            {
+                // TODO: instead of closing, just update the interaction popup to allow finishing construction
+                // immediately
+                if (target is IAcceptsResourceDeposit deposit)
+                {
+                    if (!deposit.AutoTakesResources)
+                    {
+                        // TODO: allow selecting items
+                        GD.Print("TODO: selecting items to deposit interface is not done");
+                    }
+
+                    var itemsToDeposit = deposit.GetWantedItems(this);
+
+                    if (itemsToDeposit != null)
+                    {
+                        var slots = itemsToDeposit.ToList();
+                        deposit.DepositItems(slots.Select(i => i.ContainedItem).WhereNotNull());
+
+                        foreach (var slot in slots)
+                        {
+                            if (!DeleteItem(slot))
+                                GD.PrintErr("Failed to delete deposited item");
+                        }
+
+                        return true;
+                    }
+                }
+
+                GD.PrintErr("Deposit action failed due to bad target or currently held items");
+                return false;
+            }
+
+            case InteractionType.Construct:
+            {
+                if (target is IConstructable { Completed: false, HasRequiredResourcesToConstruct: true } constructable)
+                {
+                    // Start action for constructing, the action when finished will pick what it does based on the
+                    // target entity
+                    StartAction(target, constructable.TimedActionDuration);
+                    return true;
+                }
+
+                return false;
+            }
+
             default:
+            {
+                // This might be an extra interaction
+                var extraInteractions = target.GetExtraAvailableActions();
+
+                if (extraInteractions != null)
+                {
+                    foreach (var (extraInteraction, _) in extraInteractions)
+                    {
+                        if (extraInteraction == interactionType)
+                            return target.PerformExtraAction(extraInteraction);
+                    }
+                }
+
+                // Unknown action type and not an extra action provided by the target
                 GD.PrintErr($"Unimplemented action handling for {interactionType}");
                 return false;
+            }
         }
     }
 
@@ -517,6 +657,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             return false;
         }
 
+        return DeleteItem(slot);
+    }
+
+    public bool DeleteItem(InventorySlotData slot)
+    {
         if (slot.ContainedItem == null)
             return false;
 
@@ -571,6 +716,102 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         if (to.ContainedItem != null)
             SetItemPositionInSlot(to, to.ContainedItem.EntityNode);
+    }
+
+    public void CancelCurrentAction()
+    {
+        if (!ActionInProgress)
+            return;
+
+        totalActionRequiredTime = 0;
+
+        // Reset the shown progress
+        var target = actionTarget?.Value;
+        if (target != null)
+        {
+            performedActionTime = 0;
+            UpdateActionTargetProgress(target);
+        }
+
+        ActionInProgress = false;
+        actionTarget = null;
+    }
+
+    public void OnStructureTypeSelected(StructureDefinition structureDefinition)
+    {
+        // Just to be safe, cancel existing placing
+        CancelStructurePlacing();
+
+        buildingTypeToPlace = structureDefinition;
+
+        // Show the ghost where it is about to be placed
+        buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instance<Spatial>();
+
+        // TODO: should we add the ghost to our child or keep it in the world?
+        GetParent().AddChild(buildingToPlaceGhost);
+
+        buildingToPlaceGhost.GlobalTransform = GetStructurePlacementLocation();
+
+        // TODO: disallow placing when overlaps with physics objects (and show ghost with red tint)
+    }
+
+    public void AttemptStructurePlace()
+    {
+        if (buildingTypeToPlace == null)
+            return;
+
+        // TODO: check placement location being valid
+        var location = GetStructurePlacementLocation();
+
+        // Take the resources the construction takes
+        var usedResources = this.FindRequiredResources(buildingTypeToPlace.ScaffoldingCost);
+
+        if (usedResources == null)
+        {
+            GD.Print("Not enough resources to start structure after all");
+
+            // TODO: play invalid placement sound
+            return;
+        }
+
+        foreach (var usedResource in usedResources)
+        {
+            if (!DeleteItem(usedResource))
+            {
+                GD.PrintErr("Resource for placing structure consuming failed");
+                return;
+            }
+        }
+
+        // Create the structure entity
+        var structureScene = SpawnHelpers.LoadStructureScene();
+
+        SpawnHelpers.SpawnStructure(buildingTypeToPlace, location, GetParent(), structureScene);
+
+        // Stop showing the ghost
+        CancelStructurePlacing();
+    }
+
+    public void CancelStructurePlacing()
+    {
+        if (!IsPlacingStructure)
+            return;
+
+        buildingToPlaceGhost?.QueueFree();
+        buildingToPlaceGhost = null;
+
+        buildingTypeToPlace = null;
+    }
+
+    public bool GetAndConsumeActionSuccess()
+    {
+        if (actionHasSucceeded)
+        {
+            actionHasSucceeded = false;
+            return true;
+        }
+
+        return false;
     }
 
     private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)
@@ -647,5 +888,92 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
 
         node.Translation = offset;
+    }
+
+    private void StartAction(IInteractableEntity target, float totalDuration)
+    {
+        if (ActionInProgress)
+            CancelCurrentAction();
+
+        ActionInProgress = true;
+        actionTarget = new EntityReference<IInteractableEntity>(target);
+        performedActionTime = 0;
+        totalActionRequiredTime = totalDuration;
+        startedActionPosition = GlobalTranslation;
+    }
+
+    private void UpdateActionStatus(float delta)
+    {
+        if (!ActionInProgress)
+            return;
+
+        // If moved too much, cancel
+        if (GlobalTranslation.DistanceSquaredTo(startedActionPosition) > Constants.ACTION_CANCEL_DISTANCE)
+        {
+            // TODO: play an action cancel sound
+            CancelCurrentAction();
+            return;
+        }
+
+        // If target is gone, cancel the action
+        var target = actionTarget?.Value;
+        if (target == null)
+        {
+            // TODO: play an action cancel sound
+            CancelCurrentAction();
+            return;
+        }
+
+        // Update the time to update the progress value
+        performedActionTime += delta;
+
+        if (performedActionTime >= totalActionRequiredTime)
+        {
+            // Action is now complete
+            SetActionTargetAsCompleted(target);
+            ActionInProgress = false;
+            actionTarget = null;
+        }
+        else
+        {
+            UpdateActionTargetProgress(target);
+        }
+    }
+
+    private void UpdateActionTargetProgress(IInteractableEntity target)
+    {
+        if (target is IProgressReportableActionSource progressReportable)
+        {
+            progressReportable.ReportActionProgress(ActionProgress);
+        }
+    }
+
+    private void SetActionTargetAsCompleted(IInteractableEntity target)
+    {
+        if (target is ITimedActionSource actionSource)
+        {
+            actionSource.OnFinishTimeTakingAction();
+        }
+        else
+        {
+            GD.PrintErr("Cannot report finished action to unknown entity type");
+        }
+    }
+
+    private Transform GetStructurePlacementLocation()
+    {
+        if (buildingTypeToPlace == null)
+            throw new InvalidOperationException("No structure type selected");
+
+        var relative = new Vector3(0, 0, 1) * buildingTypeToPlace.WorldSize.z * 1.3f;
+
+        // TODO: a raycast to get the structure on the ground
+        // Also for player creature, taking the camera direction into account instead of the creature rotation would
+        // be better
+        var transform = GlobalTransform;
+        var rotation = transform.basis.Quat();
+
+        var worldTransform = new Transform(new Basis(rotation), transform.origin + rotation.Xform(relative));
+        return worldTransform;
     }
 }

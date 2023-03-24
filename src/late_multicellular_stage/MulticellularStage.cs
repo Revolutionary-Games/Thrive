@@ -20,6 +20,12 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     public NodePath InteractionPopupPath = null!;
 
     [Export]
+    public NodePath ProgressBarSystemPath = null!;
+
+    [Export]
+    public NodePath SelectBuildingPopupPath = null!;
+
+    [Export]
     public NodePath WorldEnvironmentNodePath = null!;
 
     [JsonProperty]
@@ -29,6 +35,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 #pragma warning disable CA2213
     private InteractableSystem interactableSystem = null!;
     private InteractablePopup interactionPopup = null!;
+
+    private ProgressBarSystem progressBarSystem = null!;
+
+    private SelectBuildingPopup selectBuildingPopup = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
 #pragma warning restore CA2213
@@ -70,6 +80,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         interactableSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
         interactionPopup.OnInteractionSelectedHandler += ForwardInteractionSelectionToPlayer;
 
+        progressBarSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
+
         SetupStage();
     }
 
@@ -85,6 +97,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
         interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);
+        progressBarSystem = GetNode<ProgressBarSystem>(ProgressBarSystemPath);
+        selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
@@ -112,16 +126,20 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         if (Player != null)
         {
+            var playerPosition = Player.GlobalTranslation;
+
             if (Player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
             {
                 // TODO: player interaction reach modifier from the species
-                interactableSystem.UpdatePlayerPosition(Player.GlobalTranslation, 0);
+                interactableSystem.UpdatePlayerPosition(playerPosition, 0);
                 interactableSystem.SetActive(true);
             }
             else
             {
                 interactableSystem.SetActive(false);
             }
+
+            progressBarSystem.UpdatePlayerPosition(playerPosition);
         }
 
         // TODO: notify metrics
@@ -413,6 +431,34 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // TODO: somehow refresh the inventory screen if it is open and the player decided to do a pick up action
     }
 
+    public void PerformBuildOrOpenMenu()
+    {
+        if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
+            return;
+
+        if (Player.IsPlacingStructure)
+        {
+            Player.AttemptStructurePlace();
+            return;
+        }
+
+        selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
+
+        // TODO: when a structure is being placed, should we have some kind of indicator on screen what to press to
+        // cancel?
+    }
+
+    public bool CancelBuildingPlaceIfInProgress()
+    {
+        if (Player?.IsPlacingStructure != true)
+        {
+            return false;
+        }
+
+        Player.CancelStructurePlacing();
+        return true;
+    }
+
     public bool TogglePlayerInventory()
     {
         if (Player == null)
@@ -567,6 +613,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             {
                 InteractableSystemPath.Dispose();
                 InteractionPopupPath.Dispose();
+                ProgressBarSystemPath.Dispose();
+                SelectBuildingPopupPath.Dispose();
                 WorldEnvironmentNodePath.Dispose();
             }
 
