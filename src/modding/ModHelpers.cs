@@ -50,44 +50,44 @@ public static class ModHelpers
                 result = TranslationServer.Translate("MOD_LIST_VALID");
                 break;
             case ModLoader.CheckErrorStatus.IncompatibleVersion:
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_VERSION"),
-                    offendingMod.Name);
+                result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_VERSION").FormatSafe(offendingMod.Name);
                 break;
             case ModLoader.CheckErrorStatus.DependencyNotFound:
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES"), offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES").FormatSafe(offendingMod.Name,
                     otherMod.Name) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
                 break;
             case ModLoader.CheckErrorStatus.RequiredModsNotFound:
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS"), offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS").FormatSafe(offendingMod.Name,
                     otherMod.Name) + "\n";
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX"), otherMod.Name);
+                result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX").FormatSafe(otherMod.Name);
                 break;
             case ModLoader.CheckErrorStatus.InvalidDependencyOrder:
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX"),
-                    offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
             case ModLoader.CheckErrorStatus.IncompatibleMod:
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD"), offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX"),
-                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
+                result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX")
+                    .FormatSafe(string.IsNullOrWhiteSpace(otherMod.Name) ?
+                        otherMod.InternalName :
+                        otherMod.Name);
                 break;
             case ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE"), offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX"),
-                    offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
             case ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER"), offendingMod.Name,
+                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER").FormatSafe(offendingMod.Name,
                     otherMod.Name) + "\n";
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER_FIX"),
-                    offendingMod.Name, otherMod.Name);
+                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER_FIX")
+                    .FormatSafe(offendingMod.Name,
+                        otherMod.Name);
                 break;
         }
 
