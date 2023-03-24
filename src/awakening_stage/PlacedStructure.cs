@@ -80,13 +80,16 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     public bool CanBeCarried => false;
 
     [JsonIgnore]
+    public bool DepositActionAllowed => !Completed && missingResourcesToFullyConstruct != null;
+
+    [JsonIgnore]
     public bool AutoTakesResources => true;
 
     [JsonIgnore]
     public bool HasRequiredResourcesToConstruct => missingResourcesToFullyConstruct == null;
 
     [JsonIgnore]
-    public float ConstructionDuration => 3;
+    public float TimedActionDuration => 5;
 
     public override void _Ready()
     {
@@ -170,9 +173,13 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
                 missingResourcesToFullyConstruct[resource] = missingAmount;
             }
         }
+
+        // Set to null when empty to mark all items deposited
+        if (missingResourcesToFullyConstruct.Count < 1)
+            missingResourcesToFullyConstruct = null;
     }
 
-    public void ReportConstructionActionProgress(float progress)
+    public void ReportActionProgress(float progress)
     {
         if (Definition == null)
             throw new InvalidOperationException("Not initialized");
@@ -182,7 +189,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
         visualsParent.Translation = new Vector3(0, Definition.WorldSize.y * (-0.9f + 0.9f * progress), 0);
     }
 
-    public void OnFinishConstruction()
+    public void OnFinishTimeTakingAction()
     {
         if (missingResourcesToFullyConstruct != null)
             GD.PrintErr("Structure force completed even though it still needs resources");

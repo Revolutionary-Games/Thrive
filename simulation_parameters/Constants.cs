@@ -890,6 +890,11 @@ public static class Constants
     public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;
 
     /// <summary>
+    ///   Squared distance after which a timed action is canceled due to moving too much
+    /// </summary>
+    public const float ACTION_CANCEL_DISTANCE = 5;
+
+    /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
     ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
     /// </summary>

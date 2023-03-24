@@ -54,6 +54,21 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     };
 
     [JsonProperty]
+    private EntityReference<IInteractableEntity>? actionTarget;
+
+    [JsonProperty]
+    private float performedActionTime;
+
+    [JsonProperty]
+    private float totalActionRequiredTime;
+
+    /// <summary>
+    ///   Where an action was started, used to detect if the creature moves too much and the action should be canceled
+    /// </summary>
+    [JsonProperty]
+    private Vector3 startedActionPosition;
+
+    [JsonProperty]
     private float targetSwimLevel;
 
     [JsonProperty]
@@ -138,8 +153,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
 
+    [JsonProperty]
     public bool ActionInProgress { get; private set; }
-    public float ActionProgress { get; private set; }
+
+    [JsonIgnore]
+    public float ActionProgress => totalActionRequiredTime != 0 ? performedActionTime / totalActionRequiredTime : 0;
 
     [JsonIgnore]
     public bool IsPlacingStructure => buildingTypeToPlace != null;
@@ -176,6 +194,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         // TODO: implement growth
         OnReproductionStatus?.Invoke(this, true);
+
+        UpdateActionStatus(delta);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -377,8 +397,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     /// <returns>Enumerator of the possible actions</returns>
     /// <remarks>
     ///   <para>
-    ///     Somehow make sure when the AI can use this to that the text overrides don't need to be generated as those
-    ///     will waste performance for no reason. Maybe we just need two variants of the method?
+    ///     TODO: Somehow make sure when the AI can use this to that the text overrides don't need to be generated
+    ///     as those will waste performance for no reason. Maybe we just need two variants of the method?
+    ///     Also the player when checking if a selected action is still allowed, will result in extra text lookups.
     ///   </para>
     /// </remarks>
     public IEnumerable<(InteractionType Interaction, bool Enabled, string? TextOverride)> CalculatePossibleActions(
@@ -418,7 +439,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             }
         }
 
-        if (target is IAcceptsResourceDeposit deposit)
+        if (target is IAcceptsResourceDeposit { DepositActionAllowed: true } deposit)
         {
             bool takesItems = deposit.GetWantedItems(this) != null;
 
@@ -428,7 +449,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                     TranslationServer.Translate("INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"));
         }
 
-        if (target is IConstructable constructable && !constructable.Completed)
+        if (target is IConstructable { Completed: false } constructable)
         {
             bool canBeBuilt = constructable.HasRequiredResourcesToConstruct;
 
@@ -496,10 +517,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 return false;
 
             case InteractionType.Construct:
-                if (target is IConstructable constructable && !constructable.Completed &&
-                    constructable.HasRequiredResourcesToConstruct)
+                if (target is IConstructable { Completed: false, HasRequiredResourcesToConstruct: true } constructable)
                 {
-                    // TODO: start action for constructing
+                    // Start action for constructing, the action when finished will pick what it does based on the
+                    // target entity
+                    StartAction(target, constructable.TimedActionDuration);
                     return true;
                 }
 
@@ -658,6 +680,25 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             SetItemPositionInSlot(to, to.ContainedItem.EntityNode);
     }
 
+    public void CancelCurrentAction()
+    {
+        if (!ActionInProgress)
+            return;
+
+        totalActionRequiredTime = 0;
+
+        // Reset the shown progress
+        var target = actionTarget?.Value;
+        if (target != null)
+        {
+            performedActionTime = 0;
+            UpdateActionTargetProgress(target);
+        }
+
+        ActionInProgress = false;
+        actionTarget = null;
+    }
+
     public void OnStructureTypeSelected(StructureDefinition structureDefinition)
     {
         // Just to be safe, cancel existing placing
@@ -809,6 +850,76 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         var offset = new Vector3(-0.5f, 2.7f, 1.5f + 2.5f * slot.Id);
 
         node.Translation = offset;
+    }
+
+    private void StartAction(IInteractableEntity target, float totalDuration)
+    {
+        if (ActionInProgress)
+            CancelCurrentAction();
+
+        ActionInProgress = true;
+        actionTarget = new EntityReference<IInteractableEntity>(target);
+        performedActionTime = 0;
+        totalActionRequiredTime = totalDuration;
+        startedActionPosition = GlobalTranslation;
+    }
+
+    private void UpdateActionStatus(float delta)
+    {
+        if (!ActionInProgress)
+            return;
+
+        // If moved too much, cancel
+        if (GlobalTranslation.DistanceSquaredTo(startedActionPosition) > Constants.ACTION_CANCEL_DISTANCE)
+        {
+            // TODO: play an action cancel sound
+            CancelCurrentAction();
+            return;
+        }
+
+        // If target is gone, cancel the action
+        var target = actionTarget?.Value;
+        if (target == null)
+        {
+            // TODO: play an action cancel sound
+            CancelCurrentAction();
+            return;
+        }
+
+        // Update the time to update the progress value
+        performedActionTime += delta;
+
+        if (performedActionTime >= totalActionRequiredTime)
+        {
+            // Action is now complete
+            SetActionTargetAsCompleted(target);
+            ActionInProgress = false;
+            actionTarget = null;
+        }
+        else
+        {
+            UpdateActionTargetProgress(target);
+        }
+    }
+
+    private void UpdateActionTargetProgress(IInteractableEntity target)
+    {
+        if (target is IProgressReportableActionSource progressReportable)
+        {
+            progressReportable.ReportActionProgress(ActionProgress);
+        }
+    }
+
+    private void SetActionTargetAsCompleted(IInteractableEntity target)
+    {
+        if (target is ITimedActionSource actionSource)
+        {
+            actionSource.OnFinishTimeTakingAction();
+        }
+        else
+        {
+            GD.PrintErr("Cannot report finished action to unknown entity type");
+        }
     }
 
     private Transform GetStructurePlacementLocation()
