@@ -8,7 +8,7 @@ public class RecipeListItem : Button
     public Color UncraftableItemColor = new(0.5f, 0.5f, 0.5f);
 
     [Export]
-    public int MarginAroundLabel = 3;
+    public int MarginAroundLabel = 6;
 
     private readonly StringBuilder topLevelStringBuilder = new();
     private readonly StringBuilder materialsStringBuilder = new();
