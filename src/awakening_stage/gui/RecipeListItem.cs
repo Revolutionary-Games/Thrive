@@ -8,7 +8,7 @@ public class RecipeListItem : Button
     public Color UncraftableItemColor = new(0.5f, 0.5f, 0.5f);
 
     [Export]
-    public int MarginAroundLabel = 3;
+    public int MarginAroundLabel = 6;
 
     private readonly StringBuilder topLevelStringBuilder = new();
     private readonly StringBuilder materialsStringBuilder = new();
@@ -104,35 +104,8 @@ public class RecipeListItem : Button
         }
 
         // Setup the materials list display
-        bool first = true;
-
-        foreach (var tuple in displayedRecipe.RequiredResources)
-        {
-            if (!first)
-            {
-                materialsStringBuilder.Append(", ");
-            }
-
-            availableMaterials.TryGetValue(tuple.Key, out var availableAmount);
-
-            if (!displayedRecipe.HasEnoughResource(tuple.Key, availableAmount))
-            {
-                // Show not enough icon
-                materialsStringBuilder.Append("[thrive:icon]ConditionInsufficient[/thrive:icon]");
-            }
-            else
-            {
-                // Has enough
-                materialsStringBuilder.Append("[thrive:icon]ConditionFulfilled[/thrive:icon]");
-            }
-
-            materialsStringBuilder.Append(tuple.Value);
-
-            // Icon for this material
-            materialsStringBuilder.Append($"[thrive:resource type=\"{tuple.Key.InternalName}\"][/thrive:resource]");
-
-            first = false;
-        }
+        ResourceAmountHelpers.CreateRichTextForResourceAmounts(displayedRecipe.RequiredResources, availableMaterials,
+            materialsStringBuilder);
 
         topLevelStringBuilder.Append(TranslationServer.Translate("CRAFTING_RECIPE_DISPLAY")
             .FormatSafe(displayedRecipe.Name, materialsStringBuilder));

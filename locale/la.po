@@ -7,38 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-17 15:32+0200\n"
-"PO-Revision-Date: 2021-01-03 09:13+0000\n"
-"Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
+"POT-Creation-Date: 2023-03-24 15:05+0200\n"
+"PO-Revision-Date: 2023-03-24 12:38+0000\n"
+"Last-Translator: AliquisDeNusquam <culhaneb9@gmail.com>\n"
 "Language-Team: Latin <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/la/>\n"
 "Language: la\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D motus modus:"
 
-#: ../simulation_parameters/common/input_options.json:196
-#, fuzzy
+#: ../simulation_parameters/common/input_options.json:200
 msgid "3D_EDITOR"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "3D Editor"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "3D_MOVEMENT"
-msgstr ""
+msgstr "3D Motus"
 
 #: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D motus modus:"
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
-msgstr ""
+msgstr "Potestates"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
@@ -46,39 +45,41 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
-msgstr ""
+msgstr "Abortum est."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Profundi regio"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:278
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:288
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
+msgstr "Movere ad Gradum Excitantem. In promptu cum semel satis mentis potentem habes (textus coporis generem cum axonibus)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Actio obstat donec alia est in progressionem"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
-msgstr ""
+msgstr "Activus"
 
 #: ../src/general/OptionsMenu.tscn:1092
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "Usitatae probabiliter novae sententiae:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Activa microbia cursabunt atque volvent dum nihil usitatis accidit.\n"
+"Sessilia microbia immota erint et manebunt circumjectui mutare."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -86,65 +87,70 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Addere novum botonem relegationis"
 
 #: ../src/general/NewGameSettings.tscn:1222
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Provectum"
 
 #: ../src/general/NewGameSettings.tscn:1217
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Aperire systemae provectae conspectum"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:90
+#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aerobicum Nitrogenii Fingentem"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1398
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
-msgstr ""
+msgstr "Actores"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
 msgid "AGENTS_COLON"
-msgstr ""
+msgstr "Actores:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 msgid "AGENT_NAME"
-msgstr ""
+msgstr "{0} Actor"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Hostilies microbia praedam trans distantias maiores persequetur \n"
+"et magis probabiliter pugnare praedatores sunt quando appugnanda. \n"
+"Tranquilla microbia alios non trans distantias maiores proeliabitur \n"
+"et minus probabiliter toxica contra predatores uti."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Hostilis"
 
 #: ../src/general/NewGameSettings.tscn:464
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "AI mutationis celeritas"
 
 #: ../src/general/NewGameSettings.tscn:509
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
+msgstr "(velocitas ad quam AI species mutantes)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:372
 msgid "ALL"
-msgstr ""
+msgstr "Omnes"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "Permittere speciebus non migrare (si nulla migratio bona cognoscitur)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
+msgstr "Permittere speciebus non mutare (si nulla mutatio bona cognoscitur)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "Generales Census Mundorum Omnium"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 msgid "ALL_WORLDS_STATISTICS"
@@ -152,14 +158,14 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/general/OptionsMenu.tscn:739
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1175
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
@@ -559,11 +565,12 @@ msgstr ""
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:86
+#: ../simulation_parameters/common/input_options.json:90
 msgid "CAMERA"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:64
+#: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
@@ -577,7 +584,7 @@ msgstr ""
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
@@ -694,7 +701,7 @@ msgstr ""
 msgid "CHANGE_THE_SYMMETRY"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:251
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
@@ -704,7 +711,7 @@ msgstr ""
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:271
 msgid "CHEAT_MENU"
 msgstr ""
 
@@ -928,7 +935,7 @@ msgstr ""
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1025
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
@@ -1065,11 +1072,11 @@ msgstr ""
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1160
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1126
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr ""
 
@@ -1081,19 +1088,19 @@ msgstr ""
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1085
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1106
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/RecipeListItem.cs:137
+#: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
 msgid "CRAFTING_RECIPE_DISPLAY"
 msgstr ""
@@ -1106,7 +1113,7 @@ msgstr ""
 msgid "CRAFTING_RESULTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1535
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -1283,7 +1290,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:159
 msgid "DELETE_ORGANELLE"
 msgstr ""
 
@@ -1671,7 +1678,7 @@ msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si v
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr ""
@@ -1696,7 +1703,7 @@ msgstr ""
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:255
 msgid "ENABLE_EDITOR"
 msgstr ""
 
@@ -1736,7 +1743,7 @@ msgstr ""
 msgid "ENTITY_LABEL"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:559
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
 #: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr ""
@@ -1875,7 +1882,7 @@ msgstr ""
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/general/StageBase.cs:558
+#: ../src/general/StageBase.cs:562
 msgid "EXTINCT_IN_PATCH"
 msgstr ""
 
@@ -1962,7 +1969,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr ""
@@ -2144,7 +2151,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1123
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 #: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
@@ -2204,7 +2211,7 @@ msgstr ""
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
 
@@ -2238,7 +2245,7 @@ msgstr ""
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr ""
 
@@ -2246,11 +2253,11 @@ msgstr ""
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:192
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:496
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:498
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -2275,12 +2282,12 @@ msgstr ""
 msgid "HSV"
 msgstr ""
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:44
+#: ../src/microbe_stage/gui/HUDMessages.cs:46
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1279
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 #: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
@@ -2338,6 +2345,10 @@ msgstr ""
 msgid "INPUTS"
 msgstr ""
 
+#: ../simulation_parameters/common/input_options.json:80
+msgid "INPUT_NAME_BUILD_STRUCTURE"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:72
 msgid "INPUT_NAME_INTERACTION"
 msgstr ""
@@ -2354,15 +2365,35 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
+#: ../src/awakening_stage/InteractionType.cs:17
+msgid "INTERACTION_CONSTRUCT"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:463
+msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
+msgstr ""
+
 #: ../src/awakening_stage/InteractionType.cs:8
 msgid "INTERACTION_CRAFT"
+msgstr ""
+
+#: ../src/awakening_stage/InteractionType.cs:14
+msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:453
+msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
+msgstr ""
+
+#: ../src/awakening_stage/InteractionType.cs:23
+msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:11
 msgid "INTERACTION_HARVEST"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:394
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2370,7 +2401,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:371
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:416
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2445,7 +2476,7 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1331
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 #: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
@@ -2872,7 +2903,7 @@ msgstr ""
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:883
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr ""
@@ -3217,7 +3248,7 @@ msgstr ""
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:220
+#: ../src/microbe_stage/MicrobeSpecies.cs:214
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
@@ -3252,9 +3283,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] et mus movere. [thrive:input]g_fire_toxin[/thrive:input] conjicere [thrive:compound type=\"oxytoxy\"][/thrive:compound] si toxicum vacuole habes. [thrive:input]g_toggle_engulf[/thrive:input] modum absorbentem mutare. Despectum tuum cum muris rota ampliare aut minuere potes."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
@@ -3290,44 +3320,46 @@ msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si v
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Cellula tua utitur [thrive:compound type=\"atp\"][/thrive:compound] velut vis origo sua, si ea deficit morieris."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Solvere editorem ac reseminare vivus satis diu remanere requiris. Legens [thrive:compound type=\"ammonia\"][/thrive:compound] (orange cloud) etiam [thrive:compound type=\"phosphates\"][/thrive:compound] (purple cloud) incrementum accelerant."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Quoque cellulas, bacterias, partes fereas, et partes cellularum, quas parviores ac te, absorbere potes per prementem [thrive:input]g_toggle_engulf[/thrive:input]. Hoc requirit addititium [thrive:compound type=\"atp\"][/thrive:compound] atque te tardat. Non obliviscere premere [thrive:input]g_toggle_engulf[/thrive:input] tempus secundum desistere abdorbentem."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Osmoregulatio requirit [thrive:compound type=\"atp\"][/thrive:compound], quod significat largior cellula tua est, plus mitochondriam, metabolosomes or rusticyanin (or cytoplasm, which does glycolysis) requiris vitare amittentem [thrive:compound type=\"atp\"][/thrive:compound] dum stativus es."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Illa organella multa in editorem tibi evolvere sunt, permittentes comprensionem amplam generum diversorum ludentis."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Si numerum tuum incolarum ad nihil cadit, extinctus fies."
 
 #: ../simulation_parameters/common/help_texts.json:42
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
+"Nubes variae compositae sunt:\n"
+"\n"
+"Albus – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Flavus – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Arantius – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Purpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Ferrugineus – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"\n"
+"[thrive:compound type=\"glucose\"][/thrive:compound] facit [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
@@ -3364,12 +3396,12 @@ msgstr ""
 msgid "MISC"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:278
+#: ../simulation_parameters/common/input_options.json:282
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:188
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr ""
 
@@ -3595,7 +3627,7 @@ msgstr ""
 msgid "MOVE_BACKWARDS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:180
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr ""
 
@@ -3607,7 +3639,7 @@ msgstr ""
 msgid "MOVE_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_ORGANELLE"
 msgstr ""
 
@@ -3619,7 +3651,7 @@ msgstr ""
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1569
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1571
 msgid "MOVE_TO_LAND"
 msgstr ""
 
@@ -3631,23 +3663,23 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2014
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2028
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2013
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2009
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2023
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2008
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -3661,7 +3693,7 @@ msgid "MP_COST"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1509
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
 #: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr ""
@@ -3843,7 +3875,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:406
+#: ../src/late_multicellular_stage/MulticellularStage.cs:424
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4015,7 +4047,7 @@ msgstr ""
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "OPEN_ORGANELLE_MENU"
 msgstr ""
 
@@ -4187,7 +4219,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1458
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
 #: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr ""
@@ -4221,23 +4253,23 @@ msgstr ""
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_DOWN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "PAN_CAMERA_RESET"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
@@ -4382,7 +4414,7 @@ msgid "PER_SECOND_SLASH"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1227
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 #: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
@@ -4404,7 +4436,7 @@ msgstr ""
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PLACE_ORGANELLE"
 msgstr ""
 
@@ -4439,7 +4471,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/StageBase.cs:482
+#: ../src/general/StageBase.cs:486
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -4455,7 +4487,7 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/StageBase.cs:426
+#: ../src/general/StageBase.cs:430
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4487,7 +4519,7 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1609
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "POPULATION_CAPITAL"
 msgstr ""
@@ -4516,7 +4548,7 @@ msgstr ""
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:938
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr ""
@@ -4577,11 +4609,11 @@ msgstr ""
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "QUICK_LOAD"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "QUICK_SAVE"
 msgstr ""
 
@@ -4633,7 +4665,7 @@ msgstr ""
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "REDO"
 msgstr ""
 
@@ -4732,6 +4764,10 @@ msgstr ""
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
+#: ../src/awakening_stage/PlacedStructure.cs:69
+msgid "RESOURCE_AMOUNT_SHORT"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
 msgstr ""
@@ -4795,11 +4831,11 @@ msgstr ""
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "ROTATE_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "ROTATE_RIGHT"
 msgstr ""
 
@@ -4999,7 +5035,7 @@ msgid "SEA_FLOOR"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1977
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr ""
@@ -5059,6 +5095,10 @@ msgstr ""
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
+#: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
+msgid "SELECT_STRUCTURE_POPUP_TITLE"
+msgstr ""
+
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:84
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
@@ -5083,7 +5123,7 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:314
 msgid "SHOW_HELP"
 msgstr ""
 
@@ -5225,7 +5265,7 @@ msgstr ""
 msgid "SPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_AMMONIA"
 msgstr ""
 
@@ -5237,11 +5277,11 @@ msgstr ""
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SPAWN_GLUCOSE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:267
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
@@ -5463,6 +5503,26 @@ msgstr ""
 msgid "STRUCTURE"
 msgstr ""
 
+#: ../src/awakening_stage/PlacedStructure.cs:66
+msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
+msgstr ""
+
+#: ../src/awakening_stage/PlacedStructure.cs:40
+msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
+msgstr ""
+
+#: ../src/awakening_stage/PlacedStructure.cs:71
+msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
+msgstr ""
+
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+msgid "STRUCTURE_SELECTION_MENU_ENTRY"
+msgstr ""
+
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
+msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr ""
@@ -5503,15 +5563,15 @@ msgstr ""
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr ""
 
@@ -5519,19 +5579,19 @@ msgstr ""
 msgid "SYSREQ"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:238
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:242
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 msgid "TAB_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 msgid "TAB_SWITCH_RIGHT"
 msgstr ""
 
@@ -5539,7 +5599,7 @@ msgstr ""
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "TAKE_SCREENSHOT"
 msgstr ""
 
@@ -5551,7 +5611,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:630
+#: ../src/late_multicellular_stage/MulticellularStage.cs:678
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -5563,7 +5623,7 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:827
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
 #: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr ""
@@ -5748,31 +5808,32 @@ msgstr ""
 msgid "TOGGLE_BINDING"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1915
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1929
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "TOGGLE_FPS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:318
 msgid "TOGGLE_FULLSCREEN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "TOGGLE_METRICS"
 msgstr ""
 
@@ -5780,7 +5841,7 @@ msgstr ""
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:286
 msgid "TOGGLE_PAUSE"
 msgstr ""
 
@@ -5980,7 +6041,7 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "UNDO"
 msgstr ""
 
@@ -6317,10 +6378,10 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:98
 msgid "ZOOM_IN"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_OUT"
 msgstr ""

@@ -15,6 +15,9 @@ public class InteractablePopup : Control
     [Export]
     public NodePath CancelButtonPath = null!;
 
+    [Export]
+    public NodePath ExtraInfoLabelPath = null!;
+
 #pragma warning disable CA2213
     [Export]
     public Font InteractionButtonFont = null!;
@@ -22,6 +25,8 @@ public class InteractablePopup : Control
     private CustomDialog popup = null!;
     private Container buttonsContainer = null!;
     private Button cancelButton = null!;
+
+    private Label extraInfoLabel = null!;
 #pragma warning restore CA2213
 
     private IInteractableEntity? openedFor;
@@ -38,6 +43,7 @@ public class InteractablePopup : Control
         popup = GetNode<CustomDialog>(PopupPath);
         buttonsContainer = GetNode<Container>(ButtonsContainerPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
+        extraInfoLabel = GetNode<Label>(ExtraInfoLabelPath);
 
         // This is invisible in the editor to make it nicer to edit things
         Visible = true;
@@ -48,8 +54,22 @@ public class InteractablePopup : Control
     {
         openedFor = entity;
 
+        var extraText = openedFor.ExtraInteractionPopupDescription;
+
+        if (!string.IsNullOrEmpty(extraText))
+        {
+            extraInfoLabel.Text = extraText;
+            extraInfoLabel.Visible = true;
+        }
+        else
+        {
+            extraInfoLabel.Visible = false;
+        }
+
         buttonsContainer.QueueFreeChildren();
         Button? firstButton = null;
+
+        // TODO: add a selection wheel as an alternative for more sane controller input
 
         foreach (var (interactionType, enabled, textOverride) in availableInteractions)
         {
@@ -105,6 +125,7 @@ public class InteractablePopup : Control
                 PopupPath.Dispose();
                 ButtonsContainerPath.Dispose();
                 CancelButtonPath.Dispose();
+                ExtraInfoLabelPath.Dispose();
             }
         }
 

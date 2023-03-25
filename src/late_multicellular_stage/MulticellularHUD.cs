@@ -28,6 +28,9 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     public NodePath InventoryButtonPath = null!;
 
     [Export]
+    public NodePath BuildButtonPath = null!;
+
+    [Export]
     public NodePath InventoryScreenPath = null!;
 
 #pragma warning disable CA2213
@@ -38,6 +41,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     private ActionButton interactAction = null!;
     private ActionButton inventoryButton = null!;
+    private ActionButton buildButton = null!;
 
     private InventoryScreen inventoryScreen = null!;
 #pragma warning restore CA2213
@@ -57,6 +61,9 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     [Signal]
     public delegate void OnOpenInventoryPressed();
 
+    [Signal]
+    public delegate void OnOpenBuildPressed();
+
     [JsonIgnore]
     public bool IsInventoryOpen => inventoryScreen.IsOpen;
 
@@ -73,6 +80,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
         interactAction = GetNode<ActionButton>(InteractActionPath);
         inventoryButton = GetNode<ActionButton>(InventoryButtonPath);
+        buildButton = GetNode<ActionButton>(BuildButtonPath);
 
         inventoryScreen = GetNode<InventoryScreen>(InventoryScreenPath);
     }
@@ -192,6 +200,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         bool isAwakened = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
         interactAction.Visible = isAwakened;
         inventoryButton.Visible = isAwakened;
+        buildButton.Visible = isAwakened;
 
         // TODO: figure out why this doesn't display correctly in the UI
         inventoryButton.Pressed = IsInventoryOpen;
@@ -209,6 +218,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
                 AwakenConfirmPopupPath.Dispose();
                 InteractActionPath.Dispose();
                 InventoryButtonPath.Dispose();
+                BuildButtonPath.Dispose();
                 InventoryScreenPath.Dispose();
             }
         }
@@ -293,5 +303,10 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     private void ForwardOpenInventory()
     {
         EmitSignal(nameof(OnOpenInventoryPressed));
+    }
+
+    private void ForwardBuildPressed()
+    {
+        EmitSignal(nameof(OnOpenBuildPressed));
     }
 }

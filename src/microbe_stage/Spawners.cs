@@ -228,6 +228,7 @@ public static class SpawnHelpers
 
         creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
         creature.AddToGroup(Constants.PROCESS_GROUP);
+        creature.AddToGroup(Constants.PROGRESS_ENTITY_GROUP);
 
         if (aiControlled)
             creature.AddToGroup(Constants.AI_GROUP);
@@ -300,6 +301,26 @@ public static class SpawnHelpers
 
         entity.AddToGroup(Constants.INTERACTABLE_GROUP);
         return entity;
+    }
+
+    public static PlacedStructure SpawnStructure(StructureDefinition structureDefinition, Transform location,
+        Node worldNode, PackedScene entityScene)
+    {
+        var structureEntity = entityScene.Instance<PlacedStructure>();
+
+        worldNode.AddChild(structureEntity);
+        structureEntity.Init(structureDefinition);
+
+        structureEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+
+        structureEntity.Transform = location;
+
+        return structureEntity;
+    }
+
+    public static PackedScene LoadStructureScene()
+    {
+        return GD.Load<PackedScene>("res://src/awakening_stage/PlacedStructure.tscn");
     }
 
     private static Quat RandomRotationForResourceEntity(Random random)

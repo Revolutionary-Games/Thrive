@@ -151,6 +151,18 @@ public class PlayerMulticellularInput : NodeWithInput
         stage.TogglePlayerInventory();
     }
 
+    [RunOnKeyDown("g_build_structure")]
+    public void OpenBuildMenu()
+    {
+        stage.PerformBuildOrOpenMenu();
+    }
+
+    [RunOnKeyDown("ui_cancel")]
+    public bool CancelBuild()
+    {
+        return stage.CancelBuildingPlaceIfInProgress();
+    }
+
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {

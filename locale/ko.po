@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-17 15:32+0200\n"
+"POT-Creation-Date: 2023-03-24 15:05+0200\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "3D_EDITOR"
 msgstr "3차원 편집기"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:172
 msgid "3D_MOVEMENT"
 msgstr "3차원 이동"
 
@@ -51,12 +51,12 @@ msgstr "중지됨."
 msgid "ABYSSOPELAGIC"
 msgstr "심해원양성"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:278
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:288
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1584
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -103,7 +103,7 @@ msgstr "새로운 키 배치 추가"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "호기성 질소 고정"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1398
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "물질"
@@ -167,7 +167,7 @@ msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1175
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
@@ -589,11 +589,12 @@ msgstr "탄산 칼슘"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 탄산 칼슘으로 만든 강한 껍질을 가지고 있습니다. 손상에 쉽게 저항 할 수 있으며 변형되지 않는 데 더 적은 에너지가 필요합니다. 이 두터운 막의 단점은 세포가 훨씬 느려지고 자원을 흡수하는 데 시간이 걸린다는 것입니다."
 
-#: ../simulation_parameters/common/input_options.json:86
+#: ../simulation_parameters/common/input_options.json:90
 msgid "CAMERA"
 msgstr "카메라"
 
-#: ../src/awakening_stage/gui/InteractablePopup.tscn:49
+#: ../src/awakening_stage/gui/InteractablePopup.tscn:64
+#: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
@@ -608,7 +609,7 @@ msgstr "취소"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "확인"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "현재 동작 취소"
@@ -730,7 +731,7 @@ msgstr "설명:"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "연대 변경"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:251
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
@@ -740,7 +741,7 @@ msgstr "치트"
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "치트 키 활성화"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:271
 msgid "CHEAT_MENU"
 msgstr "치트 메뉴"
 
@@ -991,7 +992,7 @@ msgstr "새로운 키 배치 추가"
 msgid "COMPILED_AT_COLON"
 msgstr "화합물:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1025
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
@@ -1140,11 +1141,11 @@ msgstr ""
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1160
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1126
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
 #, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "번영했습니다!"
@@ -1157,19 +1158,19 @@ msgstr ""
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1085
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1106
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/RecipeListItem.cs:137
+#: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
 #, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
@@ -1184,7 +1185,7 @@ msgstr ""
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo 결과:"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1535
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -1379,7 +1380,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "이전 저장을 삭제합니까?"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:159
 msgid "DELETE_ORGANELLE"
 msgstr "세포 소기관 삭제"
 
@@ -1783,7 +1784,7 @@ msgstr "농담 하나, 강섬모충속과 짚신벌레속은 수십 년 간 연�
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(게임 안에서 무작위로 생성되는 비밀)"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:107
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "편집기"
@@ -1819,7 +1820,7 @@ msgstr "편집기 활성화"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "선택된 저장은 호환되지 않습니다"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:255
 msgid "ENABLE_EDITOR"
 msgstr "편집기 활성화"
 
@@ -1862,7 +1863,7 @@ msgstr ""
 msgid "ENTITY_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:559
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
 #: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "환경"
@@ -2012,7 +2013,7 @@ msgstr "지역에서 멸종"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "이전에 존재했던 다른 99%의 종처럼, 당신의 종 또한 멸종했습니다. 나머지는 당신의 자리에 들어가 번영을 누리겠지만, 당신은 아닙니다. 당신은 잊혀질 것이고, 진화의 실패한 표상이 될 것입니다."
 
-#: ../src/general/StageBase.cs:558
+#: ../src/general/StageBase.cs:562
 msgid "EXTINCT_IN_PATCH"
 msgstr "지역에서 멸종"
 
@@ -2104,7 +2105,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "{0}세대 끝내기"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "독소 공격"
@@ -2295,7 +2296,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1123
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 #: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
@@ -2358,7 +2359,7 @@ msgstr ""
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} 천"
@@ -2394,7 +2395,7 @@ msgstr "(높은 값일수록 더 나은 성능)"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(값이 커질수록 성능이 저하됩니다)"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "눌러서 패닝 및 회전 모드 전환"
 
@@ -2402,11 +2403,11 @@ msgstr "눌러서 패닝 및 회전 모드 전환"
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "눌러서 무리 명령 메뉴를 보이기"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:192
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "눌러서 커서 보이기"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:496
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:498
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -2432,12 +2433,12 @@ msgstr "생명력:"
 msgid "HSV"
 msgstr ""
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:44
+#: ../src/microbe_stage/gui/HUDMessages.cs:46
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1279
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 #: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
@@ -2498,6 +2499,11 @@ msgstr "새로운 키 배치 추가"
 msgid "INPUTS"
 msgstr "입력"
 
+#: ../simulation_parameters/common/input_options.json:80
+#, fuzzy
+msgid "INPUT_NAME_BUILD_STRUCTURE"
+msgstr "한 세대 끝내기"
+
 #: ../simulation_parameters/common/input_options.json:72
 #, fuzzy
 msgid "INPUT_NAME_INTERACTION"
@@ -2516,9 +2522,32 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
+#: ../src/awakening_stage/InteractionType.cs:17
+#, fuzzy
+msgid "INTERACTION_CONSTRUCT"
+msgstr "변이 점수"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:463
+msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
+msgstr ""
+
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
 msgid "INTERACTION_CRAFT"
+msgstr "변이 점수"
+
+#: ../src/awakening_stage/InteractionType.cs:14
+#, fuzzy
+msgid "INTERACTION_DEPOSIT_RESOURCES"
+msgstr "변이 점수"
+
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:453
+msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
+msgstr ""
+
+#: ../src/awakening_stage/InteractionType.cs:23
+#, fuzzy
+msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "변이 점수"
 
 #: ../src/awakening_stage/InteractionType.cs:11
@@ -2526,7 +2555,7 @@ msgstr "변이 점수"
 msgid "INTERACTION_HARVEST"
 msgstr "변이 점수"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:394
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2534,7 +2563,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:371
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:416
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2614,7 +2643,7 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1331
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 #: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
@@ -3055,7 +3084,7 @@ msgstr "새로운 키 배치 추가"
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:883
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "빛"
@@ -3478,7 +3507,7 @@ msgstr "미생물 자유 편집기"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:220
+#: ../src/microbe_stage/MicrobeSpecies.cs:214
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3649,12 +3678,12 @@ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적�
 msgid "MISC"
 msgstr "기타"
 
-#: ../simulation_parameters/common/input_options.json:278
+#: ../simulation_parameters/common/input_options.json:282
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "기타"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:188
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "기타 3D 단계"
 
@@ -3896,7 +3925,7 @@ msgstr "각 종의 이주 시도 횟수"
 msgid "MOVE_BACKWARDS"
 msgstr "뒤로 이동"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:180
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "아래로 움직이거나 쭈그리기"
 
@@ -3908,7 +3937,7 @@ msgstr "앞으로 이동"
 msgid "MOVE_LEFT"
 msgstr "왼쪽으로 이동"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_ORGANELLE"
 msgstr "세포 소기관 이동"
 
@@ -3920,7 +3949,7 @@ msgstr "오른쪽으로 이동"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "아무 지역으로 이주"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1569
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1571
 msgid "MOVE_TO_LAND"
 msgstr "육지로 이주"
 
@@ -3932,23 +3961,23 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "이 지역으로 이주"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:176
 msgid "MOVE_UP_OR_JUMP"
 msgstr "위로 움직이거나 뛰어오르기"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2014
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2028
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2013
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2009
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2023
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2008
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -3962,7 +3991,7 @@ msgid "MP_COST"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1509
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
 #: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "점액"
@@ -4158,7 +4187,7 @@ msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기�
 msgid "NOTHING_HERE"
 msgstr "아무것도 없음"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:406
+#: ../src/late_multicellular_stage/MulticellularStage.cs:424
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4351,7 +4380,7 @@ msgstr "로그 폴더 열기"
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:131
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "세포 소기관 메뉴 열기"
 
@@ -4534,7 +4563,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1458
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
 #: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
@@ -4572,23 +4601,23 @@ msgstr "세포 진행률"
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_DOWN"
 msgstr "아래쪽으로 시야 이동"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_LEFT"
 msgstr "왼쪽으로 시야 이동"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "PAN_CAMERA_RESET"
 msgstr "카메라 초기화"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_RIGHT"
 msgstr "오른쪽으로 시야 이동"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_UP"
 msgstr "위쪽으로 시야 이동"
 
@@ -4744,7 +4773,7 @@ msgid "PER_SECOND_SLASH"
 msgstr "/초"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1227
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 #: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
@@ -4766,7 +4795,7 @@ msgstr "물리적 상태"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "물리 저항"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PLACE_ORGANELLE"
 msgstr "세포 기관 배치"
 
@@ -4803,7 +4832,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(플레이어가 죽을 때마다 플레이어 종의 개체수가 감소하는 정도)"
 
-#: ../src/general/StageBase.cs:482
+#: ../src/general/StageBase.cs:486
 msgid "PLAYER_DIED"
 msgstr "플레이어 사망함"
 
@@ -4822,7 +4851,7 @@ msgstr "플레이어 사망함"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "플레이어 사망함"
 
-#: ../src/general/StageBase.cs:426
+#: ../src/general/StageBase.cs:430
 msgid "PLAYER_REPRODUCED"
 msgstr "플레이어 복제됨"
 
@@ -4855,7 +4884,7 @@ msgstr "새 게임 시 미생물 인트로 재생"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "현재 설정으로 실행"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1609
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
@@ -4887,7 +4916,7 @@ msgstr "재개"
 msgid "PRESSURE"
 msgstr "압력."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:938
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "압력."
@@ -4948,11 +4977,11 @@ msgstr "원형질"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "QUICK_LOAD"
 msgstr "빠른 불러오기"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "QUICK_SAVE"
 msgstr "빠른 저장"
 
@@ -5009,7 +5038,7 @@ msgstr ""
 msgid "REDDIT_TOOLTIP"
 msgstr "재개"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:123
 msgid "REDO"
 msgstr "다시 실행"
 
@@ -5117,6 +5146,11 @@ msgstr "해상도:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "자원 흡수 속도"
 
+#: ../src/awakening_stage/PlacedStructure.cs:69
+#, fuzzy
+msgid "RESOURCE_AMOUNT_SHORT"
+msgstr "압력."
+
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 #, fuzzy
 msgid "RESOURCE_ROCK"
@@ -5188,11 +5222,11 @@ msgstr ""
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "세포막 강도가 높을수록 피해에 더 견딜 수 있지만, 세포를 더욱 움직이기 힘들게 할 것입니다."
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:115
 msgid "ROTATE_LEFT"
 msgstr "왼쪽으로 회전"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:111
 msgid "ROTATE_RIGHT"
 msgstr "오른쪽으로 회전"
 
@@ -5417,7 +5451,7 @@ msgid "SEA_FLOOR"
 msgstr "해저"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1977
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "점액 분비"
@@ -5484,6 +5518,10 @@ msgstr "선택됨:"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
+#: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
+msgid "SELECT_STRUCTURE_POPUP_TITLE"
+msgstr ""
+
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:84
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
@@ -5508,7 +5546,7 @@ msgstr "효과음 음량"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:314
 msgid "SHOW_HELP"
 msgstr "도움말 보기"
 
@@ -5672,7 +5710,7 @@ msgstr ""
 msgid "SPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_AMMONIA"
 msgstr "암모니아 배치"
 
@@ -5684,11 +5722,11 @@ msgstr ""
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SPAWN_GLUCOSE"
 msgstr "포도당 배치"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:267
 msgid "SPAWN_PHOSPHATES"
 msgstr "인산염 배치"
 
@@ -5925,6 +5963,26 @@ msgstr "구조의"
 msgid "STRUCTURE"
 msgstr "구조"
 
+#: ../src/awakening_stage/PlacedStructure.cs:66
+msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
+msgstr ""
+
+#: ../src/awakening_stage/PlacedStructure.cs:40
+msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
+msgstr ""
+
+#: ../src/awakening_stage/PlacedStructure.cs:71
+msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
+msgstr ""
+
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+msgid "STRUCTURE_SELECTION_MENU_ENTRY"
+msgstr ""
+
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
+msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr ""
@@ -5966,15 +6024,15 @@ msgstr ""
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "전방 카메라 보기로 전환"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "우측 카메라 보기로 전환"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "상향 카메라 보기로 전환"
 
@@ -5982,20 +6040,20 @@ msgstr "상향 카메라 보기로 전환"
 msgid "SYSREQ"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:238
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:242
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "왼쪽으로 회전"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "오른쪽으로 회전"
@@ -6004,7 +6062,7 @@ msgstr "오른쪽으로 회전"
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "TAKE_SCREENSHOT"
 msgstr "스크린샷 촬영"
 
@@ -6016,7 +6074,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:630
+#: ../src/late_multicellular_stage/MulticellularStage.cs:678
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6028,7 +6086,7 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr "온도"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:827
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
 #: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "온도."
@@ -6220,31 +6278,32 @@ msgstr "크기:"
 msgid "TOGGLE_BINDING"
 msgstr "결합 모드 켜고 끄기"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "디버깅 패널 켜고 끄기"
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1915
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1929
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "삼키기 전환"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "TOGGLE_FPS"
 msgstr "FPS 표시 전환"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:318
 msgid "TOGGLE_FULLSCREEN"
 msgstr "전체화면 전환"
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD 켜고 끄기"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "TOGGLE_METRICS"
 msgstr "수치 표시 켜고 끄기"
 
@@ -6252,7 +6311,7 @@ msgstr "수치 표시 켜고 끄기"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:286
 msgid "TOGGLE_PAUSE"
 msgstr "일시 정지"
 
@@ -6540,7 +6599,7 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr "수중 동굴"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:119
 msgid "UNDO"
 msgstr "실행 취소"
 
@@ -6910,11 +6969,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:98
 msgid "ZOOM_IN"
 msgstr "확대"
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_OUT"
 msgstr "축소"
 

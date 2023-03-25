@@ -650,6 +650,11 @@ public class SimulationParameters : Node
             entry.Value.Resolve();
         }
 
+        foreach (var entry in structures)
+        {
+            entry.Value.Resolve();
+        }
+
         foreach (var entry in technologies)
         {
             entry.Value.Resolve(this);

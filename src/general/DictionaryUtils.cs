@@ -61,6 +61,23 @@ public static class DictionaryUtils
     }
 
     /// <summary>
+    ///   Creates a new merged dictionary with summed keys
+    /// </summary>
+    public static Dictionary<T, int> AsMerged<T>(this Dictionary<T, int> items1, Dictionary<T, int> items2)
+    {
+        var result = items1.CloneShallow();
+
+        foreach (var entry in items2)
+        {
+            result.TryGetValue(entry.Key, out var existing);
+
+            result[entry.Key] = entry.Value + existing;
+        }
+
+        return result;
+    }
+
+    /// <summary>
     ///   Divide all values in a dictionary
     /// </summary>
     /// <param name="dictionary">Dictionary to divide the values in.</param>

@@ -53,10 +53,15 @@
     <Compile Include="src\awakening_stage\EquipmentSlot.cs" />
     <Compile Include="src\awakening_stage\EquipmentSlotType.cs" />
     <Compile Include="src\awakening_stage\gui\RecipeListItem.cs" />
+    <Compile Include="src\awakening_stage\gui\SelectBuildingPopup.cs" />
+    <Compile Include="src\awakening_stage\IAcceptsResourceDeposit.cs" />
+    <Compile Include="src\awakening_stage\IActionProgressSource.cs" />
     <Compile Include="src\awakening_stage\IAvailableRecipes.cs" />
     <Compile Include="src\awakening_stage\ICharacterInventory.cs" />
+    <Compile Include="src\awakening_stage\IConstructable.cs" />
     <Compile Include="src\awakening_stage\IHarvestAction.cs" />
     <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
+    <Compile Include="src\awakening_stage\IInventory.cs" />
     <Compile Include="src\awakening_stage\IInventoryItem.cs" />
     <Compile Include="src\awakening_stage\gui\InteractablePopup.cs" />
     <Compile Include="src\awakening_stage\InteractableSystem.cs" />
@@ -66,6 +71,11 @@
     <Compile Include="src\awakening_stage\gui\InventoryScreen.cs" />
     <Compile Include="src\awakening_stage\InventorySlotCategory.cs" />
     <Compile Include="src\awakening_stage\InventorySlotData.cs" />
+    <Compile Include="src\awakening_stage\IProgressReportableActionSource.cs" />
+    <Compile Include="src\awakening_stage\IStructureSelectionReceiver.cs" />
+    <Compile Include="src\awakening_stage\ITimedActionSource.cs" />
+    <Compile Include="src\awakening_stage\PlacedStructure.cs" />
+    <Compile Include="src\awakening_stage\ResourceAmountHelpers.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
     <Compile Include="src\awakening_stage\StructureDefinition.cs" />
     <Compile Include="src\awakening_stage\TechWeb.cs" />
@@ -206,6 +216,7 @@
     <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
     <Compile Include="src\late_multicellular_stage\MovementMode.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularSpeciesType.cs" />
+    <Compile Include="src\late_multicellular_stage\ProgressBarSystem.cs" />
     <Compile Include="src\late_multicellular_stage\ReproductionLocation.cs" />
     <Compile Include="src\microbe_stage\AvailableUpgrade.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
