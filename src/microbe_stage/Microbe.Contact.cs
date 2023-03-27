@@ -610,7 +610,7 @@ public partial class Microbe
             throw new InvalidOperationException("Microbe must be initialized first");
 
         var organellePositions = new List<Vector2>();
-        var hasMultihexOrganelles = false;
+        bool hasMultihexOrganelles = false;
 
         foreach (var entry in organelles.Organelles)
         {

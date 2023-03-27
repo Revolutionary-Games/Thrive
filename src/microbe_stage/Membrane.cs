@@ -419,7 +419,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
                 -cellDimensions));
         }
 
-        // Update the membrane points
+        // Get new membrane points
         vertices2D.Clear();
         vertices2D.AddRange(GenerateMembranePoints(startingBuffer));
 
@@ -473,8 +473,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
         InitializeMesh();
         ApplyAllMaterialParameters();
     }
-
-    // Vector2 GetMovementForCellWall(Vector2 target, Vector2 closestOrganelle);
 
     /// <summary>
     ///   Cheaper version of contains for absorbing stuff.Calculates a
@@ -651,7 +649,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
             Constants.MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX :
             Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
 
-        // Move all the points in the buffer close to organelles.
+        // Move all the points in the buffer close to organelles
         for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
             var closestOrganelle = FindClosestOrganelles(startingBuffer[i]);
@@ -663,20 +661,23 @@ public class Membrane : MeshInstance, IComputedMembraneData
         }
 
         float circumference = 0.0f;
-        for (int i = 0, end = startingBuffer.Count; i < end; i++)
+
+        for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
             circumference += (startingBuffer[(i + 1) % end] - startingBuffer[i]).Length();
         }
 
         var newBuffer = new List<Vector2>();
         var lastAddedPoint = startingBuffer[0];
+
         newBuffer.Add(lastAddedPoint);
+
         float gap = circumference / startingBuffer.Count;
         float distanceToLastAddedPoint = 0.0f;
         float distanceToLastPassedPoint = 0.0f;
 
         // Go around the membrane and place points evenly in a second buffer.
-        for (int i = 0, end = startingBuffer.Count; i < end; i++)
+        for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
             var currentPoint = startingBuffer[i];
             var nextPoint = startingBuffer[(i + 1) % end];
@@ -687,17 +688,17 @@ public class Membrane : MeshInstance, IComputedMembraneData
             {
                 var direction = (nextPoint - currentPoint).Normalized();
                 var movement = direction * (gap - distanceToLastAddedPoint + distanceToLastPassedPoint);
+
                 lastAddedPoint = currentPoint + movement;
+
                 newBuffer.Add(lastAddedPoint);
 
-                if (newBuffer.Count == end)
-                {
+                if (newBuffer.Count >= end)
                     break;
-                }
 
                 distanceToLastPassedPoint = (lastAddedPoint - currentPoint).Length();
                 distanceToLastAddedPoint = 0.0f;
-                i--;
+                --i;
             }
             else
             {
@@ -716,7 +717,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
             * heightMultiplier;
 
         // Make the membrane wavier
-        for (int i = 0, end = newBuffer.Count; i < end; i++)
+        for (int i = 0, end = newBuffer.Count; i < end; ++i)
         {
             var point = newBuffer[i];
             var nextPoint = newBuffer[(i + 1) % end];
@@ -725,8 +726,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
             // Turn 90 degrees
             direction = new Vector2(-direction.y, direction.x);
 
-            float movement = Mathf.Sin(waveFrequency * i) * waveHeight;
-            newBuffer[i] = point + direction * movement;
+            var movement = direction * Mathf.Sin(waveFrequency * i) * waveHeight;
+
+            newBuffer[i] = point + movement;
         }
 
         return newBuffer;
