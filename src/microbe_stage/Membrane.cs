@@ -439,7 +439,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
         if (Type.CellWall)
         {
             height = 0.05f;
-            multiplier = Mathf.Pi;
         }
 
         vertices[writeIndex] = new Vector3(0, height / 2, 0);
