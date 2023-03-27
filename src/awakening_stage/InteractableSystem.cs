@@ -214,12 +214,13 @@ public class InteractableSystem : Control
             var position = entityTransform.origin +
                 new Vector3(0, Constants.INTERACTION_BUTTON_DEFAULT_Y_OFFSET, 0);
 
-            var extraOffset = entity.ExtraInteractOverlayOffset;
+            var extraOffset = entity.ExtraInteractionCenterOffset;
 
             if (extraOffset != null)
             {
                 // Extra offset is relative to a non-rotated state of the object, so we need to correct that here
-                position += entityTransform.basis.Xform(extraOffset.Value);
+                position += InteractableEntityHelpers.RotateExtraInteractionOffset(extraOffset.Value,
+                    entityTransform.basis);
             }
 
             if (camera.IsPositionBehind(position))

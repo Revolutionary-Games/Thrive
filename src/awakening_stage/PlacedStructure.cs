@@ -54,7 +54,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
     // TODO: a separate interact offset for when constructing versus when built
     [JsonIgnore]
-    public Vector3? ExtraInteractOverlayOffset =>
+    public Vector3? ExtraInteractionCenterOffset =>
         Definition?.InteractOffset ?? throw new InvalidOperationException("Not initialized");
 
     public string? ExtraInteractionPopupDescription

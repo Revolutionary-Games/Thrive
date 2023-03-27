@@ -51,6 +51,18 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     private MulticellularSpeciesType previousPlayerStage;
 
     [JsonProperty]
+    private float moveToSocietyTimer;
+
+    [JsonProperty]
+    private Transform societyCameraAnimationStart = Transform.Identity;
+
+    [JsonProperty]
+    private Transform societyCameraAnimationEnd = Transform.Identity;
+
+    [JsonProperty]
+    private bool movingToSocietyStage;
+
+    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public MulticellularCamera PlayerCamera { get; private set; } = null!;
 
@@ -140,6 +152,29 @@ public class MulticellularStage : StageBase<MulticellularCreature>
             }
 
             progressBarSystem.UpdatePlayerPosition(playerPosition);
+        }
+
+        if (movingToSocietyStage)
+        {
+            moveToSocietyTimer += delta;
+            float interpolationProgress = moveToSocietyTimer / Constants.SOCIETY_STAGE_ENTER_ANIMATION_DURATION;
+
+            if (interpolationProgress >= 1)
+            {
+                interpolationProgress = 1;
+
+                // Fade to black and queue the transition
+                HUD.EnsureGameIsUnpausedForEditor();
+
+                GD.Print("Starting fade out to society stage");
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, SwitchToSocietyScene, false);
+                MovingToEditor = true;
+                movingToSocietyStage = false;
+            }
+
+            // TODO: switch to some other animation type like quintic once that is usable without a tween node
+            PlayerCamera.GlobalTransform =
+                societyCameraAnimationStart.InterpolateWith(societyCameraAnimationEnd, interpolationProgress);
         }
 
         // TODO: notify metrics
@@ -489,9 +524,42 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     public void OnSocietyFounded(PlacedStructure societyCenter)
     {
+        if (Player == null || movingToSocietyStage || MovingToEditor)
+            return;
+
+        GD.Print("Move to society stage triggered");
         HUD.HUDMessages.ShowMessage(TranslationServer.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
 
-        // TODO: play animation and actually switch scenes
+        // Unset the player to disallow doing this multiple times in a row and to disable the player
+        var moveCreatureToSocietyCenter = Player;
+        Player = null;
+
+        // TODO: actual collisions and moving to the door instead of this
+        // TODO: even this doesn't work because the structure doesn't have the collision as a root node
+        // moveCreatureToSocietyCenter.AddCollisionExceptionWith(societyCenter);
+
+        var creatureToCenterVector =
+            moveCreatureToSocietyCenter.GlobalTranslation - moveCreatureToSocietyCenter.GlobalTranslation;
+        creatureToCenterVector.y = 0;
+        creatureToCenterVector = creatureToCenterVector.Normalized();
+
+        moveCreatureToSocietyCenter.MovementDirection =
+            moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector);
+
+        // TODO: despawn moveCreatureToSocietyCenter once it reaches inside the society center
+
+        // Start the transition to the next stage and a camera animation
+        var cameraFocusPoint = societyCenter.GlobalTranslation;
+        cameraFocusPoint += societyCenter.RotatedExtraInteractionOffset() ?? Vector3.Zero;
+
+        moveToSocietyTimer = 0;
+        societyCameraAnimationStart = PlayerCamera.GlobalTransform;
+        societyCameraAnimationEnd = StrategicCameraHelpers.CalculateCameraPosition(cameraFocusPoint, 1);
+        movingToSocietyStage = true;
+
+        // Prevent inputs to not allow messing with the animation
+        PlayerCamera.AllowPlayerInput = false;
+        PlayerCamera.FollowedNode = null;
     }
 
     protected override void SetupStage()
@@ -684,5 +752,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         HUD.HUDMessages.ShowMessage(
             TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
             DisplayDuration.Long);
+    }
+
+    private void SwitchToSocietyScene()
+    {
+        SceneManager.Instance.SwitchToScene(MainGameState.SocietyStage);
     }
 }

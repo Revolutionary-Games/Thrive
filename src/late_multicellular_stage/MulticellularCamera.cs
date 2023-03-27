@@ -87,6 +87,13 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     }
 
     /// <summary>
+    ///   When true this camera allows the player to control the rotation of the camera. If false the camera can only
+    ///   be moved and rotated through code.
+    /// </summary>
+    [Export]
+    public bool AllowPlayerInput { get; set; } = true;
+
+    /// <summary>
     ///   The pitch angle of the camera (in radians)
     /// </summary>
     [JsonIgnore]
@@ -177,7 +184,7 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
     public bool Zoom(float delta, float value)
     {
-        if (!Current)
+        if (!Current || !AllowPlayerInput)
             return false;
 
         ArmLength = Mathf.Clamp(ArmLength + ZoomSpeed * value, MinArmLength, MaxArmLength);

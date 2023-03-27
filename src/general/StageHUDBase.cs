@@ -743,7 +743,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// <summary>
     ///   Makes sure the game is unpaused (at least by us)
     /// </summary>
-    protected void EnsureGameIsUnpausedForEditor()
+    public void EnsureGameIsUnpausedForEditor()
     {
         if (Paused)
         {
