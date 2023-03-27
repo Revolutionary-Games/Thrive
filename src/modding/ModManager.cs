@@ -834,7 +834,7 @@ public class ModManager : Control
         RefreshAvailableMods();
         RefreshEnabledMods();
 
-        if (ModLoader.Instance.GetModErrors().Count > 0)
+        if (ModLoader.Instance.ModErrors.Any())
         {
             RefreshModErrors();
         }
@@ -1311,11 +1311,9 @@ public class ModManager : Control
         var modLoader = ModLoader.Instance;
         modLoader.LoadMods();
 
-        var errors = modLoader.GetModErrors();
-
-        if (errors.Count > 0)
+        if (modLoader.ModErrors.Any())
         {
-            modErrorDialog.ExceptionInfo = string.Join("\n", errors.Select(e => e.ErrorMessage));
+            modErrorDialog.ExceptionInfo = string.Join("\n", modLoader.ModErrors.Select(e => e.ErrorMessage));
             modErrorDialog.PopupCenteredShrink();
         }
 

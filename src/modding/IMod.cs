@@ -22,7 +22,7 @@ public interface IMod
     ///   True on success. If returns false a popup is shown telling the player that an error occurred.
     ///   On failure extra info should be printed to logs (GD.PrintErr) for the user to see what the problem is.
     /// </returns>
-    bool Initialize(IModInterface modInterface, FullModDetails currentModInfo);
+    bool Initialize(IModInterface modInterface, ModInfo currentModInfo);
 
     /// <summary>
     ///   Called when the mod should be unloaded. Note that code assemblies can't really be unloaded well so the mod

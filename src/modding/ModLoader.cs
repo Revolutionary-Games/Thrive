@@ -184,7 +184,9 @@ public class ModLoader : Node
         }
 
         // Store the mod in a dictionary for faster look-up when actually checking
-        Dictionary<string, FullModDetails> tempModDictionary = ModArrayToModDictioanry(modsToCheck.ToArray());
+        Dictionary<string, FullModDetails> tempModDictionary = SetModListLoadPosition(modsToCheck).ToDictionary(
+            item => item.InternalName,
+            item => item);
 
         for (int index = 0; index < modsToCheck.Count; ++index)
         {
@@ -239,7 +241,7 @@ public class ModLoader : Node
                     {
                         return new ModListValidationError(CheckErrorStatus.DependencyNotFound,
                             currentModInfo,
-                            new ModInfo()
+                            new ModInfo
                             {
                                 Name = dependencyName,
                             });
@@ -258,7 +260,7 @@ public class ModLoader : Node
                     {
                         return new ModListValidationError(CheckErrorStatus.RequiredModsNotFound,
                             currentModInfo,
-                            new ModInfo()
+                            new ModInfo
                             {
                                 Name = requiredModsName,
                             });
@@ -358,7 +360,7 @@ public class ModLoader : Node
     {
         var newMods = Settings.Instance.EnabledMods.Value.ToHashSet();
 
-        foreach (var unload in loadedMods)
+        foreach (var unload in loadedMods.ToList())
         {
             GD.Print("Unloading mod: ", unload);
 
@@ -403,13 +405,6 @@ public class ModLoader : Node
         return result;
     }
 
-    public List<ModdingError> GetModErrors()
-    {
-        var result = ModErrors.ToList();
-
-        return result;
-    }
-
     public bool HasEnabledMods()
     {
         return loadedMods.Count > 0;
@@ -420,14 +415,15 @@ public class ModLoader : Node
         return hasAvailableMods.Value;
     }
 
-    private static Dictionary<string, FullModDetails> ModArrayToModDictioanry(FullModDetails[] modArray)
+    private static List<FullModDetails> SetModListLoadPosition(List<FullModDetails> modList)
     {
-        var returnValue = new Dictionary<string, FullModDetails>();
-        for (int index = 0; index < modArray.Length; ++index)
+        var returnValue = new List<FullModDetails>();
+
+        for (int index = 0; index < modList.Count; ++index)
         {
-            var currentMod = modArray[index];
+            var currentMod = modList[index];
             currentMod.LoadPosition = index;
-            returnValue.Add(currentMod.InternalName, currentMod);
+            returnValue.Add(currentMod);
         }
 
         return returnValue;
@@ -671,7 +667,7 @@ public class ModLoader : Node
 
             var mod = (IMod)Activator.CreateInstance(type);
 
-            if (!mod.Initialize(modInterface!, info))
+            if (!mod.Initialize(modInterface!, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
                 modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED").FormatSafe(name)));

@@ -44,7 +44,7 @@ public static class ModHelpers
             otherMod.Name = TranslationServer.Translate("UNKNOWN_MOD");
         }
 
-        switch ((ModLoader.CheckErrorStatus)checkResult.ErrorType)
+        switch (checkResult.ErrorType)
         {
             default:
                 result = TranslationServer.Translate("MOD_LIST_VALID");

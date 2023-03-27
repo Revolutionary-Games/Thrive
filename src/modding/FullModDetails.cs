@@ -1,5 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   An extended version of <see cref="ModInfo"/> that contains non-mod author controlled data
