@@ -610,14 +610,19 @@ public partial class Microbe
             throw new InvalidOperationException("Microbe must be initialized first");
 
         var organellePositions = new List<Vector2>();
+        var hasMultihexOrganelles = false;
 
         foreach (var entry in organelles.Organelles)
         {
             var cartesian = Hex.AxialToCartesian(entry.Position);
             organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+
+            if (!hasMultihexOrganelles && entry.Definition.HexCount > 1)
+                hasMultihexOrganelles = true;
         }
 
         Membrane.OrganellePositions = organellePositions;
+        Membrane.HasMultihexOrganelles = hasMultihexOrganelles;
         Membrane.Dirty = true;
         membraneOrganellePositionsAreDirty = false;
     }

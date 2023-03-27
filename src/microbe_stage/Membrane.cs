@@ -78,6 +78,11 @@ public class Membrane : MeshInstance, IComputedMembraneData
     public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
 
     /// <summary>
+    ///   Whether the microbe has multihex organelles, needed for membrane generation
+    /// </summary>
+    public bool HasMultihexOrganelles { get; set; } = false;
+
+    /// <summary>
     ///   Returns a convex shaped 3-Dimensional array of vertices from the generated <see cref="vertices2D"/>.
     /// </summary>
     /// <remarks>
@@ -649,7 +654,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
             var closestOrganelle = FindClosestOrganelles(startingBuffer[i]);
 
             var direction = (startingBuffer[i] - closestOrganelle).Normalized();
-            float distanceToMembrane = 2.0f;
+            float distanceToMembrane = HasMultihexOrganelles ? 3.0f : 2.0f;
             var movement = direction * distanceToMembrane;
 
             startingBuffer[i] = closestOrganelle + movement;
