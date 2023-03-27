@@ -78,6 +78,9 @@
     <Compile Include="src\awakening_stage\ResourceAmountHelpers.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
     <Compile Include="src\awakening_stage\StructureDefinition.cs" />
+    <Compile Include="src\awakening_stage\structure_components\IStructureComponentFactory.cs" />
+    <Compile Include="src\awakening_stage\structure_components\SocietyCenterComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\StructureComponent.cs" />
     <Compile Include="src\awakening_stage\TechWeb.cs" />
     <Compile Include="src\awakening_stage\WorldResource.cs" />
     <Compile Include="src\awakening_stage\Technology.cs" />

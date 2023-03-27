@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 /// </summary>
 public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 {
+    private readonly List<StructureComponent> componentInstances = new();
+
 #pragma warning disable CA2213
     private Spatial scaffoldingParent = null!;
     private Spatial visualsParent = null!;
@@ -116,7 +118,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
         }
         else
         {
-            Completed = true;
+            OnCompleted();
         }
     }
 
@@ -135,19 +137,28 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
         if (!Completed)
             return null;
 
-        return new (InteractionType Type, string? DisabledAlternativeText)[]
+        var result = new List<(InteractionType Type, string? DisabledAlternativeText)>();
+
+        foreach (var component in componentInstances)
         {
-            (InteractionType.FoundSettlement, null),
-        };
+            component.GetExtraAvailableActions(result);
+        }
+
+        return result;
     }
 
     public bool PerformExtraAction(InteractionType interactionType)
     {
-        if (!Completed || interactionType != InteractionType.FoundSettlement)
+        if (!Completed)
             return false;
 
-        // TODO: communicate to the stage somehow the founding of the settlement
-        return true;
+        foreach (var component in componentInstances)
+        {
+            if (component.PerformExtraAction(interactionType))
+                return true;
+        }
+
+        return false;
     }
 
     public IEnumerable<InventorySlotData>? GetWantedItems(IInventory availableItems)
@@ -220,6 +231,9 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
     private void OnCompleted()
     {
+        if (Definition == null)
+            throw new InvalidOperationException("Definition not set");
+
         Completed = true;
         missingResourcesToFullyConstruct = null;
 
@@ -228,5 +242,11 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
         // Ensure visuals are at the right position
         visualsParent.Translation = Vector3.Zero;
+
+        // Create the components
+        foreach (var factory in Definition.Components.Factories)
+        {
+            componentInstances.Add(factory.Create(this));
+        }
     }
 }

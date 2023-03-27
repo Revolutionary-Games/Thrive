@@ -198,4 +198,26 @@ public static class NodeHelpers
             }
         }
     }
+
+    /// <summary>
+    ///   Looks through all parent nodes recursively of node to find one of matching type
+    /// </summary>
+    /// <param name="node">The node which parent is the first node to search</param>
+    /// <typeparam name="T">The type to look for</typeparam>
+    /// <returns>The found node or null</returns>
+    public static T? FirstAncestorOfType<T>(this Node node)
+        where T : Node
+    {
+        var parent = node.GetParent();
+
+        while (parent != null)
+        {
+            if (parent is T casted)
+                return casted;
+
+            parent = parent.GetParent();
+        }
+
+        return null;
+    }
 }

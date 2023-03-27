@@ -487,6 +487,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         return true;
     }
 
+    public void OnSocietyFounded(PlacedStructure societyCenter)
+    {
+        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
+
+        // TODO: play animation and actually switch scenes
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
