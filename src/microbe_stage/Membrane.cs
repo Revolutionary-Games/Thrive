@@ -647,32 +647,35 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private List<Vector2> GenerateMembranePoints(List<Vector2> startingBuffer)
     {
+        float membraneDistanceToOrganelles = HasMultihexOrganelles ?
+            Constants.MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX :
+            Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
+
         // Move all the points in the buffer close to organelles.
         for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
             var closestOrganelle = FindClosestOrganelles(startingBuffer[i]);
 
             var direction = (startingBuffer[i] - closestOrganelle).Normalized();
-            float distanceToMembrane = HasMultihexOrganelles ? 3.0f : 2.0f;
-            var movement = direction * distanceToMembrane;
+            var movement = direction * membraneDistanceToOrganelles;
 
             startingBuffer[i] = closestOrganelle + movement;
         }
 
-        int numberOfPoints = startingBuffer.Count;
         float circumference = 0.0f;
         for (int i = 0, end = startingBuffer.Count; i < end; i++)
         {
             circumference += (startingBuffer[(i + 1) % end] - startingBuffer[i]).Length();
         }
 
-        // Go around the membrane and place points evenly in a second buffer.
         var newBuffer = new List<Vector2>();
         var lastAddedPoint = startingBuffer[0];
         newBuffer.Add(lastAddedPoint);
-        float gap = circumference / numberOfPoints;
+        float gap = circumference / startingBuffer.Count;
         float distanceToLastAddedPoint = 0.0f;
         float distanceToLastPassedPoint = 0.0f;
+
+        // Go around the membrane and place points evenly in a second buffer.
         for (int i = 0, end = startingBuffer.Count; i < end; i++)
         {
             var currentPoint = startingBuffer[i];
@@ -703,9 +706,16 @@ public class Membrane : MeshInstance, IComputedMembraneData
             }
         }
 
+        float waveFrequency = 2.0f * Mathf.Pi * Constants.MEMBRANE_NUMBER_OF_WAVES / newBuffer.Count;
+
+        float heightMultiplier = Type.CellWall ?
+            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
+            Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
+
+        float waveHeight = Mathf.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
+            * heightMultiplier;
+
         // Make the membrane wavier
-        float waveFrequency = 2.0f * Mathf.Pi * 9.0f / newBuffer.Count;
-        float waveHeight = Mathf.Pow(circumference, 0.3f) * (Type.CellWall ? 0.015f : 0.025f);
         for (int i = 0, end = newBuffer.Count; i < end; i++)
         {
             var point = newBuffer[i];
