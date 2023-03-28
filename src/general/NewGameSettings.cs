@@ -94,9 +94,6 @@ public class NewGameSettings : ControlWithInput
     public NodePath LimitGrowthRateButtonPath = null!;
 
     [Export]
-    public NodePath MapTypeButtonPath = null!;
-
-    [Export]
     public NodePath LifeOriginButtonPath = null!;
 
     [Export]
@@ -172,7 +169,6 @@ public class NewGameSettings : ControlWithInput
     private Button limitGrowthRateButton = null!;
 
     // Planet controls
-    private OptionButton mapTypeButton = null!;
     private OptionButton lifeOriginButton = null!;
     private OptionButton lifeOriginButtonAdvanced = null!;
     private Button lawkButton = null!;
@@ -242,7 +238,6 @@ public class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
-        mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
@@ -373,7 +368,6 @@ public class NewGameSettings : ControlWithInput
                 FreeGlucoseCloudButtonPath.Dispose();
                 PassiveReproductionButtonPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
-                MapTypeButtonPath.Dispose();
                 LifeOriginButtonPath.Dispose();
                 LifeOriginButtonAdvancedPath.Dispose();
                 LAWKButtonPath.Dispose();
@@ -480,7 +474,6 @@ public class NewGameSettings : ControlWithInput
             settings.Difficulty = difficulty;
         }
 
-        settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.Pressed;
         settings.DayNightCycleEnabled = dayNightCycleButton.Pressed;
@@ -721,20 +714,6 @@ public class NewGameSettings : ControlWithInput
     private void OnMapTypeSelected(int index)
     {
         _ = index;
-    }
-
-    private WorldGenerationSettings.PatchMapType MapTypeIndexToValue(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                return WorldGenerationSettings.PatchMapType.Procedural;
-            case 1:
-                return WorldGenerationSettings.PatchMapType.Classic;
-            default:
-                GD.PrintErr($"Index {index} does not correspond to known map type");
-                return WorldGenerationSettings.PatchMapType.Procedural;
-        }
     }
 
     private void OnLAWKToggled(bool pressed)
