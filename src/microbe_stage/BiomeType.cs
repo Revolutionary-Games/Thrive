@@ -3,7 +3,7 @@
 /// </summary>
 /// <remarks>
 ///   <para>
-///     The order of this enum CANNOT be changed. They are saved in the gamesave file, 
+///     The order of this enum CANNOT be changed. They are saved in the gamesave file,
 ///     and re-ordering would break existing saves
 ///   </para>
 /// </remarks>
