@@ -41,6 +41,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     private SelectBuildingPopup selectBuildingPopup = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
+
+    private Camera? animationCamera;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -156,6 +158,9 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         if (movingToSocietyStage)
         {
+            if (animationCamera == null)
+                throw new InvalidOperationException("Animation camera not set");
+
             moveToSocietyTimer += delta;
             float interpolationProgress = moveToSocietyTimer / Constants.SOCIETY_STAGE_ENTER_ANIMATION_DURATION;
 
@@ -167,13 +172,16 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                 HUD.EnsureGameIsUnpausedForEditor();
 
                 GD.Print("Starting fade out to society stage");
-                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, SwitchToSocietyScene, false);
+
+                // The fade is pretty long here to give some time after the camera stops moving before the fade out
+                // is complete
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 3.5f, SwitchToSocietyScene, false);
                 MovingToEditor = true;
                 movingToSocietyStage = false;
             }
 
             // TODO: switch to some other animation type like quintic once that is usable without a tween node
-            PlayerCamera.GlobalTransform =
+            animationCamera.GlobalTransform =
                 societyCameraAnimationStart.InterpolateWith(societyCameraAnimationEnd, interpolationProgress);
         }
 
@@ -529,22 +537,25 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         GD.Print("Move to society stage triggered");
         HUD.HUDMessages.ShowMessage(TranslationServer.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
+        movingToSocietyStage = true;
 
         // Unset the player to disallow doing this multiple times in a row and to disable the player
         var moveCreatureToSocietyCenter = Player;
         Player = null;
 
         // TODO: actual collisions and moving to the door instead of this
-        // TODO: even this doesn't work because the structure doesn't have the collision as a root node
-        // moveCreatureToSocietyCenter.AddCollisionExceptionWith(societyCenter);
+        // TODO: we do a dirty hack here just for the prototype to be simple as the structure root doesn't currently
+        // have a collision set on it
+        moveCreatureToSocietyCenter.AddCollisionExceptionWith(societyCenter.FirstDescendantOfType<CollisionObject>());
 
-        var creatureToCenterVector =
-            moveCreatureToSocietyCenter.GlobalTranslation - moveCreatureToSocietyCenter.GlobalTranslation;
+        var creatureToCenterVector = societyCenter.GlobalTranslation - moveCreatureToSocietyCenter.GlobalTranslation;
         creatureToCenterVector.y = 0;
         creatureToCenterVector = creatureToCenterVector.Normalized();
 
+        // Do an inverse transform to get the vector in creature local space and multiply it to not make the creature
+        // move at full speed
         moveCreatureToSocietyCenter.MovementDirection =
-            moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector);
+            moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector) * 0.5f;
 
         // TODO: despawn moveCreatureToSocietyCenter once it reaches inside the society center
 
@@ -552,14 +563,20 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         var cameraFocusPoint = societyCenter.GlobalTranslation;
         cameraFocusPoint += societyCenter.RotatedExtraInteractionOffset() ?? Vector3.Zero;
 
-        moveToSocietyTimer = 0;
-        societyCameraAnimationStart = PlayerCamera.GlobalTransform;
-        societyCameraAnimationEnd = StrategicCameraHelpers.CalculateCameraPosition(cameraFocusPoint, 1);
-        movingToSocietyStage = true;
-
-        // Prevent inputs to not allow messing with the animation
+        // Prevent inputs to not allow messing with the camera animation
         PlayerCamera.AllowPlayerInput = false;
         PlayerCamera.FollowedNode = null;
+
+        // Steal the camera from the normal camera holder (this is done to not need to modify the camera passed to the
+        // various other systems)
+        animationCamera = PlayerCamera.CameraNode;
+
+        moveToSocietyTimer = 0;
+        societyCameraAnimationStart = animationCamera.GlobalTransform;
+        societyCameraAnimationEnd = StrategicCameraHelpers.CalculateCameraPosition(cameraFocusPoint, 1);
+
+        // Detach from the previous place to not have the arm etc. control nodes apply to it anymore
+        animationCamera.ReParent(rootOfDynamicallySpawned);
     }
 
     protected override void SetupStage()

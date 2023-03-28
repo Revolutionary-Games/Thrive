@@ -106,6 +106,8 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
         visualsParent.AddChild(definition.WorldRepresentation.Instance());
 
+        // TODO: move the physics from the visual scene to this type directly
+
         if (!fullyConstructed)
         {
             missingResourcesToFullyConstruct = definition.RequiredResources;
@@ -224,7 +226,18 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     public void OnFinishTimeTakingAction()
     {
         if (missingResourcesToFullyConstruct != null)
-            GD.PrintErr("Structure force completed even though it still needs resources");
+            GD.PrintErr("Structure force completed (due to an action) even though it still needs resources");
+
+        OnCompleted();
+    }
+
+    /// <summary>
+    ///   Forces the structure to become immediately completed without any actions or needed resources
+    /// </summary>
+    public void ForceCompletion()
+    {
+        if (Completed)
+            return;
 
         OnCompleted();
     }
