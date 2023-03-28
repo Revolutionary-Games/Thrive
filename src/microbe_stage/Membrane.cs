@@ -19,6 +19,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// </summary>
     private readonly List<Vector2> vertices2D = new();
 
+    // Buffer for starting points when generating membrane data
+    private readonly List<Vector2> startingBuffer = new();
+
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
     private float sizeWigglyNessDampeningFactor = 0.22f;
@@ -80,6 +83,12 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// <summary>
     ///   Whether the microbe has multihex organelles, needed for membrane generation
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is a workaround for https://github.com/Revolutionary-Games/Thrive/issues/4117
+    ///     TODO: Check if this can be removed once that issue is fixed
+    ///   </para>
+    /// </remarks>
     public bool HasMultihexOrganelles { get; set; } = false;
 
     /// <summary>
@@ -391,7 +400,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
         // Make the length longer to guarantee that everything fits easily inside the square
         cellDimensions *= 100;
 
-        var startingBuffer = new List<Vector2>();
+        startingBuffer.Clear();
 
         for (int i = membraneResolution; i > 0; i--)
         {
@@ -419,9 +428,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
                 -cellDimensions));
         }
 
-        // Get new membrane points
-        vertices2D.Clear();
-        vertices2D.AddRange(GenerateMembranePoints(startingBuffer));
+        // Get new membrane points for vertices2D
+        GenerateMembranePoints(startingBuffer, vertices2D);
 
         BuildMesh();
     }
@@ -643,13 +651,13 @@ public class Membrane : MeshInstance, IComputedMembraneData
         ProceduralDataCache.Instance.WriteMembraneData(CreateDataForCache(generatedMesh, surfaceIndex));
     }
 
-    private List<Vector2> GenerateMembranePoints(List<Vector2> startingBuffer)
+    private void GenerateMembranePoints(List<Vector2> startingBuffer, List<Vector2> targetBuffer)
     {
         float membraneDistanceToOrganelles = HasMultihexOrganelles ?
             Constants.MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX :
             Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
 
-        // Move all the points in the buffer close to organelles
+        // Move all the points in the starting buffer close to organelles
         for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
             var closestOrganelle = FindClosestOrganelles(startingBuffer[i]);
@@ -667,16 +675,17 @@ public class Membrane : MeshInstance, IComputedMembraneData
             circumference += (startingBuffer[(i + 1) % end] - startingBuffer[i]).Length();
         }
 
-        var newBuffer = new List<Vector2>();
+        targetBuffer.Clear();
+
         var lastAddedPoint = startingBuffer[0];
 
-        newBuffer.Add(lastAddedPoint);
+        targetBuffer.Add(lastAddedPoint);
 
         float gap = circumference / startingBuffer.Count;
         float distanceToLastAddedPoint = 0.0f;
         float distanceToLastPassedPoint = 0.0f;
 
-        // Go around the membrane and place points evenly in a second buffer.
+        // Go around the membrane and place points evenly in the target buffer.
         for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
             var currentPoint = startingBuffer[i];
@@ -691,9 +700,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
                 lastAddedPoint = currentPoint + movement;
 
-                newBuffer.Add(lastAddedPoint);
+                targetBuffer.Add(lastAddedPoint);
 
-                if (newBuffer.Count >= end)
+                if (targetBuffer.Count >= end)
                     break;
 
                 distanceToLastPassedPoint = (lastAddedPoint - currentPoint).Length();
@@ -707,7 +716,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
             }
         }
 
-        float waveFrequency = 2.0f * Mathf.Pi * Constants.MEMBRANE_NUMBER_OF_WAVES / newBuffer.Count;
+        float waveFrequency = 2.0f * Mathf.Pi * Constants.MEMBRANE_NUMBER_OF_WAVES / targetBuffer.Count;
 
         float heightMultiplier = Type.CellWall ?
             Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
@@ -717,10 +726,10 @@ public class Membrane : MeshInstance, IComputedMembraneData
             * heightMultiplier;
 
         // Make the membrane wavier
-        for (int i = 0, end = newBuffer.Count; i < end; ++i)
+        for (int i = 0, end = targetBuffer.Count; i < end; ++i)
         {
-            var point = newBuffer[i];
-            var nextPoint = newBuffer[(i + 1) % end];
+            var point = targetBuffer[i];
+            var nextPoint = targetBuffer[(i + 1) % end];
             var direction = (nextPoint - point).Normalized();
 
             // Turn 90 degrees
@@ -728,10 +737,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
             var movement = direction * Mathf.Sin(waveFrequency * i) * waveHeight;
 
-            newBuffer[i] = point + movement;
+            targetBuffer[i] = point + movement;
         }
-
-        return newBuffer;
     }
 
     private ComputedMembraneData CreateDataForCache(ArrayMesh mesh, int surfaceIndex)

@@ -610,6 +610,9 @@ public partial class Microbe
             throw new InvalidOperationException("Microbe must be initialized first");
 
         var organellePositions = new List<Vector2>();
+
+        // This is a workaround for https://github.com/Revolutionary-Games/Thrive/issues/4117
+        // TODO: Check if this can be removed once that issue is fixed
         bool hasMultihexOrganelles = false;
 
         foreach (var entry in organelles.Organelles)
