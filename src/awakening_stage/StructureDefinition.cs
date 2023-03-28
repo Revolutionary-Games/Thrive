@@ -190,8 +190,10 @@ public class StructureDefinition : IRegistryType
     {
         private readonly List<IStructureComponentFactory> allFactories = new();
 
+#pragma warning disable CS0649 // set from JSON
         [JsonProperty]
         private SocietyCenterComponentFactory? societyCenter;
+#pragma warning restore CS0649
 
         [JsonIgnore]
         public IReadOnlyList<IStructureComponentFactory> Factories => allFactories;
