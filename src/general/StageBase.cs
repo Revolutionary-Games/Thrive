@@ -217,7 +217,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             return;
         }
 
-        if (!HasPlayer)
+        // Handle player respawning
+        if (!HasPlayer && !MovingToEditor)
         {
             if (!spawnedPlayer)
             {

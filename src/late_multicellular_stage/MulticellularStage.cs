@@ -639,7 +639,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     protected override void SpawnPlayer()
     {
-        if (HasPlayer)
+        // Don't want to respawn the player when moving to the society stage
+        // Once the flag is reset to false, we'll have the flag for going to the editor true and will not spawn
+        // the player thanks to that so we don't need to add that second check here
+        if (HasPlayer || movingToSocietyStage)
             return;
 
         Player = SpawnHelpers.SpawnCreature(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
