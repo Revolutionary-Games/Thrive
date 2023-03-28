@@ -185,7 +185,7 @@ public partial class Microbe
     [JsonProperty]
     public Action<Microbe,
         IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>,
-        IEnumerable<(Species Species, float Range, float MinAmount, Color Colour)>>?
+        IEnumerable<(Species Species, float Range, Color Colour)>>?
         OnChemoreceptionInfo { get; set; }
 
     /// <summary>

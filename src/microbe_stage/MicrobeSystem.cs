@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -53,5 +54,43 @@ public class MicrobeSystem
             microbe.NotifyExternalProcessingIsUsed();
             microbe.ProcessSync(delta);
         }
+    }
+
+    /// <summary>
+    ///   Tries to find specified Species as close to the point as possible.
+    /// </summary>
+    /// <param name="position">Position to search around</param>
+    /// <param name="species">What species to search for</param>
+    /// <param name="searchRadius">How wide to search around the point</param>
+    /// <returns>The nearest found point for the species or null</returns>
+
+    public Vector3? FindSpeciesNearPoint(Vector3 position, Species species, float searchRadius = 200)
+    {
+        if (searchRadius < 1)
+            throw new ArgumentException("searchRadius must be >= 1");
+
+        Vector3? closestPoint = null;
+        float nearestDistanceSquared = float.MaxValue;
+        var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
+            .ToArray();
+
+        foreach (var microbe in microbes)
+        {
+            if (Math.Abs(microbe.Translation.x - position.x) > searchRadius ||
+                Math.Abs(microbe.Translation.y - position.y) > searchRadius)
+            {
+                continue;
+            }
+
+            var distance = (microbe.Translation - position).LengthSquared();
+
+            if (distance < nearestDistanceSquared)
+            {
+                nearestDistanceSquared = distance;
+                closestPoint = microbe.Translation;
+            }
+        }
+
+        return closestPoint;
     }
 }

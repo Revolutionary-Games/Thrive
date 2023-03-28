@@ -862,7 +862,7 @@ public class MicrobeStage : StageBase<Microbe>
     private void HandlePlayerChemoreceptionDetection(Microbe microbe,
         IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>
             activeCompoundDetections,
-        IEnumerable<(Species Species, float Range, float MinAmount, Color Colour)>
+        IEnumerable<(Species Species, float Range, Color Colour)>
             activeSpeciesDetections)
     {
         if (microbe != Player)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -81,7 +81,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>
         activeCompoundDetections = new();
 
-    private HashSet<(Species Species, float Range, float MinAmount, Color Colour)>
+    private HashSet<(Species Species, float Range, Color Colour)>
         activeSpeciesDetections = new();
 
     private bool? hasSignalingAgent;
@@ -639,7 +639,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public void ReportActiveSpeciesChemoreceptor(
         Species species, float range, float minAmount, Color colour)
     {
-        activeSpeciesDetections.Add((species, range, minAmount, colour));
+        activeSpeciesDetections.Add((species, range, colour));
     }
 
     public void PlaySoundEffect(string effect, float volume = 1.0f)
@@ -959,13 +959,40 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   and the location where the microbe is located.
     /// </returns>
 
-    public List<(Species Species, Color Colour, Vector3 Target)> GetDetectedSpecies(
-        MicrobeSystem microbeSystem)
+    public List<(Species Species, Color Colour, Vector3 Target)> GetDetectedSpecies(MicrobeSystem microbeSystem)
     {
-        // TODO Implement this
-        // var microbes = microbeSystem.worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP)
-        //     .Cast<Microbe>().ToArray();
-        return new List<(Species Species, Color Colour, Vector3 Target)>();
+        HashSet<(Species Species, float Range, Color Colour)> collectedUniqueSpeciesDetections;
+
+        // Colony lead cell uses all the chemoreceptors in the colony to make them all work
+        if (Colony != null && Colony.Master == this)
+        {
+            collectedUniqueSpeciesDetections =
+                new HashSet<(Species Species, float Range, Color Colour)>();
+
+            foreach (var colonyMicrobe in Colony.ColonyMembers)
+            {
+                collectedUniqueSpeciesDetections.UnionWith(colonyMicrobe.activeSpeciesDetections);
+            }
+        }
+        else
+        {
+            collectedUniqueSpeciesDetections = activeSpeciesDetections;
+        }
+
+        var detections = new List<(Species Species, Color Colour, Vector3 Target)>();
+        var position = GlobalTranslation;
+
+        foreach (var (species, range, colour) in collectedUniqueSpeciesDetections)
+        {
+            var detectedSpecies = microbeSystem.FindSpeciesNearPoint(position, species, range);
+
+            if (detectedSpecies != null)
+            {
+                detections.Add((species, colour, detectedSpecies.Value));
+            }
+        }
+
+        return detections;
     }
 
     /// <summary>
