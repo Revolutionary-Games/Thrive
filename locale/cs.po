@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-24 15:05+0200\n"
+"POT-Creation-Date: 2023-03-27 21:06-0500\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -91,11 +91,11 @@ msgstr "Při dodatečných validacích byl zjištěn problém: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/general/NewGameSettings.tscn:1222
+#: ../src/general/NewGameSettings.tscn:1179
 msgid "ADVANCED_VIEW"
 msgstr "Pokročilé"
 
-#: ../src/general/NewGameSettings.tscn:1217
+#: ../src/general/NewGameSettings.tscn:1174
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otevřít náhled pokročilého nastavení"
 
@@ -363,7 +363,7 @@ msgstr "Dostupné mody"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
-#: ../src/general/NewGameSettings.tscn:1185
+#: ../src/general/NewGameSettings.tscn:1142
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -393,11 +393,11 @@ msgstr "Základní pohyblivost"
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/general/NewGameSettings.tscn:1207
+#: ../src/general/NewGameSettings.tscn:1164
 msgid "BASIC_VIEW"
 msgstr "Základní"
 
-#: ../src/general/NewGameSettings.tscn:1202
+#: ../src/general/NewGameSettings.tscn:1159
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Návrat k náhledu základního nastavení"
 
@@ -1026,12 +1026,12 @@ msgstr "Potvrdit ukončení"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:331
-#: ../src/general/NewGameSettings.tscn:1238
+#: ../src/general/NewGameSettings.cs:326
+#: ../src/general/NewGameSettings.tscn:1195
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začít hru s tímto nastavením"
 
-#: ../src/general/NewGameSettings.cs:338
+#: ../src/general/NewGameSettings.cs:333
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Některá nastavení nejsou platná"
 
@@ -1262,20 +1262,20 @@ msgstr "Cytoplazmatická Glykolýza"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:941
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:989
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(náhodně spawnuté překvapení ve hře)"
 
-#: ../src/general/NewGameSettings.tscn:958
+#: ../src/general/NewGameSettings.tscn:915
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:966
+#: ../src/general/NewGameSettings.tscn:923
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1420,12 +1420,12 @@ msgstr "Sežrán"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Sponzoři Devbuild"
 
-#: ../src/general/NewGameSettings.tscn:293
+#: ../src/general/NewGameSettings.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Obtížnost"
 
-#: ../src/general/WorldGenerationSettings.cs:156
+#: ../src/general/WorldGenerationSettings.cs:142
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -1440,13 +1440,13 @@ msgstr ""
 "Pasivní příjem reprodukčního postupu: {8}\n"
 "Omezit použití růstové sloučeniny: {9}"
 
-#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:126
 #: ../src/general/NewGameSettings.tscn:363
 msgid "DIFFICULTY_PRESET"
 msgstr "Přednastavení obtížnosti"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:154
+#: ../src/general/WorldGenerationSettings.cs:140
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Vlastní"
 
@@ -1726,11 +1726,11 @@ msgstr "Tip - Bakterie můžou být silnější než se zdá, velikostně sice n
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Tip - Můžeš lovit ostatní druhy až do jejich vyhynutí, ale pokud nejsi dost opatrný(á), mohou zahubit oni tebe."
 
-#: ../src/general/NewGameSettings.tscn:1164
+#: ../src/general/NewGameSettings.tscn:1121
 msgid "EASTER_EGGS"
 msgstr "Zahrnout Easter Eggy"
 
-#: ../src/general/NewGameSettings.tscn:1171
+#: ../src/general/NewGameSettings.tscn:1128
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(náhodně spawnuté překvapení ve hře)"
 
@@ -2433,11 +2433,11 @@ msgstr "ID není platné číslo"
 msgid "ID_NUMBER"
 msgstr "ID číslo"
 
-#: ../src/general/NewGameSettings.tscn:1145
+#: ../src/general/NewGameSettings.tscn:1102
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Zahrnout prototypy pozdějších období"
 
-#: ../src/general/NewGameSettings.tscn:1152
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
 
@@ -2917,13 +2917,13 @@ msgstr "Mail"
 msgid "LAUNCHMEDIA"
 msgstr "Média"
 
-#: ../src/general/NewGameSettings.tscn:155
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:853
 msgid "LAWK_ONLY"
 msgstr "Realistický režim"
 
-#: ../src/general/NewGameSettings.tscn:162
-#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:161
+#: ../src/general/NewGameSettings.tscn:860
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(limituje části a schopnosti pouze na život jak ho známe)"
 
@@ -3003,37 +3003,37 @@ msgstr "Licence"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licence pokrývající části systému Thrive jsou uvedeny zde"
 
-#: ../src/general/NewGameSettings.tscn:178
-#: ../src/general/NewGameSettings.tscn:919
+#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:876
 msgid "LIFE_ORIGIN"
 msgstr "Původ života"
 
-#: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:926
+#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:883
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(počáteční lokace)"
 
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:49
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermie (náhodné)"
 
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:46
 msgid "LIFE_ORIGIN_POND"
 msgstr "Malé teplé jezírko"
 
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:897
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
 
+#: ../src/general/NewGameSettings.tscn:200
 #: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:942
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:899
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrotermální průduch"
@@ -3616,7 +3616,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Není povoleno zobrazit méně než {0} datových sad!"
 
-#: ../src/general/NewGameSettings.tscn:313 ../src/general/OptionsMenu.tscn:215
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
 msgid "MISC"
 msgstr "Ostatní"
 
@@ -4055,7 +4055,7 @@ msgstr "Nová hra"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začít novou hru"
 
-#: ../src/general/NewGameSettings.tscn:275
+#: ../src/general/NewGameSettings.tscn:274
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4530,10 +4530,6 @@ msgstr "Dopředu"
 msgid "PAGE_TITLE"
 msgstr "Odstranit místní data"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
-msgid "PANGONIAN_REGION_NAME"
-msgstr "Pangonský"
-
 #: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_DOWN"
 msgstr "Posuň se dolů"
@@ -4584,26 +4580,7 @@ msgstr "Mapa lokací"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Klikejte, tahejte, přibližujte a oddalujte kameru pro pohyb"
 
-#: ../src/general/NewGameSettings.tscn:857
-msgid "PATCH_MAP_TYPE"
-msgstr "Typ mapy prostředí"
-
-#: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Klasické"
-
-#: ../src/general/NewGameSettings.tscn:864
-msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr "(vygeneruje mapu prostředí buď procedurálně nebo použitím klasického rozložení)"
-
-#: ../src/general/NewGameSettings.tscn:879
-#: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/WorldGenerationSettings.cs:55
-msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr "Procedurální"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:880
+#: ../src/microbe_stage/PatchMapGenerator.cs:823
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -4675,8 +4652,8 @@ msgid "PEACEFUL"
 msgstr "Mírumilovnost"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:692
-#: ../src/general/WorldGenerationSettings.cs:162
+#: ../src/general/NewGameSettings.cs:674 ../src/general/StageHUDBase.cs:692
+#: ../src/general/WorldGenerationSettings.cs:148
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
@@ -4728,23 +4705,23 @@ msgstr "Fyzická odolnost"
 msgid "PLACE_ORGANELLE"
 msgstr "Umístit organelu"
 
-#: ../src/general/NewGameSettings.tscn:303
+#: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeta"
 
-#: ../src/general/WorldGenerationSettings.cs:174
+#: ../src/general/WorldGenerationSettings.cs:160
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Otevřít složku záznamů"
 
-#: ../src/general/NewGameSettings.tscn:1113
+#: ../src/general/NewGameSettings.tscn:1070
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generováni planet již brzy!"
 
-#: ../src/general/NewGameSettings.tscn:217
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:216
+#: ../src/general/NewGameSettings.tscn:1000
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodný seed planety"
 
@@ -4929,8 +4906,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Náhodné jméno druhu"
 
-#: ../src/general/NewGameSettings.tscn:236
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:235
+#: ../src/general/NewGameSettings.tscn:1019
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
@@ -5700,7 +5677,7 @@ msgstr "Začínání"
 msgid "START_CALIBRATION"
 msgstr "Spusť Kalibraci"
 
-#: ../src/general/NewGameSettings.tscn:1241
+#: ../src/general/NewGameSettings.tscn:1198
 #, fuzzy
 msgid "START_GAME"
 msgstr "Uložit hru"
@@ -6762,7 +6739,7 @@ msgstr "Chyba: {0}"
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/general/WorldGenerationSettings.cs:188
+#: ../src/general/WorldGenerationSettings.cs:173
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -6817,6 +6794,21 @@ msgstr "Přiblížit"
 #: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "PANGONIAN_REGION_NAME"
+#~ msgstr "Pangonský"
+
+#~ msgid "PATCH_MAP_TYPE"
+#~ msgstr "Typ mapy prostředí"
+
+#~ msgid "PATCH_MAP_TYPE_CLASSIC"
+#~ msgstr "Klasické"
+
+#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
+#~ msgstr "(vygeneruje mapu prostředí buď procedurálně nebo použitím klasického rozložení)"
+
+#~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
+#~ msgstr "Procedurální"
 
 #~ msgid "LOOKING_AT"
 #~ msgstr "Pohled na:"
