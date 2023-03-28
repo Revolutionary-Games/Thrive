@@ -6,7 +6,9 @@ using Godot;
 /// </summary>
 public class ChemoreceptorComponent : ExternallyPositionedComponent
 {
+    // Either targetCompound or targetSpecies should be null
     private Compound? targetCompound;
+    private Species? targetSpecies;
     private float searchRange;
     private float searchAmount;
     private Color lineColour = Colors.White;
@@ -15,7 +17,10 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     {
         base.UpdateAsync(delta);
 
-        organelle!.ParentMicrobe!.ReportActiveChemereception(targetCompound!, searchRange, searchAmount, lineColour);
+        organelle!.ParentMicrobe!.ReportActiveCompoundChemoreceptor(
+            targetCompound!, searchRange, searchAmount, lineColour);
+        organelle!.ParentMicrobe!.ReportActiveSpeciesChemoreceptor(
+            targetSpecies!, searchRange, searchAmount, lineColour);
     }
 
     protected override void CustomAttach()
@@ -49,6 +54,7 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private void SetConfiguration(ChemoreceptorUpgrades configuration)
     {
         targetCompound = configuration.TargetCompound;
+        targetSpecies = configuration.TargetSpecies;
         searchRange = configuration.SearchRange;
         searchAmount = configuration.SearchAmount;
         lineColour = configuration.LineColour;
@@ -57,6 +63,7 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private void SetDefaultConfiguration()
     {
         targetCompound = SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
+        targetSpecies = null;
         searchRange = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
         searchAmount = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
         lineColour = Colors.White;
@@ -78,21 +85,24 @@ public class ChemoreceptorComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
 {
-    public ChemoreceptorUpgrades(Compound targetCompound, float searchRange, float searchAmount, Color lineColour)
+    public ChemoreceptorUpgrades(Compound targetCompound, Species targetSpecies,
+        float searchRange, float searchAmount, Color lineColour)
     {
         TargetCompound = targetCompound;
+        TargetSpecies = targetSpecies;
         SearchRange = searchRange;
         SearchAmount = searchAmount;
         LineColour = lineColour;
     }
 
     public Compound TargetCompound { get; set; }
+    public Species TargetSpecies { get; set; }
     public float SearchRange { get; set; }
     public float SearchAmount { get; set; }
     public Color LineColour { get; set; }
 
     public object Clone()
     {
-        return new ChemoreceptorUpgrades(TargetCompound, SearchRange, SearchAmount, LineColour);
+        return new ChemoreceptorUpgrades(TargetCompound, TargetSpecies, SearchRange, SearchAmount, LineColour);
     }
 }

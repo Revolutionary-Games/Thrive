@@ -616,7 +616,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
 
-        Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
+        Player.OnChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
         Player.OnIngestedByHostile = OnPlayerEngulfedByHostile;
 
@@ -860,7 +860,10 @@ public class MicrobeStage : StageBase<Microbe>
     /// </summary>
     [DeserializedCallbackAllowed]
     private void HandlePlayerChemoreceptionDetection(Microbe microbe,
-        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections)
+        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>
+            activeCompoundDetections,
+        IEnumerable<(Species Species, float Range, float MinAmount, Color Colour)>
+            activeSpeciesDetections)
     {
         if (microbe != Player)
             GD.PrintErr("Chemoreception data reported for non-player cell");
@@ -869,6 +872,16 @@ public class MicrobeStage : StageBase<Microbe>
         var position = microbe.GlobalTransform.origin;
 
         foreach (var tuple in microbe.GetDetectedCompounds(Clouds))
+        {
+            var line = GetOrCreateGuidanceLine(currentLineIndex++);
+
+            line.Colour = tuple.Colour;
+            line.LineStart = position;
+            line.LineEnd = tuple.Target;
+            line.Visible = true;
+        }
+
+        foreach (var tuple in microbe.GetDetectedSpecies(microbeSystem))
         {
             var line = GetOrCreateGuidanceLine(currentLineIndex++);
 

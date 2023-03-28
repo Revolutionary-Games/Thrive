@@ -78,7 +78,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private Random random = new();
 
-    private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
+    private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>
+        activeCompoundDetections = new();
+
+    private HashSet<(Species Species, float Range, float MinAmount, Color Colour)>
+        activeSpeciesDetections = new();
 
     private bool? hasSignalingAgent;
 
@@ -626,9 +630,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce += force;
     }
 
-    public void ReportActiveChemereception(Compound compound, float range, float minAmount, Color colour)
+    public void ReportActiveCompoundChemoreceptor(
+        Compound compound, float range, float minAmount, Color colour)
     {
         activeCompoundDetections.Add((compound, range, minAmount, colour));
+    }
+
+    public void ReportActiveSpeciesChemoreceptor(
+        Species species, float range, float minAmount, Color colour)
+    {
+        activeSpeciesDetections.Add((species, range, minAmount, colour));
     }
 
     public void PlaySoundEffect(string effect, float volume = 1.0f)
@@ -936,6 +947,25 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         return detections;
+    }
+
+    /// <summary>
+    ///   Returns a list of tuples, representing all possible microbe targets. These are not all the
+    ///   other microbes that the microbe can smell; only the best candidate of each species.
+    /// </summary>
+    /// <param name="microbeSystem">MicrobeSystem to scan</param>
+    /// <returns>
+    ///   A list of tuples. Each tuple contains the type of species, the color of the line (if any needs to be drawn),
+    ///   and the location where the microbe is located.
+    /// </returns>
+
+    public List<(Species Species, Color Colour, Vector3 Target)> GetDetectedSpecies(
+        MicrobeSystem microbeSystem)
+    {
+        // TODO Implement this
+        // var microbes = microbeSystem.worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP)
+        //     .Cast<Microbe>().ToArray();
+        return new List<(Species Species, Color Colour, Vector3 Target)>();
     }
 
     /// <summary>
