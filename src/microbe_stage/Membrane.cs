@@ -19,7 +19,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// </summary>
     private readonly List<Vector2> vertices2D = new();
 
-    // Buffer for starting points when generating membrane data
+    /// <summary>
+    ///   Buffer for starting points when generating membrane data
+    /// </summary>
     private readonly List<Vector2> startingBuffer = new();
 
     private float healthFraction = 1.0f;
