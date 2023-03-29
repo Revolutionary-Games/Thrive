@@ -17,10 +17,16 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     {
         base.UpdateAsync(delta);
 
-        organelle!.ParentMicrobe!.ReportActiveCompoundChemoreceptor(
-            targetCompound!, searchRange, searchAmount, lineColour);
-        organelle!.ParentMicrobe!.ReportActiveSpeciesChemoreceptor(
-            targetSpecies!, searchRange, searchAmount, lineColour);
+        if (targetCompound != null)
+        {
+            organelle!.ParentMicrobe!.ReportActiveCompoundChemoreceptor(
+                targetCompound, searchRange, searchAmount, lineColour);
+        }
+        else if (targetSpecies != null)
+        {
+            organelle!.ParentMicrobe!.ReportActiveSpeciesChemoreceptor(
+                targetSpecies, searchRange, searchAmount, lineColour);
+        }
     }
 
     protected override void CustomAttach()
