@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-27 21:06-0500\n"
-"PO-Revision-Date: 2023-03-18 07:34+0000\n"
-"Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
+"PO-Revision-Date: 2023-03-29 20:04+0000\n"
+"Last-Translator: Maxim <maxSAINTSPuRpLe@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1457
@@ -1050,7 +1050,7 @@ msgstr ""
 "Вы достигли конца \"завершённой\" части Thrive.\n"
 "Если вы хотите, вы можете продолжить на игру следующих стадиях, которые включены в игру. Они могут быть незавершёнными, использовать заполнители текстур и быть необработанными в целом. Они включены в игру для того, чтобы показать, как, вероятно, будет развиваться игра далее и наше видение того, как стадии будут соединены.\n"
 "\n"
-"Вы не сможете сохраниться, если продолжите или возвратитесь, когда продолжите. Если вы хотите вернуться на эту стадию, пожалуйста, сделайте сохранение перед этим моментом.\n"
+"Вы не сможете сохраниться, в большинстве прототипов, если вы продолжите или вернуться если вы продолжите. Если вы хотите вернуться на эту стадию, пожалуйста, сделайте сохранение перед этим моментом.\n"
 "\n"
 "Помимо этого поддержка контроллера так же недоступна во многих прототипах.!!!!!Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость!!!!!"
 
@@ -3455,10 +3455,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
-"Следите за количеством доступного света на панели окружающей среды.\n"
+"Следите за количеством доступного солнечного света на панели окружающей среды.\n"
 ".\n"
-"В ночное время фотосинтез менее эффективен из-за малого количества солнечного света.\n"
-"Убедитесь, что собрано достаточно соединений для производства АТФ во время ночи."
+"Ночное время наступает, когда окружающая среда темнеет.\n"
+"В ночное время фотосинтез не эффективен.\n"
+"Убедитесь, что вы собрали достаточно ресурсов для того чтобы пережить ночь."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -5101,7 +5102,7 @@ msgstr "Рустицианин"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound]  и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает АТФ, которую клетка затем может собрать."
+msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию, которую клетка затем может собрать."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
