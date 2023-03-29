@@ -10,8 +10,8 @@ using Object = Godot.Object;
 /// </summary>
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
-public abstract class StageHUDBase<TStage> : Control, IStageHUD
-    where TStage : Object, IStage
+public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
+    where TStage : Object, ICreatureStage
 {
     [Export]
     public NodePath? CompoundsGroupAnimationPlayerPath;
@@ -537,7 +537,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             ShowFossilisationButtons();
 
             // Pause the game
-            PauseManager.Instance.AddPause(nameof(IStageHUD));
+            PauseManager.Instance.AddPause(nameof(ICreatureStageHUD));
         }
         else
         {
@@ -545,7 +545,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             HideFossilisationButtons();
 
             // Unpause the game
-            PauseManager.Instance.Resume(nameof(IStageHUD));
+            PauseManager.Instance.Resume(nameof(ICreatureStageHUD));
         }
     }
 

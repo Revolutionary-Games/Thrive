@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 /// <typeparam name="TPlayer">The type of the player object</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNodeResolve
+public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage, IGodotEarlyNodeResolve
     where TPlayer : class
 {
     [Export]
@@ -95,7 +95,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     /// <remarks>
     ///   <para>
     ///     This used to have an internal set (<see cref="MovingToEditor"/> had that as well) but with the needed
-    ///     <see cref="IStage"/> that seems no longer possible
+    ///     <see cref="ICreatureStage"/> that seems no longer possible
     ///   </para>
     /// </remarks>
     [JsonIgnore]
@@ -174,7 +174,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         }
     }
 
-    protected abstract IStageHUD BaseHUD { get; }
+    protected abstract ICreatureStageHUD BaseHUD { get; }
 
     public virtual void ResolveNodeReferences()
     {

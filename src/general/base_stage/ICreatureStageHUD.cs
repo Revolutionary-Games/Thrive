@@ -1,8 +1,8 @@
 ﻿/// <summary>
-///   Interface for <see cref="StageHUDBase{TStage}"/> to make complex inter dependencies work like with
+///   Interface for <see cref="CreatureStageHUDBase{TStage}"/> to make complex inter dependencies work like with
 ///   <see cref="IEditor"/>
 /// </summary>
-public interface IStageHUD
+public interface ICreatureStageHUD
 {
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.

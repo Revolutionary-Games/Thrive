@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 
 /// <summary>
-///   See the documentation on <see cref="IStageHUD"/>
+///   See the documentation on <see cref="ICreatureStageHUD"/>
 /// </summary>
-public interface IStage : IReturnableGameState
+public interface ICreatureStage : IReturnableGameState
 {
     [JsonIgnore]
     public bool HasPlayer { get; }

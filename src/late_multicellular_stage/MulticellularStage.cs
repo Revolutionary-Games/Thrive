@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MulticellularStage : StageBase<MulticellularCreature>
+public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 {
     [Export]
     public NodePath? InteractableSystemPath;
@@ -76,7 +76,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     [JsonIgnore]
     public PlayerInspectInfo HoverInfo { get; private set; } = null!;
 
-    protected override IStageHUD BaseHUD => HUD;
+    protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
