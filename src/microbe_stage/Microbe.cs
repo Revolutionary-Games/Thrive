@@ -979,6 +979,15 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             collectedUniqueSpeciesDetections = activeSpeciesDetections;
         }
 
+        // Adds all species to detection for testing purposes
+        // This should be removed as soon as the species selection is functional
+        var allSpecies = GameWorld.Map.FindAllSpeciesWithPopulation();
+
+        foreach (var species in allSpecies)
+        {
+            collectedUniqueSpeciesDetections.Add((species, 200, new Color(0.5f, 0, 1, 1)));
+        }
+
         var detections = new List<(Species Species, Color Colour, Vector3 Target)>();
         var position = GlobalTranslation;
 
