@@ -76,6 +76,7 @@ public class MicrobeSystem
 
         foreach (var microbe in microbes)
         {
+            // Skip candidates for performance
             if (Math.Abs(microbe.Translation.x - position.x) > searchRadius ||
                 Math.Abs(microbe.Translation.y - position.y) > searchRadius)
             {
@@ -83,6 +84,10 @@ public class MicrobeSystem
             }
 
             var distance = (microbe.Translation - position).LengthSquared();
+
+            // Prevent cell detecting itself
+            if (distance < 10)
+                continue;
 
             if (distance < nearestDistanceSquared)
             {
