@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-24 15:05+0200\n"
-"PO-Revision-Date: 2023-03-18 07:34+0000\n"
-"Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
+"POT-Creation-Date: 2023-03-27 21:06-0500\n"
+"PO-Revision-Date: 2023-03-29 20:04+0000\n"
+"Last-Translator: Maxim <maxSAINTSPuRpLe@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1457
@@ -89,11 +89,11 @@ msgstr "Дополнительные проверки обнаружили пр�
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Добавить новое назначение клавиши"
 
-#: ../src/general/NewGameSettings.tscn:1222
+#: ../src/general/NewGameSettings.tscn:1179
 msgid "ADVANCED_VIEW"
 msgstr "Продвинутый вид"
 
-#: ../src/general/NewGameSettings.tscn:1217
+#: ../src/general/NewGameSettings.tscn:1174
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Открыть меню продвинутой настройки"
 
@@ -370,7 +370,7 @@ msgstr "Доступные моды"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
-#: ../src/general/NewGameSettings.tscn:1185
+#: ../src/general/NewGameSettings.tscn:1142
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -400,11 +400,11 @@ msgstr "Базовая Мобильность"
 msgid "BASE_MOVEMENT"
 msgstr "Базовое Передвижение"
 
-#: ../src/general/NewGameSettings.tscn:1207
+#: ../src/general/NewGameSettings.tscn:1164
 msgid "BASIC_VIEW"
 msgstr "Упрощённый вид"
 
-#: ../src/general/NewGameSettings.tscn:1202
+#: ../src/general/NewGameSettings.tscn:1159
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Вернуться к упрощённому виду настроек"
 
@@ -1027,12 +1027,12 @@ msgstr "Подтвердить выход"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Подтвердите перезапись"
 
-#: ../src/general/NewGameSettings.cs:331
-#: ../src/general/NewGameSettings.tscn:1238
+#: ../src/general/NewGameSettings.cs:326
+#: ../src/general/NewGameSettings.tscn:1195
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Начать игру с этими настройками"
 
-#: ../src/general/NewGameSettings.cs:338
+#: ../src/general/NewGameSettings.cs:333
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Некоторые настройки неправильные"
 
@@ -1050,9 +1050,9 @@ msgstr ""
 "Вы достигли конца \"завершённой\" части Thrive.\n"
 "Если вы хотите, вы можете продолжить на игру следующих стадиях, которые включены в игру. Они могут быть незавершёнными, использовать заполнители текстур и быть необработанными в целом. Они включены в игру для того, чтобы показать, как, вероятно, будет развиваться игра далее и наше видение того, как стадии будут соединены.\n"
 "\n"
-"Вы не сможете сохраниться, если продолжите или возвратитесь, когда продолжите. Если вы хотите вернуться на эту стадию, пожалуйста, сделайте сохранение перед этим моментом.\n"
+"Вы не сможете сохраниться, в большинстве прототипов, если вы продолжите или вернуться если вы продолжите. Если вы хотите вернуться на эту стадию, пожалуйста, сделайте сохранение перед этим моментом.\n"
 "\n"
-"Помимо этого поддержка контроллера так же недоступна во многих прототипах.!!Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость.!!"
+"Помимо этого поддержка контроллера так же недоступна во многих прототипах.!!!!!Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость!!!!!"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
@@ -1275,19 +1275,19 @@ msgstr "Цитоплазматический гликолиз"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"=glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:941
 msgid "DAY_LENGTH"
 msgstr "Длина дня"
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:989
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(длительность дней, выраженная в реальном времени)"
 
-#: ../src/general/NewGameSettings.tscn:958
+#: ../src/general/NewGameSettings.tscn:915
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Включить цикл день/ночь"
 
-#: ../src/general/NewGameSettings.tscn:966
+#: ../src/general/NewGameSettings.tscn:923
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(ВНИМАНИЕ: фотосинтез становится гораздо менее жизнеспособным)"
 
@@ -1431,12 +1431,12 @@ msgstr "Поглощён"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Devbuild-Спонсоры"
 
-#: ../src/general/NewGameSettings.tscn:293
+#: ../src/general/NewGameSettings.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Сложность"
 
-#: ../src/general/WorldGenerationSettings.cs:156
+#: ../src/general/WorldGenerationSettings.cs:142
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -1451,13 +1451,13 @@ msgstr ""
 "Пассивно получить прогресс воспроизведения: {8}\n"
 "Ограничить использование соединений роста: {9}"
 
-#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:126
 #: ../src/general/NewGameSettings.tscn:363
 msgid "DIFFICULTY_PRESET"
 msgstr "Шаблон сложности"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:154
+#: ../src/general/WorldGenerationSettings.cs:140
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Пользовательский"
 
@@ -1733,11 +1733,11 @@ msgstr "Вот совет: бактерии могут быть сильнее, 
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Вот совет: вы можете охотиться на другие виды до их истребления, если не будете достаточно осторожны. Другие виды могут делать то же самое."
 
-#: ../src/general/NewGameSettings.tscn:1164
+#: ../src/general/NewGameSettings.tscn:1121
 msgid "EASTER_EGGS"
 msgstr "Включить пасхальные яйца"
 
-#: ../src/general/NewGameSettings.tscn:1171
+#: ../src/general/NewGameSettings.tscn:1128
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(случайно расположенные секреты в игре)"
 
@@ -2401,11 +2401,11 @@ msgstr "ID не является действительным номером"
 msgid "ID_NUMBER"
 msgstr "Номер ID"
 
-#: ../src/general/NewGameSettings.tscn:1145
+#: ../src/general/NewGameSettings.tscn:1102
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включить прототипы поздних стадий игры"
 
-#: ../src/general/NewGameSettings.tscn:1152
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(некоторые функции могут быть недоступны как только вы достигнете следующего этапа)"
 
@@ -2430,9 +2430,8 @@ msgid "INPUTS"
 msgstr "Клавиши"
 
 #: ../simulation_parameters/common/input_options.json:80
-#, fuzzy
 msgid "INPUT_NAME_BUILD_STRUCTURE"
-msgstr "Взаимодействовать с объектом"
+msgstr "Построить структуру"
 
 #: ../simulation_parameters/common/input_options.json:72
 msgid "INPUT_NAME_INTERACTION"
@@ -2451,32 +2450,28 @@ msgid "INSPECTOR"
 msgstr "Инспектор"
 
 #: ../src/awakening_stage/InteractionType.cs:17
-#, fuzzy
 msgid "INTERACTION_CONSTRUCT"
-msgstr "Создать..."
+msgstr "Завершить Строительство"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:463
-#, fuzzy
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr "Собрать урожай (НЕДОСТАЮЩАЯ ЭКИПИРОВКА : {0})"
+msgstr "Завершить Строительство (Недостаёт необходимых материалов)"
 
 #: ../src/awakening_stage/InteractionType.cs:8
 msgid "INTERACTION_CRAFT"
 msgstr "Создать..."
 
 #: ../src/awakening_stage/InteractionType.cs:14
-#, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
-msgstr "Поднять"
+msgstr "Заложить Материалы"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:453
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "Заложить Материалы (нет подходящих носимых вами предметов)"
 
 #: ../src/awakening_stage/InteractionType.cs:23
-#, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr "Создать..."
+msgstr "Основать поселение"
 
 #: ../src/awakening_stage/InteractionType.cs:11
 msgid "INTERACTION_HARVEST"
@@ -2877,13 +2872,13 @@ msgstr "Почта"
 msgid "LAUNCHMEDIA"
 msgstr "Медиа"
 
-#: ../src/general/NewGameSettings.tscn:155
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:853
 msgid "LAWK_ONLY"
 msgstr "Только ЖКМЗ"
 
-#: ../src/general/NewGameSettings.tscn:162
-#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:161
+#: ../src/general/NewGameSettings.tscn:860
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ограничивает органеллы и способности только теми, которые встречаются в природе (Жизнь, Какой Мы её Знаем))"
 
@@ -2963,37 +2958,37 @@ msgstr "Лицензии"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Лицензии на отдельные части Thrive отображены здесь"
 
-#: ../src/general/NewGameSettings.tscn:178
-#: ../src/general/NewGameSettings.tscn:919
+#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:876
 msgid "LIFE_ORIGIN"
 msgstr "Происхождение жизни"
 
-#: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:926
+#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:883
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(начальная локация)"
 
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:49
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Панспермия (случайно)"
 
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:46
 msgid "LIFE_ORIGIN_POND"
 msgstr "Небольшое теплое озеро"
 
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:897
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Некоторые варианты могут быть недоступны если включен режим ЖКМЗ"
 
+#: ../src/general/NewGameSettings.tscn:200
 #: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:942
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:899
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гидротермальные источники"
@@ -3460,10 +3455,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
-"Следите за количеством доступного света на панели окружающей среды.\n"
+"Следите за количеством доступного солнечного света на панели окружающей среды.\n"
 ".\n"
-"В ночное время фотосинтез менее эффективен из-за малого количества солнечного света.\n"
-"Убедитесь, что собрано достаточно соединений для производства АТФ во время ночи."
+"Ночное время наступает, когда окружающая среда темнеет.\n"
+"В ночное время фотосинтез не эффективен.\n"
+"Убедитесь, что вы собрали достаточно ресурсов для того чтобы пережить ночь."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -3584,7 +3580,7 @@ msgstr "Минимальная версия:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Невозможно показать меньше, чем {0} наборов данных!"
 
-#: ../src/general/NewGameSettings.tscn:313 ../src/general/OptionsMenu.tscn:215
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
 msgid "MISC"
 msgstr "Дополнительное"
 
@@ -4009,7 +4005,7 @@ msgstr "Новая игра"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Начать новую игру"
 
-#: ../src/general/NewGameSettings.tscn:275
+#: ../src/general/NewGameSettings.tscn:274
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Заметьте: вы можете изменить настройки производительности в любое время в [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]меню настроек[/url][/color] для улучшения производительности"
 
@@ -4473,10 +4469,6 @@ msgstr "Перемещение вперед"
 msgid "PAGE_TITLE"
 msgstr "Титульная Страница"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
-msgid "PANGONIAN_REGION_NAME"
-msgstr "Пангонский"
-
 #: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_DOWN"
 msgstr "Переместить вниз"
@@ -4527,26 +4519,7 @@ msgstr "Карта Биомов"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Нажимайте, перетаскивайте, приближайте и отдаляйте чтобы осмотреться"
 
-#: ../src/general/NewGameSettings.tscn:857
-msgid "PATCH_MAP_TYPE"
-msgstr "Тип карты биомов"
-
-#: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Классическая"
-
-#: ../src/general/NewGameSettings.tscn:864
-msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr "(генерировать карту биомов процедурно или использовать классическое расположение)"
-
-#: ../src/general/NewGameSettings.tscn:879
-#: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/WorldGenerationSettings.cs:55
-msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr "Процедурная"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:880
+#: ../src/microbe_stage/PatchMapGenerator.cs:823
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -4613,8 +4586,8 @@ msgid "PEACEFUL"
 msgstr "Мирный"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:692
-#: ../src/general/WorldGenerationSettings.cs:162
+#: ../src/general/NewGameSettings.cs:674 ../src/general/StageHUDBase.cs:692
+#: ../src/general/WorldGenerationSettings.cs:148
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
@@ -4666,28 +4639,27 @@ msgstr "Физическое Сопротивление"
 msgid "PLACE_ORGANELLE"
 msgstr "Разместить органеллу"
 
-#: ../src/general/NewGameSettings.tscn:303
+#: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Планета"
 
-#: ../src/general/WorldGenerationSettings.cs:174
+#: ../src/general/WorldGenerationSettings.cs:160
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
-"Тип карты исправления: {0}\n"
-"Только LAWK: {1}\n"
-"Происхождение жизни: {2}\n"
-"Цикл дня и ночи: {3}\n"
-"Продолжительность дня(в секундах): {4} \n"
-"Случайное начальное число планеты: {5}"
+"Только LAWK: {0}\n"
+"Происхождение жизни: {1}\n"
+"Цикл дня и ночи: {2}\n"
+"Продолжительность дня(в секундах): {3} \n"
+"Случайное начальное число планеты: {4}"
 
-#: ../src/general/NewGameSettings.tscn:1113
+#: ../src/general/NewGameSettings.tscn:1070
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Генерация планеты в разработке!"
 
-#: ../src/general/NewGameSettings.tscn:217
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:216
+#: ../src/general/NewGameSettings.tscn:1000
 msgid "PLANET_RANDOM_SEED"
 msgstr "Сид планеты"
 
@@ -4870,8 +4842,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Случайное название вида"
 
-#: ../src/general/NewGameSettings.tscn:236
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:235
+#: ../src/general/NewGameSettings.tscn:1019
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Это значение используется для генерации мира, оно должно быть положительным целым числом"
 
@@ -5001,9 +4973,8 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорость Поглощения Ресурсов"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
-#, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
-msgstr "Давл."
+msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
@@ -5130,7 +5101,7 @@ msgstr "Рустицианин"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound]  и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает АТФ, которую клетка затем может собрать."
+msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию, которую клетка затем может собрать."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -5350,7 +5321,7 @@ msgstr "Выбрать превью"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "Выбор структуры"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:84
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
@@ -5630,7 +5601,7 @@ msgstr "Запуск"
 msgid "START_CALIBRATION"
 msgstr "Начать настройку"
 
-#: ../src/general/NewGameSettings.tscn:1241
+#: ../src/general/NewGameSettings.tscn:1198
 msgid "START_GAME"
 msgstr "Начать игру"
 
@@ -5770,24 +5741,23 @@ msgstr "Структура"
 
 #: ../src/awakening_stage/PlacedStructure.cs:66
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "Материалы, что нужны для строительства были заложены"
 
 #: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
-msgstr ""
+msgstr "Строится: {0}"
 
 #: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr ""
+msgstr "Необходимые материалы, без которых строительство не завершится: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
-#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr "Центр Общества"
+msgstr "{0} (начальная цена:{1} , в итоге: {2})"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr ""
+msgstr "{0}(НЕДОСТАТОЧНО ДЛЯ НАЧАЛА:{1}, в конечном счёте:{2})"
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
@@ -6690,7 +6660,7 @@ msgstr "Информация мира была успешно экспортир
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Основная статистика ныне выранного мира"
 
-#: ../src/general/WorldGenerationSettings.cs:188
+#: ../src/general/WorldGenerationSettings.cs:173
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -6746,6 +6716,21 @@ msgstr "Увеличить масштаб"
 #: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "PANGONIAN_REGION_NAME"
+#~ msgstr "Пангонский"
+
+#~ msgid "PATCH_MAP_TYPE"
+#~ msgstr "Тип карты биомов"
+
+#~ msgid "PATCH_MAP_TYPE_CLASSIC"
+#~ msgstr "Классическая"
+
+#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
+#~ msgstr "(генерировать карту биомов процедурно или использовать классическое расположение)"
+
+#~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
+#~ msgstr "Процедурная"
 
 #~ msgid "LOOKING_AT"
 #~ msgstr "Смотрите на:"

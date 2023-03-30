@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-24 15:05+0200\n"
+"POT-Creation-Date: 2023-03-27 21:06-0500\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -90,11 +90,11 @@ msgstr "Auto-evo gagal bekerja"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/general/NewGameSettings.tscn:1222
+#: ../src/general/NewGameSettings.tscn:1179
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1217
+#: ../src/general/NewGameSettings.tscn:1174
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -367,7 +367,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
-#: ../src/general/NewGameSettings.tscn:1185
+#: ../src/general/NewGameSettings.tscn:1142
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -398,11 +398,11 @@ msgstr "Mobilitas"
 msgid "BASE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
-#: ../src/general/NewGameSettings.tscn:1207
+#: ../src/general/NewGameSettings.tscn:1164
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1202
+#: ../src/general/NewGameSettings.tscn:1159
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1049,13 +1049,13 @@ msgstr "Konfirmasi Keluar"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:331
-#: ../src/general/NewGameSettings.tscn:1238
+#: ../src/general/NewGameSettings.cs:326
+#: ../src/general/NewGameSettings.tscn:1195
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/general/NewGameSettings.cs:338
+#: ../src/general/NewGameSettings.cs:333
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Tambah keybind baru"
@@ -1287,20 +1287,20 @@ msgstr "Glikolisis Sitoplasma"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:941
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:989
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/general/NewGameSettings.tscn:958
+#: ../src/general/NewGameSettings.tscn:915
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:966
+#: ../src/general/NewGameSettings.tscn:923
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1453,24 +1453,24 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr "Pendukung Devbuilds"
 
-#: ../src/general/NewGameSettings.tscn:293
+#: ../src/general/NewGameSettings.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:156
+#: ../src/general/WorldGenerationSettings.cs:142
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Pilihan"
 
-#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:126
 #: ../src/general/NewGameSettings.tscn:363
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:154
+#: ../src/general/WorldGenerationSettings.cs:140
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Pilihan"
 
@@ -1756,12 +1756,12 @@ msgstr "Berikut tipsnya, bakteri bisa lebih kuat dari yang terlihat, mungkin mer
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Berikut tipsnya, kamu bisa memburu spesies lain hingga kepunahan jika kamu tidak berhati-hati. Spesies lain juga dapat melakukannya."
 
-#: ../src/general/NewGameSettings.tscn:1164
+#: ../src/general/NewGameSettings.tscn:1121
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau Mangsa?"
 
-#: ../src/general/NewGameSettings.tscn:1171
+#: ../src/general/NewGameSettings.tscn:1128
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
@@ -2473,12 +2473,12 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1145
+#: ../src/general/NewGameSettings.tscn:1102
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Letakkan organel"
 
-#: ../src/general/NewGameSettings.tscn:1152
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -2958,13 +2958,13 @@ msgstr "Mail"
 msgid "LAUNCHMEDIA"
 msgstr "Media"
 
-#: ../src/general/NewGameSettings.tscn:155
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:853
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:162
-#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:161
+#: ../src/general/NewGameSettings.tscn:860
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
@@ -3045,38 +3045,38 @@ msgstr ""
 msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:178
-#: ../src/general/NewGameSettings.tscn:919
+#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:876
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:926
+#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:883
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:49
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:46
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:897
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#: ../src/general/NewGameSettings.tscn:200
 #: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:202
-#: ../src/general/NewGameSettings.tscn:942
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:899
+#: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -3668,7 +3668,7 @@ msgstr "Versi:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Tidak diperbolehkan menampilkan kurang dari {0} dataset!"
 
-#: ../src/general/NewGameSettings.tscn:313 ../src/general/OptionsMenu.tscn:215
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
 msgid "MISC"
 msgstr "Ragam"
 
@@ -4102,7 +4102,7 @@ msgstr "Permainan Baru"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Mulai permainan baru"
 
-#: ../src/general/NewGameSettings.tscn:275
+#: ../src/general/NewGameSettings.tscn:274
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4586,10 +4586,6 @@ msgstr "Depan"
 msgid "PAGE_TITLE"
 msgstr "Proses Sel"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
-msgid "PANGONIAN_REGION_NAME"
-msgstr ""
-
 #: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_DOWN"
 msgstr "Geser ke bawah"
@@ -4643,27 +4639,7 @@ msgstr "Peta Daerah"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/general/NewGameSettings.tscn:857
-#, fuzzy
-msgid "PATCH_MAP_TYPE"
-msgstr "Peta Daerah"
-
-#: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:864
-msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:879
-#: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/WorldGenerationSettings.cs:55
-msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:880
+#: ../src/microbe_stage/PatchMapGenerator.cs:823
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Gua"
@@ -4738,8 +4714,8 @@ msgid "PEACEFUL"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:692
-#: ../src/general/WorldGenerationSettings.cs:162
+#: ../src/general/NewGameSettings.cs:674 ../src/general/StageHUDBase.cs:692
+#: ../src/general/WorldGenerationSettings.cs:148
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
@@ -4791,23 +4767,23 @@ msgstr "Kekebalan Fisik"
 msgid "PLACE_ORGANELLE"
 msgstr "Letakkan organel"
 
-#: ../src/general/NewGameSettings.tscn:303
+#: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:174
+#: ../src/general/WorldGenerationSettings.cs:160
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Buka Folder Catatan"
 
-#: ../src/general/NewGameSettings.tscn:1113
+#: ../src/general/NewGameSettings.tscn:1070
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:217
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:216
+#: ../src/general/NewGameSettings.tscn:1000
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -4996,8 +4972,8 @@ msgstr "Peringatan Mode GLES2"
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:236
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:235
+#: ../src/general/NewGameSettings.tscn:1019
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Lanjutkan"
@@ -5802,7 +5778,7 @@ msgstr "Memulai"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1241
+#: ../src/general/NewGameSettings.tscn:1198
 #, fuzzy
 msgid "START_GAME"
 msgstr "Simpan Permainan"
@@ -6904,7 +6880,7 @@ msgstr "Error Menyimpan"
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Statistika Organisme"
 
-#: ../src/general/WorldGenerationSettings.cs:188
+#: ../src/general/WorldGenerationSettings.cs:173
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -6961,6 +6937,10 @@ msgstr "Perbesar"
 #: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "PATCH_MAP_TYPE"
+#~ msgstr "Peta Daerah"
 
 #, fuzzy
 #~ msgid "LOOKING_AT"
