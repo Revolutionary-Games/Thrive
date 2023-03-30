@@ -50,15 +50,6 @@ public class WorldGenerationSettings
         Panspermia,
     }
 
-    public enum PatchMapType
-    {
-        [Description("PATCH_MAP_TYPE_PROCEDURAL")]
-        Procedural,
-
-        [Description("PATCH_MAP_TYPE_CLASSIC")]
-        Classic,
-    }
-
     /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
     /// </summary>
@@ -106,11 +97,6 @@ public class WorldGenerationSettings
 
     [JsonIgnore]
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
-
-    /// <summary>
-    ///   Basic patch map generation type (procedural or the static classic map)
-    /// </summary>
-    public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
 
     /// <summary>
     ///   Whether the day/night cycle in this game is enabled
@@ -172,7 +158,6 @@ public class WorldGenerationSettings
     public string GetTranslatedPlanetString()
     {
         return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PLANET_DETAILS_STRING"),
-            TranslationServer.Translate(MapType.GetAttribute<DescriptionAttribute>().Description),
             TranslationHelper.TranslateFeatureFlag(LAWK),
             TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
             TranslationHelper.TranslateFeatureFlag(DayNightCycleEnabled),
@@ -197,7 +182,6 @@ public class WorldGenerationSettings
             $", Difficulty: {Difficulty.GetDescriptionString()}" +
             $", Life origin: {Origin}" +
             $", Seed: {Seed}" +
-            $", Map type: {MapType}" +
             $", Day/night cycle enabled: {DayNightCycleEnabled}" +
             $", Day length: {DayLength}" +
             $", Include multicellular: {IncludeMulticellular}" +
