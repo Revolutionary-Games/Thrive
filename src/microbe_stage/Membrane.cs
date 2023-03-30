@@ -653,45 +653,47 @@ public class Membrane : MeshInstance, IComputedMembraneData
         ProceduralDataCache.Instance.WriteMembraneData(CreateDataForCache(generatedMesh, surfaceIndex));
     }
 
-    private void GenerateMembranePoints(List<Vector2> startingBuffer, List<Vector2> targetBuffer)
+    private void GenerateMembranePoints(List<Vector2> sourceBuffer, List<Vector2> targetBuffer)
     {
         float membraneDistanceToOrganelles = HasMultihexOrganelles ?
             Constants.MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX :
             Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
 
-        // Move all the points in the starting buffer close to organelles
-        for (int i = 0, end = startingBuffer.Count; i < end; ++i)
+        // Move all the points in the source buffer close to organelles
+        // This operation used to be iterative but this is now a much faster version that moves things all the way in
+        // a single step
+        for (int i = 0, end = sourceBuffer.Count; i < end; ++i)
         {
-            var closestOrganelle = FindClosestOrganelles(startingBuffer[i]);
+            var closestOrganelle = FindClosestOrganelles(sourceBuffer[i]);
 
-            var direction = (startingBuffer[i] - closestOrganelle).Normalized();
+            var direction = (sourceBuffer[i] - closestOrganelle).Normalized();
             var movement = direction * membraneDistanceToOrganelles;
 
-            startingBuffer[i] = closestOrganelle + movement;
+            sourceBuffer[i] = closestOrganelle + movement;
         }
 
         float circumference = 0.0f;
 
-        for (int i = 0, end = startingBuffer.Count; i < end; ++i)
+        for (int i = 0, end = sourceBuffer.Count; i < end; ++i)
         {
-            circumference += (startingBuffer[(i + 1) % end] - startingBuffer[i]).Length();
+            circumference += (sourceBuffer[(i + 1) % end] - sourceBuffer[i]).Length();
         }
 
         targetBuffer.Clear();
 
-        var lastAddedPoint = startingBuffer[0];
+        var lastAddedPoint = sourceBuffer[0];
 
         targetBuffer.Add(lastAddedPoint);
 
-        float gap = circumference / startingBuffer.Count;
+        float gap = circumference / sourceBuffer.Count;
         float distanceToLastAddedPoint = 0.0f;
         float distanceToLastPassedPoint = 0.0f;
 
         // Go around the membrane and place points evenly in the target buffer.
-        for (int i = 0, end = startingBuffer.Count; i < end; ++i)
+        for (int i = 0, end = sourceBuffer.Count; i < end; ++i)
         {
-            var currentPoint = startingBuffer[i];
-            var nextPoint = startingBuffer[(i + 1) % end];
+            var currentPoint = sourceBuffer[i];
+            var nextPoint = sourceBuffer[(i + 1) % end];
             float distance = (nextPoint - currentPoint).Length();
 
             // Add a new point if the next point is too far
