@@ -115,6 +115,15 @@ public static class Constants
 
     public const int MEMBRANE_RESOLUTION = 10;
 
+    // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/4117 for why these two variables exist
+    public const float MEMBRANE_ROOM_FOR_ORGANELLES = 2.0f;
+    public const float MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX = 3.0f;
+
+    public const float MEMBRANE_NUMBER_OF_WAVES = 9.0f;
+    public const float MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE = 0.3f;
+    public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER = 0.025f;
+    public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
+
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
     /// </summary>
