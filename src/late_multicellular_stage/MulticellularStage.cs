@@ -104,6 +104,19 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         progressBarSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
 
         SetupStage();
+
+        // TODO: remove debug code
+        Invoke.Instance.Queue(() =>
+        {
+            MouseCaptureManager.ReportOpenCapturePrevention("test");
+            var structure = SpawnHelpers.SpawnStructure(SimulationParameters.Instance.GetStructure("societyCenter"),
+                new Transform(Basis.Identity, new Vector3(0, 0, 30)), rootOfDynamicallySpawned,
+                SpawnHelpers.LoadStructureScene());
+
+            structure.ForceCompletion();
+
+            OnSocietyFounded(structure);
+        });
     }
 
     public override void ResolveNodeReferences()
@@ -197,6 +210,22 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
     public override void StartMusic()
     {
+        // Change music based on how far along in the game the player is
+        if (GameWorld.PlayerSpecies is LateMulticellularSpecies lateMulticellularSpecies)
+        {
+            if (lateMulticellularSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+            {
+                Jukebox.Instance.PlayCategory("AwakeningStage");
+                return;
+            }
+
+            if (lateMulticellularSpecies.MulticellularType == MulticellularSpeciesType.Aware)
+            {
+                Jukebox.Instance.PlayCategory("AwareStage");
+                return;
+            }
+        }
+
         Jukebox.Instance.PlayCategory("LateMulticellularStage");
     }
 
@@ -458,6 +487,10 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         HUD.HUDMessages.ShowMessage(
             "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
             "Interact with tool parts to advance.", DisplayDuration.ExtraLong);
+
+        // Music is different in the awakening stage (and we don't visit the editor here so we need to trigger a music
+        // change here)
+        StartMusic();
     }
 
     public void AttemptPlayerWorldInteraction()

@@ -40,7 +40,7 @@ public class SocietyStage : StrategyStageBase
 
     public override void StartMusic()
     {
-        // TODO: society stage music
+        Jukebox.Instance.PlayCategory("SocietyStage");
     }
 
     public PlacedStructure AddBuilding(StructureDefinition structureDefinition, Transform location)
@@ -49,11 +49,6 @@ public class SocietyStage : StrategyStageBase
     }
 
     protected override void OnGameStarted()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
     {
         throw new System.NotImplementedException();
     }
