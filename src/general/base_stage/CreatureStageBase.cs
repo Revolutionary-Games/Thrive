@@ -10,41 +10,22 @@ using Newtonsoft.Json;
 /// <typeparam name="TPlayer">The type of the player object</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage, IGodotEarlyNodeResolve
+public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
     where TPlayer : class
 {
-    [Export]
-    public NodePath? PauseMenuPath;
-
-    [Export]
-    public NodePath HUDRootPath = null!;
-
 #pragma warning disable CA2213
-    protected Node world = null!;
-    protected Node rootOfDynamicallySpawned = null!;
     protected DirectionalLight worldLight = null!;
-    protected PauseMenu pauseMenu = null!;
-    protected Control hudRoot = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     protected DayNightCycle lightCycle = null!;
 
-    [JsonProperty]
-    protected Random random = new();
-
     /// <summary>
     ///   Used to differentiate between spawning the player the first time and respawning
     /// </summary>
     [JsonProperty]
     protected bool spawnedPlayer;
-
-    /// <summary>
-    ///   True when the player is extinct
-    /// </summary>
-    [JsonProperty]
-    protected bool gameOver;
 
     [JsonProperty]
     protected float playerRespawnTimer;
@@ -56,22 +37,6 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
     protected bool playerExtinctInCurrentPatch;
 
     /// <summary>
-    ///   True if auto save should trigger ASAP
-    /// </summary>
-    protected bool wantsToSave;
-
-    private bool transitionFinished;
-
-    /// <summary>
-    ///   The main current game object holding various details
-    /// </summary>
-    [JsonProperty]
-    public GameProperties? CurrentGame { get; set; }
-
-    [JsonIgnore]
-    public GameWorld GameWorld => CurrentGame?.GameWorld ?? throw new InvalidOperationException("Game not started yet");
-
-    /// <summary>
     ///   The current player or null.
     ///   TODO: check: Due to references on save load this needs to be after the systems
     /// </summary>
@@ -80,34 +45,6 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
 
     [JsonIgnore]
     public bool HasPlayer => Player != null;
-
-    [JsonIgnore]
-    public Node GameStateRoot => this;
-
-    public bool IsLoadedFromSave { get; set; }
-
-    [JsonIgnore]
-    public bool NodeReferencesResolved { get; private set; }
-
-    /// <summary>
-    ///   True once stage fade-in is complete
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This used to have an internal set (<see cref="MovingToEditor"/> had that as well) but with the needed
-    ///     <see cref="ICreatureStage"/> that seems no longer possible
-    ///   </para>
-    /// </remarks>
-    [JsonIgnore]
-    public bool TransitionFinished
-    {
-        get => transitionFinished;
-        set
-        {
-            transitionFinished = value;
-            pauseMenu.GameLoading = !transitionFinished;
-        }
-    }
 
     /// <summary>
     ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
@@ -174,22 +111,18 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
         }
     }
 
+    [JsonIgnore]
     protected abstract ICreatureStageHUD BaseHUD { get; }
 
-    public virtual void ResolveNodeReferences()
+    public override void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
             return;
 
-        world = GetNode<Node>("World");
-        rootOfDynamicallySpawned = world.GetNode<Node>("DynamicallySpawned");
+        base.ResolveNodeReferences();
+
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
-        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
-        hudRoot = GetNode<Control>(HUDRootPath);
-
         lightCycle = new DayNightCycle();
-
-        NodeReferencesResolved = true;
     }
 
     public override void _ExitTree()
@@ -244,21 +177,6 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
             GameWorld.IsAutoEvoFinished(true);
         }
 
-        // Save if wanted
-        if (TransitionFinished && wantsToSave)
-        {
-            if (CurrentGame == null)
-            {
-                throw new InvalidOperationException(
-                    "Stage doesn't have a game state even though it should be initialized");
-            }
-
-            if (!CurrentGame.FreeBuild)
-                AutoSave();
-
-            wantsToSave = false;
-        }
-
         var debugOverlay = DebugOverlays.Instance;
 
         if (debugOverlay.PerformanceMetricsVisible)
@@ -281,21 +199,18 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
     {
         if (what == NotificationTranslationChanged)
         {
+            // TODO: the following doesn't seem to do anything so confirm that and remove
             if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
                 throw new InvalidOperationException("Stage not initialized properly");
         }
     }
 
-    public abstract void StartMusic();
-
-    public virtual void StartNewGame()
+    public override void StartNewGame()
     {
         SpawnPlayer();
 
-        OnGameStarted();
+        base.StartNewGame();
     }
-
-    public abstract void OnFinishLoading(Save save);
 
     /// <summary>
     ///   Called when returning from the editor
@@ -339,30 +254,6 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
-    [RunOnKeyDown("g_toggle_gui")]
-    public void ToggleGUI()
-    {
-        hudRoot.Visible = !hudRoot.Visible;
-    }
-
-    [RunOnKeyDown("g_quick_save")]
-    public void QuickSave()
-    {
-        if (!TransitionFinished || wantsToSave)
-        {
-            GD.Print("Skipping quick save as stage transition is not finished or saving is queued");
-            return;
-        }
-
-        GD.Print("quick saving stage");
-        PerformQuickSave();
-    }
-
-    public virtual void OnFinishTransitioning()
-    {
-        TransitionFinished = true;
-    }
-
     public abstract void MoveToEditor();
 
     public abstract void OnSuicide();
@@ -381,42 +272,20 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
         SpawnPlayer();
     }
 
-    /// <summary>
-    ///   Prepares the stage for playing. Also begins a new game if one hasn't been started yet for easier debugging.
-    /// </summary>
-    protected virtual void SetupStage()
+    protected override void SetupStage()
     {
-        if (!IsLoadedFromSave)
-        {
-            if (CurrentGame == null)
-            {
-                StartNewGame();
-            }
-            else
-            {
-                OnGameStarted();
-            }
-        }
-        else
+        if (IsLoadedFromSave)
         {
             lightCycle.CalculateDependentLightData(GameWorld.WorldSettings);
         }
 
-        GD.Print(CurrentGame!.GameWorld.WorldSettings);
-
-        pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
-
-        pauseMenu.SetNewSaveNameFromSpeciesName();
-
-        StartMusic();
-
-        BaseHUD.OnEnterStageTransition(!IsLoadedFromSave, false);
+        base.SetupStage();
     }
 
-    /// <summary>
-    ///   Common logic for the case where we directly open this scene or start a new game normally from the menu
-    /// </summary>
-    protected abstract void OnGameStarted();
+    protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
+    {
+        BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
+    }
 
     protected abstract void UpdatePatchSettings(bool promptPatchNameChange = true);
 
@@ -467,7 +336,7 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
         SpawnPlayer();
     }
 
-    protected bool IsGameOver()
+    protected override bool IsGameOver()
     {
         return GameWorld.Map.GetSpeciesGlobalGameplayPopulation(CurrentGame!.GameWorld.PlayerSpecies) <= 0 &&
             !CurrentGame.FreeBuild;
@@ -515,14 +384,8 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
     /// </summary>
     protected abstract void SpawnPlayer();
 
-    protected abstract void AutoSave();
-    protected abstract void PerformQuickSave();
-
-    protected virtual void GameOver()
+    protected override void OnGameOver()
     {
-        // Player is extinct and has lost the game
-        gameOver = true;
-
         // Just to make sure _Process doesn't run
         playerExtinctInCurrentPatch = true;
 
@@ -535,20 +398,6 @@ public abstract class CreatureStageBase<TPlayer> : NodeWithInput, ICreatureStage
         playerExtinctInCurrentPatch = true;
 
         BaseHUD.ShowPatchExtinctionBox();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PauseMenuPath != null)
-            {
-                PauseMenuPath.Dispose();
-                HUDRootPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void PatchExtinctionResolved()

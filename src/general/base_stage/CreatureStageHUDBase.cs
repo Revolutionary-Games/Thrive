@@ -10,7 +10,7 @@ using Object = Godot.Object;
 /// </summary>
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
-public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
+public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD
     where TStage : Object, ICreatureStage
 {
     [Export]
@@ -27,9 +27,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
 
     [Export]
     public NodePath MouseHoverPanelPath = null!;
-
-    [Export]
-    public NodePath MenuPath = null!;
 
     [Export]
     public NodePath AtpLabelPath = null!;
@@ -140,12 +137,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
     public NodePath MicrobeControlRadialPath = null!;
 
     [Export]
-    public NodePath PausePromptPath = null!;
-
-    [Export]
-    public NodePath PauseInfoPath = null!;
-
-    [Export]
     public NodePath AgentsPanelPath = null!;
 
     [Export]
@@ -162,9 +153,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
 
     [Export]
     public NodePath BottomLeftBarPath = null!;
-
-    [Export]
-    public NodePath HUDMessagesPath = null!;
 
     [Export]
     public NodePath FossilisationButtonLayerPath = null!;
@@ -251,7 +239,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
     protected TextureProgress ammoniaReproductionBar = null!;
     protected TextureProgress phosphateReproductionBar = null!;
     protected Light2D editorButtonFlash = null!;
-    protected PauseMenu menu = null!;
     protected Label atpLabel = null!;
     protected Label hpLabel = null!;
     protected Label populationLabel = null!;
@@ -280,11 +267,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
 
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
-    private Control pausePrompt = null!;
-    private CustomRichTextLabel pauseInfo = null!;
-
-    private HUDMessages hudMessages = null!;
-
     private Panel compoundsPanel = null!;
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -297,11 +279,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
 #pragma warning restore CA2213
 
     private Array? compoundBars;
-
-    /// <summary>
-    ///   For toggling paused with the pause button.
-    /// </summary>
-    private bool paused;
 
     private bool environmentCompressed;
     private bool compoundCompressed;
@@ -367,17 +344,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
         }
     }
 
-    [JsonIgnore]
-    public bool Paused => paused;
-
-    [JsonIgnore]
-    public HUDMessages HUDMessages => hudMessages;
-
-    /// <summary>
-    ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
-    /// </summary>
-    protected abstract string? UnPauseHelpText { get; }
-
     public override void _Ready()
     {
         base._Ready();
@@ -422,7 +388,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
-        menu = GetNode<PauseMenu>(MenuPath);
         compoundsGroupAnimationPlayer = GetNode<AnimationPlayer>(CompoundsGroupAnimationPlayerPath);
         environmentGroupAnimationPlayer = GetNode<AnimationPlayer>(EnvironmentGroupAnimationPlayerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
@@ -430,11 +395,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
-
-        pausePrompt = GetNode<Control>(PausePromptPath);
-        pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
-
-        hudMessages = GetNode<HUDMessages>(HUDMessagesPath);
 
         packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
@@ -475,7 +435,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
 
         UpdateEnvironmentPanelState();
         UpdateCompoundsPanelState();
-        UpdatePausePrompt();
     }
 
     public void Init(TStage containedInStage)
@@ -516,37 +475,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
-    }
-
-    public void PauseButtonPressed(bool buttonState)
-    {
-        if (menu.Visible)
-        {
-            bottomLeftBar.Paused = paused;
-            return;
-        }
-
-        GUICommon.Instance.PlayButtonPressSound();
-
-        paused = !paused;
-        bottomLeftBar.Paused = paused;
-
-        if (paused)
-        {
-            pausePrompt.Show();
-            ShowFossilisationButtons();
-
-            // Pause the game
-            PauseManager.Instance.AddPause(nameof(ICreatureStageHUD));
-        }
-        else
-        {
-            pausePrompt.Hide();
-            HideFossilisationButtons();
-
-            // Unpause the game
-            PauseManager.Instance.Resume(nameof(ICreatureStageHUD));
-        }
     }
 
     /// <summary>
@@ -591,7 +519,7 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
     }
 
-    public void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
+    public override void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
@@ -603,11 +531,7 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
             return;
         }
 
-        // Fade out for that smooth satisfying transition
-        stage.TransitionFinished = false;
-
-        TransitionManager.Instance.AddSequence(
-            ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stage.OnFinishTransitioning);
+        AddFadeIn(stage, longerDuration);
     }
 
     public void OnSuicide()
@@ -710,6 +634,28 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
         // TODO: pressure?
     }
 
+    public override void PauseButtonPressed(bool buttonState)
+    {
+        base.PauseButtonPressed(buttonState);
+
+        if (menu.Visible)
+        {
+            bottomLeftBar.Paused = Paused;
+            return;
+        }
+
+        bottomLeftBar.Paused = Paused;
+
+        if (Paused)
+        {
+            ShowFossilisationButtons();
+        }
+        else
+        {
+            HideFossilisationButtons();
+        }
+    }
+
     /// <summary>
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
@@ -737,20 +683,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
         else
         {
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
-        }
-    }
-
-    /// <summary>
-    ///   Makes sure the game is unpaused (at least by us)
-    /// </summary>
-    public void EnsureGameIsUnpausedForEditor()
-    {
-        if (Paused)
-        {
-            PauseButtonPressed(!Paused);
-
-            if (PauseManager.Instance.Paused)
-                GD.PrintErr("Unpausing the game after editor button press didn't work");
         }
     }
 
@@ -1144,7 +1076,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
                 PanelsTweenPath.Dispose();
                 LeftPanelsPath.Dispose();
                 MouseHoverPanelPath.Dispose();
-                MenuPath.Dispose();
                 AtpLabelPath.Dispose();
                 HpLabelPath.Dispose();
                 PopulationLabelPath.Dispose();
@@ -1181,8 +1112,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
                 SecreteSlimeHotkeyPath.Dispose();
                 SignallingAgentsHotkeyPath.Dispose();
                 MicrobeControlRadialPath.Dispose();
-                PausePromptPath.Dispose();
-                PauseInfoPath.Dispose();
                 AgentsPanelPath.Dispose();
                 OxytoxyBarPath.Dispose();
                 MucilageBarPath.Dispose();
@@ -1371,20 +1300,6 @@ public abstract class CreatureStageHUDBase<TStage> : Control, ICreatureStageHUD
 
         editorButton.GetNode<TextureRect>("Highlight").Show();
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
-    }
-
-    private void UpdatePausePrompt()
-    {
-        var text = UnPauseHelpText;
-
-        if (text != null)
-        {
-            pauseInfo.ExtendedBbcode = text;
-        }
-        else
-        {
-            pauseInfo.Visible = false;
-        }
     }
 
     private void UpdateFossilisationButtons()

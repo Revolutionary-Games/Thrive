@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json;
-
-public interface IReturnableGameState : ILoadableGameState
+﻿public interface IReturnableGameState : ILoadableGameState, ICurrentGameInfo
 {
-    [JsonProperty]
-    public GameProperties? CurrentGame { get; set; }
-
     public void OnReturnFromEditor();
 }

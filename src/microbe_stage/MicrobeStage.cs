@@ -659,9 +659,9 @@ public class MicrobeStage : CreatureStageBase<Microbe>
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
-    protected override void GameOver()
+    protected override void OnGameOver()
     {
-        base.GameOver();
+        base.OnGameOver();
 
         guidanceLine.Visible = false;
     }
