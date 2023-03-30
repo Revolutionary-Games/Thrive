@@ -62,6 +62,12 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
     private Transform societyCameraAnimationEnd = Transform.Identity;
 
     [JsonProperty]
+    private Vector3 animationEndCameraLookPoint;
+
+    [JsonProperty]
+    private Transform firstSocietyCenterTransform;
+
+    [JsonProperty]
     private bool movingToSocietyStage;
 
     [JsonProperty]
@@ -76,6 +82,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
     [JsonIgnore]
     public PlayerInspectInfo HoverInfo { get; private set; } = null!;
 
+    [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
@@ -560,8 +567,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         // TODO: despawn moveCreatureToSocietyCenter once it reaches inside the society center
 
         // Start the transition to the next stage and a camera animation
-        var cameraFocusPoint = societyCenter.GlobalTranslation;
-        cameraFocusPoint += societyCenter.RotatedExtraInteractionOffset() ?? Vector3.Zero;
+        animationEndCameraLookPoint = societyCenter.GlobalTranslation;
+        animationEndCameraLookPoint += societyCenter.RotatedExtraInteractionOffset() ?? Vector3.Zero;
+        firstSocietyCenterTransform = societyCenter.GlobalTransform;
 
         // Prevent inputs to not allow messing with the camera animation
         PlayerCamera.AllowPlayerInput = false;
@@ -573,7 +581,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
         moveToSocietyTimer = 0;
         societyCameraAnimationStart = animationCamera.GlobalTransform;
-        societyCameraAnimationEnd = StrategicCameraHelpers.CalculateCameraPosition(cameraFocusPoint, 1);
+        societyCameraAnimationEnd = StrategicCameraHelpers.CalculateCameraPosition(animationEndCameraLookPoint, 1);
 
         // Detach from the previous place to not have the arm etc. control nodes apply to it anymore
         animationCamera.ReParent(rootOfDynamicallySpawned);
@@ -776,6 +784,16 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
     private void SwitchToSocietyScene()
     {
-        SceneManager.Instance.SwitchToScene(MainGameState.SocietyStage);
+        var societyStage = SceneManager.Instance.LoadScene(MainGameState.SocietyStage).Instance<SocietyStage>();
+
+        SceneManager.Instance.SwitchToScene(societyStage);
+
+        // Preserve some of the state when moving to the stage for extra continuity
+        societyStage.CameraWorldPoint = animationEndCameraLookPoint;
+
+        // TODO: structures should be saved in the world data and not the stage object directly
+        var societyCenter = societyStage.AddBuilding(SimulationParameters.Instance.GetStructure("societyCenter"),
+            firstSocietyCenterTransform);
+        societyCenter.ForceCompletion();
     }
 }
