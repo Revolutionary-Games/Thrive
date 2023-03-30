@@ -103,10 +103,16 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         UpdateFinishButtonWarningVisibility();
     }
 
+    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    {
+        SetUndoButtonStatus(canUndo && !Editor.CanCancelAction);
+        SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
+    }
+
     /// <summary>
     ///   Updates the visibility of the finish button's warning badge based on <see cref="ShowFinishButtonWarning"/>.
     /// </summary>
-    public void UpdateFinishButtonWarningVisibility()
+    protected void UpdateFinishButtonWarningVisibility()
     {
         var animator = finishButtonWarningBadge.GetChild<AnimationPlayer>(0);
 
@@ -120,10 +126,10 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         animator.Play(animation);
     }
 
-    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    protected virtual void OnCancelActionClicked()
     {
-        SetUndoButtonStatus(canUndo && !Editor.CanCancelAction);
-        SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
+        GUICommon.Instance.PlayButtonPressSound();
+        Editor.CancelCurrentAction();
     }
 
     protected void Undo()
@@ -134,12 +140,6 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     protected void Redo()
     {
         Editor.Redo();
-    }
-
-    protected virtual void OnCancelActionClicked()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        Editor.CancelCurrentAction();
     }
 
     protected void SetUndoButtonStatus(bool enabled)
