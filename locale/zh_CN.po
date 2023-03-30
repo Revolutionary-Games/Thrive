@@ -2434,9 +2434,8 @@ msgid "INPUTS"
 msgstr "输入"
 
 #: ../simulation_parameters/common/input_options.json:80
-#, fuzzy
 msgid "INPUT_NAME_BUILD_STRUCTURE"
-msgstr "与物体交互"
+msgstr "建造一个结构"
 
 #: ../simulation_parameters/common/input_options.json:72
 msgid "INPUT_NAME_INTERACTION"
@@ -2456,14 +2455,12 @@ msgid "INSPECTOR"
 msgstr "检查"
 
 #: ../src/awakening_stage/InteractionType.cs:17
-#, fuzzy
 msgid "INTERACTION_CONSTRUCT"
-msgstr "合成..."
+msgstr "完成建造"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:463
-#, fuzzy
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr "收割（缺少工具：{0}）"
+msgstr "完成建造（缺少所需的材料）"
 
 #: ../src/awakening_stage/InteractionType.cs:8
 msgid "INTERACTION_CRAFT"
@@ -2479,9 +2476,8 @@ msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:23
-#, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr "合成..."
+msgstr "成立一个聚居地"
 
 #: ../src/awakening_stage/InteractionType.cs:11
 msgid "INTERACTION_HARVEST"
@@ -4988,9 +4984,8 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "物质吸收速度"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
-#, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
-msgstr "压力"
+msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
@@ -5337,7 +5332,7 @@ msgstr "选择预览图"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "选择要放置的结构"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:84
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
@@ -5759,20 +5754,19 @@ msgstr "结构"
 
 #: ../src/awakening_stage/PlacedStructure.cs:66
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "已具有用于建造的材料"
 
 #: ../src/awakening_stage/PlacedStructure.cs:40
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
-msgstr ""
+msgstr "正在建造：{0}"
 
 #: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr ""
+msgstr "完成该建筑所需要的材料: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
-#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr "社会中心"
+msgstr "{0} (起始消耗: {1}, 总消耗: {2})"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
