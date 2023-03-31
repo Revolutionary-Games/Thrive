@@ -198,4 +198,61 @@ public static class NodeHelpers
             }
         }
     }
+
+    /// <summary>
+    ///   Looks through all parent nodes recursively of a node to find one of matching type
+    /// </summary>
+    /// <param name="node">The node which parent is the first node to search</param>
+    /// <typeparam name="T">The type to look for</typeparam>
+    /// <returns>The found node or null</returns>
+    public static T? FirstAncestorOfType<T>(this Node node)
+        where T : Node
+    {
+        var parent = node.GetParent();
+
+        while (parent != null)
+        {
+            if (parent is T casted)
+                return casted;
+
+            parent = parent.GetParent();
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    ///   Looks through all descendant nodes recursively of a node to find one of matching type in a depth first order.
+    ///   Only should be used in exceptional cases where a proper architecture can't be used (easily).
+    /// </summary>
+    /// <param name="node">
+    ///   The node to start the search at (the node's children are searched first, not the node itself)
+    /// </param>
+    /// <typeparam name="T">The type to look for</typeparam>
+    /// <returns>The found node or null</returns>
+    /// <remarks>
+    ///   <para>
+    ///     This is a pretty dirty hack, but is useful in some prototype or "temporary" code situations where there
+    ///     isn't an easy way to do things properly
+    ///   </para>
+    /// </remarks>
+    public static T? FirstDescendantOfType<T>(this Node node)
+        where T : Node
+    {
+        foreach (Node child in node.GetChildren())
+        {
+            if (child is T casted)
+                return casted;
+
+            if (child.GetChildCount() > 0)
+            {
+                var recursiveResult = FirstDescendantOfType<T>(child);
+
+                if (recursiveResult != null)
+                    return recursiveResult;
+            }
+        }
+
+        return null;
+    }
 }

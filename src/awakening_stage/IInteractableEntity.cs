@@ -21,7 +21,7 @@ public interface IInteractableEntity : IEntity, IPlayerReadableName, IInventoryI
     ///   If not null this is added to the world position of this interactable when considering where the point to
     ///   interact with is located
     /// </summary>
-    public Vector3? ExtraInteractOverlayOffset { get; }
+    public Vector3? ExtraInteractionCenterOffset { get; }
 
     /// <summary>
     ///   If not null, the interaction popup will have this extra text in it. For now this doesn't support rich text.
@@ -62,4 +62,33 @@ public interface IInteractableEntity : IEntity, IPlayerReadableName, IInventoryI
     /// <param name="interactionType">The type of interaction to perform</param>
     /// <returns>True when the action succeeds, false if it failed for some reason</returns>
     public bool PerformExtraAction(InteractionType interactionType);
+}
+
+public static class InteractableEntityHelpers
+{
+    /// <summary>
+    ///   Rotated to world space interaction offset. This is most of the time more useful than the raw value
+    /// </summary>
+    /// <param name="entity">The entity to get the interaction offset for</param>
+    /// <returns>The adjusted offset or null if it doesn't exist for the entity</returns>
+    public static Vector3? RotatedExtraInteractionOffset(this IInteractableEntity entity)
+    {
+        var offset = entity.ExtraInteractionCenterOffset;
+
+        if (offset == null)
+            return null;
+
+        return RotateExtraInteractionOffset(offset.Value, entity.EntityNode.GlobalTransform.basis);
+    }
+
+    /// <summary>
+    ///   Corrects an interaction offset for the entity's actual rotation
+    /// </summary>
+    /// <param name="offset">Raw offset value</param>
+    /// <param name="rotation">Rotation of the entity</param>
+    /// <returns>The corrected offset</returns>
+    public static Vector3 RotateExtraInteractionOffset(Vector3 offset, Basis rotation)
+    {
+        return rotation.Xform(offset);
+    }
 }

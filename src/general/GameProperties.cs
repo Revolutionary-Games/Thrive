@@ -191,6 +191,18 @@ public class GameProperties
         return game;
     }
 
+    public static GameProperties StartSocietyStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartNewAwakeningStageGame(settings);
+
+        // Initial tech unlocks the player needs
+        var simulationParameters = SimulationParameters.Instance;
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("simpleStoneTools"));
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("societyCenter"));
+
+        return game;
+    }
+
     /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>
