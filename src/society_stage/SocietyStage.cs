@@ -33,7 +33,7 @@ public class SocietyStage : StrategyStageBase
 
         base.ResolveNodeReferences();
 
-        HUD = GetNode<SocietyHUD>("HUD");
+        HUD = GetNode<SocietyHUD>("SocietyHUD");
 
         // TODO: systems
     }

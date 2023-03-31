@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/society_stage/SocietyHUD.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -10,12 +10,8 @@
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/actions/OpenInventory.png" type="Texture" id=12]
-[ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/actions/InteractAction.png" type="Texture" id=15]
-[ext_resource path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" type="Texture" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=17]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=19]
@@ -155,6 +151,8 @@ __meta__ = {
 [node name="HUDBottomBar" parent="." instance=ExtResource( 19 )]
 margin_top = -43.0
 margin_bottom = -8.0
+ShowCompoundPanelToggles = false
+ShowSuicideButton = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_left = 0.5
@@ -169,6 +167,7 @@ scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
 margin_right = 550.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -176,96 +175,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Interact" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
-margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
-focus_mode = 2
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
-ActionIcon = ExtResource( 15 )
-ActionName = "g_interact"
-
-[node name="Inventory" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
-margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
-focus_mode = 2
-ActionIcon = ExtResource( 12 )
-ActionName = "g_inventory"
-
 [node name="Build" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 252.0
-margin_right = 298.0
+margin_left = 200.0
+margin_right = 246.0
 margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
+hint_tooltip = "BUILD_STRUCTURE"
 focus_mode = 2
 ActionIcon = ExtResource( 17 )
 ActionName = "g_build_structure"
 
-[node name="Eating" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
-visible = false
+[node name="Research" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 252.0
 margin_right = 298.0
 margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
-focus_mode = 2
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
-ActionIcon = ExtResource( 14 )
-ActionName = "g_toggle_engulf"
-
-[node name="FireToxin" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 277.0
-margin_right = 323.0
-margin_bottom = 51.0
-hint_tooltip = "FIRE_TOXIN"
+hint_tooltip = "OPEN_RESEARCH_SCREEN"
 focus_mode = 2
 ActionIcon = ExtResource( 11 )
-ActionName = "g_fire_toxin"
+ActionName = "g_inventory"
 
-[node name="SignalingAgents" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
-visible = false
-margin_left = 277.0
-margin_right = 323.0
+[node name="Posses" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 304.0
+margin_right = 350.0
 margin_bottom = 51.0
+hint_tooltip = "Posses a member of your species for direct control
+(as this is a very complex feature this will be the last thing to be added once the strategy stages are complete)"
 focus_mode = 2
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
-toggle_mode = true
-ActionIcon = ExtResource( 13 )
-ActionName = "g_pack_commands"
-
-[node name="SecreteSlime" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 277.0
-margin_right = 323.0
-margin_bottom = 51.0
-hint_tooltip = "SECRETE_SLIME"
-disabled = true
-ActionIcon = ExtResource( 16 )
-ActionName = "g_secrete_slime"
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": "PLACEHOLDER as the tooltip is a placeholder"
+}
+ActionIcon = ExtResource( 14 )
+ActionName = "g_toggle_engulf"
 
 [node name="HintText" type="Label" parent="."]
 anchor_right = 1.0
@@ -309,5 +258,11 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 1279.0
 margin_bottom = 35.0
+
+[connection signal="OnHelpPressed" from="HUDBottomBar" to="." method="OpenHelp"]
+[connection signal="OnMenuPressed" from="HUDBottomBar" to="." method="OpenMenu"]
+[connection signal="OnPausePressed" from="HUDBottomBar" to="." method="PauseButtonPressed"]
+[connection signal="OnProcessesPressed" from="HUDBottomBar" to="." method="OpenResearchScreen"]
+[connection signal="OnStatisticsPressed" from="HUDBottomBar" to="." method="StatisticsButtonPressed"]
 
 [editable path="PausePrompt"]

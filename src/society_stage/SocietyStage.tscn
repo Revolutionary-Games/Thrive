@@ -36,6 +36,9 @@ size = Vector2( 400, 400 )
 
 [node name="SocietyStage" type="Node"]
 script = ExtResource( 1 )
+PauseMenuPath = NodePath("PauseMenu")
+HUDRootPath = NodePath("SocietyHUD")
+StrategicCameraPath = NodePath("World/StrategicCamera")
 
 [node name="World" type="Node" parent="."]
 
@@ -67,3 +70,6 @@ mesh = SubResource( 5 )
 MenuPath = NodePath("../PauseMenu")
 
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
+
+[connection signal="OnOpenMenu" from="SocietyHUD" to="PauseMenu" method="Open"]
+[connection signal="OnOpenMenuToHelp" from="SocietyHUD" to="PauseMenu" method="OpenToHelp"]
