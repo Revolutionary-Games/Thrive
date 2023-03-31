@@ -52,6 +52,11 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
             "Saving for this late stage is not implemented, remove this exception once added");
     }
 
+    protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
+    {
+        BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

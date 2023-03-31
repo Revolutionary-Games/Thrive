@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/society_stage/SocietyStage.cs" type="Script" id=1]
 [ext_resource path="res://src/society_stage/StrategicCamera.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/textures/environment/Terrain_01_Normals.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/environment/Terrain_02_Normals.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/environment/Terrain_02_Albedo.png" type="Texture" id=6]
+[ext_resource path="res://src/society_stage/SocietyHUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1000, 0.05, 1000 )
@@ -60,3 +62,8 @@ mesh = SubResource( 2 )
 [node name="Visual2" type="MeshInstance" parent="World/TemporaryGround"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -400 )
 mesh = SubResource( 5 )
+
+[node name="SocietyHUD" parent="." instance=ExtResource( 7 )]
+MenuPath = NodePath("../PauseMenu")
+
+[node name="PauseMenu" parent="." instance=ExtResource( 8 )]
