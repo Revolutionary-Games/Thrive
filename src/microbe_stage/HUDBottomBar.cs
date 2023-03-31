@@ -14,6 +14,12 @@ public class HUDBottomBar : HBoxContainer
     [Export]
     public bool ShowSuicideButton = true;
 
+    /// <summary>
+    ///   When false the microbe processes button is hidden
+    /// </summary>
+    [Export]
+    public bool ShowProcessesButton = true;
+
     [Export]
     public NodePath? PauseButtonPath;
 
@@ -225,5 +231,8 @@ public class HUDBottomBar : HBoxContainer
 
         if (suicideButton != null)
             suicideButton.Visible = ShowSuicideButton;
+
+        if (processPanelButton != null)
+            processPanelButton.Visible = ShowProcessesButton;
     }
 }

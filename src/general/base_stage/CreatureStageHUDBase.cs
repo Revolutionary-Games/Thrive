@@ -638,13 +638,10 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     {
         base.PauseButtonPressed(buttonState);
 
-        if (menu.Visible)
-        {
-            bottomLeftBar.Paused = Paused;
-            return;
-        }
-
         bottomLeftBar.Paused = Paused;
+
+        if (menu.Visible)
+            return;
 
         if (Paused)
         {

@@ -28,6 +28,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
     [Export]
     public NodePath WorldEnvironmentNodePath = null!;
 
+    private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
@@ -104,19 +106,6 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         progressBarSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
 
         SetupStage();
-
-        // TODO: remove debug code
-        Invoke.Instance.Queue(() =>
-        {
-            MouseCaptureManager.ReportOpenCapturePrevention("test");
-            var structure = SpawnHelpers.SpawnStructure(SimulationParameters.Instance.GetStructure("societyCenter"),
-                new Transform(Basis.Identity, new Vector3(0, 0, 30)), rootOfDynamicallySpawned,
-                SpawnHelpers.LoadStructureScene());
-
-            structure.ForceCompletion();
-
-            OnSocietyFounded(structure);
-        });
     }
 
     public override void ResolveNodeReferences()
@@ -579,6 +568,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         HUD.HUDMessages.ShowMessage(TranslationServer.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
         movingToSocietyStage = true;
 
+        // Show cursor while we are switching
+        MouseCaptureManager.ReportOpenCapturePrevention(STAGE_TRANSITION_MOUSE_LOCK);
+
         // Unset the player to disallow doing this multiple times in a row and to disable the player
         var moveCreatureToSocietyCenter = Player;
         Player = null;
@@ -752,9 +744,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
                 ProgressBarSystemPath.Dispose();
                 SelectBuildingPopupPath.Dispose();
                 WorldEnvironmentNodePath.Dispose();
-            }
 
-            interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
+                interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
+            }
 
             if (CurrentGame != null)
                 CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
@@ -818,6 +810,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
     private void SwitchToSocietyScene()
     {
         var societyStage = SceneManager.Instance.LoadScene(MainGameState.SocietyStage).Instance<SocietyStage>();
+        societyStage.CurrentGame = CurrentGame;
 
         SceneManager.Instance.SwitchToScene(societyStage);
 
@@ -828,5 +821,12 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         var societyCenter = societyStage.AddBuilding(SimulationParameters.Instance.GetStructure("societyCenter"),
             firstSocietyCenterTransform);
         societyCenter.ForceCompletion();
+
+        // Stop explicitly preventing mouse capture (the society stage won't capture the mouse anyway but to not
+        // have a pending force no-capture on this is good)
+        Invoke.Instance.Queue(() =>
+        {
+            MouseCaptureManager.ReportClosedCapturePrevention(STAGE_TRANSITION_MOUSE_LOCK);
+        });
     }
 }

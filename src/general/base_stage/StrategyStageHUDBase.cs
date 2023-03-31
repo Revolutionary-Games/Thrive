@@ -82,6 +82,28 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
         AddFadeIn(stage, longerDuration);
     }
 
+    public override void PauseButtonPressed(bool buttonState)
+    {
+        base.PauseButtonPressed(buttonState);
+
+        bottomLeftBar.Paused = Paused;
+
+        // if (!menu.Visible)
+        // {
+        //     // TODO: fossilisation if still wanted in this stage
+        // }
+    }
+
+    protected void OpenMenu()
+    {
+        EmitSignal(nameof(OnOpenMenu));
+    }
+
+    protected void OpenHelp()
+    {
+        EmitSignal(nameof(OnOpenMenuToHelp));
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -95,5 +117,10 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
         }
 
         base.Dispose(disposing);
+    }
+
+    private void StatisticsButtonPressed()
+    {
+        menu.OpenToStatistics();
     }
 }

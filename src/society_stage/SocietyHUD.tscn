@@ -3,7 +3,6 @@
 [ext_resource path="res://src/society_stage/SocietyHUD.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=3]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=7]
@@ -11,18 +10,12 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/rock.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/Wood.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=17]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=19]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.533333, 0.745098, 0.815686, 0.392157 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -50,6 +43,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="SocietyHUD" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
@@ -71,60 +65,6 @@ margin_top = -317.0
 margin_right = 1.0
 margin_bottom = -1.0
 mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -220.982
-margin_top = -150.402
-margin_right = -1.98193
-margin_bottom = -75.4016
-grow_horizontal = 0
-grow_vertical = 0
-custom_constants/separation = 8
-alignment = 2
-
-[node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
-margin_left = 88.0
-margin_top = 38.0
-margin_right = 219.0
-margin_bottom = 75.0
-grow_horizontal = 0
-grow_vertical = 0
-rect_min_size = Vector2( 0, 17 )
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
-margin_right = 87.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 87, 0 )
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
-custom_styles/normal = SubResource( 1 )
-text = "POPULATION_CAPITAL"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Value" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
-margin_left = 91.0
-margin_top = 9.0
-margin_right = 131.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 40, 0 )
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
-custom_styles/normal = SubResource( 1 )
-text = "100"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EditorButton" type="TextureButton" parent="BottomRight"]
 anchor_left = 1.0
@@ -153,6 +93,7 @@ margin_top = -43.0
 margin_bottom = -8.0
 ShowCompoundPanelToggles = false
 ShowSuicideButton = false
+ShowProcessesButton = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_left = 0.5
@@ -182,7 +123,6 @@ margin_left = 200.0
 margin_right = 246.0
 margin_bottom = 51.0
 hint_tooltip = "BUILD_STRUCTURE"
-focus_mode = 2
 ActionIcon = ExtResource( 17 )
 ActionName = "g_build_structure"
 
@@ -193,7 +133,6 @@ margin_left = 252.0
 margin_right = 298.0
 margin_bottom = 51.0
 hint_tooltip = "OPEN_RESEARCH_SCREEN"
-focus_mode = 2
 ActionIcon = ExtResource( 11 )
 ActionName = "g_inventory"
 
@@ -205,7 +144,6 @@ margin_right = 350.0
 margin_bottom = 51.0
 hint_tooltip = "Posses a member of your species for direct control
 (as this is a very complex feature this will be the last thing to be added once the strategy stages are complete)"
-focus_mode = 2
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
@@ -229,20 +167,6 @@ __meta__ = {
 [node name="PausePrompt" parent="." instance=ExtResource( 18 )]
 visible = false
 
-[node name="VScrollBar2" type="VScrollBar" parent="PausePrompt/PauseInfo" index="0"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-max_value = 22.0
-step = 1.0
-page = 40.0
-
-[node name="VScrollBar3" type="VScrollBar" parent="PausePrompt/PauseInfo" index="1"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-step = 1.0
-
 [node name="HUDMessages" parent="." instance=ExtResource( 10 )]
 margin_left = 270.0
 margin_top = 90.0
@@ -259,10 +183,103 @@ margin_top = 1.0
 margin_right = 1279.0
 margin_bottom = 35.0
 
+[node name="LeftSpacer" type="Control" parent="TopBar/HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 8, 5 )
+
+[node name="ResourceAmountsContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
+margin_left = 12.0
+margin_right = 1014.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar/HBoxContainer/ResourceAmountsContainer"]
+margin_right = 41.0
+margin_bottom = 34.0
+
+[node name="RockAmount" type="Label" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer"]
+margin_top = 4.0
+margin_right = 13.0
+margin_bottom = 29.0
+text = "3"
+
+[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer"]
+margin_left = 17.0
+margin_right = 41.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TopBar/HBoxContainer/ResourceAmountsContainer"]
+margin_left = 51.0
+margin_right = 87.0
+margin_bottom = 34.0
+
+[node name="WoodAmount" type="Label" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer2"]
+margin_top = 4.0
+margin_right = 8.0
+margin_bottom = 29.0
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer2"]
+margin_left = 12.0
+margin_right = 36.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TopBar/HBoxContainer/ResourceAmountsContainer"]
+margin_left = 97.0
+margin_right = 168.0
+margin_bottom = 34.0
+
+[node name="ScienceAmount" type="Label" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer3"]
+margin_top = 4.0
+margin_right = 43.0
+margin_bottom = 29.0
+text = "+0.5"
+
+[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer3"]
+margin_left = 47.0
+margin_right = 71.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 6
+
+[node name="PopulationContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
+margin_left = 1018.0
+margin_right = 1266.0
+margin_bottom = 34.0
+
+[node name="Label" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
+margin_top = 4.0
+margin_right = 212.0
+margin_bottom = 29.0
+text = "POPULATION_CAPITAL"
+
+[node name="Population" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
+margin_left = 216.0
+margin_top = 4.0
+margin_right = 248.0
+margin_bottom = 29.0
+text = "123"
+
+[node name="RightSpacer" type="Control" parent="TopBar/HBoxContainer"]
+margin_left = 1270.0
+margin_right = 1278.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 8, 5 )
+
 [connection signal="OnHelpPressed" from="HUDBottomBar" to="." method="OpenHelp"]
 [connection signal="OnMenuPressed" from="HUDBottomBar" to="." method="OpenMenu"]
 [connection signal="OnPausePressed" from="HUDBottomBar" to="." method="PauseButtonPressed"]
 [connection signal="OnProcessesPressed" from="HUDBottomBar" to="." method="OpenResearchScreen"]
 [connection signal="OnStatisticsPressed" from="HUDBottomBar" to="." method="StatisticsButtonPressed"]
-
-[editable path="PausePrompt"]

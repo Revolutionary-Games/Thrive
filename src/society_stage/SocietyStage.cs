@@ -6,6 +6,10 @@ using Newtonsoft.Json;
 /// </summary>
 public class SocietyStage : StrategyStageBase
 {
+#pragma warning disable CA2213
+    private PackedScene structureScene = null!;
+#pragma warning restore CA2213
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public SocietyHUD HUD { get; private set; } = null!;
@@ -18,6 +22,8 @@ public class SocietyStage : StrategyStageBase
         base._Ready();
 
         ResolveNodeReferences();
+
+        structureScene = SpawnHelpers.LoadStructureScene();
 
         HUD.Init(this);
 
@@ -45,12 +51,35 @@ public class SocietyStage : StrategyStageBase
 
     public PlacedStructure AddBuilding(StructureDefinition structureDefinition, Transform location)
     {
-        throw new System.NotImplementedException();
+        // TODO: Proper storing of created structures for easier processing
+        return SpawnHelpers.SpawnStructure(structureDefinition, location, rootOfDynamicallySpawned, structureScene);
+    }
+
+    public override void StartNewGame()
+    {
+        CurrentGame = GameProperties.StartSocietyStageGame(new WorldGenerationSettings());
+
+        // Spawn an initial society center to get the player started when directly going to this stage
+        var societyCenter =
+            AddBuilding(SimulationParameters.Instance.GetStructure("societyCenter"), Transform.Identity);
+        societyCenter.ForceCompletion();
+
+        base.StartNewGame();
+    }
+
+    [RunOnKeyDown("g_pause")]
+    public void PauseKeyPressed()
+    {
+        // Check nothing else has keyboard focus and pause the game
+        if (HUD.GetFocusOwner() == null)
+        {
+            HUD.PauseButtonPressed(!HUD.Paused);
+        }
     }
 
     protected override void OnGameStarted()
     {
-        throw new System.NotImplementedException();
+        // Apparently there's nothing to do here for now...
     }
 
     protected override bool IsGameOver()
