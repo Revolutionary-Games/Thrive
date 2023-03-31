@@ -1211,6 +1211,8 @@ public static class Constants
     /// </summary>
     public const float HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR = 11.2f;
 
+    public const float SOCIETY_STAGE_ENTER_ANIMATION_DURATION = 15;
+
     public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
     public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
 

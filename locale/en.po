@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-27 21:06-0500\n"
-"PO-Revision-Date: 2023-03-24 14:29+0200\n"
+"POT-Creation-Date: 2023-03-31 16:05+0300\n"
+"PO-Revision-Date: 2023-03-31 15:57+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -61,7 +61,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Move to the Awakening Stage. Available once you have enough brain power (tissue type with axons)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -195,7 +195,7 @@ msgstr "Amount of quicksaves to keep:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobic Nitrogen Fixation"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
 msgid "APPEARANCE"
 msgstr "Appearance"
 
@@ -265,7 +265,7 @@ msgstr "Atmospheric Gases"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:984
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
 msgid "ATP_BALANCE"
 msgstr "ATP Balance"
 
@@ -299,7 +299,7 @@ msgstr "August"
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1373
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "This panel shows the numbers that the auto-evo prediction works from. The total energy a species is able to capture, and the cost per individual of the species, determines the final population. Auto-evo uses a simplified model of reality to calculate how well species are performing based on the energy they are able to gather. For each food source, it is shown much energy the species gains from it. Additionally the total energy that is available from that source is shown. The fraction the species gains out of the total energy is based on how large the fitness is compared to the total fitness. Fitness is a metric of how well the species can utilize that food source."
 
@@ -307,12 +307,12 @@ msgstr "This panel shows the numbers that the auto-evo prediction works from. Th
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1101
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1329
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo Prediction"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1097
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "This panel shows the expected population numbers from auto-evo for the edited species.\n"
@@ -366,6 +366,14 @@ msgstr "Auto ({0}x{1})"
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
+
+#: ../simulation_parameters/common/gallery.json:430
+msgid "AWAKENING_STAGE"
+msgstr "Awakening Stage"
+
+#: ../simulation_parameters/common/gallery.json:419
+msgid "AWARE_STAGE"
+msgstr "Aware Stage"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
@@ -438,9 +446,9 @@ msgstr "Become Multicellular ({0}/{1})"
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thriving"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "BEHAVIOUR"
 msgstr "Behaviour"
 
@@ -484,7 +492,7 @@ msgstr "Benchmark phase:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Results:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
 msgid "BEST_PATCH_COLON"
 msgstr "Best Patch:"
 
@@ -502,7 +510,7 @@ msgstr "Best Patch:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
-#: ../src/general/StringUtils.cs:21
+#: ../src/general/utils/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
@@ -564,6 +572,11 @@ msgstr "Browse"
 msgid "BROWSE_WORKSHOP"
 msgstr "Browse Workshop"
 
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
+#: ../src/society_stage/SocietyHUD.tscn:125
+msgid "BUILD_STRUCTURE"
+msgstr "Build a Structure"
+
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
 msgstr "By:"
@@ -594,9 +607,9 @@ msgstr "Camera"
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:760
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL ACTION"
 
@@ -605,13 +618,13 @@ msgstr "CANCEL ACTION"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancel current action"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:821
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "A cell type that is currently used in your body plan cannot be deleted"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:819
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Cannot Delete Used Cell Type"
 
@@ -626,11 +639,11 @@ msgstr "Cannot engulf"
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Cannot move a metaball into its tree of descendants"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:826
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr "The brain power amount is now too low to stay in the current stage. Going back stages is not currently allowed, please increase brain power to continue."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:824
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr "Cannot Reduce Brain Power To Go Back Stages"
 
@@ -651,27 +664,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Carbon Dioxide"
 
-#: ../src/general/StageHUDBase.cs:926
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:855
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "an abundance"
 
-#: ../src/general/StageHUDBase.cs:930
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:859
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "a fair amount"
 
-#: ../src/general/StageHUDBase.cs:934
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
 msgid "CATEGORY_LITTLE"
 msgstr "little"
 
-#: ../src/general/StageHUDBase.cs:928
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:857
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "quite a bit"
 
-#: ../src/general/StageHUDBase.cs:932
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:861
 msgid "CATEGORY_SOME"
 msgstr "some"
 
-#: ../src/general/StageHUDBase.cs:936
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
@@ -683,8 +696,8 @@ msgstr "Cautious"
 msgid "CELL"
 msgstr "Cell"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:576
 msgid "CELLS"
 msgstr "Cells"
 
@@ -705,7 +718,7 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower. [b]Cellulase can digest this wall[/b] making it vulnerable to engulfment from predators."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:649
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:652
 msgid "CELL_TYPE_NAME"
 msgstr "Cell Type Name"
 
@@ -731,7 +744,7 @@ msgstr "Cheat keys enabled"
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
+#: ../src/microbe_stage/HUDBottomBar.tscn:102
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide cell processes"
 
@@ -847,7 +860,7 @@ msgstr "Clean Up Old Saves"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1382
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -875,7 +888,7 @@ msgstr "Coastal"
 msgid "COLLISION_SHAPE"
 msgstr "Spawn entities with collision shapes"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:763
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
 msgid "COLOUR"
 msgstr "Colour"
 
@@ -969,7 +982,7 @@ msgstr "Built at:"
 msgid "COMPOUNDS"
 msgstr "Compounds"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#: ../src/microbe_stage/HUDBottomBar.tscn:87
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide compounds"
 
@@ -1013,7 +1026,7 @@ msgstr "Concept Art"
 msgid "CONFIG"
 msgstr "Config"
 
-#: ../src/general/EditorComponentBase.cs:74
+#: ../src/general/base_stage/EditorComponentBase.cs:74
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRM"
 
@@ -1179,11 +1192,11 @@ msgstr "Create a new microbe"
 msgid "CREATE_NEW"
 msgstr "Create New"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:575
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Create New Cell Type"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:743
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "You can create new cell types by duplicating existing ones and giving them a new name. Cell types can be modified to specialize them for different roles. When modifying a cell type all placed cells of that type will get updated."
 
@@ -1195,11 +1208,11 @@ msgstr "Create New Mod"
 msgid "CREATE_NEW_SAVE"
 msgstr "Create New Save"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:830
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Create New Tissue Type"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:844
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "You can create new tissue types by duplicating existing ones and giving them a new name. Tissue types can be modified with the cell editor to make them suitable for different roles."
 
@@ -1307,7 +1320,7 @@ msgstr "Deadzone calibrations have been reset"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Deadzone Configuration"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:962
+#: ../src/microbe_stage/Microbe.Contact.cs:970
 msgid "DEATH"
 msgstr "death"
 
@@ -1330,8 +1343,8 @@ msgstr "December"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:607
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Delete"
@@ -1436,7 +1449,7 @@ msgstr "Devbuilds Supporters"
 msgid "DIFFICULTY"
 msgstr "Difficulty"
 
-#: ../src/general/WorldGenerationSettings.cs:142
+#: ../src/general/WorldGenerationSettings.cs:141
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -1457,7 +1470,7 @@ msgid "DIFFICULTY_PRESET"
 msgstr "Difficulty preset"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:140
+#: ../src/general/WorldGenerationSettings.cs:139
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Custom"
 
@@ -1477,7 +1490,7 @@ msgstr "Normal"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Digestion Efficiency"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:917
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Digestion Efficiency:"
 
@@ -1485,7 +1498,7 @@ msgstr "Digestion Efficiency:"
 msgid "DIGESTION_SPEED"
 msgstr "Digestion Speed"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Digestion Speed:"
 
@@ -1517,31 +1530,31 @@ msgstr "Discard and continue"
 msgid "DISCARD_CHANGES"
 msgstr "Discard Changes"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:561
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
 msgid "DISCONNECTED_CELLS"
 msgstr "Disconnected Cells"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:563
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "One or more cells aren't connected.\n"
 "Please connect all placed cells with each other to continue."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:814
 msgid "DISCONNECTED_METABALLS"
 msgstr "Disconnected Metaballs"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:816
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "There are placed metaballs, which are not connected to the rest.\n"
 "Please move all placed metaballs next to other ones to continue."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1311
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Disconnected Organelles"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1313
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "There are placed organelles, which are not connected to the rest.\n"
@@ -1616,8 +1629,8 @@ msgstr "A membrane with two layers, it has better protection against damage and 
 msgid "DUMP_SCENE_TREE"
 msgstr "Dump SceneTree"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:615
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicate Type"
 
@@ -1789,15 +1802,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
@@ -1826,7 +1839,7 @@ msgstr "Environmental glucose retention"
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(proportion of glucose retained in the environment each generation)"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#: ../src/microbe_stage/HUDBottomBar.tscn:73
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide environment"
 
@@ -1874,7 +1887,7 @@ msgstr "Error Saving"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1228
+#: ../src/microbe_stage/Microbe.Contact.cs:1236
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -1929,7 +1942,7 @@ msgstr "Export all worlds' data in comma-separated values (csv) format"
 msgid "EXPORT_SUCCESS"
 msgstr "Export Success"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:620
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
 msgid "EXTERNAL"
 msgstr "External"
 
@@ -1955,7 +1968,7 @@ msgstr "Extinct from patch"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Extinct from the planet"
 
-#: ../src/general/StageBase.cs:562
+#: ../src/general/base_stage/CreatureStageBase.cs:412
 msgid "EXTINCT_IN_PATCH"
 msgstr "extinct in patch"
 
@@ -1975,7 +1988,7 @@ msgstr "Extra Options"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Visit our Facebook page"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1167
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
 msgid "FAILED"
 msgstr "Failed"
 
@@ -1991,11 +2004,11 @@ msgstr ""
 "Brave microbes are not intimidated by nearby predators\n"
 "and will more likely attack back."
 
-#: ../src/general/TranslationHelper.cs:81
+#: ../src/general/utils/TranslationHelper.cs:81
 msgid "FEATURE_DISABLED"
 msgstr "Disabled"
 
-#: ../src/general/TranslationHelper.cs:80
+#: ../src/general/utils/TranslationHelper.cs:80
 msgid "FEATURE_ENABLED"
 msgstr "Enabled"
 
@@ -2046,7 +2059,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Finish {0} Generations"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
@@ -2082,11 +2095,11 @@ msgstr "Floating Chunks:"
 msgid "FLOATING_HAZARD"
 msgstr "Floating Hazard"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:717
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
 msgid "FLUID"
 msgstr "Fluid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:697
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidity / Rigidity"
 
@@ -2105,7 +2118,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Food Chain"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
 
@@ -2198,7 +2211,7 @@ msgstr "General"
 msgid "GENERATIONS"
 msgstr "Generations"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:939
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "GENERATION_COLON"
 msgstr "Generation:"
 
@@ -2317,7 +2330,7 @@ msgstr "Health"
 msgid "HELP"
 msgstr "Help"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:139
+#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "How to play the game"
 
@@ -2358,7 +2371,7 @@ msgstr "Horizontal:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Horizontal (Axis: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:889
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -2366,7 +2379,7 @@ msgstr "HP:"
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:46
+#: ../src/microbe_stage/gui/HUDMessages.cs:49
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
@@ -2408,6 +2421,10 @@ msgstr "Include later stage prototypes"
 #: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(some features may be unavailable once you reach the next stages)"
+
+#: ../simulation_parameters/common/gallery.json:458
+msgid "INDUSTRIAL_STAGE"
+msgstr "Industrial Stage"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
@@ -2489,7 +2506,7 @@ msgstr "Pick up"
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Pick up (FULL)"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:442
 msgid "INTERNALS"
 msgstr "Internals"
 
@@ -2708,7 +2725,7 @@ msgstr "Tab"
 msgid "KEY_UP"
 msgstr "Up"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/utils/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -2792,7 +2809,7 @@ msgstr "This language is still a work in progress ({0}% complete)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1350
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Can't delete the last organelle"
 
@@ -2970,13 +2987,13 @@ msgstr "(starting location)"
 
 #: ../src/general/NewGameSettings.tscn:201
 #: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/WorldGenerationSettings.cs:49
+#: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (random)"
 
 #: ../src/general/NewGameSettings.tscn:201
 #: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/WorldGenerationSettings.cs:46
+#: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Warm little pond"
 
@@ -2989,7 +3006,7 @@ msgstr "Some options may be disabled if LAWK only is enabled"
 #: ../src/general/NewGameSettings.tscn:201
 #: ../src/general/NewGameSettings.tscn:899
 #: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/WorldGenerationSettings.cs:43
+#: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermal vents"
 
@@ -2998,11 +3015,11 @@ msgstr "Hydrothermal vents"
 msgid "LIGHT"
 msgstr "Light"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:391
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "Average"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:349
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
 msgid "LIGHT_LEVEL_DAY"
 msgstr "Day"
 
@@ -3010,7 +3027,7 @@ msgstr "Day"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} at noon"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Night"
 
@@ -3239,7 +3256,7 @@ msgstr "Media Stop"
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:521
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "MEMBRANE"
 msgstr "Membrane"
 
@@ -3247,7 +3264,7 @@ msgstr "Membrane"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membrane Rigidity"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:679
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
 msgid "MEMBRANE_TYPES"
 msgstr "Membrane Types"
 
@@ -3563,7 +3580,7 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
 
-#: ../src/general/StringUtils.cs:29
+#: ../src/general/utils/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
@@ -3638,8 +3655,8 @@ msgstr "Modify"
 msgid "MODIFY_ORGANELLE"
 msgstr "Modify Organelle"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:593
 msgid "MODIFY_TYPE"
 msgstr "Modify Type"
 
@@ -3806,7 +3823,7 @@ msgid "MOVE"
 msgstr "Move"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:508
 msgid "MOVEMENT"
 msgstr "Movement"
 
@@ -3858,7 +3875,7 @@ msgstr "Move to This Patch"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Move up or jump"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2028
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 "You are about to move to the Awakening Stage. Once you advance, you cannot go back.\n"
@@ -3867,11 +3884,11 @@ msgstr ""
 "\n"
 "So proceed very carefully if you have not moved to land yet."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "Move to Awakening Stage?"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2023
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "You are about to move onto land. This is required to advance later into the game. Once you go on land you can't go back.\n"
@@ -3880,9 +3897,13 @@ msgstr ""
 "\n"
 "The plan is to make the move to land be gradual and not an abrupt change."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2021
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Move to Land?"
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+msgid "MOVING_TO_SOCIETY_STAGE"
+msgstr "Transforming into a society..."
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
@@ -3969,11 +3990,11 @@ msgstr "Mute"
 msgid "NAME"
 msgstr "Name:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negative ATP Balance"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1305
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Your microbe is not producing enough ATP for it to survive!\n"
@@ -4013,19 +4034,19 @@ msgstr "Note: you can change performance related options at any time in the [col
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "My Awesome Mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:864
 msgid "NEW_NAME"
 msgstr "New Name"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:857
 msgid "NEW_NAME_COLON"
 msgstr "New Name:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:773
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -4083,7 +4104,7 @@ msgstr "The most basic form of membrane, it has little protection against damage
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:424
+#: ../src/late_multicellular_stage/MulticellularStage.cs:496
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Nothing to interact with"
 
@@ -4099,15 +4120,15 @@ msgstr "Damaged by toxins in ingested matter"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Missing {0} to engulf target"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1786
+#: ../src/microbe_stage/Microbe.Contact.cs:1794
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Current cell size too small to engulf target"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1781
+#: ../src/microbe_stage/Microbe.Contact.cs:1789
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Not enough space in ingested matter storage to engulf target"
 
-#: ../src/general/StageHUDBase.cs:572
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:500
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor is now ready to be entered"
 
@@ -4128,7 +4149,7 @@ msgid "NO_AI"
 msgstr "No AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
@@ -4170,7 +4191,7 @@ msgstr "No Selected Mod"
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Can't delete the nucleus as this is an irreversible evolution.\n"
@@ -4192,8 +4213,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4267,6 +4288,10 @@ msgstr "Open Info URL"
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Open organelle menu"
 
+#: ../src/society_stage/SocietyHUD.tscn:135
+msgid "OPEN_RESEARCH_SCREEN"
+msgstr "Open Research Screen"
+
 #: ../src/saving/SaveManagerGUI.tscn:95
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Open Save Directory"
@@ -4306,7 +4331,7 @@ msgstr "Options"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:629
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
 msgid "ORGANELLES"
 msgstr "Organelles"
 
@@ -4319,7 +4344,7 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axons are the nerve fibers that neurons use to connect to each other and communicate. Placing this organelle turns a cell type into brain tissue."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:638
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellular"
 
@@ -4345,7 +4370,7 @@ msgstr "Pili (singular: pilus) are found on the surface of many micro organisms 
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Can be used to stab the other cells or to defend against their toxins."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
 
@@ -4569,7 +4594,7 @@ msgstr "Return to the game"
 msgid "PAUSE_PROMPT"
 msgstr "[center]Press [thrive:input]g_pause[/thrive:input] to unpause[/center]"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
+#: ../src/microbe_stage/HUDBottomBar.tscn:64
 msgid "PAUSE_TOOLTIP"
 msgstr "Pause the game"
 
@@ -4585,9 +4610,10 @@ msgstr "Loading of pck file ({0}) failed because the file does not exist"
 msgid "PEACEFUL"
 msgstr "Peaceful"
 
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:674 ../src/general/StageHUDBase.cs:692
-#: ../src/general/WorldGenerationSettings.cs:148
+#: ../src/general/NewGameSettings.cs:674
+#: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
@@ -4644,7 +4670,7 @@ msgstr "Place organelle"
 msgid "PLANET"
 msgstr "Planet"
 
-#: ../src/general/WorldGenerationSettings.cs:160
+#: ../src/general/WorldGenerationSettings.cs:159
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -4675,7 +4701,7 @@ msgstr "Player death population penalty"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(coefficient for reduction in player species population for each player death)"
 
-#: ../src/general/StageBase.cs:486
+#: ../src/general/base_stage/CreatureStageBase.cs:356
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -4691,7 +4717,7 @@ msgstr "Player is extinct"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Player relative"
 
-#: ../src/general/StageBase.cs:430
+#: ../src/general/base_stage/CreatureStageBase.cs:300
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
@@ -4727,6 +4753,7 @@ msgstr "Play With Current Setting"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
+#: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -4738,7 +4765,7 @@ msgstr "population:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2291
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4746,7 +4773,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1109
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "View detailed information behind the prediction"
 
@@ -4803,7 +4830,7 @@ msgstr "Protect just migrated populations from species cap"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Protect just created species from species cap"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:611
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
 msgid "PROTEINS"
 msgstr "Proteins"
 
@@ -4902,23 +4929,23 @@ msgstr "Report a Bug"
 msgid "REPRODUCED"
 msgstr "reproduced"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:530
 msgid "REPRODUCTION"
 msgstr "Reproduction"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:672
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asexual"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:498
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:499
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
 msgid "REPRODUCTION_BUDDING"
 msgstr "Budding"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"
 
@@ -4972,7 +4999,7 @@ msgstr "Resolution:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
-#: ../src/awakening_stage/PlacedStructure.cs:69
+#: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
@@ -5001,7 +5028,7 @@ msgstr "Restart Required"
 msgid "RESUME"
 msgstr "Resume"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
+#: ../src/microbe_stage/HUDBottomBar.tscn:65
 msgid "RESUME_TOOLTIP"
 msgstr "Resume the game"
 
@@ -5033,7 +5060,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Right mouse"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:730
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
 msgid "RIGID"
 msgstr "Rigid"
 
@@ -5049,7 +5076,7 @@ msgstr "Rotate left"
 msgid "ROTATE_RIGHT"
 msgstr "Rotate right"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
 msgid "ROTATION_COLON"
 msgstr "Rotation:"
 
@@ -5246,7 +5273,7 @@ msgstr "Screen relative"
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:595
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Search..."
 
@@ -5259,7 +5286,7 @@ msgid "SEA_FLOOR"
 msgstr "Sea Floor"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "Secrete mucilage"
@@ -5433,7 +5460,7 @@ msgstr "This membrane has a strong wall of silica. It can resist overall damage 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:895
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
 msgid "SIZE_COLON"
 msgstr "Size:"
 
@@ -5469,6 +5496,10 @@ msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:
 msgid "SMALL_IRON_CHUNK"
 msgstr "Small Iron Chunk"
 
+#: ../simulation_parameters/common/gallery.json:441
+msgid "SOCIETY_STAGE"
+msgstr "Society Stage"
+
 #: ../src/general/OptionsMenu.tscn:182
 msgid "SOUND"
 msgstr "Sound"
@@ -5488,6 +5519,10 @@ msgstr "Sound Team Leads"
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
 msgstr "Space"
+
+#: ../simulation_parameters/common/gallery.json:469
+msgid "SPACE_STAGE"
+msgstr "Space Stage"
 
 #: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_AMMONIA"
@@ -5581,7 +5616,7 @@ msgstr "{0} with population: {1}"
 msgid "SPEED"
 msgstr "Speed"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:877
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
 msgid "SPEED_COLON"
 msgstr "Speed:"
 
@@ -5589,7 +5624,7 @@ msgstr "Speed:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
+#: ../src/microbe_stage/HUDBottomBar.tscn:49
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
 
@@ -5607,7 +5642,7 @@ msgstr "Start Game"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
-#: ../src/microbe_stage/HUDBottomBar.tscn:114
+#: ../src/microbe_stage/HUDBottomBar.tscn:115
 msgid "STATISTICS"
 msgstr "Statistics"
 
@@ -5717,7 +5752,7 @@ msgstr "Stop"
 msgid "STORAGE"
 msgstr "Storage"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:901
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
 msgid "STORAGE_COLON"
 msgstr "Storage:"
 
@@ -5729,25 +5764,25 @@ msgstr "Logged in as: {0}"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Strict niche competition (fitness differences are exaggerated)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:602
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
 msgid "STRUCTURAL"
 msgstr "Structural"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:420
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
 msgid "STRUCTURE"
 msgstr "Structure"
 
-#: ../src/awakening_stage/PlacedStructure.cs:66
+#: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Materials needed for construction have been deposited"
 
-#: ../src/awakening_stage/PlacedStructure.cs:40
+#: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Constructing: {0}"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:73
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "Needed materials before construction can be finished: {0}"
 
@@ -5763,11 +5798,11 @@ msgstr "{0} (NOT ENOUGH TO START: {1}, total: {2})"
 msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr "Society Center"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:781
+#: ../src/microbe_stage/Microbe.Contact.cs:789
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:774
+#: ../src/microbe_stage/Microbe.Contact.cs:782
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
@@ -5775,13 +5810,13 @@ msgstr "successful scavenge"
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Result indicated success but no ID was returned"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:151
+#: ../src/microbe_stage/HUDBottomBar.tscn:152
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Perish instantly"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:322
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -5847,7 +5882,7 @@ msgstr "Simple Stone Tools"
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Building Society Center"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:678
+#: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Unlocked technology: {0}"
 
@@ -6067,9 +6102,7 @@ msgstr "Toggle debug panel"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
@@ -6085,6 +6118,10 @@ msgstr "Toggle fullscreen"
 #: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Toggle HUD"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
+msgid "TOGGLE_INVENTORY"
+msgstr "Toggle Inventory"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "TOGGLE_METRICS"
@@ -6110,7 +6147,7 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Total Population:"
 
@@ -6485,7 +6522,8 @@ msgstr "The vacuole is an internal membranous organelle used for storage in the 
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Increases the storage space of the cell."
 
-#: ../src/general/StageHUDBase.cs:693 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:617
+#: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6564,7 +6602,7 @@ msgstr "Volume Up"
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:256
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
@@ -6660,7 +6698,7 @@ msgstr "Worlds' data have been successfully exported to {0}"
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Generic Statistics of Current World"
 
-#: ../src/general/WorldGenerationSettings.cs:173
+#: ../src/general/WorldGenerationSettings.cs:172
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -6671,7 +6709,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "World relative"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1211
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"
 

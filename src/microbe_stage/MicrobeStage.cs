@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : StageBase<Microbe>
+public class MicrobeStage : CreatureStageBase<Microbe>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -90,7 +90,7 @@ public class MicrobeStage : StageBase<Microbe>
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    protected override IStageHUD BaseHUD => HUD;
+    protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
@@ -659,9 +659,9 @@ public class MicrobeStage : StageBase<Microbe>
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
-    protected override void GameOver()
+    protected override void OnGameOver()
     {
-        base.GameOver();
+        base.OnGameOver();
 
         guidanceLine.Visible = false;
     }

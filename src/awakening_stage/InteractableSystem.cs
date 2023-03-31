@@ -214,12 +214,13 @@ public class InteractableSystem : Control
             var position = entityTransform.origin +
                 new Vector3(0, Constants.INTERACTION_BUTTON_DEFAULT_Y_OFFSET, 0);
 
-            var extraOffset = entity.ExtraInteractOverlayOffset;
+            var extraOffset = entity.ExtraInteractionCenterOffset;
 
             if (extraOffset != null)
             {
                 // Extra offset is relative to a non-rotated state of the object, so we need to correct that here
-                position += entityTransform.basis.Xform(extraOffset.Value);
+                position += InteractableEntityHelpers.RotateExtraInteractionOffset(extraOffset.Value,
+                    entityTransform.basis);
             }
 
             if (camera.IsPositionBehind(position))
@@ -246,6 +247,9 @@ public class InteractableSystem : Control
 
             // TODO: Now with that IsPositionBehind check the angle check below (which doesn't really work)
             // can be probably be removed, though the priority for closer angled objects should be kept
+
+            // TODO: position smoothing somehow as when the camera moves slightly when the player wobbles, the prompts
+            // move quite a bit. Same fix should also be added to the ProgressBarSystem
 
             createdPrompt.Prompt.RectGlobalPosition = screenPosition;
 

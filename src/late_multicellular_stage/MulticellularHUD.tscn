@@ -407,6 +407,9 @@ script = ExtResource( 11 )
 __meta__ = {
 "_editor_description_": ""
 }
+HUDMessagesPath = NodePath("HUDMessages")
+PausePromptPath = NodePath("PausePrompt")
+PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 CompoundsGroupAnimationPlayerPath = NodePath("CompoundsPanelAnimationPlayer")
 EnvironmentGroupAnimationPlayerPath = NodePath("EnvironmentPanelAnimationPlayer")
 PanelsTweenPath = NodePath("BottomLeft/LeftPanels/PanelsTween")
@@ -447,15 +450,12 @@ HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Eating")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
-PausePromptPath = NodePath("PausePrompt")
-PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
-HUDMessagesPath = NodePath("HUDMessages")
 FossilisationButtonScene = ExtResource( 27 )
 MicrobePickupOrganelleSound = ExtResource( 18 )
 AmmoniaBW = ExtResource( 23 )
@@ -607,7 +607,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_top = 64.0
 margin_right = 197.0
-margin_bottom = 249.0
+margin_bottom = 255.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
 custom_constants/margin_bottom = 10
@@ -619,7 +619,7 @@ __meta__ = {
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 197.0
-margin_bottom = 175.0
+margin_bottom = 181.0
 
 [node name="Oxygen" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
@@ -801,7 +801,7 @@ self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
 margin_top = 87.0
 margin_right = 162.0
-margin_bottom = 112.0
+margin_bottom = 114.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="TemperatureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
@@ -855,9 +855,9 @@ __meta__ = {
 [node name="Sunlight" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 116.0
+margin_top = 118.0
 margin_right = 162.0
-margin_bottom = 141.0
+margin_bottom = 145.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="LightIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
@@ -910,9 +910,9 @@ __meta__ = {
 [node name="Pressure" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 145.0
+margin_top = 149.0
 margin_right = 162.0
-margin_bottom = 170.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="PressureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
@@ -1928,7 +1928,7 @@ anchor_bottom = 0.0
 margin_left = 252.0
 margin_right = 298.0
 margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
+hint_tooltip = "TOGGLE_INVENTORY"
 ActionIcon = ExtResource( 9 )
 ActionName = "g_inventory"
 
@@ -1939,8 +1939,7 @@ anchor_bottom = 0.0
 margin_left = 252.0
 margin_right = 298.0
 margin_bottom = 51.0
-hint_tooltip = "TOGGLE_ENGULF"
-focus_mode = 2
+hint_tooltip = "BUILD_STRUCTURE"
 ActionIcon = ExtResource( 30 )
 ActionName = "g_build_structure"
 
