@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-24 15:05+0200\n"
-"PO-Revision-Date: 2023-03-24 14:29+0200\n"
+"POT-Creation-Date: 2023-03-31 15:58+0300\n"
+"PO-Revision-Date: 2023-03-31 15:57+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -61,7 +61,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Move to the Awakening Stage. Available once you have enough brain power (tissue type with axons)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -367,6 +367,14 @@ msgstr "Auto ({0}x{1})"
 msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
 
+#: ../simulation_parameters/common/gallery.json:430
+msgid "AWAKENING_STAGE"
+msgstr "Awakening Stage"
+
+#: ../simulation_parameters/common/gallery.json:419
+msgid "AWARE_STAGE"
+msgstr "Aware Stage"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -502,7 +510,7 @@ msgstr "Best Patch:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
-#: ../src/general/StringUtils.cs:21
+#: ../src/general/utils/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
@@ -563,6 +571,11 @@ msgstr "Browse"
 #: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
 msgstr "Browse Workshop"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
+#: ../src/society_stage/SocietyHUD.tscn:125
+msgid "BUILD_STRUCTURE"
+msgstr "Build a Structure"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -651,27 +664,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Carbon Dioxide"
 
-#: ../src/general/StageHUDBase.cs:926
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:855
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "an abundance"
 
-#: ../src/general/StageHUDBase.cs:930
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:859
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "a fair amount"
 
-#: ../src/general/StageHUDBase.cs:934
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
 msgid "CATEGORY_LITTLE"
 msgstr "little"
 
-#: ../src/general/StageHUDBase.cs:928
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:857
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "quite a bit"
 
-#: ../src/general/StageHUDBase.cs:932
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:861
 msgid "CATEGORY_SOME"
 msgstr "some"
 
-#: ../src/general/StageHUDBase.cs:936
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
@@ -731,7 +744,7 @@ msgstr "Cheat keys enabled"
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
+#: ../src/microbe_stage/HUDBottomBar.tscn:102
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide cell processes"
 
@@ -969,7 +982,7 @@ msgstr "Built at:"
 msgid "COMPOUNDS"
 msgstr "Compounds"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#: ../src/microbe_stage/HUDBottomBar.tscn:87
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide compounds"
 
@@ -1013,7 +1026,7 @@ msgstr "Concept Art"
 msgid "CONFIG"
 msgstr "Config"
 
-#: ../src/general/EditorComponentBase.cs:74
+#: ../src/general/base_stage/EditorComponentBase.cs:74
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRM"
 
@@ -1826,7 +1839,7 @@ msgstr "Environmental glucose retention"
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(proportion of glucose retained in the environment each generation)"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#: ../src/microbe_stage/HUDBottomBar.tscn:73
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide environment"
 
@@ -1955,7 +1968,7 @@ msgstr "Extinct from patch"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Extinct from the planet"
 
-#: ../src/general/StageBase.cs:562
+#: ../src/general/base_stage/CreatureStageBase.cs:412
 msgid "EXTINCT_IN_PATCH"
 msgstr "extinct in patch"
 
@@ -1991,11 +2004,11 @@ msgstr ""
 "Brave microbes are not intimidated by nearby predators\n"
 "and will more likely attack back."
 
-#: ../src/general/TranslationHelper.cs:81
+#: ../src/general/utils/TranslationHelper.cs:81
 msgid "FEATURE_DISABLED"
 msgstr "Disabled"
 
-#: ../src/general/TranslationHelper.cs:80
+#: ../src/general/utils/TranslationHelper.cs:80
 msgid "FEATURE_ENABLED"
 msgstr "Enabled"
 
@@ -2046,7 +2059,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Finish {0} Generations"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
@@ -2317,7 +2330,7 @@ msgstr "Health"
 msgid "HELP"
 msgstr "Help"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:139
+#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "How to play the game"
 
@@ -2366,7 +2379,7 @@ msgstr "HP:"
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:46
+#: ../src/microbe_stage/gui/HUDMessages.cs:49
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
@@ -2408,6 +2421,10 @@ msgstr "Include later stage prototypes"
 #: ../src/general/NewGameSettings.tscn:1152
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(some features may be unavailable once you reach the next stages)"
+
+#: ../simulation_parameters/common/gallery.json:458
+msgid "INDUSTRIAL_STAGE"
+msgstr "Industrial Stage"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
@@ -2708,7 +2725,7 @@ msgstr "Tab"
 msgid "KEY_UP"
 msgstr "Up"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/utils/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -3563,7 +3580,7 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
 
-#: ../src/general/StringUtils.cs:29
+#: ../src/general/utils/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
@@ -3858,7 +3875,7 @@ msgstr "Move to This Patch"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Move up or jump"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2028
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 "You are about to move to the Awakening Stage. Once you advance, you cannot go back.\n"
@@ -3867,11 +3884,11 @@ msgstr ""
 "\n"
 "So proceed very carefully if you have not moved to land yet."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "Move to Awakening Stage?"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2023
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "You are about to move onto land. This is required to advance later into the game. Once you go on land you can't go back.\n"
@@ -3880,9 +3897,13 @@ msgstr ""
 "\n"
 "The plan is to make the move to land be gradual and not an abrupt change."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2021
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Move to Land?"
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+msgid "MOVING_TO_SOCIETY_STAGE"
+msgstr "Transforming into a society..."
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
@@ -4083,7 +4104,7 @@ msgstr "The most basic form of membrane, it has little protection against damage
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:424
+#: ../src/late_multicellular_stage/MulticellularStage.cs:496
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Nothing to interact with"
 
@@ -4107,7 +4128,7 @@ msgstr "Current cell size too small to engulf target"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Not enough space in ingested matter storage to engulf target"
 
-#: ../src/general/StageHUDBase.cs:572
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:500
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor is now ready to be entered"
 
@@ -4266,6 +4287,10 @@ msgstr "Open Info URL"
 #: ../simulation_parameters/common/input_options.json:131
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Open organelle menu"
+
+#: ../src/society_stage/SocietyHUD.tscn:135
+msgid "OPEN_RESEARCH_SCREEN"
+msgstr "Open Research Screen"
 
 #: ../src/saving/SaveManagerGUI.tscn:95
 msgid "OPEN_SAVE_DIRECTORY"
@@ -4592,7 +4617,7 @@ msgstr "Return to the game"
 msgid "PAUSE_PROMPT"
 msgstr "[center]Press [thrive:input]g_pause[/thrive:input] to unpause[/center]"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
+#: ../src/microbe_stage/HUDBottomBar.tscn:64
 msgid "PAUSE_TOOLTIP"
 msgstr "Pause the game"
 
@@ -4608,8 +4633,9 @@ msgstr "Loading of pck file ({0}) failed because the file does not exist"
 msgid "PEACEFUL"
 msgstr "Peaceful"
 
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:692
+#: ../src/general/NewGameSettings.cs:681
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4699,7 +4725,7 @@ msgstr "Player death population penalty"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(coefficient for reduction in player species population for each player death)"
 
-#: ../src/general/StageBase.cs:486
+#: ../src/general/base_stage/CreatureStageBase.cs:356
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -4715,7 +4741,7 @@ msgstr "Player is extinct"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Player relative"
 
-#: ../src/general/StageBase.cs:430
+#: ../src/general/base_stage/CreatureStageBase.cs:300
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
@@ -4751,6 +4777,7 @@ msgstr "Play With Current Setting"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
+#: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -4996,7 +5023,7 @@ msgstr "Resolution:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
-#: ../src/awakening_stage/PlacedStructure.cs:69
+#: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
@@ -5025,7 +5052,7 @@ msgstr "Restart Required"
 msgid "RESUME"
 msgstr "Resume"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
+#: ../src/microbe_stage/HUDBottomBar.tscn:65
 msgid "RESUME_TOOLTIP"
 msgstr "Resume the game"
 
@@ -5283,7 +5310,7 @@ msgid "SEA_FLOOR"
 msgstr "Sea Floor"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "Secrete mucilage"
@@ -5493,6 +5520,10 @@ msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:
 msgid "SMALL_IRON_CHUNK"
 msgstr "Small Iron Chunk"
 
+#: ../simulation_parameters/common/gallery.json:441
+msgid "SOCIETY_STAGE"
+msgstr "Society Stage"
+
 #: ../src/general/OptionsMenu.tscn:182
 msgid "SOUND"
 msgstr "Sound"
@@ -5512,6 +5543,10 @@ msgstr "Sound Team Leads"
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
 msgstr "Space"
+
+#: ../simulation_parameters/common/gallery.json:469
+msgid "SPACE_STAGE"
+msgstr "Space Stage"
 
 #: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_AMMONIA"
@@ -5613,7 +5648,7 @@ msgstr "Speed:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
+#: ../src/microbe_stage/HUDBottomBar.tscn:49
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
 
@@ -5631,7 +5666,7 @@ msgstr "Start Game"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
-#: ../src/microbe_stage/HUDBottomBar.tscn:114
+#: ../src/microbe_stage/HUDBottomBar.tscn:115
 msgid "STATISTICS"
 msgstr "Statistics"
 
@@ -5763,15 +5798,15 @@ msgstr "Structural"
 msgid "STRUCTURE"
 msgstr "Structure"
 
-#: ../src/awakening_stage/PlacedStructure.cs:66
+#: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Materials needed for construction have been deposited"
 
-#: ../src/awakening_stage/PlacedStructure.cs:40
+#: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Constructing: {0}"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:73
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "Needed materials before construction can be finished: {0}"
 
@@ -5799,7 +5834,7 @@ msgstr "successful scavenge"
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Result indicated success but no ID was returned"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:151
+#: ../src/microbe_stage/HUDBottomBar.tscn:152
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Perish instantly"
 
@@ -5871,7 +5906,7 @@ msgstr "Simple Stone Tools"
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Building Society Center"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:678
+#: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Unlocked technology: {0}"
 
@@ -6091,9 +6126,7 @@ msgstr "Toggle debug panel"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
@@ -6109,6 +6142,10 @@ msgstr "Toggle fullscreen"
 #: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Toggle HUD"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
+msgid "TOGGLE_INVENTORY"
+msgstr "Toggle Inventory"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "TOGGLE_METRICS"
@@ -6509,7 +6546,8 @@ msgstr "The vacuole is an internal membranous organelle used for storage in the 
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Increases the storage space of the cell."
 
-#: ../src/general/StageHUDBase.cs:693 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:617
+#: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6588,7 +6626,7 @@ msgstr "Volume Up"
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:256
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 

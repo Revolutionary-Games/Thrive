@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-24 15:05+0200\n"
+"POT-Creation-Date: 2023-03-31 15:58+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -63,7 +63,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Probudit se"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -360,6 +360,15 @@ msgstr "Automatické ({0}x{1})"
 msgid "AVAILABLE_MODS"
 msgstr "Dostupné mody"
 
+#: ../simulation_parameters/common/gallery.json:430
+msgid "AWAKENING_STAGE"
+msgstr ""
+
+#: ../simulation_parameters/common/gallery.json:419
+#, fuzzy
+msgid "AWARE_STAGE"
+msgstr "Mikrobiální Období"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
@@ -496,7 +505,7 @@ msgstr "Nejlepší oblast:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Velký kus železa"
 
-#: ../src/general/StringUtils.cs:21
+#: ../src/general/utils/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
@@ -557,6 +566,12 @@ msgstr "Procházet"
 #: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
 msgstr "Procházet Workshop"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
+#: ../src/society_stage/SocietyHUD.tscn:125
+#, fuzzy
+msgid "BUILD_STRUCTURE"
+msgstr "Struktura"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -645,27 +660,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Oxid uhličitý"
 
-#: ../src/general/StageHUDBase.cs:926
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:855
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "hojnost"
 
-#: ../src/general/StageHUDBase.cs:930
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:859
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatečné množství"
 
-#: ../src/general/StageHUDBase.cs:934
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/general/StageHUDBase.cs:928
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:857
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "docela dost"
 
-#: ../src/general/StageHUDBase.cs:932
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:861
 msgid "CATEGORY_SOME"
 msgstr "něco"
 
-#: ../src/general/StageHUDBase.cs:936
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
@@ -725,7 +740,7 @@ msgstr "Povolit podvádění (cheaty)"
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
+#: ../src/microbe_stage/HUDBottomBar.tscn:102
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
 
@@ -967,7 +982,7 @@ msgstr "Sloučeniny:"
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#: ../src/microbe_stage/HUDBottomBar.tscn:87
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt prostředí a sloučeniny"
@@ -1012,7 +1027,7 @@ msgstr "Koncepční umění"
 msgid "CONFIG"
 msgstr "Konfigurace"
 
-#: ../src/general/EditorComponentBase.cs:74
+#: ../src/general/base_stage/EditorComponentBase.cs:74
 msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIT"
 
@@ -1819,7 +1834,7 @@ msgstr "Retence glukózy v prostředí"
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(poměr glukózy ponecháno v prostředí za každou generaci)"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#: ../src/microbe_stage/HUDBottomBar.tscn:73
 #, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt prostředí a sloučeniny"
@@ -1954,7 +1969,7 @@ msgstr "Vyhynul v této oblasti"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Vyhynul na této planetě"
 
-#: ../src/general/StageBase.cs:562
+#: ../src/general/base_stage/CreatureStageBase.cs:412
 msgid "EXTINCT_IN_PATCH"
 msgstr "vyhynulý v tomto prostředí"
 
@@ -1990,12 +2005,12 @@ msgstr ""
 "Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
 "a spíše zaútočí zpět."
 
-#: ../src/general/TranslationHelper.cs:81
+#: ../src/general/utils/TranslationHelper.cs:81
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "Vypnuto"
 
-#: ../src/general/TranslationHelper.cs:80
+#: ../src/general/utils/TranslationHelper.cs:80
 #, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "Povolit podvádění (cheaty)"
@@ -2066,7 +2081,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Dokončení {0} Generací"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Ohnivé toxiny"
@@ -2346,7 +2361,7 @@ msgstr "Zdraví"
 msgid "HELP"
 msgstr "Nápověda"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:139
+#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Nápověda"
 
@@ -2398,7 +2413,7 @@ msgstr "HP:"
 msgid "HSV"
 msgstr "Barva - Saturace - Hodnota"
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:46
+#: ../src/microbe_stage/gui/HUDMessages.cs:49
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
@@ -2440,6 +2455,10 @@ msgstr "Zahrnout prototypy pozdějších období"
 #: ../src/general/NewGameSettings.tscn:1152
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
+
+#: ../simulation_parameters/common/gallery.json:458
+msgid "INDUSTRIAL_STAGE"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
@@ -2752,7 +2771,7 @@ msgstr "Tabulátor"
 msgid "KEY_UP"
 msgstr "Nahoru"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/utils/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} k"
 
@@ -3599,7 +3618,7 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "Tlačítko kolečka myši"
 
-#: ../src/general/StringUtils.cs:29
+#: ../src/general/utils/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
@@ -3893,7 +3912,7 @@ msgstr "Přesunout na toto místo"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Pohyb nahoru nebo skok"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2028
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
@@ -3904,7 +3923,7 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
@@ -3915,7 +3934,7 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2023
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -3926,9 +3945,20 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2021
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
+msgstr ""
+"Dostali jste se k \"dokončené\" části Thrive.\n"
+"Pokud chcete, můžete pokračovat k prototypům následujících období. Mohou být nedokončené, používat dočasnou grafiku, a být obecně velmi neuhlazené. Jsou zahrnuty jako součástí hry pro ukázání možného budoucího směru hry a naší obecné vize pro to, jak jsou období propojené.\n"
+"\n"
+"Ve většině prototypů nebudete mít možnost uložit hru nebo se vrátit pokud budete pokračovat. Pokud se budete chtít někdy vrátit do tohoto období, prosím uložte si hru teď před tím, než budete pokračovat.\n"
+"\n"
+"Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+#, fuzzy
+msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 "Dostali jste se k \"dokončené\" části Thrive.\n"
 "Pokud chcete, můžete pokračovat k prototypům následujících období. Mohou být nedokončené, používat dočasnou grafiku, a být obecně velmi neuhlazené. Jsou zahrnuty jako součástí hry pro ukázání možného budoucího směru hry a naší obecné vize pro to, jak jsou období propojené.\n"
@@ -4133,7 +4163,7 @@ msgstr "Nejzákladnější forma membrány, má malou ochranu proti poškození.
 msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:424
+#: ../src/late_multicellular_stage/MulticellularStage.cs:496
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4157,7 +4187,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:572
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:500
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4320,6 +4350,11 @@ msgstr "Otevřít URL Info"
 #: ../simulation_parameters/common/input_options.json:131
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Otevřít nabídku organel"
+
+#: ../src/society_stage/SocietyHUD.tscn:135
+#, fuzzy
+msgid "OPEN_RESEARCH_SCREEN"
+msgstr "Otevřít nápovědu"
 
 #: ../src/saving/SaveManagerGUI.tscn:95
 msgid "OPEN_SAVE_DIRECTORY"
@@ -4658,7 +4693,7 @@ msgstr "Návrat do hry"
 msgid "PAUSE_PROMPT"
 msgstr "[center]Zmáčkněte [thrive:input]g_pause[/thrive:input] pro obnovení hry[/center]"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
+#: ../src/microbe_stage/HUDBottomBar.tscn:64
 msgid "PAUSE_TOOLTIP"
 msgstr "Pozastavit hru"
 
@@ -4674,8 +4709,9 @@ msgstr "Načítání souboru pck ({0}) se nezdařilo protože soubor neexistuje"
 msgid "PEACEFUL"
 msgstr "Mírumilovnost"
 
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:681 ../src/general/StageHUDBase.cs:692
+#: ../src/general/NewGameSettings.cs:681
 #: ../src/general/WorldGenerationSettings.cs:162
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4761,7 +4797,7 @@ msgstr "Populační penalta za smrt hráče"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(součinitel snížení populace hráčova druhu za každou smrt hráče)"
 
-#: ../src/general/StageBase.cs:486
+#: ../src/general/base_stage/CreatureStageBase.cs:356
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
@@ -4778,7 +4814,7 @@ msgstr "Hráč vyhynul"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
 
-#: ../src/general/StageBase.cs:430
+#: ../src/general/base_stage/CreatureStageBase.cs:300
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
@@ -4814,6 +4850,7 @@ msgstr "Hrát s vybraným nastavením"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
+#: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACE:"
 
@@ -5061,7 +5098,7 @@ msgstr "Rozlišení:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rychlost absorpce zdrojů"
 
-#: ../src/awakening_stage/PlacedStructure.cs:69
+#: ../src/awakening_stage/PlacedStructure.cs:71
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Tlak"
@@ -5093,7 +5130,7 @@ msgstr "Požadovaný restart"
 msgid "RESUME"
 msgstr "Pokračovat"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
+#: ../src/microbe_stage/HUDBottomBar.tscn:65
 msgid "RESUME_TOOLTIP"
 msgstr "Pokračovat"
 
@@ -5353,7 +5390,7 @@ msgid "SEA_FLOOR"
 msgstr "Mořské dno"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "Vyměšuj sliz"
@@ -5567,6 +5604,11 @@ msgstr "Zvyšuje rychlost otáčení velkých buněk."
 msgid "SMALL_IRON_CHUNK"
 msgstr "Malý kus železa"
 
+#: ../simulation_parameters/common/gallery.json:441
+#, fuzzy
+msgid "SOCIETY_STAGE"
+msgstr "Mikrobiální Období"
+
 #: ../src/general/OptionsMenu.tscn:182
 msgid "SOUND"
 msgstr "Zvuky"
@@ -5586,6 +5628,11 @@ msgstr "Vedoucí zvukaři"
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
 msgstr "Mezerník"
+
+#: ../simulation_parameters/common/gallery.json:469
+#, fuzzy
+msgid "SPACE_STAGE"
+msgstr "Mikrobiální Období"
 
 #: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_AMMONIA"
@@ -5688,7 +5735,7 @@ msgstr "Rychlost:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozšířen do prostředí:"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
+#: ../src/microbe_stage/HUDBottomBar.tscn:49
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pozastavení"
 
@@ -5707,7 +5754,7 @@ msgstr "Uložit hru"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
-#: ../src/microbe_stage/HUDBottomBar.tscn:114
+#: ../src/microbe_stage/HUDBottomBar.tscn:115
 msgid "STATISTICS"
 msgstr "Statistiky"
 
@@ -5840,15 +5887,15 @@ msgstr "Strukturální"
 msgid "STRUCTURE"
 msgstr "Struktura"
 
-#: ../src/awakening_stage/PlacedStructure.cs:66
+#: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:40
+#: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:73
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
@@ -5876,7 +5923,7 @@ msgstr "úspěšné prohledání"
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Výsledek indikovat úspěch, ale nebylo vráceno žádné ID"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:151
+#: ../src/microbe_stage/HUDBottomBar.tscn:152
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Spáchat sebevraždu"
 
@@ -5950,7 +5997,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:678
+#: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6161,9 +6208,7 @@ msgstr "Přepnutí debugovacího panelu"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Přepnout pohlcování"
@@ -6179,6 +6224,11 @@ msgstr "Přepínání na celou obrazovku"
 #: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Přepínání HUD"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
+#, fuzzy
+msgid "TOGGLE_INVENTORY"
+msgstr "Dokončit jednu generaci"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "TOGGLE_METRICS"
@@ -6581,7 +6631,8 @@ msgstr "Vakuola je vnitřní membránová organela používaná pro skladování
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Zvyšuje úložný prostor buňky."
 
-#: ../src/general/StageHUDBase.cs:693 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:617
+#: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6664,7 +6715,7 @@ msgstr "Zhlasit"
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:256
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čekání na automatickou evoluci:"
 
