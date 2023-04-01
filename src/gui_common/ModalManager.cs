@@ -146,8 +146,8 @@ public class ModalManager : NodeWithInput
 
             // Not counting mouse wheel which is the original default behavior
             if (modalStack.Count <= 0 || mouseButton.ButtonIndex is
-                (int)ButtonList.WheelDown or (int)ButtonList.WheelUp or
-                (int)ButtonList.WheelLeft or (int)ButtonList.WheelRight)
+                    (int)ButtonList.WheelDown or (int)ButtonList.WheelUp or
+                    (int)ButtonList.WheelLeft or (int)ButtonList.WheelRight)
             {
                 return;
             }
