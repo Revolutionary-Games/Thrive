@@ -77,14 +77,26 @@ public class MicrobeSystem
 
         foreach (var microbe in microbes)
         {
+            Vector3 microbeGlobalPosition;
+
+            // Use colony parent position to avoid calling GlobalTranslation
+            if (microbe.ColonyParent != null)
+            {
+                microbeGlobalPosition = microbe.ColonyParent.Translation;
+            }
+            else
+            {
+                microbeGlobalPosition = microbe.Translation;
+            }
+
             // Skip candidates for performance
-            if (Math.Abs(microbe.Translation.x - position.x) > searchRadius ||
-                Math.Abs(microbe.Translation.y - position.y) > searchRadius)
+            if (Math.Abs(microbeGlobalPosition.x - position.x) > searchRadius ||
+                Math.Abs(microbeGlobalPosition.y - position.y) > searchRadius)
             {
                 continue;
             }
 
-            var distanceSquared = (microbe.Translation - position).LengthSquared();
+            var distanceSquared = (microbeGlobalPosition - position).LengthSquared();
 
             // Check search range and prevent cell detecting itself
             if (distanceSquared > searchRadiusSquared || distanceSquared < 100)
@@ -93,7 +105,7 @@ public class MicrobeSystem
             if (distanceSquared < nearestDistanceSquared)
             {
                 nearestDistanceSquared = distanceSquared;
-                closestPoint = microbe.Translation;
+                closestPoint = microbeGlobalPosition;
             }
         }
 
