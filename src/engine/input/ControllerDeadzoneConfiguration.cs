@@ -92,6 +92,18 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
     }
 
+    protected override void OnShown()
+    {
+        base.OnShown();
+        OnBecomeVisible();
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnCancel();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

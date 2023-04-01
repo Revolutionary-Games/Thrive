@@ -44,7 +44,7 @@ using Godot;
 /// </remarks>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomDialog : Popup, ICustomPopup
+public class CustomDialog : CustomPopup
 {
     private string windowTitle = string.Empty;
     private string translatedWindowTitle = string.Empty;
@@ -74,14 +74,12 @@ public class CustomDialog : Popup, ICustomPopup
     private bool showCloseButton = true;
     private bool decorate = true;
 
-    private bool mouseUnCaptureActive;
-
     /// <summary>
     ///   NOTE: This is only emitted WHEN the close button (top right corner) is pressed, this doesn't account
     ///   for any other hiding behaviors.
     /// </summary>
     [Signal]
-    public delegate void Closed();
+    public delegate void Dismissed();
 
     [Flags]
     private enum DragType
@@ -139,9 +137,6 @@ public class CustomDialog : Popup, ICustomPopup
     public bool BoundToScreenArea { get; set; } = true;
 
     [Export]
-    public bool ExclusiveAllowCloseOnEscape { get; set; } = true;
-
-    [Export]
     public bool ShowCloseButton
     {
         get => showCloseButton;
@@ -179,30 +174,6 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
-    [Export]
-    public bool PreventsMouseCaptureWhileOpen { get; set; } = true;
-
-    private bool MouseUnCaptureActive
-    {
-        set
-        {
-            if (!PreventsMouseCaptureWhileOpen)
-            {
-                if (mouseUnCaptureActive)
-                {
-                    SetMouseCaptureModeInternal(false);
-                }
-
-                return;
-            }
-
-            if (mouseUnCaptureActive == value)
-                return;
-
-            SetMouseCaptureModeInternal(value);
-        }
-    }
-
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
@@ -226,12 +197,12 @@ public class CustomDialog : Popup, ICustomPopup
         GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
 
         base._ExitTree();
-
-        MouseUnCaptureActive = false;
     }
 
     public override void _Notification(int what)
     {
+        base._Notification(what);
+
         switch (what)
         {
             case NotificationReady:
@@ -246,22 +217,6 @@ public class CustomDialog : Popup, ICustomPopup
             {
                 UpdateChildRects();
                 ApplyRectSettings();
-                break;
-            }
-
-            case NotificationVisibilityChanged:
-            {
-                if (Visible)
-                {
-                    ApplyRectSettings();
-                    OnShown();
-                }
-                else
-                {
-                    OnHidden();
-                }
-
-                UpdateChildRects();
                 break;
             }
 
@@ -385,53 +340,41 @@ public class CustomDialog : Popup, ICustomPopup
     /// </summary>
     public override bool HasPoint(Vector2 point)
     {
-        var rect = new Rect2(Vector2.Zero, RectSize);
-
         // Enlarge upwards for title bar
-        var adjustedRect = new Rect2(
-            new Vector2(rect.Position.x, rect.Position.y - titleBarHeight),
-            new Vector2(rect.Size.x, rect.Size.y + titleBarHeight));
+        var position = default(Vector2);
+        var size = RectSize;
+        position.y -= titleBarHeight;
+        size.y += titleBarHeight;
+        var rect = new Rect2(position, size);
 
         // Inflate by the resizable border thickness
         if (Resizable)
         {
-            adjustedRect = new Rect2(
-                new Vector2(adjustedRect.Position.x - scaleBorderSize, adjustedRect.Position.y - scaleBorderSize),
-                new Vector2(adjustedRect.Size.x + scaleBorderSize * 2, adjustedRect.Size.y + scaleBorderSize * 2));
+            rect = new Rect2(
+                new Vector2(rect.Position.x - scaleBorderSize, rect.Position.y - scaleBorderSize),
+                new Vector2(rect.Size.x + scaleBorderSize * 2, rect.Size.y + scaleBorderSize * 2));
         }
 
-        return adjustedRect.HasPoint(point);
+        return rect.HasPoint(point);
     }
 
-    public void PopupFullRect()
+    public void OpenFullRect()
     {
-        Popup_(GetFullRect());
+        this.Open(true, GetFullRect());
     }
 
-    public virtual void CustomShow()
+    protected override void OnShown()
     {
-        // TODO: implement default show animation(?)
-        ShowModal(PopupExclusive);
+        base.OnShown();
+        ApplyRectSettings();
+        UpdateChildRects();
     }
 
-    public virtual void CustomHide()
+    protected override void OnHidden()
     {
-        // TODO: add proper close animation
-        Hide();
-    }
-
-    protected virtual void OnShown()
-    {
-        MouseUnCaptureActive = true;
-    }
-
-    /// <summary>
-    ///   Called after popup is made invisible.
-    /// </summary>
-    protected virtual void OnHidden()
-    {
+        base.OnHidden();
+        UpdateChildRects();
         closeHovered = false;
-        MouseUnCaptureActive = false;
     }
 
     protected Rect2 GetFullRect()
@@ -679,27 +622,7 @@ public class CustomDialog : Popup, ICustomPopup
     private void OnCloseButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        CustomHide();
-        EmitSignal(nameof(Closed));
-    }
-
-    /// <summary>
-    ///   Applies the mouse capture mode. Do not call directly, use <see cref="MouseUnCaptureActive"/>
-    /// </summary>
-    private void SetMouseCaptureModeInternal(bool captured)
-    {
-        mouseUnCaptureActive = captured;
-
-        // The name of this node is not allowed to change while visible, otherwise this will not work well
-        var key = $"{GetType().Name}_{Name}";
-
-        if (captured)
-        {
-            MouseCaptureManager.ReportOpenCapturePrevention(key);
-        }
-        else
-        {
-            MouseCaptureManager.ReportClosedCapturePrevention(key);
-        }
+        Close();
+        EmitSignal(nameof(Dismissed));
     }
 }

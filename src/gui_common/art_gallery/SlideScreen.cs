@@ -199,12 +199,12 @@ public class SlideScreen : CustomDialog
         return RetreatSlide();
     }
 
-    public override void CustomShow()
+    public override void Open()
     {
         if (Items == null)
             return;
 
-        base.CustomShow();
+        base.Open();
 
         SlideControlsVisible = false;
 
@@ -222,7 +222,7 @@ public class SlideScreen : CustomDialog
             popupTween.Connect("tween_completed", this, nameof(OnScaledUp), null, (uint)ConnectFlags.Oneshot);
     }
 
-    public override void CustomHide()
+    public override void Close()
     {
         if (Items == null)
             return;
@@ -316,7 +316,7 @@ public class SlideScreen : CustomDialog
     private void ChangeSlide(bool fade)
     {
         if (!Visible)
-            CustomShow();
+            Open();
 
         if (!fade)
         {
@@ -452,7 +452,7 @@ public class SlideScreen : CustomDialog
 
     private void OnCloseButtonPressed()
     {
-        CustomHide();
+        Close();
     }
 
     private void OnCloseButtonUpdate()

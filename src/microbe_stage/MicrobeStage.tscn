@@ -646,7 +646,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_top = 64.0
 margin_right = 197.0
-margin_bottom = 249.0
+margin_bottom = 255.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
 custom_constants/margin_bottom = 10
@@ -658,7 +658,7 @@ __meta__ = {
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 197.0
-margin_bottom = 175.0
+margin_bottom = 181.0
 
 [node name="Oxygen" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
@@ -840,7 +840,7 @@ self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
 margin_top = 87.0
 margin_right = 162.0
-margin_bottom = 112.0
+margin_bottom = 114.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="TemperatureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
@@ -894,9 +894,9 @@ __meta__ = {
 [node name="Sunlight" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 116.0
+margin_top = 118.0
 margin_right = 162.0
-margin_bottom = 141.0
+margin_bottom = 145.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="LightIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
@@ -949,9 +949,9 @@ __meta__ = {
 [node name="Pressure" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 145.0
+margin_top = 149.0
 margin_right = 162.0
-margin_bottom = 170.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="PressureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
@@ -2053,13 +2053,21 @@ __meta__ = {
 }
 
 [node name="StagePrototypeConfirm" parent="MicrobeHUD" instance=ExtResource( 88 )]
+margin_right = 300.0
+margin_bottom = 97.0
 rect_min_size = Vector2( 450, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FossilisationDialog" parent="MicrobeHUD" instance=ExtResource( 96 )]
 margin_left = 458.0
 margin_top = 120.0
 margin_right = 822.0
 margin_bottom = 540.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false

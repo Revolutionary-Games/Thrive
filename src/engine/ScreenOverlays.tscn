@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/saving/SaveStatusOverlay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/engine/LoadingScreen.tscn" type="PackedScene" id=3]
@@ -13,7 +13,7 @@ pause_mode = 2
 process_priority = 2000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 128
+layer = 127
 
 [node name="LoadingScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false

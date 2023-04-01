@@ -571,7 +571,7 @@ public class InventoryScreen : ControlWithInput
 
         if (craftingPanelPopup.Visible)
         {
-            craftingPanelPopup.CustomHide();
+            craftingPanelPopup.Close();
             craftingPanelManuallyHidden = true;
             OnCraftingPanelClosed();
         }
@@ -588,7 +588,7 @@ public class InventoryScreen : ControlWithInput
 
         if (groundPanelPopup.Visible)
         {
-            groundPanelPopup.CustomHide();
+            groundPanelPopup.Close();
             groundPanelManuallyHidden = true;
         }
         else

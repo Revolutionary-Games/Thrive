@@ -95,6 +95,12 @@ public class ErrorDialog : CustomDialog
         PauseManager.Instance.AddPause(PauseLock);
     }
 
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnErrorDialogDismissed();
+    }
+
     private void UpdateMessage()
     {
         extraDescriptionLabel!.SizeFlagsVertical = exceptionBox.Visible ?

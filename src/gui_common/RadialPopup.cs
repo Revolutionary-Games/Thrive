@@ -41,7 +41,7 @@ public class RadialPopup : CustomDialog
 
     public void ShowWithItems(IEnumerable<(string Text, int Id)> items)
     {
-        Popup_();
+        Open();
         Radial.ShowWithItems(items);
     }
 
@@ -53,6 +53,12 @@ public class RadialPopup : CustomDialog
 
         Hide();
         return true;
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnClosed();
     }
 
     protected override void Dispose(bool disposing)

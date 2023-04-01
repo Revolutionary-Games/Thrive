@@ -73,6 +73,6 @@ public class ProcessPanel : CustomDialog
     private void OnClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        CustomHide();
+        Close();
     }
 }

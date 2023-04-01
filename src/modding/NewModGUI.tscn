@@ -471,7 +471,7 @@ margin_bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 text = "CANCEL"
 
-[connection signal="popup_hide" from="CustomDialog" to="." method="Closed"]
+[connection signal="hide" from="CustomDialog" to="." method="Closed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/HelpLine/LinkButton" to="." method="WikiLinkPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Create" to="." method="Create"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Cancel" to="." method="Cancel"]

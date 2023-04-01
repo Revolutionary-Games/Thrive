@@ -117,7 +117,7 @@ public class PauseMenu : CustomDialog
             if (GameLoading)
                 return true;
 
-            if (GUICommon.Instance.IsAnyExclusivePopupActive)
+            if (ModalManager.Instance.IsAnyExclusivePopupActive)
                 return true;
 
             if (TransitionManager.Instance.HasQueuedTransitions)
@@ -229,7 +229,7 @@ public class PauseMenu : CustomDialog
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(Dismissed), this, nameof(CancelExit));
         unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
     }
 
@@ -321,7 +321,7 @@ public class PauseMenu : CustomDialog
         thriveopedia.ChangePage(pageName);
     }
 
-    public void Open()
+    public override void Open()
     {
         if (Visible)
             return;
@@ -332,7 +332,7 @@ public class PauseMenu : CustomDialog
         exiting = false;
     }
 
-    public void Close()
+    public override void Close()
     {
         if (!Visible)
             return;

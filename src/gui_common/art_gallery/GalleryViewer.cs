@@ -333,7 +333,7 @@ public class GalleryViewer : CustomDialog
             return;
 
         slideScreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
-        slideScreen.CustomShow();
+        slideScreen.Close();
     }
 
     private void OnGalleryItemPressed(GalleryCard item)
@@ -401,7 +401,7 @@ public class GalleryViewer : CustomDialog
 
         slideScreen.CurrentSlideIndex = CurrentCards.FindIndex(c => c.CanBeShownInASlideshow);
         slideScreen.SlideshowMode = true;
-        slideScreen.CustomShow();
+        slideScreen.Open();
     }
 
     private void OnPlaybackStarted(object sender, EventArgs args)
