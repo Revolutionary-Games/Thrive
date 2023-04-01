@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -857,7 +857,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Rotation is applied in the physics force callback as that's the place where the body rotation
         // can be directly set without problems
 
-        HandleChemoreceptorLines(delta);
+        HandleCompoundChemoreceptorLines(delta);
+        HandleSpeciesChemoreceptorLines(delta);
 
         if (Colony != null && Colony.Master == this)
             Colony.Process(delta);

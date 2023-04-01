@@ -38,7 +38,8 @@ public class MicrobeStage : StageBase<Microbe>
 #pragma warning restore CA2213
     private Vector3? guidancePosition;
 
-    private List<GuidanceLine> chemoreceptionLines = new();
+    private List<GuidanceLine> compoundChemoreceptionLines = new();
+    private List<GuidanceLine> speciesChemoreceptionLines = new();
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -257,7 +258,8 @@ public class MicrobeStage : StageBase<Microbe>
             guidanceLine.Visible = false;
         }
 
-        UpdateLinePlayerPosition();
+        UpdateLinePlayerPosition(compoundChemoreceptionLines);
+        UpdateLinePlayerPosition(speciesChemoreceptionLines);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -616,7 +618,9 @@ public class MicrobeStage : StageBase<Microbe>
 
         Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
 
-        Player.OnChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
+        Player.OnCompoundChemoreceptionInfo = HandlePlayerCompoundChemoreception;
+
+        Player.OnSpeciesChemoreceptionInfo = HandlePlayerSpeciesChemoreception;
 
         Player.OnIngestedByHostile = OnPlayerEngulfedByHostile;
 
@@ -856,14 +860,11 @@ public class MicrobeStage : StageBase<Microbe>
     }
 
     /// <summary>
-    ///   Updates the chemoreception lines for stuff the player wants to detect
+    ///   Updates the chemoreception lines for compounds
     /// </summary>
     [DeserializedCallbackAllowed]
-    private void HandlePlayerChemoreceptionDetection(Microbe microbe,
-        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>
-            activeCompoundDetections,
-        IEnumerable<(Species Species, float Range, Color Colour)>
-            activeSpeciesDetections)
+    private void HandlePlayerCompoundChemoreception(Microbe microbe,
+        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections)
     {
         if (microbe != Player)
             GD.PrintErr("Chemoreception data reported for non-player cell");
@@ -873,17 +874,33 @@ public class MicrobeStage : StageBase<Microbe>
 
         foreach (var tuple in microbe.GetDetectedCompounds(Clouds))
         {
-            var line = GetOrCreateGuidanceLine(currentLineIndex++);
+            var line = GetOrCreateGuidanceLine(currentLineIndex++, compoundChemoreceptionLines);
 
             line.Colour = tuple.Colour;
             line.LineStart = position;
             line.LineEnd = tuple.Target;
             line.Visible = true;
         }
+
+        CleanExcessChemoreceptionLines(currentLineIndex, compoundChemoreceptionLines);
+    }
+
+    /// <summary>
+    ///   Updates the chemoreception lines for microbes
+    /// </summary>
+    [DeserializedCallbackAllowed]
+    private void HandlePlayerSpeciesChemoreception(Microbe microbe,
+        IEnumerable<(Species Species, float Range, Color Colour)> activeSpeciesDetections)
+    {
+        if (microbe != Player)
+            GD.PrintErr("Chemoreception data reported for non-player cell");
+
+        int currentLineIndex = 0;
+        var position = microbe.GlobalTransform.origin;
 
         foreach (var tuple in microbe.GetDetectedSpecies(microbeSystem))
         {
-            var line = GetOrCreateGuidanceLine(currentLineIndex++);
+            var line = GetOrCreateGuidanceLine(currentLineIndex++, speciesChemoreceptionLines);
 
             line.Colour = tuple.Colour;
             line.LineStart = position;
@@ -891,18 +908,22 @@ public class MicrobeStage : StageBase<Microbe>
             line.Visible = true;
         }
 
-        // Remove excess lines
-        while (currentLineIndex < chemoreceptionLines.Count)
+        CleanExcessChemoreceptionLines(currentLineIndex, speciesChemoreceptionLines);
+    }
+
+    private void CleanExcessChemoreceptionLines(int usedAmount, List<GuidanceLine> lines)
+    {
+        while (usedAmount < lines.Count)
         {
-            var line = chemoreceptionLines[chemoreceptionLines.Count - 1];
-            chemoreceptionLines.RemoveAt(chemoreceptionLines.Count - 1);
+            var line = lines[lines.Count - 1];
+            lines.RemoveAt(lines.Count - 1);
 
             RemoveChild(line);
             line.QueueFree();
         }
     }
 
-    private void UpdateLinePlayerPosition()
+    private void UpdateLinePlayerPosition(List<GuidanceLine> chemoreceptionLines)
     {
         if (Player == null || Player?.Dead == true)
         {
@@ -921,17 +942,17 @@ public class MicrobeStage : StageBase<Microbe>
         }
     }
 
-    private GuidanceLine GetOrCreateGuidanceLine(int index)
+    private GuidanceLine GetOrCreateGuidanceLine(int index, List<GuidanceLine> lines)
     {
-        if (index >= chemoreceptionLines.Count)
+        if (index >= lines.Count)
         {
             // The lines are created here and added as children of the stage because if they were in the microbe
             // then rotation and it moving cause implementation difficulties
             var line = new GuidanceLine();
             AddChild(line);
-            chemoreceptionLines.Add(line);
+            lines.Add(line);
         }
 
-        return chemoreceptionLines[index];
+        return lines[index];
     }
 }
