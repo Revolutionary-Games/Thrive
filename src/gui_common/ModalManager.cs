@@ -54,9 +54,11 @@ public class ModalManager : NodeWithInput
     ///   Promotes the given popup as a modal and make it visible.
     /// </summary>
     /// <remarks>
-    ///   This does Node reparenting operation, therefore calling this plainly in <see cref="Node._Ready"/> wouldn't
-    ///   work as the Node is still busy then. Alternatively, you could defer the call in the next frame by using
-    ///   <see cref="Invoke.Queue"/>.
+    ///   <para>
+    ///     This does Node reparenting operation, therefore calling this plainly in <see cref="Node._Ready"/> wouldn't
+    ///     work as the Node is still busy then. Alternatively, you could defer the call in the next frame by using
+    ///     <see cref="Invoke.Queue"/>.
+    ///   </para>
     /// </remarks>
     public void MakeModal(CustomPopup popup)
     {
