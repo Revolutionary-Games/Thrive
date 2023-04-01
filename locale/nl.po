@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-31 16:05+0300\n"
+"POT-Creation-Date: 2023-04-01 23:27+0700\n"
 "PO-Revision-Date: 2023-03-29 20:04+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -199,7 +199,7 @@ msgstr "Anaërobe stikstofbinding"
 msgid "APPEARANCE"
 msgstr "Uiterlijk"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "Toepassen"
@@ -308,7 +308,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Bevolking van {0} veranderd met {1} in {2} vanwege: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1478
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo Voorspelling"
 
@@ -380,7 +380,7 @@ msgstr "Microbieel Stage"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:288
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -443,7 +443,7 @@ msgstr "Wordt Macrosopisch ({0}/{1})"
 msgid "BECOME_MULTICELLULAR"
 msgstr "Wordt Meercellig ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thrive"
 
@@ -603,6 +603,7 @@ msgstr "Camera"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
@@ -734,7 +735,7 @@ msgstr "Verander symmetrie"
 
 #: ../simulation_parameters/common/input_options.json:251
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "Cheats"
 
@@ -859,14 +860,14 @@ msgstr "Oude Opslagbestanden Opschonen"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:113
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
-#: ../src/microbe_stage/ProcessPanel.tscn:73
+#: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
 msgid "CLOSE"
 msgstr "Sluiten"
 
@@ -1033,7 +1034,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "BEVESTIGEN"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:319
+#: ../src/general/PauseMenu.tscn:325
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Bevestig Stoppen"
@@ -1055,10 +1056,6 @@ msgstr "Sommige instellingen zijn ongeldig"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshopinhoud zal geupload worden uit de map: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:416
-msgid "CONTINUE_THRIVING"
-msgstr "Ga door met Thrive"
-
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
@@ -1073,7 +1070,7 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Doorgaan naar de faseprototypen?"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:95
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizatie Assen Spelbesturingsapparaat:"
 
@@ -1081,7 +1078,7 @@ msgstr "Visualizatie Assen Spelbesturingsapparaat:"
 msgid "CONTROLLER_DEADZONES"
 msgstr "Deadzones Spelbesturingsapparaat"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:50
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
 "Dit hulpmiddel maakt het mogelijk om de as-deadzones van het spelbesturingsapparaat te configureren. Deadzoneformaat bepaalt hoeveel een controlestokje (of een analoge knop) moet worden bewogen voordat die beweging wordt gezien als invoer.\n"
@@ -1100,7 +1097,7 @@ msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Gevoeligheid spelbesturingsapparaat"
 
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:109
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:105
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopieer Fout naar Klembord"
 
@@ -1306,19 +1303,19 @@ msgstr "Zet dag/nacht cyclus aan"
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:219
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Calibratie van deadzone is afgerond. De nieuwe deadzones worden weergegeven onder de assenwaardeweergave."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:172
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:184
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Deadzone calibratie is bezig. Gelieve geen knoppen of stokjes op je spelbesturingsapparaat aan te raken en enkele seconden te wachten."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:193
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:205
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Deadzone calibraties zijn opnieuw ingesteld"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:15
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Deadzone Configuratie"
 
@@ -1347,7 +1344,7 @@ msgstr "Standaard uitvoer apparaat"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:607
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
 msgstr "Verwijder"
 
@@ -1399,7 +1396,7 @@ msgstr "Omschrijving:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Beschrijving is te lang"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
 msgid "DESPAWN_ENTITIES"
 msgstr "Verwijderen Alle Broedsels"
 
@@ -1765,7 +1762,7 @@ msgstr "Editor"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Open bewerker en bewerk je soort"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welkom bij de Microbenbewerker.\n"
@@ -1924,7 +1921,7 @@ msgstr "Er heeft zich een uitzondering voorgedaan tijdens het verwerken van gela
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Er heeft zich een uitzondering voorgedaan tijdens het laden van opgeslagen data"
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:253
 msgid "EXIT"
 msgstr "Sluit"
 
@@ -2034,7 +2031,7 @@ msgstr "Gepubliceerd op {0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Het item is ingekort omdat het te lang is, om de gehele inhoud te lezen moet je naar het origineel. {0}"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:72
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filter items op basis van categorie:"
 
@@ -2197,7 +2194,7 @@ msgstr "Volledig Scherm"
 msgid "FULL_MOD_INFO"
 msgstr "Volledige Mod Info"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:21
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:22
 msgid "GALLERY_VIEWER"
 msgstr "Gallerij Venster"
 
@@ -2225,11 +2222,11 @@ msgstr "Bezoek onze Github opslagplek"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:952
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:954
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
 
@@ -2260,7 +2257,7 @@ msgstr "Glucoseconcentratie is drastisch gedaald!"
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Godmodus"
 
@@ -2278,7 +2275,7 @@ msgstr "Godmodus"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Googly oog cel"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:159
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
 msgid "GOT_IT"
 msgstr "Ik snap het"
 
@@ -2328,11 +2325,11 @@ msgstr "Volume GUI"
 msgid "HEALTH"
 msgstr "Sterkte"
 
-#: ../src/general/PauseMenu.tscn:216
+#: ../src/general/PauseMenu.tscn:222
 msgid "HELP"
 msgstr "Hulp"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:221 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hoe het spel te spelen"
 
@@ -2428,7 +2425,7 @@ msgstr "(sommige functies zijn mogelijk niet toegankelijk wanneer je volgende fa
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
 msgstr "Oneindige Stoffen"
 
@@ -2974,7 +2971,7 @@ msgstr "Linkermuisknop"
 msgid "LICENSES"
 msgstr "Licenties"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:94
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licenties met betrekking tot onderdelen van Thrive worden hier getoond"
 
@@ -3129,12 +3126,12 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "LOAD_FINISHED"
 msgstr "Laden afgerond"
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:206
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Laad spel"
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:205
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Laad eerder opgeslagen spellen"
 
@@ -3447,7 +3444,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Microbieel Stage"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Verzamel glucoze (witte wolken) door er overheen te bewegen.\n"
@@ -3456,7 +3453,7 @@ msgstr ""
 "\n"
 "Volg de lijn van je cel naar glucose in de buurt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Om je cel te controleren gebruik je de knoppen die in de buurt van je cel (midden van het scherm) worden weergegeven. De richting van de cel controleer je met de muis.\n"
@@ -3465,14 +3462,14 @@ msgstr ""
 "\n"
 "Probeer alle knoppen voor enkele seconden om verder te gaan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 "Gebruik de besturingsknoppen die rond je cel worden weergegeven om je cel te controleren. Gebruik de andere knuppel om richting te geven aan de cel.\n"
 "WAARSCHUWING: invoer vanuit een spelbesturingsapparaat is experimenteel en niet geheel bruikbaar (zonder een touchpad). Er zijn waarschijnlijk bug.\n"
 "Probeer alle richtingen voor enkele seconden om verder te gaan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "Kijk uit voor verlagingen in de zonlichtmeter op het omgevingspaneel.\n"
@@ -3481,7 +3478,7 @@ msgstr ""
 "Fotosynthese werkt niet tijdens de nacht.\n"
 "Zorg ervoor dat je genoeg opgeslagen hebt om de nacht te overleven."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Houdt de gezondheidsbalk naast de ATP-balk in de gaten (rechtsonder).\n"
@@ -3650,7 +3647,7 @@ msgstr "Instructies voor modificeren zijn beschikbaar op"
 msgid "MODELS"
 msgstr "Modellen"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "Aanpassen"
 
@@ -3667,7 +3664,7 @@ msgstr "Pas het type aan"
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:966
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Geinstalleerde mods zijn gevonden, maar er zijn geen mods aangezet.\n"
@@ -3756,11 +3753,11 @@ msgstr "Interne (Map) Naam:"
 msgid "MOD_LICENSE"
 msgstr "Licentie van de Mod:"
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:980
 msgid "MOD_LOAD_ERRORS"
 msgstr "Foutmeldingen bij het laden van de mod"
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er is een fout opgetreden bij het laden van een of meerdere mods. Logs kunnen bijkomende informatie bevatten."
 
@@ -3821,7 +3818,7 @@ msgstr "Muis kijkgevoeligheid"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Muisgevoeligheid schalen met vensterformaat"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
 msgid "MOVE"
 msgstr "Bewegen"
 
@@ -4148,7 +4145,7 @@ msgstr "Niet begonnen."
 msgid "NOVEMBER"
 msgstr "November"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr "Geen AI"
 
@@ -4165,7 +4162,7 @@ msgstr "Geen gebeurtenissen opgenomen"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Geen fossielenmap gevonden"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:964
 msgid "NO_MODS_ENABLED"
 msgstr "Geen Mods Aangezet"
 
@@ -4244,9 +4241,10 @@ msgstr "Officiële Website"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Bezoek de officiële Revolutionary Games website"
 
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:114
+#: ../src/modding/ModUploader.tscn:355
 msgid "OK"
 msgstr "OK"
 
@@ -4328,11 +4326,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistisch"
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:237
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:236
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pas je instellingen aan"
 
@@ -4591,7 +4589,7 @@ msgstr "Patrons"
 msgid "PAUSED"
 msgstr "GEPAUZEERD"
 
-#: ../src/general/PauseMenu.tscn:183
+#: ../src/general/PauseMenu.tscn:189
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Ga terug naar het spel"
 
@@ -4710,7 +4708,7 @@ msgstr "(coëfficient voor de vermindering in bevolking van spelersoort voor elk
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 msgid "PLAYER_DUPLICATE"
 msgstr "Dupliceer Speler"
 
@@ -4726,7 +4724,7 @@ msgstr "Speler relatief"
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 msgid "PLAYER_SPEED"
 msgstr ""
 "Speler\n"
@@ -4860,7 +4858,7 @@ msgid "QUIT"
 msgstr "Stop"
 
 #: ../src/general/MainMenu.tscn:358 ../src/general/MainMenu.tscn:367
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/PauseMenu.tscn:252
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Verlaat het spel"
 
@@ -4926,7 +4924,7 @@ msgstr "Terugkeer migratie in geval van uitsterven in het doel gebied"
 msgid "REPORT"
 msgstr "Rapport"
 
-#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:229
 msgid "REPORT_BUG"
 msgstr "Rapporteer een Bug"
 
@@ -4962,7 +4960,7 @@ msgstr "Vereist nucleus"
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:79
 msgid "RESET_DEADZONES"
 msgstr "Herstel Deadzones"
 
@@ -5029,7 +5027,7 @@ msgstr "Responsief"
 msgid "RESTART_REQUIRED"
 msgstr "Herstarten Vereist"
 
-#: ../src/general/PauseMenu.tscn:184
+#: ../src/general/PauseMenu.tscn:190
 msgid "RESUME"
 msgstr "Hervat"
 
@@ -5037,12 +5035,12 @@ msgstr "Hervat"
 msgid "RESUME_TOOLTIP"
 msgstr "Hervat het spel"
 
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:245
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Terug naar menu"
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:244
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Sluit en terug naar hoofdmenu"
 
@@ -5139,7 +5137,7 @@ msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. Snelheid schaalt met contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:976
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive is in veilige modus gestart omdat een eerdere poging om op te starten is mislukt.\n"
@@ -5150,7 +5148,7 @@ msgstr ""
 "\n"
 "Als je het probleem met het opstarten niet oplost zul je Thrive meerdere malen moeten starten en crashen om weer terug naar de veilige modus te gaan."
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:974
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive is in Veilige Modus Gestart"
 
@@ -5174,11 +5172,11 @@ msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gema
 msgid "SAVE_FAILED"
 msgstr "Opslaan mislukt"
 
-#: ../src/general/PauseMenu.tscn:192
+#: ../src/general/PauseMenu.tscn:198
 msgid "SAVE_GAME"
 msgstr "Sla spel op"
 
-#: ../src/general/PauseMenu.tscn:191
+#: ../src/general/PauseMenu.tscn:197
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Open het menu voor opslaan om het spel op te slaan"
 
@@ -5346,7 +5344,7 @@ msgstr "Selecteer Enzym:"
 msgid "SELECT_OPTION"
 msgstr "Selecteer Een Optie"
 
-#: ../src/modding/ModUploader.tscn:325
+#: ../src/modding/ModUploader.tscn:326
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Selecteer Voorbeeld Plaatje"
 
@@ -5390,7 +5388,7 @@ msgstr "Toon nieuwe patchnotities automatisch"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Toon patchnotities van nieuwe Thrive uitgaven automatisch in het hoofdmenu"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
 msgid "SHOW_TUTORIALS"
 msgstr "Toon instructies"
 
@@ -5468,8 +5466,8 @@ msgstr "16x"
 msgid "SIZE_COLON"
 msgstr "Grootte:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:129
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:177
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:180
 msgid "SLIDESHOW"
 msgstr "Diavoorstelling"
 
@@ -5534,7 +5532,7 @@ msgstr "Microbieel Stage"
 msgid "SPAWN_AMMONIA"
 msgstr "Plaats ammoniak"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr "Plaats Vijand"
 
@@ -5638,7 +5636,7 @@ msgstr "Pauzeermenu"
 msgid "STARTING"
 msgstr "Starten"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:67
 msgid "START_CALIBRATION"
 msgstr "Start Calibratie"
 
@@ -5712,11 +5710,11 @@ msgstr "Steam is op dit moment niet beschikbaar, graag opnieuw proberen"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Er heeft zich een onbekende Steamfout voorgedaan"
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:998
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam Initializatie Mislukt"
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:1000
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
@@ -5909,7 +5907,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Testteam"
 
-#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:990
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Bedankt voor het steunen van het ontwikeklen van Thrive door deze kopie van Thrive te kopen.\n"
@@ -5925,7 +5923,7 @@ msgstr ""
 "\n"
 "Als je het spel leuk vond, vertel dan je vrienden over ons."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:988
 msgid "THANK_YOU_TITLE"
 msgstr "Bedankt"
 
@@ -5984,7 +5982,7 @@ msgstr "Deze mod is gedownload van de Steam Workshop"
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:214
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
@@ -5996,7 +5994,7 @@ msgstr "Huidige Wereld"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Fylogenetische stamboom"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:213
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Open de Thriveopedia"
 
@@ -6025,7 +6023,7 @@ msgstr "Museum"
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Gebiedenkaart"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:31
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenties"
 
@@ -6215,16 +6213,15 @@ msgstr "Probeer een opslagbestand te maken!"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Maak een screenshot!"
 
-#: ../src/gui_common/dialogs/TutorialDialog.tscn:17
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:16
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
 msgid "TUTORIAL"
 msgstr "Instructie"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:382
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:380
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Welkom bij de Vroege Meercellige Fase!\n"
@@ -6237,7 +6234,7 @@ msgstr ""
 "\n"
 "Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dit paneel toont een voorspelling van je toekomstige bevolking. Deze getallen komen uit de bevolkingssimulatie van auto-evo.\n"
@@ -6248,7 +6245,7 @@ msgstr ""
 "\n"
 "Je kunt meer gedetailleerde informatie over de voorspelling inzien door op de vraagtekenknop in het paneel te drukken. Druk hier op om door te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
@@ -6268,7 +6265,7 @@ msgstr ""
 "\n"
 "Succes!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Dit is de gebiedenkaart.\n"
@@ -6279,7 +6276,7 @@ msgstr ""
 "\n"
 "Selecteer een gebied om verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:84
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organellen verwijderen kost ook MP aangezien het een mutatie van je soort is. Dit is niet het geval als ze in de huidige bewerksessie zijn geplaatst.\n"
@@ -6290,7 +6287,7 @@ msgstr ""
 "\n"
 "Klik op de ongedaan maken knop om verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Let goed op de hulpmiddelentips die verschijnen wanneer je onderdelen in het menu selecteert. Deze tips geven aan wat de onderdelen doen. Onderdelen kunnen meer schade aanrichten dan dat ze waard zijn als je hun functie niet goed overweegt.\n"
@@ -6308,7 +6305,7 @@ msgstr ""
 "\n"
 "Een mogelijke strategie is om een enkele hex van cytoplasma te blijven en eerst naar oppervlaktegebieden te migreren. Eenmaal bij de oppervlaktegebieden kun je dan de fotosyntheseorganellen evolueren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Je cel heeft het lang genoeg overleefd om zichzelf voort te planten.\n"
@@ -6317,21 +6314,21 @@ msgstr ""
 "\n"
 "Om de bewerker te openen klik op je de grote knipperende knop rechtsonder."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Je cel is verzwolgen en wordt verteerd. De voortgang kun je zien op je gezondheidsbalk. Je cel zal dood zijn wanneer het verteren is afgerond of een maximumtijdslimiet is bereikt.\n"
 "\n"
 "Je kunt de verga meteen knop gebruiken om dit over te slaan en meteen opnieuw geplaatst te worden. Houdt er echter rekening mee dat er altijd een kans is dat je onstsnapt!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:332
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Je cel heeft een beperkte capaciteit voor objecten die tegelijk verzwolgen kunnen zijn. Deze limiet is gebaseerd op formaat; kleinere cellen hebben minder capaciteit.\n"
 "\n"
 "Wanneer een cel vol is kan het geen nieuwe dingen meer verzwelgen. Om weer te kunnen verzwelgen zul je moeten wachten tot er genoeg verzwolgen objecten volledig verteerd zijn."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Verzwelg objecten door over ze heen te bewegen terwijl de verzwelgmodus aanstaat. Zet verzwelgmodus aan door [thrive:input]g_toggle_engulf[/thrive:input] in te drukken.\n"
@@ -6340,14 +6337,14 @@ msgstr ""
 "\n"
 "Volg de lijn van je cel naar een verzwelgbaar object in de buurt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Lukt het niet? Kijk dan in het helpmenu. Je kunt dit openen door linksonder op de vraagtekenknop te drukken.\n"
 "\n"
 "Nog een tip, je kunt in- en uitzoomen met je rolwiel."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Je zit vol met [thrive:compound type=\"ammonia\"][/thrive:compound] en [thrive:compound type=\"phosphates\"][/thrive:compound]. Echter, als niet-meercellige kolonie maak je geen voortgang met voortplanting.\n"
@@ -6355,21 +6352,21 @@ msgstr ""
 "Als je niet meercellig wenst te worden, zul je de kolonie moeten verlaten om de bewerker te kunnen openen.\n"
 "Verlaat de kolonie om weer te kunnen groeien door [thrive:input]g_unbind_all[/thrive:input] in te drukken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Om jezelf voort te planten, moet je organellen dupliceren. Dit gebeurt geleidelijk als je overleeft maar je kunt dit proces versnellen door ammonia en fosfaat te verzamelen.\n"
 "\n"
 "Je balken rechtsonder tonen je voortgang. Ze worden wit wanneer je klaar bent om jezelf voort te planten."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Je hebt de ontbindingsmodus aangezet. In deze modus kun je op kolonieleden klikken om ze te ontkoppelen.\n"
 "\n"
 "Om de kolonie geheel te verlaten klik je op je eigen cel of druk je de knop [thrive:input]g_unbind_all[/thrive:input] in."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Bekijk Nu"
 
@@ -6476,7 +6473,7 @@ msgstr "Uploaden"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Uploaden..."
 
-#: ../src/modding/ModUploader.tscn:336
+#: ../src/modding/ModUploader.tscn:334
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload was Succesvol"
 
@@ -6761,6 +6758,9 @@ msgstr "Inzoomen"
 #: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "CONTINUE_THRIVING"
+#~ msgstr "Ga door met Thrive"
 
 #~ msgid "PANGONIAN_REGION_NAME"
 #~ msgstr "Pannonisch"

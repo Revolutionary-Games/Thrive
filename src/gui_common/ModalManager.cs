@@ -145,11 +145,9 @@ public class ModalManager : NodeWithInput
             // User has pressed outside of the popup's area
 
             // Not counting mouse wheel which is the original default behavior
-            if (modalStack.Count <= 0 ||
-                mouseButton.ButtonIndex == (int)ButtonList.WheelDown ||
-                mouseButton.ButtonIndex == (int)ButtonList.WheelUp ||
-                mouseButton.ButtonIndex == (int)ButtonList.WheelLeft ||
-                mouseButton.ButtonIndex == (int)ButtonList.WheelRight)
+            if (modalStack.Count <= 0 || mouseButton.ButtonIndex is
+                (int)ButtonList.WheelDown or (int)ButtonList.WheelUp or
+                (int)ButtonList.WheelLeft or (int)ButtonList.WheelRight)
             {
                 return;
             }
