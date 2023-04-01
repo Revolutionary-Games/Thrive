@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 /// </summary>
 public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 {
+    private readonly List<StructureComponent> componentInstances = new();
+
 #pragma warning disable CA2213
     private Spatial scaffoldingParent = null!;
     private Spatial visualsParent = null!;
@@ -52,7 +54,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
     // TODO: a separate interact offset for when constructing versus when built
     [JsonIgnore]
-    public Vector3? ExtraInteractOverlayOffset =>
+    public Vector3? ExtraInteractionCenterOffset =>
         Definition?.InteractOffset ?? throw new InvalidOperationException("Not initialized");
 
     public string? ExtraInteractionPopupDescription
@@ -104,6 +106,8 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
         visualsParent.AddChild(definition.WorldRepresentation.Instance());
 
+        // TODO: move the physics from the visual scene to this type directly
+
         if (!fullyConstructed)
         {
             missingResourcesToFullyConstruct = definition.RequiredResources;
@@ -116,7 +120,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
         }
         else
         {
-            Completed = true;
+            OnCompleted();
         }
     }
 
@@ -135,19 +139,28 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
         if (!Completed)
             return null;
 
-        return new (InteractionType Type, string? DisabledAlternativeText)[]
+        var result = new List<(InteractionType Type, string? DisabledAlternativeText)>();
+
+        foreach (var component in componentInstances)
         {
-            (InteractionType.FoundSettlement, null),
-        };
+            component.GetExtraAvailableActions(result);
+        }
+
+        return result;
     }
 
     public bool PerformExtraAction(InteractionType interactionType)
     {
-        if (!Completed || interactionType != InteractionType.FoundSettlement)
+        if (!Completed)
             return false;
 
-        // TODO: communicate to the stage somehow the founding of the settlement
-        return true;
+        foreach (var component in componentInstances)
+        {
+            if (component.PerformExtraAction(interactionType))
+                return true;
+        }
+
+        return false;
     }
 
     public IEnumerable<InventorySlotData>? GetWantedItems(IInventory availableItems)
@@ -213,13 +226,27 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     public void OnFinishTimeTakingAction()
     {
         if (missingResourcesToFullyConstruct != null)
-            GD.PrintErr("Structure force completed even though it still needs resources");
+            GD.PrintErr("Structure force completed (due to an action) even though it still needs resources");
+
+        OnCompleted();
+    }
+
+    /// <summary>
+    ///   Forces the structure to become immediately completed without any actions or needed resources
+    /// </summary>
+    public void ForceCompletion()
+    {
+        if (Completed)
+            return;
 
         OnCompleted();
     }
 
     private void OnCompleted()
     {
+        if (Definition == null)
+            throw new InvalidOperationException("Definition not set");
+
         Completed = true;
         missingResourcesToFullyConstruct = null;
 
@@ -228,5 +255,11 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
         // Ensure visuals are at the right position
         visualsParent.Translation = Vector3.Zero;
+
+        // Create the components
+        foreach (var factory in Definition.Components.Factories)
+        {
+            componentInstances.Add(factory.Create(this));
+        }
     }
 }

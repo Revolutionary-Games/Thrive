@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-27 21:06-0500\n"
+"POT-Creation-Date: 2023-03-31 16:05+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -44,9 +44,8 @@ msgid "ABORT"
 msgstr "取消"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
-#, fuzzy
 msgid "ABORTED_DOT"
-msgstr "取消。"
+msgstr "已取消。"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
@@ -55,20 +54,18 @@ msgstr "深海"
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "覺醒 ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "自殺"
+msgstr "前往覺醒階段。達到一定腦力（帶有軸突的組織）後開放。"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:684
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
-#, fuzzy
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "正在進行其他動作"
+msgstr "正在進行其他行動"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -117,7 +114,7 @@ msgstr "物種："
 #: ../src/microbe_stage/AgentProperties.cs:20
 #, fuzzy
 msgid "AGENT_NAME"
-msgstr "洞穴"
+msgstr "{0} 洞穴"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -132,14 +129,12 @@ msgid "AGGRESSIVE"
 msgstr "激進"
 
 #: ../src/general/NewGameSettings.tscn:464
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "突變點數"
+msgstr "人工智能突變率"
 
 #: ../src/general/NewGameSettings.tscn:509
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
+msgstr "（人工智能物種突變的速度）"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:372
@@ -147,24 +142,34 @@ msgid "ALL"
 msgstr "全部"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "[u]{0}[/u] 人口的一部分已遷移到 {1}"
+msgstr "允許物種不遷移（如果沒有發現良好的遷移情況）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "發生突變"
+msgstr "允許物種不突變（如果沒有合適的突變）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "生物統計"
+msgstr "全世界的生物統計"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "生物統計"
+msgstr ""
+"1[b]當前代：[/b]\n"
+"{0} \n"
+"[b]總物種數：[/b] \n"
+"平均值 {1}，方差 {2} \n"
+"[b]現存物種數：[/b] \n"
+"平均值 {3}，方差 {4}\n"
+" [b]區域平均物種數：[/b] \n"
+"平均值 {5}，方差 {6} \n"
+"[b]區域平均種群數量：[/b] \n"
+"平均值 {7}，方差 {8} \n"
+"[b]單細胞生物大小：[/b] \n"
+"平均值 {9}，方差 {10} \n"
+"[b]基本細胞器資訊：[/b]"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -193,7 +198,7 @@ msgstr "保留的快速存檔數量："
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "厭氧固氮"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:364
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
 msgid "APPEARANCE"
 msgstr "出現"
 
@@ -219,9 +224,8 @@ msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "您確定要將輸入設置重置為默認嗎？"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
-#, fuzzy
 msgid "ARTIST_COLON"
-msgstr "物種："
+msgstr "做畫家："
 
 #: ../src/general/Asset.cs:50
 msgid "ARTWORK_TITLE"
@@ -265,7 +269,7 @@ msgstr "大氣氣體"
 msgid "ATP"
 msgstr "ATP(三磷酸線苷)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:984
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
 msgid "ATP_BALANCE"
 msgstr "ATP平衡"
 
@@ -279,9 +283,8 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP產出太低！"
 
 #: ../src/saving/NewSaveMenu.tscn:146
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Auto-evo啟動失敗"
+msgstr "存檔失敗，存檔名稱可能太長，或者你沒有存檔資料夾寫入的許可權。"
 
 #: ../src/gui_common/MouseHoverPanel.tscn:46
 msgid "AT_CURSOR"
@@ -300,7 +303,7 @@ msgstr "八月"
 msgid "AUTO"
 msgstr "自動"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1373
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
@@ -308,12 +311,12 @@ msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "在{2}的人口從{0}變成{1}，原因:{3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1101
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1329
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo 預測"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1097
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "這個面板顯示了來自auto-evo對已編輯物種的預期種群數量。\n"
@@ -332,9 +335,8 @@ msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
 #: ../src/general/MainMenu.tscn:413
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "運行狀態："
+msgstr "Auto-Evo 探索工具"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
@@ -354,9 +356,8 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "運行狀態："
+msgstr "Auto-Evo 運行狀態："
 
 #: ../simulation_parameters/common/input_options.json:27
 msgid "AUTO_MOVE_FORWARDS"
@@ -369,6 +370,15 @@ msgstr "自動（{0}x{1}）"
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
 msgstr "可用的MOD"
+
+#: ../simulation_parameters/common/gallery.json:430
+msgid "AWAKENING_STAGE"
+msgstr ""
+
+#: ../simulation_parameters/common/gallery.json:419
+#, fuzzy
+msgid "AWARE_STAGE"
+msgstr "微生物階段"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
@@ -396,9 +406,8 @@ msgstr "返回"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
-#, fuzzy
 msgid "BASE_MOBILITY"
-msgstr "移動能力"
+msgstr "基本移動能力"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
 msgid "BASE_MOVEMENT"
@@ -406,12 +415,11 @@ msgstr "Base Movement"
 
 #: ../src/general/NewGameSettings.tscn:1164
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "基本"
 
 #: ../src/general/NewGameSettings.tscn:1159
-#, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "自殺"
+msgstr "返回基本菜單"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
@@ -432,47 +440,42 @@ msgstr "半深海帶(遠洋中層)"
 #: ../src/microbe_stage/MicrobeHUD.cs:545
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "成為宏觀生物 ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "成為多細胞生物 ({0}/{1})"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
 msgid "BEGIN_THRIVING"
 msgstr "開始遊戲"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:543
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "BEHAVIOUR"
 msgstr "行為"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "行為"
+msgstr "活動"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "行為"
+msgstr "攻擊性"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "行為"
+msgstr "恐懼"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "行為"
+msgstr "專注度"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "行為"
+msgstr "投機性"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
 msgid "BELOW_SEA_LEVEL"
@@ -480,22 +483,21 @@ msgstr "在海平面下方{0}-{1}米處"
 
 #: ../src/general/MainMenu.tscn:427
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "基準"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "加載完成"
+msgstr "基準測試已完成"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "基準階段："
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "結果："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
 msgid "BEST_PATCH_COLON"
 msgstr "表現最好的區域："
 
@@ -513,7 +515,7 @@ msgstr "表現最好的區域："
 msgid "BIG_IRON_CHUNK"
 msgstr "大鐵塊"
 
-#: ../src/general/StringUtils.cs:21
+#: ../src/general/utils/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} 十億"
 
@@ -532,23 +534,23 @@ msgstr "按[thrive:input]g_toggle_binding[/thrive:input]來切換連接模式。
 
 #: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "綁定座標軸"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:512
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "在有較少生物種類（低生物多樣性）的地區中創造新物種的機率"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "從鄰近地區中創造新物種以增加生物多樣性的機率"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "從臨近地區來的增加生物多樣性的物種獲得額外的種群數量"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "增加生物多樣性的物種會在被創造時變異"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:762
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
@@ -561,7 +563,7 @@ msgstr "生物群系：{0}"
 
 #: ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "神經元"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
@@ -574,6 +576,12 @@ msgstr "瀏覽"
 #: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
 msgstr "瀏覽工作坊"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
+#: ../src/society_stage/SocietyHUD.tscn:125
+#, fuzzy
+msgid "BUILD_STRUCTURE"
+msgstr "結構"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -605,9 +613,9 @@ msgstr "視角"
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:639
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:760
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
@@ -616,15 +624,15 @@ msgstr "取消"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "取消當前操作"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:821
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "在軀體設計中正被使用的細胞類型無法被刪除"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:666
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:819
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "無法刪除已使用的細胞類型"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
@@ -635,20 +643,19 @@ msgstr "無法吞噬"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "無法移動金屬球到其自己的樹形子節點"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:826
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "大腦能力不滿足當前階段的腦力需求。 目前不允許返回先前的階段，請增加您的腦力以繼續遊戲。"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:824
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "無法通過減少腦力退回先前階段"
 
 #: ../src/saving/NewSaveMenu.tscn:143
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "無法吞噬"
+msgstr "無法寫入存檔"
 
 #: ../src/modding/ModLoader.cs:302 ../src/modding/ModLoader.cs:350
 msgid "CANT_LOAD_MOD_INFO"
@@ -663,27 +670,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
-#: ../src/general/StageHUDBase.cs:926
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:855
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "充裕"
 
-#: ../src/general/StageHUDBase.cs:930
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:859
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "相當數量"
 
-#: ../src/general/StageHUDBase.cs:934
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
 msgid "CATEGORY_LITTLE"
 msgstr "少"
 
-#: ../src/general/StageHUDBase.cs:928
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:857
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "不少"
 
-#: ../src/general/StageHUDBase.cs:932
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:861
 msgid "CATEGORY_SOME"
 msgstr "中等"
 
-#: ../src/general/StageHUDBase.cs:936
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
@@ -692,25 +699,21 @@ msgid "CAUTIOUS"
 msgstr "謹慎"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:175
-#, fuzzy
 msgid "CELL"
-msgstr "纖維素"
+msgstr "細胞"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:455
-#, fuzzy
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:576
 msgid "CELLS"
-msgstr "纖維素"
+msgstr "細胞"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "纖維素"
+msgstr "纖維素酶"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "液泡是一個內部膜質細胞器，用於在細胞內儲存。它們由幾個囊泡組成，囊泡是在細胞中廣泛用於儲存的較小的膜結構，它們融合在一起。它充滿了水，用來容納分子、酶、固體和其他物質。它們的形狀是不固定的，在不同的細胞之間可以有所不同。"
+msgstr "纖維素酶使細胞能分解纖維素膜。 每一次添加都會增加其有效性。"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
@@ -719,11 +722,11 @@ msgstr "纖維素"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "這種膜有一堵牆，更好保護來自外來整體的傷害，特別是對物理損害。它保持形態所需的能量也較少，但不能迅速吸收資源，速度較慢。"
+msgstr "這種膜有一堵牆，更好保護來自外來整體的傷害，特別是物理損害。它保持形態所需的能量也較少，但不能迅速吸收資源，速度較慢。[b]纖維素酶可以消化這層牆[/b] ，使其容易被捕食者吞噬。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:649
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:652
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "細胞類型名稱"
 
 #: ../src/modding/ModUploader.cs:359 ../src/steam/SteamClient.cs:262
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
@@ -747,7 +750,7 @@ msgstr "啟用作弊鍵"
 msgid "CHEAT_MENU"
 msgstr "作弊菜單"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
+#: ../src/microbe_stage/HUDBottomBar.tscn:102
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示/隱藏細胞處理"
 
@@ -758,7 +761,7 @@ msgstr "化學質體"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "化學體是一個雙膜結構，含有能夠將硫化氫、水和氣態二氧化碳轉化為葡萄糖的蛋白質，這個過程稱為硫化氫化學合成。其葡萄糖生產的速度與二氧化碳的濃度成正比。"
+msgstr "化學體是一個雙膜結構，含有能夠將硫化氫、水和氣態二氧化碳轉化為葡萄糖的蛋白質，這個過程稱為[b]硫化氫化學合成[/b]。其葡萄糖生產的速度與二氧化碳的濃度成正比。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
@@ -801,14 +804,12 @@ msgid "CHITIN"
 msgstr "幾丁質"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "幾丁質"
+msgstr "幾丁質酶"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "細胞的黏稠內臟。細胞質是離子，蛋白質和其他溶解水的物質的基本混合物，填充在細胞內部。它的其中一个功能是發糖酵解，將葡萄糖轉化為ATP能量。對於缺乏細胞器進行新陳代謝的細胞來說，就靠這個方法來獲取能量。它也被用來在細胞中保存分子，以及用來增加細胞的體積。"
+msgstr "幾丁質酶使細胞能夠分解幾丁質膜。 每次添加都會增加其有效性。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -828,9 +829,8 @@ msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "產出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"sunlight\"][/thrive:compound]強度成正比。"
 
 #: ../src/saving/NewSaveMenu.cs:98
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "目標文件名{0}已存在。確定要覆蓋嗎？"
+msgstr "目標文件名{0}已存在。確定要改寫嗎？"
 
 #: ../src/general/OptionsMenu.tscn:438
 msgid "CHROMATIC_ABERRATION"
@@ -850,14 +850,12 @@ msgid "CILIA"
 msgstr "纖毛"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "細胞的黏稠內臟。細胞質是離子，蛋白質和其他溶解水的物質的基本混合物，填充在細胞內部。它的其中一个功能是發糖酵解，將葡萄糖轉化為ATP能量。對於缺乏細胞器進行新陳代謝的細胞來說，就靠這個方法來獲取能量。它也被用來在細胞中保存分子，以及用來增加細胞的體積。"
+msgstr "纖毛與鞭毛相似，但它們不提供方向性推力，而是提供旋轉力，幫助細胞轉動。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:compound type=\"atp\"][/thrive:compound]。"
+msgstr "增加大體型細胞的轉向速度。"
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -868,7 +866,7 @@ msgstr "清除舊存檔"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1382
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -894,9 +892,9 @@ msgstr "海岸"
 
 #: ../src/engine/DebugOverlays.tscn:117
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "生成具有碰撞形狀的實體"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:763
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
 msgid "COLOUR"
 msgstr "顏色"
 
@@ -963,27 +961,23 @@ msgstr "V值，決定明亮度"
 
 #: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "討論區"
 
 #: ../src/general/MainMenu.tscn:665
-#, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "添加新的綁定鍵位"
+msgstr "在我們的社區論壇上加入Thrive討論區"
 
 #: ../src/general/MainMenu.tscn:712
-#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr "我們的Wiki"
+msgstr "社區Wiki"
 
 #: ../src/general/MainMenu.tscn:707
-#, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "自殺"
+msgstr "訪問我們的社區wiki"
 
 #: ../src/general/OptionsMenu.tscn:1903
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "化合物："
+msgstr "編譯於："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
@@ -994,10 +988,9 @@ msgstr "化合物："
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
+#: ../src/microbe_stage/HUDBottomBar.tscn:87
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "顯示/隱藏環境和化合物"
+msgstr "顯示/隱藏化合物"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
@@ -1012,17 +1005,12 @@ msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
 
 #: ../src/general/NewGameSettings.tscn:526
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "化合物雲"
+msgstr "化合物雲密度"
 
 #: ../src/general/NewGameSettings.tscn:571
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"機會主義型微生物會和競爭對手爭奪物質塊\n"
-"並且會在獵物過大無法吞噬的情況下使用毒素攻擊。\n"
-"謹慎型微生物則不大可能冒風險爭奪物質塊。"
+msgstr "（環境中化合物雲的密度）"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
@@ -1042,9 +1030,9 @@ msgstr "概念美術"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
-msgstr ""
+msgstr "設置"
 
-#: ../src/general/EditorComponentBase.cs:74
+#: ../src/general/base_stage/EditorComponentBase.cs:74
 msgid "CONFIRM_CAPITAL"
 msgstr "確認"
 
@@ -1056,71 +1044,72 @@ msgstr "確認退出"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "確認改寫"
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1195
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "暫停菜單"
+msgstr "以當前設定進入遊戲"
 
 #: ../src/general/NewGameSettings.cs:333
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "暫停菜單"
+msgstr "部分設置無效"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "文件夾{0}的內容將會上傳到創意工坊"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:416
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "開始遊戲"
+msgstr "繼續遊戲"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "紅綠色盲"
+msgstr ""
+"你已到達Thrive已完成部分的尾聲。\n"
+"如果你願意，你可以繼續遊玩遊戲帶有的後期階段原型。這些或會是非常不完整的，使用，且總體上感覺十分粗糙。我們包含了這些遊戲部份以顯示遊戲未來的方向和我們對各段如何連結的總體設想。\n"
+"\n"
+"如果繼續，你將會無法保存或返回。 如果你想事後返回此階段，請在繼續之前先存檔。 \n"
+"\n"
+"階段原型中對控制器的支援也遠不及先前階段完整。 如果你選擇繼續，請理解後面的階段是原型，不要抱怨它們的不完整性。"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "進入尚在開發中的階段？"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "控制器軸視覺化："
 
 #: ../src/general/OptionsMenu.tscn:1447
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "控制器死區"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 #, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
+msgstr "此工具允許配置控制器軸死區。 死區大小控制在檢測到移動之前控制桿（或類比按鈕）需要移動多少。 在開始校準之前，請移動所有控制器搖桿並鬆開它們，同時按下並鬆開控制器上的任何模擬按鈕（例如觸發器）。"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "死區："
 
 #: ../src/general/OptionsMenu.tscn:578
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "控制按鈕提示類型："
 
 #: ../src/general/OptionsMenu.tscn:1375
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "控制器敏感度"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "將錯誤複製到剪貼板"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Auto-evo自動模擬 結果："
+msgstr "複製結果"
 
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
@@ -1131,37 +1120,37 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#, fuzzy
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr ""
+msgstr "清除选中的材料"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr ""
+msgstr "故障：消耗合成物品時出現內在故障"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1118
-#, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr "缺少標題"
+msgstr "找不到合成原料"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:231
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr ""
+msgstr "輸入材料"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:181
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr ""
+msgstr "已知合成配方"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1090
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
-msgstr ""
+msgstr "沒有足夠的 {0} 以合成配方"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1077
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr ""
+msgstr "請先選擇一個合成配方"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1098
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr ""
+msgstr "沒有足夠空間以存放所有的合成產物"
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
@@ -1171,7 +1160,7 @@ msgstr "Auto-evo自動模擬 結果："
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
-msgstr ""
+msgstr "石製手斧"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:277
 #, fuzzy
@@ -1181,11 +1170,12 @@ msgstr "Auto-evo自動模擬 結果："
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "選擇一個合成配方或是添加要過濾的物品"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#, fuzzy
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "拿走全部"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:167
 #, fuzzy
@@ -1212,12 +1202,12 @@ msgstr "建立一个新微生物"
 msgid "CREATE_NEW"
 msgstr "創建新的Mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:575
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "建立新存檔"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:743
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "我極好的Mod"
@@ -1230,12 +1220,12 @@ msgstr "創建新Mod"
 msgid "CREATE_NEW_SAVE"
 msgstr "建立新存檔"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:677
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:830
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "建立新存檔"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:691
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:844
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "我極好的Mod"
@@ -1297,7 +1287,7 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:
 
 #: ../src/general/NewGameSettings.tscn:941
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "日長"
 
 #: ../src/general/NewGameSettings.tscn:989
 #, fuzzy
@@ -1310,11 +1300,12 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:915
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "啟動晝夜循環"
 
 #: ../src/general/NewGameSettings.tscn:923
+#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+msgstr "（提示：光合作用會被削弱）"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
 #, fuzzy
@@ -1328,14 +1319,14 @@ msgstr "此語言已翻譯完成 {0}%"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:193
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "死區已重置"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 #, fuzzy
 msgid "DEADZONE_CONFIGURATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:962
+#: ../src/microbe_stage/Microbe.Contact.cs:970
 msgid "DEATH"
 msgstr "死亡"
 
@@ -1343,10 +1334,12 @@ msgstr "死亡"
 #: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
+"位置座標：{0}\n"
+"看向座標：{1}"
 
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "調試面板"
 
 #: ../src/gui_common/CreditsScroll.cs:520
 msgid "DECEMBER"
@@ -1356,8 +1349,8 @@ msgstr "十二月"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默認輸出設備"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:607
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "刪除"
@@ -1457,7 +1450,7 @@ msgstr "幫助"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
-msgstr ""
+msgstr "被吞噬"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "DEV_BUILD_PATRONS"
@@ -1466,20 +1459,30 @@ msgstr "Devbuilds 支持者"
 #: ../src/general/NewGameSettings.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "難度"
 
-#: ../src/general/WorldGenerationSettings.cs:142
+#: ../src/general/WorldGenerationSettings.cs:141
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
+"預設難度: {0}\n"
+"突變成本系數: {1}\n"
+"AI突變率: {2}\n"
+"化合物雲密度: {3}\n"
+"玩家死亡人口懲罰量: {4}\n"
+"環境葡萄糖保留度: {5}\n"
+"滲透調節成本乘數: {6}\n"
+"離開編輯器時會出現額外的葡萄糖雲: {7}\n"
+"被動獲得繁殖進度: {8}\n"
+"限制繁殖化合物的使用: {9}"
 
 #: ../src/general/NewGameSettings.tscn:126
 #: ../src/general/NewGameSettings.tscn:363
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "難度設定"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:140
+#: ../src/general/WorldGenerationSettings.cs:139
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "自定義"
 
@@ -1497,9 +1500,9 @@ msgstr "普通"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "消化效率"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:917
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "消化效率："
 
@@ -1508,14 +1511,14 @@ msgstr "消化效率："
 msgid "DIGESTION_SPEED"
 msgstr "資源吸收速度"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "速度："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
@@ -1541,35 +1544,35 @@ msgstr "取消並繼續"
 msgid "DISCARD_CHANGES"
 msgstr "放棄變更"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:561
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "未連接的細胞器"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:563
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
 #, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:814
 #, fuzzy
 msgid "DISCONNECTED_METABALLS"
 msgstr "未連接的細胞器"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:816
 #, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1311
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "未連接的細胞器"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1313
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
@@ -1595,11 +1598,11 @@ msgstr ""
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "不再顯示"
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "不再警告"
 
 #: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_ABILITIES_BAR"
@@ -1607,7 +1610,7 @@ msgstr "顯示能力界面"
 
 #: ../src/general/OptionsMenu.tscn:467
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "顯示背景粒子"
 
 #: ../src/general/OptionsMenu.tscn:627
 #, fuzzy
@@ -1620,7 +1623,7 @@ msgstr "均勻分佈{0}的環境食物來源"
 
 #: ../src/modding/ModManager.cs:969
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "否"
 
 #: ../src/gui_common/CreditsScroll.cs:354
 msgid "DONATIONS"
@@ -1639,18 +1642,19 @@ msgstr "雙層"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "雙擊可在全屏模式下查看"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，也不需要花費那麼多能量避免變形。然而它也會減慢細胞的移動速度，並降低其吸收營養的速率。"
 
 #: ../src/engine/DebugOverlays.tscn:138
+#, fuzzy
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "轉儲SceneTree"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:494
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:615
 #, fuzzy
 msgid "DUPLICATE_TYPE"
 msgstr "玩家分裂"
@@ -1830,15 +1834,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
 msgid "ENERGY_SOURCES"
 msgstr "能量來源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的總能量為{0}，每個體的成本為{1}，在修正前的種群數量為{2}"
 
@@ -1862,14 +1866,14 @@ msgstr "環境"
 
 #: ../src/general/NewGameSettings.tscn:650
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "環境葡萄糖保留度"
 
 #: ../src/general/NewGameSettings.tscn:694
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#: ../src/microbe_stage/HUDBottomBar.tscn:73
 #, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示/隱藏環境和化合物"
@@ -1880,7 +1884,7 @@ msgstr "遠洋表層帶"
 
 #: ../src/awakening_stage/EquipmentCategory.cs:9
 msgid "EQUIPMENT_TYPE_AXE"
-msgstr ""
+msgstr "斧頭"
 
 #: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
 msgid "ERROR"
@@ -1924,7 +1928,7 @@ msgstr "存檔時出錯"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1228
+#: ../src/microbe_stage/Microbe.Contact.cs:1236
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
@@ -1973,7 +1977,7 @@ msgstr "Launch E"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "導出所有的世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
 #, fuzzy
@@ -1985,7 +1989,7 @@ msgstr "經過的時間：{0:#,#} 年"
 msgid "EXPORT_SUCCESS"
 msgstr "捕食{0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:620
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
 msgid "EXTERNAL"
 msgstr "外部"
 
@@ -2011,7 +2015,7 @@ msgstr "從這個區域滅絕了"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "從這個星球滅絕了"
 
-#: ../src/general/StageBase.cs:562
+#: ../src/general/base_stage/CreatureStageBase.cs:412
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "從這個區域滅絕了"
@@ -2033,7 +2037,7 @@ msgstr "額外選項"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "暫停遊戲"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1167
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
 msgid "FAILED"
 msgstr "失敗"
 
@@ -2049,12 +2053,12 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/TranslationHelper.cs:81
+#: ../src/general/utils/TranslationHelper.cs:81
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "已禁用"
 
-#: ../src/general/TranslationHelper.cs:80
+#: ../src/general/utils/TranslationHelper.cs:80
 #, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "啟用作弊鍵"
@@ -2069,20 +2073,21 @@ msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
 msgstr "Steam 客戶端庫初始化失敗"
 
 #: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
+#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
+msgstr "本物品缺失內容"
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "發表於{0}"
 
 #: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "本篇因篇幅過長被刪節，詳情請閱讀原文。 {0}"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "按類別過濾項目："
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:144
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -2111,7 +2116,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "濃度為"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "發射毒素"
@@ -2148,11 +2153,11 @@ msgstr "總人口："
 msgid "FLOATING_HAZARD"
 msgstr "漂浮危害物"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:717
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
 msgid "FLUID"
 msgstr "流質"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:697
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流動性/剛性"
 
@@ -2171,7 +2176,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "食物鏈"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2427
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（適應性：{2}）總可用能量：{3}（總適應性：{4}）"
 
@@ -2203,11 +2208,11 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "將該物種化石化"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:220
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "將該物種化石化（已化石化）"
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
@@ -2241,7 +2246,7 @@ msgstr "自由編輯器"
 
 #: ../src/general/NewGameSettings.tscn:768
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "離開編輯器時會出現額外的葡萄糖雲"
 
 #: ../src/general/NewGameSettings.tscn:775
 #, fuzzy
@@ -2261,7 +2266,7 @@ msgstr "完整的Mod信息"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:21
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "圖庫瀏覽器"
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "GAME_DESIGN_TEAM"
@@ -2275,7 +2280,7 @@ msgstr "世代"
 msgid "GENERATIONS"
 msgstr "世代"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:939
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "GENERATION_COLON"
 msgstr "世代："
 
@@ -2286,7 +2291,7 @@ msgstr "自殺"
 
 #: ../src/general/OptionsMenu.cs:952
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/MainMenu.tscn:953
 msgid "GLES2_MODE_WARNING"
@@ -2298,7 +2303,7 @@ msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且�
 
 #: ../src/general/OptionsMenu.cs:957
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
 msgid "GLOBAL_INITIAL_LETTER"
@@ -2364,7 +2369,7 @@ msgstr "圖形團隊"
 
 #: ../src/general/OptionsMenu.tscn:561
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
@@ -2397,7 +2402,7 @@ msgstr "生命值"
 msgid "HELP"
 msgstr "幫助"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:139
+#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "幫助"
 
@@ -2423,7 +2428,7 @@ msgstr "按住以顯示光標"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:498
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "長按[thrive:input]g_free_cursor[/thrive:input]以顯示鼠標指針"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 #, fuzzy
@@ -2438,9 +2443,9 @@ msgstr "世代："
 #: ../src/engine/input/ControllerAxisVisualizer.cs:167
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "水平（{0}轴）"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:889
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
 msgid "HP_COLON"
 msgstr "生命值："
 
@@ -2448,9 +2453,9 @@ msgstr "生命值："
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/microbe_stage/gui/HUDMessages.cs:46
+#: ../src/microbe_stage/gui/HUDMessages.cs:49
 msgid "HUD_MESSAGE_MULTIPLE"
-msgstr ""
+msgstr "{0} (x{1})"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
@@ -2490,6 +2495,10 @@ msgstr "放置細胞器"
 
 #: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+msgstr "（進入測試階段後，一些功能可能無法使用）"
+
+#: ../simulation_parameters/common/gallery.json:458
+msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
@@ -2502,7 +2511,7 @@ msgstr "無限變異點"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "攝入的物質"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
 #, fuzzy
@@ -2544,7 +2553,7 @@ msgstr "突變點數"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:463
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "完成建造（缺少需要的材料）"
 
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
@@ -2558,7 +2567,7 @@ msgstr "突變點數"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:453
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "投放材料（沒有合適的被攜帶物品）"
 
 #: ../src/awakening_stage/InteractionType.cs:23
 #, fuzzy
@@ -2572,17 +2581,17 @@ msgstr "突變點數"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "收割（缺少工具：{0}）"
 
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "撿起"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:416
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "撿起（物品欄已滿）"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:442
 #, fuzzy
 msgid "INTERNALS"
 msgstr "外部"
@@ -2630,7 +2639,7 @@ msgstr "無效的URL方案"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:75
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "在地上的物品"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
 #, fuzzy
@@ -2639,16 +2648,16 @@ msgstr "\"{0}\" - {1}"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "合成"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:144
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "地面"
 
 #: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
 #: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
 msgid "INVERTED"
-msgstr ""
+msgstr "已反轉"
 
 #: ../src/saving/SaveHelper.cs:521
 #, fuzzy
@@ -2801,7 +2810,7 @@ msgstr "Tab"
 msgid "KEY_UP"
 msgstr "上"
 
-#: ../src/general/StringUtils.cs:37
+#: ../src/general/utils/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} 千"
 
@@ -2885,9 +2894,9 @@ msgstr "此語言仍在翻譯中（已完成 {0}%）"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻譯非常不完整（已完成 {0}%）請幫助我們！"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1350
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "無法刪除唯一的細胞器"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
 #, fuzzy
@@ -2968,8 +2977,9 @@ msgstr "媒體"
 
 #: ../src/general/NewGameSettings.tscn:154
 #: ../src/general/NewGameSettings.tscn:853
+#, fuzzy
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "僅限至已知的生命形式"
 
 #: ../src/general/NewGameSettings.tscn:161
 #: ../src/general/NewGameSettings.tscn:860
@@ -3060,7 +3070,7 @@ msgstr "Thrive各部分內容的許可證在此處展示"
 #: ../src/general/NewGameSettings.tscn:177
 #: ../src/general/NewGameSettings.tscn:876
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "生命起源"
 
 #: ../src/general/NewGameSettings.tscn:184
 #: ../src/general/NewGameSettings.tscn:883
@@ -3074,15 +3084,15 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:201
 #: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/WorldGenerationSettings.cs:49
+#: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "胚種論（隨機）"
 
 #: ../src/general/NewGameSettings.tscn:201
 #: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/WorldGenerationSettings.cs:46
+#: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "溫暖的小水域"
 
 #: ../src/general/NewGameSettings.tscn:198
 #: ../src/general/NewGameSettings.tscn:897
@@ -3094,28 +3104,28 @@ msgstr "自殺"
 #: ../src/general/NewGameSettings.tscn:201
 #: ../src/general/NewGameSettings.tscn:899
 #: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/WorldGenerationSettings.cs:43
+#: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "海底熱泉"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
 #: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "光"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:391
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "平均"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:349
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "白天"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:317
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} 正午"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "向右滾輪"
@@ -3142,11 +3152,11 @@ msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物�
 
 #: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "極多"
 
 #: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_LARGE"
-msgstr ""
+msgstr "較多"
 
 #: ../src/general/OptionsMenu.tscn:1195
 #, fuzzy
@@ -3155,19 +3165,19 @@ msgstr "確認"
 
 #: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_SMALL"
-msgstr ""
+msgstr "較少"
 
 #: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "極少"
 
 #: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_LARGE"
-msgstr ""
+msgstr "多"
 
 #: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_VERY_SMALL"
-msgstr ""
+msgstr "少"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 msgid "LINE_COLOUR"
@@ -3175,7 +3185,7 @@ msgstr "線條顏色："
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "脂肪脢"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 #, fuzzy
@@ -3271,8 +3281,9 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#, fuzzy
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "將物種數少於此區塊的區塊視為低生物多樣性"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:877
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
@@ -3362,7 +3373,7 @@ msgstr "媒體停止"
 msgid "MEGA_YEARS"
 msgstr "百萬年"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:521
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "MEMBRANE"
 msgstr "細胞膜"
 
@@ -3370,7 +3381,7 @@ msgstr "細胞膜"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "膜剛性"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:679
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
 msgid "MEMBRANE_TYPES"
 msgstr "細胞膜類型"
 
@@ -3402,13 +3413,31 @@ msgstr "效能統計"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
 #: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
+"處理時間: {0} s\n"
+"物理過程時間: {1} s\n"
+"實體數: {2} 其他: {3}\n"
+"生成數: {4} 銷毀數: {5}\n"
+"使用結點數: {6}\n"
+"內存佔用: {7}\n"
+"GPU 內存: {8}\n"
+"渲染物體數: {9}\n"
+"繪圖調用數: {10} 2D: {11}\n"
+"渲染頂點數: {12}\n"
+"材料更改數: {13}\n"
+"著色器更改數: {14}\n"
+"孤立節點數: {15}\n"
+"音頻延遲: {16} ms\n"
+"總線程數: {17}\n"
+"總CPU時間:\n"
+"{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
 #: ../src/saving/SaveManagerGUI.cs:133
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
@@ -3674,7 +3703,7 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "鼠標中鍵"
 
-#: ../src/general/StringUtils.cs:29
+#: ../src/general/utils/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} 百萬"
 
@@ -3750,8 +3779,8 @@ msgstr "修改"
 msgid "MODIFY_ORGANELLE"
 msgstr "修改細胞器"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:472
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:593
 #, fuzzy
 msgid "MODIFY_TYPE"
 msgstr "修改"
@@ -3763,6 +3792,9 @@ msgstr "Mods"
 #: ../src/general/MainMenu.tscn:962
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"檢測到已安裝的模組，但沒有啟用的模組。\n"
+"\n"
+"模組在安裝後需要被啟用。在「額外內容」中使用模組按鈕訪問模組管理器。"
 
 #: ../src/modding/ModManager.tscn:937 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
@@ -3908,24 +3940,24 @@ msgstr "顯示更多信息"
 
 #: ../src/general/OptionsMenu.tscn:1257
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "鼠標靈敏度"
 
 #: ../src/general/OptionsMenu.tscn:1331
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "用視窗大小決定滑鼠靈敏度"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
 msgstr "移動"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:387
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:508
 msgid "MOVEMENT"
 msgstr "移動"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:602
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "每物種遷徙嘗試次數"
 
 #: ../simulation_parameters/common/input_options.json:23
 msgid "MOVE_BACKWARDS"
@@ -3962,7 +3994,7 @@ msgstr "移動到陸地"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "進入遊戲的下一個階段（多細胞）。 細胞群達到一定大小後便可解鎖。"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:927
 msgid "MOVE_TO_THIS_PATCH"
@@ -3972,23 +4004,28 @@ msgstr "移動到這個區域"
 msgid "MOVE_UP_OR_JUMP"
 msgstr "向上移動或起跳"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2028
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr "紅綠色盲"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "移動去陸地？"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2023
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr "紅綠色盲"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2021
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
+msgstr "移動去陸地？"
+
+#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+#, fuzzy
+msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "移動去陸地？"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
@@ -4004,7 +4041,7 @@ msgstr "{0} 變異點"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
 #: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
-msgstr ""
+msgstr "黏液"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #, fuzzy
@@ -4042,6 +4079,9 @@ msgstr "多重採樣抗鋸齒："
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"歡迎來到博物館！ 在這裡你可以欣賞眾多在遊玩過程中被化石化的物種。 你甚至可以在自由編輯器中用它們進行遊戲。\n"
+"\n"
+" 按下暫停鍵並在螢幕上選中一個微生物，以將該物種化石化。"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
@@ -4058,7 +4098,7 @@ msgstr "突變點數"
 
 #: ../src/general/NewGameSettings.tscn:402
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "突變成本係數"
 
 #: ../src/general/NewGameSettings.tscn:447
 #, fuzzy
@@ -4081,11 +4121,11 @@ msgstr "靜音"
 msgid "NAME"
 msgstr "名字："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "負ATP平衡"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1305
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "你的微生物沒辦法產出足以維持生存的ATP量！\n"
@@ -4103,11 +4143,11 @@ msgstr ""
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
-msgstr ""
+msgstr "新聞"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "增加提升生物多樣性物種的初始數量"
 
 #: ../src/general/MainMenu.tscn:298
 msgid "NEW_GAME"
@@ -4120,27 +4160,27 @@ msgstr "暫停菜單"
 
 #: ../src/general/NewGameSettings.tscn:274
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "提示：你可以隨時在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]選項菜單[/url][/color]中調適性能相關選項以提高遊戲性能"
 
 #: ../src/modding/NewModGUI.cs:211
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "我極好的Mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:711
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:864
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "新遊戲"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:704
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:857
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "速度："
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:773
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
@@ -4199,33 +4239,34 @@ msgstr "最基礎的細胞膜的形式，它抵抗傷害的能力很少。同時
 msgid "NOTHING_HERE"
 msgstr "這裡什麼都沒有"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:424
+#: ../src/late_multicellular_stage/MulticellularStage.cs:496
+#, fuzzy
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "沒有可以交互的東西"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr ""
+msgstr "ATP耗盡導致損傷"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1511
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr ""
+msgstr "攝入毒素導致損傷"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1456
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr ""
+msgstr "沒有吞噬目標需要的 {0}"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1786
+#: ../src/microbe_stage/Microbe.Contact.cs:1794
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr ""
+msgstr "目前細胞大小不足以吞噬目標"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1781
+#: ../src/microbe_stage/Microbe.Contact.cs:1789
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "沒有足夠的儲存空間以攝入吞噬的目標"
 
-#: ../src/general/StageHUDBase.cs:572
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:500
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "可以進入編輯器了"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 #, fuzzy
@@ -4246,7 +4287,7 @@ msgid "NO_AI"
 msgstr "沒有AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
 msgid "NO_DATA_TO_SHOW"
 msgstr "沒有數據可顯示"
 
@@ -4290,9 +4331,11 @@ msgstr "沒有被選取的MOD"
 msgid "NUCLEUS"
 msgstr "細胞核"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
+"細胞核的進化是不可逆的，不能被刪除。\n"
+"不過如果是在當前時代中放置的，仍可被刪除或重新設置。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "NUCLEUS_DESCRIPTION"
@@ -4310,8 +4353,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2300
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4332,7 +4375,7 @@ msgstr "十月"
 
 #: ../src/general/MainMenu.tscn:656
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "官方網站"
 
 #: ../src/general/MainMenu.tscn:647
 #, fuzzy
@@ -4365,6 +4408,8 @@ msgstr "打開日誌文件夾"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"你確定要使用此物種開始新遊戲嗎？\n"
+"你會失去任何未保存的進度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -4386,6 +4431,11 @@ msgstr "打開信息網址"
 #: ../simulation_parameters/common/input_options.json:131
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "打開細胞器菜單"
+
+#: ../src/society_stage/SocietyHUD.tscn:135
+#, fuzzy
+msgid "OPEN_RESEARCH_SCREEN"
+msgstr "打開幫助界面"
 
 #: ../src/saving/SaveManagerGUI.tscn:95
 msgid "OPEN_SAVE_DIRECTORY"
@@ -4428,7 +4478,7 @@ msgstr "選項"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "幫助"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:629
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
 msgid "ORGANELLES"
 msgstr "細胞器"
 
@@ -4443,7 +4493,7 @@ msgstr "細胞器"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "纖毛（單數：pilus）存在於許多微生物的表面，類似於細毛。一個微生物的表面可能有幾十到幾百個纖毛，有多種用途之一，包括捕食作用。致病性微生物利用纖毛來提高毒性，或者附著並結合在宿主組織上，或者穿過外膜侵入細胞質。存在許多類似的纖毛，但在進化上沒有關係，是趨同進化的結果。一個生物體可能有能力表達幾種類型的纖毛，那些存在於表面的纖毛不斷被改變和替換。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:638
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "放置細胞器"
@@ -4472,7 +4522,7 @@ msgstr "纖毛（單數：pilus）存在於許多微生物的表面，類似於�
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "用來刺其它細胞。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
@@ -4665,8 +4715,9 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "移除本地數據"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
+#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "你上次玩 Thrive 是 {0}, 之後有 {1} 個新版本"
 
 #: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
@@ -4676,11 +4727,11 @@ msgstr "移除本地數據"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "改變："
 
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
@@ -4698,7 +4749,7 @@ msgstr "贊助人"
 
 #: ../src/microbe_stage/PausePrompt.tscn:23
 msgid "PAUSED"
-msgstr ""
+msgstr "暫停中"
 
 #: ../src/general/PauseMenu.tscn:183
 #, fuzzy
@@ -4707,9 +4758,9 @@ msgstr "返回遊戲"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:73
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center]按[thrive:input]g_pause[/thrive:input]以解除暫停[/center]"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
+#: ../src/microbe_stage/HUDBottomBar.tscn:64
 msgid "PAUSE_TOOLTIP"
 msgstr "暫停遊戲"
 
@@ -4726,9 +4777,10 @@ msgstr "加载pck文件（{0}）失败"
 msgid "PEACEFUL"
 msgstr "和平"
 
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:674 ../src/general/StageHUDBase.cs:692
-#: ../src/general/WorldGenerationSettings.cs:148
+#: ../src/general/NewGameSettings.cs:674
+#: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
@@ -4783,21 +4835,27 @@ msgstr "放置細胞器"
 #: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
-msgstr ""
+msgstr "星球"
 
-#: ../src/general/WorldGenerationSettings.cs:160
+#: ../src/general/WorldGenerationSettings.cs:159
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
+"地區圖類型：{0}\n"
+"僅限已知生命形式：{1}\n"
+"生命起源處：{2}\n"
+"晝夜循環：{3}\n"
+"一天的長度：{4}秒\n"
+"世界隨機種子：{5}"
 
 #: ../src/general/NewGameSettings.tscn:1070
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "敬請期待行星生成功能！"
 
 #: ../src/general/NewGameSettings.tscn:216
 #: ../src/general/NewGameSettings.tscn:1000
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "世界生成種子"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:403
 #, fuzzy
@@ -4806,14 +4864,14 @@ msgstr "玩家細胞"
 
 #: ../src/general/NewGameSettings.tscn:588
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "玩家死亡懲罰"
 
 #: ../src/general/NewGameSettings.tscn:633
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/general/StageBase.cs:486
+#: ../src/general/base_stage/CreatureStageBase.cs:356
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -4830,7 +4888,7 @@ msgstr "玩家已滅絕"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "玩家已滅絕"
 
-#: ../src/general/StageBase.cs:430
+#: ../src/general/base_stage/CreatureStageBase.cs:300
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -4842,15 +4900,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_3"
-msgstr ""
+msgstr "PlayStation 3"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_4"
-msgstr ""
+msgstr "PlayStation 4"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_5"
-msgstr ""
+msgstr "PlayStation 5"
 
 #: ../src/general/OptionsMenu.tscn:1599
 msgid "PLAY_INTRO_VIDEO"
@@ -4862,10 +4920,11 @@ msgstr "在開始新遊戲時播放微生物開場動畫"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "使用當前設置"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
+#: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "人口："
 
@@ -4878,7 +4937,7 @@ msgstr "總人口："
 msgid "POPULATION_IN_PATCHES"
 msgstr "該區域人口:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2291
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4886,7 +4945,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1109
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "查看預測背後的詳細信息"
 
@@ -4938,13 +4997,13 @@ msgstr "項目管理團隊"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:652
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "使剛遷移的物種免於受物種上限的影響"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:659
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "使剛創造的物種免於受物種上限的影響"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:611
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
 msgid "PROTEINS"
 msgstr "蛋白質"
 
@@ -5032,7 +5091,7 @@ msgstr "刷新"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:666
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "目標地區滅絕時，返還遷移的費用"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:138
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:112
@@ -5048,26 +5107,26 @@ msgstr "報告"
 msgid "REPRODUCED"
 msgstr "繁殖"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:409
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:530
 #, fuzzy
 msgid "REPRODUCTION"
 msgstr "ATP產出"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:672
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "ATP產出"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:498
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:499
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "繁殖"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
 
@@ -5087,7 +5146,7 @@ msgstr "重置為默認"
 
 #: ../src/general/OptionsMenu.tscn:1831
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "重置禁用彈出窗口的設定"
 
 #: ../src/general/OptionsMenu.tscn:2005
 msgid "RESET_INPUTS_TO_DEFAULTS"
@@ -5109,7 +5168,7 @@ msgstr "重置為默認？"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "不會被沒有對應消化酶酶的細胞吞噬並消化"
 
 #: ../src/general/OptionsMenu.tscn:345
 msgid "RESOLUTION"
@@ -5124,7 +5183,7 @@ msgstr "解像度："
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "資源吸收速度"
 
-#: ../src/awakening_stage/PlacedStructure.cs:69
+#: ../src/awakening_stage/PlacedStructure.cs:71
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "壓強"
@@ -5156,7 +5215,7 @@ msgstr "需要重新啟動"
 msgid "RESUME"
 msgstr "返回"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
+#: ../src/microbe_stage/HUDBottomBar.tscn:65
 msgid "RESUME_TOOLTIP"
 msgstr "返回遊戲"
 
@@ -5190,7 +5249,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "鼠標右鍵"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:730
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
 msgid "RIGID"
 msgstr "剛體"
 
@@ -5206,7 +5265,7 @@ msgstr "向左旋轉"
 msgid "ROTATE_RIGHT"
 msgstr "向右旋轉"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "總人口："
@@ -5217,7 +5276,7 @@ msgstr "在遊戲中啟用auto-evo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "運行一步"
 
 #: ../src/auto-evo/RunResults.cs:728
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
@@ -5245,7 +5304,7 @@ msgstr "在一些地區的種群分支成了新的物種{0}："
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "運行{0}個世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 #, fuzzy
@@ -5389,7 +5448,7 @@ msgstr "保存成功"
 
 #: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "無"
 
 #: ../src/general/OptionsMenu.tscn:1344
 #, fuzzy
@@ -5398,18 +5457,18 @@ msgstr "結合劑"
 
 #: ../src/general/OptionsMenu.tscn:1344
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "成反比"
 
 #: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
 #: ../src/general/OptionsMenu.tscn:1509
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "相對於屏幕"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:595
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
@@ -5422,7 +5481,7 @@ msgid "SEA_FLOOR"
 msgstr "海床"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "分泌粘液"
@@ -5473,7 +5532,7 @@ msgstr "選擇一個區域以在此處顯示詳細信息"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "在編輯器選項卡中選擇要在此處編輯的細胞類"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
 #, fuzzy
@@ -5490,7 +5549,7 @@ msgstr "選擇預覽圖像"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "選擇要放置的結構"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:84
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
@@ -5612,7 +5671,7 @@ msgstr "這種膜有一層堅固的二氧化矽細胞壁。它能很好地抵抗
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:895
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
 msgid "SIZE_COLON"
 msgstr "大小："
 
@@ -5650,6 +5709,11 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:
 msgid "SMALL_IRON_CHUNK"
 msgstr "小鐵塊"
 
+#: ../simulation_parameters/common/gallery.json:441
+#, fuzzy
+msgid "SOCIETY_STAGE"
+msgstr "微生物階段"
+
 #: ../src/general/OptionsMenu.tscn:182
 msgid "SOUND"
 msgstr "聲音"
@@ -5669,6 +5733,11 @@ msgstr "聲音團隊負責人"
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
 msgstr "空格"
+
+#: ../simulation_parameters/common/gallery.json:469
+#, fuzzy
+msgid "SPACE_STAGE"
+msgstr "微生物階段"
 
 #: ../simulation_parameters/common/input_options.json:263
 msgid "SPAWN_AMMONIA"
@@ -5757,7 +5826,7 @@ msgstr "物種人口"
 msgid "SPEED"
 msgstr "速度"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:877
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
 msgid "SPEED_COLON"
 msgstr "速度："
 
@@ -5766,7 +5835,7 @@ msgstr "速度："
 msgid "SPREAD_TO_PATCHES"
 msgstr "傳播到的區域："
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
+#: ../src/microbe_stage/HUDBottomBar.tscn:49
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
 
@@ -5785,7 +5854,7 @@ msgstr "保存遊戲"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
-#: ../src/microbe_stage/HUDBottomBar.tscn:114
+#: ../src/microbe_stage/HUDBottomBar.tscn:115
 msgid "STATISTICS"
 msgstr "統計數據"
 
@@ -5898,7 +5967,7 @@ msgstr "停止"
 msgid "STORAGE"
 msgstr "儲存"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:901
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "儲存："
@@ -5911,25 +5980,25 @@ msgstr "已登錄為：{0}"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:602
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
 msgid "STRUCTURAL"
 msgstr "結構性"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:420
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
 msgid "STRUCTURE"
 msgstr "結構"
 
-#: ../src/awakening_stage/PlacedStructure.cs:66
+#: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:40
+#: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:73
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
@@ -5945,11 +6014,11 @@ msgstr ""
 msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:781
+#: ../src/microbe_stage/Microbe.Contact.cs:789
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:774
+#: ../src/microbe_stage/Microbe.Contact.cs:782
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功覓食"
 
@@ -5957,13 +6026,13 @@ msgstr "成功覓食"
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:151
+#: ../src/microbe_stage/HUDBottomBar.tscn:152
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "自殺"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:322
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6031,7 +6100,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:678
+#: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6248,9 +6317,7 @@ msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "切換吞噬模式"
@@ -6266,6 +6333,11 @@ msgstr "切換全螢幕"
 #: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切換HUD"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
+#, fuzzy
+msgid "TOGGLE_INVENTORY"
+msgstr "切換連接模式"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "TOGGLE_METRICS"
@@ -6291,7 +6363,7 @@ msgstr "工具"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
 msgid "TOTAL_POPULATION_COLON"
 msgstr "總人口："
 
@@ -6683,7 +6755,8 @@ msgstr "液泡是一個內部膜質細胞器，用於在細胞內儲存。它們
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "增加細胞的存儲空間。"
 
-#: ../src/general/StageHUDBase.cs:693 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:617
+#: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr ""
@@ -6766,7 +6839,7 @@ msgstr "音量增加"
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:256
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo："
 
@@ -6863,7 +6936,7 @@ msgstr "該世界的資料已成功匯出至{0}"
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/general/WorldGenerationSettings.cs:173
+#: ../src/general/WorldGenerationSettings.cs:172
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -6873,7 +6946,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1211
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
 msgid "WORST_PATCH_COLON"
 msgstr "表現最差的區域："
 
@@ -6887,7 +6960,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_SERIES"
-msgstr ""
+msgstr "Xbox X 系列"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
@@ -6898,9 +6971,8 @@ msgid "YEARS"
 msgstr "年"
 
 #: ../src/general/MainMenu.tscn:832
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "暫停遊戲"
+msgstr "訪問我們的 YouTube 頻道"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "YOU_CAN_MAKE_PULL_REQUEST"

@@ -19,12 +19,16 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     [Export]
     public NodePath CancelButtonPath = null!;
 
+    [Export]
+    public NodePath FinishWarningBadgePath = null!;
+
 #pragma warning disable CA2213
     protected EditorComponentBottomLeftButtons componentBottomLeftButtons = null!;
 
     private MutationPointsBar mutationPointsBar = null!;
 
     private Button cancelButton = null!;
+    private TextureRect finishButtonWarningBadge = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -32,6 +36,13 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     /// </summary>
     [JsonIgnore]
     public abstract bool CanCancelAction { get; }
+
+    /// <summary>
+    ///   If true, the finish button will have a warning badge shown on the top right to indicate that something
+    ///   requires player attention before finishing.
+    /// </summary>
+    [JsonIgnore]
+    public virtual bool ShowFinishButtonWarning => CanCancelAction;
 
     public override void _Ready()
     {
@@ -41,6 +52,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         componentBottomLeftButtons = GetNode<EditorComponentBottomLeftButtons>(ComponentBottomLeftButtonsPath);
 
         cancelButton = GetNode<Button>(CancelButtonPath);
+        finishButtonWarningBadge = GetNode<TextureRect>(FinishWarningBadgePath);
     }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
@@ -86,12 +98,38 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     public void UpdateCancelButtonVisibility()
     {
         cancelButton.Visible = Editor.CanCancelAction;
+
+        // Show warning when finishing is blocked due to an in-progress action or vice versa
+        UpdateFinishButtonWarningVisibility();
     }
 
     public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
     {
         SetUndoButtonStatus(canUndo && !Editor.CanCancelAction);
         SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
+    }
+
+    /// <summary>
+    ///   Updates the visibility of the finish button's warning badge based on <see cref="ShowFinishButtonWarning"/>.
+    /// </summary>
+    protected void UpdateFinishButtonWarningVisibility()
+    {
+        var animator = finishButtonWarningBadge.GetChild<AnimationPlayer>(0);
+
+        var animation = ShowFinishButtonWarning ? "show" : "hide";
+        if (animator.AssignedAnimation == animation)
+            return;
+
+        if (ShowFinishButtonWarning)
+            finishButtonWarningBadge.Show();
+
+        animator.Play(animation);
+    }
+
+    protected virtual void OnCancelActionClicked()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Editor.CancelCurrentAction();
     }
 
     protected void Undo()
@@ -102,12 +140,6 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     protected void Redo()
     {
         Editor.Redo();
-    }
-
-    protected virtual void OnCancelActionClicked()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        Editor.CancelCurrentAction();
     }
 
     protected void SetUndoButtonStatus(bool enabled)
@@ -155,6 +187,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
                 MutationPointsBarPath.Dispose();
                 ComponentBottomLeftButtonsPath.Dispose();
                 CancelButtonPath.Dispose();
+                FinishWarningBadgePath.Dispose();
             }
         }
 

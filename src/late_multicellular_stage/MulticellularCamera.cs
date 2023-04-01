@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -8,12 +9,14 @@ using Newtonsoft.Json;
 public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
 {
 #pragma warning disable CA2213
-    private Camera camera = null!;
+    private Camera? camera;
     private Listener listener = null!;
     private Spatial offsetNode = null!;
 
     private SpringArm? arm;
 #pragma warning restore CA2213
+
+    private bool queuedCurrentProperty;
 
     private float armLength = 8;
 
@@ -70,21 +73,21 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     [JsonProperty]
     public bool Current
     {
-        get => camera.Current;
+        get => camera?.Current ?? queuedCurrentProperty;
         set
         {
-            camera.Current = value;
+            queuedCurrentProperty = value;
 
-            if (value)
-            {
-                listener.MakeCurrent();
-            }
-            else if (!value && listener.IsCurrent())
-            {
-                listener.ClearCurrent();
-            }
+            ApplyCurrentValue();
         }
     }
+
+    /// <summary>
+    ///   When true this camera allows the player to control the rotation of the camera. If false the camera can only
+    ///   be moved and rotated through code.
+    /// </summary>
+    [Export]
+    public bool AllowPlayerInput { get; set; } = true;
 
     /// <summary>
     ///   The pitch angle of the camera (in radians)
@@ -107,7 +110,7 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     }
 
     [JsonIgnore]
-    public Camera CameraNode => camera;
+    public Camera CameraNode => camera ?? throw new InvalidOperationException("Not scene attached yet");
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; set; }
@@ -119,6 +122,7 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         ResolveNodeReferences();
 
         ApplyArmLength();
+        ApplyCurrentValue();
 
         // Apply initial position
         _PhysicsProcess(0);
@@ -177,7 +181,7 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
     public bool Zoom(float delta, float value)
     {
-        if (!Current)
+        if (!Current || !AllowPlayerInput)
             return false;
 
         ArmLength = Mathf.Clamp(ArmLength + ZoomSpeed * value, MinArmLength, MaxArmLength);
@@ -188,5 +192,22 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     {
         if (arm != null)
             arm.SpringLength = armLength;
+    }
+
+    private void ApplyCurrentValue()
+    {
+        if (camera == null)
+            return;
+
+        camera.Current = queuedCurrentProperty;
+
+        if (queuedCurrentProperty)
+        {
+            listener.MakeCurrent();
+        }
+        else if (!queuedCurrentProperty && listener.IsCurrent())
+        {
+            listener.ClearCurrent();
+        }
     }
 }

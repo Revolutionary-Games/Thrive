@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=18]
 [ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/autoEvoPending.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/warningBadge.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=23]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=25]
@@ -228,6 +229,125 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="Animation" id=42]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 21, 21 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 134, -8.58575 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:custom_constants/margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:custom_constants/margin_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:custom_constants/margin_left")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("..:custom_constants/margin_bottom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "hide"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+
 [node name="CellEditorComponent" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -240,6 +360,7 @@ FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
+FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 IslandErrorPath = NodePath("IslandError")
 TopPanelPath = NodePath("TopPanel")
 DayButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
@@ -1263,7 +1384,8 @@ NodeToGiveFocusTo = NodePath("../ConfirmButton")
 
 [node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
 visible = false
-margin_right = 237.0
+margin_left = 4.0
+margin_right = 264.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 focus_neighbour_right = NodePath("../ConfirmButton")
@@ -1292,9 +1414,38 @@ custom_styles/hover = SubResource( 26 )
 custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 27 )
 text = "NEXT_CAPITAL"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -21.0
+margin_top = -10.0
+margin_bottom = 11.0
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
+visible = false
+margin_left = 134.0
+margin_top = -8.58575
+margin_right = 155.0
+margin_bottom = 12.4143
+rect_min_size = Vector2( 21, 21 )
+rect_pivot_offset = Vector2( 0, 10 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
+anims/RESET = SubResource( 42 )
+anims/hide = SubResource( 43 )
+anims/show = SubResource( 44 )
 
 [node name="NegativeAtpWarning" parent="." instance=ExtResource( 9 )]
 margin_right = 500.0

@@ -64,6 +64,12 @@ public class StructureDefinition : IRegistryType
     public Dictionary<WorldResource, int> ScaffoldingCost { get; private set; } = new();
 
     /// <summary>
+    ///   The component factories which placed structures of this type should use
+    /// </summary>
+    [JsonProperty]
+    public StructureComponentFactoryInfo Components { get; private set; } = new();
+
+    /// <summary>
     ///   The total resource cost of building this structure
     /// </summary>
     [JsonIgnore]
@@ -140,6 +146,8 @@ public class StructureDefinition : IRegistryType
 
         if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");
+
+        Components.Check(name);
     }
 
     public void Resolve()
@@ -176,5 +184,32 @@ public class StructureDefinition : IRegistryType
     private Texture LoadIcon()
     {
         return GD.Load<Texture>(BuildingIcon);
+    }
+
+    public class StructureComponentFactoryInfo
+    {
+        private readonly List<IStructureComponentFactory> allFactories = new();
+
+#pragma warning disable CS0649 // set from JSON
+        [JsonProperty]
+        private SocietyCenterComponentFactory? societyCenter;
+#pragma warning restore CS0649
+
+        [JsonIgnore]
+        public IReadOnlyList<IStructureComponentFactory> Factories => allFactories;
+
+        /// <summary>
+        ///   Checks and initializes the factory data
+        /// </summary>
+        public void Check(string name)
+        {
+            if (societyCenter != null)
+                allFactories.Add(societyCenter);
+
+            foreach (var factory in allFactories)
+            {
+                factory.Check(name);
+            }
+        }
     }
 }
