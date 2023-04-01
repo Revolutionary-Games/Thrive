@@ -71,6 +71,7 @@ public class MicrobeSystem
 
         Vector3? closestPoint = null;
         float nearestDistanceSquared = float.MaxValue;
+        var searchRadiusSquared = searchRadius * searchRadius;
         var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
             .ToArray();
 
@@ -83,15 +84,15 @@ public class MicrobeSystem
                 continue;
             }
 
-            var distance = (microbe.Translation - position).LengthSquared();
+            var distanceSquared = (microbe.Translation - position).LengthSquared();
 
-            // Prevent cell detecting itself
-            if (distance < 10)
+            // Check search range and prevent cell detecting itself
+            if (distanceSquared > searchRadiusSquared || distanceSquared < 100)
                 continue;
 
-            if (distance < nearestDistanceSquared)
+            if (distanceSquared < nearestDistanceSquared)
             {
-                nearestDistanceSquared = distance;
+                nearestDistanceSquared = distanceSquared;
                 closestPoint = microbe.Translation;
             }
         }
