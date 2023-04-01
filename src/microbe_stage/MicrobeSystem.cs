@@ -77,6 +77,9 @@ public class MicrobeSystem
 
         foreach (var microbe in microbes)
         {
+            if (microbe.Species != species)
+                continue;
+
             Vector3 microbeGlobalPosition;
 
             // Use colony parent position to avoid calling GlobalTranslation
