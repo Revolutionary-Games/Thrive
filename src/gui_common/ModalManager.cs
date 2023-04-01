@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   Handles a stack of <see cref="CustomPopup"/>s that blocks GUI inputs.
@@ -14,7 +14,7 @@ public class ModalManager : NodeWithInput
     private Control activeModalContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Dictionary<CustomPopup, Node> parents = new();
+    private System.Collections.Generic.Dictionary<CustomPopup, Node> parents = new();
     private Stack<CustomPopup> modalStack = new();
 
     private bool modalsDirty = true;
