@@ -55,7 +55,7 @@ margin_bottom = 37.0
 SkipOverridingFocusForElements = [ NodePath("../..") ]
 Priority = 11
 NodeToGiveFocusTo = NodePath("../HBoxContainer/CancelButton")
-GrabFocusWhenBecomingVisible = true
+AlwaysOverrideFocus = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="5"]
 margin_top = 37.0

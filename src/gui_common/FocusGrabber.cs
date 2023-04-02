@@ -48,7 +48,7 @@ public class FocusGrabber : Control
 
     public IEnumerable<string> SkipOverridingFocusForElementStrings => skipOverridingStringConverted;
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         if (string.IsNullOrWhiteSpace(NodeToGiveFocusTo))
             throw new ArgumentException("Focus grabber must have the node to focus set");
