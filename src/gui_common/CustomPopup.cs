@@ -85,6 +85,7 @@ public class CustomPopup : Control
     public void OpenModal()
     {
         ModalManager.Instance.MakeModal(this);
+        Notification(Popup.NotificationPostPopup);
     }
 
     /// <summary>

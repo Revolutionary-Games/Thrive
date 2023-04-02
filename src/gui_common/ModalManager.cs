@@ -71,7 +71,6 @@ public class ModalManager : NodeWithInput
 
         var bind = new Array { popup };
         popup.CheckAndConnect("hide", this, nameof(OnModalLost), bind, (uint)ConnectFlags.Oneshot);
-        popup.CheckAndConnect("focus_exited", this, nameof(OnModalLost), bind, (uint)ConnectFlags.Oneshot);
 
         if (!popup.Visible)
             popup.Open();
@@ -92,6 +91,7 @@ public class ModalManager : NodeWithInput
             return false;
 
         popup.Close();
+        popup.Notification(Control.NotificationModalClose);
 
         if (popup is CustomDialog dialog)
             dialog.EmitSignal(nameof(CustomDialog.Dismissed));
@@ -134,7 +134,11 @@ public class ModalManager : NodeWithInput
             }
 
             activeModalContainer.Show();
+
             top.ReParent(activeModalContainer);
+
+            // Always give focus to the top-most modal in the stack
+            top.FindNextValidFocus().GrabFocus();
         }
     }
 
@@ -142,9 +146,9 @@ public class ModalManager : NodeWithInput
     {
         if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
         {
-            // User has pressed outside of the popup's area
+            // User has pressed somewhere outside of the popup's area
 
-            // Not counting mouse wheel which is the original default behavior
+            // Don't count mouse wheel, this is the original Godot behavior
             if (modalStack.Count <= 0 || mouseButton.ButtonIndex is
                     (int)ButtonList.WheelDown or (int)ButtonList.WheelUp or
                     (int)ButtonList.WheelLeft or (int)ButtonList.WheelRight)
@@ -158,10 +162,14 @@ public class ModalManager : NodeWithInput
             {
                 // The crux of the custom modal system, to have an overridable hide behavior!
                 top.Close();
+                top.Notification(Control.NotificationModalClose);
             }
         }
     }
 
+    /// <summary>
+    ///   Called when <paramref name="popup"/> is closed.
+    /// </summary>
     private void OnModalLost(CustomPopup popup)
     {
         if (!modalStack.Contains(popup))
@@ -175,7 +183,6 @@ public class ModalManager : NodeWithInput
 
         var modal = modalStack.Pop();
         modal.ReParent(parent);
-        modal.Close();
 
         modalsDirty = true;
     }
