@@ -468,7 +468,22 @@ public partial class CellEditorComponent :
         .Select(p => p.Definition);
 
     [JsonIgnore]
-    public override bool ShowFinishButtonWarning => base.ShowFinishButtonWarning || IsNegativeAtpProduction();
+    public override bool ShowFinishButtonWarning
+    {
+        get
+        {
+            if (base.ShowFinishButtonWarning)
+                return true;
+
+            if (IsNegativeAtpProduction())
+                return true;
+
+            if (HasIslands)
+                return true;
+
+            return false;
+        }
+    }
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
