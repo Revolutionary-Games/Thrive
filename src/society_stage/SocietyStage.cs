@@ -79,7 +79,16 @@ public class SocietyStage : StrategyStageBase
 
     protected override void OnGameStarted()
     {
-        // Apparently there's nothing to do here for now...
+        // TODO: this is only unlocked here for now to prevent the player from accidentally wasting limited resources
+        // in the previous prototype. Once that's no longer the case discovering this should be moved to the previous
+        // stage
+        CurrentGame!.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("hunterGathering"));
+
+        // Intentionally not translated prototype message
+        HUD.HUDMessages.ShowMessage(
+            "You are now in the Society Stage prototype. Build a few basic structures to gain resources, " +
+            "then research factories and build one to advance to the next stage.",
+            DisplayDuration.ExtraLong);
     }
 
     protected override bool IsGameOver()

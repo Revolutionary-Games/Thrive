@@ -57,11 +57,31 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
     }
 
+    protected override void SetupStage()
+    {
+        base.SetupStage();
+
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Base setup stage did not setup current game");
+
+        CurrentGame.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
+    }
+
+    protected void ShowTechnologyUnlockMessage(Technology technology)
+    {
+        BaseHUD.HUDMessages.ShowMessage(
+            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+            DisplayDuration.Long);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
             StrategicCameraPath?.Dispose();
+
+            if (CurrentGame != null)
+                CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
         }
 
         base.Dispose(disposing);
