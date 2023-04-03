@@ -77,13 +77,18 @@ public class SocietyStage : StrategyStageBase
         }
     }
 
-    protected override void OnGameStarted()
+    protected override void SetupStage()
     {
+        base.SetupStage();
+
         // TODO: this is only unlocked here for now to prevent the player from accidentally wasting limited resources
         // in the previous prototype. Once that's no longer the case discovering this should be moved to the previous
-        // stage
+        // stage. This is here rather than OnGameStarted to have this unlock appear to the player.
         CurrentGame!.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("hunterGathering"));
+    }
 
+    protected override void OnGameStarted()
+    {
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
             "You are now in the Society Stage prototype. Build a few basic structures to gain resources, " +
