@@ -138,7 +138,7 @@ public class ModalManager : NodeWithInput
             top.ReParent(activeModalContainer);
 
             // Always give focus to the top-most modal in the stack
-            top.FindNextValidFocus().GrabFocus();
+            top.FindNextValidFocus()?.GrabFocus();
         }
     }
 
