@@ -1,16 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://assets/models/organelles/Myofibiril.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/textures/Myofibril.png" type="Texture" id=2]
 [ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=3]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
-
-[sub_resource type="Gradient" id=2]
-interpolation_mode = 1
-offsets = PoolRealArray( 0.555056 )
-colors = PoolColorArray( 1, 0.539062, 0.841553, 1 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-width = 512
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -19,14 +12,13 @@ shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
 shader_param/fresnelActive = false
 shader_param/outlineWidth = 0.05
-shader_param/growColor = Color( 0.862745, 0.505882, 0.74902, 1 )
+shader_param/growColor = Color( 0.694118, 0.364706, 0.313726, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/jiggleAmount = 0.0005
-shader_param/texture = SubResource( 3 )
+shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
-[sub_resource type="CubeMesh" id=4]
-
 [node name="Myofibril" type="MeshInstance"]
+transform = Transform( 0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, 0, 0 )
 material_override = SubResource( 1 )
-mesh = SubResource( 4 )
+mesh = ExtResource( 1 )
