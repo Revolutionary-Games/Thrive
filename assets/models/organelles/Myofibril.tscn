@@ -19,6 +19,6 @@ shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
 [node name="Myofibril" type="MeshInstance"]
-transform = Transform( 0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0 )
+transform = Transform( 0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, 0, 0 )
 material_override = SubResource( 1 )
 mesh = ExtResource( 1 )
