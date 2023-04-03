@@ -18,7 +18,8 @@ public class FocusGrabber : Control
     public bool AlwaysOverrideFocus;
 
     /// <summary>
-    ///   If true then this always grabs focus when this becomes visible
+    ///   If true then this always grabs focus when this becomes visible, even ignoring
+    ///   <see cref="SkipOverridingFocusForElements"/>
     /// </summary>
     [Export]
     public bool GrabFocusWhenBecomingVisible;
@@ -89,11 +90,19 @@ public class FocusGrabber : Control
         }
     }
 
-    public bool CheckWantsToStealFocusAndReset()
+    public bool CheckWantsToStealFocus()
     {
         if (AlwaysOverrideFocus)
             return true;
 
+        if (wantsToGrabFocusOnce)
+            return true;
+
+        return false;
+    }
+
+    public bool CheckAlwaysOverrideFocusAndReset()
+    {
         if (wantsToGrabFocusOnce)
         {
             wantsToGrabFocusOnce = false;
