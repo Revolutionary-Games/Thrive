@@ -1,16 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://assets/models/organelles/Axon.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/textures/Axon.png" type="Texture" id=2]
 [ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=3]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
-
-[sub_resource type="Gradient" id=2]
-interpolation_mode = 1
-offsets = PoolRealArray( 0.555056 )
-colors = PoolColorArray( 0.916854, 0.916854, 0.916854, 1 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-width = 512
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -19,15 +12,13 @@ shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
 shader_param/fresnelActive = false
 shader_param/outlineWidth = 0.05
-shader_param/growColor = Color( 0.909804, 0.74902, 0.901961, 1 )
+shader_param/growColor = Color( 0.0235294, 0.235294, 0.462745, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/jiggleAmount = 0.0005
-shader_param/texture = SubResource( 3 )
+shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
-[sub_resource type="CubeMesh" id=4]
-
 [node name="Axon" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.6 )
 material_override = SubResource( 1 )
-mesh = SubResource( 4 )
+mesh = ExtResource( 1 )
