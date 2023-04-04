@@ -62,15 +62,6 @@ public class StrategicCamera : Camera
         // TODO: add controlling for the listener parented to this camera
     }
 
-    public override void _Process(float delta)
-    {
-        if (edgePanEnabled && AllowPlayerInput)
-            HandleEdgePanning(delta);
-
-        // TODO: interpolating if there's a small movement for more smoothness?
-        GlobalTransform = StrategicCameraHelpers.CalculateCameraPosition(WorldLocation, ZoomLevel);
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -89,6 +80,15 @@ public class StrategicCamera : Camera
         Settings.Instance.PanStrategyViewWithMouse.OnChanged -= ReadEdgePanMode;
 
         InputManager.UnregisterReceiver(this);
+    }
+
+    public override void _Process(float delta)
+    {
+        if (edgePanEnabled && AllowPlayerInput)
+            HandleEdgePanning(delta);
+
+        // TODO: interpolating if there's a small movement for more smoothness?
+        GlobalTransform = StrategicCameraHelpers.CalculateCameraPosition(WorldLocation, ZoomLevel);
     }
 
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
