@@ -1213,6 +1213,11 @@ public static class Constants
 
     public const float SOCIETY_STAGE_ENTER_ANIMATION_DURATION = 15;
 
+    /// <summary>
+    ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
+    /// </summary>
+    public const int EDGE_PAN_PIXEL_THRESHOLD = 4;
+
     public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
     public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
 
