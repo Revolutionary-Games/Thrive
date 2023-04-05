@@ -1,0 +1,341 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/models/MainMenu/UnderwaterChimney01.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/MainMenuScene/bubbleTexture.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/MainMenuScene/underwaterparticle.png" type="Texture" id=3]
+[ext_resource path="res://assets/models/MainMenu/UnderwaterSoil.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.727969 )
+colors = PoolColorArray( 0.417969, 0.171535, 0.0751038, 1, 0.0367432, 0.141966, 0.21875, 1 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 3 )
+fill = 1
+fill_from = Vector2( 0.704167, 0.570833 )
+fill_to = Vector2( 0.513889, 1 )
+
+[sub_resource type="PanoramaSky" id=5]
+panorama = SubResource( 4 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 5 )
+background_sky_custom_fov = 108.0
+background_energy = 1.15
+ambient_light_color = Color( 0.85098, 0.337255, 0.207843, 1 )
+ambient_light_energy = 0.36
+ambient_light_sky_contribution = 0.0
+fog_enabled = true
+fog_color = Color( 0.431373, 0.188235, 0.188235, 1 )
+fog_depth_begin = 0.0
+fog_depth_end = 1798.3
+fog_depth_curve = 0.965936
+fog_transmit_enabled = true
+fog_transmit_curve = 0.901249
+fog_height_enabled = true
+fog_height_min = 29.6
+fog_height_max = -119.5
+tonemap_mode = 2
+tonemap_exposure = 0.61
+tonemap_white = 1.61
+auto_exposure_max_luma = 6.4
+ss_reflections_enabled = true
+ssao_enabled = true
+ssao_radius = 4.38
+ssao_intensity = 7.91
+dof_blur_far_enabled = true
+dof_blur_far_distance = 35.82
+dof_blur_far_transition = 23.7
+dof_blur_far_amount = 0.12
+dof_blur_far_quality = 2
+dof_blur_near_enabled = true
+dof_blur_near_distance = 32.34
+dof_blur_near_transition = 33.37
+dof_blur_near_amount = 0.36
+dof_blur_near_quality = 2
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/4 = true
+glow_levels/6 = true
+glow_levels/7 = true
+glow_intensity = 2.46
+glow_blend_mode = 1
+glow_hdr_threshold = 0.5
+glow_hdr_luminance_cap = 26.63
+glow_hdr_scale = 1.47
+glow_high_quality = true
+adjustment_enabled = true
+adjustment_brightness = 1.01
+adjustment_contrast = 1.07
+adjustment_saturation = 1.37
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 0, 0, 0, 1, 0.697117, 0.87723, 0.959473, 1 )
+
+[sub_resource type="GradientTexture2D" id=10]
+gradient = SubResource( 9 )
+fill = 1
+fill_from = Vector2( 0.716346, 0.670072 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+params_depth_draw_mode = 1
+albedo_texture = ExtResource( 2 )
+emission_enabled = true
+emission = Color( 0.211765, 0.372549, 0.360784, 1 )
+emission_energy = 3.07
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 10 )
+
+[sub_resource type="QuadMesh" id=7]
+material = SubResource( 6 )
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.351955, 0.977654, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 0.446927, 0.446927, 0.446927, 0, 1, 1, 1, 0 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource( 3 )
+emission_enabled = true
+emission = Color( 0.905882, 0.705882, 0.364706, 1 )
+emission_energy = 0.87
+emission_operator = 0
+emission_on_uv2 = false
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.69
+
+[sub_resource type="QuadMesh" id=12]
+material = SubResource( 11 )
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0, 0.519553, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.129412, 1, 1, 1, 0 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.112614, -0.00192499, 0.993637, 0, 0.999998, 0.00193731, -0.993639, 0.000218168, -0.112613, 22.585, 8.686, -3.775 )
+fov = 56.7
+near = 0.11
+far = 503.4
+
+[node name="UnderwaterChimney03" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.0668835, 0.23584, -0.440123, 0, 0.756093, 0.141112, 0.400453, -0.0393899, 0.0735091, -9.549, 7.245, 18.205 )
+
+[node name="CPUParticles3" type="CPUParticles" parent="UnderwaterChimney03"]
+transform = Transform( -0.79509, 0, 0.381903, 0, 0.650433, 0, -0.177096, 0, -0.745153, 0, 0, 0 )
+amount = 35
+lifetime = 1.5
+preprocess = 1.0
+speed_scale = 0.5
+explosiveness = 0.17
+mesh = SubResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 9.8, 0 )
+initial_velocity = 5.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+scale_amount = 0.5
+scale_amount_random = 0.6
+color_ramp = SubResource( 8 )
+hue_variation = -0.25
+hue_variation_random = 0.08
+
+[node name="CPUParticles" type="CPUParticles" parent="UnderwaterChimney03/CPUParticles3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148515, -0.042799, -0.135038 )
+amount = 80
+lifetime = 1.5
+preprocess = 1.0
+speed_scale = 0.5
+explosiveness = 0.17
+mesh = SubResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 0.85
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 6.61
+gravity = Vector3( 0, 9.8, 0 )
+initial_velocity = 8.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+scale_amount = 0.1
+scale_amount_random = 0.5
+color_ramp = SubResource( 8 )
+hue_variation = -0.25
+hue_variation_random = 0.08
+
+[node name="OmniLight" type="OmniLight" parent="UnderwaterChimney03"]
+transform = Transform( 2.46305, 7.45058e-09, 2.98023e-08, 0, 1.26103, 6.98492e-08, -2.98023e-08, -8.00937e-08, 2.13675, 0, 1.93495, 0 )
+light_color = Color( 1, 0.380392, 0.0431373, 1 )
+light_energy = 100.0
+
+[node name="UnderwaterChimney02" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.533049, 0, -0.182602, 0, 1, 0, 0.133665, 0, -0.728206, -7.346, 5.75, 12.567 )
+
+[node name="CPUParticles2" type="CPUParticles" parent="UnderwaterChimney02"]
+transform = Transform( -0.0507045, 0, -1.27275, 0, 0.7, 0, 0.931661, 0, -0.0371159, 0, 0, 0 )
+amount = 35
+lifetime = 1.5
+preprocess = 1.0
+speed_scale = 0.5
+explosiveness = 0.17
+mesh = SubResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 9.8, 0 )
+initial_velocity = 5.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+scale_amount = 0.5
+scale_amount_random = 0.6
+color_ramp = SubResource( 8 )
+hue_variation = -0.25
+hue_variation_random = 0.08
+
+[node name="CPUParticles" type="CPUParticles" parent="UnderwaterChimney02/CPUParticles2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148515, -0.042799, -0.135038 )
+amount = 80
+lifetime = 1.5
+preprocess = 1.0
+speed_scale = 0.5
+explosiveness = 0.17
+mesh = SubResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 0.85
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 6.61
+gravity = Vector3( 0, 9.8, 0 )
+initial_velocity = 8.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+scale_amount = 0.1
+scale_amount_random = 0.5
+color_ramp = SubResource( 8 )
+hue_variation = -0.25
+hue_variation_random = 0.08
+
+[node name="OmniLight" type="OmniLight" parent="UnderwaterChimney02"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93495, 0 )
+light_color = Color( 1, 0.380392, 0.0431373, 1 )
+light_energy = 50.0
+
+[node name="UnderwaterChimney01" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.985565, 0.150413, -0.0777031, -0.149762, 0.988621, 0.0141716, 0.0789505, -0.00233007, 0.996876, -10.023, 1.99985, -8.15833 )
+
+[node name="CPUParticles" type="CPUParticles" parent="UnderwaterChimney01"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+amount = 35
+lifetime = 1.5
+preprocess = 1.0
+speed_scale = 0.5
+explosiveness = 0.17
+mesh = SubResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 9.8, 0 )
+initial_velocity = 5.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+scale_amount = 0.5
+scale_amount_random = 0.6
+color_ramp = SubResource( 8 )
+hue_variation = -0.25
+hue_variation_random = 0.08
+
+[node name="CPUParticles" type="CPUParticles" parent="UnderwaterChimney01/CPUParticles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148515, -0.042799, -0.135038 )
+amount = 80
+lifetime = 1.5
+preprocess = 1.0
+speed_scale = 0.5
+explosiveness = 0.17
+mesh = SubResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 0.85
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 6.61
+gravity = Vector3( 0, 9.8, 0 )
+initial_velocity = 8.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+scale_amount = 0.1
+scale_amount_random = 0.5
+color_ramp = SubResource( 8 )
+hue_variation = -0.25
+hue_variation_random = 0.08
+
+[node name="OmniLight" type="OmniLight" parent="UnderwaterChimney01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93495, 0 )
+light_color = Color( 1, 0.380392, 0.0431373, 1 )
+light_energy = 100.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.0543926, -0.99852, -2.37757e-09, -4.37114e-08, 1.91069e-15, 1, -0.99852, 0.0543926, -4.36467e-08, 0, 17.284, 0 )
+light_color = Color( 0.647059, 0.72549, 0.929412, 1 )
+light_energy = 0.595
+shadow_bias = 0.283
+directional_shadow_blend_splits = true
+directional_shadow_normal_bias = 1.626
+
+[node name="UnderwaterParticle" type="CPUParticles" parent="."]
+transform = Transform( -7.96846e-08, 8.74228e-08, 2, 2, -8.74228e-08, 7.96846e-08, 8.74228e-08, 2, -8.74228e-08, 13.337, 7.134, -3.794 )
+amount = 20
+lifetime = 6.0
+preprocess = 3.0
+draw_order = 2
+mesh = SubResource( 12 )
+emission_shape = 5
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 0.0
+emission_ring_height = 2.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+direction = Vector3( 0, 1, 1 )
+gravity = Vector3( 0.028, 0, 0 )
+initial_velocity = 0.5
+initial_velocity_random = 0.25
+angular_velocity = 0.5
+angular_velocity_random = 0.25
+damping = 0.1
+angle = 360.0
+scale_amount = 3.0
+scale_amount_random = 0.52
+color = Color( 0.490196, 0.223529, 0.0784314, 1 )
+color_ramp = SubResource( 13 )
+hue_variation = 0.4
+hue_variation_random = 0.22
+
+[node name="UnderwaterSoil2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2.34667, 0.4843, 3.20291, 0.0737935, 3.94602, -0.65073, -3.23847, 0.44085, 2.30607, -95.3852, 8.35105, 43.0371 )
+
+[node name="UnderwaterSoil" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.88388, 0, 0.467714, 0, 1, 0, -0.467714, 0, -0.88388, -18.5063, 5.46749, 5.37514 )

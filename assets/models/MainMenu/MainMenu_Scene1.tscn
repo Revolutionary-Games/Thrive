@@ -1,0 +1,396 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://assets/models/MainMenu/MenuPlanet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/models/MainMenu/MenuPlanetClouds.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/MainMenu/StarsMesh.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/textures/MainMenuScene/RoundParticle.png" type="Texture" id=5]
+[ext_resource path="res://assets/models/IronRock1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/textures/iron_bump.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=9]
+[ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=10]
+
+[sub_resource type="ProceduralSky" id=2]
+radiance_size = 3
+sky_energy = 0.0
+ground_energy = 0.0
+sun_latitude = -19.71
+sun_longitude = 57.77
+sun_angle_max = 96.99
+sun_curve = 0.0170754
+sun_energy = 0.0
+texture_size = 4
+
+[sub_resource type="Environment" id=1]
+background_mode = 2
+background_sky = SubResource( 2 )
+background_sky_orientation = Basis( 0.963975, 0.265994, 0, -0.239279, 0.867158, 0.436786, 0.116182, -0.421051, 0.899565 )
+background_energy = 3.82
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.0
+ambient_light_sky_contribution = 0.29
+auto_exposure_enabled = true
+auto_exposure_min_luma = 0.4
+auto_exposure_max_luma = 9.61
+auto_exposure_speed = 25.16
+ss_reflections_enabled = true
+ssao_enabled = true
+ssao_radius = 3.42
+dof_blur_far_distance = 65.13
+dof_blur_far_transition = 1565.05
+dof_blur_far_amount = 0.12
+dof_blur_far_quality = 2
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/4 = true
+glow_levels/6 = true
+glow_levels/7 = true
+glow_intensity = 1.17
+glow_strength = 0.81
+glow_bloom = 0.38
+glow_blend_mode = 1
+glow_hdr_threshold = 1.09
+glow_hdr_luminance_cap = 204.61
+glow_hdr_scale = 2.09
+glow_high_quality = true
+adjustment_saturation = 1.07
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+params_cull_mode = 2
+albedo_color = Color( 0, 0, 0, 1 )
+albedo_texture = ExtResource( 5 )
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color( 0.415686, 0.568627, 0.866667, 1 )
+emission_energy = 8.48
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 10 )
+anisotropy_enabled = true
+anisotropy = 0.3
+depth_enabled = true
+depth_scale = 7.02
+depth_deep_parallax = true
+depth_min_layers = 8
+depth_max_layers = 32
+depth_flip_tangent = false
+depth_flip_binormal = false
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.63
+
+[sub_resource type="QuadMesh" id=7]
+
+[sub_resource type="Curve" id=11]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0.143564, 175.909 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, 84.2727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0.501136 ), 0.0, 0.0, 0, 0, Vector2( 0.217822, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.355682 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.98324, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0 )
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/dissolveValue = 0.0
+shader_param/outlineWidth = 0.005
+shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
+shader_param/albedoTexture = ExtResource( 2 )
+shader_param/normalTexture = ExtResource( 8 )
+shader_param/dissolveTexture = ExtResource( 9 )
+
+[sub_resource type="Curve" id=13]
+max_value = 100.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.173267, 26.7045 ), 0.0, 0.0, 0, 0, Vector2( 0.529703, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/dissolveValue = 0.0
+shader_param/outlineWidth = 0.005
+shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
+shader_param/albedoTexture = ExtResource( 2 )
+shader_param/normalTexture = ExtResource( 8 )
+shader_param/dissolveTexture = ExtResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/dissolveValue = 0.0
+shader_param/outlineWidth = 0.005
+shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
+shader_param/albedoTexture = ExtResource( 2 )
+shader_param/normalTexture = ExtResource( 8 )
+shader_param/dissolveTexture = ExtResource( 9 )
+
+[node name="Main" type="Node"]
+
+[node name="PlanetSurface" parent="." instance=ExtResource( 1 )]
+transform = Transform( 3.85759, 0.32747, 8.12476, 4.35652, -7.67635, -1.75905, 6.86584, 4.68682, -3.44876, -10.352, -7.351, 0.094 )
+
+[node name="PlanetClouds" parent="PlanetSurface" instance=ExtResource( 3 )]
+transform = Transform( -0.80997, 0, 0.586471, 0, 1, 0, -0.586471, 0, -0.80997, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.394097, -0.471086, 0.789155, -0.288612, 0.878645, 0.380376, -0.872577, -0.0778545, -0.482232, 17.668, -0.333, -18.133 )
+light_energy = 9.063
+light_indirect_energy = 1.195
+light_specular = 0.076
+light_bake_mode = 2
+shadow_enabled = true
+shadow_bias = 4.303
+directional_shadow_split_1 = 0.124
+directional_shadow_split_2 = 0.336
+directional_shadow_split_3 = 0.485
+directional_shadow_blend_splits = true
+directional_shadow_normal_bias = 4.407
+directional_shadow_bias_split_scale = 0.368
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="starssphere" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2000, -0.491873, 0.349052, 0.488672, 1999.92, 18.221, -0.353518, -18.2209, 1999.92, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.581158, 0.0586231, -0.811677, 0, 0.997402, 0.0720371, 0.813791, -0.0418649, 0.579648, -24.454, 1.29, 5.91 )
+h_offset = -0.817
+v_offset = 1.805
+current = true
+fov = 35.4
+far = 10000.0
+
+[node name="CPUParticles3" type="CPUParticles" parent="."]
+transform = Transform( 0.173828, 0.0759652, -0.0633479, -0.0692626, 0.184926, 0.0317005, 0.0706142, -0.00561409, 0.187035, -16.838, 3.17, -5.685 )
+material_override = SubResource( 6 )
+amount = 239
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+radial_accel = 3.05
+radial_accel_random = 1.0
+angle = 145.3
+angle_random = 0.72
+angle_curve = SubResource( 11 )
+scale_amount = 0.1
+scale_amount_random = 0.19
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.46
+hue_variation_random = 0.55
+
+[node name="Mic_IronBIG01" parent="CPUParticles3" instance=ExtResource( 6 )]
+transform = Transform( -0.000475466, -0.00417916, 0.0280006, -0.00145368, 0.0405153, 0.00029269, -0.0129861, 0.00746906, -0.00136252, -0.18998, -0.169912, -0.0768375 )
+material_override = SubResource( 16 )
+
+[node name="CPUParticles" type="CPUParticles" parent="CPUParticles3"]
+transform = Transform( 1, -1.92784e-07, -1.11759e-08, 4.65661e-09, 1, 1.49012e-08, 0, -2.98023e-08, 1, -0.152395, -0.400082, -0.100585 )
+material_override = SubResource( 6 )
+amount = 239
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+radial_accel = 3.05
+radial_accel_random = 1.0
+angle = 145.3
+angle_random = 0.72
+angle_curve = SubResource( 11 )
+scale_amount = 0.1
+scale_amount_random = 0.19
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.46
+hue_variation_random = 0.55
+
+[node name="CPUParticles2" type="CPUParticles" parent="CPUParticles3"]
+transform = Transform( -0.00605074, 0.994458, 0.104974, -0.999357, -0.00229823, -0.0358323, -0.0353924, -0.105123, 0.99383, 0.126984, -0.238097, -0.0976768 )
+material_override = SubResource( 6 )
+amount = 500
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+flag_align_y = true
+direction = Vector3( -1, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 2.0
+damping_curve = SubResource( 13 )
+angle_curve = SubResource( 11 )
+scale_amount = 0.2
+scale_amount_random = 0.13
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = -0.06
+hue_variation_random = 0.55
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+transform = Transform( 0.188503, 0.0666345, -0.00515971, -0.0662427, 0.188327, 0.0120425, 0.00887077, -0.00964121, 0.19957, -20.916, 2.189, 0.166 )
+material_override = SubResource( 6 )
+amount = 239
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+radial_accel = 3.05
+radial_accel_random = 1.0
+angle = 145.3
+angle_random = 0.72
+angle_curve = SubResource( 11 )
+scale_amount = 0.1
+scale_amount_random = 0.19
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.46
+hue_variation_random = 0.55
+
+[node name="Mic_IronBIG01" parent="CPUParticles" instance=ExtResource( 6 )]
+transform = Transform( -0.000475466, -0.00417916, 0.0280006, -0.00145368, 0.0405153, 0.00029269, -0.0129861, 0.00746906, -0.00136252, -0.189978, -0.169918, -0.0768352 )
+material_override = SubResource( 17 )
+
+[node name="CPUParticles" type="CPUParticles" parent="CPUParticles"]
+transform = Transform( 1, -1.92784e-07, -1.11759e-08, 4.65661e-09, 1, 1.49012e-08, 0, -2.98023e-08, 1, -0.152395, -0.400082, -0.100585 )
+material_override = SubResource( 6 )
+amount = 239
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+radial_accel = 3.05
+radial_accel_random = 1.0
+angle = 145.3
+angle_random = 0.72
+angle_curve = SubResource( 11 )
+scale_amount = 0.1
+scale_amount_random = 0.19
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.46
+hue_variation_random = 0.55
+
+[node name="CPUParticles2" type="CPUParticles" parent="CPUParticles"]
+transform = Transform( -0.00605074, 0.994458, 0.104974, -0.999357, -0.00229823, -0.0358323, -0.0353924, -0.105123, 0.99383, 0.126984, -0.238097, -0.0976768 )
+material_override = SubResource( 6 )
+amount = 500
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+flag_align_y = true
+direction = Vector3( -1, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 2.0
+damping_curve = SubResource( 13 )
+angle_curve = SubResource( 11 )
+scale_amount = 0.2
+scale_amount_random = 0.13
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = -0.06
+hue_variation_random = 0.55
+
+[node name="CPUParticles4" type="CPUParticles" parent="."]
+transform = Transform( 0.0869142, 0.0379826, -0.031674, -0.0346313, 0.0924632, 0.0158503, 0.0353071, -0.00280705, 0.0935175, -17.613, 2.718, -5.758 )
+material_override = SubResource( 6 )
+amount = 239
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+radial_accel = 3.05
+radial_accel_random = 1.0
+angle = 145.3
+angle_random = 0.72
+angle_curve = SubResource( 11 )
+scale_amount = 0.1
+scale_amount_random = 0.19
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.46
+hue_variation_random = 0.55
+
+[node name="Mic_IronBIG01" parent="CPUParticles4" instance=ExtResource( 6 )]
+transform = Transform( -0.000475466, -0.00417916, 0.0280006, -0.00145368, 0.0405153, 0.00029269, -0.0129861, 0.00746906, -0.00136252, -0.18998, -0.169912, -0.0768375 )
+material_override = SubResource( 18 )
+
+[node name="CPUParticles" type="CPUParticles" parent="CPUParticles4"]
+transform = Transform( 1, -1.92784e-07, -1.11759e-08, 4.65661e-09, 1, 1.49012e-08, 0, -2.98023e-08, 1, -0.152395, -0.400082, -0.100585 )
+material_override = SubResource( 6 )
+amount = 239
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+radial_accel = 3.05
+radial_accel_random = 1.0
+angle = 145.3
+angle_random = 0.72
+angle_curve = SubResource( 11 )
+scale_amount = 0.1
+scale_amount_random = 0.19
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.46
+hue_variation_random = 0.55
+
+[node name="CPUParticles2" type="CPUParticles" parent="CPUParticles4"]
+transform = Transform( -0.00605074, 0.994458, 0.104974, -0.999357, -0.00229823, -0.0358323, -0.0353924, -0.105123, 0.99383, 0.126984, -0.238097, -0.0976768 )
+material_override = SubResource( 6 )
+amount = 500
+lifetime = 1.84
+preprocess = 2.27
+speed_scale = 0.5
+mesh = SubResource( 7 )
+flag_align_y = true
+direction = Vector3( -1, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 2.0
+damping_curve = SubResource( 13 )
+angle_curve = SubResource( 11 )
+scale_amount = 0.2
+scale_amount_random = 0.13
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = -0.06
+hue_variation_random = 0.55
