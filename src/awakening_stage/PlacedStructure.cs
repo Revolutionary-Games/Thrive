@@ -129,6 +129,19 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
         AliveMarker.Alive = false;
     }
 
+    /// <summary>
+    ///   Processes this structure when in the society stage
+    /// </summary>
+    /// <param name="delta">Time since last update</param>
+    /// <param name="societyData">Access to the data where the structure accesses and writes things</param>
+    public void ProcessSociety(float delta, ISocietyStructureDataAccess societyData)
+    {
+        foreach (var component in componentInstances)
+        {
+            component.ProcessSociety(delta, societyData);
+        }
+    }
+
     public IHarvestAction? GetHarvestingInfo()
     {
         return null;
@@ -229,6 +242,18 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
             GD.PrintErr("Structure force completed (due to an action) even though it still needs resources");
 
         OnCompleted();
+    }
+
+    public T? GetComponent<T>()
+        where T : StructureComponent
+    {
+        foreach (var component in componentInstances)
+        {
+            if (component is T casted)
+                return casted;
+        }
+
+        return null;
     }
 
     /// <summary>

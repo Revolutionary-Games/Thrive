@@ -312,6 +312,7 @@ public static class SpawnHelpers
         structureEntity.Init(structureDefinition);
 
         structureEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        structureEntity.AddToGroup(Constants.STRUCTURE_ENTITY_GROUP);
 
         structureEntity.Transform = location;
 

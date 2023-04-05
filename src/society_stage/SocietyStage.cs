@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The main class handling the society stage functions
 /// </summary>
-public class SocietyStage : StrategyStageBase
+public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess
 {
 #pragma warning disable CA2213
     private PackedScene structureScene = null!;
@@ -12,7 +12,17 @@ public class SocietyStage : StrategyStageBase
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    private SocietyStructureSystem structureSystem = null!;
+
+    [JsonProperty]
+    private SocietyResourceStorage resourceStorage = new();
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     public SocietyHUD HUD { get; private set; } = null!;
+
+    [JsonIgnore]
+    public IResourceContainer SocietyResources => resourceStorage;
 
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
@@ -27,9 +37,28 @@ public class SocietyStage : StrategyStageBase
 
         HUD.Init(this);
 
-        // TODO: init systems
+        structureSystem.Init();
 
         SetupStage();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (!IsGameOver())
+        {
+            structureSystem.Process(delta, this);
+
+            // This doesn't really need to update all that often but for now this is fine performance-wise and is
+            // easier to program
+            resourceStorage.Capacity = structureSystem.CachedTotalStorage;
+
+            // TODO: update science speed
+            HUD.UpdateScienceSpeed(0);
+        }
+
+        HUD.UpdateResourceDisplay(resourceStorage);
     }
 
     public override void ResolveNodeReferences()
@@ -41,7 +70,8 @@ public class SocietyStage : StrategyStageBase
 
         HUD = GetNode<SocietyHUD>("SocietyHUD");
 
-        // TODO: systems
+        // Systems
+        structureSystem = new SocietyStructureSystem(rootOfDynamicallySpawned);
     }
 
     public override void StartMusic()
@@ -81,6 +111,8 @@ public class SocietyStage : StrategyStageBase
     {
         base.SetupStage();
 
+        resourceStorage.Capacity = structureSystem.CalculateTotalStorage();
+
         // TODO: this is only unlocked here for now to prevent the player from accidentally wasting limited resources
         // in the previous prototype. Once that's no longer the case discovering this should be moved to the previous
         // stage. This is here rather than OnGameStarted to have this unlock appear to the player.
@@ -104,6 +136,7 @@ public class SocietyStage : StrategyStageBase
 
     protected override void OnGameOver()
     {
+        // TODO: once possible to lose, show in the GUI
     }
 
     protected override void AutoSave()

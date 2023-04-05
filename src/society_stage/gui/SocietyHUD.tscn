@@ -1,21 +1,20 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://src/society_stage/SocietyHUD.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=7]
-[ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=9]
-[ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/rock.png" type="Texture" id=12]
-[ext_resource path="res://assets/textures/gui/bevel/Wood.png" type="Texture" id=13]
-[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=17]
-[ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=3]
+[ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/society_stage/gui/ResourceDisplayBar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=10]
+[ext_resource path="res://src/society_stage/gui/SocietyHUD.cs" type="Script" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=15]
+[ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=16]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -48,13 +47,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 2 )
-script = ExtResource( 1 )
+script = ExtResource( 12 )
 HUDMessagesPath = NodePath("HUDMessages")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
 BottomLeftBarPath = NodePath("HUDBottomBar")
+ResourceDisplayPath = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
 
 [node name="BottomRight" type="Control" parent="."]
 anchor_left = 1.0
@@ -80,16 +80,16 @@ rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "Once added to the prototype, it will be possible to make small changes at this stage (for example lactose tolerance)"
 focus_mode = 0
 disabled = true
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 7 )
-texture_hover = ExtResource( 6 )
-texture_disabled = ExtResource( 3 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 15 )
+texture_disabled = ExtResource( 10 )
 expand = true
 __meta__ = {
 "_editor_description_": "TOOLTIP_PLACEHOLDER"
 }
 
-[node name="HUDBottomBar" parent="." instance=ExtResource( 19 )]
+[node name="HUDBottomBar" parent="." instance=ExtResource( 16 )]
 margin_top = -43.0
 margin_bottom = -8.0
 ShowCompoundPanelToggles = false
@@ -117,27 +117,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Build" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
+[node name="Build" parent="ScrollContainer/HotBar" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 200.0
 margin_right = 246.0
 margin_bottom = 51.0
 hint_tooltip = "BUILD_STRUCTURE"
-ActionIcon = ExtResource( 17 )
+ActionIcon = ExtResource( 8 )
 ActionName = "g_build_structure"
 
-[node name="Research" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
+[node name="Research" parent="ScrollContainer/HotBar" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 252.0
 margin_right = 298.0
 margin_bottom = 51.0
 hint_tooltip = "OPEN_RESEARCH_SCREEN"
-ActionIcon = ExtResource( 11 )
+ActionIcon = ExtResource( 13 )
 ActionName = "g_inventory"
 
-[node name="Posses" parent="ScrollContainer/HotBar" instance=ExtResource( 8 )]
+[node name="Posses" parent="ScrollContainer/HotBar" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 304.0
@@ -152,23 +152,23 @@ __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": "PLACEHOLDER as the tooltip is a placeholder"
 }
-ActionIcon = ExtResource( 14 )
+ActionIcon = ExtResource( 3 )
 ActionName = "g_toggle_engulf"
 
 [node name="HintText" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 35.0
 margin_bottom = 59.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 align = 1
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="PausePrompt" parent="." instance=ExtResource( 18 )]
+[node name="PausePrompt" parent="." instance=ExtResource( 5 )]
 visible = false
 
-[node name="HUDMessages" parent="." instance=ExtResource( 10 )]
+[node name="HUDMessages" parent="." instance=ExtResource( 6 )]
 margin_left = 270.0
 margin_top = 90.0
 margin_right = -270.0
@@ -189,71 +189,12 @@ margin_right = 8.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 8, 5 )
 
-[node name="ResourceAmountsContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
+[node name="ResourceDisplayBar" parent="TopBar/HBoxContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 12.0
 margin_right = 1014.0
 margin_bottom = 34.0
-size_flags_horizontal = 3
-custom_constants/separation = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar/HBoxContainer/ResourceAmountsContainer"]
-margin_right = 41.0
-margin_bottom = 34.0
-
-[node name="RockAmount" type="Label" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer"]
-margin_top = 4.0
-margin_right = 13.0
-margin_bottom = 29.0
-text = "3"
-
-[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer"]
-margin_left = 17.0
-margin_right = 41.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 24, 24 )
-texture = ExtResource( 12 )
-expand = true
-stretch_mode = 6
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TopBar/HBoxContainer/ResourceAmountsContainer"]
-margin_left = 51.0
-margin_right = 87.0
-margin_bottom = 34.0
-
-[node name="WoodAmount" type="Label" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer2"]
-margin_top = 4.0
-margin_right = 8.0
-margin_bottom = 29.0
-text = "1"
-
-[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer2"]
-margin_left = 12.0
-margin_right = 36.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 24, 24 )
-texture = ExtResource( 13 )
-expand = true
-stretch_mode = 6
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="TopBar/HBoxContainer/ResourceAmountsContainer"]
-margin_left = 97.0
-margin_right = 168.0
-margin_bottom = 34.0
-
-[node name="ScienceAmount" type="Label" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer3"]
-margin_top = 4.0
-margin_right = 43.0
-margin_bottom = 29.0
-text = "+0.5"
-
-[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/ResourceAmountsContainer/HBoxContainer3"]
-margin_left = 47.0
-margin_right = 71.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 24, 24 )
-texture = ExtResource( 11 )
-expand = true
-stretch_mode = 6
 
 [node name="PopulationContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
 margin_left = 1018.0

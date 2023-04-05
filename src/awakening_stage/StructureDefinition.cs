@@ -193,6 +193,24 @@ public class StructureDefinition : IRegistryType
 #pragma warning disable CS0649 // set from JSON
         [JsonProperty]
         private SocietyCenterComponentFactory? societyCenter;
+
+        [JsonProperty]
+        private WoodGathererFactory? woodGatherer;
+
+        [JsonProperty]
+        private RockGathererFactory? rockGatherer;
+
+        [JsonProperty]
+        private FoodGathererFactory? foodGatherer;
+
+        [JsonProperty]
+        private HousingComponentFactory? housing;
+
+        [JsonProperty]
+        private StructureStorageComponentFactory? storage;
+
+        [JsonProperty]
+        private ResearchComponentFactory? research;
 #pragma warning restore CS0649
 
         [JsonIgnore]
@@ -205,6 +223,24 @@ public class StructureDefinition : IRegistryType
         {
             if (societyCenter != null)
                 allFactories.Add(societyCenter);
+
+            if (woodGatherer != null)
+                allFactories.Add(woodGatherer);
+
+            if (rockGatherer != null)
+                allFactories.Add(rockGatherer);
+
+            if (foodGatherer != null)
+                allFactories.Add(foodGatherer);
+
+            if (housing != null)
+                allFactories.Add(housing);
+
+            if (storage != null)
+                allFactories.Add(storage);
+
+            if (research != null)
+                allFactories.Add(research);
 
             foreach (var factory in allFactories)
             {

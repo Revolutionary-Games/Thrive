@@ -1023,6 +1023,8 @@ public static class Constants
     /// </summary>
     public const string PROGRESS_ENTITY_GROUP = "progress";
 
+    public const string STRUCTURE_ENTITY_GROUP = "structure";
+
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
@@ -1212,6 +1214,8 @@ public static class Constants
     public const float HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR = 11.2f;
 
     public const float SOCIETY_STAGE_ENTER_ANIMATION_DURATION = 15;
+
+    public const float SOCIETY_STAGE_BUILDING_PROCESS_INTERVAL = 0.05f;
 
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
