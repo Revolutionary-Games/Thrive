@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/society_stage/gui/ResourceDisplayBar.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=3]
 
 [node name="ResourceDisplayBar" type="HBoxContainer"]
 anchor_right = 1.0
@@ -15,6 +16,7 @@ ScienceAmountLabelPath = NodePath("ScienceContainer/ScienceAmount")
 LateResourcesContainerPath = NodePath("LateResources")
 FullResourceAmountColour = Color( 1, 0.898039, 0.235294, 1 )
 CriticalResourceAmountColour = Color( 1, 0.341176, 0.341176, 1 )
+AmountLabelFont = ExtResource( 3 )
 
 [node name="EarlyResources" type="HBoxContainer" parent="."]
 margin_bottom = 720.0

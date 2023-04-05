@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 public class ResourceDisplayBar : HBoxContainer
@@ -24,6 +25,9 @@ public class ResourceDisplayBar : HBoxContainer
     public Color CriticalResourceAmountColour = new(1, 0, 0);
 
 #pragma warning disable CA2213
+    [Export]
+    public Font AmountLabelFont = null!;
+
     private Container earlyResourcesContainer = null!;
     private Container lateResourcesContainer = null!;
 
@@ -42,6 +46,7 @@ public class ResourceDisplayBar : HBoxContainer
         scienceAmountLabel = GetNode<Label>(ScienceAmountLabelPath);
 
         scienceIndicatorContainer.Visible = false;
+        scienceAmountLabel.AddFontOverride("font", AmountLabelFont);
 
         // TODO: remove once this is used
         lateResourcesContainer.Visible = false;
@@ -57,7 +62,10 @@ public class ResourceDisplayBar : HBoxContainer
 
         resourceDisplayCache.UnMarkAll();
 
-        foreach (var pair in resourceStorage.GetAllResources())
+        // The resources are sorted here to ensure consistent order of icons in the GUI, this would not really be
+        // necessary each frame so TODO something better to only sort when required (for example when new items are
+        // created)
+        foreach (var pair in resourceStorage.GetAllResources().OrderBy(t => t.Key.InternalName))
         {
             var display = resourceDisplayCache.GetChild(pair.Key);
 
@@ -100,7 +108,7 @@ public class ResourceDisplayBar : HBoxContainer
 
     private DisplayAmount CreateDisplayAmount(WorldResource resource)
     {
-        return new DisplayAmount(resource, FullResourceAmountColour, NormalResourceAmountColour);
+        return new DisplayAmount(resource, FullResourceAmountColour, NormalResourceAmountColour, AmountLabelFont);
     }
 
     private class DisplayAmount : HBoxContainer
@@ -115,7 +123,7 @@ public class ResourceDisplayBar : HBoxContainer
         private string? previousAmount;
         private bool previousMax;
 
-        public DisplayAmount(WorldResource resource, Color maxColour, Color normalColour)
+        public DisplayAmount(WorldResource resource, Color maxColour, Color normalColour, Font font)
         {
             this.maxColour = maxColour;
             this.normalColour = normalColour;
@@ -125,12 +133,16 @@ public class ResourceDisplayBar : HBoxContainer
                 Text = "0",
             };
 
+            amountLabel.AddFontOverride("font", font);
+
+            // TODO: reserving space for the characters would help to have the display jitter less
+
             AddChild(amountLabel);
 
             AddChild(new TextureRect
             {
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-                RectMinSize = new Vector2(24, 24),
+                RectMinSize = new Vector2(16, 16),
                 Texture = resource.Icon,
                 Expand = true,
             });
@@ -142,9 +154,7 @@ public class ResourceDisplayBar : HBoxContainer
 
         public void SetAmount(float amount, bool max)
         {
-            var newAmountString = amount > 0 ?
-                "+" + StringUtils.ThreeDigitFormat(amount) :
-                StringUtils.ThreeDigitFormat(amount);
+            var newAmountString = StringUtils.ThreeDigitFormat(amount);
 
             // A bit of an early skip to skip some operations if nothing has changed
             if (previousAmount == newAmountString && max == previousMax)
