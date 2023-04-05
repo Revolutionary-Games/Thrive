@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-01 23:27+0700\n"
+"POT-Creation-Date: 2023-04-05 10:47+0700\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -199,7 +199,7 @@ msgstr "Кількість можливих швидких збережень:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Анаеробна фіксація азоту"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 msgid "APPEARANCE"
 msgstr "Зовнішній вигляд"
 
@@ -259,8 +259,8 @@ msgstr ""
 "Це впливає на кількість потоків за замовчуваням, бо гіперпотоки не такі швидкі, як реальні ядра ЦП."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:679
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферні гази"
@@ -330,7 +330,7 @@ msgstr "{0:F1}% зроблено. {1:n0}/{2:n0} виконується."
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автозбереження під час гри"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:206
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:222
 msgid "AUTO_EVO"
 msgstr "Авто-ево"
 
@@ -345,7 +345,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Авто-ево не почалась"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:909
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:289
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
 msgstr "Результати Авто-ево:"
 
@@ -452,7 +452,7 @@ msgid "BEGIN_THRIVING"
 msgstr "Почніть процвітання"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:463
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "BEHAVIOUR"
 msgstr "Поведінка"
@@ -607,7 +607,7 @@ msgstr "Камера"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2085
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
@@ -615,7 +615,7 @@ msgid "CANCEL"
 msgstr "Скасувати"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:760
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "Скасувати дію"
@@ -626,12 +626,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Скасувати поточну дію"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:821
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Тип клітини, який зараз використовується на вашому плані тіла, неможливо видалити"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:819
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Не можна видалити використовуваний тип клітини"
 
@@ -646,11 +646,11 @@ msgstr "Не може поглинати"
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Неможна перемістити метасферу в цьому дереві нащадків"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:826
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:843
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:824
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:841
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
@@ -704,7 +704,7 @@ msgid "CELL"
 msgstr "Клітина"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:576
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Клітини"
 
@@ -725,7 +725,7 @@ msgstr "Целюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має стінку, врезультаті чого краще захищає від пошкоджень, а особливо від фізичних. Це коштує менше енергії на збереження форми, але не так швидко поглинає ресурси і є повільнішим. [b]Целюлаза здатна перетравлювати цю стінку[/b] роблячи її вразливою для поглинання хижаками."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:652
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
@@ -982,8 +982,8 @@ msgstr "Збірка в:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1059,6 +1059,10 @@ msgstr "Якісь налаштування невірні"
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Контент майстерні буде відвантажено з папки: {0}"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
+msgid "CONTINUE_THRIVING"
+msgstr "Продовжити процвітання"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 msgid "CONTINUE_TO_PROTOTYPES"
@@ -1217,11 +1221,11 @@ msgstr "Створити новий мод"
 msgid "CREATE_NEW_SAVE"
 msgstr "Створити нове збереження"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:830
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:847
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Створити новий тип тканини"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:844
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:861
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Ви можете створювати новий тип тканин, дублюючи данні та надаючи їм нову назву. Типи тканин можна модифікувати за допомогою клітинного редактору, для спеціалізації їх до різних ролей."
 
@@ -1351,7 +1355,7 @@ msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення за замовчуванням"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:607
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
 msgstr "Видалити"
@@ -1547,11 +1551,11 @@ msgstr ""
 "Тут розміщені клітини, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені клітини аби продовжити."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:814
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
 msgid "DISCONNECTED_METABALLS"
 msgstr "Від'єднати метасфери"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:816
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:833
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Тут розміщені метасфери, які не з'єднання з рештою.\n"
@@ -1639,7 +1643,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr "Вивантаження ДереваСцен"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:615
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Дублювати тип"
 
@@ -1811,15 +1815,15 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить {0} з індивідуальною вартістю {1}, результатом чого є нескоригована популяція кількістю в {2}"
 
@@ -1955,7 +1959,7 @@ msgstr "Експортовано успішно"
 msgid "EXTERNAL"
 msgstr "Зовнішні"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:307
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:323
 msgid "EXTERNAL_EFFECTS"
 msgstr "Внутрішні ефекти:"
 
@@ -2124,11 +2128,11 @@ msgstr ""
 "та можуть бути вимогливішими щодо брил.\n"
 "Розсіяні мікроби швидче відволікатимуться на нові цілі."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:221
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
 msgstr "Ланцюг живлення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергія: {1} (пристосованість: {2}) загальна доступна енергія: {3} (загальна пристосованість: {4})"
 
@@ -2205,7 +2209,7 @@ msgstr "Повноекрання"
 msgid "FULL_MOD_INFO"
 msgstr "Уся інформація про мод"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:22
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:23
 msgid "GALLERY_VIEWER"
 msgstr "Переглянути галерею"
 
@@ -2245,7 +2249,7 @@ msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є 
 msgid "GLES3"
 msgstr "GLES3"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:432
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -2525,7 +2529,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:442
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:458
 msgid "INTERNALS"
 msgstr "Внутрішні органи"
 
@@ -2829,7 +2833,7 @@ msgstr "Прогрес перекладу на цю мову зараз соло
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Цей переклад дуже неповний ({0}% готово), буь-ласка допоможіть виправити ця ситуацію!!!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1350
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Неможна видалити останню органелу"
 
@@ -3184,7 +3188,7 @@ msgstr ""
 "Це збереження швидче за все, пошкоджене або новіший формат не зрозумілий для цієї версії\n"
 "Ви хочете спробувати завантажити його всеодно?"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3675,7 +3679,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Модифікувати органелу"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:593
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Змінити тип"
 
@@ -3683,7 +3687,7 @@ msgstr "Змінити тип"
 msgid "MODS"
 msgstr "Моди"
 
-#: ../src/general/MainMenu.tscn:966
+#: ../src/general/MainMenu.tscn:965
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Встановлений мод виявлено, але увімкнених модів нема.\n"
@@ -3772,11 +3776,11 @@ msgstr "Внутрішня (папкова) назва:"
 msgid "MOD_LICENSE"
 msgstr "Ліцензія на моду:"
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:979
 msgid "MOD_LOAD_ERRORS"
 msgstr "Помилки завантаження модифікації"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:980
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникли помилки під час завантаження декількох модифікацій. Додаткова інформація міститься у журналах."
 
@@ -3842,7 +3846,7 @@ msgid "MOVE"
 msgstr "Рух"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:508
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
 msgid "MOVEMENT"
 msgstr "Рух"
 
@@ -4057,20 +4061,20 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Мій класний мод"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:864
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:881
 msgid "NEW_NAME"
 msgstr "Нова назва"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:857
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:874
 msgid "NEW_NAME_COLON"
 msgstr "Нова назва:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:773
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛІ"
 
@@ -4171,7 +4175,7 @@ msgid "NO_AI"
 msgstr "Без ШІ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -4183,7 +4187,7 @@ msgstr "Нема зафіксованих сполук"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Каталог викопувань не знайдено"
 
-#: ../src/general/MainMenu.tscn:964
+#: ../src/general/MainMenu.tscn:963
 msgid "NO_MODS_ENABLED"
 msgstr "Жоден мод не ввімкнений"
 
@@ -4213,7 +4217,7 @@ msgstr "Немає вибраного моду"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Ядро не підлягає видаленю, бо це необоротна еволюція.\n"
@@ -4235,8 +4239,8 @@ msgstr "Перемикання числового регістрату(Num Lock)
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4263,7 +4267,7 @@ msgstr "Офіційний сайт"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:114
 #: ../src/modding/ModUploader.tscn:355
@@ -4680,7 +4684,7 @@ msgstr "Фосфат"
 msgid "PHOTOSYNTHESIS"
 msgstr "Фотосинтез"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:545
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:561
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:239
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Фізичні умови"
@@ -4796,7 +4800,7 @@ msgstr "популяція:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "популяція в ділянці:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4890,7 +4894,7 @@ msgstr "Вихід"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Вихід з гри"
 
-#: ../src/general/PauseMenu.cs:446
+#: ../src/general/PauseMenu.cs:445
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Ви хочете покинути гру?\n"
@@ -4961,12 +4965,12 @@ msgid "REPRODUCED"
 msgstr "розмножено"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:530
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Розмноження"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:672
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:689
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Нестатевий"
 
@@ -4976,7 +4980,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Брункування"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Розмножено:"
 
@@ -5076,7 +5080,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Вийти до головного меню"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:427
+#: ../src/general/PauseMenu.cs:426
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ви впевнені, що хочете вийти до головного меню?\n"
@@ -5168,7 +5172,7 @@ msgstr "Рустіціанін — це білок, що використову�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"iron\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:975
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive запущена у безпечному режимі, бо попередній запуск не вдався.\n"
@@ -5180,7 +5184,7 @@ msgstr ""
 "\n"
 "Якщо вам невдасться вирішити проблему, котра запуску, вам доведеться перезавантажити та вимкнути Thrive кілька разів, для повернення у безпечний режим."
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:973
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive запущено в безпечному режимі"
 
@@ -5499,7 +5503,7 @@ msgid "SIZE_COLON"
 msgstr "Розмір:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:180
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:181
 msgid "SLIDESHOW"
 msgstr "Слайдшов"
 
@@ -5627,8 +5631,8 @@ msgstr "Назва виду..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Назва виду за довга!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:507
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:523
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:551
 msgid "SPECIES_POPULATION"
 msgstr "Видова Популяція"
 
@@ -5678,7 +5682,7 @@ msgid "START_GAME"
 msgstr "Зберегти гру"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
 #: ../src/microbe_stage/HUDBottomBar.tscn:115
 msgid "STATISTICS"
 msgstr "Статистика"
@@ -5743,11 +5747,11 @@ msgstr "Steam наразі недоступний, будь-ласка повт�
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Сталася невідома помилка Steam"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:996
 msgid "STEAM_INIT_FAILED"
 msgstr "Ініціалізація Steam не вдалася"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:998
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
@@ -5806,7 +5810,7 @@ msgid "STRUCTURAL"
 msgstr "Структурний"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:420
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
 msgid "STRUCTURE"
 msgstr "Структури"
@@ -5854,7 +5858,7 @@ msgstr "Суїцид"
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
 msgstr "Сонячне світло"
@@ -5928,7 +5932,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
 msgid "TEMPERATURE"
 msgstr "Температура"
@@ -5942,7 +5946,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Команда тестувальників"
 
-#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:988
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Дякуємо за підтримку розробки Thrive, придбавши цю копію Thrive!\n"
@@ -5958,7 +5962,7 @@ msgstr ""
 "\n"
 "Якщо сподобалась гра будь-ласка роскажи друзям про нас (та про українське озвучення та переклади)."
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:986
 msgid "THANK_YOU_TITLE"
 msgstr "Дякуємо"
 
@@ -6078,15 +6082,15 @@ msgstr "Тилакоїди є кластерами з білків та фото
 msgid "TIDEPOOL"
 msgstr "Припливний басейн"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:235
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:251
 msgid "TIMELINE"
 msgstr "Хронологія"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:426
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Показ глобальних подій"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:439
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Показ локальних подій"
 
@@ -6256,7 +6260,7 @@ msgstr "Спробуйте зробити декілька скріншотів!
 msgid "TUTORIAL"
 msgstr "Туторіал"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:380
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Вітаємо на ранній багатоклітинній стадії!\n"
@@ -6793,9 +6797,6 @@ msgstr "Приблизитись"
 #: ../simulation_parameters/common/input_options.json:94
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
-
-#~ msgid "CONTINUE_THRIVING"
-#~ msgstr "Продовжити процвітання"
 
 #~ msgid "PANGONIAN_REGION_NAME"
 #~ msgstr "Пангонський"
