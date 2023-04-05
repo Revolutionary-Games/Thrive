@@ -1,0 +1,42 @@
+[gd_resource type="SpatialMaterial" load_steps=6 format=2]
+
+[sub_resource type="Gradient" id=34]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.4, 0.703704, 0.718518, 0.785185, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0, 0.205726, 0.111294, 0.320392, 0.86, 0.239216, 0.129412, 0.372549, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture2D" id=33]
+gradient = SubResource( 34 )
+fill_from = Vector2( 0, 0.658333 )
+fill_to = Vector2( 0.791667, 0.679167 )
+
+[sub_resource type="Gradient" id=37]
+offsets = PoolRealArray( 0.206107, 0.534351, 0.774809, 0.996183, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0.0639648, 0.0639648, 0.0639648, 1 )
+
+[sub_resource type="GradientTexture2D" id=36]
+gradient = SubResource( 37 )
+fill_from = Vector2( 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=35]
+render_priority = 1
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 3
+params_cull_mode = 2
+params_depth_draw_mode = 3
+albedo_texture = SubResource( 36 )
+
+[resource]
+next_pass = SubResource( 35 )
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+flags_do_not_receive_shadows = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_cull_mode = 2
+params_depth_draw_mode = 3
+albedo_color = Color( 0.827451, 0.827451, 0.827451, 0.733333 )
+albedo_texture = SubResource( 33 )

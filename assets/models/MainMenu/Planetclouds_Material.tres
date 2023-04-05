@@ -1,0 +1,14 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/MainMenuScene/PlanetClouds_Mat_Opacity.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/MainMenuScene/PlanetClouds_Mat_Normal_DirectX.png" type="Texture" id=2]
+
+[resource]
+flags_transparent = true
+vertex_color_is_srgb = true
+params_blend_mode = 1
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+normal_enabled = true
+normal_scale = 0.84
+normal_texture = ExtResource( 2 )
