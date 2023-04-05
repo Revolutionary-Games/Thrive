@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/iron_bump.png-1261ba14aff12a85b13c6e01a8de3aac.s3tc.stex"
-path.etc2="res://.import/iron_bump.png-1261ba14aff12a85b13c6e01a8de3aac.etc2.stex"
+path.s3tc="res://.import/MainMenuBGStars.png-71f43355f9e82cdf64aa3bb738dec9af.s3tc.stex"
+path.etc2="res://.import/MainMenuBGStars.png-71f43355f9e82cdf64aa3bb738dec9af.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/iron_bump.png"
-dest_files=[ "res://.import/iron_bump.png-1261ba14aff12a85b13c6e01a8de3aac.s3tc.stex", "res://.import/iron_bump.png-1261ba14aff12a85b13c6e01a8de3aac.etc2.stex" ]
+source_file="res://assets/textures/MainMenuScene/MainMenuBGStars.png"
+dest_files=[ "res://.import/MainMenuBGStars.png-71f43355f9e82cdf64aa3bb738dec9af.s3tc.stex", "res://.import/MainMenuBGStars.png-71f43355f9e82cdf64aa3bb738dec9af.etc2.stex" ]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=0
 flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
