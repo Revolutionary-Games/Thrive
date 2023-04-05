@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/CustomPopup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/CustomWindow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/CustomPopupMenu.cs" type="Script" id=3]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0

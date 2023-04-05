@@ -28,11 +28,11 @@ public class CustomConfirmationDialog : CustomDialog
     private FocusGrabber? focusGrabber;
 #pragma warning restore CA2213
 
+    /// <summary>
+    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomDialog.Closed"/>.
+    /// </summary>
     [Signal]
     public delegate void Confirmed();
-
-    [Signal]
-    public delegate void Cancelled();
 
     /// <summary>
     ///   If true, turns this dialog into its AcceptDialog form (only Ok button visible).
@@ -175,6 +175,6 @@ public class CustomConfirmationDialog : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
-        EmitSignal(nameof(Cancelled));
+        EmitSignal(nameof(Closed));
     }
 }

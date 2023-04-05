@@ -21,9 +21,6 @@ public class ProcessPanel : CustomDialog
     private Container closeButtonContainer = null!;
 #pragma warning restore CA2213
 
-    [Signal]
-    public delegate void OnClosed();
-
     public ProcessStatistics? ShownData { get; set; }
 
     public override void _Ready()
@@ -48,12 +45,6 @@ public class ProcessPanel : CustomDialog
         {
             processList.ProcessesToShow = null;
         }
-    }
-
-    protected override void OnHidden()
-    {
-        base.OnHidden();
-        EmitSignal(nameof(OnClosed));
     }
 
     protected override void Dispose(bool disposing)

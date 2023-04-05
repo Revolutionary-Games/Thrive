@@ -11,6 +11,10 @@ public static class ControlHelpers
     ///   Shows the popup in the center of the screen and shrinks it to the minimum size,
     ///   alternative to PopupCentered.
     /// </summary>
+    /// <remarks>
+    ///   NOTE: This should be rarely used since for popups you should've already been using the ones
+    ///   deriving from <see cref="CustomWindow"/> anyway. This is kept here as a backup.
+    /// </remarks>
     public static void PopupCenteredShrink(this Popup popup, bool runSizeUnstuck = true)
     {
         popup.PopupCentered(popup.GetMinimumSize());
@@ -20,60 +24,23 @@ public static class ControlHelpers
         {
             Invoke.Instance.Queue(() =>
             {
-                Unstuck(popup);
+                popup.MoveToCenter();
 
                 // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double unstucking
-                Invoke.Instance.Queue(() => Unstuck(popup));
+                Invoke.Instance.Queue(() => popup.MoveToCenter());
             });
         }
     }
 
-    /// <summary>
-    ///   Shows the custom popup in the center of the screen and shrinks it to the minimum size.
-    /// </summary>
-    public static void PopupCenteredShrink(this CustomPopup popup, bool runSizeUnstuck = true)
+    public static void MoveToCenter(this Control popup)
     {
-        popup.OpenCentered(true, popup.GetMinimumSize());
+        // "Refresh" control to correct its size
+        popup.RectSize = Vector2.Zero;
 
-        // In case the popup sizing stuck (this happens sometimes)
-        if (runSizeUnstuck)
-        {
-            Invoke.Instance.Queue(() =>
-            {
-                Unstuck(popup);
+        var parentRect = popup.GetViewport().GetVisibleRect();
 
-                // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double unstucking
-                Invoke.Instance.Queue(() => Unstuck(popup));
-            });
-        }
-    }
-
-    public static void Open(this CustomPopup popup, bool modal = true, Rect2? rect = null)
-    {
-        if (modal)
-        {
-            popup.OpenModal();
-        }
-        else
-        {
-            popup.Open();
-        }
-
-        if (rect.HasValue)
-        {
-            popup.RectPosition = rect.Value.Position;
-            popup.RectSize = rect.Value.Size;
-        }
-    }
-
-    public static void OpenCentered(this CustomPopup popup, bool modal = true, Vector2? size = null)
-    {
-        var windowSize = popup.GetViewportRect().Size;
-
-        var rectPosition = ((windowSize - (size ?? popup.RectSize) * popup.RectScale) / 2.0f).Floor();
-        var rectSize = size ?? popup.RectSize;
-
-        popup.Open(modal, new Rect2(rectPosition, rectSize));
+        // Center it
+        popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
     }
 
     /// <summary>
@@ -288,16 +255,5 @@ public static class ControlHelpers
             quarterCircle, quarterCircle * 2,
             Constants.CUSTOM_FOCUS_DRAWER_RADIUS_POINTS, Constants.CustomFocusDrawerColour,
             arcWidth, Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
-    }
-
-    private static void Unstuck(Control popup)
-    {
-        // "Refresh" the popup to correct its size
-        popup.RectSize = Vector2.Zero;
-
-        var parentRect = popup.GetViewport().GetVisibleRect();
-
-        // Re-center it
-        popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
     }
 }

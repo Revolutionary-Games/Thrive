@@ -44,7 +44,7 @@ using Godot;
 /// </remarks>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomDialog : CustomPopup
+public class CustomDialog : CustomWindow
 {
     private string windowTitle = string.Empty;
     private string translatedWindowTitle = string.Empty;
@@ -75,11 +75,11 @@ public class CustomDialog : CustomPopup
     private bool decorate = true;
 
     /// <summary>
-    ///   NOTE: This is only emitted WHEN the close button (top right corner) is pressed, this doesn't account
-    ///   for any other hiding behaviors.
+    ///   This is emitted by any means to hide this dialog but NOT the hiding itself, for that use
+    ///   <c>CanvasItem.hide</c> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
-    public delegate void Dismissed();
+    public delegate void Closed();
 
     [Flags]
     private enum DragType
@@ -623,6 +623,6 @@ public class CustomDialog : CustomPopup
     {
         GUICommon.Instance.PlayButtonPressSound();
         Close();
-        EmitSignal(nameof(Dismissed));
+        EmitSignal(nameof(Closed));
     }
 }

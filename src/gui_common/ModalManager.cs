@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 
 /// <summary>
-///   Handles a stack of <see cref="CustomPopup"/>s that blocks GUI inputs.
+///   Handles a stack of <see cref="CustomWindow"/>s that blocks GUI inputs.
 /// </summary>
 public class ModalManager : NodeWithInput
 {
@@ -14,8 +14,8 @@ public class ModalManager : NodeWithInput
     private Control activeModalContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private System.Collections.Generic.Dictionary<CustomPopup, Node> parents = new();
-    private Stack<CustomPopup> modalStack = new();
+    private System.Collections.Generic.Dictionary<CustomWindow, Node> parents = new();
+    private Stack<CustomWindow> modalStack = new();
 
     private bool modalsDirty = true;
 
@@ -60,7 +60,7 @@ public class ModalManager : NodeWithInput
     ///     <see cref="Invoke.Queue"/>.
     ///   </para>
     /// </remarks>
-    public void MakeModal(CustomPopup popup)
+    public void MakeModal(CustomWindow popup)
     {
         if (modalStack.Contains(popup))
             return;
@@ -94,7 +94,7 @@ public class ModalManager : NodeWithInput
         popup.Notification(Control.NotificationModalClose);
 
         if (popup is CustomDialog dialog)
-            dialog.EmitSignal(nameof(CustomDialog.Dismissed));
+            dialog.EmitSignal(nameof(CustomDialog.Closed));
 
         return true;
     }
@@ -102,7 +102,7 @@ public class ModalManager : NodeWithInput
     /// <summary>
     ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
     /// </summary>
-    public CustomPopup? GetCurrentlyActiveExclusivePopup()
+    public CustomWindow? GetCurrentlyActiveExclusivePopup()
     {
         if (modalStack.Count <= 0)
             return null;
@@ -170,7 +170,7 @@ public class ModalManager : NodeWithInput
     /// <summary>
     ///   Called when <paramref name="popup"/> is closed.
     /// </summary>
-    private void OnModalLost(CustomPopup popup)
+    private void OnModalLost(CustomWindow popup)
     {
         if (!modalStack.Contains(popup))
             return;

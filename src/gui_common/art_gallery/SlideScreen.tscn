@@ -47,10 +47,11 @@ script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
+Exclusive = true
+PreventsMouseCaptureWhileOpen = false
 Movable = false
 ShowCloseButton = false
 Decorate = false
-PreventsMouseCaptureWhileOpen = false
 SlideTextureRectPath = NodePath("Overlay/SlideableTextureRect")
 SlideToolbarPath = NodePath("Overlay/Toolbar")
 SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")

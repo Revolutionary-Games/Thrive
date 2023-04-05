@@ -333,7 +333,7 @@ public class GalleryViewer : CustomDialog
             return;
 
         slideScreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
-        slideScreen.Close();
+        slideScreen.Open();
     }
 
     private void OnGalleryItemPressed(GalleryCard item)

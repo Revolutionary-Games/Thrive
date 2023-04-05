@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class CustomPopupMenu : CustomPopup
+public class CustomPopupMenu : CustomWindow
 {
     [Export]
     public NodePath? PanelPath;

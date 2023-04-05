@@ -545,7 +545,7 @@ Godot usage
 - We have rewritten several controls to workaround Godot bugs or limitations,
   and add custom features. All these rewritten/customized controls are placed
   in "res://src/gui_common/". Currently there are `CustomCheckBox`,
-  `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
+  `CustomWindow`, `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
   `TweakedColourPicker`. Consider using these custom types rather than the
   built-in types to ensure consistency across the GUI.
@@ -567,12 +567,15 @@ Godot usage
   (`?`). The content of the popup should give more details and also
   end with a question.
 
-- Popups should be shown with `PopupCenteredShrink()`. If size
-  shrinking is not desired, `PopupCentered()` should be used
-  instead. Unless there's a good reason why something else is
-  required, prefer to use either of them. Don't use `Popup_` prefer to
-  use `Show` or `ShowModal` only if those both don't work then you can
-  consider using `Popup_`.
+- Popups (which derives from `CustomWindow`) should be shown with
+  `PopupCenteredShrink()`. However, if you don't wish to center the popup,
+  simply use `CustomWindow.OpenModal()`.
+
+- Using built-in `Popup` is not recommended since a custom one tailored
+  for the game already exist but for posterity similar rules in
+  the above point still stands. In addition, don't use `Popup.Popup_`,
+  instead prefer to use `Popup.Show` or `Popup.ShowModal`, only if those
+  don't work then you can consider using `Popup.Popup_`.
 
 - Don't use `Godot.Color(string)` constructor, unless explicitly
   needed. An explicit need is for example loading from JSON or from

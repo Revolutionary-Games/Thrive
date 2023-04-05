@@ -376,8 +376,32 @@ anchor_bottom = 1.0
 margin_right = -830.0
 margin_bottom = -260.0
 rect_min_size = Vector2( 450, 460 )
+Exclusive = true
 PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
+
+[node name="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer" index="0"]
+margin_right = 450.0
+margin_bottom = 460.0
+
+[node name="CustomRichTextLabel" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="0"]
+margin_right = 450.0
+margin_bottom = 24.0
+
+[node name="Control" type="Control" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="1"]
+margin_top = 28.0
+margin_right = 450.0
+margin_bottom = 424.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="2"]
+margin_left = 125.0
+margin_top = 428.0
+margin_right = 325.0
+margin_bottom = 460.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 6 )
+text = "CONTINUE_THRIVING"
 
 [connection signal="hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
@@ -396,3 +420,6 @@ Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 [connection signal="hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
 [connection signal="hide" from="LeaveColonyTutorial" to="." method="OnSpecificCloseClicked" binds= [ "LeaveColonyTutorial" ]]
 [connection signal="hide" from="EarlyMulticellularWelcome" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
+[connection signal="pressed" from="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
+
+[editable path="EarlyMulticellularWelcome"]

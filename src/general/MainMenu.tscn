@@ -903,7 +903,6 @@ margin_top = 28.0
 margin_bottom = 628.0
 
 [node name="GalleryViewer" parent="." instance=ExtResource( 17 )]
-Exclusive = false
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -950,7 +949,6 @@ margin_top = 28.0
 margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
-Exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
@@ -962,7 +960,6 @@ rect_min_size = Vector2( 550, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-Exclusive = false
 WindowTitle = "NO_MODS_ENABLED"
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -973,14 +970,12 @@ DialogType = 1
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 550, 370 )
-Exclusive = false
 WindowTitle = "SAFE_MODE_TITLE"
 HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
 rect_min_size = Vector2( 400, 350 )
-Exclusive = false
 WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
@@ -988,7 +983,6 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 margin_right = 163.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 500, 0 )
-Exclusive = false
 WindowTitle = "THANK_YOU_TITLE"
 HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE"
@@ -999,7 +993,6 @@ NoticeType = 1
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 500, 0 )
-Exclusive = false
 WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
