@@ -358,18 +358,18 @@ color_ramp = SubResource( 13 )
 hue_variation = 0.4
 hue_variation_random = 0.22
 
-[node name="Mic_IronBIG02" parent="." instance=ExtResource( 4 )]
+[node name="MicIronBIG02" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.060048, -139.594, -54.8965, -133.706, 24.8328, -63.2923, 67.9896, 48.9588, -124.42, 4.47231, 4.28959, -0.635183 )
 material_override = SubResource( 14 )
 
-[node name="Mic_IronBIG03" parent="." instance=ExtResource( 4 )]
+[node name="MicIronBIG03" parent="." instance=ExtResource( 4 )]
 transform = Transform( 21.4436, 0, -148.459, 0, 150, 0, 148.459, 0, 21.4436, 5.83912, 2.56639, -2.33573 )
 material_override = SubResource( 15 )
 
-[node name="Mic_IronBIG01" parent="." instance=ExtResource( 4 )]
+[node name="MicIronBIG01" parent="." instance=ExtResource( 4 )]
 transform = Transform( 150, 0, 0, 0, 150, 0, 0, 0, 150, 3.2331, 2.33866, 5.82775 )
 material_override = SubResource( 16 )
 
-[node name="Mic_IronBIG02" parent="Mic_IronBIG01" instance=ExtResource( 4 )]
+[node name="MicIronBIG02" parent="MicIronBIG01" instance=ExtResource( 4 )]
 transform = Transform( -0.34829, -0.937373, -0.00504891, -0.123348, 0.0404906, 0.991537, -0.929235, 0.345965, -0.129726, 0.0047972, 0.00606436, -0.0166267 )
 material_override = SubResource( 17 )
