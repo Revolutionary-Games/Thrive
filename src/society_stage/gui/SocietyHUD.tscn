@@ -148,6 +148,7 @@ hint_tooltip = "Posses a member of your species for direct control
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
+disabled = true
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": "PLACEHOLDER as the tooltip is a placeholder"
@@ -225,3 +226,4 @@ rect_min_size = Vector2( 8, 5 )
 [connection signal="OnPausePressed" from="HUDBottomBar" to="." method="PauseButtonPressed"]
 [connection signal="OnProcessesPressed" from="HUDBottomBar" to="." method="OpenResearchScreen"]
 [connection signal="OnStatisticsPressed" from="HUDBottomBar" to="." method="StatisticsButtonPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildingPlacingRequest"]

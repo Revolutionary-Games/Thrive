@@ -8,6 +8,9 @@ public class StrategicCamera : Camera
 {
     private bool edgePanEnabled;
 
+    private bool cursorDirty = true;
+    private Vector3 cursorWorldPos;
+
     /// <summary>
     ///   The position the camera is over
     /// </summary>
@@ -54,6 +57,21 @@ public class StrategicCamera : Camera
     /// </summary>
     [Export]
     public bool AllowPlayerInput { get; set; } = true;
+
+    /// <summary>
+    ///   Returns the position the player is pointing to with their cursor
+    /// </summary>
+    [JsonIgnore]
+    public Vector3 CursorWorldPos
+    {
+        get
+        {
+            if (cursorDirty)
+                UpdateCursorWorldPos();
+            return cursorWorldPos;
+        }
+        private set => cursorWorldPos = value;
+    }
 
     public override void _Ready()
     {
@@ -167,5 +185,31 @@ public class StrategicCamera : Camera
         var movement = rotation.Xform(scaledMovement);
 
         WorldLocation += movement;
+    }
+
+    private void UpdateCursorWorldPos()
+    {
+        // TODO: this will need access to the terrain data or cast a physics ray or something here
+        var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
+
+        var viewPort = GetViewport();
+
+        if (viewPort == null)
+        {
+            GD.PrintErr("Strategic camera is not related to a viewport, can't update mouse world position");
+            return;
+        }
+
+        var mousePos = viewPort.GetMousePosition();
+
+        var intersection = worldPlane.IntersectRay(ProjectRayOrigin(mousePos),
+            ProjectRayNormal(mousePos));
+
+        if (intersection.HasValue)
+        {
+            CursorWorldPos = intersection.Value;
+        }
+
+        cursorDirty = false;
     }
 }

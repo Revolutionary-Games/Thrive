@@ -107,6 +107,16 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess
         }
     }
 
+    public void PerformBuildOrOpenMenu()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool CancelBuildingPlaceIfInProgress()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();

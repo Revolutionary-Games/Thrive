@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/society_stage/SocietyStage.cs" type="Script" id=1]
 [ext_resource path="res://src/society_stage/StrategicCamera.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/textures/environment/Terrain_02_Albedo.png" type="Texture" id=6]
 [ext_resource path="res://src/society_stage/gui/SocietyHUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/society_stage/PlayerSocietyInput.tscn" type="PackedScene" id=10]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1000, 0.05, 1000 )
@@ -66,10 +68,15 @@ mesh = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -400 )
 mesh = SubResource( 5 )
 
+[node name="PlayerSocietyInput" parent="." instance=ExtResource( 10 )]
+
 [node name="SocietyHUD" parent="." instance=ExtResource( 7 )]
 MenuPath = NodePath("../PauseMenu")
 
+[node name="SelectBuildingPopup" parent="." instance=ExtResource( 9 )]
+
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
 
+[connection signal="OnBuildingPlacingRequested" from="SocietyHUD" to="PlayerSocietyInput" method="OpenBuildMenu"]
 [connection signal="OnOpenMenu" from="SocietyHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="SocietyHUD" to="PauseMenu" method="OpenToHelp"]
