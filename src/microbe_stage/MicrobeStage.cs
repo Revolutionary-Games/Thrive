@@ -507,9 +507,17 @@ public class MicrobeStage : CreatureStageBase<Microbe>
             wonOnce = true;
         }
 
+        // Update the player's cell
+        Player!.ApplySpecies(Player.Species);
+
+        // Reset all the duplicates organelles of the player
+        Player.ResetOrganelleLayout();
+
+        var playerPosition = Player.GlobalTransform.origin;
+
         // Spawn another cell from the player species
-        // This is done first to ensure that the player colony is still intact for spawn separation calculation
-        var daughter = Player!.Divide();
+        // This needs to be done after updating the player so that multicellular organisms are accurately separated
+        var daughter = Player.Divide();
 
         daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
 
@@ -520,15 +528,39 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
             // TODO: add more extra offset between the player and the divided cell
             // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
+
+            var daughterPosition = daughter.GlobalTransform.origin;
+            var direction = (playerPosition - daughterPosition).Normalized();
+            float distance = 0.0f;
+
+            if (daughter.Colony != null)
+            {
+                float colonyBonus = 0.0f;
+
+                foreach (var colonyMember in daughter.Colony.ColonyMembers)
+                {
+                    if (colonyMember == daughter)
+                        continue;
+
+                    var positionInColony = colonyMember.GlobalTransform.origin - daughterPosition;
+
+                    float angle = positionInColony.AngleTo(direction);
+
+                    if (angle >= Mathf.Pi / 2.0f)
+                        continue;
+
+                    // Get the length of the part of the vector that's parallel to the direction
+                    float directionalLength = positionInColony.Length() * Mathf.Cos(angle);
+
+                    if (directionalLength > colonyBonus)
+                        colonyBonus = directionalLength;
+                }
+
+                distance += colonyBonus;
+            }
+
+            daughter.Translation += -direction * distance;
         }
-
-        // Update the player's cell
-        Player.ApplySpecies(Player.Species);
-
-        // Reset all the duplicates organelles of the player
-        Player.ResetOrganelleLayout();
-
-        var playerPosition = Player.GlobalTranslation;
 
         // This is queued to run to reduce the massive lag spike that anyway happens on this frame
         // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
