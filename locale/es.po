@@ -55,12 +55,11 @@ msgstr "Abisopelágico"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 #, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "Despertar"
+msgstr "Despertar ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Despertar"
+msgstr "Avanzar al estadio del despertar. Solo disponible una vez tengas suficiente poder cerebral (tejido con axones)"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:684
@@ -154,7 +153,7 @@ msgstr "Permitir que las especies no tengan mutaciones (en caso que no se encuen
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 #, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Estadísticas del Organismo"
+msgstr "Estadísticas genéricas de todos los mundos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 #, fuzzy
@@ -485,8 +484,9 @@ msgid "BENCHMARK_PHASE"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
+#, fuzzy
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Resultados:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
 msgid "BEST_PATCH_COLON"
@@ -553,8 +553,9 @@ msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
 #: ../src/general/GameProperties.cs:136
+#, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Neurona"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
@@ -637,12 +638,14 @@ msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "No se puede mover un meatball a uno de sus descendientes"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:843
+#, fuzzy
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "La cantidad de poder cerebral es demasiado baja para seguir en el estadio actual. Volver a estadios anteriores no está permitido ahora mismo, por favor aumenta el poder cerebral para continuar."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:841
+#, fuzzy
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "No se puede reducir el poder cerebral para volver a estadios anteriores"
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
@@ -1122,8 +1125,9 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanomalía (Azul-Amarillo)"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#, fuzzy
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr ""
+msgstr "Limpiar entradas seleccionadas"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
@@ -1135,8 +1139,9 @@ msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Escalado inversamente"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#, fuzzy
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr ""
+msgstr "Entradas"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:181
 #, fuzzy
@@ -1149,12 +1154,14 @@ msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Escalado inversamente"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1077
+#, fuzzy
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr ""
+msgstr "Por favor primero selecciona una de las recetas de arriba para elaborar"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+#, fuzzy
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr ""
+msgstr "No hay espacio para coger todos los resultados de la elaboración"
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
@@ -1163,8 +1170,9 @@ msgid "CRAFTING_RECIPE_DISPLAY"
 msgstr "Resultados de auto-evo:"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
+#, fuzzy
 msgid "CRAFTING_RECIPE_HAND_AXE"
-msgstr ""
+msgstr "Hacha de mano de piedra"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:277
 #, fuzzy
@@ -1173,12 +1181,14 @@ msgstr "Resultados de auto-evo:"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#, fuzzy
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "Selecciona una receta de elaboración o añade objetos para filtrar"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#, fuzzy
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "Coger todo"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:167
 #, fuzzy
@@ -1285,8 +1295,9 @@ msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/general/NewGameSettings.tscn:941
+#, fuzzy
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Duración del día"
 
 #: ../src/general/NewGameSettings.tscn:989
 #, fuzzy
@@ -1294,12 +1305,14 @@ msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(Crea secretor en el juego aleatoriamente)"
 
 #: ../src/general/NewGameSettings.tscn:915
+#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "Habilitar ciclo día/noche"
 
 #: ../src/general/NewGameSettings.tscn:923
+#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+msgstr "(ADVERTENCIA: la fotosíntesis se vuelve mucho menos viable)"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1323,8 +1336,11 @@ msgstr "muerte"
 
 #: ../src/engine/DebugOverlays.Inspector.cs:24
 #: ../src/engine/DebugOverlays.tscn:181
+#, fuzzy
 msgid "DEBUG_COORDINATES"
 msgstr ""
+"Coordenadas de posición: {0}\n"
+"Mirando a las coordenadas: {1}"
 
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
@@ -1570,12 +1586,14 @@ msgstr ""
 "Si alguno de los popups que necesita están deshabilitados, el botón junto a este puede ser utilizado para mostrar todos los popups nuevamente."
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
+#, fuzzy
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "No mostrar esto de nuevo"
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
+#, fuzzy
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "No advertir de esto de nuevo"
 
 #: ../src/general/OptionsMenu.tscn:612
 msgid "DISPLAY_ABILITIES_BAR"
@@ -1848,8 +1866,9 @@ msgid "EPIPELAGIC"
 msgstr "Epipelágico"
 
 #: ../src/awakening_stage/EquipmentCategory.cs:9
+#, fuzzy
 msgid "EQUIPMENT_TYPE_AXE"
-msgstr ""
+msgstr "Hacha"
 
 #: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR"
@@ -1934,8 +1953,9 @@ msgid "EXIT_TO_LAUNCHER"
 msgstr "Lanzar E"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
+#, fuzzy
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Exportar todos los mundos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
 #, fuzzy
@@ -2049,12 +2069,14 @@ msgstr ""
 "{18}"
 
 #: ../src/general/ThriveNewsFeed.cs:227
+#, fuzzy
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Publicado en {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:233
+#, fuzzy
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Este artículo se ha cortado por ser demasiado largo, por favor lea el original para ver todo el contenido. {0}"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
@@ -2406,8 +2428,9 @@ msgid "HSV"
 msgstr "HSV"
 
 #: ../src/microbe_stage/gui/HUDMessages.cs:49
+#, fuzzy
 msgid "HUD_MESSAGE_MULTIPLE"
-msgstr ""
+msgstr "{0} (x{1})"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
@@ -2503,8 +2526,9 @@ msgid "INTERACTION_CONSTRUCT"
 msgstr "Velocidad de mutación de la AI"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:463
+#, fuzzy
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "Terminar construcción (Faltan materiales necesarios)"
 
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
@@ -2517,8 +2541,9 @@ msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Velocidad de mutación de la AI"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:453
+#, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "Depositar Materiales (no llevas ningún objeto adecuado)"
 
 #: ../src/awakening_stage/InteractionType.cs:23
 #, fuzzy
@@ -2531,16 +2556,19 @@ msgid "INTERACTION_HARVEST"
 msgstr "Velocidad de mutación de la AI"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:439
+#, fuzzy
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "Cosechar (FALTA EQUIPAMIENTO:{0})"
 
 #: ../src/awakening_stage/InteractionType.cs:5
+#, fuzzy
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "Coger"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:416
+#, fuzzy
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Coger (LLENO)"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:458
 msgid "INTERNALS"
@@ -2588,8 +2616,9 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Esquema URL inválido"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#, fuzzy
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Objetos en el suelo"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
 #, fuzzy
@@ -2597,12 +2626,14 @@ msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#, fuzzy
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "Creación"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#, fuzzy
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "Suelo"
 
 #: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1327
 #: ../src/general/OptionsMenu.tscn:1415 ../src/general/OptionsMenu.tscn:1438
@@ -3052,16 +3083,19 @@ msgid "LIGHT"
 msgstr "Luz"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#, fuzzy
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Promedio"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#, fuzzy
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "Día"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:317
+#, fuzzy
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} al mediodía"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
 #, fuzzy
@@ -4151,32 +4185,39 @@ msgid "NOTHING_HERE"
 msgstr "No hay nada aquí"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:496
+#, fuzzy
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "No hay nada con lo que interactuar"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:370
+#, fuzzy
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr ""
+msgstr "Dañado por no tener nada de ATP"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1511
+#, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr ""
+msgstr "Dañado por toxinas en la materia ingerida"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1456
+#, fuzzy
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr ""
+msgstr "Falta {0} para engullir al objetivo"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1794
+#, fuzzy
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr ""
+msgstr "El tamaño actual de la célula es demasiado pequeño para engullir al objetivo"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1789
+#, fuzzy
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "No hay espacio suficiente en el almacenamiento de materia ingerida para engullir al objetivo"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:500
+#, fuzzy
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "El editor ahora está listo para acceder"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 msgid "NOT_FOUND_CHUNK"
@@ -4615,8 +4656,9 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "Título de la página"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
+#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "La última vez que jugaste a Thrive fue {0}, desde entonces han habido {1} nuevos lanzamientos"
 
 #: ../src/general/OptionsMenu.tscn:2169
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
@@ -4625,12 +4667,14 @@ msgid "PATCH_NOTES_TITLE"
 msgstr "Título de la página"
 
 #: ../src/gui_common/PatchNotesList.cs:247
+#, fuzzy
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
+#, fuzzy
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Cambios:"
 
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
@@ -5191,8 +5235,9 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "La població en algunas zonas se divide para formar nuevas especies {0}:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
+#, fuzzy
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "Ejecutar {0} Mundos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 #, fuzzy
@@ -5427,8 +5472,9 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Seleccionar imagen de previsualización"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
+#, fuzzy
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "Selecciona una estructura para colocar"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:84
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
@@ -5489,8 +5535,9 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Activa / Desactiva la advertencia de que perderás los datos no guardados si intentas salir del juego."
 
 #: ../src/general/OptionsMenu.tscn:1823
+#, fuzzy
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "Mostrar noticias de Thrive (Descarga desde internet)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
@@ -5865,32 +5912,38 @@ msgid "STRUCTURE"
 msgstr "Estructura"
 
 #: ../src/awakening_stage/PlacedStructure.cs:68
+#, fuzzy
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "Los materiales necesarios para la construcción han sido depositados"
 
 #: ../simulation_parameters/awakening_stage/structures.json:50
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#, fuzzy
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
-msgstr ""
+msgstr "Construyendo: {0}"
 
 #: ../src/awakening_stage/PlacedStructure.cs:73
+#, fuzzy
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr ""
+msgstr "Materiales necesarios para poder terminar la construcción: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr ""
+msgstr "{0} (Coste inicial: {1}, total: {2})"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
+#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr ""
+msgstr "{0} (NO ES SUFICIENTE PARA EMPEZAR: {1}, total: {2})"
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
+#, fuzzy
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr ""
+msgstr "Centro de sociedad"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:789
 msgid "SUCCESSFUL_KILL"
@@ -5975,17 +6028,20 @@ msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
+#, fuzzy
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
-msgstr ""
+msgstr "Herramientas simples de piedra"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:12
+#, fuzzy
 msgid "TECHNOLOGY_SOCIETY_CENTER"
-msgstr ""
+msgstr "Construyendo centro de sociedad"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:96
 #: ../src/late_multicellular_stage/MulticellularStage.cs:806
+#, fuzzy
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
-msgstr ""
+msgstr "Tecnología desbloqueada: {0}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
@@ -6246,8 +6302,9 @@ msgid "TOOLS"
 msgstr "Herramientas"
 
 #: ../simulation_parameters/awakening_stage/equipment.json:3
+#, fuzzy
 msgid "TOOL_HAND_AXE"
-msgstr ""
+msgstr "Hacha de mano"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
 msgid "TOTAL_POPULATION_COLON"
@@ -6552,8 +6609,9 @@ msgid "UNTITLED"
 msgstr "Sin título"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
+#, fuzzy
 msgid "UPGRADE_CILIA_PULL"
-msgstr ""
+msgstr "Tirando de los cilios"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
@@ -6566,8 +6624,9 @@ msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "La lipasa permite que la célula disuelva varios tipos de membranas. Tu célula ya produce algunas de las enzimas necesarias, pero el Lisosoma hace que este proceso sea mas efectivo."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:838
+#, fuzzy
 msgid "UPGRADE_NAME_NONE"
-msgstr ""
+msgstr "No hay mejora"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -6798,8 +6857,9 @@ msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr "Una vez este elemento sea publicado, será visible para todos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#, fuzzy
 msgid "WORLD"
-msgstr ""
+msgstr "Mundo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
 #, fuzzy
@@ -6828,16 +6888,19 @@ msgid "WORST_PATCH_COLON"
 msgstr "Peor bioma:"
 
 #: ../src/general/OptionsMenu.tscn:598
+#, fuzzy
 msgid "XBOX360"
-msgstr ""
+msgstr "Xbox 360"
 
 #: ../src/general/OptionsMenu.tscn:598
+#, fuzzy
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 #: ../src/general/OptionsMenu.tscn:598
+#, fuzzy
 msgid "XBOX_SERIES"
-msgstr ""
+msgstr "Xbox Series X"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
