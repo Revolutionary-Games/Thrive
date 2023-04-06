@@ -166,15 +166,8 @@ public class CustomConfirmationDialog : CustomDialog
         GUICommon.Instance.PlayButtonPressSound();
 
         if (HideOnOk)
-            Hide();
+            Close();
 
         EmitSignal(nameof(Confirmed));
-    }
-
-    private void OnCancelPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        Hide();
-        EmitSignal(nameof(Canceled));
     }
 }

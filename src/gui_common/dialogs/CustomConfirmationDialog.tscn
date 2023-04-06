@@ -92,5 +92,5 @@ margin_right = 133.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ConfirmButton" to="." method="OnConfirmPressed"]

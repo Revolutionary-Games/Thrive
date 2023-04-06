@@ -51,11 +51,9 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
         return false;
     }
 
-    protected override void OnHidden()
+    private void OnConfirmed()
     {
         if (checkbox.Pressed)
             Settings.Instance.PermanentlyDismissNotice(NoticeType);
-
-        base.OnHidden();
     }
 }
