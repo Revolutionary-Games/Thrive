@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Handles input for the society stage
 /// </summary>
 public class PlayerSocietyInput : NodeWithInput
