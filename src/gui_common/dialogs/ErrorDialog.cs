@@ -87,7 +87,7 @@ public class ErrorDialog : CustomDialog
         ErrorMessage = message;
         ExceptionInfo = exception;
         copyException.Visible = allowExceptionCopy;
-        this.PopupCenteredShrink();
+        PopupCenteredShrink();
 
         onDismissReturnToMenu = returnToMenu;
         onCloseCallback = onClosed;

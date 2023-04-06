@@ -60,10 +60,4 @@ public class ProcessPanel : CustomDialog
 
         base.Dispose(disposing);
     }
-
-    private void OnClosePressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        Close();
-    }
 }

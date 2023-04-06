@@ -22,6 +22,12 @@ public class CustomWindow : Control
     [Export]
     public bool PreventsMouseCaptureWhileOpen { get; set; } = true;
 
+    /// <summary>
+    ///   If true, the window size is locked to the size of the viewport.
+    /// </summary>
+    [Export]
+    public bool FullRect { get; set; }
+
     private bool MouseUnCaptureActive
     {
         set
@@ -51,17 +57,24 @@ public class CustomWindow : Control
         {
             case NotificationEnterTree:
                 SetAsToplevel(true);
+                GetTree().Root.Connect("size_changed", this, nameof(ApplyRectSettings));
                 break;
             case NotificationExitTree:
                 MouseUnCaptureActive = false;
+                GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
                 break;
             case NotificationReady:
                 Hide();
+                ApplyRectSettings();
+                break;
+            case NotificationResized:
+                ApplyRectSettings();
                 break;
             case NotificationVisibilityChanged:
                 if (IsVisibleInTree())
                 {
                     MouseUnCaptureActive = true;
+                    ApplyRectSettings();
                     OnShown();
                 }
                 else
@@ -107,7 +120,7 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Shows this popup with a custom behavior, if any, at the center of the screen.
+    ///   Shows this popup at the center of the screen.
     /// </summary>
     public void OpenCentered(bool modal = true, Vector2? size = null)
     {
@@ -117,6 +130,14 @@ public class CustomWindow : Control
         var rectSize = size ?? RectSize;
 
         Open(modal, new Rect2(rectPosition, rectSize));
+    }
+
+    /// <summary>
+    ///   Shows this popup by covering the whole screen.
+    /// </summary>
+    public void OpenFullRect()
+    {
+        Open(true, GetFullRect());
     }
 
     /// <summary>
@@ -159,6 +180,28 @@ public class CustomWindow : Control
     /// </summary>
     protected virtual void OnHidden()
     {
+    }
+
+    /// <summary>
+    ///   Returns this window's rect in fullscreen mode.
+    /// </summary>
+    protected virtual Rect2 GetFullRect()
+    {
+        var viewportSize = GetViewportRect().Size;
+        return new Rect2(Vector2.Zero, viewportSize);
+    }
+
+    /// <summary>
+    ///   Applies final adjustments to this window's rect.
+    /// </summary>
+    protected virtual void ApplyRectSettings()
+    {
+        if (FullRect)
+        {
+            var fullRect = GetFullRect();
+            RectPosition = fullRect.Position;
+            RectSize = fullRect.Size;
+        }
     }
 
     /// <summary>

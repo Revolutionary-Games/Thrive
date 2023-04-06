@@ -450,11 +450,6 @@ public class SlideScreen : CustomDialog
         SlideshowMode = pressed;
     }
 
-    private void OnCloseButtonPressed()
-    {
-        Close();
-    }
-
     private void OnCloseButtonUpdate()
     {
         var icon = closeButton!.GetChild<TextureRect>(0);

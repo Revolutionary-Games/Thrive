@@ -13,9 +13,9 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
+PreventsMouseCaptureWhileOpen = false
 WindowTitle = "PROCESS_PANEL_TITLE"
 Resizable = true
-PreventsMouseCaptureWhileOpen = false
 ProcessListPath = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ProcessList")
 ShowCustomCloseButton = false
 CloseButtonContainerPath = NodePath("MarginContainer/VBoxContainer/BottomButtonContainer")
@@ -73,4 +73,4 @@ margin_right = 70.0
 margin_bottom = 32.0
 text = "CLOSE"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomButtonContainer/Button" to="." method="OnClosePressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomButtonContainer/Button" to="." method="OnCloseButtonPressed"]

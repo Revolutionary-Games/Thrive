@@ -94,7 +94,7 @@ public class ModalManager : NodeWithInput
         popup.Notification(Control.NotificationModalClose);
 
         if (popup is CustomDialog dialog)
-            dialog.EmitSignal(nameof(CustomDialog.Closed));
+            dialog.EmitSignal(nameof(CustomDialog.Canceled));
 
         return true;
     }

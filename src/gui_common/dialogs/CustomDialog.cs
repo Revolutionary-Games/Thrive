@@ -79,7 +79,7 @@ public class CustomDialog : CustomWindow
     ///   <c>CanvasItem.hide</c> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
-    public delegate void Closed();
+    public delegate void Canceled();
 
     [Flags]
     private enum DragType
@@ -111,12 +111,6 @@ public class CustomDialog : CustomWindow
             Update();
         }
     }
-
-    /// <summary>
-    ///   If true, the dialog window size is locked to the size of the viewport.
-    /// </summary>
-    [Export]
-    public bool FullRect { get; set; }
 
     /// <summary>
     ///   If true, the user can resize the window.
@@ -176,9 +170,6 @@ public class CustomDialog : CustomWindow
 
     public override void _EnterTree()
     {
-        // To make popup rect readjustment react to window resizing
-        GetTree().Root.Connect("size_changed", this, nameof(ApplyRectSettings));
-
         customPanel = GetStylebox("custom_panel", "WindowDialog");
         titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
         titleBarHeight = decorate ? GetConstant("custom_titlebar_height", "WindowDialog") : 0;
@@ -192,13 +183,6 @@ public class CustomDialog : CustomWindow
         base._EnterTree();
     }
 
-    public override void _ExitTree()
-    {
-        GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
-
-        base._ExitTree();
-    }
-
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -209,14 +193,12 @@ public class CustomDialog : CustomWindow
             {
                 SetupCloseButton();
                 UpdateChildRects();
-                ApplyRectSettings();
                 break;
             }
 
             case NotificationResized:
             {
                 UpdateChildRects();
-                ApplyRectSettings();
                 break;
             }
 
@@ -358,15 +340,9 @@ public class CustomDialog : CustomWindow
         return rect.HasPoint(point);
     }
 
-    public void OpenFullRect()
-    {
-        this.Open(true, GetFullRect());
-    }
-
     protected override void OnShown()
     {
         base.OnShown();
-        ApplyRectSettings();
         UpdateChildRects();
     }
 
@@ -377,10 +353,34 @@ public class CustomDialog : CustomWindow
         closeHovered = false;
     }
 
-    protected Rect2 GetFullRect()
+    protected override Rect2 GetFullRect()
     {
-        var viewportSize = GetScreenSize();
-        return new Rect2(new Vector2(0, titleBarHeight), new Vector2(viewportSize.x, viewportSize.y));
+        var rect = base.GetFullRect();
+        rect.Position = new Vector2(0, titleBarHeight);
+        rect.Size = new Vector2(rect.Size.x, rect.Size.y - titleBarHeight);
+        return rect;
+    }
+
+    protected override void ApplyRectSettings()
+    {
+        base.ApplyRectSettings();
+
+        var screenSize = GetViewportRect().Size;
+
+        if (BoundToScreenArea)
+        {
+            // Clamp position to ensure window stays inside the screen
+            RectPosition = new Vector2(
+                Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
+                Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
+        }
+
+        if (Resizable)
+        {
+            // Size can't be bigger than the viewport
+            RectSize = new Vector2(
+                Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
+        }
     }
 
     /// <summary>
@@ -453,11 +453,6 @@ public class CustomDialog : CustomWindow
             MouseDefaultCursorShape = cursor;
     }
 
-    private Vector2 GetScreenSize()
-    {
-        return GetViewport().GetVisibleRect().Size;
-    }
-
     /// <summary>
     ///   Updates the window position and size while in a dragging operation.
     /// </summary>
@@ -477,7 +472,7 @@ public class CustomDialog : CustomWindow
         else
         {
             // Handle border dragging
-            var screenSize = GetScreenSize();
+            var screenSize = GetViewportRect().Size;
 
             if (dragType.HasFlag(DragType.ResizeTop))
             {
@@ -509,28 +504,7 @@ public class CustomDialog : CustomWindow
         RectPosition = newPosition;
         RectSize = newSize;
 
-        if (BoundToScreenArea)
-            FixRect();
-    }
-
-    /// <summary>
-    ///   Applies final adjustments to the window's rect.
-    /// </summary>
-    private void FixRect()
-    {
-        var screenSize = GetScreenSize();
-
-        // Clamp position to ensure window stays inside the screen
-        RectPosition = new Vector2(
-            Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
-            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
-
-        if (Resizable)
-        {
-            // Size can't be bigger than the viewport
-            RectSize = new Vector2(
-                Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
-        }
+        ApplyRectSettings();
     }
 
     private void SetupCloseButton()
@@ -590,23 +564,6 @@ public class CustomDialog : CustomWindow
         }
     }
 
-    private void SetToFullRect()
-    {
-        var fullRect = GetFullRect().Size;
-
-        RectPosition = new Vector2(0, titleBarHeight);
-        RectSize = new Vector2(fullRect.x, fullRect.y - titleBarHeight);
-    }
-
-    private void ApplyRectSettings()
-    {
-        if (FullRect)
-            SetToFullRect();
-
-        if (BoundToScreenArea)
-            FixRect();
-    }
-
     private void OnCloseButtonMouseEnter()
     {
         closeHovered = true;
@@ -623,6 +580,6 @@ public class CustomDialog : CustomWindow
     {
         GUICommon.Instance.PlayButtonPressSound();
         Close();
-        EmitSignal(nameof(Closed));
+        EmitSignal(nameof(Canceled));
     }
 }

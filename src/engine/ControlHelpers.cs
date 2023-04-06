@@ -39,7 +39,7 @@ public static class ControlHelpers
         // "Refresh" control to correct its size
         popup.RectSize = Vector2.Zero;
 
-        var parentRect = popup.GetViewport().GetVisibleRect();
+        var parentRect = popup.GetViewportRect();
 
         // Center it
         popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;

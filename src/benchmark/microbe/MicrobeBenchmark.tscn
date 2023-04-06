@@ -173,6 +173,6 @@ margin_right = 240.0
 margin_bottom = 35.0
 text = "COPY_RESULTS"
 
-[connection signal="Closed" from="GUIContainer" to="." method="ExitBenchmark"]
+[connection signal="Canceled" from="GUIContainer" to="." method="ExitBenchmark"]
 [connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/QuitBenchmark" to="." method="ExitBenchmark"]
 [connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/Copy" to="." method="CopyResultsToClipboard"]

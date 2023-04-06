@@ -29,7 +29,7 @@ public class CustomConfirmationDialog : CustomDialog
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomDialog.Closed"/>.
+    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomDialog.Canceled"/>.
     /// </summary>
     [Signal]
     public delegate void Confirmed();
@@ -175,6 +175,6 @@ public class CustomConfirmationDialog : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
-        EmitSignal(nameof(Closed));
+        EmitSignal(nameof(Canceled));
     }
 }

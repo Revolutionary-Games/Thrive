@@ -108,6 +108,13 @@ public abstract class HexPopupMenu : CustomPopupMenu
         }
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        UpdateModifyButton();
+    }
+
     public override void _EnterTree()
     {
         InputManager.RegisterReceiver(this);
@@ -158,8 +165,6 @@ public abstract class HexPopupMenu : CustomPopupMenu
         deleteButton = GetNode<Button>(DeleteButtonPath);
         moveButton = GetNode<Button>(MoveButtonPath);
         modifyButton = GetNode<Button>(ModifyButtonPath);
-
-        UpdateModifyButton();
     }
 
     protected abstract void UpdateTitleLabel();

@@ -117,7 +117,7 @@ focus_previous = NodePath("../ScrollContainer/VBoxContainer/ControllerInputAxisV
 size_flags_horizontal = 4
 text = "APPLY"
 
-[connection signal="Closed" from="." to="." method="OnCancel"]
+[connection signal="Canceled" from="." to="." method="OnCancel"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start" to="." method="OnStart"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Reset" to="." method="ResetDeadzones"]
 [connection signal="pressed" from="VBoxContainer/Apply" to="." method="OnConfirmed"]
