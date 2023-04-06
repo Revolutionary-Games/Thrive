@@ -526,9 +526,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
-            // TODO: add more extra offset between the player and the divided cell
-            // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
-
+            // Add more extra offset between the player and the divided cell
             var daughterPosition = daughter.GlobalTransform.origin;
             var direction = (playerPosition - daughterPosition).Normalized();
             float distance = 0.0f;
