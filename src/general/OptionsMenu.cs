@@ -221,6 +221,12 @@ public class OptionsMenu : ControlWithInput
     public NodePath ThreeDimensionalMovementPath = null!;
 
     [Export]
+    public NodePath MouseEdgePanEnabledPath = null!;
+
+    [Export]
+    public NodePath MouseEdgePanSensitivityPath = null!;
+
+    [Export]
     public NodePath InputGroupListPath = null!;
 
     [Export]
@@ -389,6 +395,9 @@ public class OptionsMenu : ControlWithInput
     private OptionButton twoDimensionalMovement = null!;
     private OptionButton threeDimensionalMovement = null!;
 
+    private Button mouseEdgePanEnabled = null!;
+    private Slider mouseEdgePanSensitivity = null!;
+
     private InputGroupList inputGroupList = null!;
 
     private ControllerDeadzoneConfiguration deadzoneConfigurationPopup = null!;
@@ -547,6 +556,9 @@ public class OptionsMenu : ControlWithInput
 
         twoDimensionalMovement = GetNode<OptionButton>(TwoDimensionalMovementPath);
         threeDimensionalMovement = GetNode<OptionButton>(ThreeDimensionalMovementPath);
+
+        mouseEdgePanEnabled = GetNode<Button>(MouseEdgePanEnabledPath);
+        mouseEdgePanSensitivity = GetNode<Slider>(MouseEdgePanSensitivityPath);
 
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
         inputGroupList.OnControlsChanged += OnControlsChanged;
@@ -737,6 +749,10 @@ public class OptionsMenu : ControlWithInput
         twoDimensionalMovement.Selected = Movement2DToIndex(settings.TwoDimensionalMovement);
         threeDimensionalMovement.Selected = Movement3DToIndex(settings.ThreeDimensionalMovement);
 
+        mouseEdgePanEnabled.Pressed = settings.PanStrategyViewWithMouse;
+        mouseEdgePanSensitivity.Value = settings.PanStrategyViewMouseSpeed;
+        mouseEdgePanSensitivity.Editable = mouseEdgePanEnabled.Pressed;
+
         BuildInputRebindControls();
 
         // Misc
@@ -862,6 +878,8 @@ public class OptionsMenu : ControlWithInput
                 ControllerVerticalInvertedPath.Dispose();
                 TwoDimensionalMovementPath.Dispose();
                 ThreeDimensionalMovementPath.Dispose();
+                MouseEdgePanEnabledPath.Dispose();
+                MouseEdgePanSensitivityPath.Dispose();
                 InputGroupListPath.Dispose();
                 DeadzoneConfigurationPopupPath.Dispose();
                 MiscTabPath.Dispose();
@@ -2064,6 +2082,21 @@ public class OptionsMenu : ControlWithInput
     private void OnMovement3DTypeSelected(int index)
     {
         Settings.Instance.ThreeDimensionalMovement.Value = Movement3DIndexToMovementType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseEdgePanToggled(bool pressed)
+    {
+        Settings.Instance.PanStrategyViewWithMouse.Value = pressed;
+        mouseEdgePanSensitivity.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseEdgePanSensitivityChanged(float value)
+    {
+        Settings.Instance.PanStrategyViewMouseSpeed.Value = value;
 
         UpdateResetSaveButtonState();
     }

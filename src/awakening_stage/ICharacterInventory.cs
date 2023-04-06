@@ -1,4 +1,4 @@
-﻿public interface ICharacterInventory : IInventory
+﻿public interface ICharacterInventory : IInventory, IAggregateResourceSource
 {
     /// <summary>
     ///   Pick up an item to the inventory.
