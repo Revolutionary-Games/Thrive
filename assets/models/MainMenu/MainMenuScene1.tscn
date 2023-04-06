@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/models/MainMenu/MenuPlanet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/MainMenu/StarsMesh.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=7]
 [ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=8]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=9]
+[ext_resource path="res://src/general/MainMenu.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ProceduralSky" id=2]
 radiance_size = 3
@@ -116,6 +117,7 @@ emission_on_uv2 = false
 [sub_resource type="Animation" id=20]
 resource_name = "PlanetRotation"
 length = 60.0
+loop = true
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:rotation_degrees")
@@ -181,6 +183,127 @@ tracks/2/keys = {
 "values": [ Vector3( 1.001, 1.001, 1.001 ) ]
 }
 
+[sub_resource type="Animation" id=22]
+resource_name = "CameraAnimation"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Camera:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8, 10, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.187001, -78.961, -0.641002 ), Vector3( 0.572, -78.816, -0.756 ), Vector3( -1.104, -78.816, -3.976 ), Vector3( -0.187001, -78.961, -0.641002 ), Vector3( 0.572, -78.816, 0.224 ), Vector3( -1.104, -78.816, -0.641 ), Vector3( -0.187001, -78.961, -0.641002 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../Camera:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8, 10, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -49.362, -4.916, 1.662 ), Vector3( -49.362, -4.872, 1.662 ), Vector3( -49.362, -4.916, 1.662 ), Vector3( -49.362, -4.916, 1.662 ), Vector3( -49.362, -4.872, 1.662 ), Vector3( -49.362, -4.916, 1.662 ), Vector3( -49.362, -4.916, 1.662 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "PlanetRotation"
+length = 60.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 60 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 720, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 60 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -360, 0 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 100, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 107.741, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.001, 1.001, 1.001 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../../Camera:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.187001, -78.961, -0.641002 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../../Camera:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -49.362, -4.916, 1.662 ) ]
+}
+
 [node name="Main" type="Node"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -190,7 +313,7 @@ environment = SubResource( 1 )
 transform = Transform( 10000, -2.45936, 1.74526, 2.44336, 9999.59, 91.1048, -1.76759, -91.1044, 9999.59, -12.7566, 0, 8.74701 )
 
 [node name="Comet" type="Spatial" parent="."]
-transform = Transform( 0.448064, 0.0917784, -0.889278, -0.205418, 0.978671, -0.00249582, 0.870082, 0.183792, 0.45736, -22.597, -3.261, -10.7 )
+transform = Transform( 0.448064, 0.0917784, -0.889278, -0.205418, 0.978671, -0.00249582, 0.870082, 0.183792, 0.45736, -22.597, -3.06, -12.192 )
 
 [node name="Tail1" type="CPUParticles" parent="Comet"]
 transform = Transform( -7.21775e-09, 0.199999, 2.98023e-08, -0.199999, -6.28643e-09, -5.52973e-10, 4.07454e-10, -3.72529e-09, 0.2, 0.0457492, 0.076674, -0.191231 )
@@ -276,7 +399,7 @@ hue_variation = 0.55
 hue_variation_random = 0.55
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.191429, 0.00534529, -0.981492, -0.0111873, 0.999932, 0.00326376, 0.981443, 0.0103554, 0.191476, -49.362, -4.916, 1.662 )
+transform = Transform( 0.191429, 0.0053453, -0.981492, -0.0111873, 0.999932, 0.00326377, 0.981443, 0.0103555, 0.191476, -49.362, -4.916, 1.662 )
 current = true
 fov = 36.8
 far = 15000.0
@@ -299,7 +422,7 @@ rings = 16
 material = SubResource( 19 )
 
 [node name="MenuPlanet" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1.73648, 0, 9.84808, 0, 10, 0, -9.84808, 0, -1.73648, 3.142, -16.055, 17.446 )
+transform = Transform( -1.73648, 0, 9.84808, 0, 10, 0, -9.84808, 0, -1.73648, 8.509, -18.562, 18.955 )
 
 [node name="PlanetClouds" parent="MenuPlanet" instance=ExtResource( 4 )]
 transform = Transform( -0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0 )
@@ -307,7 +430,7 @@ transform = Transform( -0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305
 [node name="PlanetRotation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../MenuPlanet/PlanetClouds")
 autoplay = "PlanetRotation"
-playback_speed = 0.03
+playback_speed = 0.05
 anims/PlanetRotation = SubResource( 20 )
 anims/RESET = SubResource( 21 )
 
@@ -482,3 +605,13 @@ color = Color( 0.517647, 0.517647, 0.517647, 1 )
 color_ramp = SubResource( 12 )
 hue_variation = 0.55
 hue_variation_random = 0.55
+
+[node name="MainMenu" parent="." instance=ExtResource( 10 )]
+
+[node name="CameraAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../MenuPlanet/PlanetClouds")
+autoplay = "CameraAnimation"
+playback_speed = 0.19
+anims/CameraAnimation = SubResource( 22 )
+anims/PlanetRotation = SubResource( 23 )
+anims/RESET = SubResource( 24 )
