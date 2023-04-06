@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 14:53+0300\n"
+"POT-Creation-Date: 2023-04-06 11:02+0300\n"
 "PO-Revision-Date: 2023-02-02 07:29+0000\n"
 "Last-Translator: Raphael Franzen <franzen.raphael@hotmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D Bewegungsart:"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
 msgstr "3D Editor"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
 msgstr "Dreidimensionale Bewegung"
 
@@ -35,7 +35,7 @@ msgstr "Dreidimensionale Bewegung"
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D Bewegungsart:"
 
-#: ../simulation_parameters/common/input_options.json:36
+#: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
 msgstr "Fähigkeiten"
 
@@ -187,11 +187,11 @@ msgstr "Umgebungslautstärke"
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
-#: ../src/general/OptionsMenu.tscn:1678
+#: ../src/general/OptionsMenu.tscn:1679
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Anzahl der Autospeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:1706
+#: ../src/general/OptionsMenu.tscn:1707
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
 
@@ -216,11 +216,11 @@ msgstr "Änderungen übernehmen"
 msgid "APRIL"
 msgstr "April"
 
-#: ../src/general/OptionsMenu.tscn:2041
+#: ../src/general/OptionsMenu.tscn:2042
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Bist du sicher, dass du ALLE Einstellungen auf ihre Standardwerte zurücksetzen willst?"
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2051
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Bist du sicher, dass du die Eingaben auf ihre Standardwerte zurücksetzen willst?"
 
@@ -326,7 +326,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritte."
 
-#: ../src/general/OptionsMenu.tscn:1667
+#: ../src/general/OptionsMenu.tscn:1668
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisches speichern während des Spieles"
 
@@ -360,7 +360,7 @@ msgstr "Laufstatus:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Laufstatus:"
 
-#: ../simulation_parameters/common/input_options.json:27
+#: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatisch vorwärts bewegen"
 
@@ -385,7 +385,7 @@ msgstr "Mikroben Stadium"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1978 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -579,7 +579,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Workshop durchsuchen"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/SocietyHUD.tscn:126
+#: ../src/society_stage/gui/SocietyHUD.tscn:126
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "Struktur"
@@ -601,13 +601,13 @@ msgstr "Kalziumkarbonat"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine starke Schale aus Kalziumkarbonat. Sie kann Beschädigungen leicht widerstehen und benötigt weniger Energie, um sich nicht zu verformen. Der Nachteil einer so schweren Hülle ist, dass die Zelle viel langsamer ist und eine Weile braucht, um Ressourcen zu absorbieren."
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:102
 msgid "CAMERA"
 msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2129
+#: ../src/general/OptionsMenu.tscn:2130
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
@@ -620,7 +620,7 @@ msgstr "Abbrechen"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKTION ABBRECHEN"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Vorgang abbrechen"
@@ -737,17 +737,17 @@ msgstr "Änderungsnotizen sind zu lang"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändern der Symmetrie"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Cheats"
 
-#: ../src/general/OptionsMenu.tscn:1760
+#: ../src/general/OptionsMenu.tscn:1761
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-Tasten aktiviert"
 
-#: ../simulation_parameters/common/input_options.json:271
+#: ../simulation_parameters/common/input_options.json:306
 msgid "CHEAT_MENU"
 msgstr "Cheatmenü"
 
@@ -863,7 +863,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Alte Speicherstände aufräumen"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2204
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -875,7 +875,7 @@ msgstr "Alte Speicherstände aufräumen"
 msgid "CLOSE"
 msgstr "Schließen"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2060
 msgid "CLOSE_OPTIONS"
 msgstr "Optionen schließen?"
 
@@ -960,6 +960,15 @@ msgstr "Sättigungswert, der Anteil an Grau in einer bestimmten Farbe"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Hellwert, Helligkeit oder Intensität der Farbe"
 
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "COMMON_ABILITIES"
+msgstr "Fähigkeiten"
+
+#: ../simulation_parameters/common/input_options.json:169
+msgid "COMMON_EDITING_AND_STRATEGY"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM"
 msgstr "Community-Forum"
@@ -976,7 +985,7 @@ msgstr "Gemeinschafts-Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Besuche unser Gemeinschafts-Wiki"
 
-#: ../src/general/OptionsMenu.tscn:1947
+#: ../src/general/OptionsMenu.tscn:1948
 msgid "COMPILED_AT_COLON"
 msgstr "Erstellt am:"
 
@@ -1262,7 +1271,7 @@ msgstr "Aktuelle Welt"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organismus-Statistik"
 
-#: ../src/general/OptionsMenu.tscn:1779
+#: ../src/general/OptionsMenu.tscn:1780
 msgid "CUSTOM_USERNAME"
 msgstr "Eigener Nutzername:"
 
@@ -1354,7 +1363,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Alte Spieltände löschen?"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
 msgstr "Organelle löschen"
 
@@ -1515,7 +1524,7 @@ msgstr "Deaktiviert"
 msgid "DISABLE_ALL"
 msgstr "Alle deaktivieren"
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Verwerfen und fortfahren"
 
@@ -1557,11 +1566,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Tritt unserem Discord Server bei"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Versteckte Pop-ups:"
 
-#: ../src/general/OptionsMenu.tscn:1851 ../src/general/OptionsMenu.tscn:1860
+#: ../src/general/OptionsMenu.tscn:1852 ../src/general/OptionsMenu.tscn:1861
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Dies zeigt an, wie viele Popups vom Spieler dauerhaft ausgeblendet wurden.\n"
@@ -1754,7 +1763,7 @@ msgstr "(zufällig generierte Geheimnisse im Spielverlauf)"
 msgid "EDGE_PAN_SPEED"
 msgstr "Ressourcen-Absorptionsgeschwindigkeit"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "Editor"
@@ -1786,7 +1795,7 @@ msgstr "Aktivierte Mods"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Alle kompatiblen Mods aktivieren"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:290
 msgid "ENABLE_EDITOR"
 msgstr "Editor aktivieren"
 
@@ -1851,7 +1860,7 @@ msgstr "Epipelagial"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2140 ../src/general/OptionsMenu.tscn:2148
+#: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR"
 msgstr "Fehler"
 
@@ -1863,7 +1872,7 @@ msgstr "Fehler beim Erstellen des Ordners für den Mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Fehler beim Erstellen der Modinformationsdatei"
 
-#: ../src/general/OptionsMenu.tscn:2150
+#: ../src/general/OptionsMenu.tscn:2151
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist fehlgeschlagen."
 
@@ -1908,11 +1917,11 @@ msgstr ""
 "\n"
 "Trifft keins von beidem zu, ist ein Fehler aufgetreten. Bitte benachrichtige das Entwickler Team und stelle Log Dateien zur Verfügung."
 
-#: ../src/general/OptionsMenu.tscn:1919
+#: ../src/general/OptionsMenu.tscn:1920
 msgid "EXACT_VERSION_COLON"
 msgstr "Genaue Thrive Version:"
 
-#: ../src/general/OptionsMenu.tscn:1917 ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1918 ../src/general/OptionsMenu.tscn:1929
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dies ist die exakte Version dieser Thrive Instanz"
 
@@ -2079,7 +2088,7 @@ msgstr "Beende eine Generation"
 msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Generationen fertigstellen"
 
-#: ../simulation_parameters/common/input_options.json:40
+#: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
@@ -2330,7 +2339,7 @@ msgstr ""
 "Wenn Sie einen Fehler feststellen, bei dem Teile von Editor-Schaltflächen verschwinden,\n"
 "kannst du versuchen, dies zu deaktivieren, um zu sehen, ob das Problem verschwunden ist."
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:261
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} Tsd"
@@ -2365,15 +2374,15 @@ msgstr "(höhere Werte verbessern die Leistung)"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(höhere Werte verschlechtern die Leistung)"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:226
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Halten um zwischen Verschiebe- und Drehmodus hin und her zu schalten"
 
-#: ../simulation_parameters/common/input_options.json:52
+#: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Gedrückt halten, um das Rudelbefehls Menü anzuzeigen"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:214
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Halten, um Cursor anzuzeigen"
 
@@ -2470,17 +2479,17 @@ msgstr "Neue Welt erstellen"
 msgid "INPUTS"
 msgstr "Eingaben"
 
-#: ../simulation_parameters/common/input_options.json:80
+#: ../simulation_parameters/common/input_options.json:91
 #, fuzzy
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr "Beende eine Generation"
 
-#: ../simulation_parameters/common/input_options.json:72
+#: ../simulation_parameters/common/input_options.json:73
 #, fuzzy
 msgid "INPUT_NAME_INTERACTION"
 msgstr "Beende eine Generation"
 
-#: ../simulation_parameters/common/input_options.json:76
+#: ../simulation_parameters/common/input_options.json:77
 #, fuzzy
 msgid "INPUT_NAME_OPEN_INVENTORY"
 msgstr "Beende eine Generation"
@@ -2633,19 +2642,19 @@ msgstr "Besuche unsere Itch.io Seite"
 msgid "JANUARY"
 msgstr "Januar"
 
-#: ../src/general/OptionsMenu.tscn:1885
+#: ../src/general/OptionsMenu.tscn:1886
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON Debug-Modus:"
 
-#: ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Immer"
 
-#: ../src/general/OptionsMenu.tscn:1900 ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1901 ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Niemals"
 
@@ -3624,12 +3633,12 @@ msgstr "Nicht erlaubt, weniger als {0} Datensatz(e) anzuzeigen!"
 msgid "MISC"
 msgstr "Sonstiges"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:318
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Sonstiges"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:210
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Makroskopische 3D Spielphase"
 
@@ -3849,7 +3858,7 @@ msgstr "Mausempfindlichkeit mit Fenstergröße skalieren"
 msgid "MOVE"
 msgstr "Bewegen"
 
-#: ../simulation_parameters/common/input_options.json:7
+#: ../simulation_parameters/common/input_options.json:8
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
 msgid "MOVEMENT"
 msgstr "Bewegung"
@@ -3858,27 +3867,27 @@ msgstr "Bewegung"
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "Bewegungsversuche pro Spezies"
 
-#: ../simulation_parameters/common/input_options.json:23
+#: ../simulation_parameters/common/input_options.json:24
 msgid "MOVE_BACKWARDS"
 msgstr "Rückwärts bewegen"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Nach unten bewegen oder bücken/schleichen"
 
-#: ../simulation_parameters/common/input_options.json:19
+#: ../simulation_parameters/common/input_options.json:20
 msgid "MOVE_FORWARD"
 msgstr "Vorwärts bewegen"
 
-#: ../simulation_parameters/common/input_options.json:11
+#: ../simulation_parameters/common/input_options.json:12
 msgid "MOVE_LEFT"
 msgstr "Nach links bewegen"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_ORGANELLE"
 msgstr "Organelle bewegen"
 
-#: ../simulation_parameters/common/input_options.json:15
+#: ../simulation_parameters/common/input_options.json:16
 msgid "MOVE_RIGHT"
 msgstr "Nach rechts bewegen"
 
@@ -3898,7 +3907,7 @@ msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, soba
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "In dieses Gebiet wechseln"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:198
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Bewegen oder springen"
 
@@ -4208,7 +4217,7 @@ msgstr "keine Speicherstände gefunden"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Kein Speicherverzeichnis gefunden"
 
-#: ../src/general/OptionsMenu.tscn:2158
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 
@@ -4307,7 +4316,7 @@ msgstr "Hilfemenü öffnen"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Im Sandboxmodus öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1814
+#: ../src/general/OptionsMenu.tscn:1815
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Logverzeichnis öffnen"
 
@@ -4315,11 +4324,11 @@ msgstr "Logverzeichnis öffnen"
 msgid "OPEN_MOD_URL"
 msgstr "Info-URL öffnen"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Organellenmenü öffnen"
 
-#: ../src/society_stage/SocietyHUD.tscn:136
+#: ../src/society_stage/gui/SocietyHUD.tscn:136
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Hilfemenü öffnen"
@@ -4328,7 +4337,12 @@ msgstr "Hilfemenü öffnen"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Speicherverzeichnis öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1806
+#: ../simulation_parameters/common/input_options.json:250
+#, fuzzy
+msgid "OPEN_SCIENCE_MENU"
+msgstr "Das Menü öffnen"
+
+#: ../src/general/OptionsMenu.tscn:1807
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Bildschirmfotoverzeichnis öffnen"
 
@@ -4531,23 +4545,23 @@ msgstr "Vorwärts"
 msgid "PAGE_TITLE"
 msgstr "Seitentitel"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "PAN_CAMERA_DOWN"
 msgstr "Nach unten schwenken"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_LEFT"
 msgstr "Nach links schwenken"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:181
 msgid "PAN_CAMERA_RESET"
 msgstr "Kamera zurücksetzen"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Nach rechts schwenken"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_UP"
 msgstr "Nach oben schwenken"
 
@@ -4595,7 +4609,7 @@ msgstr "Seitentitel"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2168
+#: ../src/general/OptionsMenu.tscn:2169
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4671,7 +4685,7 @@ msgstr "{0}%"
 msgid "PERFORMANCE"
 msgstr "Leistung"
 
-#: ../simulation_parameters/common/input_options.json:68
+#: ../simulation_parameters/common/input_options.json:69
 msgid "PERFORM_UNBINDING"
 msgstr "Entbinden durchführen"
 
@@ -4703,7 +4717,7 @@ msgstr "Physikalische Bedingungen"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Phsikalischer Widerstand"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
 msgstr "Organelle platzieren"
 
@@ -4783,11 +4797,11 @@ msgstr ""
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1643
+#: ../src/general/OptionsMenu.tscn:1644
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Intro-Video abspielen"
 
-#: ../src/general/OptionsMenu.tscn:1651
+#: ../src/general/OptionsMenu.tscn:1652
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mikroben-Intro bei neuem Spiel abspielen"
 
@@ -4797,7 +4811,7 @@ msgstr "Mit diesen Einstellungen spielen"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/SocietyHUD.tscn:267
+#: ../src/society_stage/gui/SocietyHUD.tscn:209
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -4886,11 +4900,11 @@ msgstr "Protoplasma"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmierung"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_LOAD"
 msgstr "Schnellladen"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:338
 msgid "QUICK_SAVE"
 msgstr "Schnellspeichern"
 
@@ -4944,7 +4958,7 @@ msgstr "Empfohlenes Thrive:"
 msgid "REDDIT_TOOLTIP"
 msgstr "Besuche unseren Subreddit"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:135
 msgid "REDO"
 msgstr "Wiederherstellen"
 
@@ -4998,7 +5012,7 @@ msgstr "Reproduktion:"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Benötigt Nukleus"
 
-#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1989
+#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1990
 msgid "RESET"
 msgstr "Zurücksetzen"
 
@@ -5006,23 +5020,23 @@ msgstr "Zurücksetzen"
 msgid "RESET_DEADZONES"
 msgstr "Totzonen zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:1875
+#: ../src/general/OptionsMenu.tscn:1876
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Versteckte Pop-ups zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:2049
+#: ../src/general/OptionsMenu.tscn:2050
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Standardeingaben laden?"
 
-#: ../src/general/OptionsMenu.tscn:1602
+#: ../src/general/OptionsMenu.tscn:1603
 msgid "RESET_KEYBINDINGS"
 msgstr "Tastenkombinationen zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:2029
+#: ../src/general/OptionsMenu.tscn:2030
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standardeinstellungen"
 
-#: ../src/general/OptionsMenu.tscn:2040
+#: ../src/general/OptionsMenu.tscn:2041
 msgid "RESET_TO_DEFAULTS"
 msgstr "Auf Standardeinstellungen zurücksetzen?"
 
@@ -5048,6 +5062,11 @@ msgstr "Ressourcen-Absorptionsgeschwindigkeit"
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Druck"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:13
+#, fuzzy
+msgid "RESOURCE_FOOD"
+msgstr "Quellcode anschauen"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 #, fuzzy
@@ -5116,11 +5135,11 @@ msgstr "steif"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Eine steifere Membran ist widerstandsfähiger gegen Schaden, erschwert aber die Fortbewegung."
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
 msgstr "Nach rechts rotieren"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ROTATE_RIGHT"
 msgstr "Nach links rotieren"
 
@@ -5199,11 +5218,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive im abgesicherten Modus gestartet"
 
-#: ../src/general/OptionsMenu.tscn:2003 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2004 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Speichern"
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "SAVE_AND_CONTINUE"
 msgstr "Speichern und fortfahren"
 
@@ -5337,7 +5356,7 @@ msgstr "Suchradius:"
 msgid "SEA_FLOOR"
 msgstr "Meeresboden"
 
-#: ../simulation_parameters/common/input_options.json:44
+#: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
@@ -5426,16 +5445,16 @@ msgstr "Effektlautstärke"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:350
 msgid "SHOW_HELP"
 msgstr "Hilfe anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1832
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1829
+#: ../src/general/OptionsMenu.tscn:1830
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -5444,15 +5463,15 @@ msgstr "{0} {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Einführung anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:1741
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
-#: ../src/general/OptionsMenu.tscn:1733
+#: ../src/general/OptionsMenu.tscn:1734
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
 
-#: ../src/general/OptionsMenu.tscn:1748
+#: ../src/general/OptionsMenu.tscn:1749
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Warnung vor ungesichertem Fortschritt anzeigen"
 
@@ -5460,7 +5479,7 @@ msgstr "Warnung vor ungesichertem Fortschritt anzeigen"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Aktiviert/deaktiviert das Popup-Fenster mit der Warnung vor ungespeichertem Fortschritt, wenn der Spieler versucht, das Spiel zu beenden."
 
-#: ../src/general/OptionsMenu.tscn:1822
+#: ../src/general/OptionsMenu.tscn:1823
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5580,7 +5599,7 @@ msgstr "Leertaste"
 msgid "SPACE_STAGE"
 msgstr "Mikroben Stadium"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "Ammoniak erzeugen"
 
@@ -5592,11 +5611,11 @@ msgstr "Gegner spawnen"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Der Cheat Code zum Spawnen von Gegnern kann in diesem Gebiet nicht genutzt werden, da hier keine feindlichen Spezies leben"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:294
 msgid "SPAWN_GLUCOSE"
 msgstr "Glukose erzeugen"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SPAWN_PHOSPHATES"
 msgstr "Phosphat erzeugen"
 
@@ -5818,6 +5837,11 @@ msgstr "Speicherplatz:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
 
+#: ../simulation_parameters/common/input_options.json:246
+#, fuzzy
+msgid "STRATEGY_STAGES"
+msgstr "Mikroben Stadium"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Harter Nischenwettbewerb (Fitnessunterschiede sind übertrieben)"
@@ -5896,15 +5920,15 @@ msgstr "Super Rechts"
 msgid "SUPPORTER_PATRONS"
 msgstr "Unterstützer"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:230
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Zur Frontkamera wechseln"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:234
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "Zur rechten Kameraansicht wechseln"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Zur Kameraansicht von oben wechseln"
 
@@ -5912,20 +5936,20 @@ msgstr "Zur Kameraansicht von oben wechseln"
 msgid "SYSREQ"
 msgstr "S-Abf"
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:242
+#: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:265
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Nach rechts rotieren"
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:269
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Nach links rotieren"
@@ -5934,7 +5958,7 @@ msgstr "Nach links rotieren"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Tags enthalten nur Leerzeichen"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Screenshot aufnehmen"
 
@@ -5950,7 +5974,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/general/base_stage/StrategyStageBase.cs:73
+#: ../src/general/base_stage/StrategyStageBase.cs:96
 #: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
@@ -6160,31 +6184,31 @@ msgstr "Zeit vergangen: {0:#,#} Jahre"
 msgid "TITLE_COLON"
 msgstr "Titel:"
 
-#: ../simulation_parameters/common/input_options.json:56
+#: ../simulation_parameters/common/input_options.json:57
 #: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "Bindungsmodus umschalten"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Debug-Fenster umschalten"
 
-#: ../simulation_parameters/common/input_options.json:48
+#: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Verschlingen umschalten"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_FPS"
 msgstr "FPS-Anzeige umschalten"
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:354
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Vollbild umschalten"
 
-#: ../simulation_parameters/common/input_options.json:322
+#: ../simulation_parameters/common/input_options.json:358
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD umschalten"
 
@@ -6193,7 +6217,7 @@ msgstr "HUD umschalten"
 msgid "TOGGLE_INVENTORY"
 msgstr "Bindungsmodus umschalten"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:334
 msgid "TOGGLE_METRICS"
 msgstr "Metriken-Anzeige umschalten"
 
@@ -6201,11 +6225,11 @@ msgstr "Metriken-Anzeige umschalten"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Navigationsbaum umschalten"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_PAUSE"
 msgstr "Pausieren/Fortsetzen"
 
-#: ../simulation_parameters/common/input_options.json:60
+#: ../simulation_parameters/common/input_options.json:61
 msgid "TOGGLE_UNBINDING"
 msgstr "Verbinden umschalten"
 
@@ -6274,7 +6298,7 @@ msgstr "Versuche ein paar Fossilien zu machen!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Versuche das Spiel zu speichern!"
 
-#: ../src/general/OptionsMenu.tscn:2160
+#: ../src/general/OptionsMenu.tscn:2161
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Versuche ein paar Screenshots zu machen!"
 
@@ -6459,7 +6483,7 @@ msgstr "Es sind nicht übernommene Änderungen vorhanden"
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Du musst deine Änderungen übernehmen, um Mods zu laden oder entladen."
 
-#: ../simulation_parameters/common/input_options.json:64
+#: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "Alle Verbindungen lösen"
@@ -6476,7 +6500,7 @@ msgstr "Dies ist eine Debug-Version und die Info unten ist vermutlich nicht aktu
 msgid "UNDERWATERCAVE"
 msgstr "Unterwasser-Höhle"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:131
 msgid "UNDO"
 msgstr "Rückgängig"
 
@@ -6508,7 +6532,7 @@ msgstr "Unbekannte Version"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Unbekannte Workshop-ID für diesen Mod"
 
-#: ../src/general/OptionsMenu.tscn:2079
+#: ../src/general/OptionsMenu.tscn:2080
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Es wurden ungespeicherte Änderungen vorgenommen.\n"
@@ -6568,7 +6592,7 @@ msgstr "Nutze Auto Harmony Laden"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
 
-#: ../src/general/OptionsMenu.tscn:1768
+#: ../src/general/OptionsMenu.tscn:1769
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nutzernamen verwenden"
 
@@ -6634,12 +6658,12 @@ msgstr "Beobachter"
 msgid "VIEW_ALL"
 msgstr "Alle deaktivieren"
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1840
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1837
+#: ../src/general/OptionsMenu.tscn:1838
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -6826,11 +6850,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Du kannst die zukünftige Entwicklung von Thrive auf Patreon unterstützen."
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:110
 msgid "ZOOM_IN"
 msgstr "Hereinzoomen"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 14:53+0300\n"
+"POT-Creation-Date: 2023-04-06 11:02+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -23,12 +23,12 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:222
 #, fuzzy
 msgid "3D_EDITOR"
 msgstr "Redaktilo"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:194
 #, fuzzy
 msgid "3D_MOVEMENT"
 msgstr "Movado"
@@ -37,7 +37,7 @@ msgstr "Movado"
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:36
+#: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
 msgstr "Kapabloj"
 
@@ -180,11 +180,11 @@ msgstr "Media Volumo"
 msgid "AMMONIA"
 msgstr "Amoniako"
 
-#: ../src/general/OptionsMenu.tscn:1678
+#: ../src/general/OptionsMenu.tscn:1679
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Kvanto da aŭtomataj konservadoj:"
 
-#: ../src/general/OptionsMenu.tscn:1706
+#: ../src/general/OptionsMenu.tscn:1707
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Kvanto da rapidaj konservadoj:"
 
@@ -209,11 +209,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2041
+#: ../src/general/OptionsMenu.tscn:2042
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Ĉu vi certas, ke vi volas restarigi ĈIUJN agordojn al defaŭltaj valoroj?"
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2051
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Ĉu vi certas, ke vi volas reagordi la enirajn agordojn al defaŭltaj valoroj?"
 
@@ -322,7 +322,7 @@ msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) est
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% finita. {1:n0}/{2:n0} paŝoj."
 
-#: ../src/general/OptionsMenu.tscn:1667
+#: ../src/general/OptionsMenu.tscn:1668
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Aŭtomata konservado dum la ludo"
 
@@ -357,7 +357,7 @@ msgstr "Lanĉa stato:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Lanĉa stato:"
 
-#: ../simulation_parameters/common/input_options.json:27
+#: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Antaŭeniĝu aŭtomate"
 
@@ -390,7 +390,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1978 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -601,7 +601,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/SocietyHUD.tscn:126
+#: ../src/society_stage/gui/SocietyHUD.tscn:126
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "Strukturo"
@@ -623,13 +623,13 @@ msgstr "Kalcia Karbonato"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Ĉi tiu membrano havas fortan ŝelon el kalcia karbonato. Ĝi povas facile rezisti damaĝon kaj postulas malpli da energio por ne misformi. La malavantaĝoj de havi tian pezan ŝelon estas, ke la ĉelo estas multe pli malrapida kaj bezonas iom da tempo por sorbi resursojn."
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:102
 msgid "CAMERA"
 msgstr "Kamerao"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2129
+#: ../src/general/OptionsMenu.tscn:2130
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
@@ -643,7 +643,7 @@ msgstr "Nuligi"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "KONFIRMU"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
@@ -766,17 +766,17 @@ msgstr "Priskribo:"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ŝanĝu la simetrion"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Trompaĵoj"
 
-#: ../src/general/OptionsMenu.tscn:1760
+#: ../src/general/OptionsMenu.tscn:1761
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Trompaĵoj estas ebligitaj"
 
-#: ../simulation_parameters/common/input_options.json:271
+#: ../simulation_parameters/common/input_options.json:306
 #, fuzzy
 msgid "CHEAT_MENU"
 msgstr "Trompaĵoj"
@@ -907,7 +907,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Forigi Malnovajn Konservadojn"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2204
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -919,7 +919,7 @@ msgstr "Forigi Malnovajn Konservadojn"
 msgid "CLOSE"
 msgstr "Fermu"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2060
 msgid "CLOSE_OPTIONS"
 msgstr "Ĉu fermu agordojn?"
 
@@ -1007,6 +1007,15 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "COMMON_ABILITIES"
+msgstr "Kapabloj"
+
+#: ../simulation_parameters/common/input_options.json:169
+msgid "COMMON_EDITING_AND_STRATEGY"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM"
 msgstr ""
@@ -1025,7 +1034,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.tscn:1947
+#: ../src/general/OptionsMenu.tscn:1948
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Kunmetaĵoj:"
@@ -1321,7 +1330,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organisma Statistiko"
 
-#: ../src/general/OptionsMenu.tscn:1779
+#: ../src/general/OptionsMenu.tscn:1780
 msgid "CUSTOM_USERNAME"
 msgstr "Via Salutnomo:"
 
@@ -1419,7 +1428,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Ĉu forigi malnovajn Konservadojn?"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:155
 #, fuzzy
 msgid "DELETE_ORGANELLE"
 msgstr "Disloku organeton"
@@ -1580,7 +1589,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Forĵetu kaj"
 
@@ -1628,12 +1637,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Rapideco:"
 
-#: ../src/general/OptionsMenu.tscn:1851 ../src/general/OptionsMenu.tscn:1860
+#: ../src/general/OptionsMenu.tscn:1852 ../src/general/OptionsMenu.tscn:1861
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
@@ -1830,7 +1839,7 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 msgid "EDGE_PAN_SPEED"
 msgstr "Rimedo-Absorba Rapideo"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "Redaktilo"
@@ -1866,7 +1875,7 @@ msgstr "Ebligu la redaktilon"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Elektita konservado ne kongruas"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:290
 msgid "ENABLE_EDITOR"
 msgstr "Ebligu la redaktilon"
 
@@ -1936,7 +1945,7 @@ msgstr "Epipelagika"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2140 ../src/general/OptionsMenu.tscn:2148
+#: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR"
 msgstr "Eraro"
 
@@ -1949,7 +1958,7 @@ msgstr "Eraro de konservado"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2150
+#: ../src/general/OptionsMenu.tscn:2151
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Eraro: Malsukcesis konservi novajn agordojn en agorda dosiero."
 
@@ -1992,12 +2001,12 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.tscn:1919
+#: ../src/general/OptionsMenu.tscn:1920
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Generacio:"
 
-#: ../src/general/OptionsMenu.tscn:1917 ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1918 ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -2156,7 +2165,7 @@ msgstr "kun koncentriĝo de"
 msgid "FINISH_X_GENERATIONS"
 msgstr "kun koncentriĝo de"
 
-#: ../simulation_parameters/common/input_options.json:40
+#: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
@@ -2414,7 +2423,7 @@ msgstr ""
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:261
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} K"
@@ -2450,15 +2459,15 @@ msgstr "(pli altaj valoroj malpliigas rendimenton)"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(pli altaj valoroj plimalbonigas agadon)"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:226
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:52
+#: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:214
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
@@ -2558,17 +2567,17 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "INPUTS"
 msgstr "Klavoj"
 
-#: ../simulation_parameters/common/input_options.json:80
+#: ../simulation_parameters/common/input_options.json:91
 #, fuzzy
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr "kun koncentriĝo de"
 
-#: ../simulation_parameters/common/input_options.json:72
+#: ../simulation_parameters/common/input_options.json:73
 #, fuzzy
 msgid "INPUT_NAME_INTERACTION"
 msgstr "kun koncentriĝo de"
 
-#: ../simulation_parameters/common/input_options.json:76
+#: ../simulation_parameters/common/input_options.json:77
 #, fuzzy
 msgid "INPUT_NAME_OPEN_INVENTORY"
 msgstr "kun koncentriĝo de"
@@ -2721,19 +2730,19 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1885
+#: ../src/general/OptionsMenu.tscn:1886
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1900 ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1901 ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -3760,12 +3769,12 @@ msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke v
 msgid "MISC"
 msgstr "Aliaj"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:318
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Diversaj"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:210
 #, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Diversaj"
@@ -3999,7 +4008,7 @@ msgstr ""
 msgid "MOVE"
 msgstr "Moviĝi"
 
-#: ../simulation_parameters/common/input_options.json:7
+#: ../simulation_parameters/common/input_options.json:8
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
 msgid "MOVEMENT"
 msgstr "Movado"
@@ -4008,28 +4017,28 @@ msgstr "Movado"
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:23
+#: ../simulation_parameters/common/input_options.json:24
 msgid "MOVE_BACKWARDS"
 msgstr "Malantaŭeniĝu"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:19
+#: ../simulation_parameters/common/input_options.json:20
 msgid "MOVE_FORWARD"
 msgstr "Antaŭeniĝu"
 
-#: ../simulation_parameters/common/input_options.json:11
+#: ../simulation_parameters/common/input_options.json:12
 msgid "MOVE_LEFT"
 msgstr "Movu maldekstren"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:159
 #, fuzzy
 msgid "MOVE_ORGANELLE"
 msgstr "Forigu organeton"
 
-#: ../simulation_parameters/common/input_options.json:15
+#: ../simulation_parameters/common/input_options.json:16
 msgid "MOVE_RIGHT"
 msgstr "Movu dekstren"
 
@@ -4051,7 +4060,7 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moviĝu al ĉi tiu loko"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:198
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
@@ -4366,7 +4375,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Malfermu Konservadan Adresaron"
 
-#: ../src/general/OptionsMenu.tscn:2158
+#: ../src/general/OptionsMenu.tscn:2159
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Malfermu Ekrankopian Dosierujon"
@@ -4472,7 +4481,7 @@ msgstr "Malfermu helpekranon"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Libera konstruado"
 
-#: ../src/general/OptionsMenu.tscn:1814
+#: ../src/general/OptionsMenu.tscn:1815
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Malfermu Dosierujon de Registroj"
 
@@ -4480,12 +4489,12 @@ msgstr "Malfermu Dosierujon de Registroj"
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:177
 #, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Forigu organeton"
 
-#: ../src/society_stage/SocietyHUD.tscn:136
+#: ../src/society_stage/gui/SocietyHUD.tscn:136
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Malfermu helpekranon"
@@ -4494,7 +4503,12 @@ msgstr "Malfermu helpekranon"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Malfermu Konservadan Adresaron"
 
-#: ../src/general/OptionsMenu.tscn:1806
+#: ../simulation_parameters/common/input_options.json:250
+#, fuzzy
+msgid "OPEN_SCIENCE_MENU"
+msgstr "Malfermu la menuon"
+
+#: ../src/general/OptionsMenu.tscn:1807
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Malfermu Ekrankopian Dosierujon"
 
@@ -4704,23 +4718,23 @@ msgstr "Antaŭeniĝu"
 msgid "PAGE_TITLE"
 msgstr "Ĉelaj Procezoj"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "PAN_CAMERA_DOWN"
 msgstr "Movigu malsupren"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_LEFT"
 msgstr "Movigu maldekstren"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:181
 msgid "PAN_CAMERA_RESET"
 msgstr "Restarigu kameraon"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Movigu dekstren"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_UP"
 msgstr "Movigu supren"
 
@@ -4772,7 +4786,7 @@ msgstr "Ĉelaj Procezoj"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2168
+#: ../src/general/OptionsMenu.tscn:2169
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4850,7 +4864,7 @@ msgstr ""
 msgid "PERFORMANCE"
 msgstr "Agado"
 
-#: ../simulation_parameters/common/input_options.json:68
+#: ../simulation_parameters/common/input_options.json:69
 #, fuzzy
 msgid "PERFORM_UNBINDING"
 msgstr "Eraro Ŝarĝante"
@@ -4883,7 +4897,7 @@ msgstr "Fizikaj Kondiĉoj"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizika Rezisto"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
 msgstr "Disloku organeton"
 
@@ -4961,11 +4975,11 @@ msgstr ""
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1643
+#: ../src/general/OptionsMenu.tscn:1644
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Ludu enkondukan filmeton"
 
-#: ../src/general/OptionsMenu.tscn:1651
+#: ../src/general/OptionsMenu.tscn:1652
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Ludu Mikroban Enkondukon en ĉiu Nova Ludo"
 
@@ -4975,7 +4989,7 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/SocietyHUD.tscn:267
+#: ../src/society_stage/gui/SocietyHUD.tscn:209
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACIO:"
 
@@ -5070,11 +5084,11 @@ msgstr "Protoplasmo"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_LOAD"
 msgstr "Rapida ŝarĝo"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:338
 msgid "QUICK_SAVE"
 msgstr "Rapida konservado"
 
@@ -5131,7 +5145,7 @@ msgstr ""
 msgid "REDDIT_TOOLTIP"
 msgstr "Rekomenci"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:135
 msgid "REDO"
 msgstr "Refaru"
 
@@ -5190,7 +5204,7 @@ msgstr "reproduktis"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Kerno/Nukleo"
 
-#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1989
+#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1990
 msgid "RESET"
 msgstr "Rekomencu"
 
@@ -5199,24 +5213,24 @@ msgstr "Rekomencu"
 msgid "RESET_DEADZONES"
 msgstr "Ĉu restarigu al defaŭltaj?"
 
-#: ../src/general/OptionsMenu.tscn:1875
+#: ../src/general/OptionsMenu.tscn:1876
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2049
+#: ../src/general/OptionsMenu.tscn:2050
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ĉu restarigu enirojn al defaŭltaj?"
 
-#: ../src/general/OptionsMenu.tscn:1602
+#: ../src/general/OptionsMenu.tscn:1603
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Restarigu"
 
-#: ../src/general/OptionsMenu.tscn:2029
+#: ../src/general/OptionsMenu.tscn:2030
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaŭlte"
 
-#: ../src/general/OptionsMenu.tscn:2040
+#: ../src/general/OptionsMenu.tscn:2041
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ĉu restarigu al defaŭltaj?"
 
@@ -5242,6 +5256,11 @@ msgstr "Rimedo-Absorba Rapideo"
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Premo."
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:13
+#, fuzzy
+msgid "RESOURCE_FOOD"
+msgstr "Rigardi Fontkodon"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 #, fuzzy
@@ -5313,11 +5332,11 @@ msgstr ""
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Pli malmola membrano pli rezistas damaĝon, sed malfaciligas la movadon de la ĉelo."
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
 msgstr "Rotaciu maldekstren"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ROTATE_RIGHT"
 msgstr "Rotaciu dekstren"
 
@@ -5395,11 +5414,11 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2003 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2004 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Konservu"
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "SAVE_AND_CONTINUE"
 msgstr "Konservu kaj"
 
@@ -5538,7 +5557,7 @@ msgstr ""
 msgid "SEA_FLOOR"
 msgstr "Marfundo"
 
-#: ../simulation_parameters/common/input_options.json:44
+#: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
@@ -5636,16 +5655,16 @@ msgstr "Volumo de sonefektoj"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:350
 msgid "SHOW_HELP"
 msgstr "Montru helpon"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1832
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Kaverno"
 
-#: ../src/general/OptionsMenu.tscn:1829
+#: ../src/general/OptionsMenu.tscn:1830
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
@@ -5655,17 +5674,17 @@ msgstr "Kaverno"
 msgid "SHOW_TUTORIALS"
 msgstr "Montru lernilojn"
 
-#: ../src/general/OptionsMenu.tscn:1741
+#: ../src/general/OptionsMenu.tscn:1742
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Montru lernilojn (en ĉi tiu ludo)"
 
-#: ../src/general/OptionsMenu.tscn:1733
+#: ../src/general/OptionsMenu.tscn:1734
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Montru lernilojn (en novaj ludoj)"
 
-#: ../src/general/OptionsMenu.tscn:1748
+#: ../src/general/OptionsMenu.tscn:1749
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5679,7 +5698,7 @@ msgstr ""
 "Vi havas nesavitajn ŝanĝojn kiuj estis forĵetotajn.\n"
 " Ĉu vi volas daŭrigi?"
 
-#: ../src/general/OptionsMenu.tscn:1822
+#: ../src/general/OptionsMenu.tscn:1823
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5827,7 +5846,7 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "Generu amoniakon"
 
@@ -5839,11 +5858,11 @@ msgstr ""
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:294
 msgid "SPAWN_GLUCOSE"
 msgstr "Generu glukozon"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SPAWN_PHOSPHATES"
 msgstr "Generu fosfaton"
 
@@ -6067,6 +6086,18 @@ msgstr "Stokado"
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
+#: ../simulation_parameters/common/input_options.json:246
+#, fuzzy
+msgid "STRATEGY_STAGES"
+msgstr ""
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"\n"
+"Vivo.\n"
+"\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"\n"
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
@@ -6146,15 +6177,15 @@ msgstr ""
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:230
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:234
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr ""
 
@@ -6162,20 +6193,20 @@ msgstr ""
 msgid "SYSREQ"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:242
+#: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:265
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Rotaciu maldekstren"
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:269
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Rotaciu dekstren"
@@ -6184,7 +6215,7 @@ msgstr "Rotaciu dekstren"
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Prenu ekrankopion"
 
@@ -6200,7 +6231,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/general/base_stage/StrategyStageBase.cs:73
+#: ../src/general/base_stage/StrategyStageBase.cs:96
 #: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
@@ -6404,33 +6435,33 @@ msgstr ""
 msgid "TITLE_COLON"
 msgstr "Grandeco:"
 
-#: ../simulation_parameters/common/input_options.json:56
+#: ../simulation_parameters/common/input_options.json:57
 #: ../src/microbe_stage/MicrobeStage.tscn:2007
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Ŝaltu engluton"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:326
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Ŝaltu engluton"
 
-#: ../simulation_parameters/common/input_options.json:48
+#: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Ŝaltu engluton"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_FPS"
 msgstr "Ŝaltu FPS-ekranon"
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:354
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Ŝaltu FPS-ekranon"
 
-#: ../simulation_parameters/common/input_options.json:322
+#: ../simulation_parameters/common/input_options.json:358
 #, fuzzy
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Ŝaltu engluton"
@@ -6440,7 +6471,7 @@ msgstr "Ŝaltu engluton"
 msgid "TOGGLE_INVENTORY"
 msgstr "Ŝaltu engluton"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:334
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "Ŝaltu FPS-ekranon"
@@ -6449,11 +6480,11 @@ msgstr "Ŝaltu FPS-ekranon"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_PAUSE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:60
+#: ../simulation_parameters/common/input_options.json:61
 #, fuzzy
 msgid "TOGGLE_UNBINDING"
 msgstr "Ŝaltu engluton"
@@ -6529,7 +6560,7 @@ msgstr "Prenu ekrankopion"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2160
+#: ../src/general/OptionsMenu.tscn:2161
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prenu ekrankopion"
@@ -6722,7 +6753,7 @@ msgstr ""
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
-#: ../simulation_parameters/common/input_options.json:64
+#: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr ""
@@ -6742,7 +6773,7 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr "Subakva Kaverno"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:131
 msgid "UNDO"
 msgstr "Malfaru"
 
@@ -6779,7 +6810,7 @@ msgstr "Versio:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Nekonata musbutono"
 
-#: ../src/general/OptionsMenu.tscn:2079
+#: ../src/general/OptionsMenu.tscn:2080
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Vi havas nesavitajn ŝanĝojn kiuj estis forĵetotajn.\n"
@@ -6845,7 +6876,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.tscn:1768
+#: ../src/general/OptionsMenu.tscn:1769
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Uzu propran salutnomon"
 
@@ -6914,12 +6945,12 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1840
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "Kaverno"
 
-#: ../src/general/OptionsMenu.tscn:1837
+#: ../src/general/OptionsMenu.tscn:1838
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
@@ -7113,11 +7144,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:110
 msgid "ZOOM_IN"
 msgstr "Zomu"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 14:53+0300\n"
+"POT-Creation-Date: 2023-04-06 11:02+0300\n"
 "PO-Revision-Date: 2023-03-24 12:38+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D移动样式："
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
 msgstr "3D编辑器"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
 msgstr "3D移动"
 
@@ -35,7 +35,7 @@ msgstr "3D移动"
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D移动样式："
 
-#: ../simulation_parameters/common/input_options.json:36
+#: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
 msgstr "能力"
 
@@ -187,11 +187,11 @@ msgstr "环境声效"
 msgid "AMMONIA"
 msgstr "氨"
 
-#: ../src/general/OptionsMenu.tscn:1678
+#: ../src/general/OptionsMenu.tscn:1679
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "要保留的自动保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1706
+#: ../src/general/OptionsMenu.tscn:1707
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "要保留的快速保存存档数："
 
@@ -216,11 +216,11 @@ msgstr "应用更变"
 msgid "APRIL"
 msgstr "四月"
 
-#: ../src/general/OptionsMenu.tscn:2041
+#: ../src/general/OptionsMenu.tscn:2042
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2051
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "你确定要把输入设置重置为默认值吗？"
 
@@ -326,7 +326,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
-#: ../src/general/OptionsMenu.tscn:1667
+#: ../src/general/OptionsMenu.tscn:1668
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
 
@@ -359,7 +359,7 @@ msgstr "运行状态："
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "自动进化运行状态："
 
-#: ../simulation_parameters/common/input_options.json:27
+#: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自动前移"
 
@@ -384,7 +384,7 @@ msgstr "微生物阶段"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1978 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -579,7 +579,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/SocietyHUD.tscn:126
+#: ../src/society_stage/gui/SocietyHUD.tscn:126
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "结构"
@@ -601,13 +601,13 @@ msgstr "碳酸钙"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层碳酸钙组成的强力外壳。它非常能抵挡伤害并花费很少的能量抵抗变形。只不过这么沉重的外壳，细胞也别想有什么移动与吸收能力了。"
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:102
 msgid "CAMERA"
 msgstr "视角"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2129
+#: ../src/general/OptionsMenu.tscn:2130
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
@@ -620,7 +620,7 @@ msgstr "取消"
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "取消当前动作"
@@ -737,17 +737,17 @@ msgstr "更改说明太长了"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改变对称"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "作弊"
 
-#: ../src/general/OptionsMenu.tscn:1760
+#: ../src/general/OptionsMenu.tscn:1761
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "启用作弊键"
 
-#: ../simulation_parameters/common/input_options.json:271
+#: ../simulation_parameters/common/input_options.json:306
 msgid "CHEAT_MENU"
 msgstr "作弊菜单"
 
@@ -863,7 +863,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2204
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -875,7 +875,7 @@ msgstr "清除旧存档"
 msgid "CLOSE"
 msgstr "关闭"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2060
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
@@ -960,6 +960,15 @@ msgstr "S值，决定饱和度"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，决定明度"
 
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "COMMON_ABILITIES"
+msgstr "能力"
+
+#: ../simulation_parameters/common/input_options.json:169
+msgid "COMMON_EDITING_AND_STRATEGY"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM"
 msgstr "社区论坛"
@@ -976,7 +985,7 @@ msgstr "社区wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的社区wiki"
 
-#: ../src/general/OptionsMenu.tscn:1947
+#: ../src/general/OptionsMenu.tscn:1948
 msgid "COMPILED_AT_COLON"
 msgstr "编译于："
 
@@ -1275,7 +1284,7 @@ msgstr ""
 "  平均大小：{9}\n"
 "[b]基本细胞器信息：[/b]"
 
-#: ../src/general/OptionsMenu.tscn:1779
+#: ../src/general/OptionsMenu.tscn:1780
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
@@ -1367,7 +1376,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "删除旧存档？"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
 msgstr "移除细胞器"
 
@@ -1528,7 +1537,7 @@ msgstr "已禁用"
 msgid "DISABLE_ALL"
 msgstr "全部禁用"
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
@@ -1570,11 +1579,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的弹出窗口："
 
-#: ../src/general/OptionsMenu.tscn:1851 ../src/general/OptionsMenu.tscn:1860
+#: ../src/general/OptionsMenu.tscn:1852 ../src/general/OptionsMenu.tscn:1861
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "这显示了多少弹出窗口已被永久禁用。\n"
@@ -1765,7 +1774,7 @@ msgstr "（游戏中会随机生成彩蛋）"
 msgid "EDGE_PAN_SPEED"
 msgstr "消化速度"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "编辑器"
@@ -1797,7 +1806,7 @@ msgstr "启用Mod"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "启用所有兼容的Mod"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:290
 msgid "ENABLE_EDITOR"
 msgstr "启用编辑器"
 
@@ -1862,7 +1871,7 @@ msgstr "上远洋带"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "斧头"
 
-#: ../src/general/OptionsMenu.tscn:2140 ../src/general/OptionsMenu.tscn:2148
+#: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR"
 msgstr "错误"
 
@@ -1874,7 +1883,7 @@ msgstr "为mod创建文件夹时出错"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "为mod创建info文件时出错"
 
-#: ../src/general/OptionsMenu.tscn:2150
+#: ../src/general/OptionsMenu.tscn:2151
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
@@ -1917,11 +1926,11 @@ msgstr ""
 "\n"
 "如果不是因为以上两种原因，那就是出bug了。请通知开发团队并提供游戏日志。"
 
-#: ../src/general/OptionsMenu.tscn:1919
+#: ../src/general/OptionsMenu.tscn:1920
 msgid "EXACT_VERSION_COLON"
 msgstr "精确版本："
 
-#: ../src/general/OptionsMenu.tscn:1917 ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1918 ../src/general/OptionsMenu.tscn:1929
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "这是编译此版本 Thrive 的确切 Commit"
 
@@ -2069,7 +2078,7 @@ msgstr "完成一次世代"
 msgid "FINISH_X_GENERATIONS"
 msgstr "完成{0}次世代"
 
-#: ../simulation_parameters/common/input_options.json:40
+#: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
@@ -2319,7 +2328,7 @@ msgstr ""
 "如果你遇到编辑器按钮部分消失的问题，\n"
 "可以试试禁用这个功能，问题可能会消失。"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:261
 msgid "GUI_TAB_NAVIGATION"
 msgstr "界面选项卡导航"
 
@@ -2353,15 +2362,15 @@ msgstr "（更高的数值有助于提升性能）"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（设置的太高会影响性能）"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:226
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "按住以在平移与旋转模式间切换"
 
-#: ../simulation_parameters/common/input_options.json:52
+#: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "按住以显示群体指令菜单"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:214
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "按住以显示鼠标指针"
 
@@ -2457,15 +2466,15 @@ msgstr "新建世界"
 msgid "INPUTS"
 msgstr "输入"
 
-#: ../simulation_parameters/common/input_options.json:80
+#: ../simulation_parameters/common/input_options.json:91
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr "建造一个结构"
 
-#: ../simulation_parameters/common/input_options.json:72
+#: ../simulation_parameters/common/input_options.json:73
 msgid "INPUT_NAME_INTERACTION"
 msgstr "与物体交互"
 
-#: ../simulation_parameters/common/input_options.json:76
+#: ../simulation_parameters/common/input_options.json:77
 msgid "INPUT_NAME_OPEN_INVENTORY"
 msgstr "打开物品栏"
 
@@ -2612,19 +2621,19 @@ msgstr "访问我们在Itch.io上的页面"
 msgid "JANUARY"
 msgstr "一月"
 
-#: ../src/general/OptionsMenu.tscn:1885
+#: ../src/general/OptionsMenu.tscn:1886
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON调试模式："
 
-#: ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "总是"
 
-#: ../src/general/OptionsMenu.tscn:1900 ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1901 ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "自动"
 
-#: ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "从不"
 
@@ -3611,12 +3620,12 @@ msgstr "不允许显示少于{0}个数据集！"
 msgid "MISC"
 msgstr "杂项"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:318
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "杂项"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:210
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "各项3D阶段"
 
@@ -3836,7 +3845,7 @@ msgstr "由窗口大小决定鼠标灵敏度"
 msgid "MOVE"
 msgstr "移动"
 
-#: ../simulation_parameters/common/input_options.json:7
+#: ../simulation_parameters/common/input_options.json:8
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
 msgid "MOVEMENT"
 msgstr "移动"
@@ -3845,27 +3854,27 @@ msgstr "移动"
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "每物种迁徙尝试次数"
 
-#: ../simulation_parameters/common/input_options.json:23
+#: ../simulation_parameters/common/input_options.json:24
 msgid "MOVE_BACKWARDS"
 msgstr "后退"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "向下走或蹲下"
 
-#: ../simulation_parameters/common/input_options.json:19
+#: ../simulation_parameters/common/input_options.json:20
 msgid "MOVE_FORWARD"
 msgstr "前进"
 
-#: ../simulation_parameters/common/input_options.json:11
+#: ../simulation_parameters/common/input_options.json:12
 msgid "MOVE_LEFT"
 msgstr "左移"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_ORGANELLE"
 msgstr "移动细胞器"
 
-#: ../simulation_parameters/common/input_options.json:15
+#: ../simulation_parameters/common/input_options.json:16
 msgid "MOVE_RIGHT"
 msgstr "右移"
 
@@ -3885,7 +3894,7 @@ msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:198
 msgid "MOVE_UP_OR_JUMP"
 msgstr "向上走或跳起"
 
@@ -4195,7 +4204,7 @@ msgstr "未找到存档"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存档目录"
 
-#: ../src/general/OptionsMenu.tscn:2158
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截图目录"
 
@@ -4293,7 +4302,7 @@ msgstr "打开帮助页面"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "在自由编辑器中打开"
 
-#: ../src/general/OptionsMenu.tscn:1814
+#: ../src/general/OptionsMenu.tscn:1815
 msgid "OPEN_LOGS_FOLDER"
 msgstr "打开日志文件夹"
 
@@ -4301,11 +4310,11 @@ msgstr "打开日志文件夹"
 msgid "OPEN_MOD_URL"
 msgstr "打开Mod网址"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "打开细胞器菜单"
 
-#: ../src/society_stage/SocietyHUD.tscn:136
+#: ../src/society_stage/gui/SocietyHUD.tscn:136
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "打开帮助页面"
@@ -4314,7 +4323,12 @@ msgstr "打开帮助页面"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "打开存档文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1806
+#: ../simulation_parameters/common/input_options.json:250
+#, fuzzy
+msgid "OPEN_SCIENCE_MENU"
+msgstr "打开主菜单"
+
+#: ../src/general/OptionsMenu.tscn:1807
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "打开截图存放文件夹"
 
@@ -4512,23 +4526,23 @@ msgstr "转到下一页"
 msgid "PAGE_TITLE"
 msgstr "页面标题"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "PAN_CAMERA_DOWN"
 msgstr "向下平移"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_LEFT"
 msgstr "向左平移"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:181
 msgid "PAN_CAMERA_RESET"
 msgstr "重置视角位置"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_RIGHT"
 msgstr "向右平移"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
@@ -4576,7 +4590,7 @@ msgstr "页面标题"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2168
+#: ../src/general/OptionsMenu.tscn:2169
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4652,7 +4666,7 @@ msgstr "{0}%"
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../simulation_parameters/common/input_options.json:68
+#: ../simulation_parameters/common/input_options.json:69
 msgid "PERFORM_UNBINDING"
 msgstr "取消连接"
 
@@ -4684,7 +4698,7 @@ msgstr "物理条件"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
 msgstr "放置细胞器"
 
@@ -4763,11 +4777,11 @@ msgstr "PlayStation 4"
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
-#: ../src/general/OptionsMenu.tscn:1643
+#: ../src/general/OptionsMenu.tscn:1644
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放游戏开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1651
+#: ../src/general/OptionsMenu.tscn:1652
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在开始新游戏时播放微生物阶段开场动画"
 
@@ -4777,7 +4791,7 @@ msgstr "使用当前设置"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/SocietyHUD.tscn:267
+#: ../src/society_stage/gui/SocietyHUD.tscn:209
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
@@ -4866,11 +4880,11 @@ msgstr "原生质"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "合并请求/编程"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_LOAD"
 msgstr "快速读档"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:338
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
@@ -4924,7 +4938,7 @@ msgstr "推荐的Thrive版本："
 msgid "REDDIT_TOOLTIP"
 msgstr "访问我们的subreddit页面"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:135
 msgid "REDO"
 msgstr "重做"
 
@@ -4977,7 +4991,7 @@ msgstr "繁殖："
 msgid "REQUIRES_NUCLEUS"
 msgstr "需要细胞核"
 
-#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1989
+#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1990
 msgid "RESET"
 msgstr "重置"
 
@@ -4985,23 +4999,23 @@ msgstr "重置"
 msgid "RESET_DEADZONES"
 msgstr "重置死区"
 
-#: ../src/general/OptionsMenu.tscn:1875
+#: ../src/general/OptionsMenu.tscn:1876
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "重置被禁用的弹出窗口"
 
-#: ../src/general/OptionsMenu.tscn:2049
+#: ../src/general/OptionsMenu.tscn:2050
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "将输入重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1602
+#: ../src/general/OptionsMenu.tscn:1603
 msgid "RESET_KEYBINDINGS"
 msgstr "重置按键绑定"
 
-#: ../src/general/OptionsMenu.tscn:2029
+#: ../src/general/OptionsMenu.tscn:2030
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默认"
 
-#: ../src/general/OptionsMenu.tscn:2040
+#: ../src/general/OptionsMenu.tscn:2041
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置为默认值？"
 
@@ -5026,6 +5040,11 @@ msgstr "物质吸收速度"
 #: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:13
+#, fuzzy
+msgid "RESOURCE_FOOD"
+msgstr "木材"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
@@ -5092,11 +5111,11 @@ msgstr "刚体"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "更刚性的细胞膜有助于抵挡伤害，但是也会让细胞更难移动。"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
 msgstr "向左转"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ROTATE_RIGHT"
 msgstr "向右转"
 
@@ -5174,11 +5193,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
-#: ../src/general/OptionsMenu.tscn:2003 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2004 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "保存"
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存并继续"
 
@@ -5309,7 +5328,7 @@ msgstr "搜索半径："
 msgid "SEA_FLOOR"
 msgstr "海床"
 
-#: ../simulation_parameters/common/input_options.json:44
+#: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
@@ -5398,16 +5417,16 @@ msgstr "音效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:350
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1832
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0}{1}"
 
-#: ../src/general/OptionsMenu.tscn:1829
+#: ../src/general/OptionsMenu.tscn:1830
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0}{1}"
@@ -5416,15 +5435,15 @@ msgstr "{0}{1}"
 msgid "SHOW_TUTORIALS"
 msgstr "显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1741
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "现有游戏中显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1733
+#: ../src/general/OptionsMenu.tscn:1734
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "开始新游戏时显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1748
+#: ../src/general/OptionsMenu.tscn:1749
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "显示未保存的进度警告"
 
@@ -5432,7 +5451,7 @@ msgstr "显示未保存的进度警告"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告弹出框。"
 
-#: ../src/general/OptionsMenu.tscn:1822
+#: ../src/general/OptionsMenu.tscn:1823
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "显示 Thrive 新闻（联机下载）"
 
@@ -5552,7 +5571,7 @@ msgstr "空格"
 msgid "SPACE_STAGE"
 msgstr "微生物阶段"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "生成氨"
 
@@ -5564,11 +5583,11 @@ msgstr "生成敌人"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:294
 msgid "SPAWN_GLUCOSE"
 msgstr "生成葡萄糖"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸盐"
 
@@ -5788,6 +5807,11 @@ msgstr "存储："
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
+#: ../simulation_parameters/common/input_options.json:246
+#, fuzzy
+msgid "STRATEGY_STAGES"
+msgstr "微生物阶段"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "严格的生态位竞争（适应性差异被夸大）"
@@ -5866,15 +5890,15 @@ msgstr "Super Right"
 msgid "SUPPORTER_PATRONS"
 msgstr "支持者"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:230
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "切换到正视图"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:234
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "切换到右视图"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "切换到俯视图"
 
@@ -5882,19 +5906,19 @@ msgstr "切换到俯视图"
 msgid "SYSREQ"
 msgstr "键盘SysRq键"
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr "向左切换二级标签"
 
-#: ../simulation_parameters/common/input_options.json:242
+#: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr "向右切换二级标签"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:265
 msgid "TAB_SWITCH_LEFT"
 msgstr "向左切换标签"
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:269
 msgid "TAB_SWITCH_RIGHT"
 msgstr "向右切换标签"
 
@@ -5902,7 +5926,7 @@ msgstr "向右切换标签"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "标签里只有空格"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
@@ -5919,7 +5943,7 @@ msgstr "简单石质工具"
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "社会中心建设"
 
-#: ../src/general/base_stage/StrategyStageBase.cs:73
+#: ../src/general/base_stage/StrategyStageBase.cs:96
 #: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "解锁的科技：{0}"
@@ -6129,31 +6153,31 @@ msgstr "时间经过了{0:#,#}年"
 msgid "TITLE_COLON"
 msgstr "标题："
 
-#: ../simulation_parameters/common/input_options.json:56
+#: ../simulation_parameters/common/input_options.json:57
 #: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "切换连接模式"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "控制调试菜单"
 
-#: ../simulation_parameters/common/input_options.json:48
+#: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_FPS"
 msgstr "切换帧数显示"
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:354
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切换全屏"
 
-#: ../simulation_parameters/common/input_options.json:322
+#: ../simulation_parameters/common/input_options.json:358
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切换HUD"
 
@@ -6162,7 +6186,7 @@ msgstr "切换HUD"
 msgid "TOGGLE_INVENTORY"
 msgstr "切换连接模式"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:334
 msgid "TOGGLE_METRICS"
 msgstr "切换参数显示"
 
@@ -6170,11 +6194,11 @@ msgstr "切换参数显示"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "打开导航树状图"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_PAUSE"
 msgstr "暂停"
 
-#: ../simulation_parameters/common/input_options.json:60
+#: ../simulation_parameters/common/input_options.json:61
 msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
@@ -6241,7 +6265,7 @@ msgstr "尝试将某些物种变成化石！"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "试着存个档吧！"
 
-#: ../src/general/OptionsMenu.tscn:2160
+#: ../src/general/OptionsMenu.tscn:2161
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "试着截一些图吧！"
 
@@ -6423,7 +6447,7 @@ msgstr "有未应用的更变"
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要应用更变才能加载或卸载任何mod。"
 
-#: ../simulation_parameters/common/input_options.json:64
+#: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "取消所有连接"
@@ -6440,7 +6464,7 @@ msgstr "这是一个调试版本，下面的信息可能不是最新的"
 msgid "UNDERWATERCAVE"
 msgstr "水下洞穴"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:131
 msgid "UNDO"
 msgstr "撤销"
 
@@ -6472,7 +6496,7 @@ msgstr "未知版本"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "此Mod的创意工坊编号未知"
 
-#: ../src/general/OptionsMenu.tscn:2079
+#: ../src/general/OptionsMenu.tscn:2080
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改将被丢弃。\n"
@@ -6530,7 +6554,7 @@ msgstr "使用自动Harmony加载"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
 
-#: ../src/general/OptionsMenu.tscn:1768
+#: ../src/general/OptionsMenu.tscn:1769
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
 
@@ -6596,12 +6620,12 @@ msgstr "查看器"
 msgid "VIEW_ALL"
 msgstr "全部禁用"
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1840
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0}{1}"
 
-#: ../src/general/OptionsMenu.tscn:1837
+#: ../src/general/OptionsMenu.tscn:1838
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0}{1}"
@@ -6787,11 +6811,11 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "你可以在 Patreon 上支持 Thrive 未来的发展。"
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:110
 msgid "ZOOM_IN"
 msgstr "放大"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
