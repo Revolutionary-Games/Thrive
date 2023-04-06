@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -6,6 +7,11 @@ using Newtonsoft.Json;
 /// </summary>
 public class SocietyStructureSystem
 {
+    private readonly List<PlacedStructure> thisFrameCompletedStructures = new();
+
+    [JsonProperty]
+    private readonly Dictionary<PlacedStructure, StructureProgressData> structureCompletionTimesRemaining = new();
+
     private Node worldRoot;
 
     [JsonProperty]
@@ -34,6 +40,9 @@ public class SocietyStructureSystem
     {
         elapsed += delta;
 
+        // Update completion times each frame for smooth animation
+        UpdatedStructureCompletionProgress(delta);
+
         if (elapsed < Constants.SOCIETY_STAGE_BUILDING_PROCESS_INTERVAL)
             return;
 
@@ -43,7 +52,14 @@ public class SocietyStructureSystem
         {
             if (!structure.Completed)
             {
-                // TODO: start completing a structure we have resources for
+                if (structureCompletionTimesRemaining.ContainsKey(structure))
+                    continue;
+
+                // Start completing a structure we have resources for
+                if (structure.DepositBulkResources(societyData.SocietyResources))
+                {
+                    structureCompletionTimesRemaining[structure] = new StructureProgressData(structure);
+                }
 
                 continue;
             }
@@ -81,5 +97,50 @@ public class SocietyStructureSystem
 
         CachedTotalStorage = storage;
         return storage;
+    }
+
+    private void UpdatedStructureCompletionProgress(float delta)
+    {
+        thisFrameCompletedStructures.Clear();
+
+        foreach (var structureProgressData in structureCompletionTimesRemaining)
+        {
+            if (structureProgressData.Value.ElapseTimeAndCompleteWhenReady(delta))
+                thisFrameCompletedStructures.Add(structureProgressData.Key);
+        }
+
+        foreach (var completedStructure in thisFrameCompletedStructures)
+        {
+            structureCompletionTimesRemaining.Remove(completedStructure);
+        }
+    }
+
+    private class StructureProgressData
+    {
+        private readonly PlacedStructure structure;
+        private readonly float totalTime;
+
+        private float elapsed;
+
+        public StructureProgressData(PlacedStructure structure)
+        {
+            this.structure = structure;
+            totalTime = structure.TimedActionDuration;
+        }
+
+        public bool ElapseTimeAndCompleteWhenReady(float delta)
+        {
+            elapsed += delta;
+
+            structure.ReportActionProgress(elapsed / totalTime);
+
+            if (elapsed > totalTime)
+            {
+                structure.OnFinishTimeTakingAction();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

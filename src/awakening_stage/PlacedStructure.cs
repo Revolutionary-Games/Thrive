@@ -226,6 +226,24 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
             missingResourcesToFullyConstruct = null;
     }
 
+    /// <summary>
+    ///   <see cref="DepositItems"/> variant for taking from bulk storage, only takes when all resources are available
+    /// </summary>
+    /// <param name="availableResources">The available resources</param>
+    /// <returns>True when all resources are now taken</returns>
+    public bool DepositBulkResources(IResourceContainer availableResources)
+    {
+        // Allow calling this when this doesn't actually need anything
+        if (missingResourcesToFullyConstruct == null)
+            return true;
+
+        if (!availableResources.TakeResourcesIfPossible(missingResourcesToFullyConstruct))
+            return false;
+
+        missingResourcesToFullyConstruct = null;
+        return true;
+    }
+
     public void ReportActionProgress(float progress)
     {
         if (Definition == null)
