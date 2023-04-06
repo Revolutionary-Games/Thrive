@@ -229,7 +229,7 @@ public class PauseMenu : CustomWindow
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        unsavedProgressWarning.Connect(nameof(CustomDialog.Canceled), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomDialog.Cancelled), this, nameof(CancelExit));
     }
 
     public override void _EnterTree()

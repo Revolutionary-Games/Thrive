@@ -209,7 +209,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[connection signal="Canceled" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
+[connection signal="Cancelled" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
@@ -217,4 +217,4 @@ __meta__ = {
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox" to="." method="OnInspectorCheckBoxToggled"]
 [connection signal="pressed" from="DebugPanel/VBoxContainer/Button" to="." method="OnDumpSceneTreeButtonPressed"]
 [connection signal="value_changed" from="DebugPanel/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnTransparencySliderValueChanged"]
-[connection signal="Canceled" from="Inspector" to="." method="OnInspectorToggled"]
+[connection signal="Cancelled" from="Inspector" to="." method="OnInspectorToggled"]

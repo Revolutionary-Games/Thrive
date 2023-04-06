@@ -76,10 +76,10 @@ public class CustomDialog : CustomWindow
 
     /// <summary>
     ///   This is emitted by any means to hide this dialog but NOT the hiding itself, for that use
-    ///   <c>CanvasItem.hide</c> signal OR <see cref="OnHidden"/>.
+    ///   <see cref="CustomWindow.Closed"/> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
-    public delegate void Canceled();
+    public delegate void Cancelled();
 
     [Flags]
     private enum DragType
@@ -580,6 +580,6 @@ public class CustomDialog : CustomWindow
     {
         GUICommon.Instance.PlayButtonPressSound();
         Close();
-        EmitSignal(nameof(Canceled));
+        EmitSignal(nameof(Cancelled));
     }
 }

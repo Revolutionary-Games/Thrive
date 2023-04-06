@@ -8,6 +8,12 @@ public class CustomWindow : Control
     private bool mouseUnCaptureActive;
 
     /// <summary>
+    ///   Emitted when this window is hidden. Same as <c>CanvasItem.hide</c>.
+    /// </summary>
+    [Signal]
+    public delegate void Closed();
+
+    /// <summary>
     ///   If true, clicking outside of this popup will not close it.
     /// </summary>
     [Export]
@@ -81,6 +87,7 @@ public class CustomWindow : Control
                 {
                     MouseUnCaptureActive = false;
                     OnHidden();
+                    EmitSignal(nameof(Closed));
                 }
 
                 break;

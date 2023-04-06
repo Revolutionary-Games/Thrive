@@ -2115,7 +2115,7 @@ __meta__ = {
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/SecreteSlime" to="PlayerMicrobeInput" method="SecreteSlime" binds= [ 1.0 ]]
-[connection signal="Canceled" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularCancelled"]
+[connection signal="Cancelled" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularCancelled"]
 [connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
