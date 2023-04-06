@@ -435,7 +435,7 @@ public partial class Microbe
             distanceRight += colonyBonus;
         }
 
-        float width = -distanceLeft + distanceRight + 3.0f;
+        float width = -distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
 
         if (CellTypeProperties.IsBacteria)
             width *= 0.5f;

@@ -646,7 +646,7 @@ public static class Constants
     public const int METABALL_MOVE_COST = 3;
     public const int METABALL_RESIZE_COST = 3;
 
-    public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
+    public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
