@@ -635,10 +635,12 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
+    <Compile Include="src\society_stage\CitizenMovingSystem.cs" />
     <Compile Include="src\society_stage\gui\ResourceDisplayBar.cs" />
     <Compile Include="src\society_stage\IResourceContainer.cs" />
     <Compile Include="src\society_stage\gui\SocietyHUD.cs" />
     <Compile Include="src\society_stage\PlayerSocietyInput.cs" />
+    <Compile Include="src\society_stage\SocietyCreature.cs" />
     <Compile Include="src\society_stage\SocietyResourceStorage.cs" />
     <Compile Include="src\society_stage\SocietyStage.cs" />
     <Compile Include="src\society_stage\SocietyStructureSystem.cs" />

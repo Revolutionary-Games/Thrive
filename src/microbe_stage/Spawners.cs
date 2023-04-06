@@ -324,6 +324,28 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/awakening_stage/PlacedStructure.tscn");
     }
 
+    public static SocietyCreature SpawnCitizen(Species species, Vector3 location, Node worldRoot,
+        PackedScene citizenScene)
+    {
+        var creature = (SocietyCreature)citizenScene.Instance();
+
+        creature.Init();
+
+        worldRoot.AddChild(creature);
+        creature.Translation = location;
+
+        creature.AddToGroup(Constants.CITIZEN_GROUP);
+
+        creature.ApplySpecies(species);
+
+        return creature;
+    }
+
+    public static PackedScene LoadCitizenScene()
+    {
+        return GD.Load<PackedScene>("res://src/society_stage/SocietyCreature.tscn");
+    }
+
     private static Quat RandomRotationForResourceEntity(Random random)
     {
         return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),

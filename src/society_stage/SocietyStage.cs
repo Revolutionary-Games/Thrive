@@ -17,9 +17,17 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     private Spatial? buildingToPlaceGhost;
 #pragma warning restore CA2213
 
+    private WorldResource foodResource = null!;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private SocietyStructureSystem structureSystem = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CitizenMovingSystem citizenMovingSystem = null!;
+
+    private long population = 1;
 
     [JsonProperty]
     private SocietyResourceStorage resourceStorage = new();
@@ -46,8 +54,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
         HUD.Init(this);
 
-        structureSystem.Init();
-
         SetupStage();
     }
 
@@ -64,6 +70,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
         // Systems
         structureSystem = new SocietyStructureSystem(rootOfDynamicallySpawned);
+        citizenMovingSystem = new CitizenMovingSystem(rootOfDynamicallySpawned);
     }
 
     public override void _Process(float delta)
@@ -78,6 +85,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
             // easier to program
             resourceStorage.Capacity = structureSystem.CachedTotalStorage;
 
+            // TODO: make population consume food
+
             // TODO: update science speed
             HUD.UpdateScienceSpeed(0);
 
@@ -87,9 +96,14 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
                 // TODO: collision check with other buildings
                 buildingToPlaceGhost.GlobalTranslation = GetPlayerCursorPointedWorldPosition();
             }
+
+            HandlePopulationGrowth();
+
+            citizenMovingSystem.Process(delta, population);
         }
 
         HUD.UpdateResourceDisplay(resourceStorage);
+        HUD.UpdatePopulationDisplay(population);
     }
 
     public override void StartMusic()
@@ -174,12 +188,16 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     {
         base.SetupStage();
 
+        foodResource = SimulationParameters.Instance.GetWorldResource("food");
+
         resourceStorage.Capacity = structureSystem.CalculateTotalStorage();
+
+        citizenMovingSystem.Init(CurrentGame!.GameWorld.PlayerSpecies);
 
         // TODO: this is only unlocked here for now to prevent the player from accidentally wasting limited resources
         // in the previous prototype. Once that's no longer the case discovering this should be moved to the previous
         // stage. This is here rather than OnGameStarted to have this unlock appear to the player.
-        CurrentGame!.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("hunterGathering"));
+        CurrentGame.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("hunterGathering"));
     }
 
     protected override void OnGameStarted()
@@ -220,6 +238,25 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         }
 
         base.Dispose(disposing);
+    }
+
+    private void HandlePopulationGrowth()
+    {
+        var housing = structureSystem.CachedHousingCapacity;
+
+        // TODO: adjust food need and reproduction rate based on species properties
+        float requiredForNewMember = 1;
+
+        // Don't grow if not enough housing
+        // And for now just for the prototype only grow when otherwise full on food
+        if (population >= housing || resourceStorage.GetAvailableAmount(foodResource) < resourceStorage.Capacity)
+            return;
+
+        if (resourceStorage.Take(foodResource, requiredForNewMember) > 0)
+        {
+            // Took some food to grow
+            ++population;
+        }
     }
 
     private bool PlaceCurrentStructureIfPossible()

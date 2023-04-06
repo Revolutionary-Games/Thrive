@@ -12,7 +12,7 @@ public class SocietyStructureSystem
     [JsonProperty]
     private readonly Dictionary<PlacedStructure, StructureProgressData> structureCompletionTimesRemaining = new();
 
-    private Node worldRoot;
+    private readonly Node worldRoot;
 
     [JsonProperty]
     private float elapsed = 1;
@@ -28,13 +28,8 @@ public class SocietyStructureSystem
     [JsonIgnore]
     public float CachedTotalStorage { get; private set; }
 
-    /// <summary>
-    ///   Initializes this system. Bit of a superfluous one but this mainly exists as placeholder for
-    ///   <see cref="SocietyStage"/> class to have a placeholder where systems are initialized.
-    /// </summary>
-    public void Init()
-    {
-    }
+    [JsonProperty]
+    public long CachedHousingCapacity { get; private set; }
 
     public void Process(float delta, ISocietyStructureDataAccess societyData)
     {
@@ -47,6 +42,7 @@ public class SocietyStructureSystem
             return;
 
         float storage = 0;
+        long housing = 0;
 
         foreach (var structure in worldRoot.GetChildrenToProcess<PlacedStructure>(Constants.STRUCTURE_ENTITY_GROUP))
         {
@@ -64,15 +60,21 @@ public class SocietyStructureSystem
                 continue;
             }
 
+            // The following is pretty quick prototype code, there's probably better way to implement this
             var storageComponent = structure.GetComponent<StructureStorageComponent>();
             if (storageComponent != null)
                 storage += storageComponent.Capacity;
+
+            var housingComponent = structure.GetComponent<HousingComponent>();
+            if (housingComponent != null)
+                housing += housingComponent.Space;
 
             structure.ProcessSociety(elapsed, societyData);
         }
 
         elapsed = 0;
         CachedTotalStorage = storage;
+        CachedHousingCapacity = housing;
     }
 
     /// <summary>
