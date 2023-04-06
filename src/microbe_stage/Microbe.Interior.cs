@@ -392,50 +392,20 @@ public partial class Microbe
         // Find the direction to the right from where the cell is facing
         var direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Right);
 
-        // Start calculating distance to the edge of the cell
-        float distanceRight = 0.0f;
-        float distanceLeft = 0.0f;
+        // Start calculating separation distance
+        var organellePositions = organelles!.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
 
-        foreach (var entry in organelles!.Organelles)
-        {
-            float cartesianX = Hex.AxialToCartesian(entry.Position).x;
-            if (cartesianX > distanceRight)
-            {
-                distanceRight = cartesianX;
-            }
-            else if (cartesianX < distanceLeft)
-            {
-                distanceLeft = cartesianX;
-            }
-        }
+        float distanceRight = MathUtils.GetLengthInDirectionFromPoints(Vector3.Right, Vector3.Zero, organellePositions);
+        float distanceLeft = MathUtils.GetLengthInDirectionFromPoints(Vector3.Left, Vector3.Zero, organellePositions);
 
         if (Colony != null)
         {
-            float colonyBonus = 0.0f;
+            var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin).ToList();
 
-            foreach (var colonyMember in Colony.ColonyMembers)
-            {
-                if (colonyMember == this)
-                    continue;
-
-                var positionInColony = colonyMember.GlobalTransform.origin - currentPosition;
-
-                float angle = positionInColony.AngleTo(direction);
-
-                if (angle >= Mathf.Pi / 2.0f)
-                    continue;
-
-                // Get the length of the part of the vector that's to the right of the colony leader
-                float directionalLength = positionInColony.Length() * Mathf.Cos(angle);
-
-                if (directionalLength > colonyBonus)
-                    colonyBonus = directionalLength;
-            }
-
-            distanceRight += colonyBonus;
+            distanceRight += MathUtils.GetLengthInDirectionFromPoints(direction, currentPosition, colonyMembers);
         }
 
-        float width = -distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
+        float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
 
         if (CellTypeProperties.IsBacteria)
             width *= 0.5f;

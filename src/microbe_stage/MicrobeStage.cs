@@ -526,38 +526,18 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
-            // Add more extra offset between the player and the divided cell
-            var daughterPosition = daughter.GlobalTransform.origin;
-            var direction = (playerPosition - daughterPosition).Normalized();
-            float distance = 0.0f;
-
             if (daughter.Colony != null)
             {
-                float colonyBonus = 0.0f;
+                // Add more extra offset between the player and the divided cell
+                var daughterPosition = daughter.GlobalTransform.origin;
+                var direction = (playerPosition - daughterPosition).Normalized();
 
-                foreach (var colonyMember in daughter.Colony.ColonyMembers)
-                {
-                    if (colonyMember == daughter)
-                        continue;
+                var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin).ToList();
 
-                    var positionInColony = colonyMember.GlobalTransform.origin - daughterPosition;
+                float distance = MathUtils.GetLengthInDirectionFromPoints(direction, daughterPosition, colonyMembers);
 
-                    float angle = positionInColony.AngleTo(direction);
-
-                    if (angle >= Mathf.Pi / 2.0f)
-                        continue;
-
-                    // Get the length of the part of the vector that's parallel to the direction
-                    float directionalLength = positionInColony.Length() * Mathf.Cos(angle);
-
-                    if (directionalLength > colonyBonus)
-                        colonyBonus = directionalLength;
-                }
-
-                distance += colonyBonus;
+                daughter.Translation += -direction * distance;
             }
-
-            daughter.Translation += -direction * distance;
         }
 
         // This is queued to run to reduce the massive lag spike that anyway happens on this frame

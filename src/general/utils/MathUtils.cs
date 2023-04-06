@@ -131,4 +131,31 @@ public static class MathUtils
         double standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
         return (average, standardDeviation);
     }
+
+    public static float GetLengthInDirectionFromPoints(Vector3 direction, Vector3 referencePoint,
+        List<Vector3> listOfPoints)
+    {
+        float length = 0.0f;
+
+        foreach (var point in listOfPoints)
+        {
+            if (point == referencePoint)
+                continue;
+
+            var difference = point - referencePoint;
+
+            float angle = difference.AngleTo(direction);
+
+            if (angle >= Mathf.Pi / 2.0f)
+                continue;
+
+            // Get the length of the part of the vector that's parallel to the direction
+            float directionalLength = difference.Length() * Mathf.Cos(angle);
+
+            if (directionalLength > length)
+                length = directionalLength;
+        }
+
+        return length;
+    }
 }
