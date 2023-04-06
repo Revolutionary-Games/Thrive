@@ -44,6 +44,15 @@ public class SocietyCreature : Spatial, IEntity
         // more sense to do with another approach
     }
 
+    /// <summary>
+    ///   Must be called when spawned to set this up
+    /// </summary>
+    public void Init()
+    {
+        // Needed for immediately applying the species
+        _Ready();
+    }
+
     public override void _Process(float delta)
     {
     }
@@ -77,15 +86,6 @@ public class SocietyCreature : Spatial, IEntity
 
             GlobalTranslation += vectorToTarget;
         }
-    }
-
-    /// <summary>
-    ///   Must be called when spawned to set this up
-    /// </summary>
-    public void Init()
-    {
-        // Needed for immediately applying the species
-        _Ready();
     }
 
     public void ApplySpecies(Species species)
