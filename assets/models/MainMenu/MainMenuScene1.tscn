@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/models/MainMenu/MenuPlanet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/MainMenu/StarsMesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/models/IronRock1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/models/MainMenu/MenuPlanetClouds.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/textures/MainMenuScene/RoundParticle.png" type="Texture" id=5]
+[ext_resource path="res://assets/models/MainMenu/PlanetClouds.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/textures/Flame.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/iron_bump.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=7]
 [ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=8]
@@ -25,14 +25,15 @@ texture_size = 4
 background_mode = 2
 background_sky = SubResource( 2 )
 background_sky_orientation = Basis( 0.963975, 0.265994, 0, -0.239279, 0.867158, 0.436786, 0.116182, -0.421051, 0.899565 )
-background_energy = 3.82
+background_energy = 2.47
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.0
-ambient_light_sky_contribution = 0.29
+ambient_light_sky_contribution = 0.24
 auto_exposure_enabled = true
-auto_exposure_min_luma = 0.4
-auto_exposure_max_luma = 9.61
-auto_exposure_speed = 25.16
+auto_exposure_scale = 1.46
+auto_exposure_min_luma = 1.54
+auto_exposure_max_luma = 6.58
+auto_exposure_speed = 21.47
 ss_reflections_enabled = true
 ssao_enabled = true
 ssao_radius = 3.42
@@ -46,47 +47,34 @@ glow_levels/2 = true
 glow_levels/4 = true
 glow_levels/6 = true
 glow_levels/7 = true
-glow_intensity = 1.17
-glow_strength = 0.81
-glow_bloom = 0.38
+glow_intensity = 0.5
+glow_strength = 0.85
+glow_bloom = 0.7
 glow_blend_mode = 1
-glow_hdr_threshold = 1.09
-glow_hdr_luminance_cap = 204.61
-glow_hdr_scale = 2.09
+glow_hdr_threshold = 1.29
+glow_hdr_luminance_cap = 156.51
+glow_hdr_scale = 2.2
 glow_high_quality = true
-adjustment_saturation = 1.07
-
-[sub_resource type="Gradient" id=9]
-colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
+adjustment_enabled = true
+adjustment_brightness = 1.06
+adjustment_contrast = 0.97
+adjustment_saturation = 0.99
 
 [sub_resource type="SpatialMaterial" id=6]
+render_priority = 1
 flags_transparent = true
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
+params_blend_mode = 1
 params_cull_mode = 2
-albedo_color = Color( 0, 0, 0, 1 )
+albedo_color = Color( 0.270588, 0.270588, 0.270588, 1 )
 albedo_texture = ExtResource( 5 )
 metallic_specular = 0.0
 emission_enabled = true
-emission = Color( 0.415686, 0.568627, 0.866667, 1 )
-emission_energy = 8.48
+emission = Color( 0.443137, 0.635294, 0.839216, 1 )
+emission_energy = 0.68
 emission_operator = 0
 emission_on_uv2 = false
-emission_texture = SubResource( 10 )
-anisotropy_enabled = true
-anisotropy = 0.3
-depth_enabled = true
-depth_scale = 7.02
-depth_deep_parallax = true
-depth_min_layers = 8
-depth_max_layers = 32
-depth_flip_tangent = false
-depth_flip_binormal = false
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 0.63
 
 [sub_resource type="QuadMesh" id=7]
 
@@ -96,11 +84,12 @@ max_value = 360.0
 _data = [ Vector2( 0.143564, 175.909 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, 84.2727 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=8]
-_data = [ Vector2( 0, 0.501136 ), 0.0, 0.0, 0, 0, Vector2( 0.217822, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.355682 ), 0.0, 0.0, 0, 0 ]
+bake_resolution = 64
+_data = [ Vector2( 0, 0.501136 ), 0.0, 0.0, 0, 0, Vector2( 0.217822, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=12]
-offsets = PoolRealArray( 0, 0.98324, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.40724, 0.99095, 1 )
+colors = PoolColorArray( 0.870605, 0.634688, 0.0680161, 1, 0.145098, 0.368627, 0.905882, 0.913725, 1, 1, 1, 0, 1, 1, 1, 0 )
 
 [sub_resource type="ShaderMaterial" id=16]
 resource_local_to_scene = true
@@ -112,285 +101,384 @@ shader_param/albedoTexture = ExtResource( 7 )
 shader_param/normalTexture = ExtResource( 6 )
 shader_param/dissolveTexture = ExtResource( 9 )
 
-[sub_resource type="Curve" id=13]
-max_value = 100.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.173267, 26.7045 ), 0.0, 0.0, 0, 0, Vector2( 0.529703, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="SpatialMaterial" id=19]
+flags_do_not_receive_shadows = true
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color( 0.843137, 0.780392, 0.627451, 1 )
+emission_energy = 10.0
+emission_operator = 0
+emission_on_uv2 = false
 
-[sub_resource type="ShaderMaterial" id=17]
-resource_local_to_scene = true
-shader = ExtResource( 8 )
-shader_param/dissolveValue = 0.0
-shader_param/outlineWidth = 0.005
-shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
-shader_param/albedoTexture = ExtResource( 7 )
-shader_param/normalTexture = ExtResource( 6 )
-shader_param/dissolveTexture = ExtResource( 9 )
+[sub_resource type="Animation" id=20]
+resource_name = "PlanetRotation"
+length = 60.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 60 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 720, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 60 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -360, 0 ) ]
+}
 
-[sub_resource type="ShaderMaterial" id=18]
-resource_local_to_scene = true
-shader = ExtResource( 8 )
-shader_param/dissolveValue = 0.0
-shader_param/outlineWidth = 0.005
-shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
-shader_param/albedoTexture = ExtResource( 7 )
-shader_param/normalTexture = ExtResource( 6 )
-shader_param/dissolveTexture = ExtResource( 9 )
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 100, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 107.741, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.001, 1.001, 1.001 ) ]
+}
 
 [node name="Main" type="Node"]
-
-[node name="PlanetSurface" parent="." instance=ExtResource( 1 )]
-transform = Transform( 3.85759, 0.32747, 8.12476, 4.35652, -7.67635, -1.75905, 6.86584, 4.68682, -3.44876, -10.352, -7.351, 0.094 )
-
-[node name="PlanetClouds" parent="PlanetSurface" instance=ExtResource( 4 )]
-transform = Transform( -0.80997, 0, 0.586471, 0, 1, 0, -0.586471, 0, -0.80997, 0, 0, 0 )
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.394097, -0.471086, 0.789155, -0.288612, 0.878645, 0.380376, -0.872577, -0.0778545, -0.482232, 17.668, -0.333, -18.133 )
-light_energy = 9.063
-light_indirect_energy = 1.195
-light_specular = 0.076
-light_bake_mode = 2
-shadow_enabled = true
-shadow_bias = 4.303
-directional_shadow_split_1 = 0.124
-directional_shadow_split_2 = 0.336
-directional_shadow_split_3 = 0.485
-directional_shadow_blend_splits = true
-directional_shadow_normal_bias = 4.407
-directional_shadow_bias_split_scale = 0.368
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
 [node name="starssphere" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2000, -0.491873, 0.349052, 0.488672, 1999.92, 18.221, -0.353518, -18.2209, 1999.92, 0, 0, 0 )
+transform = Transform( 10000, -2.45936, 1.74526, 2.44336, 9999.59, 91.1048, -1.76759, -91.1044, 9999.59, -12.7566, 0, 8.74701 )
+
+[node name="Comet" type="Spatial" parent="."]
+transform = Transform( 0.448064, 0.0917784, -0.889278, -0.205418, 0.978671, -0.00249582, 0.870082, 0.183792, 0.45736, -22.597, -3.261, -10.7 )
+
+[node name="Tail1" type="CPUParticles" parent="Comet"]
+transform = Transform( -7.21775e-09, 0.199999, 2.98023e-08, -0.199999, -6.28643e-09, -5.52973e-10, 4.07454e-10, -3.72529e-09, 0.2, 0.0457492, 0.076674, -0.191231 )
+material_override = SubResource( 6 )
+amount = 2000
+lifetime = 3.0
+preprocess = 2.27
+speed_scale = 0.5
+draw_order = 2
+mesh = SubResource( 7 )
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 2.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+radial_accel = 3.05
+damping = 11.07
+angle_curve = SubResource( 11 )
+scale_amount = 0.36
+scale_amount_curve = SubResource( 8 )
+color = Color( 0.517647, 0.517647, 0.517647, 1 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.55
+hue_variation_random = 0.55
+
+[node name="Rock" parent="Comet" instance=ExtResource( 3 )]
+transform = Transform( 0.373692, -0.029077, -19.9169, -0.0552642, 4.20006, -0.16347, 4.09983, 0.0592657, 1.81319, -0.0363121, 0.0588069, -0.186089 )
+material_override = SubResource( 16 )
+skeleton = NodePath("../Tail1")
+
+[node name="MainFire" type="CPUParticles" parent="Comet"]
+transform = Transform( -6.0536e-09, 0.149999, 1.86265e-09, -0.149999, -6.40284e-09, -5.82077e-11, 5.82077e-11, 0, 0.15, 0.0345578, 0.0615048, -0.189747 )
+material_override = SubResource( 6 )
+amount = 2000
+lifetime = 2.0
+preprocess = 2.27
+speed_scale = 0.5
+fixed_fps = 60
+mesh = SubResource( 7 )
+flag_align_y = true
+direction = Vector3( -1, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, -23.614, 0 )
+initial_velocity = 2.5
+damping = 9.65
+angle_curve = SubResource( 11 )
+scale_amount = 1.06
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+hue_variation = -0.06
+hue_variation_random = 0.55
+
+[node name="Tail2" type="CPUParticles" parent="Comet"]
+transform = Transform( -0.00447459, 0.19995, -1.46031e-05, 0.199946, 0.00447459, 0.00130541, 0.00130541, 1.45845e-05, -0.199996, 0.0477514, 0.0463119, -0.183525 )
+material_override = SubResource( 6 )
+amount = 2000
+lifetime = 3.0
+preprocess = 2.27
+speed_scale = 0.5
+draw_order = 2
+mesh = SubResource( 7 )
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 2.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+radial_accel = 3.05
+damping = 11.07
+angle_curve = SubResource( 11 )
+scale_amount = 0.36
+scale_amount_curve = SubResource( 8 )
+color = Color( 0.517647, 0.517647, 0.517647, 1 )
+color_ramp = SubResource( 12 )
+hue_variation = 0.55
+hue_variation_random = 0.55
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.581158, 0.0586231, -0.811677, 0, 0.997402, 0.0720371, 0.813791, -0.0418649, 0.579648, -24.454, 1.29, 5.91 )
-h_offset = -0.817
-v_offset = 1.805
+transform = Transform( 0.191429, 0.00534529, -0.981492, -0.0111873, 0.999932, 0.00326376, 0.981443, 0.0103554, 0.191476, -49.362, -4.916, 1.662 )
 current = true
-fov = 35.4
-far = 10000.0
+fov = 36.8
+far = 15000.0
 
-[node name="CPUParticles3" type="CPUParticles" parent="."]
-transform = Transform( 0.173828, 0.0759652, -0.0633479, -0.0692626, 0.184926, 0.0317005, 0.0706142, -0.00561409, 0.187035, -16.838, 3.17, -5.685 )
+[node name="SUN" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.455, 21.976, -63.874 )
+light_color = Color( 0.972549, 0.956863, 0.937255, 1 )
+light_energy = 0.938
+light_indirect_energy = 1.263
+light_size = 50000.0
+light_specular = 1.682
+light_bake_mode = 0
+omni_range = 4096.0
+
+[node name="CSGSphere" type="CSGSphere" parent="SUN"]
+transform = Transform( 0.994733, 0.102497, 0, -0.102497, 0.994733, 0, 0, 0, 1, 0, 0, 0 )
+radius = 2.613
+radial_segments = 32
+rings = 16
+material = SubResource( 19 )
+
+[node name="MenuPlanet" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.73648, 0, 9.84808, 0, 10, 0, -9.84808, 0, -1.73648, 3.142, -16.055, 17.446 )
+
+[node name="PlanetClouds" parent="MenuPlanet" instance=ExtResource( 4 )]
+transform = Transform( -0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0 )
+
+[node name="PlanetRotation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../MenuPlanet/PlanetClouds")
+autoplay = "PlanetRotation"
+playback_speed = 0.03
+anims/PlanetRotation = SubResource( 20 )
+anims/RESET = SubResource( 21 )
+
+[node name="Comet2" type="Spatial" parent="."]
+transform = Transform( 0.798237, 0.0711368, -0.598129, -0.112538, 0.99313, -0.0320737, 0.591738, 0.0929148, 0.800758, -43.74, -5.796, -1.599 )
+
+[node name="Tail1" type="CPUParticles" parent="Comet2"]
+transform = Transform( -7.21775e-09, 0.199999, 2.98023e-08, -0.199999, -6.28643e-09, -5.52973e-10, 4.07454e-10, -3.72529e-09, 0.2, 0.0457492, 0.076674, -0.191231 )
 material_override = SubResource( 6 )
-amount = 239
-lifetime = 1.84
+amount = 2000
+lifetime = 3.0
 preprocess = 2.27
 speed_scale = 0.5
+draw_order = 2
 mesh = SubResource( 7 )
+flag_align_y = true
+flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, -20, 0 )
 initial_velocity = 2.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
 radial_accel = 3.05
-radial_accel_random = 1.0
-angle = 145.3
-angle_random = 0.72
+damping = 11.07
 angle_curve = SubResource( 11 )
-scale_amount = 0.1
-scale_amount_random = 0.19
+scale_amount = 0.36
 scale_amount_curve = SubResource( 8 )
+color = Color( 0.517647, 0.517647, 0.517647, 1 )
 color_ramp = SubResource( 12 )
-hue_variation = 0.46
+hue_variation = 0.55
 hue_variation_random = 0.55
 
-[node name="MicIronBIG01" parent="CPUParticles3" instance=ExtResource( 3 )]
-transform = Transform( -0.000475466, -0.00417916, 0.0280006, -0.00145368, 0.0405153, 0.00029269, -0.0129861, 0.00746906, -0.00136252, -0.18998, -0.169912, -0.0768375 )
+[node name="Rock" parent="Comet2" instance=ExtResource( 3 )]
+transform = Transform( 0.373692, -0.029077, -19.9169, -0.0552642, 4.20006, -0.16347, 4.09983, 0.0592657, 1.81319, -0.0363121, 0.0588069, -0.186089 )
 material_override = SubResource( 16 )
+skeleton = NodePath("../Tail1")
 
-[node name="CPUParticles" type="CPUParticles" parent="CPUParticles3"]
-transform = Transform( 1, -1.92784e-07, -1.11759e-08, 4.65661e-09, 1, 1.49012e-08, 0, -2.98023e-08, 1, -0.152395, -0.400082, -0.100585 )
+[node name="MainFire" type="CPUParticles" parent="Comet2"]
+transform = Transform( -6.0536e-09, 0.149999, 1.86265e-09, -0.149999, -6.40284e-09, -5.82077e-11, 5.82077e-11, 0, 0.15, 0.0345578, 0.0615048, -0.189747 )
 material_override = SubResource( 6 )
-amount = 239
-lifetime = 1.84
+amount = 2000
+lifetime = 2.0
 preprocess = 2.27
 speed_scale = 0.5
-mesh = SubResource( 7 )
-direction = Vector3( -1, 0, 0 )
-spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
-radial_accel = 3.05
-radial_accel_random = 1.0
-angle = 145.3
-angle_random = 0.72
-angle_curve = SubResource( 11 )
-scale_amount = 0.1
-scale_amount_random = 0.19
-scale_amount_curve = SubResource( 8 )
-color_ramp = SubResource( 12 )
-hue_variation = 0.46
-hue_variation_random = 0.55
-
-[node name="CPUParticles2" type="CPUParticles" parent="CPUParticles3"]
-transform = Transform( -0.00605074, 0.994458, 0.104974, -0.999357, -0.00229823, -0.0358323, -0.0353924, -0.105123, 0.99383, 0.126984, -0.238097, -0.0976768 )
-material_override = SubResource( 6 )
-amount = 500
-lifetime = 1.84
-preprocess = 2.27
-speed_scale = 0.5
+fixed_fps = 60
 mesh = SubResource( 7 )
 flag_align_y = true
 direction = Vector3( -1, 0, 0 )
 spread = 180.0
-gravity = Vector3( 0, -20, 0 )
-initial_velocity = 2.0
-damping_curve = SubResource( 13 )
+gravity = Vector3( 0, -23.614, 0 )
+initial_velocity = 2.5
+damping = 9.65
 angle_curve = SubResource( 11 )
-scale_amount = 0.2
-scale_amount_random = 0.13
+scale_amount = 1.06
 scale_amount_curve = SubResource( 8 )
 color_ramp = SubResource( 12 )
 hue_variation = -0.06
 hue_variation_random = 0.55
 
-[node name="CPUParticles" type="CPUParticles" parent="."]
-transform = Transform( 0.188503, 0.0666345, -0.00515971, -0.0662427, 0.188327, 0.0120425, 0.00887077, -0.00964121, 0.19957, -20.916, 2.189, 0.166 )
+[node name="Tail2" type="CPUParticles" parent="Comet2"]
+transform = Transform( -0.00447459, 0.19995, -1.46031e-05, 0.199946, 0.00447459, 0.00130541, 0.00130541, 1.45845e-05, -0.199996, 0.0477514, 0.0463119, -0.183525 )
 material_override = SubResource( 6 )
-amount = 239
-lifetime = 1.84
+amount = 2000
+lifetime = 3.0
 preprocess = 2.27
 speed_scale = 0.5
+draw_order = 2
 mesh = SubResource( 7 )
+flag_align_y = true
+flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, -20, 0 )
 initial_velocity = 2.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
 radial_accel = 3.05
-radial_accel_random = 1.0
-angle = 145.3
-angle_random = 0.72
+damping = 11.07
 angle_curve = SubResource( 11 )
-scale_amount = 0.1
-scale_amount_random = 0.19
+scale_amount = 0.36
 scale_amount_curve = SubResource( 8 )
+color = Color( 0.517647, 0.517647, 0.517647, 1 )
 color_ramp = SubResource( 12 )
-hue_variation = 0.46
+hue_variation = 0.55
 hue_variation_random = 0.55
 
-[node name="MicIronBIG01" parent="CPUParticles" instance=ExtResource( 3 )]
-transform = Transform( -0.000475466, -0.00417916, 0.0280006, -0.00145368, 0.0405153, 0.00029269, -0.0129861, 0.00746906, -0.00136252, -0.189978, -0.169918, -0.0768352 )
-material_override = SubResource( 17 )
+[node name="Comet3" type="Spatial" parent="."]
+transform = Transform( 0.44406, 0.0726233, -0.893049, -0.159519, 0.987194, 0.000959931, 0.881683, 0.142032, 0.449958, -29.371, -4.308, -13.295 )
 
-[node name="CPUParticles" type="CPUParticles" parent="CPUParticles"]
-transform = Transform( 1, -1.92784e-07, -1.11759e-08, 4.65661e-09, 1, 1.49012e-08, 0, -2.98023e-08, 1, -0.152395, -0.400082, -0.100585 )
+[node name="Tail1" type="CPUParticles" parent="Comet3"]
+transform = Transform( -7.21775e-09, 0.199999, 2.98023e-08, -0.199999, -6.28643e-09, -5.52973e-10, 4.07454e-10, -3.72529e-09, 0.2, 0.0457492, 0.076674, -0.191231 )
 material_override = SubResource( 6 )
-amount = 239
-lifetime = 1.84
+amount = 2000
+lifetime = 3.0
 preprocess = 2.27
 speed_scale = 0.5
+draw_order = 2
 mesh = SubResource( 7 )
+flag_align_y = true
+flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, -20, 0 )
 initial_velocity = 2.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
 radial_accel = 3.05
-radial_accel_random = 1.0
-angle = 145.3
-angle_random = 0.72
+damping = 11.07
 angle_curve = SubResource( 11 )
-scale_amount = 0.1
-scale_amount_random = 0.19
+scale_amount = 0.36
 scale_amount_curve = SubResource( 8 )
+color = Color( 0.517647, 0.517647, 0.517647, 1 )
 color_ramp = SubResource( 12 )
-hue_variation = 0.46
+hue_variation = 0.55
 hue_variation_random = 0.55
 
-[node name="CPUParticles2" type="CPUParticles" parent="CPUParticles"]
-transform = Transform( -0.00605074, 0.994458, 0.104974, -0.999357, -0.00229823, -0.0358323, -0.0353924, -0.105123, 0.99383, 0.126984, -0.238097, -0.0976768 )
+[node name="Rock" parent="Comet3" instance=ExtResource( 3 )]
+transform = Transform( 0.373692, -0.029077, -19.9169, -0.0552642, 4.20006, -0.16347, 4.09983, 0.0592657, 1.81319, -0.0363121, 0.0588069, -0.186089 )
+material_override = SubResource( 16 )
+skeleton = NodePath("../Tail1")
+
+[node name="MainFire" type="CPUParticles" parent="Comet3"]
+transform = Transform( -6.0536e-09, 0.149999, 1.86265e-09, -0.149999, -6.40284e-09, -5.82077e-11, 5.82077e-11, 0, 0.15, 0.0345578, 0.0615048, -0.189747 )
 material_override = SubResource( 6 )
-amount = 500
-lifetime = 1.84
+amount = 2000
+lifetime = 2.0
 preprocess = 2.27
 speed_scale = 0.5
+fixed_fps = 60
 mesh = SubResource( 7 )
 flag_align_y = true
 direction = Vector3( -1, 0, 0 )
 spread = 180.0
-gravity = Vector3( 0, -20, 0 )
-initial_velocity = 2.0
-damping_curve = SubResource( 13 )
+gravity = Vector3( 0, -23.614, 0 )
+initial_velocity = 2.5
+damping = 9.65
 angle_curve = SubResource( 11 )
-scale_amount = 0.2
-scale_amount_random = 0.13
+scale_amount = 1.06
 scale_amount_curve = SubResource( 8 )
 color_ramp = SubResource( 12 )
 hue_variation = -0.06
 hue_variation_random = 0.55
 
-[node name="CPUParticles4" type="CPUParticles" parent="."]
-transform = Transform( 0.0869142, 0.0379826, -0.031674, -0.0346313, 0.0924632, 0.0158503, 0.0353071, -0.00280705, 0.0935175, -17.613, 2.718, -5.758 )
+[node name="Tail2" type="CPUParticles" parent="Comet3"]
+transform = Transform( -0.00447459, 0.19995, -1.46031e-05, 0.199946, 0.00447459, 0.00130541, 0.00130541, 1.45845e-05, -0.199996, 0.0477514, 0.0463119, -0.183525 )
 material_override = SubResource( 6 )
-amount = 239
-lifetime = 1.84
+amount = 2000
+lifetime = 3.0
 preprocess = 2.27
 speed_scale = 0.5
-mesh = SubResource( 7 )
-direction = Vector3( -1, 0, 0 )
-spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
-radial_accel = 3.05
-radial_accel_random = 1.0
-angle = 145.3
-angle_random = 0.72
-angle_curve = SubResource( 11 )
-scale_amount = 0.1
-scale_amount_random = 0.19
-scale_amount_curve = SubResource( 8 )
-color_ramp = SubResource( 12 )
-hue_variation = 0.46
-hue_variation_random = 0.55
-
-[node name="MicIronBIG01" parent="CPUParticles4" instance=ExtResource( 3 )]
-transform = Transform( -0.000475466, -0.00417916, 0.0280006, -0.00145368, 0.0405153, 0.00029269, -0.0129861, 0.00746906, -0.00136252, -0.18998, -0.169912, -0.0768375 )
-material_override = SubResource( 18 )
-
-[node name="CPUParticles" type="CPUParticles" parent="CPUParticles4"]
-transform = Transform( 1, -1.92784e-07, -1.11759e-08, 4.65661e-09, 1, 1.49012e-08, 0, -2.98023e-08, 1, -0.152395, -0.400082, -0.100585 )
-material_override = SubResource( 6 )
-amount = 239
-lifetime = 1.84
-preprocess = 2.27
-speed_scale = 0.5
-mesh = SubResource( 7 )
-direction = Vector3( -1, 0, 0 )
-spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
-radial_accel = 3.05
-radial_accel_random = 1.0
-angle = 145.3
-angle_random = 0.72
-angle_curve = SubResource( 11 )
-scale_amount = 0.1
-scale_amount_random = 0.19
-scale_amount_curve = SubResource( 8 )
-color_ramp = SubResource( 12 )
-hue_variation = 0.46
-hue_variation_random = 0.55
-
-[node name="CPUParticles2" type="CPUParticles" parent="CPUParticles4"]
-transform = Transform( -0.00605074, 0.994458, 0.104974, -0.999357, -0.00229823, -0.0358323, -0.0353924, -0.105123, 0.99383, 0.126984, -0.238097, -0.0976768 )
-material_override = SubResource( 6 )
-amount = 500
-lifetime = 1.84
-preprocess = 2.27
-speed_scale = 0.5
+draw_order = 2
 mesh = SubResource( 7 )
 flag_align_y = true
+flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
-spread = 180.0
+spread = 0.0
 gravity = Vector3( 0, -20, 0 )
 initial_velocity = 2.0
-damping_curve = SubResource( 13 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+radial_accel = 3.05
+damping = 11.07
 angle_curve = SubResource( 11 )
-scale_amount = 0.2
-scale_amount_random = 0.13
+scale_amount = 0.36
 scale_amount_curve = SubResource( 8 )
+color = Color( 0.517647, 0.517647, 0.517647, 1 )
 color_ramp = SubResource( 12 )
-hue_variation = -0.06
+hue_variation = 0.55
 hue_variation_random = 0.55

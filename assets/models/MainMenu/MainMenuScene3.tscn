@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/models/MainMenu/UnderwaterChimney01.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/MainMenuScene/bubbleTexture.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/MainMenuScene/SingleClouds.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/MainMenuScene/underwaterparticle.png" type="Texture" id=3]
 [ext_resource path="res://assets/models/MainMenu/UnderwaterSoil.tscn" type="PackedScene" id=4]
 
@@ -24,7 +24,7 @@ background_sky = SubResource( 5 )
 background_sky_custom_fov = 108.0
 background_energy = 1.15
 ambient_light_color = Color( 0.85098, 0.337255, 0.207843, 1 )
-ambient_light_energy = 0.36
+ambient_light_energy = 0.46
 ambient_light_sky_contribution = 0.0
 fog_enabled = true
 fog_color = Color( 0.431373, 0.188235, 0.188235, 1 )
@@ -39,17 +39,19 @@ fog_height_max = -119.5
 tonemap_mode = 2
 tonemap_exposure = 0.61
 tonemap_white = 1.61
+auto_exposure_enabled = true
+auto_exposure_scale = 0.38
+auto_exposure_min_luma = 0.63
 auto_exposure_max_luma = 6.4
+auto_exposure_speed = 31.6
 ss_reflections_enabled = true
 ssao_enabled = true
 ssao_radius = 4.38
 ssao_intensity = 7.91
-dof_blur_far_enabled = true
 dof_blur_far_distance = 35.82
 dof_blur_far_transition = 23.7
 dof_blur_far_amount = 0.12
 dof_blur_far_quality = 2
-dof_blur_near_enabled = true
 dof_blur_near_distance = 32.34
 dof_blur_near_transition = 33.37
 dof_blur_near_amount = 0.36
@@ -60,7 +62,9 @@ glow_levels/2 = true
 glow_levels/4 = true
 glow_levels/6 = true
 glow_levels/7 = true
-glow_intensity = 2.46
+glow_intensity = 0.6
+glow_strength = 0.76
+glow_bloom = 0.45
 glow_blend_mode = 1
 glow_hdr_threshold = 0.5
 glow_hdr_luminance_cap = 26.63
@@ -71,33 +75,33 @@ adjustment_brightness = 1.01
 adjustment_contrast = 1.07
 adjustment_saturation = 1.37
 
-[sub_resource type="Gradient" id=9]
-colors = PoolColorArray( 0, 0, 0, 1, 0.697117, 0.87723, 0.959473, 1 )
-
-[sub_resource type="GradientTexture2D" id=10]
-gradient = SubResource( 9 )
-fill = 1
-fill_from = Vector2( 0.716346, 0.670072 )
-fill_to = Vector2( 0, 0 )
-
 [sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
+flags_do_not_receive_shadows = true
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-params_depth_draw_mode = 1
+params_cull_mode = 2
+params_depth_draw_mode = 3
+params_billboard_mode = 1
+params_billboard_keep_scale = true
+albedo_color = Color( 0.623529, 0.498039, 0.498039, 1 )
 albedo_texture = ExtResource( 2 )
-emission_enabled = true
-emission = Color( 0.211765, 0.372549, 0.360784, 1 )
-emission_energy = 3.07
-emission_operator = 0
-emission_on_uv2 = false
-emission_texture = SubResource( 10 )
+metallic_specular = 0.0
 
 [sub_resource type="QuadMesh" id=7]
 material = SubResource( 6 )
 
+[sub_resource type="Curve" id=15]
+min_value = -360.0
+max_value = 360.0
+bake_resolution = 50
+_data = [ Vector2( 0, -360 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 0.153409 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.998864 ), 0.0, 0.0, 0, 0 ]
+
 [sub_resource type="Gradient" id=8]
-offsets = PoolRealArray( 0, 0.351955, 0.977654, 1 )
+offsets = PoolRealArray( 0.0952381, 0.518519, 0.941799, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 0.446927, 0.446927, 0.446927, 0, 1, 1, 1, 0 )
 
 [sub_resource type="SpatialMaterial" id=11]
@@ -135,28 +139,26 @@ far = 503.4
 transform = Transform( 0.0668835, 0.23584, -0.440123, 0, 0.756093, 0.141112, 0.400453, -0.0393899, 0.0735091, -9.549, 7.245, 18.205 )
 
 [node name="CPUParticles3" type="CPUParticles" parent="UnderwaterChimney03"]
-transform = Transform( -0.79509, 0, 0.381903, 0, 0.650433, 0, -0.177096, 0, -0.745153, 0, 0, 0 )
-amount = 35
-lifetime = 1.5
-preprocess = 1.0
+transform = Transform( 0.999232, -0.0360008, -0.00847045, 0.0182818, 0.465485, -0.137599, 0.0139781, 0.188878, 0.972412, 0, 0, 0 )
+amount = 100
+lifetime = 3.54
+preprocess = 1.74
 speed_scale = 0.5
-explosiveness = 0.17
+draw_order = 2
 mesh = SubResource( 7 )
 emission_shape = 1
-emission_sphere_radius = 1.0
-flag_disable_z = true
+emission_sphere_radius = 0.95
 direction = Vector3( 0, 1, 0 )
 spread = 0.0
 gravity = Vector3( 0, 9.8, 0 )
-initial_velocity = 5.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-orbit_velocity_curve = null
-scale_amount = 0.5
-scale_amount_random = 0.6
+initial_velocity = 1.64
+angle = 720.0
+angle_random = 1.0
+angle_curve = SubResource( 15 )
+scale_amount = 17.59
+scale_amount_random = 0.22
+scale_amount_curve = SubResource( 14 )
 color_ramp = SubResource( 8 )
-hue_variation = -0.25
-hue_variation_random = 0.08
 
 [node name="CPUParticles" type="CPUParticles" parent="UnderwaterChimney03/CPUParticles3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148515, -0.042799, -0.135038 )
@@ -186,6 +188,10 @@ hue_variation_random = 0.08
 transform = Transform( 2.46305, 7.45058e-09, 2.98023e-08, 0, 1.26103, 6.98492e-08, -2.98023e-08, -8.00937e-08, 2.13675, 0, 1.93495, 0 )
 light_color = Color( 1, 0.380392, 0.0431373, 1 )
 light_energy = 100.0
+light_indirect_energy = 2.263
+light_specular = 0.541
+shadow_enabled = true
+shadow_bias = 0.3
 
 [node name="UnderwaterChimney02" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.533049, 0, -0.182602, 0, 1, 0, 0.133665, 0, -0.728206, -7.346, 5.75, 12.567 )
