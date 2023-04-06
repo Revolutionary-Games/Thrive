@@ -41,6 +41,13 @@ public class SocietyStructureSystem
 
         foreach (var structure in worldRoot.GetChildrenToProcess<PlacedStructure>(Constants.STRUCTURE_ENTITY_GROUP))
         {
+            if (!structure.Completed)
+            {
+                // TODO: start completing a structure we have resources for
+
+                continue;
+            }
+
             var storageComponent = structure.GetComponent<StructureStorageComponent>();
             if (storageComponent != null)
                 storage += storageComponent.Capacity;
@@ -62,6 +69,11 @@ public class SocietyStructureSystem
 
         foreach (var structure in worldRoot.GetChildrenToProcess<PlacedStructure>(Constants.STRUCTURE_ENTITY_GROUP))
         {
+            if (!structure.Completed)
+            {
+                continue;
+            }
+
             var storageComponent = structure.GetComponent<StructureStorageComponent>();
             if (storageComponent != null)
                 storage += storageComponent.Capacity;

@@ -56,13 +56,13 @@ public class SelectBuildingPopup : Control
     /// </param>
     /// <param name="availableResources">Available resources to determine which structures are buildable</param>
     public void OpenWithStructures(IEnumerable<StructureDefinition> availableStructures,
-        IStructureSelectionReceiver selectionReceiver, IInventory availableResources)
+        IStructureSelectionReceiver selectionReceiver, IAggregateResourceSource availableResources)
     {
         validDefinitions.Clear();
         validDefinitions.AddRange(availableStructures);
         receiver = selectionReceiver;
 
-        var allResources = availableResources.CalculateAvailableResources();
+        var allResources = availableResources.CalculateWholeAvailableResources();
 
         // Update the structure buttons
         // TODO: cache buttons we can reuse

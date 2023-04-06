@@ -814,6 +814,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         return false;
     }
 
+    public Dictionary<WorldResource, int> CalculateWholeAvailableResources()
+    {
+        return this.CalculateAvailableResources();
+    }
+
     private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)
     {
         if (slot.ContainedItem != null)

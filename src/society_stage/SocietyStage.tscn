@@ -41,6 +41,7 @@ script = ExtResource( 1 )
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("SocietyHUD")
 StrategicCameraPath = NodePath("World/StrategicCamera")
+SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
 
 [node name="World" type="Node" parent="."]
 

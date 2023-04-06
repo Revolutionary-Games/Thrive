@@ -102,6 +102,8 @@ public class StrategicCamera : Camera
 
     public override void _Process(float delta)
     {
+        cursorDirty = true;
+
         if (edgePanEnabled && AllowPlayerInput)
             HandleEdgePanning(delta);
 

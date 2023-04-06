@@ -111,6 +111,16 @@ public class StructureDefinition : IRegistryType
         return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, TotalCost);
     }
 
+    public bool TakeResourcesToStartIfPossible(IResourceContainer resourceContainer)
+    {
+        return resourceContainer.TakeResourcesIfPossible(ScaffoldingCost);
+    }
+
+    public bool TakeCompletionResourcesIfPossible(IResourceContainer resourceContainer)
+    {
+        return resourceContainer.TakeResourcesIfPossible(RequiredResources);
+    }
+
     public void Check(string name)
     {
         using var file = new File();

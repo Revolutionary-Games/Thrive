@@ -46,10 +46,33 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
         GameWorld.ResetAutoEvoRun();
     }
 
+    public Vector3 GetPlayerCursorPointedWorldPosition()
+    {
+        return strategicCamera.CursorWorldPos;
+    }
+
     public override void OnFinishLoading(Save save)
     {
         throw new InvalidOperationException(
             "Saving for this late stage is not implemented, remove this exception once added");
+    }
+
+    [RunOnKeyDown("g_pause")]
+    public void PauseKeyPressed()
+    {
+        // Check nothing else has keyboard focus and pause the game
+        if (BaseHUD.GetFocusOwner() == null)
+        {
+            BaseHUD.PauseButtonPressed(!BaseHUD.Paused);
+        }
+    }
+
+    [RunOnKeyDown("e_reset_camera")]
+    public void ResetCamera()
+    {
+        strategicCamera.ZoomLevel = 1;
+
+        // If we ever have camera rotation, that should reset as well
     }
 
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
