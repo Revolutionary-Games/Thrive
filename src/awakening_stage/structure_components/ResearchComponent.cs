@@ -5,7 +5,6 @@
 /// </summary>
 public class ResearchComponent : StructureComponent
 {
-    // ReSharper disable NotAccessedField.Local
     private readonly float speed;
     private readonly ResearchLevel researchLevel;
 
