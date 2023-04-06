@@ -44,7 +44,7 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
     {
         if (!Settings.Instance.IsNoticePermanentlyDismissed(NoticeType))
         {
-            this.PopupCenteredShrink();
+            PopupCenteredShrink();
             return true;
         }
 
