@@ -4,15 +4,42 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The main class handling the society stage functions
 /// </summary>
-public class SocietyStage : StrategyStageBase
+public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStructureSelectionReceiver
 {
+    [Export]
+    public NodePath? SelectBuildingPopupPath;
+
 #pragma warning disable CA2213
+    private SelectBuildingPopup selectBuildingPopup = null!;
+
     private PackedScene structureScene = null!;
+
+    private Spatial? buildingToPlaceGhost;
 #pragma warning restore CA2213
+
+    private WorldResource foodResource = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private SocietyStructureSystem structureSystem = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CitizenMovingSystem citizenMovingSystem = null!;
+
+    private long population = 1;
+
+    [JsonProperty]
+    private SocietyResourceStorage resourceStorage = new();
+
+    private StructureDefinition? buildingTypeToPlace;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public SocietyHUD HUD { get; private set; } = null!;
+
+    [JsonIgnore]
+    public IResourceContainer SocietyResources => resourceStorage;
 
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
@@ -27,8 +54,6 @@ public class SocietyStage : StrategyStageBase
 
         HUD.Init(this);
 
-        // TODO: init systems
-
         SetupStage();
     }
 
@@ -41,7 +66,44 @@ public class SocietyStage : StrategyStageBase
 
         HUD = GetNode<SocietyHUD>("SocietyHUD");
 
-        // TODO: systems
+        selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
+
+        // Systems
+        structureSystem = new SocietyStructureSystem(rootOfDynamicallySpawned);
+        citizenMovingSystem = new CitizenMovingSystem(rootOfDynamicallySpawned);
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (!IsGameOver())
+        {
+            structureSystem.Process(delta, this);
+
+            // This doesn't really need to update all that often but for now this is fine performance-wise and is
+            // easier to program
+            resourceStorage.Capacity = structureSystem.CachedTotalStorage;
+
+            // TODO: make population consume food
+
+            // TODO: update science speed
+            HUD.UpdateScienceSpeed(0);
+
+            // Update the place to place the selected building
+            if (buildingToPlaceGhost != null)
+            {
+                // TODO: collision check with other buildings
+                buildingToPlaceGhost.GlobalTranslation = GetPlayerCursorPointedWorldPosition();
+            }
+
+            HandlePopulationGrowth();
+
+            citizenMovingSystem.Process(delta, population);
+        }
+
+        HUD.UpdateResourceDisplay(resourceStorage);
+        HUD.UpdatePopulationDisplay(population);
     }
 
     public override void StartMusic()
@@ -67,19 +129,84 @@ public class SocietyStage : StrategyStageBase
         base.StartNewGame();
     }
 
-    [RunOnKeyDown("g_pause")]
-    public void PauseKeyPressed()
+    public void PerformBuildOrOpenMenu()
     {
-        // Check nothing else has keyboard focus and pause the game
-        if (HUD.GetFocusOwner() == null)
+        if (buildingTypeToPlace != null)
         {
-            HUD.PauseButtonPressed(!HUD.Paused);
+            PlaceGhostBuilding();
+            return;
         }
+
+        // TODO: the buildable structures will need to refresh every few seconds as the passive resource income makes
+        // it likely the player can build something new while this is open
+        selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), this, resourceStorage);
+    }
+
+    [RunOnKeyDown("e_primary")]
+    public bool PlaceGhostBuilding()
+    {
+        if (buildingTypeToPlace == null)
+            return false;
+
+        if (!PlaceCurrentStructureIfPossible())
+        {
+            // TODO: play an invalid placement sound
+            GD.Print("Couldn't place selected building");
+            return true;
+        }
+
+        return true;
+    }
+
+    [RunOnKeyDown("e_secondary", Priority = 1)]
+    [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
+    public bool CancelBuildingPlaceIfInProgress()
+    {
+        if (buildingTypeToPlace == null)
+            return false;
+
+        buildingToPlaceGhost?.QueueFree();
+        buildingToPlaceGhost = null;
+
+        buildingTypeToPlace = null;
+        return true;
+    }
+
+    public void OnStructureTypeSelected(StructureDefinition structureDefinition)
+    {
+        // This is canceled to free up any previous resources
+        CancelBuildingPlaceIfInProgress();
+
+        buildingTypeToPlace = structureDefinition;
+
+        buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instance<Spatial>();
+
+        rootOfDynamicallySpawned.AddChild(buildingToPlaceGhost);
+    }
+
+    protected override void SetupStage()
+    {
+        base.SetupStage();
+
+        foodResource = SimulationParameters.Instance.GetWorldResource("food");
+
+        resourceStorage.Capacity = structureSystem.CalculateTotalStorage();
+
+        citizenMovingSystem.Init(CurrentGame!.GameWorld.PlayerSpecies);
+
+        // TODO: this is only unlocked here for now to prevent the player from accidentally wasting limited resources
+        // in the previous prototype. Once that's no longer the case discovering this should be moved to the previous
+        // stage. This is here rather than OnGameStarted to have this unlock appear to the player.
+        CurrentGame.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("hunterGathering"));
     }
 
     protected override void OnGameStarted()
     {
-        // Apparently there's nothing to do here for now...
+        // Intentionally not translated prototype message
+        HUD.HUDMessages.ShowMessage(
+            "You are now in the Society Stage prototype. Build a few basic structures to gain resources, " +
+            "then research factories and build one to advance to the next stage.",
+            DisplayDuration.ExtraLong);
     }
 
     protected override bool IsGameOver()
@@ -90,6 +217,7 @@ public class SocietyStage : StrategyStageBase
 
     protected override void OnGameOver()
     {
+        // TODO: once possible to lose, show in the GUI
     }
 
     protected override void AutoSave()
@@ -100,5 +228,52 @@ public class SocietyStage : StrategyStageBase
     protected override void PerformQuickSave()
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            SelectBuildingPopupPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void HandlePopulationGrowth()
+    {
+        var housing = structureSystem.CachedHousingCapacity;
+
+        // TODO: adjust food need and reproduction rate based on species properties
+        float requiredForNewMember = 1;
+
+        // Don't grow if not enough housing
+        // And for now just for the prototype only grow when otherwise full on food
+        if (population >= housing || resourceStorage.GetAvailableAmount(foodResource) < resourceStorage.Capacity)
+            return;
+
+        if (resourceStorage.Take(foodResource, requiredForNewMember) > 0)
+        {
+            // Took some food to grow
+            ++population;
+        }
+    }
+
+    private bool PlaceCurrentStructureIfPossible()
+    {
+        if (buildingTypeToPlace == null || buildingToPlaceGhost == null)
+            return false;
+
+        if (!buildingTypeToPlace.TakeResourcesToStartIfPossible(resourceStorage))
+            return false;
+
+        // TODO: free space check, could maybe set a flag in _Process that is then used here
+        AddBuilding(buildingTypeToPlace, buildingToPlaceGhost.GlobalTransform);
+
+        buildingToPlaceGhost?.QueueFree();
+        buildingToPlaceGhost = null;
+
+        buildingTypeToPlace = null;
+        return true;
     }
 }
