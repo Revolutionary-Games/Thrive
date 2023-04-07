@@ -534,7 +534,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
                 var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin).ToList();
 
-                float distance = MathUtils.GetLengthInDirectionFromPoints(direction, daughterPosition, colonyMembers);
+                float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
 
                 daughter.Translation += -direction * distance;
             }

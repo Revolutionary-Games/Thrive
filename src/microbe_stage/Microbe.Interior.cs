@@ -395,14 +395,14 @@ public partial class Microbe
         // Start calculating separation distance
         var organellePositions = organelles!.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
 
-        float distanceRight = MathUtils.GetLengthInDirectionFromPoints(Vector3.Right, Vector3.Zero, organellePositions);
-        float distanceLeft = MathUtils.GetLengthInDirectionFromPoints(Vector3.Left, Vector3.Zero, organellePositions);
+        float distanceRight = MathUtils.GetMaximumDistanceInDirection(Vector3.Right, Vector3.Zero, organellePositions);
+        float distanceLeft = MathUtils.GetMaximumDistanceInDirection(Vector3.Left, Vector3.Zero, organellePositions);
 
         if (Colony != null)
         {
             var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin).ToList();
 
-            distanceRight += MathUtils.GetLengthInDirectionFromPoints(direction, currentPosition, colonyMembers);
+            distanceRight += MathUtils.GetMaximumDistanceInDirection(direction, currentPosition, colonyMembers);
         }
 
         float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;

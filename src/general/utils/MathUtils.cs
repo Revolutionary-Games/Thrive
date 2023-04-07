@@ -132,10 +132,18 @@ public static class MathUtils
         return (average, standardDeviation);
     }
 
-    public static float GetLengthInDirectionFromPoints(Vector3 direction, Vector3 referencePoint,
+    /// <summary>
+    ///   The maximum distance that a set of points can reach in a given direction
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can be useful for finding the edge of a cell from a list of its organelle positions, for instance
+    ///   </para>
+    /// </remarks>
+    public static float GetMaximumDistanceInDirection(Vector3 direction, Vector3 referencePoint,
         List<Vector3> listOfPoints)
     {
-        float length = 0.0f;
+        float distance = 0.0f;
 
         foreach (var point in listOfPoints)
         {
@@ -152,10 +160,10 @@ public static class MathUtils
             // Get the length of the part of the vector that's parallel to the direction
             float directionalLength = difference.Length() * Mathf.Cos(angle);
 
-            if (directionalLength > length)
-                length = directionalLength;
+            if (directionalLength > distance)
+                distance = directionalLength;
         }
 
-        return length;
+        return distance;
     }
 }
