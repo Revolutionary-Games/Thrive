@@ -134,7 +134,7 @@ public static class MathUtils
     }
 
     /// <summary>
-    ///   The maximum distance that a set of points can reach in a given direction
+    ///   How far in a given direction a set of points can reach from a reference point
     /// </summary>
     /// <remarks>
     ///   <para>
