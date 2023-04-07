@@ -180,7 +180,7 @@ public partial class Microbe
     public Action<Microbe, bool>? OnReproductionStatus { get; set; }
 
     /// <summary>
-    ///   Called periodically to report the compound chemoreception settings of the microbe
+    ///   Called periodically to report the chemoreception settings of the microbe
     /// </summary>
     [JsonProperty]
     public Action<Microbe,

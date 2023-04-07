@@ -859,7 +859,7 @@ public class MicrobeStage : StageBase<Microbe>
     }
 
     /// <summary>
-    ///   Updates the chemoreception lines for compounds
+    ///   Updates the chemoreception lines
     /// </summary>
     [DeserializedCallbackAllowed]
     private void HandlePlayerChemoreception(Microbe microbe,
@@ -905,23 +905,33 @@ public class MicrobeStage : StageBase<Microbe>
             return;
         }
 
-        var position = Player!.GlobalTransform.origin;
+        var position = Player!.Translation;
 
         foreach (var chemoreception in chemoreceptionLines)
         {
-            if (chemoreception.Line.Visible)
-            {
-                chemoreception.Line.LineStart = position;
+            if (chemoreception.Line.Visible == false)
+                continue;
 
-                // The target needs to be updated for detected microbes but not compounds.
-                if (chemoreception.TargetMicrobe != null)
-                    chemoreception.Line.LineEnd = chemoreception.TargetMicrobe.GlobalTransform.origin;
+            chemoreception.Line.LineStart = position;
+
+            // The target needs to be updated for detected microbes but not compounds.
+            if (chemoreception.TargetMicrobe != null)
+            {
+                // Use colony parent position to avoid calling GlobalTranslation
+                if (chemoreception.TargetMicrobe.ColonyParent != null)
+                {
+                    chemoreception.Line.LineEnd = chemoreception.TargetMicrobe.ColonyParent.Translation;
+                }
+                else
+                {
+                    chemoreception.Line.LineEnd = chemoreception.TargetMicrobe.Translation;
+                }
             }
         }
     }
 
-    private void UpdateOrCreateGuidanceLine(int index, Microbe? targetMicrobe,
-        Color colour, Vector3 lineStart, Vector3 lineEnd, bool visible)
+    private void UpdateOrCreateGuidanceLine(int index,
+        Microbe? targetMicrobe, Color colour, Vector3 lineStart, Vector3 lineEnd, bool visible)
     {
         if (index >= chemoreceptionLines.Count)
         {
