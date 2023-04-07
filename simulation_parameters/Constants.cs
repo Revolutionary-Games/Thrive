@@ -665,8 +665,7 @@ public static class Constants
     public const float CHEMORECEPTOR_AMOUNT_MIN = 1;
     public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
     public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
-    public const float CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL = 0.25f;
-    public const float CHEMORECEPTOR_SPECIES_UPDATE_INTERVAL = 0.01f;
+    public const float CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL = 0.25f;
     public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>

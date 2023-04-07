@@ -89,8 +89,7 @@ public partial class Microbe
     /// </remarks>
     private bool allOrganellesDivided;
 
-    private float timeUntilCompoundChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
-    private float timeUntilSpeciesChemoreceptionUpdate = Constants.CHEMORECEPTOR_SPECIES_UPDATE_INTERVAL;
+    private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL;
     private float timeUntilDigestionUpdate = Constants.MICROBE_DIGESTION_UPDATE_INTERVAL;
 
     private bool organelleMaxRenderPriorityDirty = true;
@@ -185,16 +184,9 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     public Action<Microbe,
-        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
-        OnCompoundChemoreceptionInfo { get; set; }
-
-    /// <summary>
-    ///   Called periodically to report the species chemoreception settings of the microbe
-    /// </summary>
-    [JsonProperty]
-    public Action<Microbe,
+        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>,
         IEnumerable<(Species Species, float Range, Color Colour)>>?
-        OnSpeciesChemoreceptionInfo { get; set; }
+        OnChemoreceptionInfo { get; set; }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
@@ -235,8 +227,7 @@ public partial class Microbe
 
         // Make chemoreception update happen immediately in case the settings changed so that new information is
         // used earlier
-        timeUntilCompoundChemoreceptionUpdate = 0;
-        timeUntilSpeciesChemoreceptionUpdate = 0;
+        timeUntilChemoreceptionUpdate = 0;
 
         if (IsMulticellular)
             ResetMulticellularProgress();
@@ -1402,33 +1393,17 @@ public partial class Microbe
         return result;
     }
 
-    private void HandleCompoundChemoreceptorLines(float delta)
+    private void HandleChemoreceptorLines(float delta)
     {
-        timeUntilCompoundChemoreceptionUpdate -= delta;
+        timeUntilChemoreceptionUpdate -= delta;
 
-        if (timeUntilCompoundChemoreceptionUpdate > 0 || Dead)
+        if (timeUntilChemoreceptionUpdate > 0 || Dead)
             return;
 
-        timeUntilCompoundChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
-
-        OnCompoundChemoreceptionInfo?.Invoke(this, activeCompoundDetections);
+        OnChemoreceptionInfo?.Invoke(this, activeCompoundDetections, activeSpeciesDetections);
 
         // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
         activeCompoundDetections.Clear();
-    }
-
-    private void HandleSpeciesChemoreceptorLines(float delta)
-    {
-        timeUntilSpeciesChemoreceptionUpdate -= delta;
-
-        if (timeUntilSpeciesChemoreceptionUpdate > 0 || Dead)
-            return;
-
-        timeUntilSpeciesChemoreceptionUpdate = Constants.CHEMORECEPTOR_SPECIES_UPDATE_INTERVAL;
-
-        OnSpeciesChemoreceptionInfo?.Invoke(this, activeSpeciesDetections);
-
-        // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
         activeSpeciesDetections.Clear();
     }
 

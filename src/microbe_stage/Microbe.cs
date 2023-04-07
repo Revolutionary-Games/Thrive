@@ -857,8 +857,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Rotation is applied in the physics force callback as that's the place where the body rotation
         // can be directly set without problems
 
-        HandleCompoundChemoreceptorLines(delta);
-        HandleSpeciesChemoreceptorLines(delta);
+        HandleChemoreceptorLines(delta);
 
         if (Colony != null && Colony.Master == this)
             Colony.Process(delta);
@@ -960,7 +959,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   and the location where the microbe is located.
     /// </returns>
 
-    public List<(Species Species, Color Colour, Vector3 Target)> GetDetectedSpecies(MicrobeSystem microbeSystem)
+    public List<(Microbe Microbe, Color Colour, Vector3 Target)> GetDetectedSpecies(MicrobeSystem microbeSystem)
     {
         HashSet<(Species Species, float Range, Color Colour)> collectedUniqueSpeciesDetections;
 
@@ -989,16 +988,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             collectedUniqueSpeciesDetections.Add((species, 200, new Color(0.5f, 0, 1, 1)));
         }
 
-        var detections = new List<(Species Species, Color Colour, Vector3 Target)>();
+        var detections = new List<(Microbe Microbe, Color Colour, Vector3 Target)>();
         var position = GlobalTranslation;
 
         foreach (var (species, range, colour) in collectedUniqueSpeciesDetections)
         {
-            var detectedSpecies = microbeSystem.FindSpeciesNearPoint(position, species, range);
+            var tuple = microbeSystem.FindSpeciesNearPoint(position, species, range);
 
-            if (detectedSpecies != null)
+            if (tuple != null)
             {
-                detections.Add((species, colour, detectedSpecies.Value));
+                detections.Add((tuple.Value.Microbe, colour, tuple.Value.Position));
             }
         }
 

@@ -64,12 +64,13 @@ public class MicrobeSystem
     /// <param name="searchRadius">How wide to search around the point</param>
     /// <returns>The nearest found point for the species or null</returns>
 
-    public Vector3? FindSpeciesNearPoint(Vector3 position, Species species, float searchRadius = 200)
+    public (Microbe Microbe, Vector3 Position)? FindSpeciesNearPoint(
+        Vector3 position, Species species, float searchRadius = 200)
     {
         if (searchRadius < 1)
             throw new ArgumentException("searchRadius must be >= 1");
 
-        Vector3? closestPoint = null;
+        (Microbe Microbe, Vector3 Position)? closestMicrobe = null;
         float nearestDistanceSquared = float.MaxValue;
         var searchRadiusSquared = searchRadius * searchRadius;
         var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
@@ -108,10 +109,10 @@ public class MicrobeSystem
             if (distanceSquared < nearestDistanceSquared)
             {
                 nearestDistanceSquared = distanceSquared;
-                closestPoint = microbeGlobalPosition;
+                closestMicrobe = (microbe, microbeGlobalPosition);
             }
         }
 
-        return closestPoint;
+        return closestMicrobe;
     }
 }
