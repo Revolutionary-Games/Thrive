@@ -10,6 +10,7 @@ public static class MathUtils
     public const float EPSILON = 0.00000001f;
     public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
     public const double FULL_CIRCLE = Math.PI * 2;
+    public const float RIGHT_ANGLE = Mathf.Pi / 2;
 
     public static T Clamp<T>(this T val, T min, T max)
         where T : IComparable<T>
@@ -154,7 +155,7 @@ public static class MathUtils
 
             float angle = difference.AngleTo(direction);
 
-            if (angle >= Mathf.Pi / 2.0f)
+            if (angle >= RIGHT_ANGLE)
                 continue;
 
             // Get the length of the part of the vector that's parallel to the direction
