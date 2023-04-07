@@ -575,7 +575,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         //     !IsLoadedFromSave)
         //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
-        MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
+        // We don't need preview cells to be collidable (as it can lag the editor if the cell is massive).
+        if (!ParentMicrobe.IsForPreviewOnly)
+            MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
 
         if (Definition.Enzymes != null)
         {
