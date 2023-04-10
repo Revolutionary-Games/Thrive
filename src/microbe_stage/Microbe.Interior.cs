@@ -95,6 +95,12 @@ public partial class Microbe
     private bool organelleMaxRenderPriorityDirty = true;
     private int cachedOrganelleMaxRenderPriority;
 
+    public enum DigestCheckResult
+    {
+        Ok,
+        MissingEnzyme,
+    }
+
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
@@ -630,6 +636,19 @@ public partial class Microbe
 
         CalculateBonusDigestibleGlucose(result);
         return result;
+    }
+
+    /// <summary>
+    ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).
+    /// </summary>
+    public DigestCheckResult CanDigestObject(IEngulfable engulfable)
+    {
+        var enzyme = engulfable.RequisiteEnzymeToDigest;
+
+        if (enzyme != null && !Enzymes.ContainsKey(enzyme))
+            return DigestCheckResult.MissingEnzyme;
+
+        return DigestCheckResult.Ok;
     }
 
     /// <summary>
@@ -1449,7 +1468,7 @@ public partial class Microbe
 
             if (engulfable.RequisiteEnzymeToDigest != null)
             {
-                if (!Enzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
+                if (CanDigestObject(engulfable) == DigestCheckResult.MissingEnzyme)
                 {
                     EjectEngulfable(engulfable);
                     OnNoticeMessage?.Invoke(this,
