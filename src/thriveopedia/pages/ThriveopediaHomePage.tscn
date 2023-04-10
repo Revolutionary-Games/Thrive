@@ -8,6 +8,7 @@
 
 [node name="ThriveopediaHomePage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+ContentPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/CustomRichTextLabel")
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 margin_right = 864.0
