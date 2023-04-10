@@ -134,7 +134,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
-    protected virtual void UpdateShownPatchDetails()
+    public virtual void UpdateShownPatchDetails()
     {
         detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
         detailsPanel.IsPatchMoveValid = IsPatchMoveValid(mapDrawer.SelectedPatch);

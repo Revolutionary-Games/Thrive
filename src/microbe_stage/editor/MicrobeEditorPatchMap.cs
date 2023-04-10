@@ -5,7 +5,7 @@
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn", UsesEarlyResolve = false)]
 public class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
 {
-    protected override void UpdateShownPatchDetails()
+    public override void UpdateShownPatchDetails()
     {
         base.UpdateShownPatchDetails();
 

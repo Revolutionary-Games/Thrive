@@ -760,6 +760,14 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
     }
 
+    protected virtual void ApplyComponentLightLevels()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.OnLightLevelChanged(lightLevel);
+        }
+    }
+
     protected void OnMutationPointsChanged()
     {
         foreach (var editorComponent in GetAllEditorComponents())
@@ -858,14 +866,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         OnMutationPointsChanged();
 
         return mutationPointsCache.Value;
-    }
-
-    private void ApplyComponentLightLevels()
-    {
-        foreach (var editorComponent in GetAllEditorComponents())
-        {
-            editorComponent.OnLightLevelChanged(lightLevel);
-        }
     }
 
     /// <summary>
