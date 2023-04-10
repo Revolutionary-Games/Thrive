@@ -1088,7 +1088,7 @@ public partial class CellEditorComponent :
 
                 // Figure out the daylight in all patches relative to the player's current patch
                 var relativeLightLevel = (lightLevel - minLightLevel) / (maxLightLevel - minLightLevel) *
-                        (targetMaxLightLevel - targetMinLightLevel) + targetMinLightLevel;
+                    (targetMaxLightLevel - targetMinLightLevel) + targetMinLightLevel;
 
                 var lightLevelAmount = new BiomeCompoundProperties { Ambient = relativeLightLevel };
 
