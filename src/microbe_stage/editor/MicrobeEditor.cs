@@ -314,7 +314,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base.SetupEditedSpecies();
     }
 
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
