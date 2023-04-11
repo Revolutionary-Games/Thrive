@@ -415,7 +415,9 @@ public partial class Microbe
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame);
 
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
-        copyEntity.Rotation = Rotation;
+        var daughterBasis = new Basis(Transform.basis.Quat().Normalized()).Scaled(copyEntity.Transform.basis.Scale);
+
+        copyEntity.Transform = new Transform(daughterBasis, copyEntity.Translation);
 
         // Make it despawn like normal
         spawnSystem!.AddEntityToTrack(copyEntity);
