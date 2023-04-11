@@ -1068,7 +1068,7 @@ public partial class CellEditorComponent :
 
     public override void OnLightLevelChanged(float lightLevel)
     {
-        var maxLightLevel = Editor.CurrentPatch.Biome.Compounds[sunlight].Ambient;
+        var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
         var minLightLevel = Editor.CurrentPatch.Biome.MinimumCompounds[sunlight].Ambient;
         var templateMaxLightLevel = Editor.CurrentPatch.Biome.Compounds[sunlight].Ambient;
 
