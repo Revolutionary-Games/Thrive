@@ -802,15 +802,15 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerDied(Microbe player)
+    private static void OnPlayerDied(Microbe player)
     {
-        HandlePlayerDeath();
-
-        if (player.PhagocytosisStep == PhagocytosisPhase.None)
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
-
-        Player = null;
-        Camera.ObjectToFollow = null;
+        //HandlePlayerDeath();
+        //
+        //if (player.PhagocytosisStep == PhagocytosisPhase.None)
+        //    TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
+        //
+        //Player = null;
+        //Camera.ObjectToFollow = null;
     }
 
     [DeserializedCallbackAllowed]
