@@ -91,6 +91,14 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged)
+            ParseCustomTags();
+    }
+
     public override void _Draw()
     {
         // A workaround to get RichTextLabel's height properly update on tooltip size change
