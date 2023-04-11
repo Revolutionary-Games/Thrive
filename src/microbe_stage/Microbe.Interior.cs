@@ -400,7 +400,7 @@ public partial class Microbe
 
         if (Colony != null)
         {
-            var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin).ToList();
+            var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
 
             distanceRight += MathUtils.GetMaximumDistanceInDirection(direction, currentPosition, colonyMembers);
         }

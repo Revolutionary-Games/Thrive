@@ -532,7 +532,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
                 var daughterPosition = daughter.GlobalTransform.origin;
                 var direction = (playerPosition - daughterPosition).Normalized();
 
-                var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin).ToList();
+                var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
 
                 float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
 

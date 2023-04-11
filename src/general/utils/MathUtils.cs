@@ -142,7 +142,7 @@ public static class MathUtils
     ///   </para>
     /// </remarks>
     public static float GetMaximumDistanceInDirection(Vector3 direction, Vector3 referencePoint,
-        List<Vector3> listOfPoints)
+        IEnumerable<Vector3> listOfPoints)
     {
         float distance = 0.0f;
 
