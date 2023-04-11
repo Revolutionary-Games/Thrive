@@ -132,7 +132,10 @@ public class CustomRichTextLabel : RichTextLabel
             return;
         }
 
+        var old = extendedBbcode;
         var translated = TranslationServer.Translate(extendedBbcode);
+        if (translated == old)
+            return;
 
         try
         {
