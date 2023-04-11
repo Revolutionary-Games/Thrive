@@ -27,5 +27,13 @@
 
             return false;
         }
+
+        protected override void OnProcess(TutorialState overallState, float delta)
+        {
+            if (Time > Constants.HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER)
+            {
+                Hide();
+            }
+        }
     }
 }
