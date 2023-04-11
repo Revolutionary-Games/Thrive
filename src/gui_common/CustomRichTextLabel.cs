@@ -15,6 +15,7 @@ public class CustomRichTextLabel : RichTextLabel
     private string? heightWorkaroundRanForString;
 
     private bool registeredForInputChanges;
+    private bool reactToLanguageChange;
 
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
@@ -91,6 +92,14 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged && reactToLanguageChange)
+            ParseCustomTags();
+    }
+
     public override void _Draw()
     {
         // A workaround to get RichTextLabel's height properly update on tooltip size change
@@ -124,7 +133,9 @@ public class CustomRichTextLabel : RichTextLabel
             return;
         }
 
+        var old = extendedBbcode;
         var translated = TranslationServer.Translate(extendedBbcode);
+        reactToLanguageChange = old != translated;
 
         try
         {
