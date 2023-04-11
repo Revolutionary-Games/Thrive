@@ -14,9 +14,8 @@ public class CustomRichTextLabel : RichTextLabel
 
     private string? heightWorkaroundRanForString;
 
-    private string? rawTranslatedMarkup;
-
     private bool registeredForInputChanges;
+    private bool reactToLanguageChange;
 
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
@@ -97,7 +96,7 @@ public class CustomRichTextLabel : RichTextLabel
     {
         base._Notification(what);
 
-        if (what == NotificationTranslationChanged)
+        if (what == NotificationTranslationChanged && reactToLanguageChange)
             ParseCustomTags();
     }
 
@@ -134,12 +133,9 @@ public class CustomRichTextLabel : RichTextLabel
             return;
         }
 
-        var old = rawTranslatedMarkup;
+        var old = extendedBbcode;
         var translated = TranslationServer.Translate(extendedBbcode);
-        if (translated == old)
-            return;
-
-        rawTranslatedMarkup = translated;
+        reactToLanguageChange = old != translated;
 
         try
         {
