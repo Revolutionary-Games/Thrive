@@ -1070,7 +1070,7 @@ public partial class CellEditorComponent :
     {
         var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
         var minLightLevel = Editor.CurrentPatch.Biome.MinimumCompounds[sunlight].Ambient;
-        var templateMaxLightLevel = Editor.CurrentPatch.Biome.Compounds[sunlight].Ambient;
+        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
 
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
         // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
