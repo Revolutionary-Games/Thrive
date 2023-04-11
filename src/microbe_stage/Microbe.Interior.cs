@@ -641,6 +641,13 @@ public partial class Microbe
     /// <summary>
     ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is different from <see cref="CanEngulfObject(IEngulfable)"/> because ingestibility and digestibility
+    ///     are separate, you can engulf a walled cell but not digest it if you're missing the enzyme required to do
+    ///     so.
+    ///   </para>
+    /// </remarks>
     public DigestCheckResult CanDigestObject(IEngulfable engulfable)
     {
         var enzyme = engulfable.RequisiteEnzymeToDigest;
@@ -1466,18 +1473,21 @@ public partial class Microbe
 
             var usedEnzyme = lipase;
 
-            if (engulfable.RequisiteEnzymeToDigest != null)
+            var digestibility = CanDigestObject(engulfable);
+
+            switch (digestibility)
             {
-                if (CanDigestObject(engulfable) == DigestCheckResult.MissingEnzyme)
-                {
+                case DigestCheckResult.Ok:
+                    usedEnzyme = engulfable.RequisiteEnzymeToDigest;
+                    break;
+                case DigestCheckResult.MissingEnzyme:
                     EjectEngulfable(engulfable);
                     OnNoticeMessage?.Invoke(this,
                         new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_MISSING_ENZYME")
-                            .FormatSafe(engulfable.RequisiteEnzymeToDigest.Name)));
+                            .FormatSafe(engulfable.RequisiteEnzymeToDigest!.Name)));
                     continue;
-                }
-
-                usedEnzyme = engulfable.RequisiteEnzymeToDigest;
+                default:
+                    throw new InvalidOperationException("Unhandled digestibility check result, won't digest");
             }
 
             var containedCompounds = engulfable.Compounds;
