@@ -38,4 +38,17 @@ public class ThriveopediaHomePage : ThriveopediaPage
     {
         content.ExtendedBbcode = TranslationServer.Translate("THRIVEOPEDIA_HOME_INFO");
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ContentPath != null)
+            {
+                ContentPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
 }
