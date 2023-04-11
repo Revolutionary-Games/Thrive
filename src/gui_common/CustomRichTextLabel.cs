@@ -14,6 +14,8 @@ public class CustomRichTextLabel : RichTextLabel
 
     private string? heightWorkaroundRanForString;
 
+    private string? rawTranslatedMarkup;
+
     private bool registeredForInputChanges;
 
     /// <summary>
@@ -132,10 +134,12 @@ public class CustomRichTextLabel : RichTextLabel
             return;
         }
 
-        var old = extendedBbcode;
+        var old = rawTranslatedMarkup;
         var translated = TranslationServer.Translate(extendedBbcode);
         if (translated == old)
             return;
+
+        rawTranslatedMarkup = translated;
 
         try
         {
