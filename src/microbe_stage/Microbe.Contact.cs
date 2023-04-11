@@ -410,7 +410,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true when this microbe can engulf the target
+    ///   Returns the check result whether this microbe can engulf the target
     /// </summary>
     public EngulfCheckResult CanEngulfObject(IEngulfable target)
     {
