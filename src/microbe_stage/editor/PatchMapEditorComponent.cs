@@ -134,7 +134,14 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
-    public virtual void UpdateShownPatchDetails()
+    public override void OnLightLevelChanged(float lightLevel)
+    {
+        base.OnLightLevelChanged(lightLevel);
+
+        UpdateShownPatchDetails();
+    }
+
+    protected virtual void UpdateShownPatchDetails()
     {
         detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
         detailsPanel.IsPatchMoveValid = IsPatchMoveValid(mapDrawer.SelectedPatch);
