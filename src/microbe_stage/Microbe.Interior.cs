@@ -1471,14 +1471,14 @@ public partial class Microbe
             if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
                 continue;
 
-            var usedEnzyme = lipase;
+            Enzyme usedEnzyme;
 
             var digestibility = CanDigestObject(engulfable);
 
             switch (digestibility)
             {
                 case DigestCheckResult.Ok:
-                    usedEnzyme = engulfable.RequisiteEnzymeToDigest;
+                    usedEnzyme = engulfable.RequisiteEnzymeToDigest ?? lipase;
                     break;
                 case DigestCheckResult.MissingEnzyme:
                     EjectEngulfable(engulfable);
