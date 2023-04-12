@@ -32,6 +32,13 @@ public class GUICommon : Node
     public Tween Tween { get; }
 
     /// <summary>
+    ///   Access to the logical size of the GUI drawing area for non-GUI components
+    /// </summary>
+    public Rect2 ViewportRect { get; private set; }
+
+    public Vector2 ViewportSize => ViewportRect.Size;
+
+    /// <summary>
     ///   The audio players for UI sound effects.
     /// </summary>
     private List<AudioStreamPlayer> AudioSources { get; } = new();
@@ -228,6 +235,16 @@ public class GUICommon : Node
     internal void ProxyDrawFocus(Control target)
     {
         target.DrawCustomFocusBorderIfFocused();
+    }
+
+    /// <summary>
+    ///   Report a new viewport size. Should only be called by a single <see cref="Control"/> derived autoloaded
+    ///   component.
+    /// </summary>
+    /// <param name="size">The new size</param>
+    internal void ReportViewportRect(Rect2 size)
+    {
+        ViewportRect = size;
     }
 
     private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)

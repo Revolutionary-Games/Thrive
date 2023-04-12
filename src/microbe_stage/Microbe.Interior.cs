@@ -95,6 +95,12 @@ public partial class Microbe
     private bool organelleMaxRenderPriorityDirty = true;
     private int cachedOrganelleMaxRenderPriority;
 
+    public enum DigestCheckResult
+    {
+        Ok,
+        MissingEnzyme,
+    }
+
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
@@ -630,6 +636,26 @@ public partial class Microbe
 
         CalculateBonusDigestibleGlucose(result);
         return result;
+    }
+
+    /// <summary>
+    ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is different from <see cref="CanEngulfObject(IEngulfable)"/> because ingestibility and digestibility
+    ///     are separate, you can engulf a walled cell but not digest it if you're missing the enzyme required to do
+    ///     so.
+    ///   </para>
+    /// </remarks>
+    public DigestCheckResult CanDigestObject(IEngulfable engulfable)
+    {
+        var enzyme = engulfable.RequisiteEnzymeToDigest;
+
+        if (enzyme != null && !Enzymes.ContainsKey(enzyme))
+            return DigestCheckResult.MissingEnzyme;
+
+        return DigestCheckResult.Ok;
     }
 
     /// <summary>
@@ -1445,20 +1471,23 @@ public partial class Microbe
             if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
                 continue;
 
-            var usedEnzyme = lipase;
+            Enzyme usedEnzyme;
 
-            if (engulfable.RequisiteEnzymeToDigest != null)
+            var digestibility = CanDigestObject(engulfable);
+
+            switch (digestibility)
             {
-                if (!Enzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
-                {
+                case DigestCheckResult.Ok:
+                    usedEnzyme = engulfable.RequisiteEnzymeToDigest ?? lipase;
+                    break;
+                case DigestCheckResult.MissingEnzyme:
                     EjectEngulfable(engulfable);
                     OnNoticeMessage?.Invoke(this,
                         new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_MISSING_ENZYME")
-                            .FormatSafe(engulfable.RequisiteEnzymeToDigest.Name)));
+                            .FormatSafe(engulfable.RequisiteEnzymeToDigest!.Name)));
                     continue;
-                }
-
-                usedEnzyme = engulfable.RequisiteEnzymeToDigest;
+                default:
+                    throw new InvalidOperationException("Unhandled digestibility check result, won't digest");
             }
 
             var containedCompounds = engulfable.Compounds;

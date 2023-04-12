@@ -54,6 +54,11 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     {
     }
 
+    public override void OnTranslationChanged()
+    {
+        UpdateCurrentWorldDetails();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
