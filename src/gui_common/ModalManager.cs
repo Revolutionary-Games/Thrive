@@ -3,19 +3,19 @@ using Godot;
 using Godot.Collections;
 
 /// <summary>
-///   Handles a stack of <see cref="CustomWindow"/>s that blocks GUI inputs.
+///   Handles a stack of <see cref="CustomWindow"/>s that block GUI inputs.
 /// </summary>
 public class ModalManager : NodeWithInput
 {
     private static ModalManager? instance;
 
+    private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> parents = new();
+    private readonly Stack<CustomWindow> modalStack = new();
+
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CanvasLayer canvasLayer = null!;
     private Control activeModalContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
-
-    private System.Collections.Generic.Dictionary<CustomWindow, Node> parents = new();
-    private Stack<CustomWindow> modalStack = new();
 
     private bool modalsDirty = true;
 
