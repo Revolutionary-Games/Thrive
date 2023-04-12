@@ -162,7 +162,7 @@ public class CustomWindow : Control
                 this.MoveToCenter();
 
                 // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double unstucking
-                Invoke.Instance.Queue(() => this.MoveToCenter());
+                Invoke.Instance.Queue(this.MoveToCenter);
             });
         }
     }

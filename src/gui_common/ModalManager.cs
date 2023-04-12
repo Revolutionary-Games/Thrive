@@ -55,7 +55,7 @@ public class ModalManager : NodeWithInput
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This does Node reparenting operation, therefore calling this plainly in <see cref="Node._Ready"/> wouldn't
+    ///     This does Node re-parenting operation, therefore calling this plainly in <see cref="Node._Ready"/> wouldn't
     ///     work as the Node is still busy then. Alternatively, you could defer the call in the next frame by using
     ///     <see cref="Invoke.Queue"/>.
     ///   </para>

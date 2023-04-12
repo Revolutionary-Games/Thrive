@@ -29,7 +29,7 @@ public static class ControlHelpers
                 popup.MoveToCenter();
 
                 // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double unstucking
-                Invoke.Instance.Queue(() => popup.MoveToCenter());
+                Invoke.Instance.Queue(popup.MoveToCenter);
             });
         }
     }
