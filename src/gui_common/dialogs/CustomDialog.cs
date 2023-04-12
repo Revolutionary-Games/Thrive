@@ -75,7 +75,7 @@ public class CustomDialog : CustomWindow
     private bool decorate = true;
 
     /// <summary>
-    ///   This is emitted by any means to hide this dialog but NOT the hiding itself, for that use
+    ///   This is emitted by any means to hide this dialog (when not accepting) but NOT the hiding itself, for that use
     ///   <see cref="CustomWindow.Closed"/> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
@@ -323,7 +323,7 @@ public class CustomDialog : CustomWindow
     public override bool HasPoint(Vector2 point)
     {
         // Enlarge upwards for title bar
-        var position = default(Vector2);
+        var position = Vector2.Zero;
         var size = RectSize;
         position.y -= titleBarHeight;
         size.y += titleBarHeight;
@@ -579,7 +579,7 @@ public class CustomDialog : CustomWindow
     private void OnCloseButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        Close();
         EmitSignal(nameof(Cancelled));
+        Close();
     }
 }

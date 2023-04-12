@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   A custom <see cref="Control"/> that displays a list of option. Animatable open and close.
+///   A custom <see cref="Control"/> that displays a list of options. Opening and closing can be animated.
 ///   For the built-in engine version, see <see cref="PopupMenu"/>.
 /// </summary>
 public class CustomPopupMenu : CustomWindow

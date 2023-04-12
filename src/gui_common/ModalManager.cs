@@ -9,7 +9,12 @@ public class ModalManager : NodeWithInput
 {
     private static ModalManager? instance;
 
-    private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> parents = new();
+    /// <summary>
+    ///   Contains the original parents of modal windows. Used to return them to the right place in the scene after
+    ///   they are no longer displayed.
+    /// </summary>
+    private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> originalParents = new();
+
     private readonly Stack<CustomWindow> modalStack = new();
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
@@ -51,7 +56,7 @@ public class ModalManager : NodeWithInput
     }
 
     /// <summary>
-    ///   Promotes the given popup as a modal and make it visible.
+    ///   Promotes the given popup as a modal and makes it visible.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -65,12 +70,12 @@ public class ModalManager : NodeWithInput
         if (modalStack.Contains(popup))
             return;
 
-        parents[popup] = popup.GetParent();
+        originalParents[popup] = popup.GetParent();
         modalStack.Push(popup);
         modalsDirty = true;
 
-        var bind = new Array { popup };
-        popup.CheckAndConnect("hide", this, nameof(OnModalLost), bind, (uint)ConnectFlags.Oneshot);
+        var binds = new Array { popup };
+        popup.CheckAndConnect("hide", this, nameof(OnModalLost), binds, (uint)ConnectFlags.Oneshot);
 
         if (!popup.Visible)
             popup.Open();
@@ -90,11 +95,13 @@ public class ModalManager : NodeWithInput
         if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
             return false;
 
-        popup.Close();
-        popup.Notification(Control.NotificationModalClose);
-
+        // This is emitted before closing to allow window using components to differentiate between "cancel" and
+        // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
         if (popup is CustomDialog dialog)
             dialog.EmitSignal(nameof(CustomDialog.Cancelled));
+
+        popup.Close();
+        popup.Notification(Control.NotificationModalClose);
 
         return true;
     }
@@ -117,10 +124,13 @@ public class ModalManager : NodeWithInput
 
     private void UpdateModals()
     {
-        activeModalContainer.Hide();
-
         if (modalStack.Count <= 0)
+        {
+            activeModalContainer.Hide();
             return;
+        }
+
+        activeModalContainer.Show();
 
         var top = modalStack.Peek();
 
@@ -132,8 +142,6 @@ public class ModalManager : NodeWithInput
                 canvasLayer.MoveChild(modal, 0);
                 continue;
             }
-
-            activeModalContainer.Show();
 
             top.ReParent(activeModalContainer);
 
@@ -160,6 +168,9 @@ public class ModalManager : NodeWithInput
 
             if (!top.Exclusive)
             {
+                if (top is CustomDialog dialog)
+                    dialog.EmitSignal(nameof(CustomDialog.Cancelled));
+
                 // The crux of the custom modal system, to have an overridable hide behavior!
                 top.Close();
                 top.Notification(Control.NotificationModalClose);
@@ -175,13 +186,17 @@ public class ModalManager : NodeWithInput
         if (!modalStack.Contains(popup))
             return;
 
-        if (!parents.TryGetValue(popup, out Node parent))
+        if (!originalParents.TryGetValue(popup, out Node parent))
         {
             popup.ReParent(this);
             return;
         }
 
         var modal = modalStack.Pop();
+
+        if (modal != popup)
+            GD.PrintErr("Unexpected modal reported being closed (not top most modal)");
+
         modal.ReParent(parent);
 
         modalsDirty = true;

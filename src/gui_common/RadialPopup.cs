@@ -9,9 +9,6 @@ public class RadialPopup : CustomDialog
     [Signal]
     public delegate void OnItemSelected(int itemId);
 
-    [Signal]
-    public delegate void OnCanceled();
-
     public RadialMenu Radial { get; private set; } = null!;
 
     public override void _Ready()
@@ -58,7 +55,7 @@ public class RadialPopup : CustomDialog
     protected override void OnHidden()
     {
         base.OnHidden();
-        EmitSignal(nameof(OnCanceled));
+        EmitSignal(nameof(Cancelled));
         Radial.Visible = false;
     }
 
