@@ -404,6 +404,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
         startingBuffer.Clear();
 
+        // Integer divides are intentional here
+        // ReSharper disable PossibleLossOfFraction
+
         for (int i = membraneResolution; i > 0; i--)
         {
             startingBuffer.Add(new Vector2(-cellDimensions,
@@ -429,6 +432,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
                 -cellDimensions + 2 * cellDimensions / membraneResolution * i,
                 -cellDimensions));
         }
+
+        // ReSharper restore PossibleLossOfFraction
 
         // Get new membrane points for vertices2D
         GenerateMembranePoints(startingBuffer, vertices2D);

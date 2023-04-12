@@ -850,7 +850,8 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+        if (hostile.CanDigestObject(player) == Microbe.DigestCheckResult.Ok)
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]
