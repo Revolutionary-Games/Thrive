@@ -86,12 +86,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// <summary>
     ///   The light level the editor is previewing things at
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is saved but there's a slight bug that the selected light level gets reset anyway when loading a save
-    ///     made in the editor
-    ///   </para>
-    /// </remarks>
     [JsonProperty]
     private float lightLevel = 1.0f;
 
