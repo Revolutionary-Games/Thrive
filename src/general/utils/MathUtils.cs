@@ -10,6 +10,7 @@ public static class MathUtils
     public const float EPSILON = 0.00000001f;
     public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
     public const double FULL_CIRCLE = Math.PI * 2;
+    public const float RIGHT_ANGLE = Mathf.Pi / 2;
 
     public static T Clamp<T>(this T val, T min, T max)
         where T : IComparable<T>
@@ -130,5 +131,40 @@ public static class MathUtils
         double average = sum / count;
         double standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
         return (average, standardDeviation);
+    }
+
+    /// <summary>
+    ///   How far in a given direction a set of points can reach from a reference point
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can be useful for finding the edge of a cell from a list of its organelle positions, for instance
+    ///   </para>
+    /// </remarks>
+    public static float GetMaximumDistanceInDirection(Vector3 direction, Vector3 referencePoint,
+        IEnumerable<Vector3> listOfPoints)
+    {
+        float distance = 0.0f;
+
+        foreach (var point in listOfPoints)
+        {
+            if (point == referencePoint)
+                continue;
+
+            var difference = point - referencePoint;
+
+            float angle = difference.AngleTo(direction);
+
+            if (angle >= RIGHT_ANGLE)
+                continue;
+
+            // Get the length of the part of the vector that's parallel to the direction
+            float directionalLength = difference.Length() * Mathf.Cos(angle);
+
+            if (directionalLength > distance)
+                distance = directionalLength;
+        }
+
+        return distance;
     }
 }
