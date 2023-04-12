@@ -331,6 +331,7 @@ access = 2
 
 [node name="UploadSuccess" parent="." instance=ExtResource( 5 )]
 rect_min_size = Vector2( 450, 50 )
+Exclusive = true
 WindowTitle = "UPLOAD_SUCCEEDED"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UploadSuccess"]
