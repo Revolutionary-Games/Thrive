@@ -148,6 +148,8 @@ public class ControllerDeadzoneConfiguration : CustomDialog
 
     private void OnCancel()
     {
+        // TODO: this should also reset the text / timers so that reopening the configuration quickly works correctly
+
         visualizationContainer.Stop();
     }
 
