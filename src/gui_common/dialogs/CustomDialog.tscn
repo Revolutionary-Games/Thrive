@@ -4,17 +4,14 @@
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/CustomWindow.tscn" type="PackedScene" id=3]
 
-
 [node name="CustomDialog" instance=ExtResource( 3 )]
 margin_right = 94.0
 margin_bottom = 69.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 WindowTitle = ""
-FullRect = false
 Resizable = false
 Movable = true
 BoundToScreenArea = true
 ShowCloseButton = true
 Decorate = true
-PreventsMouseCaptureWhileOpen = true
