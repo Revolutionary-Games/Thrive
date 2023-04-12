@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/models/MainMenu/UnderwaterChimney.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/MainMenuScene/bubbleTexture.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/textures/iron_bump.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=7]
 [ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=8]
+[ext_resource path="res://src/general/MainMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/models/MainMenu/Chimney_Mat.material" type="Material" id=11]
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.929032 )
@@ -25,15 +27,15 @@ panorama = SubResource( 4 )
 [sub_resource type="Environment" id=2]
 background_mode = 2
 background_sky = SubResource( 5 )
-background_sky_custom_fov = 108.0
+background_sky_custom_fov = 113.6
 background_energy = 1.15
 ambient_light_color = Color( 0.207843, 0.376471, 0.509804, 1 )
 ambient_light_sky_contribution = 0.0
 fog_enabled = true
-fog_color = Color( 0.188235, 0.317647, 0.435294, 1 )
+fog_color = Color( 0.2, 0.305882, 0.403922, 1 )
+fog_sun_amount = 1.0
 fog_depth_begin = 0.0
-fog_depth_end = 2431.2
-fog_depth_curve = 0.965936
+fog_depth_end = 420.8
 fog_transmit_enabled = true
 fog_transmit_curve = 0.901249
 fog_height_enabled = true
@@ -149,16 +151,6 @@ shader_param/albedoTexture = ExtResource( 5 )
 shader_param/normalTexture = ExtResource( 6 )
 shader_param/dissolveTexture = ExtResource( 7 )
 
-[sub_resource type="ShaderMaterial" id=16]
-resource_local_to_scene = true
-shader = ExtResource( 8 )
-shader_param/dissolveValue = 0.0
-shader_param/outlineWidth = 0.005
-shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
-shader_param/albedoTexture = ExtResource( 5 )
-shader_param/normalTexture = ExtResource( 6 )
-shader_param/dissolveTexture = ExtResource( 7 )
-
 [sub_resource type="ShaderMaterial" id=17]
 resource_local_to_scene = true
 shader = ExtResource( 8 )
@@ -169,7 +161,19 @@ shader_param/albedoTexture = ExtResource( 5 )
 shader_param/normalTexture = ExtResource( 6 )
 shader_param/dissolveTexture = ExtResource( 7 )
 
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/dissolveValue = 0.0
+shader_param/outlineWidth = 0.005
+shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
+shader_param/albedoTexture = ExtResource( 5 )
+shader_param/normalTexture = ExtResource( 6 )
+shader_param/dissolveTexture = ExtResource( 7 )
+
 [node name="Spatial" type="Spatial"]
+
+[node name="MainMenu" parent="." instance=ExtResource( 10 )]
 
 [node name="UnderwaterChimney" parent="." instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
@@ -366,14 +370,31 @@ hue_variation_random = 0.22
 transform = Transform( 0.060048, -139.594, -54.8965, -133.706, 24.8328, -63.2923, 67.9896, 48.9588, -124.42, 4.47231, 4.28959, -0.635183 )
 material_override = SubResource( 14 )
 
+[node name="MicIronBIG05" parent="." instance=ExtResource( 4 )]
+transform = Transform( -807.919, -4021.62, -6016.7, -4886.71, 715.419, 373.411, 175.055, 1410.47, -17344.6, -200, 15.077, 120 )
+material_override = ExtResource( 11 )
+
+[node name="MicIronBIG06" parent="." instance=ExtResource( 4 )]
+transform = Transform( 799.573, 4224.27, -2492.71, -4886.71, 715.419, 373.411, 209.905, 564.244, 18188.5, -231.539, 0.2477, 33.095 )
+material_override = ExtResource( 11 )
+
+[node name="MicIronBIG07" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1917, 6891.31, -8049.11, -6497.47, -3649.37, 17052, 4905.02, 7951.75, 30106.4, -374.724, 2.66869, -44.8635 )
+material_override = ExtResource( 11 )
+
+[node name="MicIronBIG08" parent="." instance=ExtResource( 4 )]
+transform = Transform( 631.646, 6246.68, 5818.51, -4823.14, -2708.96, 12657.8, 6877.54, 1085.02, 38471.9, -204.974, -31.6544, -184.716 )
+material_override = ExtResource( 11 )
+
 [node name="MicIronBIG03" parent="." instance=ExtResource( 4 )]
 transform = Transform( 21.4436, 0, -148.459, 0, 150, 0, 148.459, 0, 21.4436, 5.83912, 2.56639, -2.33573 )
 material_override = SubResource( 15 )
 
+[node name="MicIronBIG04" parent="." instance=ExtResource( 4 )]
+transform = Transform( -52.2435, -140.606, -0.757336, -18.5022, 6.07359, 148.731, -139.385, 51.8947, -19.4589, 3.95268, 2.69188, 3.33375 )
+material_override = SubResource( 17 )
+skeleton = NodePath("../MicIronBIG01")
+
 [node name="MicIronBIG01" parent="." instance=ExtResource( 4 )]
 transform = Transform( 150, 0, 0, 0, 150, 0, 0, 0, 150, 3.2331, 2.33866, 5.82775 )
 material_override = SubResource( 16 )
-
-[node name="MicIronBIG02" parent="MicIronBIG01" instance=ExtResource( 4 )]
-transform = Transform( -0.34829, -0.937373, -0.00504891, -0.123348, 0.0404906, 0.991537, -0.929235, 0.345965, -0.129726, 0.0047972, 0.00606436, -0.0166267 )
-material_override = SubResource( 17 )
