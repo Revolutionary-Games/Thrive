@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
 /// </summary>
-public class SlideScreen : CustomDialog
+public class SlideScreen : CustomWindow
 {
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
@@ -229,7 +229,6 @@ public class SlideScreen : CustomDialog
 
         FullRect = false;
         SlideControlsVisible = false;
-        BoundToScreenArea = false;
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
 
@@ -420,7 +419,6 @@ public class SlideScreen : CustomDialog
 
         SlideControlsVisible = true;
         FullRect = true;
-        BoundToScreenArea = true;
     }
 
     private void OnScaledDown(Object @object, NodePath key)
@@ -448,6 +446,11 @@ public class SlideScreen : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         SlideshowMode = pressed;
+    }
+
+    private void OnCloseButtonPressed()
+    {
+        Close();
     }
 
     private void OnCloseButtonUpdate()

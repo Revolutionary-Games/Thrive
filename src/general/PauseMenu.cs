@@ -117,7 +117,7 @@ public class PauseMenu : CustomWindow
             if (GameLoading)
                 return true;
 
-            if (ModalManager.Instance.IsAnyExclusivePopupActive)
+            if (ModalManager.Instance.IsTopMostPopupExclusive)
                 return true;
 
             if (TransitionManager.Instance.HasQueuedTransitions)

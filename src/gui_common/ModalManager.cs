@@ -36,7 +36,7 @@ public class ModalManager : NodeWithInput
     /// <summary>
     ///   Checks whether the top-most modal on the modal stack is an exclusive popup.
     /// </summary>
-    public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
+    public bool IsTopMostPopupExclusive => GetTopMostPopupIfExclusive() != null;
 
     public override void _Ready()
     {
@@ -76,16 +76,13 @@ public class ModalManager : NodeWithInput
 
         var binds = new Array { popup };
         popup.CheckAndConnect("hide", this, nameof(OnModalLost), binds, (uint)ConnectFlags.Oneshot);
-
-        if (!popup.Visible)
-            popup.Open();
     }
 
     /// <summary>
-    ///   Closes any currently active modal popups.
+    ///   Closes the top-most modal popup if any.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
-    public bool HideCurrentlyActivePopup()
+    public bool HideTopMostPopup()
     {
         if (modalStack.Count <= 0)
             return false;
@@ -107,9 +104,9 @@ public class ModalManager : NodeWithInput
     }
 
     /// <summary>
-    ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
+    ///   Returns the top-most popup in the modal stack if there's any and it's exclusive, otherwise null.
     /// </summary>
-    public CustomWindow? GetCurrentlyActiveExclusivePopup()
+    public CustomWindow? GetTopMostPopupIfExclusive()
     {
         if (modalStack.Count <= 0)
             return null;
@@ -144,6 +141,10 @@ public class ModalManager : NodeWithInput
             }
 
             top.ReParent(activeModalContainer);
+
+            // Always make the top-most modal in the stack visible
+            if (!modal.Visible)
+                modal.Open();
 
             // Always give focus to the top-most modal in the stack
             top.FindNextValidFocus()?.GrabFocus();
