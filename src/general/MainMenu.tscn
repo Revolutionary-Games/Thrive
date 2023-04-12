@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/VersionNumber.cs" type="Script" id=5]
 [ext_resource path="res://src/general/MainMenu.cs" type="Script" id=6]
+[ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
@@ -116,7 +118,7 @@ __meta__ = {
 "_editor_description_": "The root and controller for the main menu"
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
-MenuBackgrounds = [ ExtResource( 8 ) ]
+MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")
@@ -144,7 +146,6 @@ FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 
 [node name="Background" type="TextureRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 expand = true
