@@ -162,6 +162,11 @@ public class Thriveopedia : ControlWithInput
             foreach (var page in allPages.Keys)
                 page.OnThriveopediaOpened();
         }
+        else if (what == NotificationTranslationChanged)
+        {
+            foreach (var page in allPages)
+                UpdatePageInTree(page.Value, page.Key);
+        }
     }
 
     /// <summary>
@@ -291,10 +296,15 @@ public class Thriveopedia : ControlWithInput
     {
         var pageInTree = pageTree.CreateItem(parentName != null ? allPages[GetPage(parentName)] : null);
 
-        // Godot doesn't appear to have a left margin for text in items, so add some manual padding
-        pageInTree.SetText(0, "  " + page.TranslatedPageName);
+        UpdatePageInTree(pageInTree, page);
 
         return pageInTree;
+    }
+
+    private void UpdatePageInTree(TreeItem item, ThriveopediaPage page)
+    {
+        // Godot doesn't appear to have a left margin for text in items, so add some manual padding
+        item.SetText(0, "  " + page.TranslatedPageName);
     }
 
     /// <summary>

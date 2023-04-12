@@ -72,16 +72,16 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     {
     }
 
+    public override void OnTranslationChanged()
+    {
+        UpdateShownPatchDetails();
+        UpdateSeedLabel();
+    }
+
     protected virtual void UpdateShownPatchDetails()
     {
         detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
         detailsPanel.UpdateShownPatchDetails();
-    }
-
-    protected void OnTranslationsChanged()
-    {
-        UpdateShownPatchDetails();
-        UpdateSeedLabel();
     }
 
     protected override void Dispose(bool disposing)

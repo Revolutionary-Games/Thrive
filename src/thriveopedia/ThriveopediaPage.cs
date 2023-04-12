@@ -53,6 +53,14 @@ public abstract class ThriveopediaPage : PanelContainer
             AddStyleboxOverride("panel", new StyleBoxEmpty());
     }
 
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged)
+            OnTranslationChanged();
+    }
+
     /// <summary>
     ///   Performs intensive page-specific logic to rebuild views when the Thriveopedia is opened.
     /// </summary>
@@ -68,6 +76,13 @@ public abstract class ThriveopediaPage : PanelContainer
     /// </summary>
     /// <param name="collapsed">Whether the page tree is currently collapsed</param>
     public virtual void OnNavigationPanelSizeChanged(bool collapsed)
+    {
+    }
+
+    /// <summary>
+    ///   Called when <see cref="Node.NotificationTranslationChanged"/> is received.
+    /// </summary>
+    public virtual void OnTranslationChanged()
     {
     }
 }

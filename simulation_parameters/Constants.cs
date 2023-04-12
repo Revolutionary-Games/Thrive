@@ -646,7 +646,7 @@ public static class Constants
     public const int METABALL_MOVE_COST = 3;
     public const int METABALL_RESIZE_COST = 3;
 
-    public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
+    public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
@@ -864,6 +864,7 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
+    public const float HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER = 35;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
