@@ -14,7 +14,7 @@ public class CustomWindow : Control
     public delegate void Closed();
 
     /// <summary>
-    ///   If true, clicking outside of this popup will not close it.
+    ///   If true, clicking outside of this popup will not close it (only applies when this is acting as a popup).
     /// </summary>
     [Export]
     public bool Exclusive { get; set; }
@@ -58,6 +58,8 @@ public class CustomWindow : Control
     public override void _Notification(int what)
     {
         // To reduce base method calls in derived types, we utilize notifications
+        // TODO: refactoring this to work the normal way, would be pretty nice but requires all derived classes to be
+        // checked to ensure they contain base calls in all of their overridden methods.
 
         switch (what)
         {
@@ -95,13 +97,16 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Shows this popup with a custom behavior, if any.
+    ///   Shows this window with a custom behavior, if any.
     /// </summary>
     public virtual void Open()
     {
         Show();
     }
 
+    /// <summary>
+    ///   Opens this as a popup (modal window)
+    /// </summary>
     public void OpenModal()
     {
         ModalManager.Instance.MakeModal(this);
@@ -127,7 +132,7 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Shows this popup at the center of the screen.
+    ///   Shows this window at the center of the screen.
     /// </summary>
     public void OpenCentered(bool modal = true, Vector2? size = null)
     {
@@ -140,7 +145,7 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Shows this popup by covering the whole screen.
+    ///   Shows this window by covering the whole screen.
     /// </summary>
     public void OpenFullRect()
     {
@@ -168,7 +173,7 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Hides this popup with a custom behavior, if any.
+    ///   Hides this window with a custom behavior, if any.
     /// </summary>
     public virtual void Close()
     {
@@ -176,14 +181,14 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Called after popup is made visible.
+    ///   Called after this window is made visible.
     /// </summary>
     protected virtual void OnShown()
     {
     }
 
     /// <summary>
-    ///   Called after popup is made invisible.
+    ///   Called after this window is made invisible.
     /// </summary>
     protected virtual void OnHidden()
     {
