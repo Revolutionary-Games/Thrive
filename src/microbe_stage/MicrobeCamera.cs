@@ -48,6 +48,9 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
+    [Export]
+    public float LightLevelInterpolateSpeed = 0.3f;
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -341,6 +344,16 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private void UpdateLightLevel()
     {
-        materialToUpdate?.SetShaderParam("lightLevel", LightLevel);
+        if (materialToUpdate == null)
+            throw new SceneTreeAttachRequired();
+
+        var oldLightLevel = (float)materialToUpdate.GetShaderParam("lightLevel");
+        CreateTween().TweenMethod(
+            this, nameof(TweenLightLevel), oldLightLevel, LightLevel, LightLevelInterpolateSpeed);
+    }
+
+    private void TweenLightLevel(float lightLevel)
+    {
+        materialToUpdate?.SetShaderParam("lightLevel", lightLevel);
     }
 }
