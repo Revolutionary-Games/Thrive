@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -62,7 +62,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -255,7 +255,7 @@ msgstr "대기 가스"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "ATP 균형"
 
@@ -290,7 +290,7 @@ msgstr ""
 msgid "AUTO"
 msgstr "자동"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "이 패널은 Auto-Evo가 예측에 사용하는 숫자들을 보여줍니다. 하나의 종이 얻을 수 있는 에너지의 총량과 그 종의 한 개체당 필요한 에너지 비용이 최종 개체수를 결정합니다. Auto-Evo는 현실을 간략화한 모델을 사용하여 하나의 종이 얻을 수 있는 에너지로부터 그 종이 얼마나 잘 기능하고 있는지 계산합니다. 각각의 에너지원에 대해, 종이 해당 에너지원으로부터 얻는 에너지의 양이 표시됩니다. 이에 더하여 해당 에너지원으로부터 얻을 수 있는 에너지의 총량이 표시됩니다. 주어진 에너지의 총량에 비해 해당 종이 얻는 양의 비율은 해당 종의 적합도가 적합도 총량에 비해 얼마나 높은지에 따라 결정됩니다. 적합도는 종이 에너지원을 얼마나 잘 활용할 수 있는지 측정하는 지표입니다."
 
@@ -298,12 +298,12 @@ msgstr "이 패널은 Auto-Evo가 예측에 사용하는 숫자들을 보여줍�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "다음으로 인하여 {0} 개체수가 {2}에서 {1}(으)로 변함: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo 예측"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "이 패널은 Auto-Evo가 예측한 편집되는 종의 개체수를 보여줍니다.\n"
@@ -447,7 +447,7 @@ msgstr "Thrive 시작"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 #, fuzzy
 msgid "BEHAVIOUR"
 msgstr "행동"
@@ -498,7 +498,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "종:"
@@ -619,7 +619,7 @@ msgstr "취소"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "확인"
@@ -733,7 +733,7 @@ msgstr "섬유소"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -888,7 +888,7 @@ msgstr "이전 저장 정리"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -918,7 +918,7 @@ msgstr "해안"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "색"
 
@@ -1527,7 +1527,7 @@ msgstr "보통"
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "설명:"
@@ -1537,7 +1537,7 @@ msgstr "설명:"
 msgid "DIGESTION_SPEED"
 msgstr "자원 흡수 속도"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "속도:"
@@ -1597,11 +1597,11 @@ msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "단절된 세포기관"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
@@ -1866,15 +1866,15 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2015,7 +2015,7 @@ msgstr "새로운 키 배치 추가"
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "외부의"
 
@@ -2064,7 +2064,7 @@ msgstr "추가 설정"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 #, fuzzy
 msgid "FAILED"
 msgstr "저장 실패"
@@ -2172,11 +2172,11 @@ msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 msgid "FLOATING_HAZARD"
 msgstr "부동 위험"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "유동성 / 강도"
 
@@ -2192,7 +2192,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "먹이 사슬"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2291,7 +2291,7 @@ msgstr "일반"
 msgid "GENERATIONS"
 msgstr "세대"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "세대:"
 
@@ -2454,7 +2454,7 @@ msgstr "세대:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "생명력:"
 
@@ -2913,7 +2913,7 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3122,11 +3122,16 @@ msgstr ""
 msgid "LIGHT"
 msgstr "빛"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "휠 오른쪽으로"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -3134,7 +3139,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "휠 오른쪽으로"
@@ -3380,7 +3385,7 @@ msgstr ""
 msgid "MEGA_YEARS"
 msgstr "백만 년"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "세포막 유형"
@@ -3389,7 +3394,7 @@ msgstr "세포막 유형"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "세포막 강도"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "세포막 유형"
 
@@ -4107,11 +4112,11 @@ msgstr "음소거"
 msgid "NAME"
 msgstr "이름:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "부정적 ATP 균형"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "미생물이 생존에 필요한 만큼의 ATP를 생산하지 않습니다!\n"
@@ -4167,7 +4172,7 @@ msgstr "속도:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4275,7 +4280,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4323,7 +4328,7 @@ msgstr "선택됨:"
 msgid "NUCLEUS"
 msgstr "핵"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4346,8 +4351,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 #, fuzzy
@@ -4472,7 +4477,7 @@ msgstr "설정"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "세포 기관"
 
@@ -4487,7 +4492,7 @@ msgstr "세포 기관"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "이것으로 다른 세포를 찌르세요."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "세포 기관 배치"
@@ -4517,7 +4522,7 @@ msgstr "이것으로 다른 세포를 찌르세요."
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "이것으로 다른 세포를 찌르세요."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "생체 상태창"
 
@@ -4927,7 +4932,7 @@ msgstr "개체수:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "지역 내 개체수:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "개체수:"
@@ -4936,7 +4941,7 @@ msgstr "개체수:"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "재개"
@@ -4995,7 +5000,7 @@ msgstr "방금 이주한 개체군을 종 개수 제한으로부터 보호"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "방금 생성된 종을 종 개수 제한으로부터 보호"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "단백질"
 
@@ -5249,7 +5254,7 @@ msgstr "마우스 오른쪽 버튼"
 msgid "RIGHT_MOUSE"
 msgstr "마우스 오른쪽 버튼"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr ""
 
@@ -5265,7 +5270,7 @@ msgstr "왼쪽으로 회전"
 msgid "ROTATE_RIGHT"
 msgstr "오른쪽으로 회전"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -5473,7 +5478,7 @@ msgstr "이동 속도 향상"
 msgid "SCROLLLOCK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "검색..."
 
@@ -5686,7 +5691,7 @@ msgstr "이 세포막은 이산화규소로 이루어진 강력한 벽 입니다
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "크기:"
 
@@ -5842,7 +5847,7 @@ msgstr "종:"
 msgid "SPEED"
 msgstr "속도"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "속도:"
 
@@ -5985,7 +5990,7 @@ msgstr ""
 msgid "STORAGE"
 msgstr "저장소"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "저장소"
@@ -6003,13 +6008,13 @@ msgstr "미생물 단계"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "엄격한 생태적 지위 경쟁 (적합도 차이가 과장됨)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "구조의"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "구조"
 
@@ -6060,7 +6065,7 @@ msgstr "새로운 키 배치 추가"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6389,7 +6394,7 @@ msgstr "도구"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -6882,7 +6887,7 @@ msgstr "효과음 음량"
 msgid "VSYNC"
 msgstr "수직동기화"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Auto-evo 대기중:"
 
@@ -6994,7 +6999,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "이동 속도 향상"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "종:"

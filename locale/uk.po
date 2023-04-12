@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -62,7 +62,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Перейдіть до стадії пробудження. Доступно, коли у вас достатня сила мозку (тип клітини з аксонами)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -268,7 +268,7 @@ msgstr "Атмосферні гази"
 msgid "ATP"
 msgstr "АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
 
@@ -302,7 +302,7 @@ msgstr "Серпень"
 msgid "AUTO"
 msgstr "Авто"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ця панель відображає числа, за якими працює передбачення Авто-ево. Загальна енергія, яку вид може поглинути, і вартість на особину цього виду визначають фінальну популяцію. Авто-ево використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано величину енергії, яку вид отримує від нього. Додатково показується загальна енергія, що доступна з цього джерела. Частка, яку види отримують з цієї загальної енергії, базується на тому, наскільки є великою пристосованість у порівнянні з загальною пристосованістю. Пристосованість — це величина, що показує, наскільки добре вид засвоює це джерело їжі."
 
@@ -310,12 +310,12 @@ msgstr "Ця панель відображає числа, за якими пр�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} зміна населення {1} на {2} через: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноз Авто-ево"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ця панель показує очікувану чисельність популяції через Авто-ево (автоматичну еволюцію) для редагуємого виду.\n"
@@ -452,7 +452,7 @@ msgstr "Почніть процвітання"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "Поведінка"
 
@@ -496,7 +496,7 @@ msgstr "Фаза бенчмарку:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Результати:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "Найкраща ділянка:"
 
@@ -614,7 +614,7 @@ msgstr "Скасувати"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "Скасувати дію"
 
@@ -723,7 +723,7 @@ msgstr "Целюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має стінку, врезультаті чого краще захищає від пошкоджень, а особливо від фізичних. Це коштує менше енергії на збереження форми, але не так швидко поглинає ресурси і є повільнішим. [b]Целюлаза здатна перетравлювати цю стінку[/b] роблячи її вразливою для поглинання хижаками."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
@@ -865,7 +865,7 @@ msgstr "Очистити старі збереження"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -893,7 +893,7 @@ msgstr "Узбережжя"
 msgid "COLLISION_SHAPE"
 msgstr "Cпавнити сутності з формами зіткнення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "Колір"
 
@@ -1508,7 +1508,7 @@ msgstr "Нормальний"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Ефективність травлення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Ефективність травлення:"
 
@@ -1516,7 +1516,7 @@ msgstr "Ефективність травлення:"
 msgid "DIGESTION_SPEED"
 msgstr "Швидкість травлення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Швидкість травлення:"
 
@@ -1568,11 +1568,11 @@ msgstr ""
 "Тут розміщені метасфери, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені клітини аби продовжити."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Від'єднати органели"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Тут розміщені органели, які не з'єднання з рештою.\n"
@@ -1827,15 +1827,15 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить {0} з індивідуальною вартістю {1}, результатом чого є нескоригована популяція кількістю в {2}"
 
@@ -1967,7 +1967,7 @@ msgstr "Експортувати дані усіх світів у CSV-форм�
 msgid "EXPORT_SUCCESS"
 msgstr "Експортовано успішно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "Зовнішні"
 
@@ -2013,7 +2013,7 @@ msgstr "Додаткові налаштування"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Відвідайте на сторінку Facebook"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Провалено"
 
@@ -2121,11 +2121,11 @@ msgstr "Обертання:"
 msgid "FLOATING_HAZARD"
 msgstr "Плавуча загроза"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "Рухливість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Рухливість / Жорсткість"
 
@@ -2144,7 +2144,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Ланцюг живлення"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергія: {1} (пристосованість: {2}) загальна доступна енергія: {3} (загальна пристосованість: {4})"
 
@@ -2237,7 +2237,7 @@ msgstr "Загальне"
 msgid "GENERATIONS"
 msgstr "Генерації"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "Генерація:"
 
@@ -2397,7 +2397,7 @@ msgstr "Горизонталь:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Горизонталь (Вісь: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "Здоров'я:"
 
@@ -2845,7 +2845,7 @@ msgstr "Прогрес перекладу на цю мову зараз соло
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Цей переклад дуже неповний ({0}% готово), буь-ласка допоможіть виправити ця ситуацію!!!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Неможна видалити останню органелу"
 
@@ -3051,11 +3051,16 @@ msgstr "Гідротермальні джерела"
 msgid "LIGHT"
 msgstr "Світло"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "Середній"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "Ніч"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr "День"
 
@@ -3063,7 +3068,7 @@ msgstr "День"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} опівдні"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Ніч"
 
@@ -3292,7 +3297,7 @@ msgstr "Зупинити медіа"
 msgid "MEGA_YEARS"
 msgstr "Млн. р."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "Мембрани"
 
@@ -3300,7 +3305,7 @@ msgstr "Мембрани"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Жорсткість мембрани"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "Типи Мембрани"
 
@@ -4032,11 +4037,11 @@ msgstr "Вимкнути"
 msgid "NAME"
 msgstr "Назва:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативний АТФ баланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш мікроб не виробляє недостатню кілбкість АТф для виживання.\n"
@@ -4088,7 +4093,7 @@ msgstr "Нова назва:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4191,7 +4196,7 @@ msgid "NO_AI"
 msgstr "Без ШІ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -4233,7 +4238,7 @@ msgstr "Немає вибраного моду"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Ядро не підлягає видаленю, бо це необоротна еволюція.\n"
@@ -4255,8 +4260,8 @@ msgstr "Перемикання числового регістрату(Num Lock)
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4380,7 +4385,7 @@ msgstr "Налаштування"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Зміна ваших налаштувань"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "Органели"
 
@@ -4395,7 +4400,7 @@ msgstr "Органели"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Ворсинки (однина: ворсинка) знаходяться на поверхні багатьох мікроорганізмів і нагадують тонкі волоски. Від десятків до сотень ворсинок можуть бути на поверхні мікроорганізму та виконувати кілька функцій, включаючи роль в хижацтві. Патогенні мікроорганізми використовують їх для ураження або прикріплення й зв'язування з тканинами господаря; або для проникнення крізь зовнішню мембрану, щоб отримати доступ до цитоплазми. Багато існує схожих ворсинок, але еволюційно ті не пов'язані, а є результатом конвергентної еволюції. Одному організму можуть бути притаманні різні ворсинки, а ті, які присутні на поверхні завжди змінюються й міняються."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Пізня Багатоклітинність"
@@ -4424,7 +4429,7 @@ msgstr "Ворсинки (однина: ворсинка) знаходяться
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Проштрихніть нею інші клітини."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Організму"
 
@@ -4820,7 +4825,7 @@ msgstr "популяція:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "популяція в ділянці:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4828,7 +4833,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Винищення {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Перегляньте детальну інформацію про прогноз"
 
@@ -4885,7 +4890,7 @@ msgstr "Захисні міграції від витісняючих видів
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Захист нових клітин від витісняючих видів"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "Білки"
 
@@ -5123,7 +5128,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "ПКМ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "Жорсткість"
 
@@ -5139,7 +5144,7 @@ msgstr "Повеніть ліворуч"
 msgid "ROTATE_RIGHT"
 msgstr "Поверніть праворуч"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "Обертання:"
 
@@ -5336,7 +5341,7 @@ msgstr "Відносно екрану"
 msgid "SCROLLLOCK"
 msgstr "Пересування екрану (Scroll Lock)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Пошук..."
 
@@ -5523,7 +5528,7 @@ msgstr "Ця мембрана має міцну стінку з кремнезі
 msgid "SIXTEEN_TIMES"
 msgstr "16х"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "Розмір:"
 
@@ -5681,7 +5686,7 @@ msgstr "{0} з популяції: {1}"
 msgid "SPEED"
 msgstr "Швидкість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "Швидкість:"
 
@@ -5818,7 +5823,7 @@ msgstr "Стоп"
 msgid "STORAGE"
 msgstr "Збереження"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "Збереження:"
 
@@ -5835,13 +5840,13 @@ msgstr "Мікробна стадія"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Жорстка нішева конкуренція"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "Структурний"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "Структури"
 
@@ -5891,7 +5896,7 @@ msgstr "Суїцид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6230,7 +6235,7 @@ msgstr "Інструменти"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Загальна популяція:"
 
@@ -6685,7 +6690,7 @@ msgstr "Підсилити звук"
 msgid "VSYNC"
 msgstr "Вертикальна синхронізація(VSync)"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Очікування на Авто-ево:"
 
@@ -6792,7 +6797,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Відносно світу"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "Найгірша ділянка:"
 

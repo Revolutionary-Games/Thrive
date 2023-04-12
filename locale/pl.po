@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -62,7 +62,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Przebudzony"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -266,7 +266,7 @@ msgstr "Gazy Atmosferyczne"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "Balans ATP"
 
@@ -300,7 +300,7 @@ msgstr "Sierpień"
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ten panel pokazuje liczby na których bazuje przewidywanie auto-ewolucji. Całkowita energia, którą gątunek jest w stanie przyswoić, i koszt utrzymania każdego osobnika determinują ostateczną populację. Auto-ewolucja wykorzystuje uproszczony model rzeczywistości w celu obliczenia jak dobrze dany gatunek sobie poradzi. Na każde źródło pożywienia dana jest informacja ile energii gatunek z niego czerpie."
 
@@ -308,12 +308,12 @@ msgstr "Ten panel pokazuje liczby na których bazuje przewidywanie auto-ewolucji
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populacja {0} zmieniła się o {1} w {2} z powodu: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Przewidywania Auto-Ewolucji"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ten panel pokazuje prawdopodobne dane populacji z auto-ewolucji dla edytowanego gatunku.\n"
@@ -450,7 +450,7 @@ msgstr "Zacznij żyć"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "Zachowania"
 
@@ -495,7 +495,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "Najlepiej radzi sobie w:"
 
@@ -613,7 +613,7 @@ msgstr "Anuluj"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANULUJ AKCJĘ"
 
@@ -722,7 +722,7 @@ msgstr "Celulozowa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"
 
@@ -864,7 +864,7 @@ msgstr "Usuń stare zapisy"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -892,7 +892,7 @@ msgstr "Przybrzeże"
 msgid "COLLISION_SHAPE"
 msgstr "Przywołaj byty z kształtami kolizji"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "Kolor"
 
@@ -1495,7 +1495,7 @@ msgstr "Normalny"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Wydajność Trawienia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Wydajność Trawienia:"
 
@@ -1503,7 +1503,7 @@ msgstr "Wydajność Trawienia:"
 msgid "DIGESTION_SPEED"
 msgstr "Szybkość Trawienia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Szybkość Trawienia:"
 
@@ -1555,11 +1555,11 @@ msgstr ""
 "Niektóre metakule nie są połączone do reszty organizmu.\n"
 "Proszę połączyć wszystkie metakule aby kontynuować."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Niepołączone Organelle"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Są organelle które nie są połączone do reszty komórki.\n"
@@ -1810,15 +1810,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia w {0} dla {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr "Źródła Energii:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
@@ -1952,7 +1952,7 @@ msgstr "Upłynęło {0:#,#} lat"
 msgid "EXPORT_SUCCESS"
 msgstr "Drapieżnictwo {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "Zewnętrzne"
 
@@ -1999,7 +1999,7 @@ msgstr "Dodatkowe Opcje"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Zapauzuj"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Błąd"
 
@@ -2125,11 +2125,11 @@ msgstr "Populacja:"
 msgid "FLOATING_HAZARD"
 msgstr "Pływające Zagrożenie"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "Płynna"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Płynność / Sztywność"
 
@@ -2148,7 +2148,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Łańcuch Pokarmowy"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (sprawność: {2}) całkowita dostępna energia: {3} (całkowita sprawność: {4})"
 
@@ -2247,7 +2247,7 @@ msgstr "Generalny"
 msgid "GENERATIONS"
 msgstr "Pokolenia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "Generacja:"
 
@@ -2410,7 +2410,7 @@ msgstr "Poziom:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Poziom (Oś: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "Zdrowie:"
 
@@ -2859,7 +2859,7 @@ msgstr "Ten język nadal jest w trakcie tłumaczenia ({0}% ukończenia)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli możesz, pomóż to zmienić!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
@@ -3066,11 +3066,16 @@ msgstr "Kominy hydrotermalne"
 msgid "LIGHT"
 msgstr "Światło"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "Noc"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -3078,7 +3083,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Noc"
 
@@ -3308,7 +3313,7 @@ msgstr "Zatrzymanie mediów"
 msgid "MEGA_YEARS"
 msgstr "Milionów Lat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "Membrana"
 
@@ -3316,7 +3321,7 @@ msgstr "Membrana"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Sztywność Membrany"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "Rodzaje błony lub ściany komórkowej"
 
@@ -4048,11 +4053,11 @@ msgstr "Wycisz"
 msgid "NAME"
 msgstr "Nazwa:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatywny balans ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Twoja komórka produkuje za mało ATP by przeżyć!\n"
@@ -4104,7 +4109,7 @@ msgstr "Nowe imię:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4207,7 +4212,7 @@ msgid "NO_AI"
 msgstr "Brak SI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr "Brak danych do pokazania"
 
@@ -4250,7 +4255,7 @@ msgstr "Nie wybrano Modów"
 msgid "NUCLEUS"
 msgstr "Jądro Komórkowe"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha.\n"
@@ -4272,8 +4277,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4397,7 +4402,7 @@ msgstr "Opcje"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmień swoje ustawienia"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "Organella komórkowe"
 
@@ -4411,7 +4416,7 @@ msgstr "Akson"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Dźgaj tym inne komórki."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Wielokomórkowe"
@@ -4438,7 +4443,7 @@ msgstr "Dźgaj tym inne komórki."
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Może zostać użyte do dźgania innych komórek lub obrony przed ich toksynami."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 
@@ -4833,7 +4838,7 @@ msgstr "populacja:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populacja w obszarach:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4841,7 +4846,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Drapieżnictwo {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Zobacz informacje o prognozie w detalach"
 
@@ -4898,7 +4903,7 @@ msgstr "Ochrona dopiero co przeniesionych gatunków przed limitem gatunków"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Chroń nowo stworzone gatunki od czapki gatunkowej"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "Białka"
 
@@ -5136,7 +5141,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Prawy przycisk myszy"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "Sztywna"
 
@@ -5152,7 +5157,7 @@ msgstr "Obróć w lewo"
 msgid "ROTATE_RIGHT"
 msgstr "Obróć w prawo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "Populacja:"
 
@@ -5343,7 +5348,7 @@ msgstr "żeby zwiększyć ruch"
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Wyszukiwanie..."
 
@@ -5532,7 +5537,7 @@ msgstr "Ta membrana ma silne ściany z silikonu. Może opierać się ogólnym ob
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "Wielkość:"
 
@@ -5690,7 +5695,7 @@ msgstr "{0} z populacją: {1}"
 msgid "SPEED"
 msgstr "Szybkość"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "Szybkość:"
 
@@ -5827,7 +5832,7 @@ msgstr "Stop"
 msgid "STORAGE"
 msgstr "Magazyn"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "Magazyn:"
 
@@ -5844,13 +5849,13 @@ msgstr "Etap Mikroba"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Rygorystyczna konkurencja nisz (różnice w sprawności są przesadzone)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "Strukturalne"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "Struktura"
 
@@ -5900,7 +5905,7 @@ msgstr "Samobójstwo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6230,7 +6235,7 @@ msgstr "Narzędzia"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Całkowita populacja:"
 
@@ -6691,7 +6696,7 @@ msgstr "Zwiększ głośność"
 msgid "VSYNC"
 msgstr "Synchronizacja pionowa"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Czekanie na auto-ewolucje:"
 
@@ -6799,7 +6804,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "żeby zwiększyć ruch"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "Najgorzej radzi sobie w:"
 

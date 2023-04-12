@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -63,7 +63,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "מודע"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -258,7 +258,7 @@ msgstr "גזים אטמוספריים"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "מאזן ATP"
 
@@ -292,7 +292,7 @@ msgstr "אוגוסט"
 msgid "AUTO"
 msgstr "אוטומטי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "חלונית זו מייצגת את המספרים שהמפתח האוטומטי חוזה כמה היו. את כמות האנרגיה שהמין מסוגל לתפוס ועלות לפרט של המין, קובעות את אכלוסייה הסופית. המפתח האוטומטי משתמש במודל פשוט של המציאות כדי לחשב את ביצועי המינים על סמך כמות האנרגיה שהם מסוגלים לאסוף. עבור כל מקור מזון, מוצגת כמה אנרגיה המין מרוויח ממנו. בנוסף, מוצגת האנרגיה הכוללת הזמינה מאותו מקור. החלק שהמין מרוויח מתוך האנרגיה הכוללת מבוסס על גודל הכשירות העצמית בהשוואה לכשירות הכוללת. כשירות הוא מדד הקובע עד כמה המין מנצל את מקור המזון זה."
 
@@ -300,12 +300,12 @@ msgstr "חלונית זו מייצגת את המספרים שהמפתח האוט
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "אוכלוסיית {0} השתנתה ב-{1} בתוך {2} בגלל: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "חיזוי של המפתח האוטומטי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "לוח זה מראה את מספרי האוכלוסייה הצפויים מהמפתח האוטומטי עבור מינים ערוכים.\n"
@@ -443,7 +443,7 @@ msgstr "התחל לשגשג"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "התנהגות"
 
@@ -488,7 +488,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "האזור הטוב ביותר:"
 
@@ -606,7 +606,7 @@ msgstr "ביטול"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "בטל פעולה"
 
@@ -715,7 +715,7 @@ msgstr "תאית"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "שם סוג תא"
 
@@ -857,7 +857,7 @@ msgstr "נקה שמירות ישנות"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -885,7 +885,7 @@ msgstr "חוף"
 msgid "COLLISION_SHAPE"
 msgstr "זמן ישויות עם צורות התנגשות"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "צבע"
 
@@ -1476,7 +1476,7 @@ msgstr "רגיל"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "יעילות עיכול"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "יעילות עיכול:"
 
@@ -1484,7 +1484,7 @@ msgstr "יעילות עיכול:"
 msgid "DIGESTION_SPEED"
 msgstr "מהירות עיכול"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "מהירות עיכול:"
 
@@ -1536,11 +1536,11 @@ msgstr ""
 "ישנם כדורי-בשר מונחים, שאינם מחוברים לשאר.\n"
 "בבקשה חבר את כל כדורי-בשר אחד עם השני על מנת להמשיך."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "אברונים מנותקים"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "ישנם אברונים שאינם מחוברים לשאר.\n"
@@ -1797,15 +1797,15 @@ msgstr "{0}: {1}- ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
@@ -1940,7 +1940,7 @@ msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 msgid "EXPORT_SUCCESS"
 msgstr "טריפה של {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "חיצוניים"
 
@@ -1986,7 +1986,7 @@ msgstr "אפשרויות נוספות"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "בקרו באתר הפייסבוק שלנו"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "נכשל"
 
@@ -2115,11 +2115,11 @@ msgstr "רוטציה:"
 msgid "FLOATING_HAZARD"
 msgstr "מפגע צף"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "גמיש"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "נזילות / קשיחות"
 
@@ -2138,7 +2138,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "שרשרת המזון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
@@ -2238,7 +2238,7 @@ msgstr "כללי"
 msgid "GENERATIONS"
 msgstr "דורות"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "דור:"
 
@@ -2400,7 +2400,7 @@ msgstr "אופקי:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "אופקי (ציר: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "חיים:"
 
@@ -2849,7 +2849,7 @@ msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
 
@@ -3056,11 +3056,16 @@ msgstr "נביעות הידרותרמיות"
 msgid "LIGHT"
 msgstr "אור"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "גלגל ימינה"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -3068,7 +3073,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "גלגל ימינה"
@@ -3299,7 +3304,7 @@ msgstr "מקש Media Stop"
 msgid "MEGA_YEARS"
 msgstr "מיליון שנה"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "קרום"
 
@@ -3307,7 +3312,7 @@ msgstr "קרום"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "קשיחות הקרום"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "סוגי קרום"
 
@@ -4039,11 +4044,11 @@ msgstr "השתק"
 msgid "NAME"
 msgstr "שם:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "מאזן ATP שלילי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "המיקרוב שלך איננו מייצר מספיק ATP בשביל לשרוד!\n"
@@ -4095,7 +4100,7 @@ msgstr "שם חדש:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4198,7 +4203,7 @@ msgid "NO_AI"
 msgstr "מצב בודד"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -4241,7 +4246,7 @@ msgstr "לא נבחר מוד"
 msgid "NUCLEUS"
 msgstr "גרעין התא"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "לא ניתן להסיר גרעין שכן זהו התפתחות בלתי-ניתנת להפיכה.\n"
@@ -4263,8 +4268,8 @@ msgstr "מקש Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4388,7 +4393,7 @@ msgstr "אפשרויות"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "שנה את ההגדרות שלך"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "אברונים"
 
@@ -4403,7 +4408,7 @@ msgstr "אברונים"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "רב תאים"
@@ -4432,7 +4437,7 @@ msgstr "דקור תאים אחרים בעזרתו."
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
@@ -4832,7 +4837,7 @@ msgstr "אוכלוסיה:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "אכלוסיה באזורים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4840,7 +4845,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "טריפה של {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "הצג מידע מפורט מאחורי החיזוי"
 
@@ -4897,7 +4902,7 @@ msgstr "הגן על אוכלוסיות שהיגרו ממכסת מינים"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "הגן על מינים חדשים ממכסת מינים"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "חלבונים"
 
@@ -5136,7 +5141,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "לחצן עכבר הימני"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "קשיח"
 
@@ -5152,7 +5157,7 @@ msgstr "סובב שמאלה"
 msgid "ROTATE_RIGHT"
 msgstr "סובב ימינה"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "רוטציה:"
 
@@ -5348,7 +5353,7 @@ msgstr "להגדלת התנועה"
 msgid "SCROLLLOCK"
 msgstr "מקש Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "מחפש..."
 
@@ -5537,7 +5542,7 @@ msgstr "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפ�
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "גודל:"
 
@@ -5695,7 +5700,7 @@ msgstr "{0} עם אכלוסיה: {1}"
 msgid "SPEED"
 msgstr "מהירות"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "מהירות:"
 
@@ -5832,7 +5837,7 @@ msgstr "עצור"
 msgid "STORAGE"
 msgstr "אחסון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "אחסון:"
 
@@ -5849,13 +5854,13 @@ msgstr "שלב המיקרובי"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "תחרות נישה קפדנית (הבדלי הכושר מוגזמים)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "מִבְנִי"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "מבנה"
 
@@ -5905,7 +5910,7 @@ msgstr "התאבדות"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6235,7 +6240,7 @@ msgstr "כלים"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "כלל האוכלוסיה:"
 
@@ -6696,7 +6701,7 @@ msgstr "מקש הגבר קול"
 msgid "VSYNC"
 msgstr "סנכרון אנכי"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
@@ -6804,7 +6809,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "להגדלת התנועה"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "האזור הגרוע ביותר:"
 
