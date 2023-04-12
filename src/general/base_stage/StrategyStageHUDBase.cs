@@ -20,6 +20,9 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
     [Export]
     public NodePath BottomLeftBarPath = null!;
 
+    [Export]
+    public NodePath ResourceDisplayPath = null!;
+
 #pragma warning disable CA2213
     protected Label hintText = null!;
 
@@ -34,6 +37,8 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
     // These are private so this is a separate block
 #pragma warning disable CA2213
     private HBoxContainer hotBar = null!;
+
+    private ResourceDisplayBar resourceDisplay = null!;
 #pragma warning restore CA2213
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
@@ -60,6 +65,8 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
         hotBar = GetNode<HBoxContainer>(HotBarPath);
 
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
+
+        resourceDisplay = GetNode<ResourceDisplayBar>(ResourceDisplayPath);
     }
 
     public void Init(TStage containedInStage)
@@ -80,6 +87,16 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
         }
 
         AddFadeIn(stage, longerDuration);
+    }
+
+    public void UpdateResourceDisplay(SocietyResourceStorage resourceStorage)
+    {
+        resourceDisplay.UpdateResources(resourceStorage);
+    }
+
+    public void UpdateScienceSpeed(float speed)
+    {
+        resourceDisplay.UpdateScienceAmount(speed);
     }
 
     public override void PauseButtonPressed(bool buttonState)
@@ -113,6 +130,7 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
                 HintTextPath.Dispose();
                 HotBarPath.Dispose();
                 BottomLeftBarPath.Dispose();
+                ResourceDisplayPath.Dispose();
             }
         }
 
