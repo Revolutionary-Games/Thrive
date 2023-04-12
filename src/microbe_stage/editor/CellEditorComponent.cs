@@ -1069,7 +1069,6 @@ public partial class CellEditorComponent :
     public override void OnLightLevelChanged(float lightLevel)
     {
         var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
-        var minLightLevel = Editor.CurrentPatch.Biome.MinimumCompounds[sunlight].Ambient;
         var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
 
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
@@ -1080,33 +1079,12 @@ public partial class CellEditorComponent :
         {
             // Normalise by maximum light level in the patch
             camera!.LightLevel = lightLevel / maxLightLevel;
-
-            foreach (var patch in Editor.CurrentGame.GameWorld.Map.Patches.Values)
-            {
-                var targetMaxLightLevel = patch.Biome.MaximumCompounds[sunlight].Ambient;
-                var targetMinLightLevel = patch.Biome.MinimumCompounds[sunlight].Ambient;
-
-                // Figure out the daylight in all patches relative to the player's current patch
-                var relativeLightLevel = (lightLevel - minLightLevel) / (maxLightLevel - minLightLevel) *
-                    (targetMaxLightLevel - targetMinLightLevel) + targetMinLightLevel;
-
-                var lightLevelAmount = new BiomeCompoundProperties { Ambient = relativeLightLevel };
-
-                patch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
-            }
         }
         else
         {
             // Don't change lighting for patches without day/night effects
             camera!.LightLevel = 1.0f;
         }
-
-        // TODO: isn't this entirely logically wrong? See the comment in PatchManager about needing to set average
-        // light levels on editor entry. This seems wrong because the average light amount is *not* the current light
-        // level, meaning that auto-evo prediction would be incorrect (if these numbers were used there, but aren't
-        // currently, see the documentation on previewBiomeConditions)
-        // // Need to set average to be the same as ambient so Auto-Evo updates correctly
-        // previewBiomeConditions.AverageCompounds[sunlight] = lightLevelAmount;
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
