@@ -415,7 +415,10 @@ public partial class Microbe
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame);
 
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
-        var daughterBasis = new Basis(Transform.basis.Quat().Normalized()).Scaled(copyEntity.Transform.basis.Scale);
+        var daughterBasis = new Basis(Transform.basis.Quat())
+        {
+            Scale = copyEntity.Transform.basis.Scale,
+        };
 
         copyEntity.Transform = new Transform(daughterBasis, copyEntity.Translation);
 
