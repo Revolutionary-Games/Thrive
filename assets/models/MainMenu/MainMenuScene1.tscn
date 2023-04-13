@@ -182,7 +182,7 @@ resource_name = "CameraAnimation"
 length = 12.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../Camera:rotation_degrees")
+tracks/0/path = NodePath("Camera:rotation_degrees")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -194,7 +194,7 @@ tracks/0/keys = {
 "values": [ Vector3( -0.187001, -78.961, -0.641002 ), Vector3( 0.572, -78.816, -0.756 ), Vector3( -1.104, -78.816, -3.976 ), Vector3( -0.187001, -78.961, -0.641002 ), Vector3( 0.572, -78.816, 0.224 ), Vector3( -1.104, -78.816, -0.641 ), Vector3( -0.187001, -78.961, -0.641002 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../../Camera:translation")
+tracks/1/path = NodePath("Camera:translation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -521,7 +521,6 @@ color = Color( 0, 0, 0, 1 )
 color_ramp = SubResource( 29 )
 
 [node name="CameraAnimation" type="AnimationPlayer" parent="."]
-root_node = NodePath("")
 autoplay = "CameraAnimation"
 playback_speed = 0.19
 anims/CameraAnimation = SubResource( 22 )
