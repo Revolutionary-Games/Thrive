@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -15,7 +16,9 @@ public class ModalManager : NodeWithInput
     /// </summary>
     private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> originalParents = new();
 
-    private readonly Stack<CustomWindow> modalStack = new();
+    private readonly Queue<CustomWindow> demotedModals = new();
+
+    private Stack<CustomWindow> modalStack = new();
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CanvasLayer canvasLayer = null!;
@@ -79,7 +82,8 @@ public class ModalManager : NodeWithInput
         modalsDirty = true;
 
         var binds = new Array { popup };
-        popup.CheckAndConnect("hide", this, nameof(OnModalLost), binds, (uint)ConnectFlags.Oneshot);
+        popup.CheckAndConnect(nameof(CustomWindow.Closed), this, nameof(OnModalLost), binds,
+            (uint)ConnectFlags.Oneshot);
     }
 
     /// <summary>
@@ -125,6 +129,20 @@ public class ModalManager : NodeWithInput
 
     private void UpdateModals()
     {
+        while (demotedModals.Count > 0)
+        {
+            var modal = demotedModals.Dequeue();
+
+            if (!originalParents.TryGetValue(modal, out Node parent))
+            {
+                modal.ReParent(this);
+                continue;
+            }
+
+            // TODO: Consider returning the modal to its original position in its original parent?
+            modal.ReParent(parent);
+        }
+
         if (modalStack.Count <= 0)
         {
             activeModalContainer.Hide();
@@ -191,18 +209,22 @@ public class ModalManager : NodeWithInput
         if (!modalStack.Contains(popup))
             return;
 
-        if (!originalParents.TryGetValue(popup, out Node parent))
+        if (modalStack.Peek() != popup)
         {
-            popup.ReParent(this);
-            return;
+            // Unexpected modal reported being closed (not top most modal).
+            // We kind of need to accept that this is inevitable as the order of when multiple windows are made modal
+            // and closed is unpredictable, sometimes you could have two new modals but want to close the first, what
+            // got closed instead is the second.
+
+            // Removes the correct modal deeper in the stack
+            modalStack = new Stack<CustomWindow>(modalStack.Where(m => m != popup));
+        }
+        else
+        {
+            modalStack.Pop();
         }
 
-        var modal = modalStack.Pop();
-
-        if (modal != popup)
-            GD.PrintErr("Unexpected modal reported being closed (not top most modal)");
-
-        modal.ReParent(parent);
+        demotedModals.Enqueue(popup);
 
         modalsDirty = true;
     }

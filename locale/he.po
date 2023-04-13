@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-10 16:17+0700\n"
+"POT-Creation-Date: 2023-04-13 15:35+0700\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -192,7 +192,7 @@ msgstr "קיבוע חנקן אנאירובי"
 msgid "APPEARANCE"
 msgstr "הופעה"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "החל"
@@ -301,7 +301,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "אוכלוסיית {0} השתנתה ב-{1} בתוך {2} בגלל: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
 msgid "AUTO-EVO_PREDICTION"
 msgstr "חיזוי של המפתח האוטומטי"
 
@@ -374,7 +374,7 @@ msgstr "שלב המיקרובי"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:286
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -437,7 +437,7 @@ msgstr "להפוך למקרוסקופי ({0}/{1})"
 msgid "BECOME_MULTICELLULAR"
 msgstr "להפוך לרב-תאיים ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "BEGIN_THRIVING"
 msgstr "התחל לשגשג"
 
@@ -598,7 +598,8 @@ msgstr "מצלמה"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2130
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -729,7 +730,7 @@ msgstr "שנה סימטריה"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "קודים"
 
@@ -854,14 +855,14 @@ msgstr "נקה שמירות ישנות"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
-#: ../src/microbe_stage/ProcessPanel.tscn:73
+#: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
 msgid "CLOSE"
 msgstr "סגור"
 
@@ -1037,7 +1038,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "אשר"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:319
+#: ../src/general/PauseMenu.tscn:323
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "אשר יציאה"
@@ -1059,7 +1060,7 @@ msgstr "חלק מההגדרות אינם חוקיות"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "תוכן הWorkshop יעלו מהתיקייה: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:416
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
 msgid "CONTINUE_THRIVING"
 msgstr "המשך לשגשג"
 
@@ -1077,7 +1078,7 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "להמשיך לשלב האבטיפוס?"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:95
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "מצג ציר בקר :"
 
@@ -1085,7 +1086,7 @@ msgstr "מצג ציר בקר :"
 msgid "CONTROLLER_DEADZONES"
 msgstr "שטחי מת של הבקר"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:50
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
 "כלי זה מאפשר להגדיר את שטחים מתים של ציר הבקר. גדול שטח המת קובעים כמה צריך להזיז את מקל השליטה (או כפתור אנלוגי) לפני שתנועה זו מזוהה כקלט.\n"
@@ -1104,7 +1105,7 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "רגישות הבקר"
 
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:109
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:105
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "מעתיק שגיאה ללוח העתקה"
 
@@ -1301,19 +1302,19 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "כיול שטח מת הסתיים, השטח המת החדש מוצגים מתחת במציגי ערכי הציר."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:172
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "כיול שטח מת מתבצע. אנא אל תגע בשום כפתור או במקלות הבקר והמתן מספר שניות."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:193
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "כיול שטח מת אותחל מחדש"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:15
 msgid "DEADZONE_CONFIGURATION"
 msgstr "תצורת שטח מת"
 
@@ -1340,7 +1341,7 @@ msgstr "פלט ברירת מחדל"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
 msgstr "מחק"
 
@@ -1392,7 +1393,7 @@ msgstr "תיאור:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "התיאור ארוך מידי"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
 msgid "DESPAWN_ENTITIES"
 msgstr "הסר כל הישויות"
 
@@ -1758,7 +1759,7 @@ msgstr "עורך"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "כנס לעורך ושנה את המין שלך"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "ברוך הבא לעורך המיקרובי.\n"
@@ -1797,15 +1798,15 @@ msgstr "{0}: {1}- ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2432
 msgid "ENERGY_SOURCES"
 msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2425
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
@@ -1917,7 +1918,7 @@ msgstr "משהו חריג אירע במהלך עיבוד טעינת אובייק
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "חריג אירע בעת טעינת נתוני שמירה"
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:251
 msgid "EXIT"
 msgstr "יציאה"
 
@@ -2051,7 +2052,7 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:72
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "סננן לפי קטגוריה:"
 
@@ -2138,7 +2139,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "שרשרת המזון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
@@ -2222,7 +2223,7 @@ msgstr "מסך מלא"
 msgid "FULL_MOD_INFO"
 msgstr "מידע מלא על המוד"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:21
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:24
 msgid "GALLERY_VIEWER"
 msgstr "מציג גלריה"
 
@@ -2250,11 +2251,11 @@ msgstr "צפו בספריית GitHub שלנו"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:952
 msgid "GLES2_MODE_WARNING"
 msgstr "אזהרת GLES2"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:954
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
@@ -2285,7 +2286,7 @@ msgstr "ריכוזי הגלוקוז ירדו בצורה דרסטית!"
 msgid "GLYCOLYSIS"
 msgstr "גליקוליזה"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "מצב אלוהים"
 
@@ -2303,7 +2304,7 @@ msgstr "מצב אלוהים"
 msgid "GOOGLY_EYE_CELL"
 msgstr "עיניי תא מרשרשות"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:159
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
 msgid "GOT_IT"
 msgstr "הבנתי"
 
@@ -2354,11 +2355,11 @@ msgstr "עוצמת ממשק עזרים"
 msgid "HEALTH"
 msgstr "חיים"
 
-#: ../src/general/PauseMenu.tscn:216
+#: ../src/general/PauseMenu.tscn:220
 msgid "HELP"
 msgstr "עזרה"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "עזרה"
 
@@ -2455,7 +2456,7 @@ msgstr "(חלק מהאפשריות יכולים להיות לא זמינים כ�
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
 msgstr "תרכובות אינסופיות"
 
@@ -2849,7 +2850,7 @@ msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
 
@@ -3174,12 +3175,12 @@ msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טע�
 msgid "LOAD_FINISHED"
 msgstr "טעינה הסתיימה"
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "טען שמירה"
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:203
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "טען שמירות שנשמרו"
 
@@ -3494,7 +3495,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "שלב המיקרובי"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
@@ -3503,14 +3504,14 @@ msgstr ""
 "\n"
 "עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "בשביל לשלוט בתא שלך, השתמש במקשים המוצגים סביבו (במרכז המסך) ובעכבר על מנת לשלוט בכיוון התנועה שלו.\n"
 "\n"
 "נסה את כל המקשים למשך מספר שניות על מנת להמשיך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3518,7 +3519,7 @@ msgstr ""
 "\n"
 "נסה את כל המקשים למשך מספר שניות על מנת להמשיך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3527,7 +3528,7 @@ msgstr ""
 "ואתה מתרפא כל עוד יש לך ATP.\n"
 "הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "עקוב אחרי מד החיים שלך שליד מד הATP (בימין התחתון).\n"
@@ -3697,7 +3698,7 @@ msgstr "הוראות יצירת מוד זמינים ב-"
 msgid "MODELS"
 msgstr "מודלים"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "לשנות"
 
@@ -3714,7 +3715,7 @@ msgstr "שנה סוג"
 msgid "MODS"
 msgstr "מודים"
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:965
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "זוהה מודים מותקנים, אך אין מודים מופעלים.\n"
@@ -3803,11 +3804,11 @@ msgstr "שם (תיקייה) פנימי:"
 msgid "MOD_LICENSE"
 msgstr "רישיון המוד:"
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:979
 msgid "MOD_LOAD_ERRORS"
 msgstr "שגיאה בעליית המוד"
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:980
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "שגיאה קרתה בזמן שטען אחד או יותר מודים. תיעודם עשויים להכיל מידע נוסף."
 
@@ -3872,7 +3873,7 @@ msgstr "רגישות מראה עכבר"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "רגישות העכבר בקנה מידה עם גודל החלון"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
 msgid "MOVE"
 msgstr "להזיז"
 
@@ -4166,11 +4167,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1511
+#: ../src/microbe_stage/Microbe.Interior.cs:1541
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1456
+#: ../src/microbe_stage/Microbe.Interior.cs:1487
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4198,12 +4199,12 @@ msgstr "לא התחיל."
 msgid "NOVEMBER"
 msgstr "נובמבר"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr "מצב בודד"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -4216,7 +4217,7 @@ msgstr "לא תעדו אירועים"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "לא נמצאה ספריית שמירות"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:963
 msgid "NO_MODS_ENABLED"
 msgstr "אין מודים מופעלים"
 
@@ -4246,7 +4247,7 @@ msgstr "לא נבחר מוד"
 msgid "NUCLEUS"
 msgstr "גרעין התא"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "לא ניתן להסיר גרעין שכן זהו התפתחות בלתי-ניתנת להפיכה.\n"
@@ -4268,8 +4269,8 @@ msgstr "מקש Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2311
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2321
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4296,9 +4297,10 @@ msgstr "אתר רשמי"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "להיכנס לאתר הרשמי של Revolutionary Games"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:88
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:114
+#: ../src/modding/ModUploader.tscn:356
 msgid "OK"
 msgstr "בסדר"
 
@@ -4385,11 +4387,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "אופורטוניסטי"
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:235
 msgid "OPTIONS"
 msgstr "אפשרויות"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:234
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "שנה את ההגדרות שלך"
 
@@ -4660,7 +4662,7 @@ msgstr "פטריונים"
 msgid "PAUSED"
 msgstr "מושהה"
 
-#: ../src/general/PauseMenu.tscn:183
+#: ../src/general/PauseMenu.tscn:187
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "לחזור אל המשחק"
 
@@ -4776,7 +4778,7 @@ msgstr "(המקדם להפחתה של האכלוסיית השחקן על כל מ
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 msgid "PLAYER_DUPLICATE"
 msgstr "שכפל שחקן"
 
@@ -4793,7 +4795,7 @@ msgstr "השחקן נכחד"
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 msgid "PLAYER_SPEED"
 msgstr ""
 "מהירות\n"
@@ -4837,9 +4839,14 @@ msgstr "אוכלוסיה:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "אכלוסיה באזורים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2302
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
+
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:165
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:343
+msgid "POSITIVE_SIGNED_NUMBER"
+msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
@@ -4882,7 +4889,7 @@ msgstr "מעלה אובייקטים"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#: ../src/microbe_stage/ProcessPanel.tscn:16
+#: ../src/microbe_stage/ProcessPanel.tscn:17
 msgid "PROCESS_PANEL_TITLE"
 msgstr "תהליכי התא"
 
@@ -4927,11 +4934,11 @@ msgid "QUIT"
 msgstr "יציאה"
 
 #: ../src/general/MainMenu.tscn:358 ../src/general/MainMenu.tscn:367
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/PauseMenu.tscn:250
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "צא מהמשחק"
 
-#: ../src/general/PauseMenu.cs:446
+#: ../src/general/PauseMenu.cs:445
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "האם אתה בטוח שרוצה לצאת מהמשחק?\n"
@@ -4993,12 +5000,12 @@ msgstr "החזר הגירה במקרה של מהכחדה מאזור מטרה"
 msgid "REPORT"
 msgstr "תסקיר"
 
-#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:227
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "תסקיר"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1117
+#: ../src/microbe_stage/Microbe.Interior.cs:1144
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -5030,7 +5037,7 @@ msgstr "נדרש גרעין התא"
 msgid "RESET"
 msgstr "איפוס"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:79
 msgid "RESET_DEADZONES"
 msgstr "אפס שטחים מתים"
 
@@ -5105,7 +5112,7 @@ msgstr "מגיב"
 msgid "RESTART_REQUIRED"
 msgstr "אתחול מחדש נדרש"
 
-#: ../src/general/PauseMenu.tscn:184
+#: ../src/general/PauseMenu.tscn:188
 msgid "RESUME"
 msgstr "להמשיך"
 
@@ -5113,17 +5120,17 @@ msgstr "להמשיך"
 msgid "RESUME_TOOLTIP"
 msgstr "המשך את המשחק"
 
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:243
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "חזור לתפריט"
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:242
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "צא לתפריט הראשי"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:427
+#: ../src/general/PauseMenu.cs:426
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "האם אתה בטוח שאתה רוצה לצאת לתפריט הראשי?\n"
@@ -5216,7 +5223,7 @@ msgstr "רוסטיצינין הוא חלבון המסוגל להשתמש ב[thri
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזם של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ו[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:975
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5225,7 +5232,7 @@ msgstr ""
 "מיקרובים אמיצים לא יפחדו מטורפים לידם\n"
 "והם נוטים לתקוף חזרה."
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:973
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive הופעל במצב בטוח"
 
@@ -5249,11 +5256,11 @@ msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, ה
 msgid "SAVE_FAILED"
 msgstr "שמירה נכשלה"
 
-#: ../src/general/PauseMenu.tscn:192
+#: ../src/general/PauseMenu.tscn:196
 msgid "SAVE_GAME"
 msgstr "שמור משחק"
 
-#: ../src/general/PauseMenu.tscn:191
+#: ../src/general/PauseMenu.tscn:195
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "פתח את התפריט השמירה בשביל לשמור את המשחק"
 
@@ -5372,7 +5379,7 @@ msgid "SECRETE_SLIME"
 msgstr "הפרש ריר"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:234
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -5422,7 +5429,7 @@ msgstr "בחר אנזים:"
 msgid "SELECT_OPTION"
 msgstr "בחר אפשרות"
 
-#: ../src/modding/ModUploader.tscn:325
+#: ../src/modding/ModUploader.tscn:326
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "בחר תמונה מקדימה"
 
@@ -5468,7 +5475,7 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
 msgid "SHOW_TUTORIALS"
 msgstr "הצג מדריכים"
 
@@ -5546,8 +5553,8 @@ msgstr "16x"
 msgid "SIZE_COLON"
 msgstr "גודל:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:129
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:177
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
 msgid "SLIDESHOW"
 msgstr "מצגת"
 
@@ -5612,11 +5619,11 @@ msgstr "שלב המיקרובי"
 msgid "SPAWN_AMMONIA"
 msgstr "זמן אמוניה"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr "זמן אויב"
 
-#: ../src/microbe_stage/MicrobeStage.cs:784
+#: ../src/microbe_stage/MicrobeStage.cs:794
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
@@ -5716,7 +5723,7 @@ msgstr "תפריט השהה"
 msgid "STARTING"
 msgstr "מתחיל"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:67
 msgid "START_CALIBRATION"
 msgstr "התחל כיול"
 
@@ -5791,12 +5798,12 @@ msgstr "Steam לא זמין כרגע, בבקשה נסה שוב"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "שגיאת Steam לא ידועה קרתה"
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:996
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "אתחול ספריית Steam נכשל"
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
@@ -6004,7 +6011,7 @@ msgstr "טמפ'."
 msgid "TESTING_TEAM"
 msgstr "צוות בודקים"
 
-#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:988
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6019,7 +6026,7 @@ msgstr ""
 "\n"
 "אם נהנתה מהמשחק, ספר לחבריך עלינו."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:986
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "אתה שגשגת!"
@@ -6063,7 +6070,7 @@ msgstr "תרמוסינתזה"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6079,7 +6086,7 @@ msgstr "מוד זה הורד מSteam Workshop"
 msgid "THREADS"
 msgstr "נושאים:"
 
-#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:212
 msgid "THRIVEOPEDIA"
 msgstr "טראיבופדיה"
 
@@ -6091,11 +6098,11 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
@@ -6305,13 +6312,12 @@ msgstr "נסה לצלם כמה צילומי מסך!"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
 msgid "TUTORIAL"
 msgstr "מדריך"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:382
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "ברוכים הבאים לשלב הרב תאי הקדמוני!\n"
@@ -6324,7 +6330,7 @@ msgstr ""
 "\n"
 "אם אתה משתמש בצורת רבייה מסוג הנצה (ברירת המחדל), אתה מתחיל בכך שאתה שלוט בניצן קטן ומצריך אותך לגדל את שאר פריסת המושבה שלך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "לוח זה מציג את התחזית העתידית של האוכלוסייה שלך. מספרים ללו הם מהדמיות של האוכלוסייה מהמפתח האוטומטי.\n"
@@ -6335,7 +6341,7 @@ msgstr ""
 "\n"
 "אתה יכול להציג מידע מפורט יותר מאחורי החיזוי על ידי לחיצה על כפתור סימן השאלה בלוח. לחץ עליו כדי להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "זהו עורך התא שבו אתה יכול לפתח את המין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו). על כל דור תמיד היה לך 100 נקמ\"ו לבזבז, כך שאין סיבה לשמור!.\n"
@@ -6355,7 +6361,7 @@ msgstr ""
 "\n"
 "בהצלחה!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "זהו מפת האזורים.\n"
@@ -6366,7 +6372,7 @@ msgstr ""
 "\n"
 "נסה לבחור אזור בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:84
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך, אלו אם הם נוספו בעריכה הנוכחית. \n"
@@ -6377,7 +6383,7 @@ msgstr ""
 "\n"
 "לחץ על הכפתור בטל בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "כשאתה בוחר חלקים בתפריט, הסתכל קרוב לתיבת המידע שצץ בשביל להבין מה הם עושים. חלקים יכולים לעשות יותר נזק מתועלת אם אתה מתעלם מתפקידם.\n"
@@ -6395,7 +6401,7 @@ msgstr ""
 "\n"
 "אסטרטגיה אפשרית אחת זהו להישאר משושה של ציטופלזמה אחת ורק להגיע לאזורים של פני הים המלאים באור לפני שמוסיפים אברונים שעושים פוטוסינתזה."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "אתה שרדת מספיק זמן בשביל לגרום לתא שלך להתרבות.\n"
@@ -6404,21 +6410,21 @@ msgstr ""
 "\n"
 "בשביל להיכנס לעורך, לחץ על הכפתור הגדול המהבהב בימין תחתון."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "התא שלך נבלע ומתחיל להתעכל. תהליך מוצג על מד החיים. התא שלך יוגדר כמת ברגע שהתהליך יסתיים או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
 "\n"
 "אתה יכול להשתמש בכפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:332
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "לתא שלך מוגבל עד כמה אובייקטים מסוגלים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא; תא קטן מכיל פחות מקום.\n"
 "\n"
 "כאשר שתא שלך מלא, הוא לא מסוגל לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעוכלו לחלוטין אובייקט אחד או יותר."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "לבלוע אובייקטים על ידי תנועה עליהם בזמן שמצב בליעה פועל. את מצב הבליעה מופעל על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6427,14 +6433,14 @@ msgstr ""
 "\n"
 "עקוב אחר הקו מהתא שלך אל ליד אובייקט שניתן לעיכול."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "מתקשה? אתה יכול לבדוק בתפריט העזרה. אתה יכול אותו בעזרת הכפתור שמסומן עליו סימן שאלה בתחתון שמאלה.\n"
 "\n"
 "טיפ נוסף: אתה יכול לעשות זום אאוט עם גלגלת העכבר שלך בשביל להרחיב את שדה הראיה שלך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "אתה מלא בthrive:compound type=\"ammonia\"][/thrive:compound] ו[thrive:compound type=\"phosphates\"][/thrive:compound]. אך מכיוון שאתה במושבה שאינה רב תאים, אתה לא יכול להתרבות.\n"
@@ -6442,21 +6448,21 @@ msgstr ""
 "אתה חייב לעזוב את המושבה בשביל להיכנס לעורך אלו אם אתה מתכנן להפוך לרב תאים.\n"
 "צא מהמושבה בשביל להמשיך לגדול על ידי לחיצה על [thrive:input]נתק הכל[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לשרוד מספיק זמן. אסוף אמונה ופוספט על מנת להאיץ את תהליך הרבייה.\n"
 "\n"
 "תסתכל על האינדיקטור העגלגל שבצד השמאלית התחתונה בשביל לראות עד כמה התקדמת. האינדיקטור הופך ללבן מתי שהוא מוכן."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
@@ -6565,7 +6571,7 @@ msgstr "העלה"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "מעלה..."
 
-#: ../src/modding/ModUploader.tscn:336
+#: ../src/modding/ModUploader.tscn:335
 msgid "UPLOAD_SUCCEEDED"
 msgstr "העלאה הצליחה"
 
@@ -6705,7 +6711,7 @@ msgstr "סנכרון אנכי"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 

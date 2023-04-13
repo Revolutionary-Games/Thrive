@@ -92,9 +92,8 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
     }
 
-    protected override void OnShown()
+    protected override void OnOpen()
     {
-        base.OnShown();
         OnBecomeVisible();
     }
 

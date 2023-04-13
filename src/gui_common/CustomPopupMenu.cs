@@ -19,8 +19,6 @@ public class CustomPopupMenu : CustomWindow
 
     private Vector2 cachedMinSize;
 
-    private bool closing;
-
     public override void _Ready()
     {
         panel = GetNode<Panel>(PanelPath);
@@ -44,29 +42,22 @@ public class CustomPopupMenu : CustomWindow
         }
     }
 
-    public override void Open()
+    protected override void OnOpen()
     {
-        base.Open();
-
         CreateTween().TweenProperty(this, "rect_size", cachedMinSize, 0.2f)
             .From(Vector2.Zero)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
     }
 
-    public override void Close()
+    protected override void OnClose()
     {
-        if (closing || !Visible)
-            return;
-
-        closing = true;
-
         var tween = CreateTween();
         tween.TweenProperty(this, "rect_size", Vector2.Zero, 0.15f)
             .From(cachedMinSize)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
-        tween.TweenCallback(this, nameof(OnFolded));
+        tween.TweenCallback(this, "hide");
     }
 
     protected virtual void ResolveNodeReferences()
@@ -85,11 +76,5 @@ public class CustomPopupMenu : CustomWindow
         }
 
         base.Dispose(disposing);
-    }
-
-    private void OnFolded()
-    {
-        closing = false;
-        Hide();
     }
 }

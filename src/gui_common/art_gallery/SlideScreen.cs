@@ -199,50 +199,6 @@ public class SlideScreen : CustomWindow
         return RetreatSlide();
     }
 
-    public override void Open()
-    {
-        if (Items == null)
-            return;
-
-        base.Open();
-
-        SlideControlsVisible = false;
-
-        var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
-        RectGlobalPosition = currentItemRect.Position;
-        RectSize = currentItemRect.Size;
-
-        popupTween.InterpolateProperty(
-            this, "rect_position", null, GetFullRect().Position, 0.2f, Tween.TransitionType.Sine, Tween.EaseType.Out);
-        popupTween.InterpolateProperty(
-            this, "rect_size", null, GetFullRect().Size, 0.2f, Tween.TransitionType.Sine, Tween.EaseType.Out);
-        popupTween.Start();
-
-        if (!popupTween.IsConnected("tween_completed", this, nameof(OnScaledUp)))
-            popupTween.Connect("tween_completed", this, nameof(OnScaledUp), null, (uint)ConnectFlags.Oneshot);
-    }
-
-    public override void Close()
-    {
-        if (Items == null)
-            return;
-
-        FullRect = false;
-        SlideControlsVisible = false;
-
-        var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
-
-        popupTween.InterpolateProperty(this, "rect_position", null, currentItemRect.Position, 0.2f,
-            Tween.TransitionType.Sine, Tween.EaseType.Out);
-        popupTween.InterpolateProperty(
-            this, "rect_size", null, currentItemRect.Size, 0.2f, Tween.TransitionType.Sine,
-            Tween.EaseType.Out);
-        popupTween.Start();
-
-        if (!popupTween.IsConnected("tween_completed", this, nameof(OnScaledDown)))
-            popupTween.Connect("tween_completed", this, nameof(OnScaledDown), null, (uint)ConnectFlags.Oneshot);
-    }
-
     public bool AdvanceSlide(bool fade = false, int searchCounter = 0)
     {
         if (Items == null)
@@ -281,6 +237,54 @@ public class SlideScreen : CustomWindow
 
         ChangeSlide(fade);
         return true;
+    }
+
+    protected override void OnOpen()
+    {
+        if (Items == null)
+        {
+            Hide();
+            return;
+        }
+
+        SlideControlsVisible = false;
+
+        var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
+        RectGlobalPosition = currentItemRect.Position;
+        RectSize = currentItemRect.Size;
+
+        popupTween.InterpolateProperty(
+            this, "rect_position", null, GetFullRect().Position, 0.2f, Tween.TransitionType.Sine, Tween.EaseType.Out);
+        popupTween.InterpolateProperty(
+            this, "rect_size", null, GetFullRect().Size, 0.2f, Tween.TransitionType.Sine, Tween.EaseType.Out);
+        popupTween.Start();
+
+        if (!popupTween.IsConnected("tween_completed", this, nameof(OnScaledUp)))
+            popupTween.Connect("tween_completed", this, nameof(OnScaledUp), null, (uint)ConnectFlags.Oneshot);
+    }
+
+    protected override void OnClose()
+    {
+        if (Items == null)
+        {
+            Hide();
+            return;
+        }
+
+        FullRect = false;
+        SlideControlsVisible = false;
+
+        var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
+
+        popupTween.InterpolateProperty(this, "rect_position", null, currentItemRect.Position, 0.2f,
+            Tween.TransitionType.Sine, Tween.EaseType.Out);
+        popupTween.InterpolateProperty(
+            this, "rect_size", null, currentItemRect.Size, 0.2f, Tween.TransitionType.Sine,
+            Tween.EaseType.Out);
+        popupTween.Start();
+
+        if (!popupTween.IsConnected("tween_completed", this, nameof(OnScaledDown)))
+            popupTween.Connect("tween_completed", this, nameof(OnScaledDown), null, (uint)ConnectFlags.Oneshot);
     }
 
     protected override void OnHidden()

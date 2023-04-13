@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-10 16:17+0700\n"
+"POT-Creation-Date: 2023-04-13 15:35+0700\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -192,7 +192,7 @@ msgstr "Анаеробна азотна фиксация"
 msgid "APPEARANCE"
 msgstr "Външност"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "Прилагане"
@@ -301,7 +301,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "популацията на {0} в {2} се промени с {1} индивида поради {3} на създанията"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноза"
 
@@ -374,7 +374,7 @@ msgstr "Микробен етап"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:286
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -437,7 +437,7 @@ msgstr "Макроскопичен организъм ({0} от {1})"
 msgid "BECOME_MULTICELLULAR"
 msgstr "Многоклетъчен организъм ({0} от {1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "BEGIN_THRIVING"
 msgstr "Започнете да процъфтявате"
 
@@ -598,7 +598,8 @@ msgstr "Камера"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2130
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -729,7 +730,7 @@ msgstr "Промяна на симетрията"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "Кодове"
 
@@ -854,14 +855,14 @@ msgstr "Изтриване на старите записи"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
-#: ../src/microbe_stage/ProcessPanel.tscn:73
+#: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
 msgid "CLOSE"
 msgstr "Затваряне"
 
@@ -1037,7 +1038,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:319
+#: ../src/general/PauseMenu.tscn:323
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
@@ -1059,7 +1060,7 @@ msgstr "Невалидни настройки"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Съдържанието за работилницата ще бъде качено от следната папка: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:416
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
 msgid "CONTINUE_THRIVING"
 msgstr "Продължавайте да процъфтявате"
 
@@ -1077,7 +1078,7 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Искате ли да продължите?"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:95
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Визуализатор на осите:"
 
@@ -1085,7 +1086,7 @@ msgstr "Визуализатор на осите:"
 msgid "CONTROLLER_DEADZONES"
 msgstr "Мъртви зони"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:50
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
 "Размерът на мъртвата зона определя движението, което една ръкохватка (или аналогов бутон) трябва да измине, преди да е засечено от играта.\n"
@@ -1104,7 +1105,7 @@ msgstr ""
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Чувствителност на контролера"
 
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:109
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:105
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копиране на грешката в клипборда"
 
@@ -1300,19 +1301,19 @@ msgstr "Денонощен цикъл"
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Калибрирането е завършено."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:172
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Моля, не докосвайте бутоните и ръкохватките на Вашия контролер, и изчакайте няколко секунди, докато калибрирането завърши."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:193
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Калибрирането е нулирано"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:15
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Мъртви зони на контролера"
 
@@ -1339,7 +1340,7 @@ msgstr "По подразбиране"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
 msgstr "Премахване"
 
@@ -1391,7 +1392,7 @@ msgstr "Описание:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Описанието е твърде дълго"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
 msgid "DESPAWN_ENTITIES"
 msgstr "Прочистване"
 
@@ -1764,7 +1765,7 @@ msgstr "Редактор"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добре дошли в микробния редактор.\n"
@@ -1803,15 +1804,15 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2432
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2425
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
@@ -1925,7 +1926,7 @@ msgstr "Грешка по време на обработката на заред
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Грешка по време на зареждането на запазените данни"
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:251
 msgid "EXIT"
 msgstr "Изход"
 
@@ -2056,7 +2057,7 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:72
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Филтриране по категория:"
 
@@ -2143,7 +2144,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Хранителна верига"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща енергийна стойност {3} с обща стойност на усвояване {4}"
 
@@ -2220,7 +2221,7 @@ msgstr "Цял екран"
 msgid "FULL_MOD_INFO"
 msgstr "Подробна информация"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:21
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:24
 msgid "GALLERY_VIEWER"
 msgstr "Галерия на „Thrive“"
 
@@ -2248,11 +2249,11 @@ msgstr "Отваряне на хранилището ни в „GitHub“"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:952
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за GLES2"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:954
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
@@ -2283,7 +2284,7 @@ msgstr "Концентрацията на глюкоза се понижи др�
 msgid "GLYCOLYSIS"
 msgstr "Гликолиза"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Безсмъртие"
 
@@ -2301,7 +2302,7 @@ msgstr "Безсмъртие"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Клетка с изпъкнали очи"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:159
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
 msgid "GOT_IT"
 msgstr "Разбрах"
 
@@ -2352,11 +2353,11 @@ msgstr "Интерфейс"
 msgid "HEALTH"
 msgstr "Здраве"
 
-#: ../src/general/PauseMenu.tscn:216
+#: ../src/general/PauseMenu.tscn:220
 msgid "HELP"
 msgstr "Ръководство"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
 
@@ -2452,7 +2453,7 @@ msgstr "(следващите етапи на играта не са завър�
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
 msgstr "Пиршество"
 
@@ -2846,7 +2847,7 @@ msgstr "Този превод е в процес на разработка и е
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Този превод е в начален етап на разработка и е завършен на {0} %!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последният органел не може да бъде премахнат"
 
@@ -3168,12 +3169,12 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "LOAD_FINISHED"
 msgstr "Зареждането приключи"
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:203
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Зареждане на запазените игри"
 
@@ -3489,7 +3490,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Микробен етап"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Събирайте глюкоза (белите облаци), като се движите през нея.\n"
@@ -3498,14 +3499,14 @@ msgstr ""
 "\n"
 "Следвайте напътствията за да намерите глюкозата."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "За да управлявате Вашата клетка, използвайте клавишите, които са показани около нея (в центъра на екрана) и мишката за посоката на движение.\n"
 "\n"
 "Натиснете всеки един клавиш за няколко секунди за да продължите."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3513,7 +3514,7 @@ msgstr ""
 "\n"
 "Натиснете всеки един клавиш за няколко секунди за да продължите."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3522,7 +3523,7 @@ msgstr ""
 "Ако имате АТФ, точките здраве се възстановяват.\n"
 "Събирайте глюкоза за да произвеждате АТФ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Наблюдавайте здравето си (долу вдясно).\n"
@@ -3691,7 +3692,7 @@ msgstr "За повече информация, посетете"
 msgid "MODELS"
 msgstr "Модели"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "Свойства"
 
@@ -3708,7 +3709,7 @@ msgstr "Свойства"
 msgid "MODS"
 msgstr "Модификации"
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:965
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Налични са инсталирани модификации, които не са включени.\n"
@@ -3797,11 +3798,11 @@ msgstr "Наименование на папката:"
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:979
 msgid "MOD_LOAD_ERRORS"
 msgstr "Грешка по време на зареждането на модификацията"
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:980
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 
@@ -3866,7 +3867,7 @@ msgstr "Чувствителност на мишката"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Мащабиране на чувствителността според размера на прозореца"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
 msgid "MOVE"
 msgstr "Преместване"
 
@@ -4163,11 +4164,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1511
+#: ../src/microbe_stage/Microbe.Interior.cs:1541
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1456
+#: ../src/microbe_stage/Microbe.Interior.cs:1487
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4195,12 +4196,12 @@ msgstr "Не е започната."
 msgid "NOVEMBER"
 msgstr "Ноември"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr "Самота"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
@@ -4213,7 +4214,7 @@ msgstr "Няма записани събития"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Папката с записи не съществува"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:963
 msgid "NO_MODS_ENABLED"
 msgstr "Няма включени модификации"
 
@@ -4243,7 +4244,7 @@ msgstr "Няма"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Ядрото е необратима еволюция и не може да бъде премахнато,\n"
@@ -4265,8 +4266,8 @@ msgstr "Клавиш „Num Lock“"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2311
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2321
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4293,9 +4294,10 @@ msgstr "Официален сайт"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Отваряне на официалния сайт на „Revolutionary Games“"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:88
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:114
+#: ../src/modding/ModUploader.tscn:356
 msgid "OK"
 msgstr "ОК"
 
@@ -4383,11 +4385,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Самонадеяно"
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:235
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:234
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Отваряне на настройките"
 
@@ -4656,7 +4658,7 @@ msgstr "Покровители"
 msgid "PAUSED"
 msgstr "НА ПАУЗА"
 
-#: ../src/general/PauseMenu.tscn:183
+#: ../src/general/PauseMenu.tscn:187
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Продължаване на играта"
 
@@ -4776,7 +4778,7 @@ msgstr "(определя мащаба на измиране на индивид
 msgid "PLAYER_DIED"
 msgstr "измиране"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 msgid "PLAYER_DUPLICATE"
 msgstr "Удвояване"
 
@@ -4793,7 +4795,7 @@ msgstr "измиране на създанията"
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 msgid "PLAYER_SPEED"
 msgstr ""
 "Вашата\n"
@@ -4837,9 +4839,14 @@ msgstr "популация:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2302
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
+
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:165
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:343
+msgid "POSITIVE_SIGNED_NUMBER"
+msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
@@ -4882,7 +4889,7 @@ msgstr "Обработка на заредените обекти"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "при"
 
-#: ../src/microbe_stage/ProcessPanel.tscn:16
+#: ../src/microbe_stage/ProcessPanel.tscn:17
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Клетъчни процеси"
 
@@ -4927,11 +4934,11 @@ msgid "QUIT"
 msgstr "Изход"
 
 #: ../src/general/MainMenu.tscn:358 ../src/general/MainMenu.tscn:367
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/PauseMenu.tscn:250
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Излизане от играта"
 
-#: ../src/general/PauseMenu.cs:446
+#: ../src/general/PauseMenu.cs:445
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да излезете от играта?\n"
@@ -4993,12 +5000,12 @@ msgstr "Възстановяване на преселената популац�
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:227
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Отчет"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1117
+#: ../src/microbe_stage/Microbe.Interior.cs:1144
 msgid "REPRODUCED"
 msgstr "възпроизвеждане"
 
@@ -5030,7 +5037,7 @@ msgstr "Нуждае се от ядро"
 msgid "RESET"
 msgstr "Нулиране"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:79
 msgid "RESET_DEADZONES"
 msgstr "Нулиране"
 
@@ -5105,7 +5112,7 @@ msgstr "Бдително"
 msgid "RESTART_REQUIRED"
 msgstr "Изисква се рестартиране"
 
-#: ../src/general/PauseMenu.tscn:184
+#: ../src/general/PauseMenu.tscn:188
 msgid "RESUME"
 msgstr "Продължаване"
 
@@ -5113,17 +5120,17 @@ msgstr "Продължаване"
 msgid "RESUME_TOOLTIP"
 msgstr "Продължаване на играта"
 
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:243
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Главно меню"
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:242
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Връщане в главното меню"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:427
+#: ../src/general/PauseMenu.cs:426
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да се върнете в главното меню?\n"
@@ -5216,7 +5223,7 @@ msgstr "Рустицианинът е протеин, който използв�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:975
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "„Thrive“ е в безопасен режим поради предишно неуспешно стартиране.\n"
@@ -5228,7 +5235,7 @@ msgstr ""
 "\n"
 "Ако проблемът продължи, ще трябва да рестартирате и да причините срив на играта няколко пъти, за да се върнете в безопасен режим."
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:973
 msgid "SAFE_MODE_TITLE"
 msgstr "Играта е стартирана в безопасен режим"
 
@@ -5252,11 +5259,11 @@ msgstr "Изтриването на записа не може да бъде о�
 msgid "SAVE_FAILED"
 msgstr "Запазването е неуспешно"
 
-#: ../src/general/PauseMenu.tscn:192
+#: ../src/general/PauseMenu.tscn:196
 msgid "SAVE_GAME"
 msgstr "Запазване"
 
-#: ../src/general/PauseMenu.tscn:191
+#: ../src/general/PauseMenu.tscn:195
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Запазване на текущата игра"
 
@@ -5375,7 +5382,7 @@ msgid "SECRETE_SLIME"
 msgstr "Освобождаване на слуз"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:234
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -5425,7 +5432,7 @@ msgstr "Избиране на ензим:"
 msgid "SELECT_OPTION"
 msgstr "Изберете команда"
 
-#: ../src/modding/ModUploader.tscn:325
+#: ../src/modding/ModUploader.tscn:326
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Избиране на изображение"
 
@@ -5471,7 +5478,7 @@ msgstr "{0} — {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
 msgid "SHOW_TUTORIALS"
 msgstr "Показване на упътването"
 
@@ -5549,8 +5556,8 @@ msgstr "16 пъти"
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:129
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:177
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
 msgid "SLIDESHOW"
 msgstr "Слайдшоу"
 
@@ -5615,11 +5622,11 @@ msgstr "Микробен етап"
 msgid "SPAWN_AMMONIA"
 msgstr "Създаване на амоняк"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr "Съперничество"
 
-#: ../src/microbe_stage/MicrobeStage.cs:784
+#: ../src/microbe_stage/MicrobeStage.cs:794
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -5719,7 +5726,7 @@ msgstr "Отваряне на менюто"
 msgid "STARTING"
 msgstr "Започната"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:67
 msgid "START_CALIBRATION"
 msgstr "Калибриране"
 
@@ -5794,12 +5801,12 @@ msgstr "„Steam“ не е достъпен в момента, моля, опи
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:996
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
@@ -6007,7 +6014,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Изпитатели"
 
-#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:988
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Благодарим Ви за покупката на „Thrive“!\n"
@@ -6023,7 +6030,7 @@ msgstr ""
 "\n"
 "Ще се радваме да споделите за „Thrive“ и на Вашите приятели."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:986
 msgid "THANK_YOU_TITLE"
 msgstr "Благодарим Ви"
 
@@ -6066,7 +6073,7 @@ msgstr "Термосинтеза"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Глюкозата се понижи на {0} от предишното си състояние."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr "Смущението"
 
@@ -6082,7 +6089,7 @@ msgstr "Тази модификация е изтеглена от „Steam Work
 msgid "THREADS"
 msgstr "Нишки:"
 
-#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:212
 msgid "THRIVEOPEDIA"
 msgstr "Трайвопедия"
 
@@ -6094,11 +6101,11 @@ msgstr "Текущ свят"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Еволюционно дърво"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Отваряне на Трайвопедията"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 "Трайвопедията е централният източник на информация за съдържанието в „Thrive“. Тук ще намерите отговорите на всички въпроси, свързани с играта, Вашият текущ свят или с проекта за разработка на „Thrive“.\n"
@@ -6317,13 +6324,12 @@ msgstr "Трябва да направите няколко снимки!"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
 msgid "TUTORIAL"
 msgstr "Упътване"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:382
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Добре дошли в ранния многоклетъчен етап!\n"
@@ -6336,7 +6342,7 @@ msgstr ""
 "\n"
 "Ако Вашите създания се възпроизвеждат чрез пъпкуване (по подразбиране), техните клетки постепенно ще се увеличават, докато достигнат максималния си размер."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Това е прогнозата за бъдещата популация на Вашите създания. Тези стойности са изчислени на база симулацията от автоматичната еволюция.\n"
@@ -6347,7 +6353,7 @@ msgstr ""
 "\n"
 "За да продължите, натиснете бутона с въпросителния знак долу вдясно."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ). Всяко поколение разполага със 100 MT.\n"
@@ -6367,7 +6373,7 @@ msgstr ""
 "\n"
 "Успех!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Това е картата на зоните.\n"
@@ -6378,7 +6384,7 @@ msgstr ""
 "\n"
 "Изберете зона за да продължите."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:84
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Премахването на органели също струва МТ, освен ако не са добавени в текущата сесия на редактора.\n"
@@ -6389,7 +6395,7 @@ msgstr ""
 "\n"
 "Натиснете бутона „Отмяна“ за да продължите."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Важно е да разберете какви ефекти има даден органел върху Вашата клетка, преди да го поставите, защото той може да окаже негативно влияние върху нея.\n"
@@ -6407,7 +6413,7 @@ msgstr ""
 "\n"
 "Възможно е да не правите никакви промени и просто да се отправите към морската повърхност, преди да еволюирате фотосинтезиращите органели."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Разполагате с достатъчно хранителни вещества за възпроизвеждането на Вашата клетка.\n"
@@ -6416,21 +6422,21 @@ msgstr ""
 "\n"
 "Натиснете бутона на редактора, който се намира долу вдясно."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Вашата клетка е погълната. Напредъкът на усвояването е показан в лентата на здравето. Вашата клетка ще умре, след неговото завършване или бъде достигнато максималното време на изчакване.\n"
 "\n"
 "Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:332
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Вашата клетка може да погълне определено количество обекти наведнъж, което зависи от нейния размер.\n"
 "\n"
 "Поглъщането не е възможно, ако мястото за съхранение е пълно. За да продължите, изчакайте, докато погълнатите обекти бъдат усвоени."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Поглъщайте обектите, като се придвижвате към тях в режим на поглъщане, с натискане на [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6439,14 +6445,14 @@ msgstr ""
 "\n"
 "Следвайте линията от Вашата клетка до най-близкия обект, който може да погълнете."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ако все още изпитвате затруднения, отворете ръководството (въпросителния знак) долу вляво.\n"
 "\n"
 "Още един съвет — може да промените размера на изгледа с колелцето на мишката."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Разполагате с достатъчно [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] и [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound], но възпроизвеждането не е възможно, докато сте част от клетъчната колония.\n"
@@ -6454,21 +6460,21 @@ msgstr ""
 "За да се възпроизведете, трябва да напуснете клетъчната колония.\n"
 "За разпадане на клетъчната колония, натиснете [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "За възпроизвеждане, органелите на клетката трябва да се удвоят. Това се случва постепенно, но събирането на амоняк и фосфат ускорява този процес.\n"
 "\n"
 "Наблюдавайте запълването на лентите около бутона на редактора долу вдясно."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
 
@@ -6577,7 +6583,7 @@ msgstr "Качване"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Качване..."
 
-#: ../src/modding/ModUploader.tscn:336
+#: ../src/modding/ModUploader.tscn:335
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Качването е успешно"
 
@@ -6717,7 +6723,7 @@ msgstr "Вертикална синхронизация"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Изчакване на автоматичната еволюция:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Добре дошли в Трайвопедията"
 
