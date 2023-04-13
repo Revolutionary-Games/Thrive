@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/models/menu_backgrounds/MenuPlanet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/menu_backgrounds/StarsMesh.tscn" type="PackedScene" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=7]
 [ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=8]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=9]
-[ext_resource path="res://src/general/MainMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/models/menu_backgrounds/CometFireStart.tres" type="Material" id=11]
 [ext_resource path="res://assets/models/menu_backgrounds/CometFireEnd.tres" type="Material" id=12]
 
@@ -332,9 +331,8 @@ albedo_texture = SubResource( 41 )
 material = SubResource( 39 )
 size = Vector2( 10000, 10000 )
 
-[node name="Main" type="Node"]
-
-[node name="MainMenu" parent="." instance=ExtResource( 10 )]
+[node name="MainMenuScene1" type="Spatial"]
+transform = Transform( -0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -348,7 +346,7 @@ current = true
 fov = 36.8
 far = 15000.0
 
-[node name="SUN" type="OmniLight" parent="."]
+[node name="Sun" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.455, 21.976, -63.874 )
 light_color = Color( 0.972549, 0.956863, 0.937255, 1 )
 light_energy = 0.938
@@ -358,7 +356,7 @@ light_specular = 1.682
 light_bake_mode = 0
 omni_range = 4096.0
 
-[node name="CSGSphere" type="CSGSphere" parent="SUN"]
+[node name="CSGSphere" type="CSGSphere" parent="Sun"]
 transform = Transform( 0.994733, 0.102497, 0, -0.102497, 0.994733, 0, 0, 0, 1, 0, 0, 0 )
 radius = 2.613
 radial_segments = 32
