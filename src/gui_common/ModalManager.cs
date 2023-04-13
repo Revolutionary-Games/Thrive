@@ -56,9 +56,13 @@ public class ModalManager : NodeWithInput
     }
 
     /// <summary>
-    ///   Promotes the given popup as a modal and makes it visible.
+    ///   Promotes the given popup as a modal and makes it visible (with a slight delay).
     /// </summary>
     /// <remarks>
+    ///   <para>
+    ///     Note that if this is called quickly multiple times, only the modal that ends up being on top, will be
+    ///     visible. Other modals will only become visible when they end up being the top-most one.
+    ///   </para>
     ///   <para>
     ///     This does Node re-parenting operation, therefore calling this plainly in <see cref="Node._Ready"/> wouldn't
     ///     work as the Node is still busy then. Alternatively, you could defer the call in the next frame by using
