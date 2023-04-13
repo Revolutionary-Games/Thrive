@@ -247,12 +247,15 @@
     <Compile Include="src\general\utils\TypeUtils.cs" />
     <Compile Include="src\general\utils\VersionUtils.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
+    <Compile Include="src\gui_common\CustomWindow.cs" />
+    <Compile Include="src\gui_common\CustomPopupMenu.cs" />
     <Compile Include="src\gui_common\dialogs\PermanentlyDismissibleDialog.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\DragResult.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
     <Compile Include="src\gui_common\InspectedEntityLabel.cs" />
+    <Compile Include="src\gui_common\ModalManager.cs" />
     <Compile Include="src\gui_common\MouseHoverPanel.cs" />
     <Compile Include="src\gui_common\PatchNotesDisplayer.cs" />
     <Compile Include="src\gui_common\PatchNotesList.cs" />
@@ -315,7 +318,6 @@
     <Compile Include="src\gui_common\art_gallery\GalleryViewer.cs" />
     <Compile Include="src\gui_common\dialogs\TutorialDialog.cs" />
     <Compile Include="src\gui_common\art_gallery\GalleryCard.cs" />
-    <Compile Include="src\gui_common\ICustomPopup.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />

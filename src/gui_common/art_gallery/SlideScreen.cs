@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
 /// </summary>
-public class SlideScreen : CustomDialog
+public class SlideScreen : CustomWindow
 {
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
@@ -199,12 +199,12 @@ public class SlideScreen : CustomDialog
         return RetreatSlide();
     }
 
-    public override void CustomShow()
+    public override void Open()
     {
         if (Items == null)
             return;
 
-        base.CustomShow();
+        base.Open();
 
         SlideControlsVisible = false;
 
@@ -222,14 +222,13 @@ public class SlideScreen : CustomDialog
             popupTween.Connect("tween_completed", this, nameof(OnScaledUp), null, (uint)ConnectFlags.Oneshot);
     }
 
-    public override void CustomHide()
+    public override void Close()
     {
         if (Items == null)
             return;
 
         FullRect = false;
         SlideControlsVisible = false;
-        BoundToScreenArea = false;
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
 
@@ -316,7 +315,7 @@ public class SlideScreen : CustomDialog
     private void ChangeSlide(bool fade)
     {
         if (!Visible)
-            CustomShow();
+            Open();
 
         if (!fade)
         {
@@ -420,7 +419,6 @@ public class SlideScreen : CustomDialog
 
         SlideControlsVisible = true;
         FullRect = true;
-        BoundToScreenArea = true;
     }
 
     private void OnScaledDown(Object @object, NodePath key)
@@ -452,7 +450,7 @@ public class SlideScreen : CustomDialog
 
     private void OnCloseButtonPressed()
     {
-        CustomHide();
+        Close();
     }
 
     private void OnCloseButtonUpdate()

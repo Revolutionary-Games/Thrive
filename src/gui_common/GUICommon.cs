@@ -8,7 +8,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
-public class GUICommon : NodeWithInput
+public class GUICommon : Node
 {
     private static GUICommon? instance;
 
@@ -32,11 +32,6 @@ public class GUICommon : NodeWithInput
     public Tween Tween { get; }
 
     /// <summary>
-    ///   Checks whether the top-most modal on the modal stack is an exclusive popup.
-    /// </summary>
-    public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
-
-    /// <summary>
     ///   Access to the logical size of the GUI drawing area for non-GUI components
     /// </summary>
     public Rect2 ViewportRect { get; private set; }
@@ -53,14 +48,6 @@ public class GUICommon : NodeWithInput
         var child = control.GetChild<Control>(0);
 
         return child.RectMinSize;
-    }
-
-    public static void PopupMinSizeMarginPosition(Popup popup)
-    {
-        var left = popup.MarginLeft;
-        var top = popup.MarginTop;
-        popup.PopupCenteredMinsize();
-        popup.RectPosition = new Vector2(left, top);
     }
 
     public static void SmoothlyUpdateBar(Range bar, float target, float delta)
@@ -121,44 +108,6 @@ public class GUICommon : NodeWithInput
 
         buttonPressSound = GD.Load<AudioStream>(
             "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
-    }
-
-    /// <summary>
-    ///   Closes any currently active exclusive modal popups.
-    /// </summary>
-    [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
-    public bool HideCurrentlyActiveExclusivePopup()
-    {
-        var popup = GetCurrentlyActiveExclusivePopup();
-        var customPopup = popup as ICustomPopup;
-
-        if (!IsAnyExclusivePopupActive || customPopup is { ExclusiveAllowCloseOnEscape: false })
-        {
-            return false;
-        }
-
-        if (customPopup != null)
-        {
-            customPopup.CustomHide();
-            popup!.EmitSignal(nameof(CustomDialog.Closed));
-        }
-        else
-        {
-            popup!.Hide();
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
-    /// </summary>
-    public Popup? GetCurrentlyActiveExclusivePopup()
-    {
-        if (GetViewport().GetModalStackTop() is Popup popup && popup.PopupExclusive)
-            return popup;
-
-        return null;
     }
 
     /// <summary>

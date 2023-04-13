@@ -53,7 +53,10 @@ public class FocusGrabber : Control
     {
         if (string.IsNullOrWhiteSpace(NodeToGiveFocusTo))
             throw new ArgumentException("Focus grabber must have the node to focus set");
+    }
 
+    public override void _EnterTree()
+    {
         UpdateOverrideFocusStrings();
     }
 
@@ -135,8 +138,6 @@ public class FocusGrabber : Control
         else
         {
             // To convert relative paths to absolute ones, we need to do this
-            // If we ran into problems where this would need to be updated while inside the tree it might be better to
-            // use IsAParentOf()
             skipOverridingStringConverted =
                 skipOverridingFocusForElements.Select(n => GetNode(n).GetPath().ToString()).ToList();
         }

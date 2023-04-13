@@ -1,16 +1,17 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/engine/input/ControllerDeadzoneConfiguration.cs" type="Script" id=2]
 [ext_resource path="res://src/engine/input/ControllerInputAxisVisualizationContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=4]
 
-[node name="ControllerDeadzoneConfiguration" type="Popup"]
+[node name="ControllerDeadzoneConfiguration" instance=ExtResource( 1 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
-popup_exclusive = true
+margin_right = 0.0
+margin_bottom = 0.0
 script = ExtResource( 2 )
+Exclusive = true
 WindowTitle = "DEADZONE_CONFIGURATION"
 VisualizationContainerPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/ControllerInputAxisVisualizationContainer")
 StartButtonPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start")
@@ -18,30 +19,30 @@ ApplyButtonPath = NodePath("VBoxContainer/Apply")
 StatusLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Result")
 ExplanationLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Explanation")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -430.0
 margin_bottom = -270.0
 rect_min_size = Vector2( 850, 520 )
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_right = 750.0
-margin_bottom = 411.0
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="0"]
+margin_right = 850.0
+margin_bottom = 481.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 750.0
-margin_bottom = 411.0
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" index="0"]
+margin_right = 850.0
+margin_bottom = 481.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Explanation" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_right = 750.0
-margin_bottom = 53.0
+[node name="Explanation" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
+margin_right = 850.0
+margin_bottom = 20.0
 focus_neighbour_bottom = NodePath("../HBoxContainer/Start")
 focus_next = NodePath("../HBoxContainer/Start")
 focus_mode = 2
@@ -49,12 +50,12 @@ custom_fonts/font = ExtResource( 4 )
 text = "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 autowrap = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 57.0
-margin_right = 750.0
-margin_bottom = 92.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
+margin_top = 24.0
+margin_right = 850.0
+margin_bottom = 59.0
 
-[node name="Start" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Start" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="0"]
 margin_right = 209.0
 margin_bottom = 35.0
 focus_neighbour_top = NodePath("../../Explanation")
@@ -65,7 +66,7 @@ focus_previous = NodePath("../../Explanation")
 size_flags_horizontal = 0
 text = "START_CALIBRATION"
 
-[node name="Reset" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Reset" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="1"]
 margin_left = 213.0
 margin_right = 415.0
 margin_bottom = 35.0
@@ -77,48 +78,45 @@ focus_previous = NodePath("../Start")
 size_flags_horizontal = 0
 text = "RESET_DEADZONES"
 
-[node name="Result" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 96.0
-margin_right = 750.0
-margin_bottom = 121.0
+[node name="Result" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="2"]
+margin_top = 63.0
+margin_right = 850.0
+margin_bottom = 88.0
 text = "Controller deadzone configuration status goes here..."
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="AxesTitle" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 125.0
-margin_right = 750.0
-margin_bottom = 150.0
+[node name="AxesTitle" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="3"]
+margin_top = 92.0
+margin_right = 850.0
+margin_bottom = 117.0
 text = "CONTROLLER_AXIS_VISUALIZERS"
 autowrap = true
 
-[node name="ControllerInputAxisVisualizationContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+[node name="ControllerInputAxisVisualizationContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="4" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 154.0
-margin_right = 750.0
-margin_bottom = 411.0
+margin_top = 121.0
+margin_right = 850.0
+margin_bottom = 481.0
 focus_neighbour_top = NodePath("../HBoxContainer/Reset")
 focus_neighbour_bottom = NodePath("../../../Apply")
 focus_next = NodePath("../../../Apply")
 focus_previous = NodePath("../HBoxContainer/Reset")
 AutoDetectBecomesVisible = false
 
-[node name="Apply" type="Button" parent="VBoxContainer"]
-margin_left = 340.0
-margin_top = 415.0
-margin_right = 410.0
-margin_bottom = 450.0
+[node name="Apply" type="Button" parent="VBoxContainer" index="1"]
+margin_left = 390.0
+margin_top = 485.0
+margin_right = 460.0
+margin_bottom = 520.0
 focus_neighbour_top = NodePath("../ScrollContainer/VBoxContainer/ControllerInputAxisVisualizationContainer")
 focus_previous = NodePath("../ScrollContainer/VBoxContainer/ControllerInputAxisVisualizationContainer")
 size_flags_horizontal = 4
 text = "APPLY"
 
-[connection signal="Closed" from="." to="." method="OnCancel"]
-[connection signal="about_to_show" from="." to="." method="OnBecomeVisible"]
-[connection signal="popup_hide" from="." to="." method="OnCancel"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start" to="." method="OnStart"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Reset" to="." method="ResetDeadzones"]
 [connection signal="pressed" from="VBoxContainer/Apply" to="." method="OnConfirmed"]

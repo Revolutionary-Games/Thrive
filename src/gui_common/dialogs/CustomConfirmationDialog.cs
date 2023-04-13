@@ -25,13 +25,14 @@ public class CustomConfirmationDialog : CustomDialog
     private Button? confirmButton;
     private Button? cancelButton;
     private Control cancelEndSpacer = null!;
+    private FocusGrabber? focusGrabber;
 #pragma warning restore CA2213
 
+    /// <summary>
+    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomDialog.Cancelled"/>.
+    /// </summary>
     [Signal]
     public delegate void Confirmed();
-
-    [Signal]
-    public delegate void Cancelled();
 
     /// <summary>
     ///   If true, turns this dialog into its AcceptDialog form (only Ok button visible).
@@ -104,6 +105,7 @@ public class CustomConfirmationDialog : CustomDialog
         confirmButton = GetNode<Button>("VBoxContainer/HBoxContainer/ConfirmButton");
         cancelButton = GetNode<Button>("VBoxContainer/HBoxContainer/CancelButton");
         cancelEndSpacer = GetNode<Control>("VBoxContainer/HBoxContainer/Spacer");
+        focusGrabber = GetNode<FocusGrabber>("VBoxContainer/FocusGrabber");
 
         // Only move the buttons when run outside of the editor to avoid messing up
         // the predefined button order placement in the scene when it's opened
@@ -148,11 +150,12 @@ public class CustomConfirmationDialog : CustomDialog
 
     private void UpdateButtons()
     {
-        if (cancelButton == null || confirmButton == null)
+        if (cancelButton == null || confirmButton == null || focusGrabber == null)
             throw new SceneTreeAttachRequired();
 
         cancelButton.Visible = !hideCancelButton;
         cancelEndSpacer.Visible = !hideCancelButton;
+        focusGrabber.NodeToGiveFocusTo = focusGrabber.GetPathTo(hideCancelButton ? confirmButton : cancelButton);
 
         confirmButton.Text = TranslationServer.Translate(confirmText);
         cancelButton.Text = TranslationServer.Translate(cancelText);
@@ -162,16 +165,9 @@ public class CustomConfirmationDialog : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (HideOnOk)
-            Hide();
-
         EmitSignal(nameof(Confirmed));
-    }
 
-    private void OnCancelPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        Hide();
-        EmitSignal(nameof(Cancelled));
+        if (HideOnOk)
+            Close();
     }
 }

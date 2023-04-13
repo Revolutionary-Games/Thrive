@@ -72,7 +72,7 @@ public class Technology : IRegistryType
 
     public void Resolve(SimulationParameters parameters)
     {
-        RequiresTechnologies = requiresTechnologies.Select(t => parameters.GetTechnology(t)).ToList();
+        RequiresTechnologies = requiresTechnologies.Select(parameters.GetTechnology).ToList();
     }
 
     public void ApplyTranslations()
