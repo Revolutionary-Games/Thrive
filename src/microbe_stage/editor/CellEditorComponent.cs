@@ -1983,7 +1983,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, this);
+        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, CostMultiplier, upgradeGUI ?? string.Empty, this);
     }
 
     /// <summary>
