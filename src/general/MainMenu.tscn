@@ -119,6 +119,7 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
+Menu3DBackgroundScenes = [ "res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn" ]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")

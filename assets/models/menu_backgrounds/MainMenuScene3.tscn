@@ -1,10 +1,9 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/models/menu_backgrounds/UnderwaterChimney01.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/menu_backgrounds/SingleClouds.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/menu_backgrounds/UnderwaterParticle.png" type="Texture" id=3]
 [ext_resource path="res://assets/models/menu_backgrounds/UnderwaterSoil.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/general/MainMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/models/IronRock2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/models/IronRock1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=8]
@@ -212,10 +211,7 @@ normal_enabled = true
 normal_scale = 2.01
 normal_texture = ExtResource( 9 )
 
-[node name="Spatial" type="Spatial"]
-
-[node name="MainMenu" parent="." instance=ExtResource( 5 )]
-process_priority = 1
+[node name="MainMenuScene3" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.0867386, -0.0716095, 0.993654, 0, 0.997413, 0.0718804, -0.996231, 0.0062348, -0.0865142, 9.478, 8.269, -0.06 )
