@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-31 16:05+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2023-03-24 12:38+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -19,23 +19,23 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1457
+#: ../src/general/OptionsMenu.tscn:1459
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D移动样式："
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
 msgstr "3D编辑器"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
 msgstr "3D移动"
 
-#: ../src/general/OptionsMenu.tscn:1489
+#: ../src/general/OptionsMenu.tscn:1491
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D移动样式："
 
-#: ../simulation_parameters/common/input_options.json:36
+#: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
 msgstr "能力"
 
@@ -63,7 +63,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "唤醒"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -73,7 +73,7 @@ msgstr "当另一个行动在进行时无法进行行动"
 msgid "ACTIVE"
 msgstr "活泼"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "当前线程："
 
@@ -176,7 +176,7 @@ msgstr ""
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:739
+#: ../src/general/OptionsMenu.tscn:741
 msgid "AMBIANCE_VOLUME"
 msgstr "环境声效"
 
@@ -187,11 +187,11 @@ msgstr "环境声效"
 msgid "AMMONIA"
 msgstr "氨"
 
-#: ../src/general/OptionsMenu.tscn:1634
+#: ../src/general/OptionsMenu.tscn:1679
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "要保留的自动保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1662
+#: ../src/general/OptionsMenu.tscn:1707
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "要保留的快速保存存档数："
 
@@ -199,7 +199,7 @@ msgstr "要保留的快速保存存档数："
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "无氧固氨"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 msgid "APPEARANCE"
 msgstr "外观"
 
@@ -216,11 +216,11 @@ msgstr "应用更变"
 msgid "APRIL"
 msgstr "四月"
 
-#: ../src/general/OptionsMenu.tscn:1997
+#: ../src/general/OptionsMenu.tscn:2042
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:2006
+#: ../src/general/OptionsMenu.tscn:2051
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "你确定要把输入设置重置为默认值吗？"
 
@@ -248,7 +248,7 @@ msgstr "当指定了Mod的assembly后你还需要Mod assembly class"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "当自动Harmony启用时需要指定Mod的assembly"
 
-#: ../src/general/OptionsMenu.tscn:1106
+#: ../src/general/OptionsMenu.tscn:1108
 msgid "ASSUME_HYPERTHREADING"
 msgstr "假设CPU已启用超线程"
 
@@ -259,8 +259,8 @@ msgstr ""
 "这个选项会影响默认线程数，因为超线程的速度不如真正的CPU内核快。"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:679
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大气气体"
@@ -269,7 +269,7 @@ msgstr "大气气体"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
@@ -290,7 +290,7 @@ msgstr "尝试写入存档失败了。存档名称可能过长，或者你没有
 msgid "AT_CURSOR"
 msgstr "鼠标指针处："
 
-#: ../src/general/OptionsMenu.tscn:856
+#: ../src/general/OptionsMenu.tscn:858
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "音频输出设备："
 
@@ -298,12 +298,12 @@ msgstr "音频输出设备："
 msgid "AUGUST"
 msgstr "八月"
 
-#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:1476 ../src/general/OptionsMenu.tscn:1477
 msgid "AUTO"
 msgstr "自动"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的人口。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
 
@@ -311,12 +311,12 @@ msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0}在{2}中的种群数量变化了{1}，原因：{3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo的预测"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "这个面板显示了来自auto-evo对已编辑物种的预期种群数量。\n"
@@ -326,11 +326,11 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
-#: ../src/general/OptionsMenu.tscn:1623
+#: ../src/general/OptionsMenu.tscn:1668
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:206
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:222
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
@@ -345,7 +345,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:909
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:289
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
@@ -359,11 +359,11 @@ msgstr "运行状态："
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "自动进化运行状态："
 
-#: ../simulation_parameters/common/input_options.json:27
+#: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自动前移"
 
-#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:358
+#: ../src/general/OptionsMenu.cs:956 ../src/general/OptionsMenu.tscn:360
 msgid "AUTO_RESOLUTION"
 msgstr "自动（{0}x{1}）"
 
@@ -384,7 +384,7 @@ msgstr "微生物阶段"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -452,8 +452,8 @@ msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:463
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "行为"
 
@@ -498,7 +498,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "结果："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "最繁荣的地区："
 
@@ -533,7 +533,7 @@ msgstr "允许与其他细胞结合。这是迈向多细胞的第一步。在连
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按[thrive:input]g_toggle_binding[/thrive:input]来切换连接模式。在连接模式中，通过接触同种细胞，你可以让它成为你的细胞群的一员。要离开细胞群，按[thrive:input]g_unbind_all[/thrive:input]。"
 
-#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1280 ../src/general/OptionsMenu.tscn:1390
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "将坐标轴绑定在一起"
 
@@ -579,7 +579,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/SocietyHUD.tscn:125
+#: ../src/society_stage/gui/SocietyHUD.tscn:127
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "结构"
@@ -601,37 +601,37 @@ msgstr "碳酸钙"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层碳酸钙组成的强力外壳。它非常能抵挡伤害并花费很少的能量抵抗变形。只不过这么沉重的外壳，细胞也别想有什么移动与吸收能力了。"
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:102
 msgid "CAMERA"
 msgstr "视角"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2085
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
+#: ../src/general/OptionsMenu.tscn:2130
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "取消"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:760
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "取消当前动作"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:821
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "在你的躯体设计中正被使用的细胞类型无法被删除"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:819
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "无法删除已使用的细胞类型"
 
@@ -646,11 +646,11 @@ msgstr "无法进入吞噬模式"
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "无法移动金属球到其自己的树形子节点"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:826
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:843
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr "大脑能力过低以至于不足以继续停留在当前阶段。退回先前的阶段在目前的游戏中不被允许，请增加您的脑力以继续游戏。"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:824
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:841
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr "无法通过减少脑力退回先前阶段"
 
@@ -704,7 +704,7 @@ msgid "CELL"
 msgstr "细胞"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:576
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "细胞"
 
@@ -725,7 +725,7 @@ msgstr "纤维素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:652
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
@@ -737,17 +737,17 @@ msgstr "更改说明太长了"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改变对称"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "作弊"
 
-#: ../src/general/OptionsMenu.tscn:1716
+#: ../src/general/OptionsMenu.tscn:1761
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "启用作弊键"
 
-#: ../simulation_parameters/common/input_options.json:271
+#: ../simulation_parameters/common/input_options.json:306
 msgid "CHEAT_MENU"
 msgstr "作弊菜单"
 
@@ -833,7 +833,7 @@ msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[t
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:440
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
@@ -863,11 +863,11 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -875,15 +875,15 @@ msgstr "清除旧存档"
 msgid "CLOSE"
 msgstr "关闭"
 
-#: ../src/general/OptionsMenu.tscn:2015
+#: ../src/general/OptionsMenu.tscn:2060
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
-#: ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "云分辨率除数："
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:965
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "云仿真最小间隔时间："
 
@@ -895,11 +895,11 @@ msgstr "海岸"
 msgid "COLLISION_SHAPE"
 msgstr "生成具有碰撞形状的实体"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "颜色"
 
-#: ../src/general/OptionsMenu.tscn:400
+#: ../src/general/OptionsMenu.tscn:402
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
@@ -960,6 +960,15 @@ msgstr "S值，决定饱和度"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，决定明度"
 
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "COMMON_ABILITIES"
+msgstr "能力"
+
+#: ../simulation_parameters/common/input_options.json:169
+msgid "COMMON_EDITING_AND_STRATEGY"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM"
 msgstr "社区论坛"
@@ -976,14 +985,14 @@ msgstr "社区wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的社区wiki"
 
-#: ../src/general/OptionsMenu.tscn:1903
+#: ../src/general/OptionsMenu.tscn:1948
 msgid "COMPILED_AT_COLON"
 msgstr "编译于："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1001,7 +1010,7 @@ msgstr "化合物："
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:950
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
 
@@ -1082,7 +1091,7 @@ msgstr "进入尚在开发中的阶段？"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "控制器轴可视化："
 
-#: ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "CONTROLLER_DEADZONES"
 msgstr "控制器死区"
 
@@ -1097,11 +1106,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "死区："
 
-#: ../src/general/OptionsMenu.tscn:578
+#: ../src/general/OptionsMenu.tscn:580
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "控制按钮提示类型："
 
-#: ../src/general/OptionsMenu.tscn:1375
+#: ../src/general/OptionsMenu.tscn:1377
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "控制器灵敏度"
 
@@ -1113,11 +1122,11 @@ msgstr "将错误复制到剪贴板"
 msgid "COPY_RESULTS"
 msgstr "复制结果"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:419
 msgid "CORRECTION_PROTANOPE"
 msgstr "红绿色盲"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:419
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
@@ -1216,11 +1225,11 @@ msgstr "创建新Mod"
 msgid "CREATE_NEW_SAVE"
 msgstr "创建新存档"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:830
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:847
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "创建新组织类型"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:844
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:861
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "你可以通过复制现有的组织类型并给它们一个新的名字来创建新的组织类型。组织类型可以用细胞编辑器来修改以使其专门用于不同的目的。"
 
@@ -1275,7 +1284,7 @@ msgstr ""
 "  平均大小：{9}\n"
 "[b]基本细胞器信息：[/b]"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1780
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
@@ -1345,12 +1354,12 @@ msgstr "调试菜单"
 msgid "DECEMBER"
 msgstr "十二月"
 
-#: ../src/general/OptionsMenu.cs:1404
+#: ../src/general/OptionsMenu.cs:1422
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:607
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "删除"
@@ -1367,7 +1376,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "删除旧存档？"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
 msgstr "移除细胞器"
 
@@ -1407,7 +1416,7 @@ msgstr "描叙过长"
 msgid "DESPAWN_ENTITIES"
 msgstr "杀死所有实体"
 
-#: ../src/general/OptionsMenu.tscn:1075
+#: ../src/general/OptionsMenu.tscn:1077
 msgid "DETECTED_CPU_COUNT"
 msgstr "检测到的CPU数量："
 
@@ -1496,7 +1505,7 @@ msgstr "一般"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "消化效率"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "消化效率："
 
@@ -1504,7 +1513,7 @@ msgstr "消化效率："
 msgid "DIGESTION_SPEED"
 msgstr "消化速度"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "消化速度："
 
@@ -1520,7 +1529,7 @@ msgstr "左"
 msgid "DIRECTIONR"
 msgstr "右"
 
-#: ../src/general/OptionsMenu.tscn:330 ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:332 ../src/general/OptionsMenu.tscn:333
 msgid "DISABLED"
 msgstr "已禁用"
 
@@ -1528,7 +1537,7 @@ msgstr "已禁用"
 msgid "DISABLE_ALL"
 msgstr "全部禁用"
 
-#: ../src/general/OptionsMenu.tscn:2068
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
@@ -1546,21 +1555,21 @@ msgstr ""
 "有一些细胞没有连接到其它细胞上。\n"
 "请把所有细胞连接起来以继续。"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:814
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
 msgid "DISCONNECTED_METABALLS"
 msgstr "未连接的元球"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:816
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:833
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "有一些元球没有连接到其它细胞上。\n"
 "请将所有放置的元球移到其它元球旁边以继续。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "未连接的细胞器"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
@@ -1570,11 +1579,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
-#: ../src/general/OptionsMenu.tscn:1809
+#: ../src/general/OptionsMenu.tscn:1854
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的弹出窗口："
 
-#: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1852 ../src/general/OptionsMenu.tscn:1861
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "这显示了多少弹出窗口已被永久禁用。\n"
@@ -1588,15 +1597,15 @@ msgstr "不再显示"
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "不再警告"
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:612
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "显示能力栏"
 
-#: ../src/general/OptionsMenu.tscn:467
+#: ../src/general/OptionsMenu.tscn:469
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
 
-#: ../src/general/OptionsMenu.tscn:627
+#: ../src/general/OptionsMenu.tscn:629
 msgid "DISPLAY_PART_NAMES"
 msgstr "显示细胞器名称"
 
@@ -1636,7 +1645,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr "转储SceneTree"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:615
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "复制类型"
 
@@ -1760,7 +1769,12 @@ msgstr "包含彩蛋"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "（游戏中会随机生成彩蛋）"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../src/general/OptionsMenu.tscn:1544
+#, fuzzy
+msgid "EDGE_PAN_SPEED"
+msgstr "消化速度"
+
+#: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "编辑器"
@@ -1780,7 +1794,7 @@ msgstr ""
 "\n"
 "当你准备好了，按右下角的 \"下一步 \"按钮以继续。"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1792,11 +1806,11 @@ msgstr "启用Mod"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "启用所有兼容的Mod"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:290
 msgid "ENABLE_EDITOR"
 msgstr "启用编辑器"
 
-#: ../src/general/OptionsMenu.tscn:618
+#: ../src/general/OptionsMenu.tscn:620
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "启用GUI闪烁特效"
 
@@ -1808,15 +1822,15 @@ msgstr "{0}：-{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
@@ -1857,7 +1871,7 @@ msgstr "上远洋带"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "斧头"
 
-#: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR"
 msgstr "错误"
 
@@ -1869,7 +1883,7 @@ msgstr "为mod创建文件夹时出错"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "为mod创建info文件时出错"
 
-#: ../src/general/OptionsMenu.tscn:2106
+#: ../src/general/OptionsMenu.tscn:2151
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
@@ -1912,11 +1926,11 @@ msgstr ""
 "\n"
 "如果不是因为以上两种原因，那就是出bug了。请通知开发团队并提供游戏日志。"
 
-#: ../src/general/OptionsMenu.tscn:1875
+#: ../src/general/OptionsMenu.tscn:1920
 msgid "EXACT_VERSION_COLON"
 msgstr "精确版本："
 
-#: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
+#: ../src/general/OptionsMenu.tscn:1918 ../src/general/OptionsMenu.tscn:1929
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "这是编译此版本 Thrive 的确切 Commit"
 
@@ -1948,11 +1962,11 @@ msgstr "以逗号分隔符（csv）格式导出所有世界数据"
 msgid "EXPORT_SUCCESS"
 msgstr "导出成功"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "外部"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:307
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:323
 msgid "EXTERNAL_EFFECTS"
 msgstr "外部影响："
 
@@ -1994,7 +2008,7 @@ msgstr "额外选项"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "访问我们的Facebook页面"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "失败"
 
@@ -2064,7 +2078,7 @@ msgstr "完成一次世代"
 msgid "FINISH_X_GENERATIONS"
 msgstr "完成{0}次世代"
 
-#: ../simulation_parameters/common/input_options.json:40
+#: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
@@ -2101,11 +2115,11 @@ msgstr "漂浮的碎块："
 msgid "FLOATING_HAZARD"
 msgstr "漂浮的危害物"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "流质"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流动性/刚性"
 
@@ -2120,11 +2134,11 @@ msgstr ""
 "并且对物质块更有渴求。\n"
 "应变型微生物将更快的转向新的目标。"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:221
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
 msgstr "食物链"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
@@ -2162,7 +2176,7 @@ msgstr "保存该物种到化石中（已保存）"
 msgid "FOSSILISE"
 msgstr "保存至化石中"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2193,7 +2207,7 @@ msgstr "在离开编辑器时额外的葡萄糖云"
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "（每一代开始时在玩家旁自动生成一块葡萄糖云）"
 
-#: ../src/general/OptionsMenu.tscn:284
+#: ../src/general/OptionsMenu.tscn:286
 msgid "FULLSCREEN"
 msgstr "全屏"
 
@@ -2217,7 +2231,7 @@ msgstr "常规"
 msgid "GENERATIONS"
 msgstr "世代"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "世代："
 
@@ -2225,7 +2239,7 @@ msgstr "世代："
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
-#: ../src/general/OptionsMenu.cs:952
+#: ../src/general/OptionsMenu.cs:970
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2237,11 +2251,11 @@ msgstr "GLES2模式警告"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
-#: ../src/general/OptionsMenu.cs:957
+#: ../src/general/OptionsMenu.cs:975
 msgid "GLES3"
 msgstr "GLES3"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:432
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -2290,11 +2304,11 @@ msgstr "明白了"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL 许可文本如下："
 
-#: ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.tscn:479
 msgid "GPU_NAME"
 msgstr "GPU:"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:173
 msgid "GRAPHICS"
 msgstr "图像"
 
@@ -2302,7 +2316,7 @@ msgstr "图像"
 msgid "GRAPHICS_TEAM"
 msgstr "图形团队"
 
-#: ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.tscn:563
 msgid "GUI"
 msgstr "GUI"
 
@@ -2314,11 +2328,11 @@ msgstr ""
 "如果你遇到编辑器按钮部分消失的问题，\n"
 "可以试试禁用这个功能，问题可能会消失。"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:261
 msgid "GUI_TAB_NAVIGATION"
 msgstr "界面选项卡导航"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:811
 msgid "GUI_VOLUME"
 msgstr "GUI音量"
 
@@ -2340,23 +2354,23 @@ msgstr "帮助"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "帮助菜单"
 
-#: ../src/general/OptionsMenu.tscn:970 ../src/general/OptionsMenu.tscn:1020
+#: ../src/general/OptionsMenu.tscn:972 ../src/general/OptionsMenu.tscn:1022
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（更高的数值有助于提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:315 ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:317 ../src/general/OptionsMenu.tscn:1180
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（设置的太高会影响性能）"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:226
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "按住以在平移与旋转模式间切换"
 
-#: ../simulation_parameters/common/input_options.json:52
+#: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "按住以显示群体指令菜单"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:214
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "按住以显示鼠标指针"
 
@@ -2368,7 +2382,7 @@ msgstr "按住[thrive:input]g_free_cursor[/thrive:input]以显示鼠标指针"
 msgid "HOME"
 msgstr "主页"
 
-#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
+#: ../src/general/OptionsMenu.tscn:1292 ../src/general/OptionsMenu.tscn:1402
 msgid "HORIZONTAL_COLON"
 msgstr "水平："
 
@@ -2377,7 +2391,7 @@ msgstr "水平："
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "水平（{0}轴）"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "生命上限："
 
@@ -2448,19 +2462,19 @@ msgstr "摄入的物质"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "新建世界"
 
-#: ../src/general/OptionsMenu.tscn:204
+#: ../src/general/OptionsMenu.tscn:206
 msgid "INPUTS"
 msgstr "输入"
 
-#: ../simulation_parameters/common/input_options.json:80
+#: ../simulation_parameters/common/input_options.json:91
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr "建造一个结构"
 
-#: ../simulation_parameters/common/input_options.json:72
+#: ../simulation_parameters/common/input_options.json:73
 msgid "INPUT_NAME_INTERACTION"
 msgstr "与物体交互"
 
-#: ../simulation_parameters/common/input_options.json:76
+#: ../simulation_parameters/common/input_options.json:77
 msgid "INPUT_NAME_OPEN_INVENTORY"
 msgstr "打开物品栏"
 
@@ -2514,7 +2528,7 @@ msgstr "捡起"
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "捡起（物品栏已满）"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:442
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:458
 msgid "INTERNALS"
 msgstr "内部"
 
@@ -2575,8 +2589,8 @@ msgstr "合成"
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "地面"
 
-#: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
-#: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
+#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1327
+#: ../src/general/OptionsMenu.tscn:1415 ../src/general/OptionsMenu.tscn:1438
 msgid "INVERTED"
 msgstr "已反转"
 
@@ -2607,19 +2621,19 @@ msgstr "访问我们在Itch.io上的页面"
 msgid "JANUARY"
 msgstr "一月"
 
-#: ../src/general/OptionsMenu.tscn:1841
+#: ../src/general/OptionsMenu.tscn:1886
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON调试模式："
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "总是"
 
-#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1901 ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "自动"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "从不"
 
@@ -2801,23 +2815,23 @@ msgstr "小键盘.键"
 msgid "KPSUBTRACT"
 msgstr "小键盘-键"
 
-#: ../src/general/OptionsMenu.tscn:885
+#: ../src/general/OptionsMenu.tscn:887
 msgid "LANGUAGE"
 msgstr "语言："
 
-#: ../src/general/OptionsMenu.cs:1444
+#: ../src/general/OptionsMenu.cs:1462
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此翻译已完成 {0}%"
 
-#: ../src/general/OptionsMenu.cs:1440
+#: ../src/general/OptionsMenu.cs:1458
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "此翻译仍在开发中（已完成 {0}%）"
 
-#: ../src/general/OptionsMenu.cs:1436
+#: ../src/general/OptionsMenu.cs:1454
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1350
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
@@ -3023,11 +3037,16 @@ msgstr "热泉"
 msgid "LIGHT"
 msgstr "光强"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "平均"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "夜晚"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr "白天"
 
@@ -3035,7 +3054,7 @@ msgstr "白天"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} 正午"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "夜晚"
 
@@ -3043,7 +3062,7 @@ msgstr "夜晚"
 msgid "LIGHT_MAX"
 msgstr "光强最大值"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_EXTREME"
 msgstr "极多"
 
@@ -3055,31 +3074,31 @@ msgstr "限制繁殖化合物使用"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "（启用时会限制生长速度，如果关闭的话那么生长速度便仅受可用的化合物数量的影响）"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_HUGE"
 msgstr "很多"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_LARGE"
 msgstr "较多"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_NORMAL"
 msgstr "一般"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_SMALL"
 msgstr "较少"
 
-#: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_TINY"
 msgstr "极少"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_VERY_LARGE"
 msgstr "多"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_VERY_SMALL"
 msgstr "少"
 
@@ -3172,7 +3191,7 @@ msgstr ""
 "这个存档可能被损坏了，或者是来自于无法被这个版本的Thrive理解的新版本格式。\n"
 "你确定要强行载入这个存档吗？"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3209,7 +3228,7 @@ msgstr "三月"
 msgid "MARINE_SNOW"
 msgstr "海洋雪"
 
-#: ../src/general/OptionsMenu.tscn:653
+#: ../src/general/OptionsMenu.tscn:655
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
@@ -3217,15 +3236,15 @@ msgstr "主音量"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "在启用强制灭绝之前一个地区所能容纳的最大物种数量"
 
-#: ../src/general/OptionsMenu.tscn:369
+#: ../src/general/OptionsMenu.tscn:371
 msgid "MAX_FPS"
 msgstr "最高FPS："
 
-#: ../src/general/OptionsMenu.tscn:384
+#: ../src/general/OptionsMenu.tscn:386
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "不受限"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "实体数量限制："
 
@@ -3264,7 +3283,7 @@ msgstr "媒体停止"
 msgid "MEGA_YEARS"
 msgstr "*10⁶年"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "细胞膜"
 
@@ -3272,7 +3291,7 @@ msgstr "细胞膜"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "膜刚性"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "细胞膜类型"
 
@@ -3602,16 +3621,16 @@ msgstr "最低："
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "不允许显示少于{0}个数据集！"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:217
 msgid "MISC"
 msgstr "杂项"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:318
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "杂项"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:210
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "各项3D阶段"
 
@@ -3661,7 +3680,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "修改细胞器"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:593
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "修改类型"
 
@@ -3815,11 +3834,15 @@ msgstr "Mod版本："
 msgid "MORE_INFO"
 msgstr "显示更多信息"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1534
+msgid "MOUSE_EDGE_PANNING_OPTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "鼠标灵敏度"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1333
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "由窗口大小决定鼠标灵敏度"
 
@@ -3827,8 +3850,8 @@ msgstr "由窗口大小决定鼠标灵敏度"
 msgid "MOVE"
 msgstr "移动"
 
-#: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:508
+#: ../simulation_parameters/common/input_options.json:8
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
 msgid "MOVEMENT"
 msgstr "移动"
 
@@ -3836,27 +3859,27 @@ msgstr "移动"
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "每物种迁徙尝试次数"
 
-#: ../simulation_parameters/common/input_options.json:23
+#: ../simulation_parameters/common/input_options.json:24
 msgid "MOVE_BACKWARDS"
 msgstr "后退"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "向下走或蹲下"
 
-#: ../simulation_parameters/common/input_options.json:19
+#: ../simulation_parameters/common/input_options.json:20
 msgid "MOVE_FORWARD"
 msgstr "前进"
 
-#: ../simulation_parameters/common/input_options.json:11
+#: ../simulation_parameters/common/input_options.json:12
 msgid "MOVE_LEFT"
 msgstr "左移"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_ORGANELLE"
 msgstr "移动细胞器"
 
-#: ../simulation_parameters/common/input_options.json:15
+#: ../simulation_parameters/common/input_options.json:16
 msgid "MOVE_RIGHT"
 msgstr "右移"
 
@@ -3876,7 +3899,7 @@ msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:198
 msgid "MOVE_UP_OR_JUMP"
 msgstr "向上走或跳起"
 
@@ -3953,7 +3976,7 @@ msgstr "多个元球"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "多个细胞器"
 
-#: ../src/general/OptionsMenu.tscn:308
+#: ../src/general/OptionsMenu.tscn:310
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重采样抗锯齿："
 
@@ -3968,7 +3991,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "音乐"
 
-#: ../src/general/OptionsMenu.tscn:704
+#: ../src/general/OptionsMenu.tscn:706
 msgid "MUSIC_VOLUME"
 msgstr "音乐音量"
 
@@ -3988,9 +4011,9 @@ msgstr "（细胞器，膜和编辑器中其它选项的耗费）"
 msgid "MUTATION_POINTS"
 msgstr "变异点（MP）"
 
-#: ../src/general/OptionsMenu.tscn:682 ../src/general/OptionsMenu.tscn:733
-#: ../src/general/OptionsMenu.tscn:768 ../src/general/OptionsMenu.tscn:803
-#: ../src/general/OptionsMenu.tscn:838
+#: ../src/general/OptionsMenu.tscn:684 ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:770 ../src/general/OptionsMenu.tscn:805
+#: ../src/general/OptionsMenu.tscn:840
 msgid "MUTE"
 msgstr "静音"
 
@@ -3998,11 +4021,11 @@ msgstr "静音"
 msgid "NAME"
 msgstr "名称："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "ATP开支为负"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "你的微生物没办法产出足以维持生存的量的ATP！\n"
@@ -4043,20 +4066,20 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "我的绝棒的Mod"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:864
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:881
 msgid "NEW_NAME"
 msgstr "新名称"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:857
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:874
 msgid "NEW_NAME_COLON"
 msgstr "新名称："
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:773
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
 msgstr "下一个"
 
@@ -4095,7 +4118,7 @@ msgstr "固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]与[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
-#: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:418 ../src/general/OptionsMenu.tscn:419
 msgid "NONE"
 msgstr "无"
 
@@ -4157,7 +4180,7 @@ msgid "NO_AI"
 msgstr "AI关闭"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -4186,7 +4209,7 @@ msgstr "未找到存档"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存档目录"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截图目录"
 
@@ -4199,7 +4222,7 @@ msgstr "未选择Mod"
 msgid "NUCLEUS"
 msgstr "细胞核"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "不能删除细胞核，因为这是个不可逆的进化。\n"
@@ -4221,8 +4244,8 @@ msgstr "数字锁定"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4248,7 +4271,7 @@ msgstr "官方网站"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "访问Revolutionary Games的官方网站"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:88
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
@@ -4284,7 +4307,7 @@ msgstr "打开帮助页面"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "在自由编辑器中打开"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1815
 msgid "OPEN_LOGS_FOLDER"
 msgstr "打开日志文件夹"
 
@@ -4292,11 +4315,11 @@ msgstr "打开日志文件夹"
 msgid "OPEN_MOD_URL"
 msgstr "打开Mod网址"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "打开细胞器菜单"
 
-#: ../src/society_stage/SocietyHUD.tscn:135
+#: ../src/society_stage/gui/SocietyHUD.tscn:137
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "打开帮助页面"
@@ -4305,7 +4328,12 @@ msgstr "打开帮助页面"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "打开存档文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../simulation_parameters/common/input_options.json:250
+#, fuzzy
+msgid "OPEN_SCIENCE_MENU"
+msgstr "打开主菜单"
+
+#: ../src/general/OptionsMenu.tscn:1807
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "打开截图存放文件夹"
 
@@ -4313,7 +4341,7 @@ msgstr "打开截图存放文件夹"
 msgid "OPEN_THE_MENU"
 msgstr "打开主菜单"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:924
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "帮忙翻译这个游戏"
 
@@ -4340,7 +4368,7 @@ msgstr "选项"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "改变你的设置"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "细胞器"
 
@@ -4353,7 +4381,7 @@ msgstr "轴突"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有该细胞器的细胞会被认定为脑组织。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多细胞生物"
 
@@ -4379,7 +4407,7 @@ msgstr "纤毛存在于许多微生物的表面，类似于细毛。一个微生
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "可以被用来捅其它细胞或抵挡它们的毒素。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
 
@@ -4503,23 +4531,23 @@ msgstr "转到下一页"
 msgid "PAGE_TITLE"
 msgstr "页面标题"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "PAN_CAMERA_DOWN"
 msgstr "向下平移"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_LEFT"
 msgstr "向左平移"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:181
 msgid "PAN_CAMERA_RESET"
 msgstr "重置视角位置"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_RIGHT"
 msgstr "向右平移"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
@@ -4567,7 +4595,7 @@ msgstr "页面标题"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2169
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4639,11 +4667,11 @@ msgstr "和平"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:193
+#: ../src/general/OptionsMenu.tscn:195
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../simulation_parameters/common/input_options.json:68
+#: ../simulation_parameters/common/input_options.json:69
 msgid "PERFORM_UNBINDING"
 msgstr "取消连接"
 
@@ -4664,7 +4692,7 @@ msgstr "磷酸盐"
 msgid "PHOTOSYNTHESIS"
 msgstr "光合作用"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:545
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:561
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:239
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理条件"
@@ -4675,7 +4703,7 @@ msgstr "物理条件"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
 msgstr "放置细胞器"
 
@@ -4728,7 +4756,7 @@ msgstr "玩家分裂"
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已灭绝"
 
-#: ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:1477
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相对于玩家"
 
@@ -4742,23 +4770,23 @@ msgstr ""
 "玩家\n"
 "速度"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "PLAYSTATION_3"
 msgstr "PlayStation 3"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
-#: ../src/general/OptionsMenu.tscn:1599
+#: ../src/general/OptionsMenu.tscn:1644
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放游戏开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1607
+#: ../src/general/OptionsMenu.tscn:1652
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在开始新游戏时播放微生物阶段开场动画"
 
@@ -4768,7 +4796,7 @@ msgstr "使用当前设置"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/SocietyHUD.tscn:266
+#: ../src/society_stage/gui/SocietyHUD.tscn:210
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
@@ -4780,7 +4808,7 @@ msgstr "种群数量："
 msgid "POPULATION_IN_PATCHES"
 msgstr "地区中的种群数量："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
@@ -4788,7 +4816,7 @@ msgstr "{0} （{1}）"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "查看预测背后的详细信息"
 
@@ -4845,7 +4873,7 @@ msgstr "保护刚刚迁移的生物不受物种上限的影响"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "保护刚刚创造的物种不受物种上限的影响"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "蛋白质"
 
@@ -4857,11 +4885,11 @@ msgstr "原生质"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "合并请求/编程"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_LOAD"
 msgstr "快速读档"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:338
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
@@ -4915,7 +4943,7 @@ msgstr "推荐的Thrive版本："
 msgid "REDDIT_TOOLTIP"
 msgstr "访问我们的subreddit页面"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:135
 msgid "REDO"
 msgstr "重做"
 
@@ -4945,12 +4973,12 @@ msgid "REPRODUCED"
 msgstr "繁殖次数"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:530
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "繁殖"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:672
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:689
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "无性别"
 
@@ -4960,7 +4988,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "出芽"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
 
@@ -4968,7 +4996,7 @@ msgstr "繁殖："
 msgid "REQUIRES_NUCLEUS"
 msgstr "需要细胞核"
 
-#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:1945
+#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1990
 msgid "RESET"
 msgstr "重置"
 
@@ -4976,23 +5004,23 @@ msgstr "重置"
 msgid "RESET_DEADZONES"
 msgstr "重置死区"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1876
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "重置被禁用的弹出窗口"
 
-#: ../src/general/OptionsMenu.tscn:2005
+#: ../src/general/OptionsMenu.tscn:2050
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "将输入重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1558
+#: ../src/general/OptionsMenu.tscn:1603
 msgid "RESET_KEYBINDINGS"
 msgstr "重置按键绑定"
 
-#: ../src/general/OptionsMenu.tscn:1985
+#: ../src/general/OptionsMenu.tscn:2030
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默认"
 
-#: ../src/general/OptionsMenu.tscn:1996
+#: ../src/general/OptionsMenu.tscn:2041
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置为默认值？"
 
@@ -5001,7 +5029,7 @@ msgstr "重置为默认值？"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "不会被没有对应酶的细胞吞噬并消化"
 
-#: ../src/general/OptionsMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:347
 msgid "RESOLUTION"
 msgstr "分辨率："
 
@@ -5017,6 +5045,11 @@ msgstr "物质吸收速度"
 #: ../src/awakening_stage/PlacedStructure.cs:71
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:13
+#, fuzzy
+msgid "RESOURCE_FOOD"
+msgstr "木材"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
@@ -5075,7 +5108,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "鼠标右键"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "刚体"
 
@@ -5083,19 +5116,19 @@ msgstr "刚体"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "更刚性的细胞膜有助于抵挡伤害，但是也会让细胞更难移动。"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
 msgstr "向左转"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ROTATE_RIGHT"
 msgstr "向右转"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "旋转："
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1057
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在游戏中启用auto-evo"
 
@@ -5165,11 +5198,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
-#: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2004 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "保存"
 
-#: ../src/general/OptionsMenu.tscn:2058
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存并继续"
 
@@ -5267,20 +5300,20 @@ msgstr "当前情况下无法保存："
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
 msgid "SCALING_NONE"
 msgstr "无"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SCALING_ON"
 msgstr "成正比"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SCALING_ON_INVERSE"
 msgstr "成反比"
 
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1477 ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1511
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "相对于屏幕"
 
@@ -5288,7 +5321,7 @@ msgstr "相对于屏幕"
 msgid "SCROLLLOCK"
 msgstr "滚卷锁定"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
@@ -5300,7 +5333,7 @@ msgstr "搜索半径："
 msgid "SEA_FLOOR"
 msgstr "海床"
 
-#: ../simulation_parameters/common/input_options.json:44
+#: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
@@ -5381,7 +5414,7 @@ msgstr "沉着"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "这个数值只对你改变选项后新开的存档有效"
 
-#: ../src/general/OptionsMenu.tscn:774
+#: ../src/general/OptionsMenu.tscn:776
 msgid "SFX_VOLUME"
 msgstr "音效音量"
 
@@ -5389,16 +5422,16 @@ msgstr "音效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:350
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
-#: ../src/general/OptionsMenu.tscn:1787
+#: ../src/general/OptionsMenu.tscn:1832
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0}{1}"
 
-#: ../src/general/OptionsMenu.tscn:1785
+#: ../src/general/OptionsMenu.tscn:1830
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0}{1}"
@@ -5407,15 +5440,15 @@ msgstr "{0}{1}"
 msgid "SHOW_TUTORIALS"
 msgstr "显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1697
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "现有游戏中显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1689
+#: ../src/general/OptionsMenu.tscn:1734
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "开始新游戏时显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1704
+#: ../src/general/OptionsMenu.tscn:1749
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "显示未保存的进度警告"
 
@@ -5423,7 +5456,7 @@ msgstr "显示未保存的进度警告"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告弹出框。"
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1823
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "显示 Thrive 新闻（联机下载）"
 
@@ -5473,11 +5506,11 @@ msgstr "二氧化硅"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高的惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "大小："
 
@@ -5518,7 +5551,7 @@ msgstr "小铁块"
 msgid "SOCIETY_STAGE"
 msgstr "微生物阶段"
 
-#: ../src/general/OptionsMenu.tscn:182
+#: ../src/general/OptionsMenu.tscn:184
 msgid "SOUND"
 msgstr "声音"
 
@@ -5543,7 +5576,7 @@ msgstr "空格"
 msgid "SPACE_STAGE"
 msgstr "微生物阶段"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "生成氨"
 
@@ -5555,11 +5588,11 @@ msgstr "生成敌人"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:294
 msgid "SPAWN_GLUCOSE"
 msgstr "生成葡萄糖"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸盐"
 
@@ -5610,8 +5643,8 @@ msgstr "物种名…"
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "物种名过长！"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:507
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:523
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:551
 msgid "SPECIES_POPULATION"
 msgstr "该物种的种群数量"
 
@@ -5635,7 +5668,7 @@ msgstr "{0}的种群数量：{1}"
 msgid "SPEED"
 msgstr "速度"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "速度："
 
@@ -5660,7 +5693,7 @@ msgid "START_GAME"
 msgstr "开始游戏"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
 #: ../src/microbe_stage/HUDBottomBar.tscn:115
 msgid "STATISTICS"
 msgstr "统计数据"
@@ -5771,7 +5804,7 @@ msgstr "暂停"
 msgid "STORAGE"
 msgstr "存储"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "存储："
 
@@ -5779,23 +5812,32 @@ msgstr "存储："
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
+#: ../simulation_parameters/common/input_options.json:246
+#, fuzzy
+msgid "STRATEGY_STAGES"
+msgstr "微生物阶段"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "严格的生态位竞争（适应性差异被夸大）"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "结构"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:420
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "结构"
 
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "已具有用于建造的材料"
+
+#: ../simulation_parameters/awakening_stage/structures.json:50
+msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
+msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
@@ -5835,8 +5877,8 @@ msgstr "自杀"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
 msgstr "阳光"
@@ -5853,15 +5895,15 @@ msgstr "Super Right"
 msgid "SUPPORTER_PATRONS"
 msgstr "支持者"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:230
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "切换到正视图"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:234
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "切换到右视图"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "切换到俯视图"
 
@@ -5869,19 +5911,19 @@ msgstr "切换到俯视图"
 msgid "SYSREQ"
 msgstr "键盘SysRq键"
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr "向左切换二级标签"
 
-#: ../simulation_parameters/common/input_options.json:242
+#: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr "向右切换二级标签"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:265
 msgid "TAB_SWITCH_LEFT"
 msgstr "向左切换标签"
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:269
 msgid "TAB_SWITCH_RIGHT"
 msgstr "向右切换标签"
 
@@ -5889,9 +5931,14 @@ msgstr "向右切换标签"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "标签里只有空格"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
+
+#: ../simulation_parameters/awakening_stage/technologies.json:21
+#, fuzzy
+msgid "TECHNOLOGY_HUNTER_GATHERING"
+msgstr "解锁的科技：{0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -5901,6 +5948,7 @@ msgstr "简单石质工具"
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "社会中心建设"
 
+#: ../src/general/base_stage/StrategyStageBase.cs:96
 #: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "解锁的科技：{0}"
@@ -5908,7 +5956,7 @@ msgstr "解锁的科技：{0}"
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
 msgid "TEMPERATURE"
 msgstr "温度"
@@ -5993,7 +6041,7 @@ msgstr "这个mod是本地安装的"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "这个mod是在Steam创意工坊下载的"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1126
 msgid "THREADS"
 msgstr "线程："
 
@@ -6058,15 +6106,15 @@ msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素
 msgid "TIDEPOOL"
 msgstr "潮池"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:235
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:251
 msgid "TIMELINE"
 msgstr "时间线"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:426
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "显示全球事件"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:439
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "显示本地事件"
 
@@ -6110,31 +6158,31 @@ msgstr "时间经过了{0:#,#}年"
 msgid "TITLE_COLON"
 msgstr "标题："
 
-#: ../simulation_parameters/common/input_options.json:56
+#: ../simulation_parameters/common/input_options.json:57
 #: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "切换连接模式"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "控制调试菜单"
 
-#: ../simulation_parameters/common/input_options.json:48
+#: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_FPS"
 msgstr "切换帧数显示"
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:354
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切换全屏"
 
-#: ../simulation_parameters/common/input_options.json:322
+#: ../simulation_parameters/common/input_options.json:358
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切换HUD"
 
@@ -6143,7 +6191,7 @@ msgstr "切换HUD"
 msgid "TOGGLE_INVENTORY"
 msgstr "切换连接模式"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:334
 msgid "TOGGLE_METRICS"
 msgstr "切换参数显示"
 
@@ -6151,11 +6199,11 @@ msgstr "切换参数显示"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "打开导航树状图"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_PAUSE"
 msgstr "暂停"
 
-#: ../simulation_parameters/common/input_options.json:60
+#: ../simulation_parameters/common/input_options.json:61
 msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
@@ -6167,7 +6215,7 @@ msgstr "工具"
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "种群数量总数："
 
@@ -6222,7 +6270,7 @@ msgstr "尝试将某些物种变成化石！"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "试着存个档吧！"
 
-#: ../src/general/OptionsMenu.tscn:2116
+#: ../src/general/OptionsMenu.tscn:2161
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "试着截一些图吧！"
 
@@ -6388,7 +6436,7 @@ msgstr "现在就查看"
 msgid "TWITTER_TOOLTIP"
 msgstr "访问我们的推特"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6404,7 +6452,7 @@ msgstr "有未应用的更变"
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要应用更变才能加载或卸载任何mod。"
 
-#: ../simulation_parameters/common/input_options.json:64
+#: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "取消所有连接"
@@ -6413,7 +6461,7 @@ msgstr "取消所有连接"
 msgid "UNBIND_HELP_TEXT"
 msgstr "解连接模式"
 
-#: ../src/general/OptionsMenu.cs:1505
+#: ../src/general/OptionsMenu.cs:1523
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "这是一个调试版本，下面的信息可能不是最新的"
 
@@ -6421,7 +6469,7 @@ msgstr "这是一个调试版本，下面的信息可能不是最新的"
 msgid "UNDERWATERCAVE"
 msgstr "水下洞穴"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:131
 msgid "UNDO"
 msgstr "撤销"
 
@@ -6433,7 +6481,7 @@ msgstr "撤销上一个动作"
 msgid "UNKNOWN"
 msgstr "鼠标未知键"
 
-#: ../src/general/OptionsMenu.cs:962
+#: ../src/general/OptionsMenu.cs:980
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "未知"
 
@@ -6445,7 +6493,7 @@ msgstr "鼠标未知键"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "在Windows上未知"
 
-#: ../src/general/OptionsMenu.cs:1512
+#: ../src/general/OptionsMenu.cs:1530
 msgid "UNKNOWN_VERSION"
 msgstr "未知版本"
 
@@ -6453,7 +6501,7 @@ msgstr "未知版本"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "此Mod的创意工坊编号未知"
 
-#: ../src/general/OptionsMenu.tscn:2035
+#: ../src/general/OptionsMenu.tscn:2080
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改将被丢弃。\n"
@@ -6495,7 +6543,7 @@ msgstr "上传成功"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "许可证和使用的库"
 
-#: ../src/general/OptionsMenu.tscn:507
+#: ../src/general/OptionsMenu.tscn:509
 msgid "USED_RENDERER_NAME"
 msgstr "使用的渲染器："
 
@@ -6511,7 +6559,7 @@ msgstr "使用自动Harmony加载"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
 
-#: ../src/general/OptionsMenu.tscn:1724
+#: ../src/general/OptionsMenu.tscn:1769
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
 
@@ -6519,11 +6567,11 @@ msgstr "使用自定义用户名"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "增加生物多样性的物种在创造时从现有的物种中窃取种群数量"
 
-#: ../src/general/OptionsMenu.tscn:1114
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手动设置后台线程数"
 
-#: ../src/general/OptionsMenu.tscn:1358
+#: ../src/general/OptionsMenu.tscn:1360
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虚拟窗口大小"
 
@@ -6550,7 +6598,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "版本："
 
-#: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1311 ../src/general/OptionsMenu.tscn:1421
 msgid "VERTICAL_COLON"
 msgstr "垂直："
 
@@ -6559,11 +6607,11 @@ msgstr "垂直："
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "垂直（{0}轴）"
 
-#: ../src/general/OptionsMenu.tscn:534
+#: ../src/general/OptionsMenu.tscn:536
 msgid "VIDEO_MEMORY"
 msgstr "当前使用的视频内存："
 
-#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
+#: ../src/general/OptionsMenu.cs:989 ../src/general/OptionsMenu.tscn:549
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0}MiB"
 
@@ -6577,12 +6625,12 @@ msgstr "查看器"
 msgid "VIEW_ALL"
 msgstr "全部禁用"
 
-#: ../src/general/OptionsMenu.tscn:1795
+#: ../src/general/OptionsMenu.tscn:1840
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0}{1}"
 
-#: ../src/general/OptionsMenu.tscn:1793
+#: ../src/general/OptionsMenu.tscn:1838
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0}{1}"
@@ -6619,11 +6667,11 @@ msgstr "静音"
 msgid "VOLUMEUP"
 msgstr "提高音量"
 
-#: ../src/general/OptionsMenu.tscn:276
+#: ../src/general/OptionsMenu.tscn:278
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
@@ -6726,23 +6774,23 @@ msgstr ""
 "包含测试阶段: {0}\n"
 "包含彩蛋: {1}"
 
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1511
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相对世界移动"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "XBOX_SERIES"
 msgstr "Xbox X 系列"
 
@@ -6768,13 +6816,17 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "你可以在 Patreon 上支持 Thrive 未来的发展。"
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:110
 msgid "ZOOM_IN"
 msgstr "放大"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "ENABLED"
+#~ msgstr "启用Mod"
 
 #~ msgid "PANGONIAN_REGION_NAME"
 #~ msgstr "盘古宙"

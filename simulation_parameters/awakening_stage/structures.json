@@ -24,7 +24,68 @@
       "wood": 2
     },
     "Components": {
-      "SocietyCenter": {}
+      "SocietyCenter": {},
+      "WoodGatherer": {
+        "Amount": 0.02
+      },
+      "RockGatherer": {
+        "Amount": 0.02
+      },
+      "FoodGatherer": {
+        "Amount": 0.5
+      },
+      "Research": {
+        "Level": "Primitive",
+        "Speed": 1
+      },
+      "Housing": {
+        "Space": 5
+      },
+      "Storage": {
+        "Capacity": 5
+      }
+    }
+  },
+  "hunterGathererLodge": {
+    "Name": "STRUCTURE_HUNTER_GATHERER_LODGE",
+    "WorldRepresentationScene": "res://assets/models/structures/HunterGathererLodge.tscn",
+    "GhostScenePath": "res://assets/models/structures/HunterGathererLodgeGhost.tscn",
+    "ScaffoldingScenePath": "res://assets/models/structures/StructureScaffolding_5x20.tscn",
+    "BuildingIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "WorldSize": {
+      "x": 5,
+      "y": 7,
+      "z": 20
+    },
+    "InteractOffset": {
+      "x": 0,
+      "y": 1,
+      "z": -10
+    },
+    "RequiredResources": {
+      "rock": 2,
+      "wood": 1
+    },
+    "ScaffoldingCost": {
+      "rock": 1,
+      "wood": 1
+    },
+    "Components": {
+      "WoodGatherer": {
+        "Amount": 0.1
+      },
+      "RockGatherer": {
+        "Amount": 0.1
+      },
+      "FoodGatherer": {
+        "Amount": 1
+      },
+      "Housing": {
+        "Space": 2
+      },
+      "Storage": {
+        "Capacity": 4
+      }
     }
   }
 }

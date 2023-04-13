@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-31 16:05+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -19,23 +19,23 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1457
+#: ../src/general/OptionsMenu.tscn:1459
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
 msgstr "Moviment 3D"
 
-#: ../src/general/OptionsMenu.tscn:1489
+#: ../src/general/OptionsMenu.tscn:1491
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:36
+#: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
 msgstr "Habilitats"
 
@@ -64,7 +64,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Despertar"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -74,7 +74,7 @@ msgstr "Acció bloquejada mentre una altra s'està duent a terme"
 msgid "ACTIVE"
 msgstr "Actiu"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Fils actuals:"
 
@@ -167,7 +167,7 @@ msgstr "Estadístiques de la Cèl·lula"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:739
+#: ../src/general/OptionsMenu.tscn:741
 msgid "AMBIANCE_VOLUME"
 msgstr "Volum de l'ambient"
 
@@ -178,11 +178,11 @@ msgstr "Volum de l'ambient"
 msgid "AMMONIA"
 msgstr "Amoníac"
 
-#: ../src/general/OptionsMenu.tscn:1634
+#: ../src/general/OptionsMenu.tscn:1679
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius d'autoguardat:"
 
-#: ../src/general/OptionsMenu.tscn:1662
+#: ../src/general/OptionsMenu.tscn:1707
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius de guardat ràpid:"
 
@@ -190,7 +190,7 @@ msgstr "Màxim nombre d'arxius de guardat ràpid:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fixació Anaeròbica de Nitrogen"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 msgid "APPEARANCE"
 msgstr "Aparença"
 
@@ -207,11 +207,11 @@ msgstr "Aplicar Canvis"
 msgid "APRIL"
 msgstr "Abril"
 
-#: ../src/general/OptionsMenu.tscn:1997
+#: ../src/general/OptionsMenu.tscn:2042
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Esteu segur que voleu resetejar TOTA la configuració als seus valors per defecte?"
 
-#: ../src/general/OptionsMenu.tscn:2006
+#: ../src/general/OptionsMenu.tscn:2051
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Esteu segur que voleu resetejar els inputs de configuració a valors per defecte?"
 
@@ -239,7 +239,7 @@ msgstr "Es requereix la classe de l'ensamblatge del mod quan s'especifica l'ensa
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Es requereix l'ensamblatge de mod quan auto harmony està activat"
 
-#: ../src/general/OptionsMenu.tscn:1106
+#: ../src/general/OptionsMenu.tscn:1108
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assumir que la CPU té activat el hyperthreading"
 
@@ -250,8 +250,8 @@ msgstr ""
 "Això afecta el nombre de \"threads\" per defecte ja que el \"hyperthreading threads\" no són tan ràpids com els núclis CPU reals."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:679
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gasos Atmosfèrics"
@@ -260,7 +260,7 @@ msgstr "Gasos Atmosfèrics"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "Equilibri d'ATP"
 
@@ -281,7 +281,7 @@ msgstr "L'intent d'escriure aquest arxiu de guardat ha fallat. És possible que 
 msgid "AT_CURSOR"
 msgstr "A sota del Cursor:"
 
-#: ../src/general/OptionsMenu.tscn:856
+#: ../src/general/OptionsMenu.tscn:858
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositiu de sortida d'àudio:"
 
@@ -289,12 +289,12 @@ msgstr "Dispositiu de sortida d'àudio:"
 msgid "AUGUST"
 msgstr "Agost"
 
-#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:1476 ../src/general/OptionsMenu.tscn:1477
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer la seva predicció. L'energia total que una espècie pot recol·lectar i el cost energètic per individu d'aquesta espècie, en determinen la població final. L'algorisme auto-evo fa servir un model simplificat de la realitat per a calcular el rendiment de les espècies basat en l'energia que són capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta energia en guanya l'espècie. A més a més, es mostra l'energia total disponible per aquesta font. La fracció de l'energia total que guanyen les espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment total'. El 'rendiment' és una mètrica de com de bé les espècies poden utilitzar aquesta font d'alimentació."
 
@@ -302,12 +302,12 @@ msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} població ha variat en {1} a {2} degut a: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Predicció d'Auto-Evo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Aquest tauler mostra els nombres de població esperats pel sistema auto-evo per l'espècie editada.\n"
@@ -317,11 +317,11 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fet. {1:n0}/{2:n0} passos."
 
-#: ../src/general/OptionsMenu.tscn:1623
+#: ../src/general/OptionsMenu.tscn:1668
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardat automàtic durant el joc"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:206
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:222
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
@@ -337,7 +337,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "L'algorisme auto-evo ha tingut un error"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:909
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:289
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultats de l'algorisme Auto-Evo:"
 
@@ -351,11 +351,11 @@ msgstr "estat d'execució:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estat d'Auto-Evo:"
 
-#: ../simulation_parameters/common/input_options.json:27
+#: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Moviment automàtic cap endavant"
 
-#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:358
+#: ../src/general/OptionsMenu.cs:956 ../src/general/OptionsMenu.tscn:360
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
@@ -376,7 +376,7 @@ msgstr "Estadi de Microbi"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -444,8 +444,8 @@ msgid "BEGIN_THRIVING"
 msgstr "Començar a prosperar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:463
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "Comportament"
 
@@ -495,7 +495,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "Millor Medi:"
 
@@ -530,7 +530,7 @@ msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a es
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules de la teva espècie entrant-hi en contacte. Per abandonar una colònia, pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1280 ../src/general/OptionsMenu.tscn:1390
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -576,7 +576,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Navegar Workshop"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/SocietyHUD.tscn:125
+#: ../src/society_stage/gui/SocietyHUD.tscn:127
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "Estructura"
@@ -598,37 +598,37 @@ msgstr "Carbonat de Calci"
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una capa dura de Carbonat de Calci. Té una gran resistència a qualsevol agressió externa, ja sigui de naturalesa física o química. No consumeix gaire energia. Malgrat tot, la cèl·lula esdevé lenta i absorbeix els nutrients a poc a poc."
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:102
 msgid "CAMERA"
 msgstr "Càmera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2085
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
+#: ../src/general/OptionsMenu.tscn:2130
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
 msgstr "Cancel·lar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:760
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL·LAR ACCIÓ"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancel·la l'acció actual"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:821
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Un Tipus de Cèl·lula que s'utilitza actualment en el teu Pla Corporal no es pot eliminar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:819
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "No es pot eliminar el Tipus de Cèl·lula"
 
@@ -643,11 +643,11 @@ msgstr "No pot engolir"
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "No es pot moure una metabola en el seu arbre de descendents"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:826
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:843
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:824
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:841
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
@@ -701,7 +701,7 @@ msgid "CELL"
 msgstr "Cèl·lula"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:576
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Cèl·lules"
 
@@ -722,7 +722,7 @@ msgstr "Cel·lulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però no pot absorbir recursos ràpidament i és més lenta. [b]La cel·lulasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:652
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "Nom del Tipus de Cèl·lula"
 
@@ -734,17 +734,17 @@ msgstr "Les notes de canvi són massa llargues"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Canviar la simetria"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Trucs"
 
-#: ../src/general/OptionsMenu.tscn:1716
+#: ../src/general/OptionsMenu.tscn:1761
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Trucs activats"
 
-#: ../simulation_parameters/common/input_options.json:271
+#: ../simulation_parameters/common/input_options.json:306
 msgid "CHEAT_MENU"
 msgstr "Menú de trucs"
 
@@ -830,7 +830,7 @@ msgstr "Produeix [thrive:compound type=\"glucose\"][/thrive:compound]. La veloci
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "El nom de l'arxiu ({0}) ja existeix. Voleu sobreescriure?"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:440
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberració cromàtica:"
 
@@ -860,11 +860,11 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Netejar els arxius de guardat antics"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -872,15 +872,15 @@ msgstr "Netejar els arxius de guardat antics"
 msgid "CLOSE"
 msgstr "Tancar"
 
-#: ../src/general/OptionsMenu.tscn:2015
+#: ../src/general/OptionsMenu.tscn:2060
 msgid "CLOSE_OPTIONS"
 msgstr "Tancar opcions?"
 
-#: ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor de resolució dels núvols:"
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:965
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Mínim interval de simulació de núvols:"
 
@@ -892,11 +892,11 @@ msgstr "Zona costanera"
 msgid "COLLISION_SHAPE"
 msgstr "Generar entitats amb formes de col·lisió"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "Color"
 
-#: ../src/general/OptionsMenu.tscn:400
+#: ../src/general/OptionsMenu.tscn:402
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correcció per daltonisme:"
 
@@ -957,6 +957,15 @@ msgstr "Valor de saturació, la quantitat de gris en un color particular"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Valor (brillantor) valor, brillantor o intensitat del color"
 
+#: ../simulation_parameters/common/input_options.json:87
+#, fuzzy
+msgid "COMMON_ABILITIES"
+msgstr "Habilitats"
+
+#: ../simulation_parameters/common/input_options.json:169
+msgid "COMMON_EDITING_AND_STRATEGY"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM"
 msgstr ""
@@ -976,15 +985,15 @@ msgstr "la nostra Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Sortir del joc"
 
-#: ../src/general/OptionsMenu.tscn:1903
+#: ../src/general/OptionsMenu.tscn:1948
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Compostos:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1003,7 +1012,7 @@ msgstr "Compostos:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Equilibri de Compostos"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:950
 msgid "COMPOUND_CLOUDS"
 msgstr "Núvols de Compostos"
 
@@ -1085,7 +1094,7 @@ msgstr "Continuar als prototips d'altres estadis?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1099,11 +1108,11 @@ msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per 
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:578
+#: ../src/general/OptionsMenu.tscn:580
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1375
+#: ../src/general/OptionsMenu.tscn:1377
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1116,11 +1125,11 @@ msgstr "Copiar l'Error al Porta-Retalls"
 msgid "COPY_RESULTS"
 msgstr "Resultats de l'algorisme Auto-Evo:"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:419
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanòpia (Vermell-Verd)"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:419
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Blau-Groc)"
 
@@ -1222,11 +1231,11 @@ msgstr "Crear un Nou Mod"
 msgid "CREATE_NEW_SAVE"
 msgstr "Crear un nou arxiu de guardat"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:830
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:847
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Crear un nou Tipus de Teixit"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:844
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:861
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Pots crear nous tipus de teixits duplicant-ne de ja existents, i donant-los un nom nou. Els tipus de teixit es poden modificar amb l'editor de microbi per a especialitzar-los en diferents rols."
 
@@ -1263,7 +1272,7 @@ msgstr "Món Actual"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1780
 msgid "CUSTOM_USERNAME"
 msgstr "Nom d'usuari propi:"
 
@@ -1337,12 +1346,12 @@ msgstr "Tauler de Depuració"
 msgid "DECEMBER"
 msgstr "Desembre"
 
-#: ../src/general/OptionsMenu.cs:1404
+#: ../src/general/OptionsMenu.cs:1422
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output per defecte"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:607
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Eliminar"
@@ -1359,7 +1368,7 @@ msgstr ""
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
 msgstr "Eliminar orgànul"
 
@@ -1400,7 +1409,7 @@ msgstr "La descripció és massa llarga"
 msgid "DESPAWN_ENTITIES"
 msgstr "Màxim nombre d'entitats:"
 
-#: ../src/general/OptionsMenu.tscn:1075
+#: ../src/general/OptionsMenu.tscn:1077
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detectat compte CPU:"
 
@@ -1482,7 +1491,7 @@ msgstr "Normal"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Eficiència de Digestió"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Eficiència de Digestió"
 
@@ -1490,7 +1499,7 @@ msgstr "Eficiència de Digestió"
 msgid "DIGESTION_SPEED"
 msgstr "Velocitat de Digestió"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Velocitat de Digestió:"
 
@@ -1506,7 +1515,7 @@ msgstr "Esquerra"
 msgid "DIRECTIONR"
 msgstr "Dreta"
 
-#: ../src/general/OptionsMenu.tscn:330 ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:332 ../src/general/OptionsMenu.tscn:333
 msgid "DISABLED"
 msgstr "Inhabilitat"
 
@@ -1514,7 +1523,7 @@ msgstr "Inhabilitat"
 msgid "DISABLE_ALL"
 msgstr "Inhabilitar Tot"
 
-#: ../src/general/OptionsMenu.tscn:2068
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar i continuar"
 
@@ -1532,21 +1541,21 @@ msgstr ""
 "Hi ha cèl·lules col·locades que no han estat físicament connectats a la resta.\n"
 "Siusplau, connecta totes les cèl·lules per continuar."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:814
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
 msgid "DISCONNECTED_METABALLS"
 msgstr "Metaboles Desconnectades"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:816
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:833
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Hi ha metaboles col·locades que no estan connectades a la resta.\n"
 "Siusplau, mou totes les metaboles col·locades al costat d'altres per continuar."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
@@ -1557,12 +1566,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Han passat: {0:#,#} anys"
 
-#: ../src/general/OptionsMenu.tscn:1809
+#: ../src/general/OptionsMenu.tscn:1854
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Velocitat de Digestió:"
 
-#: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1852 ../src/general/OptionsMenu.tscn:1861
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1578,15 +1587,15 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:612
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostrar barra d'habilitats"
 
-#: ../src/general/OptionsMenu.tscn:467
+#: ../src/general/OptionsMenu.tscn:469
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partícules de fons"
 
-#: ../src/general/OptionsMenu.tscn:627
+#: ../src/general/OptionsMenu.tscn:629
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar noms de botons de selecció de parts"
 
@@ -1626,7 +1635,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:615
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar Tipus"
 
@@ -1751,7 +1760,12 @@ msgstr "Incloure Easter eggs"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(secrets aleatòriament generats al joc)"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../src/general/OptionsMenu.tscn:1544
+#, fuzzy
+msgid "EDGE_PAN_SPEED"
+msgstr "Velocitat de Digestió"
+
+#: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "Editor"
@@ -1771,7 +1785,7 @@ msgstr ""
 "\n"
 "Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1783,11 +1797,11 @@ msgstr "Mods Habilitats"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Habilitar Tots els Mods Compatibles"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:290
 msgid "ENABLE_EDITOR"
 msgstr "Habilitar l'editor"
 
-#: ../src/general/OptionsMenu.tscn:618
+#: ../src/general/OptionsMenu.tscn:620
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectes de llum del GUI"
 
@@ -1799,15 +1813,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr "Fonts d'energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
@@ -1849,7 +1863,7 @@ msgstr "Zona epipelàgica"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR"
 msgstr "Error"
 
@@ -1861,7 +1875,7 @@ msgstr "Error creant una carpeta per al mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Error creant l'arxiu d'informació del mod"
 
-#: ../src/general/OptionsMenu.tscn:2106
+#: ../src/general/OptionsMenu.tscn:2151
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: No s'ha pogut guardar la nova configuració."
 
@@ -1905,12 +1919,12 @@ msgstr "Per Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Per Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1875
+#: ../src/general/OptionsMenu.tscn:1920
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Versió:"
 
-#: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
+#: ../src/general/OptionsMenu.tscn:1918 ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
@@ -1946,11 +1960,11 @@ msgstr "Han passat: {0:#,#} anys"
 msgid "EXPORT_SUCCESS"
 msgstr "Predació de {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "Extern"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:307
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:323
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efectes externs:"
 
@@ -1993,7 +2007,7 @@ msgstr "Opcions Extra"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pausar el joc"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Error"
 
@@ -2084,7 +2098,7 @@ msgstr "Acaba una Generació"
 msgid "FINISH_X_GENERATIONS"
 msgstr "Acaba {0} Generacions"
 
-#: ../simulation_parameters/common/input_options.json:40
+#: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
@@ -2122,11 +2136,11 @@ msgstr "Rotació:"
 msgid "FLOATING_HAZARD"
 msgstr "Perill flotant"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "Fluidesa"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidesa / Rigidesa"
 
@@ -2141,11 +2155,11 @@ msgstr ""
 "i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
 "Els microbis sensibles canviaran d'objectius més aviat."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:221
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
 msgstr "Cadena Alimentària o Tròfica"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (rendiment: {2}) energia total disponible: {3} (rendiment total: {4})"
 
@@ -2190,7 +2204,7 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Sèssil"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2221,7 +2235,7 @@ msgstr "Núvol de glucosa gratuït quan s'abandona l'editor"
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
 
-#: ../src/general/OptionsMenu.tscn:284
+#: ../src/general/OptionsMenu.tscn:286
 msgid "FULLSCREEN"
 msgstr "Pantalla completa"
 
@@ -2246,7 +2260,7 @@ msgstr "General"
 msgid "GENERATIONS"
 msgstr "Generació:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "Generació:"
 
@@ -2255,7 +2269,7 @@ msgstr "Generació:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Sortir del joc"
 
-#: ../src/general/OptionsMenu.cs:952
+#: ../src/general/OptionsMenu.cs:970
 msgid "GLES2"
 msgstr ""
 
@@ -2267,11 +2281,11 @@ msgstr "Mode d'Alerta GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
 
-#: ../src/general/OptionsMenu.cs:957
+#: ../src/general/OptionsMenu.cs:975
 msgid "GLES3"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:432
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -2320,12 +2334,12 @@ msgstr "Ho he entès tot"
 msgid "GPL_LICENSE_HEADING"
 msgstr "Text de la llicència GPL:"
 
-#: ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.tscn:479
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:173
 msgid "GRAPHICS"
 msgstr "Gràfics"
 
@@ -2333,7 +2347,7 @@ msgstr "Gràfics"
 msgid "GRAPHICS_TEAM"
 msgstr "Equip de gràfics"
 
-#: ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.tscn:563
 msgid "GUI"
 msgstr "GUI"
 
@@ -2345,12 +2359,12 @@ msgstr ""
 "Si experimentes un bug on parts del botó de l'editor desapareixen,\n"
 "pots intentar desactivant això per veure si el problema s'arregla."
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:261
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} K"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:811
 msgid "GUI_VOLUME"
 msgstr "Volum del GUI"
 
@@ -2372,23 +2386,23 @@ msgstr "Ajuda"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
 
-#: ../src/general/OptionsMenu.tscn:970 ../src/general/OptionsMenu.tscn:1020
+#: ../src/general/OptionsMenu.tscn:972 ../src/general/OptionsMenu.tscn:1022
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valors més alts augmenten el rendiment)"
 
-#: ../src/general/OptionsMenu.tscn:315 ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:317 ../src/general/OptionsMenu.tscn:1180
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valors més alts empitjoren el rendiment)"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:226
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Mantenir premut per commutar entre el mode de translació i de rotació"
 
-#: ../simulation_parameters/common/input_options.json:52
+#: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Mantenir clicat per mostrar el menú d'ordres de la bandada"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:214
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Mantingues premut per mostrar el cursor"
 
@@ -2401,7 +2415,7 @@ msgstr ""
 msgid "HOME"
 msgstr "Menú principal"
 
-#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
+#: ../src/general/OptionsMenu.tscn:1292 ../src/general/OptionsMenu.tscn:1402
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Versió:"
@@ -2411,7 +2425,7 @@ msgstr "Versió:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "Punts de salut:"
 
@@ -2482,21 +2496,21 @@ msgstr "Matèria Ingerida"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Crear un nou món"
 
-#: ../src/general/OptionsMenu.tscn:204
+#: ../src/general/OptionsMenu.tscn:206
 msgid "INPUTS"
 msgstr "Entrades"
 
-#: ../simulation_parameters/common/input_options.json:80
+#: ../simulation_parameters/common/input_options.json:91
 #, fuzzy
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr "Acaba una Generació"
 
-#: ../simulation_parameters/common/input_options.json:72
+#: ../simulation_parameters/common/input_options.json:73
 #, fuzzy
 msgid "INPUT_NAME_INTERACTION"
 msgstr "Acaba una Generació"
 
-#: ../simulation_parameters/common/input_options.json:76
+#: ../simulation_parameters/common/input_options.json:77
 #, fuzzy
 msgid "INPUT_NAME_OPEN_INVENTORY"
 msgstr "Acaba una Generació"
@@ -2555,7 +2569,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:442
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:458
 msgid "INTERNALS"
 msgstr "Parts internes"
 
@@ -2617,8 +2631,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
-#: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
+#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1327
+#: ../src/general/OptionsMenu.tscn:1415 ../src/general/OptionsMenu.tscn:1438
 msgid "INVERTED"
 msgstr ""
 
@@ -2650,19 +2664,19 @@ msgstr "Sortir del joc"
 msgid "JANUARY"
 msgstr "Gener"
 
-#: ../src/general/OptionsMenu.tscn:1841
+#: ../src/general/OptionsMenu.tscn:1886
 msgid "JSON_DEBUG_MODE"
 msgstr "Mode debug de JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Sempre"
 
-#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1901 ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automàticament"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1902
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Mai"
 
@@ -2844,23 +2858,23 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:885
+#: ../src/general/OptionsMenu.tscn:887
 msgid "LANGUAGE"
 msgstr "Llengua:"
 
-#: ../src/general/OptionsMenu.cs:1444
+#: ../src/general/OptionsMenu.cs:1462
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Aquest idioma s'ha traduït al {0}%"
 
-#: ../src/general/OptionsMenu.cs:1440
+#: ../src/general/OptionsMenu.cs:1458
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Aquesta llengua encara és una feina en progrés ({0}% completat)"
 
-#: ../src/general/OptionsMenu.cs:1436
+#: ../src/general/OptionsMenu.cs:1454
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Aquesta traducció encara és incomplerta ({0}% traduït) siusplau ajuda'ns a completar-la!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1350
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "No es pot eliminar l'últim orgànul"
 
@@ -3067,11 +3081,16 @@ msgstr "Fumaroles hidrotermals"
 msgid "LIGHT"
 msgstr "Llum"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "Rodeta dreta"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -3079,7 +3098,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Rodeta dreta"
@@ -3089,7 +3108,7 @@ msgstr "Rodeta dreta"
 msgid "LIGHT_MAX"
 msgstr "Llum"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_EXTREME"
 msgstr "Extrem"
 
@@ -3103,31 +3122,31 @@ msgstr "Normal"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_HUGE"
 msgstr "Enorme"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_LARGE"
 msgstr "Gran"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_NORMAL"
 msgstr "Normal"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_SMALL"
 msgstr "Petit"
 
-#: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_TINY"
 msgstr "Minúscul"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_VERY_LARGE"
 msgstr "Molt gran"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197
 msgid "LIMIT_VERY_SMALL"
 msgstr "Molt petit"
 
@@ -3220,7 +3239,7 @@ msgstr ""
 "És probable que aquest arxiu de guardat sigui corrupte, o que pertanyi a un format nou, no entès per aquesta versió de Thrive.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
@@ -3257,7 +3276,7 @@ msgstr "Març"
 msgid "MARINE_SNOW"
 msgstr "Neu marina"
 
-#: ../src/general/OptionsMenu.tscn:653
+#: ../src/general/OptionsMenu.tscn:655
 msgid "MASTER_VOLUME"
 msgstr "Volum General"
 
@@ -3266,15 +3285,15 @@ msgstr "Volum General"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "s'ha extingit de l'ecosistema"
 
-#: ../src/general/OptionsMenu.tscn:369
+#: ../src/general/OptionsMenu.tscn:371
 msgid "MAX_FPS"
 msgstr "Màxims FPS:"
 
-#: ../src/general/OptionsMenu.tscn:384
+#: ../src/general/OptionsMenu.tscn:386
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Il·limitat"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Màxim nombre d'entitats:"
 
@@ -3313,7 +3332,7 @@ msgstr "Aturar Reproducció Multimèdia"
 msgid "MEGA_YEARS"
 msgstr "Milions d'anys"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "Membrana"
 
@@ -3321,7 +3340,7 @@ msgstr "Membrana"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Rigidesa de la membrana"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "Tipus de Membrana"
 
@@ -3657,16 +3676,16 @@ msgstr "Mínim:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "No està permès mostrar menys de {0} dataset(s)!"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:217
 msgid "MISC"
 msgstr "Misc"
 
-#: ../simulation_parameters/common/input_options.json:282
+#: ../simulation_parameters/common/input_options.json:318
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Miscel·lània"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:210
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Miscel·lània Estadi 3D"
 
@@ -3717,7 +3736,7 @@ msgid "MODIFY_ORGANELLE"
 msgstr "Modificar orgànul"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:593
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Modificar Tipus"
 
@@ -3868,11 +3887,15 @@ msgstr "Versió del Mod:"
 msgid "MORE_INFO"
 msgstr "Mostrar Més Informació"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1534
+msgid "MOUSE_EDGE_PANNING_OPTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1333
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -3880,8 +3903,8 @@ msgstr ""
 msgid "MOVE"
 msgstr "Moure"
 
-#: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:508
+#: ../simulation_parameters/common/input_options.json:8
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
 msgid "MOVEMENT"
 msgstr "Moviment"
 
@@ -3889,27 +3912,27 @@ msgstr "Moviment"
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:23
+#: ../simulation_parameters/common/input_options.json:24
 msgid "MOVE_BACKWARDS"
 msgstr "Moure cap endarrere"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Moure cap avall o ajupir-se"
 
-#: ../simulation_parameters/common/input_options.json:19
+#: ../simulation_parameters/common/input_options.json:20
 msgid "MOVE_FORWARD"
 msgstr "Moure cap endavant"
 
-#: ../simulation_parameters/common/input_options.json:11
+#: ../simulation_parameters/common/input_options.json:12
 msgid "MOVE_LEFT"
 msgstr "Moure cap a l'esquerra"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_ORGANELLE"
 msgstr "Moure orgànul"
 
-#: ../simulation_parameters/common/input_options.json:15
+#: ../simulation_parameters/common/input_options.json:16
 msgid "MOVE_RIGHT"
 msgstr "Moure cap a la dreta"
 
@@ -3931,7 +3954,7 @@ msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moure a aquest Indret"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:198
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Moure's cap amunt o saltar"
 
@@ -4030,7 +4053,7 @@ msgstr "Múltiples Metaboles"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Múltiples Orgànuls"
 
-#: ../src/general/OptionsMenu.tscn:308
+#: ../src/general/OptionsMenu.tscn:310
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Antialiàsing Multimostres (MSAA):"
 
@@ -4042,7 +4065,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Música"
 
-#: ../src/general/OptionsMenu.tscn:704
+#: ../src/general/OptionsMenu.tscn:706
 msgid "MUSIC_VOLUME"
 msgstr "Volum de la música"
 
@@ -4063,9 +4086,9 @@ msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
 msgid "MUTATION_POINTS"
 msgstr "Punts de Mutació"
 
-#: ../src/general/OptionsMenu.tscn:682 ../src/general/OptionsMenu.tscn:733
-#: ../src/general/OptionsMenu.tscn:768 ../src/general/OptionsMenu.tscn:803
-#: ../src/general/OptionsMenu.tscn:838
+#: ../src/general/OptionsMenu.tscn:684 ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:770 ../src/general/OptionsMenu.tscn:805
+#: ../src/general/OptionsMenu.tscn:840
 msgid "MUTE"
 msgstr "Mut"
 
@@ -4073,11 +4096,11 @@ msgstr "Mut"
 msgid "NAME"
 msgstr "Nom:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Equilibri d'ATP Negatiu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "El teu Microbi no consumeix més ATP que no pas pot arribar a produïr!\n"
@@ -4118,20 +4141,20 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "El Meu Mod Esbalaïdor"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:864
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:881
 msgid "NEW_NAME"
 msgstr "Nou Nom"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:857
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:874
 msgid "NEW_NAME_COLON"
 msgstr "Nou nom:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:773
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
 msgstr "SEGÜENT"
 
@@ -4170,7 +4193,7 @@ msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:418 ../src/general/OptionsMenu.tscn:419
 msgid "NONE"
 msgstr "Cap"
 
@@ -4233,7 +4256,7 @@ msgid "NO_AI"
 msgstr "No IA"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr "No hi ha dades a mostrar"
 
@@ -4264,7 +4287,7 @@ msgstr "No s'han trobat arxius de guardat"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "No s'ha trobar el directori d'arxius de guardat"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "No s'ha trobat cap directori de captures de pantalla"
 
@@ -4277,7 +4300,7 @@ msgstr "Cap Mod Seleccionat"
 msgid "NUCLEUS"
 msgstr "Nucli"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "No es pot eliminar el nucli, ja que aquesta és una evolució irreversible.\n"
@@ -4299,8 +4322,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4328,7 +4351,7 @@ msgstr ""
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Suicidi"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:88
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
@@ -4364,7 +4387,7 @@ msgstr "Obrir pantalla d'ajuda"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Construcció lliure"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1815
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Obrir Carpeta de Registres"
 
@@ -4372,11 +4395,11 @@ msgstr "Obrir Carpeta de Registres"
 msgid "OPEN_MOD_URL"
 msgstr "Obrir Informació de l'URL"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Obrir menú d'orgànul"
 
-#: ../src/society_stage/SocietyHUD.tscn:135
+#: ../src/society_stage/gui/SocietyHUD.tscn:137
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Obrir pantalla d'ajuda"
@@ -4385,7 +4408,12 @@ msgstr "Obrir pantalla d'ajuda"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Obrir el directori de guardats"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../simulation_parameters/common/input_options.json:250
+#, fuzzy
+msgid "OPEN_SCIENCE_MENU"
+msgstr "Obrir el menú"
+
+#: ../src/general/OptionsMenu.tscn:1807
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Obrir la carpeta de captures de pantalla"
 
@@ -4393,7 +4421,7 @@ msgstr "Obrir la carpeta de captures de pantalla"
 msgid "OPEN_THE_MENU"
 msgstr "Obrir el menú"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:924
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ajuda'ns a traduïr el joc"
 
@@ -4421,7 +4449,7 @@ msgstr "Opcions"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Canviar la configuració"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "Orgànuls"
 
@@ -4436,7 +4464,7 @@ msgstr "Orgànuls"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicel·lular"
@@ -4465,7 +4493,7 @@ msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-org
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Apunyala altres cèl·lules amb aquesta part."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
@@ -4591,23 +4619,23 @@ msgstr "Endavant"
 msgid "PAGE_TITLE"
 msgstr "Eliminar Dades Locals"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:151
 msgid "PAN_CAMERA_DOWN"
 msgstr "Desplaçar cap avall"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:139
 msgid "PAN_CAMERA_LEFT"
 msgstr "Desplaçar cap a l'esquerra"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:181
 msgid "PAN_CAMERA_RESET"
 msgstr "Reinicialitzar càmera"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:143
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Desplaçar cap a la dreta"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:147
 msgid "PAN_CAMERA_UP"
 msgstr "Desplaçar cap amunt"
 
@@ -4657,7 +4685,7 @@ msgstr "Eliminar Dades Locals"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2169
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4731,11 +4759,11 @@ msgstr "Pacífic"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:193
+#: ../src/general/OptionsMenu.tscn:195
 msgid "PERFORMANCE"
 msgstr "Rendiment"
 
-#: ../simulation_parameters/common/input_options.json:68
+#: ../simulation_parameters/common/input_options.json:69
 msgid "PERFORM_UNBINDING"
 msgstr "Dur a terme la desunió"
 
@@ -4756,7 +4784,7 @@ msgstr "Fosfat"
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosíntesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:545
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:561
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:239
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condicions Físiques"
@@ -4767,7 +4795,7 @@ msgstr "Condicions Físiques"
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistència física"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
 msgstr "Col·locar orgànul"
 
@@ -4816,7 +4844,7 @@ msgstr "Jugador Duplicat"
 msgid "PLAYER_EXTINCT"
 msgstr "Jugador extingit"
 
-#: ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:1477
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Jugador extingit"
@@ -4831,23 +4859,23 @@ msgstr ""
 "Jugador\n"
 "Velocitat"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1599
+#: ../src/general/OptionsMenu.tscn:1644
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Mostra el vídeo introductori"
 
-#: ../src/general/OptionsMenu.tscn:1607
+#: ../src/general/OptionsMenu.tscn:1652
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mostrar la cinemàtica d'entrada a l'Estadi de Microbi en una nova partida"
 
@@ -4857,7 +4885,7 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/SocietyHUD.tscn:266
+#: ../src/society_stage/gui/SocietyHUD.tscn:210
 msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓ:"
 
@@ -4869,7 +4897,7 @@ msgstr "població:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "població a les zones:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4877,7 +4905,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predació de {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Veure informació detallada de la predicció"
 
@@ -4934,7 +4962,7 @@ msgstr ""
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "Proteïnes"
 
@@ -4946,11 +4974,11 @@ msgstr "protoplasma"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programació"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_LOAD"
 msgstr "Càrrega ràpida"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:338
 msgid "QUICK_SAVE"
 msgstr "Guardat ràpid"
 
@@ -5007,7 +5035,7 @@ msgstr "Recomanat Thrive:"
 msgid "REDDIT_TOOLTIP"
 msgstr "Reprendre el joc"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:135
 msgid "REDO"
 msgstr "Refer l'acció"
 
@@ -5038,12 +5066,12 @@ msgid "REPRODUCED"
 msgstr "reproducció"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:530
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Reproducció"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:672
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:689
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asexual"
 
@@ -5053,7 +5081,7 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmació"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
 
@@ -5061,7 +5089,7 @@ msgstr "Reproducció:"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Requereix nucli"
 
-#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:1945
+#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1990
 msgid "RESET"
 msgstr "Reset"
 
@@ -5070,24 +5098,24 @@ msgstr "Reset"
 msgid "RESET_DEADZONES"
 msgstr "Resetejar als valors per defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1876
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2005
+#: ../src/general/OptionsMenu.tscn:2050
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetejar els inputs a valors per defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1558
+#: ../src/general/OptionsMenu.tscn:1603
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Resetejar Inputs"
 
-#: ../src/general/OptionsMenu.tscn:1985
+#: ../src/general/OptionsMenu.tscn:2030
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Per defecte"
 
-#: ../src/general/OptionsMenu.tscn:1996
+#: ../src/general/OptionsMenu.tscn:2041
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetejar als valors per defecte?"
 
@@ -5096,7 +5124,7 @@ msgstr "Resetejar als valors per defecte?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:347
 msgid "RESOLUTION"
 msgstr "Resolució:"
 
@@ -5113,6 +5141,11 @@ msgstr "Velocitat d'Absorció de Recursos"
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Pressió"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:13
+#, fuzzy
+msgid "RESOURCE_FOOD"
+msgstr "Veure Codi Font"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 #, fuzzy
@@ -5174,7 +5207,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Clic dret del ratolí"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "Rigidesa"
 
@@ -5182,19 +5215,19 @@ msgstr "Rigidesa"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana més rígida protegeix millor, però fa que la cèl·lula sigui més lenta i menys àgil."
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
 msgstr "Rotar cap a l'esquerra"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:123
 msgid "ROTATE_RIGHT"
 msgstr "Rotar cap a la dreta"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "Rotació:"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1057
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Activa la simulació auto-evo durant el joc"
 
@@ -5263,11 +5296,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Eliminar Dades Locals"
 
-#: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2004 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Guardar"
 
-#: ../src/general/OptionsMenu.tscn:2058
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "SAVE_AND_CONTINUE"
 msgstr "Guardar i continuar"
 
@@ -5365,21 +5398,21 @@ msgstr "No és possible guardar actualment degut a:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
-#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1346
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Agent de Senyalització"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1477 ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1511
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "per augmentar la"
@@ -5388,7 +5421,7 @@ msgstr "per augmentar la"
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Cerca..."
 
@@ -5400,7 +5433,7 @@ msgstr "Radi de cerca:"
 msgid "SEA_FLOOR"
 msgstr "Llit marí"
 
-#: ../simulation_parameters/common/input_options.json:44
+#: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
@@ -5484,7 +5517,7 @@ msgstr "Sèssil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Aquest valor només s'aplicarà a les partides iniciades després de canviar la opció"
 
-#: ../src/general/OptionsMenu.tscn:774
+#: ../src/general/OptionsMenu.tscn:776
 msgid "SFX_VOLUME"
 msgstr "Volum SFX"
 
@@ -5492,16 +5525,16 @@ msgstr "Volum SFX"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:314
+#: ../simulation_parameters/common/input_options.json:350
 msgid "SHOW_HELP"
 msgstr "Mostrar tauler d'ajuda"
 
-#: ../src/general/OptionsMenu.tscn:1787
+#: ../src/general/OptionsMenu.tscn:1832
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1785
+#: ../src/general/OptionsMenu.tscn:1830
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -5510,15 +5543,15 @@ msgstr "{0} {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutorials"
 
-#: ../src/general/OptionsMenu.tscn:1697
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutorials (a la partida actual)"
 
-#: ../src/general/OptionsMenu.tscn:1689
+#: ../src/general/OptionsMenu.tscn:1734
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutorials (en noves partides)"
 
-#: ../src/general/OptionsMenu.tscn:1704
+#: ../src/general/OptionsMenu.tscn:1749
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostra avís de progrés no guardat"
 
@@ -5526,7 +5559,7 @@ msgstr "Mostra avís de progrés no guardat"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Habilitar / deshabilitar la finestreta d'avís de progrés no guardat quan el jugador intenta sortir del joc."
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1823
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5576,11 +5609,11 @@ msgstr "Silici"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressions externes, sobretot les de naturalesa física. També consumeix poca energia. No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els nutrients a poc a poc."
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "Mida:"
 
@@ -5623,7 +5656,7 @@ msgstr "Petit tros de Ferro"
 msgid "SOCIETY_STAGE"
 msgstr "Estadi de Microbi"
 
-#: ../src/general/OptionsMenu.tscn:182
+#: ../src/general/OptionsMenu.tscn:184
 msgid "SOUND"
 msgstr "Só"
 
@@ -5648,7 +5681,7 @@ msgstr "Tecla espai"
 msgid "SPACE_STAGE"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "Fer aparéixer Amoníac"
 
@@ -5660,11 +5693,11 @@ msgstr "Generar Enemic"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No es pot fer servir el truc de generar un enemic ja que aquest medi no conté cap espècie enemiga"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:294
 msgid "SPAWN_GLUCOSE"
 msgstr "Fer aparéixer Glucosa"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fer aparéixer Fosfats"
 
@@ -5717,8 +5750,8 @@ msgstr "Nom de l'Espècie..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Nom de l'Espècie..."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:507
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:523
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:551
 msgid "SPECIES_POPULATION"
 msgstr "Població de les Espècies"
 
@@ -5742,7 +5775,7 @@ msgstr "{0} amb població: {1}"
 msgid "SPEED"
 msgstr "Velocitat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "Velocitat:"
 
@@ -5768,7 +5801,7 @@ msgid "START_GAME"
 msgstr "Guardar la partida"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
 #: ../src/microbe_stage/HUDBottomBar.tscn:115
 msgid "STATISTICS"
 msgstr "Estadístiques"
@@ -5880,7 +5913,7 @@ msgstr "Aturar"
 msgid "STORAGE"
 msgstr "Emmagatzematge"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "Emmagatzematge:"
 
@@ -5888,22 +5921,31 @@ msgstr "Emmagatzematge:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
 
+#: ../simulation_parameters/common/input_options.json:246
+#, fuzzy
+msgid "STRATEGY_STAGES"
+msgstr "Estadi de Microbi"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "Estructural"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:420
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "Estructura"
 
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/structures.json:50
+msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
@@ -5944,8 +5986,8 @@ msgstr "Suicidi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
 msgstr "Llum solar"
@@ -5962,15 +6004,15 @@ msgstr "Tecla Super Right"
 msgid "SUPPORTER_PATRONS"
 msgstr "Partidaris"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:230
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Commutar a la vista de càmera frontal"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:234
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "Commutar a la vista de càmera de cantó"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Commutar a la vista de càmera superior"
 
@@ -5978,20 +6020,20 @@ msgstr "Commutar a la vista de càmera superior"
 msgid "SYSREQ"
 msgstr "Requeriments"
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:242
+#: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:265
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Rotar cap a l'esquerra"
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:269
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Rotar cap a la dreta"
@@ -6000,9 +6042,13 @@ msgstr "Rotar cap a la dreta"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Les etiquetes només contenen espai en blanc"
 
-#: ../simulation_parameters/common/input_options.json:310
+#: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Fer una captura de pantalla"
+
+#: ../simulation_parameters/awakening_stage/technologies.json:21
+msgid "TECHNOLOGY_HUNTER_GATHERING"
+msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6012,6 +6058,7 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
+#: ../src/general/base_stage/StrategyStageBase.cs:96
 #: ../src/late_multicellular_stage/MulticellularStage.cs:806
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
@@ -6019,7 +6066,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -6104,7 +6151,7 @@ msgstr "Aquest és un mod instal·lat localment"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Aquest mod s'ha descarregat des del Workshop d'Steam"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1126
 msgid "THREADS"
 msgstr "Fils:"
 
@@ -6160,15 +6207,15 @@ msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aque
 msgid "TIDEPOOL"
 msgstr "Toll o bassa de marea"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:235
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:251
 msgid "TIMELINE"
 msgstr "Cronologia"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:426
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Mostrar esdeveniments globals"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:439
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Mostrar esdeveniments locals"
 
@@ -6212,31 +6259,31 @@ msgstr "Han passat: {0:#,#} anys"
 msgid "TITLE_COLON"
 msgstr "Títol:"
 
-#: ../simulation_parameters/common/input_options.json:56
+#: ../simulation_parameters/common/input_options.json:57
 #: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "Activar el mode d'unió"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Obrir el menú de debug"
 
-#: ../simulation_parameters/common/input_options.json:48
+#: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_FPS"
 msgstr "Activar monitor FPS"
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:354
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Activar pantalla completa"
 
-#: ../simulation_parameters/common/input_options.json:322
+#: ../simulation_parameters/common/input_options.json:358
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Commuta HUD"
 
@@ -6245,7 +6292,7 @@ msgstr "Commuta HUD"
 msgid "TOGGLE_INVENTORY"
 msgstr "Activar el mode d'unió"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:334
 msgid "TOGGLE_METRICS"
 msgstr "Activar pestanya d'estadístiques"
 
@@ -6253,11 +6300,11 @@ msgstr "Activar pestanya d'estadístiques"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:322
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
 
-#: ../simulation_parameters/common/input_options.json:60
+#: ../simulation_parameters/common/input_options.json:61
 msgid "TOGGLE_UNBINDING"
 msgstr "Desactivar el mode d'unió"
 
@@ -6269,7 +6316,7 @@ msgstr "Eines"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Població Total:"
 
@@ -6327,7 +6374,7 @@ msgstr "Intenta fer algunes captures de pantalla!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Intenta guardar una partida!"
 
-#: ../src/general/OptionsMenu.tscn:2116
+#: ../src/general/OptionsMenu.tscn:2161
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Intenta fer algunes captures de pantalla!"
 
@@ -6485,7 +6532,7 @@ msgstr "Veure ara"
 msgid "TWITTER_TOOLTIP"
 msgstr "Han passat: {0:#,#} anys"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6501,7 +6548,7 @@ msgstr "Hi ha canvis no aplicats"
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Has d'aplicar els teus canvis per pujar o descarregar mods."
 
-#: ../simulation_parameters/common/input_options.json:64
+#: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "Desunir totes les cèl·lules"
@@ -6510,7 +6557,7 @@ msgstr "Desunir totes les cèl·lules"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Mode de Desunió"
 
-#: ../src/general/OptionsMenu.cs:1505
+#: ../src/general/OptionsMenu.cs:1523
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6521,7 +6568,7 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr "Cova submarina"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:131
 msgid "UNDO"
 msgstr "Desfer l'acció"
 
@@ -6533,7 +6580,7 @@ msgstr "Desfer la darrera acció"
 msgid "UNKNOWN"
 msgstr "Desconegut"
 
-#: ../src/general/OptionsMenu.cs:962
+#: ../src/general/OptionsMenu.cs:980
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Mostrar noms de botons de selecció de parts"
@@ -6546,7 +6593,7 @@ msgstr "Desconegut ratolí"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Desconegut a Windows"
 
-#: ../src/general/OptionsMenu.cs:1512
+#: ../src/general/OptionsMenu.cs:1530
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versió del Mod:"
@@ -6555,7 +6602,7 @@ msgstr "Versió del Mod:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "ID del Workshop Desconegut Per Aquest Mod"
 
-#: ../src/general/OptionsMenu.tscn:2035
+#: ../src/general/OptionsMenu.tscn:2080
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hi ha canvis no guardats. Si continueu, es perdran tots.\n"
@@ -6599,7 +6646,7 @@ msgstr "Càrrega amb èxit"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Llicències i llibreries utilitzades"
 
-#: ../src/general/OptionsMenu.tscn:507
+#: ../src/general/OptionsMenu.tscn:509
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -6615,7 +6662,7 @@ msgstr "Utilitzar Càrrega Auto Harmony"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
-#: ../src/general/OptionsMenu.tscn:1724
+#: ../src/general/OptionsMenu.tscn:1769
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
 
@@ -6623,11 +6670,11 @@ msgstr "Fer servir un nom d'usuari propi"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1114
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manualment establir nombre de fils del fons"
 
-#: ../src/general/OptionsMenu.tscn:1358
+#: ../src/general/OptionsMenu.tscn:1360
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6654,7 +6701,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Versió:"
 
-#: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1311 ../src/general/OptionsMenu.tscn:1421
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Versió:"
@@ -6665,11 +6712,11 @@ msgstr "Versió:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Nou nom:"
 
-#: ../src/general/OptionsMenu.tscn:534
+#: ../src/general/OptionsMenu.tscn:536
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
+#: ../src/general/OptionsMenu.cs:989 ../src/general/OptionsMenu.tscn:549
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6683,12 +6730,12 @@ msgstr "Visor"
 msgid "VIEW_ALL"
 msgstr "Inhabilitar Tot"
 
-#: ../src/general/OptionsMenu.tscn:1795
+#: ../src/general/OptionsMenu.tscn:1840
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1793
+#: ../src/general/OptionsMenu.tscn:1838
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -6725,11 +6772,11 @@ msgstr "Treure volum"
 msgid "VOLUMEUP"
 msgstr "Apujar volum"
 
-#: ../src/general/OptionsMenu.tscn:276
+#: ../src/general/OptionsMenu.tscn:278
 msgid "VSYNC"
 msgstr "V-Sync"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "S'està esperant l'algorisme auto-evo:"
 
@@ -6831,24 +6878,24 @@ msgstr "Estadístiques Generals del Món Actual"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1511
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per augmentar la"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "Pitjor Medi:"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:598
 msgid "XBOX_SERIES"
 msgstr ""
 
@@ -6875,13 +6922,17 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Pots donar suport al desenvolupament futur de Thrive a Patreon."
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:110
 msgid "ZOOM_IN"
 msgstr "Enfocar la visió de la càmera"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "ENABLED"
+#~ msgstr "Mods Habilitats"
 
 #~ msgid "PANGONIAN_REGION_NAME"
 #~ msgstr "Pangonià"

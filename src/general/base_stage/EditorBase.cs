@@ -86,12 +86,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// <summary>
     ///   The light level the editor is previewing things at
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is saved but there's a slight bug that the selected light level gets reset anyway when loading a save
-    ///     made in the editor
-    ///   </para>
-    /// </remarks>
     [JsonProperty]
     private float lightLevel = 1.0f;
 
@@ -855,7 +849,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         mutationPointsCache = history.CalculateMutationPointsLeft();
 
-        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
+        if (mutationPointsCache.Value is < 0 or > Constants.BASE_MUTATION_POINTS)
         {
             GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
                 " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
