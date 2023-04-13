@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -60,7 +61,7 @@ public class OrganelleUpgradeGUI : Control
         upgradeTooltipScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn");
     }
 
-    public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene,
+    public void OpenForOrganelle(OrganelleTemplate organelle, float costMultiplier, string upgraderScene,
         ICellEditorComponent editorComponent)
     {
         openedForOrganelle = organelle;
@@ -112,10 +113,12 @@ public class OrganelleUpgradeGUI : Control
 
                 var selectionButton = upgradeSelectionButtonScene.Instance<MicrobePartSelection>();
 
+                var cost = (int)Math.Min(upgrade.MPCost * costMultiplier, 100);
+
                 selectionButton.Name = availableUpgrade.Key;
                 selectionButton.SelectionGroup = generalUpgradeButtonGroup;
                 selectionButton.PartName = upgrade.Name;
-                selectionButton.MPCost = upgrade.MPCost;
+                selectionButton.MPCost = cost;
                 selectionButton.PartIcon = upgrade.LoadedIcon;
 
                 selectionButton.Connect(nameof(MicrobePartSelection.OnPartSelected), this,
@@ -125,7 +128,7 @@ public class OrganelleUpgradeGUI : Control
                 var tooltip = upgradeTooltipScene.Instance<SelectionMenuToolTip>();
                 tooltip.DisplayName = upgrade.Name;
                 tooltip.Description = upgrade.Description;
-                tooltip.MutationPointCost = upgrade.MPCost;
+                tooltip.MutationPointCost = cost;
 
                 // TODO: add support for flavour text
                 // tooltip.ProcessesDescription = upgrade.Description;
