@@ -86,6 +86,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath DisplayPartNamesTogglePath = null!;
 
     [Export]
+    public NodePath DisplayMenu3DBackgroundsTogglePath = null!;
+
+    [Export]
     public NodePath GpuNamePath = null!;
 
     [Export]
@@ -341,6 +344,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
     private CustomCheckBox displayPartNamesToggle = null!;
+    private CustomCheckBox displayMenu3DBackgroundsToggle = null!;
     private Label gpuName = null!;
     private Label usedRendererName = null!;
     private Label videoMemory = null!;
@@ -501,6 +505,7 @@ public class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
         displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
+        displayMenu3DBackgroundsToggle = GetNode<CustomCheckBox>(DisplayMenu3DBackgroundsTogglePath);
         gpuName = GetNode<Label>(GpuNamePath);
         usedRendererName = GetNode<Label>(UsedRendererNamePath);
         videoMemory = GetNode<Label>(VideoMemoryPath);
@@ -691,6 +696,7 @@ public class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.Pressed = settings.DisplayPartNames;
+        displayMenu3DBackgroundsToggle.Pressed = settings.Menu3DBackgroundEnabled;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -834,6 +840,7 @@ public class OptionsMenu : ControlWithInput
                 DisplayBackgroundParticlesTogglePath.Dispose();
                 GUILightEffectsTogglePath.Dispose();
                 DisplayPartNamesTogglePath.Dispose();
+                DisplayMenu3DBackgroundsTogglePath.Dispose();
                 GpuNamePath.Dispose();
                 UsedRendererNamePath.Dispose();
                 VideoMemoryPath.Dispose();
@@ -1766,6 +1773,13 @@ public class OptionsMenu : ControlWithInput
     private void OnDisplayPartNamesToggled(bool toggle)
     {
         Settings.Instance.DisplayPartNames.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDisplay3DMenuBackgroundsToggled(bool toggle)
+    {
+        Settings.Instance.Menu3DBackgroundEnabled.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
