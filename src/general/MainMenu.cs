@@ -865,7 +865,7 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(uint.MaxValue, false);
-        galleryViewer.PopupFullRect();
+        galleryViewer.OpenFullRect();
         Jukebox.Instance.PlayCategory("ArtGallery");
     }
 

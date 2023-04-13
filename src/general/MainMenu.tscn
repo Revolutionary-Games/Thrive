@@ -949,14 +949,17 @@ margin_top = 28.0
 margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
-popup_exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 59 )]
 margin_right = 163.0
+margin_bottom = 97.0
 rect_min_size = Vector2( 550, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 WindowTitle = "NO_MODS_ENABLED"
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -964,6 +967,8 @@ CenterText = false
 DialogType = 1
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
+margin_right = 40.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 550, 370 )
 WindowTitle = "SAFE_MODE_TITLE"
 HideCancelButton = true
@@ -976,6 +981,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
 [node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 59 )]
 margin_right = 163.0
+margin_bottom = 97.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "THANK_YOU_TITLE"
 HideCancelButton = true
@@ -984,6 +990,8 @@ CenterText = false
 NoticeType = 1
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
+margin_right = 40.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
@@ -1032,8 +1040,8 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
 [connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
 [connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnReturnFromThriveopedia"]
-[connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
-[connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
+[connection signal="hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
+[connection signal="hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]

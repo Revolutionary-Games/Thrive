@@ -11,6 +11,12 @@ public static class ControlHelpers
     ///   Shows the popup in the center of the screen and shrinks it to the minimum size,
     ///   alternative to PopupCentered.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: This should be rarely used since for popups you should've already been using the ones
+    ///     deriving from <see cref="CustomWindow"/> anyway. This is kept here as a backup.
+    ///   </para>
+    /// </remarks>
     public static void PopupCenteredShrink(this Popup popup, bool runSizeUnstuck = true)
     {
         popup.PopupCentered(popup.GetMinimumSize());
@@ -18,23 +24,25 @@ public static class ControlHelpers
         // In case the popup sizing stuck (this happens sometimes)
         if (runSizeUnstuck)
         {
-            void Unstuck()
-            {
-                // "Refresh" the popup to correct its size
-                popup.RectSize = Vector2.Zero;
-
-                var parentRect = popup.GetViewport().GetVisibleRect();
-
-                // Re-center it
-                popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
-            }
-
             Invoke.Instance.Queue(() =>
             {
-                // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double delay
-                Invoke.Instance.Queue(Unstuck);
+                popup.MoveToCenter();
+
+                // CustomRichTextLabel-based dialogs are especially vulnerable, thus do double unstucking
+                Invoke.Instance.Queue(popup.MoveToCenter);
             });
         }
+    }
+
+    public static void MoveToCenter(this Control popup)
+    {
+        // "Refresh" control to correct its size
+        popup.RectSize = Vector2.Zero;
+
+        var parentRect = popup.GetViewportRect();
+
+        // Center it
+        popup.RectPosition = parentRect.Position + (parentRect.Size - popup.RectSize) / 2;
     }
 
     /// <summary>

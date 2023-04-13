@@ -73,4 +73,4 @@ rect_min_size = Vector2( 0, 40 )
 mouse_filter = 2
 
 [connection signal="Confirmed" from="ModifyPopup" to="." method="OnAccept"]
-[connection signal="popup_hide" from="ModifyPopup" to="." method="OnCancel"]
+[connection signal="hide" from="ModifyPopup" to="." method="OnCancel"]
