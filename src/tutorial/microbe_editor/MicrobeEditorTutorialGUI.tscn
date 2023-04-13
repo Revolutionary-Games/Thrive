@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=9]
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
 pause_mode = 2
@@ -79,8 +80,8 @@ margin_top = -134.0
 margin_right = -43.0
 margin_bottom = 206.0
 rect_min_size = Vector2( 360, 340 )
-ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
+ShowCloseButton = false
 Description = "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 ShowDelay = 0.3
 
@@ -97,15 +98,15 @@ margin_top = -150.0
 margin_right = -95.0
 margin_bottom = 225.0
 rect_min_size = Vector2( 360, 375 )
-ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
+ShowCloseButton = false
 Description = "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 ShowDelay = 0.3
 
 [node name="RedoButtonHighlight" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="CellEditorClosingWords" type="Popup" parent="."]
+[node name="CellEditorClosingWords" parent="." instance=ExtResource( 9 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -115,13 +116,13 @@ margin_top = -185.0
 margin_right = 180.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 360, 385 )
-theme = ExtResource( 2 )
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
 WindowTitle = "TUTORIAL"
 Description = "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
+DescriptionForController = ""
 ShowDelay = 0.7
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
@@ -171,12 +172,12 @@ margin_top = -190.0
 margin_right = 180.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 360, 390 )
-ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
+ShowCloseButton = false
 Description = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 ShowDelay = 0.7
 
-[node name="StaySmall" type="Popup" parent="."]
+[node name="StaySmall" parent="." instance=ExtResource( 9 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -186,13 +187,13 @@ margin_top = -180.0
 margin_right = 190.0
 margin_bottom = 205.0
 rect_min_size = Vector2( 375, 385 )
-theme = ExtResource( 2 )
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
 WindowTitle = "TUTORIAL"
 Description = "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
+DescriptionForController = ""
 ShowDelay = 0.7
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
@@ -230,20 +231,12 @@ custom_fonts/font = ExtResource( 6 )
 text = "CLOSE"
 
 [connection signal="hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
-[connection signal="popup_hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]
-[connection signal="popup_hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]
 [connection signal="hide" from="CellEditorIntro" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorIntroduction" ]]
-[connection signal="popup_hide" from="CellEditorIntro" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorIntroduction" ]]
 [connection signal="hide" from="UndoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorUndo" ]]
-[connection signal="popup_hide" from="UndoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorUndo" ]]
 [connection signal="hide" from="RedoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorRedo" ]]
-[connection signal="popup_hide" from="RedoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorRedo" ]]
 [connection signal="hide" from="CellEditorClosingWords" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
-[connection signal="popup_hide" from="CellEditorClosingWords" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="pressed" from="CellEditorClosingWords/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
-[connection signal="popup_hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
-[connection signal="popup_hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="pressed" from="StaySmall/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]

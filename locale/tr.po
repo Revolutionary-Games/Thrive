@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2023-03-30 06:11+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -61,7 +61,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Uyanış Evresi'ne Geç. Yeterli beyin gücüne sahip olduğunda açılır (aksonlu doku türü)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -265,7 +265,7 @@ msgstr "Atmosferik Gazlar"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "ATP Dengesi"
 
@@ -299,7 +299,7 @@ msgstr "Ağustos"
 msgid "AUTO"
 msgstr "Otomatik"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gösterir. Bir türün yakalayabileceği toplam enerji ve bunun tür başına maliyeti son popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı olarak, onların ne kadar iyi performans sergilediğini hesaplamak için gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne kadar iyi yararlanabileceğini gösteren bir ölçüdür."
 
@@ -307,12 +307,12 @@ msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gö
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} popülasyonu {2} arazisinde {1} defa değişti çünkü: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Oto-Evrim Tahmini"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Bu panel, düzenlenen türler için oto-evrimden çıkan beklenilen popülasyon rakamlarını gösterir.\n"
@@ -448,7 +448,7 @@ msgstr "İlerlemeye Başla"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "Davranış"
 
@@ -492,7 +492,7 @@ msgstr "Performans aşaması:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Sonuçlar:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "En İyi Arazi:"
 
@@ -609,7 +609,7 @@ msgstr "İptal"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "EYLEMİ İPTAL ET"
 
@@ -718,7 +718,7 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
@@ -860,7 +860,7 @@ msgstr "Eski Kayıtları Temizle"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -888,7 +888,7 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Çarpışan şekillerle varlıklar oluştur"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "Renk"
 
@@ -1499,7 +1499,7 @@ msgstr "Normal"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Sindirim Verimliliği"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Sindirim Verimliliği:"
 
@@ -1507,7 +1507,7 @@ msgstr "Sindirim Verimliliği:"
 msgid "DIGESTION_SPEED"
 msgstr "Sindirim Hızı"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Sindirim Hızı:"
 
@@ -1559,11 +1559,11 @@ msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş damla formları var.\n"
 "Devam etmek için lütfen yerleştirdiğin bütün damla formlarını birbirine bağla."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bağlı Olmayan Organeller"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş organeller var.\n"
@@ -1816,15 +1816,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanmakta"
 
@@ -1956,7 +1956,7 @@ msgstr "Tüm dünyaların verilerini virgülle ayrılmış değerler (csv) biçi
 msgid "EXPORT_SUCCESS"
 msgstr "Başarımı Dışa Aktar"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "Dış"
 
@@ -2002,7 +2002,7 @@ msgstr "Ek Seçenekler"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Facebook sayfamızı ziyaret et"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Başarısız"
 
@@ -2109,11 +2109,11 @@ msgstr "Yüzen Parçalar:"
 msgid "FLOATING_HAZARD"
 msgstr "Yüzen Tehlike"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "Akışkan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Akışkanlık / Sertlik"
 
@@ -2132,7 +2132,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Besin Zinciri"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} ile açığa çıkan enerji miktarı: {1} (uyum başarısı: {2}) mevcut toplam enerji miktarı: {3} (toplam uyum başarısı: {4})"
 
@@ -2225,7 +2225,7 @@ msgstr "Genel"
 msgid "GENERATIONS"
 msgstr "Kuşaklar"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
 
@@ -2385,7 +2385,7 @@ msgstr "Yatay:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Yatay (Eksen: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -2823,7 +2823,7 @@ msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı ol!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Son organel silinemez"
 
@@ -3029,11 +3029,16 @@ msgstr "Hidrotermal bacalar"
 msgid "LIGHT"
 msgstr "Işık"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "Ortalama"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "Gece"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr "Gündüz"
 
@@ -3041,7 +3046,7 @@ msgstr "Gündüz"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "Öğlen, {0} seviyesinde"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Gece"
 
@@ -3270,7 +3275,7 @@ msgstr "Media Stop"
 msgid "MEGA_YEARS"
 msgstr "M.Y."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "Hücre Zarı"
 
@@ -3278,7 +3283,7 @@ msgstr "Hücre Zarı"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Hücre Zarı Sertliği"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "Hücre Zarı Türleri"
 
@@ -4008,11 +4013,11 @@ msgstr "Sessiz"
 msgid "NAME"
 msgstr "Ad:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Dengesi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobun, hayatta kalmak için yeterli ATP üretmemekte!\n"
@@ -4064,7 +4069,7 @@ msgstr "Yeni İsim:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4167,7 +4172,7 @@ msgid "NO_AI"
 msgstr "AI Yok"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
@@ -4209,7 +4214,7 @@ msgstr "Seçilen Mod Yok"
 msgid "NUCLEUS"
 msgstr "Çekirdek"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Bu geri dönüşü olmayan bir evrim olduğu için çekirdek silinemez.\n"
@@ -4231,8 +4236,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4354,7 +4359,7 @@ msgstr "Ayarlar"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ayarlarını değiştir"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "Organeller"
 
@@ -4367,7 +4372,7 @@ msgstr "Akson"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Aksonlar, nöronların birbirine bağlanmak ve birbiriyle iletişim kurmak için kullandığı sinir lifleridir. Bu organeli yerleştirmek, bir hücre türünü beyin dokusuna dönüştürür."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Çok Hücreli"
 
@@ -4393,7 +4398,7 @@ msgstr "Pili (tekil: pilus), birçok mikroorganizmanın yüzeyinde bulunur ve in
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Diğer hücreleri delmek veya onların toksinlerine karşı hücreyi korumak için kullanılabilir."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
@@ -4788,7 +4793,7 @@ msgstr "popülasyonu:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "arazideki popülasyon:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4796,7 +4801,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} türünün yenilmesi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Tahminin ardındaki detaylı bilgiyi incele"
 
@@ -4853,7 +4858,7 @@ msgstr "Yeni göç etmiş popülasyonları tür sınırından koru"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Yeni oluşturulan türleri tür sınırından koru"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "Proteinler"
 
@@ -5088,7 +5093,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Sağ fare tuşu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "Sert"
 
@@ -5104,7 +5109,7 @@ msgstr "Sola döndür"
 msgid "ROTATE_RIGHT"
 msgstr "Sağa döndür"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "Dönme:"
 
@@ -5301,7 +5306,7 @@ msgstr "Ekrana bağlı"
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Ara..."
 
@@ -5488,7 +5493,7 @@ msgstr "Bu hücre zarı silikadan yapılmış güçlü bir duvara sahiptir. Topl
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "Büyüklük:"
 
@@ -5644,7 +5649,7 @@ msgstr "{0} türü {1} popülasyon ile"
 msgid "SPEED"
 msgstr "Hız"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
@@ -5780,7 +5785,7 @@ msgstr "Durdur"
 msgid "STORAGE"
 msgstr "Depo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "Depo:"
 
@@ -5797,13 +5802,13 @@ msgstr "Mikrop Evresi"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Sıkı alan mücadelesi (uyum başarısı farklılıkları abartılı)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "Yapısal"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "Yapı"
 
@@ -5853,7 +5858,7 @@ msgstr "Hemen yok ol"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6190,7 +6195,7 @@ msgstr "Araçlar"
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Toplam Popülasyon:"
 
@@ -6645,7 +6650,7 @@ msgstr "Volume Up"
 msgid "VSYNC"
 msgstr "Dikey eşitleme"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
@@ -6752,7 +6757,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dünyaya bağlı"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
 

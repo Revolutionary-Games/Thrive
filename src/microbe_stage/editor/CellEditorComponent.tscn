@@ -366,6 +366,7 @@ TopPanelPath = NodePath("TopPanel")
 DayButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
 NightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton")
 AverageLightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton")
+CurrentLightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton")
 TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
 StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
 AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane")
@@ -413,13 +414,13 @@ margin_right = 170.0
 margin_bottom = 57.0
 
 [node name="PanelContainer" type="PanelContainer" parent="TopPanel"]
-margin_right = 499.0
+margin_right = 662.0
 margin_bottom = 50.0
 
 [node name="MarginContainer" type="MarginContainer" parent="TopPanel/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 498.0
+margin_right = 661.0
 margin_bottom = 49.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -429,7 +430,7 @@ custom_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="TopPanel/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 487.0
+margin_right = 650.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -450,9 +451,30 @@ margin_right = 44.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="DayButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="CurrentLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
 margin_left = 48.0
-margin_right = 173.0
+margin_right = 207.0
+margin_bottom = 28.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 38 )
+text = "LIGHT_LEVEL_CURRENT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DayButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 211.0
+margin_right = 336.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -472,8 +494,8 @@ __meta__ = {
 }
 
 [node name="NightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 177.0
-margin_right = 315.0
+margin_left = 340.0
+margin_right = 478.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -493,8 +515,8 @@ __meta__ = {
 }
 
 [node name="AverageLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 319.0
-margin_right = 477.0
+margin_left = 482.0
+margin_right = 640.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -892,10 +914,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 340.0
-margin_top = 365.0
-margin_right = 656.0
-margin_bottom = 955.0
+margin_left = 344.0
+margin_top = 369.0
+margin_right = 660.0
+margin_bottom = 959.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1470,12 +1492,11 @@ margin_bottom = -1.41425
 [node name="OrganellePopupMenu" parent="." instance=ExtResource( 47 )]
 anchor_right = 0.15625
 anchor_bottom = 0.183333
-margin_right = 0.0
-margin_bottom = 0.0
+margin_right = 420.0
+margin_bottom = 267.0
 
 [node name="PredictionExplanation" parent="." instance=ExtResource( 39 )]
 rect_min_size = Vector2( 550, 500 )
-popup_exclusive = true
 WindowTitle = "AUTO-EVO_PREDICTION"
 Resizable = true
 
@@ -1507,17 +1528,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ExplanationText" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
+margin_right = 48.0
 
 [node name="Spacer" type="Control" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 21.0
+margin_top = 26.0
 margin_right = 48.0
-margin_bottom = 26.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Help" type="Label" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 30.0
+margin_top = 35.0
 margin_right = 48.0
-margin_bottom = 167.0
+margin_bottom = 172.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "AUTO-EVO_EXPLANATION_EXPLANATION"
@@ -1535,6 +1557,7 @@ text = "CLOSE"
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Current" ]]
 [connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="OnLightLevelButtonPressed" binds= [ "Day" ]]
 [connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Night" ]]
 [connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Average" ]]

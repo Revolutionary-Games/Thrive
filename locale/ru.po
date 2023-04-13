@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-10 16:17+0700\n"
 "PO-Revision-Date: 2023-03-29 20:04+0000\n"
 "Last-Translator: Maxim <maxSAINTSPuRpLe@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -61,7 +61,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Переместиться на Стадию Пробуждения. Доступно только если у вас есть достаточное количество развитости мозга (Поместите аксон в какой либо тип клетки)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -265,7 +265,7 @@ msgstr "Атмосферные Газы"
 msgid "ATP"
 msgstr "АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
 
@@ -299,7 +299,7 @@ msgstr "Август"
 msgid "AUTO"
 msgstr "Авто"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "На данной панели показаны числа, на основе которых работает предсказание авто-эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его физическая форма по сравнению с общей пригодностью. Пригодность - это показатель того, насколько хорошо вид может использовать этот источник пищи."
 
@@ -307,12 +307,12 @@ msgstr "На данной панели показаны числа, на осн�
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Популяция {0} изменена на {1} к {2}, по причине: {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1501
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Предсказание Авто-Эволюции"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Эта панель показывает ожидаемую численность авто-эво для редактируемых видов.\n"
@@ -448,7 +448,7 @@ msgstr "Начать Процветание"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "Поведение"
 
@@ -492,7 +492,7 @@ msgstr "Фаза тестирования:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Результаты:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "Лучший Путь:"
 
@@ -609,7 +609,7 @@ msgstr "Отмена"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТМЕНИТЬ ДЕЙСТВИЕ"
 
@@ -718,7 +718,7 @@ msgstr "Целлюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
@@ -860,7 +860,7 @@ msgstr "Удалить устаревшие сохранения"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:73
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
@@ -888,7 +888,7 @@ msgstr "Прибрежный"
 msgid "COLLISION_SHAPE"
 msgstr "Создавать сущности с коллизией"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "Окраска"
 
@@ -1499,7 +1499,7 @@ msgstr "Нормально"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Эффективность переваривания"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Эффективность поглощения:"
 
@@ -1507,7 +1507,7 @@ msgstr "Эффективность поглощения:"
 msgid "DIGESTION_SPEED"
 msgstr "Скорость переваривания"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Скорость переваривания:"
 
@@ -1559,11 +1559,11 @@ msgstr ""
 "Среди размещённых клеток имеются метасферы что не объединены с остальными.\n"
 "Пожалуйста, соедините все размещённые метасферы с другими для продолжения."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Отсоединённые Органеллы"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Среди размещённых органелл, имеются несоединённые с остальными.\n"
@@ -1816,15 +1816,15 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2442
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Энергия в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2453
 msgid "ENERGY_SOURCES"
 msgstr "Источники Энергии:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, результатом чего является нескорректированная популяция количеством в {2}"
 
@@ -1956,7 +1956,7 @@ msgstr "Экспортировать всю информацию мира в csv
 msgid "EXPORT_SUCCESS"
 msgstr "Экспортировано удачно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "Внешние"
 
@@ -2002,7 +2002,7 @@ msgstr "Дополнительные Настройки"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Посетить нашу страницу на Facebook"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Неудачно"
 
@@ -2109,11 +2109,11 @@ msgstr "Окружающие фрагменты:"
 msgid "FLOATING_HAZARD"
 msgstr "Плавающая опасность"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "Жидкость"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Подвижность / Жёсткость"
 
@@ -2132,7 +2132,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Пищевая Цепочка"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2459
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} энергия: {1} (пригодность: {2}) общая доступная энергия: {3} (общая пригодность: {4})"
 
@@ -2225,7 +2225,7 @@ msgstr "Общее"
 msgid "GENERATIONS"
 msgstr "Поколения"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
@@ -2385,7 +2385,7 @@ msgstr "По горизонтали:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "По горизонтали (ось: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "ОЗ:"
 
@@ -2823,7 +2823,7 @@ msgstr "Этот язык всё ещё находится в стадии ра�
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, помогите нам с этим!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1370
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена"
 
@@ -3029,11 +3029,16 @@ msgstr "Гидротермальные источники"
 msgid "LIGHT"
 msgstr "Свет"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "В среднем"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "Ночь"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr "День"
 
@@ -3041,7 +3046,7 @@ msgstr "День"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} в полдень"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Ночь"
 
@@ -3270,7 +3275,7 @@ msgstr "MediaStop"
 msgid "MEGA_YEARS"
 msgstr "млн. лет"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "Мембрана"
 
@@ -3278,7 +3283,7 @@ msgstr "Мембрана"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Жёсткость Мембраны"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "Типы Мембран"
 
@@ -4008,11 +4013,11 @@ msgstr "Заглушить"
 msgid "NAME"
 msgstr "Имя:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицательный АТФ Баланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш микроб не производит нужное количество АТФ для выживания!\n"
@@ -4064,7 +4069,7 @@ msgstr "Новое Название Колонии:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4167,7 +4172,7 @@ msgid "NO_AI"
 msgstr "Выключить ИИ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
@@ -4209,7 +4214,7 @@ msgstr "Ни одного мода не выбрано"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1368
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Нельзя удалить ядро, это необратимая эволюция.\n"
@@ -4231,8 +4236,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2342
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4354,7 +4359,7 @@ msgstr "Настройки"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "Органеллы"
 
@@ -4367,7 +4372,7 @@ msgstr "Аксон"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Аксоны - нервные волокна, что используются нейронами для подключения друг к другу и общению между собой. Размещение этой органеллы превращает тип клетки в ткань мозга."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Многоклеточный"
 
@@ -4393,7 +4398,7 @@ msgstr "Пили (единственное число: пиль) встреча�
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Проткните этим другие клетки."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
@@ -4788,7 +4793,7 @@ msgstr "популяция:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Популяция в биомах:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2323
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4796,7 +4801,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Истребление {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Просмотр подробной информации, лежащей в основе прогноза"
 
@@ -4853,7 +4858,7 @@ msgstr "Защищать только что мигрировавшие попу
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Защищать только что созданные виды от ограничения на виды"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "Белки"
 
@@ -5088,7 +5093,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Правая кнопка мыши"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "Жесткий"
 
@@ -5104,7 +5109,7 @@ msgstr "Повернуть влево"
 msgid "ROTATE_RIGHT"
 msgstr "Повернуть вправо"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "Популяция:"
 
@@ -5301,7 +5306,7 @@ msgstr "Относительно экрана"
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Поиск..."
 
@@ -5488,7 +5493,7 @@ msgstr "Эта мембрана имеет прочную стенку из кр
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
@@ -5644,7 +5649,7 @@ msgstr "{0} с численностью: {1}"
 msgid "SPEED"
 msgstr "Скорость"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "Скорость:"
 
@@ -5780,7 +5785,7 @@ msgstr "Cтоп"
 msgid "STORAGE"
 msgstr "Хранилище"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "Вместимость соединений в клетке:"
 
@@ -5797,13 +5802,13 @@ msgstr "Одноклеточная стадия"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Жесткая конкуренция за экологическую нишу (различия в приспособленности преувеличены)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "Структурный"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "Структура"
 
@@ -5853,7 +5858,7 @@ msgstr "Самоубийство"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6190,7 +6195,7 @@ msgstr "Инструменты"
 msgid "TOOL_HAND_AXE"
 msgstr "Ручной Топор"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Общая Популяция:"
 
@@ -6645,7 +6650,7 @@ msgstr "VolumeUp"
 msgid "VSYNC"
 msgstr "Вертикальная синхронизация"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
@@ -6752,7 +6757,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Относительно мира"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "Худший Путь:"
 

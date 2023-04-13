@@ -2056,7 +2056,7 @@ margin_top = 360.0
 margin_right = 940.0
 margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
-popup_exclusive = true
+Exclusive = true
 WindowTitle = "CLOSE_OPTIONS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BackConfirm"]
@@ -2165,7 +2165,7 @@ margin_left = 640.0
 margin_top = 360.0
 margin_right = 640.0
 margin_bottom = 360.0
-popup_exclusive = true
+Exclusive = true
 WindowTitle = "PATCH_NOTES_TITLE"
 Resizable = true
 
