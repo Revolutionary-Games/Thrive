@@ -471,7 +471,8 @@ public class MainMenu : NodeWithInput
     {
         var random = new Random();
 
-        if (Settings.Instance.Menu3DBackgroundEnabled)
+        // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
+        if (Settings.Instance.Menu3DBackgroundEnabled && OS.GetCurrentVideoDriver() != OS.VideoDriver.Gles2)
         {
             SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
         }
