@@ -105,6 +105,8 @@ public class OrganelleUpgradeGUI : Control
 
             var tooltipGroup = GetTooltipGroup();
 
+            var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
+
             // Setup the buttons for each of the available upgrades
             foreach (var availableUpgrade in availableGeneralUpgrades)
             {
@@ -112,7 +114,6 @@ public class OrganelleUpgradeGUI : Control
 
                 var selectionButton = upgradeSelectionButtonScene.Instance<MicrobePartSelection>();
 
-                var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
                 var newUpgrade = new OrganelleUpgrades();
                 newUpgrade.UnlockedFeatures.Add(availableUpgrade.Key);
 

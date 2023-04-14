@@ -334,14 +334,16 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        var cost = mpCost.ToString(CultureInfo.CurrentCulture);
+        var cost = string.Empty;
 
         if (mpCost < 0)
         {
             // Negative MP cost means it actually gives MP, to convey that to the player we need to explicitly
             // prefix the cost with a positive sign
-            cost = TranslationServer.Translate("POSITIVE_SIGNED_NUMBER").FormatSafe(Mathf.Abs(mpCost));
+            cost = "+";
         }
+
+        cost += Mathf.Abs(mpCost).ToString(CultureInfo.CurrentCulture);
 
         mpLabel.Text = cost;
     }

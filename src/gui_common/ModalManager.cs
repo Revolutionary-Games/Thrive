@@ -2,6 +2,7 @@
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using Nito.Collections;
 
 /// <summary>
 ///   Handles a stack of <see cref="CustomWindow"/>s that block GUI inputs.
@@ -16,9 +17,8 @@ public class ModalManager : NodeWithInput
     /// </summary>
     private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> originalParents = new();
 
+    private readonly Deque<CustomWindow> modalStack = new();
     private readonly Queue<CustomWindow> demotedModals = new();
-
-    private Stack<CustomWindow> modalStack = new();
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CanvasLayer canvasLayer = null!;
@@ -78,7 +78,7 @@ public class ModalManager : NodeWithInput
             return;
 
         originalParents[popup] = popup.GetParent();
-        modalStack.Push(popup);
+        modalStack.AddToFront(popup);
         modalsDirty = true;
 
         var binds = new Array { popup };
@@ -95,7 +95,7 @@ public class ModalManager : NodeWithInput
         if (modalStack.Count <= 0)
             return false;
 
-        var popup = modalStack.Peek();
+        var popup = modalStack.First();
 
         if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
             return false;
@@ -119,7 +119,7 @@ public class ModalManager : NodeWithInput
         if (modalStack.Count <= 0)
             return null;
 
-        var modal = modalStack.Peek();
+        var modal = modalStack.First();
 
         if (modal.Exclusive)
             return modal;
@@ -151,10 +151,14 @@ public class ModalManager : NodeWithInput
 
         activeModalContainer.Show();
 
-        var top = modalStack.Peek();
+        var top = modalStack.First();
 
         foreach (var modal in modalStack)
         {
+            // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
+            if (!modal.Visible)
+                modal.Open();
+
             if (modal != top)
             {
                 modal.ReParent(canvasLayer);
@@ -163,10 +167,6 @@ public class ModalManager : NodeWithInput
             }
 
             top.ReParent(activeModalContainer);
-
-            // Always make the top-most modal in the stack visible
-            if (!modal.Visible)
-                modal.Open();
 
             // Always give focus to the top-most modal in the stack
             top.FindNextValidFocus()?.GrabFocus();
@@ -187,7 +187,7 @@ public class ModalManager : NodeWithInput
                 return;
             }
 
-            var top = modalStack.Peek();
+            var top = modalStack.First();
 
             if (!top.Exclusive)
             {
@@ -209,7 +209,7 @@ public class ModalManager : NodeWithInput
         if (!modalStack.Contains(popup))
             return;
 
-        if (modalStack.Peek() != popup)
+        if (modalStack.First() != popup)
         {
             // Unexpected modal reported being closed (not top most modal).
             // We kind of need to accept that this is inevitable as the order of when multiple windows are made modal
@@ -217,11 +217,11 @@ public class ModalManager : NodeWithInput
             // got closed instead is the second.
 
             // Removes the correct modal deeper in the stack
-            modalStack = new Stack<CustomWindow>(modalStack.Where(m => m != popup));
+            modalStack.Remove(popup);
         }
         else
         {
-            modalStack.Pop();
+            modalStack.RemoveFromFront();
         }
 
         demotedModals.Enqueue(popup);
