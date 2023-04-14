@@ -42,6 +42,10 @@ public class CustomPopupMenu : CustomWindow
         }
     }
 
+    protected virtual void ResolveNodeReferences()
+    {
+    }
+
     protected override void OnOpen()
     {
         CreateTween().TweenProperty(this, "rect_size", cachedMinSize, 0.2f)
@@ -58,10 +62,6 @@ public class CustomPopupMenu : CustomWindow
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
         tween.TweenCallback(this, "hide");
-    }
-
-    protected virtual void ResolveNodeReferences()
-    {
     }
 
     protected override void Dispose(bool disposing)
