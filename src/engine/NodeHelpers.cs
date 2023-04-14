@@ -6,6 +6,8 @@ using Godot;
 /// </summary>
 public static class NodeHelpers
 {
+    private const string REPARENTING_META = "reparenting";
+
     /// <summary>
     ///   Properly destroys a game entity. In addition to the normal Godot Free, Destroy must be called
     /// </summary>
@@ -116,8 +118,14 @@ public static class NodeHelpers
             return;
         }
 
+        // Why use Godot.Object metadata? Because doing it the standard way with interfaces just for one
+        // flag thing to be able to reparent nodes sounds ridiculously incovenient to me -kasterisk
+        node.SetMeta(REPARENTING_META, true);
+
         node.GetParent().RemoveChild(node);
         newParent.AddChild(node);
+
+        node.RemoveMeta(REPARENTING_META);
     }
 
     /// <summary>
@@ -135,6 +143,24 @@ public static class NodeHelpers
         var temp = node.GlobalTransform;
         node.ReParent(newParent);
         node.GlobalTransform = temp;
+    }
+
+    /// <summary>
+    ///   Returns true if the given node or any of its antecedents is currently reparenting to another node.
+    /// </summary>
+    public static bool IsReParenting(this Node node)
+    {
+        var parent = node;
+
+        while (parent != null)
+        {
+            if (parent.HasMeta(REPARENTING_META))
+                return true;
+
+            parent = parent.GetParent();
+        }
+
+        return false;
     }
 
     /// <summary>

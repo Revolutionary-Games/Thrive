@@ -167,6 +167,8 @@ public class ModalManager : NodeWithInput
             // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
             if (!modal.Visible)
                 modal.Open();
+
+            modal.Notification(Popup.NotificationPostPopup);
         }
     }
 

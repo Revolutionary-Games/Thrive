@@ -219,7 +219,7 @@ public class CustomWindow : Control
     /// </summary>
     protected virtual void OnOpen()
     {
-        // Overridden methods can add add a popping up animation
+        // Overridden methods can add a popping up animation
     }
 
     /// <summary>
