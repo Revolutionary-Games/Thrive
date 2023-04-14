@@ -101,7 +101,7 @@ public class CustomWindow : Control
 
                 previousVisibilityState = IsVisibleInTree();
 
-                if (IsVisibleInTree())
+                if (previousVisibilityState)
                 {
                     MouseUnCaptureActive = true;
                     ApplyRectSettings();
@@ -215,26 +215,28 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Called after this window is made visible. Implement custom open behavior here.
+    ///   Called after this window is made visible. Implement custom open behavior by overriding this.
     /// </summary>
     protected virtual void OnOpen()
     {
-        // Here goes popping up animation
+        // Overridden methods can add add a popping up animation
     }
 
     /// <summary>
-    ///   Called when this window is closing from <see cref="Close"/>. Implement custom close behavior here.
+    ///   Called when this window is closing from <see cref="Close"/>. Implement custom close behavior by
+    ///   overriding this.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     The default implementation just hides. Unless you override this method, which then you must call
-    ///     <see cref="CanvasItem.Hide"/> after your closing animation finishes.
+    ///     <see cref="OnClosingAnimationFinished"/> after your closing animation finishes.
     ///   </para>
     /// </remarks>
     protected virtual void OnClose()
     {
-        // Here goes closing animation which eventually calls `Hide`.
-        Hide();
+        // For an animation override this method in a derived class and call OnClosingAnimationFinished once the
+        // animation is complete (and don't call base.OnClose as that will hide things too early)
+        OnClosingAnimationFinished();
     }
 
     /// <summary>
@@ -242,6 +244,11 @@ public class CustomWindow : Control
     /// </summary>
     protected virtual void OnHidden()
     {
+    }
+
+    protected virtual void OnClosingAnimationFinished()
+    {
+        Hide();
     }
 
     /// <summary>

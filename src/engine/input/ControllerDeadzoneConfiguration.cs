@@ -94,6 +94,8 @@ public class ControllerDeadzoneConfiguration : CustomDialog
 
     protected override void OnOpen()
     {
+        base.OnOpen();
+
         statusLabel.Text = string.Empty;
         visualizationContainer.Start();
 

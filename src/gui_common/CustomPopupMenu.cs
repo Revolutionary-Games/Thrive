@@ -61,12 +61,7 @@ public class CustomPopupMenu : CustomWindow
             .From(cachedMinSize)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
-        tween.TweenCallback(this, nameof(OnHidden));
-    }
-
-    protected override void OnHidden()
-    {
-        Hide();
+        tween.TweenCallback(this, nameof(OnClosingAnimationFinished));
     }
 
     protected override void Dispose(bool disposing)

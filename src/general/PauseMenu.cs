@@ -228,7 +228,6 @@ public class PauseMenu : CustomWindow
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
-        MouseUnCaptureActive = false;
 
         GetTree().AutoAcceptQuit = true;
     }
@@ -541,7 +540,6 @@ public class PauseMenu : CustomWindow
         EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
         Paused = false;
-        MouseUnCaptureActive = false;
     }
 
     /// <summary>
