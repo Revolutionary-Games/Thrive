@@ -22,6 +22,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public List<Texture> MenuBackgrounds = null!;
 
+    [Export(PropertyHint.File, "*.tscn")]
+    public List<string> Menu3DBackgroundScenes = null!;
+
     [Export]
     public NodePath FreebuildButtonPath = null!;
 
@@ -99,6 +102,7 @@ public class MainMenu : NodeWithInput
 
 #pragma warning disable CA2213
     private TextureRect background = null!;
+    private Node? created3DBackground;
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -203,6 +207,20 @@ public class MainMenu : NodeWithInput
         {
             ThriveNewsFeed.GetFeedContents();
         }
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        Settings.Instance.Menu3DBackgroundEnabled.OnChanged += OnMenuBackgroundTypeChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.Menu3DBackgroundEnabled.OnChanged -= OnMenuBackgroundTypeChanged;
     }
 
     public override void _Process(float delta)
@@ -408,8 +426,6 @@ public class MainMenu : NodeWithInput
             return;
         }
 
-        RandomizeBackground();
-
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
@@ -425,6 +441,8 @@ public class MainMenu : NodeWithInput
 
         // Set initial menu
         SwitchMenu();
+
+        RandomizeBackground();
 
         // Easter egg message
         thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
@@ -453,14 +471,60 @@ public class MainMenu : NodeWithInput
     {
         var random = new Random();
 
-        var chosenBackground = MenuBackgrounds.Random(random);
+        // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
+        if (Settings.Instance.Menu3DBackgroundEnabled && OS.GetCurrentVideoDriver() != OS.VideoDriver.Gles2)
+        {
+            SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
+        }
+        else
+        {
+            var chosenBackground = MenuBackgrounds.Random(random);
 
-        SetBackground(chosenBackground);
+            SetBackground(chosenBackground);
+        }
     }
 
     private void SetBackground(Texture backgroundImage)
     {
+        background.Visible = true;
         background.Texture = backgroundImage;
+
+        if (created3DBackground != null)
+        {
+            created3DBackground.DetachAndQueueFree();
+            created3DBackground = null;
+        }
+    }
+
+    private void SetBackgroundScene(string path)
+    {
+        background.Visible = false;
+        if (created3DBackground != null)
+        {
+            created3DBackground.DetachAndQueueFree();
+            created3DBackground = null;
+        }
+
+        var backgroundScene = GD.Load<PackedScene>(path);
+
+        if (backgroundScene == null)
+        {
+            GD.PrintErr("Failed to load menu background: ", path);
+            return;
+        }
+
+        // We can get by waiting one frame before the missing background is visible, this slightly reduces the lag
+        // lag spike when loading the main menu
+        Invoke.Instance.Queue(() =>
+        {
+            created3DBackground = backgroundScene.Instance();
+            AddChild(created3DBackground);
+        });
+    }
+
+    private void OnMenuBackgroundTypeChanged(bool value)
+    {
+        RandomizeBackground();
     }
 
     private void UpdateStoreVersionStatus()

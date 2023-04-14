@@ -119,6 +119,7 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
+Menu3DBackgroundScenes = [ "res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn" ]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")
@@ -949,6 +950,7 @@ margin_top = 28.0
 margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
+Exclusive = true
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
