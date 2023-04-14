@@ -151,21 +151,22 @@ public class ModalManager : NodeWithInput
 
         foreach (var modal in modalStack)
         {
-            // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
-            if (!modal.Visible)
-                modal.Open();
-
             if (modal != top)
             {
                 modal.ReParent(canvasLayer);
                 canvasLayer.MoveChild(modal, 0);
-                continue;
+            }
+            else
+            {
+                top.ReParent(activeModalContainer);
+
+                // Always give focus to the top-most modal in the stack
+                top.FindNextValidFocus()?.GrabFocus();
             }
 
-            top.ReParent(activeModalContainer);
-
-            // Always give focus to the top-most modal in the stack
-            top.FindNextValidFocus()?.GrabFocus();
+            // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
+            if (!modal.Visible)
+                modal.Open();
         }
     }
 

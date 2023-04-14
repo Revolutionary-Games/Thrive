@@ -234,8 +234,8 @@ public class CustomWindow : Control
     /// </remarks>
     protected virtual void OnClose()
     {
-        // For an animation override this method in a derived class and call OnClosingAnimationFinished once the
-        // animation is complete (and don't call base.OnClose as that will hide things too early)
+        // For an animation, override this method in a derived class and call `OnClosingAnimationFinished` once the
+        // animation is complete (and don't call `base.OnClose` as that will hide things too early)
         OnClosingAnimationFinished();
     }
 
