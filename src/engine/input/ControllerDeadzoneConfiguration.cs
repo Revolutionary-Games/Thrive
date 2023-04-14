@@ -92,6 +92,18 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
     }
 
+    protected override void OnShown()
+    {
+        base.OnShown();
+        OnBecomeVisible();
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnCancel();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -136,6 +148,8 @@ public class ControllerDeadzoneConfiguration : CustomDialog
 
     private void OnCancel()
     {
+        // TODO: this should also reset the text / timers so that reopening the configuration quickly works correctly
+
         visualizationContainer.Stop();
     }
 

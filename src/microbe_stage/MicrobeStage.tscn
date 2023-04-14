@@ -2053,13 +2053,21 @@ __meta__ = {
 }
 
 [node name="StagePrototypeConfirm" parent="MicrobeHUD" instance=ExtResource( 88 )]
+margin_right = 300.0
+margin_bottom = 97.0
 rect_min_size = Vector2( 450, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FossilisationDialog" parent="MicrobeHUD" instance=ExtResource( 96 )]
 margin_left = 458.0
 margin_top = 120.0
 margin_right = 822.0
 margin_bottom = 540.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false
@@ -2101,7 +2109,7 @@ __meta__ = {
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
-[connection signal="OnClosed" from="MicrobeHUD/ProcessPanel" to="MicrobeHUD" method="OnProcessPanelClosed"]
+[connection signal="hide" from="MicrobeHUD/ProcessPanel" to="MicrobeHUD" method="OnProcessPanelClosed"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]

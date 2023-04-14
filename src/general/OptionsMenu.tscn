@@ -66,6 +66,7 @@ DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxCont
 DisplayBackgroundParticlesTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayBackgroundParticles")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/GUILightsEffectToggle")
 DisplayPartNamesTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayPartNamesToggle")
+DisplayMenu3DBackgroundsTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle")
 GpuNamePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/GpuName")
 UsedRendererNamePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/UsedRendererName")
 VideoMemoryPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9/VideoMemory")
@@ -255,7 +256,7 @@ follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer"]
 margin_right = 712.0
-margin_bottom = 590.0
+margin_bottom = 625.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -263,7 +264,7 @@ custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer"]
 margin_right = 702.0
-margin_bottom = 580.0
+margin_bottom = 615.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -623,10 +624,17 @@ text = "ENABLE_GUI_LIGHT_EFFECTS"
 margin_top = 555.0
 margin_right = 238.0
 margin_bottom = 580.0
+size_flags_horizontal = 0
+text = "DISPLAY_PART_NAMES"
+
+[node name="Menu3DBackgroundsToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 590.0
+margin_right = 363.0
+margin_bottom = 615.0
 focus_neighbour_bottom = NodePath("../../../../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../../../../HBoxContainer/Back")
 size_flags_horizontal = 0
-text = "DISPLAY_PART_NAMES"
+text = "DISPLAY_3D_MENU_BACKGROUNDS"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -2056,7 +2064,7 @@ margin_top = 360.0
 margin_right = 940.0
 margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
-popup_exclusive = true
+Exclusive = true
 WindowTitle = "CLOSE_OPTIONS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BackConfirm"]
@@ -2165,7 +2173,7 @@ margin_left = 640.0
 margin_top = 360.0
 margin_right = 640.0
 margin_bottom = 360.0
-popup_exclusive = true
+Exclusive = true
 WindowTitle = "PATCH_NOTES_TITLE"
 Resizable = true
 
@@ -2226,6 +2234,7 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]

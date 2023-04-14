@@ -1492,12 +1492,11 @@ margin_bottom = -1.41425
 [node name="OrganellePopupMenu" parent="." instance=ExtResource( 47 )]
 anchor_right = 0.15625
 anchor_bottom = 0.183333
-margin_right = 0.0
-margin_bottom = 0.0
+margin_right = 420.0
+margin_bottom = 267.0
 
 [node name="PredictionExplanation" parent="." instance=ExtResource( 39 )]
 rect_min_size = Vector2( 550, 500 )
-popup_exclusive = true
 WindowTitle = "AUTO-EVO_PREDICTION"
 Resizable = true
 
@@ -1529,17 +1528,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ExplanationText" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
+margin_right = 48.0
 
 [node name="Spacer" type="Control" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 21.0
+margin_top = 26.0
 margin_right = 48.0
-margin_bottom = 26.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Help" type="Label" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 30.0
+margin_top = 35.0
 margin_right = 48.0
-margin_bottom = 167.0
+margin_bottom = 172.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "AUTO-EVO_EXPLANATION_EXPLANATION"
