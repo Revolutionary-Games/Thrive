@@ -955,13 +955,12 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Değer (parlaklık) değeri, renkteki parlaklığın şiddeti"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "Yetenekler"
+msgstr "Ortak Yetenekler"
 
 #: ../simulation_parameters/common/input_options.json:169
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Ortak Editör ve Strateji Evreleri"
 
 #: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM"
@@ -1770,9 +1769,8 @@ msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(oyunda rastgele oluşan gizemler)"
 
 #: ../src/general/OptionsMenu.tscn:1553
-#, fuzzy
 msgid "EDGE_PAN_SPEED"
-msgstr "Sindirim Hızı"
+msgstr "Kaydırma hızı:"
 
 #: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
@@ -3837,7 +3835,7 @@ msgstr "Daha Fazla Bilgi Göster"
 
 #: ../src/general/OptionsMenu.tscn:1543
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "İmleç ekranın kenarındayken, stratejik görünümü kaydır"
 
 #: ../src/general/OptionsMenu.tscn:1268
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -4327,9 +4325,8 @@ msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Kayıt Dizinini Aç"
 
 #: ../simulation_parameters/common/input_options.json:250
-#, fuzzy
 msgid "OPEN_SCIENCE_MENU"
-msgstr "Menüyü aç"
+msgstr "Bilim menüsünü aç"
 
 #: ../src/general/OptionsMenu.tscn:1816
 msgid "OPEN_SCREENSHOT_FOLDER"
@@ -4698,7 +4695,7 @@ msgstr "Fiziksel Direnç"
 
 #: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
-msgstr "Organel yerleştir"
+msgstr "Organel yerleştir (veya diğer yerleştirilebilen şey)"
 
 #: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
@@ -5039,9 +5036,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
-#, fuzzy
 msgid "RESOURCE_FOOD"
-msgstr "Odun"
+msgstr "Yiyecek"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
@@ -5801,9 +5797,8 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
 
 #: ../simulation_parameters/common/input_options.json:246
-#, fuzzy
 msgid "STRATEGY_STAGES"
-msgstr "Mikrop Evresi"
+msgstr "Strateji Evreleri"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
@@ -5825,7 +5820,7 @@ msgstr "İnşaat için gerekli malzemeler yerleştirildi"
 
 #: ../simulation_parameters/awakening_stage/structures.json:50
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
-msgstr ""
+msgstr "Avcı-Toplayıcı Kulübesi"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
@@ -5924,9 +5919,8 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Ekran görüntüsü al"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
-#, fuzzy
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr "Kilidi açılan teknoloji: {0}"
+msgstr "Avcı-Toplayıcılık"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"

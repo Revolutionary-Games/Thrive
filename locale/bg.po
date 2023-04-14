@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1468
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Двуизмерно движение:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
@@ -33,7 +33,7 @@ msgstr "Триизмерно движение"
 
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Триизмерно движение:"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
@@ -152,14 +152,25 @@ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Без мутации на създанията (ако няма подходяща мутация)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Характеристика"
+msgstr "Обща статистика на всички светове"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Характеристика"
+msgstr ""
+"[b]Поколения:[/b]\n"
+"  {0}\n"
+"[b]Общо създания:[/b]\n"
+"  Средно: {1}; Стандартно отклонение: {2}\n"
+"[b]Живи създания:[/b]\n"
+"  Средно: {3}; Стандартно отклонение: {4}\n"
+"[b]Популация на създанията по зона:[/b]\n"
+"  Средно: {5}; Стандартно отклонение: {6}\n"
+"[b]Обща популация на създанията по зона:[/b]\n"
+"  Средно: {7}; Стандартно отклонение: {8}\n"
+"[b]Среден размер на създанията:[/b]\n"
+"  Средно: {9}; Стандартно отклонение: {10}\n"
+"[b]Общи данни за органелите:[/b]"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -345,9 +356,8 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Състояние:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "Състояние:"
+msgstr "Автоматична еволюция:"
 
 #: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
@@ -363,12 +373,11 @@ msgstr "Налични"
 
 #: ../simulation_parameters/common/gallery.json:430
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Пробуждане"
 
 #: ../simulation_parameters/common/gallery.json:419
-#, fuzzy
 msgid "AWARE_STAGE"
-msgstr "Микробен етап"
+msgstr "Осъзнаване"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
@@ -554,7 +563,7 @@ msgstr "Биом: {0}"
 
 #: ../src/general/GameProperties.cs:136
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Неврон"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
@@ -1072,7 +1081,7 @@ msgstr ""
 "\n"
 "Преди да продължете, запазете текущата си игра, защото създаването на запис по време на следващите етапи на играта не винаги е възможно.\n"
 "\n"
-"Моля, обърнете внимание, че следващите етапи на играта не са завършени и може да не функционират правилно."
+"Поддръжката за контролерите е в процес на разбработка. Моля, обърнете внимание, че следващите етапи на играта не са завършени и може да не функционират правилно."
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
@@ -1099,7 +1108,7 @@ msgstr "Мъртва зона:"
 
 #: ../src/general/OptionsMenu.tscn:580
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Вид на контролера:"
 
 #: ../src/general/OptionsMenu.tscn:1386
 msgid "CONTROLLER_SENSITIVITY"
@@ -1165,12 +1174,11 @@ msgstr "Резултати от автоматичната еволюция:"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
-msgstr ""
+msgstr "Каменна ръчна брадва"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:277
-#, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Резултати от автоматичната еволюция:"
+msgstr "Резултати"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
@@ -1216,7 +1224,7 @@ msgstr "Може да създадете нови клетки с различн
 
 #: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
-msgstr "Нова модификация"
+msgstr "Създаване на нова модификация"
 
 #: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
@@ -1255,14 +1263,31 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Текущи разработчици"
+msgstr "Текущ свят"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:959
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Характеристика"
+msgstr ""
+"[b]Поколения:[/b]\n"
+"  {0}\n"
+"[b]Общо зони:[/b]\n"
+"  {1}\n"
+"[b]Общо време за автоматичната еволюция:[/b]\n"
+"  {2}\n"
+"[b]Общо създания:[/b]\n"
+"  {3}\n"
+"[b]Живи създания:[/b]\n"
+"  {4}\n"
+"[b]Популация на създанията по зона:[/b]\n"
+"  Средно: {5}; Стандартно отклонение: {6}\n"
+"[b]Общо популация:[/b]\n"
+"  {7}\n"
+"[b]Най-многобройна популация:[/b]\n"
+"  {8}\n"
+"[b]Основни данни за създанията:[/b]\n"
+"  Среден размер: {9}\n"
+"[b]Общи данни за органелите:[/b]"
 
 #: ../src/general/OptionsMenu.tscn:1789
 msgid "CUSTOM_USERNAME"
@@ -1856,7 +1881,7 @@ msgstr "Епипелагиал"
 
 #: ../src/awakening_stage/EquipmentCategory.cs:9
 msgid "EQUIPMENT_TYPE_AXE"
-msgstr ""
+msgstr "Брадва"
 
 #: ../src/general/OptionsMenu.tscn:2150 ../src/general/OptionsMenu.tscn:2158
 msgid "ERROR"
@@ -1941,17 +1966,15 @@ msgstr "Стартираща програма"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Експортиране"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
-#, fuzzy
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr "Отваряне на сървъра ни в „Discord“"
+msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
-#, fuzzy
 msgid "EXPORT_SUCCESS"
-msgstr "{0}"
+msgstr "Експортирането е успешно"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
@@ -2028,35 +2051,16 @@ msgid "FEBRUARY"
 msgstr "Февруари"
 
 #: ../src/general/ThriveNewsFeed.cs:183
-#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr "Стартирането на „Steam“ е неуспешно"
+msgstr "Разборът на съдържанието на тази новина е неуспешен."
 
 #: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
-#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
-"Процесорно време: {0} с\n"
-"Физическо време: {1} с\n"
-"Обекти: {2} Други: {3}\n"
-"Създадени: {4} Премахнати: {5}\n"
-"Използвани възли: {6}\n"
-"Използвана памет: {7}\n"
-"Графична памет: {8}\n"
-"Изобразени обекти: {9}\n"
-"Общо обекти: {10} Двуизмерни: {11}\n"
-"Изобразени върхове: {12}\n"
-"Материални изменения: {13}\n"
-"Шейдърни изменения: {14}\n"
-"Неизползвани възли: {15}\n"
-"Звуково забавяне: {16} мс\n"
-"Общо нишки: {17}\n"
-"Общо време на ЦП:\n"
-"{18}"
+msgstr "Съдържанието на тази новина липсва."
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Дата на публикуване: {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
@@ -2340,9 +2344,8 @@ msgstr ""
 "трябва да изключите светлинните ефекти."
 
 #: ../simulation_parameters/common/input_options.json:261
-#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
-msgstr "{0} хил"
+msgstr "Меню"
 
 #: ../src/general/OptionsMenu.tscn:820
 msgid "GUI_VOLUME"
@@ -2456,7 +2459,7 @@ msgstr "(следващите етапи на играта не са завър�
 
 #: ../simulation_parameters/common/gallery.json:458
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Индустриализация"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
@@ -2471,9 +2474,8 @@ msgid "INGESTED_MATTER"
 msgstr "Погълнати обекти"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Отваряне на сървъра ни в „Discord“"
+msgstr "Създаване на нов свят"
 
 #: ../src/general/OptionsMenu.tscn:206
 msgid "INPUTS"
@@ -2513,9 +2515,8 @@ msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:8
-#, fuzzy
 msgid "INTERACTION_CRAFT"
-msgstr "Мутационна скорост"
+msgstr "Изработка..."
 
 #: ../src/awakening_stage/InteractionType.cs:14
 #, fuzzy
@@ -2598,9 +2599,8 @@ msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:101
-#, fuzzy
 msgid "INVENTORY_TITLE"
-msgstr "„{0}“ — {1}"
+msgstr "Инвентар"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:150
 msgid "INVENTORY_TOGGLE_CRAFTING"
@@ -2619,9 +2619,9 @@ msgstr "Обръщане"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Това са следващите етапи на играта.\n"
-"Те все още са в процес на разбработка\n"
-"и са включени само за демонстрационни цели.\n"
-"Запазването в момента не винаги е възможно."
+"Те все още са в процес на разбработка, не са завършени\n"
+"и може да не функционират правилно.\n"
+"Създаването на запис по време на следващите етапи на играта не винаги е възможно."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
@@ -3469,9 +3469,8 @@ msgstr "Микробен редактор"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:973
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1017
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Характеристика"
+msgstr "  {0}: Среща се в {1} от създанията, средно по {2}"
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:214
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3508,6 +3507,8 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "За да управлявате Вашата клетка, използвайте клавишите, които са показани около нея (в центъра на екрана) и мишката за посоката на движение.\n"
+"\n"
+"Режимът на движение може да бъде променен в настройките на играта.\n"
 "\n"
 "Натиснете всеки един клавиш за няколко секунди за да продължите."
 
@@ -3658,7 +3659,7 @@ msgstr "Разни"
 
 #: ../simulation_parameters/common/input_options.json:210
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Триизмерен етап"
+msgstr "Триизмерно пространство"
 
 #: ../src/modding/ModUploader.cs:345
 msgid "MISSING_DESCRIPTION"
@@ -3958,9 +3959,8 @@ msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Колонизиране на сушата?"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:568
-#, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
-msgstr "Колонизиране на сушата?"
+msgstr "Превръщане в общество..."
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
@@ -4215,9 +4215,8 @@ msgid "NO_EVENTS_RECORDED"
 msgstr "Няма записани събития"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
-#, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr "Папката с записи не съществува"
+msgstr "Папката с вкаменелости не съществува"
 
 #: ../src/general/MainMenu.tscn:965
 msgid "NO_MODS_ENABLED"
@@ -4283,9 +4282,8 @@ msgid "N_A_MP"
 msgstr "Няма МТ"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:428
-#, fuzzy
 msgid "N_TIMES"
-msgstr "2 пъти"
+msgstr "{0} пъти"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "OCTOBER"
@@ -4319,9 +4317,8 @@ msgid "OPEN_FOLDER"
 msgstr "Местоположение"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
-#, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr "Местоположение на дневниците"
+msgstr "Местоположение на вкаменелостите"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
@@ -4404,9 +4401,8 @@ msgstr "Органели"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#, fuzzy
 msgid "ORGANELLE_AXON"
-msgstr "Органели"
+msgstr "Аксон"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
 #, fuzzy
@@ -4420,9 +4416,8 @@ msgstr "Късно многоклетъчно"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:946
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
-msgstr "Хищнически пилус"
+msgstr "Миофибрила"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
 #, fuzzy
@@ -4432,7 +4427,7 @@ msgstr "Това са фини косъмчета върху клетъчнат�
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
-msgstr "Хищнически пилус"
+msgstr "Пробивен пилус"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
 msgid "ORGANELLE_PILUS_DESCRIPTION"
@@ -4632,17 +4627,16 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2178
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
-#, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Заглавие на страницата"
+msgstr "Бележки към изданието"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Промени:"
 
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
@@ -4740,7 +4734,7 @@ msgstr "Физическа устойчивост"
 
 #: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
-msgstr "Добавяне на органел"
+msgstr "Добавяне на органел или друг обект"
 
 #: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
@@ -5001,9 +4995,8 @@ msgid "REPORT"
 msgstr "Отчет"
 
 #: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:227
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "Отчет"
+msgstr "Неизправности"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1144
 msgid "REPRODUCED"
@@ -5080,24 +5073,20 @@ msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорост на усвояване на веществата"
 
 #: ../src/awakening_stage/PlacedStructure.cs:71
-#, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
-msgstr "Наляг."
+msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
-#, fuzzy
 msgid "RESOURCE_FOOD"
-msgstr "Изходен код"
+msgstr "Храна"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
-#, fuzzy
 msgid "RESOURCE_ROCK"
-msgstr "Изходен код"
+msgstr "Камъни"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:8
-#, fuzzy
 msgid "RESOURCE_WOOD"
-msgstr "Изходен код"
+msgstr "Дървесина"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:111
@@ -5202,12 +5191,11 @@ msgstr "от популацията в следните зони се отдел
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "{0} свята"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:408
-#, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
-msgstr "Отваряне на сървъра ни в „Discord“"
+msgstr "Симулиране на определен брой светове с предварително определеното количество на поколенията."
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:55
@@ -5469,9 +5457,8 @@ msgid "SHOW_HELP"
 msgstr "Отваряне на ръководството"
 
 #: ../src/general/OptionsMenu.tscn:1841
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr "{0} — {1}"
+msgstr "Бележки към изданието"
 
 #: ../src/general/OptionsMenu.tscn:1839
 #, fuzzy
@@ -5500,7 +5487,7 @@ msgstr "Превключване на предупреждението при и
 
 #: ../src/general/OptionsMenu.tscn:1832
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "Новини (от Интернет)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
@@ -5589,9 +5576,8 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Малък железен фрагмент"
 
 #: ../simulation_parameters/common/gallery.json:441
-#, fuzzy
 msgid "SOCIETY_STAGE"
-msgstr "Микробен етап"
+msgstr "Цивилизация"
 
 #: ../src/general/OptionsMenu.tscn:184
 msgid "SOUND"
@@ -5614,9 +5600,8 @@ msgid "SPACE"
 msgstr "Интервал"
 
 #: ../simulation_parameters/common/gallery.json:469
-#, fuzzy
 msgid "SPACE_STAGE"
-msgstr "Микробен етап"
+msgstr "Космическа колонизация"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5802,7 +5787,6 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
 
 #: ../src/general/MainMenu.tscn:998
-#, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
 
@@ -5956,21 +5940,19 @@ msgstr "Клавиш „SysRq“"
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr ""
+msgstr "Вторичен ляв раздел"
 
 #: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr ""
+msgstr "Вторичен десен раздел"
 
 #: ../simulation_parameters/common/input_options.json:265
-#, fuzzy
 msgid "TAB_SWITCH_LEFT"
-msgstr "Завъртане наляво"
+msgstr "Ляв раздел"
 
 #: ../simulation_parameters/common/input_options.json:269
-#, fuzzy
 msgid "TAB_SWITCH_RIGHT"
-msgstr "Завъртане надясно"
+msgstr "Десен раздел"
 
 #: ../src/modding/ModUploader.cs:367
 msgid "TAGS_IS_WHITESPACE"
@@ -6257,7 +6239,7 @@ msgstr "Инструменти"
 
 #: ../simulation_parameters/awakening_stage/equipment.json:3
 msgid "TOOL_HAND_AXE"
-msgstr ""
+msgstr "Ръчна брадва"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
@@ -6309,9 +6291,8 @@ msgid "TREBLEUP"
 msgstr "Клавиш „Treble Up“"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
-#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr "Трябва да направите няколко снимки!"
+msgstr "Трябва да направите няколко вкаменелости!"
 
 #: ../src/saving/SaveManagerGUI.tscn:204
 msgid "TRY_MAKING_A_SAVE"
@@ -6559,7 +6540,7 @@ msgstr "Неозаглавено"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
-msgstr ""
+msgstr "Придърпващи реснички"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
@@ -6669,14 +6650,12 @@ msgstr "Преглед"
 
 #: ../src/gui_common/PatchNotesDisplayer.tscn:63
 #: ../src/gui_common/PatchNotesDisplayer.tscn:72
-#, fuzzy
 msgid "VIEW_ALL"
-msgstr "Изключване на всички"
+msgstr "Всички версии"
 
 #: ../src/general/OptionsMenu.tscn:1849
-#, fuzzy
 msgid "VIEW_PATCH_NOTES"
-msgstr "{0} — {1}"
+msgstr "Бележки към изданието"
 
 #: ../src/general/OptionsMenu.tscn:1847
 #, fuzzy
@@ -6808,14 +6787,12 @@ msgid "WORLD"
 msgstr "Свят"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Грешка: {0}"
+msgstr "Данните за света са експортирани успешно в {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
-#, fuzzy
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr "Характеристика"
+msgstr "Обща статистика на текущия свят"
 
 #: ../src/general/WorldGenerationSettings.cs:172
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
