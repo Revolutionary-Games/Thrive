@@ -955,13 +955,13 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) значение, яркость или интенсивность цвета"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "Способности"
+msgstr "Общие способности"
 
 #: ../simulation_parameters/common/input_options.json:169
+#, fuzzy
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Общий Редактор и Стадии Стратегии"
 
 #: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM"
@@ -1770,9 +1770,8 @@ msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(случайно расположенные секреты в игре)"
 
 #: ../src/general/OptionsMenu.tscn:1553
-#, fuzzy
 msgid "EDGE_PAN_SPEED"
-msgstr "Скорость переваривания"
+msgstr "Скорость Вращения:"
 
 #: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
@@ -3837,7 +3836,7 @@ msgstr "Показать больше информации"
 
 #: ../src/general/OptionsMenu.tscn:1543
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "Вращать стратегический вид когда курсор на границе экрана"
 
 #: ../src/general/OptionsMenu.tscn:1268
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -4327,9 +4326,8 @@ msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Открыть папку сохранений"
 
 #: ../simulation_parameters/common/input_options.json:250
-#, fuzzy
 msgid "OPEN_SCIENCE_MENU"
-msgstr "Открыть меню"
+msgstr "Открыть меню науки"
 
 #: ../src/general/OptionsMenu.tscn:1816
 msgid "OPEN_SCREENSHOT_FOLDER"
@@ -4698,7 +4696,7 @@ msgstr "Физическое Сопротивление"
 
 #: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
-msgstr "Разместить органеллу"
+msgstr "Разместить органеллу (или другую вещь)"
 
 #: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
@@ -5039,9 +5037,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
-#, fuzzy
 msgid "RESOURCE_FOOD"
-msgstr "Дерево"
+msgstr "Еда"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
@@ -5801,9 +5798,8 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
 #: ../simulation_parameters/common/input_options.json:246
-#, fuzzy
 msgid "STRATEGY_STAGES"
-msgstr "Одноклеточная стадия"
+msgstr "Стадии Стратегии"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
@@ -5824,8 +5820,9 @@ msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Материалы, что нужны для строительства были заложены"
 
 #: ../simulation_parameters/awakening_stage/structures.json:50
+#, fuzzy
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
-msgstr ""
+msgstr "Логово Охотника-собирателя"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
@@ -5924,9 +5921,8 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Сделать снимок экрана"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
-#, fuzzy
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr "Открыта технология: {0}"
+msgstr "Охота и собирательство"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
