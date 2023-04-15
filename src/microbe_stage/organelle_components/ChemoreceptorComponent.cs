@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public class ChemoreceptorComponent : ExternallyPositionedComponent
 {
-    // Either targetCompound or targetSpecies should be null
+    // Either target compound or species should be null
     private Compound? targetCompound;
     private Species? targetSpecies;
     private float searchRange;
@@ -91,7 +91,7 @@ public class ChemoreceptorComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
 {
-    public ChemoreceptorUpgrades(Compound targetCompound, Species targetSpecies,
+    public ChemoreceptorUpgrades(Compound? targetCompound, Species? targetSpecies,
         float searchRange, float searchAmount, Color lineColour)
     {
         TargetCompound = targetCompound;
@@ -101,8 +101,8 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
         LineColour = lineColour;
     }
 
-    public Compound TargetCompound { get; set; }
-    public Species TargetSpecies { get; set; }
+    public Compound? TargetCompound { get; set; }
+    public Species? TargetSpecies { get; set; }
     public float SearchRange { get; set; }
     public float SearchAmount { get; set; }
     public Color LineColour { get; set; }

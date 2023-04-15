@@ -5,6 +5,9 @@ using Godot;
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
+    public NodePath? TargetTypesPath;
+
+    [Export]
     public NodePath? CompoundsPath;
 
     [Export]
@@ -20,6 +23,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public NodePath ColourPath = null!;
 
 #pragma warning disable CA2213
+    private OptionButton targetTypes = null!;
     private OptionButton compounds = null!;
     private OptionButton species = null!;
     private Slider maximumDistance = null!;
@@ -32,6 +36,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
+        targetTypes = GetNode<OptionButton>(TargetTypesPath);
         compounds = GetNode<OptionButton>(CompoundsPath);
         species = GetNode<OptionButton>(SpeciesPath);
         maximumDistance = GetNode<Slider>(MaximumDistancePath);
@@ -49,6 +54,10 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
+        // TODO Translate this
+        targetTypes.AddItem("Species");
+        targetTypes.AddItem("Compound");
+
         shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds();
 
         foreach (var choice in shownCompoundChoices)
@@ -96,15 +105,30 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             return false;
         }
 
-        // Force some compound/species to be selected
+        // Force some type/compound/species to be selected
+        if (targetTypes.Selected == -1)
+            targetTypes.Selected = 0;
         if (compounds.Selected == -1)
             compounds.Selected = 0;
         if (species.Selected == -1)
             species.Selected = 0;
 
+        // Only one type of object can be detected
+        Compound? choiceCompound = null;
+        Species? choiceSpecies = null;
+
+        switch (targetTypes.Selected)
+        {
+            case 0:
+                choiceCompound = shownCompoundChoices[compounds.Selected];
+                break;
+            case 1:
+                choiceSpecies = shownSpeciesChoices[species.Selected];
+                break;
+        }
+
         organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(
-            shownCompoundChoices[compounds.Selected],
-            shownSpeciesChoices[species.Selected],
+            choiceCompound, choiceSpecies,
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color);
         return true;
     }
@@ -128,11 +152,13 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
+            if (TargetTypesPath != null)
+                TargetTypesPath.Dispose();
             if (CompoundsPath != null)
                 CompoundsPath.Dispose();
             if (SpeciesPath != null)
                 SpeciesPath.Dispose();
-            if (CompoundsPath != null || SpeciesPath != null)
+            if (CompoundsPath != null || SpeciesPath != null || TargetTypesPath != null)
             {
                 MaximumDistancePath.Dispose();
                 MinimumAmountPath.Dispose();

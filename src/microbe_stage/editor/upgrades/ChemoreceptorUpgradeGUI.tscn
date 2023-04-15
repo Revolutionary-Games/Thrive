@@ -10,11 +10,22 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
+TargetTypesPath = NodePath("TargetType")
 CompoundsPath = NodePath("Compound")
 SpeciesPath = NodePath("Species")
 MaximumDistancePath = NodePath("Distance")
 MinimumAmountPath = NodePath("Amount")
 ColourPath = NodePath("Colour")
+
+[node name="Label" type="Label" parent="."]
+margin_right = 1280.0
+margin_bottom = 25.0
+text = "TARGET_TYPE"
+
+[node name="TargetType" type="OptionButton" parent="."]
+margin_top = 29.0
+margin_right = 1280.0
+margin_bottom = 48.0
 
 [node name="Label" type="Label" parent="."]
 margin_right = 1280.0
