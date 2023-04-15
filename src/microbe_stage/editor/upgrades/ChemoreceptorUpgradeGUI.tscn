@@ -12,7 +12,9 @@ theme = ExtResource( 1 )
 script = ExtResource( 3 )
 TargetTypesPath = NodePath("TargetType")
 CompoundsPath = NodePath("Compound")
+CompoundsLabelPath = NodePath("CompoundLabel")
 SpeciesPath = NodePath("Species")
+SpeciesLabelPath = NodePath("SpeciesLabel")
 MaximumDistancePath = NodePath("Distance")
 MinimumAmountPath = NodePath("Amount")
 ColourPath = NodePath("Colour")
@@ -27,7 +29,7 @@ margin_top = 29.0
 margin_right = 1280.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="."]
+[node name="CompoundLabel" type="Label" parent="."]
 margin_right = 1280.0
 margin_bottom = 25.0
 text = "COMPOUND_TO_FIND"
@@ -37,7 +39,7 @@ margin_top = 29.0
 margin_right = 1280.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="."]
+[node name="SpeciesLabel" type="Label" parent="."]
 margin_right = 1280.0
 margin_bottom = 25.0
 text = "SPECIES_TO_FIND"
@@ -110,4 +112,6 @@ margin_right = 1280.0
 margin_bottom = 759.0
 edit_alpha = false
 
+[connection signal="item_selected" from="TargetType" to="." method="TypeChanged"]
 [connection signal="item_selected" from="Compound" to="." method="CompoundChanged"]
+[connection signal="item_selected" from="Species" to="." method="SpeciesChanged"]
