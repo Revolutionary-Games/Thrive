@@ -608,17 +608,6 @@ public class ModManager : Control
         }
     }
 
-    public void UpdateLoadPosition(int startIndex = 0)
-    {
-        if (enabledMods != null)
-        {
-            for (int index = startIndex; index < enabledMods.Count; ++index)
-            {
-                enabledMods[index].LoadPosition = index;
-            }
-        }
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -843,8 +832,6 @@ public class ModManager : Control
         enabledModsContainer.UnselectAll();
 
         UpdateOverallModButtons();
-
-        UpdateLoadPosition();
     }
 
     private void RefreshAvailableMods()
@@ -897,7 +884,6 @@ public class ModManager : Control
                      m => !enabledMods.Contains(m) && !notEnabledMods.Contains(m)))
         {
             enabledMods.Add(newMod);
-
             enabledModsContainer.AddItem(newMod.InternalName, LoadModIcon(newMod));
         }
 
@@ -916,9 +902,9 @@ public class ModManager : Control
 
         var modErrors = ModLoader.Instance.GetAndClearModErrors();
 
-        for (int index = 0; index < modErrors.Count; index++)
+        int modErrorsIndex = 0;
+        foreach (var error in modErrors)
         {
-            var error = modErrors[index];
             if (error.ModDetails is null)
             {
                 modErrorsContainer.AddItem(error.ModInternalName);
@@ -928,13 +914,14 @@ public class ModManager : Control
                 modErrorsContainer.AddItem(error.ModInternalName, LoadModIcon(error.ModDetails));
             }
 
-            modErrorsContainer.SetItemMetadata(index, error.ErrorMessage);
+            modErrorsContainer.SetItemMetadata(modErrorsIndex, error.ErrorMessage);
+            ++modErrorsIndex;
         }
     }
 
     private void RefreshEnabledMods()
     {
-        if (enabledMods is null)
+        if (enabledMods == null)
         {
             return;
         }
@@ -951,14 +938,8 @@ public class ModManager : Control
 
         foreach (var mod in enabledMods)
         {
-            if (mod != null)
-            {
-                enabledModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
-                if (!string.IsNullOrEmpty(mod.Info.Description))
-                {
-                    SetModToolTip(enabledModsContainer, mod);
-                }
-            }
+            enabledModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
+            SetModToolTip(enabledModsContainer, mod);
         }
     }
 
@@ -981,23 +962,12 @@ public class ModManager : Control
                 TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
                 TranslationServer.Translate("THIS_IS_LOCAL_MOD");
 
-            if (!(string.IsNullOrEmpty(selectedMod.Info.RecommendedThriveVersion) &&
-                    string.IsNullOrEmpty(selectedMod.Info.MinimumThriveVersion)))
-            {
-                selectedModThriveVersionContainer.Visible = true;
-                selectedModRecommendedThriveVersionContainer.Visible =
-                    !string.IsNullOrEmpty(selectedMod.Info.RecommendedThriveVersion);
-                selectedModMinimumThriveVersionContainer.Visible =
-                    !string.IsNullOrEmpty(selectedMod.Info.MinimumThriveVersion);
-                selectedModThriveVersionHSeparator.Visible = selectedModMinimumThriveVersionContainer.Visible &&
-                    selectedModRecommendedThriveVersionContainer.Visible;
-                selectedModRecommendedThriveVersion.Text = selectedMod.Info.RecommendedThriveVersion;
-                selectedModMinimumThriveVersion.Text = selectedMod.Info.MinimumThriveVersion;
-            }
-            else
-            {
-                selectedModThriveVersionContainer.Visible = false;
-            }
+            selectedModThriveVersionContainer.Visible = true;
+            selectedModRecommendedThriveVersionContainer.Visible = true;
+            selectedModRecommendedThriveVersion.Text = selectedMod.Info.RecommendedThriveVersion;
+            selectedModMinimumThriveVersionContainer.Visible = true;
+            selectedModThriveVersionHSeparator.Visible = true;
+            selectedModMinimumThriveVersion.Text = selectedMod.Info.MinimumThriveVersion;
 
             selectedModDescription.ExtendedBbcode = selectedMod.Info.LongDescription ?? selectedMod.Info.Description;
             openModUrlButton.Disabled = selectedMod.Info.InfoUrl == null;
@@ -1011,18 +981,20 @@ public class ModManager : Control
             if (loadedPreviewImages.Count > 0)
             {
                 selectedModGalleryContainer.Visible = true;
-                foreach (ImageTexture currentPreviewImage in loadedPreviewImages)
+                foreach (var currentPreviewImage in loadedPreviewImages)
                 {
-                    var currentPreviewImageNode = new TextureRect();
-                    currentPreviewImageNode.Texture = currentPreviewImage;
-                    currentPreviewImageNode.Expand = true;
-                    currentPreviewImageNode.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+                    var currentPreviewImageNode = new TextureRect
+                    {
+                        Texture = currentPreviewImage,
+                        Expand = true,
+                        StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+                    };
 
                     selectedModPreviewImagesContainer.AddChild(currentPreviewImageNode);
                 }
 
                 selectedModPreviewImagesContainer.CurrentTab = 0;
-                galleryLabel.Text = "1/" + selectedModPreviewImagesContainer.GetTabCount();
+                galleryLabel.Text = TranslationServer.Translate("MOD_LOADER_GALLERY_STARTING_NUMBER") + selectedModPreviewImagesContainer.GetTabCount();
                 galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
                     selectedModPreviewImagesContainer.GetTabCount() - 1;
                 galleryLeftButton.Disabled = selectedModPreviewImagesContainer.CurrentTab <= 0;
@@ -1239,7 +1211,6 @@ public class ModManager : Control
         enabledMods.AddRange(notEnabledMods);
         notEnabledMods.Clear();
 
-        UpdateLoadPosition();
         UpdateOverallModButtons();
     }
 
@@ -1250,7 +1221,6 @@ public class ModManager : Control
         enabledModsContainer.UnselectAll();
         availableModsContainer.UnselectAll();
 
-        UpdateLoadPosition();
         UpdateOverallModButtons();
     }
 
@@ -1569,7 +1539,7 @@ public class ModManager : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         selectedModPreviewImagesContainer.CurrentTab += 1;
-        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + "/" +
+        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
             selectedModPreviewImagesContainer.GetTabCount();
         galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
             selectedModPreviewImagesContainer.GetTabCount() - 1;
@@ -1580,7 +1550,7 @@ public class ModManager : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         selectedModPreviewImagesContainer.CurrentTab -= 1;
-        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + "/" +
+        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
             selectedModPreviewImagesContainer.GetTabCount();
         galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
             selectedModPreviewImagesContainer.GetTabCount() - 1;
@@ -1653,7 +1623,6 @@ public class ModManager : Control
         var movedMod = modList[currentIndex];
         modList.RemoveAt(currentIndex);
         modList.Insert(newIndex, movedMod);
-        UpdateLoadPosition(moveUp ? newIndex : currentIndex);
     }
 
     private void ResetPressed()
