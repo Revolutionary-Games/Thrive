@@ -142,6 +142,8 @@ public class SceneManager : Node
                 return LoadScene("res://src/late_multicellular_stage/MulticellularStage.tscn");
             case MainGameState.LateMulticellularEditor:
                 return LoadScene("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn");
+            case MainGameState.SocietyStage:
+                return LoadScene("res://src/society_stage/SocietyStage.tscn");
             default:
                 throw new ArgumentException("unknown scene path for given game state");
         }

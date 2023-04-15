@@ -62,7 +62,6 @@ OsmoregulationMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/Ad
 FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud")
 PassiveReproductionButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress")
 LimitGrowthRateButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate")
-MapTypeButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
@@ -314,8 +313,9 @@ text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
+margin_top = 269.0
 margin_right = 700.0
-margin_bottom = 600.0
+margin_bottom = 869.0
 rect_min_size = Vector2( 700, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
@@ -841,52 +841,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_right = 668.0
-margin_bottom = 45.0
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer"]
-margin_right = 211.0
-margin_bottom = 45.0
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 211.0
-margin_bottom = 25.0
-mouse_filter = 0
-text = "PATCH_MAP_TYPE"
-
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 211.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 3 )
-text = "PATCH_MAP_TYPE_EXPLANATION"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer"]
-margin_left = 215.0
-margin_right = 406.0
-margin_bottom = 45.0
-size_flags_horizontal = 3
-custom_styles/separator = SubResource( 3 )
-
-[node name="MapType" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer"]
-margin_left = 410.0
-margin_right = 668.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 200, 25 )
-size_flags_vertical = 0
-text = "PATCH_MAP_TYPE_PROCEDURAL"
-items = [ "PATCH_MAP_TYPE_PROCEDURAL", null, false, 0, null, "PATCH_MAP_TYPE_CLASSIC", null, false, 1, null ]
-selected = 0
-__meta__ = {
-"_editor_description_": ""
-}
-
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_top = 55.0
 margin_right = 668.0
-margin_bottom = 100.0
+margin_bottom = 45.0
 
 [node name="LAWKAdvanced" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_right = 135.0
@@ -903,9 +860,9 @@ custom_fonts/font = ExtResource( 3 )
 text = "LAWK_ONLY_EXPLANATION"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_top = 110.0
+margin_top = 55.0
 margin_right = 668.0
-margin_bottom = 155.0
+margin_bottom = 100.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
@@ -947,9 +904,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_top = 165.0
+margin_top = 110.0
 margin_right = 668.0
-margin_bottom = 210.0
+margin_bottom = 155.0
 
 [node name="DayNightCycleEnabled" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
 margin_right = 300.0
@@ -967,9 +924,9 @@ text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_top = 220.0
+margin_top = 165.0
 margin_right = 668.0
-margin_bottom = 271.0
+margin_bottom = 216.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4"]
 margin_right = 668.0
@@ -1032,9 +989,9 @@ custom_fonts/font = ExtResource( 3 )
 text = "DAY_LENGTH_EXPLANATION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_top = 281.0
+margin_top = 226.0
 margin_right = 668.0
-margin_bottom = 312.0
+margin_bottom = 257.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
@@ -1085,7 +1042,7 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_top = 322.0
+margin_top = 267.0
 margin_right = 668.0
 margin_bottom = 568.0
 rect_min_size = Vector2( 0, 100 )
@@ -1094,9 +1051,9 @@ size_flags_vertical = 3
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/CenterContainer"]
 modulate = Color( 1, 1, 1, 0.4 )
 margin_left = 34.0
-margin_top = 23.0
+margin_top = 50.0
 margin_right = 634.0
-margin_bottom = 223.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 600, 200 )
 size_flags_vertical = 3
 texture = ExtResource( 10 )
@@ -1105,9 +1062,9 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/CenterContainer"]
 margin_left = 88.0
-margin_top = 102.0
+margin_top = 130.0
 margin_right = 580.0
-margin_bottom = 143.0
+margin_bottom = 171.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 9 )
 text = "PLANET_GENERATION_TEASER"
@@ -1262,7 +1219,6 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress" to="." method="OnPassiveReproductionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate" to="." method="OnGrowthRateToggled"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType" to="." method="OnMapTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2/DayNightCycleEnabled" to="." method="OnDayNightCycleToggled"]

@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : StageBase<Microbe>
+public class MicrobeStage : CreatureStageBase<Microbe>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -90,7 +90,7 @@ public class MicrobeStage : StageBase<Microbe>
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    protected override IStageHUD BaseHUD => HUD;
+    protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
@@ -507,9 +507,17 @@ public class MicrobeStage : StageBase<Microbe>
             wonOnce = true;
         }
 
+        // Update the player's cell
+        Player!.ApplySpecies(Player.Species);
+
+        // Reset all the duplicates organelles of the player
+        Player.ResetOrganelleLayout();
+
+        var playerPosition = Player.GlobalTransform.origin;
+
         // Spawn another cell from the player species
-        // This is done first to ensure that the player colony is still intact for spawn separation calculation
-        var daughter = Player!.Divide();
+        // This needs to be done after updating the player so that multicellular organisms are accurately separated
+        var daughter = Player.Divide();
 
         daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
 
@@ -518,17 +526,19 @@ public class MicrobeStage : StageBase<Microbe>
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
-            // TODO: add more extra offset between the player and the divided cell
-            // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
+            if (daughter.Colony != null)
+            {
+                // Add more extra offset between the player and the divided cell
+                var daughterPosition = daughter.GlobalTransform.origin;
+                var direction = (playerPosition - daughterPosition).Normalized();
+
+                var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
+
+                float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
+
+                daughter.Translation += -direction * distance;
+            }
         }
-
-        // Update the player's cell
-        Player.ApplySpecies(Player.Species);
-
-        // Reset all the duplicates organelles of the player
-        Player.ResetOrganelleLayout();
-
-        var playerPosition = Player.GlobalTranslation;
 
         // This is queued to run to reduce the massive lag spike that anyway happens on this frame
         // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
@@ -659,9 +669,9 @@ public class MicrobeStage : StageBase<Microbe>
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
-    protected override void GameOver()
+    protected override void OnGameOver()
     {
-        base.GameOver();
+        base.OnGameOver();
 
         guidanceLine.Visible = false;
     }
@@ -840,7 +850,8 @@ public class MicrobeStage : StageBase<Microbe>
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+        if (hostile.CanDigestObject(player) == Microbe.DigestCheckResult.Ok)
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]

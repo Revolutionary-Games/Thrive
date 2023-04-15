@@ -12,17 +12,6 @@ public static class PatchMapGenerator
     {
         random ??= new Random(settings.Seed);
 
-        if (settings.MapType == WorldGenerationSettings.PatchMapType.Classic)
-        {
-            // Return the classic map if settings ask for it
-            var predefinedMap = GeneratePredefinedMap();
-
-            ConfigureStartingPatch(predefinedMap, settings, defaultSpecies,
-                predefinedMap.GetPatch((int)BiomeType.Vents),
-                predefinedMap.GetPatch((int)BiomeType.Tidepool), random);
-            return predefinedMap;
-        }
-
         var map = new PatchMap();
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
@@ -801,52 +790,6 @@ public static class PatchMapGenerator
         // Add this patch to the region
         region.Patches.Add(newPatch);
         return newPatch;
-    }
-
-    private static PatchMap GeneratePredefinedMap()
-    {
-        var map = new PatchMap();
-        var regionName = TranslationServer.Translate("PANGONIAN_REGION_NAME");
-
-        // Hard code the region size as slightly larger than the extreme patch edges to fix scrolling
-        var region = new PatchRegion(0, regionName,
-                PatchRegion.RegionType.Predefined, new Vector2(0, 0))
-            { Size = new Vector2(400, 500) };
-
-        // Predefined patches
-        var coast = NewPredefinedPatch(BiomeType.Coastal, 0, region, regionName);
-        var estuary = NewPredefinedPatch(BiomeType.Estuary, 1, region, regionName);
-        var tidepool = NewPredefinedPatch(BiomeType.Tidepool, 2, region, regionName);
-        var epipelagic = NewPredefinedPatch(BiomeType.Epipelagic, 3, region, regionName);
-        var mesopelagic = NewPredefinedPatch(BiomeType.Mesopelagic, 4, region, regionName);
-        var bathypelagic = NewPredefinedPatch(BiomeType.Bathypelagic, 5, region, regionName);
-        var abyssopelagic = NewPredefinedPatch(BiomeType.Abyssopelagic, 6, region, regionName);
-        var seafloor = NewPredefinedPatch(BiomeType.Seafloor, 7, region, regionName);
-        var cave = NewPredefinedPatch(BiomeType.Cave, 8, region, regionName);
-        var iceShelf = NewPredefinedPatch(BiomeType.IceShelf, 9, region, regionName);
-        var vents = NewPredefinedPatch(BiomeType.Vents, 10, region, regionName);
-
-        // Connections
-        LinkPatches(vents, seafloor);
-        LinkPatches(seafloor, bathypelagic);
-        LinkPatches(seafloor, abyssopelagic);
-        LinkPatches(bathypelagic, abyssopelagic);
-        LinkPatches(bathypelagic, mesopelagic);
-        LinkPatches(mesopelagic, epipelagic);
-        LinkPatches(mesopelagic, cave);
-        LinkPatches(epipelagic, tidepool);
-        LinkPatches(epipelagic, iceShelf);
-        LinkPatches(epipelagic, coast);
-        LinkPatches(coast, estuary);
-
-        map.AddRegion(region);
-
-        foreach (var patch in region.Patches)
-            map.AddPatch(patch);
-
-        map.CreateAdjacenciesFromPatchData();
-
-        return map;
     }
 
     private static void ConfigureStartingPatch(PatchMap map, WorldGenerationSettings settings, Species defaultSpecies,

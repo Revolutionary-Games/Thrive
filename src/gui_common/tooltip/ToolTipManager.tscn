@@ -4135,7 +4135,7 @@ mouse_filter = 2
 
 [node name="navigationHint" parent="GroupHolder/patchMap" instance=ExtResource( 1 )]
 Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
-DisplayDelay = 0.5
+DisplayDelay = 2.5
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [editable path="GroupHolder/editor/rigiditySlider"]

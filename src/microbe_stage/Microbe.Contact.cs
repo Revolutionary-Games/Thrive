@@ -410,7 +410,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true when this microbe can engulf the target
+    ///   Returns the check result whether this microbe can engulf the target
     /// </summary>
     public EngulfCheckResult CanEngulfObject(IEngulfable target)
     {
@@ -611,13 +611,21 @@ public partial class Microbe
 
         var organellePositions = new List<Vector2>();
 
+        // This is a workaround for https://github.com/Revolutionary-Games/Thrive/issues/4117
+        // TODO: Check if this can be removed once that issue is fixed
+        bool hasMultihexOrganelles = false;
+
         foreach (var entry in organelles.Organelles)
         {
             var cartesian = Hex.AxialToCartesian(entry.Position);
             organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+
+            if (!hasMultihexOrganelles && entry.Definition.HexCount > 1)
+                hasMultihexOrganelles = true;
         }
 
         Membrane.OrganellePositions = organellePositions;
+        Membrane.HasMultihexOrganelles = hasMultihexOrganelles;
         Membrane.Dirty = true;
         membraneOrganellePositionsAreDirty = false;
     }

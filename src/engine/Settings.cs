@@ -121,6 +121,12 @@ public class Settings
     public SettingValue<bool> GUILightEffectsEnabled { get; private set; } = new(true);
 
     /// <summary>
+    ///   Enable or disable 3D background scenes in the menu
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> Menu3DBackgroundEnabled { get; private set; } = new(true);
+
+    /// <summary>
     ///   Display or hide part names in the editor, for accessibility reasons
     /// </summary>
     [JsonProperty]
@@ -430,6 +436,19 @@ public class Settings
     [JsonProperty]
     public SettingValue<ThreeDimensionalMovementMode> ThreeDimensionalMovement { get; private set; } =
         new(ThreeDimensionalMovementMode.ScreenRelative);
+
+    // TODO: control in options
+    /// <summary>
+    ///   If true putting the mouse to a screen edge pans the strategy view
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> PanStrategyViewWithMouse { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Speed of the mouse edge panning
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> PanStrategyViewMouseSpeed { get; private set; } = new(30);
 
     /// <summary>
     ///   How big the deadzones are for controller axes

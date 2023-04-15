@@ -2,7 +2,8 @@
   {
     "EnvironmentId": [
       "Game",
-      "3DGame"
+      "3DGame",
+      "StrategyGame"
     ],
     "GroupName": "MOVEMENT",
     "Actions": [
@@ -74,7 +75,17 @@
       {
         "InputName": "g_inventory",
         "Name": "INPUT_NAME_OPEN_INVENTORY"
-      },
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "Game",
+      "3DGame",
+      "StrategyGame"
+    ],
+    "GroupName": "COMMON_ABILITIES",
+    "Actions": [
       {
         "InputName": "g_build_structure",
         "Name": "INPUT_NAME_BUILD_STRUCTURE"
@@ -85,7 +96,8 @@
     "EnvironmentId": [
       "Game",
       "3DGame",
-      "Editor"
+      "Editor",
+      "StrategyGame"
     ],
     "GroupName": "CAMERA",
     "Actions": [
@@ -123,14 +135,6 @@
         "Name": "REDO"
       },
       {
-        "InputName": "e_primary",
-        "Name": "PLACE_ORGANELLE"
-      },
-      {
-        "InputName": "e_secondary",
-        "Name": "OPEN_ORGANELLE_MENU"
-      },
-      {
         "InputName": "e_pan_left",
         "Name": "PAN_CAMERA_LEFT"
       },
@@ -147,20 +151,38 @@
         "Name": "PAN_CAMERA_DOWN"
       },
       {
-        "InputName": "e_reset_camera",
-        "Name": "PAN_CAMERA_RESET"
-      },
-      {
-        "InputName": "e_cancel_current_action",
-        "Name": "CANCEL_CURRENT_ACTION"
-      },
-      {
         "InputName": "e_delete",
         "Name": "DELETE_ORGANELLE"
       },
       {
         "InputName": "e_move",
         "Name": "MOVE_ORGANELLE"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "Editor",
+      "3DEditor",
+      "StrategyGame"
+    ],
+    "GroupName": "COMMON_EDITING_AND_STRATEGY",
+    "Actions": [
+      {
+        "InputName": "e_primary",
+        "Name": "PLACE_ORGANELLE"
+      },
+      {
+        "InputName": "e_secondary",
+        "Name": "OPEN_ORGANELLE_MENU"
+      },
+      {
+        "InputName": "e_reset_camera",
+        "Name": "PAN_CAMERA_RESET"
+      },
+      {
+        "InputName": "e_cancel_current_action",
+        "Name": "CANCEL_CURRENT_ACTION"
       }
     ]
   },
@@ -219,9 +241,22 @@
   },
   {
     "EnvironmentId": [
+      "StrategyGame"
+    ],
+    "GroupName": "STRATEGY_STAGES",
+    "Actions": [
+      {
+        "InputName": "g_science",
+        "Name": "OPEN_SCIENCE_MENU"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
       "GUI",
       "Editor",
-      "3DEditor"
+      "3DEditor",
+      "StrategyGame"
     ],
     "GroupName": "GUI_TAB_NAVIGATION",
     "Actions": [
@@ -277,7 +312,8 @@
       "Game",
       "Editor",
       "3DGame",
-      "3DEditor"
+      "3DEditor",
+      "StrategyGame"
     ],
     "GroupName": "MISCELLANEOUS",
     "Actions": [

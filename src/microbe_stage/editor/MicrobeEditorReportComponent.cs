@@ -291,7 +291,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         foreach (var snapshot in patch.History)
         {
-            foreach (var entry in snapshot.Biome.Compounds)
+            foreach (var entry in snapshot.Biome.CombinedCompounds)
             {
                 var dataset = new LineChartData
                 {
@@ -318,13 +318,13 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         for (int i = patch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = patch.History.ElementAt(i);
-
             var temperature = SimulationParameters.Instance.GetCompound("temperature");
+            var combinedCompounds = snapshot.Biome.CombinedCompounds;
 
             temperatureData.AddPoint(DataPoint.GetDataPoint(snapshot.TimePeriod,
-                snapshot.Biome.Compounds[temperature].Ambient, markerColour: temperatureData.Colour));
+                combinedCompounds[temperature].Ambient, markerColour: temperatureData.Colour));
 
-            foreach (var entry in snapshot.Biome.Compounds)
+            foreach (var entry in combinedCompounds)
             {
                 var dataset = GetChartForCompound(entry.Key.InternalName)?.GetDataSet(entry.Key.Name);
 

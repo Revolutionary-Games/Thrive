@@ -64,6 +64,12 @@ public class StructureDefinition : IRegistryType
     public Dictionary<WorldResource, int> ScaffoldingCost { get; private set; } = new();
 
     /// <summary>
+    ///   The component factories which placed structures of this type should use
+    /// </summary>
+    [JsonProperty]
+    public StructureComponentFactoryInfo Components { get; private set; } = new();
+
+    /// <summary>
     ///   The total resource cost of building this structure
     /// </summary>
     [JsonIgnore]
@@ -105,6 +111,16 @@ public class StructureDefinition : IRegistryType
         return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, TotalCost);
     }
 
+    public bool TakeResourcesToStartIfPossible(IResourceContainer resourceContainer)
+    {
+        return resourceContainer.TakeResourcesIfPossible(ScaffoldingCost);
+    }
+
+    public bool TakeCompletionResourcesIfPossible(IResourceContainer resourceContainer)
+    {
+        return resourceContainer.TakeResourcesIfPossible(RequiredResources);
+    }
+
     public void Check(string name)
     {
         using var file = new File();
@@ -140,6 +156,8 @@ public class StructureDefinition : IRegistryType
 
         if (WorldSize.x <= 0 || WorldSize.y <= 0 || WorldSize.z <= 0)
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");
+
+        Components.Check(name);
     }
 
     public void Resolve()
@@ -176,5 +194,68 @@ public class StructureDefinition : IRegistryType
     private Texture LoadIcon()
     {
         return GD.Load<Texture>(BuildingIcon);
+    }
+
+    public class StructureComponentFactoryInfo
+    {
+        private readonly List<IStructureComponentFactory> allFactories = new();
+
+#pragma warning disable CS0649 // set from JSON
+        [JsonProperty]
+        private SocietyCenterComponentFactory? societyCenter;
+
+        [JsonProperty]
+        private WoodGathererFactory? woodGatherer;
+
+        [JsonProperty]
+        private RockGathererFactory? rockGatherer;
+
+        [JsonProperty]
+        private FoodGathererFactory? foodGatherer;
+
+        [JsonProperty]
+        private HousingComponentFactory? housing;
+
+        [JsonProperty]
+        private StructureStorageComponentFactory? storage;
+
+        [JsonProperty]
+        private ResearchComponentFactory? research;
+#pragma warning restore CS0649
+
+        [JsonIgnore]
+        public IReadOnlyList<IStructureComponentFactory> Factories => allFactories;
+
+        /// <summary>
+        ///   Checks and initializes the factory data
+        /// </summary>
+        public void Check(string name)
+        {
+            if (societyCenter != null)
+                allFactories.Add(societyCenter);
+
+            if (woodGatherer != null)
+                allFactories.Add(woodGatherer);
+
+            if (rockGatherer != null)
+                allFactories.Add(rockGatherer);
+
+            if (foodGatherer != null)
+                allFactories.Add(foodGatherer);
+
+            if (housing != null)
+                allFactories.Add(housing);
+
+            if (storage != null)
+                allFactories.Add(storage);
+
+            if (research != null)
+                allFactories.Add(research);
+
+            foreach (var factory in allFactories)
+            {
+                factory.Check(name);
+            }
+        }
     }
 }

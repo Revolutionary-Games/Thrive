@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 ///   Manages the microbe HUD
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class MicrobeHUD : StageHUDBase<MicrobeStage>
+public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
     [Export]
     public NodePath? MulticellularButtonPath;

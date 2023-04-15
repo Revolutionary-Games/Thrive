@@ -30,6 +30,9 @@ public partial class CellEditorComponent :
     public NodePath AverageLightButtonPath = null!;
 
     [Export]
+    public NodePath CurrentLightButtonPath = null!;
+
+    [Export]
     public NodePath TabButtonsPath = null!;
 
     [Export]
@@ -147,6 +150,7 @@ public partial class CellEditorComponent :
     private Button dayButton = null!;
     private Button nightButton = null!;
     private Button averageLightButton = null!;
+    private Button currentLightButton = null!;
 
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
@@ -251,9 +255,8 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
-    // TODO: bug this isn't loaded correctly because this is overridden on load
     [JsonProperty]
-    private LightLevelOption selectedLightLevelOption = LightLevelOption.Day;
+    private LightLevelOption selectedLightLevelOption = LightLevelOption.Current;
 
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
@@ -288,20 +291,6 @@ public partial class CellEditorComponent :
     private float rigidity;
 
     /// <summary>
-    ///   Editor modified biome conditions for previewing things in the editor. This is recreated each time the current
-    ///   patch in the editor is changed.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is required because the editor currently wants to be detached from the patch map current state (
-    ///     we run out of data modification layers available in BiomeConditions). This will become unnecessary once
-    ///     the patch map is synced with the other editor stage:
-    ///     https://github.com/Revolutionary-Games/Thrive/issues/3881
-    ///   </para>
-    /// </remarks>
-    private BiomeConditions previewBiomeConditions = null!;
-
-    /// <summary>
     ///   To not have to recreate this object for each place / remove this is a cached clone of editedSpecies to which
     ///   current editor changes are applied for simulating what effect they would have on the population.
     /// </summary>
@@ -330,6 +319,12 @@ public partial class CellEditorComponent :
 
     private bool microbePreviewMode;
 
+    /// <summary>
+    ///   The light-level from before entering the editor or when moving to a patch with light from one without.
+    /// </summary>
+    [JsonProperty]
+    private float? originalLightLevel;
+
     public enum SelectionMenuTab
     {
         Structure,
@@ -342,6 +337,7 @@ public partial class CellEditorComponent :
         Day,
         Night,
         Average,
+        Current,
     }
 
     /// <summary>
@@ -468,6 +464,24 @@ public partial class CellEditorComponent :
         .Select(p => p.Definition);
 
     [JsonIgnore]
+    public override bool ShowFinishButtonWarning
+    {
+        get
+        {
+            if (base.ShowFinishButtonWarning)
+                return true;
+
+            if (IsNegativeAtpProduction())
+                return true;
+
+            if (HasIslands)
+                return true;
+
+            return false;
+        }
+    }
+
+    [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
     protected override bool ForceHideHover => MicrobePreviewMode;
@@ -547,6 +561,7 @@ public partial class CellEditorComponent :
         dayButton = GetNode<Button>(DayButtonPath);
         nightButton = GetNode<Button>(NightButtonPath);
         averageLightButton = GetNode<Button>(AverageLightButtonPath);
+        currentLightButton = GetNode<Button>(CurrentLightButtonPath);
 
         structureTab = GetNode<PanelContainer>(StructureTabPath);
 
@@ -604,7 +619,7 @@ public partial class CellEditorComponent :
         var newLayout = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
 
-        SetPatchConditions(Editor.CurrentPatch, true);
+        UpdateOriginalLightLevel(Editor.CurrentPatch);
 
         if (fresh)
         {
@@ -848,8 +863,7 @@ public partial class CellEditorComponent :
 
         // Show warning popup if trying to exit with negative atp production
         // Not shown in multicellular as the popup happens in kind of a weird place
-        if (!IsMulticellularEditor && energyBalanceInfo != null &&
-            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        if (!IsMulticellularEditor && IsNegativeAtpProduction())
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;
@@ -864,7 +878,7 @@ public partial class CellEditorComponent :
     /// <param name="patch">The patch that is set</param>
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        SetPatchConditions(patch, false);
+        UpdateOriginalLightLevel(patch);
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
     }
@@ -879,10 +893,9 @@ public partial class CellEditorComponent :
             Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
 
         // Calculate and send energy balance to the GUI
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, previewBiomeConditions);
+        CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane);
 
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, previewBiomeConditions);
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles);
     }
 
     /// <summary>
@@ -894,7 +907,7 @@ public partial class CellEditorComponent :
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
         var result =
-            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, previewBiomeConditions,
+            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome,
                 CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
@@ -1055,8 +1068,8 @@ public partial class CellEditorComponent :
 
     public override void OnLightLevelChanged(float lightLevel)
     {
-        var maxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
-        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
+        var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
+        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
 
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
         // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
@@ -1065,27 +1078,13 @@ public partial class CellEditorComponent :
         if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
         {
             // Normalise by maximum light level in the patch
-            camera!.LightLevel = lightLevel * 100.0f / maxLightLevel;
+            camera!.LightLevel = lightLevel / maxLightLevel;
         }
         else
         {
             // Don't change lighting for patches without day/night effects
             camera!.LightLevel = 1.0f;
         }
-
-        var lightLevelAmount = new BiomeCompoundProperties
-        {
-            Ambient = lightLevel,
-        };
-
-        previewBiomeConditions.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
-
-        // TODO: isn't this entirely logically wrong? See the comment in PatchManager about needing to set average
-        // light levels on editor entry. This seems wrong because the average light amount is *not* the current light
-        // level, meaning that auto-evo prediction would be incorrect (if these numbers were used there, but aren't
-        // currently, see the documentation on previewBiomeConditions)
-        // // Need to set average to be the same as ambient so Auto-Evo updates correctly
-        // previewBiomeConditions.AverageCompounds[sunlight] = lightLevelAmount;
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
@@ -1250,6 +1249,7 @@ public partial class CellEditorComponent :
                 DayButtonPath.Dispose();
                 NightButtonPath.Dispose();
                 AverageLightButtonPath.Dispose();
+                CurrentLightButtonPath.Dispose();
                 TabButtonsPath.Dispose();
                 StructureTabButtonPath.Dispose();
                 AppearanceTabButtonPath.Dispose();
@@ -1544,18 +1544,14 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Updates the editor modifiable biome information from a patch
+    ///   Stores the actual patch light level (outside of the editor). This should only be called right
+    ///   after entering the editor or when moving to a patch with light from one without.
     /// </summary>
-    /// <param name="patch">The new patch to grab the biome data to copy from</param>
-    /// <param name="initializing">True when this is called during editor initialization</param>
-    private void SetPatchConditions(Patch patch, bool initializing)
+    private void UpdateOriginalLightLevel(Patch patch)
     {
-        previewBiomeConditions = (BiomeConditions)patch.Biome.Clone();
-
-        // If the editor has initialised (i.e. if this is a change of patch during an editor session), switch back to
-        // daytime light levels
-        if (!initializing)
-            SetLightLevelOption(LightLevelOption.Day);
+        // Only in patch with sunlight
+        if (patch.Biome.MaximumCompounds[sunlight].Ambient > 0)
+            originalLightLevel ??= patch.Biome.CurrentCompoundAmounts[sunlight].Ambient;
     }
 
     /// <summary>
@@ -1564,7 +1560,7 @@ public partial class CellEditorComponent :
     private void CalculateEnergyBalanceWithOrganellesAndMembraneType(IReadOnlyCollection<OrganelleTemplate> organelles,
         MembraneType membrane, BiomeConditions? biome = null)
     {
-        biome ??= previewBiomeConditions;
+        biome ??= Editor.CurrentPatch.Biome;
 
         UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
             Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current));
@@ -1573,7 +1569,7 @@ public partial class CellEditorComponent :
     private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles,
         BiomeConditions? biome = null)
     {
-        biome ??= previewBiomeConditions;
+        biome ??= Editor.CurrentPatch.Biome;
 
         var result = ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
 
@@ -1778,6 +1774,12 @@ public partial class CellEditorComponent :
         return true;
     }
 
+    private bool IsNegativeAtpProduction()
+    {
+        return energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary;
+    }
+
     private void OnPostNewMicrobeChange()
     {
         UpdateMembraneButtons(Membrane.InternalName);
@@ -1874,6 +1876,8 @@ public partial class CellEditorComponent :
         UpdateCellVisualization();
 
         StartAutoEvoPrediction();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>
@@ -1979,7 +1983,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, this);
+        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, CostMultiplier, upgradeGUI ?? string.Empty, this);
     }
 
     /// <summary>
@@ -2194,7 +2198,6 @@ public partial class CellEditorComponent :
 
     private void ApplyLightLevelOption()
     {
-        // TODO: remember light level in saves (right now the property is saved but the GUI seems to revert things)
         // Show selected light level
         switch (selectedLightLevelOption)
         {
@@ -2216,6 +2219,13 @@ public partial class CellEditorComponent :
             {
                 averageLightButton.Pressed = true;
                 Editor.LightLevel = Editor.CurrentPatch.Biome.AverageCompounds[sunlight].Ambient;
+                break;
+            }
+
+            case LightLevelOption.Current:
+            {
+                currentLightButton.Pressed = true;
+                Editor.LightLevel = originalLightLevel.GetValueOrDefault();
                 break;
             }
 

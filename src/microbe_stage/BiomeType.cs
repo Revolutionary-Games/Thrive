@@ -3,8 +3,8 @@
 /// </summary>
 /// <remarks>
 ///   <para>
-///     The order of this enum CANNOT be changed. They are used as patch IDs in classic map,
-///     and are directly used in the patch generation logic.
+///     The order of this enum CANNOT be changed. They are saved in game save files,
+///     and re-ordering would break existing saves
 ///   </para>
 /// </remarks>
 public enum BiomeType

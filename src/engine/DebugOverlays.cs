@@ -47,6 +47,8 @@ public partial class DebugOverlays : Control
     private Control labelsLayer = null!;
 #pragma warning restore CA2213
 
+    private Rect2? reportedViewportSize;
+
     private DebugOverlays()
     {
         instance = this;
@@ -107,6 +109,17 @@ public partial class DebugOverlays : Control
         // FPS counter
         if (fpsCounter.Visible)
             UpdateFPS();
+
+        // Parts of the game that aren't the GUI may want to know the actual logical size of our window (for example to
+        // check mouse coordinates), so this seems like a sensible place to do that as there's no longer a general
+        // overlay manager class
+        var size = GetViewportRect();
+
+        if (reportedViewportSize != size)
+        {
+            GUICommon.Instance.ReportViewportRect(size);
+            reportedViewportSize = size;
+        }
     }
 
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
