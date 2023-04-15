@@ -55,6 +55,7 @@ public class GameWorld : ISaveLoadable
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this()
     {
         WorldSettings = settings;
+        LightCycle.ApplyWorldSettings(settings);
 
         if (startingSpecies == null)
         {
@@ -92,6 +93,13 @@ public class GameWorld : ISaveLoadable
         GenerationHistory.Add(0, new GenerationRecord(
             0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
+
+        if (WorldSettings.DayNightCycleEnabled)
+        {
+            // Make sure average light levels are computed already
+            foreach (var patch in Map.Patches)
+                patch.Value.UpdateAverageSunlight(LightCycle);
+        }
     }
 
     /// <summary>
@@ -127,6 +135,9 @@ public class GameWorld : ISaveLoadable
 
     [JsonProperty]
     public TimedWorldOperations TimedEffects { get; private set; }
+
+    [JsonProperty]
+    public DayNightCycle LightCycle { get; private set; } = new();
 
     /// <summary>
     ///   The current external effects for the current auto-evo run. This is here to allow saving to work for them.
@@ -601,6 +612,8 @@ public class GameWorld : ISaveLoadable
     {
         if (Map == null || PlayerSpecies == null)
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
+
+        LightCycle.CalculateDependentLightData(WorldSettings);
     }
 
     public void BuildEvolutionaryTree(EvolutionaryTree tree)
