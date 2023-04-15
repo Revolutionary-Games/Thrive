@@ -1979,7 +1979,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, this);
+        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, this, Editor.CurrentGame);
     }
 
     /// <summary>

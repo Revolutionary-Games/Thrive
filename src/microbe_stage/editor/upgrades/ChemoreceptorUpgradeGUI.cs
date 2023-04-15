@@ -47,22 +47,21 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         minimumAmount.MaxValue = Constants.CHEMORECEPTOR_AMOUNT_MAX;
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds();
-
-        // TODO This needs a way to select species to track
-        // shownSpeciesChoices = ;
 
         foreach (var choice in shownCompoundChoices)
         {
             compounds.AddItem(choice.Name);
         }
 
-        // foreach (var choice in shownSpeciesChoices)
-        // {
-        //     species.AddItem(choice.Name);
-        // }
+        shownSpeciesChoices = currentGame.GameWorld.Map.FindAllSpeciesWithPopulation();
+
+        foreach (var choice in shownSpeciesChoices)
+        {
+            species.AddItem(string.Join(choice.Genus, " ", choice.Epithet));
+        }
 
         // Select glucose by default
         var defaultCompoundIndex =
