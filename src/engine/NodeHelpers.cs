@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public static class NodeHelpers
 {
-    private const string REPARENTING_META = "reparenting";
+    private const string RE_PARENTING_META = "reparenting";
 
     /// <summary>
     ///   Properly destroys a game entity. In addition to the normal Godot Free, Destroy must be called
@@ -119,13 +119,13 @@ public static class NodeHelpers
         }
 
         // Why use Godot.Object metadata? Because doing it the standard way with interfaces just for one
-        // flag thing to be able to reparent nodes sounds ridiculously incovenient to me -kasterisk
-        node.SetMeta(REPARENTING_META, true);
+        // flag thing to be able to re-parent nodes sounds ridiculously inconvenient to me -kasterisk
+        node.SetMeta(RE_PARENTING_META, true);
 
         node.GetParent().RemoveChild(node);
         newParent.AddChild(node);
 
-        node.RemoveMeta(REPARENTING_META);
+        node.RemoveMeta(RE_PARENTING_META);
     }
 
     /// <summary>
@@ -146,7 +146,7 @@ public static class NodeHelpers
     }
 
     /// <summary>
-    ///   Returns true if the given node or any of its antecedents is currently reparenting to another node.
+    ///   Returns true if the given node or any of its antecedents is currently re-parenting to another node.
     /// </summary>
     public static bool IsReParenting(this Node node)
     {
@@ -154,7 +154,7 @@ public static class NodeHelpers
 
         while (parent != null)
         {
-            if (parent.HasMeta(REPARENTING_META))
+            if (parent.HasMeta(RE_PARENTING_META))
                 return true;
 
             parent = parent.GetParent();
