@@ -30,6 +30,12 @@ public class ToolTipCallbackData : Reference
     public void OnExitingTree()
     {
         OnMouseExit();
-        ToolTipable.UnRegisterToolTipForControl(ToolTip);
+
+        // This is to avoid premature unregistration
+        if (!ToolTipable.IsReParenting())
+        {
+            // Control is exiting the tree due for deletion, valid for unregistration
+            ToolTipable.UnRegisterToolTipForControl(ToolTip);
+        }
     }
 }

@@ -6,12 +6,29 @@
 public class CustomWindow : Control
 {
     private bool mouseUnCaptureActive;
+    private bool previousVisibilityState;
 
     /// <summary>
-    ///   Emitted when this window is hidden. Same as <c>CanvasItem.hide</c>.
+    ///   Emitted when this window is closed or hidden.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Having a window closing animation results in the window's status be "closed" even though it's still visible
+    ///     (for displaying the animation itself).
+    ///   </para>
+    /// </remarks>
     [Signal]
     public delegate void Closed();
+
+    /// <summary>
+    ///   Returns true if this window is closing (not yet hidden) after calling <see cref="Close"/>.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This only becomes useful if you have a custom closing animation.
+    ///   </para>
+    /// </remarks>
+    public bool Closing { get; private set; }
 
     /// <summary>
     ///   If true, clicking outside of this popup will not close it (only applies when this is acting as a popup).
@@ -34,7 +51,7 @@ public class CustomWindow : Control
     [Export]
     public bool FullRect { get; set; }
 
-    private bool MouseUnCaptureActive
+    protected bool MouseUnCaptureActive
     {
         set
         {
@@ -79,14 +96,20 @@ public class CustomWindow : Control
                 ApplyRectSettings();
                 break;
             case NotificationVisibilityChanged:
-                if (IsVisibleInTree())
+                if (previousVisibilityState == IsVisibleInTree())
+                    break;
+
+                previousVisibilityState = IsVisibleInTree();
+
+                if (previousVisibilityState)
                 {
                     MouseUnCaptureActive = true;
                     ApplyRectSettings();
-                    OnShown();
+                    OnOpen();
                 }
                 else
                 {
+                    Closing = false;
                     MouseUnCaptureActive = false;
                     OnHidden();
                     EmitSignal(nameof(Closed));
@@ -97,11 +120,18 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Shows this window with a custom behavior, if any.
+    ///   Shows this window with a custom behavior if implemented in <see cref="OnOpen"/>.
     /// </summary>
-    public virtual void Open()
+    public void Open()
     {
+        if (Visible)
+            return;
+
+        // Showing the control is absolute, we shouldn't make it overridable by the user (as it won't affect
+        // the opening animation, unlike `Close`).
         Show();
+
+        // `OnOpen` will be called in _Notification.
     }
 
     /// <summary>
@@ -173,18 +203,40 @@ public class CustomWindow : Control
     }
 
     /// <summary>
-    ///   Hides this window with a custom behavior, if any.
+    ///   Hides this window with a custom behavior if implemented in <see cref="OnClose"/>.
     /// </summary>
-    public virtual void Close()
+    public void Close()
     {
-        Hide();
+        if (Closing || !Visible)
+            return;
+
+        Closing = true;
+        OnClose();
     }
 
     /// <summary>
-    ///   Called after this window is made visible.
+    ///   Called after this window is made visible. Implement custom open behavior by overriding this.
     /// </summary>
-    protected virtual void OnShown()
+    protected virtual void OnOpen()
     {
+        // Overridden methods can add a popping up animation
+    }
+
+    /// <summary>
+    ///   Called when this window is closing from <see cref="Close"/>. Implement custom close behavior by
+    ///   overriding this.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The default implementation just hides. Unless you override this method, which then you must call
+    ///     <see cref="OnClosingAnimationFinished"/> after your closing animation finishes.
+    ///   </para>
+    /// </remarks>
+    protected virtual void OnClose()
+    {
+        // For an animation, override this method in a derived class and call `OnClosingAnimationFinished` once the
+        // animation is complete (and don't call `base.OnClose` as that will hide things too early)
+        OnClosingAnimationFinished();
     }
 
     /// <summary>
@@ -192,6 +244,11 @@ public class CustomWindow : Control
     /// </summary>
     protected virtual void OnHidden()
     {
+    }
+
+    protected virtual void OnClosingAnimationFinished()
+    {
+        Hide();
     }
 
     /// <summary>

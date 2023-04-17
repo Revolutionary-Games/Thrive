@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -61,8 +60,8 @@ public class OrganelleUpgradeGUI : Control
         upgradeTooltipScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn");
     }
 
-    public void OpenForOrganelle(OrganelleTemplate organelle, float costMultiplier, string upgraderScene,
-        ICellEditorComponent editorComponent)
+    public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene,
+        ICellEditorComponent editorComponent, ICellEditorData editorData, float costMultiplier)
     {
         openedForOrganelle = organelle;
 
@@ -106,6 +105,8 @@ public class OrganelleUpgradeGUI : Control
 
             var tooltipGroup = GetTooltipGroup();
 
+            var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
+
             // Setup the buttons for each of the available upgrades
             foreach (var availableUpgrade in availableGeneralUpgrades)
             {
@@ -113,7 +114,15 @@ public class OrganelleUpgradeGUI : Control
 
                 var selectionButton = upgradeSelectionButtonScene.Instance<MicrobePartSelection>();
 
-                var cost = (int)Math.Min(upgrade.MPCost * costMultiplier, 100);
+                var newUpgrade = new OrganelleUpgrades();
+                newUpgrade.UnlockedFeatures.Add(availableUpgrade.Key);
+
+                var data = new OrganelleUpgradeActionData(oldUpgrade, newUpgrade, organelle)
+                {
+                    CostMultiplier = costMultiplier,
+                };
+
+                var cost = editorData.WhatWouldActionsCost(new[] { data });
 
                 selectionButton.Name = availableUpgrade.Key;
                 selectionButton.SelectionGroup = generalUpgradeButtonGroup;
