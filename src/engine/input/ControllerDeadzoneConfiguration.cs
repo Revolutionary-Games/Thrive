@@ -92,10 +92,31 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
     }
 
-    protected override void OnShown()
+    protected override void OnOpen()
     {
-        base.OnShown();
-        OnBecomeVisible();
+        base.OnOpen();
+
+        statusLabel.Text = string.Empty;
+        visualizationContainer.Start();
+
+        // As we modify the deadzones we need to make a deep copy here
+        currentDeadzones = new List<float>(Settings.Instance.ControllerAxisDeadzoneAxes.Value);
+
+        // Tweak to the right number of deadzones
+        while (currentDeadzones.Count > (int)JoystickList.AxisMax)
+        {
+            currentDeadzones.RemoveAt(currentDeadzones.Count - 1);
+        }
+
+        while (currentDeadzones.Count < (int)JoystickList.AxisMax)
+        {
+            currentDeadzones.Add(currentDeadzones.Count > 0 ?
+                currentDeadzones[0] :
+                Constants.CONTROLLER_DEFAULT_DEADZONE);
+        }
+
+        // For some reason a label grabs focus if we don't call this with a delay
+        Invoke.Instance.Queue(() => startButton.GrabFocus());
     }
 
     protected override void OnHidden()
@@ -119,31 +140,6 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
 
         base.Dispose(disposing);
-    }
-
-    private void OnBecomeVisible()
-    {
-        statusLabel.Text = string.Empty;
-        visualizationContainer.Start();
-
-        // As we modify the deadzones we need to make a deep copy here
-        currentDeadzones = new List<float>(Settings.Instance.ControllerAxisDeadzoneAxes.Value);
-
-        // Tweak to the right number of deadzones
-        while (currentDeadzones.Count > (int)JoystickList.AxisMax)
-        {
-            currentDeadzones.RemoveAt(currentDeadzones.Count - 1);
-        }
-
-        while (currentDeadzones.Count < (int)JoystickList.AxisMax)
-        {
-            currentDeadzones.Add(currentDeadzones.Count > 0 ?
-                currentDeadzones[0] :
-                Constants.CONTROLLER_DEFAULT_DEADZONE);
-        }
-
-        // For some reason a label grabs focus if we don't call this with a delay
-        Invoke.Instance.Queue(() => startButton.GrabFocus());
     }
 
     private void OnCancel()

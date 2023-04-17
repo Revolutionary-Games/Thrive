@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Godot.Collections;
+using Nito.Collections;
 
 /// <summary>
 ///   Handles a stack of <see cref="CustomWindow"/>s that block GUI inputs.
@@ -15,7 +17,8 @@ public class ModalManager : NodeWithInput
     /// </summary>
     private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> originalParents = new();
 
-    private readonly Stack<CustomWindow> modalStack = new();
+    private readonly Deque<CustomWindow> modalStack = new();
+    private readonly Queue<CustomWindow> demotedModals = new();
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CanvasLayer canvasLayer = null!;
@@ -60,10 +63,6 @@ public class ModalManager : NodeWithInput
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Note that if this is called quickly multiple times, only the modal that ends up being on top, will be
-    ///     visible. Other modals will only become visible when they end up being the top-most one.
-    ///   </para>
-    ///   <para>
     ///     This does Node re-parenting operation, therefore calling this plainly in <see cref="Node._Ready"/> wouldn't
     ///     work as the Node is still busy then. Alternatively, you could defer the call in the next frame by using
     ///     <see cref="Invoke.Queue"/>.
@@ -75,11 +74,12 @@ public class ModalManager : NodeWithInput
             return;
 
         originalParents[popup] = popup.GetParent();
-        modalStack.Push(popup);
+        modalStack.AddToFront(popup);
         modalsDirty = true;
 
         var binds = new Array { popup };
-        popup.CheckAndConnect("hide", this, nameof(OnModalLost), binds, (uint)ConnectFlags.Oneshot);
+        popup.CheckAndConnect(nameof(CustomWindow.Closed), this, nameof(OnModalLost), binds,
+            (uint)ConnectFlags.Oneshot);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class ModalManager : NodeWithInput
         if (modalStack.Count <= 0)
             return false;
 
-        var popup = modalStack.Peek();
+        var popup = modalStack.First();
 
         if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
             return false;
@@ -115,7 +115,7 @@ public class ModalManager : NodeWithInput
         if (modalStack.Count <= 0)
             return null;
 
-        var modal = modalStack.Peek();
+        var modal = modalStack.First();
 
         if (modal.Exclusive)
             return modal;
@@ -125,6 +125,20 @@ public class ModalManager : NodeWithInput
 
     private void UpdateModals()
     {
+        while (demotedModals.Count > 0)
+        {
+            var modal = demotedModals.Dequeue();
+
+            if (!originalParents.TryGetValue(modal, out Node parent))
+            {
+                modal.ReParent(this);
+                continue;
+            }
+
+            // TODO: Consider returning the modal to its original position in its original parent?
+            modal.ReParent(parent);
+        }
+
         if (modalStack.Count <= 0)
         {
             activeModalContainer.Hide();
@@ -133,7 +147,7 @@ public class ModalManager : NodeWithInput
 
         activeModalContainer.Show();
 
-        var top = modalStack.Peek();
+        var top = modalStack.First();
 
         foreach (var modal in modalStack)
         {
@@ -141,17 +155,21 @@ public class ModalManager : NodeWithInput
             {
                 modal.ReParent(canvasLayer);
                 canvasLayer.MoveChild(modal, 0);
-                continue;
+            }
+            else
+            {
+                top.ReParent(activeModalContainer);
+
+                // Always give focus to the top-most modal in the stack
+                top.FindNextValidFocus()?.GrabFocus();
             }
 
-            top.ReParent(activeModalContainer);
-
-            // Always make the top-most modal in the stack visible
+            // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
             if (!modal.Visible)
+            {
                 modal.Open();
-
-            // Always give focus to the top-most modal in the stack
-            top.FindNextValidFocus()?.GrabFocus();
+                modal.Notification(Popup.NotificationPostPopup);
+            }
         }
     }
 
@@ -169,7 +187,7 @@ public class ModalManager : NodeWithInput
                 return;
             }
 
-            var top = modalStack.Peek();
+            var top = modalStack.First();
 
             if (!top.Exclusive)
             {
@@ -191,18 +209,22 @@ public class ModalManager : NodeWithInput
         if (!modalStack.Contains(popup))
             return;
 
-        if (!originalParents.TryGetValue(popup, out Node parent))
+        if (modalStack.First() != popup)
         {
-            popup.ReParent(this);
-            return;
+            // Unexpected modal reported being closed (not top most modal).
+            // We kind of need to accept that this is inevitable as the order of when multiple windows are made modal
+            // and closed is unpredictable, sometimes you could have two new modals but want to close the first, what
+            // got closed instead is the second.
+
+            // Removes the correct modal deeper in the stack
+            modalStack.Remove(popup);
+        }
+        else
+        {
+            modalStack.RemoveFromFront();
         }
 
-        var modal = modalStack.Pop();
-
-        if (modal != popup)
-            GD.PrintErr("Unexpected modal reported being closed (not top most modal)");
-
-        modal.ReParent(parent);
+        demotedModals.Enqueue(popup);
 
         modalsDirty = true;
     }

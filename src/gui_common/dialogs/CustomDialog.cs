@@ -340,9 +340,9 @@ public class CustomDialog : CustomWindow
         return rect.HasPoint(point);
     }
 
-    protected override void OnShown()
+    protected override void OnOpen()
     {
-        base.OnShown();
+        base.OnOpen();
         UpdateChildRects();
     }
 
