@@ -12,11 +12,14 @@ public class SceneManager : Node
 
 #pragma warning disable CA2213
     private Node internalRootNode = null!;
+
+    private PostShutdownActions shutdownActions;
 #pragma warning restore CA2213
 
     private SceneManager()
     {
         instance = this;
+        shutdownActions = new PostShutdownActions();
     }
 
     public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -24,6 +27,13 @@ public class SceneManager : Node
     public override void _Ready()
     {
         internalRootNode = GetTree().Root;
+
+        // Need to do this with a delay to avoid a problem with the node setup
+        Invoke.Instance.Perform(() =>
+        {
+            internalRootNode.AddChild(shutdownActions);
+            EnsureShutdownIsLastChild();
+        });
     }
 
     /// <summary>
@@ -70,6 +80,8 @@ public class SceneManager : Node
         GetTree().CurrentScene = newSceneRoot;
         ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
 
+        EnsureShutdownIsLastChild();
+
         if (!keepOldRoot)
         {
             oldRoot?.QueueFree();
@@ -105,6 +117,8 @@ public class SceneManager : Node
     public void AttachScene(Node scene)
     {
         internalRootNode.AddChild(scene);
+
+        EnsureShutdownIsLastChild();
     }
 
     public void DetachScene(Node scene)
@@ -176,5 +190,15 @@ public class SceneManager : Node
         GetTree().Quit();
 
         alreadyQuit = true;
+    }
+
+    /// <summary>
+    ///   Ensures the shutdown node is last in tree order, this is needed for it to actually execute last
+    /// </summary>
+    private void EnsureShutdownIsLastChild()
+    {
+        var index = internalRootNode.GetChildCount();
+
+        internalRootNode.MoveChild(shutdownActions, index);
     }
 }
