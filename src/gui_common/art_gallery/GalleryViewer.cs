@@ -32,6 +32,8 @@ public class GalleryViewer : CustomDialog
     [Export]
     public PackedScene GalleryDetailsToolTipScene = null!;
 
+    private readonly List<(Control Control, ICustomToolTip ToolTip)> registeredToolTips = new();
+
     // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
     private GridContainer cardTile = null!;
 
@@ -150,6 +152,7 @@ public class GalleryViewer : CustomDialog
 
         tabButtons.ClearTabButtons();
         cardTile.QueueFreeChildren();
+        ReleaseToolTips();
 
         var tabsButtonGroup = new ButtonGroup();
         var itemsButtonGroup = new ButtonGroup();
@@ -271,15 +274,27 @@ public class GalleryViewer : CustomDialog
         item.Group = buttonGroup;
         item.Connect(nameof(GalleryCard.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
 
-        var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
-        tooltip.Name = "galleryCard_" + asset.ResourcePath.GetFile();
+        // Reuse existing tooltip if possible
+        var name = "galleryCard_" + asset.ResourcePath.GetFile();
+
+        var tooltip = ToolTipManager.Instance.GetToolTip<GalleryDetailsTooltip>(name, "artGallery");
+
+        if (tooltip == null)
+        {
+            // Need to create a new tooltip
+            tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
+            tooltip.Name = name;
+            ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
+        }
+
         tooltip.DisplayName = string.IsNullOrEmpty(asset.Title) ?
             TranslationServer.Translate("UNTITLED") :
             asset.Title!;
         tooltip.Description = asset.Description;
         tooltip.Artist = asset.Artist;
-        item.RegisterToolTipForControl(tooltip);
-        ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
+
+        item.RegisterToolTipForControl(tooltip, false);
+        registeredToolTips.Add((item, tooltip));
 
         return item;
     }
@@ -435,5 +450,18 @@ public class GalleryViewer : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
+    }
+
+    private void ReleaseToolTips()
+    {
+        if (registeredToolTips.Count < 1)
+            return;
+
+        foreach (var (control, tooltip) in registeredToolTips)
+        {
+            control.UnRegisterToolTipForControl(tooltip);
+        }
+
+        registeredToolTips.Clear();
     }
 }

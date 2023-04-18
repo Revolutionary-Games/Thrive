@@ -36,14 +36,20 @@ public static class ToolTipHelper
 
     /// <summary>
     ///   Registers a Control mouse enter and exit event if hasn't already yet to the callbacks for the given
-    ///   custom tooltip.
+    ///   custom tooltip. Note that the code calling this must call
+    ///   <see cref="UnRegisterToolTipForControl(Godot.Control,ICustomToolTip?)"/> once
+    ///   the scene containing the tooltip is removed (unless <see cref="autoUnregister"/> is true).
     /// </summary>
     /// <param name="control">The Control to register the tooltip to.</param>
     /// <param name="tooltip">
     ///   The tooltip to register with. Null is not valid but it's nullable to make a few other places in the code
     ///   easier and there isn't much of a difference if we print the error here rather than if our callers did it.
     /// </param>
-    public static void RegisterToolTipForControl(this Control control, ICustomToolTip? tooltip)
+    /// <param name="autoUnregister">
+    ///   When true the tooltip is automatically detached when the control exits the tree. Note that this is only
+    ///   usable if you know that the control this is used for is never reattached to the scene tree after detaching.
+    /// </param>
+    public static void RegisterToolTipForControl(this Control control, ICustomToolTip? tooltip, bool autoUnregister)
     {
         if (tooltip == null)
         {
@@ -55,7 +61,7 @@ public static class ToolTipHelper
         if (control.IsToolTipRegistered(tooltip))
             return;
 
-        var toolTipCallbackData = new ToolTipCallbackData(control, tooltip);
+        var toolTipCallbackData = new ToolTipCallbackData(control, tooltip, autoUnregister);
 
         control.Connect("mouse_entered", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter));
         control.Connect("mouse_exited", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
@@ -66,10 +72,35 @@ public static class ToolTipHelper
     }
 
     /// <summary>
-    ///   Disconnects signal connections and removes stored callback data for the given tooltip.
+    ///   Registers a Control mouse enter/exit event to display a custom tooltip from the given tooltip and group name.
+    ///   This variant is for tooltips defined in the tooltip manager and not dynamically created during runtime.
     /// </summary>
-    public static void UnRegisterToolTipForControl(this Control control, ICustomToolTip tooltip)
+    /// <remarks>
+    ///   <para>
+    ///     This variant defaults to auto unregistering the tooltips as this is used with predefined tooltips so often
+    ///     they don't want to be tracked manually for unregistering, as such this sets the auto unregister to require
+    ///     less code. But be aware that if anything that needs to support detaching and re-attaching to the scene tree
+    ///     will not work correctly with auto unregistering enabled.
+    ///   </para>
+    /// </remarks>
+    public static void RegisterToolTipForControl(this Control control, string tooltip, string group =
+        ToolTipManager.DEFAULT_GROUP_NAME, bool autoUnregister = true)
     {
+        control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltip, group), autoUnregister);
+    }
+
+    /// <summary>
+    ///   Disconnects signal connections and removes stored callback data for the given tooltip.
+    ///   When passed a null value this warns
+    /// </summary>
+    public static void UnRegisterToolTipForControl(this Control control, ICustomToolTip? tooltip)
+    {
+        if (tooltip == null)
+        {
+            GD.PrintErr($"Null tooltip passed to unregister for control: {control.Name}");
+            return;
+        }
+
         if (!control.IsToolTipRegistered(tooltip))
             return;
 
@@ -81,6 +112,18 @@ public static class ToolTipHelper
         control.Disconnect("tree_exiting", data, nameof(ToolTipCallbackData.OnExitingTree));
 
         ToolTipCallbacks.Remove(data);
+
+        data.Unregistered = true;
+        data.Dispose();
+    }
+
+    /// <summary>
+    ///   Unregister variant for tooltips that are looked up by name
+    /// </summary>
+    public static void UnRegisterToolTipForControl(this Control control, string tooltip, string group =
+        ToolTipManager.DEFAULT_GROUP_NAME)
+    {
+        control.UnRegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltip, group));
     }
 
     /// <summary>
@@ -105,13 +148,9 @@ public static class ToolTipHelper
         return ToolTipCallbacks.Contains(GetToolTipCallbackData(control, tooltip));
     }
 
-    /// <summary>
-    ///   Registers a Control mouse enter/exit event to display a custom tooltip from the given tooltip and group name.
-    /// </summary>
-    public static void RegisterToolTipForControl(this Control control, string tooltip, string group =
-        ToolTipManager.DEFAULT_GROUP_NAME)
+    public static int CountRegisteredToolTips()
     {
-        control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltip, group));
+        return ToolTipCallbacks.Count;
     }
 
     /// <summary>

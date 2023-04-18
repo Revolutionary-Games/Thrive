@@ -109,9 +109,11 @@ public class LineChart : VBoxContainer
     /// </summary>
     private readonly Dictionary<string, DataLine> dataLines = new();
 
-    private readonly Dictionary<DataLine, List<ICustomToolTip>> dataLineTooltips = new();
+    private readonly Dictionary<DataLine, List<(DefaultToolTip ToolTip, Control Parent)>> dataLineTooltips = new();
 
-    private readonly Dictionary<string, Dictionary<DataPoint, ICustomToolTip>> dataPointToolTips = new();
+    private readonly Dictionary<string, Dictionary<DataPoint, DefaultToolTip>> dataPointToolTips = new();
+
+    private readonly Dictionary<Control, DefaultToolTip> legendToolTips = new();
 
 #pragma warning disable CA2213
 
@@ -149,6 +151,8 @@ public class LineChart : VBoxContainer
     ///   If true this means that this chart is part of another parent chart.
     /// </summary>
     private bool isChild;
+
+    private bool toolTipsDetached;
 
     /// <summary>
     ///   Modes on how the chart legend should be displayed
@@ -263,6 +267,23 @@ public class LineChart : VBoxContainer
         UpdateAxesName();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        ReRegisterToolTips();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Due to disposes happening in a pretty weird order on shutdown (and to avoid disposed object tooltip
+        // detaches) an approach is used to detach the tooltips here and potentially re-attach them if we happen to
+        // re-enter the tree
+        DetachToolTips();
+    }
+
     /// <summary>
     ///   Add a dataset into this chart (overwrites existing one if the name already existed)
     /// </summary>
@@ -301,13 +322,7 @@ public class LineChart : VBoxContainer
             childChart.dataSets.Clear();
         }
 
-        // Remove tooltips correctly
-        foreach (var key in dataPointToolTips.Keys)
-        {
-            ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + ChartName + key);
-        }
-
-        dataPointToolTips.Clear();
+        ProperlyRemovePointAndLineToolTips();
     }
 
     /// <summary>
@@ -335,6 +350,7 @@ public class LineChart : VBoxContainer
         int expandedXTicks = 0, int expandedYTicks = 0)
     {
         ClearChart();
+        EnsureNoDetachedToolTipsExist();
 
         // These are before the parameter checks to apply any possible translation to the axes labels
         XAxisName = string.IsNullOrEmpty(xAxisName) ? XAxisName : xAxisName;
@@ -398,24 +414,26 @@ public class LineChart : VBoxContainer
 
             // Initialize line
             var dataLine = new DataLine((LineChartData)data.Value, data.Key == defaultDataSet, isChild ? 2 : 1);
-            dataLine.Connect("tree_exited", this, nameof(RemoveDataLineTooltipOnDeletion), new Array(dataLine));
-
-            if (!dataLineTooltips.ContainsKey(dataLine))
-                dataLineTooltips.Add(dataLine, new List<ICustomToolTip>());
 
             dataLines[data.Key] = dataLine;
             drawArea.AddChild(dataLine);
 
-            if (!dataPointToolTips.ContainsKey(data.Key))
-                dataPointToolTips.Add(data.Key, new Dictionary<DataPoint, ICustomToolTip>());
+            if (!dataPointToolTips.TryGetValue(data.Key, out var key))
+            {
+                key = new Dictionary<DataPoint, DefaultToolTip>();
+                dataPointToolTips[data.Key] = key;
+            }
 
             foreach (var point in data.Value.DataPoints)
             {
                 // Enlarge marker if this is an expanded chart
                 point.Size *= isChild ? 1.5f : 1;
 
-                // Create tooltip for the point markers
-                var toolTip = ToolTipHelper.GetDefaultToolTip();
+                if (!key.TryGetValue(point, out var toolTip))
+                {
+                    // Create a new tooltip for the point marker
+                    toolTip = ToolTipHelper.GetDefaultToolTip();
+                }
 
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
                     $"{point.X.FormatNumber()} {XAxisName}" :
@@ -433,10 +451,9 @@ public class LineChart : VBoxContainer
                 toolTip.TransitionType = ToolTipTransitioning.Immediate;
                 toolTip.Positioning = ToolTipPositioning.ControlBottomRightCorner;
 
-                point.RegisterToolTipForControl(toolTip);
+                point.RegisterToolTipForControl(toolTip, false);
                 ToolTipManager.Instance.AddToolTip(toolTip, TOOLTIP_GROUP_BASE_NAME + ChartName + data.Key);
 
-                var key = dataPointToolTips[data.Key];
                 key[point] = toolTip;
 
                 drawArea.AddChild(point);
@@ -474,7 +491,7 @@ public class LineChart : VBoxContainer
 
         if (DataSetsLegend != null)
         {
-            legendContainer.AddChild(DataSetsLegend.CreateLegend(dataSets, legendTitle));
+            legendContainer.AddChild(DataSetsLegend.CreateLegend(dataSets, legendTitle, legendToolTips));
             legendContainer.Show();
         }
 
@@ -507,12 +524,9 @@ public class LineChart : VBoxContainer
     /// </summary>
     public void ClearChart()
     {
-        foreach (var data in dataSets)
-        {
-            ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + ChartName + data.Key);
-        }
+        ProperlyRemovePointAndLineToolTips();
 
-        ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName);
+        ProperlyRemoveLegendToolTips();
 
         // Clear lines
         foreach (var data in dataSets)
@@ -629,8 +643,8 @@ public class LineChart : VBoxContainer
             tooltip.Description = description;
         }
 
-        // ReSharper disable once MergeSequentialChecksWhenPossible
         // Too much of a hassle than it benefits
+        // ReSharper disable once MergeSequentialChecksWhenPossible
         if (childChart != null && childChart.dataPointToolTips.ContainsKey(dataset) &&
             childChart.dataPointToolTips[dataset].TryGetValue(datapoint, out var clonedTooltip))
         {
@@ -653,14 +667,12 @@ public class LineChart : VBoxContainer
                 ExtraLegendContainerPath.Dispose();
                 InspectButtonPath.Dispose();
             }
+
+            ProperlyRemovePointAndLineToolTips();
+            ProperlyRemoveLegendToolTips();
         }
 
         base.Dispose(disposing);
-    }
-
-    private void RemoveDataLineTooltipOnDeletion(DataLine line)
-    {
-        ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + line.GetInstanceId(), true);
     }
 
     /// <summary>
@@ -760,6 +772,14 @@ public class LineChart : VBoxContainer
             newCollisionRect.Connect("mouse_entered", dataLine, nameof(dataLine.OnMouseEnter));
             newCollisionRect.Connect("mouse_exited", dataLine, nameof(dataLine.OnMouseExit));
 
+            if (!dataLineTooltips.TryGetValue(dataLine, out var currentDataLineToolTips))
+            {
+                currentDataLineToolTips = new List<(DefaultToolTip ToolTip, Control Parent)>();
+                dataLineTooltips[dataLine] = currentDataLineToolTips;
+            }
+
+            // TODO: can this also reuse tooltips like the data points?
+
             // Create tooltip
             var tooltip = ToolTipHelper.GetDefaultToolTip();
 
@@ -767,9 +787,9 @@ public class LineChart : VBoxContainer
             tooltip.Description = datasetName;
             tooltip.DisplayDelay = 0.5f;
 
-            newCollisionRect.RegisterToolTipForControl(tooltip);
+            newCollisionRect.RegisterToolTipForControl(tooltip, false);
             ToolTipManager.Instance.AddToolTip(tooltip, TOOLTIP_GROUP_BASE_NAME + dataLine.GetInstanceId());
-            dataLineTooltips[dataLine].Add(tooltip);
+            currentDataLineToolTips.Add((tooltip, newCollisionRect));
 
             dataLine.CollisionBoxes[firstPoint] = newCollisionRect;
 
@@ -1031,6 +1051,129 @@ public class LineChart : VBoxContainer
         childChart.inspectButton.Hide();
     }
 
+    private void ProperlyRemovePointAndLineToolTips()
+    {
+        bool alreadyDetached = toolTipsDetached;
+
+        // Remove tooltips correctly
+        foreach (var entry in dataPointToolTips)
+        {
+            foreach (var tooltipEntry in entry.Value)
+            {
+                // Unset tooltip data on the control
+                if (!alreadyDetached)
+                    tooltipEntry.Key.UnRegisterToolTipForControl(tooltipEntry.Value);
+
+                // Return the default tooltips to the cache
+                ToolTipHelper.ReturnDefaultToolTip(tooltipEntry.Value);
+            }
+
+            ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + ChartName + entry.Key);
+        }
+
+        dataPointToolTips.Clear();
+
+        // Remove tooltips from data lines as well
+        foreach (var entry in dataLineTooltips)
+        {
+            foreach (var toolTipEntry in entry.Value)
+            {
+                if (!alreadyDetached)
+                    toolTipEntry.Parent.UnRegisterToolTipForControl(toolTipEntry.ToolTip);
+                ToolTipHelper.ReturnDefaultToolTip(toolTipEntry.ToolTip);
+            }
+
+            ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + entry.Key.GetInstanceId(), true);
+        }
+
+        dataLineTooltips.Clear();
+    }
+
+    private void ProperlyRemoveLegendToolTips()
+    {
+        bool alreadyDetached = toolTipsDetached;
+
+        foreach (var entry in legendToolTips)
+        {
+            if (!alreadyDetached)
+                entry.Key.UnRegisterToolTipForControl(entry.Value);
+            ToolTipHelper.ReturnDefaultToolTip(entry.Value);
+        }
+
+        legendToolTips.Clear();
+
+        ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName);
+    }
+
+    private void DetachToolTips()
+    {
+        if (toolTipsDetached)
+        {
+            GD.PrintErr("Tooltips are already detached");
+            return;
+        }
+
+        toolTipsDetached = true;
+
+        foreach (var entry in dataPointToolTips)
+        {
+            foreach (var tooltipEntry in entry.Value)
+            {
+                tooltipEntry.Key.UnRegisterToolTipForControl(tooltipEntry.Value);
+            }
+        }
+
+        foreach (var entry in dataLineTooltips)
+        {
+            foreach (var toolTipEntry in entry.Value)
+            {
+                toolTipEntry.Parent.UnRegisterToolTipForControl(toolTipEntry.ToolTip);
+            }
+        }
+
+        foreach (var entry in legendToolTips)
+        {
+            entry.Key.UnRegisterToolTipForControl(entry.Value);
+        }
+    }
+
+    private void ReRegisterToolTips()
+    {
+        if (!toolTipsDetached)
+            return;
+
+        foreach (var entry in dataPointToolTips)
+        {
+            foreach (var tooltipEntry in entry.Value)
+            {
+                tooltipEntry.Key.RegisterToolTipForControl(tooltipEntry.Value, false);
+            }
+        }
+
+        foreach (var entry in dataLineTooltips)
+        {
+            foreach (var toolTipEntry in entry.Value)
+            {
+                toolTipEntry.Parent.RegisterToolTipForControl(toolTipEntry.ToolTip, false);
+            }
+        }
+
+        foreach (var entry in legendToolTips)
+        {
+            entry.Key.RegisterToolTipForControl(entry.Value, false);
+        }
+
+        toolTipsDetached = false;
+    }
+
+    /// <summary>
+    ///   Called to make sure there aren't pending tooltips to reattach when data is going to be recreated
+    /// </summary>
+    private void EnsureNoDetachedToolTipsExist()
+    {
+        ReRegisterToolTips();
+    }
+
     // GUI Callbacks
 
     private void OnInspectButtonPressed()
@@ -1058,7 +1201,8 @@ public class LineChart : VBoxContainer
             this.chart = chart;
         }
 
-        public virtual Control CreateLegend(DataSetDictionary datasets, string? title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string? title,
+            Dictionary<Control, DefaultToolTip> createdToolTips)
         {
             _ = title;
 
@@ -1093,13 +1237,17 @@ public class LineChart : VBoxContainer
                 }
 
                 // Create tooltips
-                var toolTip = ToolTipHelper.GetDefaultToolTip();
+                if (!createdToolTips.TryGetValue(icon, out var toolTip))
+                {
+                    toolTip = ToolTipHelper.GetDefaultToolTip();
+                    createdToolTips[icon] = toolTip;
+                    ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + chart.ChartName);
+                }
 
                 toolTip.DisplayName = data.Key;
                 toolTip.Description = data.Key;
 
-                icon.RegisterToolTipForControl(toolTip);
-                ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + chart.ChartName);
+                icon.RegisterToolTipForControl(toolTip, false);
             }
 
             return hBox;
@@ -1167,7 +1315,8 @@ public class LineChart : VBoxContainer
 
         public CustomDropDown? Dropdown { get; protected set; }
 
-        public virtual Control CreateLegend(DataSetDictionary datasets, string? title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string? title,
+            Dictionary<Control, DefaultToolTip> createdToolTips)
         {
             Dropdown = new CustomDropDown
             {
