@@ -509,6 +509,7 @@ public class OptionsMenu : ControlWithInput
         gpuName = GetNode<Label>(GpuNamePath);
         usedRendererName = GetNode<Label>(UsedRendererNamePath);
         videoMemory = GetNode<Label>(VideoMemoryPath);
+        GetViewport().Connect("size_changed", this, nameof(DisplayResolution));
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -615,10 +616,6 @@ public class OptionsMenu : ControlWithInput
             UpdateDefaultAudioOutputDeviceText();
             DisplayResolution();
             DisplayGpuInfo();
-        }
-        else if (what == NotificationResized)
-        {
-            DisplayResolution();
         }
     }
 
