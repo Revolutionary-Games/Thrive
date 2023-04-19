@@ -52,7 +52,7 @@ public interface IEditor : ISaveLoadedTracked
     /// </summary>
     public bool Ready { get; }
 
-    public float LightLevel { get; set; }
+    public float DayLightFraction { get; set; }
 
     /// <summary>
     ///   Cancels the current editor action if possible

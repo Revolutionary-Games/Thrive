@@ -138,12 +138,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
-    public override void OnLightLevelChanged(float lightLevel)
+    public override void OnLightLevelChanged(float dayLightFraction)
     {
-        base.OnLightLevelChanged(lightLevel);
+        base.OnLightLevelChanged(dayLightFraction);
 
         var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
-        var minLightLevel = Editor.CurrentPatch.Biome.MinimumCompounds[sunlight].Ambient;
         var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
 
         // We don't want the light level in other patches be changed to zero if this callback is called while
@@ -153,13 +152,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             foreach (var patch in Editor.CurrentGame.GameWorld.Map.Patches.Values)
             {
                 var targetMaxLightLevel = patch.Biome.MaximumCompounds[sunlight].Ambient;
-                var targetMinLightLevel = patch.Biome.MinimumCompounds[sunlight].Ambient;
 
-                // Figure out the daylight in all patches relative to the player's current patch
-                var relativeLightLevel = (lightLevel - minLightLevel) / (maxLightLevel - minLightLevel) *
-                    (targetMaxLightLevel - targetMinLightLevel) + targetMinLightLevel;
-
-                var lightLevelAmount = new BiomeCompoundProperties { Ambient = relativeLightLevel };
+                var lightLevelAmount = new BiomeCompoundProperties
+                {
+                    Ambient = targetMaxLightLevel * dayLightFraction,
+                };
 
                 patch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
             }
