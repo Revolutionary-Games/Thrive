@@ -452,6 +452,8 @@ public class OptionsMenu : ControlWithInput
 
     private GameProperties? gameProperties;
 
+    private bool nodeReferencesResolved;
+
     // Signals
 
     [Signal]
@@ -477,6 +479,23 @@ public class OptionsMenu : ControlWithInput
 
     public override void _Ready()
     {
+        ResolveNodeReferences(true);
+
+        LoadLanguages();
+        LoadAudioOutputDevices();
+
+        inputGroupList.OnControlsChanged += OnControlsChanged;
+
+        deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
+
+        selectedOptionsTab = OptionsTab.Graphics;
+    }
+
+    public void ResolveNodeReferences(bool calledFromReady)
+    {
+        if (nodeReferencesResolved)
+            return;
+
         // Options control buttons
         backButton = GetNode<Button>(BackButtonPath);
         resetButton = GetNode<Button>(ResetButtonPath);
@@ -484,11 +503,26 @@ public class OptionsMenu : ControlWithInput
 
         // Tab selector buttons
         tabButtons = GetNode<TabButtons>(TabButtonsPath);
-        graphicsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, GraphicsButtonPath));
-        soundButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, SoundButtonPath));
-        performanceButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PerformanceButtonPath));
-        inputsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, InputsButtonPath));
-        miscButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscButtonPath));
+
+        // When _Ready is called the tab buttons will have been adjusted, so how we find the buttons needs different
+        // approaches based on how early this is called
+        if (calledFromReady)
+        {
+            graphicsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, GraphicsButtonPath));
+            soundButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, SoundButtonPath));
+            performanceButton =
+                GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PerformanceButtonPath));
+            inputsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, InputsButtonPath));
+            miscButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscButtonPath));
+        }
+        else
+        {
+            graphicsButton = GetNode<Button>(GraphicsButtonPath);
+            soundButton = GetNode<Button>(SoundButtonPath);
+            performanceButton = GetNode<Button>(PerformanceButtonPath);
+            inputsButton = GetNode<Button>(InputsButtonPath);
+            miscButton = GetNode<Button>(MiscButtonPath);
+        }
 
         // Graphics
         graphicsTab = GetNode<Control>(GraphicsTabPath);
@@ -528,9 +562,6 @@ public class OptionsMenu : ControlWithInput
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
         languageProgressLabel = GetNode<Label>(LanguageProgressLabelPath);
 
-        LoadLanguages();
-        LoadAudioOutputDevices();
-
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
@@ -567,10 +598,8 @@ public class OptionsMenu : ControlWithInput
         mouseEdgePanSensitivity = GetNode<Slider>(MouseEdgePanSensitivityPath);
 
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
-        inputGroupList.OnControlsChanged += OnControlsChanged;
 
         deadzoneConfigurationPopup = GetNode<ControllerDeadzoneConfiguration>(DeadzoneConfigurationPopupPath);
-        deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -600,12 +629,29 @@ public class OptionsMenu : ControlWithInput
         patchNotesBox = GetNode<CustomDialog>(PatchNotesBoxPath);
         patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
 
-        selectedOptionsTab = OptionsTab.Graphics;
+        nodeReferencesResolved = true;
+    }
 
-        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
-        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
-        assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
-        unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        ResolveNodeReferences(false);
+
+        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options", false);
+        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
+        assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options", false);
+        unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options", false);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        cloudResolutionTitle.UnRegisterToolTipForControl("cloudResolution", "options");
+        guiLightEffectsToggle.UnRegisterToolTipForControl("guiLightEffects", "options");
+        assumeHyperthreading.UnRegisterToolTipForControl("assumeHyperthreading", "options");
+        unsavedProgressWarningEnabled.UnRegisterToolTipForControl("unsavedProgressWarning", "options");
     }
 
     public override void _Notification(int what)
