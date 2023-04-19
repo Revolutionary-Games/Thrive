@@ -46,8 +46,6 @@ public class PauseMenu : CustomWindow
 
     private bool paused;
 
-    private bool mouseUnCaptureActive;
-
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
     ///   game exit will be performed on exit confirmation.
@@ -196,26 +194,6 @@ public class PauseMenu : CustomWindow
         }
     }
 
-    private bool MouseUnCaptureActive
-    {
-        set
-        {
-            if (mouseUnCaptureActive == value)
-                return;
-
-            mouseUnCaptureActive = value;
-
-            if (mouseUnCaptureActive)
-            {
-                MouseCaptureManager.ReportOpenCapturePrevention(nameof(PauseMenu));
-            }
-            else
-            {
-                MouseCaptureManager.ReportClosedCapturePrevention(nameof(PauseMenu));
-            }
-        }
-    }
-
     public override void _Ready()
     {
         // We have our custom logic for this
@@ -250,7 +228,6 @@ public class PauseMenu : CustomWindow
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
-        MouseUnCaptureActive = false;
 
         GetTree().AutoAcceptQuit = true;
     }
@@ -320,27 +297,6 @@ public class PauseMenu : CustomWindow
         thriveopedia.ChangePage(pageName);
     }
 
-    public override void Open()
-    {
-        if (Visible)
-            return;
-
-        animationPlayer.Play("Open");
-        Paused = true;
-        MouseUnCaptureActive = true;
-        exiting = false;
-    }
-
-    public override void Close()
-    {
-        if (!Visible)
-            return;
-
-        animationPlayer.Play("Close");
-        Paused = false;
-        MouseUnCaptureActive = false;
-    }
-
     public void OpenToHelp()
     {
         Open();
@@ -367,6 +323,19 @@ public class PauseMenu : CustomWindow
         }
 
         SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
+    protected override void OnOpen()
+    {
+        animationPlayer.Play("Open");
+        Paused = true;
+        exiting = false;
+    }
+
+    protected override void OnClose()
+    {
+        animationPlayer.Play("Close");
+        Paused = false;
     }
 
     protected override void Dispose(bool disposing)
@@ -571,7 +540,6 @@ public class PauseMenu : CustomWindow
         EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
         Paused = false;
-        MouseUnCaptureActive = false;
     }
 
     /// <summary>
