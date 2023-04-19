@@ -426,19 +426,19 @@ public class Patch
         // TODO: can we do something about the game log here?
     }
 
-    public void UpdateAverageSunlight(DayNightCycle lightCycle)
+    public void UpdateAverageSunlight(float multiplier)
     {
         Biome.AverageCompounds[sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.MaximumCompounds[sunlight].Ambient * lightCycle.AverageSunlight,
+            Ambient = Biome.MaximumCompounds[sunlight].Ambient * multiplier,
         };
     }
 
-    public void UpdateCurrentSunlight(DayNightCycle lightCycle)
+    public void UpdateCurrentSunlight(float multiplier)
     {
         Biome.CurrentCompoundAmounts[sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.MaximumCompounds[sunlight].Ambient * lightCycle.DayLightFraction,
+            Ambient = Biome.MaximumCompounds[sunlight].Ambient * multiplier,
         };
     }
 

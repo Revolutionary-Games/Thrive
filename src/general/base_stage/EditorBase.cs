@@ -84,10 +84,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     private int? mutationPointsCache;
 
     /// <summary>
-    ///   The light level the editor is previewing things at
+    ///   The fraction of daylight the editor is previewing things at
     /// </summary>
     [JsonProperty]
-    private float lightLevel = 1.0f;
+    private float dayLightFraction = 1.0f;
 
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
@@ -147,12 +147,12 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public bool NodeReferencesResolved { get; private set; }
 
     [JsonIgnore]
-    public float LightLevel
+    public float DayLightFraction
     {
-        get => lightLevel;
+        get => dayLightFraction;
         set
         {
-            lightLevel = value;
+            dayLightFraction = value;
 
             ApplyComponentLightLevels();
         }
@@ -664,6 +664,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         ApplyAutoEvoResults();
 
+        // Recompute average sunlight in case auto-evo modifies things
+        CurrentGame.GameWorld.UpdateGlobalAverageSunlight();
+
         FadeIn();
     }
 
@@ -864,7 +867,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         foreach (var editorComponent in GetAllEditorComponents())
         {
-            editorComponent.OnLightLevelChanged(lightLevel);
+            editorComponent.OnLightLevelChanged(dayLightFraction);
         }
     }
 
