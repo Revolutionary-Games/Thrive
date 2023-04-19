@@ -80,6 +80,7 @@
     <Compile Include="src\awakening_stage\ResourceAmountHelpers.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
     <Compile Include="src\awakening_stage\StructureDefinition.cs" />
+    <Compile Include="src\awakening_stage\structure_components\FactoryComponent.cs" />
     <Compile Include="src\awakening_stage\structure_components\HousingComponent.cs" />
     <Compile Include="src\awakening_stage\structure_components\ISocietyStructureDataAccess.cs" />
     <Compile Include="src\awakening_stage\structure_components\IStructureComponentFactory.cs" />
@@ -649,6 +650,7 @@
     <Compile Include="src\society_stage\SocietyStructureSystem.cs" />
     <Compile Include="src\society_stage\StrategicCamera.cs" />
     <Compile Include="src\society_stage\StrategicCameraHelpers.cs" />
+    <Compile Include="src\society_stage\TechnologyProgress.cs" />
     <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
     <Compile Include="src\stage_starters\AwareStageStarter.cs" />
     <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />

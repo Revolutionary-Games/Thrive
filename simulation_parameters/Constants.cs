@@ -1221,6 +1221,8 @@ public static class Constants
 
     public const float SOCIETY_STAGE_CITIZEN_SPAWN_INTERVAL = 5.0f;
 
+    public const float SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL = 1.0f;
+
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>

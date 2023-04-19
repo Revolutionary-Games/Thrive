@@ -47,6 +47,15 @@ public class Technology : IRegistryType
     [JsonIgnore]
     public IReadOnlyList<Technology> RequiresTechnologies { get; private set; } = new List<Technology>();
 
+    [JsonProperty]
+    public ResearchLevel RequiresResearchLevel { get; private set; } = ResearchLevel.PreSociety;
+
+    /// <summary>
+    ///   How many research points it takes to research this technology
+    /// </summary>
+    [JsonProperty]
+    public float ResearchPoints { get; private set; } = 1;
+
     [JsonIgnore]
     public Texture LoadedLockedIcon => lockedIcon.Value;
 

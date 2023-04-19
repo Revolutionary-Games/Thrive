@@ -221,6 +221,9 @@ public class StructureDefinition : IRegistryType
 
         [JsonProperty]
         private ResearchComponentFactory? research;
+
+        [JsonProperty]
+        private FactoryComponentFactory? factory;
 #pragma warning restore CS0649
 
         [JsonIgnore]
@@ -252,9 +255,12 @@ public class StructureDefinition : IRegistryType
             if (research != null)
                 allFactories.Add(research);
 
-            foreach (var factory in allFactories)
+            if (factory != null)
+                allFactories.Add(factory);
+
+            foreach (var componentFactory in allFactories)
             {
-                factory.Check(name);
+                componentFactory.Check(name);
             }
         }
     }

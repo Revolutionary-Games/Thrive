@@ -8,6 +8,8 @@ public class ResearchComponent : StructureComponent
     private readonly float speed;
     private readonly ResearchLevel researchLevel;
 
+    private float timeUntilTick = Constants.SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL;
+
     public ResearchComponent(PlacedStructure owningStructure, float speed, ResearchLevel researchLevel) : base(
         owningStructure)
     {
@@ -17,7 +19,37 @@ public class ResearchComponent : StructureComponent
 
     public override void ProcessSociety(float delta, ISocietyStructureDataAccess dataAccess)
     {
-        // TODO: research progress
+        timeUntilTick -= delta;
+
+        if (timeUntilTick > 0)
+            return;
+
+        timeUntilTick += Constants.SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL;
+
+        var technologyProgress = dataAccess.CurrentlyResearchedTechnology;
+
+        bool canResearch = technologyProgress != null;
+
+        // Skip if this building can't contribute to this research
+        if (technologyProgress != null)
+        {
+            if (technologyProgress.Technology.RequiresResearchLevel > researchLevel)
+                canResearch = false;
+
+            if (technologyProgress.Completed)
+                canResearch = false;
+        }
+
+        if (canResearch)
+        {
+            var researchPoints = speed * Constants.SOCIETY_STAGE_CITIZEN_SPAWN_INTERVAL;
+            technologyProgress!.AddProgress(researchPoints);
+            dataAccess.AddActiveResearchContribution(this, researchPoints);
+        }
+        else
+        {
+            dataAccess.RemoveActiveResearchContribution(this);
+        }
     }
 }
 

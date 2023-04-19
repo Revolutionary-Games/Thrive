@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -8,6 +10,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 {
     [Export]
     public NodePath? SelectBuildingPopupPath;
+
+    private readonly Dictionary<WeakReference<object>, float> activeResearchContributions = new();
 
 #pragma warning disable CA2213
     private SelectBuildingPopup selectBuildingPopup = null!;
@@ -40,6 +44,9 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     [JsonIgnore]
     public IResourceContainer SocietyResources => resourceStorage;
+
+    [JsonProperty]
+    public TechnologyProgress? CurrentlyResearchedTechnology { get; private set; }
 
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
@@ -87,8 +94,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
             // TODO: make population consume food
 
-            // TODO: update science speed
-            HUD.UpdateScienceSpeed(0);
+            HUD.UpdateScienceSpeed(activeResearchContributions.SumValues());
 
             // Update the place to place the selected building
             if (buildingToPlaceGhost != null)
@@ -182,6 +188,18 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         buildingToPlaceGhost = buildingTypeToPlace.GhostScene.Instance<Spatial>();
 
         rootOfDynamicallySpawned.AddChild(buildingToPlaceGhost);
+    }
+
+    public void AddActiveResearchContribution(object researchSource, float researchPoints)
+    {
+        var reference = new WeakReference<object>(researchSource);
+        activeResearchContributions[reference] = researchPoints;
+    }
+
+    public void RemoveActiveResearchContribution(object researchSource)
+    {
+        var reference = new WeakReference<object>(researchSource);
+        activeResearchContributions.Remove(reference);
     }
 
     protected override void SetupStage()
