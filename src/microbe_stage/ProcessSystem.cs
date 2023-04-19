@@ -167,7 +167,7 @@ public class ProcessSystem
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Ignores how much ATP the cell needs
+    ///     Assumes that all processes run at maximum speed
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
