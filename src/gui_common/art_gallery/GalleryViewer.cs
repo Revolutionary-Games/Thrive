@@ -152,7 +152,7 @@ public class GalleryViewer : CustomDialog
 
         tabButtons.ClearTabButtons();
         cardTile.QueueFreeChildren();
-        ReleaseToolTips();
+        UnregisterToolTips();
 
         var tabsButtonGroup = new ButtonGroup();
         var itemsButtonGroup = new ButtonGroup();
@@ -452,7 +452,7 @@ public class GalleryViewer : CustomDialog
         Hide();
     }
 
-    private void ReleaseToolTips()
+    private void UnregisterToolTips()
     {
         if (registeredToolTips.Count < 1)
             return;

@@ -271,7 +271,7 @@ public class LineChart : VBoxContainer
     {
         base._EnterTree();
 
-        ReRegisterToolTips();
+        ReRegisterDetachedToolTips();
     }
 
     public override void _ExitTree()
@@ -281,7 +281,7 @@ public class LineChart : VBoxContainer
         // Due to disposes happening in a pretty weird order on shutdown (and to avoid disposed object tooltip
         // detaches) an approach is used to detach the tooltips here and potentially re-attach them if we happen to
         // re-enter the tree
-        DetachToolTips();
+        TemporarilyUnregisterToolTips();
     }
 
     /// <summary>
@@ -1105,7 +1105,7 @@ public class LineChart : VBoxContainer
         ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName);
     }
 
-    private void DetachToolTips()
+    private void TemporarilyUnregisterToolTips()
     {
         if (toolTipsDetached)
         {
@@ -1137,7 +1137,7 @@ public class LineChart : VBoxContainer
         }
     }
 
-    private void ReRegisterToolTips()
+    private void ReRegisterDetachedToolTips()
     {
         if (!toolTipsDetached)
             return;
@@ -1171,7 +1171,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void EnsureNoDetachedToolTipsExist()
     {
-        ReRegisterToolTips();
+        ReRegisterDetachedToolTips();
     }
 
     // GUI Callbacks
