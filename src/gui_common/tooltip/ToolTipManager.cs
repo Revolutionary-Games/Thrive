@@ -98,6 +98,16 @@ public class ToolTipManager : CanvasLayer
         groupHolder.Show();
     }
 
+    public void ResolveNodeReferences()
+    {
+        if (nodeReferencesResolved)
+            return;
+
+        groupHolder = GetNode<Control>("GroupHolder");
+
+        nodeReferencesResolved = true;
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -110,16 +120,6 @@ public class ToolTipManager : CanvasLayer
         // The tooltip initialization logic needs to run in _EnterTree as the initial scene may want to already
         // register tooltips before _Ready methods are called
         FetchToolTips();
-    }
-
-    public void ResolveNodeReferences()
-    {
-        if (nodeReferencesResolved)
-            return;
-
-        groupHolder = GetNode<Control>("GroupHolder");
-
-        nodeReferencesResolved = true;
     }
 
     public override void _Process(float delta)
@@ -213,6 +213,11 @@ public class ToolTipManager : CanvasLayer
         groupNode.AddChild(tooltip.ToolTipNode);
     }
 
+    /// <summary>
+    ///   Removes a tooltip based on the name, if it is a default type tooltip it is returned to the cache
+    /// </summary>
+    /// <param name="name">Name of the tooltip</param>
+    /// <param name="group">Group to look for in for the tooltip</param>
     public void RemoveToolTip(string name, string group = DEFAULT_GROUP_NAME)
     {
         var tooltip = GetToolTip(name, group);
@@ -245,7 +250,7 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
-    ///   Deletes all tooltip from a group
+    ///   Deletes all tooltip from a group. Note that this automatically returns default tooltips to the cache.
     /// </summary>
     /// <param name="group">Name of the group node</param>
     /// <param name="deleteGroup">Removes the group node if true</param>

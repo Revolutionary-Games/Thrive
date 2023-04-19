@@ -38,6 +38,10 @@ public class PostShutdownActions : Node
     /// </summary>
     private void OnAfterGameShutdown()
     {
+        // This is done this late to ensure that game scenes exiting the tree won't put things in the cache after
+        // it is cleared
+        ToolTipHelper.ReleaseToolTipsCache();
+
         if (ToolTipHelper.CountRegisteredToolTips() > 0)
         {
             GD.PrintErr("Some tooltips have not been unregistered on game shutdown");

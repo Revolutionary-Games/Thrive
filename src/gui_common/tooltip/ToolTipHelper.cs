@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -22,7 +23,13 @@ public static class ToolTipHelper
     /// </summary>
     public static DefaultToolTip GetDefaultToolTip()
     {
-        return DefaultToolTipCache.Count == 0 ? (DefaultToolTip)DefaultTipScene.Instance() : DefaultToolTipCache.Pop();
+        if (DefaultToolTipCache.Count < 1)
+        {
+            return (DefaultToolTip)DefaultTipScene.Instance();
+        }
+
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3799
+        return DefaultToolTipCache.Pop();
     }
 
     /// <summary>
@@ -31,6 +38,20 @@ public static class ToolTipHelper
     /// <param name="toolTip">The tooltip to return to the cache</param>
     public static void ReturnDefaultToolTip(DefaultToolTip toolTip)
     {
+        // Automatically remove the tooltip from the parent to prepare it for new use
+        var parent = toolTip.GetParent();
+        parent?.RemoveChild(toolTip);
+
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3799
+
+#if DEBUG
+        foreach (var cachedToolTip in DefaultToolTipCache)
+        {
+            if (cachedToolTip == toolTip)
+                throw new ArgumentException("Can't return the same tooltip multiple times");
+        }
+#endif
+
         DefaultToolTipCache.Push(toolTip);
     }
 
@@ -178,6 +199,20 @@ public static class ToolTipHelper
             return null;
 
         return GetControlAssociatedWithToolTip(tooltip);
+    }
+
+    /// <summary>
+    ///   Releases the tooltip cache. Called when the game is closing.
+    /// </summary>
+    internal static void ReleaseToolTipsCache()
+    {
+        while (DefaultToolTipCache.Count > 0)
+        {
+            var tooltip = DefaultToolTipCache.Pop();
+            tooltip.Free();
+
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3799
+        }
     }
 
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)

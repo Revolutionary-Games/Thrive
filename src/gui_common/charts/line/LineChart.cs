@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -421,7 +422,7 @@ public class LineChart : VBoxContainer
             if (!dataPointToolTips.TryGetValue(data.Key, out var key))
             {
                 key = new Dictionary<DataPoint, DefaultToolTip>();
-                dataPointToolTips[data.Key] = key;
+                dataPointToolTips.Add(data.Key, key);
             }
 
             foreach (var point in data.Value.DataPoints)
@@ -433,6 +434,12 @@ public class LineChart : VBoxContainer
                 {
                     // Create a new tooltip for the point marker
                     toolTip = ToolTipHelper.GetDefaultToolTip();
+                    key.Add(point, toolTip);
+
+                    if (toolTip.GetParent() != null)
+                        Debugger.Break();
+
+                    ToolTipManager.Instance.AddToolTip(toolTip, TOOLTIP_GROUP_BASE_NAME + ChartName + data.Key);
                 }
 
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
@@ -452,9 +459,6 @@ public class LineChart : VBoxContainer
                 toolTip.Positioning = ToolTipPositioning.ControlBottomRightCorner;
 
                 point.RegisterToolTipForControl(toolTip, false);
-                ToolTipManager.Instance.AddToolTip(toolTip, TOOLTIP_GROUP_BASE_NAME + ChartName + data.Key);
-
-                key[point] = toolTip;
 
                 drawArea.AddChild(point);
             }
@@ -775,7 +779,7 @@ public class LineChart : VBoxContainer
             if (!dataLineTooltips.TryGetValue(dataLine, out var currentDataLineToolTips))
             {
                 currentDataLineToolTips = new List<(DefaultToolTip ToolTip, Control Parent)>();
-                dataLineTooltips[dataLine] = currentDataLineToolTips;
+                dataLineTooltips.Add(dataLine, currentDataLineToolTips);
             }
 
             // TODO: can this also reuse tooltips like the data points?
@@ -1063,11 +1067,9 @@ public class LineChart : VBoxContainer
                 // Unset tooltip data on the control
                 if (!alreadyDetached)
                     tooltipEntry.Key.UnRegisterToolTipForControl(tooltipEntry.Value);
-
-                // Return the default tooltips to the cache
-                ToolTipHelper.ReturnDefaultToolTip(tooltipEntry.Value);
             }
 
+            // This automatically returns default tooltips to the cache
             ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + ChartName + entry.Key);
         }
 
@@ -1080,7 +1082,6 @@ public class LineChart : VBoxContainer
             {
                 if (!alreadyDetached)
                     toolTipEntry.Parent.UnRegisterToolTipForControl(toolTipEntry.ToolTip);
-                ToolTipHelper.ReturnDefaultToolTip(toolTipEntry.ToolTip);
             }
 
             ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + entry.Key.GetInstanceId(), true);
@@ -1097,7 +1098,6 @@ public class LineChart : VBoxContainer
         {
             if (!alreadyDetached)
                 entry.Key.UnRegisterToolTipForControl(entry.Value);
-            ToolTipHelper.ReturnDefaultToolTip(entry.Value);
         }
 
         legendToolTips.Clear();
@@ -1240,7 +1240,7 @@ public class LineChart : VBoxContainer
                 if (!createdToolTips.TryGetValue(icon, out var toolTip))
                 {
                     toolTip = ToolTipHelper.GetDefaultToolTip();
-                    createdToolTips[icon] = toolTip;
+                    createdToolTips.Add(icon, toolTip);
                     ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + chart.ChartName);
                 }
 
