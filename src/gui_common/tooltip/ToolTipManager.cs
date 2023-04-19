@@ -40,6 +40,8 @@ public class ToolTipManager : CanvasLayer
     private ICustomToolTip? mainToolTip;
     private ICustomToolTip? previousToolTip;
 
+    private bool nodeReferencesResolved;
+
     private ToolTipManager()
     {
         instance = this;
@@ -87,12 +89,37 @@ public class ToolTipManager : CanvasLayer
 
     public override void _Ready()
     {
-        groupHolder = GetNode<Control>("GroupHolder");
+        if (tooltips.Count < 1)
+            GD.PrintErr("No tooltips have been detected");
+
+        ResolveNodeReferences();
 
         // Make sure the tooltip parent control is visible
         groupHolder.Show();
+    }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        // This node may not be added back to the scene after removing so we don't guard against double initialization
+        // here
+
+        ResolveNodeReferences();
+
+        // The tooltip initialization logic needs to run in _EnterTree as the initial scene may want to already
+        // register tooltips before _Ready methods are called
         FetchToolTips();
+    }
+
+    public void ResolveNodeReferences()
+    {
+        if (nodeReferencesResolved)
+            return;
+
+        groupHolder = GetNode<Control>("GroupHolder");
+
+        nodeReferencesResolved = true;
     }
 
     public override void _Process(float delta)
