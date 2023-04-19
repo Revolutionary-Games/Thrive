@@ -41,7 +41,7 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     /// <summary>
     ///   Used to control how often updated light level data is read from the day/night cycle.
     /// </summary>
-    private float elapsedSinceLightLevelUpdate;
+    private float elapsedSinceLightLevelUpdate = 1;
 
     /// <summary>
     ///   The main current game object holding various details
