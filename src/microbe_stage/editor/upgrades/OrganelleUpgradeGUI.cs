@@ -98,11 +98,10 @@ public class OrganelleUpgradeGUI : Control
 
         upgradeSelectorButtonsContainer.FreeChildren();
         generalUpgradeSelectorButtons.Clear();
+        ReleaseTooltips();
 
         if (availableGeneralUpgrades.Count > 0)
         {
-            ReleaseTooltips();
-
             var tooltipGroup = GetTooltipGroup();
 
             var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
@@ -143,7 +142,7 @@ public class OrganelleUpgradeGUI : Control
                 // tooltip.ProcessesDescription = upgrade.Description;
                 // tooltip.Description = ...
 
-                selectionButton.RegisterToolTipForControl(tooltip);
+                selectionButton.RegisterToolTipForControl(tooltip, false);
                 ToolTipManager.Instance.AddToolTip(tooltip, tooltipGroup);
                 registeredTooltips = true;
 
