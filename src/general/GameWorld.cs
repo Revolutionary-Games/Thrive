@@ -97,8 +97,7 @@ public class GameWorld : ISaveLoadable
         if (WorldSettings.DayNightCycleEnabled)
         {
             // Make sure average light levels are computed already
-            foreach (var patch in Map.Patches)
-                patch.Value.UpdateAverageSunlight(LightCycle);
+            UpdateGlobalAverageSunlight();
         }
     }
 
@@ -190,6 +189,14 @@ public class GameWorld : ISaveLoadable
             SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
 
         species.OnEdited();
+    }
+
+    /// <summary>
+    ///   Takes care of processing everything in the world.
+    /// </summary>
+    public void Process(float delta)
+    {
+        LightCycle.Process(delta);
     }
 
     /// <summary>
@@ -606,6 +613,28 @@ public class GameWorld : ISaveLoadable
         }
 
         eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight));
+    }
+
+    /// <summary>
+    ///   Updates the light level in all patches according to <see cref="LightCycle"/> data.
+    /// </summary>
+    public void UpdateGlobalLightLevels()
+    {
+        foreach (var patch in Map.Patches.Values)
+        {
+            patch.UpdateCurrentSunlight(LightCycle.DayLightFraction);
+        }
+    }
+
+    /// <summary>
+    ///   Updates/sets the average light level of all patches according to <see cref="LightCycle"/> data.
+    /// </summary>
+    public void UpdateGlobalAverageSunlight()
+    {
+        foreach (var patch in Map.Patches.Values)
+        {
+            patch.UpdateAverageSunlight(LightCycle.AverageSunlight);
+        }
     }
 
     public void FinishLoading(ISaveContext? context)

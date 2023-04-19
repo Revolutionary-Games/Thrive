@@ -665,8 +665,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         ApplyAutoEvoResults();
 
         // Recompute average sunlight in case auto-evo modifies things
-        foreach (var patch in CurrentGame.GameWorld.Map.Patches.Values)
-            patch.UpdateAverageSunlight(CurrentGame.GameWorld.LightCycle);
+        CurrentGame.GameWorld.UpdateGlobalAverageSunlight();
 
         FadeIn();
     }

@@ -695,8 +695,11 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         if (GameWorld.Map.CurrentPatch == null)
             return;
 
+        // TODO: it would make more sense for the GameWorld to update its patch map data based on the
+        // light cycle in it.
         patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-        patchManager.UpdateAllPatchLightLevels();
+        GameWorld.UpdateGlobalLightLevels();
+
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         // Updates the background lighting and does various post-effects

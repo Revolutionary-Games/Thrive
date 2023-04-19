@@ -127,18 +127,17 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     public void UpdateAllPatchLightLevels()
     {
-        var gameWorld = CurrentGame!.GameWorld;
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
+        var gameWorld = CurrentGame.GameWorld;
 
         if (!gameWorld.WorldSettings.DayNightCycleEnabled)
             return;
 
         var multiplier = gameWorld.LightCycle.DayLightFraction;
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
-
-        foreach (var patch in gameWorld.Map.Patches.Values)
-        {
-            patch.UpdateCurrentSunlight(gameWorld.LightCycle);
-        }
+        gameWorld.UpdateGlobalLightLevels();
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)

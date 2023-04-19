@@ -1071,10 +1071,7 @@ public partial class CellEditorComponent :
         // is non-zero too.
         if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
         {
-            var lightLevel = maxLightLevel * dayLightFraction;
-
-            // Normalise by maximum light level in the patch
-            camera!.LightLevel = lightLevel / maxLightLevel;
+            camera!.LightLevel = dayLightFraction;
         }
         else
         {
