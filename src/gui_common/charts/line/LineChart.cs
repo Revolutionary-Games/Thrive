@@ -110,7 +110,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     private readonly Dictionary<string, DataLine> dataLines = new();
 
-    private readonly Dictionary<DataLine, List<(DefaultToolTip ToolTip, Control Parent)>> dataLineTooltips = new();
+    private readonly Dictionary<DataLine, DataLineToolTipData> dataLineTooltips = new();
 
     private readonly Dictionary<string, Dictionary<DataPoint, DefaultToolTip>> dataPointToolTips = new();
 
@@ -778,7 +778,7 @@ public class LineChart : VBoxContainer
 
             if (!dataLineTooltips.TryGetValue(dataLine, out var currentDataLineToolTips))
             {
-                currentDataLineToolTips = new List<(DefaultToolTip ToolTip, Control Parent)>();
+                currentDataLineToolTips = new DataLineToolTipData(TOOLTIP_GROUP_BASE_NAME + dataLine.GetInstanceId());
                 dataLineTooltips.Add(dataLine, currentDataLineToolTips);
             }
 
@@ -792,8 +792,8 @@ public class LineChart : VBoxContainer
             tooltip.DisplayDelay = 0.5f;
 
             newCollisionRect.RegisterToolTipForControl(tooltip, false);
-            ToolTipManager.Instance.AddToolTip(tooltip, TOOLTIP_GROUP_BASE_NAME + dataLine.GetInstanceId());
-            currentDataLineToolTips.Add((tooltip, newCollisionRect));
+            ToolTipManager.Instance.AddToolTip(tooltip, currentDataLineToolTips.GroupName);
+            currentDataLineToolTips.ToolTips.Add((tooltip, newCollisionRect));
 
             dataLine.CollisionBoxes[firstPoint] = newCollisionRect;
 
@@ -1078,13 +1078,13 @@ public class LineChart : VBoxContainer
         // Remove tooltips from data lines as well
         foreach (var entry in dataLineTooltips)
         {
-            foreach (var toolTipEntry in entry.Value)
+            foreach (var toolTipEntry in entry.Value.ToolTips)
             {
                 if (!alreadyDetached)
                     toolTipEntry.Parent.UnRegisterToolTipForControl(toolTipEntry.ToolTip);
             }
 
-            ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + entry.Key.GetInstanceId(), true);
+            ToolTipManager.Instance.ClearToolTips(entry.Value.GroupName, true);
         }
 
         dataLineTooltips.Clear();
@@ -1125,7 +1125,7 @@ public class LineChart : VBoxContainer
 
         foreach (var entry in dataLineTooltips)
         {
-            foreach (var toolTipEntry in entry.Value)
+            foreach (var toolTipEntry in entry.Value.ToolTips)
             {
                 toolTipEntry.Parent.UnRegisterToolTipForControl(toolTipEntry.ToolTip);
             }
@@ -1152,7 +1152,7 @@ public class LineChart : VBoxContainer
 
         foreach (var entry in dataLineTooltips)
         {
-            foreach (var toolTipEntry in entry.Value)
+            foreach (var toolTipEntry in entry.Value.ToolTips)
             {
                 toolTipEntry.Parent.RegisterToolTipForControl(toolTipEntry.ToolTip, false);
             }
@@ -1536,6 +1536,21 @@ public class LineChart : VBoxContainer
         private void ChangePointPos(Vector3 arguments)
         {
             SetPointPosition((int)arguments.x, new Vector2(arguments.y, arguments.z));
+        }
+    }
+
+    /// <summary>
+    ///   Holds the tooltip data for a data line, needed to be able to release the data even after the controls are
+    ///   disposed
+    /// </summary>
+    private class DataLineToolTipData
+    {
+        public readonly List<(DefaultToolTip ToolTip, Control Parent)> ToolTips = new();
+        public readonly string GroupName;
+
+        public DataLineToolTipData(string groupName)
+        {
+            GroupName = groupName;
         }
     }
 }
