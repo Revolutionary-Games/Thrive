@@ -39,6 +39,11 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     private bool transitionFinished;
 
     /// <summary>
+    ///   Used to control how often updated light level data is read from the day/night cycle.
+    /// </summary>
+    private float elapsedSinceLightLevelUpdate = 1;
+
+    /// <summary>
     ///   The main current game object holding various details
     /// </summary>
     [JsonProperty]
@@ -106,6 +111,15 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
                 AutoSave();
 
             wantsToSave = false;
+        }
+
+        GameWorld.Process(delta);
+
+        elapsedSinceLightLevelUpdate += delta;
+        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
+        {
+            elapsedSinceLightLevelUpdate = 0;
+            OnLightLevelUpdate();
         }
     }
 
@@ -191,6 +205,8 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
 
     protected abstract void AutoSave();
     protected abstract void PerformQuickSave();
+
+    protected abstract void OnLightLevelUpdate();
 
     protected override void Dispose(bool disposing)
     {

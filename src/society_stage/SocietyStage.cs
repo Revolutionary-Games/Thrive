@@ -220,6 +220,10 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         // TODO: once possible to lose, show in the GUI
     }
 
+    protected override void OnLightLevelUpdate()
+    {
+    }
+
     protected override void AutoSave()
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
