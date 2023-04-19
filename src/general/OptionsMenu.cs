@@ -488,6 +488,8 @@ public class OptionsMenu : ControlWithInput
 
         deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
+        GetViewport().Connect("size_changed", this, nameof(DisplayResolution));
+
         selectedOptionsTab = OptionsTab.Graphics;
     }
 
@@ -543,7 +545,6 @@ public class OptionsMenu : ControlWithInput
         gpuName = GetNode<Label>(GpuNamePath);
         usedRendererName = GetNode<Label>(UsedRendererNamePath);
         videoMemory = GetNode<Label>(VideoMemoryPath);
-        GetViewport().Connect("size_changed", this, nameof(DisplayResolution));
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
