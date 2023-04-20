@@ -1,3 +1,3 @@
-﻿public class ResearchScreen : CustomWindow
+﻿public class ResearchScreen : CustomDialog
 {
 }

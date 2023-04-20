@@ -1,13 +1,23 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/gui_common/CustomWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/society_stage/gui/TechWebGUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/society_stage/gui/ResearchScreen.cs" type="Script" id=3]
 
 [node name="ResearchScreen" instance=ExtResource( 1 )]
-margin_right = 250.0
-margin_bottom = 80.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 250.0
+margin_top = 80.0
+margin_right = -780.0
+margin_bottom = -560.0
+rect_min_size = Vector2( 800, 500 )
 script = ExtResource( 3 )
+WindowTitle = "RESEARCH"
+Resizable = true
 
 [node name="TechWebGUI" parent="." index="0" instance=ExtResource( 2 )]
-rect_min_size = Vector2( 800, 500 )
+margin_right = -610.0
+margin_bottom = -453.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
