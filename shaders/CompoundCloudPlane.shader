@@ -16,7 +16,7 @@ uniform float BrightnessMultiplier = 1.0f;
 uniform float CloudAlpha = 0.7f;
 
 // Setting this too low makes the clouds invisible
-const float CLOUD_DISSIPATION = 0.9f;
+const float CLOUD_DISSIPATION = 0.70f;
 
 const float DENSITY_MULTIPLIER = 0.95f;
 
@@ -25,11 +25,7 @@ const float CLOUD_MAX_INTENSITY_SHOWN = 1000.f;
 
 // This needs to be less than 0.5 otherwise large cloud areas (due to the noise texture 
 // not being very high resolution) are invisible
-const float NOISE_ZERO_OFFSET = 0.35f;
-
-// Needs to match the value in CompoundCloudPlane.cs
-// TODO: implement this or increase the perlin noise texture size to give the clouds more detail
-const float NOISE_UV_SCALE = 2.5f;
+const float NOISE_ZERO_OFFSET = 0.001f;
 
 float getIntensity(float value){
     return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f) * BrightnessMultiplier;
