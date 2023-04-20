@@ -119,13 +119,6 @@ public static class ControlHelpers
             {
                 control.GrabFocus();
                 control.GrabClickFocus();
-
-                // Some controls are in really peculiar situations that need even more delay
-                Invoke.Instance.QueueForObject(() =>
-                {
-                    control.GrabFocus();
-                    control.GrabClickFocus();
-                }, control);
             }, control);
         });
     }
