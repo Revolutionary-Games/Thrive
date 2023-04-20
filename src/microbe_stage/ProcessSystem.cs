@@ -222,7 +222,7 @@ public class ProcessSystem
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
         EnergyBalanceInfo energyBalance)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
@@ -240,7 +240,7 @@ public class ProcessSystem
 
         foreach (var organelle in organelles)
         {
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            foreach (var process in organelle.RunnableProcesses)
             {
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType);
 
@@ -261,7 +261,7 @@ public class ProcessSystem
                         amount *= consumptionProductionRatio;
 
                     MakeSureResultExists(input.Key);
-                    result[input.Key].AddConsumption(organelle.Definition.InternalName, amount);
+                    result[input.Key].AddConsumption(organelle.InternalName, amount);
                 }
 
                 foreach (var output in speedAdjusted.Outputs)
@@ -275,12 +275,20 @@ public class ProcessSystem
                         amount *= consumptionProductionRatio;
 
                     MakeSureResultExists(output.Key);
-                    result[output.Key].AddProduction(organelle.Definition.InternalName, amount);
+                    result[output.Key].AddProduction(organelle.InternalName, amount);
                 }
             }
         }
 
         return result;
+    }
+
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        EnergyBalanceInfo energyBalance)
+    {
+        return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
+            energyBalance);
     }
 
     /// <summary>
