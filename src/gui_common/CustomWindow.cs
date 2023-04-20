@@ -8,6 +8,8 @@ public class CustomWindow : Control
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;
 
+    private bool hasBeenRemovedFromTree;
+
     /// <summary>
     ///   Emitted when this window is closed or hidden.
     /// </summary>
@@ -81,13 +83,33 @@ public class CustomWindow : Control
         switch (what)
         {
             case NotificationEnterTree:
+            {
                 SetAsToplevel(true);
                 GetTree().Root.Connect("size_changed", this, nameof(ApplyRectSettings));
+
+                // Special actions when re-entering the tree (and not when initially being added to the tree)
+                if (hasBeenRemovedFromTree)
+                {
+                    // If this was re-parented (exited and re-entered the tree) while visible, we need to recheck the
+                    // mouse capture state
+                    if (IsVisibleInTree())
+                        MouseUnCaptureActive = true;
+
+                    hasBeenRemovedFromTree = false;
+                }
+
                 break;
+            }
+
             case NotificationExitTree:
-                MouseUnCaptureActive = false;
+            {
                 GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
+
+                MouseUnCaptureActive = false;
+                hasBeenRemovedFromTree = true;
                 break;
+            }
+
             case NotificationReady:
                 Hide();
                 ApplyRectSettings();
@@ -96,6 +118,7 @@ public class CustomWindow : Control
                 ApplyRectSettings();
                 break;
             case NotificationVisibilityChanged:
+            {
                 if (previousVisibilityState == IsVisibleInTree())
                     break;
 
@@ -116,6 +139,7 @@ public class CustomWindow : Control
                 }
 
                 break;
+            }
         }
     }
 
