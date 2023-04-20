@@ -16,7 +16,7 @@ CancelButtonPath = NodePath("CustomDialog/VBoxContainer/Cancel")
 [node name="CustomDialog" parent="." instance=ExtResource( 1 )]
 margin_right = 0.0
 margin_bottom = 0.0
-popup_exclusive = true
+Exclusive = true
 WindowTitle = "SELECT_STRUCTURE_POPUP_TITLE"
 Resizable = true
 
