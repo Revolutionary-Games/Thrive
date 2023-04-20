@@ -104,6 +104,32 @@ public static class ControlHelpers
         next?.GrabFocus();
     }
 
+    /// <summary>
+    ///   Grabs focus in a way that works in an opening popup. Note that this isn't instant.
+    /// </summary>
+    /// <param name="control">The control that should be focused</param>
+    public static void GrabFocusInOpeningPopup(this Control control)
+    {
+        // To work with a popup that is opening, we need some delay here
+        // TODO: check if there's some cleaner way to do this, this method exists to avoid having to create focus
+        // grabber nodes in dynamically generated content that don't really need them
+        Invoke.Instance.Queue(() =>
+        {
+            Invoke.Instance.QueueForObject(() =>
+            {
+                control.GrabFocus();
+                control.GrabClickFocus();
+
+                // Some controls are in really peculiar situations that need even more delay
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    control.GrabFocus();
+                    control.GrabClickFocus();
+                }, control);
+            }, control);
+        });
+    }
+
     public static Control? GetNextControl(this Control control)
     {
         var path = control.FocusNext ?? control.FocusNeighbourBottom ?? control.FocusNeighbourRight;
@@ -152,21 +178,34 @@ public static class ControlHelpers
     ///   <see cref="Control"/> nodes.
     /// </summary>
     /// <param name="control">The control to start checking from</param>
+    /// <param name="preferNonDisabledNodes">
+    ///   When true, disabled nodes are skipped unless there's nothing else that can be focused
+    /// </param>
     /// <returns>The found focusable control or null if nothing is focusable</returns>
-    public static Control? FirstFocusableControl(this Control control)
+    public static Control? FirstFocusableControl(this Control control, bool preferNonDisabledNodes = true)
     {
+        if (preferNonDisabledNodes)
+        {
+            Control? fallback = null;
+            var result = FirstFocusableWithFallback(control, ref fallback);
+
+            if (result == null)
+                return fallback;
+
+            return result;
+        }
+
         if (control.FocusMode != Control.FocusModeEnum.None)
             return control;
 
         int count = control.GetChildCount();
-
         for (int i = 0; i < count; ++i)
         {
             var child = control.GetChild(i);
 
             if (child is Control childAsControl)
             {
-                var childResult = FirstFocusableControl(childAsControl);
+                var childResult = FirstFocusableControl(childAsControl, preferNonDisabledNodes);
 
                 if (childResult != null)
                     return childResult;
@@ -181,8 +220,10 @@ public static class ControlHelpers
     ///   children it is not output at all.
     /// </summary>
     /// <param name="controlsToMap">The list of controls to find the first focusable child of</param>
+    /// <param name="preferNonDisabledNodes">Prefers not picking disabled nodes to give focus to</param>
     /// <returns>The focusable children</returns>
-    public static IEnumerable<Control> SelectFirstFocusableChild(this IEnumerable<Control> controlsToMap)
+    public static IEnumerable<Control> SelectFirstFocusableChild(this IEnumerable<Control> controlsToMap,
+        bool preferNonDisabledNodes = true)
     {
         foreach (var control in controlsToMap)
         {
@@ -257,5 +298,36 @@ public static class ControlHelpers
             quarterCircle, quarterCircle * 2,
             Constants.CUSTOM_FOCUS_DRAWER_RADIUS_POINTS, Constants.CustomFocusDrawerColour,
             arcWidth, Constants.CUSTOM_FOCUS_DRAWER_ANTIALIAS);
+    }
+
+    private static Control? FirstFocusableWithFallback(Control control, ref Control? fallback)
+    {
+        if (control.FocusMode != Control.FocusModeEnum.None)
+        {
+            if (control is Button { Disabled: true } or LineEdit { Editable: false })
+            {
+                fallback ??= control;
+            }
+            else
+            {
+                return control;
+            }
+        }
+
+        int count = control.GetChildCount();
+        for (int i = 0; i < count; ++i)
+        {
+            var child = control.GetChild(i);
+
+            if (child is Control childAsControl)
+            {
+                var childResult = FirstFocusableWithFallback(childAsControl, ref fallback);
+
+                if (childResult != null)
+                    return childResult;
+            }
+        }
+
+        return null;
     }
 }

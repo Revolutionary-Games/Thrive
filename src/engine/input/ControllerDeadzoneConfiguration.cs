@@ -116,7 +116,7 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
 
         // For some reason a label grabs focus if we don't call this with a delay
-        Invoke.Instance.Queue(() => startButton.GrabFocus());
+        startButton.GrabFocusInOpeningPopup();
     }
 
     protected override void OnHidden()
