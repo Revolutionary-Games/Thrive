@@ -46,12 +46,6 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     [JsonProperty]
     private float elapsedSinceEntityPositionCheck;
 
-    /// <summary>
-    ///   Used to control how often light level is updated by the day/night cycle.
-    /// </summary>
-    [JsonProperty]
-    private float elapsedSinceLightLevelUpdate;
-
     [JsonProperty]
     private bool wonOnce;
 
@@ -141,8 +135,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame, lightCycle);
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem, worldLight, CurrentGame);
     }
 
     public override void _EnterTree()
@@ -169,20 +162,6 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
-
-        elapsedSinceLightLevelUpdate += delta;
-        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
-        {
-            elapsedSinceLightLevelUpdate = 0;
-
-            if (GameWorld.Map.CurrentPatch != null)
-            {
-                patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-                patchManager.UpdateAllPatchLightLevels();
-                HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
-                UpdateDayLightEffects();
-            }
-        }
 
         if (gameOver)
             return;
@@ -603,7 +582,6 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     {
         patchManager.CurrentGame = CurrentGame;
 
-        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
@@ -712,6 +690,35 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         UpdatePatchLightLevelSettings();
     }
 
+    protected override void OnLightLevelUpdate()
+    {
+        if (GameWorld.Map.CurrentPatch == null)
+            return;
+
+        // TODO: it would make more sense for the GameWorld to update its patch map data based on the
+        // light cycle in it.
+        patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+        GameWorld.UpdateGlobalLightLevels();
+
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+
+        // Updates the background lighting and does various post-effects
+        if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
+        {
+            // This might need to be refactored for efficiency but, it works for now
+            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") *
+                GameWorld.LightCycle.DayLightFraction;
+
+            // Normalise by maximum light level in the patch
+            Camera.LightLevel = lightLevel / maxLightLevel;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            Camera.LightLevel = 1.0f;
+        }
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -726,26 +733,6 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
             GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
-    }
-
-    /// <summary>
-    ///   Updates the background lighting and does various post-effects
-    /// </summary>
-    private void UpdateDayLightEffects()
-    {
-        if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
-        {
-            // This might need to be refactored for efficiency but, it works for now
-            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle.DayLightFraction;
-
-            // Normalise by maximum light level in the patch
-            Camera.LightLevel = lightLevel / maxLightLevel;
-        }
-        else
-        {
-            // Don't change lighting for patches without day/night effects
-            Camera.LightLevel = 1.0f;
-        }
     }
 
     private void UpdatePatchLightLevelSettings()

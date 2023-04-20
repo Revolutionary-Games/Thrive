@@ -665,7 +665,6 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
     {
         // patchManager.CurrentGame = CurrentGame;
 
-        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings();
 
         SpawnPlayer();
@@ -721,6 +720,10 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
+    }
+
+    protected override void OnLightLevelUpdate()
+    {
     }
 
     protected override void AutoSave()

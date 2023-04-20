@@ -48,5 +48,9 @@ public interface IEditorComponent
 
     public void OnMutationPointsChanged(int mutationPoints);
 
-    public void OnLightLevelChanged(float lightLevel);
+    /// <summary>
+    ///   Called when <see cref="IEditor.DayLightFraction"/> is changed.
+    /// </summary>
+    /// <param name="dayLightFraction">The editor's new fraction of daylight.</param>
+    public void OnLightLevelChanged(float dayLightFraction);
 }

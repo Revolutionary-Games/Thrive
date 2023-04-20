@@ -9,8 +9,13 @@ public interface IDataSetsLegend : ICloneable
     /// </summary>
     /// <param name="datasets">The datasets of a particular chart</param>
     /// <param name="title">The legend title</param>
+    /// <param name="createdToolTips">
+    ///   Cache access to created tooltips, and also for caller to get access to the created tooltips for
+    ///   unregistering them
+    /// </param>
     /// <returns>The legend's UI element</returns>
-    public Control CreateLegend(Dictionary<string, ChartDataSet> datasets, string? title);
+    public Control CreateLegend(Dictionary<string, ChartDataSet> datasets, string? title,
+        Dictionary<Control, DefaultToolTip> createdToolTips);
 
     /// <summary>
     ///   Should be called whenever a dataset in a chart is shown/hidden.
