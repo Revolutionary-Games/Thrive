@@ -190,6 +190,11 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         rootOfDynamicallySpawned.AddChild(buildingToPlaceGhost);
     }
 
+    public void ToggleResearchScreen()
+    {
+        HUD.OpenResearchScreen();
+    }
+
     public void AddActiveResearchContribution(object researchSource, float researchPoints)
     {
         var reference = new WeakReference<object>(researchSource);

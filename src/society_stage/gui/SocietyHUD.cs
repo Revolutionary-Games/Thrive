@@ -8,8 +8,13 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     [Export]
     public NodePath? PopulationLabelPath;
 
+    [Export]
+    public NodePath ResearchScreenPath = null!;
+
 #pragma warning disable CA2213
     private Label populationLabel = null!;
+
+    private ResearchScreen researchScreen = null!;
 #pragma warning restore CA2213
 
     [Signal]
@@ -23,12 +28,22 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
         base._Ready();
 
         populationLabel = GetNode<Label>(PopulationLabelPath);
+        researchScreen = GetNode<ResearchScreen>(ResearchScreenPath);
     }
 
     public void OpenResearchScreen()
     {
-        // TODO: implement this
-        GD.Print("TODO: research screen");
+        if (researchScreen.Visible)
+        {
+            researchScreen.Close();
+        }
+        else
+        {
+            // This is not opened centered to allow the player to move the window and for that to be remembered
+            researchScreen.Open();
+
+            // TODO: update the hot bar state
+        }
     }
 
     public void ForwardBuildingPlacingRequest()
@@ -46,9 +61,18 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     {
         if (disposing)
         {
-            PopulationLabelPath?.Dispose();
+            if (PopulationLabelPath != null)
+            {
+                PopulationLabelPath.Dispose();
+                ResearchScreenPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);
+    }
+
+    private void ResearchScreenClosed()
+    {
+        // TODO: update the hot bar state
     }
 }
