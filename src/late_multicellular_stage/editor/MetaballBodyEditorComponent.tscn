@@ -846,6 +846,7 @@ DialogText = "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 rect_min_size = Vector2( 550, 90 )
 WindowTitle = "CREATE_NEW_TISSUE_TYPE"
 HideOnOk = false
+NodeToGiveFocusOnOpen = NodePath("VBoxContainer2/NewName")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NewTissueTypeSetup"]
 margin_right = 40.0

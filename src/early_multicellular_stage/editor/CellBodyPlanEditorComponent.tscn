@@ -727,6 +727,7 @@ DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
 rect_min_size = Vector2( 550, 90 )
 WindowTitle = "CREATE_NEW_CELL_TYPE"
 HideOnOk = false
+NodeToGiveFocusOnOpen = NodePath("VBoxContainer2/NewName")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NewCellTypeSetup"]
 margin_right = 40.0

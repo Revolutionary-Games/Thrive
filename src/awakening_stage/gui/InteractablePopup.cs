@@ -102,17 +102,14 @@ public class InteractablePopup : Control
         popup.WindowTitle = entity.ReadableName;
         popup.PopupCenteredShrink();
 
-        // Focus needs to be adjusted after opening
         if (firstButton == null)
         {
             GD.Print("No actions available for an interactable in the popup");
-            cancelButton.GrabFocus();
-            cancelButton.GrabClickFocus();
+            cancelButton.GrabFocusInOpeningPopup();
         }
         else
         {
-            firstButton.GrabFocus();
-            firstButton.GrabClickFocus();
+            firstButton.GrabFocusInOpeningPopup();
         }
     }
 
