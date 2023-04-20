@@ -247,7 +247,7 @@ public class ProcessSystem
                 useRatio = false;
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                if (speedAdjusted.Outputs.Select(o => o.Key).Contains(ATP) && consumptionProductionRatio < 1.0f)
+                if (speedAdjusted.Outputs.ContainsKey(ATP) && consumptionProductionRatio < 1.0f)
                     useRatio = true;
 
                 foreach (var input in speedAdjusted.Inputs)
