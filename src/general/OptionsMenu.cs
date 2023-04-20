@@ -488,6 +488,8 @@ public class OptionsMenu : ControlWithInput
 
         deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
+        GetViewport().Connect("size_changed", this, nameof(DisplayResolution));
+
         selectedOptionsTab = OptionsTab.Graphics;
     }
 
@@ -661,10 +663,6 @@ public class OptionsMenu : ControlWithInput
             UpdateDefaultAudioOutputDeviceText();
             DisplayResolution();
             DisplayGpuInfo();
-        }
-        else if (what == NotificationResized)
-        {
-            DisplayResolution();
         }
     }
 
