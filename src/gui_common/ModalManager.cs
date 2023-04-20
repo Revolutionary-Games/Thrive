@@ -151,23 +151,32 @@ public class ModalManager : NodeWithInput
 
         foreach (var modal in modalStack)
         {
-            // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
-            // For unexplained reasons this has to be at the top of this loop for focus to work in the popups.
-            // So don't move this code anywhere else without a ton of testing verifying things still work.
-            if (!modal.Visible)
-            {
-                modal.Open();
-                modal.Notification(Popup.NotificationPostPopup);
-            }
-
             if (modal != top)
             {
                 modal.ReParent(canvasLayer);
                 canvasLayer.MoveChild(modal, 0);
+
+                // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
+                // For unexplained reasons this has to be at the top of this loop for focus to work in the popups.
+                // So don't move this code anywhere else without a ton of testing verifying things still work.
+                if (!modal.Visible)
+                {
+                    modal.Open();
+                    modal.Notification(Popup.NotificationPostPopup);
+                }
             }
             else
             {
                 top.ReParent(activeModalContainer);
+
+                // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
+                // For unexplained reasons this has to be at the top of this loop for focus to work in the popups.
+                // So don't move this code anywhere else without a ton of testing verifying things still work.
+                if (!modal.Visible)
+                {
+                    modal.Open();
+                    modal.Notification(Popup.NotificationPostPopup);
+                }
 
                 // Always give focus to the top-most modal in the stack
                 // We use our custom method here to prefer to not give focus to nodes that are in disabled state
