@@ -484,6 +484,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
     public void AttemptPlayerWorldInteraction()
     {
+        if (PauseManager.Instance.Paused)
+            return;
+
         // TODO: we might in the future have somethings that an aware creature can interact with
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
@@ -510,6 +513,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
         if (Player.IsPlacingStructure)
         {
+            if (PauseManager.Instance.Paused)
+                return;
+
             Player.AttemptStructurePlace();
             return;
         }
@@ -541,6 +547,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
             HUD.CloseInventory();
             return true;
         }
+
+        if (pauseMenu.Visible)
+            return false;
 
         try
         {
