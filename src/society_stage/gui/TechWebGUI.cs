@@ -57,6 +57,10 @@ public class TechWebGUI : HBoxContainer
         // TODO: proper technology display nodes that differentiate between researched and available technologies
         int y = 1;
 
+        // TODO: preserve existing nodes that are still good / update their state
+        // this will be needed to make controller focus navigation at least a bit usable
+        techNodesContainer.QueueFreeChildren();
+
         foreach (var technology in SimulationParameters.Instance.GetTechnologies())
         {
             var button = new Button
@@ -133,6 +137,8 @@ public class TechWebGUI : HBoxContainer
 
         // TODO: query the tech web for if the technology can be researched (pre-requisites fulfilled)
         researchButton.Disabled = techWeb.HasTechnology(selectedTechnology);
+
+        // TODO: disable the research button if the tech is currently being researched
     }
 
     private void OnStartResearch()
@@ -144,5 +150,9 @@ public class TechWebGUI : HBoxContainer
 
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnTechnologyToResearchSelected), selectedTechnology.InternalName);
+
+        // Disable the button to disallow trying to start the same research multiple times (we don't know if our signal
+        // could fail)
+        researchButton.Disabled = true;
     }
 }

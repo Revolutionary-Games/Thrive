@@ -315,6 +315,14 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     private void StartResearching(string technologyName)
     {
+        // Skip if trying to start the same research again, just to not lose progress as the GUI data passing to
+        // ensure a technology is not started multiple times is complicated
+        if (CurrentlyResearchedTechnology?.Technology.InternalName == technologyName)
+        {
+            GD.Print("Skipping trying to start the same research again");
+            return;
+        }
+
         GD.Print("Starting researching: ", technologyName);
         CurrentlyResearchedTechnology =
             new TechnologyProgress(SimulationParameters.Instance.GetTechnology(technologyName));
