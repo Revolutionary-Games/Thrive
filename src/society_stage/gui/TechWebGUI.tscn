@@ -11,6 +11,7 @@ theme = ExtResource( 2 )
 script = ExtResource( 3 )
 TechnologyNameLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/TechnologyName")
 ResearchButtonPath = NodePath("VBoxContainer/StartResearch")
+TechNodesContainerPath = NodePath("DraggableScrollContainer/WebNodesContainer")
 
 [node name="DraggableScrollContainer" parent="." instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -22,7 +23,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.5
 ShowScrollbars = true
 
-[node name="Control" type="Control" parent="DraggableScrollContainer"]
+[node name="WebNodesContainer" type="Control" parent="DraggableScrollContainer"]
 margin_right = 500.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 500, 500 )
@@ -74,3 +75,5 @@ margin_right = 365.0
 margin_bottom = 720.0
 disabled = true
 text = "START_RESEARCH"
+
+[connection signal="pressed" from="VBoxContainer/StartResearch" to="." method="OnStartResearch"]

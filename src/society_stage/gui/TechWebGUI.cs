@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A display of <see cref="TechWeb"/> status and available technologies to select something to research
@@ -12,9 +13,14 @@ public class TechWebGUI : HBoxContainer
     [Export]
     public NodePath ResearchButtonPath = null!;
 
+    [Export]
+    public NodePath TechNodesContainerPath = null!;
+
 #pragma warning disable CA2213
     private Label technologyNameLabel = null!;
     private Button researchButton = null!;
+
+    private Control techNodesContainer = null!;
 #pragma warning restore CA2213
 
     private TechWeb? techWeb;
@@ -27,6 +33,17 @@ public class TechWebGUI : HBoxContainer
     {
         technologyNameLabel = GetNode<Label>(TechnologyNameLabelPath);
         researchButton = GetNode<Button>(ResearchButtonPath);
+        techNodesContainer = GetNode<Control>(TechNodesContainerPath);
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged)
+        {
+            ShowTechnologyDetails();
+        }
     }
 
     /// <summary>
@@ -37,7 +54,40 @@ public class TechWebGUI : HBoxContainer
     {
         techWeb = availableTechnologies;
 
-        throw new System.NotImplementedException();
+        // TODO: proper technology display nodes that differentiate between researched and available technologies
+        int y = 1;
+
+        foreach (var technology in SimulationParameters.Instance.GetTechnologies())
+        {
+            var button = new Button
+            {
+                Text = technology.Name,
+                Disabled = techWeb.HasTechnology(technology),
+            };
+
+            // TODO: temporary positioning logic
+            if (technology == SimulationParameters.Instance.GetTechnology("steamPower"))
+            {
+                button.RectPosition = new Vector2(250, 250);
+            }
+            else
+            {
+                button.RectPosition = new Vector2(25, 80 * y);
+                ++y;
+            }
+
+            techNodesContainer.AddChild(button);
+            var binds = new Array();
+            binds.Add(technology.InternalName);
+
+            button.Connect("pressed", this, nameof(OnTechnologySelected), binds);
+
+            // TODO: ensure the container is large enough min size to contain everything
+        }
+
+        // TODO: layout the technologies in a sensible way (we could have a tool to precalculate a good layout)
+
+        // TODO: draw lines connecting technologies
     }
 
     protected override void Dispose(bool disposing)
@@ -48,6 +98,7 @@ public class TechWebGUI : HBoxContainer
             {
                 TechnologyNameLabelPath.Dispose();
                 ResearchButtonPath.Dispose();
+                TechNodesContainerPath.Dispose();
             }
         }
 
@@ -73,6 +124,12 @@ public class TechWebGUI : HBoxContainer
 
         if (techWeb == null)
             throw new InvalidOperationException("TechWeb not set");
+
+        technologyNameLabel.Text = selectedTechnology.Name;
+
+        // TODO: a quick description for a technology
+
+        // TODO: display all the data about the technology
 
         // TODO: query the tech web for if the technology can be researched (pre-requisites fulfilled)
         researchButton.Disabled = techWeb.HasTechnology(selectedTechnology);

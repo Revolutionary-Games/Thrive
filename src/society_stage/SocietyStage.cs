@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -11,7 +10,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     [Export]
     public NodePath? SelectBuildingPopupPath;
 
-    private readonly Dictionary<WeakReference<object>, float> activeResearchContributions = new();
+    private readonly Dictionary<object, float> activeResearchContributions = new();
 
 #pragma warning disable CA2213
     private SelectBuildingPopup selectBuildingPopup = null!;
@@ -207,14 +206,14 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     public void AddActiveResearchContribution(object researchSource, float researchPoints)
     {
-        var reference = new WeakReference<object>(researchSource);
-        activeResearchContributions[reference] = researchPoints;
+        // TODO: come up with a way to get unique identifiers for the research sources
+        // Using WeakReference doesn't work as it causes not equal objects to be created
+        activeResearchContributions[researchSource] = researchPoints;
     }
 
     public void RemoveActiveResearchContribution(object researchSource)
     {
-        var reference = new WeakReference<object>(researchSource);
-        activeResearchContributions.Remove(reference);
+        activeResearchContributions.Remove(researchSource);
     }
 
     protected override void SetupStage()
