@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-14 13:04+0300\n"
-"PO-Revision-Date: 2023-03-24 12:38+0000\n"
-"Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
+"PO-Revision-Date: 2023-04-15 22:02+0000\n"
+"Last-Translator: 阿斯加德 <1336527854@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1467
@@ -58,9 +58,8 @@ msgid "ACTION_AWAKEN"
 msgstr "唤醒"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "唤醒"
+msgstr "进入启蒙时代。一旦你有足够的脑力，就可以使用（需要有轴突组织）"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:678
@@ -373,7 +372,7 @@ msgstr "可用的Mod"
 
 #: ../simulation_parameters/common/gallery.json:430
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "启蒙阶段"
 
 #: ../simulation_parameters/common/gallery.json:419
 #, fuzzy
@@ -580,9 +579,8 @@ msgstr "浏览创意工坊"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:127
-#, fuzzy
 msgid "BUILD_STRUCTURE"
-msgstr "结构"
+msgstr "创造结构"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -968,7 +966,7 @@ msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:169
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "多功能编辑器和策略规划阶段"
 
 #: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM"
@@ -1137,7 +1135,7 @@ msgstr "清除选中的材料"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1152
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr ""
+msgstr "错误：消耗合成物品时出现内部BUG"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1118
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
@@ -1180,11 +1178,11 @@ msgstr "Auto-evo结果："
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1521
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "选择一个合成配方或添加物品到过滤器中"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:290
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "全部拿走"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:167
 msgid "CRAFTING_TITLE"
@@ -2407,7 +2405,7 @@ msgstr "HSV"
 
 #: ../src/microbe_stage/gui/HUDMessages.cs:49
 msgid "HUD_MESSAGE_MULTIPLE"
-msgstr ""
+msgstr "{0} (x{1})"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
@@ -2450,7 +2448,7 @@ msgstr "（当你进入测试阶段，一些功能可能无法使用）"
 
 #: ../simulation_parameters/common/gallery.json:458
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "工业阶段"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
@@ -3048,9 +3046,8 @@ msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "平均"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
-#, fuzzy
 msgid "LIGHT_LEVEL_CURRENT"
-msgstr "夜晚"
+msgstr "当前"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
@@ -3842,7 +3839,7 @@ msgstr "显示更多信息"
 
 #: ../src/general/OptionsMenu.tscn:1542
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "光标位于屏幕边缘时平移战略视图"
 
 #: ../src/general/OptionsMenu.tscn:1267
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -4594,13 +4591,12 @@ msgstr "{0}{1}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
 #: ../src/gui_common/PatchNotesDisplayer.tscn:47
-#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "页面标题"
+msgstr "你上次玩Thrive的时间{0},目前已经有一个新版本发布了"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "你上次玩Thrive的时间{0},目前已经更新了{1}个版本"
 
 #: ../src/general/OptionsMenu.tscn:2177
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
@@ -4610,11 +4606,11 @@ msgstr "页面标题"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "变更说明："
 
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
@@ -5844,7 +5840,7 @@ msgstr "已具有用于建造的材料"
 
 #: ../simulation_parameters/awakening_stage/structures.json:50
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
-msgstr ""
+msgstr "渔猎采集者居所"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
@@ -5855,8 +5851,12 @@ msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "完成该建筑所需要的材料: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr "{0} (起始消耗: {1}, 总消耗: {2})"
+msgstr ""
+"total means how many I total have or It total cost? \n"
+"if is how many I total have , \"total\" traslate to \"目前共有{2}单位\", \n"
+"if is It total cost ,\"total\" traslate to \"总共需要{2}单位\""
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
@@ -5943,9 +5943,8 @@ msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
-#, fuzzy
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr "解锁的科技：{0}"
+msgstr "渔猎采集"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6519,7 +6518,7 @@ msgstr "未命名"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
-msgstr ""
+msgstr "捕食纤毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
@@ -6627,9 +6626,8 @@ msgstr "查看器"
 
 #: ../src/gui_common/PatchNotesDisplayer.tscn:63
 #: ../src/gui_common/PatchNotesDisplayer.tscn:72
-#, fuzzy
 msgid "VIEW_ALL"
-msgstr "全部禁用"
+msgstr "查看所有"
 
 #: ../src/general/OptionsMenu.tscn:1848
 #, fuzzy
@@ -6637,9 +6635,8 @@ msgid "VIEW_PATCH_NOTES"
 msgstr "{0}{1}"
 
 #: ../src/general/OptionsMenu.tscn:1846
-#, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0}{1}"
+msgstr "查看最近或所有的Thrive补丁信息"
 
 #: ../src/general/MainMenu.tscn:336
 msgid "VIEW_SOURCE_CODE"

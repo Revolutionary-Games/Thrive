@@ -886,10 +886,8 @@ public partial class CellEditorComponent :
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
 
-        // Calculate and send energy balance to the GUI
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane);
-
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles);
+        // Calculate and send energy balance and compound balance to the GUI
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
     }
 
     /// <summary>
@@ -1537,25 +1535,20 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Calculates the energy balance for a cell with the given organelles
+    ///   Calculates the energy balance and compound balance for a cell with the given organelles and membrane
     /// </summary>
-    private void CalculateEnergyBalanceWithOrganellesAndMembraneType(IReadOnlyCollection<OrganelleTemplate> organelles,
+    private void CalculateEnergyAndCompoundBalance(IReadOnlyCollection<OrganelleTemplate> organelles,
         MembraneType membrane, BiomeConditions? biome = null)
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current));
-    }
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
+            Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current);
 
-    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles,
-        BiomeConditions? biome = null)
-    {
-        biome ??= Editor.CurrentPatch.Biome;
+        UpdateEnergyBalance(energyBalance);
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
-
-        UpdateCompoundBalances(result);
+        UpdateCompoundBalances(ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+            CompoundAmountType.Current, energyBalance));
     }
 
     /// <summary>

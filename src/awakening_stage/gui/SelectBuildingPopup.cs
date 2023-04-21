@@ -122,16 +122,13 @@ public class SelectBuildingPopup : Control
 
         popup.PopupCenteredShrink();
 
-        // Focus needs to be adjusted after opening, select the first available thing to build
         if (firstButton == null)
         {
-            cancelButton.GrabFocus();
-            cancelButton.GrabClickFocus();
+            cancelButton.GrabFocusInOpeningPopup();
         }
         else
         {
-            firstButton.GrabFocus();
-            firstButton.GrabClickFocus();
+            firstButton.GrabFocusInOpeningPopup();
         }
     }
 

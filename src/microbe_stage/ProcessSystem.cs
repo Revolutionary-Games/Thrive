@@ -165,6 +165,11 @@ public class ProcessSystem
     ///   Computes the compound balances for given organelle list in a patch and at a given time during the day (or
     ///   using longer timespan values)
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Assumes that all processes run at maximum speed
+    ///   </para>
+    /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
         IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType)
     {
@@ -205,6 +210,85 @@ public class ProcessSystem
         IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType)
     {
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType);
+    }
+
+    /// <summary>
+    ///   Computes the compound balances for given organelle list in a patch and at a given time during the day (or
+    ///   using longer timespan values)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Assumes that the cell produces at most as much ATP as it consumes
+    ///   </para>
+    /// </remarks>
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        EnergyBalanceInfo energyBalance)
+    {
+        var result = new Dictionary<Compound, CompoundBalance>();
+
+        void MakeSureResultExists(Compound compound)
+        {
+            if (!result.ContainsKey(compound))
+            {
+                result[compound] = new CompoundBalance();
+            }
+        }
+
+        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+        bool useRatio;
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType);
+
+                useRatio = false;
+
+                // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
+                if (speedAdjusted.Outputs.ContainsKey(ATP) && consumptionProductionRatio < 1.0f)
+                    useRatio = true;
+
+                foreach (var input in speedAdjusted.Inputs)
+                {
+                    if (input.Key == ATP)
+                        continue;
+
+                    float amount = input.Value;
+
+                    if (useRatio)
+                        amount *= consumptionProductionRatio;
+
+                    MakeSureResultExists(input.Key);
+                    result[input.Key].AddConsumption(organelle.InternalName, amount);
+                }
+
+                foreach (var output in speedAdjusted.Outputs)
+                {
+                    if (output.Key == ATP)
+                        continue;
+
+                    float amount = output.Value;
+
+                    if (useRatio)
+                        amount *= consumptionProductionRatio;
+
+                    MakeSureResultExists(output.Key);
+                    result[output.Key].AddProduction(organelle.InternalName, amount);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        EnergyBalanceInfo energyBalance)
+    {
+        return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
+            energyBalance);
     }
 
     /// <summary>
