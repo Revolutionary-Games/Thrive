@@ -34,4 +34,6 @@ public enum MainGameState
     LateMulticellularEditor,
 
     SocietyStage,
+
+    IndustrialStage,
 }

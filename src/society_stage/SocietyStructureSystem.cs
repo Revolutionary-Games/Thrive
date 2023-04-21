@@ -31,6 +31,9 @@ public class SocietyStructureSystem
     [JsonProperty]
     public long CachedHousingCapacity { get; private set; }
 
+    [JsonProperty]
+    public float CachedFactoryPower { get; private set; }
+
     public void Process(float delta, ISocietyStructureDataAccess societyData)
     {
         elapsed += delta;
@@ -43,6 +46,7 @@ public class SocietyStructureSystem
 
         float storage = 0;
         long housing = 0;
+        float factory = 0;
 
         foreach (var structure in worldRoot.GetChildrenToProcess<PlacedStructure>(Constants.STRUCTURE_ENTITY_GROUP))
         {
@@ -69,12 +73,16 @@ public class SocietyStructureSystem
             if (housingComponent != null)
                 housing += housingComponent.Space;
 
+            if (structure.GetComponent<FactoryComponent>() != null)
+                factory += 1;
+
             structure.ProcessSociety(elapsed, societyData);
         }
 
         elapsed = 0;
         CachedTotalStorage = storage;
         CachedHousingCapacity = housing;
+        CachedFactoryPower = factory;
     }
 
     /// <summary>

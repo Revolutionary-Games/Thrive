@@ -1,0 +1,70 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/industrial_stage/IndustrialStage.cs" type="Script" id=1]
+[ext_resource path="res://src/society_stage/StrategicCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/environment/Terrain_01_Albedo.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/environment/Terrain_01_Normals.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/environment/Terrain_02_Normals.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/environment/Terrain_02_Albedo.png" type="Texture" id=6]
+[ext_resource path="res://src/industrial_stage/gui/IndustrialHUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/industrial_stage/PlayerIndustrialInput.tscn" type="PackedScene" id=9]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+uv1_scale = Vector3( 105, 105, 105 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 3 )
+size = Vector2( 800, 800 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 6 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 5 )
+uv1_scale = Vector3( 105, 105, 105 )
+
+[sub_resource type="PlaneMesh" id=5]
+material = SubResource( 4 )
+size = Vector2( 400, 400 )
+
+[node name="IndustrialStage" type="Node"]
+script = ExtResource( 1 )
+PauseMenuPath = NodePath("PauseMenu")
+HUDRootPath = NodePath("IndustrialHUD")
+StrategicCameraPath = NodePath("World/StrategicCamera")
+
+[node name="World" type="Node" parent="."]
+
+[node name="DynamicallySpawned" type="Node" parent="World"]
+
+[node name="WorldLight" type="DirectionalLight" parent="World"]
+transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+shadow_enabled = true
+
+[node name="StrategicCamera" parent="World" instance=ExtResource( 2 )]
+MaxZoomLevel = 3.0
+
+[node name="TemporaryGround" type="Spatial" parent="World"]
+
+[node name="Visual1" type="MeshInstance" parent="World/TemporaryGround"]
+mesh = SubResource( 2 )
+
+[node name="Visual2" type="MeshInstance" parent="World/TemporaryGround"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800 )
+mesh = SubResource( 5 )
+
+[node name="PlayerIndustrialInput" parent="." instance=ExtResource( 9 )]
+
+[node name="IndustrialHUD" parent="." instance=ExtResource( 7 )]
+MenuPath = NodePath("../PauseMenu")
+
+[node name="PauseMenu" parent="." instance=ExtResource( 8 )]
+
+[connection signal="OnOpenMenu" from="IndustrialHUD" to="PauseMenu" method="Open"]
+[connection signal="OnOpenMenuToHelp" from="IndustrialHUD" to="PauseMenu" method="OpenToHelp"]
+[connection signal="OnStartResearching" from="IndustrialHUD" to="." method="StartResearching"]

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -12,8 +11,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     [Export]
     public NodePath IndustrialStageConfirmPopupPath = null!;
-
-    private readonly Dictionary<object, float> activeResearchContributions = new();
 
 #pragma warning disable CA2213
     private SelectBuildingPopup selectBuildingPopup = null!;
@@ -37,12 +34,14 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     private long population = 1;
 
-    [JsonProperty]
-    private SocietyResourceStorage resourceStorage = new();
-
     private StructureDefinition? buildingTypeToPlace;
 
     private bool stageAdvanceConfirmed;
+
+    [JsonProperty]
+    private bool movingToSocietyStage;
+
+    private bool stageLeaveTransitionStarted;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -50,9 +49,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     [JsonIgnore]
     public IResourceContainer SocietyResources => resourceStorage;
-
-    [JsonProperty]
-    public TechnologyProgress? CurrentlyResearchedTechnology { get; private set; }
 
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
@@ -101,8 +97,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
             // TODO: make population consume food
 
-            HUD.UpdateScienceSpeed(activeResearchContributions.SumValues());
-
             // Update the place to place the selected building
             if (buildingToPlaceGhost != null)
             {
@@ -118,20 +112,32 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
             citizenMovingSystem.Process(delta, population);
 
-            if (CurrentlyResearchedTechnology?.Completed == true)
+            if (movingToSocietyStage)
             {
-                GD.Print("Current technology research completed");
-                CurrentGame!.TechWeb.UnlockTechnology(CurrentlyResearchedTechnology.Technology);
-                CurrentlyResearchedTechnology = null;
+                if (AnimateCameraZoomTowards(Constants.SOCIETY_CAMERA_ZOOM_INDUSTRIAL_EQUIVALENT, delta) &&
+                    !stageLeaveTransitionStarted)
+                {
+                    HUD.EnsureGameIsUnpausedForEditor();
 
-                // TODO: if research screen is open, it should have its state update here in regards to the unlocked
-                // technology
+                    GD.Print("Starting fade out to industrial stage");
+
+                    // The fade is pretty long here to give some time after the camera stops moving before the fade out
+                    // is complete
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, SwitchToIndustrialScene,
+                        false);
+                    stageLeaveTransitionStarted = true;
+                }
             }
-
-            HUD.UpdateResearchProgress(CurrentlyResearchedTechnology);
+            else
+            {
+                if (!movingToSocietyStage && structureSystem.CachedFactoryPower > 0)
+                {
+                    GD.Print("There's now a finished factory, starting going to industrial stage");
+                    movingToSocietyStage = true;
+                }
+            }
         }
 
-        HUD.UpdateResourceDisplay(resourceStorage);
         HUD.UpdatePopulationDisplay(population);
     }
 
@@ -221,23 +227,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         rootOfDynamicallySpawned.AddChild(buildingToPlaceGhost);
     }
 
-    public void ToggleResearchScreen()
-    {
-        HUD.OpenResearchScreen();
-    }
-
-    public void AddActiveResearchContribution(object researchSource, float researchPoints)
-    {
-        // TODO: come up with a way to get unique identifiers for the research sources
-        // Using WeakReference doesn't work as it causes not equal objects to be created
-        activeResearchContributions[researchSource] = researchPoints;
-    }
-
-    public void RemoveActiveResearchContribution(object researchSource)
-    {
-        activeResearchContributions.Remove(researchSource);
-    }
-
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -272,10 +261,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     protected override void OnGameOver()
     {
         // TODO: once possible to lose, show in the GUI
-    }
-
-    protected override void OnLightLevelUpdate()
-    {
     }
 
     protected override void AutoSave()
@@ -339,21 +324,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         return true;
     }
 
-    private void StartResearching(string technologyName)
-    {
-        // Skip if trying to start the same research again, just to not lose progress as the GUI data passing to
-        // ensure a technology is not started multiple times is complicated
-        if (CurrentlyResearchedTechnology?.Technology.InternalName == technologyName)
-        {
-            GD.Print("Skipping trying to start the same research again");
-            return;
-        }
-
-        GD.Print("Starting researching: ", technologyName);
-        CurrentlyResearchedTechnology =
-            new TechnologyProgress(SimulationParameters.Instance.GetTechnology(technologyName));
-    }
-
     private void ConfirmStageAdvance()
     {
         GD.Print("Confirmed advancing to industrial stage");
@@ -364,5 +334,21 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     private void CancelStageAdvance()
     {
         CancelBuildingPlaceIfInProgress();
+    }
+
+    private void SwitchToIndustrialScene()
+    {
+        var industrialStage =
+            SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
+        industrialStage.CurrentGame = CurrentGame;
+        industrialStage.SocietyResources.TransferFrom(SocietyResources);
+
+        SceneManager.Instance.SwitchToScene(industrialStage);
+
+        // Preserve some of the state when moving to the stage for extra continuity
+        industrialStage.CameraWorldPoint = CameraWorldPoint / Constants.INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
+
+        // TODO: preserve the initial city building visuals
+        industrialStage.AddCity(new Transform(Basis.Identity, industrialStage.CameraWorldPoint));
     }
 }

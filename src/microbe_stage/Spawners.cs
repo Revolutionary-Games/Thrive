@@ -346,6 +346,25 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/society_stage/SocietyCreature.tscn");
     }
 
+    public static PlacedCity SpawnCity(Transform location, Node worldRoot, PackedScene cityScene)
+    {
+        var city = (PlacedCity)cityScene.Instance();
+
+        city.Init();
+
+        worldRoot.AddChild(city);
+        city.Transform = location;
+
+        city.AddToGroup(Constants.STRUCTURE_ENTITY_GROUP);
+
+        return city;
+    }
+
+    public static PackedScene LoadCityScene()
+    {
+        return GD.Load<PackedScene>("res://src/industrial_stage/PlacedCity.tscn");
+    }
+
     private static Quat RandomRotationForResourceEntity(Random random)
     {
         return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),

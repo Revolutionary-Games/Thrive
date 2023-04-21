@@ -56,8 +56,8 @@ HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
 BottomLeftBarPath = NodePath("HUDBottomBar")
 ResourceDisplayPath = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
-PopulationLabelPath = NodePath("TopBar/HBoxContainer/PopulationContainer/Population")
 ResearchScreenPath = NodePath("ResearchScreen")
+PopulationLabelPath = NodePath("TopBar/HBoxContainer/PopulationContainer/Population")
 
 [node name="BottomRight" type="Control" parent="."]
 anchor_left = 1.0
