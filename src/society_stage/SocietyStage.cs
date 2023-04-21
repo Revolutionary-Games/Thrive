@@ -341,14 +341,17 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         var industrialStage =
             SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
         industrialStage.CurrentGame = CurrentGame;
-        industrialStage.SocietyResources.TransferFrom(SocietyResources);
+        industrialStage.TakeInitialResourcesFrom(SocietyResources);
 
         SceneManager.Instance.SwitchToScene(industrialStage);
 
         // Preserve some of the state when moving to the stage for extra continuity
         industrialStage.CameraWorldPoint = CameraWorldPoint / Constants.INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
 
+        var cityPosition = industrialStage.CameraWorldPoint;
+        cityPosition.y = 0;
+
         // TODO: preserve the initial city building visuals
-        industrialStage.AddCity(new Transform(Basis.Identity, industrialStage.CameraWorldPoint));
+        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition));
     }
 }

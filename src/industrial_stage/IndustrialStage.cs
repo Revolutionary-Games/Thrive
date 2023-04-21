@@ -91,6 +91,13 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         base.StartNewGame();
     }
 
+    public void TakeInitialResourcesFrom(IResourceContainer resources)
+    {
+        // Force capacity up temporarily to be able to get probably all of the resources
+        resourceStorage.Capacity = 1000;
+        SocietyResources.TransferFrom(resources);
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
