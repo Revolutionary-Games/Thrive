@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   HUD for the society stage, manages updating the GUI for this stage
@@ -20,6 +21,9 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     [Signal]
     public delegate void OnBuildingPlacingRequested();
 
+    [Signal]
+    public delegate void OnStartResearching(string technology);
+
     // TODO: real button referencing text for this
     protected override string UnPauseHelpText => "TODO: unpause text for this stage";
 
@@ -39,6 +43,9 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
         }
         else
         {
+            researchScreen.AvailableTechnologies = stage?.CurrentGame?.TechWeb ??
+                throw new InvalidOperationException("HUD not initialized");
+
             // This is not opened centered to allow the player to move the window and for that to be remembered
             researchScreen.Open();
 
@@ -74,5 +81,10 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     private void ResearchScreenClosed()
     {
         // TODO: update the hot bar state
+    }
+
+    private void ForwardStartResearch(string technology)
+    {
+        EmitSignal(nameof(OnStartResearching), technology);
     }
 }

@@ -48,11 +48,11 @@ size_flags_horizontal = 3
 [node name="TechnologyName" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_right = 365.0
 margin_bottom = 25.0
-text = "Steam power"
+text = "SELECT_A_TECHNOLOGY"
 align = 1
 autowrap = true
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="PlaceholderFullDetails" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -66,8 +66,9 @@ margin_top = 677.0
 margin_right = 365.0
 margin_bottom = 681.0
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="StartResearch" type="Button" parent="VBoxContainer"]
 margin_top = 685.0
 margin_right = 365.0
 margin_bottom = 720.0
+disabled = true
 text = "START_RESEARCH"
