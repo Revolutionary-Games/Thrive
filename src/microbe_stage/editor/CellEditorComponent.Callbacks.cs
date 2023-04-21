@@ -206,7 +206,7 @@ public partial class CellEditorComponent
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane);
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
@@ -227,7 +227,7 @@ public partial class CellEditorComponent
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane);
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
