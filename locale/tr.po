@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-14 13:04+0300\n"
+"POT-Creation-Date: 2023-04-21 11:19+0300\n"
 "PO-Revision-Date: 2023-04-15 22:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -61,7 +61,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Uyanış Evresi'ne Geç. Yeterli beyin gücüne sahip olduğunda açılır (aksonlu doku türü)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:678
+#: ../src/general/base_stage/EditorBase.cs:681
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -135,7 +135,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(AI türlerinin mutasyona uğrama hızı)"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:372
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:387
 msgid "ALL"
 msgstr "Tümü"
 
@@ -359,7 +359,7 @@ msgstr "Oto-Evrim Durumu:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Otomatik olarak ileri git"
 
-#: ../src/general/OptionsMenu.cs:963 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:1007 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "Otomatik ({0}x{1})"
 
@@ -379,7 +379,7 @@ msgstr "Farkındalık Evresi"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -573,7 +573,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Atölye'ye Göz At"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/gui/SocietyHUD.tscn:127
+#: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr "Bir Yapı İnşa Et"
 
@@ -601,8 +601,8 @@ msgstr "Kamera"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2138
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -719,7 +719,7 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
@@ -1040,7 +1040,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "ONAYLA"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:323
+#: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Çıkışı Onayla"
@@ -1205,7 +1205,7 @@ msgstr "Yeni Oluştur"
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Yeni Hücre Türü Oluştur"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:743
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla, değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
 
@@ -1221,7 +1221,7 @@ msgstr "Yeni Kayıt Oluştur"
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Yeni Doku Türü Oluştur"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:861
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Mevcut dokuları kopyalayarak ve onlara yeni bir isim vererek yeni doku türleri oluşturabilirsin. Doku türlerinde, farklı görevlerde özelleştirmek amacıyla, hücre düzenleyicisi aracılığıyla değişiklik yapılabilir."
 
@@ -1313,15 +1313,15 @@ msgstr "Gece gündüz döngüsünü etkinleştir"
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(UYARI: fotosentez daha olanaksız hale gelir)"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:217
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Ölü bölge kalibrasyon işlemi tamamlandı. Yeni ölü bölgeler, aşağıda bulunan eksen değeri görüntüleyicilerinde gösterilmekte."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:182
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Ölü bölge kalibrasyonu devam ediyor. Lütfen kontrol cihazınızdaki herhangi bir tuşa veya çubuğa dokunmayın ve birkaç saniye bekleyin."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:203
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Ölü bölge kalibrasyonu sıfırlandı"
 
@@ -1348,7 +1348,7 @@ msgstr "Hata Ayıklama Paneli"
 msgid "DECEMBER"
 msgstr "Aralık"
 
-#: ../src/general/OptionsMenu.cs:1429
+#: ../src/general/OptionsMenu.cs:1473
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
@@ -1819,15 +1819,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanmakta"
 
@@ -1939,7 +1939,7 @@ msgstr "Yüklenen nesneleri işlerken bir sorun oluştu"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
-#: ../src/general/PauseMenu.tscn:251
+#: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
 msgstr "Çık"
 
@@ -1985,11 +1985,11 @@ msgstr "Arazide nesli tükendi"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Gezegende nesli tükendi"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:412
+#: ../src/general/base_stage/CreatureStageBase.cs:395
 msgid "EXTINCT_IN_PATCH"
 msgstr "arazide nesli tükendi"
 
-#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
+#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:23
 msgid "EXTINCT_SPECIES"
 msgstr "Nesli Tükenen Tür"
 
@@ -2135,7 +2135,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Besin Zinciri"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} ile açığa çıkan enerji miktarı: {1} (uyum başarısı: {2}) mevcut toplam enerji miktarı: {3} (toplam uyum başarısı: {4})"
 
@@ -2236,19 +2236,19 @@ msgstr "Kuşak:"
 msgid "GITHUB_TOOLTIP"
 msgstr "GitHub depomuzu ziyaret et"
 
-#: ../src/general/OptionsMenu.cs:977
+#: ../src/general/OptionsMenu.cs:1021
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:954
+#: ../src/general/MainMenu.tscn:953
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mod Uyarısı"
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:955
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Thrive'ı GLES2 ile çalıştırmaktasın. Bu mod ciddi derecede test edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya zorla."
 
-#: ../src/general/OptionsMenu.cs:982
+#: ../src/general/OptionsMenu.cs:1026
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2343,11 +2343,11 @@ msgstr "Arayüz seviyesi"
 msgid "HEALTH"
 msgstr "Sağlık"
 
-#: ../src/general/PauseMenu.tscn:220
+#: ../src/general/PauseMenu.tscn:208
 msgid "HELP"
 msgstr "Yardım"
 
-#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:207 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Oyunun nasıl oynanacağını öğren"
 
@@ -2539,7 +2539,7 @@ msgstr "İç ad gerekli"
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "İç ad, büyük harfle başlamalıdır"
 
-#: ../src/gui_common/charts/line/LineChart.cs:678
+#: ../src/gui_common/charts/line/LineChart.cs:694
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Çizmek için Geçersiz Veri"
 
@@ -2814,19 +2814,19 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Dil:"
 
-#: ../src/general/OptionsMenu.cs:1469
+#: ../src/general/OptionsMenu.cs:1513
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
-#: ../src/general/OptionsMenu.cs:1465
+#: ../src/general/OptionsMenu.cs:1509
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 
-#: ../src/general/OptionsMenu.cs:1461
+#: ../src/general/OptionsMenu.cs:1505
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı ol!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Son organel silinemez"
 
@@ -3147,12 +3147,12 @@ msgstr "Bir hatayı düzeltmek için düzenleyicideki geri al butonuna basın"
 msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:204
+#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Oyun Yükle"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:203
+#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Daha önce kaydedilmiş oyunları yükle"
 
@@ -3242,8 +3242,8 @@ msgstr "Sınırsız"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksimum varlık sayısı:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1146
-#: ../src/gui_common/charts/line/LineChart.cs:1238
+#: ../src/gui_common/charts/line/LineChart.cs:1294
+#: ../src/gui_common/charts/line/LineChart.cs:1387
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha fazla gösterilemez!"
 
@@ -3613,8 +3613,8 @@ msgstr "Tespit Edilecek Minimum Miktar:"
 msgid "MINIMUM_VERSION"
 msgstr "Minimum:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1152
-#: ../src/gui_common/charts/line/LineChart.cs:1243
+#: ../src/gui_common/charts/line/LineChart.cs:1300
+#: ../src/gui_common/charts/line/LineChart.cs:1392
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha az gösterilemez!"
 
@@ -3926,7 +3926,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Karaya Çıkılsın mı?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+#: ../src/late_multicellular_stage/MulticellularStage.cs:577
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Bir topluluğa dönüştürülüyor..."
 
@@ -4059,13 +4059,13 @@ msgstr "Not: Oyunun performansını arttırmak için performans ile ilgili ayarl
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Benim Harika Modum"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:881
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Yeni İsim"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:874
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Yeni İsim:"
 
@@ -4129,7 +4129,7 @@ msgstr "Hücre zarının en temel formu. Hasara karşı koruyuculuğu çok azdı
 msgid "NOTHING_HERE"
 msgstr "Burada bir şey yok"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:496
+#: ../src/late_multicellular_stage/MulticellularStage.cs:499
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Etkileşim kurulacak bir şey yok"
 
@@ -4173,8 +4173,8 @@ msgstr "Kasım"
 msgid "NO_AI"
 msgstr "AI Yok"
 
-#: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/gui_common/charts/line/LineChart.cs:690
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2428
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
@@ -4216,7 +4216,7 @@ msgstr "Seçilen Mod Yok"
 msgid "NUCLEUS"
 msgstr "Çekirdek"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Bu geri dönüşü olmayan bir evrim olduğu için çekirdek silinemez.\n"
@@ -4238,8 +4238,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2286
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4265,8 +4265,8 @@ msgstr "Resmi Web Sitesi"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Revolutionary Games'in web sitesini ziyaret et"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:89
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:114
 #: ../src/modding/ModUploader.tscn:356
 msgid "OK"
@@ -4314,7 +4314,7 @@ msgstr "Bilgi URL'sini Aç"
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Organel menüsünü aç"
 
-#: ../src/society_stage/gui/SocietyHUD.tscn:137
+#: ../src/society_stage/gui/SocietyHUD.tscn:139
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Araştırma Ekranını Aç"
 
@@ -4353,11 +4353,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Fırsatçı"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:235
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Ayarlar"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:234
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ayarlarını değiştir"
 
@@ -4574,7 +4574,7 @@ msgstr "Arazi Haritası"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Gezinmek için tıkla, sürükle ve yakınlaştır"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:823
+#: ../src/microbe_stage/PatchMapGenerator.cs:811
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -4616,7 +4616,7 @@ msgstr "Yardımcılar"
 msgid "PAUSED"
 msgstr "DURAKLATILDI"
 
-#: ../src/general/PauseMenu.tscn:187
+#: ../src/general/PauseMenu.tscn:175
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Oyuna devam et"
 
@@ -4731,7 +4731,7 @@ msgstr "Oyuncu ölümü popülasyon cezası"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(her oyuncu ölümü için oyuncu türünün popülasyonunda azalma katsayısı)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:356
+#: ../src/general/base_stage/CreatureStageBase.cs:339
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
@@ -4747,7 +4747,7 @@ msgstr "Oyuncunun nesli tükendi"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Oyuncuya bağlı"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:300
+#: ../src/general/base_stage/CreatureStageBase.cs:283
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
@@ -4783,7 +4783,7 @@ msgstr "Mevcut Ayarlarla Oyna"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/gui/SocietyHUD.tscn:210
+#: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
@@ -4795,7 +4795,7 @@ msgstr "popülasyonu:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "arazideki popülasyon:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2277
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4885,11 +4885,11 @@ msgid "QUIT"
 msgstr "Çıkış"
 
 #: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
-#: ../src/general/PauseMenu.tscn:250
+#: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Oyundan çık"
 
-#: ../src/general/PauseMenu.cs:445
+#: ../src/general/PauseMenu.cs:414
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Oyundan çıkmak istediğine emin misin?\n"
@@ -4951,7 +4951,7 @@ msgstr "Soy tükenmesi durumunda, hedef arazideki göçleri iade et"
 msgid "REPORT"
 msgstr "Rapor"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:227
+#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Bir Hata Bildir"
 
@@ -4982,6 +4982,11 @@ msgstr "Üreme:"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
 msgstr "Hücre çekirdeği gerektirir"
+
+#: ../src/society_stage/gui/ResearchScreen.tscn:16
+#, fuzzy
+msgid "RESEARCH"
+msgstr "Ara"
 
 #: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
@@ -5058,7 +5063,7 @@ msgstr "Duyarlı"
 msgid "RESTART_REQUIRED"
 msgstr "Yeniden Başlatma Gerekli"
 
-#: ../src/general/PauseMenu.tscn:188
+#: ../src/general/PauseMenu.tscn:176
 msgid "RESUME"
 msgstr "Devam Et"
 
@@ -5066,17 +5071,17 @@ msgstr "Devam Et"
 msgid "RESUME_TOOLTIP"
 msgstr "Oyuna devam et"
 
-#: ../src/general/PauseMenu.tscn:243
+#: ../src/general/PauseMenu.tscn:231
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Menüye Dön"
 
-#: ../src/general/PauseMenu.tscn:242
+#: ../src/general/PauseMenu.tscn:230
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Ana menüye dön"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:426
+#: ../src/general/PauseMenu.cs:395
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ana menüye dönmek istediğine emin misin?\n"
@@ -5204,11 +5209,11 @@ msgstr "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak si
 msgid "SAVE_FAILED"
 msgstr "Kaydetme başarısız"
 
-#: ../src/general/PauseMenu.tscn:196
+#: ../src/general/PauseMenu.tscn:184
 msgid "SAVE_GAME"
 msgstr "Oyunu Kaydet"
 
-#: ../src/general/PauseMenu.tscn:195
+#: ../src/general/PauseMenu.tscn:183
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Oyunu kaydetmek için kaydetme menüsünü aç"
 
@@ -5326,7 +5331,7 @@ msgid "SECRETE_SLIME"
 msgstr "Müsilaj salgıla"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -5363,6 +5368,12 @@ msgstr "Detayları görmek için bir arazi seçin"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:808
 msgid "SELECT_A_SPECIES"
 msgstr "Bir tür seç"
+
+#: ../src/society_stage/gui/TechWebGUI.cs:69
+#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#, fuzzy
+msgid "SELECT_A_TECHNOLOGY"
+msgstr "Detayları görmek için bir arazi seçin"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5566,7 +5577,7 @@ msgstr "Amonyak oluştur"
 msgid "SPAWN_ENEMY"
 msgstr "Düşman Oluştur"
 
-#: ../src/microbe_stage/MicrobeStage.cs:794
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermemekte"
 
@@ -5673,6 +5684,11 @@ msgstr "Kalibrasyonu Başlat"
 #: ../src/general/NewGameSettings.tscn:1198
 msgid "START_GAME"
 msgstr "Oyunu Başlat"
+
+#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#, fuzzy
+msgid "START_RESEARCH"
+msgstr "Yeniden Başlatma Gerekli"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -5828,16 +5844,21 @@ msgstr "İnşa edilen: {0}"
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "İnşaat bitirilmeden önce gereken malzemeler: {0}"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (başlangıç maliyeti: {1}, toplam: {2})"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (BAŞLAMAK İÇİN YETERLİ DEĞİL: {1}, toplam: {2})"
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr "Topluluk Merkezi"
+
+#: ../simulation_parameters/awakening_stage/structures.json:92
+#, fuzzy
+msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Topluluk Merkezi"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:789
@@ -5928,8 +5949,13 @@ msgstr "Basit Taş Aletler"
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Topluluk Merkezi İnşa Ediliyor"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:30
+#, fuzzy
+msgid "TECHNOLOGY_STEAM_POWER"
+msgstr "Topluluk Merkezi İnşa Ediliyor"
+
 #: ../src/general/base_stage/StrategyStageBase.cs:96
-#: ../src/late_multicellular_stage/MulticellularStage.cs:806
+#: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Kilidi açılan teknoloji: {0}"
 
@@ -6025,7 +6051,7 @@ msgstr "Bu mod, Steam Atölyesi'nden yüklendi"
 msgid "THREADS"
 msgstr "İş Parçacıkları:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:212
+#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedi"
 
@@ -6037,7 +6063,7 @@ msgstr "Mevcut Dünya"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evrim Ağacı"
 
-#: ../src/general/PauseMenu.tscn:211
+#: ../src/general/PauseMenu.tscn:199
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Thriveopedi'yi Aç"
 
@@ -6441,7 +6467,7 @@ msgstr "Hepsinin bağını kopar"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Bağ Koparma Modu"
 
-#: ../src/general/OptionsMenu.cs:1530
+#: ../src/general/OptionsMenu.cs:1574
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Bu bir hata ayıklama sürümü, bu yüzden aşağıdaki bilgi muhtemelen güncel değil"
 
@@ -6461,7 +6487,7 @@ msgstr "Son eylemi geri al"
 msgid "UNKNOWN"
 msgstr "Bilinmeyen"
 
-#: ../src/general/OptionsMenu.cs:987
+#: ../src/general/OptionsMenu.cs:1031
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Bilinmeyen"
 
@@ -6473,7 +6499,7 @@ msgstr "Bilinmeyen fare tuşu"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Windows'ta bilinmiyor"
 
-#: ../src/general/OptionsMenu.cs:1537
+#: ../src/general/OptionsMenu.cs:1581
 msgid "UNKNOWN_VERSION"
 msgstr "Bilinmeyen sürüm"
 
@@ -6487,7 +6513,7 @@ msgstr ""
 "Kaydedilmemiş değişiklikler var.\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:277
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:291
 msgid "UNTITLED"
 msgstr "Adsız"
 
@@ -6591,7 +6617,7 @@ msgstr "Dikey (Eksen: {0})"
 msgid "VIDEO_MEMORY"
 msgstr "Mevcut kullanılan grafik belleği:"
 
-#: ../src/general/OptionsMenu.cs:996 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:1040 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-14 13:04+0300\n"
+"POT-Creation-Date: 2023-04-21 11:19+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -63,7 +63,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Пробуждане"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:678
+#: ../src/general/base_stage/EditorBase.cs:681
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -139,7 +139,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(определя скоростта на мутация на Вашите съперници)"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:372
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:387
 msgid "ALL"
 msgstr "Всички"
 
@@ -363,7 +363,7 @@ msgstr "Автоматична еволюция:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Автономно напред"
 
-#: ../src/general/OptionsMenu.cs:963 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:1007 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "Автоматична ({0}x{1})"
 
@@ -383,7 +383,7 @@ msgstr "Осъзнаване"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -578,7 +578,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Работилница"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/gui/SocietyHUD.tscn:127
+#: ../src/society_stage/gui/SocietyHUD.tscn:129
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "Структура"
@@ -607,8 +607,8 @@ msgstr "Камера"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2138
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -725,7 +725,7 @@ msgstr "Целулозна"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става още по-бавна, както и усвояването на хранителните вещества. [b]Целулазата[/b] може да разгради стената на тази мембрана."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
 
@@ -1047,7 +1047,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:323
+#: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
@@ -1218,7 +1218,7 @@ msgstr "Създаване на нов"
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Създаване на нова клетка"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:743
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Може да създадете нови клетки с различно наименование чрез удвояване на съществуващите клетки. Свойствата на клетките могат да бъдат променени, за да изпълняват различни функции. Когато дадена клетка бъде променена, всички клетки от нейния вид ще бъдат обновени."
 
@@ -1234,7 +1234,7 @@ msgstr "Създаване на нов запис"
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Създаване на нова тъкан"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:861
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Може да създадете нова тъкан с различно наименование чрез удвояване на съществуващите тъкани. Свойствата на тъканите могат да бъдат променени в клетъчния редактор, за да изпълняват различни функции."
 
@@ -1326,15 +1326,15 @@ msgstr "Денонощен цикъл"
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:217
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Калибрирането е завършено."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:182
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Моля, не докосвайте бутоните и ръкохватките на Вашия контролер, и изчакайте няколко секунди, докато калибрирането завърши."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:203
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Калибрирането е нулирано"
 
@@ -1359,7 +1359,7 @@ msgstr "Отстраняване на грешки"
 msgid "DECEMBER"
 msgstr "Декември"
 
-#: ../src/general/OptionsMenu.cs:1429
+#: ../src/general/OptionsMenu.cs:1473
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "По подразбиране"
 
@@ -1834,15 +1834,15 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
@@ -1956,7 +1956,7 @@ msgstr "Грешка по време на обработката на заред
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Грешка по време на зареждането на запазените данни"
 
-#: ../src/general/PauseMenu.tscn:251
+#: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
 msgstr "Изход"
 
@@ -2002,11 +2002,11 @@ msgstr "Изчезнаха от зоната"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Изчезнаха от планетата"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:412
+#: ../src/general/base_stage/CreatureStageBase.cs:395
 msgid "EXTINCT_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
-#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
+#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:23
 msgid "EXTINCT_SPECIES"
 msgstr "Изчезнали създания"
 
@@ -2153,7 +2153,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Хранителна верига"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща енергийна стойност {3} с обща стойност на усвояване {4}"
 
@@ -2254,19 +2254,19 @@ msgstr "Поколение:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
 
-#: ../src/general/OptionsMenu.cs:977
+#: ../src/general/OptionsMenu.cs:1021
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:954
+#: ../src/general/MainMenu.tscn:953
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за GLES2"
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:955
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
-#: ../src/general/OptionsMenu.cs:982
+#: ../src/general/OptionsMenu.cs:1026
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2361,11 +2361,11 @@ msgstr "Интерфейс"
 msgid "HEALTH"
 msgstr "Здраве"
 
-#: ../src/general/PauseMenu.tscn:220
+#: ../src/general/PauseMenu.tscn:208
 msgid "HELP"
 msgstr "Ръководство"
 
-#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:207 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
 
@@ -2565,7 +2565,7 @@ msgstr "Изисква се наименование на папката"
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Наименованието на папката трябва да започва с главна буква"
 
-#: ../src/gui_common/charts/line/LineChart.cs:678
+#: ../src/gui_common/charts/line/LineChart.cs:694
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Невалидни данни"
 
@@ -2840,19 +2840,19 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Език:"
 
-#: ../src/general/OptionsMenu.cs:1469
+#: ../src/general/OptionsMenu.cs:1513
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Този превод е завършен на {0} %"
 
-#: ../src/general/OptionsMenu.cs:1465
+#: ../src/general/OptionsMenu.cs:1509
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Този превод е в процес на разработка и е завършен на {0} %"
 
-#: ../src/general/OptionsMenu.cs:1461
+#: ../src/general/OptionsMenu.cs:1505
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Този превод е в начален етап на разработка и е завършен на {0} %!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последният органел не може да бъде премахнат"
 
@@ -3174,12 +3174,12 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "LOAD_FINISHED"
 msgstr "Зареждането приключи"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:204
+#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:203
+#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Зареждане на запазените игри"
 
@@ -3269,8 +3269,8 @@ msgstr "Неограничена"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимален брой на обектите:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1146
-#: ../src/gui_common/charts/line/LineChart.cs:1238
+#: ../src/gui_common/charts/line/LineChart.cs:1294
+#: ../src/gui_common/charts/line/LineChart.cs:1387
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Не е възможно показването на повече от {0} набора от данни!"
 
@@ -3643,8 +3643,8 @@ msgstr "Минимално количество:"
 msgid "MINIMUM_VERSION"
 msgstr "Минимална:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1152
-#: ../src/gui_common/charts/line/LineChart.cs:1243
+#: ../src/gui_common/charts/line/LineChart.cs:1300
+#: ../src/gui_common/charts/line/LineChart.cs:1392
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Не е възможно показването на по-малко от {0} набор(а) от данни!"
 
@@ -3958,7 +3958,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Колонизиране на сушата?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+#: ../src/late_multicellular_stage/MulticellularStage.cs:577
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Превръщане в общество..."
 
@@ -4091,13 +4091,13 @@ msgstr "Важно: Ако имате проблеми с производите
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Моята невероятна модификация"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:881
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Наименование"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:874
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Наименование:"
 
@@ -4161,7 +4161,7 @@ msgstr "Това е най-обикновена мембрана, която н�
 msgid "NOTHING_HERE"
 msgstr "Няма нищо"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:496
+#: ../src/late_multicellular_stage/MulticellularStage.cs:499
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4205,8 +4205,8 @@ msgstr "Ноември"
 msgid "NO_AI"
 msgstr "Самота"
 
-#: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/gui_common/charts/line/LineChart.cs:690
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2428
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
@@ -4248,7 +4248,7 @@ msgstr "Няма"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Ядрото е необратима еволюция и не може да бъде премахнато,\n"
@@ -4270,8 +4270,8 @@ msgstr "Клавиш „Num Lock“"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2286
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4297,8 +4297,8 @@ msgstr "Официален сайт"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Отваряне на официалния сайт на „Revolutionary Games“"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:89
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:114
 #: ../src/modding/ModUploader.tscn:356
 msgid "OK"
@@ -4346,7 +4346,7 @@ msgstr "Хранилище"
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Отваряне на контекстното меню"
 
-#: ../src/society_stage/gui/SocietyHUD.tscn:137
+#: ../src/society_stage/gui/SocietyHUD.tscn:139
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Отваряне на ръководството"
@@ -4387,11 +4387,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Самонадеяно"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:235
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:234
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Отваряне на настройките"
 
@@ -4611,7 +4611,7 @@ msgstr "Карта"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Използвайте мишката за да разгледате картата"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:823
+#: ../src/microbe_stage/PatchMapGenerator.cs:811
 msgid "PATCH_NAME"
 msgstr "{0} — {1}"
 
@@ -4657,7 +4657,7 @@ msgstr "Покровители"
 msgid "PAUSED"
 msgstr "НА ПАУЗА"
 
-#: ../src/general/PauseMenu.tscn:187
+#: ../src/general/PauseMenu.tscn:175
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Продължаване на играта"
 
@@ -4773,7 +4773,7 @@ msgstr "Коефициент на измиране"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(определя мащаба на измиране на индивидите от Вашите създания)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:356
+#: ../src/general/base_stage/CreatureStageBase.cs:339
 msgid "PLAYER_DIED"
 msgstr "измиране"
 
@@ -4790,7 +4790,7 @@ msgstr "измиране на създанията"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "измиране на създанията"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:300
+#: ../src/general/base_stage/CreatureStageBase.cs:283
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
@@ -4826,7 +4826,7 @@ msgstr "Нова игра"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/gui/SocietyHUD.tscn:210
+#: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
 
@@ -4838,7 +4838,7 @@ msgstr "популация:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2277
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4928,11 +4928,11 @@ msgid "QUIT"
 msgstr "Изход"
 
 #: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
-#: ../src/general/PauseMenu.tscn:250
+#: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Излизане от играта"
 
-#: ../src/general/PauseMenu.cs:445
+#: ../src/general/PauseMenu.cs:414
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да излезете от играта?\n"
@@ -4994,7 +4994,7 @@ msgstr "Възстановяване на преселената популац�
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:227
+#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Неизправности"
 
@@ -5025,6 +5025,11 @@ msgstr "Видове:"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
 msgstr "Нуждае се от ядро"
+
+#: ../src/society_stage/gui/ResearchScreen.tscn:16
+#, fuzzy
+msgid "RESEARCH"
+msgstr "Клавиш „Search“"
 
 #: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
@@ -5101,7 +5106,7 @@ msgstr "Бдително"
 msgid "RESTART_REQUIRED"
 msgstr "Изисква се рестартиране"
 
-#: ../src/general/PauseMenu.tscn:188
+#: ../src/general/PauseMenu.tscn:176
 msgid "RESUME"
 msgstr "Продължаване"
 
@@ -5109,17 +5114,17 @@ msgstr "Продължаване"
 msgid "RESUME_TOOLTIP"
 msgstr "Продължаване на играта"
 
-#: ../src/general/PauseMenu.tscn:243
+#: ../src/general/PauseMenu.tscn:231
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Главно меню"
 
-#: ../src/general/PauseMenu.tscn:242
+#: ../src/general/PauseMenu.tscn:230
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Връщане в главното меню"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:426
+#: ../src/general/PauseMenu.cs:395
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да се върнете в главното меню?\n"
@@ -5247,11 +5252,11 @@ msgstr "Изтриването на записа не може да бъде о�
 msgid "SAVE_FAILED"
 msgstr "Запазването е неуспешно"
 
-#: ../src/general/PauseMenu.tscn:196
+#: ../src/general/PauseMenu.tscn:184
 msgid "SAVE_GAME"
 msgstr "Запазване"
 
-#: ../src/general/PauseMenu.tscn:195
+#: ../src/general/PauseMenu.tscn:183
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Запазване на текущата игра"
 
@@ -5370,7 +5375,7 @@ msgid "SECRETE_SLIME"
 msgstr "Освобождаване на слуз"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -5407,6 +5412,12 @@ msgstr "Изберете зона"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:808
 msgid "SELECT_A_SPECIES"
 msgstr "Избиране на създания"
+
+#: ../src/society_stage/gui/TechWebGUI.cs:69
+#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#, fuzzy
+msgid "SELECT_A_TECHNOLOGY"
+msgstr "Изберете зона"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5611,7 +5622,7 @@ msgstr "Създаване на амоняк"
 msgid "SPAWN_ENEMY"
 msgstr "Съперничество"
 
-#: ../src/microbe_stage/MicrobeStage.cs:794
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -5719,6 +5730,11 @@ msgstr "Калибриране"
 #, fuzzy
 msgid "START_GAME"
 msgstr "Запазване"
+
+#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#, fuzzy
+msgid "START_RESEARCH"
+msgstr "Изисква се рестартиране"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -5874,16 +5890,20 @@ msgstr ""
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/structures.json:92
+msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:789
@@ -5974,8 +5994,12 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
+#: ../simulation_parameters/awakening_stage/technologies.json:30
+msgid "TECHNOLOGY_STEAM_POWER"
+msgstr ""
+
 #: ../src/general/base_stage/StrategyStageBase.cs:96
-#: ../src/late_multicellular_stage/MulticellularStage.cs:806
+#: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6071,7 +6095,7 @@ msgstr "Тази модификация е изтеглена от „Steam Work
 msgid "THREADS"
 msgstr "Нишки:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:212
+#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Трайвопедия"
 
@@ -6083,7 +6107,7 @@ msgstr "Текущ свят"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Еволюционно дърво"
 
-#: ../src/general/PauseMenu.tscn:211
+#: ../src/general/PauseMenu.tscn:199
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Отваряне на Трайвопедията"
 
@@ -6488,7 +6512,7 @@ msgstr "Разпадане"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим на отделяне"
 
-#: ../src/general/OptionsMenu.cs:1530
+#: ../src/general/OptionsMenu.cs:1574
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Версия за отстраняване на грешки"
 
@@ -6508,7 +6532,7 @@ msgstr "Отмяна на последното действие"
 msgid "UNKNOWN"
 msgstr "Неизвестен клавиш"
 
-#: ../src/general/OptionsMenu.cs:987
+#: ../src/general/OptionsMenu.cs:1031
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Неизвестен"
 
@@ -6520,7 +6544,7 @@ msgstr "Неизвестен бутон"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Неизвестна"
 
-#: ../src/general/OptionsMenu.cs:1537
+#: ../src/general/OptionsMenu.cs:1581
 msgid "UNKNOWN_VERSION"
 msgstr "Неизвестна версия"
 
@@ -6534,7 +6558,7 @@ msgstr ""
 "Вашите промени не са запазени и ще бъдат отхвърлени.\n"
 "Искате ли да продължите?"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:277
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:291
 msgid "UNTITLED"
 msgstr "Неозаглавено"
 
@@ -6640,7 +6664,7 @@ msgstr "Вертикална ос: {0}"
 msgid "VIDEO_MEMORY"
 msgstr "Използвана графична памет:"
 
-#: ../src/general/OptionsMenu.cs:996 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:1040 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} МиБ"
 

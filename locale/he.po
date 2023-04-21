@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-14 13:04+0300\n"
+"POT-Creation-Date: 2023-04-21 11:19+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -63,7 +63,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "מודע"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:678
+#: ../src/general/base_stage/EditorBase.cs:681
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -139,7 +139,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(המהירות המוטציות שנוצרים במיני AI )"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:372
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:387
 msgid "ALL"
 msgstr "הכל"
 
@@ -353,7 +353,7 @@ msgstr "מריץ סטטוס:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "התקדמות אוטומטית"
 
-#: ../src/general/OptionsMenu.cs:963 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:1007 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "אוטומטי ({0}X{1})"
 
@@ -374,7 +374,7 @@ msgstr "שלב המיקרובי"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -569,7 +569,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "העלה Workshop"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/gui/SocietyHUD.tscn:127
+#: ../src/society_stage/gui/SocietyHUD.tscn:129
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "מבנה"
@@ -598,8 +598,8 @@ msgstr "מצלמה"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2138
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -716,7 +716,7 @@ msgstr "תאית"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
 msgid "CELL_TYPE_NAME"
 msgstr "שם סוג תא"
 
@@ -1038,7 +1038,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "אשר"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:323
+#: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "אשר יציאה"
@@ -1210,7 +1210,7 @@ msgstr "יוצר חדש"
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "יצירת סוג תא חדש"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:743
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "אתה יכול ליצור סוגי תא על ידי שיכפול קיימים ולתת להם שם חדש. ניתן לשנות סוגי תא בשביל להתמחותם לתפקידי שונים. בעת שינוי סוג התא כל אלו שממוקמים מאותו סוג גם יעודכנו."
 
@@ -1226,7 +1226,7 @@ msgstr "יוצר שמירה חדשה"
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "יצירת סוג רקמה חדשה"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:861
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "אתה יכול ליצור סוגי רקמות חדשות על ידי שיכפול קיימים ולתת להם שם חדש. ניתן לשנות סוגי רקמה עם העורך התאי בשביל להתאים אותם לתפקידים שונים."
 
@@ -1302,15 +1302,15 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:217
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "כיול שטח מת הסתיים, השטח המת החדש מוצגים מתחת במציגי ערכי הציר."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:182
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "כיול שטח מת מתבצע. אנא אל תגע בשום כפתור או במקלות הבקר והמתן מספר שניות."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:203
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "כיול שטח מת אותחל מחדש"
 
@@ -1335,7 +1335,7 @@ msgstr "חלונית דיבאג"
 msgid "DECEMBER"
 msgstr "דצמבר"
 
-#: ../src/general/OptionsMenu.cs:1429
+#: ../src/general/OptionsMenu.cs:1473
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "פלט ברירת מחדל"
 
@@ -1803,15 +1803,15 @@ msgstr "{0}: {1}- ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
 msgid "ENERGY_SOURCES"
 msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
@@ -1923,7 +1923,7 @@ msgstr "משהו חריג אירע במהלך עיבוד טעינת אובייק
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "חריג אירע בעת טעינת נתוני שמירה"
 
-#: ../src/general/PauseMenu.tscn:251
+#: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
 msgstr "יציאה"
 
@@ -1972,11 +1972,11 @@ msgstr "נכחד מהאזור"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "נכחד מהכוכב לכת"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:412
+#: ../src/general/base_stage/CreatureStageBase.cs:395
 msgid "EXTINCT_IN_PATCH"
 msgstr "נכחד מהאזור"
 
-#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
+#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:23
 msgid "EXTINCT_SPECIES"
 msgstr "מינים נכחדים"
 
@@ -2144,7 +2144,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "שרשרת המזון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
@@ -2252,19 +2252,19 @@ msgstr "דור:"
 msgid "GITHUB_TOOLTIP"
 msgstr "צפו בספריית GitHub שלנו"
 
-#: ../src/general/OptionsMenu.cs:977
+#: ../src/general/OptionsMenu.cs:1021
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:954
+#: ../src/general/MainMenu.tscn:953
 msgid "GLES2_MODE_WARNING"
 msgstr "אזהרת GLES2"
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:955
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
-#: ../src/general/OptionsMenu.cs:982
+#: ../src/general/OptionsMenu.cs:1026
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2360,11 +2360,11 @@ msgstr "עוצמת ממשק עזרים"
 msgid "HEALTH"
 msgstr "חיים"
 
-#: ../src/general/PauseMenu.tscn:220
+#: ../src/general/PauseMenu.tscn:208
 msgid "HELP"
 msgstr "עזרה"
 
-#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:207 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "עזרה"
 
@@ -2567,7 +2567,7 @@ msgstr "נדרש שם פנימי"
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "השם הפנימי צריך להתחיל באות גדולה"
 
-#: ../src/gui_common/charts/line/LineChart.cs:678
+#: ../src/gui_common/charts/line/LineChart.cs:694
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "נתונים לא חוקיים להזימה"
 
@@ -2843,19 +2843,19 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "שפה:"
 
-#: ../src/general/OptionsMenu.cs:1469
+#: ../src/general/OptionsMenu.cs:1513
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "שפה זו היינו {0}% הושלם"
 
-#: ../src/general/OptionsMenu.cs:1465
+#: ../src/general/OptionsMenu.cs:1509
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 
-#: ../src/general/OptionsMenu.cs:1461
+#: ../src/general/OptionsMenu.cs:1505
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
 
@@ -3180,12 +3180,12 @@ msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טע�
 msgid "LOAD_FINISHED"
 msgstr "טעינה הסתיימה"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:204
+#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "טען שמירה"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:203
+#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "טען שמירות שנשמרו"
 
@@ -3275,8 +3275,8 @@ msgstr "ללא הגבלה"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "מספר מרבי של ישויות:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1146
-#: ../src/gui_common/charts/line/LineChart.cs:1238
+#: ../src/gui_common/charts/line/LineChart.cs:1294
+#: ../src/gui_common/charts/line/LineChart.cs:1387
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "לא ניתן להציג יותר מ{0} נתונים!"
 
@@ -3647,8 +3647,8 @@ msgstr "כמות מינימלית למצוא:"
 msgid "MINIMUM_VERSION"
 msgstr "מינימום:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1152
-#: ../src/gui_common/charts/line/LineChart.cs:1243
+#: ../src/gui_common/charts/line/LineChart.cs:1300
+#: ../src/gui_common/charts/line/LineChart.cs:1392
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "לא ניתן להציג פחות מ{0} נתונים!"
 
@@ -3963,7 +3963,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "לנוע ליבשה?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+#: ../src/late_multicellular_stage/MulticellularStage.cs:577
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "לנוע ליבשה?"
@@ -4094,13 +4094,13 @@ msgstr "הערה: אתה יכול לשנות אפשריות שקושרות לב�
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "המוד המדהים שלי"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:881
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "שם חדש"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:874
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "שם חדש:"
 
@@ -4164,7 +4164,7 @@ msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט ה
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:496
+#: ../src/late_multicellular_stage/MulticellularStage.cs:499
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4208,8 +4208,8 @@ msgstr "נובמבר"
 msgid "NO_AI"
 msgstr "מצב בודד"
 
-#: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/gui_common/charts/line/LineChart.cs:690
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2428
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -4252,7 +4252,7 @@ msgstr "לא נבחר מוד"
 msgid "NUCLEUS"
 msgstr "גרעין התא"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "לא ניתן להסיר גרעין שכן זהו התפתחות בלתי-ניתנת להפיכה.\n"
@@ -4274,8 +4274,8 @@ msgstr "מקש Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2286
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4302,8 +4302,8 @@ msgstr "אתר רשמי"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "להיכנס לאתר הרשמי של Revolutionary Games"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:89
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:114
 #: ../src/modding/ModUploader.tscn:356
 msgid "OK"
@@ -4351,7 +4351,7 @@ msgstr "פתח כתובת מידע"
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "פתח תפריט האברון"
 
-#: ../src/society_stage/gui/SocietyHUD.tscn:137
+#: ../src/society_stage/gui/SocietyHUD.tscn:139
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "פתח את מסך העזרה"
@@ -4392,11 +4392,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "אופורטוניסטי"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:235
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "אפשרויות"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:234
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "שנה את ההגדרות שלך"
 
@@ -4620,7 +4620,7 @@ msgstr "מפת האזורים"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "לחץ, גרור או זום בשביל לנוע סביב"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:823
+#: ../src/microbe_stage/PatchMapGenerator.cs:811
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -4667,7 +4667,7 @@ msgstr "פטריונים"
 msgid "PAUSED"
 msgstr "מושהה"
 
-#: ../src/general/PauseMenu.tscn:187
+#: ../src/general/PauseMenu.tscn:175
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "לחזור אל המשחק"
 
@@ -4779,7 +4779,7 @@ msgstr "ירידה באכולוסיה במוות של שחקן"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(המקדם להפחתה של האכלוסיית השחקן על כל מוות של השחקן)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:356
+#: ../src/general/base_stage/CreatureStageBase.cs:339
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
@@ -4796,7 +4796,7 @@ msgstr "השחקן נכחד"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "השחקן נכחד"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:300
+#: ../src/general/base_stage/CreatureStageBase.cs:283
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
@@ -4832,7 +4832,7 @@ msgstr "שחק עם ההגדרות הנוכחות"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/gui/SocietyHUD.tscn:210
+#: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
@@ -4844,7 +4844,7 @@ msgstr "אוכלוסיה:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "אכלוסיה באזורים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2277
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4934,11 +4934,11 @@ msgid "QUIT"
 msgstr "יציאה"
 
 #: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
-#: ../src/general/PauseMenu.tscn:250
+#: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "צא מהמשחק"
 
-#: ../src/general/PauseMenu.cs:445
+#: ../src/general/PauseMenu.cs:414
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "האם אתה בטוח שרוצה לצאת מהמשחק?\n"
@@ -5000,7 +5000,7 @@ msgstr "החזר הגירה במקרה של מהכחדה מאזור מטרה"
 msgid "REPORT"
 msgstr "תסקיר"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:227
+#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "תסקיר"
@@ -5032,6 +5032,11 @@ msgstr "סוגי רבייה:"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
 msgstr "נדרש גרעין התא"
+
+#: ../src/society_stage/gui/ResearchScreen.tscn:16
+#, fuzzy
+msgid "RESEARCH"
+msgstr "מקש חפש"
 
 #: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
@@ -5112,7 +5117,7 @@ msgstr "מגיב"
 msgid "RESTART_REQUIRED"
 msgstr "אתחול מחדש נדרש"
 
-#: ../src/general/PauseMenu.tscn:188
+#: ../src/general/PauseMenu.tscn:176
 msgid "RESUME"
 msgstr "להמשיך"
 
@@ -5120,17 +5125,17 @@ msgstr "להמשיך"
 msgid "RESUME_TOOLTIP"
 msgstr "המשך את המשחק"
 
-#: ../src/general/PauseMenu.tscn:243
+#: ../src/general/PauseMenu.tscn:231
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "חזור לתפריט"
 
-#: ../src/general/PauseMenu.tscn:242
+#: ../src/general/PauseMenu.tscn:230
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "צא לתפריט הראשי"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:426
+#: ../src/general/PauseMenu.cs:395
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "האם אתה בטוח שאתה רוצה לצאת לתפריט הראשי?\n"
@@ -5256,11 +5261,11 @@ msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, ה
 msgid "SAVE_FAILED"
 msgstr "שמירה נכשלה"
 
-#: ../src/general/PauseMenu.tscn:196
+#: ../src/general/PauseMenu.tscn:184
 msgid "SAVE_GAME"
 msgstr "שמור משחק"
 
-#: ../src/general/PauseMenu.tscn:195
+#: ../src/general/PauseMenu.tscn:183
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "פתח את התפריט השמירה בשביל לשמור את המשחק"
 
@@ -5379,7 +5384,7 @@ msgid "SECRETE_SLIME"
 msgstr "הפרש ריר"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -5416,6 +5421,12 @@ msgstr "בחר אזור להצגת פרטים כאן"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:808
 msgid "SELECT_A_SPECIES"
 msgstr "בחר מין"
+
+#: ../src/society_stage/gui/TechWebGUI.cs:69
+#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#, fuzzy
+msgid "SELECT_A_TECHNOLOGY"
+msgstr "בחר אזור להצגת פרטים כאן"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5623,7 +5634,7 @@ msgstr "זמן אמוניה"
 msgid "SPAWN_ENEMY"
 msgstr "זמן אויב"
 
-#: ../src/microbe_stage/MicrobeStage.cs:794
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
@@ -5731,6 +5742,11 @@ msgstr "התחל כיול"
 #, fuzzy
 msgid "START_GAME"
 msgstr "שמור משחק"
+
+#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#, fuzzy
+msgid "START_RESEARCH"
+msgstr "אתחול מחדש נדרש"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -5887,16 +5903,20 @@ msgstr ""
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/structures.json:92
+msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:789
@@ -5989,8 +6009,12 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
+#: ../simulation_parameters/awakening_stage/technologies.json:30
+msgid "TECHNOLOGY_STEAM_POWER"
+msgstr ""
+
 #: ../src/general/base_stage/StrategyStageBase.cs:96
-#: ../src/late_multicellular_stage/MulticellularStage.cs:806
+#: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6086,7 +6110,7 @@ msgstr "מוד זה הורד מSteam Workshop"
 msgid "THREADS"
 msgstr "נושאים:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:212
+#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "טראיבופדיה"
 
@@ -6098,7 +6122,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:211
+#: ../src/general/PauseMenu.tscn:199
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6495,7 +6519,7 @@ msgstr "שחרר הכל"
 msgid "UNBIND_HELP_TEXT"
 msgstr "מצב שחרר"
 
-#: ../src/general/OptionsMenu.cs:1530
+#: ../src/general/OptionsMenu.cs:1574
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "זהו בניית די-באג כאשר שהמידע מתחת ככל הנראה לא מעודכן"
 
@@ -6515,7 +6539,7 @@ msgstr "בטל פעולה אחרונה"
 msgid "UNKNOWN"
 msgstr "לא יודע"
 
-#: ../src/general/OptionsMenu.cs:987
+#: ../src/general/OptionsMenu.cs:1031
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "לא ידוע"
 
@@ -6527,7 +6551,7 @@ msgstr "לחצן עכבר לא יודע"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "לא מוכר לWindows"
 
-#: ../src/general/OptionsMenu.cs:1537
+#: ../src/general/OptionsMenu.cs:1581
 msgid "UNKNOWN_VERSION"
 msgstr "גרסה לא יודעה"
 
@@ -6541,7 +6565,7 @@ msgstr ""
 "ישנם שינויים שלא נשמרו שיימחקו.\n"
 "האם ברצונך להמשיך?"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:277
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:291
 msgid "UNTITLED"
 msgstr "ללא כותרת"
 
@@ -6647,7 +6671,7 @@ msgstr "אנכי (ציר: {0})"
 msgid "VIDEO_MEMORY"
 msgstr "שימוש נוכחי בזיכרון וידיאו:"
 
-#: ../src/general/OptionsMenu.cs:996 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:1040 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
