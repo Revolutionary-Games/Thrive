@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 11:19+0300\n"
+"POT-Creation-Date: 2023-04-21 13:37+0300\n"
 "PO-Revision-Date: 2023-04-15 22:02+0000\n"
 "Last-Translator: 阿斯加德 <1336527854@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1255,6 +1255,17 @@ msgstr "当前开发人员"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:38
+#: ../src/society_stage/gui/ResearchScreen.tscn:39
+#, fuzzy
+msgid "CURRENT_RESEARCH_NONE"
+msgstr "显示细胞器名称"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:44
+#, fuzzy
+msgid "CURRENT_RESEARCH_PROGRESS"
+msgstr "打开帮助页面"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -4667,6 +4678,7 @@ msgstr "和平"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -5386,8 +5398,8 @@ msgstr "选择一个地区以显示详细"
 msgid "SELECT_A_SPECIES"
 msgstr "选择一个物种"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:69
-#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#: ../src/society_stage/gui/TechWebGUI.cs:124
+#: ../src/society_stage/gui/TechWebGUI.tscn:54
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "选择一个地区以显示详细"
@@ -5706,7 +5718,7 @@ msgstr "开始校准"
 msgid "START_GAME"
 msgstr "开始游戏"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#: ../src/society_stage/gui/TechWebGUI.tscn:77
 #, fuzzy
 msgid "START_RESEARCH"
 msgstr "需要重新启动"
@@ -6918,10 +6930,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "自定义用户名："
-
-#, fuzzy
-#~ msgid "CURRENT_USED_RENDERER_NAME"
-#~ msgstr "显示细胞器名称"
 
 #, fuzzy
 #~ msgid "DISPLAY_DRIVER_NAME"

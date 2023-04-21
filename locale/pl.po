@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 11:19+0300\n"
+"POT-Creation-Date: 2023-04-21 13:37+0300\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1253,6 +1253,17 @@ msgstr "Obecni Developerzy"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUALNA LOKALIZACJA"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:38
+#: ../src/society_stage/gui/ResearchScreen.tscn:39
+#, fuzzy
+msgid "CURRENT_RESEARCH_NONE"
+msgstr "Pokaż nazwy przycisków wyboru części"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:44
+#, fuzzy
+msgid "CURRENT_RESEARCH_PROGRESS"
+msgstr "Otwórz ekran pomocy"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -4705,6 +4716,7 @@ msgstr "Pokojowość"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -5416,8 +5428,8 @@ msgstr "Wybierz obszar by zobaczyć jego szczegóły"
 msgid "SELECT_A_SPECIES"
 msgstr "Wybierz gatunek"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:69
-#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#: ../src/society_stage/gui/TechWebGUI.cs:124
+#: ../src/society_stage/gui/TechWebGUI.tscn:54
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Wybierz obszar by zobaczyć jego szczegóły"
@@ -5737,7 +5749,7 @@ msgstr "Rozpocznij Kalibrację"
 msgid "START_GAME"
 msgstr "Zapisz Grę"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#: ../src/society_stage/gui/TechWebGUI.tscn:77
 #, fuzzy
 msgid "START_RESEARCH"
 msgstr "Wymagany Restart"
@@ -6944,10 +6956,6 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Własna nazwa użytkownika:"
-
-#, fuzzy
-#~ msgid "CURRENT_USED_RENDERER_NAME"
-#~ msgstr "Pokaż nazwy przycisków wyboru części"
 
 #, fuzzy
 #~ msgid "DISPLAY_DRIVER_NAME"

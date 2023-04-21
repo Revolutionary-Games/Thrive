@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 11:19+0300\n"
+"POT-Creation-Date: 2023-04-21 13:37+0300\n"
 "PO-Revision-Date: 2023-02-02 07:29+0000\n"
 "Last-Translator: Raphael Franzen <franzen.raphael@hotmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1262,6 +1262,17 @@ msgstr "Aktuelle Entwickler(innen)"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUELLE POSITION"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:38
+#: ../src/society_stage/gui/ResearchScreen.tscn:39
+#, fuzzy
+msgid "CURRENT_RESEARCH_NONE"
+msgstr "Fähigkeitenleiste anzeigen"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:44
+#, fuzzy
+msgid "CURRENT_RESEARCH_PROGRESS"
+msgstr "Hilfemenü öffnen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -4690,6 +4701,7 @@ msgstr "Friedlich"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -5418,8 +5430,8 @@ msgstr "Wähle ein Gebiet aus, um hier Details anzuzeigen"
 msgid "SELECT_A_SPECIES"
 msgstr "Wähle ein Art aus"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:69
-#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#: ../src/society_stage/gui/TechWebGUI.cs:124
+#: ../src/society_stage/gui/TechWebGUI.tscn:54
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Wähle ein Gebiet aus, um hier Details anzuzeigen"
@@ -5739,7 +5751,7 @@ msgstr "Starte Kalibrierung"
 msgid "START_GAME"
 msgstr "Spiel speichern"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#: ../src/society_stage/gui/TechWebGUI.tscn:77
 #, fuzzy
 msgid "START_RESEARCH"
 msgstr "Neustart erforderlich"
@@ -6955,10 +6967,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Eigener Nutzername:"
-
-#, fuzzy
-#~ msgid "CURRENT_USED_RENDERER_NAME"
-#~ msgstr "Fähigkeitenleiste anzeigen"
 
 #, fuzzy
 #~ msgid "DISPLAY_DRIVER_NAME"

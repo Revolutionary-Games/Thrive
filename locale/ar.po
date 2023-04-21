@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 11:19+0300\n"
+"POT-Creation-Date: 2023-04-21 13:37+0300\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Xradiation <tamimzain@hotmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -1210,6 +1210,15 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
+msgstr ""
+
+#: ../src/society_stage/gui/ResearchScreen.cs:38
+#: ../src/society_stage/gui/ResearchScreen.tscn:39
+msgid "CURRENT_RESEARCH_NONE"
+msgstr ""
+
+#: ../src/society_stage/gui/ResearchScreen.cs:44
+msgid "CURRENT_RESEARCH_PROGRESS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
@@ -4410,6 +4419,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -5101,8 +5111,8 @@ msgstr ""
 msgid "SELECT_A_SPECIES"
 msgstr ""
 
-#: ../src/society_stage/gui/TechWebGUI.cs:69
-#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#: ../src/society_stage/gui/TechWebGUI.cs:124
+#: ../src/society_stage/gui/TechWebGUI.tscn:54
 msgid "SELECT_A_TECHNOLOGY"
 msgstr ""
 
@@ -5408,7 +5418,7 @@ msgstr ""
 msgid "START_GAME"
 msgstr ""
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#: ../src/society_stage/gui/TechWebGUI.tscn:77
 msgid "START_RESEARCH"
 msgstr ""
 

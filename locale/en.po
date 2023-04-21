@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 11:19+0300\n"
-"PO-Revision-Date: 2023-04-21 11:20+0300\n"
+"POT-Creation-Date: 2023-04-21 13:37+0300\n"
+"PO-Revision-Date: 2023-04-21 13:38+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1248,6 +1248,15 @@ msgstr "Current Developers"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "CURRENT LOCATION"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:38
+#: ../src/society_stage/gui/ResearchScreen.tscn:39
+msgid "CURRENT_RESEARCH_NONE"
+msgstr "Not researching anything"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:44
+msgid "CURRENT_RESEARCH_PROGRESS"
+msgstr "Currently researching: {0} ({1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -4652,6 +4661,7 @@ msgstr "Peaceful"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -5368,8 +5378,8 @@ msgstr "Select a patch to show details here"
 msgid "SELECT_A_SPECIES"
 msgstr "Select a species"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:69
-#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#: ../src/society_stage/gui/TechWebGUI.cs:124
+#: ../src/society_stage/gui/TechWebGUI.tscn:54
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Select a technology from the TechWeb"
 
@@ -5683,7 +5693,7 @@ msgstr "Start Calibration"
 msgid "START_GAME"
 msgstr "Start Game"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#: ../src/society_stage/gui/TechWebGUI.tscn:77
 msgid "START_RESEARCH"
 msgstr "Start Research"
 
@@ -6909,9 +6919,6 @@ msgstr "Zoom out"
 #~ msgstr "Not running."
 
 #~ msgid "AUTO_GPU_NAME"
-#~ msgstr "{0}"
-
-#~ msgid "CURRENT_USED_RENDERER_NAME"
 #~ msgstr "{0}"
 
 #~ msgid "DISPLAY_DRIVER_NAME"

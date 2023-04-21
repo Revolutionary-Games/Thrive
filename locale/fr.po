@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 11:19+0300\n"
+"POT-Creation-Date: 2023-04-21 13:37+0300\n"
 "PO-Revision-Date: 2023-04-17 02:02+0000\n"
 "Last-Translator: Zero Cool <zerocool@e.email>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1271,6 +1271,17 @@ msgstr "Développeurs actuels"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:38
+#: ../src/society_stage/gui/ResearchScreen.tscn:39
+#, fuzzy
+msgid "CURRENT_RESEARCH_NONE"
+msgstr "Afficher la barre des capacités"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:44
+#, fuzzy
+msgid "CURRENT_RESEARCH_PROGRESS"
+msgstr "Ouvrir l'écran d'aide"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -4808,6 +4819,7 @@ msgstr "Pacifique"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -5551,8 +5563,8 @@ msgstr "Choisir un secteur pour voir ses détails ici"
 msgid "SELECT_A_SPECIES"
 msgstr "Sélectionner une espèce"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:69
-#: ../src/society_stage/gui/TechWebGUI.tscn:53
+#: ../src/society_stage/gui/TechWebGUI.cs:124
+#: ../src/society_stage/gui/TechWebGUI.tscn:54
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Choisir un secteur pour voir ses détails ici"
@@ -5883,7 +5895,7 @@ msgstr "Démarrer le calibrage"
 msgid "START_GAME"
 msgstr "Sauvegarder"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:76
+#: ../src/society_stage/gui/TechWebGUI.tscn:77
 #, fuzzy
 msgid "START_RESEARCH"
 msgstr "Redémarrage nécessaire"
@@ -7132,10 +7144,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Pseudo personnalisé :"
-
-#, fuzzy
-#~ msgid "CURRENT_USED_RENDERER_NAME"
-#~ msgstr "Afficher la barre des capacités"
 
 #, fuzzy
 #~ msgid "DISPLAY_DRIVER_NAME"

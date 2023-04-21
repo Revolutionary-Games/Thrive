@@ -115,6 +115,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
                 // TODO: if research screen is open, it should have its state update here in regards to the unlocked
                 // technology
             }
+
+            HUD.UpdateResearchProgress(CurrentlyResearchedTechnology);
         }
 
         HUD.UpdateResourceDisplay(resourceStorage);

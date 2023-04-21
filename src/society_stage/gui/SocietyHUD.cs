@@ -53,6 +53,11 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
         }
     }
 
+    public void UpdateResearchProgress(TechnologyProgress? currentResearch)
+    {
+        researchScreen.DisplayProgress(currentResearch);
+    }
+
     public void ForwardBuildingPlacingRequest()
     {
         GUICommon.Instance.PlayButtonPressSound();

@@ -15,12 +15,29 @@ rect_min_size = Vector2( 800, 500 )
 script = ExtResource( 3 )
 WindowTitle = "RESEARCH"
 Resizable = true
-TechWebGUIPath = NodePath("TechWebGUI")
+TechWebGUIPath = NodePath("VBoxContainer/TechWebGUI")
+CurrentResearchProgressLabelPath = NodePath("VBoxContainer/CurrentResearch")
 
-[node name="TechWebGUI" parent="." index="0" instance=ExtResource( 2 )]
-margin_right = -610.0
-margin_bottom = -453.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="OnTechnologyToResearchSelected" from="TechWebGUI" to="." method="ForwardStartResearch"]
+[node name="TechWebGUI" parent="VBoxContainer" index="0" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 196.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CurrentResearch" type="Label" parent="VBoxContainer" index="1"]
+margin_top = 51.0
+margin_right = 196.0
+margin_bottom = 104.0
+text = "CURRENT_RESEARCH_NONE"
+autowrap = true
+max_lines_visible = 2
+
+[connection signal="OnTechnologyToResearchSelected" from="VBoxContainer/TechWebGUI" to="." method="ForwardStartResearch"]
