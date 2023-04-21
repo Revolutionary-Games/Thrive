@@ -38,7 +38,7 @@ public interface IResourceContainer
     ///   Takes all resources and adds them from the other resources
     /// </summary>
     /// <param name="otherResources">Where to take resources</param>
-    void TransferFrom(IResourceContainer otherResources);
+    public void TransferFrom(IResourceContainer otherResources);
 }
 
 public static class ResourceContainerHelpers

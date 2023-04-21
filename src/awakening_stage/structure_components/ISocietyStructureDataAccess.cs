@@ -7,6 +7,6 @@ public interface ISocietyStructureDataAccess
 
     public TechnologyProgress? CurrentlyResearchedTechnology { get; }
 
-    void AddActiveResearchContribution(object researchSource, float researchPoints);
-    void RemoveActiveResearchContribution(object researchSource);
+    public void AddActiveResearchContribution(object researchSource, float researchPoints);
+    public void RemoveActiveResearchContribution(object researchSource);
 }
