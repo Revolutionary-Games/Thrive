@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 14:12+0300\n"
+"POT-Creation-Date: 2023-04-21 15:38+0300\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -577,6 +577,11 @@ msgstr "Böngészés"
 msgid "BROWSE_WORKSHOP"
 msgstr "A műhely böngészése"
 
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#, fuzzy
+msgid "BUILD_CITY"
+msgstr "Struktúra"
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 #, fuzzy
@@ -1069,11 +1074,11 @@ msgstr "Kilépés elfogadása"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/society_stage/SocietyStage.tscn:84
+#: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/society_stage/SocietyStage.tscn:85
+#: ../src/society_stage/SocietyStage.tscn:86
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
@@ -6144,7 +6149,7 @@ msgstr ""
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
-#: ../src/general/base_stage/StrategyStageBase.cs:96
+#: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""

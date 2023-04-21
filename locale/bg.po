@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 14:12+0300\n"
+"POT-Creation-Date: 2023-04-21 15:38+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -577,6 +577,11 @@ msgstr "Търсене"
 msgid "BROWSE_WORKSHOP"
 msgstr "Работилница"
 
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#, fuzzy
+msgid "BUILD_CITY"
+msgstr "Структура"
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 #, fuzzy
@@ -1056,12 +1061,12 @@ msgstr "Потвърждение за изход"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Потвърждение за презаписване"
 
-#: ../src/society_stage/SocietyStage.tscn:84
+#: ../src/society_stage/SocietyStage.tscn:85
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Индустриализация"
 
-#: ../src/society_stage/SocietyStage.tscn:85
+#: ../src/society_stage/SocietyStage.tscn:86
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "(определя скоростта на мутация на Вашите съперници)"
@@ -6020,7 +6025,7 @@ msgstr ""
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
-#: ../src/general/base_stage/StrategyStageBase.cs:96
+#: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 14:12+0300\n"
+"POT-Creation-Date: 2023-04-21 15:38+0300\n"
 "PO-Revision-Date: 2023-04-18 05:43+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -572,6 +572,11 @@ msgstr "Просматривать"
 msgid "BROWSE_WORKSHOP"
 msgstr "Просмотреть мастерскую"
 
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#, fuzzy
+msgid "BUILD_CITY"
+msgstr "Построить Структуру"
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
@@ -1049,12 +1054,12 @@ msgstr "Подтвердить выход"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Подтвердите перезапись"
 
-#: ../src/society_stage/SocietyStage.tscn:84
+#: ../src/society_stage/SocietyStage.tscn:85
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Индустриальная стадия"
 
-#: ../src/society_stage/SocietyStage.tscn:85
+#: ../src/society_stage/SocietyStage.tscn:86
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "(скорость, с которой ИИ будет мутировать)"
@@ -5976,7 +5981,7 @@ msgstr "Постройка центра общества"
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Постройка центра общества"
 
-#: ../src/general/base_stage/StrategyStageBase.cs:96
+#: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Открыта технология: {0}"

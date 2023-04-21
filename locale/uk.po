@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 14:12+0300\n"
+"POT-Creation-Date: 2023-04-21 15:38+0300\n"
 "PO-Revision-Date: 2023-04-19 08:48+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -572,6 +572,11 @@ msgstr "Огляд"
 msgid "BROWSE_WORKSHOP"
 msgstr "Огляд в магазині"
 
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#, fuzzy
+msgid "BUILD_CITY"
+msgstr "Побудувати структуру"
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
@@ -1049,12 +1054,12 @@ msgstr "Підтвердити вихід"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Підтвердити перезапис"
 
-#: ../src/society_stage/SocietyStage.tscn:84
+#: ../src/society_stage/SocietyStage.tscn:85
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Індустріальна стадія"
 
-#: ../src/society_stage/SocietyStage.tscn:85
+#: ../src/society_stage/SocietyStage.tscn:86
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "(швидкість з якою ШІ мутує вид)"
@@ -5980,7 +5985,7 @@ msgstr "Будування центра суспільства"
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Будування центра суспільства"
 
-#: ../src/general/base_stage/StrategyStageBase.cs:96
+#: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Відкрито технологію: {0}"
