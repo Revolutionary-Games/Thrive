@@ -3,6 +3,12 @@
 /// <summary>
 ///   A custom Control type which defines top-level Controls that also behaves like a Popup.
 /// </summary>
+/// <remarks>
+///   <para>
+///     Note that this doesn't have window decorations, for things that should act like windows use
+///     <see cref="CustomDialog"/> as the base class / scene.
+///   </para>
+/// </remarks>
 public class CustomWindow : Control
 {
     private bool mouseUnCaptureActive;

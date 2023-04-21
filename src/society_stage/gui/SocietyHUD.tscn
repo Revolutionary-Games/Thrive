@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=10]
+[ext_resource path="res://src/society_stage/gui/ResearchScreen.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/society_stage/gui/SocietyHUD.cs" type="Script" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoPressed.png" type="Texture" id=14]
@@ -55,6 +56,7 @@ HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
 BottomLeftBarPath = NodePath("HUDBottomBar")
 ResourceDisplayPath = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
+ResearchScreenPath = NodePath("ResearchScreen")
 PopulationLabelPath = NodePath("TopBar/HBoxContainer/PopulationContainer/Population")
 
 [node name="BottomRight" type="Control" parent="."]
@@ -167,6 +169,8 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="ResearchScreen" parent="." instance=ExtResource( 11 )]
+
 [node name="PausePrompt" parent="." instance=ExtResource( 5 )]
 visible = false
 
@@ -228,3 +232,6 @@ rect_min_size = Vector2( 8, 5 )
 [connection signal="OnProcessesPressed" from="HUDBottomBar" to="." method="OpenResearchScreen"]
 [connection signal="OnStatisticsPressed" from="HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildingPlacingRequest"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Research" to="." method="OpenResearchScreen"]
+[connection signal="Closed" from="ResearchScreen" to="." method="ResearchScreenClosed"]
+[connection signal="OnStartResearching" from="ResearchScreen" to="." method="ForwardStartResearch"]

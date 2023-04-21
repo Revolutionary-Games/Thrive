@@ -203,6 +203,17 @@ public class GameProperties
         return game;
     }
 
+    public static GameProperties StartIndustrialStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartSocietyStageGame(settings);
+
+        // Initial tech unlocks the player needs
+        var simulationParameters = SimulationParameters.Instance;
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("steamPower"));
+
+        return game;
+    }
+
     /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>

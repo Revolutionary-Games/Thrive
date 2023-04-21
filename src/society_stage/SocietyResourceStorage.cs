@@ -65,6 +65,32 @@ public class SocietyResourceStorage : IResourceContainer, IAggregateResourceSour
         return toTake;
     }
 
+    public IEnumerable<WorldResource> GetAvailableResources()
+    {
+        return resources.Keys;
+    }
+
+    public void TransferFrom(IResourceContainer otherResources)
+    {
+        foreach (var resourceType in otherResources.GetAvailableResources().ToList())
+        {
+            float canFit = Capacity - GetAvailableAmount(resourceType);
+
+            if (canFit > 0)
+            {
+                var taken = otherResources.Take(resourceType, canFit, true);
+
+                if (taken > 0)
+                {
+                    if (Add(resourceType, taken) > 0)
+                    {
+                        GD.PrintErr("Wasted resources when transferring");
+                    }
+                }
+            }
+        }
+    }
+
     public IEnumerable<KeyValuePair<WorldResource, float>> GetAllResources()
     {
         return resources;

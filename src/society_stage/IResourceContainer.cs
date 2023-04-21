@@ -31,6 +31,14 @@ public interface IResourceContainer
     /// <param name="takePartial">If false then a partial amount is not taken</param>
     /// <returns>The amount taken, may be less than <see cref="wantedAmount"/> if not enough is available</returns>
     public float Take(WorldResource resource, float wantedAmount, bool takePartial = false);
+
+    public IEnumerable<WorldResource> GetAvailableResources();
+
+    /// <summary>
+    ///   Takes all resources and adds them from the other resources
+    /// </summary>
+    /// <param name="otherResources">Where to take resources</param>
+    public void TransferFrom(IResourceContainer otherResources);
 }
 
 public static class ResourceContainerHelpers

@@ -10,6 +10,7 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
 
 #pragma warning disable CA2213
     private Label populationLabel = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -23,12 +24,6 @@ public class SocietyHUD : StrategyStageHUDBase<SocietyStage>
         base._Ready();
 
         populationLabel = GetNode<Label>(PopulationLabelPath);
-    }
-
-    public void OpenResearchScreen()
-    {
-        // TODO: implement this
-        GD.Print("TODO: research screen");
     }
 
     public void ForwardBuildingPlacingRequest()
