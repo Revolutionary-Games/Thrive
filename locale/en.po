@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 13:37+0300\n"
-"PO-Revision-Date: 2023-04-21 13:38+0300\n"
+"POT-Creation-Date: 2023-04-21 14:12+0300\n"
+"PO-Revision-Date: 2023-04-21 14:20+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1048,6 +1048,14 @@ msgstr "Confirm Exit"
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Confirm Overwrite"
+
+#: ../src/society_stage/SocietyStage.tscn:84
+msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
+msgstr "Move to Industrial Stage?"
+
+#: ../src/society_stage/SocietyStage.tscn:85
+msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
+msgstr "By placing a factory you will advance to the industrial stage. Continue to the next stage?"
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1195

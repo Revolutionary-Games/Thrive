@@ -170,6 +170,29 @@ public class StructureDefinition : IRegistryType
         TranslationHelper.ApplyTranslations(this);
     }
 
+    /// <summary>
+    ///   Checks if this structure contains a component of a given type
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     As the definition has the factories only this needs to be given the factory type that will create the
+    ///     actual component, for example <see cref="HousingComponentFactory"/>
+    ///   </para>
+    /// </remarks>
+    /// <typeparam name="T">The type of component factory to check for</typeparam>
+    /// <returns>True if this has the specified component</returns>
+    public bool HasComponentFactory<T>()
+        where T : IStructureComponentFactory
+    {
+        foreach (var component in Components.Factories)
+        {
+            if (component is T)
+                return true;
+        }
+
+        return false;
+    }
+
     public override string ToString()
     {
         return "Structure type " + Name;

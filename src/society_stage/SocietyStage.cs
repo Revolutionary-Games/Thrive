@@ -10,12 +10,17 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     [Export]
     public NodePath? SelectBuildingPopupPath;
 
+    [Export]
+    public NodePath IndustrialStageConfirmPopupPath = null!;
+
     private readonly Dictionary<object, float> activeResearchContributions = new();
 
 #pragma warning disable CA2213
     private SelectBuildingPopup selectBuildingPopup = null!;
 
     private PackedScene structureScene = null!;
+
+    private CustomConfirmationDialog industrialStageConfirmPopup = null!;
 
     private Spatial? buildingToPlaceGhost;
 #pragma warning restore CA2213
@@ -36,6 +41,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     private SocietyResourceStorage resourceStorage = new();
 
     private StructureDefinition? buildingTypeToPlace;
+
+    private bool stageAdvanceConfirmed;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -73,6 +80,7 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         HUD = GetNode<SocietyHUD>("SocietyHUD");
 
         selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
+        industrialStageConfirmPopup = GetNode<CustomConfirmationDialog>(IndustrialStageConfirmPopupPath);
 
         // Systems
         structureSystem = new SocietyStructureSystem(rootOfDynamicallySpawned);
@@ -98,8 +106,12 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
             // Update the place to place the selected building
             if (buildingToPlaceGhost != null)
             {
-                // TODO: collision check with other buildings
-                buildingToPlaceGhost.GlobalTranslation = GetPlayerCursorPointedWorldPosition();
+                // Don't update the placing when we have a popup open
+                if (industrialStageConfirmPopup.Visible != true)
+                {
+                    // TODO: collision check with other buildings
+                    buildingToPlaceGhost.GlobalTranslation = GetPlayerCursorPointedWorldPosition();
+                }
             }
 
             HandlePopulationGrowth();
@@ -164,6 +176,14 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     {
         if (buildingTypeToPlace == null)
             return false;
+
+        // Warning before advancing stages
+        if (!stageAdvanceConfirmed && buildingTypeToPlace.HasComponentFactory<FactoryComponentFactory>())
+        {
+            // TODO: pause the game while this popup is open
+            industrialStageConfirmPopup.PopupCenteredShrink();
+            return true;
+        }
 
         if (!PlaceCurrentStructureIfPossible())
         {
@@ -272,7 +292,11 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
     {
         if (disposing)
         {
-            SelectBuildingPopupPath?.Dispose();
+            if (SelectBuildingPopupPath != null)
+            {
+                SelectBuildingPopupPath.Dispose();
+                IndustrialStageConfirmPopupPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);
@@ -328,5 +352,17 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         GD.Print("Starting researching: ", technologyName);
         CurrentlyResearchedTechnology =
             new TechnologyProgress(SimulationParameters.Instance.GetTechnology(technologyName));
+    }
+
+    private void ConfirmStageAdvance()
+    {
+        GD.Print("Confirmed advancing to industrial stage");
+        stageAdvanceConfirmed = true;
+        PlaceGhostBuilding();
+    }
+
+    private void CancelStageAdvance()
+    {
+        CancelBuildingPlaceIfInProgress();
     }
 }
