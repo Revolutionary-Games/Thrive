@@ -234,3 +234,4 @@ rect_min_size = Vector2( 8, 5 )
 [connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildingPlacingRequest"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Research" to="." method="OpenResearchScreen"]
 [connection signal="Closed" from="ResearchScreen" to="." method="ResearchScreenClosed"]
+[connection signal="OnStartResearching" from="ResearchScreen" to="." method="ForwardStartResearch"]

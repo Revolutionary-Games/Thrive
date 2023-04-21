@@ -48,7 +48,6 @@ public class ResearchScreen : CustomDialog
         base.Dispose(disposing);
     }
 
-    // TODO: hook up this and the HUD's version in Godot editor for this
     private void ForwardStartResearch(string technology)
     {
         EmitSignal(nameof(OnStartResearching), technology);

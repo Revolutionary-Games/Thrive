@@ -106,6 +106,16 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
             HandlePopulationGrowth();
 
             citizenMovingSystem.Process(delta, population);
+
+            if (CurrentlyResearchedTechnology?.Completed == true)
+            {
+                GD.Print("Current technology research completed");
+                CurrentGame!.TechWeb.UnlockTechnology(CurrentlyResearchedTechnology.Technology);
+                CurrentlyResearchedTechnology = null;
+
+                // TODO: if research screen is open, it should have its state update here in regards to the unlocked
+                // technology
+            }
         }
 
         HUD.UpdateResourceDisplay(resourceStorage);
@@ -302,5 +312,12 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
         buildingTypeToPlace = null;
         return true;
+    }
+
+    private void StartResearching(string technologyName)
+    {
+        GD.Print("Starting researching: ", technologyName);
+        CurrentlyResearchedTechnology =
+            new TechnologyProgress(SimulationParameters.Instance.GetTechnology(technologyName));
     }
 }

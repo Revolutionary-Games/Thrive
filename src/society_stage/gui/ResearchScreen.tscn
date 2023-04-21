@@ -15,9 +15,12 @@ rect_min_size = Vector2( 800, 500 )
 script = ExtResource( 3 )
 WindowTitle = "RESEARCH"
 Resizable = true
+TechWebGUIPath = NodePath("TechWebGUI")
 
 [node name="TechWebGUI" parent="." index="0" instance=ExtResource( 2 )]
 margin_right = -610.0
 margin_bottom = -453.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="OnTechnologyToResearchSelected" from="TechWebGUI" to="." method="ForwardStartResearch"]

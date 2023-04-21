@@ -81,3 +81,4 @@ MenuPath = NodePath("../PauseMenu")
 [connection signal="OnBuildingPlacingRequested" from="SocietyHUD" to="PlayerSocietyInput" method="OpenBuildMenu"]
 [connection signal="OnOpenMenu" from="SocietyHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="SocietyHUD" to="PauseMenu" method="OpenToHelp"]
+[connection signal="OnStartResearching" from="SocietyHUD" to="." method="StartResearching"]

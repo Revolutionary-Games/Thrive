@@ -9,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 3 )
+TechnologyNameLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/TechnologyName")
+ResearchButtonPath = NodePath("VBoxContainer/StartResearch")
 
 [node name="DraggableScrollContainer" parent="." instance=ExtResource( 1 )]
 anchor_right = 0.0

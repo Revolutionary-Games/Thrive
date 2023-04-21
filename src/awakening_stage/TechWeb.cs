@@ -34,6 +34,11 @@ public class TechWeb : IAvailableRecipes
         return false;
     }
 
+    public bool HasTechnology(Technology technology)
+    {
+        return unlockedTechnologies.Contains(technology);
+    }
+
     public IEnumerable<CraftingRecipe> GetAvailableRecipes(
         IReadOnlyCollection<(WorldResource Resource, int Count)>? filter)
     {
