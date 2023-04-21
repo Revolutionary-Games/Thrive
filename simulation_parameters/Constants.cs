@@ -1221,6 +1221,15 @@ public static class Constants
 
     public const float SOCIETY_STAGE_CITIZEN_SPAWN_INTERVAL = 5.0f;
 
+    public const float SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL = 1.0f;
+
+    public const float SOCIETY_CAMERA_ZOOM_INDUSTRIAL_EQUIVALENT = INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
+
+    /// <summary>
+    ///   Scale of the world in industrial stage compared to the society stage
+    /// </summary>
+    public const float INDUSTRIAL_STAGE_SIZE_MULTIPLIER = 5.0f;
+
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>

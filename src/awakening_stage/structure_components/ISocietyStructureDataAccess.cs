@@ -4,4 +4,9 @@
 public interface ISocietyStructureDataAccess
 {
     public IResourceContainer SocietyResources { get; }
+
+    public TechnologyProgress? CurrentlyResearchedTechnology { get; }
+
+    public void AddActiveResearchContribution(object researchSource, float researchPoints);
+    public void RemoveActiveResearchContribution(object researchSource);
 }

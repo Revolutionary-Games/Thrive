@@ -25,5 +25,16 @@
       "hunterGathererLodge"
     ],
     "RequiresEarlierTechnology": []
+  },
+  "steamPower": {
+    "Name": "TECHNOLOGY_STEAM_POWER",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsStructures": [
+      "steamFactory"
+    ],
+    "RequiresEarlierTechnology": [],
+    "RequiresResearchLevel": "Primitive",
+    "ResearchPoints": 25
   }
 }

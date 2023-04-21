@@ -21,6 +21,12 @@ public class PlayerSocietyInput : NodeWithInput
         stage.PerformBuildOrOpenMenu();
     }
 
+    [RunOnKeyDown("g_science")]
+    public void ToggleResearchScreen()
+    {
+        stage.ToggleResearchScreen();
+    }
+
     [RunOnKeyDown("ui_cancel")]
     public bool CancelBuild()
     {
