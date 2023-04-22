@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-21 15:38+0300\n"
-"PO-Revision-Date: 2023-04-18 05:43+0000\n"
+"PO-Revision-Date: 2023-04-22 07:42+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -573,9 +573,8 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Просмотреть мастерскую"
 
 #: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "Построить Структуру"
+msgstr "Построить город"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -1055,14 +1054,12 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Подтвердите перезапись"
 
 #: ../src/society_stage/SocietyStage.tscn:85
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr "Индустриальная стадия"
+msgstr "Переместиться на Индустриальную Стадию?"
 
 #: ../src/society_stage/SocietyStage.tscn:86
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "(скорость, с которой ИИ будет мутировать)"
+msgstr "Поставив фабрику вы дойдёте до индустриальной стадии.Перейти на следующую стадию?"
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1195
@@ -1266,14 +1263,12 @@ msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:38
 #: ../src/society_stage/gui/ResearchScreen.tscn:39
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "Показать название кнопок выбора частей:"
+msgstr "Ничего не исследуется"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:44
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "Открыть окно исследований"
+msgstr "Сейчас исследуется: {0} {1}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -2535,7 +2530,7 @@ msgstr "Основать поселение"
 
 #: ../src/awakening_stage/InteractionType.cs:11
 msgid "INTERACTION_HARVEST"
-msgstr "Собрать урожай"
+msgstr "Собрать"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
@@ -5011,9 +5006,8 @@ msgid "REQUIRES_NUCLEUS"
 msgstr "Требуется ядро"
 
 #: ../src/society_stage/gui/ResearchScreen.tscn:16
-#, fuzzy
 msgid "RESEARCH"
-msgstr "Поиск"
+msgstr "Исследование"
 
 #: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
@@ -5398,9 +5392,8 @@ msgstr "Выберите вид"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:124
 #: ../src/society_stage/gui/TechWebGUI.tscn:54
-#, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
-msgstr "Выберите биом для просмотра деталей"
+msgstr "Выберите технологию из сети технологий"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5713,9 +5706,8 @@ msgid "START_GAME"
 msgstr "Начать игру"
 
 #: ../src/society_stage/gui/TechWebGUI.tscn:77
-#, fuzzy
 msgid "START_RESEARCH"
-msgstr "Требуется перезапуск"
+msgstr "Начать исследование"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -5877,16 +5869,15 @@ msgstr "{0} (начальная цена:{1} , в итоге: {2})"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr "{0}(НЕДОСТАТОЧНО ДЛЯ НАЧАЛА:{1}, в конечном счёте:{2})"
+msgstr "{0}(НЕДОСТАТОЧНО, ДЛЯ НАЧАЛА НУЖНО :{1}, в конечном счёте:{2})"
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr "Центр Общества"
 
 #: ../simulation_parameters/awakening_stage/structures.json:92
-#, fuzzy
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr "Центр Общества"
+msgstr "Фабрика на основе пара"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:789
 msgid "SUCCESSFUL_KILL"
@@ -5977,9 +5968,8 @@ msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Постройка центра общества"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:30
-#, fuzzy
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr "Постройка центра общества"
+msgstr "Энергия на основе пара"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:820
@@ -6385,7 +6375,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"При выборе органелл, обратите внимание на всплывающие подсказки, чтобы понять что они делают. Органеллы могут принести больше вреда чем пользы если вы невнимательных к их функционированию.\n"
+"При выборе частей \"тела\", обратите внимание на всплывающие подсказки, чтобы понять что они делают. Органеллы могут принести больше вреда чем пользы если вы невнимательных к их функционированию.\n"
 "\n"
 "Шкала \"Производство АТФ\" справа показывает как много энергии вы производите в сравнении с тем сколько потребляете. Если верхняя шкала больше, чем нижняя, вы производите недостаточно.\n"
 "\n"
