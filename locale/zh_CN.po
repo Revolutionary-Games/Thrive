@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-27 21:06-0500\n"
+"POT-Creation-Date: 2023-04-22 11:45+0200\n"
 "PO-Revision-Date: 2023-03-24 12:38+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -969,6 +969,7 @@ msgstr "编译于："
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:70
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1006,7 +1007,7 @@ msgstr "{0}的浓度已减少了{1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:35
 msgid "COMPOUND_TO_FIND"
 msgstr "寻找的化合物："
 
@@ -3068,7 +3069,7 @@ msgstr "多"
 msgid "LIMIT_VERY_SMALL"
 msgstr "少"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:106
 msgid "LINE_COLOUR"
 msgstr "线条颜色："
 
@@ -3574,7 +3575,7 @@ msgstr "鼠标中键"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0}*10⁶"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:84
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "检测的最小数量："
 
@@ -4100,11 +4101,11 @@ msgstr "没有可以交互的物体"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因ATP耗尽而受伤"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1511
+#: ../src/microbe_stage/Microbe.Interior.cs:1512
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "由于摄入物体中的毒素而受伤"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1456
+#: ../src/microbe_stage/Microbe.Interior.cs:1457
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "没有用于吞噬目标的 {0}"
 
@@ -4914,7 +4915,7 @@ msgstr "报告"
 msgid "REPORT_BUG"
 msgstr "报告一个bug"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1117
+#: ../src/microbe_stage/Microbe.Interior.cs:1119
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
@@ -5267,7 +5268,7 @@ msgstr "滚卷锁定"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:62
 msgid "SEARCH_RADIUS"
 msgstr "搜索半径："
 
@@ -5516,7 +5517,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:784
+#: ../src/microbe_stage/MicrobeStage.cs:787
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
@@ -5537,6 +5538,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "鼠标侧键2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:71
 msgid "SPECIES"
 msgstr "物种"
 
@@ -5591,6 +5593,11 @@ msgstr "通过多个良好的突变来分裂物种所需的最小种群数量"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "允许通过突变分裂的物种的所需最小种群数量比例"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:45
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "物种："
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -5858,6 +5865,11 @@ msgstr "标签里只有空格"
 #: ../simulation_parameters/common/input_options.json:310
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:25
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "类型："
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"

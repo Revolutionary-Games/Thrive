@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-27 21:06-0500\n"
+"POT-Creation-Date: 2023-04-22 11:45+0200\n"
 "PO-Revision-Date: 2023-03-18 07:34+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -964,6 +964,7 @@ msgstr "Собрано в:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:70
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1001,7 +1002,7 @@ msgstr "Концентрация {0} снизилась на {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} потребления"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:35
 msgid "COMPOUND_TO_FIND"
 msgstr "Соединение, которое нужно найти:"
 
@@ -3063,7 +3064,7 @@ msgstr "Очень большое"
 msgid "LIMIT_VERY_SMALL"
 msgstr "Очень маленькое"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:106
 msgid "LINE_COLOUR"
 msgstr "Цвет Линии:"
 
@@ -3571,7 +3572,7 @@ msgstr "Средняя кнопка мыши"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Млн"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:84
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Минимальное количество для обнаружения:"
 
@@ -4095,11 +4096,11 @@ msgstr "Не с чем взаимодействовать"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Вы теряете здоровье из-за отсутствия АТФ"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1511
+#: ../src/microbe_stage/Microbe.Interior.cs:1512
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Вы теряете здоровье из-за токсинов в поглощенном организме"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1456
+#: ../src/microbe_stage/Microbe.Interior.cs:1457
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Не хватает {0} для поглощения организма"
 
@@ -4903,7 +4904,7 @@ msgstr "Отчёт"
 msgid "REPORT_BUG"
 msgstr "Сообщить о баге"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1117
+#: ../src/microbe_stage/Microbe.Interior.cs:1119
 msgid "REPRODUCED"
 msgstr "Воспроизведено"
 
@@ -5256,7 +5257,7 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Поиск..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:62
 msgid "SEARCH_RADIUS"
 msgstr "Радиус Поиска:"
 
@@ -5503,7 +5504,7 @@ msgstr "Создать аммиак"
 msgid "SPAWN_ENEMY"
 msgstr "Создать Противника"
 
-#: ../src/microbe_stage/MicrobeStage.cs:784
+#: ../src/microbe_stage/MicrobeStage.cs:787
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Невозможно использовать чит Создать Противника, так как этот биом не содержит каких-либо видов противников"
 
@@ -5524,6 +5525,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Специальная кнопка мыши 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:71
 msgid "SPECIES"
 msgstr "Виды"
 
@@ -5578,6 +5580,11 @@ msgstr "Минимальная популяция вида для разделе
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Минимальная доля популяции вида, допускающая разделение по мутациям"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:45
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Виды:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -5845,6 +5852,11 @@ msgstr "Теги содержат только пробелы"
 #: ../simulation_parameters/common/input_options.json:310
 msgid "TAKE_SCREENSHOT"
 msgstr "Сделать снимок экрана"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:25
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "Тип:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"

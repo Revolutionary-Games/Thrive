@@ -67,9 +67,8 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         // Populate menus
-        // TODO Add translation
-        targetTypes.AddItem("COMPOUND");
-        targetTypes.AddItem("SPECIES");
+        targetTypes.AddItem(TranslationServer.Translate("COMPOUNDS"));
+        targetTypes.AddItem(TranslationServer.Translate("SPECIES"));
 
         shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds();
 
