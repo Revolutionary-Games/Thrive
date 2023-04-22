@@ -336,6 +336,10 @@ public class PauseMenu : CustomWindow
     {
         animationPlayer.Play("Close");
         Paused = false;
+
+        // Uncapture the mouse while we are playing the close animation, this doesn't seem to actually uncapture the
+        // mouse any faster, though, likely an engine problem
+        MouseUnCaptureActive = false;
     }
 
     protected override void Dispose(bool disposing)
