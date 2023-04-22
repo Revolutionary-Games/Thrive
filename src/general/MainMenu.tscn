@@ -902,8 +902,10 @@ visible = false
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
 margin_bottom = 628.0
+OrderingChildPath = NodePath(".")
 
 [node name="GalleryViewer" parent="." instance=ExtResource( 17 )]
+OrderingChildPath = NodePath(".")
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -951,6 +953,7 @@ margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
 WindowTitle = "GLES2_MODE_WARNING"
+OrderingChildPath = NodePath(".")
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
@@ -963,6 +966,7 @@ __meta__ = {
 }
 Exclusive = false
 WindowTitle = "NO_MODS_ENABLED"
+OrderingChildPath = NodePath(".")
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
 CenterText = false
@@ -973,12 +977,14 @@ margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 550, 370 )
 WindowTitle = "SAFE_MODE_TITLE"
+OrderingChildPath = NodePath(".")
 HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
 rect_min_size = Vector2( 400, 350 )
 WindowTitle = "MOD_LOAD_ERRORS"
+OrderingChildPath = NodePath(".")
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
 [node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 59 )]
@@ -986,6 +992,7 @@ margin_right = 163.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "THANK_YOU_TITLE"
+OrderingChildPath = NodePath(".")
 HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE"
 CenterText = false
@@ -996,6 +1003,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "STEAM_INIT_FAILED"
+OrderingChildPath = NodePath(".")
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 

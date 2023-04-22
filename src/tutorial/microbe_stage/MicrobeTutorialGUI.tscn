@@ -59,6 +59,7 @@ __meta__ = {
 Exclusive = true
 ExclusiveAllowCloseOnEscape = false
 WindowTitle = "TUTORIAL"
+OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_INITIAL"
 DescriptionForController = ""
 ShowDelay = 0.0
@@ -142,6 +143,7 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 95.0
 rect_min_size = Vector2( 260, 274 )
+OrderingChildPath = NodePath("..")
 Description = "MICROBE_STAGE_CONTROL_TEXT"
 DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
@@ -202,6 +204,7 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
+OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_COLLECT_TEXT"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource( 10 )]
@@ -213,6 +216,7 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
+OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource( 10 )]
@@ -224,6 +228,7 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
+OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_HEALTH_TEXT"
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource( 10 )]
@@ -236,6 +241,7 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 91.0
 rect_min_size = Vector2( 260, 270 )
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
 [node name="EditorButtonHighlight" parent="." instance=ExtResource( 11 )]
@@ -256,6 +262,7 @@ margin_right = 0.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 260, 260 )
 PreventsMouseCaptureWhileOpen = true
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 10 )]
@@ -268,6 +275,7 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
 PreventsMouseCaptureWhileOpen = true
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 
 [node name="CheckHelpMenu" parent="." instance=ExtResource( 13 )]
@@ -285,6 +293,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 WindowTitle = "TUTORIAL"
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 DescriptionForController = ""
 ShowDelay = 0.5
@@ -332,6 +341,7 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 
 [node name="EngulfmentTutorial" parent="." instance=ExtResource( 10 )]
@@ -343,6 +353,7 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 
 [node name="EngulfedTutorial" parent="." instance=ExtResource( 10 )]
@@ -356,6 +367,7 @@ margin_right = 0.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 260, 275 )
 PreventsMouseCaptureWhileOpen = true
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 
 [node name="LeaveColonyTutorial" parent="." instance=ExtResource( 10 )]
@@ -368,6 +380,7 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 260, 275 )
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
 [node name="EarlyMulticellularWelcome" parent="." instance=ExtResource( 10 )]
@@ -378,6 +391,7 @@ margin_bottom = -260.0
 rect_min_size = Vector2( 450, 460 )
 Exclusive = true
 PreventsMouseCaptureWhileOpen = true
+OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 
 [node name="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer" index="0"]
