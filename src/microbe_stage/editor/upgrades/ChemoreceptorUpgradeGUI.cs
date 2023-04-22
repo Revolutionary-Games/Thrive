@@ -55,20 +55,21 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         compounds.Clear();
         species.Clear();
-        TypeChanged(0);
 
         maximumDistance.MinValue = Constants.CHEMORECEPTOR_RANGE_MIN;
         maximumDistance.MaxValue = Constants.CHEMORECEPTOR_RANGE_MAX;
-
         minimumAmount.MinValue = Constants.CHEMORECEPTOR_AMOUNT_MIN;
         minimumAmount.MaxValue = Constants.CHEMORECEPTOR_AMOUNT_MAX;
+
+        TypeChanged(0);
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
-        // TODO Translate this
-        targetTypes.AddItem("Compound");
-        targetTypes.AddItem("Species");
+        // Populate menus
+        // TODO Add translation
+        targetTypes.AddItem("COMPOUND");
+        targetTypes.AddItem("SPECIES");
 
         shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds();
 
@@ -84,37 +85,18 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             species.AddItem(choice.Genus + " " + choice.Epithet);
         }
 
-        // Select glucose by default
-        var defaultCompoundIndex =
-            shownCompoundChoices.FindIndex(c => c.InternalName == Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
-
-        if (defaultCompoundIndex < 0)
-            defaultCompoundIndex = 0;
+        var defaultCompound = SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
+        ChemoreceptorUpgrades defaultConfiguration = new ChemoreceptorUpgrades(defaultCompound, null,
+            Constants.CHEMORECEPTOR_RANGE_DEFAULT, Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, defaultCompound.Colour);
 
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is ChemoreceptorUpgrades configuration)
-        {
-            if (configuration.TargetCompound != null)
-            {
-                TypeChanged(0);
-                compounds.Selected = shownCompoundChoices.FindIndex(c => c == configuration.TargetCompound);
-            }
-            else if (configuration.TargetSpecies != null)
-            {
-                TypeChanged(1);
-                species.Selected = shownSpeciesChoices.FindIndex(c => c == configuration.TargetSpecies);
-            }
-
-            maximumDistance.Value = configuration.SearchRange;
-            minimumAmount.Value = configuration.SearchAmount;
-            colour.Color = configuration.LineColour;
+       {
+            LoadConfiguration(configuration, shownCompoundChoices, shownSpeciesChoices);
         }
         else
         {
-            compounds.Selected = defaultCompoundIndex;
-            maximumDistance.Value = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
-            minimumAmount.Value = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
-            colour.Color = shownCompoundChoices[defaultCompoundIndex].Colour;
+            LoadConfiguration(defaultConfiguration, shownCompoundChoices, shownSpeciesChoices);
         }
     }
 
@@ -153,34 +135,14 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return true;
     }
 
-    public Vector2 GetMinDialogSize()
+    public void SelectionChanged(int index)
     {
-        return new Vector2(400, 320);
-    }
-
-    public void CompoundChanged(int index)
-    {
-        // If the currently selected colour is in the shownChoices list change the colour to the colour of the newly
-        // selected compound to make setting up chemoreceptors easier
-        if (shownCompoundChoices?.Any(c => c.Colour == colour.Color) == true)
-        {
-            colour.Color = shownCompoundChoices[index].Colour;
-        }
-    }
-
-    public void SpeciesChanged(int index)
-    {
-        // If the currently selected colour is in the shownChoices list change the colour to the colour of the newly
-        // selected compound to make setting up chemoreceptors easier
-        if (shownSpeciesChoices?.Any(c => c.Colour == colour.Color) == true)
-        {
-            colour.Color = shownSpeciesChoices[index].Colour;
-        }
+        ApplySelectionColour();
     }
 
     public void TypeChanged(int index)
     {
-        // Make only species or compound menu visible
+        // Make either species or compound menu visible
         species.Visible = false;
         speciesLabel.Visible = false;
         compounds.Visible = false;
@@ -197,6 +159,13 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 speciesLabel.Visible = true;
                 break;
         }
+
+        ApplySelectionColour();
+    }
+
+    public Vector2 GetMinDialogSize()
+    {
+        return new Vector2(400, 320);
     }
 
     protected override void Dispose(bool disposing)
@@ -218,5 +187,40 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
 
         base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Sets the GUI up to reflect an existing configuration
+    /// </summary>
+    private void LoadConfiguration(ChemoreceptorUpgrades configuration,
+        List<Compound> shownCompoundChoices, List<Species> shownSpeciesChoices)
+    {
+        if (configuration.TargetCompound != null)
+        {
+            TypeChanged(0);
+            targetTypes.Selected = 0;
+            compounds.Selected = shownCompoundChoices.FindIndex(c => c == configuration.TargetCompound);
+        }
+        else if (configuration.TargetSpecies != null)
+        {
+            TypeChanged(1);
+            targetTypes.Selected = 1;
+            species.Selected = shownSpeciesChoices.FindIndex(c => c == configuration.TargetSpecies);
+        }
+
+        maximumDistance.Value = configuration.SearchRange;
+        minimumAmount.Value = configuration.SearchAmount;
+        colour.Color = configuration.LineColour;
+    }
+
+    /// <summary>
+    ///   Applies the color of a selected target to the color picker
+    /// </summary>
+    private void ApplySelectionColour()
+    {
+        if (targetTypes.Selected == 0 && shownCompoundChoices != null && compounds.Selected >= 0)
+            colour.Color = shownCompoundChoices[compounds.Selected].Colour;
+        if (targetTypes.Selected == 1 && shownSpeciesChoices != null && species.Selected >= 0)
+            colour.Color = shownSpeciesChoices[species.Selected].Colour;
     }
 }

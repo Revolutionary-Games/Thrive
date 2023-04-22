@@ -113,5 +113,5 @@ margin_bottom = 759.0
 edit_alpha = false
 
 [connection signal="item_selected" from="TargetType" to="." method="TypeChanged"]
-[connection signal="item_selected" from="Compound" to="." method="CompoundChanged"]
-[connection signal="item_selected" from="Species" to="." method="SpeciesChanged"]
+[connection signal="item_selected" from="Compound" to="." method="SelectionChanged"]
+[connection signal="item_selected" from="Species" to="." method="SelectionChanged"]
