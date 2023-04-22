@@ -520,6 +520,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
             return;
         }
 
+        if (pauseMenu.Visible)
+            return;
+
         selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
 
         // TODO: when a structure is being placed, should we have some kind of indicator on screen what to press to
