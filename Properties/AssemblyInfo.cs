@@ -19,9 +19,9 @@
 // NOTE: the version info is read by a regex in a script so don't add complicated things to this file
 // NOTE: When changing the version number you need to also change "export_presets.cfg"
 
-[assembly: AssemblyVersion("0.6.1.0")]
+[assembly: AssemblyVersion("0.6.2.0")]
 
-[assembly: AssemblyInformationalVersion("")]
+[assembly: AssemblyInformationalVersion("-rc1")]
 
 // The following attributes are used to specify the signing key for the assembly,
 // if desired. See the Mono documentation for more information about signing.
