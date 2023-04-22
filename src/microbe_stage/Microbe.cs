@@ -630,14 +630,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce += force;
     }
 
-    public void ReportActiveCompoundChemoreceptor(
-        Compound compound, float range, float minAmount, Color colour)
+    public void ReportActiveCompoundChemoreceptor(Compound compound, float range, float minAmount, Color colour)
     {
         activeCompoundDetections.Add((compound, range, minAmount, colour));
     }
 
-    public void ReportActiveSpeciesChemoreceptor(
-        Species species, float range, float minAmount, Color colour)
+    public void ReportActiveSpeciesChemoreceptor(Species species, float range, float minAmount, Color colour)
     {
         activeSpeciesDetections.Add((species, range, colour));
     }
@@ -958,7 +956,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   A list of tuples. Each tuple contains the type of species, the color of the line (if any needs to be drawn),
     ///   and the location where the microbe is located.
     /// </returns>
-
     public List<(Microbe Microbe, Color Colour, Vector3 Target)> GetDetectedSpecies(MicrobeSystem microbeSystem)
     {
         HashSet<(Species Species, float Range, Color Colour)> collectedUniqueSpeciesDetections;

@@ -63,9 +63,8 @@ public class MicrobeSystem
     /// <param name="species">What species to search for</param>
     /// <param name="searchRadius">How wide to search around the point</param>
     /// <returns>The nearest found point for the species or null</returns>
-
-    public (Microbe Microbe, Vector3 Position)? FindSpeciesNearPoint(
-        Vector3 position, Species species, float searchRadius = 200)
+    public (Microbe Microbe, Vector3 Position)? FindSpeciesNearPoint(Vector3 position, Species species,
+        float searchRadius = 200)
     {
         if (searchRadius < 1)
             throw new ArgumentException("searchRadius must be >= 1");
