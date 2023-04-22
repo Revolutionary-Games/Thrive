@@ -71,7 +71,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         targetTypes.AddItem(TranslationServer.Translate("SPECIES"));
 
         shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds();
-        shownCompoundChoices.Sort((x, y) => String.Compare(x.Name,y.Name,StringComparison.Ordinal));
+        shownCompoundChoices.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
 
         foreach (var choice in shownCompoundChoices)
         {
@@ -79,7 +79,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
 
         shownSpeciesChoices = currentGame.GameWorld.Map.FindAllSpeciesWithPopulation();
-        shownSpeciesChoices.Sort((x, y) => String.Compare(x.Genus,y.Genus,StringComparison.Ordinal));
+        shownSpeciesChoices.Sort((x, y) => string.Compare(x.Genus, y.Genus, StringComparison.OrdinalIgnoreCase));
 
         foreach (var choice in shownSpeciesChoices)
         {
