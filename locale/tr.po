@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-21 15:38+0300\n"
-"PO-Revision-Date: 2023-04-15 22:02+0000\n"
+"PO-Revision-Date: 2023-04-22 07:42+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -573,9 +573,8 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Atölye'ye Göz At"
 
 #: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "Bir Yapı İnşa Et"
+msgstr "Bir Şehir Kur"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -1055,14 +1054,12 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Üzerine Yazmayı Onayla"
 
 #: ../src/society_stage/SocietyStage.tscn:85
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr "Sanayi Evresi"
+msgstr "Sanayi Evresi'ne Geçilsin mi?"
 
 #: ../src/society_stage/SocietyStage.tscn:86
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "(AI türlerinin mutasyona uğrama hızı)"
+msgstr "Bir fabrika yerleştirerek sanayi evresine yükseleceksin. Sonraki evreye geçilsin mi?"
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1195
@@ -1266,14 +1263,12 @@ msgstr "MEVCUT KONUM"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:38
 #: ../src/society_stage/gui/ResearchScreen.tscn:39
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "Parça seçim butonu isimlerini göster"
+msgstr "Herhangi bir araştırma yok"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:44
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "Araştırma Ekranını Aç"
+msgstr "Şu anda araştırılan: {0} ({1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -5011,9 +5006,8 @@ msgid "REQUIRES_NUCLEUS"
 msgstr "Hücre çekirdeği gerektirir"
 
 #: ../src/society_stage/gui/ResearchScreen.tscn:16
-#, fuzzy
 msgid "RESEARCH"
-msgstr "Ara"
+msgstr "Araştır"
 
 #: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
@@ -5398,9 +5392,8 @@ msgstr "Bir tür seç"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:124
 #: ../src/society_stage/gui/TechWebGUI.tscn:54
-#, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
-msgstr "Detayları görmek için bir arazi seçin"
+msgstr "Teknoloji Ağından bir teknoloji seç"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5713,9 +5706,8 @@ msgid "START_GAME"
 msgstr "Oyunu Başlat"
 
 #: ../src/society_stage/gui/TechWebGUI.tscn:77
-#, fuzzy
 msgid "START_RESEARCH"
-msgstr "Yeniden Başlatma Gerekli"
+msgstr "Araştırmaya Başla"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -5884,9 +5876,8 @@ msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr "Topluluk Merkezi"
 
 #: ../simulation_parameters/awakening_stage/structures.json:92
-#, fuzzy
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr "Topluluk Merkezi"
+msgstr "Buharla Çalışan Fabrika"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:789
 msgid "SUCCESSFUL_KILL"
@@ -5977,9 +5968,8 @@ msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Topluluk Merkezi İnşa Ediliyor"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:30
-#, fuzzy
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr "Topluluk Merkezi İnşa Ediliyor"
+msgstr "Buhar Gücü"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:820

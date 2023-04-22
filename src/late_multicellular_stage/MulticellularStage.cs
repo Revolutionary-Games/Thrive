@@ -520,6 +520,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
             return;
         }
 
+        if (pauseMenu.Visible)
+            return;
+
         selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
 
         // TODO: when a structure is being placed, should we have some kind of indicator on screen what to press to
@@ -594,6 +597,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
         // Do an inverse transform to get the vector in creature local space and multiply it to not make the creature
         // move at full speed
+        // TODO: this math doesn't seem to be correct
         var wantedMovementDirection =
             moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector);
         wantedMovementDirection.y = 0;

@@ -572,8 +572,7 @@ public class InventoryScreen : ControlWithInput
         if (craftingPanelPopup.Visible)
         {
             craftingPanelPopup.Close();
-            craftingPanelManuallyHidden = true;
-            OnCraftingPanelClosed();
+            OnCraftingPanelCancelled();
         }
         else
         {
@@ -589,7 +588,7 @@ public class InventoryScreen : ControlWithInput
         if (groundPanelPopup.Visible)
         {
             groundPanelPopup.Close();
-            groundPanelManuallyHidden = true;
+            OnGroundPanelCancelled();
         }
         else
         {
@@ -613,16 +612,23 @@ public class InventoryScreen : ControlWithInput
         UpdateToggleButtonStatus();
     }
 
-    private void OnGroundPanelClosed()
+    private void OnGroundPanelCancelled()
     {
         groundPanelManuallyHidden = true;
+    }
+
+    private void OnGroundPanelBecameHidden()
+    {
         UpdateToggleButtonStatus();
     }
 
-    private void OnCraftingPanelClosed()
+    private void OnCraftingPanelCancelled()
     {
         craftingPanelManuallyHidden = true;
+    }
 
+    private void OnCraftingPanelBecameHidden()
+    {
         PerformCraftingCloseActions();
     }
 
