@@ -319,12 +319,6 @@ public partial class CellEditorComponent :
 
     private bool microbePreviewMode;
 
-    /// <summary>
-    ///   The light-level from before entering the editor or when moving to a patch with light from one without.
-    /// </summary>
-    [JsonProperty]
-    private float? originalLightLevel;
-
     public enum SelectionMenuTab
     {
         Structure,
@@ -619,8 +613,6 @@ public partial class CellEditorComponent :
         var newLayout = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
 
-        UpdateOriginalLightLevel(Editor.CurrentPatch);
-
         if (fresh)
         {
             editedMicrobeOrganelles = newLayout;
@@ -878,7 +870,9 @@ public partial class CellEditorComponent :
     /// <param name="patch">The patch that is set</param>
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        UpdateOriginalLightLevel(patch);
+        _ = patch;
+
+        ApplyLightLevelOption();
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
     }
@@ -892,10 +886,8 @@ public partial class CellEditorComponent :
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
 
-        // Calculate and send energy balance to the GUI
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane);
-
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles);
+        // Calculate and send energy balance and compound balance to the GUI
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
     }
 
     /// <summary>
@@ -1066,9 +1058,9 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
     }
 
-    public override void OnLightLevelChanged(float lightLevel)
+    public override void OnLightLevelChanged(float dayLightFraction)
     {
-        var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
+        var maxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum);
         var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
 
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
@@ -1077,8 +1069,7 @@ public partial class CellEditorComponent :
         // is non-zero too.
         if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
         {
-            // Normalise by maximum light level in the patch
-            camera!.LightLevel = lightLevel / maxLightLevel;
+            camera!.LightLevel = dayLightFraction;
         }
         else
         {
@@ -1544,36 +1535,20 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Stores the actual patch light level (outside of the editor). This should only be called right
-    ///   after entering the editor or when moving to a patch with light from one without.
+    ///   Calculates the energy balance and compound balance for a cell with the given organelles and membrane
     /// </summary>
-    private void UpdateOriginalLightLevel(Patch patch)
-    {
-        // Only in patch with sunlight
-        if (patch.Biome.MaximumCompounds[sunlight].Ambient > 0)
-            originalLightLevel ??= patch.Biome.CurrentCompoundAmounts[sunlight].Ambient;
-    }
-
-    /// <summary>
-    ///   Calculates the energy balance for a cell with the given organelles
-    /// </summary>
-    private void CalculateEnergyBalanceWithOrganellesAndMembraneType(IReadOnlyCollection<OrganelleTemplate> organelles,
+    private void CalculateEnergyAndCompoundBalance(IReadOnlyCollection<OrganelleTemplate> organelles,
         MembraneType membrane, BiomeConditions? biome = null)
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current));
-    }
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
+            Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current);
 
-    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles,
-        BiomeConditions? biome = null)
-    {
-        biome ??= Editor.CurrentPatch.Biome;
+        UpdateEnergyBalance(energyBalance);
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
-
-        UpdateCompoundBalances(result);
+        UpdateCompoundBalances(ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+            CompoundAmountType.Current, energyBalance));
     }
 
     /// <summary>
@@ -2205,28 +2180,28 @@ public partial class CellEditorComponent :
             case LightLevelOption.Day:
             {
                 dayButton.Pressed = true;
-                Editor.LightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
+                Editor.DayLightFraction = 1;
                 break;
             }
 
             case LightLevelOption.Night:
             {
                 nightButton.Pressed = true;
-                Editor.LightLevel = Editor.CurrentPatch.Biome.MinimumCompounds[sunlight].Ambient;
+                Editor.DayLightFraction = 0;
                 break;
             }
 
             case LightLevelOption.Average:
             {
                 averageLightButton.Pressed = true;
-                Editor.LightLevel = Editor.CurrentPatch.Biome.AverageCompounds[sunlight].Ambient;
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
                 break;
             }
 
             case LightLevelOption.Current:
             {
                 currentLightButton.Pressed = true;
-                Editor.LightLevel = originalLightLevel.GetValueOrDefault();
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
                 break;
             }
 

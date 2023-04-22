@@ -80,6 +80,7 @@
     <Compile Include="src\awakening_stage\ResourceAmountHelpers.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
     <Compile Include="src\awakening_stage\StructureDefinition.cs" />
+    <Compile Include="src\awakening_stage\structure_components\FactoryComponent.cs" />
     <Compile Include="src\awakening_stage\structure_components\HousingComponent.cs" />
     <Compile Include="src\awakening_stage\structure_components\ISocietyStructureDataAccess.cs" />
     <Compile Include="src\awakening_stage\structure_components\IStructureComponentFactory.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
+    <Compile Include="src\engine\PostShutdownActions.cs" />
     <Compile Include="src\engine\RaycastResult.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
     <Compile Include="src\engine\SafeModeStartupHandler.cs" />
@@ -266,6 +268,10 @@
     <Compile Include="src\gui_common\TabButtons.cs" />
     <Compile Include="src\gui_common\TabLevel.cs" />
     <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
+    <Compile Include="src\industrial_stage\gui\IndustrialHUD.cs" />
+    <Compile Include="src\industrial_stage\IndustrialStage.cs" />
+    <Compile Include="src\industrial_stage\PlacedCity.cs" />
+    <Compile Include="src\industrial_stage\PlayerIndustrialInput.cs" />
     <Compile Include="src\late_multicellular_stage\MovementMode.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularSpeciesType.cs" />
     <Compile Include="src\late_multicellular_stage\ProgressBarSystem.cs" />
@@ -641,7 +647,9 @@
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\society_stage\CitizenMovingSystem.cs" />
+    <Compile Include="src\society_stage\gui\ResearchScreen.cs" />
     <Compile Include="src\society_stage\gui\ResourceDisplayBar.cs" />
+    <Compile Include="src\society_stage\gui\TechWebGUI.cs" />
     <Compile Include="src\society_stage\IResourceContainer.cs" />
     <Compile Include="src\society_stage\gui\SocietyHUD.cs" />
     <Compile Include="src\society_stage\PlayerSocietyInput.cs" />
@@ -651,6 +659,7 @@
     <Compile Include="src\society_stage\SocietyStructureSystem.cs" />
     <Compile Include="src\society_stage\StrategicCamera.cs" />
     <Compile Include="src\society_stage\StrategicCameraHelpers.cs" />
+    <Compile Include="src\society_stage\TechnologyProgress.cs" />
     <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
     <Compile Include="src\stage_starters\AwareStageStarter.cs" />
     <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />

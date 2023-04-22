@@ -484,6 +484,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
     public void AttemptPlayerWorldInteraction()
     {
+        if (PauseManager.Instance.Paused)
+            return;
+
         // TODO: we might in the future have somethings that an aware creature can interact with
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
@@ -510,6 +513,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
         if (Player.IsPlacingStructure)
         {
+            if (PauseManager.Instance.Paused)
+                return;
+
             Player.AttemptStructurePlace();
             return;
         }
@@ -541,6 +547,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
             HUD.CloseInventory();
             return true;
         }
+
+        if (pauseMenu.Visible)
+            return false;
 
         try
         {
@@ -581,13 +590,15 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         moveCreatureToSocietyCenter.AddCollisionExceptionWith(societyCenter.FirstDescendantOfType<CollisionObject>());
 
         var creatureToCenterVector = societyCenter.GlobalTranslation - moveCreatureToSocietyCenter.GlobalTranslation;
-        creatureToCenterVector.y = 0;
         creatureToCenterVector = creatureToCenterVector.Normalized();
 
         // Do an inverse transform to get the vector in creature local space and multiply it to not make the creature
         // move at full speed
-        moveCreatureToSocietyCenter.MovementDirection =
-            moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector) * 0.5f;
+        var wantedMovementDirection =
+            moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector);
+        wantedMovementDirection.y = 0;
+        wantedMovementDirection = wantedMovementDirection.Normalized() * 0.5f;
+        moveCreatureToSocietyCenter.MovementDirection = wantedMovementDirection;
 
         // TODO: despawn moveCreatureToSocietyCenter once it reaches inside the society center
 
@@ -665,7 +676,6 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
     {
         // patchManager.CurrentGame = CurrentGame;
 
-        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings();
 
         SpawnPlayer();
@@ -721,6 +731,10 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
+    }
+
+    protected override void OnLightLevelUpdate()
+    {
     }
 
     protected override void AutoSave()

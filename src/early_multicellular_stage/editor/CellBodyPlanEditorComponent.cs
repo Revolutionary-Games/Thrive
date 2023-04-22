@@ -1073,7 +1073,9 @@ public partial class CellBodyPlanEditorComponent :
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
-        duplicateCellTypeName.GrabFocus();
+        // This isn't absolutely necessary but makes the dialog open a bit nicer in that the same thing stays focused
+        // the entire time and doesn't change due to the focus grabber a tiny bit later
+        duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
         duplicateCellTypeName.CaretPosition = type.TypeName.Length;
     }

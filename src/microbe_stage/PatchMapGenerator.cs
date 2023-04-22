@@ -166,18 +166,6 @@ public static class PatchMapGenerator
         ConnectPatchesBetweenRegions(map, random);
         map.CreateAdjacenciesFromPatchData();
 
-        if (settings.DayNightCycleEnabled)
-        {
-            // Make sure average light levels are computed already
-            // See the TODO comments in PatchManager
-            var dummyLight = new DayNightCycle();
-            dummyLight.ApplyWorldSettings(settings);
-            foreach (var patch in map.Patches)
-            {
-                patch.Value.UpdateAverageSunlight(dummyLight);
-            }
-        }
-
         return map;
     }
 

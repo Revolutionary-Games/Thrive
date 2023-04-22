@@ -983,7 +983,7 @@ public partial class MetaballBodyEditorComponent :
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
-        duplicateCellTypeName.GrabFocus();
+        duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
         duplicateCellTypeName.CaretPosition = type.TypeName.Length;
     }

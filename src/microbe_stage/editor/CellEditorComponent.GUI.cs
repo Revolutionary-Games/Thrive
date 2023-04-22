@@ -338,7 +338,7 @@ public partial class CellEditorComponent
             if (tooltip == null)
                 throw new InvalidOperationException("Could not find process production tooltip");
 
-            subBar.RegisterToolTipForControl(tooltip);
+            subBar.RegisterToolTipForControl(tooltip, true);
 
             tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
                 SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
@@ -352,7 +352,7 @@ public partial class CellEditorComponent
             if (tooltip == null)
                 throw new InvalidOperationException("Could not find process consumption tooltip");
 
-            subBar.RegisterToolTipForControl(tooltip);
+            subBar.RegisterToolTipForControl(tooltip, true);
 
             string displayName;
 

@@ -951,7 +951,6 @@ margin_top = 28.0
 margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
-Exclusive = true
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
@@ -963,6 +962,7 @@ rect_min_size = Vector2( 550, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+Exclusive = false
 WindowTitle = "NO_MODS_ENABLED"
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"

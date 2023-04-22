@@ -108,9 +108,6 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
-    // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
-    public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
-
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
@@ -1227,6 +1224,15 @@ public static class Constants
     public const float SOCIETY_STAGE_CITIZEN_PROCESS_INTERVAL = 0.05f;
 
     public const float SOCIETY_STAGE_CITIZEN_SPAWN_INTERVAL = 5.0f;
+
+    public const float SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL = 1.0f;
+
+    public const float SOCIETY_CAMERA_ZOOM_INDUSTRIAL_EQUIVALENT = INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
+
+    /// <summary>
+    ///   Scale of the world in industrial stage compared to the society stage
+    /// </summary>
+    public const float INDUSTRIAL_STAGE_SIZE_MULTIPLIER = 5.0f;
 
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning

@@ -23,6 +23,8 @@ public class ModalManager : NodeWithInput
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CanvasLayer canvasLayer = null!;
     private Control activeModalContainer = null!;
+
+    private CustomWindow? topMostWindowGivenFocus;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     private bool modalsDirty = true;
@@ -142,6 +144,7 @@ public class ModalManager : NodeWithInput
         if (modalStack.Count <= 0)
         {
             activeModalContainer.Hide();
+            topMostWindowGivenFocus = null;
             return;
         }
 
@@ -159,17 +162,25 @@ public class ModalManager : NodeWithInput
             else
             {
                 top.ReParent(activeModalContainer);
-
-                // Always give focus to the top-most modal in the stack
-                top.FindNextValidFocus()?.GrabFocus();
             }
 
             // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
+            // For unexplained reasons this has to be after the re-parenting operation for focus to work in the popups.
+            // So don't move this code anywhere else without a ton of testing verifying things still work.
             if (!modal.Visible)
             {
                 modal.Open();
                 modal.Notification(Popup.NotificationPostPopup);
             }
+        }
+
+        // Always give focus to the top-most modal in the stack (unless we already did so to avoid overriding focus
+        // after the user has had a chance to change the focus in the modal)
+        if (topMostWindowGivenFocus != top)
+        {
+            // We use our custom method here to prefer to not give focus to nodes that are in a disabled state
+            top.FirstFocusableControl()?.GrabFocus();
+            topMostWindowGivenFocus = top;
         }
     }
 

@@ -13,6 +13,12 @@ public class CustomConfirmationDialog : CustomDialog
     [Export]
     public bool CenterText = true;
 
+    /// <summary>
+    ///   Overrides the default focus set by the focus grabber in this if this is not empty
+    /// </summary>
+    [Export]
+    public NodePath? NodeToGiveFocusOnOpen;
+
     private bool hideCancelButton;
 
     private string dialogText = string.Empty;
@@ -139,6 +145,16 @@ public class CustomConfirmationDialog : CustomDialog
         confirmButton.Disabled = disabled;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            NodeToGiveFocusOnOpen?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateLabel()
     {
         if (dialogLabel == null)
@@ -155,7 +171,24 @@ public class CustomConfirmationDialog : CustomDialog
 
         cancelButton.Visible = !hideCancelButton;
         cancelEndSpacer.Visible = !hideCancelButton;
-        focusGrabber.NodeToGiveFocusTo = focusGrabber.GetPathTo(hideCancelButton ? confirmButton : cancelButton);
+
+        if (string.IsNullOrEmpty(NodeToGiveFocusOnOpen))
+        {
+            focusGrabber.NodeToGiveFocusTo = focusGrabber.GetPathTo(hideCancelButton ? confirmButton : cancelButton);
+        }
+        else
+        {
+            var customNode = GetNode(NodeToGiveFocusOnOpen);
+
+            if (customNode != null)
+            {
+                focusGrabber.NodeToGiveFocusTo = focusGrabber.GetPathTo(customNode);
+            }
+            else
+            {
+                GD.PrintErr("Could not resolve custom node to give focus to for confirmation dialog");
+            }
+        }
 
         confirmButton.Text = TranslationServer.Translate(confirmText);
         cancelButton.Text = TranslationServer.Translate(cancelText);

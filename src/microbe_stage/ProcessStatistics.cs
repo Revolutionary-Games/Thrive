@@ -96,7 +96,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
             .Where(p => p.Key.IsEnvironmental)
             .ToDictionary(p => p.Key, p => p.Value);
 
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs =>
+    public IReadOnlyDictionary<Compound, float> Outputs =>
         LatestSnapshot?.Outputs ?? throw new InvalidOperationException("No snapshot set");
 
     public float CurrentSpeed
@@ -342,7 +342,7 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         owner.FullSpeedRequiredEnvironmentalInputs;
 
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
+    public IReadOnlyDictionary<Compound, float> Outputs => WritableOutputs;
     public float CurrentSpeed { get; set; }
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-14 13:04+0300\n"
+"POT-Creation-Date: 2023-04-21 15:38+0300\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -64,7 +64,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Prebudiť sa"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:678
+#: ../src/general/base_stage/EditorBase.cs:681
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -134,7 +134,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:372
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:387
 msgid "ALL"
 msgstr "Všetko"
 
@@ -350,7 +350,7 @@ msgstr "stav spustenia:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatický pohyb dopredu"
 
-#: ../src/general/OptionsMenu.cs:963 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:1007 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "Automatické ({0}x{1})"
 
@@ -371,7 +371,7 @@ msgstr "Fáza Mikróbov"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -574,8 +574,13 @@ msgstr "Prehľadávať"
 msgid "BROWSE_WORKSHOP"
 msgstr "Prehľadávať Workshop"
 
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#, fuzzy
+msgid "BUILD_CITY"
+msgstr "Štruktúra"
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
-#: ../src/society_stage/gui/SocietyHUD.tscn:127
+#: ../src/society_stage/gui/SocietyHUD.tscn:129
 #, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "Štruktúra"
@@ -604,8 +609,8 @@ msgstr "Kamera"
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/general/OptionsMenu.tscn:2138
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -723,7 +728,7 @@ msgstr "Celulóza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
 msgid "CELL_TYPE_NAME"
 msgstr "Názov typu bunky"
 
@@ -1050,7 +1055,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIŤ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:323
+#: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Potvrdiť ukončenie"
@@ -1058,6 +1063,15 @@ msgstr "Potvrdiť ukončenie"
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
+
+#: ../src/society_stage/SocietyStage.tscn:85
+msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
+msgstr ""
+
+#: ../src/society_stage/SocietyStage.tscn:86
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1195
@@ -1214,7 +1228,7 @@ msgstr "Vytvoriť nový"
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Vytvoriť nový typ bunky"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:743
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Nové typy buniek môžeš vytvoriť duplikovaním existujúcich a pomenovaním ich. Typy buniek je možné upraviť tak, aby sa špecializovali na rôzne roly. Pri úprave typu bunky sa všetky umiestnené bunky toho istého typu aktualizujú."
 
@@ -1231,7 +1245,7 @@ msgstr ""
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:861
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -1258,6 +1272,17 @@ msgstr "Súčasní vývojári"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "SÚČASNÁ POLOHA"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:38
+#: ../src/society_stage/gui/ResearchScreen.tscn:39
+#, fuzzy
+msgid "CURRENT_RESEARCH_NONE"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
+
+#: ../src/society_stage/gui/ResearchScreen.cs:44
+#, fuzzy
+msgid "CURRENT_RESEARCH_PROGRESS"
+msgstr "Otvoriť nápovedu"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 #, fuzzy
@@ -1307,17 +1332,17 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:217
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Pri dodatočných validáciách bol zistený problém: {0}"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:182
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Tento jazyk je dokončený na {0}%"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:203
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr ""
 
@@ -1342,7 +1367,7 @@ msgstr "Debugovací panel"
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1429
+#: ../src/general/OptionsMenu.cs:1473
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Predvolené výstupné zariadenie"
 
@@ -1795,15 +1820,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia v {0} pre {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1921,7 +1946,7 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:251
+#: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
 msgstr "Odísť"
 
@@ -1970,11 +1995,11 @@ msgstr ""
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:412
+#: ../src/general/base_stage/CreatureStageBase.cs:395
 msgid "EXTINCT_IN_PATCH"
 msgstr "vyhynul v tejto oblasti"
 
-#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
+#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:23
 msgid "EXTINCT_SPECIES"
 msgstr "Vyhynuté druhy"
 
@@ -2134,7 +2159,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Potravový reťazec"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2239,19 +2264,19 @@ msgstr "Generácia:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Opustiť hru"
 
-#: ../src/general/OptionsMenu.cs:977
+#: ../src/general/OptionsMenu.cs:1021
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:954
+#: ../src/general/MainMenu.tscn:953
 msgid "GLES2_MODE_WARNING"
 msgstr "Varovanie režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:955
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
 
-#: ../src/general/OptionsMenu.cs:982
+#: ../src/general/OptionsMenu.cs:1026
 msgid "GLES3"
 msgstr ""
 
@@ -2343,11 +2368,11 @@ msgstr "Hlasitosť GUI"
 msgid "HEALTH"
 msgstr "Zdravie"
 
-#: ../src/general/PauseMenu.tscn:220
+#: ../src/general/PauseMenu.tscn:208
 msgid "HELP"
 msgstr "Pomoc"
 
-#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:207 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ako hrať hru"
 
@@ -2550,7 +2575,7 @@ msgstr ""
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:678
+#: ../src/gui_common/charts/line/LineChart.cs:694
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Neplatné údaje na vykreslenie"
 
@@ -2824,19 +2849,19 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.cs:1469
+#: ../src/general/OptionsMenu.cs:1513
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tento jazyk je dokončený na {0}%"
 
-#: ../src/general/OptionsMenu.cs:1465
+#: ../src/general/OptionsMenu.cs:1509
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Na preklade tohto jazyka sa ešte pracuje ({0}% hotovo)"
 
-#: ../src/general/OptionsMenu.cs:1461
+#: ../src/general/OptionsMenu.cs:1505
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento preklad nie je dokončený ({0}% hotovo) prosím pomôž nám s ním!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
 #, fuzzy
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nedá sa odstrániť posledná organela"
@@ -3166,12 +3191,12 @@ msgstr "Chybu opravíš stlačením tlačidla Zrušiť v editore"
 msgid "LOAD_FINISHED"
 msgstr "Načítanie dokončené"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:204
+#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Načítať hru"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:203
+#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Načítať predošlé uložené hry"
 
@@ -3254,8 +3279,8 @@ msgstr "Neobmedzené"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximálny počet entít:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1146
-#: ../src/gui_common/charts/line/LineChart.cs:1238
+#: ../src/gui_common/charts/line/LineChart.cs:1294
+#: ../src/gui_common/charts/line/LineChart.cs:1387
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Nie je povolené zobraziť viac ako {0} dátových súborov!"
 
@@ -3590,8 +3615,8 @@ msgstr "Minimálne množstvo na detekciu:"
 msgid "MINIMUM_VERSION"
 msgstr "Minimum:"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1152
-#: ../src/gui_common/charts/line/LineChart.cs:1243
+#: ../src/gui_common/charts/line/LineChart.cs:1300
+#: ../src/gui_common/charts/line/LineChart.cs:1392
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Nie je povolené zobraziť menej ako {0} dátových súborov!"
 
@@ -3901,7 +3926,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:568
+#: ../src/late_multicellular_stage/MulticellularStage.cs:577
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
@@ -4031,13 +4056,13 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:764
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:881
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Nové meno"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:874
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Nové meno:"
 
@@ -4101,7 +4126,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr "Tu nič nie je"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:496
+#: ../src/late_multicellular_stage/MulticellularStage.cs:499
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4147,8 +4172,8 @@ msgstr "November"
 msgid "NO_AI"
 msgstr "Žiadne AI"
 
-#: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/gui_common/charts/line/LineChart.cs:690
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2428
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žiadne údaje na zobrazenie"
 
@@ -4193,7 +4218,7 @@ msgstr "Žiadny vybraný mod"
 msgid "NUCLEUS"
 msgstr "Jadro"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4213,8 +4238,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2286
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4242,8 +4267,8 @@ msgstr ""
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Samovražda"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:89
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:114
 #: ../src/modding/ModUploader.tscn:356
 msgid "OK"
@@ -4288,7 +4313,7 @@ msgstr "Otvoriť URL Info"
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Otvoriť ponuku organel"
 
-#: ../src/society_stage/gui/SocietyHUD.tscn:137
+#: ../src/society_stage/gui/SocietyHUD.tscn:139
 #, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Otvoriť nápovedu"
@@ -4327,11 +4352,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Oportunistický"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:235
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Možnosti"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:234
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmeniť nastavenia"
 
@@ -4557,7 +4582,7 @@ msgstr ""
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Kliknutím, ťahaním a priblížením sa môžete pohybovať"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:823
+#: ../src/microbe_stage/PatchMapGenerator.cs:811
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -4602,7 +4627,7 @@ msgstr "Patróni"
 msgid "PAUSED"
 msgstr "POZASTAVENÉ"
 
-#: ../src/general/PauseMenu.tscn:187
+#: ../src/general/PauseMenu.tscn:175
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Vrátiť sa do hry"
 
@@ -4639,6 +4664,7 @@ msgstr "Mierumilovný"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -4715,7 +4741,7 @@ msgstr "Trest za smrť hráča"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(koeficient populácie druhu, ktorý klesne zakaždým keď hráč zomrie)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:356
+#: ../src/general/base_stage/CreatureStageBase.cs:339
 msgid "PLAYER_DIED"
 msgstr "hráč zomrel"
 
@@ -4733,7 +4759,7 @@ msgstr "Hráč vyhynul"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:300
+#: ../src/general/base_stage/CreatureStageBase.cs:283
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč sa rozmnožil"
 
@@ -4769,7 +4795,7 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
-#: ../src/society_stage/gui/SocietyHUD.tscn:210
+#: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POPULÁCIA:"
 
@@ -4781,7 +4807,7 @@ msgstr "populácia:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populácia v oblastiach:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2277
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4873,11 +4899,11 @@ msgid "QUIT"
 msgstr "Ukončiť"
 
 #: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
-#: ../src/general/PauseMenu.tscn:250
+#: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Opustiť hru"
 
-#: ../src/general/PauseMenu.cs:445
+#: ../src/general/PauseMenu.cs:414
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Naozaj chceš ukončiť hru?\n"
@@ -4941,7 +4967,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:227
+#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -4972,6 +4998,11 @@ msgstr "Reprodukcia:"
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
 msgstr "Vyžaduje jadro"
+
+#: ../src/society_stage/gui/ResearchScreen.tscn:16
+#, fuzzy
+msgid "RESEARCH"
+msgstr "Hľadať"
 
 #: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
@@ -5054,7 +5085,7 @@ msgstr "Reagujúci"
 msgid "RESTART_REQUIRED"
 msgstr "Vyžaduje sa reštart"
 
-#: ../src/general/PauseMenu.tscn:188
+#: ../src/general/PauseMenu.tscn:176
 msgid "RESUME"
 msgstr "Pokračovať"
 
@@ -5062,17 +5093,17 @@ msgstr "Pokračovať"
 msgid "RESUME_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:243
+#: ../src/general/PauseMenu.tscn:231
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Návrat do menu"
 
-#: ../src/general/PauseMenu.tscn:242
+#: ../src/general/PauseMenu.tscn:230
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Vrátiť sa do hlavného menu"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:426
+#: ../src/general/PauseMenu.cs:395
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Naozaj chceš odísť do hlavného menu?\n"
@@ -5198,11 +5229,11 @@ msgstr ""
 msgid "SAVE_FAILED"
 msgstr "Uloženie zlyhalo"
 
-#: ../src/general/PauseMenu.tscn:196
+#: ../src/general/PauseMenu.tscn:184
 msgid "SAVE_GAME"
 msgstr "Uložiť hru"
 
-#: ../src/general/PauseMenu.tscn:195
+#: ../src/general/PauseMenu.tscn:183
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Otvor ukladacie menu na uloženie hry"
 
@@ -5317,7 +5348,7 @@ msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 #, fuzzy
@@ -5357,6 +5388,12 @@ msgstr ""
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Vyhynuté druhy"
+
+#: ../src/society_stage/gui/TechWebGUI.cs:124
+#: ../src/society_stage/gui/TechWebGUI.tscn:54
+#, fuzzy
+msgid "SELECT_A_TECHNOLOGY"
+msgstr "Vybrané:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5567,7 +5604,7 @@ msgstr "Umiestniť amoniak"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:794
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5668,6 +5705,11 @@ msgstr ""
 #, fuzzy
 msgid "START_GAME"
 msgstr "Uložiť hru"
+
+#: ../src/society_stage/gui/TechWebGUI.tscn:77
+#, fuzzy
+msgid "START_RESEARCH"
+msgstr "Vyžaduje sa reštart"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -5827,16 +5869,20 @@ msgstr ""
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:220
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:215
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/structures.json:92
+msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:789
@@ -5929,8 +5975,12 @@ msgstr ""
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
-#: ../src/general/base_stage/StrategyStageBase.cs:96
-#: ../src/late_multicellular_stage/MulticellularStage.cs:806
+#: ../simulation_parameters/awakening_stage/technologies.json:30
+msgid "TECHNOLOGY_STEAM_POWER"
+msgstr ""
+
+#: ../src/general/base_stage/StrategyStageBase.cs:184
+#: ../src/late_multicellular_stage/MulticellularStage.cs:820
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6026,7 +6076,7 @@ msgstr ""
 msgid "THREADS"
 msgstr "Vlákna:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:212
+#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6038,7 +6088,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:211
+#: ../src/general/PauseMenu.tscn:199
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
@@ -6358,7 +6408,7 @@ msgstr "Rozpojiť všetky"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Rozpojovací mód"
 
-#: ../src/general/OptionsMenu.cs:1530
+#: ../src/general/OptionsMenu.cs:1574
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6378,7 +6428,7 @@ msgstr "Zrušiť poslednú zmenu"
 msgid "UNKNOWN"
 msgstr "Neznáme"
 
-#: ../src/general/OptionsMenu.cs:987
+#: ../src/general/OptionsMenu.cs:1031
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
@@ -6391,7 +6441,7 @@ msgstr "Neznáme tlačidlo myši"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Neznáme na Windowse"
 
-#: ../src/general/OptionsMenu.cs:1537
+#: ../src/general/OptionsMenu.cs:1581
 msgid "UNKNOWN_VERSION"
 msgstr "Neznáma verzia"
 
@@ -6405,7 +6455,7 @@ msgstr ""
 "Máš neuložené zmeny, ktoré budú zahodené.\n"
 "Chceš pokračovať?"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:277
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:291
 msgid "UNTITLED"
 msgstr "Bez názvu"
 
@@ -6512,7 +6562,7 @@ msgstr "Vertikálne(Osa: {0})"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:996 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:1040 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6781,10 +6831,6 @@ msgstr "Oddialiť"
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Vlastné používateľské meno:"
-
-#, fuzzy
-#~ msgid "CURRENT_USED_RENDERER_NAME"
-#~ msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
 #, fuzzy
 #~ msgid "DISPLAY_DRIVER_NAME"
