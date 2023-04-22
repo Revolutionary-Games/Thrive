@@ -874,7 +874,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         foreach (var detectedCompound in microbe.GetDetectedCompounds(Clouds))
         {
-             UpdateOrCreateGuidanceLine(currentLineIndex++,
+            UpdateOrCreateGuidanceLine(currentLineIndex++,
                 null, detectedCompound.Colour, position, detectedCompound.Target, true);
         }
 

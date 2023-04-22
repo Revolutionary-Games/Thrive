@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
@@ -90,7 +89,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is ChemoreceptorUpgrades configuration)
-       {
+        {
             LoadConfiguration(configuration, shownCompoundChoices, shownSpeciesChoices);
         }
         else
@@ -171,12 +170,10 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
-            if (TargetTypesPath != null)
-                TargetTypesPath.Dispose();
-            if (CompoundsPath != null)
-                CompoundsPath.Dispose();
-            if (SpeciesPath != null)
-                SpeciesPath.Dispose();
+            TargetTypesPath?.Dispose();
+            CompoundsPath?.Dispose();
+            SpeciesPath?.Dispose();
+
             if (CompoundsPath != null || SpeciesPath != null || TargetTypesPath != null)
             {
                 MaximumDistancePath.Dispose();

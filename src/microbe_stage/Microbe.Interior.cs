@@ -183,10 +183,8 @@ public partial class Microbe
     ///   Called periodically to report the chemoreception settings of the microbe
     /// </summary>
     [JsonProperty]
-    public Action<Microbe,
-        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>,
-        IEnumerable<(Species Species, float Range, Color Colour)>>?
-        OnChemoreceptionInfo { get; set; }
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>,
+        IEnumerable<(Species Species, float Range, Color Colour)>>? OnChemoreceptionInfo { get; set; }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
