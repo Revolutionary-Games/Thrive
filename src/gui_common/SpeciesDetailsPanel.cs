@@ -50,7 +50,7 @@ public class SpeciesDetailsPanel : MarginContainer
     {
         base._Notification(what);
 
-        if (what == NotificationTranslationChanged)
+        if (what == NotificationTranslationChanged && previewSpecies != null)
             UpdateSpeciesPreview();
     }
 
