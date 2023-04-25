@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-21 15:38+0300\n"
-"PO-Revision-Date: 2023-04-15 22:02+0000\n"
-"Last-Translator: 阿斯加德 <1336527854@qq.com>\n"
+"PO-Revision-Date: 2023-04-25 19:02+0000\n"
+"Last-Translator: txs1234 <txs20061216@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -55,11 +55,11 @@ msgstr "深海带"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 #, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "唤醒"
+msgstr "唤醒({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "进入启蒙时代。一旦你有足够的脑力，就可以使用（需要有轴突组织）"
+msgstr "进入启蒙阶段。一旦你有足够的脑力就可以使用（需要带轴突的组织）"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:681
@@ -485,13 +485,12 @@ msgid "BENCHMARKS"
 msgstr "载入"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "载入完成"
+msgstr "基准测试完成"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "基准测试中："
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
