@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-21 15:38+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
-"Last-Translator: txs1234 <txs20061216@126.com>\n"
+"Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -964,9 +964,8 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，决定明度"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "能力"
+msgstr "常见能力"
 
 #: ../simulation_parameters/common/input_options.json:169
 msgid "COMMON_EDITING_AND_STRATEGY"
@@ -1060,14 +1059,12 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "确认覆盖"
 
 #: ../src/society_stage/SocietyStage.tscn:85
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr "工业阶段"
+msgstr "进入工业阶段？"
 
 #: ../src/society_stage/SocietyStage.tscn:86
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "（AI物种突变的速度）"
+msgstr "通过建立工厂，你将进入工业阶段。继续下一阶段？"
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1195
@@ -1272,14 +1269,12 @@ msgstr "目前位置"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:38
 #: ../src/society_stage/gui/ResearchScreen.tscn:39
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "显示细胞器名称"
+msgstr "没有搜索到任何内容"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:44
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "打开帮助页面"
+msgstr "当前正在研究：{0}（{1}）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -1369,6 +1364,8 @@ msgstr "死亡数"
 #: ../src/engine/DebugOverlays.tscn:181
 msgid "DEBUG_COORDINATES"
 msgstr ""
+"位置坐标：{0}\n"
+"朝向坐标：{1}"
 
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
@@ -1624,7 +1621,7 @@ msgstr "不再警告"
 #: ../src/general/OptionsMenu.tscn:637
 #, fuzzy
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
-msgstr "显示背景粒子"
+msgstr "显示3D菜单背景"
 
 #: ../src/general/OptionsMenu.tscn:613
 msgid "DISPLAY_ABILITIES_BAR"
@@ -1799,9 +1796,8 @@ msgid "EASTER_EGGS_EXPLANATION"
 msgstr "（游戏中会随机生成彩蛋）"
 
 #: ../src/general/OptionsMenu.tscn:1552
-#, fuzzy
 msgid "EDGE_PAN_SPEED"
-msgstr "消化速度"
+msgstr "旋转速度："
 
 #: ../simulation_parameters/common/input_options.json:119
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
@@ -2529,13 +2525,12 @@ msgid "INTERACTION_CRAFT"
 msgstr "合成..."
 
 #: ../src/awakening_stage/InteractionType.cs:14
-#, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
-msgstr "捡起"
+msgstr "投放材料"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:453
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "投放材料（没有合适的携带物品）"
 
 #: ../src/awakening_stage/InteractionType.cs:23
 msgid "INTERACTION_FOUND_SETTLEMENT"
@@ -3381,9 +3376,8 @@ msgid "MICROBE"
 msgstr "微生物"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
-#, fuzzy
 msgid "MICROBES_COUNT"
-msgstr "微生物"
+msgstr "微生物计数："
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:585
@@ -3514,7 +3508,6 @@ msgstr ""
 "尝试所有按键几秒钟以继续。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
-#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
@@ -3962,7 +3955,7 @@ msgstr "成为陆地生物？"
 #: ../src/late_multicellular_stage/MulticellularStage.cs:577
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
-msgstr "成为陆地生物？"
+msgstr "成为陆地生物中......"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
@@ -5081,9 +5074,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
-#, fuzzy
 msgid "RESOURCE_FOOD"
-msgstr "木材"
+msgstr "食物"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:3
 msgid "RESOURCE_ROCK"
@@ -5467,14 +5459,12 @@ msgid "SHOW_HELP"
 msgstr "显示帮助"
 
 #: ../src/general/OptionsMenu.tscn:1840
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr "{0}{1}"
+msgstr "自动显示新的补丁说明"
 
 #: ../src/general/OptionsMenu.tscn:1838
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0}{1}"
+msgstr "在主菜单中自动显示新版Thrive的补丁说明"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
 msgid "SHOW_TUTORIALS"
@@ -5901,8 +5891,9 @@ msgstr ""
 "if is It total cost ,\"total\" traslate to \"总共需要{2}单位\""
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr ""
+msgstr "{0}（当前缺少{1}单位，总共需要：{2}单位）"
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
@@ -6682,9 +6673,8 @@ msgid "VIEW_ALL"
 msgstr "查看所有"
 
 #: ../src/general/OptionsMenu.tscn:1848
-#, fuzzy
 msgid "VIEW_PATCH_NOTES"
-msgstr "{0}{1}"
+msgstr "查看补丁说明"
 
 #: ../src/general/OptionsMenu.tscn:1846
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
