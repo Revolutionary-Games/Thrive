@@ -46,9 +46,6 @@ using Godot;
 /// [Tool]
 public class CustomDialog : CustomWindow
 {
-    [Export]
-    public NodePath OrderingChildPath = ".";
-
     private string windowTitle = string.Empty;
     private string translatedWindowTitle = string.Empty;
 
@@ -58,9 +55,6 @@ public class CustomDialog : CustomWindow
     private Vector2 dragOffsetFar;
 
 #pragma warning disable CA2213
-    private Node orderingChild = null!;
-    private Node orderingNode = null!;
-
     private TextureButton? closeButton;
 
     private StyleBox customPanel = null!;
@@ -186,8 +180,7 @@ public class CustomDialog : CustomWindow
         scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
         customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
 
-        orderingChild = GetNode(OrderingChildPath);
-        orderingNode = orderingChild.GetParent();
+        ConnectToWindowReorderingNodes();
 
         base._EnterTree();
     }
@@ -274,15 +267,7 @@ public class CustomDialog : CustomWindow
 
                 dragOffsetFar = RectPosition + RectSize - GetGlobalMousePosition();
 
-                if (orderingChild.GetIndex() != orderingNode.GetChildCount() - 1)
-                {
-                    // set this window on top of others on the same ordering layer
-                    orderingChild.Raise();
-
-                    // For unexplained reasons this has to be here to make the window appear on top
-                    foreach (var children in orderingNode.GetChildren())
-                        (children as Control)?.Raise();
-                }
+                EmitSignal(nameof(Dragged), this);
             }
             else if (dragType != DragType.None && !mouseButton.Pressed)
             {
@@ -400,16 +385,6 @@ public class CustomDialog : CustomWindow
             RectSize = new Vector2(
                 Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            OrderingChildPath.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

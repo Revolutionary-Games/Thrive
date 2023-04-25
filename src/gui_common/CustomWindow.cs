@@ -11,10 +11,23 @@
 /// </remarks>
 public class CustomWindow : Control
 {
+    /// <summary>
+    ///   Ancestor of this Node that is also a sibling of AddWindowReorderingSupportToSiblings that you want to connect to.
+    /// </summary>
+    [Export]
+    public Godot.Collections.Array<NodePath> WindowReorderingPaths = new();
+
+    // Ignored when window reordering paths are not empty
+    [Export]
+    public int AutomaticWindowReorderingDepth = 2;
+
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;
 
     private bool hasBeenRemovedFromTree;
+
+    [Signal]
+    public delegate void Dragged(CustomWindow window);
 
     /// <summary>
     ///   Emitted when this window is closed or hidden.
@@ -147,6 +160,17 @@ public class CustomWindow : Control
                 break;
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            foreach (var path in WindowReorderingPaths)
+                path.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -300,6 +324,54 @@ public class CustomWindow : Control
             var fullRect = GetFullRect();
             RectPosition = fullRect.Position;
             RectSize = fullRect.Size;
+        }
+    }
+
+    protected void ConnectToWindowReorderingNodes()
+    {
+        // Try connect to WindowReorderingSupport automatically when no manual path is set
+        if (WindowReorderingPaths.Count == 0)
+        {
+            // No connected WindowReorderingSupport
+            if (AutomaticWindowReorderingDepth == 0)
+                return;
+
+            Node parent = GetParent();
+            Node lastParent = this;
+
+            int i = 0;
+            do
+            {
+                // path not found
+                if (parent is null)
+                    break;
+
+                AddWindowReorderingSupportToSiblings windowReorderingSupport = parent.GetNodeOrNull
+                    <AddWindowReorderingSupportToSiblings>(nameof(AddWindowReorderingSupportToSiblings));
+
+                // Path found found
+                if (windowReorderingSupport != null)
+                {
+                    windowReorderingSupport.ConnectWindow(this, lastParent);
+                    break;
+                }
+
+                lastParent = parent;
+                parent = lastParent.GetParent();
+                i++;
+            }
+            while (i <= AutomaticWindowReorderingDepth);
+
+            return;
+        }
+
+        // Connect WindowReorderingSupport manually
+        foreach (var path in WindowReorderingPaths)
+        {
+            // TODO : rewrite this to use WindowReorderingSupportPaths node instead of its sibling
+            var node = GetNode(path);
+            node.GetParent().GetNode<AddWindowReorderingSupportToSiblings>(
+                nameof(AddWindowReorderingSupportToSiblings)).ConnectWindow(this, node);
         }
     }
 
