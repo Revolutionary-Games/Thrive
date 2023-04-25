@@ -464,15 +464,23 @@ value = 20.0
 margin_top = 275.0
 margin_right = 360.0
 margin_bottom = 300.0
-focus_neighbour_bottom = NodePath("../HBoxContainer10/ControllerPromptType")
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Menu3DBackgroundsToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 310.0
-margin_right = 702.0
+margin_right = 363.0
 margin_bottom = 335.0
+focus_neighbour_bottom = NodePath("../HBoxContainer10/ControllerPromptType")
+focus_next = NodePath("../HBoxContainer10/ControllerPromptType")
+size_flags_horizontal = 0
+text = "DISPLAY_3D_MENU_BACKGROUNDS"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 345.0
+margin_right = 702.0
+margin_bottom = 370.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_right = 106.0
@@ -500,9 +508,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 345.0
+margin_top = 380.0
 margin_right = 702.0
-margin_bottom = 370.0
+margin_bottom = 405.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 margin_right = 230.0
@@ -527,9 +535,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 380.0
+margin_top = 415.0
 margin_right = 702.0
-margin_bottom = 405.0
+margin_bottom = 440.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
 margin_right = 149.0
@@ -554,9 +562,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 415.0
+margin_top = 450.0
 margin_right = 702.0
-margin_bottom = 440.0
+margin_bottom = 475.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 margin_right = 34.0
@@ -571,9 +579,9 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
 
 [node name="HBoxContainer10" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 450.0
+margin_top = 485.0
 margin_right = 702.0
-margin_bottom = 475.0
+margin_bottom = 510.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 margin_right = 364.0
@@ -592,8 +600,9 @@ margin_right = 702.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 focus_neighbour_left = NodePath("../../DisplayAbilitiesBar")
-focus_neighbour_top = NodePath("../../DisplayBackgroundParticles")
+focus_neighbour_top = NodePath("../../Menu3DBackgroundsToggle")
 focus_neighbour_bottom = NodePath("../../DisplayAbilitiesBar")
+focus_previous = NodePath("../../Menu3DBackgroundsToggle")
 size_flags_vertical = 0
 text = "AUTO"
 items = [ "AUTO", null, false, 0, null, "XBOX360", null, false, 1, null, "XBOX_ONE", null, false, 2, null, "XBOX_SERIES", null, false, 3, null, "PLAYSTATION_3", null, false, 4, null, "PLAYSTATION_4", null, false, 5, null, "PLAYSTATION_5", null, false, 6, null ]
@@ -603,9 +612,9 @@ __meta__ = {
 }
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 485.0
+margin_top = 520.0
 margin_right = 247.0
-margin_bottom = 510.0
+margin_bottom = 545.0
 rect_pivot_offset = Vector2( -621, -95 )
 focus_neighbour_top = NodePath("../HBoxContainer10/ControllerPromptType")
 size_flags_horizontal = 0
@@ -613,28 +622,21 @@ pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 520.0
+margin_top = 555.0
 margin_right = 300.0
-margin_bottom = 545.0
+margin_bottom = 580.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 555.0
-margin_right = 238.0
-margin_bottom = 580.0
-size_flags_horizontal = 0
-text = "DISPLAY_PART_NAMES"
-
-[node name="Menu3DBackgroundsToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 590.0
-margin_right = 363.0
+margin_right = 238.0
 margin_bottom = 615.0
 focus_neighbour_bottom = NodePath("../../../../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../../../../HBoxContainer/Back")
 size_flags_horizontal = 0
-text = "DISPLAY_3D_MENU_BACKGROUNDS"
+text = "DISPLAY_PART_NAMES"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -2230,11 +2232,11 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/ControllerPromptType" to="." method="OnControllerTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
