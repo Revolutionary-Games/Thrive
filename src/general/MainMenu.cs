@@ -496,13 +496,6 @@ public class MainMenu : NodeWithInput
 
     private void SetBackgroundScene(string path)
     {
-        background.Visible = false;
-        if (created3DBackground != null)
-        {
-            created3DBackground.DetachAndQueueFree();
-            created3DBackground = null;
-        }
-
         var backgroundScene = GD.Load<PackedScene>(path);
 
         if (backgroundScene == null)
@@ -515,6 +508,14 @@ public class MainMenu : NodeWithInput
         // lag spike when loading the main menu
         Invoke.Instance.Queue(() =>
         {
+            // These are done here to ensure there isn't a weird single frame with a grey menu background
+            background.Visible = false;
+            if (created3DBackground != null)
+            {
+                created3DBackground.DetachAndQueueFree();
+                created3DBackground = null;
+            }
+
             created3DBackground = backgroundScene.Instance<Spatial>();
             AddChild(created3DBackground);
         });
