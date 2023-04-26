@@ -362,6 +362,7 @@ public class CustomDialog : CustomWindow
         base.OnHidden();
         UpdateChildRects();
         closeHovered = false;
+        closeFocused = false;
     }
 
     protected override Rect2 GetFullRect()
@@ -396,8 +397,9 @@ public class CustomDialog : CustomWindow
 
     private static StyleBox CreateCloseButtonFocusStyle()
     {
-        // Note that thrive_theme.tres as the normal hovered style for this, this kind of style can't be specified
-        // in the theme, so instead this needs to be defined through the code here
+        // Note that thrive_theme.tres has the normal hovered style for this, this kind of style can't be specified
+        // in the theme, so instead this needs to be defined through the code here. So it's important to keep
+        // these two styles close enough if the button styling is overhauled.
         return new StyleBoxFlat
         {
             BgColor = new Color(0.05f, 0.05f, 0.05f, 0.5f),
