@@ -994,9 +994,7 @@ public class ModManager : Control
                 }
 
                 selectedModPreviewImagesContainer.CurrentTab = 0;
-                galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
-                    selectedModPreviewImagesContainer.GetTabCount();
-                UpdateGalleryButtons();
+                UpdateGalleryUI();
             }
             else
             {
@@ -1036,8 +1034,10 @@ public class ModManager : Control
         errorInfoLabel.Hide();
     }
 
-    private void UpdateGalleryButtons()
+    private void UpdateGalleryUI()
     {
+        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
+            selectedModPreviewImagesContainer.GetTabCount();
         galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
             selectedModPreviewImagesContainer.GetTabCount() - 1;
         galleryLeftButton.Disabled = selectedModPreviewImagesContainer.CurrentTab <= 0;
@@ -1541,22 +1541,11 @@ public class ModManager : Control
         otherModInfoDialog.PopupCenteredShrink();
     }
 
-    private void GalleryRightArrowPressed()
+    private void GalleryArrowPressed(int movementAmount)
     {
         GUICommon.Instance.PlayButtonPressSound();
-        selectedModPreviewImagesContainer.CurrentTab += 1;
-        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
-            selectedModPreviewImagesContainer.GetTabCount();
-        UpdateGalleryButtons();
-    }
-
-    private void GalleryLeftArrowPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        selectedModPreviewImagesContainer.CurrentTab -= 1;
-        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
-            selectedModPreviewImagesContainer.GetTabCount();
-        UpdateGalleryButtons();
+        selectedModPreviewImagesContainer.CurrentTab += movementAmount;
+        UpdateGalleryUI();
     }
 
     private void MoveButtonPressed(bool moveUp, int amount)
