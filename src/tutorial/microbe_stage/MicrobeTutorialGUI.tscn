@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=14]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -42,6 +43,8 @@ EngulfedExplanationPath = NodePath("EngulfedTutorial")
 EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
 EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
+[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 14 )]
+
 [node name="MicrobeWelcome" parent="." instance=ExtResource( 13 )]
 anchor_left = 1.0
 anchor_top = 0.5
@@ -59,7 +62,6 @@ __meta__ = {
 Exclusive = true
 ExclusiveAllowCloseOnEscape = false
 WindowTitle = "TUTORIAL"
-OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_INITIAL"
 DescriptionForController = ""
 ShowDelay = 0.0
@@ -143,7 +145,6 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 95.0
 rect_min_size = Vector2( 260, 274 )
-OrderingChildPath = NodePath("..")
 Description = "MICROBE_STAGE_CONTROL_TEXT"
 DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
@@ -204,7 +205,6 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
-OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_COLLECT_TEXT"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource( 10 )]
@@ -216,7 +216,6 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
-OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource( 10 )]
@@ -228,7 +227,6 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
-OrderingChildPath = NodePath(".")
 Description = "MICROBE_STAGE_HEALTH_TEXT"
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource( 10 )]
@@ -241,7 +239,6 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 91.0
 rect_min_size = Vector2( 260, 270 )
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
 [node name="EditorButtonHighlight" parent="." instance=ExtResource( 11 )]
@@ -262,7 +259,6 @@ margin_right = 0.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 260, 260 )
 PreventsMouseCaptureWhileOpen = true
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 10 )]
@@ -275,7 +271,6 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
 PreventsMouseCaptureWhileOpen = true
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 
 [node name="CheckHelpMenu" parent="." instance=ExtResource( 13 )]
@@ -293,7 +288,6 @@ __meta__ = {
 "_editor_description_": ""
 }
 WindowTitle = "TUTORIAL"
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 DescriptionForController = ""
 ShowDelay = 0.5
@@ -341,7 +335,6 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 
 [node name="EngulfmentTutorial" parent="." instance=ExtResource( 10 )]
@@ -353,7 +346,6 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 
 [node name="EngulfedTutorial" parent="." instance=ExtResource( 10 )]
@@ -367,7 +359,6 @@ margin_right = 0.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 260, 275 )
 PreventsMouseCaptureWhileOpen = true
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 
 [node name="LeaveColonyTutorial" parent="." instance=ExtResource( 10 )]
@@ -380,7 +371,6 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 260, 275 )
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
 [node name="EarlyMulticellularWelcome" parent="." instance=ExtResource( 10 )]
@@ -391,7 +381,6 @@ margin_bottom = -260.0
 rect_min_size = Vector2( 450, 460 )
 Exclusive = true
 PreventsMouseCaptureWhileOpen = true
-OrderingChildPath = NodePath(".")
 Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 
 [node name="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer" index="0"]

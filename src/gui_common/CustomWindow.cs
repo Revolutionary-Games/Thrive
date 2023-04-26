@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   A custom Control type which defines top-level Controls that also behaves like a Popup.
@@ -12,10 +13,11 @@
 public class CustomWindow : Control
 {
     /// <summary>
-    ///   Ancestor of this Node that is also a sibling of AddWindowReorderingSupportToSiblings that you want to connect to.
+    ///   Ancestor of this Node that is also a sibling of AddWindowReorderingSupportToSiblings
+    ///   that you want to connect to.
     /// </summary>
     [Export]
-    public Godot.Collections.Array<NodePath> WindowReorderingPaths = new();
+    public Array<NodePath> WindowReorderingPaths = new();
 
     // Ignored when window reordering paths are not empty
     [Export]
@@ -25,6 +27,10 @@ public class CustomWindow : Control
     private bool previousVisibilityState;
 
     private bool hasBeenRemovedFromTree;
+
+#pragma warning disable CA2213
+    private Array<AddWindowReorderingSupportToSiblings> windowReorderingNodes = new();
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void Dragged(CustomWindow window);
@@ -160,17 +166,6 @@ public class CustomWindow : Control
                 break;
             }
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            foreach (var path in WindowReorderingPaths)
-                path.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -329,11 +324,12 @@ public class CustomWindow : Control
 
     protected void ConnectToWindowReorderingNodes()
     {
-        // Try connect to WindowReorderingSupport automatically when no manual path is set
         if (WindowReorderingPaths.Count == 0)
         {
+            // No manual path is set, try connect to WindowReorderingSupport automatically
+
             // No connected WindowReorderingSupport
-            if (AutomaticWindowReorderingDepth == 0)
+            if (AutomaticWindowReorderingDepth <= 0)
                 return;
 
             Node parent = GetParent();
@@ -344,25 +340,25 @@ public class CustomWindow : Control
             {
                 // path not found
                 if (parent is null)
-                    break;
+                    return;
 
                 AddWindowReorderingSupportToSiblings windowReorderingSupport = parent.GetNodeOrNull
                     <AddWindowReorderingSupportToSiblings>(nameof(AddWindowReorderingSupportToSiblings));
 
-                // Path found found
+                // Path found
                 if (windowReorderingSupport != null)
                 {
                     windowReorderingSupport.ConnectWindow(this, lastParent);
-                    break;
+                    windowReorderingNodes.Add(windowReorderingSupport);
+                    return;
                 }
 
                 lastParent = parent;
                 parent = lastParent.GetParent();
+
                 i++;
             }
-            while (i <= AutomaticWindowReorderingDepth);
-
-            return;
+            while (i < AutomaticWindowReorderingDepth);
         }
 
         // Connect WindowReorderingSupport manually
@@ -373,6 +369,25 @@ public class CustomWindow : Control
             node.GetParent().GetNode<AddWindowReorderingSupportToSiblings>(
                 nameof(AddWindowReorderingSupportToSiblings)).ConnectWindow(this, node);
         }
+    }
+
+    protected void DisconnectFromWindowReorderingNodes()
+    {
+        foreach (var node in windowReorderingNodes)
+            node.DisconnectWindow(this);
+
+        windowReorderingNodes.Clear();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            foreach (var path in WindowReorderingPaths)
+                path.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

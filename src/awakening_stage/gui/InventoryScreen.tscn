@@ -67,33 +67,6 @@ GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
 
-[node name="GroundPanel" parent="." instance=ExtResource( 2 )]
-anchor_top = 0.74
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 100.0
-margin_top = 27.2
-margin_right = -1138.0
-margin_bottom = -120.0
-WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
-Resizable = true
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GroundPanel"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 240, 40 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-follow_focus = true
-scroll_vertical_enabled = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel/ScrollContainer"]
-margin_right = 240.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 5
-
 [node name="MainInventory" parent="." instance=ExtResource( 2 )]
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -101,6 +74,7 @@ margin_left = 100.0
 margin_top = 100.0
 margin_right = -465.0
 margin_bottom = -559.0
+AutomaticWindowReorderingDepth = 0
 WindowTitle = "INVENTORY_TITLE"
 Resizable = true
 
@@ -158,6 +132,33 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="GroundPanel" parent="." instance=ExtResource( 2 )]
+anchor_top = 0.74
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 27.2
+margin_right = -1138.0
+margin_bottom = -120.0
+WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
+Resizable = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GroundPanel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 240, 40 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_vertical_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GroundPanel/ScrollContainer"]
+margin_right = 240.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
 
 [node name="CraftingPanel" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.5
@@ -296,12 +297,12 @@ text = "CRAFTING_TAKE_ALL"
 anims/Flash = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[connection signal="Cancelled" from="GroundPanel" to="." method="OnGroundPanelCancelled"]
-[connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelBecameHidden"]
 [connection signal="Closed" from="MainInventory" to="." method="OnInventoryPanelClosed"]
 [connection signal="resized" from="MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots" to="." method="UpdateEquipmentSlotPositions"]
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground" to="." method="ToggleGroundPanel"]
 [connection signal="toggled" from="MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting" to="." method="ToggleCraftingPanel"]
+[connection signal="Cancelled" from="GroundPanel" to="." method="OnGroundPanelCancelled"]
+[connection signal="Closed" from="GroundPanel" to="." method="OnGroundPanelBecameHidden"]
 [connection signal="Cancelled" from="CraftingPanel" to="." method="OnCraftingPanelCancelled"]
 [connection signal="Closed" from="CraftingPanel" to="." method="OnCraftingPanelBecameHidden"]
 [connection signal="pressed" from="CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs" to="." method="ClearCraftingInputs"]
