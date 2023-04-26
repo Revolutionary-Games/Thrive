@@ -991,4 +991,13 @@ public class MainMenu : NodeWithInput
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             () => { SceneManager.Instance.SwitchToScene("res://src/benchmark/microbe/MicrobeBenchmark.tscn"); }, false);
     }
+
+    private void OnNewGameIntroVideoStarted()
+    {
+        if (created3DBackground != null)
+        {
+            // Hide the background again when playing a video as the 3D backgrounds are performance intensive
+            created3DBackground.Visible = false;
+        }
+    }
 }
