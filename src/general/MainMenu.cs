@@ -442,8 +442,6 @@ public class MainMenu : NodeWithInput
         // Set initial menu
         SwitchMenu();
 
-        RandomizeBackground();
-
         // Easter egg message
         thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
@@ -652,6 +650,10 @@ public class MainMenu : NodeWithInput
         StartMusic();
 
         introVideoPassed = true;
+
+        // Load the menu background only here as the 3D ones are performance intensive so they aren't very nice to
+        // consume power unnecessarily while showing the video
+        RandomizeBackground();
     }
 
     private void CheckStartupSuccess()
