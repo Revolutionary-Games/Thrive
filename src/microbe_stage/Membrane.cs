@@ -72,7 +72,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
     }
 
     /// <summary>
-    ///   Organelle positions of the microbe, needs to be set for the membrane to appear
+    ///   Organelle positions of the microbe, needs to be set for the membrane to appear. This includes all hex
+    ///   positions to work better with cells that have multihex organelles.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -81,17 +82,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
     ///   </para>
     /// </remarks>
     public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
-
-    /// <summary>
-    ///   Whether the microbe has multihex organelles, needed for membrane generation
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is a workaround for https://github.com/Revolutionary-Games/Thrive/issues/4117
-    ///     TODO: Check if this can be removed once that issue is fixed
-    ///   </para>
-    /// </remarks>
-    public bool HasMultihexOrganelles { get; set; } = false;
 
     /// <summary>
     ///   Returns a convex shaped 3-Dimensional array of vertices from the generated <see cref="vertices2D"/>.
@@ -660,10 +650,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private void GenerateMembranePoints(List<Vector2> sourceBuffer, List<Vector2> targetBuffer)
     {
-        float membraneDistanceToOrganelles = HasMultihexOrganelles ?
-            Constants.MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX :
-            Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
-
         // Move all the points in the source buffer close to organelles
         // This operation used to be iterative but this is now a much faster version that moves things all the way in
         // a single step
@@ -672,7 +658,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
             var closestOrganelle = FindClosestOrganelles(sourceBuffer[i]);
 
             var direction = (sourceBuffer[i] - closestOrganelle).Normalized();
-            var movement = direction * membraneDistanceToOrganelles;
+            var movement = direction * Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
 
             sourceBuffer[i] = closestOrganelle + movement;
         }
