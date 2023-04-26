@@ -994,10 +994,9 @@ public class ModManager : Control
                 }
 
                 selectedModPreviewImagesContainer.CurrentTab = 0;
-                galleryLabel.Text = TranslationServer.Translate("MOD_LOADER_GALLERY_STARTING_NUMBER") + selectedModPreviewImagesContainer.GetTabCount();
-                galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
-                    selectedModPreviewImagesContainer.GetTabCount() - 1;
-                galleryLeftButton.Disabled = selectedModPreviewImagesContainer.CurrentTab <= 0;
+                galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
+                    selectedModPreviewImagesContainer.GetTabCount();
+                UpdateGalleryButtons();
             }
             else
             {
@@ -1035,6 +1034,13 @@ public class ModManager : Control
         }
 
         errorInfoLabel.Hide();
+    }
+
+    private void UpdateGalleryButtons()
+    {
+        galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
+            selectedModPreviewImagesContainer.GetTabCount() - 1;
+        galleryLeftButton.Disabled = selectedModPreviewImagesContainer.CurrentTab <= 0;
     }
 
     private List<ImageTexture> LoadModPreviewImages(FullModDetails mod)
@@ -1541,9 +1547,7 @@ public class ModManager : Control
         selectedModPreviewImagesContainer.CurrentTab += 1;
         galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
             selectedModPreviewImagesContainer.GetTabCount();
-        galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
-            selectedModPreviewImagesContainer.GetTabCount() - 1;
-        galleryLeftButton.Disabled = selectedModPreviewImagesContainer.CurrentTab <= 0;
+        UpdateGalleryButtons();
     }
 
     private void GalleryLeftArrowPressed()
@@ -1552,9 +1556,7 @@ public class ModManager : Control
         selectedModPreviewImagesContainer.CurrentTab -= 1;
         galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
             selectedModPreviewImagesContainer.GetTabCount();
-        galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
-            selectedModPreviewImagesContainer.GetTabCount() - 1;
-        galleryLeftButton.Disabled = selectedModPreviewImagesContainer.CurrentTab <= 0;
+        UpdateGalleryButtons();
     }
 
     private void MoveButtonPressed(bool moveUp, int amount)

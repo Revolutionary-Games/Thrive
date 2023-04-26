@@ -119,7 +119,6 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
-Menu3DBackgroundScenes = [ "res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn" ]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")
@@ -889,6 +888,9 @@ expand = true
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false
+DisplayMenu3DBackgroundsTogglePath = null
+MouseEdgePanEnabledPath = null
+MouseEdgePanSensitivityPath = null
 
 [node name="SaveManagerGUI" parent="." instance=ExtResource( 2 )]
 visible = false
@@ -902,8 +904,10 @@ visible = false
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
 margin_bottom = 628.0
+Exclusive = false
 
 [node name="GalleryViewer" parent="." instance=ExtResource( 17 )]
+Exclusive = false
 PreventsMouseCaptureWhileOpen = true
 
 [node name="CreditsView" type="Control" parent="."]
@@ -951,6 +955,7 @@ margin_top = 28.0
 margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
+Exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
@@ -973,12 +978,14 @@ DialogType = 1
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 550, 370 )
+Exclusive = false
 WindowTitle = "SAFE_MODE_TITLE"
 HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
 rect_min_size = Vector2( 400, 350 )
+Exclusive = false
 WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
@@ -986,6 +993,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 margin_right = 163.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 500, 0 )
+Exclusive = false
 WindowTitle = "THANK_YOU_TITLE"
 HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE"
@@ -996,6 +1004,7 @@ NoticeType = 1
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 500, 0 )
+Exclusive = false
 WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
