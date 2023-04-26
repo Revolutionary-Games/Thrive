@@ -102,7 +102,7 @@ public class MainMenu : NodeWithInput
 
 #pragma warning disable CA2213
     private TextureRect background = null!;
-    private Node? created3DBackground;
+    private Spatial? created3DBackground;
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -517,7 +517,7 @@ public class MainMenu : NodeWithInput
         // lag spike when loading the main menu
         Invoke.Instance.Queue(() =>
         {
-            created3DBackground = backgroundScene.Instance();
+            created3DBackground = backgroundScene.Instance<Spatial>();
             AddChild(created3DBackground);
         });
     }
@@ -931,12 +931,24 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(uint.MaxValue, false);
         galleryViewer.OpenFullRect();
         Jukebox.Instance.PlayCategory("ArtGallery");
+
+        if (created3DBackground != null)
+        {
+            // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
+            // scene underneath it is not the best
+            created3DBackground.Visible = false;
+        }
     }
 
     private void OnReturnFromArtGallery()
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
+
+        if (created3DBackground != null)
+        {
+            created3DBackground.Visible = true;
+        }
     }
 
     private void OnWebsitesButtonPressed()
