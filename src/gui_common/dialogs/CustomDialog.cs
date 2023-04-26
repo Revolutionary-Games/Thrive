@@ -46,10 +46,13 @@ using Godot;
 /// [Tool]
 public class CustomDialog : CustomWindow
 {
+    private static readonly Lazy<StyleBox> CloseButtonFocus = new(CreateCloseButtonFocusStyle);
+
     private string windowTitle = string.Empty;
     private string translatedWindowTitle = string.Empty;
 
     private bool closeHovered;
+    private bool closeFocused;
 
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
@@ -180,6 +183,10 @@ public class CustomDialog : CustomWindow
         scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
         customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
 
+        // Make the close button style be fully created when this is initialized
+        if (showCloseButton)
+            _ = CloseButtonFocus.Value;
+
         ConnectToWindowReorderingNodes();
 
         base._EnterTree();
@@ -249,6 +256,10 @@ public class CustomDialog : CustomWindow
         if (closeHovered)
         {
             DrawStyleBox(closeButtonHighlight, closeButton!.GetRect());
+        }
+        else if (closeFocused)
+        {
+            DrawStyleBox(CloseButtonFocus.Value, closeButton!.GetRect());
         }
     }
 
@@ -355,6 +366,7 @@ public class CustomDialog : CustomWindow
         base.OnHidden();
         UpdateChildRects();
         closeHovered = false;
+        closeFocused = false;
     }
 
     protected override Rect2 GetFullRect()
@@ -385,6 +397,26 @@ public class CustomDialog : CustomWindow
             RectSize = new Vector2(
                 Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
         }
+    }
+
+    private static StyleBox CreateCloseButtonFocusStyle()
+    {
+        // Note that thrive_theme.tres has the normal hovered style for this, this kind of style can't be specified
+        // in the theme, so instead this needs to be defined through the code here. So it's important to keep
+        // these two styles close enough if the button styling is overhauled.
+        return new StyleBoxFlat
+        {
+            BgColor = new Color(0.05f, 0.05f, 0.05f, 0.5f),
+            BorderColor = new Color(0.8f, 0.8f, 0.8f, 0.9f),
+            CornerRadiusTopLeft = 2,
+            CornerRadiusTopRight = 2,
+            CornerRadiusBottomRight = 2,
+            CornerRadiusBottomLeft = 2,
+            ExpandMarginLeft = 3,
+            ExpandMarginRight = 3,
+            ExpandMarginTop = 3,
+            ExpandMarginBottom = 3,
+        };
     }
 
     /// <summary>
@@ -547,6 +579,8 @@ public class CustomDialog : CustomWindow
         closeButton.Connect("mouse_entered", this, nameof(OnCloseButtonMouseEnter));
         closeButton.Connect("mouse_exited", this, nameof(OnCloseButtonMouseExit));
         closeButton.Connect("pressed", this, nameof(OnCloseButtonPressed));
+        closeButton.Connect("focus_entered", this, nameof(OnCloseButtonFocused));
+        closeButton.Connect("focus_exited", this, nameof(OnCloseButtonFocusLost));
 
         AddChild(closeButton);
     }
@@ -577,6 +611,18 @@ public class CustomDialog : CustomWindow
     private void OnCloseButtonMouseExit()
     {
         closeHovered = false;
+        Update();
+    }
+
+    private void OnCloseButtonFocused()
+    {
+        closeFocused = true;
+        Update();
+    }
+
+    private void OnCloseButtonFocusLost()
+    {
+        closeFocused = false;
         Update();
     }
 

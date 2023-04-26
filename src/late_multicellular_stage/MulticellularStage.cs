@@ -491,6 +491,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
 
+        if (interactionPopup.SelectCurrentOptionIfOpen())
+            return;
+
         var target = interactableSystem.GetInteractionTarget();
 
         if (target == null)
