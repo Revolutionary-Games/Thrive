@@ -43,6 +43,8 @@ public class GalleryViewer : CustomDialog
     private Button slideshowButton = null!;
 #pragma warning restore CA2213
 
+    private bool tooltipsDetached;
+
     /// <summary>
     ///   Holds gallery categories and their respective asset categories with their respective indexes in the category
     ///   dropdown.
@@ -90,6 +92,24 @@ public class GalleryViewer : CustomDialog
         tabButtons = GetNode<TabButtons>(TabButtonsPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
         slideshowButton = GetNode<Button>(SlideshowButtonPath);
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        if (tooltipsDetached)
+            ReAttachToolTips();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (registeredToolTips.Count > 0)
+            DetachToolTips();
+
+        UnregisterToolTips();
     }
 
     public override void _Process(float delta)
@@ -277,7 +297,7 @@ public class GalleryViewer : CustomDialog
         // Reuse existing tooltip if possible
         var name = "galleryCard_" + asset.ResourcePath.GetFile();
 
-        var tooltip = ToolTipManager.Instance.GetToolTip<GalleryDetailsTooltip>(name, "artGallery");
+        var tooltip = ToolTipManager.Instance.GetToolTipIfExists<GalleryDetailsTooltip>(name, "artGallery");
 
         if (tooltip == null)
         {
@@ -454,6 +474,7 @@ public class GalleryViewer : CustomDialog
 
     private void UnregisterToolTips()
     {
+        tooltipsDetached = false;
         if (registeredToolTips.Count < 1)
             return;
 
@@ -463,5 +484,28 @@ public class GalleryViewer : CustomDialog
         }
 
         registeredToolTips.Clear();
+    }
+
+    private void DetachToolTips()
+    {
+        tooltipsDetached = true;
+
+        foreach (var (control, tooltip) in registeredToolTips)
+        {
+            control.UnRegisterToolTipForControl(tooltip);
+        }
+    }
+
+    private void ReAttachToolTips()
+    {
+        if (!tooltipsDetached)
+            return;
+
+        foreach (var (control, tooltip) in registeredToolTips)
+        {
+            control.RegisterToolTipForControl(tooltip, false);
+        }
+
+        tooltipsDetached = false;
     }
 }
