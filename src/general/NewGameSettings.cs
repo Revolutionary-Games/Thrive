@@ -199,6 +199,9 @@ public class NewGameSettings : ControlWithInput
     [Signal]
     public delegate void OnWantToSwitchToOptionsMenu();
 
+    [Signal]
+    public delegate void OnNewGameVideoStarted();
+
     private enum SelectedOptionsTab
     {
         Difficulty,
@@ -487,22 +490,7 @@ public class NewGameSettings : ControlWithInput
         // before the stage music starts)
         Jukebox.Instance.Stop(true);
 
-        var transitions = new List<ITransition>();
-
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
-            SafeModeStartupHandler.AreVideosAllowed())
-        {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f));
-        }
-        else
-        {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
-        }
-
-        TransitionManager.Instance.AddSequence(transitions, () =>
+        void OnStartGame()
         {
             MainMenu.OnEnteringGame();
 
@@ -510,7 +498,30 @@ public class NewGameSettings : ControlWithInput
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
             SceneManager.Instance.SwitchToScene(microbeStage);
-        });
+        }
+
+        var transitions = new List<ITransition>();
+
+        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
+            SafeModeStartupHandler.AreVideosAllowed())
+        {
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
+
+            TransitionManager.Instance.AddSequence(transitions, () =>
+            {
+                // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
+                EmitSignal(nameof(OnNewGameVideoStarted));
+            });
+
+            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateCutscene(
+                "res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame);
+        }
+        else
+        {
+            // People who disable the cutscene are impatient anyway so use a reduced fade time
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
+            TransitionManager.Instance.AddSequence(transitions, OnStartGame);
+        }
     }
 
     // GUI Control Callbacks
