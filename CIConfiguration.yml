@@ -5,22 +5,19 @@ jobs:
     image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v6-{Branch}-build
-        - v6-master-build
-      writeTo: v6-{Branch}-build
+        - v7-{Branch}-build
+        - v7-master-build
+      writeTo: v7-{Branch}-build
       shared:
-        .git/lfs: v3-lfs
+        .git/lfs: v4-lfs
         .import: v7-import
-        builds: v2-builds
+        builds: v3-builds
       system:
-        /root/.nuget: v2-nuget
+        /root/.nuget: v3-nuget
     steps:
-      # This is here to reimport assets, but this build would fail due to missing nuget packages
-      # if C# was compiled here
       - run:
-          name: Export to make project valid
-          command: |
-            godot --export "dummy" "builds/a.x86_64" || true
+          name: Make project valid for compile
+          command: dotnet run --project Scripts -- make-project-valid
       - run:
            command: dotnet restore Thrive.sln
       - run:
@@ -36,15 +33,15 @@ jobs:
     image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v3-{Branch}-jetbrains
-        - v3-master-jetbrains
-      writeTo: v3-{Branch}-jetbrains
+        - v4-{Branch}-jetbrains
+        - v4-master-jetbrains
+      writeTo: v4-{Branch}-jetbrains
       shared:
-        .git/lfs: v3-lfs
+        .git/lfs: v4-lfs
         .import: v7-import
-        builds: v2-jetbrains-dummy-builds
+        builds: v3-jetbrains-dummy-builds
       system:
-        /root/.nuget: v2-nuget
+        /root/.nuget: v3-nuget
     artifacts:
       paths:
         - files_to_check.txt
@@ -59,11 +56,9 @@ jobs:
             git diff-tree --no-commit-id --name-only -r HEAD..$CI_EARLIER_COMMIT >> files_to_check.txt || echo compare with previous commit failed
             echo Changed files:
             cat files_to_check.txt
-      # Don't care if this fails, it's enough that the C# build works
       - run:
-          name: Just make C# project valid; don't care if asset import fails
-          command: |
-            godot --export "dummy" "builds/a.x86_64" || true
+          name: Make project valid for compile
+          command: dotnet run --project Scripts -- make-project-valid
       - run:
           command: dotnet restore Thrive.sln
       - run:
@@ -77,7 +72,7 @@ jobs:
           command: dotnet run --project Scripts -- check inspectcode
       - run:
           name: Code reformatting
-          command: dotnet run --project Scripts -- check cleanupcode rewrite
+          command: dotnet run --project Scripts -- check cleanupcode
       # dupfinder is deprecated, see: https://github.com/Revolutionary-Games/Thrive/issues/2953
       # - run:
       #     command: ./check_formatting.rb -c duplicatecode
@@ -99,13 +94,13 @@ jobs:
     image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v3-{Branch}-format
-        - v3-master-format
-      writeTo: v3-{Branch}-format
+        - v4-{Branch}-format
+        - v4-master-format
+      writeTo: v4-{Branch}-format
       shared:
-        .git/lfs: v3-lfs
+        .git/lfs: v4-lfs
       system:
-        /root/.nuget: v2-nuget
+        /root/.nuget: v3-nuget
     artifacts:
       paths:
         - format_diff.patch
@@ -113,8 +108,8 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
-          name: files localization steam-build checks
-          command: dotnet run --project Scripts -- check files localization steam-build
+          name: files localization steam-build rewrite checks
+          command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
           when: always
           name: Check format changes
