@@ -13,7 +13,7 @@ pause_mode = 2
 process_priority = 2000
 
 [node name="NormalOverlays" type="CanvasLayer" parent="."]
-layer = 126
+layer = 125
 
 [node name="LoadingScreen" parent="NormalOverlays" instance=ExtResource( 3 )]
 visible = false
@@ -31,7 +31,10 @@ visible = false
 [node name="QuickLoad" parent="NormalOverlays" instance=ExtResource( 5 )]
 theme = ExtResource( 6 )
 
-[node name="DebugOverlay" parent="NormalOverlays" instance=ExtResource( 7 )]
+[node name="OverlaysOnTopOfModals" type="CanvasLayer" parent="."]
+layer = 127
+
+[node name="DebugOverlay" parent="OverlaysOnTopOfModals" instance=ExtResource( 7 )]
 
 [node name="Effects" type="CanvasLayer" parent="."]
 layer = 128

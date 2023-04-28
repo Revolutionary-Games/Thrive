@@ -306,12 +306,38 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
+    ///   Tries to find a tooltip but doesn't consider it an error if one is not found. Useful when caching tooltips
+    ///   and checking if one already exists is needed.
+    /// </summary>
+    /// <param name="name">The name of the tooltip's node (not display name)</param>
+    /// <param name="group">The name of the group the tooltip belongs to</param>
+    public ICustomToolTip? GetToolTipIfExists(string name, string group = DEFAULT_GROUP_NAME)
+    {
+        var retrievedGroup = GetGroup(group, false);
+        if (retrievedGroup == null)
+            return null;
+
+        var tooltip = tooltips[retrievedGroup].Find(found => found.ToolTipNode.Name == name);
+
+        return tooltip;
+    }
+
+    /// <summary>
     ///   Generic version of <see cref="GetToolTip"/> method.
     /// </summary>
     public T? GetToolTip<T>(string name, string group = DEFAULT_GROUP_NAME)
         where T : ICustomToolTip
     {
         return (T?)GetToolTip(name, group);
+    }
+
+    /// <summary>
+    ///   Generic version of <see cref="GetToolTipIfExists"/> method.
+    /// </summary>
+    public T? GetToolTipIfExists<T>(string name, string group = DEFAULT_GROUP_NAME)
+        where T : ICustomToolTip
+    {
+        return (T?)GetToolTipIfExists(name, group);
     }
 
     /// <summary>

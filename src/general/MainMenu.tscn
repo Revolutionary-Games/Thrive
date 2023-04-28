@@ -1048,6 +1048,7 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
+[connection signal="OnNewGameVideoStarted" from="NewGameSettings" to="." method="OnNewGameIntroVideoStarted"]
 [connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
 [connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnReturnFromThriveopedia"]
 [connection signal="hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
