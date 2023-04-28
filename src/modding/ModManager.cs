@@ -1355,26 +1355,34 @@ public class ModManager : Control
             return;
         }
 
-        otherModInfoDialog.WindowTitle = TranslationServer.Translate("MOD_DEPENDENCIES");
-        var infoText = string.Empty;
+        OpenOtherModInfoDialog(
+            TranslationServer.Translate("MOD_DEPENDENCIES"),
+            TranslationServer.Translate("NO_MOD_DEPENDENCIES"),
+            selectedMod.Info.Dependencies ?? new List<string>());
+    }
 
-        var currentModDependencies = selectedMod.Info.Dependencies;
-        if (currentModDependencies != null)
+    private void OpenOtherModInfoDialog(string title, string emptyListMessage, List<string> shownItems)
+    {
+        otherModInfoDialog.WindowTitle = title;
+        var infoText = new LocalizedStringBuilder();
+
+        if (shownItems.Count <= 0)
         {
-            foreach (string currentDependency in currentModDependencies)
+            foreach (string currentItem in shownItems)
             {
-                if (!string.IsNullOrWhiteSpace(currentDependency))
+                if (!string.IsNullOrWhiteSpace(currentItem))
                 {
-                    infoText += "* " + currentDependency + "\n";
+                    infoText.Append(System.Environment.NewLine);
+                    infoText.Append(new LocalizedString("OTHER_MOD_INFO_LIST_ITEM", currentItem));
                 }
             }
         }
         else
         {
-            infoText += TranslationServer.Translate("NO_MOD_DEPENDENCIES");
+            infoText.Append(emptyListMessage);
         }
 
-        otherModInfoDialog.DialogText = infoText;
+        otherModInfoDialog.DialogText = infoText.ToString();
         otherModInfoDialog.PopupCenteredShrink();
     }
 
@@ -1386,27 +1394,10 @@ public class ModManager : Control
             return;
         }
 
-        otherModInfoDialog.WindowTitle = TranslationServer.Translate("MOD_REQUIRED_MODS");
-        var infoText = string.Empty;
-
-        var currentModRequiredMods = selectedMod.Info.RequiredMods;
-        if (currentModRequiredMods != null)
-        {
-            foreach (string currentRequiredMod in currentModRequiredMods)
-            {
-                if (!string.IsNullOrWhiteSpace(currentRequiredMod))
-                {
-                    infoText += "* " + currentRequiredMod + "\n";
-                }
-            }
-        }
-        else
-        {
-            infoText += TranslationServer.Translate("NO_REQUIRED_MODS");
-        }
-
-        otherModInfoDialog.DialogText = infoText;
-        otherModInfoDialog.PopupCenteredShrink();
+        OpenOtherModInfoDialog(
+            TranslationServer.Translate("MOD_REQUIRED_MODS"),
+            TranslationServer.Translate("NO_REQUIRED_MODS"),
+            selectedMod.Info.RequiredMods ?? new List<string>());
     }
 
     private void OnIncompatiblePressed()
@@ -1417,27 +1408,10 @@ public class ModManager : Control
             return;
         }
 
-        otherModInfoDialog.WindowTitle = TranslationServer.Translate("INCOMPATIBLE_WITH");
-        var infoText = string.Empty;
-
-        var currentModIncompatibleMods = selectedMod.Info.IncompatibleMods;
-        if (currentModIncompatibleMods != null)
-        {
-            foreach (string currentIncompatibleMod in currentModIncompatibleMods)
-            {
-                if (!string.IsNullOrWhiteSpace(currentIncompatibleMod))
-                {
-                    infoText += "* " + currentIncompatibleMod + "\n";
-                }
-            }
-        }
-        else
-        {
-            infoText += TranslationServer.Translate("NO_MOD_INCOMPATIBLE");
-        }
-
-        otherModInfoDialog.DialogText = infoText;
-        otherModInfoDialog.PopupCenteredShrink();
+        OpenOtherModInfoDialog(
+            TranslationServer.Translate("INCOMPATIBLE_WITH"),
+            TranslationServer.Translate("NO_MOD_INCOMPATIBLE"),
+            selectedMod.Info.IncompatibleMods ?? new List<string>());
     }
 
     private void OnLoadOrderPressed()
@@ -1449,7 +1423,7 @@ public class ModManager : Control
         }
 
         otherModInfoDialog.WindowTitle = TranslationServer.Translate("LOAD_ORDER");
-        var infoText = string.Empty;
+        var infoText = new LocalizedStringBuilder();
 
         var currentModLoadBefore = selectedMod.Info.LoadBefore;
         var currentModLoadAfter = selectedMod.Info.LoadAfter;
@@ -1457,12 +1431,13 @@ public class ModManager : Control
         {
             if (currentModLoadAfter != null)
             {
-                infoText += TranslationServer.Translate("MOD_LOAD_AFTER") + "\n";
+                infoText.Append(new LocalizedString("MOD_LOAD_AFTER"));
                 foreach (string currentLoadAfterMod in currentModLoadAfter)
                 {
                     if (!string.IsNullOrWhiteSpace(currentLoadAfterMod))
                     {
-                        infoText += "* " + currentLoadAfterMod + "\n";
+                        infoText.Append(System.Environment.NewLine);
+                        infoText.Append(new LocalizedString("OTHER_MOD_INFO_LIST_ITEM", currentLoadAfterMod));
                     }
                 }
             }
@@ -1470,27 +1445,28 @@ public class ModManager : Control
             // If there both 'load before' and 'load after' is going to display add a empty line between them
             if (currentModLoadBefore != null && currentModLoadAfter != null)
             {
-                infoText += "\n";
+                infoText.Append("\n");
             }
 
             if (currentModLoadBefore != null)
             {
-                infoText += TranslationServer.Translate("MOD_LOAD_BEFORE") + "\n";
+                infoText.Append(new LocalizedString("MOD_LOAD_BEFORE"));
                 foreach (string currentLoadBeforeMod in currentModLoadBefore)
                 {
                     if (!string.IsNullOrWhiteSpace(currentLoadBeforeMod))
                     {
-                        infoText += "* " + currentLoadBeforeMod + "\n";
+                        infoText.Append(System.Environment.NewLine);
+                        infoText.Append(new LocalizedString("OTHER_MOD_INFO_LIST_ITEM", currentLoadBeforeMod));
                     }
                 }
             }
         }
         else
         {
-            infoText += TranslationServer.Translate("MOD_NO_LOAD_ORDER");
+            infoText.Append(new LocalizedString("MOD_NO_LOAD_ORDER"));
         }
 
-        otherModInfoDialog.DialogText = infoText;
+        otherModInfoDialog.DialogText = infoText.ToString();
         otherModInfoDialog.PopupCenteredShrink();
     }
 
@@ -1503,6 +1479,8 @@ public class ModManager : Control
 
     private void MoveButtonPressed(bool moveUp, int amount)
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         ItemList chosenList;
         List<FullModDetails> chosenModList;
 
@@ -1536,7 +1514,6 @@ public class ModManager : Control
     /// </summary>
     private void MoveItem(ItemList list, List<FullModDetails> modList, bool moveUp, int currentIndex, int amount)
     {
-        GUICommon.Instance.PlayButtonPressSound();
         int newIndex;
         if (moveUp)
         {
