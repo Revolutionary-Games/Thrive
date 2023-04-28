@@ -237,8 +237,8 @@ public class ModManager : Control
 
     private readonly List<FullModDetails> validMods = new();
 
-    private List<FullModDetails>? notEnabledMods;
-    private List<FullModDetails>? enabledMods;
+    private readonly List<FullModDetails> notEnabledMods = new();
+    private readonly List<FullModDetails> enabledMods = new();
 
 #pragma warning disable CA2213
     private Button leftArrow = null!;
@@ -817,8 +817,6 @@ public class ModManager : Control
         // TODO: OnOpened being required to be called probably means that you can't directly run the mod manager
         // scene from Godot editor, probably needs to change to the approach to be to automatically call this each
         // time this becomes visible like the save manager
-        enabledMods = new List<FullModDetails>();
-        notEnabledMods = new List<FullModDetails>();
 
         RefreshAvailableMods();
         RefreshEnabledMods();
@@ -867,9 +865,9 @@ public class ModManager : Control
         // Clear the mods the mod loader will use to make sure it doesn't use outdated workshop mod list
         ModLoader.Instance.OnNewWorkshopModsInstalled();
 
-        notEnabledMods = validMods.Where(m => !IsModEnabled(m)).Concat(notEnabledMods.Where(validMods.Contains))
-            .Distinct()
-            .ToList();
+        notEnabledMods.Clear();
+        notEnabledMods.AddRange(validMods.Where(m => !IsModEnabled(m)).Concat(notEnabledMods.Where(validMods.Contains))
+            .Distinct());
 
         foreach (var mod in notEnabledMods)
         {
@@ -905,7 +903,7 @@ public class ModManager : Control
         int modErrorsIndex = 0;
         foreach (var error in modErrors)
         {
-            if (error.ModDetails is null)
+            if (error.ModDetails == null)
             {
                 modErrorsContainer.AddItem(error.ModInternalName);
             }
@@ -921,11 +919,6 @@ public class ModManager : Control
 
     private void RefreshEnabledMods()
     {
-        if (enabledMods == null)
-        {
-            return;
-        }
-
         if (enabledModsContainer.IsAnythingSelected())
         {
             selectedMod = null;
@@ -934,7 +927,8 @@ public class ModManager : Control
 
         enabledModsContainer.Clear();
 
-        enabledMods = validMods.Where(IsModEnabled).ToList();
+        enabledMods.Clear();
+        enabledMods.AddRange(validMods.Where(IsModEnabled));
 
         foreach (var mod in enabledMods)
         {
@@ -945,7 +939,7 @@ public class ModManager : Control
 
     private bool IsModEnabled(FullModDetails mod)
     {
-        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName) || enabledMods!.Contains(mod);
+        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName) || enabledMods.Contains(mod);
     }
 
     private void UpdateSelectedModInfo()
@@ -1003,12 +997,12 @@ public class ModManager : Control
 
             openModInfoButton.Disabled = false;
 
-            dependencyButton.Visible = selectedMod.Info.Dependencies != null && selectedMod.Info.Dependencies.Count > 0;
+            dependencyButton.Visible = selectedMod.Info.Dependencies is { Count: > 0 };
             requiredModsButton.Visible =
-                selectedMod.Info.RequiredMods != null && selectedMod.Info.RequiredMods.Count > 0;
+                selectedMod.Info.RequiredMods is { Count: > 0 };
 
             incompatibleButton.Visible =
-                selectedMod.Info.IncompatibleMods != null && selectedMod.Info.IncompatibleMods.Count > 0;
+                selectedMod.Info.IncompatibleMods is { Count: > 0 };
             loadOrderButton.Visible = selectedMod.Info.LoadBefore != null || selectedMod.Info.LoadAfter != null;
         }
         else
@@ -1052,7 +1046,7 @@ public class ModManager : Control
             foreach (string currentImagePath in mod.Info.PreviewImages)
             {
                 if (string.IsNullOrEmpty(currentImagePath))
-                    return null!;
+                    return returnValue;
 
                 var image = new Image();
                 image.Load(Path.Combine(mod.Folder, currentImagePath));
@@ -1098,19 +1092,13 @@ public class ModManager : Control
             // TODO: show a warning popup that can be permanently dismissed
         }
 
-        Texture? icon = null;
-
         foreach (var index in availableModsContainer.GetSelectedItems())
         {
-            icon = availableModsContainer.GetItemIcon(index);
-            availableModsContainer.RemoveItem(index);
+            MoveModInItemList(availableModsContainer, enabledModsContainer, index);
         }
 
-        enabledModsContainer.AddItem(selectedMod.InternalName, icon);
-        SetSelectedModToolTip(enabledModsContainer);
-
-        notEnabledMods!.Remove(selectedMod);
-        enabledMods!.Add(selectedMod);
+        notEnabledMods.Remove(selectedMod);
+        enabledMods.Add(selectedMod);
 
         OnModChangedLists();
     }
@@ -1125,45 +1113,31 @@ public class ModManager : Control
             return;
         }
 
-        Texture? icon = null;
-
         foreach (var index in enabledModsContainer.GetSelectedItems())
         {
-            icon = enabledModsContainer.GetItemIcon(index);
-            enabledModsContainer.RemoveItem(index);
+            MoveModInItemList(enabledModsContainer, availableModsContainer, index);
         }
 
-        availableModsContainer.AddItem(selectedMod.InternalName, icon);
-        SetSelectedModToolTip(availableModsContainer);
-
-        enabledMods!.Remove(selectedMod);
-        notEnabledMods!.Add(selectedMod);
+        enabledMods.Remove(selectedMod);
+        notEnabledMods.Add(selectedMod);
 
         OnModChangedLists();
     }
 
-    private void SetSelectedModToolTip(ItemList selectedContainer)
+    private void SetModToolTip(ItemList selectedContainer, FullModDetails info, int index = -1)
     {
-        selectedContainer.SetItemTooltip(selectedContainer.GetItemCount() - 1,
-            string.IsNullOrEmpty(selectedMod?.Info.Description) ?
-                selectedMod?.InternalName :
-                selectedMod?.Info.Description);
-    }
+        if (index <= -1)
+        {
+            index = selectedContainer.GetItemCount() - 1;
+        }
 
-    private void SetModToolTip(ItemList selectedContainer, FullModDetails info)
-    {
-        selectedContainer.SetItemTooltip(selectedContainer.GetItemCount() - 1,
+        selectedContainer.SetItemTooltip(index,
             string.IsNullOrEmpty(info.Info.Description) ? info.InternalName : info.Info.Description);
     }
 
     private void DisableAllPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        if (notEnabledMods == null || enabledMods == null)
-        {
-            GD.PrintErr("Can't disable all as the mod manager was not opened yet");
-            return;
-        }
 
         if (enabledModsContainer.IsAnythingSelected())
         {
@@ -1173,14 +1147,7 @@ public class ModManager : Control
 
         while (enabledModsContainer.GetItemCount() > 0)
         {
-            var icon = enabledModsContainer.GetItemIcon(0);
-            var text = enabledModsContainer.GetItemText(0);
-            var toolTip = enabledModsContainer.GetItemTooltip(0);
-
-            enabledModsContainer.RemoveItem(0);
-
-            availableModsContainer.AddItem(text, icon);
-            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, toolTip);
+            MoveModInItemList(enabledModsContainer, availableModsContainer);
         }
 
         notEnabledMods.AddRange(enabledMods);
@@ -1189,13 +1156,21 @@ public class ModManager : Control
         UpdateOverallModButtons();
     }
 
+    private void MoveModInItemList(ItemList fromContainer, ItemList toContainer, int index = 0)
+    {
+        var icon = fromContainer.GetItemIcon(index);
+        var text = fromContainer.GetItemText(index);
+        var toolTip = fromContainer.GetItemTooltip(index);
+
+        fromContainer.RemoveItem(index);
+
+        toContainer.AddItem(text, icon);
+        toContainer.SetItemTooltip(toContainer.GetItemCount() - 1, toolTip);
+    }
+
     private void EnableAllPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        if (enabledMods is null || notEnabledMods is null)
-        {
-            return;
-        }
 
         if (availableModsContainer.IsAnythingSelected())
         {
@@ -1205,13 +1180,7 @@ public class ModManager : Control
 
         while (availableModsContainer.GetItemCount() > 0)
         {
-            var icon = availableModsContainer.GetItemIcon(0);
-            var text = availableModsContainer.GetItemText(0);
-            var toolTip = availableModsContainer.GetItemTooltip(0);
-            availableModsContainer.RemoveItem(0);
-
-            enabledModsContainer.AddItem(text, icon);
-            enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1, toolTip);
+            MoveModInItemList(availableModsContainer, enabledModsContainer);
         }
 
         enabledMods.AddRange(notEnabledMods);
@@ -1232,32 +1201,21 @@ public class ModManager : Control
 
     private void UpdateOverallModButtons()
     {
-        if (enabledMods is null || notEnabledMods is null)
-        {
-            return;
-        }
-
         applyChangesButton.Disabled =
             Settings.Instance.EnabledMods.Value.ToList()
-                .SequenceEqual(enabledMods!.Select(m => m.InternalName));
+                .SequenceEqual(enabledMods.Select(m => m.InternalName));
 
         var isEnabledModsEmpty = enabledMods.Count < 1;
         resetButton.Disabled = isEnabledModsEmpty;
         checkButton.Disabled = isEnabledModsEmpty;
         disableAllModsButton.Disabled = isEnabledModsEmpty;
 
-        disableAllModsButton.Disabled = enabledMods!.Count < 1;
-        enableAllModsButton.Disabled = notEnabledMods!.Count < 1;
+        disableAllModsButton.Disabled = enabledMods.Count < 1;
+        enableAllModsButton.Disabled = notEnabledMods.Count < 1;
     }
 
     private void ApplyChanges()
     {
-        if (notEnabledMods == null || enabledMods == null)
-        {
-            GD.PrintErr("Can't apply changes as the mod manager was not opened yet");
-            return;
-        }
-
         var checkResult = ModLoader.IsValidModList(enabledMods);
         if (checkResult.ErrorType >= 0)
         {
@@ -1275,14 +1233,9 @@ public class ModManager : Control
 
     private void LoadEnabledMods()
     {
-        if (notEnabledMods == null || enabledMods == null)
-        {
-            return;
-        }
-
         GD.Print("Applying changes to enabled mods");
 
-        Settings.Instance.EnabledMods.Value = enabledMods?.Select(m => m.InternalName).ToList() ?? new List<string>();
+        Settings.Instance.EnabledMods.Value = enabledMods.Select(m => m.InternalName).ToList();
 
         var modLoader = ModLoader.Instance;
         modLoader.LoadMods();
@@ -1325,12 +1278,7 @@ public class ModManager : Control
         if (enabledModsContainer.IsAnythingSelected())
             enabledModsContainer.UnselectAll();
 
-        leftArrow.Disabled = true;
-        rightArrow.Disabled = false;
-        modErrorsContainer.UnselectAll();
-        errorInfoLabel.Hide();
-        moveModUpButton.Disabled = availableModsContainer.IsSelected(0);
-        moveModDownButton.Disabled = availableModsContainer.IsSelected(availableModsContainer.GetItemCount() - 1);
+        UpdateModLoaderContainerUI(availableModsContainer, false);
     }
 
     private void EnabledModSelected(int index)
@@ -1347,12 +1295,17 @@ public class ModManager : Control
         if (availableModsContainer.IsAnythingSelected())
             availableModsContainer.UnselectAll();
 
-        leftArrow.Disabled = false;
-        rightArrow.Disabled = true;
+        UpdateModLoaderContainerUI(enabledModsContainer, true);
+    }
+
+    private void UpdateModLoaderContainerUI(ItemList activeContainer, bool isRightSide)
+    {
+        leftArrow.Disabled = !isRightSide;
+        rightArrow.Disabled = isRightSide;
         modErrorsContainer.UnselectAll();
         errorInfoLabel.Hide();
-        moveModUpButton.Disabled = enabledModsContainer.IsSelected(0);
-        moveModDownButton.Disabled = enabledModsContainer.IsSelected(enabledModsContainer.GetItemCount() - 1);
+        moveModUpButton.Disabled = activeContainer.IsSelected(0);
+        moveModDownButton.Disabled = activeContainer.IsSelected(activeContainer.GetItemCount() - 1);
     }
 
     private void ErrorModItemListSelected(int index)
@@ -1397,7 +1350,7 @@ public class ModManager : Control
     private void OnDependencyPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        if (selectedMod is null)
+        if (selectedMod == null)
         {
             return;
         }
@@ -1428,7 +1381,7 @@ public class ModManager : Control
     private void OnRequiredModsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        if (selectedMod is null)
+        if (selectedMod == null)
         {
             return;
         }
@@ -1459,7 +1412,7 @@ public class ModManager : Control
     private void OnIncompatiblePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        if (selectedMod is null)
+        if (selectedMod == null)
         {
             return;
         }
@@ -1490,7 +1443,7 @@ public class ModManager : Control
     private void OnLoadOrderPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        if (selectedMod is null)
+        if (selectedMod == null)
         {
             return;
         }
@@ -1550,11 +1503,6 @@ public class ModManager : Control
 
     private void MoveButtonPressed(bool moveUp, int amount)
     {
-        if (notEnabledMods is null || enabledMods is null)
-        {
-            return;
-        }
-
         ItemList chosenList;
         List<FullModDetails> chosenModList;
 
@@ -1695,11 +1643,6 @@ public class ModManager : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (enabledMods is null)
-        {
-            return;
-        }
-
         // Checks if there is anything that is going to be loaded first
         if (enabledMods.Count <= 0)
         {
@@ -1709,7 +1652,7 @@ public class ModManager : Control
         var checkResult = ModLoader.IsValidModList(enabledMods);
         var resultText = string.Empty;
 
-        if (checkResult.ErrorType < 0)
+        if (checkResult.IsSuccessful())
         {
             resultText = TranslationServer.Translate("MOD_LIST_CONTAIN_ERRORS") + "\n\n" +
                 ModHelpers.CheckResultToString(checkResult, enabledMods) + "\n\n";

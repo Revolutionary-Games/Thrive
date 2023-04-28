@@ -478,7 +478,7 @@ public class NewModGUI : Control
 
     private void PreviewFileDialogFilesSelected(string[] paths)
     {
-        string[] allFileNames = paths.Select(currentPath => Path.GetFileName(currentPath)).ToArray();
+        string[] allFileNames = paths.Select(Path.GetFileName).ToArray();
         previewImagesFile.Text = string.Join(", ", allFileNames);
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 ///   An error that was caught when loading a mod
 /// </summary>
 public class ModdingError

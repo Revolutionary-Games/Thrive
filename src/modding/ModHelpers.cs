@@ -13,6 +13,11 @@ public static class ModHelpers
         return versionToCheck > VersionCompatibility.NotExplicitlyCompatible;
     }
 
+    public static bool IsSuccessful(this ModListValidationError resultToCheck)
+    {
+        return resultToCheck.ErrorType < 0;
+    }
+
     /// <summary>
     ///   Turns the result from a check into a string of the error and how to fix it
     /// </summary>
@@ -53,22 +58,32 @@ public static class ModHelpers
                 result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_VERSION").FormatSafe(offendingMod.Name);
                 break;
             case ModLoader.CheckErrorStatus.DependencyNotFound:
+            {
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES").FormatSafe(offendingMod.Name,
                     otherMod.Name) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
                 break;
+            }
+
             case ModLoader.CheckErrorStatus.RequiredModsNotFound:
+            {
                 result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS").FormatSafe(offendingMod.Name,
                     otherMod.Name) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX").FormatSafe(otherMod.Name);
                 break;
+            }
+
             case ModLoader.CheckErrorStatus.InvalidDependencyOrder:
+            {
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
+            }
+
             case ModLoader.CheckErrorStatus.IncompatibleMod:
+            {
                 result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX")
@@ -76,19 +91,26 @@ public static class ModHelpers
                         otherMod.InternalName :
                         otherMod.Name);
                 break;
+            }
+
             case ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
+            {
                 result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX").FormatSafe(offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
+            }
+
             case ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
+            {
                 result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER").FormatSafe(offendingMod.Name,
                     otherMod.Name) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER_FIX")
                     .FormatSafe(offendingMod.Name,
                         otherMod.Name);
                 break;
+            }
         }
 
         return result;

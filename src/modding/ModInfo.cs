@@ -159,7 +159,7 @@ public class ModInfo
 
         if (isVersionMinDefined)
         {
-            isVersionAboveMin = VersionUtils.Compare(Constants.Version, MinimumThriveVersion ?? string.Empty) >= 0;
+            isVersionAboveMin = VersionUtils.Compare(Constants.Version, MinimumThriveVersion) >= 0;
         }
 
         if (isVersionMaxDefined)

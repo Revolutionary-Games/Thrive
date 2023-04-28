@@ -275,11 +275,11 @@ public class ModLoader : Node
             {
                 if (!string.IsNullOrWhiteSpace(incompatibleName))
                 {
-                    if (modDictionary.ContainsKey(incompatibleName))
+                    if (modDictionary.TryGetValue(incompatibleName, out var incompatibleModInfo))
                     {
                         return new ModListValidationError(CheckErrorStatus.IncompatibleMod,
                             currentModInfo,
-                            modDictionary[incompatibleName].Info);
+                            incompatibleModInfo.Info);
                     }
                 }
             }
