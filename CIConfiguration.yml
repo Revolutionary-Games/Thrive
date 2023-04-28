@@ -24,6 +24,10 @@ jobs:
           name: Build with warnings
           command: dotnet run --project Scripts -- check compile
       - run:
+          name: Test changes for better Godot import performance
+          command: |
+            find .import -iname "*" -exec touch {} \;
+      - run:
           name: Create builds
           command: dotnet run --project Scripts -- package --dehydrated
       - run:
