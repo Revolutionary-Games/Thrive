@@ -51,13 +51,13 @@ WindowTitle = "Window2"
 [node name="AddWindowReorderingSupportToSiblings" parent="Automatic/Window2" instance=ExtResource( 3 )]
 AutomaticWindowReorderingDepth = 1
 
-[node name="Child2AlwaysBottomReodersWindow2_Manual" parent="Automatic/Window2" instance=ExtResource( 1 )]
+[node name="Child2AlwaysBottomReodersWindow2Manual" parent="Automatic/Window2" instance=ExtResource( 1 )]
 visible = true
 margin_right = 200.0
 margin_bottom = 125.0
 WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
 AutomaticWindowReorderingDepth = 0
-WindowTitle = "Child2AlwaysBottomReodersWindow2_Manual"
+WindowTitle = "Child2AlwaysBottomReodersWindow2Manual"
 
 [node name="Child2ReordersWindow2" parent="Automatic/Window2" instance=ExtResource( 1 )]
 visible = true
