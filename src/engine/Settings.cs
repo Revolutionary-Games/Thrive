@@ -454,6 +454,9 @@ public class Settings
         Constants.CONTROLLER_DEFAULT_DEADZONE,
     });
 
+    [JsonProperty]
+    public SettingValue<ScreenEffect?> CurrentScreenEffect { get; private set; } = new(null);
+
     // Settings that are edited from elsewhere than the main options menu
     [JsonProperty]
     public SettingValue<IReadOnlyList<string>> EnabledMods { get; private set; } = new(new List<string>());

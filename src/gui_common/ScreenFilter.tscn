@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui_common/ScreenFilter.cs" type="Script" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+
+[node name="ScreenFilter" type="ColorRect"]
+material = SubResource( 2 )
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 1, 1, 1, 0 )
+script = ExtResource( 1 )

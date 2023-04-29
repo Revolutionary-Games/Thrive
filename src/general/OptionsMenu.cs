@@ -261,6 +261,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath ScreenshotDirectoryWarningBoxPath = null!;
 
     [Export]
+    public NodePath ScreenEffectButtonPath = null!;
+
+    [Export]
     public NodePath DefaultsConfirmationBoxPath = null!;
 
     [Export]
@@ -408,6 +411,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox showNewPatchNotes = null!;
     private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
+    private OptionButton screenEffectButton = null!;
     private Label commitLabel = null!;
     private Label builtAtLabel = null!;
 
@@ -570,6 +574,7 @@ public class OptionsMenu : ControlWithInput
         showNewPatchNotes = GetNode<CustomCheckBox>(ShowNewPatchNotesPath);
         dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
+        screenEffectButton = GetNode<OptionButton>(ScreenEffectButtonPath);
         commitLabel = GetNode<Label>(CommitLabelPath);
         builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
         builtAtLabel.RegisterCustomFocusDrawer();
@@ -583,6 +588,15 @@ public class OptionsMenu : ControlWithInput
         patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
 
         selectedOptionsTab = OptionsTab.Graphics;
+
+        var simulationParameters = SimulationParameters.Instance;
+        var screenEffects = simulationParameters.GetAllScreenEffects();
+
+        foreach (var effect in screenEffects.OrderBy(p => p.Index))
+        {
+            // The untranslated name will be translated automatically by Godot during runtime
+            screenEffectButton.AddItem(effect.UntranslatedName);
+        }
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
@@ -885,6 +899,7 @@ public class OptionsMenu : ControlWithInput
                 ShowNewPatchNotesPath.Dispose();
                 DismissedNoticeCountPath.Dispose();
                 JSONDebugModePath.Dispose();
+                ScreenEffectButtonPath.Dispose();
                 CommitLabelPath.Dispose();
                 BuiltAtLabelPath.Dispose();
                 UnsavedProgressWarningPath.Dispose();
@@ -2292,5 +2307,13 @@ public class OptionsMenu : ControlWithInput
 
         patchNotesDisplayer.ShowLatest();
         patchNotesBox.PopupCenteredShrink();
+    }
+
+    private void OnScreenEffectSelected(int index)
+    {
+        Settings.Instance.CurrentScreenEffect.Value =
+            SimulationParameters.Instance.GetScreenEffectByIndex(index);
+
+        UpdateResetSaveButtonState();
     }
 }

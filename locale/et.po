@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-31 16:05+0300\n"
+"POT-Creation-Date: 2023-04-29 17:47-0500\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1457
+#: ../src/general/OptionsMenu.tscn:1460
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr "Toimetaja"
 msgid "3D_MOVEMENT"
 msgstr "Liikumine"
 
-#: ../src/general/OptionsMenu.tscn:1489
+#: ../src/general/OptionsMenu.tscn:1492
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr "tegev"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Praegused lõimed:"
 
@@ -107,7 +107,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aeroobne lämmastiku fikseerimine"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1465
+#: ../src/microbe_stage/MicrobeStage.tscn:1472
 msgid "AGENTS"
 msgstr "ained"
 
@@ -173,22 +173,22 @@ msgstr "Organismi statistika"
 msgid "ALT"
 msgstr "ALT"
 
-#: ../src/general/OptionsMenu.tscn:739
+#: ../src/general/OptionsMenu.tscn:742
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance helitugevus"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1207
+#: ../src/microbe_stage/MicrobeStage.tscn:1214
 msgid "AMMONIA"
 msgstr "Ammoniaak"
 
-#: ../src/general/OptionsMenu.tscn:1634
+#: ../src/general/OptionsMenu.tscn:1637
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Säilitatavate automaatsete salvestamiste arv:"
 
-#: ../src/general/OptionsMenu.tscn:1662
+#: ../src/general/OptionsMenu.tscn:1665
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Säilitatavate kiirsäästude arv:"
 
@@ -214,11 +214,11 @@ msgstr "Rakenda muudatused"
 msgid "APRIL"
 msgstr "aprill"
 
-#: ../src/general/OptionsMenu.tscn:1997
+#: ../src/general/OptionsMenu.tscn:2040
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Kas olete kindel, et soovite lähtestada KÕIK seaded normaalseks?"
 
-#: ../src/general/OptionsMenu.tscn:2006
+#: ../src/general/OptionsMenu.tscn:2049
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Kas olete kindel, et soovite lähtestada sisendseaded normaalseks?"
 
@@ -248,7 +248,7 @@ msgstr "Mod-monteerimisklass on nõutav, kui kokkupanek on täpsustatud"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Mod-monteerimisklass on nõutav, kui kokkupanek on täpsustatud"
 
-#: ../src/general/OptionsMenu.tscn:1106
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Oletame, et CPU-l on hüperkeermestamine lubatud"
 
@@ -290,7 +290,7 @@ msgstr "Selle salvestusfaili kirjutamise katse ebaõnnestus. Salvestusnimi võib
 msgid "AT_CURSOR"
 msgstr "Kursori juures:"
 
-#: ../src/general/OptionsMenu.tscn:856
+#: ../src/general/OptionsMenu.tscn:859
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Heli väljundseade:"
 
@@ -298,8 +298,8 @@ msgstr "Heli väljundseade:"
 msgid "AUGUST"
 msgstr "august"
 
-#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:598 ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:1477 ../src/general/OptionsMenu.tscn:1478
 msgid "AUTO"
 msgstr "Automaatne"
 
@@ -327,7 +327,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% valmis. {1:n0}/{2:n0} sammu."
 
-#: ../src/general/OptionsMenu.tscn:1623
+#: ../src/general/OptionsMenu.tscn:1626
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automaatne salvestamine mängu ajal"
 
@@ -366,7 +366,7 @@ msgstr "käitamise olek:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automaatne edasiliikumine"
 
-#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:358
+#: ../src/general/OptionsMenu.cs:954 ../src/general/OptionsMenu.tscn:361
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolutsioon:"
@@ -395,7 +395,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1977 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -451,12 +451,12 @@ msgid "BATHYPELAGIC"
 msgstr "Batüpelaagiline"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:545
-#: ../src/microbe_stage/MicrobeStage.tscn:1655
+#: ../src/microbe_stage/MicrobeStage.tscn:1663
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
-#: ../src/microbe_stage/MicrobeStage.tscn:1644
+#: ../src/microbe_stage/MicrobeStage.tscn:1652
 msgid "BECOME_MULTICELLULAR"
 msgstr "Hakka mitmerakuliseks ({0}/{1})"
 
@@ -551,7 +551,7 @@ msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Köitmisrežiimi sisse- ja väljalülitamiseks vajutage nuppu [thrive:input]g_lüliti_siduv[/thrive:input]. Sidumisrežiimis saate oma kolooniaga kinnitada teisi oma liigi rakke, liikudes nendesse. Kolooniast lahkumiseks vajutage [thrive:input]g_lahti_siduma_kõik[/thrive:input]."
 
-#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1281 ../src/general/OptionsMenu.tscn:1391
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -625,7 +625,7 @@ msgstr "Kaamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2128
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
@@ -763,7 +763,7 @@ msgstr "Muutke sümmeetriat"
 msgid "CHEATS"
 msgstr "Sohitegija"
 
-#: ../src/general/OptionsMenu.tscn:1716
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Petuklahvid on lubatud"
 
@@ -855,7 +855,7 @@ msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisska
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Valitud failinimi ({0}) on juba olemas. Kas kirjutada üle?"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:441
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaatiline aberratsioon:"
 
@@ -887,7 +887,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vanade salvestuste puhastamine"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2203
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -899,15 +899,15 @@ msgstr "Vanade salvestuste puhastamine"
 msgid "CLOSE"
 msgstr "Sulge"
 
-#: ../src/general/OptionsMenu.tscn:2015
+#: ../src/general/OptionsMenu.tscn:2058
 msgid "CLOSE_OPTIONS"
 msgstr "Kas sulgeda valikud?"
 
-#: ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:1016
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Pilve eraldusvõime jagaja:"
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:966
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Pilve simulatsiooni minimaalne intervall:"
 
@@ -923,7 +923,7 @@ msgstr ""
 msgid "COLOUR"
 msgstr "Värv"
 
-#: ../src/general/OptionsMenu.tscn:400
+#: ../src/general/OptionsMenu.tscn:403
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Värvipime korrigeerimine:"
 
@@ -1003,7 +1003,7 @@ msgstr "meie Viki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/OptionsMenu.tscn:1903
+#: ../src/general/OptionsMenu.tscn:1946
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Ühendid:"
@@ -1013,7 +1013,7 @@ msgstr "Ühendid:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 msgid "COMPOUNDS"
 msgstr "Ühendid"
 
@@ -1030,7 +1030,7 @@ msgstr "Ühendid:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Liitsaldod"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:951
 msgid "COMPOUND_CLOUDS"
 msgstr "Liitpilved"
 
@@ -1119,7 +1119,7 @@ msgstr "Kas jätkata prototüüpide lavastamist?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1450
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1133,11 +1133,11 @@ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. L
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:578
+#: ../src/general/OptionsMenu.tscn:581
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1375
+#: ../src/general/OptionsMenu.tscn:1378
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1150,11 +1150,11 @@ msgstr "Kopeerimise viga lõikelauale"
 msgid "COPY_RESULTS"
 msgstr "Auto-evo tulemused:"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanope (punane-roheline)"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (sinine-kollane)"
 
@@ -1300,7 +1300,7 @@ msgstr "Praegused arendajad"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1738
 msgid "CUSTOM_USERNAME"
 msgstr "Kohandatud kasutajanimi:"
 
@@ -1378,7 +1378,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr "detsember"
 
-#: ../src/general/OptionsMenu.cs:1404
+#: ../src/general/OptionsMenu.cs:1420
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Vaikimisi väljundseade"
 
@@ -1442,7 +1442,7 @@ msgstr "Kirjeldus on liiga pikk"
 msgid "DESPAWN_ENTITIES"
 msgstr "Kudema vaenlane"
 
-#: ../src/general/OptionsMenu.tscn:1075
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "DETECTED_CPU_COUNT"
 msgstr "Tuvastatud protsessorite arv:"
 
@@ -1551,7 +1551,7 @@ msgstr "Vasakule"
 msgid "DIRECTIONR"
 msgstr "paremale"
 
-#: ../src/general/OptionsMenu.tscn:330 ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333 ../src/general/OptionsMenu.tscn:334
 msgid "DISABLED"
 msgstr "töövõimetu"
 
@@ -1559,7 +1559,7 @@ msgstr "töövõimetu"
 msgid "DISABLE_ALL"
 msgstr "Keela kõik"
 
-#: ../src/general/OptionsMenu.tscn:2068
+#: ../src/general/OptionsMenu.tscn:2111
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Visake ära ja jätkake"
 
@@ -1604,12 +1604,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
-#: ../src/general/OptionsMenu.tscn:1809
+#: ../src/general/OptionsMenu.tscn:1812
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Kiirus:"
 
-#: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1810 ../src/general/OptionsMenu.tscn:1819
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1625,15 +1625,15 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:613
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Kuvamisvõimaluste riba"
 
-#: ../src/general/OptionsMenu.tscn:467
+#: ../src/general/OptionsMenu.tscn:470
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:627
+#: ../src/general/OptionsMenu.tscn:630
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Kuvamisvõimaluste riba"
@@ -1810,7 +1810,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr "Toimetaja"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1823
+#: ../src/microbe_stage/MicrobeStage.tscn:1831
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Lisage uus võtme sidumine"
@@ -1826,7 +1826,7 @@ msgstr ""
 "\n"
 "Kui olete valmis, vajutage jätkamiseks paremas alanurgas nuppu \"Järgmine\"."
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1842,7 +1842,7 @@ msgstr "Luba kõik ühilduvad modifikatsioonid"
 msgid "ENABLE_EDITOR"
 msgstr "Luba redaktor"
 
-#: ../src/general/OptionsMenu.tscn:618
+#: ../src/general/OptionsMenu.tscn:621
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Lubage GUI valgusefektid"
 
@@ -1880,7 +1880,7 @@ msgid "ENTITY_LABEL"
 msgstr "biome: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:600
+#: ../src/microbe_stage/MicrobeStage.tscn:607
 msgid "ENVIRONMENT"
 msgstr "Keskkond"
 
@@ -1906,7 +1906,7 @@ msgstr "Epipelaagiline"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2139 ../src/general/OptionsMenu.tscn:2147
 msgid "ERROR"
 msgstr "Viga"
 
@@ -1918,7 +1918,7 @@ msgstr "Modifikaadi kausta loomisel tekkis viga"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Viga mod teabefaili loomisel"
 
-#: ../src/general/OptionsMenu.tscn:2106
+#: ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Viga: uute sätete salvestamine konfiguratsioonifaili nurjus."
 
@@ -1966,12 +1966,12 @@ msgstr "Autor Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Autor Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1875
+#: ../src/general/OptionsMenu.tscn:1918
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Versioon:"
 
-#: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1927
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "vabasurm"
@@ -2133,7 +2133,7 @@ msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse 
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1996
+#: ../src/microbe_stage/MicrobeStage.tscn:2004
 msgid "FIRE_TOXIN"
 msgstr "Tulista toksiini"
 
@@ -2240,7 +2240,7 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "istuv"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2278,7 +2278,7 @@ msgstr ""
 "ja võib olla tükkide osas palju ambitsioonikam.\n"
 "Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
 
-#: ../src/general/OptionsMenu.tscn:284
+#: ../src/general/OptionsMenu.tscn:287
 msgid "FULLSCREEN"
 msgstr "Täisekraan"
 
@@ -2313,7 +2313,7 @@ msgstr "Põlvkond:"
 msgid "GITHUB_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/OptionsMenu.cs:952
+#: ../src/general/OptionsMenu.cs:968
 msgid "GLES2"
 msgstr ""
 
@@ -2325,7 +2325,7 @@ msgstr "GLES2 režiimi hoiatus"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
 
-#: ../src/general/OptionsMenu.cs:957
+#: ../src/general/OptionsMenu.cs:973
 msgid "GLES3"
 msgstr ""
 
@@ -2340,7 +2340,7 @@ msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohast {2} asukohta {1}"
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1168
 msgid "GLUCOSE"
 msgstr "Glükoos"
 
@@ -2379,12 +2379,12 @@ msgstr "Sain aru"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL litsentsi tekst on järgmine:"
 
-#: ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.tscn:480
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:174
 msgid "GRAPHICS"
 msgstr "Graafika"
 
@@ -2392,7 +2392,7 @@ msgstr "Graafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Graafika meeskond"
 
-#: ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI"
 msgstr ""
 
@@ -2409,7 +2409,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0}K"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:812
 msgid "GUI_VOLUME"
 msgstr "GUI helitugevus"
 
@@ -2431,11 +2431,11 @@ msgstr "Abi"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Abi"
 
-#: ../src/general/OptionsMenu.tscn:970 ../src/general/OptionsMenu.tscn:1020
+#: ../src/general/OptionsMenu.tscn:973 ../src/general/OptionsMenu.tscn:1023
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(kõrgemad väärtused suurendavad jõudlust)"
 
-#: ../src/general/OptionsMenu.tscn:315 ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1181
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(kõrgemad väärtused halvendavad jõudlust)"
 
@@ -2460,7 +2460,7 @@ msgstr ""
 msgid "HOME"
 msgstr "Kodu"
 
-#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
+#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1403
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Versioon:"
@@ -2485,7 +2485,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1308
+#: ../src/microbe_stage/MicrobeStage.tscn:1315
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vesiniksulfiid"
 
@@ -2534,7 +2534,7 @@ msgstr "Lõpmatud ühendid"
 msgid "INFINITE_MP"
 msgstr "Lõpmatu MP"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1404
+#: ../src/microbe_stage/MicrobeStage.tscn:1411
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2543,7 +2543,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
-#: ../src/general/OptionsMenu.tscn:204
+#: ../src/general/OptionsMenu.tscn:207
 msgid "INPUTS"
 msgstr "Sisendid"
 
@@ -2679,8 +2679,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
-#: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
+#: ../src/general/OptionsMenu.tscn:1306 ../src/general/OptionsMenu.tscn:1328
+#: ../src/general/OptionsMenu.tscn:1416 ../src/general/OptionsMenu.tscn:1439
 msgid "INVERTED"
 msgstr ""
 
@@ -2694,7 +2694,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1354
+#: ../src/microbe_stage/MicrobeStage.tscn:1361
 msgid "IRON"
 msgstr "Raud"
 
@@ -2711,19 +2711,19 @@ msgstr "vabasurm"
 msgid "JANUARY"
 msgstr "jaanuaril"
 
-#: ../src/general/OptionsMenu.tscn:1841
+#: ../src/general/OptionsMenu.tscn:1844
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON-i silumisrežiim:"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1860
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Alati"
 
-#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1859 ../src/general/OptionsMenu.tscn:1860
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaatselt"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1860
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Mitte kunagi"
 
@@ -2905,19 +2905,19 @@ msgstr "number ."
 msgid "KPSUBTRACT"
 msgstr "number -"
 
-#: ../src/general/OptionsMenu.tscn:885
+#: ../src/general/OptionsMenu.tscn:888
 msgid "LANGUAGE"
 msgstr "Keel:"
 
-#: ../src/general/OptionsMenu.cs:1444
+#: ../src/general/OptionsMenu.cs:1460
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "See keel on {0}% valmis"
 
-#: ../src/general/OptionsMenu.cs:1440
+#: ../src/general/OptionsMenu.cs:1456
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "See keel on veel pooleli ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:1436
+#: ../src/general/OptionsMenu.cs:1452
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 
@@ -3135,7 +3135,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:924
+#: ../src/microbe_stage/MicrobeStage.tscn:931
 msgid "LIGHT"
 msgstr "Valgus"
 
@@ -3161,7 +3161,7 @@ msgstr "Ratas paremale"
 msgid "LIGHT_MAX"
 msgstr "Valgus"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Lisad"
@@ -3176,32 +3176,32 @@ msgstr "KINNITA"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "KINNITA"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197 ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -3340,7 +3340,7 @@ msgstr "märtsil"
 msgid "MARINE_SNOW"
 msgstr "Mere lumi"
 
-#: ../src/general/OptionsMenu.tscn:653
+#: ../src/general/OptionsMenu.tscn:656
 msgid "MASTER_VOLUME"
 msgstr "Master helitugevus"
 
@@ -3349,15 +3349,15 @@ msgstr "Master helitugevus"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Lapist välja surnud"
 
-#: ../src/general/OptionsMenu.tscn:369
+#: ../src/general/OptionsMenu.tscn:372
 msgid "MAX_FPS"
 msgstr "max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:384
+#: ../src/general/OptionsMenu.tscn:387
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Piiramatu"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1174
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -3745,7 +3745,7 @@ msgstr "Minimaalne:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lubatud kuvada vähem kui {0} andmestikku!"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:218
 msgid "MISC"
 msgstr "Muud"
 
@@ -3758,6 +3758,11 @@ msgstr "Mitmesugust"
 #, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Mitmesugust"
+
+#: ../src/general/OptionsMenu.tscn:1873
+#, fuzzy
+msgid "MISC_FUN"
+msgstr "Muud"
 
 #: ../src/modding/ModUploader.cs:345
 msgid "MISSING_DESCRIPTION"
@@ -3961,11 +3966,11 @@ msgstr "Modifikatsiooni versioon:"
 msgid "MORE_INFO"
 msgstr "Näita rohkem teavet"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1334
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4016,7 +4021,7 @@ msgstr "Liikuge sellele paigale"
 msgid "MOVE_TO_LAND"
 msgstr "Modifikatsioon üleslaadimiseks:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1640
+#: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
@@ -4094,7 +4099,7 @@ msgstr "{0} mp"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1570
+#: ../src/microbe_stage/MicrobeStage.tscn:1577
 msgid "MUCILAGE"
 msgstr ""
 
@@ -4129,7 +4134,7 @@ msgstr "Asetage organell"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Asetage organell"
 
-#: ../src/general/OptionsMenu.tscn:308
+#: ../src/general/OptionsMenu.tscn:311
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Mitme proovi antialiasing:"
 
@@ -4141,7 +4146,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Muusika"
 
-#: ../src/general/OptionsMenu.tscn:704
+#: ../src/general/OptionsMenu.tscn:707
 msgid "MUSIC_VOLUME"
 msgstr "Muusika helitugevus"
 
@@ -4165,9 +4170,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/general/OptionsMenu.tscn:682 ../src/general/OptionsMenu.tscn:733
-#: ../src/general/OptionsMenu.tscn:768 ../src/general/OptionsMenu.tscn:803
-#: ../src/general/OptionsMenu.tscn:838
+#: ../src/general/OptionsMenu.tscn:685 ../src/general/OptionsMenu.tscn:736
+#: ../src/general/OptionsMenu.tscn:771 ../src/general/OptionsMenu.tscn:806
+#: ../src/general/OptionsMenu.tscn:841
 msgid "MUTE"
 msgstr "Vaigista"
 
@@ -4273,7 +4278,7 @@ msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaas
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
 
-#: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:419 ../src/general/OptionsMenu.tscn:420
 msgid "NONE"
 msgstr "Mitte ühtegi"
 
@@ -4367,7 +4372,7 @@ msgstr "Salvestusi ei leitud"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Salvestatud kataloogi ei leitud"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Ekraanitõmmiste kataloogi ei leitud"
 
@@ -4465,7 +4470,7 @@ msgstr "Avage abiekraan"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Vabaehitus"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1773
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Avage logide kaust"
 
@@ -4486,7 +4491,7 @@ msgstr "Avage abiekraan"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Avage Salvesta kataloog"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1765
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Avage ekraanipildi kaust"
 
@@ -4494,7 +4499,7 @@ msgstr "Avage ekraanipildi kaust"
 msgid "OPEN_THE_MENU"
 msgstr "Avage menüü"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:925
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Aidake mängu tõlkida"
 
@@ -4663,7 +4668,7 @@ msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thriv
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1522
+#: ../src/microbe_stage/MicrobeStage.tscn:1529
 msgid "OXYTOXY_NT"
 msgstr "oksütotsiini nt"
 
@@ -4762,7 +4767,7 @@ msgstr "Eemaldage kohalikud andmed"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2167
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4835,7 +4840,7 @@ msgstr "Rahulik"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:193
+#: ../src/general/OptionsMenu.tscn:196
 msgid "PERFORMANCE"
 msgstr "Esitus"
 
@@ -4851,7 +4856,7 @@ msgstr "/sekund"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1256
+#: ../src/microbe_stage/MicrobeStage.tscn:1263
 msgid "PHOSPHATE"
 msgstr "fosfaat"
 
@@ -4920,7 +4925,7 @@ msgstr "Dubleeri pleier"
 msgid "PLAYER_EXTINCT"
 msgstr "Mängija on välja surnud"
 
-#: ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:1478
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Mängija on välja surnud"
@@ -4935,23 +4940,23 @@ msgstr ""
 "Mängija\n"
 "Kiirus"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1599
+#: ../src/general/OptionsMenu.tscn:1602
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Esita sissejuhatav video"
 
-#: ../src/general/OptionsMenu.tscn:1607
+#: ../src/general/OptionsMenu.tscn:1610
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mängige uues mängus mikroobide tutvustust"
 
@@ -4960,7 +4965,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1675
+#: ../src/microbe_stage/MicrobeStage.tscn:1683
 #: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "ELANIKKOND:"
@@ -4990,7 +4995,7 @@ msgid "PRESSURE"
 msgstr "Surve"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:979
+#: ../src/microbe_stage/MicrobeStage.tscn:986
 msgid "PRESSURE_SHORT"
 msgstr "Surve."
 
@@ -5169,7 +5174,7 @@ msgstr "Paljundamine:"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Tuum"
 
-#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:1945
+#: ../src/general/OptionsMenu.tscn:906 ../src/general/OptionsMenu.tscn:1988
 msgid "RESET"
 msgstr "lähtestada"
 
@@ -5178,24 +5183,24 @@ msgstr "lähtestada"
 msgid "RESET_DEADZONES"
 msgstr "Kas lähtestada normaalseks?"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1834
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2005
+#: ../src/general/OptionsMenu.tscn:2048
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Kas lähtestada sisendid normaalseks?"
 
-#: ../src/general/OptionsMenu.tscn:1558
+#: ../src/general/OptionsMenu.tscn:1561
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Lähtestage sisendid"
 
-#: ../src/general/OptionsMenu.tscn:1985
+#: ../src/general/OptionsMenu.tscn:2028
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "normaalne"
 
-#: ../src/general/OptionsMenu.tscn:1996
+#: ../src/general/OptionsMenu.tscn:2039
 msgid "RESET_TO_DEFAULTS"
 msgstr "Kas lähtestada normaalseks?"
 
@@ -5204,7 +5209,7 @@ msgstr "Kas lähtestada normaalseks?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:348
 msgid "RESOLUTION"
 msgstr "Resolutsioon:"
 
@@ -5304,7 +5309,7 @@ msgstr "Pöörake paremale"
 msgid "ROTATION_COLON"
 msgstr "elanikkond:"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1058
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Käivitage mängu ajal auto-evo"
 
@@ -5373,11 +5378,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Eemaldage kohalikud andmed"
 
-#: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2002 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Salvesta"
 
-#: ../src/general/OptionsMenu.tscn:2058
+#: ../src/general/OptionsMenu.tscn:2101
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salvestage ja jätkake"
 
@@ -5478,21 +5483,49 @@ msgstr "Salvestamine ei ole praegu võimalik järgmistel põhjustel:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvestamine õnnestus"
 
-#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1346 ../src/general/OptionsMenu.tscn:1347
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1347
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Signaaliagent"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1347
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1884
+#, fuzzy
+msgid "SCREEN_EFFECT"
+msgstr "Välised mõjud:"
+
+#: ../simulation_parameters/common/screen_effects.json:18
+#, fuzzy
+msgid "SCREEN_EFFECT_GAMEBOY"
+msgstr "Välised mõjud:"
+
+#: ../simulation_parameters/common/screen_effects.json:23
+#, fuzzy
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
+msgstr "Välised mõjud:"
+
+#: ../simulation_parameters/common/screen_effects.json:8
+#, fuzzy
+msgid "SCREEN_EFFECT_GREYSCALE"
+msgstr "Välised mõjud:"
+
+#: ../simulation_parameters/common/screen_effects.json:3
+msgid "SCREEN_EFFECT_NONE"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:13
+msgid "SCREEN_EFFECT_PIXELATION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1478 ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1512
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5514,7 +5547,7 @@ msgstr "merepõhi"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2041
+#: ../src/microbe_stage/MicrobeStage.tscn:2049
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -5599,7 +5632,7 @@ msgstr "istuv"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "See väärtus kehtib ainult uutele mängudele, mis alustati pärast selle valiku muutmist"
 
-#: ../src/general/OptionsMenu.tscn:774
+#: ../src/general/OptionsMenu.tscn:777
 msgid "SFX_VOLUME"
 msgstr "SFX helitugevus"
 
@@ -5611,12 +5644,12 @@ msgstr "SHIFT"
 msgid "SHOW_HELP"
 msgstr "Näita abi"
 
-#: ../src/general/OptionsMenu.tscn:1787
+#: ../src/general/OptionsMenu.tscn:1790
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1785
+#: ../src/general/OptionsMenu.tscn:1788
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -5625,15 +5658,15 @@ msgstr "{0} {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Näita õpetusi"
 
-#: ../src/general/OptionsMenu.tscn:1697
+#: ../src/general/OptionsMenu.tscn:1700
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näita õpetusi (praeguses mängus)"
 
-#: ../src/general/OptionsMenu.tscn:1689
+#: ../src/general/OptionsMenu.tscn:1692
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näita õpetusi (uutes mängudes)"
 
-#: ../src/general/OptionsMenu.tscn:1704
+#: ../src/general/OptionsMenu.tscn:1707
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kuva salvestamata edenemise hoiatus"
 
@@ -5641,7 +5674,7 @@ msgstr "Kuva salvestamata edenemise hoiatus"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija proovib mängust väljuda."
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1781
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5691,7 +5724,7 @@ msgstr "Ränidioksiid"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on tugev ränidioksiidi sein. See talub hästi üldist kahju ja on väga vastupidav füüsilistele kahjustustele. Samuti nõuab see oma vormi säilitamiseks vähem energiat. Kuid see aeglustab raku tööd suure teguri võrra ja rakk neelab ressursse vähendatud kiirusega."
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5745,7 +5778,7 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
-#: ../src/general/OptionsMenu.tscn:182
+#: ../src/general/OptionsMenu.tscn:185
 msgid "SOUND"
 msgstr "Heli"
 
@@ -6149,7 +6182,7 @@ msgid "TEMPERATURE"
 msgstr "Temperatuur"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:868
+#: ../src/microbe_stage/MicrobeStage.tscn:875
 msgid "TEMPERATURE_SHORT"
 msgstr "temperatuur."
 
@@ -6232,7 +6265,7 @@ msgstr "See on kohapeal installitud mod"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "See mod laaditakse alla Steami töökojast"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "THREADS"
 msgstr "Teemad:"
 
@@ -6342,7 +6375,7 @@ msgid "TITLE_COLON"
 msgstr "Suurus:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2007
+#: ../src/microbe_stage/MicrobeStage.tscn:2015
 msgid "TOGGLE_BINDING"
 msgstr "Lülitage sidumine sisse"
 
@@ -6354,7 +6387,7 @@ msgstr "Neelamise sisse- ja väljalülitamine"
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1983
+#: ../src/microbe_stage/MicrobeStage.tscn:1991
 msgid "TOGGLE_ENGULF"
 msgstr "Neelamise sisse- ja väljalülitamine"
 
@@ -6460,7 +6493,7 @@ msgstr "Proovige teha ekraanipilte!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Proovige salvestada!"
 
-#: ../src/general/OptionsMenu.tscn:2116
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Proovige teha ekraanipilte!"
 
@@ -6619,7 +6652,7 @@ msgstr "Vaata nüüd"
 msgid "TWITTER_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6636,7 +6669,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Modifikatsioonide laadimiseks või mahalaadimiseks peate muudatused rakendama."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2019
+#: ../src/microbe_stage/MicrobeStage.tscn:2027
 msgid "UNBIND_ALL"
 msgstr "Vabastage kõik"
 
@@ -6644,7 +6677,7 @@ msgstr "Vabastage kõik"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Vabasta sidumisrežiim"
 
-#: ../src/general/OptionsMenu.cs:1505
+#: ../src/general/OptionsMenu.cs:1521
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6667,7 +6700,7 @@ msgstr "Võta viimane toiming tagasi"
 msgid "UNKNOWN"
 msgstr "Tundmatu"
 
-#: ../src/general/OptionsMenu.cs:962
+#: ../src/general/OptionsMenu.cs:978
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Kuvamisvõimaluste riba"
@@ -6681,7 +6714,7 @@ msgstr "Tundmatu hiir"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tundmatu töökoja ID selle modifikatsiooni jaoks"
 
-#: ../src/general/OptionsMenu.cs:1512
+#: ../src/general/OptionsMenu.cs:1528
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Modifikatsiooni versioon:"
@@ -6690,7 +6723,7 @@ msgstr "Modifikatsiooni versioon:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Tundmatu töökoja ID selle modifikatsiooni jaoks"
 
-#: ../src/general/OptionsMenu.tscn:2035
+#: ../src/general/OptionsMenu.tscn:2078
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Teil on salvestamata muudatusi, mis tühistatakse.\n"
@@ -6735,7 +6768,7 @@ msgstr "Üleslaadimine õnnestus"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Litsentsid ja kasutatud raamatukogud"
 
-#: ../src/general/OptionsMenu.tscn:507
+#: ../src/general/OptionsMenu.tscn:510
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -6753,7 +6786,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/OptionsMenu.tscn:1724
+#: ../src/general/OptionsMenu.tscn:1727
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Kasutage kohandatud kasutajanime"
 
@@ -6761,11 +6794,11 @@ msgstr "Kasutage kohandatud kasutajanime"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1114
+#: ../src/general/OptionsMenu.tscn:1117
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Taustalõimede arvu käsitsi määramine"
 
-#: ../src/general/OptionsMenu.tscn:1358
+#: ../src/general/OptionsMenu.tscn:1361
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6792,7 +6825,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr "Versioon:"
 
-#: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1312 ../src/general/OptionsMenu.tscn:1422
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Versioon:"
@@ -6803,11 +6836,11 @@ msgstr "Versioon:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Uus nimi:"
 
-#: ../src/general/OptionsMenu.tscn:534
+#: ../src/general/OptionsMenu.tscn:537
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
+#: ../src/general/OptionsMenu.cs:987 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6821,12 +6854,12 @@ msgstr "Vaataja"
 msgid "VIEW_ALL"
 msgstr "Keela kõik"
 
-#: ../src/general/OptionsMenu.tscn:1795
+#: ../src/general/OptionsMenu.tscn:1798
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1793
+#: ../src/general/OptionsMenu.tscn:1796
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -6863,7 +6896,7 @@ msgstr "Heli vaigistamine"
 msgid "VOLUMEUP"
 msgstr "Helitugevuse suurendamine"
 
-#: ../src/general/OptionsMenu.tscn:276
+#: ../src/general/OptionsMenu.tscn:279
 msgid "VSYNC"
 msgstr "vsync"
 
@@ -6970,7 +7003,7 @@ msgstr "Organismi statistika"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1512
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Aluse liikumine"
@@ -6979,15 +7012,15 @@ msgstr "Aluse liikumine"
 msgid "WORST_PATCH_COLON"
 msgstr "Halvim plaaster:"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_SERIES"
 msgstr ""
 

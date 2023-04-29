@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-31 16:05+0300\n"
+"POT-Creation-Date: 2023-04-29 17:47-0500\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1457
+#: ../src/general/OptionsMenu.tscn:1460
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr "Триизмерен редактор"
 msgid "3D_MOVEMENT"
 msgstr "Триизмерно движение"
 
-#: ../src/general/OptionsMenu.tscn:1489
+#: ../src/general/OptionsMenu.tscn:1492
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr "Последното действие не е завършено"
 msgid "ACTIVE"
 msgstr "Енергично"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Текущи нишки:"
 
@@ -104,7 +104,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аеробна азотна фиксация"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1465
+#: ../src/microbe_stage/MicrobeStage.tscn:1472
 msgid "AGENTS"
 msgstr "Химични агенти"
 
@@ -165,22 +165,22 @@ msgstr "Характеристика"
 msgid "ALT"
 msgstr "Клавиш „Alt“"
 
-#: ../src/general/OptionsMenu.tscn:739
+#: ../src/general/OptionsMenu.tscn:742
 msgid "AMBIANCE_VOLUME"
 msgstr "Околна среда"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1207
+#: ../src/microbe_stage/MicrobeStage.tscn:1214
 msgid "AMMONIA"
 msgstr "Амоняк"
 
-#: ../src/general/OptionsMenu.tscn:1634
+#: ../src/general/OptionsMenu.tscn:1637
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Брой на автоматичните записи:"
 
-#: ../src/general/OptionsMenu.tscn:1662
+#: ../src/general/OptionsMenu.tscn:1665
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Брой на бързите записи:"
 
@@ -205,11 +205,11 @@ msgstr "Прилагане"
 msgid "APRIL"
 msgstr "Април"
 
-#: ../src/general/OptionsMenu.tscn:1997
+#: ../src/general/OptionsMenu.tscn:2040
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Сигурни ли сте, че искате да възстановите настройките по подразбиране?"
 
-#: ../src/general/OptionsMenu.tscn:2006
+#: ../src/general/OptionsMenu.tscn:2049
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Сигурни ли сте, че искате да възстановите контролите по подразбиране?"
 
@@ -237,7 +237,7 @@ msgstr "Изисква се основното „Assembly“"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Изисква се „Assembly“, когато използвате „Harmony“"
 
-#: ../src/general/OptionsMenu.tscn:1106
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Включване на хипернишковата технология"
 
@@ -279,7 +279,7 @@ msgstr "Създаването е неуспешно. Наименованиет
 msgid "AT_CURSOR"
 msgstr "Под курсора:"
 
-#: ../src/general/OptionsMenu.tscn:856
+#: ../src/general/OptionsMenu.tscn:859
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Изходно устройство:"
 
@@ -287,8 +287,8 @@ msgstr "Изходно устройство:"
 msgid "AUGUST"
 msgstr "Август"
 
-#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:598 ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:1477 ../src/general/OptionsMenu.tscn:1478
 msgid "AUTO"
 msgstr "Автоматично"
 
@@ -315,7 +315,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
 
-#: ../src/general/OptionsMenu.tscn:1623
+#: ../src/general/OptionsMenu.tscn:1626
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автоматичен запис по време на игра"
 
@@ -353,7 +353,7 @@ msgstr "Състояние:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Автономно напред"
 
-#: ../src/general/OptionsMenu.cs:938 ../src/general/OptionsMenu.tscn:358
+#: ../src/general/OptionsMenu.cs:954 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "Автоматична ({0}x{1})"
 
@@ -374,7 +374,7 @@ msgstr "Микробен етап"
 #: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
 #: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1977 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -428,12 +428,12 @@ msgid "BATHYPELAGIC"
 msgstr "Батиал"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:545
-#: ../src/microbe_stage/MicrobeStage.tscn:1655
+#: ../src/microbe_stage/MicrobeStage.tscn:1663
 msgid "BECOME_MACROSCOPIC"
 msgstr "Макроскопичен организъм ({0} от {1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
-#: ../src/microbe_stage/MicrobeStage.tscn:1644
+#: ../src/microbe_stage/MicrobeStage.tscn:1652
 msgid "BECOME_MULTICELLULAR"
 msgstr "Многоклетъчен организъм ({0} от {1})"
 
@@ -523,7 +523,7 @@ msgstr "Това е първата стъпка към многоклетъчн�
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Свързването е възможно само с индивиди от Вашите създания чрез доближаване до тях. Режимът на свързване се включва с натискане на [thrive:input]g_toggle_binding[/thrive:input]. Клетъчната колония може да се разпадне с натискане на [thrive:input]g_unbind_all[/thrive:input]. Докато сте част от нея, възпроизвеждането не е възможно."
 
-#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1281 ../src/general/OptionsMenu.tscn:1391
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Свързване на осите"
 
@@ -597,7 +597,7 @@ msgstr "Камера"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2128
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
@@ -733,7 +733,7 @@ msgstr "Промяна на симетрията"
 msgid "CHEATS"
 msgstr "Кодове"
 
-#: ../src/general/OptionsMenu.tscn:1716
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Активиране на кодовете"
 
@@ -823,7 +823,7 @@ msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/t
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Наименованието „{0}“ вече съществува. Презаписване?"
 
-#: ../src/general/OptionsMenu.tscn:438
+#: ../src/general/OptionsMenu.tscn:441
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматична аберация:"
 
@@ -853,7 +853,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Изтриване на старите записи"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2203
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -865,15 +865,15 @@ msgstr "Изтриване на старите записи"
 msgid "CLOSE"
 msgstr "Затваряне"
 
-#: ../src/general/OptionsMenu.tscn:2015
+#: ../src/general/OptionsMenu.tscn:2058
 msgid "CLOSE_OPTIONS"
 msgstr "Затваряне настройките?"
 
-#: ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:1016
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делител на облачната резолюция:"
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:966
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Минимален интервал на облачната симулация:"
 
@@ -889,7 +889,7 @@ msgstr "Фигури на обектите"
 msgid "COLOUR"
 msgstr "Цвят"
 
-#: ../src/general/OptionsMenu.tscn:400
+#: ../src/general/OptionsMenu.tscn:403
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Корекция за цветна слепота:"
 
@@ -966,7 +966,7 @@ msgstr "Обществена Уикипедия"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на обществената Уикипедия на „Thrive“"
 
-#: ../src/general/OptionsMenu.tscn:1903
+#: ../src/general/OptionsMenu.tscn:1946
 msgid "COMPILED_AT_COLON"
 msgstr "Създадена на:"
 
@@ -975,7 +975,7 @@ msgstr "Създадена на:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
 
@@ -991,7 +991,7 @@ msgstr "Има химични съединения:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:951
 msgid "COMPOUND_CLOUDS"
 msgstr "Облаци"
 
@@ -1072,7 +1072,7 @@ msgstr "Искате ли да продължите?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Визуализатор на осите:"
 
-#: ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1450
 msgid "CONTROLLER_DEADZONES"
 msgstr "Мъртви зони"
 
@@ -1087,11 +1087,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Мъртва зона:"
 
-#: ../src/general/OptionsMenu.tscn:578
+#: ../src/general/OptionsMenu.tscn:581
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1375
+#: ../src/general/OptionsMenu.tscn:1378
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Чувствителност на контролера"
 
@@ -1104,11 +1104,11 @@ msgstr "Копиране на грешката в клипборда"
 msgid "COPY_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_PROTANOPE"
 msgstr "Протанопия (червено и зелено)"
 
-#: ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (синьо и жълто)"
 
@@ -1254,7 +1254,7 @@ msgstr "Текущи разработчици"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Характеристика"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1738
 msgid "CUSTOM_USERNAME"
 msgstr "Потребителско име:"
 
@@ -1324,7 +1324,7 @@ msgstr "Отстраняване на грешки"
 msgid "DECEMBER"
 msgstr "Декември"
 
-#: ../src/general/OptionsMenu.cs:1404
+#: ../src/general/OptionsMenu.cs:1420
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "По подразбиране"
 
@@ -1386,7 +1386,7 @@ msgstr "Описанието е твърде дълго"
 msgid "DESPAWN_ENTITIES"
 msgstr "Прочистване"
 
-#: ../src/general/OptionsMenu.tscn:1075
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "DETECTED_CPU_COUNT"
 msgstr "Ядра:"
 
@@ -1499,7 +1499,7 @@ msgstr "Наляво"
 msgid "DIRECTIONR"
 msgstr "Надясно"
 
-#: ../src/general/OptionsMenu.tscn:330 ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:333 ../src/general/OptionsMenu.tscn:334
 msgid "DISABLED"
 msgstr "Изключено"
 
@@ -1507,7 +1507,7 @@ msgstr "Изключено"
 msgid "DISABLE_ALL"
 msgstr "Изключване на всички"
 
-#: ../src/general/OptionsMenu.tscn:2068
+#: ../src/general/OptionsMenu.tscn:2111
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отхвърляне и продължаване"
 
@@ -1549,11 +1549,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Отваряне на сървъра ни в „Discord“"
 
-#: ../src/general/OptionsMenu.tscn:1809
+#: ../src/general/OptionsMenu.tscn:1812
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отхвърлени съобщения:"
 
-#: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1810 ../src/general/OptionsMenu.tscn:1819
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Това е броят на отхвърлените съобщения.\n"
@@ -1569,15 +1569,15 @@ msgstr "Отхвърляне на съобщението"
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "Отхвърляне на съобщението"
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:613
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Лента на способностите"
 
-#: ../src/general/OptionsMenu.tscn:467
+#: ../src/general/OptionsMenu.tscn:470
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Фонови частици"
 
-#: ../src/general/OptionsMenu.tscn:627
+#: ../src/general/OptionsMenu.tscn:630
 msgid "DISPLAY_PART_NAMES"
 msgstr "Наименования на органелите"
 
@@ -1746,7 +1746,7 @@ msgstr "(на произволен принцип)"
 msgid "EDITOR"
 msgstr "Редактор"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1823
+#: ../src/microbe_stage/MicrobeStage.tscn:1831
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
@@ -1761,7 +1761,7 @@ msgstr ""
 "\n"
 "За да преминете към следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "EIGHT_TIMES"
 msgstr "8 пъти"
 
@@ -1777,7 +1777,7 @@ msgstr "Включване на съвместимите модификации"
 msgid "ENABLE_EDITOR"
 msgstr "Активиране на редактора"
 
-#: ../src/general/OptionsMenu.tscn:618
+#: ../src/general/OptionsMenu.tscn:621
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Светлинни ефекти"
 
@@ -1814,7 +1814,7 @@ msgid "ENTITY_LABEL"
 msgstr "Надписи на обектите"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:600
+#: ../src/microbe_stage/MicrobeStage.tscn:607
 msgid "ENVIRONMENT"
 msgstr "Околна среда"
 
@@ -1838,7 +1838,7 @@ msgstr "Епипелагиал"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2096 ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2139 ../src/general/OptionsMenu.tscn:2147
 msgid "ERROR"
 msgstr "Грешка"
 
@@ -1850,7 +1850,7 @@ msgstr "Грешка при създаване на папката на моди
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Грешка при създаване на информационния файл на модификацията"
 
-#: ../src/general/OptionsMenu.tscn:2106
+#: ../src/general/OptionsMenu.tscn:2149
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Грешка: Неуспешно запазване на промените в конфигурационния файл."
 
@@ -1895,11 +1895,11 @@ msgstr ""
 "\n"
 "Ако виждате този текст, поради друга причина, моля, докладвайте за проблема и приложете дневниците на играта към Вашия доклад."
 
-#: ../src/general/OptionsMenu.tscn:1875
+#: ../src/general/OptionsMenu.tscn:1918
 msgid "EXACT_VERSION_COLON"
 msgstr "Версия на „Thrive“:"
 
-#: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1927
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
 
@@ -2070,7 +2070,7 @@ msgstr "{0} поколения"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1996
+#: ../src/microbe_stage/MicrobeStage.tscn:2004
 msgid "FIRE_TOXIN"
 msgstr "Изстрелване на токсин"
 
@@ -2167,7 +2167,7 @@ msgstr "Вкаменяване на тези създания (вече са в�
 msgid "FOSSILISE"
 msgstr "Вкаменяване"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "FOUR_TIMES"
 msgstr "4 пъти"
 
@@ -2198,7 +2198,7 @@ msgstr "Създаване на облак от глюкоза при излиз
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(създава облак от глюкоза близо до Вашето създание след всяко отваряне на редактора)"
 
-#: ../src/general/OptionsMenu.tscn:284
+#: ../src/general/OptionsMenu.tscn:287
 msgid "FULLSCREEN"
 msgstr "Цял екран"
 
@@ -2230,7 +2230,7 @@ msgstr "Поколение:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
 
-#: ../src/general/OptionsMenu.cs:952
+#: ../src/general/OptionsMenu.cs:968
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2242,7 +2242,7 @@ msgstr "Предупреждение за GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
-#: ../src/general/OptionsMenu.cs:957
+#: ../src/general/OptionsMenu.cs:973
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2257,7 +2257,7 @@ msgstr "Част от популацията на [b][u]{0}[/u][/b] се пре�
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1161
+#: ../src/microbe_stage/MicrobeStage.tscn:1168
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -2295,11 +2295,11 @@ msgstr "Разбрах"
 msgid "GPL_LICENSE_HEADING"
 msgstr "Общ публичен лиценз:"
 
-#: ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.tscn:480
 msgid "GPU_NAME"
 msgstr "Видеокарта:"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:174
 msgid "GRAPHICS"
 msgstr "Графика"
 
@@ -2307,7 +2307,7 @@ msgstr "Графика"
 msgid "GRAPHICS_TEAM"
 msgstr "Артисти"
 
-#: ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI"
 msgstr "Интерфейс"
 
@@ -2324,7 +2324,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} хил"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:812
 msgid "GUI_VOLUME"
 msgstr "Интерфейс"
 
@@ -2346,11 +2346,11 @@ msgstr "Ръководство"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
 
-#: ../src/general/OptionsMenu.tscn:970 ../src/general/OptionsMenu.tscn:1020
+#: ../src/general/OptionsMenu.tscn:973 ../src/general/OptionsMenu.tscn:1023
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(по-високите стойности подобряват производителността)"
 
-#: ../src/general/OptionsMenu.tscn:315 ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1181
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(по-високите стойности понижават производителността)"
 
@@ -2374,7 +2374,7 @@ msgstr "Задръжте [thrive:input]g_free_cursor[/thrive:input] за пок�
 msgid "HOME"
 msgstr "Начало"
 
-#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
+#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1403
 msgid "HORIZONTAL_COLON"
 msgstr "Хоризонтална:"
 
@@ -2398,7 +2398,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1308
+#: ../src/microbe_stage/MicrobeStage.tscn:1315
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
@@ -2446,7 +2446,7 @@ msgstr "Пиршество"
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1404
+#: ../src/microbe_stage/MicrobeStage.tscn:1411
 msgid "INGESTED_MATTER"
 msgstr "Погълнати обекти"
 
@@ -2455,7 +2455,7 @@ msgstr "Погълнати обекти"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Отваряне на сървъра ни в „Discord“"
 
-#: ../src/general/OptionsMenu.tscn:204
+#: ../src/general/OptionsMenu.tscn:207
 msgid "INPUTS"
 msgstr "Контроли"
 
@@ -2590,8 +2590,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1303 ../src/general/OptionsMenu.tscn:1325
-#: ../src/general/OptionsMenu.tscn:1413 ../src/general/OptionsMenu.tscn:1436
+#: ../src/general/OptionsMenu.tscn:1306 ../src/general/OptionsMenu.tscn:1328
+#: ../src/general/OptionsMenu.tscn:1416 ../src/general/OptionsMenu.tscn:1439
 msgid "INVERTED"
 msgstr "Обръщане"
 
@@ -2606,7 +2606,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1354
+#: ../src/microbe_stage/MicrobeStage.tscn:1361
 msgid "IRON"
 msgstr "Желязо"
 
@@ -2622,19 +2622,19 @@ msgstr "Отваряне на страницата ни в „Itch.io“"
 msgid "JANUARY"
 msgstr "Януари"
 
-#: ../src/general/OptionsMenu.tscn:1841
+#: ../src/general/OptionsMenu.tscn:1844
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим за отстраняване на грешки:"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1860
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Включен"
 
-#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1859 ../src/general/OptionsMenu.tscn:1860
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматичен"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1860
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Изключен"
 
@@ -2816,19 +2816,19 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:885
+#: ../src/general/OptionsMenu.tscn:888
 msgid "LANGUAGE"
 msgstr "Език:"
 
-#: ../src/general/OptionsMenu.cs:1444
+#: ../src/general/OptionsMenu.cs:1460
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Този превод е завършен на {0} %"
 
-#: ../src/general/OptionsMenu.cs:1440
+#: ../src/general/OptionsMenu.cs:1456
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Този превод е в процес на разработка и е завършен на {0} %"
 
-#: ../src/general/OptionsMenu.cs:1436
+#: ../src/general/OptionsMenu.cs:1452
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Този превод е в начален етап на разработка и е завършен на {0} %!"
 
@@ -3034,7 +3034,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "Хидротермални комини"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:924
+#: ../src/microbe_stage/MicrobeStage.tscn:931
 msgid "LIGHT"
 msgstr "Светлина"
 
@@ -3058,7 +3058,7 @@ msgstr "Нощ"
 msgid "LIGHT_MAX"
 msgstr "Максимална светлина"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_EXTREME"
 msgstr "Екстремен"
 
@@ -3070,31 +3070,31 @@ msgstr "Ограничаване на растежа"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(ограничава скоростта на растеж на създанията)"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_HUGE"
 msgstr "Огромен"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_LARGE"
 msgstr "Голям"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_NORMAL"
 msgstr "Умерен"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_SMALL"
 msgstr "Малък"
 
-#: ../src/general/OptionsMenu.tscn:1194 ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1197 ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_TINY"
 msgstr "Миниатюрен"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_VERY_LARGE"
 msgstr "Много голям"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "LIMIT_VERY_SMALL"
 msgstr "Много малък"
 
@@ -3224,7 +3224,7 @@ msgstr "Март"
 msgid "MARINE_SNOW"
 msgstr "Морски сняг"
 
-#: ../src/general/OptionsMenu.tscn:653
+#: ../src/general/OptionsMenu.tscn:656
 msgid "MASTER_VOLUME"
 msgstr "Основен звук"
 
@@ -3232,15 +3232,15 @@ msgstr "Основен звук"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Максимален брой на създанията преди измиране в зоната"
 
-#: ../src/general/OptionsMenu.tscn:369
+#: ../src/general/OptionsMenu.tscn:372
 msgid "MAX_FPS"
 msgstr "Максимална ЧКС:"
 
-#: ../src/general/OptionsMenu.tscn:384
+#: ../src/general/OptionsMenu.tscn:387
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Неограничена"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1174
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимален брой на обектите:"
 
@@ -3622,7 +3622,7 @@ msgstr "Минимална:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Не е възможно показването на по-малко от {0} набор(а) от данни!"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:215
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:218
 msgid "MISC"
 msgstr "Разни"
 
@@ -3634,6 +3634,11 @@ msgstr "Разни"
 #: ../simulation_parameters/common/input_options.json:188
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Триизмерен етап"
+
+#: ../src/general/OptionsMenu.tscn:1873
+#, fuzzy
+msgid "MISC_FUN"
+msgstr "Разни"
 
 #: ../src/modding/ModUploader.cs:345
 msgid "MISSING_DESCRIPTION"
@@ -3835,11 +3840,11 @@ msgstr "Версия:"
 msgid "MORE_INFO"
 msgstr "Свойства"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Чувствителност на мишката"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1334
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Мащабиране на чувствителността според размера на прозореца"
 
@@ -3888,7 +3893,7 @@ msgstr "Преселение"
 msgid "MOVE_TO_LAND"
 msgstr "Колонизиране"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1640
+#: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Трябва да създадете достатъчно голяма клетъчна колония за да превърнете Вашите създания в многоклетъчен организъм."
 
@@ -3944,7 +3949,7 @@ msgstr "{0} МТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1570
+#: ../src/microbe_stage/MicrobeStage.tscn:1577
 msgid "MUCILAGE"
 msgstr "Слуз"
 
@@ -3973,7 +3978,7 @@ msgstr "Няколко кълба"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Няколко органела"
 
-#: ../src/general/OptionsMenu.tscn:308
+#: ../src/general/OptionsMenu.tscn:311
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множествено изглаждане:"
 
@@ -3988,7 +3993,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Музика"
 
-#: ../src/general/OptionsMenu.tscn:704
+#: ../src/general/OptionsMenu.tscn:707
 msgid "MUSIC_VOLUME"
 msgstr "Музика"
 
@@ -4008,9 +4013,9 @@ msgstr "(определя разхода на мутационни точки в
 msgid "MUTATION_POINTS"
 msgstr "Мутационни точки"
 
-#: ../src/general/OptionsMenu.tscn:682 ../src/general/OptionsMenu.tscn:733
-#: ../src/general/OptionsMenu.tscn:768 ../src/general/OptionsMenu.tscn:803
-#: ../src/general/OptionsMenu.tscn:838
+#: ../src/general/OptionsMenu.tscn:685 ../src/general/OptionsMenu.tscn:736
+#: ../src/general/OptionsMenu.tscn:771 ../src/general/OptionsMenu.tscn:806
+#: ../src/general/OptionsMenu.tscn:841
 msgid "MUTE"
 msgstr "Заглушаване"
 
@@ -4115,7 +4120,7 @@ msgstr "Пластидът за азотна фиксация е протеин,
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
+#: ../src/general/OptionsMenu.tscn:419 ../src/general/OptionsMenu.tscn:420
 msgid "NONE"
 msgstr "Няма"
 
@@ -4207,7 +4212,7 @@ msgstr "Няма създадени записи"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Папката с записи не съществува"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папката със снимки не съществува"
 
@@ -4307,7 +4312,7 @@ msgstr "Отваряне на ръководството"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Отваряне в редактора"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1773
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Местоположение на дневниците"
 
@@ -4328,7 +4333,7 @@ msgstr "Отваряне на ръководството"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Отваряне на папката с записи"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1765
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Местоположение на снимките"
 
@@ -4336,7 +4341,7 @@ msgstr "Местоположение на снимките"
 msgid "OPEN_THE_MENU"
 msgstr "Отваряне на менюто"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:925
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Допринасяне към превода"
 
@@ -4502,7 +4507,7 @@ msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] 
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1522
+#: ../src/microbe_stage/MicrobeStage.tscn:1529
 msgid "OXYTOXY_NT"
 msgstr "Окситоксин"
 
@@ -4595,7 +4600,7 @@ msgstr "Заглавие на страницата"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2167
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4667,7 +4672,7 @@ msgstr "Пасивно"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
-#: ../src/general/OptionsMenu.tscn:193
+#: ../src/general/OptionsMenu.tscn:196
 msgid "PERFORMANCE"
 msgstr "Производителност"
 
@@ -4683,7 +4688,7 @@ msgstr "/в секунда"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1256
+#: ../src/microbe_stage/MicrobeStage.tscn:1263
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
@@ -4756,7 +4761,7 @@ msgstr "Удвояване"
 msgid "PLAYER_EXTINCT"
 msgstr "измиране на създанията"
 
-#: ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:1478
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "измиране на създанията"
@@ -4771,23 +4776,23 @@ msgstr ""
 "Вашата\n"
 "скорост"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_3"
 msgstr "„PlayStation“ 3"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_4"
 msgstr "„PlayStation“ 4"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_5"
 msgstr "„PlayStation“ 5"
 
-#: ../src/general/OptionsMenu.tscn:1599
+#: ../src/general/OptionsMenu.tscn:1602
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Начално видео"
 
-#: ../src/general/OptionsMenu.tscn:1607
+#: ../src/general/OptionsMenu.tscn:1610
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Начално видео при започване на нова игра"
 
@@ -4796,7 +4801,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Нова игра"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1675
+#: ../src/microbe_stage/MicrobeStage.tscn:1683
 #: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
@@ -4826,7 +4831,7 @@ msgid "PRESSURE"
 msgstr "Налягане"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:979
+#: ../src/microbe_stage/MicrobeStage.tscn:986
 msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
@@ -4998,7 +5003,7 @@ msgstr "Видове:"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Нуждае се от ядро"
 
-#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:1945
+#: ../src/general/OptionsMenu.tscn:906 ../src/general/OptionsMenu.tscn:1988
 msgid "RESET"
 msgstr "Нулиране"
 
@@ -5006,23 +5011,23 @@ msgstr "Нулиране"
 msgid "RESET_DEADZONES"
 msgstr "Нулиране"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1834
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Нулиране"
 
-#: ../src/general/OptionsMenu.tscn:2005
+#: ../src/general/OptionsMenu.tscn:2048
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Възстановяване на контролите по подразбиране?"
 
-#: ../src/general/OptionsMenu.tscn:1558
+#: ../src/general/OptionsMenu.tscn:1561
 msgid "RESET_KEYBINDINGS"
 msgstr "Нулиране на контролите"
 
-#: ../src/general/OptionsMenu.tscn:1985
+#: ../src/general/OptionsMenu.tscn:2028
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По подразбиране"
 
-#: ../src/general/OptionsMenu.tscn:1996
+#: ../src/general/OptionsMenu.tscn:2039
 msgid "RESET_TO_DEFAULTS"
 msgstr "Възстановяване на настройките по подразбиране?"
 
@@ -5031,7 +5036,7 @@ msgstr "Възстановяване на настройките по подра
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Предпазва от повечето ензими"
 
-#: ../src/general/OptionsMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:348
 msgid "RESOLUTION"
 msgstr "Резолюция:"
 
@@ -5128,7 +5133,7 @@ msgstr "Завъртане надясно"
 msgid "ROTATION_COLON"
 msgstr "Завъртане:"
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1058
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Автоматична еволюция по време на игра"
 
@@ -5199,11 +5204,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Играта е стартирана в безопасен режим"
 
-#: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2002 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Запазване"
 
-#: ../src/general/OptionsMenu.tscn:2058
+#: ../src/general/OptionsMenu.tscn:2101
 msgid "SAVE_AND_CONTINUE"
 msgstr "Запазване на промените"
 
@@ -5301,20 +5306,48 @@ msgstr "Запазването в момента не е възможно пор
 msgid "SAVING_SUCCEEDED"
 msgstr "Запазването е успешно"
 
-#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1346 ../src/general/OptionsMenu.tscn:1347
 msgid "SCALING_NONE"
 msgstr "Изключено"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1347
 msgid "SCALING_ON"
 msgstr "Включено"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1347
 msgid "SCALING_ON_INVERSE"
 msgstr "Обратно"
 
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1884
+#, fuzzy
+msgid "SCREEN_EFFECT"
+msgstr "Странични ефекти:"
+
+#: ../simulation_parameters/common/screen_effects.json:18
+#, fuzzy
+msgid "SCREEN_EFFECT_GAMEBOY"
+msgstr "Странични ефекти:"
+
+#: ../simulation_parameters/common/screen_effects.json:23
+#, fuzzy
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
+msgstr "Странични ефекти:"
+
+#: ../simulation_parameters/common/screen_effects.json:8
+#, fuzzy
+msgid "SCREEN_EFFECT_GREYSCALE"
+msgstr "Странични ефекти:"
+
+#: ../simulation_parameters/common/screen_effects.json:3
+msgid "SCREEN_EFFECT_NONE"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:13
+msgid "SCREEN_EFFECT_PIXELATION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1478 ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1512
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
@@ -5337,7 +5370,7 @@ msgstr "Морско дъно"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2041
+#: ../src/microbe_stage/MicrobeStage.tscn:2049
 msgid "SECRETE_SLIME"
 msgstr "Освобождаване на слуз"
 
@@ -5416,7 +5449,7 @@ msgstr "Мудно"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Промяната на тази стойност се прилага при започване на нова игра"
 
-#: ../src/general/OptionsMenu.tscn:774
+#: ../src/general/OptionsMenu.tscn:777
 msgid "SFX_VOLUME"
 msgstr "Ефекти"
 
@@ -5428,12 +5461,12 @@ msgstr "Клавиш „Shift“"
 msgid "SHOW_HELP"
 msgstr "Отваряне на ръководството"
 
-#: ../src/general/OptionsMenu.tscn:1787
+#: ../src/general/OptionsMenu.tscn:1790
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} — {1}"
 
-#: ../src/general/OptionsMenu.tscn:1785
+#: ../src/general/OptionsMenu.tscn:1788
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
@@ -5442,15 +5475,15 @@ msgstr "{0} — {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Показване на упътването"
 
-#: ../src/general/OptionsMenu.tscn:1697
+#: ../src/general/OptionsMenu.tscn:1700
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Упътване (в текущата игра)"
 
-#: ../src/general/OptionsMenu.tscn:1689
+#: ../src/general/OptionsMenu.tscn:1692
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Упътване (при започване на нова игра)"
 
-#: ../src/general/OptionsMenu.tscn:1704
+#: ../src/general/OptionsMenu.tscn:1707
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Предупреждение при излизане от играта"
 
@@ -5458,7 +5491,7 @@ msgstr "Предупреждение при излизане от играта"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Превключване на предупреждението при излизане от играта."
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1781
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5508,7 +5541,7 @@ msgstr "Силициева"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с здрава стена от силициев диоксид, която осигурява най-добрата защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването на хранителните вещества."
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "SIXTEEN_TIMES"
 msgstr "16 пъти"
 
@@ -5553,7 +5586,7 @@ msgstr "Малък железен фрагмент"
 msgid "SOCIETY_STAGE"
 msgstr "Микробен етап"
 
-#: ../src/general/OptionsMenu.tscn:182
+#: ../src/general/OptionsMenu.tscn:185
 msgid "SOUND"
 msgstr "Звук"
 
@@ -5952,7 +5985,7 @@ msgid "TEMPERATURE"
 msgstr "Температура"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:868
+#: ../src/microbe_stage/MicrobeStage.tscn:875
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
@@ -6031,7 +6064,7 @@ msgstr "Тази модификация е от локален източник"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Тази модификация е изтеглена от „Steam Workshop“"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "THREADS"
 msgstr "Нишки:"
 
@@ -6149,7 +6182,7 @@ msgid "TITLE_COLON"
 msgstr "Заглавие:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2007
+#: ../src/microbe_stage/MicrobeStage.tscn:2015
 msgid "TOGGLE_BINDING"
 msgstr "Свързване"
 
@@ -6160,7 +6193,7 @@ msgstr "Превключване на отстраняването на греш
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1983
+#: ../src/microbe_stage/MicrobeStage.tscn:1991
 msgid "TOGGLE_ENGULF"
 msgstr "Поглъщане"
 
@@ -6263,7 +6296,7 @@ msgstr "Трябва да направите няколко снимки!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Трябва да направите поне един запис!"
 
-#: ../src/general/OptionsMenu.tscn:2116
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Трябва да направите няколко снимки!"
 
@@ -6429,7 +6462,7 @@ msgstr "Преглед"
 msgid "TWITTER_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Twitter“"
 
-#: ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.tscn:334
 msgid "TWO_TIMES"
 msgstr "2 пъти"
 
@@ -6446,7 +6479,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Трябва да приложите Вашите промени за смяна на модификациите."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2019
+#: ../src/microbe_stage/MicrobeStage.tscn:2027
 msgid "UNBIND_ALL"
 msgstr "Разпадане"
 
@@ -6454,7 +6487,7 @@ msgstr "Разпадане"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим на отделяне"
 
-#: ../src/general/OptionsMenu.cs:1505
+#: ../src/general/OptionsMenu.cs:1521
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Версия за отстраняване на грешки"
 
@@ -6474,7 +6507,7 @@ msgstr "Отмяна на последното действие"
 msgid "UNKNOWN"
 msgstr "Неизвестен клавиш"
 
-#: ../src/general/OptionsMenu.cs:962
+#: ../src/general/OptionsMenu.cs:978
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Неизвестен"
 
@@ -6486,7 +6519,7 @@ msgstr "Неизвестен бутон"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Неизвестна"
 
-#: ../src/general/OptionsMenu.cs:1512
+#: ../src/general/OptionsMenu.cs:1528
 msgid "UNKNOWN_VERSION"
 msgstr "Неизвестна версия"
 
@@ -6494,7 +6527,7 @@ msgstr "Неизвестна версия"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестен идентификационен № за работилницата"
 
-#: ../src/general/OptionsMenu.tscn:2035
+#: ../src/general/OptionsMenu.tscn:2078
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Вашите промени не са запазени и ще бъдат отхвърлени.\n"
@@ -6538,7 +6571,7 @@ msgstr "Качването е успешно"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Лицензи и използвани материали"
 
-#: ../src/general/OptionsMenu.tscn:507
+#: ../src/general/OptionsMenu.tscn:510
 msgid "USED_RENDERER_NAME"
 msgstr "Визуализатор:"
 
@@ -6554,7 +6587,7 @@ msgstr "Използване на „Harmony“"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Автоматично зареждане на „Harmony“ от „Assembly“"
 
-#: ../src/general/OptionsMenu.tscn:1724
+#: ../src/general/OptionsMenu.tscn:1727
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Персонализирано потребителско име"
 
@@ -6562,11 +6595,11 @@ msgstr "Персонализирано потребителско име"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Създанията, увеличаващи биоразнообразието, използват популацията на техните съперници"
 
-#: ../src/general/OptionsMenu.tscn:1114
+#: ../src/general/OptionsMenu.tscn:1117
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ръчно определяне на броя на фоновите нишки"
 
-#: ../src/general/OptionsMenu.tscn:1358
+#: ../src/general/OptionsMenu.tscn:1361
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Използване на виртуалния размер"
 
@@ -6593,7 +6626,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Версия:"
 
-#: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1312 ../src/general/OptionsMenu.tscn:1422
 msgid "VERTICAL_COLON"
 msgstr "Вертикална:"
 
@@ -6602,11 +6635,11 @@ msgstr "Вертикална:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Вертикална ос: {0}"
 
-#: ../src/general/OptionsMenu.tscn:534
+#: ../src/general/OptionsMenu.tscn:537
 msgid "VIDEO_MEMORY"
 msgstr "Използвана графична памет:"
 
-#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
+#: ../src/general/OptionsMenu.cs:987 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} МиБ"
 
@@ -6620,12 +6653,12 @@ msgstr "Преглед"
 msgid "VIEW_ALL"
 msgstr "Изключване на всички"
 
-#: ../src/general/OptionsMenu.tscn:1795
+#: ../src/general/OptionsMenu.tscn:1798
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} — {1}"
 
-#: ../src/general/OptionsMenu.tscn:1793
+#: ../src/general/OptionsMenu.tscn:1796
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
@@ -6662,7 +6695,7 @@ msgstr "Клавиш „Volume Mute“"
 msgid "VOLUMEUP"
 msgstr "Клавиш „Volume Up“"
 
-#: ../src/general/OptionsMenu.tscn:276
+#: ../src/general/OptionsMenu.tscn:279
 msgid "VSYNC"
 msgstr "Вертикална синхронизация"
 
@@ -6771,7 +6804,7 @@ msgstr ""
 "Включване на следващите етапи на играта: {0}\n"
 "Включване на тайните обекти на играта: {1}"
 
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1512
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
@@ -6780,15 +6813,15 @@ msgstr "за да увеличи скоростта"
 msgid "WORST_PATCH_COLON"
 msgstr "Изчезва:"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX360"
 msgstr "„Xbox“ 360"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_ONE"
 msgstr "„Xbox One“"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_SERIES"
 msgstr "„Xbox Series X“"
 
