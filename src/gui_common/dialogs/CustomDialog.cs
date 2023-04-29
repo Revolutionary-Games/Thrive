@@ -194,9 +194,9 @@ public class CustomDialog : CustomWindow
 
     public override void _ExitTree()
     {
-        DisconnectFromWindowReorderingNodes();
-
         base._ExitTree();
+
+        DisconnectFromWindowReorderingNodes();
     }
 
     public override void _Notification(int what)

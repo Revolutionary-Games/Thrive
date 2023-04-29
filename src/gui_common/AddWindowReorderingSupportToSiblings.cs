@@ -8,12 +8,17 @@ public class AddWindowReorderingSupportToSiblings : Control
     [Export]
     public Array<NodePath> WindowReorderingSupportPaths = new();
 
+    /// <summary>
+    ///   Ignored when window reordering paths are not empty
+    /// </summary>
     [Export]
-    public bool ReorderNodes = true;
+    public int AutomaticWindowReorderingSupportDepth = 0;
+
+    [Export]
+    public bool ReorderWindows = true;
 
 #pragma warning disable CA2213
-    private Array<AddWindowReorderingSupportToSiblings> ancestorWindowReorderingNodes = new();
-    private Array<Node> ancestorWindowReorderingNodeSiblings = new();
+    private Array<(AddWindowReorderingSupportToSiblings Node, Node Sibling)> windowReorderingAncestors = new();
 
     private Node? topSibling;
     private Node parent = null!;
@@ -24,32 +29,41 @@ public class AddWindowReorderingSupportToSiblings : Control
     private System.Collections.Generic.Dictionary<CustomWindow, Node> connectedWindows = new();
     private HashSet<Node> connectedSiblings = new();
 
+    public static IEnumerable<(AddWindowReorderingSupportToSiblings Node, Node Sibling)> GetWindowReorderingAncestors(
+        Node startingNode, int maxSearchDepth, Array<NodePath>? paths)
+    {
+        if (paths is null || paths.Count == 0)
+        {
+            foreach (var windowReorderingSupport in GetWindowReorderingAncestors(startingNode, maxSearchDepth))
+                yield return windowReorderingSupport;
+        }
+        else
+        {
+            foreach (var windowReorderingSupport in GetWindowReorderingAncestors(startingNode, paths))
+                yield return windowReorderingSupport;
+        }
+    }
+
     public override void _Ready()
     {
         parent = GetParent();
 
-        for (int i = 0; i < ancestorWindowReorderingNodes.Count; i++)
-        {
-            // TODO : rewrite this to use WindowReorderingSupportPaths node instead of its sibling
-            ancestorWindowReorderingNodeSiblings[i] = GetNode(WindowReorderingSupportPaths[i]);
-            ancestorWindowReorderingNodes[i] = ancestorWindowReorderingNodeSiblings[i].GetParent().GetNode
-                <AddWindowReorderingSupportToSiblings>(nameof(AddWindowReorderingSupportToSiblings));
-        }
+        var windowReorderingAncestorsIEnumerable = GetWindowReorderingAncestors(this,
+            AutomaticWindowReorderingSupportDepth, WindowReorderingSupportPaths);
 
-        // TODO: automatic connections
+        foreach (var windowReorderingAncestor in windowReorderingAncestorsIEnumerable)
+            windowReorderingAncestors.Add(windowReorderingAncestor);
     }
 
     public void ConnectWindow(CustomWindow window, Node topNode)
     {
-        for (int i = 0; i < ancestorWindowReorderingNodes.Count; i++)
+        for (int i = 0; i < windowReorderingAncestors.Count; i++)
         {
-            ancestorWindowReorderingNodes[i].ConnectWindow(window, ancestorWindowReorderingNodeSiblings[i]);
+            windowReorderingAncestors[i].Node.ConnectWindow(window, windowReorderingAncestors[i].Sibling);
         }
 
-        if (!ReorderNodes)
+        if (!ReorderWindows)
             return;
-
-        GD.Print(window, window.Name);
 
         window.Connect(nameof(Dragged), this, nameof(OnWindowReorder));
 
@@ -62,12 +76,12 @@ public class AddWindowReorderingSupportToSiblings : Control
 
     public void DisconnectWindow(CustomWindow window)
     {
-        for (int i = 0; i < ancestorWindowReorderingNodes.Count; i++)
+        for (int i = 0; i < windowReorderingAncestors.Count; i++)
         {
-            ancestorWindowReorderingNodes[i].DisconnectWindow(window);
+            windowReorderingAncestors[i].Node.DisconnectWindow(window);
         }
 
-        if (!ReorderNodes)
+        if (!ReorderWindows)
             return;
 
         window.Disconnect(nameof(Dragged), this, nameof(OnWindowReorder));
@@ -88,7 +102,7 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         if (!foundSibling)
         {
-            // No window has the same sibling so it can be removed
+            // No other window has the same sibling so it can be removed
             connectedSiblings.Remove(windowSibling);
         }
     }
@@ -119,9 +133,11 @@ public class AddWindowReorderingSupportToSiblings : Control
         int topSiblingIndex = topSibling!.GetIndex();
         int targetSiblingIndex = targetSibling.GetIndex();
 
-        // This window is already on the top
         if (topSiblingIndex == targetSiblingIndex)
+        {
+            // This window is already on the top
             return;
+        }
 
         // Put the sibling on the top
         parent.MoveChild(targetSibling, topSiblingIndex);
@@ -147,5 +163,67 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
 
         base.Dispose(disposing);
+    }
+
+    private static IEnumerable<(AddWindowReorderingSupportToSiblings Node, Node Sibling)> GetWindowReorderingAncestors(
+        Node startingNode, int maxSearchDepth)
+    {
+        Node childOfAncestor = startingNode;
+        Node ancestor = childOfAncestor.GetParent();
+
+        for (int i = 0; i < maxSearchDepth; ++i)
+        {
+            if (ancestor is null)
+                break;
+
+            var windowReorderingSupportNode = ancestor.GetNodeOrNull
+                <AddWindowReorderingSupportToSiblings>(nameof(AddWindowReorderingSupportToSiblings));
+
+            if (windowReorderingSupportNode != null)
+            {
+                yield return (windowReorderingSupportNode, childOfAncestor);
+
+                break;
+            }
+
+            childOfAncestor = ancestor;
+            ancestor = childOfAncestor.GetParent();
+        }
+    }
+
+    private static IEnumerable<(AddWindowReorderingSupportToSiblings Node, Node Sibling)> GetWindowReorderingAncestors(
+        Node startingNode, Array<NodePath> windowReorderingNodePaths)
+    {
+        Node childOfAncestor = startingNode;
+        Node ancestor = childOfAncestor.GetParent();
+
+        System.Collections.Generic.Dictionary
+            <Node, AddWindowReorderingSupportToSiblings> windowReorderingNodesWithParents = new();
+
+        foreach (var path in windowReorderingNodePaths)
+        {
+            var windowReorderingNode = startingNode.GetNode<AddWindowReorderingSupportToSiblings>(path);
+            windowReorderingNodesWithParents.Add(
+                windowReorderingNode.GetParent(), windowReorderingNode);
+        }
+
+        while (ancestor is not null)
+        {
+            if (windowReorderingNodesWithParents.TryGetValue(ancestor, out var windowReorderingNode))
+            {
+                windowReorderingNodesWithParents.Remove(ancestor);
+
+                yield return (windowReorderingNode, childOfAncestor);
+
+                if (windowReorderingNodesWithParents.Count == 0)
+                {
+                    // connected to every window reordering node
+                    break;
+                }
+            }
+
+            childOfAncestor = ancestor;
+            ancestor = childOfAncestor.GetParent();
+        }
     }
 }
