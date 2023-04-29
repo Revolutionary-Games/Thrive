@@ -6,24 +6,31 @@ using static CustomWindow;
 public class AddWindowReorderingSupportToSiblings : Control
 {
     [Export]
-    public Array<NodePath> WindowReorderingSupportPaths = new();
+    public Array<NodePath> WindowReorderingPaths = new();
 
     /// <summary>
-    ///   Ignored when window reordering paths are not empty
+    ///   Finds first window reordering node to connect to
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Ignored when window reordering paths are not empty
+    ///   </para>
+    /// </remarks>
     [Export]
-    public int AutomaticWindowReorderingSupportDepth = 0;
+    public int AutomaticWindowReorderingDepth = 0;
 
     [Export]
     public bool ReorderWindows = true;
 
 #pragma warning disable CA2213
-    private Array<(AddWindowReorderingSupportToSiblings Node, Node Sibling)> windowReorderingAncestors = new();
+    private List<(AddWindowReorderingSupportToSiblings Node, Node Sibling)> windowReorderingAncestors = new();
 
     private Node? topSibling;
     private Node parent = null!;
 
 #pragma warning restore CA2213
+
+    private bool isReady;
 
     // used to save top nodes of windows
     private System.Collections.Generic.Dictionary<CustomWindow, Node> connectedWindows = new();
@@ -35,7 +42,9 @@ public class AddWindowReorderingSupportToSiblings : Control
         if (paths is null || paths.Count == 0)
         {
             foreach (var windowReorderingSupport in GetWindowReorderingAncestors(startingNode, maxSearchDepth))
+            {
                 yield return windowReorderingSupport;
+            }
         }
         else
         {
@@ -44,22 +53,26 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
     }
 
-    public override void _Ready()
+    public override void _ExitTree()
     {
-        parent = GetParent();
-
-        var windowReorderingAncestorsIEnumerable = GetWindowReorderingAncestors(this,
-            AutomaticWindowReorderingSupportDepth, WindowReorderingSupportPaths);
-
-        foreach (var windowReorderingAncestor in windowReorderingAncestorsIEnumerable)
-            windowReorderingAncestors.Add(windowReorderingAncestor);
+        windowReorderingAncestors.Clear();
+        connectedWindows.Clear();
+        connectedSiblings.Clear();
+        isReady = false;
     }
 
-    public void ConnectWindow(CustomWindow window, Node topNode)
+    public void ConnectWindow(CustomWindow window, Node topNode, bool recursive)
     {
-        for (int i = 0; i < windowReorderingAncestors.Count; i++)
+        // Connect to ancestors before connecting the window
+        Setup();
+
+        if (recursive)
         {
-            windowReorderingAncestors[i].Node.ConnectWindow(window, windowReorderingAncestors[i].Sibling);
+            for (int i = 0; i < windowReorderingAncestors.Count; i++)
+            {
+                windowReorderingAncestors[i].Node.ConnectWindow(
+                    window, windowReorderingAncestors[i].Sibling, recursive);
+            }
         }
 
         if (!ReorderWindows)
@@ -74,11 +87,14 @@ public class AddWindowReorderingSupportToSiblings : Control
             topSibling = topNode;
     }
 
-    public void DisconnectWindow(CustomWindow window)
+    public void DisconnectWindow(CustomWindow window, bool recursive)
     {
-        for (int i = 0; i < windowReorderingAncestors.Count; i++)
+        if (recursive)
         {
-            windowReorderingAncestors[i].Node.DisconnectWindow(window);
+            for (int i = 0; i < windowReorderingAncestors.Count; i++)
+            {
+                windowReorderingAncestors[i].Node.DisconnectWindow(window, recursive);
+            }
         }
 
         if (!ReorderWindows)
@@ -145,20 +161,15 @@ public class AddWindowReorderingSupportToSiblings : Control
         topSibling = targetSibling;
 
         // For unexplained reasons this has to be here to update the order visually
-        for (int i = targetSiblingIndex + 1; i <= topSiblingIndex; i++)
-        {
-            parent.MoveChild(siblings[i] as Node, topSiblingIndex);
-        }
-
-        // For unexplained reasons this has to be here to update the order visually
-        parent.MoveChild(targetSibling, topSiblingIndex);
+        window.SetAsToplevel(false);
+        window.SetAsToplevel(true);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            foreach (var path in WindowReorderingSupportPaths)
+            foreach (var path in WindowReorderingPaths)
                 path.Dispose();
         }
 
@@ -202,7 +213,11 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         foreach (var path in windowReorderingNodePaths)
         {
-            var windowReorderingNode = startingNode.GetNode<AddWindowReorderingSupportToSiblings>(path);
+            var windowReorderingNode = startingNode.GetNodeOrNull<AddWindowReorderingSupportToSiblings>(path);
+
+            if (windowReorderingNode is null)
+                continue;
+
             windowReorderingNodesWithParents.Add(
                 windowReorderingNode.GetParent(), windowReorderingNode);
         }
@@ -225,5 +240,24 @@ public class AddWindowReorderingSupportToSiblings : Control
             childOfAncestor = ancestor;
             ancestor = childOfAncestor.GetParent();
         }
+    }
+
+    private void Setup()
+    {
+        if (isReady)
+            return;
+
+        parent = GetParent();
+
+        var windowReorderingAncestorsIEnumerable = GetWindowReorderingAncestors(parent,
+            AutomaticWindowReorderingDepth, WindowReorderingPaths);
+
+        foreach (var windowReorderingAncestor in windowReorderingAncestorsIEnumerable)
+        {
+            windowReorderingAncestor.Node.Setup();
+            windowReorderingAncestors.Add(windowReorderingAncestor);
+        }
+
+        isReady = true;
     }
 }

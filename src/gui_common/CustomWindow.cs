@@ -13,13 +13,24 @@ using Godot.Collections;
 public class CustomWindow : Control
 {
     [Export]
-    public Array<NodePath> WindowReorderingSupportPaths = new();
+    public Array<NodePath> WindowReorderingPaths = new();
 
     /// <summary>
-    ///   Ignored when window reordering paths are not empty
+    ///   Finds first window reordering node to connect to
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Ignored when window reordering paths are not empty
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public int AutomaticWindowReorderingDepth = 2;
+
+    /// <summary>
+    ///   Window reordering nodes also connect the window to their ancestors if true
     /// </summary>
     [Export]
-    public int AutomaticWindowReorderingSupportDepth = 2;
+    public bool AllowWindowReorderingRecursion = true;
 
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;
@@ -323,11 +334,11 @@ public class CustomWindow : Control
     protected void ConnectToWindowReorderingNodes()
     {
         var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
-            this, AutomaticWindowReorderingSupportDepth, WindowReorderingSupportPaths);
+            this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
 
         foreach (var windowReordering in windowReorderingAncestorsIEnumerable)
         {
-            windowReordering.Node.ConnectWindow(this, windowReordering.Sibling);
+            windowReordering.Node.ConnectWindow(this, windowReordering.Sibling, AllowWindowReorderingRecursion);
             windowReorderingNodes.Add(windowReordering.Node);
         }
     }
@@ -335,7 +346,7 @@ public class CustomWindow : Control
     protected void DisconnectFromWindowReorderingNodes()
     {
         foreach (var node in windowReorderingNodes)
-            node.DisconnectWindow(this);
+            node.DisconnectWindow(this, AllowWindowReorderingRecursion);
 
         windowReorderingNodes.Clear();
     }
@@ -344,7 +355,7 @@ public class CustomWindow : Control
     {
         if (disposing)
         {
-            foreach (var path in WindowReorderingSupportPaths)
+            foreach (var path in WindowReorderingPaths)
                 path.Dispose();
         }
 
