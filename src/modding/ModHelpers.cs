@@ -18,18 +18,32 @@ public static class ModHelpers
         return resultToCheck.ErrorType < 0;
     }
 
+    public static string FormatAsAList(this List<string>? unformattedList)
+    {
+        var formattedString = new LocalizedStringBuilder();
+        if (unformattedList != null)
+        {
+            foreach (var currentItem in unformattedList)
+            {
+                formattedString.Append(new LocalizedString("FORMATTED_LIST_ITEM", currentItem));
+                formattedString.Append(System.Environment.NewLine);
+            }
+        }
+
+        return formattedString.ToString();
+    }
+
     /// <summary>
     ///   Turns the result from a check into a string of the error and how to fix it
     /// </summary>
     /// <returns> Returns a translated string of the possible error. </returns>
-    public static string CheckResultToString(ModListValidationError checkResult,
-        List<FullModDetails> list)
+    public static string CheckResultToString(ModListValidationError checkResult)
     {
-        var result = string.Empty;
+        var result = new LocalizedStringBuilder();
 
         // The mod that is causing the error
         ModInfo offendingMod = new ModInfo();
-        if (checkResult.CheckedMod is not null)
+        if (checkResult.CheckedMod != null)
         {
             offendingMod = checkResult.CheckedMod;
         }
@@ -39,80 +53,84 @@ public static class ModHelpers
         }
 
         // The reason why the mod is causing an error
-        ModInfo otherMod = new ModInfo();
-        if (checkResult.OtherMod is not null)
+        ModInfo otherMod;
+        if (checkResult.OtherMod != null)
         {
             otherMod = checkResult.OtherMod;
         }
         else
         {
-            otherMod.Name = TranslationServer.Translate("UNKNOWN_MOD");
+            otherMod = new ModInfo
+            {
+                Name = TranslationServer.Translate("UNKNOWN_MOD"),
+            };
         }
 
         switch (checkResult.ErrorType)
         {
             default:
-                result = TranslationServer.Translate("MOD_LIST_VALID");
+                result.Append(TranslationServer.Translate("MOD_LIST_VALID"));
                 break;
             case ModLoader.CheckErrorStatus.IncompatibleVersion:
-                result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_VERSION").FormatSafe(offendingMod.Name);
+                result.Append(new LocalizedString("MOD_ERROR_INCOMPATIBLE_VERSION", offendingMod.Name));
                 break;
             case ModLoader.CheckErrorStatus.DependencyNotFound:
             {
-                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES").FormatSafe(offendingMod.Name,
-                    otherMod.Name) + "\n";
-                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
+                result.Append(new LocalizedString("MOD_ERROR_DEPENDENCIES", offendingMod.Name,
+                    otherMod.Name));
+                result.Append(System.Environment.NewLine);
+                result.Append(new LocalizedString("MOD_ERROR_DEPENDENCIES_FIX"));
                 break;
             }
 
             case ModLoader.CheckErrorStatus.RequiredModsNotFound:
             {
-                result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS").FormatSafe(offendingMod.Name,
-                    otherMod.Name) + "\n";
-                result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX").FormatSafe(otherMod.Name);
+                result.Append(new LocalizedString("MOD_ERROR_REQUIRED_MODS", offendingMod.Name,
+                    otherMod.Name));
+                result.Append(System.Environment.NewLine);
+                result.Append(new LocalizedString("MOD_ERROR_REQUIRED_MODS_FIX", otherMod.Name));
                 break;
             }
 
             case ModLoader.CheckErrorStatus.InvalidDependencyOrder:
             {
-                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER").FormatSafe(offendingMod.Name,
-                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
-                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX").FormatSafe(offendingMod.Name,
-                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
+                result.Append(new LocalizedString("MOD_ERROR_DEPENDENCIES_ORDER", offendingMod.Name,
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name));
+                result.Append(System.Environment.NewLine);
+                result.Append(new LocalizedString("MOD_ERROR_DEPENDENCIES_ORDER_FIX", offendingMod.Name,
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name));
                 break;
             }
 
             case ModLoader.CheckErrorStatus.IncompatibleMod:
             {
-                result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD").FormatSafe(offendingMod.Name,
-                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
-                result += TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX")
-                    .FormatSafe(string.IsNullOrWhiteSpace(otherMod.Name) ?
-                        otherMod.InternalName :
-                        otherMod.Name);
+                result.Append(new LocalizedString("MOD_ERROR_INCOMPATIBLE_MOD", offendingMod.Name,
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name));
+                result.Append(new LocalizedString("MOD_ERROR_INCOMPATIBLE_MOD_FIX", string.IsNullOrWhiteSpace(otherMod.Name) ?
+                    otherMod.InternalName :
+                    otherMod.Name));
                 break;
             }
 
             case ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
             {
-                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE").FormatSafe(offendingMod.Name,
-                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
-                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX").FormatSafe(offendingMod.Name,
-                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
+                result.Append(new LocalizedString("MOD_ERROR_LOAD_ORDER_BEFORE", offendingMod.Name,
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name));
+                result.Append(new LocalizedString("MOD_ERROR_LOAD_ORDER_BEFORE_FIX", offendingMod.Name,
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name));
                 break;
             }
 
             case ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
             {
-                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER").FormatSafe(offendingMod.Name,
-                    otherMod.Name) + "\n";
-                result += TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER_FIX")
-                    .FormatSafe(offendingMod.Name,
-                        otherMod.Name);
+                result.Append(new LocalizedString("MOD_ERROR_LOAD_ORDER_AFTER", offendingMod.Name,
+                    otherMod.Name));
+                result.Append(new LocalizedString("MOD_ERROR_LOAD_ORDER_AFTER_FIX", offendingMod.Name,
+                    otherMod.Name));
                 break;
             }
         }
 
-        return result;
+        return result.ToString();
     }
 }

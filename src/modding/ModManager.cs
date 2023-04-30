@@ -1003,7 +1003,7 @@ public class ModManager : Control
 
             incompatibleButton.Visible =
                 selectedMod.Info.IncompatibleMods is { Count: > 0 };
-            loadOrderButton.Visible = selectedMod.Info.LoadBefore != null || selectedMod.Info.LoadAfter != null;
+            loadOrderButton.Visible = selectedMod.Info.LoadBeforeThis != null || selectedMod.Info.LoadAfterThis != null;
         }
         else
         {
@@ -1224,7 +1224,7 @@ public class ModManager : Control
         else
         {
             var warningText = new LocalizedString("MOD_LOAD_ERROR_WARNING",
-                ModHelpers.CheckResultToString(checkResult, enabledMods));
+                ModHelpers.CheckResultToString(checkResult));
 
             loadWarningDialog.DialogText = warningText.ToString();
             loadWarningDialog.PopupCenteredShrink();
@@ -1373,7 +1373,7 @@ public class ModManager : Control
                 if (!string.IsNullOrWhiteSpace(currentItem))
                 {
                     infoText.Append(System.Environment.NewLine);
-                    infoText.Append(new LocalizedString("OTHER_MOD_INFO_LIST_ITEM", currentItem));
+                    infoText.Append(new LocalizedString("FORMATTED_LIST_ITEM", currentItem));
                 }
             }
         }
@@ -1425,8 +1425,8 @@ public class ModManager : Control
         otherModInfoDialog.WindowTitle = TranslationServer.Translate("LOAD_ORDER");
         var infoText = new LocalizedStringBuilder();
 
-        var currentModLoadBefore = selectedMod.Info.LoadBefore;
-        var currentModLoadAfter = selectedMod.Info.LoadAfter;
+        var currentModLoadBefore = selectedMod.Info.LoadBeforeThis;
+        var currentModLoadAfter = selectedMod.Info.LoadAfterThis;
         if (currentModLoadBefore != null || currentModLoadAfter != null)
         {
             if (currentModLoadAfter != null)
@@ -1437,7 +1437,7 @@ public class ModManager : Control
                     if (!string.IsNullOrWhiteSpace(currentLoadAfterMod))
                     {
                         infoText.Append(System.Environment.NewLine);
-                        infoText.Append(new LocalizedString("OTHER_MOD_INFO_LIST_ITEM", currentLoadAfterMod));
+                        infoText.Append(new LocalizedString("FORMATTED_LIST_ITEM", currentLoadAfterMod));
                     }
                 }
             }
@@ -1456,7 +1456,7 @@ public class ModManager : Control
                     if (!string.IsNullOrWhiteSpace(currentLoadBeforeMod))
                     {
                         infoText.Append(System.Environment.NewLine);
-                        infoText.Append(new LocalizedString("OTHER_MOD_INFO_LIST_ITEM", currentLoadBeforeMod));
+                        infoText.Append(new LocalizedString("FORMATTED_LIST_ITEM", currentLoadBeforeMod));
                     }
                 }
             }
@@ -1499,7 +1499,7 @@ public class ModManager : Control
             return;
         }
 
-        MoveItem(chosenList, chosenModList, moveUp, chosenList.GetSelectedItems()[0], amount);
+        MoveModInItemList(chosenList, chosenModList, moveUp, chosenList.GetSelectedItems()[0], amount);
 
         var currentIndex = chosenList.GetSelectedItems()[0];
 
@@ -1510,9 +1510,9 @@ public class ModManager : Control
     }
 
     /// <summary>
-    ///   Handles the movement of the ItemList by any amount
+    ///   Handles the movement of the Mod in the ItemList by any amount
     /// </summary>
-    private void MoveItem(ItemList list, List<FullModDetails> modList, bool moveUp, int currentIndex, int amount)
+    private void MoveModInItemList(ItemList list, List<FullModDetails> modList, bool moveUp, int currentIndex, int amount)
     {
         int newIndex;
         if (moveUp)
@@ -1576,9 +1576,7 @@ public class ModManager : Control
             TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
             TranslationServer.Translate("THIS_IS_LOCAL_MOD");
         fullInfoIconFile.Text = info.Icon;
-        string fullInfoPreviewImagesText = string.Empty;
-        info.PreviewImages?.ForEach(s => fullInfoPreviewImagesText += "* " + s + "\n");
-        fullInfoPreviewImagesFile.Text = fullInfoPreviewImagesText;
+        fullInfoPreviewImagesFile.Text = info.PreviewImages?.FormatAsAList();
         fullInfoInfoUrl.Text = info.InfoUrl == null ? string.Empty : info.InfoUrl.ToString();
         fullInfoLicense.Text = info.License;
         fullInfoRecommendedThrive.Text = info.RecommendedThriveVersion;
@@ -1587,21 +1585,11 @@ public class ModManager : Control
         fullInfoPckName.Text = info.PckToLoad;
         fullInfoModAssembly.Text = info.ModAssembly;
         fullInfoAssemblyModClass.Text = info.AssemblyModClass;
-        string fullInfoDependenciesText = string.Empty;
-        info.Dependencies?.ForEach(s => fullInfoDependenciesText += "* " + s + "\n");
-        fullInfoDependencies.Text = fullInfoDependenciesText;
-        string fullInfoRequiredModsText = string.Empty;
-        info.RequiredMods?.ForEach(s => fullInfoRequiredModsText += "* " + s + "\n");
-        fullInfoRequiredMods.Text = fullInfoRequiredModsText;
-        string fullInfoLoadBeforeText = string.Empty;
-        info.LoadBefore?.ForEach(s => fullInfoLoadBeforeText += "* " + s + "\n");
-        fullInfoLoadBefore.Text = fullInfoLoadBeforeText;
-        string fullInfoLoadAfterText = string.Empty;
-        info.LoadAfter?.ForEach(s => fullInfoLoadAfterText += "* " + s + "\n");
-        fullInfoLoadAfter.Text = fullInfoLoadAfterText;
-        string fullInfoIncompatibleModsText = string.Empty;
-        info.IncompatibleMods?.ForEach(s => fullInfoIncompatibleModsText += "* " + s + "\n");
-        fullInfoIncompatibleMods.Text = fullInfoIncompatibleModsText;
+        fullInfoDependencies.Text = info.Dependencies?.FormatAsAList();
+        fullInfoRequiredMods.Text = info.RequiredMods?.FormatAsAList();
+        fullInfoLoadBefore.Text = info.LoadBeforeThis?.FormatAsAList();
+        fullInfoLoadAfter.Text = info.LoadAfterThis?.FormatAsAList();
+        fullInfoIncompatibleMods.Text = info.IncompatibleMods?.FormatAsAList();
 
         fullInfoAutoHarmony.Text = info.UseAutoHarmony == true ?
             TranslationServer.Translate("USES_FEATURE") :
@@ -1632,7 +1620,7 @@ public class ModManager : Control
         if (checkResult.IsSuccessful())
         {
             resultText = TranslationServer.Translate("MOD_LIST_CONTAIN_ERRORS") + "\n\n" +
-                ModHelpers.CheckResultToString(checkResult, enabledMods) + "\n\n";
+                ModHelpers.CheckResultToString(checkResult) + "\n\n";
             resultText += TranslationServer.Translate("MOD_CHECK_AGAIN_WARNING");
         }
         else if (checkResult.ErrorType > 0)

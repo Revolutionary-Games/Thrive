@@ -109,14 +109,12 @@ public class ModInfo
     /// <summary>
     ///   Mods that have to be loaded before this one. Different from dependencies as it won't error if not included.
     /// </summary>
-    [JsonProperty("LoadedBeforeThis")]
-    public List<string>? LoadBefore { get; set; }
+    public List<string>? LoadBeforeThis { get; set; }
 
     /// <summary>
     ///   Mods that have to be loaded after this one but won't error if not included.
     /// </summary>
-    [JsonProperty("LoadedAfterThis")]
-    public List<string>? LoadAfter { get; set; }
+    public List<string>? LoadAfterThis { get; set; }
 
     // Start of technical properties
 

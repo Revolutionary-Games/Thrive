@@ -311,8 +311,8 @@ public class NewModGUI : Control
         assemblyModClass.Text = editedInfo.AssemblyModClass;
         dependencies.Text = editedInfo.Dependencies == null ? string.Empty : string.Join(", ", editedInfo.Dependencies);
         requiredMods.Text = editedInfo.RequiredMods == null ? string.Empty : string.Join(", ", editedInfo.RequiredMods);
-        loadBefore.Text = editedInfo.LoadBefore == null ? string.Empty : string.Join(", ", editedInfo.LoadBefore);
-        loadAfter.Text = editedInfo.LoadAfter == null ? string.Empty : string.Join(", ", editedInfo.LoadAfter);
+        loadBefore.Text = editedInfo.LoadBeforeThis == null ? string.Empty : string.Join(", ", editedInfo.LoadBeforeThis);
+        loadAfter.Text = editedInfo.LoadAfterThis == null ? string.Empty : string.Join(", ", editedInfo.LoadAfterThis);
         incompatibleMods.Text = editedInfo.IncompatibleMods == null ?
             string.Empty :
             string.Join(", ", editedInfo.IncompatibleMods);
@@ -338,8 +338,8 @@ public class NewModGUI : Control
         editedInfo.PreviewImages = StringUtils.SplitByComma(previewImagesFile.Text);
         editedInfo.Dependencies = StringUtils.SplitByComma(dependencies.Text);
         editedInfo.RequiredMods = StringUtils.SplitByComma(requiredMods.Text);
-        editedInfo.LoadBefore = StringUtils.SplitByComma(loadBefore.Text);
-        editedInfo.LoadAfter = StringUtils.SplitByComma(loadAfter.Text);
+        editedInfo.LoadBeforeThis = StringUtils.SplitByComma(loadBefore.Text);
+        editedInfo.LoadAfterThis = StringUtils.SplitByComma(loadAfter.Text);
         editedInfo.IncompatibleMods = StringUtils.SplitByComma(incompatibleMods.Text);
         editedInfo.UseAutoHarmony = assemblyModAutoHarmony.Pressed;
 

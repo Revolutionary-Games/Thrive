@@ -285,9 +285,9 @@ public class ModLoader : Node
             }
         }
 
-        if (currentModInfo.LoadBefore != null)
+        if (currentModInfo.LoadBeforeThis != null)
         {
-            foreach (string loadBeforeName in currentModInfo.LoadBefore)
+            foreach (string loadBeforeName in currentModInfo.LoadBeforeThis)
             {
                 if (!string.IsNullOrWhiteSpace(loadBeforeName))
                 {
@@ -304,9 +304,9 @@ public class ModLoader : Node
             }
         }
 
-        if (currentModInfo.LoadAfter != null)
+        if (currentModInfo.LoadAfterThis != null)
         {
-            foreach (string loadAfterName in currentModInfo.LoadAfter)
+            foreach (string loadAfterName in currentModInfo.LoadAfterThis)
             {
                 if (!string.IsNullOrWhiteSpace(loadAfterName))
                 {
