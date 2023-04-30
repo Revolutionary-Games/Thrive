@@ -63,7 +63,7 @@ WindowTitle = "Child2AlwaysBottomReodersWindow2Manual"
 visible = true
 margin_right = 200.0
 margin_bottom = 125.0
-WindowTitle = "Child2ReordersParent2"
+WindowTitle = "Child2ReordersWindow2"
 
 [node name="Child2" parent="Automatic/Window2" instance=ExtResource( 1 )]
 visible = true
@@ -107,6 +107,8 @@ visible = true
 margin_left = 1800.0
 margin_right = 2000.0
 margin_bottom = 125.0
+WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
 WindowTitle = "Window12"
 
 [node name="Control" type="Control" parent="Manual/Window12"]
@@ -135,30 +137,32 @@ visible = true
 margin_left = 1800.0
 margin_right = 2000.0
 margin_bottom = 125.0
+WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
 WindowTitle = "Window22"
 
 [node name="AddWindowReorderingSupportToSiblings" parent="Manual/Window22" instance=ExtResource( 3 )]
-AutomaticWindowReorderingDepth = 1
+WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
 
-[node name="Child2AlwaysBottomReodersWindow2Manual2" parent="Manual/Window22" instance=ExtResource( 1 )]
+[node name="Child2AlwaysBottomReodersWindow22" parent="Manual/Window22" instance=ExtResource( 1 )]
 visible = true
 margin_left = 900.0
 margin_right = 1100.0
 margin_bottom = 125.0
 WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
 AutomaticWindowReorderingDepth = 0
-WindowTitle = "Child2AlwaysBottomReodersWindow2Manual2"
+WindowTitle = "Child2AlwaysBottomReodersWindow22"
 
-[node name="Child2ReordersWindow2" parent="Manual/Window22" instance=ExtResource( 1 )]
+[node name="Child2ReordersWindow22" parent="Manual/Window22" instance=ExtResource( 1 )]
 visible = true
 margin_left = 900.0
 margin_right = 1100.0
 margin_bottom = 125.0
-WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings") ]
+WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings"), NodePath("../../AddWindowReorderingSupportToSiblings") ]
 AutomaticWindowReorderingDepth = 0
-WindowTitle = "Child2ReordersWindow2"
+WindowTitle = "Child2ReordersWindow22"
 
-[node name="Child2" parent="Manual/Window22" instance=ExtResource( 1 )]
+[node name="Child22" parent="Manual/Window22" instance=ExtResource( 1 )]
 visible = true
 margin_left = 900.0
 margin_right = 1100.0
@@ -166,7 +170,7 @@ margin_bottom = 125.0
 WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings") ]
 AutomaticWindowReorderingDepth = 0
 AllowWindowReorderingRecursion = false
-WindowTitle = "Child2"
+WindowTitle = "Child22"
 
 [node name="Child2AlwaysTop2" parent="Manual/Window22" instance=ExtResource( 1 )]
 visible = true
