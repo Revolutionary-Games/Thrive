@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 15:38+0300\n"
+"POT-Creation-Date: 2023-05-01 15:48-0500\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1467
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr "Urednik"
 msgid "3D_MOVEMENT"
 msgstr "Pokret"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1504
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1102
+#: ../src/general/OptionsMenu.tscn:1107
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Sačuvaj i nastavi"
@@ -94,11 +94,11 @@ msgstr "Automatska-evolucija nije uspela"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/NewGameSettings.tscn:1179
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1174
+#: ../src/general/NewGameSettings.tscn:1172
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -130,18 +130,18 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:464
+#: ../src/general/NewGameSettings.tscn:470
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutacije Poeni"
 
-#: ../src/general/NewGameSettings.tscn:509
+#: ../src/general/NewGameSettings.tscn:510
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:387
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:407
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -169,7 +169,7 @@ msgstr "Statistika Organizma"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:754
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambijenta jačina zvuka"
 
@@ -180,11 +180,11 @@ msgstr "Ambijenta jačina zvuka"
 msgid "AMMONIA"
 msgstr "Amonijak"
 
-#: ../src/general/OptionsMenu.tscn:1687
+#: ../src/general/OptionsMenu.tscn:1692
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Količina automatskog čuvanja da zadržati:"
 
-#: ../src/general/OptionsMenu.tscn:1715
+#: ../src/general/OptionsMenu.tscn:1720
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Količina brzog čuvanja da zadržati:"
 
@@ -210,11 +210,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Da li ste sigurni da želite da vratite SVA podešavanja na podrazumevane vrednosti?"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Da li ste sigurni da želite da vratite postavke unosa na podrazumevane vrednosti?"
 
@@ -243,7 +243,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
@@ -284,7 +284,7 @@ msgstr "Automatska-evolucija nije uspela"
 msgid "AT_CURSOR"
 msgstr "Na Kursoru:"
 
-#: ../src/general/OptionsMenu.tscn:866
+#: ../src/general/OptionsMenu.tscn:871
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -292,8 +292,8 @@ msgstr ""
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598 ../src/general/OptionsMenu.tscn:599
-#: ../src/general/OptionsMenu.tscn:1484 ../src/general/OptionsMenu.tscn:1485
+#: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:1489 ../src/general/OptionsMenu.tscn:1490
 msgid "AUTO"
 msgstr "automatski"
 
@@ -322,7 +322,7 @@ msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membran
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 
-#: ../src/general/OptionsMenu.tscn:1676
+#: ../src/general/OptionsMenu.tscn:1681
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatsko čuvanje tokom igre"
 
@@ -361,7 +361,7 @@ msgstr "status pokretanja:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatsko kretanje napred"
 
-#: ../src/general/OptionsMenu.cs:1007 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:1022 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Rezolucija:"
@@ -382,8 +382,8 @@ msgstr "Zona: {0}"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
-#: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:274
+#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/OptionsMenu.tscn:2032 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -415,11 +415,11 @@ msgstr "Mobilnost"
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1164
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1159
+#: ../src/general/NewGameSettings.tscn:1157
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -541,7 +541,7 @@ msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku ene
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
-#: ../src/general/OptionsMenu.tscn:1288 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1403
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -620,7 +620,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2138
+#: ../src/general/OptionsMenu.tscn:2183
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -764,7 +764,7 @@ msgstr "Promenite simetriju"
 msgid "CHEATS"
 msgstr "Varanje"
 
-#: ../src/general/OptionsMenu.tscn:1769
+#: ../src/general/OptionsMenu.tscn:1774
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Uključi tasteri za varanja"
 
@@ -864,7 +864,7 @@ msgstr "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:441
+#: ../src/general/OptionsMenu.tscn:444
 msgid "CHROMATIC_ABERRATION"
 msgstr "Hromatske aberacije:"
 
@@ -898,7 +898,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2258
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -910,15 +910,15 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Zatvori"
 
-#: ../src/general/OptionsMenu.tscn:2068
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "CLOSE_OPTIONS"
 msgstr "Zatvoriti opcije?"
 
-#: ../src/general/OptionsMenu.tscn:1023
+#: ../src/general/OptionsMenu.tscn:1028
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Delitelj Oblačne Rezolucije:"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:978
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Minimum Interval od Simulacije\n"
@@ -936,7 +936,7 @@ msgstr ""
 msgid "COLOUR"
 msgstr "Boja"
 
-#: ../src/general/OptionsMenu.tscn:403
+#: ../src/general/OptionsMenu.tscn:406
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekcija daltonista:"
 
@@ -1025,7 +1025,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.tscn:1956
+#: ../src/general/OptionsMenu.tscn:2001
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Jedinjenja:"
@@ -1052,16 +1052,16 @@ msgstr "Jedinjenja:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:958
+#: ../src/general/OptionsMenu.tscn:963
 msgid "COMPOUND_CLOUDS"
 msgstr "Oblak jedinjenja"
 
-#: ../src/general/NewGameSettings.tscn:526
+#: ../src/general/NewGameSettings.tscn:529
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Oblak jedinjenja"
 
-#: ../src/general/NewGameSettings.tscn:571
+#: ../src/general/NewGameSettings.tscn:569
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "Oblak jedinjenja"
@@ -1112,13 +1112,13 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/NewGameSettings.cs:326
-#: ../src/general/NewGameSettings.tscn:1195
+#: ../src/general/NewGameSettings.cs:329
+#: ../src/general/NewGameSettings.tscn:1193
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/NewGameSettings.cs:333
+#: ../src/general/NewGameSettings.cs:336
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Dodajte novo vezivanje tastera"
@@ -1143,7 +1143,7 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1457
+#: ../src/general/OptionsMenu.tscn:1462
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1157,11 +1157,11 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:581
+#: ../src/general/OptionsMenu.tscn:592
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1385
+#: ../src/general/OptionsMenu.tscn:1390
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1174,11 +1174,11 @@ msgstr ""
 msgid "COPY_RESULTS"
 msgstr "Rezultati automatske-evolucije:"
 
-#: ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
@@ -1186,11 +1186,11 @@ msgstr ""
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1158
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1124
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr ""
 
@@ -1202,15 +1202,15 @@ msgstr ""
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1096
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1083
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1104
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
@@ -1229,7 +1229,7 @@ msgstr ""
 msgid "CRAFTING_RESULTS"
 msgstr "Rezultati automatske-evolucije:"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1527
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -1337,7 +1337,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Statistika Organizma"
 
-#: ../src/general/OptionsMenu.tscn:1788
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "CUSTOM_USERNAME"
 msgstr "Korisničko ime:"
 
@@ -1359,20 +1359,20 @@ msgstr "Glikoliza citoplazme"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
-#: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/NewGameSettings.tscn:940
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:989
+#: ../src/general/NewGameSettings.tscn:983
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:911
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:923
+#: ../src/general/NewGameSettings.tscn:920
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1393,7 +1393,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:970
+#: ../src/microbe_stage/Microbe.Contact.cs:966
 msgid "DEATH"
 msgstr ""
 
@@ -1410,7 +1410,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1473
+#: ../src/general/OptionsMenu.cs:1488
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1471,7 +1471,7 @@ msgstr "Generacija:"
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1085
+#: ../src/general/OptionsMenu.tscn:1090
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
@@ -1513,7 +1513,7 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:292
+#: ../src/general/NewGameSettings.tscn:298
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr ""
@@ -1524,7 +1524,7 @@ msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:363
+#: ../src/general/NewGameSettings.tscn:370
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
@@ -1578,7 +1578,7 @@ msgstr "Rezolucija:"
 msgid "DIRECTIONR"
 msgstr "Rezolucija:"
 
-#: ../src/general/OptionsMenu.tscn:333 ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
 msgid "DISABLED"
 msgstr ""
 
@@ -1586,7 +1586,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2121
+#: ../src/general/OptionsMenu.tscn:2166
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odbaci i nastavi"
 
@@ -1634,12 +1634,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.tscn:1862
+#: ../src/general/OptionsMenu.tscn:1867
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Brzina:"
 
-#: ../src/general/OptionsMenu.tscn:1860 ../src/general/OptionsMenu.tscn:1869
+#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
@@ -1652,20 +1652,20 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:637
+#: ../src/general/OptionsMenu.tscn:481
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:625
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Sposobnosti"
 
-#: ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:472
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:642
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Sposobnosti"
@@ -1830,17 +1830,17 @@ msgstr "Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatit
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Zabavna činjenica, Didinijum je cilijar koji lovi Paramecijum."
 
-#: ../src/general/NewGameSettings.tscn:1121
+#: ../src/general/NewGameSettings.tscn:1117
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "STVARI KOJE SE MIGOLJITI!!"
 
-#: ../src/general/NewGameSettings.tscn:1128
+#: ../src/general/NewGameSettings.tscn:1125
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1552
+#: ../src/general/OptionsMenu.tscn:1557
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "Brzina Apsorpcije Brzine"
@@ -1859,7 +1859,7 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "Desni miš"
@@ -1877,7 +1877,7 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr "Omogućite uređivač"
 
-#: ../src/general/OptionsMenu.tscn:621
+#: ../src/general/OptionsMenu.tscn:633
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Spoljni efekti:"
@@ -1919,11 +1919,11 @@ msgstr ""
 msgid "ENVIRONMENT"
 msgstr "Životna sredina"
 
-#: ../src/general/NewGameSettings.tscn:650
+#: ../src/general/NewGameSettings.tscn:647
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:694
+#: ../src/general/NewGameSettings.tscn:686
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
@@ -1941,7 +1941,7 @@ msgstr "Epipelagik"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2149 ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2194 ../src/general/OptionsMenu.tscn:2202
 msgid "ERROR"
 msgstr "Greška"
 
@@ -1953,7 +1953,7 @@ msgstr ""
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2159
+#: ../src/general/OptionsMenu.tscn:2204
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Greška: Nije uspelo čuvanje novih postavki u konfiguracionoj datoteci."
 
@@ -1978,7 +1978,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1236
+#: ../src/microbe_stage/Microbe.Contact.cs:1232
 msgid "ESCAPE_ENGULFING"
 msgstr "pobegne od gutanja"
 
@@ -1995,12 +1995,12 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1973
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Generacija:"
 
-#: ../src/general/OptionsMenu.tscn:1926 ../src/general/OptionsMenu.tscn:1937
+#: ../src/general/OptionsMenu.tscn:1971 ../src/general/OptionsMenu.tscn:1982
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -2253,7 +2253,7 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
 msgstr ""
 
@@ -2278,15 +2278,15 @@ msgstr "Disanje"
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:768
+#: ../src/general/NewGameSettings.tscn:758
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:775
+#: ../src/general/NewGameSettings.tscn:766
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:290
 msgid "FULLSCREEN"
 msgstr "Ceo ekran"
 
@@ -2321,7 +2321,7 @@ msgstr "Generacija:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.cs:1021
+#: ../src/general/OptionsMenu.cs:1036
 msgid "GLES2"
 msgstr ""
 
@@ -2333,7 +2333,7 @@ msgstr "Upozorenje u režimu GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa Thrive."
 
-#: ../src/general/OptionsMenu.cs:1026
+#: ../src/general/OptionsMenu.cs:1041
 msgid "GLES3"
 msgstr ""
 
@@ -2386,12 +2386,12 @@ msgstr ""
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:480
+#: ../src/general/OptionsMenu.tscn:491
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "Pećina"
 
-#: ../src/general/OptionsMenu.tscn:174
+#: ../src/general/OptionsMenu.tscn:177
 msgid "GRAPHICS"
 msgstr "Grafika"
 
@@ -2400,7 +2400,7 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:575
 msgid "GUI"
 msgstr ""
 
@@ -2413,7 +2413,7 @@ msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membran
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:819
+#: ../src/general/OptionsMenu.tscn:824
 msgid "GUI_VOLUME"
 msgstr "Tom od interfejs"
 
@@ -2436,11 +2436,11 @@ msgstr "Pomoć"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.tscn:980 ../src/general/OptionsMenu.tscn:1030
+#: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(veće vrednosti poboljšavaju performanse)"
 
-#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(veće vrednosti pogoršavaju performanse)"
 
@@ -2464,7 +2464,7 @@ msgstr ""
 msgid "HOME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1300 ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1415
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Generacija:"
@@ -2517,12 +2517,12 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1102
+#: ../src/general/NewGameSettings.tscn:1096
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Postavite organelu"
 
-#: ../src/general/NewGameSettings.tscn:1109
+#: ../src/general/NewGameSettings.tscn:1104
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -2548,7 +2548,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.tscn:207
+#: ../src/general/OptionsMenu.tscn:210
 msgid "INPUTS"
 msgstr "Unosi"
 
@@ -2682,8 +2682,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1313 ../src/general/OptionsMenu.tscn:1335
-#: ../src/general/OptionsMenu.tscn:1423 ../src/general/OptionsMenu.tscn:1446
+#: ../src/general/OptionsMenu.tscn:1318 ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1428 ../src/general/OptionsMenu.tscn:1451
 msgid "INVERTED"
 msgstr ""
 
@@ -2711,19 +2711,19 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1894
+#: ../src/general/OptionsMenu.tscn:1899
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1909 ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -2911,19 +2911,19 @@ msgstr ""
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:895
+#: ../src/general/OptionsMenu.tscn:900
 msgid "LANGUAGE"
 msgstr "Jezik:"
 
-#: ../src/general/OptionsMenu.cs:1513
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1509
+#: ../src/general/OptionsMenu.cs:1524
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1505
+#: ../src/general/OptionsMenu.cs:1520
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3009,12 +3009,12 @@ msgid "LAUNCHMEDIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:853
+#: ../src/general/NewGameSettings.tscn:849
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:860
+#: ../src/general/NewGameSettings.tscn:857
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
@@ -3096,38 +3096,38 @@ msgstr ""
 msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:180
 #: ../src/general/NewGameSettings.tscn:876
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:184
-#: ../src/general/NewGameSettings.tscn:883
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:885
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:897
+#: ../src/general/NewGameSettings.tscn:204
+#: ../src/general/NewGameSettings.tscn:893
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/NewGameSettings.tscn:200
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:899
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -3164,47 +3164,47 @@ msgstr "Pomerite se udesno"
 msgid "LIGHT_MAX"
 msgstr "Svetlost"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Dodatne"
 
-#: ../src/general/NewGameSettings.tscn:806
+#: ../src/general/NewGameSettings.tscn:800
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "POTVRDI"
 
-#: ../src/general/NewGameSettings.tscn:813
+#: ../src/general/NewGameSettings.tscn:808
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "POTVRDI"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1204 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -3335,7 +3335,7 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Morski sneg"
 
-#: ../src/general/OptionsMenu.tscn:663
+#: ../src/general/OptionsMenu.tscn:668
 msgid "MASTER_VOLUME"
 msgstr "Glavna jačina zvuka"
 
@@ -3344,16 +3344,16 @@ msgstr "Glavna jačina zvuka"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "POPULACIJA:"
 
-#: ../src/general/OptionsMenu.tscn:372
+#: ../src/general/OptionsMenu.tscn:375
 msgid "MAX_FPS"
 msgstr "Maksimalni FPS:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:390
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Maksimalni FPS:"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1186
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -3545,7 +3545,7 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistika Organizma"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:214
+#: ../src/microbe_stage/MicrobeSpecies.cs:227
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "Učitavanje Uređivača Mikroba"
@@ -3685,7 +3685,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:218
+#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Ostalo"
 
@@ -3699,7 +3699,7 @@ msgstr "Ostalo"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Ostalo"
 
-#: ../src/general/OptionsMenu.tscn:1873
+#: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Ostalo"
@@ -3910,15 +3910,15 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1542
+#: ../src/general/OptionsMenu.tscn:1547
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1272
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1341
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -3999,7 +3999,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:577
+#: ../src/late_multicellular_stage/MulticellularStage.cs:583
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
@@ -4049,7 +4049,7 @@ msgstr "Postavite organelu"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Postavite organelu"
 
-#: ../src/general/OptionsMenu.tscn:311
+#: ../src/general/OptionsMenu.tscn:314
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
@@ -4061,7 +4061,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:719
 msgid "MUSIC_VOLUME"
 msgstr "Jačina muzike"
 
@@ -4070,11 +4070,11 @@ msgstr "Jačina muzike"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutacije Poeni"
 
-#: ../src/general/NewGameSettings.tscn:402
+#: ../src/general/NewGameSettings.tscn:411
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:447
+#: ../src/general/NewGameSettings.tscn:451
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -4082,9 +4082,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr "Mutacije Poeni"
 
-#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:743
-#: ../src/general/OptionsMenu.tscn:778 ../src/general/OptionsMenu.tscn:813
-#: ../src/general/OptionsMenu.tscn:848
+#: ../src/general/OptionsMenu.tscn:697 ../src/general/OptionsMenu.tscn:748
+#: ../src/general/OptionsMenu.tscn:783 ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:853
 msgid "MUTE"
 msgstr "Priguši zvuk"
 
@@ -4127,7 +4127,7 @@ msgstr "Nova igra"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/NewGameSettings.tscn:274
+#: ../src/general/NewGameSettings.tscn:280
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4194,7 +4194,7 @@ msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti az
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
 
-#: ../src/general/OptionsMenu.tscn:419 ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 msgid "NONE"
 msgstr ""
 
@@ -4211,7 +4211,7 @@ msgstr "Najosnovniji oblik membrane, ima malu zaštitu od oštećenja. Takođe m
 msgid "NOTHING_HERE"
 msgstr "Ništa ovde"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:499
+#: ../src/late_multicellular_stage/MulticellularStage.cs:502
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4227,11 +4227,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1794
+#: ../src/microbe_stage/Microbe.Contact.cs:1790
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1789
+#: ../src/microbe_stage/Microbe.Contact.cs:1785
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4290,7 +4290,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2212
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
@@ -4388,7 +4388,7 @@ msgstr "Otvorite ekran pomoći"
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1823
+#: ../src/general/OptionsMenu.tscn:1828
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
@@ -4415,7 +4415,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Otvorite meni"
 
-#: ../src/general/OptionsMenu.tscn:1815
+#: ../src/general/OptionsMenu.tscn:1820
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
@@ -4423,7 +4423,7 @@ msgstr ""
 msgid "OPEN_THE_MENU"
 msgstr "Otvorite meni"
 
-#: ../src/general/OptionsMenu.tscn:932
+#: ../src/general/OptionsMenu.tscn:937
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
@@ -4535,12 +4535,12 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr "Cena osmoregulacije"
 
-#: ../src/general/NewGameSettings.tscn:711
+#: ../src/general/NewGameSettings.tscn:705
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Cena osmoregulacije"
 
-#: ../src/general/NewGameSettings.tscn:756
+#: ../src/general/NewGameSettings.tscn:745
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Cena osmoregulacije"
@@ -4642,12 +4642,12 @@ msgstr "Okrenite kameru udesno"
 msgid "PAN_CAMERA_UP"
 msgstr "Okrenite kameru prema gore"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:779
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/NewGameSettings.tscn:794
+#: ../src/general/NewGameSettings.tscn:787
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
@@ -4688,7 +4688,7 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2177
+#: ../src/general/OptionsMenu.tscn:2222
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
@@ -4747,7 +4747,7 @@ msgstr ""
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:674
+#: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4761,7 +4761,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:196
+#: ../src/general/OptionsMenu.tscn:199
 msgid "PERFORMANCE"
 msgstr "Performanse"
 
@@ -4801,7 +4801,7 @@ msgstr "Fizički Otpor"
 msgid "PLACE_ORGANELLE"
 msgstr "Postavite organelu"
 
-#: ../src/general/NewGameSettings.tscn:302
+#: ../src/general/NewGameSettings.tscn:308
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr ""
@@ -4811,12 +4811,12 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1070
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:216
-#: ../src/general/NewGameSettings.tscn:1000
+#: ../src/general/NewGameSettings.tscn:222
+#: ../src/general/NewGameSettings.tscn:996
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -4829,7 +4829,7 @@ msgstr "igrač je umro"
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:633
+#: ../src/general/NewGameSettings.tscn:628
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
@@ -4848,7 +4848,7 @@ msgstr "igrač je umro"
 msgid "PLAYER_EXTINCT"
 msgstr "igrač je umro"
 
-#: ../src/general/OptionsMenu.tscn:1485
+#: ../src/general/OptionsMenu.tscn:1490
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "igrač je umro"
@@ -4862,23 +4862,23 @@ msgstr "Igrač se reprodukovao"
 msgid "PLAYER_SPEED"
 msgstr "igrač je umro"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1652
+#: ../src/general/OptionsMenu.tscn:1657
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Pusti uvodni video"
 
-#: ../src/general/OptionsMenu.tscn:1660
+#: ../src/general/OptionsMenu.tscn:1665
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Pustite uvodni video za mikrobe na Novoj Igri"
 
@@ -5001,7 +5001,7 @@ msgstr "Odustati"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/PauseMenu.cs:414
+#: ../src/general/PauseMenu.cs:418
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "Upozorenje u režimu GLES2"
@@ -5010,8 +5010,8 @@ msgstr "Upozorenje u režimu GLES2"
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:235
-#: ../src/general/NewGameSettings.tscn:1019
+#: ../src/general/NewGameSettings.tscn:241
+#: ../src/general/NewGameSettings.tscn:1009
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Nastaviti"
@@ -5109,7 +5109,7 @@ msgstr "Ćelijsko Jezgro"
 msgid "RESEARCH"
 msgstr "Resetovati"
 
-#: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2043
 msgid "RESET"
 msgstr "Resetovati"
 
@@ -5118,24 +5118,24 @@ msgstr "Resetovati"
 msgid "RESET_DEADZONES"
 msgstr "Resetuj do početnog?"
 
-#: ../src/general/OptionsMenu.tscn:1884
+#: ../src/general/OptionsMenu.tscn:1889
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2058
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovati unose na podrazumevane vrednosti?"
 
-#: ../src/general/OptionsMenu.tscn:1611
+#: ../src/general/OptionsMenu.tscn:1616
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Resetujte Unosi"
 
-#: ../src/general/OptionsMenu.tscn:2038
+#: ../src/general/OptionsMenu.tscn:2083
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Podrazumevane vrednosti"
 
-#: ../src/general/OptionsMenu.tscn:2049
+#: ../src/general/OptionsMenu.tscn:2094
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetuj do početnog?"
 
@@ -5144,7 +5144,7 @@ msgstr "Resetuj do početnog?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:351
 msgid "RESOLUTION"
 msgstr "Rezolucija:"
 
@@ -5210,7 +5210,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Vratite se u Meni"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:395
+#: ../src/general/PauseMenu.cs:399
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Vratite se u Meni"
@@ -5250,7 +5250,7 @@ msgstr "Rotirajte desno"
 msgid "ROTATION_COLON"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Pokrenite automatsku-evoluciju tokom igranja"
 
@@ -5319,11 +5319,11 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2012 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2057 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Sačuvati"
 
-#: ../src/general/OptionsMenu.tscn:2111
+#: ../src/general/OptionsMenu.tscn:2156
 msgid "SAVE_AND_CONTINUE"
 msgstr "Sačuvaj i nastavi"
 
@@ -5424,23 +5424,45 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1353 ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1359
 #, fuzzy
 msgid "SCALING_ON"
 msgstr ""
 "Postoji sukob sa {0}.\n"
 "Da li želite da uklonite unos iz {1}?"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1518
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1939
+#, fuzzy
+msgid "SCREEN_EFFECT"
+msgstr "Spoljni efekti:"
+
+#: ../simulation_parameters/common/screen_effects.json:13
+msgid "SCREEN_EFFECT_GAMEBOY"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:18
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:8
+msgid "SCREEN_EFFECT_GREYSCALE"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:3
+#, fuzzy
+msgid "SCREEN_EFFECT_NONE"
+msgstr "Sposobnosti"
+
+#: ../src/general/OptionsMenu.tscn:1490 ../src/general/OptionsMenu.tscn:1523
+#: ../src/general/OptionsMenu.tscn:1524
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "za povećanje kretanja"
@@ -5554,7 +5576,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:784
+#: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Tom od zvučnih efekata"
 
@@ -5566,12 +5588,12 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Pokažite pomoć"
 
-#: ../src/general/OptionsMenu.tscn:1840
+#: ../src/general/OptionsMenu.tscn:1845
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Pećina"
 
-#: ../src/general/OptionsMenu.tscn:1838
+#: ../src/general/OptionsMenu.tscn:1843
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Pećina"
@@ -5580,17 +5602,17 @@ msgstr "Pećina"
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1755
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Prikaži vodiče (u trenutnoj igri)"
 
-#: ../src/general/OptionsMenu.tscn:1742
+#: ../src/general/OptionsMenu.tscn:1747
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Prikaži vodiče (u novim igrama)"
 
-#: ../src/general/OptionsMenu.tscn:1757
+#: ../src/general/OptionsMenu.tscn:1762
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5604,7 +5626,7 @@ msgstr ""
 "Imate nesačuvane promene koje će biti odbačene.\n"
 "Da li želite da nastavite?"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1836
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5665,7 +5687,7 @@ msgstr "Silicijum-Dioksid"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ova membrana ima jak zid od silicijum dioksida. Može se dobro odupreti ukupnoj šteti i vrlo je otporan na fizička oštećenja. Takođe zahteva manje energije za održavanje forme. Međutim, usporava ćeliju velikim faktorom i ćelija apsorbuje resurse smanjenom brzinom."
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
@@ -5712,7 +5734,7 @@ msgstr "Mali gvozdeni komad"
 msgid "SOCIETY_STAGE"
 msgstr "Zona: {0}"
 
-#: ../src/general/OptionsMenu.tscn:185
+#: ../src/general/OptionsMenu.tscn:188
 msgid "SOUND"
 msgstr "Zvuk"
 
@@ -5847,7 +5869,7 @@ msgstr "Počinje"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1198
+#: ../src/general/NewGameSettings.tscn:1196
 #, fuzzy
 msgid "START_GAME"
 msgstr "Sačuvaj Igru"
@@ -5976,7 +5998,7 @@ msgstr "Skladište"
 msgid "STORAGE_COLON"
 msgstr "Skladište"
 
-#: ../src/general/MainMenu.cs:571
+#: ../src/general/MainMenu.cs:570
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -6031,11 +6053,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:789
+#: ../src/microbe_stage/Microbe.Contact.cs:785
 msgid "SUCCESSFUL_KILL"
 msgstr "uspešno ubistvo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:782
+#: ../src/microbe_stage/Microbe.Contact.cs:778
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "uspešno okupljanje"
 
@@ -6127,7 +6149,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:820
+#: ../src/late_multicellular_stage/MulticellularStage.cs:827
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6216,7 +6238,7 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "THREADS"
 msgstr ""
 
@@ -6328,7 +6350,7 @@ msgid "TITLE_COLON"
 msgstr "Veličina:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2007
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Prebacite gutanje"
@@ -6450,7 +6472,7 @@ msgstr "Napravite snimak ekrana"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2169
+#: ../src/general/OptionsMenu.tscn:2214
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Napravite snimak ekrana"
@@ -6550,7 +6572,7 @@ msgstr ""
 msgid "TWITTER_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -6569,7 +6591,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Najosnovniji oblik membrane, ima malu zaštitu od oštećenja. Takođe mu je potrebno više energije da se ne bi deformisao. Prednost je u tome što omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2019
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -6577,7 +6599,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1574
+#: ../src/general/OptionsMenu.cs:1589
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6598,7 +6620,7 @@ msgstr "Opozovi poslednju akciju"
 msgid "UNKNOWN"
 msgstr "Nepoznati miš"
 
-#: ../src/general/OptionsMenu.cs:1031
+#: ../src/general/OptionsMenu.cs:1046
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Sposobnosti"
@@ -6612,7 +6634,7 @@ msgstr "Nepoznati miš"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Nepoznati miš"
 
-#: ../src/general/OptionsMenu.cs:1581
+#: ../src/general/OptionsMenu.cs:1596
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Nepoznati miš"
@@ -6622,13 +6644,13 @@ msgstr "Nepoznati miš"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Nepoznati miš"
 
-#: ../src/general/OptionsMenu.tscn:2088
+#: ../src/general/OptionsMenu.tscn:2133
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Imate nesačuvane promene koje će biti odbačene.\n"
 "Da li želite da nastavite?"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:291
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:311
 msgid "UNTITLED"
 msgstr ""
 
@@ -6668,7 +6690,7 @@ msgstr ""
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:510
+#: ../src/general/OptionsMenu.tscn:521
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -6686,7 +6708,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/OptionsMenu.tscn:1777
+#: ../src/general/OptionsMenu.tscn:1782
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Koristite prilagođeno korisničko ime"
 
@@ -6694,11 +6716,11 @@ msgstr "Koristite prilagođeno korisničko ime"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1368
+#: ../src/general/OptionsMenu.tscn:1373
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6727,7 +6749,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr "Generacija:"
 
-#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1324 ../src/general/OptionsMenu.tscn:1434
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Generacija:"
@@ -6738,11 +6760,11 @@ msgstr "Generacija:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Brzina:"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:548
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1040 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:1055 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6755,12 +6777,12 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1848
+#: ../src/general/OptionsMenu.tscn:1853
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "Pećina"
 
-#: ../src/general/OptionsMenu.tscn:1846
+#: ../src/general/OptionsMenu.tscn:1851
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Pećina"
@@ -6800,7 +6822,7 @@ msgstr "Tom od zvučnih efekata"
 msgid "VOLUMEUP"
 msgstr "Tom od zvučnih efekata"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:282
 msgid "VSYNC"
 msgstr ""
 
@@ -6909,7 +6931,7 @@ msgstr "Statistika Organizma"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1524
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "za povećanje kretanja"
@@ -6919,15 +6941,15 @@ msgstr "za povećanje kretanja"
 msgid "WORST_PATCH_COLON"
 msgstr "Vrste:"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX_SERIES"
 msgstr ""
 

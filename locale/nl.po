@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 15:38+0300\n"
+"POT-Creation-Date: 2023-05-01 15:48-0500\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1467
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D bewegingsstijl:"
 
@@ -31,7 +31,7 @@ msgstr "3D-Bewerker"
 msgid "3D_MOVEMENT"
 msgstr "3D-beweging"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1504
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D bewegingsstijl:"
 
@@ -71,7 +71,7 @@ msgstr "Actie geblokkeerd terwijl een andere actie bezig is"
 msgid "ACTIVE"
 msgstr "Actief"
 
-#: ../src/general/OptionsMenu.tscn:1102
+#: ../src/general/OptionsMenu.tscn:1107
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Huidige threads:"
 
@@ -89,11 +89,11 @@ msgstr "Extra controles hebben een probleem ontdekt: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Voeg toetskoppeling toe"
 
-#: ../src/general/NewGameSettings.tscn:1179
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW"
 msgstr "Geavanceerd"
 
-#: ../src/general/NewGameSettings.tscn:1174
+#: ../src/general/NewGameSettings.tscn:1172
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Open de weergave voor geavanceerde instellingen"
 
@@ -126,16 +126,16 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Aggressief"
 
-#: ../src/general/NewGameSettings.tscn:464
+#: ../src/general/NewGameSettings.tscn:470
 msgid "AI_MUTATION_RATE"
 msgstr "Mutatiesnelheid van de AI"
 
-#: ../src/general/NewGameSettings.tscn:509
+#: ../src/general/NewGameSettings.tscn:510
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(snelheid waarmee AI-soorten muteren)"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:387
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:407
 msgid "ALL"
 msgstr "Alles"
 
@@ -172,7 +172,7 @@ msgstr ""
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:754
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume omgeving"
 
@@ -183,11 +183,11 @@ msgstr "Volume omgeving"
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
-#: ../src/general/OptionsMenu.tscn:1687
+#: ../src/general/OptionsMenu.tscn:1692
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aantal automatische savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1715
+#: ../src/general/OptionsMenu.tscn:1720
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aantal savegames om te bewaren:"
 
@@ -212,11 +212,11 @@ msgstr "Pas wijzigingen toe"
 msgid "APRIL"
 msgstr "April"
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Weet je zeker dat je ALLE instellingen wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Weet je zeker dat je de invoer wilt resetten?"
 
@@ -244,7 +244,7 @@ msgstr "Mod assembly klasse is vereist wanneer een assembly is gespecificeerd"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Mod assemble is vereist wanneer auto harmony is aangezet"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Veronderstel dat de CPU hyperthreading aan heeft staan"
 
@@ -286,7 +286,7 @@ msgstr "De poging om het spel op te slaan is mislukt, het bestand kon niet gesch
 msgid "AT_CURSOR"
 msgstr "Bij Cursor:"
 
-#: ../src/general/OptionsMenu.tscn:866
+#: ../src/general/OptionsMenu.tscn:871
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio uitvoer apparaat:"
 
@@ -294,8 +294,8 @@ msgstr "Audio uitvoer apparaat:"
 msgid "AUGUST"
 msgstr "Augustus"
 
-#: ../src/general/OptionsMenu.tscn:598 ../src/general/OptionsMenu.tscn:599
-#: ../src/general/OptionsMenu.tscn:1484 ../src/general/OptionsMenu.tscn:1485
+#: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:1489 ../src/general/OptionsMenu.tscn:1490
 msgid "AUTO"
 msgstr "Automatisch"
 
@@ -322,7 +322,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klaar. {1:n0}/{2:n0} stappen."
 
-#: ../src/general/OptionsMenu.tscn:1676
+#: ../src/general/OptionsMenu.tscn:1681
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
 
@@ -359,7 +359,7 @@ msgstr "Auto-Evo Status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Beweeg automatisch naar voren"
 
-#: ../src/general/OptionsMenu.cs:1007 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:1022 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
@@ -378,8 +378,8 @@ msgstr "Bewustzijnsfase"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
-#: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:274
+#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/OptionsMenu.tscn:2032 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -408,11 +408,11 @@ msgstr "Basismobiliteit"
 msgid "BASE_MOVEMENT"
 msgstr "Basisbeweging"
 
-#: ../src/general/NewGameSettings.tscn:1164
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW"
 msgstr "Basis"
 
-#: ../src/general/NewGameSettings.tscn:1159
+#: ../src/general/NewGameSettings.tscn:1157
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Ga terug naar basisinstellingenweergave"
 
@@ -527,7 +527,7 @@ msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Druk op [thrive:input]g_toggle_binding[/thrive:input] om verbindingsmodus aan of uit te zetten. In verbindingsmodus kun je andere cellen van je soort aan je kolonie binden door tegen ze aan te bewegen. Om de kolonie te verlaten druk je op [thrive:input]g_unbind_all[/thrive:input]. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie."
 
-#: ../src/general/OptionsMenu.tscn:1288 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1403
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind assen samen"
 
@@ -604,7 +604,7 @@ msgstr "Camera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2138
+#: ../src/general/OptionsMenu.tscn:2183
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -741,7 +741,7 @@ msgstr "Verander symmetrie"
 msgid "CHEATS"
 msgstr "Cheats"
 
-#: ../src/general/OptionsMenu.tscn:1769
+#: ../src/general/OptionsMenu.tscn:1774
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-toetsen ingeschakeld"
 
@@ -831,7 +831,7 @@ msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelhei
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "De gekozen bestandsnaam({0}) is al in gebruik. Overschrijven?"
 
-#: ../src/general/OptionsMenu.tscn:441
+#: ../src/general/OptionsMenu.tscn:444
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
@@ -861,7 +861,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Oude Opslagbestanden Opschonen"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2258
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -873,15 +873,15 @@ msgstr "Oude Opslagbestanden Opschonen"
 msgid "CLOSE"
 msgstr "Sluiten"
 
-#: ../src/general/OptionsMenu.tscn:2068
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
-#: ../src/general/OptionsMenu.tscn:1023
+#: ../src/general/OptionsMenu.tscn:1028
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolk resolutiedeler:"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:978
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Wolksimulatie minimum interval:"
 
@@ -897,7 +897,7 @@ msgstr "Plaats entiteiten met botsingsvorm"
 msgid "COLOUR"
 msgstr "Kleur"
 
-#: ../src/general/OptionsMenu.tscn:403
+#: ../src/general/OptionsMenu.tscn:406
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kleurenblindheid-correctie:"
 
@@ -982,7 +982,7 @@ msgstr "Gemeenschapswiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Bezoek onze gemeenschapswiki"
 
-#: ../src/general/OptionsMenu.tscn:1956
+#: ../src/general/OptionsMenu.tscn:2001
 msgid "COMPILED_AT_COLON"
 msgstr "Gebouwd op:"
 
@@ -1007,15 +1007,15 @@ msgstr "Verbindingen:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Stofbalanzen"
 
-#: ../src/general/OptionsMenu.tscn:958
+#: ../src/general/OptionsMenu.tscn:963
 msgid "COMPOUND_CLOUDS"
 msgstr "Samenstellings-wolken"
 
-#: ../src/general/NewGameSettings.tscn:526
+#: ../src/general/NewGameSettings.tscn:529
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Dichtheid van stofwolken"
 
-#: ../src/general/NewGameSettings.tscn:571
+#: ../src/general/NewGameSettings.tscn:569
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(dichtheid van wolken van verbindingen zoals glucose en ammoniak in de omgeving)"
 
@@ -1061,12 +1061,12 @@ msgstr "Doorgaan naar Industriële Fase?"
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Door een fabriek te plaatsen zal je naar de industriële fase gaan. Wil je doorgaan naar de volgende fase?"
 
-#: ../src/general/NewGameSettings.cs:326
-#: ../src/general/NewGameSettings.tscn:1195
+#: ../src/general/NewGameSettings.cs:329
+#: ../src/general/NewGameSettings.tscn:1193
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start het spel met deze instellingen"
 
-#: ../src/general/NewGameSettings.cs:333
+#: ../src/general/NewGameSettings.cs:336
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Sommige instellingen zijn ongeldig"
 
@@ -1096,7 +1096,7 @@ msgstr "Doorgaan naar de faseprototypen?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizatie Assen Spelbesturingsapparaat:"
 
-#: ../src/general/OptionsMenu.tscn:1457
+#: ../src/general/OptionsMenu.tscn:1462
 msgid "CONTROLLER_DEADZONES"
 msgstr "Deadzones Spelbesturingsapparaat"
 
@@ -1111,11 +1111,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Deadzone:"
 
-#: ../src/general/OptionsMenu.tscn:581
+#: ../src/general/OptionsMenu.tscn:592
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
 
-#: ../src/general/OptionsMenu.tscn:1385
+#: ../src/general/OptionsMenu.tscn:1390
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Gevoeligheid spelbesturingsapparaat"
 
@@ -1127,11 +1127,11 @@ msgstr "Kopieer Fout naar Klembord"
 msgid "COPY_RESULTS"
 msgstr "Kopieer Resultaten"
 
-#: ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopie (Rood-Groen)"
 
-#: ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Blauw-Geel)"
 
@@ -1139,11 +1139,11 @@ msgstr "Tritanopie (Blauw-Geel)"
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Wis geselecteerde invulvelden"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1158
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr "Fout: interne softwarefout in het consumeren van vervaardigde item"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1124
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Kon invoer voor vervaardigingsitems niet vinden"
 
@@ -1155,15 +1155,15 @@ msgstr "Invulvelden"
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Bekende Recepten"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1096
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Niet genoeg {0} om recept te vervaardigen"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1083
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr "Gelieve eerst hierboven een recept te selecteren om te vervaardigen"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1104
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr "Niet genoeg ruimte om alle vervaardigde resultaten te nemen"
 
@@ -1180,7 +1180,7 @@ msgstr "Stenen Handbijl"
 msgid "CRAFTING_RESULTS"
 msgstr "Resultaten"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1527
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Selecteer een recept om te vervaardigen of voeg items to aan filter"
@@ -1297,7 +1297,7 @@ msgstr ""
 "  Gemiddeld hexformaat: {9}\n"
 "[b]Algemene Organeldata:[/b]"
 
-#: ../src/general/OptionsMenu.tscn:1788
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam:"
 
@@ -1318,19 +1318,19 @@ msgstr "Cytoplasma Glycolyse"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/NewGameSettings.tscn:940
 msgid "DAY_LENGTH"
 msgstr "Daglengte"
 
-#: ../src/general/NewGameSettings.tscn:989
+#: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(lengte in werkelijke seconden voor een speldag)"
 
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:911
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Zet dag/nacht cyclus aan"
 
-#: ../src/general/NewGameSettings.tscn:923
+#: ../src/general/NewGameSettings.tscn:920
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
@@ -1350,7 +1350,7 @@ msgstr "Deadzone calibraties zijn opnieuw ingesteld"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Deadzone Configuratie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:970
+#: ../src/microbe_stage/Microbe.Contact.cs:966
 msgid "DEATH"
 msgstr "dood"
 
@@ -1369,7 +1369,7 @@ msgstr "Debugpaneel"
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1473
+#: ../src/general/OptionsMenu.cs:1488
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standaard uitvoer apparaat"
 
@@ -1431,7 +1431,7 @@ msgstr "Beschrijving is te lang"
 msgid "DESPAWN_ENTITIES"
 msgstr "Verwijderen Alle Broedsels"
 
-#: ../src/general/OptionsMenu.tscn:1085
+#: ../src/general/OptionsMenu.tscn:1090
 msgid "DETECTED_CPU_COUNT"
 msgstr "Gedetecteerde CPU count:"
 
@@ -1474,7 +1474,7 @@ msgstr "Verslonden"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Bijdragers aan Devbuilds"
 
-#: ../src/general/NewGameSettings.tscn:292
+#: ../src/general/NewGameSettings.tscn:298
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Moeilijkheidsgraad"
@@ -1495,7 +1495,7 @@ msgstr ""
 "Beperk groei stofgebruik: {9}"
 
 #: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:363
+#: ../src/general/NewGameSettings.tscn:370
 msgid "DIFFICULTY_PRESET"
 msgstr "Vooraf ingestelde moelijkheidsgraad"
 
@@ -1544,7 +1544,7 @@ msgstr "Links"
 msgid "DIRECTIONR"
 msgstr "Rechts"
 
-#: ../src/general/OptionsMenu.tscn:333 ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
 msgid "DISABLED"
 msgstr "Uitgeschakeld"
 
@@ -1552,7 +1552,7 @@ msgstr "Uitgeschakeld"
 msgid "DISABLE_ALL"
 msgstr "Schakel Alles Uit"
 
-#: ../src/general/OptionsMenu.tscn:2121
+#: ../src/general/OptionsMenu.tscn:2166
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuleren en doorgaan"
 
@@ -1594,11 +1594,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Word lid van onze gemeenschapsdiscordserver"
 
-#: ../src/general/OptionsMenu.tscn:1862
+#: ../src/general/OptionsMenu.tscn:1867
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Afgewezen popupvensters:"
 
-#: ../src/general/OptionsMenu.tscn:1860 ../src/general/OptionsMenu.tscn:1869
+#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Dit toont hoeveel vensters permanent uitgezet zijn door de gebruiker.\n"
@@ -1612,19 +1612,19 @@ msgstr "Dit niet nogmaals weergeven"
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "Niet nogmaals hierover waarschuwen"
 
-#: ../src/general/OptionsMenu.tscn:637
+#: ../src/general/OptionsMenu.tscn:481
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "3D menu achtergronden weergeven"
 
-#: ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:625
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Toon Capaciteiten Balk"
 
-#: ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:472
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Achtergronddeeltjes weergeven"
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:642
 msgid "DISPLAY_PART_NAMES"
 msgstr "Toon knopnamen van onderdelenselectie"
 
@@ -1780,15 +1780,15 @@ msgstr "Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit,
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Een tip, je kan andere cellen uitroeien als je niet voorichtig bent. Anderen kunnen dat ook."
 
-#: ../src/general/NewGameSettings.tscn:1121
+#: ../src/general/NewGameSettings.tscn:1117
 msgid "EASTER_EGGS"
 msgstr "Voeg Paaseieren toe"
 
-#: ../src/general/NewGameSettings.tscn:1128
+#: ../src/general/NewGameSettings.tscn:1125
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(willekeurig geplaatste geheimen in het spel)"
 
-#: ../src/general/OptionsMenu.tscn:1552
+#: ../src/general/OptionsMenu.tscn:1557
 msgid "EDGE_PAN_SPEED"
 msgstr "Schuifsnelheid:"
 
@@ -1812,7 +1812,7 @@ msgstr ""
 "\n"
 "Wanneer je klaar bent, klik dan op de knop \"volgende\" rechtsonder om door te gaan."
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1828,7 +1828,7 @@ msgstr "Zet Alle Bruikbare Mods Aan"
 msgid "ENABLE_EDITOR"
 msgstr "Schakel de editor in"
 
-#: ../src/general/OptionsMenu.tscn:621
+#: ../src/general/OptionsMenu.tscn:633
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
 
@@ -1869,11 +1869,11 @@ msgstr "Entiteitslabel"
 msgid "ENVIRONMENT"
 msgstr "Omgeving"
 
-#: ../src/general/NewGameSettings.tscn:650
+#: ../src/general/NewGameSettings.tscn:647
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retentie van glucose in de omgeving"
 
-#: ../src/general/NewGameSettings.tscn:694
+#: ../src/general/NewGameSettings.tscn:686
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(proportie van de glucose die overblijft in de omgeving elke generatie)"
 
@@ -1889,7 +1889,7 @@ msgstr "Epipelechisch"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "Bijl"
 
-#: ../src/general/OptionsMenu.tscn:2149 ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2194 ../src/general/OptionsMenu.tscn:2202
 msgid "ERROR"
 msgstr "ERROR"
 
@@ -1901,7 +1901,7 @@ msgstr "Fout in het maken van map voor mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Fout met het maken van het mod informatiebestand"
 
-#: ../src/general/OptionsMenu.tscn:2159
+#: ../src/general/OptionsMenu.tscn:2204
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
 
@@ -1925,7 +1925,7 @@ msgstr "Fout Opslaan"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1236
+#: ../src/microbe_stage/Microbe.Contact.cs:1232
 msgid "ESCAPE_ENGULFING"
 msgstr "ontsnap verzwelging"
 
@@ -1944,11 +1944,11 @@ msgstr ""
 "\n"
 "Als beiden niet van toepassing zijn, heeft zich een fout voorgedaan. In dat geval, gelieve het ontwikkelteam inlichten en spellogbestanden aanleveren."
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1973
 msgid "EXACT_VERSION_COLON"
 msgstr "Exacte Thrive Versie:"
 
-#: ../src/general/OptionsMenu.tscn:1926 ../src/general/OptionsMenu.tscn:1937
+#: ../src/general/OptionsMenu.tscn:1971 ../src/general/OptionsMenu.tscn:1982
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
@@ -2194,7 +2194,7 @@ msgstr "Fossilizeer deze zoort (al gefossilizeerd)"
 msgid "FOSSILISE"
 msgstr "Fosillizeren"
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2217,15 +2217,15 @@ msgstr "Delta: {0}"
 msgid "FREEBUILDING"
 msgstr "Vrije bouwmodus"
 
-#: ../src/general/NewGameSettings.tscn:768
+#: ../src/general/NewGameSettings.tscn:758
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Beschikbare glucosewolk bij het verlaten van de bewerker"
 
-#: ../src/general/NewGameSettings.tscn:775
+#: ../src/general/NewGameSettings.tscn:766
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(start met een beschikbare glucosewolk in de buurt van elke generatie)"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:290
 msgid "FULLSCREEN"
 msgstr "Volledig Scherm"
 
@@ -2257,7 +2257,7 @@ msgstr "Generatie:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Bezoek onze Github opslagplek"
 
-#: ../src/general/OptionsMenu.cs:1021
+#: ../src/general/OptionsMenu.cs:1036
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2269,7 +2269,7 @@ msgstr "GLES2 moduswaarschuwing"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
 
-#: ../src/general/OptionsMenu.cs:1026
+#: ../src/general/OptionsMenu.cs:1041
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2322,11 +2322,11 @@ msgstr "Ik snap het"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL Licentie text volgt:"
 
-#: ../src/general/OptionsMenu.tscn:480
+#: ../src/general/OptionsMenu.tscn:491
 msgid "GPU_NAME"
 msgstr "GPU:"
 
-#: ../src/general/OptionsMenu.tscn:174
+#: ../src/general/OptionsMenu.tscn:177
 msgid "GRAPHICS"
 msgstr "Grafische Kwaliteit"
 
@@ -2334,7 +2334,7 @@ msgstr "Grafische Kwaliteit"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafisch Team"
 
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:575
 msgid "GUI"
 msgstr "GGI"
 
@@ -2350,7 +2350,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "UI Tabblad Navigatie"
 
-#: ../src/general/OptionsMenu.tscn:819
+#: ../src/general/OptionsMenu.tscn:824
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
@@ -2372,11 +2372,11 @@ msgstr "Hulp"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hoe het spel te spelen"
 
-#: ../src/general/OptionsMenu.tscn:980 ../src/general/OptionsMenu.tscn:1030
+#: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(hogere waarden verbeteren prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(hogere waarden verlagen de prestatie)"
 
@@ -2400,7 +2400,7 @@ msgstr "Houdt [thrive:input]g_free_cursor[/thrive:input] ingedrukt voor muisaanw
 msgid "HOME"
 msgstr "Thuis"
 
-#: ../src/general/OptionsMenu.tscn:1300 ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1415
 msgid "HORIZONTAL_COLON"
 msgstr "Horizontaal:"
 
@@ -2452,11 +2452,11 @@ msgstr "ID is niet een correct nummer"
 msgid "ID_NUMBER"
 msgstr "ID Nummer"
 
-#: ../src/general/NewGameSettings.tscn:1102
+#: ../src/general/NewGameSettings.tscn:1096
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Voeg prototypen van latere fasen toe"
 
-#: ../src/general/NewGameSettings.tscn:1109
+#: ../src/general/NewGameSettings.tscn:1104
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(sommige functies zijn mogelijk niet toegankelijk wanneer je volgende fasen bereikt)"
 
@@ -2480,7 +2480,7 @@ msgstr "Ingeslokte Materie"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Maak een nieuwe wereld"
 
-#: ../src/general/OptionsMenu.tscn:207
+#: ../src/general/OptionsMenu.tscn:210
 msgid "INPUTS"
 msgstr "Invoer"
 
@@ -2606,8 +2606,8 @@ msgstr "Vervaardigen"
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Grond"
 
-#: ../src/general/OptionsMenu.tscn:1313 ../src/general/OptionsMenu.tscn:1335
-#: ../src/general/OptionsMenu.tscn:1423 ../src/general/OptionsMenu.tscn:1446
+#: ../src/general/OptionsMenu.tscn:1318 ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1428 ../src/general/OptionsMenu.tscn:1451
 msgid "INVERTED"
 msgstr "Omgekeerd"
 
@@ -2638,19 +2638,19 @@ msgstr "Bezoek onze Itch.io pagina"
 msgid "JANUARY"
 msgstr "Januari"
 
-#: ../src/general/OptionsMenu.tscn:1894
+#: ../src/general/OptionsMenu.tscn:1899
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug modus:"
 
-#: ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Altijd"
 
-#: ../src/general/OptionsMenu.tscn:1909 ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nooit"
 
@@ -2832,19 +2832,19 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:895
+#: ../src/general/OptionsMenu.tscn:900
 msgid "LANGUAGE"
 msgstr "Taal:"
 
-#: ../src/general/OptionsMenu.cs:1513
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Deze taal is {0}% compleet"
 
-#: ../src/general/OptionsMenu.cs:1509
+#: ../src/general/OptionsMenu.cs:1524
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "De vertaling van deze taal is nog niet compleet ({0}% compleet)"
 
-#: ../src/general/OptionsMenu.cs:1505
+#: ../src/general/OptionsMenu.cs:1520
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft mee!"
 
@@ -2929,12 +2929,12 @@ msgid "LAUNCHMEDIA"
 msgstr "Media"
 
 #: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:853
+#: ../src/general/NewGameSettings.tscn:849
 msgid "LAWK_ONLY"
 msgstr "Enkel LZWHK"
 
 #: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:860
+#: ../src/general/NewGameSettings.tscn:857
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(beperkt onderdelen en mogelijkheden tot enkel Leven Zoals Wij Het Kennen)"
 
@@ -3014,37 +3014,37 @@ msgstr "Licenties"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licenties met betrekking tot onderdelen van Thrive worden hier getoond"
 
-#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:180
 #: ../src/general/NewGameSettings.tscn:876
 msgid "LIFE_ORIGIN"
 msgstr "Oorsprong van het leven"
 
-#: ../src/general/NewGameSettings.tscn:184
-#: ../src/general/NewGameSettings.tscn:883
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:885
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(startlocatie)"
 
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (willekeurig)"
 
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Klein warm vijvertje"
 
-#: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:897
+#: ../src/general/NewGameSettings.tscn:204
+#: ../src/general/NewGameSettings.tscn:893
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Sommige opties kunnen uitgeschakeld zijn als \"Enkel LZWHK\" ingeschakeld is"
 
-#: ../src/general/NewGameSettings.tscn:200
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:899
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermale bronnen"
@@ -3078,43 +3078,43 @@ msgstr "Nacht"
 msgid "LIGHT_MAX"
 msgstr "Maximum Licht"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_EXTREME"
 msgstr "Extreem"
 
-#: ../src/general/NewGameSettings.tscn:806
+#: ../src/general/NewGameSettings.tscn:800
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Beperk groei stofgebruik"
 
-#: ../src/general/NewGameSettings.tscn:813
+#: ../src/general/NewGameSettings.tscn:808
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_HUGE"
 msgstr "Gigantisch"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_LARGE"
 msgstr "Groot"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_NORMAL"
 msgstr "Normaal"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_SMALL"
 msgstr "Klein"
 
-#: ../src/general/OptionsMenu.tscn:1204 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_TINY"
 msgstr "Minuscuul"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_VERY_LARGE"
 msgstr "Zeer groot"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_VERY_SMALL"
 msgstr "Zeer klein"
 
@@ -3244,7 +3244,7 @@ msgstr "Maart"
 msgid "MARINE_SNOW"
 msgstr "Mariene sneeuw"
 
-#: ../src/general/OptionsMenu.tscn:663
+#: ../src/general/OptionsMenu.tscn:668
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
 
@@ -3252,15 +3252,15 @@ msgstr "Master Volume"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
 
-#: ../src/general/OptionsMenu.tscn:372
+#: ../src/general/OptionsMenu.tscn:375
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:390
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ongelimiteerd"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1186
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum hoeveelheid entiteiten:"
 
@@ -3465,7 +3465,7 @@ msgstr "Microbe vrij bouwen bewerker"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:214
+#: ../src/microbe_stage/MicrobeSpecies.cs:227
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Fase[/b]\n"
@@ -3640,7 +3640,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Niet toegestaan om minder dan {0} dataset(s) te tonen!"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:218
+#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Overig"
 
@@ -3653,7 +3653,7 @@ msgstr "Overig"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Diversen 3D Fase"
 
-#: ../src/general/OptionsMenu.tscn:1873
+#: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Overig"
@@ -3858,15 +3858,15 @@ msgstr "Mod Versie:"
 msgid "MORE_INFO"
 msgstr "Toon Meer Info"
 
-#: ../src/general/OptionsMenu.tscn:1542
+#: ../src/general/OptionsMenu.tscn:1547
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr "Schuif strategische weergave wanneer muisaanwijzer aan de rand van het scherm is"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1272
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Muis kijkgevoeligheid"
 
-#: ../src/general/OptionsMenu.tscn:1341
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Muisgevoeligheid schalen met vensterformaat"
 
@@ -3953,7 +3953,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Migreer naar Land?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:577
+#: ../src/late_multicellular_stage/MulticellularStage.cs:583
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Transformeren naar een maatschappij..."
 
@@ -3997,7 +3997,7 @@ msgstr "Meerdere Metaballen"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Meerdere Organellen"
 
-#: ../src/general/OptionsMenu.tscn:311
+#: ../src/general/OptionsMenu.tscn:314
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
 
@@ -4012,7 +4012,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Muziek"
 
-#: ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:719
 msgid "MUSIC_VOLUME"
 msgstr "Volume muziek"
 
@@ -4020,11 +4020,11 @@ msgstr "Volume muziek"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutatiepogingen per soort"
 
-#: ../src/general/NewGameSettings.tscn:402
+#: ../src/general/NewGameSettings.tscn:411
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Multiplier voor mutatiekost"
 
-#: ../src/general/NewGameSettings.tscn:447
+#: ../src/general/NewGameSettings.tscn:451
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(kost van organellen, membranen en andere items in de editor)"
 
@@ -4032,9 +4032,9 @@ msgstr "(kost van organellen, membranen en andere items in de editor)"
 msgid "MUTATION_POINTS"
 msgstr "Mutatiepunten"
 
-#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:743
-#: ../src/general/OptionsMenu.tscn:778 ../src/general/OptionsMenu.tscn:813
-#: ../src/general/OptionsMenu.tscn:848
+#: ../src/general/OptionsMenu.tscn:697 ../src/general/OptionsMenu.tscn:748
+#: ../src/general/OptionsMenu.tscn:783 ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:853
 msgid "MUTE"
 msgstr "Demp"
 
@@ -4078,7 +4078,7 @@ msgstr "Nieuw spel"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start een nieuw spel"
 
-#: ../src/general/NewGameSettings.tscn:274
+#: ../src/general/NewGameSettings.tscn:280
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Notitie: je kunt prestatiegerelateerde opties op elk moment in het [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]optiemenu[/url][/color] aanpassen om de prestatie van het spel te verbeteren"
 
@@ -4139,7 +4139,7 @@ msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compoun
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/OptionsMenu.tscn:419 ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 msgid "NONE"
 msgstr "Geen"
 
@@ -4156,7 +4156,7 @@ msgstr "Het meest eenvoudige type membraan. Het biedt weinig bescherming tegen s
 msgid "NOTHING_HERE"
 msgstr "Niets hier"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:499
+#: ../src/late_multicellular_stage/MulticellularStage.cs:502
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Niets om op te reageren"
 
@@ -4172,11 +4172,11 @@ msgstr "Beschadigd door gifstoffen in ingeslikte materie"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Mist {0} wat nodig is om doelwit te verzwelgen"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1794
+#: ../src/microbe_stage/Microbe.Contact.cs:1790
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Formaat van huidige cel is te klein om doelwit te verzwelgen"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1789
+#: ../src/microbe_stage/Microbe.Contact.cs:1785
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Niet genoeg ruimte in opslag voor ingeslikte materie om doelwit te verzwelgen"
 
@@ -4230,7 +4230,7 @@ msgstr "Geen Opslagen Bestanden Gevonden"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Geen map voor opslagbestanden gevonden"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2212
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Geen screenshot directory gevonden"
 
@@ -4329,7 +4329,7 @@ msgstr "Open het hulpscherm"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Open in Vrije Bouwmodus"
 
-#: ../src/general/OptionsMenu.tscn:1823
+#: ../src/general/OptionsMenu.tscn:1828
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open logs Folder"
 
@@ -4353,7 +4353,7 @@ msgstr "Open Map voor Opslagbestanden"
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Open wetenschapsmenu"
 
-#: ../src/general/OptionsMenu.tscn:1815
+#: ../src/general/OptionsMenu.tscn:1820
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open screenshots"
 
@@ -4361,7 +4361,7 @@ msgstr "Open screenshots"
 msgid "OPEN_THE_MENU"
 msgstr "Open het menu"
 
-#: ../src/general/OptionsMenu.tscn:932
+#: ../src/general/OptionsMenu.tscn:937
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help met vertalen"
 
@@ -4468,11 +4468,11 @@ msgstr "Osmoregulatie"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulatiekosten"
 
-#: ../src/general/NewGameSettings.tscn:711
+#: ../src/general/NewGameSettings.tscn:705
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulatiekosten"
 
-#: ../src/general/NewGameSettings.tscn:756
+#: ../src/general/NewGameSettings.tscn:745
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(kost van osmoregulatie van spelersoort)"
 
@@ -4571,11 +4571,11 @@ msgstr "Draai naar rechts"
 msgid "PAN_CAMERA_UP"
 msgstr "Beweeg omhoog"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:779
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Krijg passief reproduktievoortgang"
 
-#: ../src/general/NewGameSettings.tscn:794
+#: ../src/general/NewGameSettings.tscn:787
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
 
@@ -4614,7 +4614,7 @@ msgstr "Je hebt op {0} voor het laatst Thrive gespeeld, er is één nieuwe uitga
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Je hebt op {0} voor het laatst Thrive gespeeld, er is waren {1} nieuwe uitgaven sinds die tijd"
 
-#: ../src/general/OptionsMenu.tscn:2177
+#: ../src/general/OptionsMenu.tscn:2222
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 msgid "PATCH_NOTES_TITLE"
 msgstr "Patch Notities"
@@ -4669,7 +4669,7 @@ msgstr "Vreedzaam"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:674
+#: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4683,7 +4683,7 @@ msgstr "Vreedzaam"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:196
+#: ../src/general/OptionsMenu.tscn:199
 msgid "PERFORMANCE"
 msgstr "Prestatie"
 
@@ -4723,7 +4723,7 @@ msgstr "Fysieke Weerstand"
 msgid "PLACE_ORGANELLE"
 msgstr "Plaats organellen"
 
-#: ../src/general/NewGameSettings.tscn:302
+#: ../src/general/NewGameSettings.tscn:308
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeet"
@@ -4738,12 +4738,12 @@ msgstr ""
 "Daglengte: {3} seconden\n"
 "Willekeurige Kiem Planeet: {4}"
 
-#: ../src/general/NewGameSettings.tscn:1070
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generatie van planeet komt snel!"
 
-#: ../src/general/NewGameSettings.tscn:216
-#: ../src/general/NewGameSettings.tscn:1000
+#: ../src/general/NewGameSettings.tscn:222
+#: ../src/general/NewGameSettings.tscn:996
 msgid "PLANET_RANDOM_SEED"
 msgstr "Willekeurige kiem voor de planeet"
 
@@ -4755,7 +4755,7 @@ msgstr "Speler"
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Penalisatie van dood van speler"
 
-#: ../src/general/NewGameSettings.tscn:633
+#: ../src/general/NewGameSettings.tscn:628
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(coëfficient voor de vermindering in bevolking van spelersoort voor elke keer dat de speler dood gaat)"
 
@@ -4771,7 +4771,7 @@ msgstr "Dupliceer Speler"
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
 
-#: ../src/general/OptionsMenu.tscn:1485
+#: ../src/general/OptionsMenu.tscn:1490
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Speler relatief"
 
@@ -4785,23 +4785,23 @@ msgstr ""
 "Speler\n"
 "Snelheid"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_3"
 msgstr "PlayStation 3"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
-#: ../src/general/OptionsMenu.tscn:1652
+#: ../src/general/OptionsMenu.tscn:1657
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Speel intro video"
 
-#: ../src/general/OptionsMenu.tscn:1660
+#: ../src/general/OptionsMenu.tscn:1665
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel intro bij nieuw spel"
 
@@ -4917,7 +4917,7 @@ msgstr "Stop"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Verlaat het spel"
 
-#: ../src/general/PauseMenu.cs:414
+#: ../src/general/PauseMenu.cs:418
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Weet je zeker dat je het spel wil verlaten?\n"
@@ -4927,8 +4927,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Maak willekeurige soortnaam"
 
-#: ../src/general/NewGameSettings.tscn:235
-#: ../src/general/NewGameSettings.tscn:1019
+#: ../src/general/NewGameSettings.tscn:241
+#: ../src/general/NewGameSettings.tscn:1009
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
 
@@ -5015,7 +5015,7 @@ msgstr "Vereist nucleus"
 msgid "RESEARCH"
 msgstr "Onderzoek"
 
-#: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2043
 msgid "RESET"
 msgstr "Reset"
 
@@ -5023,23 +5023,23 @@ msgstr "Reset"
 msgid "RESET_DEADZONES"
 msgstr "Herstel Deadzones"
 
-#: ../src/general/OptionsMenu.tscn:1884
+#: ../src/general/OptionsMenu.tscn:1889
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Herstel Afgewezen Vensters"
 
-#: ../src/general/OptionsMenu.tscn:2058
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Invoer resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1611
+#: ../src/general/OptionsMenu.tscn:1616
 msgid "RESET_KEYBINDINGS"
 msgstr "Herstel Toetsbindingen"
 
-#: ../src/general/OptionsMenu.tscn:2038
+#: ../src/general/OptionsMenu.tscn:2083
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaard"
 
-#: ../src/general/OptionsMenu.tscn:2049
+#: ../src/general/OptionsMenu.tscn:2094
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
 
@@ -5048,7 +5048,7 @@ msgstr "Resetten naar standaard?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Weerstaat basale verzwelging"
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:351
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
@@ -5108,7 +5108,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Sluit en terug naar hoofdmenu"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:395
+#: ../src/general/PauseMenu.cs:399
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Weet je zeker dat je terug wilt gaan naar het hoofmenu?\n"
@@ -5146,7 +5146,7 @@ msgstr "Draai naar rechts"
 msgid "ROTATION_COLON"
 msgstr "Rotatie:"
 
-#: ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
 
@@ -5215,11 +5215,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive is in Veilige Modus Gestart"
 
-#: ../src/general/OptionsMenu.tscn:2012 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2057 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Sla op"
 
-#: ../src/general/OptionsMenu.tscn:2111
+#: ../src/general/OptionsMenu.tscn:2156
 msgid "SAVE_AND_CONTINUE"
 msgstr "Opslaan en doorgaan"
 
@@ -5317,20 +5317,42 @@ msgstr "Opslaan is op dit moment niet mogelijk door:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Opslaan is gelukt"
 
-#: ../src/general/OptionsMenu.tscn:1353 ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_NONE"
 msgstr "Geen"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_ON"
 msgstr "Geschaald"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_ON_INVERSE"
 msgstr "Omgekeerd geschaald"
 
-#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1518
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1939
+#, fuzzy
+msgid "SCREEN_EFFECT"
+msgstr "Effecten van Buiten:"
+
+#: ../simulation_parameters/common/screen_effects.json:13
+msgid "SCREEN_EFFECT_GAMEBOY"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:18
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:8
+msgid "SCREEN_EFFECT_GREYSCALE"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:3
+#, fuzzy
+msgid "SCREEN_EFFECT_NONE"
+msgstr "Er wordt niets onderzocht"
+
+#: ../src/general/OptionsMenu.tscn:1490 ../src/general/OptionsMenu.tscn:1523
+#: ../src/general/OptionsMenu.tscn:1524
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Relatief aan scherm"
 
@@ -5436,7 +5458,7 @@ msgstr "Zittend"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Deze waarde wordt alleen toegepast op nieuwe spellen die gestart worden na het wijzigen van deze optie"
 
-#: ../src/general/OptionsMenu.tscn:784
+#: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
@@ -5448,11 +5470,11 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Open hulp"
 
-#: ../src/general/OptionsMenu.tscn:1840
+#: ../src/general/OptionsMenu.tscn:1845
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Toon nieuwe patchnotities automatisch"
 
-#: ../src/general/OptionsMenu.tscn:1838
+#: ../src/general/OptionsMenu.tscn:1843
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Toon patchnotities van nieuwe Thrive uitgaven automatisch in het hoofdmenu"
 
@@ -5460,15 +5482,15 @@ msgstr "Toon patchnotities van nieuwe Thrive uitgaven automatisch in het hoofdme
 msgid "SHOW_TUTORIALS"
 msgstr "Toon instructies"
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1755
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Toon instructies (in huidige spel)"
 
-#: ../src/general/OptionsMenu.tscn:1742
+#: ../src/general/OptionsMenu.tscn:1747
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Toon instructies (in nieuwe spellen)"
 
-#: ../src/general/OptionsMenu.tscn:1757
+#: ../src/general/OptionsMenu.tscn:1762
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Toon waarschuwing voor niet opgeslagen voortgang"
 
@@ -5476,7 +5498,7 @@ msgstr "Toon waarschuwing voor niet opgeslagen voortgang"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Zet het waarschuwingsvenster voor niet opgeslagen voortgang bij het sluiten van het spel aan of uit."
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1836
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Toon Thrive nieuwsfeed (wordt van het internet gedownload)"
 
@@ -5526,7 +5548,7 @@ msgstr "Siliciumdioxide"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke celmuur van silica. Het kan zeer goed tegen schade en is zeer resistent voor fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel ernstig en de cel kan grondstoffen minder snel opnemen."
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5570,7 +5592,7 @@ msgstr "Klein stuk ijzer"
 msgid "SOCIETY_STAGE"
 msgstr "Maatschappijfase"
 
-#: ../src/general/OptionsMenu.tscn:185
+#: ../src/general/OptionsMenu.tscn:188
 msgid "SOUND"
 msgstr "Geluid"
 
@@ -5706,7 +5728,7 @@ msgstr "Starten"
 msgid "START_CALIBRATION"
 msgstr "Start Calibratie"
 
-#: ../src/general/NewGameSettings.tscn:1198
+#: ../src/general/NewGameSettings.tscn:1196
 msgid "START_GAME"
 msgstr "Start Spel"
 
@@ -5830,7 +5852,7 @@ msgstr "Opslag"
 msgid "STORAGE_COLON"
 msgstr "Opslag:"
 
-#: ../src/general/MainMenu.cs:571
+#: ../src/general/MainMenu.cs:570
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als: {0}"
 
@@ -5884,11 +5906,11 @@ msgstr "Gemeenschapscentrum"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Stoomkrachtfabriek"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:789
+#: ../src/microbe_stage/Microbe.Contact.cs:785
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:782
+#: ../src/microbe_stage/Microbe.Contact.cs:778
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "succesvolle geaast"
 
@@ -5977,7 +5999,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Stoomkracht"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:820
+#: ../src/late_multicellular_stage/MulticellularStage.cs:827
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Technologie ontgrendeld: {0}"
 
@@ -6069,7 +6091,7 @@ msgstr "Dit is een lokaal geinstalleerde mod"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Deze mod is gedownload van de Steam Workshop"
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "THREADS"
 msgstr "Threads:"
 
@@ -6187,7 +6209,7 @@ msgid "TITLE_COLON"
 msgstr "Titel:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2007
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 msgid "TOGGLE_BINDING"
 msgstr "Binden aan/uit"
 
@@ -6299,7 +6321,7 @@ msgstr "Probeer enkele soorten te fossilizeren!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Probeer een opslagbestand te maken!"
 
-#: ../src/general/OptionsMenu.tscn:2169
+#: ../src/general/OptionsMenu.tscn:2214
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Maak een screenshot!"
 
@@ -6464,7 +6486,7 @@ msgstr "Bekijk Nu"
 msgid "TWITTER_TOOLTIP"
 msgstr "Bezoek onze Twitter feed"
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6481,7 +6503,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Je moet je veranderingen toepassen om mods te laden of ontladen."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2019
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr "Ontbind al"
 
@@ -6489,7 +6511,7 @@ msgstr "Ontbind al"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Loskoppelmodus"
 
-#: ../src/general/OptionsMenu.cs:1574
+#: ../src/general/OptionsMenu.cs:1589
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Dit is een debugbuild waar de informatie hieronder waarschijnlijk niet actueel is"
 
@@ -6509,7 +6531,7 @@ msgstr "Laatste actie ongedaan maken"
 msgid "UNKNOWN"
 msgstr "Onbekende knop"
 
-#: ../src/general/OptionsMenu.cs:1031
+#: ../src/general/OptionsMenu.cs:1046
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Onbekend"
 
@@ -6521,7 +6543,7 @@ msgstr "Onbekende muisknop"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Onbekend op Windows"
 
-#: ../src/general/OptionsMenu.cs:1581
+#: ../src/general/OptionsMenu.cs:1596
 msgid "UNKNOWN_VERSION"
 msgstr "Onbekende versie"
 
@@ -6529,13 +6551,13 @@ msgstr "Onbekende versie"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Onbekende Workshop ID Voor Deze Mod"
 
-#: ../src/general/OptionsMenu.tscn:2088
+#: ../src/general/OptionsMenu.tscn:2133
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen instellingen.\n"
 "Doorgaan?"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:291
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:311
 msgid "UNTITLED"
 msgstr "Geen Titel"
 
@@ -6571,7 +6593,7 @@ msgstr "Upload was Succesvol"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenties En Gebruikte Bibliotheken"
 
-#: ../src/general/OptionsMenu.tscn:510
+#: ../src/general/OptionsMenu.tscn:521
 msgid "USED_RENDERER_NAME"
 msgstr "Gebruikte Renderer:"
 
@@ -6587,7 +6609,7 @@ msgstr "Gebruik Auto Harmony Laadmethode"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet gespecificeerd te worden)"
 
-#: ../src/general/OptionsMenu.tscn:1777
+#: ../src/general/OptionsMenu.tscn:1782
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
 
@@ -6595,11 +6617,11 @@ msgstr "Gebruik een eigen naam"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Soorten die de biodiversiteit vergroten stelen bevolking van bestaande soorten"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Stel handmatig de nummers van achtergrond threads in"
 
-#: ../src/general/OptionsMenu.tscn:1368
+#: ../src/general/OptionsMenu.tscn:1373
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Gebruik virtueel vensterformaat"
 
@@ -6626,7 +6648,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Versie:"
 
-#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1324 ../src/general/OptionsMenu.tscn:1434
 msgid "VERTICAL_COLON"
 msgstr "Verticaal:"
 
@@ -6635,11 +6657,11 @@ msgstr "Verticaal:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Verticaal (As: {0})"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:548
 msgid "VIDEO_MEMORY"
 msgstr "Videogeheugen nu in gebruik:"
 
-#: ../src/general/OptionsMenu.cs:1040 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:1055 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -6652,11 +6674,11 @@ msgstr "Kijker"
 msgid "VIEW_ALL"
 msgstr "Toon alle"
 
-#: ../src/general/OptionsMenu.tscn:1848
+#: ../src/general/OptionsMenu.tscn:1853
 msgid "VIEW_PATCH_NOTES"
 msgstr "Zie Patchnotities"
 
-#: ../src/general/OptionsMenu.tscn:1846
+#: ../src/general/OptionsMenu.tscn:1851
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Zie nu meest recente of alle Thrive patchnotities"
 
@@ -6692,7 +6714,7 @@ msgstr "Geluid Uit"
 msgid "VOLUMEUP"
 msgstr "Geluid Harder"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:282
 msgid "VSYNC"
 msgstr "vSync"
 
@@ -6799,7 +6821,7 @@ msgstr ""
 "Voeg latere faseprototypen toe: {0}\n"
 "Voeg Paaseieren toe: {1}"
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1524
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
@@ -6807,15 +6829,15 @@ msgstr "Relatief aan de wereld"
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtse Gebied:"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 

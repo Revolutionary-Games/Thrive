@@ -635,6 +635,15 @@ public class OptionsMenu : ControlWithInput
         patchNotesBox = GetNode<CustomDialog>(PatchNotesBoxPath);
         patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
 
+        var simulationParameters = SimulationParameters.Instance;
+        var screenEffects = simulationParameters.GetAllScreenEffects();
+
+        foreach (var effect in screenEffects.OrderBy(p => p.Index))
+        {
+            // The untranslated name will be translated automatically by Godot during runtime
+            screenEffectButton.AddItem(effect.UntranslatedName);
+        }
+
         nodeReferencesResolved = true;
     }
 

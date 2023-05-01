@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-21 15:38+0300\n"
+"POT-Creation-Date: 2023-05-01 15:48-0500\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.2.2\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1467
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D-liikkumisen tyyli:"
 
@@ -31,7 +31,7 @@ msgstr "3D-editori"
 msgid "3D_MOVEMENT"
 msgstr "3D-liikkuminen"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1504
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D-liikkumisen tyyli:"
 
@@ -74,7 +74,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr "Aktiivinen"
 
-#: ../src/general/OptionsMenu.tscn:1102
+#: ../src/general/OptionsMenu.tscn:1107
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Nykyinen suorittajien määrä:"
 
@@ -93,11 +93,11 @@ msgstr "Auto-evon suorittaminen epäonnistui"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/NewGameSettings.tscn:1179
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW"
 msgstr "Kehittynyt"
 
-#: ../src/general/NewGameSettings.tscn:1174
+#: ../src/general/NewGameSettings.tscn:1172
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
@@ -133,18 +133,18 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agressiivinen"
 
-#: ../src/general/NewGameSettings.tscn:464
+#: ../src/general/NewGameSettings.tscn:470
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutaatiopisteet"
 
-#: ../src/general/NewGameSettings.tscn:509
+#: ../src/general/NewGameSettings.tscn:510
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:387
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:407
 msgid "ALL"
 msgstr "Kaikki"
 
@@ -172,7 +172,7 @@ msgstr "Statistiikkaa organismista"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:754
 msgid "AMBIANCE_VOLUME"
 msgstr "Tunnelmaäänet"
 
@@ -183,11 +183,11 @@ msgstr "Tunnelmaäänet"
 msgid "AMMONIA"
 msgstr "Ammoniakki"
 
-#: ../src/general/OptionsMenu.tscn:1687
+#: ../src/general/OptionsMenu.tscn:1692
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Paikat automaattitallenuksille:"
 
-#: ../src/general/OptionsMenu.tscn:1715
+#: ../src/general/OptionsMenu.tscn:1720
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Paikat nopeille tallennuksille:"
 
@@ -212,11 +212,11 @@ msgstr "Hyväksy Muutokset"
 msgid "APRIL"
 msgstr "Huhtikuu"
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:2059
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
@@ -245,7 +245,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Oleta, että prosessorissa on hyperthreading käytössä"
 
@@ -288,7 +288,7 @@ msgstr "Auto-evon suorittaminen epäonnistui"
 msgid "AT_CURSOR"
 msgstr "Kursorin alla:"
 
-#: ../src/general/OptionsMenu.tscn:866
+#: ../src/general/OptionsMenu.tscn:871
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Äänen ulostulolaite:"
 
@@ -296,8 +296,8 @@ msgstr "Äänen ulostulolaite:"
 msgid "AUGUST"
 msgstr "Elokuu"
 
-#: ../src/general/OptionsMenu.tscn:598 ../src/general/OptionsMenu.tscn:599
-#: ../src/general/OptionsMenu.tscn:1484 ../src/general/OptionsMenu.tscn:1485
+#: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:1489 ../src/general/OptionsMenu.tscn:1490
 msgid "AUTO"
 msgstr "automaattinen"
 
@@ -325,7 +325,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% valmis. {1:n0}/{2:n0} vaihetta."
 
-#: ../src/general/OptionsMenu.tscn:1676
+#: ../src/general/OptionsMenu.tscn:1681
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Tallenna automaattisesti"
 
@@ -364,7 +364,7 @@ msgstr "suorituksen status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Liiku automaattisesti eteenpäin"
 
-#: ../src/general/OptionsMenu.cs:1007 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:1022 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Automaattinen ({0}x{1})"
 
@@ -391,8 +391,8 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
-#: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:274
+#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/OptionsMenu.tscn:2032 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -422,11 +422,11 @@ msgstr "Liikkuvuus"
 msgid "BASE_MOVEMENT"
 msgstr "Perus liikkuminen"
 
-#: ../src/general/NewGameSettings.tscn:1164
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW"
 msgstr "Yksinkertainen"
 
-#: ../src/general/NewGameSettings.tscn:1159
+#: ../src/general/NewGameSettings.tscn:1157
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Kuole"
@@ -548,7 +548,7 @@ msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun l
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Vaihda liittymismoodia painamall [thrive:input]g_toggle_binding[/thrive:input]. Liittymismoodissa voit liittyä toisiin lajisi soluihin liikkumalla heitä kohti. Poistuaksesi ryppäästä paina [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/general/OptionsMenu.tscn:1288 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1403
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -627,7 +627,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2138
+#: ../src/general/OptionsMenu.tscn:2183
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -769,7 +769,7 @@ msgstr "Vaihda symmetriamoodia"
 msgid "CHEATS"
 msgstr "Huijauskoodit"
 
-#: ../src/general/OptionsMenu.tscn:1769
+#: ../src/general/OptionsMenu.tscn:1774
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Huijauskoodit aktiivisia"
 
@@ -863,7 +863,7 @@ msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. T
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Valittu tiedostonimi ({0}) on jo olemassa. Kirjoitetaanko yli?"
 
-#: ../src/general/OptionsMenu.tscn:441
+#: ../src/general/OptionsMenu.tscn:444
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaattinen vääristymä:"
 
@@ -896,7 +896,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Siivoa vanhat tallennukset"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2258
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -908,15 +908,15 @@ msgstr "Siivoa vanhat tallennukset"
 msgid "CLOSE"
 msgstr "Sulje"
 
-#: ../src/general/OptionsMenu.tscn:2068
+#: ../src/general/OptionsMenu.tscn:2113
 msgid "CLOSE_OPTIONS"
 msgstr "Sulje asetukset?"
 
-#: ../src/general/OptionsMenu.tscn:1023
+#: ../src/general/OptionsMenu.tscn:1028
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Pilvien resoluutioiden jakaja:"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:978
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Pienin pilvien päivitys aikajakso:"
 
@@ -932,7 +932,7 @@ msgstr ""
 msgid "COLOUR"
 msgstr "Väri"
 
-#: ../src/general/OptionsMenu.tscn:403
+#: ../src/general/OptionsMenu.tscn:406
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Värisokeuden korjaus:"
 
@@ -1024,7 +1024,7 @@ msgstr "Wikimme"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/OptionsMenu.tscn:1956
+#: ../src/general/OptionsMenu.tscn:2001
 msgid "COMPILED_AT_COLON"
 msgstr "Käännetty ajanhetkellä:"
 
@@ -1050,16 +1050,16 @@ msgstr "Yhdisteet:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Yhdisteiden tasapainopisteet"
 
-#: ../src/general/OptionsMenu.tscn:958
+#: ../src/general/OptionsMenu.tscn:963
 msgid "COMPOUND_CLOUDS"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/NewGameSettings.tscn:526
+#: ../src/general/NewGameSettings.tscn:529
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/NewGameSettings.tscn:571
+#: ../src/general/NewGameSettings.tscn:569
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1111,13 +1111,13 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.cs:326
-#: ../src/general/NewGameSettings.tscn:1195
+#: ../src/general/NewGameSettings.cs:329
+#: ../src/general/NewGameSettings.tscn:1193
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.cs:333
+#: ../src/general/NewGameSettings.cs:336
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pysäytysmenu"
@@ -1143,7 +1143,7 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1457
+#: ../src/general/OptionsMenu.tscn:1462
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1157,11 +1157,11 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:581
+#: ../src/general/OptionsMenu.tscn:592
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1385
+#: ../src/general/OptionsMenu.tscn:1390
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Ohjaimen herkkyys"
 
@@ -1174,11 +1174,11 @@ msgstr "Kopioi virhe leikepöydälle"
 msgid "COPY_RESULTS"
 msgstr "Auto-evo tulokset:"
 
-#: ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopia (punavihersokeus)"
 
-#: ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (sininen-keltainen)"
 
@@ -1186,11 +1186,11 @@ msgstr "Tritanopia (sininen-keltainen)"
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1152
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1158
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1118
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1124
 #, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Käänteisesti skaalattu"
@@ -1204,16 +1204,16 @@ msgstr ""
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Käänteisesti skaalattu"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1090
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1096
 #, fuzzy
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Käänteisesti skaalattu"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1077
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1083
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1098
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1104
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr ""
 
@@ -1232,7 +1232,7 @@ msgstr ""
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo tulokset:"
 
-#: ../src/awakening_stage/gui/InventoryScreen.cs:1521
+#: ../src/awakening_stage/gui/InventoryScreen.cs:1527
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:212
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -1340,7 +1340,7 @@ msgstr "Nykyiset kehittäjät"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/general/OptionsMenu.tscn:1788
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "CUSTOM_USERNAME"
 msgstr "Valittu käyttäjänimi:"
 
@@ -1361,11 +1361,11 @@ msgstr "Soluliman glykolyysi"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
-#: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/NewGameSettings.tscn:940
 msgid "DAY_LENGTH"
 msgstr "Vuorokauden pituus"
 
-#: ../src/general/NewGameSettings.tscn:989
+#: ../src/general/NewGameSettings.tscn:983
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
@@ -1374,11 +1374,11 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:911
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:923
+#: ../src/general/NewGameSettings.tscn:920
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1401,7 +1401,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:970
+#: ../src/microbe_stage/Microbe.Contact.cs:966
 msgid "DEATH"
 msgstr "kuolema"
 
@@ -1418,7 +1418,7 @@ msgstr "Virheenkorjauspaneeli"
 msgid "DECEMBER"
 msgstr "Joulukuu"
 
-#: ../src/general/OptionsMenu.cs:1473
+#: ../src/general/OptionsMenu.cs:1488
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Oletus ulostulolaite"
 
@@ -1485,7 +1485,7 @@ msgstr "Kuvaus on liian pitkä"
 msgid "DESPAWN_ENTITIES"
 msgstr "Luo vihollinen"
 
-#: ../src/general/OptionsMenu.tscn:1085
+#: ../src/general/OptionsMenu.tscn:1090
 msgid "DETECTED_CPU_COUNT"
 msgstr "Tunnistettu prosessoriytimien määrä:"
 
@@ -1530,7 +1530,7 @@ msgstr "Syöty"
 msgid "DEV_BUILD_PATRONS"
 msgstr "DevBuild-tukijat"
 
-#: ../src/general/NewGameSettings.tscn:292
+#: ../src/general/NewGameSettings.tscn:298
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Vaikeustaso"
@@ -1542,7 +1542,7 @@ msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Vaikeustason esiasetus"
 
 #: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:363
+#: ../src/general/NewGameSettings.tscn:370
 msgid "DIFFICULTY_PRESET"
 msgstr "Vaikeustason esiasetus"
 
@@ -1594,7 +1594,7 @@ msgstr "Vasemmalle"
 msgid "DIRECTIONR"
 msgstr "Oikealle"
 
-#: ../src/general/OptionsMenu.tscn:333 ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
 msgid "DISABLED"
 msgstr "Ei käytössä"
 
@@ -1603,7 +1603,7 @@ msgstr "Ei käytössä"
 msgid "DISABLE_ALL"
 msgstr "Ei käytössä"
 
-#: ../src/general/OptionsMenu.tscn:2121
+#: ../src/general/OptionsMenu.tscn:2166
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
@@ -1650,12 +1650,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/OptionsMenu.tscn:1862
+#: ../src/general/OptionsMenu.tscn:1867
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Nopeus:"
 
-#: ../src/general/OptionsMenu.tscn:1860 ../src/general/OptionsMenu.tscn:1869
+#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1671,20 +1671,20 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:637
+#: ../src/general/OptionsMenu.tscn:481
 #, fuzzy
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "Näytä taustahiukkasia"
 
-#: ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:625
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Näytä kykypalkki"
 
-#: ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:472
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Näytä taustahiukkasia"
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:642
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Näytä kykypalkki"
@@ -1850,12 +1850,12 @@ msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näytt�
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
 
-#: ../src/general/NewGameSettings.tscn:1121
+#: ../src/general/NewGameSettings.tscn:1117
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "KIEMURTELEVIA JUTTUJA!!"
 
-#: ../src/general/NewGameSettings.tscn:1128
+#: ../src/general/NewGameSettings.tscn:1125
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1864,7 +1864,7 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/OptionsMenu.tscn:1552
+#: ../src/general/OptionsMenu.tscn:1557
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "Resurssien imeytymisen nopeus"
@@ -1890,7 +1890,7 @@ msgstr ""
 "\n"
 "Kun olet valmis jatkamaan, paina \"jatka\" painiketta alhaalla oikealla."
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1908,7 +1908,7 @@ msgstr "Valittu tallennus ei ole yhteensopiva"
 msgid "ENABLE_EDITOR"
 msgstr "Avaa editorin lukitus"
 
-#: ../src/general/OptionsMenu.tscn:621
+#: ../src/general/OptionsMenu.tscn:633
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Käytä käyttöliittymän valoefektejä"
 
@@ -1951,11 +1951,11 @@ msgstr "Biomi: {0}"
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
-#: ../src/general/NewGameSettings.tscn:650
+#: ../src/general/NewGameSettings.tscn:647
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Ympäristön glukoosin säilyminen"
 
-#: ../src/general/NewGameSettings.tscn:694
+#: ../src/general/NewGameSettings.tscn:686
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -1973,7 +1973,7 @@ msgstr "Epipelaginen vyöhyke"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2149 ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2194 ../src/general/OptionsMenu.tscn:2202
 msgid "ERROR"
 msgstr "Virhe"
 
@@ -1986,7 +1986,7 @@ msgstr "Virhe tallennettaessa"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2159
+#: ../src/general/OptionsMenu.tscn:2204
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
@@ -2016,7 +2016,7 @@ msgstr "Virhe tallennettaessa"
 msgid "ESCAPE"
 msgstr "ESC"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1236
+#: ../src/microbe_stage/Microbe.Contact.cs:1232
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
@@ -2034,12 +2034,12 @@ msgstr "Tehnyt Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Tehnyt Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1973
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1926 ../src/general/OptionsMenu.tscn:1937
+#: ../src/general/OptionsMenu.tscn:1971 ../src/general/OptionsMenu.tscn:1982
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Lisää uusi syöte"
@@ -2309,7 +2309,7 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Sessiili"
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2333,11 +2333,11 @@ msgstr "Ruutuaika: {0}"
 msgid "FREEBUILDING"
 msgstr "Vapaa rakentelu"
 
-#: ../src/general/NewGameSettings.tscn:768
+#: ../src/general/NewGameSettings.tscn:758
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:775
+#: ../src/general/NewGameSettings.tscn:766
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2345,7 +2345,7 @@ msgstr ""
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
 "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:290
 msgid "FULLSCREEN"
 msgstr "Koko näyttö"
 
@@ -2379,7 +2379,7 @@ msgstr "Sukupolvi:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/OptionsMenu.cs:1021
+#: ../src/general/OptionsMenu.cs:1036
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2391,7 +2391,7 @@ msgstr "GLES2-moodi Varoitus"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1026
+#: ../src/general/OptionsMenu.cs:1041
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2445,12 +2445,12 @@ msgstr "Selvä"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL-lisenssin teksti:"
 
-#: ../src/general/OptionsMenu.tscn:480
+#: ../src/general/OptionsMenu.tscn:491
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:174
+#: ../src/general/OptionsMenu.tscn:177
 msgid "GRAPHICS"
 msgstr "Grafiikat"
 
@@ -2458,7 +2458,7 @@ msgstr "Grafiikat"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafiikkatiimi"
 
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:575
 msgid "GUI"
 msgstr "Käyttöliittymä"
 
@@ -2471,7 +2471,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} k"
 
-#: ../src/general/OptionsMenu.tscn:819
+#: ../src/general/OptionsMenu.tscn:824
 msgid "GUI_VOLUME"
 msgstr "Käyttöliittymä"
 
@@ -2493,11 +2493,11 @@ msgstr "Apua"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/OptionsMenu.tscn:980 ../src/general/OptionsMenu.tscn:1030
+#: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(suuremmat arvot lisäävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(suuremmat arvot heikentävät suorituskykyä)"
 
@@ -2522,7 +2522,7 @@ msgstr ""
 msgid "HOME"
 msgstr "Koti"
 
-#: ../src/general/OptionsMenu.tscn:1300 ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1415
 msgid "HORIZONTAL_COLON"
 msgstr "Horisontaalinen:"
 
@@ -2574,12 +2574,12 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr "ID-Numero"
 
-#: ../src/general/NewGameSettings.tscn:1102
+#: ../src/general/NewGameSettings.tscn:1096
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Lisää soluelin"
 
-#: ../src/general/NewGameSettings.tscn:1109
+#: ../src/general/NewGameSettings.tscn:1104
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -2604,7 +2604,7 @@ msgstr "Nielty Aine"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/OptionsMenu.tscn:207
+#: ../src/general/OptionsMenu.tscn:210
 msgid "INPUTS"
 msgstr "Syötteet"
 
@@ -2740,8 +2740,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1313 ../src/general/OptionsMenu.tscn:1335
-#: ../src/general/OptionsMenu.tscn:1423 ../src/general/OptionsMenu.tscn:1446
+#: ../src/general/OptionsMenu.tscn:1318 ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1428 ../src/general/OptionsMenu.tscn:1451
 msgid "INVERTED"
 msgstr "Käänteinen"
 
@@ -2769,19 +2769,19 @@ msgstr "Kuole"
 msgid "JANUARY"
 msgstr "Tammikuu"
 
-#: ../src/general/OptionsMenu.tscn:1894
+#: ../src/general/OptionsMenu.tscn:1899
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON-virheenkäsittelymoodi:"
 
-#: ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Aina"
 
-#: ../src/general/OptionsMenu.tscn:1909 ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:1910
+#: ../src/general/OptionsMenu.tscn:1915
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ei koskaan"
 
@@ -2963,19 +2963,19 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:895
+#: ../src/general/OptionsMenu.tscn:900
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.cs:1513
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tämä kieli on {0}% käännetty"
 
-#: ../src/general/OptionsMenu.cs:1509
+#: ../src/general/OptionsMenu.cs:1524
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:1505
+#: ../src/general/OptionsMenu.cs:1520
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen kanssa!"
 
@@ -3061,12 +3061,12 @@ msgid "LAUNCHMEDIA"
 msgstr "Media"
 
 #: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:853
+#: ../src/general/NewGameSettings.tscn:849
 msgid "LAWK_ONLY"
 msgstr "Vain LAWK"
 
 #: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:860
+#: ../src/general/NewGameSettings.tscn:857
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -3152,13 +3152,13 @@ msgstr "Lisenssit"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Lisenssit, jotka liittyvät Thriven osiin näytetään tässä"
 
-#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:180
 #: ../src/general/NewGameSettings.tscn:876
 msgid "LIFE_ORIGIN"
 msgstr "Elämän alkuperä"
 
-#: ../src/general/NewGameSettings.tscn:184
-#: ../src/general/NewGameSettings.tscn:883
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:885
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -3167,28 +3167,28 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (satunnainen)"
 
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Lämmin pieni allas"
 
-#: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:897
+#: ../src/general/NewGameSettings.tscn:204
+#: ../src/general/NewGameSettings.tscn:893
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/NewGameSettings.tscn:200
-#: ../src/general/NewGameSettings.tscn:201
-#: ../src/general/NewGameSettings.tscn:899
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:896
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Mustat savuttajat"
@@ -3225,45 +3225,45 @@ msgstr "Hiiren rulla oikealle"
 msgid "LIGHT_MAX"
 msgstr "Valo"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_EXTREME"
 msgstr "Äärimmäinen"
 
-#: ../src/general/NewGameSettings.tscn:806
+#: ../src/general/NewGameSettings.tscn:800
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "VAHVISTA"
 
-#: ../src/general/NewGameSettings.tscn:813
+#: ../src/general/NewGameSettings.tscn:808
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_HUGE"
 msgstr "Valtava"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_LARGE"
 msgstr "Suuri"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_NORMAL"
 msgstr "Normaali"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_SMALL"
 msgstr "Pieni"
 
-#: ../src/general/OptionsMenu.tscn:1204 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_TINY"
 msgstr "Hyvin pieni"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_VERY_LARGE"
 msgstr "Erittäin suuri"
 
-#: ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1210
 msgid "LIMIT_VERY_SMALL"
 msgstr "Erittäin pieni"
 
@@ -3397,7 +3397,7 @@ msgstr "Maaliskuu"
 msgid "MARINE_SNOW"
 msgstr "Leijuvat hiukkaset"
 
-#: ../src/general/OptionsMenu.tscn:663
+#: ../src/general/OptionsMenu.tscn:668
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
@@ -3406,15 +3406,15 @@ msgstr "Pää äänitaso"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "sukupuuttoon planeetalta"
 
-#: ../src/general/OptionsMenu.tscn:372
+#: ../src/general/OptionsMenu.tscn:375
 msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:390
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Rajoittamaton"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1186
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -3623,7 +3623,7 @@ msgstr "Mikrobien vapaa rakentelu"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:214
+#: ../src/microbe_stage/MicrobeSpecies.cs:227
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3801,7 +3801,7 @@ msgstr "Versio:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lupaa näyttää vähempää kuin {0} datajoukko(a)!"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:218
+#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Muut"
 
@@ -3815,7 +3815,7 @@ msgstr "Muut"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Muut"
 
-#: ../src/general/OptionsMenu.tscn:1873
+#: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Muut"
@@ -4030,15 +4030,15 @@ msgstr "Versio:"
 msgid "MORE_INFO"
 msgstr "Näytä Lisää Tietoa"
 
-#: ../src/general/OptionsMenu.tscn:1542
+#: ../src/general/OptionsMenu.tscn:1547
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1272
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Hiirellä näkymän kääntämisen herkkyys"
 
-#: ../src/general/OptionsMenu.tscn:1341
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4117,7 +4117,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:577
+#: ../src/late_multicellular_stage/MulticellularStage.cs:583
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
@@ -4164,7 +4164,7 @@ msgstr "Lisää soluelin"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Useita elimiä"
 
-#: ../src/general/OptionsMenu.tscn:311
+#: ../src/general/OptionsMenu.tscn:314
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Monen näytteen reunanpehmennys:"
 
@@ -4176,7 +4176,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Musiikki"
 
-#: ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:719
 msgid "MUSIC_VOLUME"
 msgstr "Musiikin voimakkuus"
 
@@ -4185,11 +4185,11 @@ msgstr "Musiikin voimakkuus"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutaatiopisteet"
 
-#: ../src/general/NewGameSettings.tscn:402
+#: ../src/general/NewGameSettings.tscn:411
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutaatiohinnan kerroin"
 
-#: ../src/general/NewGameSettings.tscn:447
+#: ../src/general/NewGameSettings.tscn:451
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
@@ -4200,9 +4200,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr "Mutaatiopisteet"
 
-#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:743
-#: ../src/general/OptionsMenu.tscn:778 ../src/general/OptionsMenu.tscn:813
-#: ../src/general/OptionsMenu.tscn:848
+#: ../src/general/OptionsMenu.tscn:697 ../src/general/OptionsMenu.tscn:748
+#: ../src/general/OptionsMenu.tscn:783 ../src/general/OptionsMenu.tscn:818
+#: ../src/general/OptionsMenu.tscn:853
 msgid "MUTE"
 msgstr "Mykistä"
 
@@ -4247,7 +4247,7 @@ msgstr "Uusi Peli"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.tscn:274
+#: ../src/general/NewGameSettings.tscn:280
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4310,7 +4310,7 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
-#: ../src/general/OptionsMenu.tscn:419 ../src/general/OptionsMenu.tscn:420
+#: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 msgid "NONE"
 msgstr "Ei mitään"
 
@@ -4327,7 +4327,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr "Ei mitään täällä"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:499
+#: ../src/late_multicellular_stage/MulticellularStage.cs:502
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4343,11 +4343,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1794
+#: ../src/microbe_stage/Microbe.Contact.cs:1790
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1789
+#: ../src/microbe_stage/Microbe.Contact.cs:1785
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4405,7 +4405,7 @@ msgstr "Tallennuksia ei löytynyt"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2212
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Avaa Näyttökuva kansio"
@@ -4502,7 +4502,7 @@ msgstr "Avaa apuvalikko"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Vapaa rakentelu"
 
-#: ../src/general/OptionsMenu.tscn:1823
+#: ../src/general/OptionsMenu.tscn:1828
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Avaa lokien kansio"
 
@@ -4529,7 +4529,7 @@ msgstr "Avaa tallennusten kansio"
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Avaa valikko"
 
-#: ../src/general/OptionsMenu.tscn:1815
+#: ../src/general/OptionsMenu.tscn:1820
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Avaa Näyttökuva kansio"
 
@@ -4537,7 +4537,7 @@ msgstr "Avaa Näyttökuva kansio"
 msgid "OPEN_THE_MENU"
 msgstr "Avaa valikko"
 
-#: ../src/general/OptionsMenu.tscn:932
+#: ../src/general/OptionsMenu.tscn:937
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Auta pelin kääntämisessä"
 
@@ -4651,12 +4651,12 @@ msgstr "Osmoregulaatio"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:711
+#: ../src/general/NewGameSettings.tscn:705
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:756
+#: ../src/general/NewGameSettings.tscn:745
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulaation energiantarve"
@@ -4758,12 +4758,12 @@ msgstr "Siirrä kameraa oikealle"
 msgid "PAN_CAMERA_UP"
 msgstr "Siirrä kameraa ylöspäin"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:779
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:794
+#: ../src/general/NewGameSettings.tscn:787
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -4805,7 +4805,7 @@ msgstr "Poista Paikallinen Data"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2177
+#: ../src/general/OptionsMenu.tscn:2222
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4865,7 +4865,7 @@ msgstr "Rauhallinen"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:674
+#: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4879,7 +4879,7 @@ msgstr "Rauhallinen"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:196
+#: ../src/general/OptionsMenu.tscn:199
 msgid "PERFORMANCE"
 msgstr "Suorituskyky"
 
@@ -4919,7 +4919,7 @@ msgstr "Fyysinen kestävyys"
 msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
-#: ../src/general/NewGameSettings.tscn:302
+#: ../src/general/NewGameSettings.tscn:308
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeetta"
@@ -4930,12 +4930,12 @@ msgstr "Planeetta"
 msgid "PLANET_DETAILS_STRING"
 msgstr "Avaa lokien kansio"
 
-#: ../src/general/NewGameSettings.tscn:1070
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:216
-#: ../src/general/NewGameSettings.tscn:1000
+#: ../src/general/NewGameSettings.tscn:222
+#: ../src/general/NewGameSettings.tscn:996
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
 
@@ -4948,7 +4948,7 @@ msgstr "Pelaajan solu"
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:633
+#: ../src/general/NewGameSettings.tscn:628
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -4967,7 +4967,7 @@ msgstr "pelaaja kuoli"
 msgid "PLAYER_EXTINCT"
 msgstr "pelaaja kuoli"
 
-#: ../src/general/OptionsMenu.tscn:1485
+#: ../src/general/OptionsMenu.tscn:1490
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen pelaajaan"
 
@@ -4981,23 +4981,23 @@ msgstr ""
 "Pelaajan\n"
 "nopeus"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_3"
 msgstr "PlayStation 3"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
-#: ../src/general/OptionsMenu.tscn:1652
+#: ../src/general/OptionsMenu.tscn:1657
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Näytä introvideo"
 
-#: ../src/general/OptionsMenu.tscn:1660
+#: ../src/general/OptionsMenu.tscn:1665
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Näytä mikrobi-intro aloitettaessa uusi peli"
 
@@ -5115,7 +5115,7 @@ msgstr "Lopeta"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/PauseMenu.cs:414
+#: ../src/general/PauseMenu.cs:418
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Haluatko varmasti poistua pelistä?\n"
@@ -5125,8 +5125,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Luo satunnainen lajin nimi"
 
-#: ../src/general/NewGameSettings.tscn:235
-#: ../src/general/NewGameSettings.tscn:1019
+#: ../src/general/NewGameSettings.tscn:241
+#: ../src/general/NewGameSettings.tscn:1009
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Laita peli tauolle"
@@ -5221,7 +5221,7 @@ msgstr "Tuma"
 msgid "RESEARCH"
 msgstr "Hae"
 
-#: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2043
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
@@ -5230,23 +5230,23 @@ msgstr "Kumoa muutokset"
 msgid "RESET_DEADZONES"
 msgstr "Palauta oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1884
+#: ../src/general/OptionsMenu.tscn:1889
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2058
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta näppäimien oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1611
+#: ../src/general/OptionsMenu.tscn:1616
 msgid "RESET_KEYBINDINGS"
 msgstr "Palauta syötteet oletuksiksi"
 
-#: ../src/general/OptionsMenu.tscn:2038
+#: ../src/general/OptionsMenu.tscn:2083
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
-#: ../src/general/OptionsMenu.tscn:2049
+#: ../src/general/OptionsMenu.tscn:2094
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
 
@@ -5255,7 +5255,7 @@ msgstr "Palauta oletukset?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:351
 msgid "RESOLUTION"
 msgstr "Tarkkuus:"
 
@@ -5321,7 +5321,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Palaa Päävalikkoon"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:395
+#: ../src/general/PauseMenu.cs:399
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Haluatko varmasti palata päävalikkoon?\n"
@@ -5361,7 +5361,7 @@ msgstr "Käännä oikealle"
 msgid "ROTATION_COLON"
 msgstr "Pyöriminen:"
 
-#: ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Suorita auto-evo pelin aikana"
 
@@ -5430,11 +5430,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Poista Paikallinen Data"
 
-#: ../src/general/OptionsMenu.tscn:2012 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2057 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Tallenna"
 
-#: ../src/general/OptionsMenu.tscn:2111
+#: ../src/general/OptionsMenu.tscn:2156
 msgid "SAVE_AND_CONTINUE"
 msgstr "Tallenna ja jatka"
 
@@ -5534,20 +5534,42 @@ msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
-#: ../src/general/OptionsMenu.tscn:1353 ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_NONE"
 msgstr "Ei mitään"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_ON"
 msgstr "Skaalattu"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_ON_INVERSE"
 msgstr "Käänteisesti skaalattu"
 
-#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1518
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1939
+#, fuzzy
+msgid "SCREEN_EFFECT"
+msgstr "Ulkoiset vaikutukset:"
+
+#: ../simulation_parameters/common/screen_effects.json:13
+msgid "SCREEN_EFFECT_GAMEBOY"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:18
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:8
+msgid "SCREEN_EFFECT_GREYSCALE"
+msgstr ""
+
+#: ../simulation_parameters/common/screen_effects.json:3
+#, fuzzy
+msgid "SCREEN_EFFECT_NONE"
+msgstr "Näytä kykypalkki"
+
+#: ../src/general/OptionsMenu.tscn:1490 ../src/general/OptionsMenu.tscn:1523
+#: ../src/general/OptionsMenu.tscn:1524
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen peli-ikkunaan"
 
@@ -5663,7 +5685,7 @@ msgstr "Sessiili"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Tämä arvo vaikuttaa vain uusiin peleihin, jotka on aloitettu tämän muuttamisen jälkeen"
 
-#: ../src/general/OptionsMenu.tscn:784
+#: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Efektien voimakkuus"
 
@@ -5675,12 +5697,12 @@ msgstr "Vaihto"
 msgid "SHOW_HELP"
 msgstr "Näytä apu"
 
-#: ../src/general/OptionsMenu.tscn:1840
+#: ../src/general/OptionsMenu.tscn:1845
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1838
+#: ../src/general/OptionsMenu.tscn:1843
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -5690,17 +5712,17 @@ msgstr "{0} {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Näytä tutoriaalit"
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1755
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näytä tutoriaalit (nykyisessä pelissä)"
 
-#: ../src/general/OptionsMenu.tscn:1742
+#: ../src/general/OptionsMenu.tscn:1747
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näytä tutoriaalit (uusissa peleissä)"
 
-#: ../src/general/OptionsMenu.tscn:1757
+#: ../src/general/OptionsMenu.tscn:1762
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Näytä varoitus tallentamattomista muutoksista"
 
@@ -5711,7 +5733,7 @@ msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
 "Haluatko jatkaa?"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1836
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5762,7 +5784,7 @@ msgstr "Piidioksidi"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5816,7 +5838,7 @@ msgstr ""
 "\n"
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
-#: ../src/general/OptionsMenu.tscn:185
+#: ../src/general/OptionsMenu.tscn:188
 msgid "SOUND"
 msgstr "Ääni"
 
@@ -5954,7 +5976,7 @@ msgstr "Aloitetaan"
 msgid "START_CALIBRATION"
 msgstr "Aloita kalibrointi"
 
-#: ../src/general/NewGameSettings.tscn:1198
+#: ../src/general/NewGameSettings.tscn:1196
 #, fuzzy
 msgid "START_GAME"
 msgstr "Tallenna Peli"
@@ -6085,7 +6107,7 @@ msgstr "Varastotila"
 msgid "STORAGE_COLON"
 msgstr "Varastotila:"
 
-#: ../src/general/MainMenu.cs:571
+#: ../src/general/MainMenu.cs:570
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
 
@@ -6147,11 +6169,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:789
+#: ../src/microbe_stage/Microbe.Contact.cs:785
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:782
+#: ../src/microbe_stage/Microbe.Contact.cs:778
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "onnistunut raadonsyönti"
 
@@ -6242,7 +6264,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:820
+#: ../src/late_multicellular_stage/MulticellularStage.cs:827
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6338,7 +6360,7 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "THREADS"
 msgstr "Taustasuorittajia:"
 
@@ -6449,7 +6471,7 @@ msgid "TITLE_COLON"
 msgstr "Koko:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2007
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 msgid "TOGGLE_BINDING"
 msgstr "Aloita/lopeta kiinnittyminen"
 
@@ -6564,7 +6586,7 @@ msgstr "Kokeile ottaa ruudunkaappauksia!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Kokeile tallennuksen tekemistä!"
 
-#: ../src/general/OptionsMenu.tscn:2169
+#: ../src/general/OptionsMenu.tscn:2214
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 
@@ -6721,7 +6743,7 @@ msgstr "Katso nyt"
 msgid "TWITTER_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6740,7 +6762,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2019
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr "Erkane kaikista"
 
@@ -6748,7 +6770,7 @@ msgstr "Erkane kaikista"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1574
+#: ../src/general/OptionsMenu.cs:1589
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6771,7 +6793,7 @@ msgstr "Kumoa viimeisin toimenpide"
 msgid "UNKNOWN"
 msgstr "Tuntematon"
 
-#: ../src/general/OptionsMenu.cs:1031
+#: ../src/general/OptionsMenu.cs:1046
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Näytä kykypalkki"
@@ -6785,7 +6807,7 @@ msgstr "Tuntematon hiiren painike"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.cs:1581
+#: ../src/general/OptionsMenu.cs:1596
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
@@ -6795,13 +6817,13 @@ msgstr "Versio:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.tscn:2088
+#: ../src/general/OptionsMenu.tscn:2133
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
 "Haluatko jatkaa?"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:291
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:311
 #, fuzzy
 msgid "UNTITLED"
 msgstr "Biomi: {0}"
@@ -6843,7 +6865,7 @@ msgstr "Tallennus onnistui"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisenssit ja käytetyt kirjastot"
 
-#: ../src/general/OptionsMenu.tscn:510
+#: ../src/general/OptionsMenu.tscn:521
 msgid "USED_RENDERER_NAME"
 msgstr "Käytetty renderöijä:"
 
@@ -6860,7 +6882,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/OptionsMenu.tscn:1777
+#: ../src/general/OptionsMenu.tscn:1782
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
 
@@ -6868,11 +6890,11 @@ msgstr "Käytä annettua käyttäjänimeä"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
 
-#: ../src/general/OptionsMenu.tscn:1368
+#: ../src/general/OptionsMenu.tscn:1373
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Käytä virtuaalista ikkunankokoa"
 
@@ -6899,7 +6921,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Versio:"
 
-#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1324 ../src/general/OptionsMenu.tscn:1434
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Sukupolvi:"
@@ -6910,11 +6932,11 @@ msgstr "Sukupolvi:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Uusi nimi:"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:548
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1040 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:1055 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -6928,12 +6950,12 @@ msgstr "Tarkastelija"
 msgid "VIEW_ALL"
 msgstr "Ei käytössä"
 
-#: ../src/general/OptionsMenu.tscn:1848
+#: ../src/general/OptionsMenu.tscn:1853
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1846
+#: ../src/general/OptionsMenu.tscn:1851
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -6970,7 +6992,7 @@ msgstr "Hiljennä äänet"
 msgid "VOLUMEUP"
 msgstr "Äänenvoimakkuus isommalle"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:282
 msgid "VSYNC"
 msgstr "Pystysynkronointi"
 
@@ -7081,7 +7103,7 @@ msgstr "Statistiikkaa organismista"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1524
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen maailmaan"
 
@@ -7090,15 +7112,15 @@ msgstr "Suhteellinen maailmaan"
 msgid "WORST_PATCH_COLON"
 msgstr "Lajit:"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#: ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX_SERIES"
 msgstr ""
 
