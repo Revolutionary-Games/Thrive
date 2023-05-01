@@ -61,7 +61,7 @@ public class OrganelleUpgradeGUI : Control
     }
 
     public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene,
-        ICellEditorComponent editorComponent)
+        ICellEditorComponent editorComponent, ICellEditorData editorData, float costMultiplier)
     {
         openedForOrganelle = organelle;
 
@@ -98,12 +98,13 @@ public class OrganelleUpgradeGUI : Control
 
         upgradeSelectorButtonsContainer.FreeChildren();
         generalUpgradeSelectorButtons.Clear();
+        ReleaseTooltips();
 
         if (availableGeneralUpgrades.Count > 0)
         {
-            ReleaseTooltips();
-
             var tooltipGroup = GetTooltipGroup();
+
+            var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
 
             // Setup the buttons for each of the available upgrades
             foreach (var availableUpgrade in availableGeneralUpgrades)
@@ -112,10 +113,20 @@ public class OrganelleUpgradeGUI : Control
 
                 var selectionButton = upgradeSelectionButtonScene.Instance<MicrobePartSelection>();
 
+                var newUpgrade = new OrganelleUpgrades();
+                newUpgrade.UnlockedFeatures.Add(availableUpgrade.Key);
+
+                var data = new OrganelleUpgradeActionData(oldUpgrade, newUpgrade, organelle)
+                {
+                    CostMultiplier = costMultiplier,
+                };
+
+                var cost = editorData.WhatWouldActionsCost(new[] { data });
+
                 selectionButton.Name = availableUpgrade.Key;
                 selectionButton.SelectionGroup = generalUpgradeButtonGroup;
                 selectionButton.PartName = upgrade.Name;
-                selectionButton.MPCost = upgrade.MPCost;
+                selectionButton.MPCost = cost;
                 selectionButton.PartIcon = upgrade.LoadedIcon;
 
                 selectionButton.Connect(nameof(MicrobePartSelection.OnPartSelected), this,
@@ -125,13 +136,13 @@ public class OrganelleUpgradeGUI : Control
                 var tooltip = upgradeTooltipScene.Instance<SelectionMenuToolTip>();
                 tooltip.DisplayName = upgrade.Name;
                 tooltip.Description = upgrade.Description;
-                tooltip.MutationPointCost = upgrade.MPCost;
+                tooltip.MutationPointCost = cost;
 
                 // TODO: add support for flavour text
                 // tooltip.ProcessesDescription = upgrade.Description;
                 // tooltip.Description = ...
 
-                selectionButton.RegisterToolTipForControl(tooltip);
+                selectionButton.RegisterToolTipForControl(tooltip, false);
                 ToolTipManager.Instance.AddToolTip(tooltip, tooltipGroup);
                 registeredTooltips = true;
 

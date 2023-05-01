@@ -39,6 +39,8 @@ public class InputActionItem : VBoxContainer
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
 
+    private bool nodeReferencesResolved;
+
     /// <summary>
     ///   The group in which this action is defined.
     /// </summary>
@@ -106,11 +108,7 @@ public class InputActionItem : VBoxContainer
         if (Inputs == null)
             throw new InvalidOperationException($"{nameof(Inputs)} can't be null");
 
-        inputActionHeader = GetNode<Label>(InputActionHeaderPath);
-        inputEventsContainer = GetNode<HBoxContainer>(InputEventsContainerPath);
-        addInputEvent = GetNode<Button>(AddInputEventPath);
-
-        addInputEvent.RegisterToolTipForControl("addInputButton", "options");
+        ResolveNodeReferences();
 
         inputActionHeader.Text = DisplayName;
 
@@ -127,14 +125,36 @@ public class InputActionItem : VBoxContainer
             FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Horizontal);
     }
 
+    public void ResolveNodeReferences()
+    {
+        if (nodeReferencesResolved)
+            return;
+
+        nodeReferencesResolved = true;
+
+        inputActionHeader = GetNode<Label>(InputActionHeaderPath);
+        inputEventsContainer = GetNode<HBoxContainer>(InputEventsContainerPath);
+        addInputEvent = GetNode<Button>(AddInputEventPath);
+    }
+
     public override void _EnterTree()
     {
+        base._EnterTree();
+
         Inputs.CollectionChanged += OnInputsChanged;
+
+        ResolveNodeReferences();
+
+        addInputEvent.RegisterToolTipForControl("addInputButton", "options", false);
     }
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         Inputs.CollectionChanged -= OnInputsChanged;
+
+        addInputEvent.UnRegisterToolTipForControl("addInputButton", "options");
     }
 
     /// <summary>

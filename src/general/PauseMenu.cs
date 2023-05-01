@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : CustomDialog
+public class PauseMenu : CustomWindow
 {
     [Export]
     public string HelpCategory = null!;
@@ -45,8 +45,6 @@ public class PauseMenu : CustomDialog
 #pragma warning restore CA2213
 
     private bool paused;
-
-    private bool mouseUnCaptureActive;
 
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
@@ -117,7 +115,7 @@ public class PauseMenu : CustomDialog
             if (GameLoading)
                 return true;
 
-            if (GUICommon.Instance.IsAnyExclusivePopupActive)
+            if (ModalManager.Instance.IsTopMostPopupExclusive)
                 return true;
 
             if (TransitionManager.Instance.HasQueuedTransitions)
@@ -196,26 +194,6 @@ public class PauseMenu : CustomDialog
         }
     }
 
-    private bool MouseUnCaptureActive
-    {
-        set
-        {
-            if (mouseUnCaptureActive == value)
-                return;
-
-            mouseUnCaptureActive = value;
-
-            if (mouseUnCaptureActive)
-            {
-                MouseCaptureManager.ReportOpenCapturePrevention(nameof(PauseMenu));
-            }
-            else
-            {
-                MouseCaptureManager.ReportClosedCapturePrevention(nameof(PauseMenu));
-            }
-        }
-    }
-
     public override void _Ready()
     {
         // We have our custom logic for this
@@ -229,8 +207,7 @@ public class PauseMenu : CustomDialog
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
-        unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomDialog.Cancelled), this, nameof(CancelExit));
     }
 
     public override void _EnterTree()
@@ -251,7 +228,6 @@ public class PauseMenu : CustomDialog
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
-        MouseUnCaptureActive = false;
 
         GetTree().AutoAcceptQuit = true;
     }
@@ -321,27 +297,6 @@ public class PauseMenu : CustomDialog
         thriveopedia.ChangePage(pageName);
     }
 
-    public void Open()
-    {
-        if (Visible)
-            return;
-
-        animationPlayer.Play("Open");
-        Paused = true;
-        MouseUnCaptureActive = true;
-        exiting = false;
-    }
-
-    public void Close()
-    {
-        if (!Visible)
-            return;
-
-        animationPlayer.Play("Close");
-        Paused = false;
-        MouseUnCaptureActive = false;
-    }
-
     public void OpenToHelp()
     {
         Open();
@@ -368,6 +323,23 @@ public class PauseMenu : CustomDialog
         }
 
         SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
+    protected override void OnOpen()
+    {
+        animationPlayer.Play("Open");
+        Paused = true;
+        exiting = false;
+    }
+
+    protected override void OnClose()
+    {
+        animationPlayer.Play("Close");
+        Paused = false;
+
+        // Uncapture the mouse while we are playing the close animation, this doesn't seem to actually uncapture the
+        // mouse any faster, though, likely an engine problem
+        MouseUnCaptureActive = false;
     }
 
     protected override void Dispose(bool disposing)
@@ -572,7 +544,6 @@ public class PauseMenu : CustomDialog
         EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
         Paused = false;
-        MouseUnCaptureActive = false;
     }
 
     /// <summary>

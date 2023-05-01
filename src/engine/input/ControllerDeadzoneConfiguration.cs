@@ -92,25 +92,10 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void OnOpen()
     {
-        if (disposing)
-        {
-            if (VisualizationContainerPath != null)
-            {
-                VisualizationContainerPath.Dispose();
-                StartButtonPath.Dispose();
-                ApplyButtonPath.Dispose();
-                StatusLabelPath.Dispose();
-                ExplanationLabelPath.Dispose();
-            }
-        }
+        base.OnOpen();
 
-        base.Dispose(disposing);
-    }
-
-    private void OnBecomeVisible()
-    {
         statusLabel.Text = string.Empty;
         visualizationContainer.Start();
 
@@ -131,11 +116,36 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
 
         // For some reason a label grabs focus if we don't call this with a delay
-        Invoke.Instance.Queue(() => startButton.GrabFocus());
+        startButton.GrabFocusInOpeningPopup();
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnCancel();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (VisualizationContainerPath != null)
+            {
+                VisualizationContainerPath.Dispose();
+                StartButtonPath.Dispose();
+                ApplyButtonPath.Dispose();
+                StatusLabelPath.Dispose();
+                ExplanationLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnCancel()
     {
+        // TODO: this should also reset the text / timers so that reopening the configuration quickly works correctly
+
         visualizationContainer.Stop();
     }
 

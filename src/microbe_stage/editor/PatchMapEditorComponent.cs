@@ -40,6 +40,8 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
+    private Compound sunlight = null!;
+
     /// <summary>
     ///   Returns the current patch the player is in
     /// </summary>
@@ -72,6 +74,8 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
+
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -132,6 +136,40 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     public override void OnValidAction()
     {
+    }
+
+    public override void OnLightLevelChanged(float dayLightFraction)
+    {
+        base.OnLightLevelChanged(dayLightFraction);
+
+        var maxLightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
+        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Template);
+
+        // We don't want the light level in other patches be changed to zero if this callback is called while
+        // we're on a patch that isn't affected by day/night effects
+        if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
+        {
+            foreach (var patch in Editor.CurrentGame.GameWorld.Map.Patches.Values)
+            {
+                var targetMaxLightLevel = patch.Biome.MaximumCompounds[sunlight].Ambient;
+
+                var lightLevelAmount = new BiomeCompoundProperties
+                {
+                    Ambient = targetMaxLightLevel * dayLightFraction,
+                };
+
+                patch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
+            }
+        }
+
+        // TODO: isn't this entirely logically wrong? See the comment in PatchManager about needing to set average
+        // light levels on editor entry. This seems wrong because the average light amount is *not* the current light
+        // level, meaning that auto-evo prediction would be incorrect (if these numbers were used there, but aren't
+        // currently, see the documentation on previewBiomeConditions)
+        // // Need to set average to be the same as ambient so Auto-Evo updates correctly
+        // previewBiomeConditions.AverageCompounds[sunlight] = lightLevelAmount;
+
+        UpdateShownPatchDetails();
     }
 
     protected virtual void UpdateShownPatchDetails()

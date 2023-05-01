@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/CustomWindow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/CustomPopupMenu.cs" type="Script" id=3]
+
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_right = 15
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CustomPopupMenu" instance=ExtResource( 2 )]
+margin_right = 220.0
+margin_bottom = 135.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+PanelPath = NodePath("Panel")
+ContainerPath = NodePath("Panel/Control/VBoxContainer")
+
+[node name="Panel" type="Panel" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Control" type="Control" parent="Panel" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -3.0
+rect_clip_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Control" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -1.0

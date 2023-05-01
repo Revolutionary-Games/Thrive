@@ -454,6 +454,11 @@ public class SimulationParameters : Node
         return technologies[name];
     }
 
+    public IEnumerable<Technology> GetTechnologies()
+    {
+        return technologies.Values;
+    }
+
     /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>

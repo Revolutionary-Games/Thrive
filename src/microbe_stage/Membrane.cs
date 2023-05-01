@@ -72,26 +72,18 @@ public class Membrane : MeshInstance, IComputedMembraneData
     }
 
     /// <summary>
-    ///   Organelle positions of the microbe, needs to be set for the membrane to appear
+    ///   Organelle positions of the microbe, needs to be set for the membrane to appear. This includes all hex
+    ///   positions of the organelles to work better with cells that have multihex organelles. As a result this
+    ///   doesn't contain just the center positions of organelles but will contain multiple entries for multihex
+    ///   organelles.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     The contents in this list should not be modified, a new list should be assigned.
-    ///     TODO: change the type here to be a readonly list
+    ///     TODO: change the type here to be a readonly list https://github.com/Revolutionary-Games/Thrive/issues/4332
     ///   </para>
     /// </remarks>
     public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
-
-    /// <summary>
-    ///   Whether the microbe has multihex organelles, needed for membrane generation
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is a workaround for https://github.com/Revolutionary-Games/Thrive/issues/4117
-    ///     TODO: Check if this can be removed once that issue is fixed
-    ///   </para>
-    /// </remarks>
-    public bool HasMultihexOrganelles { get; set; } = false;
 
     /// <summary>
     ///   Returns a convex shaped 3-Dimensional array of vertices from the generated <see cref="vertices2D"/>.
@@ -333,28 +325,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
         return new Vector3(closestSoFar.x, 0, closestSoFar.y);
     }
 
-    /// <summary>
-    ///   Return the position of the closest organelle to the target point.
-    /// </summary>
-    public Vector2 FindClosestOrganelles(Vector2 target)
-    {
-        float closestDistanceSoFar = float.MaxValue;
-        Vector2 closest = new Vector2(0.0f, 0.0f);
-
-        foreach (var pos in OrganellePositions)
-        {
-            float lenToObject = (target - pos).LengthSquared();
-
-            if (lenToObject < closestDistanceSoFar)
-            {
-                closestDistanceSoFar = lenToObject;
-                closest = pos;
-            }
-        }
-
-        return closest;
-    }
-
     public bool MatchesCacheParameters(ICacheableData cacheData)
     {
         if (cacheData is IComputedMembraneData data)
@@ -404,6 +374,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
         startingBuffer.Clear();
 
+        // Integer divides are intentional here
+        // ReSharper disable PossibleLossOfFraction
+
         for (int i = membraneResolution; i > 0; i--)
         {
             startingBuffer.Add(new Vector2(-cellDimensions,
@@ -429,6 +402,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
                 -cellDimensions + 2 * cellDimensions / membraneResolution * i,
                 -cellDimensions));
         }
+
+        // ReSharper restore PossibleLossOfFraction
 
         // Get new membrane points for vertices2D
         GenerateMembranePoints(startingBuffer, vertices2D);
@@ -482,6 +457,28 @@ public class Membrane : MeshInstance, IComputedMembraneData
         Dirty = false;
         InitializeMesh();
         ApplyAllMaterialParameters();
+    }
+
+    /// <summary>
+    ///   Return the position of the closest organelle hex to the target point.
+    /// </summary>
+    private Vector2 FindClosestOrganelleHex(Vector2 target)
+    {
+        float closestDistanceSoFar = float.MaxValue;
+        Vector2 closest = new Vector2(0.0f, 0.0f);
+
+        foreach (var pos in OrganellePositions)
+        {
+            float lenToObject = (target - pos).LengthSquared();
+
+            if (lenToObject < closestDistanceSoFar)
+            {
+                closestDistanceSoFar = lenToObject;
+                closest = pos;
+            }
+        }
+
+        return closest;
     }
 
     /// <summary>
@@ -655,19 +652,15 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private void GenerateMembranePoints(List<Vector2> sourceBuffer, List<Vector2> targetBuffer)
     {
-        float membraneDistanceToOrganelles = HasMultihexOrganelles ?
-            Constants.MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX :
-            Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
-
         // Move all the points in the source buffer close to organelles
         // This operation used to be iterative but this is now a much faster version that moves things all the way in
         // a single step
         for (int i = 0, end = sourceBuffer.Count; i < end; ++i)
         {
-            var closestOrganelle = FindClosestOrganelles(sourceBuffer[i]);
+            var closestOrganelle = FindClosestOrganelleHex(sourceBuffer[i]);
 
             var direction = (sourceBuffer[i] - closestOrganelle).Normalized();
-            var movement = direction * membraneDistanceToOrganelles;
+            var movement = direction * Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
 
             sourceBuffer[i] = closestOrganelle + movement;
         }

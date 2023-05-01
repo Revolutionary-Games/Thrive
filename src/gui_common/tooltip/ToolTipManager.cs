@@ -40,6 +40,8 @@ public class ToolTipManager : CanvasLayer
     private ICustomToolTip? mainToolTip;
     private ICustomToolTip? previousToolTip;
 
+    private bool nodeReferencesResolved;
+
     private ToolTipManager()
     {
         instance = this;
@@ -87,11 +89,36 @@ public class ToolTipManager : CanvasLayer
 
     public override void _Ready()
     {
-        groupHolder = GetNode<Control>("GroupHolder");
+        if (tooltips.Count < 1)
+            GD.PrintErr("No tooltips have been detected");
+
+        ResolveNodeReferences();
 
         // Make sure the tooltip parent control is visible
         groupHolder.Show();
+    }
 
+    public void ResolveNodeReferences()
+    {
+        if (nodeReferencesResolved)
+            return;
+
+        groupHolder = GetNode<Control>("GroupHolder");
+
+        nodeReferencesResolved = true;
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        // This node may not be added back to the scene after removing so we don't guard against double initialization
+        // here
+
+        ResolveNodeReferences();
+
+        // The tooltip initialization logic needs to run in _EnterTree as the initial scene may want to already
+        // register tooltips before _Ready methods are called
         FetchToolTips();
     }
 
@@ -186,6 +213,11 @@ public class ToolTipManager : CanvasLayer
         groupNode.AddChild(tooltip.ToolTipNode);
     }
 
+    /// <summary>
+    ///   Removes a tooltip based on the name, if it is a default type tooltip it is returned to the cache
+    /// </summary>
+    /// <param name="name">Name of the tooltip</param>
+    /// <param name="group">Group to look for in for the tooltip</param>
     public void RemoveToolTip(string name, string group = DEFAULT_GROUP_NAME)
     {
         var tooltip = GetToolTip(name, group);
@@ -218,7 +250,7 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
-    ///   Deletes all tooltip from a group
+    ///   Deletes all tooltip from a group. Note that this automatically returns default tooltips to the cache.
     /// </summary>
     /// <param name="group">Name of the group node</param>
     /// <param name="deleteGroup">Removes the group node if true</param>
@@ -274,12 +306,38 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
+    ///   Tries to find a tooltip but doesn't consider it an error if one is not found. Useful when caching tooltips
+    ///   and checking if one already exists is needed.
+    /// </summary>
+    /// <param name="name">The name of the tooltip's node (not display name)</param>
+    /// <param name="group">The name of the group the tooltip belongs to</param>
+    public ICustomToolTip? GetToolTipIfExists(string name, string group = DEFAULT_GROUP_NAME)
+    {
+        var retrievedGroup = GetGroup(group, false);
+        if (retrievedGroup == null)
+            return null;
+
+        var tooltip = tooltips[retrievedGroup].Find(found => found.ToolTipNode.Name == name);
+
+        return tooltip;
+    }
+
+    /// <summary>
     ///   Generic version of <see cref="GetToolTip"/> method.
     /// </summary>
     public T? GetToolTip<T>(string name, string group = DEFAULT_GROUP_NAME)
         where T : ICustomToolTip
     {
         return (T?)GetToolTip(name, group);
+    }
+
+    /// <summary>
+    ///   Generic version of <see cref="GetToolTipIfExists"/> method.
+    /// </summary>
+    public T? GetToolTipIfExists<T>(string name, string group = DEFAULT_GROUP_NAME)
+        where T : ICustomToolTip
+    {
+        return (T?)GetToolTipIfExists(name, group);
     }
 
     /// <summary>

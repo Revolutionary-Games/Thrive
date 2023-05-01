@@ -21,4 +21,8 @@ public abstract class StructureComponent
     {
         return false;
     }
+
+    public virtual void ProcessSociety(float delta, ISocietyStructureDataAccess dataAccess)
+    {
+    }
 }

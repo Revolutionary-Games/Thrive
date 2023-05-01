@@ -36,7 +36,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         WritableFullSpeedRequiredEnvironmentalInputs;
 
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
+    public IReadOnlyDictionary<Compound, float> Outputs => WritableOutputs;
 
     public float CurrentSpeed { get; set; }
 

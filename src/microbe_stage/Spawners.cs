@@ -312,6 +312,7 @@ public static class SpawnHelpers
         structureEntity.Init(structureDefinition);
 
         structureEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        structureEntity.AddToGroup(Constants.STRUCTURE_ENTITY_GROUP);
 
         structureEntity.Transform = location;
 
@@ -321,6 +322,47 @@ public static class SpawnHelpers
     public static PackedScene LoadStructureScene()
     {
         return GD.Load<PackedScene>("res://src/awakening_stage/PlacedStructure.tscn");
+    }
+
+    public static SocietyCreature SpawnCitizen(Species species, Vector3 location, Node worldRoot,
+        PackedScene citizenScene)
+    {
+        var creature = (SocietyCreature)citizenScene.Instance();
+
+        creature.Init();
+
+        worldRoot.AddChild(creature);
+        creature.Translation = location;
+
+        creature.AddToGroup(Constants.CITIZEN_GROUP);
+
+        creature.ApplySpecies(species);
+
+        return creature;
+    }
+
+    public static PackedScene LoadCitizenScene()
+    {
+        return GD.Load<PackedScene>("res://src/society_stage/SocietyCreature.tscn");
+    }
+
+    public static PlacedCity SpawnCity(Transform location, Node worldRoot, PackedScene cityScene)
+    {
+        var city = (PlacedCity)cityScene.Instance();
+
+        city.Init();
+
+        worldRoot.AddChild(city);
+        city.Transform = location;
+
+        city.AddToGroup(Constants.STRUCTURE_ENTITY_GROUP);
+
+        return city;
+    }
+
+    public static PackedScene LoadCityScene()
+    {
+        return GD.Load<PackedScene>("res://src/industrial_stage/PlacedCity.tscn");
     }
 
     private static Quat RandomRotationForResourceEntity(Random random)

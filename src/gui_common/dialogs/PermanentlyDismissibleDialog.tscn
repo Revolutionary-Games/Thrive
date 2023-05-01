@@ -80,3 +80,5 @@ margin_right = 159.0
 [node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
 margin_left = 163.0
 margin_right = 178.0
+
+[connection signal="Confirmed" from="." to="." method="OnConfirmed"]

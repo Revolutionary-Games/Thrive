@@ -41,8 +41,8 @@ public interface IEngulfable : IGraphicalEntity
     public float DigestedAmount { get; set; }
 
     /// <summary>
-    ///   Additional means bonus compounds that can be acquired from this engulfable for predating microbes
-    ///   on top of <see cref="Compounds"/>
+    ///   Additional means bonus compounds that can be acquired on top of <see cref="Compounds"/> from this engulfable
+    ///   for predating microbes.
     /// </summary>
     /// <remarks>
     ///   <para>

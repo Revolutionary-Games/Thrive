@@ -17,10 +17,6 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
     protected DirectionalLight worldLight = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    protected DayNightCycle lightCycle = null!;
-
     /// <summary>
     ///   Used to differentiate between spawning the player the first time and respawning
     /// </summary>
@@ -122,7 +118,6 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
         base.ResolveNodeReferences();
 
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
-        lightCycle = new DayNightCycle();
     }
 
     public override void _ExitTree()
@@ -140,8 +135,6 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
     public override void _Process(float delta)
     {
         base._Process(delta);
-
-        lightCycle.Process(delta);
 
         if (gameOver)
         {
@@ -270,16 +263,6 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
         UpdatePatchSettings();
         PatchExtinctionResolved();
         SpawnPlayer();
-    }
-
-    protected override void SetupStage()
-    {
-        if (IsLoadedFromSave)
-        {
-            lightCycle.CalculateDependentLightData(GameWorld.WorldSettings);
-        }
-
-        base.SetupStage();
     }
 
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)

@@ -133,4 +133,4 @@ DialogText = "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmLoadInvalid"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnAcceptSaveUpgrade"]
-[connection signal="popup_hide" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnSaveUpgradeClosed"]
+[connection signal="hide" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnSaveUpgradeClosed"]

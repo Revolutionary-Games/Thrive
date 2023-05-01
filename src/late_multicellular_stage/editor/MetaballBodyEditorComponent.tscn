@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -148,6 +148,22 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=41]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.666667, 1, 0.941176, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -767,8 +783,9 @@ margin_right = 150.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 mouse_filter = 1
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 15 )
+custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 16 )
 text = "NEXT_CAPITAL"
 __meta__ = {
@@ -829,6 +846,7 @@ DialogText = "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 rect_min_size = Vector2( 550, 90 )
 WindowTitle = "CREATE_NEW_TISSUE_TYPE"
 HideOnOk = false
+NodeToGiveFocusOnOpen = NodePath("VBoxContainer2/NewName")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NewTissueTypeSetup"]
 margin_right = 40.0

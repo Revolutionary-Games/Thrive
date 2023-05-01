@@ -20,10 +20,18 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
     [Export]
     public NodePath BottomLeftBarPath = null!;
 
+    [Export]
+    public NodePath ResourceDisplayPath = null!;
+
+    [Export]
+    public NodePath ResearchScreenPath = null!;
+
 #pragma warning disable CA2213
     protected Label hintText = null!;
 
     protected HUDBottomBar bottomLeftBar = null!;
+
+    protected ResearchScreen researchScreen = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -34,6 +42,8 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
     // These are private so this is a separate block
 #pragma warning disable CA2213
     private HBoxContainer hotBar = null!;
+
+    private ResourceDisplayBar resourceDisplay = null!;
 #pragma warning restore CA2213
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
@@ -42,6 +52,9 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
 
     [Signal]
     public delegate void OnOpenMenuToHelp();
+
+    [Signal]
+    public delegate void OnStartResearching(string technology);
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -60,6 +73,10 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
         hotBar = GetNode<HBoxContainer>(HotBarPath);
 
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
+
+        resourceDisplay = GetNode<ResourceDisplayBar>(ResourceDisplayPath);
+
+        researchScreen = GetNode<ResearchScreen>(ResearchScreenPath);
     }
 
     public void Init(TStage containedInStage)
@@ -80,6 +97,39 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
         }
 
         AddFadeIn(stage, longerDuration);
+    }
+
+    public void OpenResearchScreen()
+    {
+        if (researchScreen.Visible)
+        {
+            researchScreen.Close();
+        }
+        else
+        {
+            researchScreen.AvailableTechnologies = stage?.CurrentGame?.TechWeb ??
+                throw new InvalidOperationException("HUD not initialized");
+
+            // This is not opened centered to allow the player to move the window and for that to be remembered
+            researchScreen.Open();
+
+            // TODO: update the hot bar state
+        }
+    }
+
+    public void UpdateResourceDisplay(SocietyResourceStorage resourceStorage)
+    {
+        resourceDisplay.UpdateResources(resourceStorage);
+    }
+
+    public void UpdateScienceSpeed(float speed)
+    {
+        resourceDisplay.UpdateScienceAmount(speed);
+    }
+
+    public void UpdateResearchProgress(TechnologyProgress? currentResearch)
+    {
+        researchScreen.DisplayProgress(currentResearch);
     }
 
     public override void PauseButtonPressed(bool buttonState)
@@ -113,6 +163,8 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
                 HintTextPath.Dispose();
                 HotBarPath.Dispose();
                 BottomLeftBarPath.Dispose();
+                ResourceDisplayPath.Dispose();
+                ResearchScreenPath.Dispose();
             }
         }
 
@@ -122,5 +174,15 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
     private void StatisticsButtonPressed()
     {
         menu.OpenToStatistics();
+    }
+
+    private void ResearchScreenClosed()
+    {
+        // TODO: update the hot bar state
+    }
+
+    private void ForwardStartResearch(string technology)
+    {
+        EmitSignal(nameof(OnStartResearching), technology);
     }
 }

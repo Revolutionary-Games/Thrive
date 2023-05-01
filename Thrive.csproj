@@ -56,6 +56,7 @@
     <Compile Include="src\awakening_stage\gui\SelectBuildingPopup.cs" />
     <Compile Include="src\awakening_stage\IAcceptsResourceDeposit.cs" />
     <Compile Include="src\awakening_stage\IActionProgressSource.cs" />
+    <Compile Include="src\awakening_stage\IAggregateResourceSource.cs" />
     <Compile Include="src\awakening_stage\IAvailableRecipes.cs" />
     <Compile Include="src\awakening_stage\ICharacterInventory.cs" />
     <Compile Include="src\awakening_stage\IConstructable.cs" />
@@ -75,12 +76,19 @@
     <Compile Include="src\awakening_stage\IStructureSelectionReceiver.cs" />
     <Compile Include="src\awakening_stage\ITimedActionSource.cs" />
     <Compile Include="src\awakening_stage\PlacedStructure.cs" />
+    <Compile Include="src\awakening_stage\ResearchLevel.cs" />
     <Compile Include="src\awakening_stage\ResourceAmountHelpers.cs" />
     <Compile Include="src\awakening_stage\ResourceEntity.cs" />
     <Compile Include="src\awakening_stage\StructureDefinition.cs" />
+    <Compile Include="src\awakening_stage\structure_components\FactoryComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\HousingComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\ISocietyStructureDataAccess.cs" />
     <Compile Include="src\awakening_stage\structure_components\IStructureComponentFactory.cs" />
+    <Compile Include="src\awakening_stage\structure_components\ResearchComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\ResourceGathererComponent.cs" />
     <Compile Include="src\awakening_stage\structure_components\SocietyCenterComponent.cs" />
     <Compile Include="src\awakening_stage\structure_components\StructureComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\StructureStorageComponent.cs" />
     <Compile Include="src\awakening_stage\TechWeb.cs" />
     <Compile Include="src\awakening_stage\WorldResource.cs" />
     <Compile Include="src\awakening_stage\Technology.cs" />
@@ -126,6 +134,7 @@
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
+    <Compile Include="src\engine\PostShutdownActions.cs" />
     <Compile Include="src\engine\RaycastResult.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
     <Compile Include="src\engine\SafeModeStartupHandler.cs" />
@@ -240,12 +249,15 @@
     <Compile Include="src\general\utils\TypeUtils.cs" />
     <Compile Include="src\general\utils\VersionUtils.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
+    <Compile Include="src\gui_common\CustomWindow.cs" />
+    <Compile Include="src\gui_common\CustomPopupMenu.cs" />
     <Compile Include="src\gui_common\dialogs\PermanentlyDismissibleDialog.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\DragResult.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
     <Compile Include="src\gui_common\InspectedEntityLabel.cs" />
+    <Compile Include="src\gui_common\ModalManager.cs" />
     <Compile Include="src\gui_common\MouseHoverPanel.cs" />
     <Compile Include="src\gui_common\PatchNotesDisplayer.cs" />
     <Compile Include="src\gui_common\PatchNotesList.cs" />
@@ -256,6 +268,10 @@
     <Compile Include="src\gui_common\TabButtons.cs" />
     <Compile Include="src\gui_common\TabLevel.cs" />
     <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
+    <Compile Include="src\industrial_stage\gui\IndustrialHUD.cs" />
+    <Compile Include="src\industrial_stage\IndustrialStage.cs" />
+    <Compile Include="src\industrial_stage\PlacedCity.cs" />
+    <Compile Include="src\industrial_stage\PlayerIndustrialInput.cs" />
     <Compile Include="src\late_multicellular_stage\MovementMode.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularSpeciesType.cs" />
     <Compile Include="src\late_multicellular_stage\ProgressBarSystem.cs" />
@@ -309,7 +325,6 @@
     <Compile Include="src\gui_common\art_gallery\GalleryViewer.cs" />
     <Compile Include="src\gui_common\dialogs\TutorialDialog.cs" />
     <Compile Include="src\gui_common\art_gallery\GalleryCard.cs" />
-    <Compile Include="src\gui_common\ICustomPopup.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
@@ -630,10 +645,20 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
-    <Compile Include="src\society_stage\SocietyHUD.cs" />
+    <Compile Include="src\society_stage\CitizenMovingSystem.cs" />
+    <Compile Include="src\society_stage\gui\ResearchScreen.cs" />
+    <Compile Include="src\society_stage\gui\ResourceDisplayBar.cs" />
+    <Compile Include="src\society_stage\gui\TechWebGUI.cs" />
+    <Compile Include="src\society_stage\IResourceContainer.cs" />
+    <Compile Include="src\society_stage\gui\SocietyHUD.cs" />
+    <Compile Include="src\society_stage\PlayerSocietyInput.cs" />
+    <Compile Include="src\society_stage\SocietyCreature.cs" />
+    <Compile Include="src\society_stage\SocietyResourceStorage.cs" />
     <Compile Include="src\society_stage\SocietyStage.cs" />
+    <Compile Include="src\society_stage\SocietyStructureSystem.cs" />
     <Compile Include="src\society_stage\StrategicCamera.cs" />
     <Compile Include="src\society_stage\StrategicCameraHelpers.cs" />
+    <Compile Include="src\society_stage\TechnologyProgress.cs" />
     <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
     <Compile Include="src\stage_starters\AwareStageStarter.cs" />
     <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />
@@ -724,7 +749,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.0.2</Version>
+      <Version>13.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

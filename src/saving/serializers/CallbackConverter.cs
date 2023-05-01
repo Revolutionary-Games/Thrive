@@ -29,6 +29,11 @@ public class CallbackConverter : JsonConverter
             throw new JsonSerializationException("unexpected callback type to serialize");
         }
 
+        if (method.IsStatic)
+        {
+            throw new JsonException("Callback is not supported on static methods");
+        }
+
         writer.WriteStartObject();
 
         writer.WritePropertyName("CallbackType");
@@ -120,6 +125,11 @@ public class CallbackConverter : JsonConverter
         if (method.CustomAttributes.All(a => a.AttributeType != typeof(DeserializedCallbackAllowedAttribute)))
         {
             throw new JsonException("Callback is not allowed to have method: " + method);
+        }
+
+        if (method.IsStatic)
+        {
+            throw new JsonException("Callback is not supported on static methods");
         }
 
         return method.CreateDelegate(objectType, target);

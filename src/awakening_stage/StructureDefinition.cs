@@ -111,6 +111,16 @@ public class StructureDefinition : IRegistryType
         return ResourceAmountHelpers.HasEnoughResource(resource, availableAmount, TotalCost);
     }
 
+    public bool TakeResourcesToStartIfPossible(IResourceContainer resourceContainer)
+    {
+        return resourceContainer.TakeResourcesIfPossible(ScaffoldingCost);
+    }
+
+    public bool TakeCompletionResourcesIfPossible(IResourceContainer resourceContainer)
+    {
+        return resourceContainer.TakeResourcesIfPossible(RequiredResources);
+    }
+
     public void Check(string name)
     {
         using var file = new File();
@@ -160,6 +170,29 @@ public class StructureDefinition : IRegistryType
         TranslationHelper.ApplyTranslations(this);
     }
 
+    /// <summary>
+    ///   Checks if this structure contains a component of a given type
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     As the definition has the factories only this needs to be given the factory type that will create the
+    ///     actual component, for example <see cref="HousingComponentFactory"/>
+    ///   </para>
+    /// </remarks>
+    /// <typeparam name="T">The type of component factory to check for</typeparam>
+    /// <returns>True if this has the specified component</returns>
+    public bool HasComponentFactory<T>()
+        where T : IStructureComponentFactory
+    {
+        foreach (var component in Components.Factories)
+        {
+            if (component is T)
+                return true;
+        }
+
+        return false;
+    }
+
     public override string ToString()
     {
         return "Structure type " + Name;
@@ -193,6 +226,27 @@ public class StructureDefinition : IRegistryType
 #pragma warning disable CS0649 // set from JSON
         [JsonProperty]
         private SocietyCenterComponentFactory? societyCenter;
+
+        [JsonProperty]
+        private WoodGathererFactory? woodGatherer;
+
+        [JsonProperty]
+        private RockGathererFactory? rockGatherer;
+
+        [JsonProperty]
+        private FoodGathererFactory? foodGatherer;
+
+        [JsonProperty]
+        private HousingComponentFactory? housing;
+
+        [JsonProperty]
+        private StructureStorageComponentFactory? storage;
+
+        [JsonProperty]
+        private ResearchComponentFactory? research;
+
+        [JsonProperty]
+        private FactoryComponentFactory? factory;
 #pragma warning restore CS0649
 
         [JsonIgnore]
@@ -206,9 +260,30 @@ public class StructureDefinition : IRegistryType
             if (societyCenter != null)
                 allFactories.Add(societyCenter);
 
-            foreach (var factory in allFactories)
+            if (woodGatherer != null)
+                allFactories.Add(woodGatherer);
+
+            if (rockGatherer != null)
+                allFactories.Add(rockGatherer);
+
+            if (foodGatherer != null)
+                allFactories.Add(foodGatherer);
+
+            if (housing != null)
+                allFactories.Add(housing);
+
+            if (storage != null)
+                allFactories.Add(storage);
+
+            if (research != null)
+                allFactories.Add(research);
+
+            if (factory != null)
+                allFactories.Add(factory);
+
+            foreach (var componentFactory in allFactories)
             {
-                factory.Check(name);
+                componentFactory.Check(name);
             }
         }
     }

@@ -44,18 +44,16 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
     {
         if (!Settings.Instance.IsNoticePermanentlyDismissed(NoticeType))
         {
-            this.PopupCenteredShrink();
+            PopupCenteredShrink();
             return true;
         }
 
         return false;
     }
 
-    protected override void OnHidden()
+    private void OnConfirmed()
     {
         if (checkbox.Pressed)
             Settings.Instance.PermanentlyDismissNotice(NoticeType);
-
-        base.OnHidden();
     }
 }

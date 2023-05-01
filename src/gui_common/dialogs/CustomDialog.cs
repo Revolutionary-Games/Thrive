@@ -44,12 +44,15 @@ using Godot;
 /// </remarks>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomDialog : Popup, ICustomPopup
+public class CustomDialog : CustomWindow
 {
+    private static readonly Lazy<StyleBox> CloseButtonFocus = new(CreateCloseButtonFocusStyle);
+
     private string windowTitle = string.Empty;
     private string translatedWindowTitle = string.Empty;
 
     private bool closeHovered;
+    private bool closeFocused;
 
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
@@ -74,14 +77,12 @@ public class CustomDialog : Popup, ICustomPopup
     private bool showCloseButton = true;
     private bool decorate = true;
 
-    private bool mouseUnCaptureActive;
-
     /// <summary>
-    ///   NOTE: This is only emitted WHEN the close button (top right corner) is pressed, this doesn't account
-    ///   for any other hiding behaviors.
+    ///   This is emitted by any means to hide this dialog (when not accepting) but NOT the hiding itself, for that use
+    ///   <see cref="CustomWindow.Closed"/> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
-    public delegate void Closed();
+    public delegate void Cancelled();
 
     [Flags]
     private enum DragType
@@ -115,12 +116,6 @@ public class CustomDialog : Popup, ICustomPopup
     }
 
     /// <summary>
-    ///   If true, the dialog window size is locked to the size of the viewport.
-    /// </summary>
-    [Export]
-    public bool FullRect { get; set; }
-
-    /// <summary>
     ///   If true, the user can resize the window.
     /// </summary>
     [Export]
@@ -137,9 +132,6 @@ public class CustomDialog : Popup, ICustomPopup
     /// </summary>
     [Export]
     public bool BoundToScreenArea { get; set; } = true;
-
-    [Export]
-    public bool ExclusiveAllowCloseOnEscape { get; set; } = true;
 
     [Export]
     public bool ShowCloseButton
@@ -179,35 +171,8 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
-    [Export]
-    public bool PreventsMouseCaptureWhileOpen { get; set; } = true;
-
-    private bool MouseUnCaptureActive
-    {
-        set
-        {
-            if (!PreventsMouseCaptureWhileOpen)
-            {
-                if (mouseUnCaptureActive)
-                {
-                    SetMouseCaptureModeInternal(false);
-                }
-
-                return;
-            }
-
-            if (mouseUnCaptureActive == value)
-                return;
-
-            SetMouseCaptureModeInternal(value);
-        }
-    }
-
     public override void _EnterTree()
     {
-        // To make popup rect readjustment react to window resizing
-        GetTree().Root.Connect("size_changed", this, nameof(ApplyRectSettings));
-
         customPanel = GetStylebox("custom_panel", "WindowDialog");
         titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
         titleBarHeight = decorate ? GetConstant("custom_titlebar_height", "WindowDialog") : 0;
@@ -218,49 +183,28 @@ public class CustomDialog : Popup, ICustomPopup
         scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
         customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
 
+        // Make the close button style be fully created when this is initialized
+        if (showCloseButton)
+            _ = CloseButtonFocus.Value;
+
         base._EnterTree();
-    }
-
-    public override void _ExitTree()
-    {
-        GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
-
-        base._ExitTree();
-
-        MouseUnCaptureActive = false;
     }
 
     public override void _Notification(int what)
     {
+        base._Notification(what);
+
         switch (what)
         {
             case NotificationReady:
             {
                 SetupCloseButton();
                 UpdateChildRects();
-                ApplyRectSettings();
                 break;
             }
 
             case NotificationResized:
             {
-                UpdateChildRects();
-                ApplyRectSettings();
-                break;
-            }
-
-            case NotificationVisibilityChanged:
-            {
-                if (Visible)
-                {
-                    ApplyRectSettings();
-                    OnShown();
-                }
-                else
-                {
-                    OnHidden();
-                }
-
                 UpdateChildRects();
                 break;
             }
@@ -310,6 +254,10 @@ public class CustomDialog : Popup, ICustomPopup
         if (closeHovered)
         {
             DrawStyleBox(closeButtonHighlight, closeButton!.GetRect());
+        }
+        else if (closeFocused)
+        {
+            DrawStyleBox(CloseButtonFocus.Value, closeButton!.GetRect());
         }
     }
 
@@ -385,59 +333,86 @@ public class CustomDialog : Popup, ICustomPopup
     /// </summary>
     public override bool HasPoint(Vector2 point)
     {
-        var rect = new Rect2(Vector2.Zero, RectSize);
-
         // Enlarge upwards for title bar
-        var adjustedRect = new Rect2(
-            new Vector2(rect.Position.x, rect.Position.y - titleBarHeight),
-            new Vector2(rect.Size.x, rect.Size.y + titleBarHeight));
+        var position = Vector2.Zero;
+        var size = RectSize;
+        position.y -= titleBarHeight;
+        size.y += titleBarHeight;
+        var rect = new Rect2(position, size);
 
         // Inflate by the resizable border thickness
         if (Resizable)
         {
-            adjustedRect = new Rect2(
-                new Vector2(adjustedRect.Position.x - scaleBorderSize, adjustedRect.Position.y - scaleBorderSize),
-                new Vector2(adjustedRect.Size.x + scaleBorderSize * 2, adjustedRect.Size.y + scaleBorderSize * 2));
+            rect = new Rect2(
+                new Vector2(rect.Position.x - scaleBorderSize, rect.Position.y - scaleBorderSize),
+                new Vector2(rect.Size.x + scaleBorderSize * 2, rect.Size.y + scaleBorderSize * 2));
         }
 
-        return adjustedRect.HasPoint(point);
+        return rect.HasPoint(point);
     }
 
-    public void PopupFullRect()
+    protected override void OnOpen()
     {
-        Popup_(GetFullRect());
+        base.OnOpen();
+        UpdateChildRects();
     }
 
-    public virtual void CustomShow()
+    protected override void OnHidden()
     {
-        // TODO: implement default show animation(?)
-        ShowModal(PopupExclusive);
-    }
-
-    public virtual void CustomHide()
-    {
-        // TODO: add proper close animation
-        Hide();
-    }
-
-    protected virtual void OnShown()
-    {
-        MouseUnCaptureActive = true;
-    }
-
-    /// <summary>
-    ///   Called after popup is made invisible.
-    /// </summary>
-    protected virtual void OnHidden()
-    {
+        base.OnHidden();
+        UpdateChildRects();
         closeHovered = false;
-        MouseUnCaptureActive = false;
+        closeFocused = false;
     }
 
-    protected Rect2 GetFullRect()
+    protected override Rect2 GetFullRect()
     {
-        var viewportSize = GetScreenSize();
-        return new Rect2(new Vector2(0, titleBarHeight), new Vector2(viewportSize.x, viewportSize.y));
+        var rect = base.GetFullRect();
+        rect.Position = new Vector2(0, titleBarHeight);
+        rect.Size = new Vector2(rect.Size.x, rect.Size.y - titleBarHeight);
+        return rect;
+    }
+
+    protected override void ApplyRectSettings()
+    {
+        base.ApplyRectSettings();
+
+        var screenSize = GetViewportRect().Size;
+
+        if (BoundToScreenArea)
+        {
+            // Clamp position to ensure window stays inside the screen
+            RectPosition = new Vector2(
+                Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
+                Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
+        }
+
+        if (Resizable)
+        {
+            // Size can't be bigger than the viewport
+            RectSize = new Vector2(
+                Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
+        }
+    }
+
+    private static StyleBox CreateCloseButtonFocusStyle()
+    {
+        // Note that thrive_theme.tres has the normal hovered style for this, this kind of style can't be specified
+        // in the theme, so instead this needs to be defined through the code here. So it's important to keep
+        // these two styles close enough if the button styling is overhauled.
+        return new StyleBoxFlat
+        {
+            BgColor = new Color(0.05f, 0.05f, 0.05f, 0.5f),
+            BorderColor = new Color(0.8f, 0.8f, 0.8f, 0.9f),
+            CornerRadiusTopLeft = 2,
+            CornerRadiusTopRight = 2,
+            CornerRadiusBottomRight = 2,
+            CornerRadiusBottomLeft = 2,
+            ExpandMarginLeft = 3,
+            ExpandMarginRight = 3,
+            ExpandMarginTop = 3,
+            ExpandMarginBottom = 3,
+        };
     }
 
     /// <summary>
@@ -510,11 +485,6 @@ public class CustomDialog : Popup, ICustomPopup
             MouseDefaultCursorShape = cursor;
     }
 
-    private Vector2 GetScreenSize()
-    {
-        return GetViewport().GetVisibleRect().Size;
-    }
-
     /// <summary>
     ///   Updates the window position and size while in a dragging operation.
     /// </summary>
@@ -534,7 +504,7 @@ public class CustomDialog : Popup, ICustomPopup
         else
         {
             // Handle border dragging
-            var screenSize = GetScreenSize();
+            var screenSize = GetViewportRect().Size;
 
             if (dragType.HasFlag(DragType.ResizeTop))
             {
@@ -566,28 +536,7 @@ public class CustomDialog : Popup, ICustomPopup
         RectPosition = newPosition;
         RectSize = newSize;
 
-        if (BoundToScreenArea)
-            FixRect();
-    }
-
-    /// <summary>
-    ///   Applies final adjustments to the window's rect.
-    /// </summary>
-    private void FixRect()
-    {
-        var screenSize = GetScreenSize();
-
-        // Clamp position to ensure window stays inside the screen
-        RectPosition = new Vector2(
-            Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
-            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
-
-        if (Resizable)
-        {
-            // Size can't be bigger than the viewport
-            RectSize = new Vector2(
-                Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
-        }
+        ApplyRectSettings();
     }
 
     private void SetupCloseButton()
@@ -626,6 +575,8 @@ public class CustomDialog : Popup, ICustomPopup
         closeButton.Connect("mouse_entered", this, nameof(OnCloseButtonMouseEnter));
         closeButton.Connect("mouse_exited", this, nameof(OnCloseButtonMouseExit));
         closeButton.Connect("pressed", this, nameof(OnCloseButtonPressed));
+        closeButton.Connect("focus_entered", this, nameof(OnCloseButtonFocused));
+        closeButton.Connect("focus_exited", this, nameof(OnCloseButtonFocusLost));
 
         AddChild(closeButton);
     }
@@ -647,23 +598,6 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
-    private void SetToFullRect()
-    {
-        var fullRect = GetFullRect().Size;
-
-        RectPosition = new Vector2(0, titleBarHeight);
-        RectSize = new Vector2(fullRect.x, fullRect.y - titleBarHeight);
-    }
-
-    private void ApplyRectSettings()
-    {
-        if (FullRect)
-            SetToFullRect();
-
-        if (BoundToScreenArea)
-            FixRect();
-    }
-
     private void OnCloseButtonMouseEnter()
     {
         closeHovered = true;
@@ -676,30 +610,22 @@ public class CustomDialog : Popup, ICustomPopup
         Update();
     }
 
+    private void OnCloseButtonFocused()
+    {
+        closeFocused = true;
+        Update();
+    }
+
+    private void OnCloseButtonFocusLost()
+    {
+        closeFocused = false;
+        Update();
+    }
+
     private void OnCloseButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        CustomHide();
-        EmitSignal(nameof(Closed));
-    }
-
-    /// <summary>
-    ///   Applies the mouse capture mode. Do not call directly, use <see cref="MouseUnCaptureActive"/>
-    /// </summary>
-    private void SetMouseCaptureModeInternal(bool captured)
-    {
-        mouseUnCaptureActive = captured;
-
-        // The name of this node is not allowed to change while visible, otherwise this will not work well
-        var key = $"{GetType().Name}_{Name}";
-
-        if (captured)
-        {
-            MouseCaptureManager.ReportOpenCapturePrevention(key);
-        }
-        else
-        {
-            MouseCaptureManager.ReportClosedCapturePrevention(key);
-        }
+        EmitSignal(nameof(Cancelled));
+        Close();
     }
 }
