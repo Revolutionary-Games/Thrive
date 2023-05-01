@@ -834,9 +834,6 @@ public class ModManager : Control
 
     private void RefreshAvailableMods()
     {
-        if (notEnabledMods == null || enabledMods == null)
-            throw new InvalidOperationException("The mod manager was not opened yet");
-
         if (availableModsContainer.IsAnythingSelected())
         {
             selectedMod = null;
@@ -866,8 +863,7 @@ public class ModManager : Control
         ModLoader.Instance.OnNewWorkshopModsInstalled();
 
         notEnabledMods.Clear();
-        notEnabledMods.AddRange(validMods.Where(m => !IsModEnabled(m)).Concat(notEnabledMods.Where(validMods.Contains))
-            .Distinct());
+        notEnabledMods.AddRange(validMods.Where(m => !IsModEnabled(m)).Distinct());
 
         foreach (var mod in notEnabledMods)
         {
@@ -939,7 +935,7 @@ public class ModManager : Control
 
     private bool IsModEnabled(FullModDetails mod)
     {
-        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName) || enabledMods.Contains(mod);
+        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName);
     }
 
     private void UpdateSelectedModInfo()
@@ -1201,12 +1197,12 @@ public class ModManager : Control
 
     private void UpdateOverallModButtons()
     {
-        applyChangesButton.Disabled =
-            Settings.Instance.EnabledMods.Value.ToList()
-                .SequenceEqual(enabledMods.Select(m => m.InternalName));
-
+        var isNotChanged = Settings.Instance.EnabledMods.Value.ToList()
+            .SequenceEqual(enabledMods.Select(m => m.InternalName));
+        applyChangesButton.Disabled = isNotChanged;
+        resetButton.Disabled = isNotChanged;
+        
         var isEnabledModsEmpty = enabledMods.Count < 1;
-        resetButton.Disabled = isEnabledModsEmpty;
         checkButton.Disabled = isEnabledModsEmpty;
         disableAllModsButton.Disabled = isEnabledModsEmpty;
 
@@ -1543,9 +1539,13 @@ public class ModManager : Control
 
     private void ResetPressed()
     {
-        // Basically just a macro to disabled all the mods then apply the changes
-        DisableAllPressed();
-        ApplyChanges();
+        availableModsContainer.UnselectAll();
+        enabledModsContainer.UnselectAll();
+
+        RefreshAvailableMods();
+        RefreshEnabledMods();
+
+        UpdateOverallModButtons();
     }
 
     private bool ModIncludesCode(ModInfo info)
