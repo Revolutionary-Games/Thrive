@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://src/engine/ScreenFilter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/engine/LoadingScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/engine/ColourblindScreenFilter.tscn" type="PackedScene" id=4]
@@ -33,5 +34,15 @@ theme = ExtResource( 6 )
 
 [node name="ColourblindScreenFilter" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
+
+[node name="ScreenFilter" parent="CanvasLayer" instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="DebugOverlay" parent="CanvasLayer" instance=ExtResource( 7 )]

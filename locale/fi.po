@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-29 17:47-0500\n"
+"POT-Creation-Date: 2023-04-30 19:36-0500\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -107,7 +107,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobinen typensidonta"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1472
+#: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Välittäjäaineet"
 
@@ -179,7 +179,7 @@ msgstr "Tunnelmaäänet"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1214
+#: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
 msgstr "Ammoniakki"
 
@@ -364,7 +364,7 @@ msgstr "suorituksen status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Liiku automaattisesti eteenpäin"
 
-#: ../src/general/OptionsMenu.cs:954 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:953 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "Automaattinen ({0}x{1})"
 
@@ -448,12 +448,12 @@ msgid "BATHYPELAGIC"
 msgstr "Batypelaginen vyöhyke"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:545
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muutu Makroskooppiseksi ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
-#: ../src/microbe_stage/MicrobeStage.tscn:1652
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Muutu Monisoluiseksi ({0}/{1})"
 
@@ -1018,7 +1018,7 @@ msgstr "Käännetty ajanhetkellä:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1070
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
 msgstr "Yhdisteet"
 
@@ -1383,7 +1383,7 @@ msgstr "Virheenkorjauspaneeli"
 msgid "DECEMBER"
 msgstr "Joulukuu"
 
-#: ../src/general/OptionsMenu.cs:1420
+#: ../src/general/OptionsMenu.cs:1419
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Oletus ulostulolaite"
 
@@ -1829,7 +1829,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr "Editori"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1831
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
@@ -1902,7 +1902,7 @@ msgid "ENTITY_LABEL"
 msgstr "Biomi: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
@@ -2159,7 +2159,7 @@ msgstr "konsentraatiosta riippuen"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:2004
+#: ../src/microbe_stage/MicrobeStage.tscn:1995
 msgid "FIRE_TOXIN"
 msgstr "Ammu myrkkyä"
 
@@ -2334,7 +2334,7 @@ msgstr "Sukupolvi:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/OptionsMenu.cs:968
+#: ../src/general/OptionsMenu.cs:967
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2346,7 +2346,7 @@ msgstr "GLES2-moodi Varoitus"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:973
+#: ../src/general/OptionsMenu.cs:972
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2361,7 +2361,7 @@ msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} alueelle {2
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1168
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
 msgstr "Glukoosi"
 
@@ -2501,7 +2501,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1315
+#: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
 msgstr "Rikkivety"
 
@@ -2550,7 +2550,7 @@ msgstr "Loputtomat Yhdisteet"
 msgid "INFINITE_MP"
 msgstr "Loputon MP"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1411
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
 msgstr "Nielty Aine"
 
@@ -2707,7 +2707,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1361
+#: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
 msgstr "Rauta"
 
@@ -2922,15 +2922,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.cs:1460
+#: ../src/general/OptionsMenu.cs:1459
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tämä kieli on {0}% käännetty"
 
-#: ../src/general/OptionsMenu.cs:1456
+#: ../src/general/OptionsMenu.cs:1455
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:1452
+#: ../src/general/OptionsMenu.cs:1451
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen kanssa!"
 
@@ -3149,7 +3149,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "Mustat savuttajat"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:931
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "Valo"
 
@@ -4035,7 +4035,7 @@ msgstr "Siirry tälle alueelle"
 msgid "MOVE_TO_LAND"
 msgstr "Lähetettävä Modi:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1648
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4078,7 +4078,7 @@ msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1577
+#: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr ""
 
@@ -4646,7 +4646,7 @@ msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compo
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1529
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "Happimyrkky"
 
@@ -4834,7 +4834,7 @@ msgstr "/sekunti"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1263
+#: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
 msgstr "Fosfaatti"
 
@@ -4945,7 +4945,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1683
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 #: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
@@ -4976,7 +4976,7 @@ msgid "PRESSURE"
 msgstr "Paine"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:986
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
@@ -5480,12 +5480,12 @@ msgstr "Käänteisesti skaalattu"
 msgid "SCREEN_EFFECT"
 msgstr "Ulkoiset vaikutukset:"
 
-#: ../simulation_parameters/common/screen_effects.json:18
+#: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "Ulkoiset vaikutukset:"
 
-#: ../simulation_parameters/common/screen_effects.json:23
+#: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Ulkoiset vaikutukset:"
@@ -5497,10 +5497,6 @@ msgstr "Ulkoiset vaikutukset:"
 
 #: ../simulation_parameters/common/screen_effects.json:3
 msgid "SCREEN_EFFECT_NONE"
-msgstr ""
-
-#: ../simulation_parameters/common/screen_effects.json:13
-msgid "SCREEN_EFFECT_PIXELATION"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1478 ../src/general/OptionsMenu.tscn:1511
@@ -5526,7 +5522,7 @@ msgstr "Merenpohja"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2049
+#: ../src/microbe_stage/MicrobeStage.tscn:2040
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -6172,7 +6168,7 @@ msgid "TEMPERATURE"
 msgstr "Lämpötila"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:875
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
@@ -6366,7 +6362,7 @@ msgid "TITLE_COLON"
 msgstr "Koko:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2015
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 msgid "TOGGLE_BINDING"
 msgstr "Aloita/lopeta kiinnittyminen"
 
@@ -6378,7 +6374,7 @@ msgstr "Aloita/lopeta nieleminen"
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1991
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 msgid "TOGGLE_ENGULF"
 msgstr "Aloita/lopeta nieleminen"
 
@@ -6658,7 +6654,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2027
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr "Erkane kaikista"
 
@@ -6666,7 +6662,7 @@ msgstr "Erkane kaikista"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1521
+#: ../src/general/OptionsMenu.cs:1520
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6689,7 +6685,7 @@ msgstr "Kumoa viimeisin toimenpide"
 msgid "UNKNOWN"
 msgstr "Tuntematon"
 
-#: ../src/general/OptionsMenu.cs:978
+#: ../src/general/OptionsMenu.cs:977
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Näytä kykypalkki"
@@ -6703,7 +6699,7 @@ msgstr "Tuntematon hiiren painike"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1527
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
@@ -6832,7 +6828,7 @@ msgstr "Uusi nimi:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:987 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:986 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 

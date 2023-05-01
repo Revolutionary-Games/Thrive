@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-29 17:47-0500\n"
+"POT-Creation-Date: 2023-04-30 19:36-0500\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -102,7 +102,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerob kvävefixering"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1472
+#: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "Medel"
 
@@ -172,7 +172,7 @@ msgstr "Omgivningsvolym"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1214
+#: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
@@ -356,7 +356,7 @@ msgstr "status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Auto framåt"
 
-#: ../src/general/OptionsMenu.cs:954 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:953 ../src/general/OptionsMenu.tscn:361
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Upplösning:"
@@ -434,12 +434,12 @@ msgid "BATHYPELAGIC"
 msgstr "Bathypelagisk"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:545
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
-#: ../src/microbe_stage/MicrobeStage.tscn:1652
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -1008,7 +1008,7 @@ msgstr "Föreningar:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1070
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -1370,7 +1370,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1420
+#: ../src/general/OptionsMenu.cs:1419
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standard utgångsenhet"
 
@@ -1801,7 +1801,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr "Cellredigerare"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1831
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -1866,7 +1866,7 @@ msgid "ENTITY_LABEL"
 msgstr "Omgivning: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "Miljö"
 
@@ -2119,7 +2119,7 @@ msgstr "Slutför {0} Generationer"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:2004
+#: ../src/microbe_stage/MicrobeStage.tscn:1995
 msgid "FIRE_TOXIN"
 msgstr "Skjut gift"
 
@@ -2295,7 +2295,7 @@ msgstr "generation:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/OptionsMenu.cs:968
+#: ../src/general/OptionsMenu.cs:967
 msgid "GLES2"
 msgstr ""
 
@@ -2307,7 +2307,7 @@ msgstr "GLES2 Läges Varning"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
-#: ../src/general/OptionsMenu.cs:973
+#: ../src/general/OptionsMenu.cs:972
 msgid "GLES3"
 msgstr ""
 
@@ -2322,7 +2322,7 @@ msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1} från {2}"
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1168
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
 msgstr "Glukos"
 
@@ -2462,7 +2462,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1315
+#: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
 msgstr "Svavelväte"
 
@@ -2511,7 +2511,7 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1411
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2670,7 +2670,7 @@ msgstr "Protanope (Röd-Grön)"
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1361
+#: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
 msgstr "Järn"
 
@@ -2887,15 +2887,15 @@ msgstr "Numpad Minus"
 msgid "LANGUAGE"
 msgstr "Språk:"
 
-#: ../src/general/OptionsMenu.cs:1460
+#: ../src/general/OptionsMenu.cs:1459
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Detta språk är {0}% komplett"
 
-#: ../src/general/OptionsMenu.cs:1456
+#: ../src/general/OptionsMenu.cs:1455
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Det här språket jobbas fortfarande på ({0}% klart)"
 
-#: ../src/general/OptionsMenu.cs:1452
+#: ../src/general/OptionsMenu.cs:1451
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla hjälp oss med den!"
 
@@ -3113,7 +3113,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:931
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "Ljus"
 
@@ -3941,7 +3941,7 @@ msgstr "Flytta till Denna Plats"
 msgid "MOVE_TO_LAND"
 msgstr "Flytta till Denna Plats"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1648
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -3989,7 +3989,7 @@ msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1577
+#: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "Mucilage"
 
@@ -4554,7 +4554,7 @@ msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1529
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy"
 
@@ -4745,7 +4745,7 @@ msgstr "/sekund"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1263
+#: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
@@ -4854,7 +4854,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1683
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 #: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "INVÅNARE:"
@@ -4886,7 +4886,7 @@ msgid "PRESSURE"
 msgstr "Tryck"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:986
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "Tryck"
 
@@ -5394,12 +5394,12 @@ msgstr ""
 msgid "SCREEN_EFFECT"
 msgstr "Externa effekter:"
 
-#: ../simulation_parameters/common/screen_effects.json:18
+#: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "Externa effekter:"
 
-#: ../simulation_parameters/common/screen_effects.json:23
+#: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Externa effekter:"
@@ -5411,10 +5411,6 @@ msgstr "Externa effekter:"
 
 #: ../simulation_parameters/common/screen_effects.json:3
 msgid "SCREEN_EFFECT_NONE"
-msgstr ""
-
-#: ../simulation_parameters/common/screen_effects.json:13
-msgid "SCREEN_EFFECT_PIXELATION"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1478 ../src/general/OptionsMenu.tscn:1511
@@ -5441,7 +5437,7 @@ msgstr "Havsbotten"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2049
+#: ../src/microbe_stage/MicrobeStage.tscn:2040
 msgid "SECRETE_SLIME"
 msgstr "Slem sekretion"
 
@@ -6085,7 +6081,7 @@ msgid "TEMPERATURE"
 msgstr "Temperatur"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:875
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
@@ -6277,7 +6273,7 @@ msgid "TITLE_COLON"
 msgstr "Storlek:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2015
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 msgid "TOGGLE_BINDING"
 msgstr "Växla bindning av och på"
 
@@ -6288,7 +6284,7 @@ msgstr "Växla debug-panel på och av"
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1991
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 msgid "TOGGLE_ENGULF"
 msgstr "Växla uppslukarläge av och på"
 
@@ -6525,7 +6521,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2027
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr "Lösgör alla"
 
@@ -6533,7 +6529,7 @@ msgstr "Lösgör alla"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Lösgöringsläge"
 
-#: ../src/general/OptionsMenu.cs:1521
+#: ../src/general/OptionsMenu.cs:1520
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6553,7 +6549,7 @@ msgstr "Ångra den senaste handlingen"
 msgid "UNKNOWN"
 msgstr "Okänd"
 
-#: ../src/general/OptionsMenu.cs:978
+#: ../src/general/OptionsMenu.cs:977
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Visa förmågor"
@@ -6567,7 +6563,7 @@ msgstr "Okänd mus"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Okänd mus"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1527
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Okänd mus"
@@ -6695,7 +6691,7 @@ msgstr "Hastighet:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:987 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:986 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

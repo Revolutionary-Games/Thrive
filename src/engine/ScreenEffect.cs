@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 /// <summary>
-///   Definition for a difficulty preset
+///   Definition for a screen effect
 /// </summary>
 /// <remarks>
 ///   <para>

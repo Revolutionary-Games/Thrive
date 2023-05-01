@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-29 17:47-0500\n"
+"POT-Creation-Date: 2023-04-30 19:36-0500\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -104,7 +104,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "호기성 질소 고정"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1472
+#: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "물질"
 
@@ -169,7 +169,7 @@ msgstr "배경 음량"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1214
+#: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
 msgstr "암모니아"
 
@@ -352,7 +352,7 @@ msgstr "실행 상태:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "자동 앞으로 이동"
 
-#: ../src/general/OptionsMenu.cs:954 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:953 ../src/general/OptionsMenu.tscn:361
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "해상도:"
@@ -432,12 +432,12 @@ msgid "BATHYPELAGIC"
 msgstr "심해수층"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:545
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
-#: ../src/microbe_stage/MicrobeStage.tscn:1652
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -1012,7 +1012,7 @@ msgstr "화합물:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1070
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
 msgstr "화합물"
 
@@ -1372,7 +1372,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1420
+#: ../src/general/OptionsMenu.cs:1419
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1804,7 +1804,7 @@ msgstr "(게임 안에서 무작위로 생성되는 비밀)"
 msgid "EDITOR"
 msgstr "편집기"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1831
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -1879,7 +1879,7 @@ msgid "ENTITY_LABEL"
 msgstr "생태계: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "환경"
 
@@ -2121,7 +2121,7 @@ msgstr "{0}세대 끝내기"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:2004
+#: ../src/microbe_stage/MicrobeStage.tscn:1995
 msgid "FIRE_TOXIN"
 msgstr "독소 공격"
 
@@ -2286,7 +2286,7 @@ msgstr "세대:"
 msgid "GITHUB_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.cs:968
+#: ../src/general/OptionsMenu.cs:967
 msgid "GLES2"
 msgstr ""
 
@@ -2298,7 +2298,7 @@ msgstr "GLES2 모드 경고"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/OptionsMenu.cs:973
+#: ../src/general/OptionsMenu.cs:972
 msgid "GLES3"
 msgstr ""
 
@@ -2313,7 +2313,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1168
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
 msgstr "포도당"
 
@@ -2455,7 +2455,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1315
+#: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
@@ -2505,7 +2505,7 @@ msgstr "화합물"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1411
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2664,7 +2664,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1361
+#: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
 msgstr "철"
 
@@ -2886,16 +2886,16 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr "언어:"
 
-#: ../src/general/OptionsMenu.cs:1460
+#: ../src/general/OptionsMenu.cs:1459
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/general/OptionsMenu.cs:1456
+#: ../src/general/OptionsMenu.cs:1455
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1452
+#: ../src/general/OptionsMenu.cs:1451
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3104,7 +3104,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:931
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "빛"
 
@@ -3977,7 +3977,7 @@ msgstr "아무 지역으로 이주"
 msgid "MOVE_TO_LAND"
 msgstr "육지로 이주"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1648
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4020,7 +4020,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1577
+#: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "점액"
 
@@ -4597,7 +4597,7 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1529
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
@@ -4786,7 +4786,7 @@ msgstr "/초"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1263
+#: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
 msgstr "인산염"
 
@@ -4896,7 +4896,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "현재 설정으로 실행"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1683
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 #: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
@@ -4929,7 +4929,7 @@ msgid "PRESSURE"
 msgstr "압력."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:986
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "압력."
 
@@ -5445,12 +5445,12 @@ msgstr ""
 msgid "SCREEN_EFFECT"
 msgstr "외부 효과:"
 
-#: ../simulation_parameters/common/screen_effects.json:18
+#: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "외부 효과:"
 
-#: ../simulation_parameters/common/screen_effects.json:23
+#: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "외부 효과:"
@@ -5462,10 +5462,6 @@ msgstr "외부 효과:"
 
 #: ../simulation_parameters/common/screen_effects.json:3
 msgid "SCREEN_EFFECT_NONE"
-msgstr ""
-
-#: ../simulation_parameters/common/screen_effects.json:13
-msgid "SCREEN_EFFECT_PIXELATION"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1478 ../src/general/OptionsMenu.tscn:1511
@@ -5492,7 +5488,7 @@ msgstr "해저"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2049
+#: ../src/microbe_stage/MicrobeStage.tscn:2040
 msgid "SECRETE_SLIME"
 msgstr "점액 분비"
 
@@ -6137,7 +6133,7 @@ msgid "TEMPERATURE"
 msgstr "온도"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:875
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "온도."
 
@@ -6324,7 +6320,7 @@ msgid "TITLE_COLON"
 msgstr "크기:"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2015
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 msgid "TOGGLE_BINDING"
 msgstr "결합 모드 켜고 끄기"
 
@@ -6335,7 +6331,7 @@ msgstr "디버깅 패널 켜고 끄기"
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1991
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 msgid "TOGGLE_ENGULF"
 msgstr "삼키기 전환"
 
@@ -6633,7 +6629,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기능이 거의 없습니다. 무너지지 않기 위해선 더 많은 에너지가 필요합니다. 장점은 세포가 더 빠르게 움직이고 영양분을 흡수 할 수 있다는 것입니다."
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2027
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr "모두 결합 해제하기"
 
@@ -6641,7 +6637,7 @@ msgstr "모두 결합 해제하기"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1521
+#: ../src/general/OptionsMenu.cs:1520
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6665,7 +6661,7 @@ msgstr "마지막 활동 취소"
 msgid "UNKNOWN"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.cs:978
+#: ../src/general/OptionsMenu.cs:977
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "능력"
@@ -6679,7 +6675,7 @@ msgstr "마우스 미확인 키"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1527
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "버전:"
@@ -6811,7 +6807,7 @@ msgstr "속도:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:987 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:986 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

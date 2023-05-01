@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-29 17:47-0500\n"
+"POT-Creation-Date: 2023-04-30 19:36-0500\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -102,7 +102,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "有氧固氮"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1472
+#: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
 msgstr "劑"
 
@@ -182,7 +182,7 @@ msgstr "環境音量"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1214
+#: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
 msgstr "氨"
 
@@ -363,7 +363,7 @@ msgstr "Auto-Evo 運行狀態："
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自動前進"
 
-#: ../src/general/OptionsMenu.cs:954 ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.cs:953 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "自動（{0}x{1}）"
 
@@ -438,12 +438,12 @@ msgid "BATHYPELAGIC"
 msgstr "半深海帶(遠洋中層)"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:545
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "成為宏觀生物 ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
-#: ../src/microbe_stage/MicrobeStage.tscn:1652
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "成為多細胞生物 ({0}/{1})"
 
@@ -984,7 +984,7 @@ msgstr "編譯於："
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1070
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
 msgstr "化合物"
 
@@ -1345,7 +1345,7 @@ msgstr "調試面板"
 msgid "DECEMBER"
 msgstr "十二月"
 
-#: ../src/general/OptionsMenu.cs:1420
+#: ../src/general/OptionsMenu.cs:1419
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默認輸出設備"
 
@@ -1790,7 +1790,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr "編輯器"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1831
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "添加新的綁定鍵位"
@@ -1860,7 +1860,7 @@ msgid "ENTITY_LABEL"
 msgstr "生物群系：{0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:600
 msgid "ENVIRONMENT"
 msgstr "環境"
 
@@ -2117,7 +2117,7 @@ msgstr "濃度為"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:2004
+#: ../src/microbe_stage/MicrobeStage.tscn:1995
 msgid "FIRE_TOXIN"
 msgstr "發射毒素"
 
@@ -2289,7 +2289,7 @@ msgstr "世代："
 msgid "GITHUB_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/OptionsMenu.cs:968
+#: ../src/general/OptionsMenu.cs:967
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2301,7 +2301,7 @@ msgstr "GLES2模式警告"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
 
-#: ../src/general/OptionsMenu.cs:973
+#: ../src/general/OptionsMenu.cs:972
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2316,7 +2316,7 @@ msgstr "[b][u]{0}[/u][/b]人口的一部分已從 {2} 遷移到 {1}"
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1168
+#: ../src/microbe_stage/MicrobeStage.tscn:1161
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -2460,7 +2460,7 @@ msgstr "{0} (x{1})"
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1315
+#: ../src/microbe_stage/MicrobeStage.tscn:1308
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
@@ -2509,7 +2509,7 @@ msgstr "無限化合物"
 msgid "INFINITE_MP"
 msgstr "無限變異點"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1411
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
 msgstr "攝入的物質"
 
@@ -2667,7 +2667,7 @@ msgstr "紅綠色盲"
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1361
+#: ../src/microbe_stage/MicrobeStage.tscn:1354
 msgid "IRON"
 msgstr "鐵"
 
@@ -2882,15 +2882,15 @@ msgstr "數字鍵盤 -"
 msgid "LANGUAGE"
 msgstr "語言："
 
-#: ../src/general/OptionsMenu.cs:1460
+#: ../src/general/OptionsMenu.cs:1459
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此語言已翻譯完成 {0}%"
 
-#: ../src/general/OptionsMenu.cs:1456
+#: ../src/general/OptionsMenu.cs:1455
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "此語言仍在翻譯中（已完成 {0}%）"
 
-#: ../src/general/OptionsMenu.cs:1452
+#: ../src/general/OptionsMenu.cs:1451
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻譯非常不完整（已完成 {0}%）請幫助我們！"
 
@@ -3109,7 +3109,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "海底熱泉"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:931
+#: ../src/microbe_stage/MicrobeStage.tscn:924
 msgid "LIGHT"
 msgstr "光"
 
@@ -3997,7 +3997,7 @@ msgstr "移動到這個區域"
 msgid "MOVE_TO_LAND"
 msgstr "移動到陸地"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1648
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "進入遊戲的下一個階段（多細胞）。 細胞群達到一定大小後便可解鎖。"
 
@@ -4044,7 +4044,7 @@ msgstr "{0} 變異點"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1577
+#: ../src/microbe_stage/MicrobeStage.tscn:1570
 msgid "MUCILAGE"
 msgstr "黏液"
 
@@ -4623,7 +4623,7 @@ msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:comp
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1529
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
@@ -4813,7 +4813,7 @@ msgstr "/秒"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1263
+#: ../src/microbe_stage/MicrobeStage.tscn:1256
 msgid "PHOSPHATE"
 msgstr "磷酸鹽"
 
@@ -4928,7 +4928,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "使用當前設置"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1683
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 #: ../src/society_stage/SocietyHUD.tscn:266
 msgid "POPULATION_CAPITAL"
 msgstr "人口："
@@ -4959,7 +4959,7 @@ msgid "PRESSURE"
 msgstr "壓強"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:986
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "PRESSURE_SHORT"
 msgstr "壓強"
 
@@ -5469,12 +5469,12 @@ msgstr "成反比"
 msgid "SCREEN_EFFECT"
 msgstr "外部影響："
 
-#: ../simulation_parameters/common/screen_effects.json:18
+#: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "外部影響："
 
-#: ../simulation_parameters/common/screen_effects.json:23
+#: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "外部影響："
@@ -5486,10 +5486,6 @@ msgstr "外部影響："
 
 #: ../simulation_parameters/common/screen_effects.json:3
 msgid "SCREEN_EFFECT_NONE"
-msgstr ""
-
-#: ../simulation_parameters/common/screen_effects.json:13
-msgid "SCREEN_EFFECT_PIXELATION"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1478 ../src/general/OptionsMenu.tscn:1511
@@ -5515,7 +5511,7 @@ msgstr "海床"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2049
+#: ../src/microbe_stage/MicrobeStage.tscn:2040
 msgid "SECRETE_SLIME"
 msgstr "分泌粘液"
 
@@ -6146,7 +6142,7 @@ msgid "TEMPERATURE"
 msgstr "溫度"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:875
+#: ../src/microbe_stage/MicrobeStage.tscn:868
 msgid "TEMPERATURE_SHORT"
 msgstr "溫度"
 
@@ -6339,7 +6335,7 @@ msgid "TITLE_COLON"
 msgstr "大小："
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2015
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 msgid "TOGGLE_BINDING"
 msgstr "切換連接模式"
 
@@ -6351,7 +6347,7 @@ msgstr "切換吞噬模式"
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1991
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 msgid "TOGGLE_ENGULF"
 msgstr "切換吞噬模式"
 
@@ -6645,7 +6641,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要應用你的變更來加載或卸載任何mods。"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2027
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr "解除所有連接"
 
@@ -6653,7 +6649,7 @@ msgstr "解除所有連接"
 msgid "UNBIND_HELP_TEXT"
 msgstr "解鏈接模式"
 
-#: ../src/general/OptionsMenu.cs:1521
+#: ../src/general/OptionsMenu.cs:1520
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6676,7 +6672,7 @@ msgstr "撤銷上一個動作"
 msgid "UNKNOWN"
 msgstr "未知"
 
-#: ../src/general/OptionsMenu.cs:978
+#: ../src/general/OptionsMenu.cs:977
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "顯示能力界面"
@@ -6690,7 +6686,7 @@ msgstr "鼠標未知鍵"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "此Mod的創意工坊編號未知"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1527
 msgid "UNKNOWN_VERSION"
 msgstr "未知的版本"
 
@@ -6812,7 +6808,7 @@ msgstr "速度（軸：{0}）"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:987 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.cs:986 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

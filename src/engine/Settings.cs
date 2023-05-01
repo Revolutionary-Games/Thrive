@@ -335,6 +335,12 @@ public class Settings
         new(JSONDebug.DebugMode.Automatic);
 
     /// <summary>
+    ///   The screen effect currently being used
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<ScreenEffect?> CurrentScreenEffect { get; private set; } = new(null);
+
+    /// <summary>
     ///   Enables/disables the unsaved progress warning popup for when the player tries to quit the game.
     /// </summary>
     [JsonProperty]
@@ -454,15 +460,11 @@ public class Settings
         Constants.CONTROLLER_DEFAULT_DEADZONE,
     });
 
-    [JsonProperty]
-    public SettingValue<ScreenEffect?> CurrentScreenEffect { get; private set; } = new(null);
-
     // Settings that are edited from elsewhere than the main options menu
     [JsonProperty]
     public SettingValue<IReadOnlyList<string>> EnabledMods { get; private set; } = new(new List<string>());
 
     // Computed properties from other settings
-
     [JsonIgnore]
     public string ActiveUsername =>
         CustomUsernameEnabled &&

@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/gui_common/MouseHoverPanel.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/microbe_stage/MicrobeInspectInfo.cs" type="Script" id=22]
-[ext_resource path="res://src/gui_common/ScreenFilter.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=40]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=41]
@@ -427,12 +426,6 @@ script = ExtResource( 7 )
 [node name="ChromaticFilter" parent="." instance=ExtResource( 67 )]
 margin_left = -0.943848
 margin_right = -0.943848
-
-[node name="ScreenFilter" parent="." instance=ExtResource( 23 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
 
 [node name="MicrobeHUD" type="Control" parent="."]
 pause_mode = 2
@@ -1598,7 +1591,6 @@ __meta__ = {
 [node name="HUDBottomBar" parent="MicrobeHUD/BottomLeft" instance=ExtResource( 16 )]
 margin_top = -43.0
 margin_bottom = -8.0
-SuicideButtonPath = null
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideCompoundsPanels = SubResource( 39 )
@@ -1973,7 +1965,6 @@ theme = ExtResource( 72 )
 scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
-margin_right = 550.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
