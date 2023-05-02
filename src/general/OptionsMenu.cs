@@ -741,6 +741,8 @@ public class OptionsMenu : ControlWithInput
         // that is not efficient at all so instead we should set a flag here and ignore settings compare calls
         // while it is active
 
+        var simulationParameters = SimulationParameters.Instance;
+
         // Graphics
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
@@ -836,6 +838,9 @@ public class OptionsMenu : ControlWithInput
         webFeedsEnabled.Pressed = settings.ThriveNewsFeedEnabled;
         showNewPatchNotes.Pressed = settings.ShowNewPatchNotes;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
+        screenEffectButton.Selected = settings.CurrentScreenEffect.Value != null ?
+            settings.CurrentScreenEffect.Value.Index :
+            simulationParameters.GetScreenEffectByIndex(0).Index;
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
 
         UpdateDismissedNoticeCount();
