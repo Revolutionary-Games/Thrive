@@ -22,7 +22,7 @@ public class ScreenEffect : IRegistryType
 #pragma warning restore 169,649
 
     /// <summary>
-    ///   Index for this difficulty preset in the preset menu
+    ///   Index for this screen effect in the effect menu
     /// </summary>
     [JsonProperty]
     public int Index { get; private set; }

@@ -484,6 +484,7 @@ public class Settings
     public SettingValue<IReadOnlyList<string>> EnabledMods { get; private set; } = new(new List<string>());
 
     // Computed properties from other settings
+
     [JsonIgnore]
     public string ActiveUsername =>
         CustomUsernameEnabled &&

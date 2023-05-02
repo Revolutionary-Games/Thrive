@@ -2,13 +2,9 @@
 
 public class ScreenFilter : ColorRect
 {
-    private ShaderMaterial? material;
-
     public override void _EnterTree()
     {
         base._EnterTree();
-
-        material ??= (ShaderMaterial)Material;
 
         UpdateEffect(Settings.Instance.CurrentScreenEffect);
 
