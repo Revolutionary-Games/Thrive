@@ -41,6 +41,11 @@ layer = 127
 layer = 128
 
 [node name="ScreenFilter" parent="Effects" instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
 
 [node name="ColourblindScreenFilter" parent="Effects" instance=ExtResource( 4 )]
 visible = false

@@ -494,6 +494,15 @@ public class OptionsMenu : ControlWithInput
 
         GetViewport().Connect("size_changed", this, nameof(DisplayResolution));
 
+        var simulationParameters = SimulationParameters.Instance;
+        var screenEffects = simulationParameters.GetAllScreenEffects();
+
+        foreach (var effect in screenEffects.OrderBy(p => p.Index))
+        {
+            // The untranslated name will be translated automatically by Godot during runtime
+            screenEffectButton.AddItem(effect.UntranslatedName);
+        }
+
         selectedOptionsTab = OptionsTab.Graphics;
     }
 
@@ -634,15 +643,6 @@ public class OptionsMenu : ControlWithInput
         errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
         patchNotesBox = GetNode<CustomDialog>(PatchNotesBoxPath);
         patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
-
-        var simulationParameters = SimulationParameters.Instance;
-        var screenEffects = simulationParameters.GetAllScreenEffects();
-
-        foreach (var effect in screenEffects.OrderBy(p => p.Index))
-        {
-            // The untranslated name will be translated automatically by Godot during runtime
-            screenEffectButton.AddItem(effect.UntranslatedName);
-        }
 
         nodeReferencesResolved = true;
     }
