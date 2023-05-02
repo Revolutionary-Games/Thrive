@@ -28,6 +28,7 @@
 
 using System;
 using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   A reimplementation of WindowDialog for a much more customized style and functionality. Suitable for general use
@@ -46,6 +47,29 @@ using Godot;
 /// [Tool]
 public class CustomDialog : CustomWindow
 {
+    /// <summary>
+    ///   Paths to window reordering nodes in ancestors.
+    /// </summary>
+    [Export]
+    public Array<NodePath> WindowReorderingPaths = new();
+
+    /// <summary>
+    ///   Finds first window reordering node in ancestors to connect to.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Ignored when window reordering paths are not empty.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public int AutomaticWindowReorderingDepth = 10;
+
+    /// <summary>
+    ///   If true, window reordering nodes also connect this window to their ancestors.
+    /// </summary>
+    [Export]
+    public bool AllowWindowReorderingRecursion = true;
+
     private static readonly Lazy<StyleBox> CloseButtonFocus = new(CreateCloseButtonFocusStyle);
 
     private string windowTitle = string.Empty;
@@ -187,7 +211,8 @@ public class CustomDialog : CustomWindow
         if (showCloseButton)
             _ = CloseButtonFocus.Value;
 
-        ConnectToWindowReorderingNodes();
+        ConnectToWindowReorderingNodes(AutomaticWindowReorderingDepth, WindowReorderingPaths,
+            AllowWindowReorderingRecursion);
 
         base._EnterTree();
     }
@@ -196,7 +221,7 @@ public class CustomDialog : CustomWindow
     {
         base._ExitTree();
 
-        DisconnectFromWindowReorderingNodes();
+        DisconnectFromWindowReorderingNodes(AllowWindowReorderingRecursion);
     }
 
     public override void _Notification(int what)
@@ -404,6 +429,17 @@ public class CustomDialog : CustomWindow
             RectSize = new Vector2(
                 Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            foreach (var path in WindowReorderingPaths)
+                path.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private static StyleBox CreateCloseButtonFocusStyle()

@@ -12,26 +12,6 @@ using Godot.Collections;
 /// </remarks>
 public class CustomWindow : Control
 {
-    [Export]
-    public Array<NodePath> WindowReorderingPaths = new();
-
-    /// <summary>
-    ///   Finds first window reordering node to connect to
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Ignored when window reordering paths are not empty
-    ///   </para>
-    /// </remarks>
-    [Export]
-    public int AutomaticWindowReorderingDepth = 2;
-
-    /// <summary>
-    ///   Window reordering nodes also connect the window to their ancestors if true
-    /// </summary>
-    [Export]
-    public bool AllowWindowReorderingRecursion = true;
-
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;
 
@@ -331,35 +311,25 @@ public class CustomWindow : Control
         }
     }
 
-    protected void ConnectToWindowReorderingNodes()
+    protected void ConnectToWindowReorderingNodes(int automaticWindowReorderingDepth,
+        Array<NodePath> windowReorderingPaths, bool allowWindowReorderingRecursion)
     {
         var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
-            this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
+            this, automaticWindowReorderingDepth, windowReorderingPaths);
 
         foreach (var windowReordering in windowReorderingAncestorsIEnumerable)
         {
-            windowReordering.Node.ConnectWindow(this, windowReordering.Sibling, AllowWindowReorderingRecursion);
+            windowReordering.Node.ConnectWindow(this, windowReordering.Sibling, allowWindowReorderingRecursion);
             windowReorderingNodes.Add(windowReordering.Node);
         }
     }
 
-    protected void DisconnectFromWindowReorderingNodes()
+    protected void DisconnectFromWindowReorderingNodes(bool allowWindowReorderingRecursion)
     {
         foreach (var node in windowReorderingNodes)
-            node.DisconnectWindow(this, AllowWindowReorderingRecursion);
+            node.DisconnectWindow(this, allowWindowReorderingRecursion);
 
         windowReorderingNodes.Clear();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            foreach (var path in WindowReorderingPaths)
-                path.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
