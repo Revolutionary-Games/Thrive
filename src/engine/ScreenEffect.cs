@@ -28,7 +28,7 @@ public class ScreenEffect : IRegistryType
     public int Index { get; private set; }
 
     [JsonProperty]
-    public string? ShaderPath { get; set; }
+    public string? ShaderPath { get; private set; }
 
     public string InternalName { get; set; } = null!;
 
