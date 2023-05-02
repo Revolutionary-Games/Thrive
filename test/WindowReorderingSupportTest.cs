@@ -10,10 +10,10 @@ public class WindowReorderingSupportTest : Control
 
     private void EnableAllWindows(Array children)
     {
-        foreach (var child in children)
+        foreach (Node child in children)
         {
             (child as CustomWindow)?.Show();
-            EnableAllWindows((child as Node)!.GetChildren());
+            EnableAllWindows(child.GetChildren());
         }
     }
 }
