@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-01 15:48-0500\n"
+"POT-Creation-Date: 2023-05-02 17:26-0500\n"
 "PO-Revision-Date: 2023-04-17 02:02+0000\n"
 "Last-Translator: Zero Cool <zerocool@e.email>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -216,11 +216,11 @@ msgstr "appliquer les changements"
 msgid "APRIL"
 msgstr "Avril"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2094
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Êtes-vous sûr de vouloir restaurer tous les paramètres par défaut ?"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2103
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par défauts ?"
 
@@ -366,7 +366,7 @@ msgstr "état de l'auto-évo:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Avance auto"
 
-#: ../src/general/OptionsMenu.cs:1022 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1027 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Automatique ({0}x{1})"
 
@@ -387,7 +387,7 @@ msgstr "Stade microbien"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2032 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2031 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -615,7 +615,7 @@ msgstr "Caméra"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2183
+#: ../src/general/OptionsMenu.tscn:2182
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -875,7 +875,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Suppression des Anciennes Sauvegardes"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2258
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2257
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -887,7 +887,7 @@ msgstr "Suppression des Anciennes Sauvegardes"
 msgid "CLOSE"
 msgstr "Fermer"
 
-#: ../src/general/OptionsMenu.tscn:2113
+#: ../src/general/OptionsMenu.tscn:2112
 msgid "CLOSE_OPTIONS"
 msgstr "Fermer les paramètres ?"
 
@@ -997,7 +997,7 @@ msgstr "Wiki de la communauté"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Visitez le wiki de la communauté"
 
-#: ../src/general/OptionsMenu.tscn:2001
+#: ../src/general/OptionsMenu.tscn:2000
 msgid "COMPILED_AT_COLON"
 msgstr "Compilé à :"
 
@@ -1394,7 +1394,7 @@ msgstr "Débogueur"
 msgid "DECEMBER"
 msgstr "Décembre"
 
-#: ../src/general/OptionsMenu.cs:1488
+#: ../src/general/OptionsMenu.cs:1493
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Périphérique de sortie par défaut"
 
@@ -1581,7 +1581,7 @@ msgstr "Désactivé"
 msgid "DISABLE_ALL"
 msgstr "Tout désactiver"
 
-#: ../src/general/OptionsMenu.tscn:2166
+#: ../src/general/OptionsMenu.tscn:2165
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuler et continuer"
 
@@ -1929,7 +1929,7 @@ msgstr "Épipélagique"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2194 ../src/general/OptionsMenu.tscn:2202
+#: ../src/general/OptionsMenu.tscn:2193 ../src/general/OptionsMenu.tscn:2201
 msgid "ERROR"
 msgstr "Erreur"
 
@@ -1943,7 +1943,7 @@ msgstr "Erreur de création du dossier pour la modification"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Erreur de création du fichier d'information pour la modification"
 
-#: ../src/general/OptionsMenu.tscn:2204
+#: ../src/general/OptionsMenu.tscn:2203
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Erreur : les nouveaux paramètres n'ont pas été sauvegardés dans le fichier de configuration."
 
@@ -1988,11 +1988,11 @@ msgstr ""
 "\n"
 "Si aucun de ces cas ne s'applique, une erreur s'est produite. Veuillez en informer l'équipe de développement et fournir les logs de jeu."
 
-#: ../src/general/OptionsMenu.tscn:1973
+#: ../src/general/OptionsMenu.tscn:1972
 msgid "EXACT_VERSION_COLON"
 msgstr "Version exacte de Thrive :"
 
-#: ../src/general/OptionsMenu.tscn:1971 ../src/general/OptionsMenu.tscn:1982
+#: ../src/general/OptionsMenu.tscn:1970 ../src/general/OptionsMenu.tscn:1981
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Ceci est le code exact à partir duquel cette version de Thrive a été compilée"
 
@@ -2334,7 +2334,7 @@ msgstr "Génération :"
 msgid "GITHUB_TOOLTIP"
 msgstr "Visitez notre repository Github"
 
-#: ../src/general/OptionsMenu.cs:1036
+#: ../src/general/OptionsMenu.cs:1041
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2346,7 +2346,7 @@ msgstr "Alerte Mode GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Vous utilisez Thrive avec le GLES2. Cela demeure non testé et risque de causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
 
-#: ../src/general/OptionsMenu.cs:1041
+#: ../src/general/OptionsMenu.cs:1046
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2931,15 +2931,15 @@ msgstr "nombre -"
 msgid "LANGUAGE"
 msgstr "Langue :"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1533
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Aidez-nous à traduire le jeu (complet à {0}%)"
 
-#: ../src/general/OptionsMenu.cs:1524
+#: ../src/general/OptionsMenu.cs:1529
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Cette langue est encore en cours de rédaction ({0}% effectué)"
 
-#: ../src/general/OptionsMenu.cs:1520
+#: ../src/general/OptionsMenu.cs:1525
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Cette traduction est très incomplète ({0}% effectué). Aidez-nous à la terminer !"
 
@@ -3763,7 +3763,7 @@ msgstr "Divers"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Divers - Stades 3D"
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1927
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Divers"
@@ -3827,7 +3827,7 @@ msgstr "Modifier le type"
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:967
+#: ../src/general/MainMenu.tscn:962
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Des mods installés ont été détectés, mais aucun mod n'a été activé.\n"
@@ -3924,11 +3924,11 @@ msgstr "Nom de dossier interne :"
 msgid "MOD_LICENSE"
 msgstr "Licence :"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:976
 msgid "MOD_LOAD_ERRORS"
 msgstr "Erreurs liées au chargement de mods"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:977
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
 
@@ -4348,7 +4348,7 @@ msgstr "Aucun évènement enregistré"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Pas de dossier de sauvegarde trouvé"
 
-#: ../src/general/MainMenu.tscn:965
+#: ../src/general/MainMenu.tscn:960
 msgid "NO_MODS_ENABLED"
 msgstr "Pas de mods activés"
 
@@ -4365,7 +4365,7 @@ msgstr "Aucune sauvegarde trouvée"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Pas de dossier de sauvegarde trouvé"
 
-#: ../src/general/OptionsMenu.tscn:2212
+#: ../src/general/OptionsMenu.tscn:2211
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Pas de dossier de captures d'écrans trouvé"
 
@@ -4766,7 +4766,7 @@ msgstr "Thrive a démarré en mode sûr"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2222
+#: ../src/general/OptionsMenu.tscn:2221
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5183,7 +5183,7 @@ msgstr "Noyau"
 msgid "RESEARCH"
 msgstr "Rechercher"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2043
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2042
 msgid "RESET"
 msgstr "Réinitialiser"
 
@@ -5195,7 +5195,7 @@ msgstr "Réinitialiser les zones mortes"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Réinitialiser les popups désactivées"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2102
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Réinitialiser les entrées aux valeurs par défaut ?"
 
@@ -5203,11 +5203,11 @@ msgstr "Réinitialiser les entrées aux valeurs par défaut ?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Réinitialiser les raccourcis clavier"
 
-#: ../src/general/OptionsMenu.tscn:2083
+#: ../src/general/OptionsMenu.tscn:2082
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Par Défaut"
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2093
 msgid "RESET_TO_DEFAULTS"
 msgstr "Restaurer par défaut ?"
 
@@ -5377,7 +5377,7 @@ msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:972
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive a démarré en mode sans échec en raison d'un échec de démarrage antérieur.\n"
@@ -5389,15 +5389,15 @@ msgstr ""
 "\n"
 "Si vous ne résolvez pas le problème à l'origine de l'échec du démarrage, vous devrez redémarrer et faire planter Thrive plusieurs fois pour revenir en mode sans échec."
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:970
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive a démarré en mode sans échec"
 
-#: ../src/general/OptionsMenu.tscn:2057 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2056 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Sauvegarder"
 
-#: ../src/general/OptionsMenu.tscn:2156
+#: ../src/general/OptionsMenu.tscn:2155
 msgid "SAVE_AND_CONTINUE"
 msgstr "Sauvegarder et continuer"
 
@@ -5510,18 +5510,20 @@ msgstr "Proportionel"
 msgid "SCALING_ON_INVERSE"
 msgstr "Inversement proportionnel"
 
-#: ../src/general/OptionsMenu.tscn:1939
+#: ../src/general/OptionsMenu.tscn:1938
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Effets externes :"
 
 #: ../simulation_parameters/common/screen_effects.json:13
-msgid "SCREEN_EFFECT_GAMEBOY"
-msgstr ""
+#, fuzzy
+msgid "SCREEN_EFFECT_GB"
+msgstr "Effets externes :"
 
 #: ../simulation_parameters/common/screen_effects.json:18
-msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr ""
+#, fuzzy
+msgid "SCREEN_EFFECT_GBC"
+msgstr "Effets externes :"
 
 #: ../simulation_parameters/common/screen_effects.json:8
 msgid "SCREEN_EFFECT_GREYSCALE"
@@ -6014,12 +6016,12 @@ msgstr "Steam est indisponible pour le moment, veuillez réessayer ultérieureme
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Une erreur Steam inconnue vient de se produire"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:992
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "L'initialisation de la bibliothèque du client Steam a échoué"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:994
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "La mise à jour de la sauvegarde a échouée à cause de cette erreur :"
@@ -6237,7 +6239,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Équipe de test"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:984
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Merci de soutenir le développement de Thrive en achetant cette copie de Thrive !\n"
@@ -6253,7 +6255,7 @@ msgstr ""
 "\n"
 "Si vous avez aimé le jeu, n'hésitez pas à en parler à vos amis."
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:982
 msgid "THANK_YOU_TITLE"
 msgstr "Merci"
 
@@ -6542,7 +6544,7 @@ msgstr "Essayez de prendre une capture d'écran !"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Essayez de sauvegarder !"
 
-#: ../src/general/OptionsMenu.tscn:2214
+#: ../src/general/OptionsMenu.tscn:2213
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Essayez de prendre une capture d'écran !"
 
@@ -6738,7 +6740,7 @@ msgstr "Dissocier tout"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Mode de Délier"
 
-#: ../src/general/OptionsMenu.cs:1589
+#: ../src/general/OptionsMenu.cs:1594
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Il s'agit d'une version de debug où les informations ci-dessous ne sont probablement pas à jour"
 
@@ -6758,7 +6760,7 @@ msgstr "Annuler la dernière action"
 msgid "UNKNOWN"
 msgstr "Entrée inconnue"
 
-#: ../src/general/OptionsMenu.cs:1046
+#: ../src/general/OptionsMenu.cs:1051
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Inconnu"
 
@@ -6770,7 +6772,7 @@ msgstr "Souris inconnue"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Inconnu sur Windows"
 
-#: ../src/general/OptionsMenu.cs:1596
+#: ../src/general/OptionsMenu.cs:1601
 msgid "UNKNOWN_VERSION"
 msgstr "Version inconnue"
 
@@ -6779,7 +6781,7 @@ msgstr "Version inconnue"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Souris inconnue"
 
-#: ../src/general/OptionsMenu.tscn:2133
+#: ../src/general/OptionsMenu.tscn:2132
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Des changements non sauvegardés vont être abandonnés.\n"
@@ -6897,7 +6899,7 @@ msgstr "Vertical (Axe : {0})"
 msgid "VIDEO_MEMORY"
 msgstr "Mémoire vidéo actuellement utilisée :"
 
-#: ../src/general/OptionsMenu.cs:1055 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1060 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiO"
 

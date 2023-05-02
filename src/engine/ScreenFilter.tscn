@@ -3,6 +3,7 @@
 [ext_resource path="res://src/engine/ScreenFilter.cs" type="Script" id=1]
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
 
 [node name="ScreenFilter" type="ColorRect"]
 material = SubResource( 2 )

@@ -270,9 +270,6 @@ public class OptionsMenu : ControlWithInput
     public NodePath ScreenshotDirectoryWarningBoxPath = null!;
 
     [Export]
-    public NodePath ScreenEffectButtonPath = null!;
-
-    [Export]
     public NodePath DefaultsConfirmationBoxPath = null!;
 
     [Export]
@@ -295,6 +292,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath JSONDebugModePath = null!;
+
+    [Export]
+    public NodePath ScreenEffectSelectPath = null!;
 
     [Export]
     public NodePath CommitLabelPath = null!;
@@ -424,7 +424,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox showNewPatchNotes = null!;
     private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
-    private OptionButton screenEffectButton = null!;
+    private OptionButton screenEffectSelect = null!;
     private Label commitLabel = null!;
     private Label builtAtLabel = null!;
 
@@ -487,21 +487,13 @@ public class OptionsMenu : ControlWithInput
 
         LoadLanguages();
         LoadAudioOutputDevices();
+        LoadScreenEffects();
 
         inputGroupList.OnControlsChanged += OnControlsChanged;
 
         deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
         GetViewport().Connect("size_changed", this, nameof(DisplayResolution));
-
-        var simulationParameters = SimulationParameters.Instance;
-        var screenEffects = simulationParameters.GetAllScreenEffects();
-
-        foreach (var effect in screenEffects.OrderBy(p => p.Index))
-        {
-            // The untranslated name will be translated automatically by Godot during runtime
-            screenEffectButton.AddItem(effect.UntranslatedName);
-        }
 
         selectedOptionsTab = OptionsTab.Graphics;
     }
@@ -631,7 +623,7 @@ public class OptionsMenu : ControlWithInput
         showNewPatchNotes = GetNode<CustomCheckBox>(ShowNewPatchNotesPath);
         dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
-        screenEffectButton = GetNode<OptionButton>(ScreenEffectButtonPath);
+        screenEffectSelect = GetNode<OptionButton>(ScreenEffectSelectPath);
         commitLabel = GetNode<Label>(CommitLabelPath);
         builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
         builtAtLabel.RegisterCustomFocusDrawer();
@@ -838,7 +830,7 @@ public class OptionsMenu : ControlWithInput
         webFeedsEnabled.Pressed = settings.ThriveNewsFeedEnabled;
         showNewPatchNotes.Pressed = settings.ShowNewPatchNotes;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
-        screenEffectButton.Selected = settings.CurrentScreenEffect.Value != null ?
+        screenEffectSelect.Selected = settings.CurrentScreenEffect.Value != null ?
             settings.CurrentScreenEffect.Value.Index :
             simulationParameters.GetScreenEffectByIndex(0).Index;
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
@@ -973,7 +965,7 @@ public class OptionsMenu : ControlWithInput
                 ShowNewPatchNotesPath.Dispose();
                 DismissedNoticeCountPath.Dispose();
                 JSONDebugModePath.Dispose();
-                ScreenEffectButtonPath.Dispose();
+                ScreenEffectSelectPath.Dispose();
                 CommitLabelPath.Dispose();
                 BuiltAtLabelPath.Dispose();
                 UnsavedProgressWarningPath.Dispose();
@@ -1510,6 +1502,17 @@ public class OptionsMenu : ControlWithInput
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
             languageSelection.AddItem(locale + " - " + native);
+        }
+    }
+
+    private void LoadScreenEffects()
+    {
+        var screenEffects = SimulationParameters.Instance.GetAllScreenEffects();
+
+        foreach (var effect in screenEffects.OrderBy(p => p.Index))
+        {
+            // The untranslated name will be translated automatically by Godot during runtime
+            screenEffectSelect.AddItem(effect.UntranslatedName);
         }
     }
 
@@ -2275,6 +2278,14 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnScreenEffectSelected(int index)
+    {
+        Settings.Instance.CurrentScreenEffect.Value =
+            SimulationParameters.Instance.GetScreenEffectByIndex(index);
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnUnsavedProgressWarningToggled(bool pressed)
     {
         Settings.Instance.ShowUnsavedProgressWarning.Value = pressed;
@@ -2403,13 +2414,5 @@ public class OptionsMenu : ControlWithInput
 
         patchNotesDisplayer.ShowLatest();
         patchNotesBox.PopupCenteredShrink();
-    }
-
-    private void OnScreenEffectSelected(int index)
-    {
-        Settings.Instance.CurrentScreenEffect.Value =
-            SimulationParameters.Instance.GetScreenEffectByIndex(index);
-
-        UpdateResetSaveButtonState();
     }
 }

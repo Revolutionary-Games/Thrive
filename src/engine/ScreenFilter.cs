@@ -2,9 +2,13 @@
 
 public class ScreenFilter : ColorRect
 {
+    private ShaderMaterial? material;
+
     public override void _EnterTree()
     {
         base._EnterTree();
+
+        material ??= (ShaderMaterial)Material;
 
         UpdateEffect(Settings.Instance.CurrentScreenEffect);
 
@@ -22,12 +26,12 @@ public class ScreenFilter : ColorRect
     {
         if (currentEffect?.ShaderPath == null)
         {
-            ((ShaderMaterial)Material).Shader = null;
+            material!.Shader = null;
             return;
         }
 
         var effectShader = GD.Load<Shader>(currentEffect.ShaderPath);
 
-        ((ShaderMaterial)Material).Shader = effectShader;
+        material!.Shader = effectShader;
     }
 }
