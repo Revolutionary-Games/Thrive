@@ -341,6 +341,12 @@ public class Settings
         new(JSONDebug.DebugMode.Automatic);
 
     /// <summary>
+    ///   The screen effect currently being used
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<ScreenEffect?> CurrentScreenEffect { get; private set; } = new(null);
+
+    /// <summary>
     ///   Enables/disables the unsaved progress warning popup for when the player tries to quit the game.
     /// </summary>
     [JsonProperty]
