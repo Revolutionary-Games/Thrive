@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -6,8 +7,13 @@ using Newtonsoft.Json;
 /// </summary>
 public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 {
+    [Export]
+    public NodePath? NameLabelSystemPath;
+
 #pragma warning disable CA2213
     private PackedScene cityScene = null!;
+
+    private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 #pragma warning restore CA2213
 
     private WorldResource foodResource = null!;
@@ -32,7 +38,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         cityScene = SpawnHelpers.LoadCityScene();
 
-        // TODO: systems
+        nameLabelSystem.Init(strategicCamera, rootOfDynamicallySpawned);
+        nameLabelSystem.Visible = true;
 
         HUD.Init(this);
 
@@ -48,7 +55,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         HUD = GetNode<IndustrialHUD>("IndustrialHUD");
 
-        // TODO: Systems
+        nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
     }
 
     public override void _Process(float delta)
@@ -78,7 +85,13 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     public PlacedCity AddCity(Transform location)
     {
         // TODO: Proper storing of created structures for easier processing
-        return SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene);
+        var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene);
+
+        var binds = new Array();
+        binds.Add(city);
+        city.Connect(nameof(PlacedCity.OnSelected), this, nameof(OpenCityInfo), binds);
+
+        return city;
     }
 
     public override void StartNewGame()
@@ -139,6 +152,16 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            NameLabelSystemPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void HandlePopulationGrowth()
     {
         // TODO: housing calculation
@@ -157,5 +180,10 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
             // Took some food to grow
             ++population;
         }
+    }
+
+    private void OpenCityInfo(PlacedCity city)
+    {
+        HUD.OpenCityScreen(city);
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/industrial_stage/IndustrialStage.cs" type="Script" id=1]
 [ext_resource path="res://src/society_stage/StrategicCamera.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/industrial_stage/gui/IndustrialHUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/industrial_stage/PlayerIndustrialInput.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/industrial_stage/gui/StrategicEntityNameLabelSystem.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 3 )
@@ -37,6 +38,7 @@ script = ExtResource( 1 )
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("IndustrialHUD")
 StrategicCameraPath = NodePath("World/StrategicCamera")
+NameLabelSystemPath = NodePath("StrategicEntityNameLabelSystem")
 
 [node name="World" type="Node" parent="."]
 
@@ -59,6 +61,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800 )
 mesh = SubResource( 5 )
 
 [node name="PlayerIndustrialInput" parent="." instance=ExtResource( 9 )]
+
+[node name="StrategicEntityNameLabelSystem" parent="." instance=ExtResource( 10 )]
+visible = false
 
 [node name="IndustrialHUD" parent="." instance=ExtResource( 7 )]
 MenuPath = NodePath("../PauseMenu")

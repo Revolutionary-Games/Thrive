@@ -405,6 +405,10 @@ public static class Constants
 
     public const float INVENTORY_DRAG_START_ALLOWANCE = 0.15f;
 
+    public const float NAME_LABELS_FULL_UPDATE_INTERVAL = 0.2f;
+    public const int NAME_LABELS_MAX_COUNT_PER_CATEGORY = 30;
+    public const float NAME_LABEL_VISIBILITY_DISTANCE = 200.0f;
+
     /// <summary>
     ///   This is used just as the default value for health and max
     ///   health of a microbe. The default membrane actually
@@ -1012,6 +1016,9 @@ public static class Constants
     public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
 
     public const string INTERACTABLE_GROUP = "interactable";
+
+    public const string CITY_ENTITY_GROUP = "city";
+    public const string NAME_LABEL_GROUP = "labeled";
 
     /// <summary>
     ///   Group for entities that can show a progress bar above them in the GUI

@@ -355,7 +355,8 @@ public static class SpawnHelpers
         worldRoot.AddChild(city);
         city.Transform = location;
 
-        city.AddToGroup(Constants.STRUCTURE_ENTITY_GROUP);
+        city.AddToGroup(Constants.CITY_ENTITY_GROUP);
+        city.AddToGroup(Constants.NAME_LABEL_GROUP);
 
         return city;
     }
