@@ -315,6 +315,7 @@
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
+    <Compile Include="src\engine\ScreenFilter.cs" />
     <Compile Include="src\gui_common\ActionButton.cs" />
     <Compile Include="src\gui_common\CheatMenu.cs" />
     <Compile Include="src\gui_common\ChemicalEquation.cs" />
@@ -542,6 +543,7 @@
     <Compile Include="src\general\GameWorld.cs" />
     <Compile Include="src\general\WorldGenerationSettings.cs" />
     <Compile Include="src\general\DifficultyPreset.cs" />
+    <Compile Include="src\engine\ScreenEffect.cs" />
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
     <Compile Include="src\microbe_stage\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\IProcessable.cs" />
@@ -775,6 +777,7 @@
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
     <Content Include="simulation_parameters\common\patch_notes.yml" />
+    <Content Include="simulation_parameters\common\screen_effects.json" />
     <Content Include="simulation_parameters\common\translations_info.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />
