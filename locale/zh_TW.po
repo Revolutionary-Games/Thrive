@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-03 15:12+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -215,11 +215,11 @@ msgstr "應用變更"
 msgid "APRIL"
 msgstr "四月"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你確定要把「所有」設置都重置為默認值嗎？"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "您確定要將輸入設置重置為默認嗎？"
 
@@ -363,9 +363,13 @@ msgstr "Auto-Evo 運行狀態："
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自動前進"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "自動（{0}x{1}）"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:37
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -384,7 +388,7 @@ msgstr "微生物階段"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -577,9 +581,14 @@ msgstr "瀏覽"
 msgid "BROWSE_WORKSHOP"
 msgstr "瀏覽工作坊"
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "結構"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:74
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "結構"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -611,7 +620,7 @@ msgstr "視角"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -863,12 +872,17 @@ msgstr "纖毛與鞭毛相似，但它們不提供方向性推力，而是提供
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "增加大體型細胞的轉向速度。"
 
+#: ../src/industrial_stage/gui/CityScreen.tscn:89
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "生物統計"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除舊存檔"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -880,7 +894,7 @@ msgstr "清除舊存檔"
 msgid "CLOSE"
 msgstr "關閉"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "關閉選項菜單？"
 
@@ -990,7 +1004,7 @@ msgstr "社區Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "訪問我們的社區wiki"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 msgid "COMPILED_AT_COLON"
 msgstr "編譯於："
 
@@ -1380,7 +1394,7 @@ msgstr "調試面板"
 msgid "DECEMBER"
 msgstr "十二月"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默認輸出設備"
 
@@ -1571,7 +1585,7 @@ msgstr "已禁用"
 msgid "DISABLE_ALL"
 msgstr "禁用所有"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "取消並繼續"
 
@@ -1931,7 +1945,7 @@ msgstr "遠洋表層帶"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "斧頭"
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "錯誤"
 
@@ -1943,7 +1957,7 @@ msgstr "為mod創建文件夾時出錯"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "創建MOD信息文件出錯"
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "錯誤：無法將新設置保存至配置文件。"
 
@@ -1991,12 +2005,12 @@ msgstr "由Revolutionary Games Studio製作"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "由Revolutionary Games Studio製作"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "世代："
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "自殺"
@@ -2010,6 +2024,11 @@ msgstr "處理已載入對象時發生異常"
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加載存檔數據時發生異常"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:55
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "輸入已有的編號"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2334,7 +2353,7 @@ msgstr "世代："
 msgid "GITHUB_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2346,7 +2365,7 @@ msgstr "GLES2模式警告"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2927,15 +2946,15 @@ msgstr "數字鍵盤 -"
 msgid "LANGUAGE"
 msgstr "語言："
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此語言已翻譯完成 {0}%"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "此語言仍在翻譯中（已完成 {0}%）"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻譯非常不完整（已完成 {0}%）請幫助我們！"
 
@@ -4180,6 +4199,11 @@ msgstr "靜音"
 msgid "NAME"
 msgstr "名字："
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "生物群系：{0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "負ATP平衡"
@@ -4377,7 +4401,7 @@ msgstr "未找到存檔"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存檔目錄"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截圖目錄"
 
@@ -4784,7 +4808,7 @@ msgstr "移除本地數據"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "你上次玩 Thrive 是 {0}, 之後有 {1} 個新版本"
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5206,7 +5230,7 @@ msgstr "細胞核"
 msgid "RESEARCH"
 msgstr "搜索"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "重置"
 
@@ -5219,7 +5243,7 @@ msgstr "重置為默認"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "重置禁用彈出窗口的設定"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "將輸入重置為默認？"
 
@@ -5228,11 +5252,11 @@ msgstr "將輸入重置為默認？"
 msgid "RESET_KEYBINDINGS"
 msgstr "重置輸入"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默認"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置為默認？"
 
@@ -5415,11 +5439,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "移除本地數據"
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "儲存"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存並繼續"
 
@@ -6555,7 +6579,7 @@ msgstr "嘗試截一些圖吧！"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "試著存個檔吧！"
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "嘗試截一些圖吧！"
 
@@ -6752,7 +6776,7 @@ msgstr "解除所有連接"
 msgid "UNBIND_HELP_TEXT"
 msgstr "解鏈接模式"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6775,7 +6799,7 @@ msgstr "撤銷上一個動作"
 msgid "UNKNOWN"
 msgstr "未知"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "顯示能力界面"
@@ -6789,7 +6813,7 @@ msgstr "鼠標未知鍵"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "此Mod的創意工坊編號未知"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 msgid "UNKNOWN_VERSION"
 msgstr "未知的版本"
 
@@ -6797,7 +6821,7 @@ msgstr "未知的版本"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "此Mod的創意工坊編號未知"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改將被丟棄。\n"
@@ -6911,7 +6935,7 @@ msgstr "速度（軸：{0}）"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

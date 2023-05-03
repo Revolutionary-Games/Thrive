@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-03 15:12+0300\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -204,11 +204,11 @@ msgstr "Applica modifiche"
 msgid "APRIL"
 msgstr "Aprile"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Sicuro di voler ripristinare TUTTE le impostazioni ai valori predefiniti?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Sei sicuro di voler ripristinare i comandi ai valori iniziali?"
 
@@ -352,9 +352,13 @@ msgstr "stato d'esecuzione:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Muoviti automaticamente avanti"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Automatica ({0}x{1})"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:37
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -373,7 +377,7 @@ msgstr "Fase Microbica"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -567,9 +571,14 @@ msgstr "Naviga"
 msgid "BROWSE_WORKSHOP"
 msgstr "Naviga il Workshop"
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "Struttura"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:74
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "Struttura"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -601,7 +610,7 @@ msgstr "Telecamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -853,12 +862,17 @@ msgstr "Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che 
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Aumentano la velocità di viraggio. Utili per cellule molto grandi."
 
+#: ../src/industrial_stage/gui/CityScreen.tscn:89
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "Statistiche dell'organismo"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Pulisci i vecchi salvataggi"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -870,7 +884,7 @@ msgstr "Pulisci i vecchi salvataggi"
 msgid "CLOSE"
 msgstr "Chiudi"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Chiudere le opzioni?"
 
@@ -983,7 +997,7 @@ msgstr "nostra Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Esci dal gioco"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Composti:"
@@ -1363,7 +1377,7 @@ msgstr "Pannello di debug"
 msgid "DECEMBER"
 msgstr "Dicembre"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio di default"
 
@@ -1539,7 +1553,7 @@ msgstr "Disattivato"
 msgid "DISABLE_ALL"
 msgstr "Disattiva tutte"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Continua senza salvare"
 
@@ -1883,7 +1897,7 @@ msgstr "Epipelagico"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "Errore"
 
@@ -1895,7 +1909,7 @@ msgstr "Errore nella creazione della cartella per la mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Si è verificato un errore nella creazione del file di info"
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Errore: è stato impossibile salvare nuove impostazioni su file di configurazione."
 
@@ -1938,12 +1952,12 @@ msgstr "Albero evolutivo"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Albero evolutivo"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Versione:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
@@ -1955,6 +1969,11 @@ msgstr "Si è verificata un'eccezione nell'elaborazione degli oggetti caricati"
 #: ../src/saving/InProgressLoad.cs:116
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Si è verificata un'eccezione nel caricamento dei dati di salvataggio"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:55
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Inserisci ID esistente"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2287,7 +2306,7 @@ msgstr "Generazione:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Esci dal gioco"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2299,7 +2318,7 @@ msgstr "Avvertimento Modalità GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2880,15 +2899,15 @@ msgstr "- (tastierino numerico)"
 msgid "LANGUAGE"
 msgstr "Lingua:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Percentuale di completamento di questa traduzione: {0}%"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Questa traduzione è ancora in corso ({0}% fatto)"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
@@ -4114,6 +4133,11 @@ msgstr "Muto"
 msgid "NAME"
 msgstr "Nome:"
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Bioma: {0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Bilancio di ATP negativo"
@@ -4304,7 +4328,7 @@ msgstr "Nessun Salvataggio Trovato"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Nessuna cartella dei salvataggi trovata"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Cartella degli screenshot non trovata"
 
@@ -4701,7 +4725,7 @@ msgstr "Rimuovi Dati Locali"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5110,7 +5134,7 @@ msgstr "Richiede nucleo"
 msgid "RESEARCH"
 msgstr "Cerca"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Ripristina"
 
@@ -5123,7 +5147,7 @@ msgstr "Ripristinare le impostazioni predefinite?"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ripristinare i comandi?"
 
@@ -5132,11 +5156,11 @@ msgstr "Ripristinare i comandi?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Ripristina i comandi"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predefinite"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ripristinare le impostazioni predefinite?"
 
@@ -5317,11 +5341,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Rimuovi Dati Locali"
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Salva"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salva e continua"
 
@@ -6433,7 +6457,7 @@ msgstr "Prova a scattare qualche screenshot!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Prova a creare un salvataggio!"
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prova a scattare qualche screenshot!"
 
@@ -6617,7 +6641,7 @@ msgstr "Slega tutte"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Modalità di slegatura"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6640,7 +6664,7 @@ msgstr "Annulla l'ultima azione"
 msgid "UNKNOWN"
 msgstr "Tasto sconosciuto"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Sconosciuto"
 
@@ -6652,7 +6676,7 @@ msgstr "Tasto sconosciuto del mouse"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Sconosciuto su Windows"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versione:"
@@ -6661,7 +6685,7 @@ msgstr "Versione:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Workshop ID sconosciuto per questa mod"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hai modifiche non salvate. Saranno eliminate.\n"
@@ -6776,7 +6800,7 @@ msgstr "Nuovo nome:"
 msgid "VIDEO_MEMORY"
 msgstr "Memoria video utilizzata al momento:"
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 

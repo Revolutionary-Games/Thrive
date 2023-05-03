@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-03 15:12+0300\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -207,11 +207,11 @@ msgstr "Változtatások elfogadása"
 msgid "APRIL"
 msgstr "Április"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Biztos MINDEN beállítást vissza akarsz állítani alap értékekre?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Biztos vissza akarod állítani a bemeneti beállításokat az alapokra?"
 
@@ -357,9 +357,13 @@ msgstr "futtatási státusz:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automata mozgás előre"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:37
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -378,7 +382,7 @@ msgstr "Sejtfázis"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -577,9 +581,14 @@ msgstr "Böngészés"
 msgid "BROWSE_WORKSHOP"
 msgstr "A műhely böngészése"
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "Struktúra"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:74
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "Struktúra"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -611,7 +620,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -871,12 +880,17 @@ msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#: ../src/industrial_stage/gui/CityScreen.tscn:89
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "Organizmus statisztikái"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Régi mentések törlése"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -888,7 +902,7 @@ msgstr "Régi mentések törlése"
 msgid "CLOSE"
 msgstr "Bezár"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Bezárod a beállítás panelt?"
 
@@ -1001,7 +1015,7 @@ msgstr "Wikipédiánk"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Kilépés a játékból"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Vegyületek:"
@@ -1385,7 +1399,7 @@ msgstr "Debug panel"
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Alap kimeneti eszköz"
 
@@ -1565,7 +1579,7 @@ msgstr "Kikapcsolva"
 msgid "DISABLE_ALL"
 msgstr "Az összes tiltása"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Elvet és folytatás"
 
@@ -1914,7 +1928,7 @@ msgstr "Epipelagikus"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "Hiba"
 
@@ -1926,7 +1940,7 @@ msgstr "Hiba a mod-hoz való mappa létrehozása közben"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Hiba a mod fájllá való átalakítása közben"
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Hiba: A beállításokat nem sikerült menteni."
 
@@ -1970,12 +1984,12 @@ msgstr "A Revolutionary Games Studio-tól"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "A Revolutionary Games Studio-tól"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Verzió:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Öngyilkosság"
@@ -1987,6 +2001,11 @@ msgstr ""
 #: ../src/saving/InProgressLoad.cs:116
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:55
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Írj be egy létező ID-t"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2324,7 +2343,7 @@ msgstr "Generáció:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Kilépés a játékból"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr ""
 
@@ -2336,7 +2355,7 @@ msgstr "GLES2 mód figyelmeztetés"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr ""
 
@@ -2914,15 +2933,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Nyelv:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Erre a nyelvre való fordítás {0}%-a van elkészülve"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "A játéknak erre a nyelvre való lefordítása még mindig készülőben van ({0}% kész)"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). Kérünk, hogy segíts nekünk ez ügyben te is!"
 
@@ -4151,6 +4170,11 @@ msgstr "Némítás"
 msgid "NAME"
 msgstr "Név:"
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Biom: {0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatív ATP egyensúly"
@@ -4342,7 +4366,7 @@ msgstr "Nincs mentés"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "A mentések mappa nem található"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "A képernyőképmappa nem található"
 
@@ -4743,7 +4767,7 @@ msgstr "Helyi adatok törlése"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5153,7 +5177,7 @@ msgstr "Sejtmag"
 msgid "RESEARCH"
 msgstr "Search"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Visszaállít"
 
@@ -5166,7 +5190,7 @@ msgstr "Visszaállítja-e az alap dolgokat?"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
 
@@ -5175,11 +5199,11 @@ msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Bemeneti eszközök visszaállítása"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Alapok"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Visszaállítja-e az alap dolgokat?"
 
@@ -5360,11 +5384,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Helyi adatok törlése"
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Mentés"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Mentés és folytatás"
 
@@ -6496,7 +6520,7 @@ msgstr "Próbálj pár képernyőképet készíteni!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Próbálj egy mentést létrehozni!"
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Próbálj pár képernyőképet készíteni!"
 
@@ -6669,7 +6693,7 @@ msgstr "Összes szétválasztása"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Szétkapcsolás mód"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6692,7 +6716,7 @@ msgstr "Utolsó akció visszavonása"
 msgid "UNKNOWN"
 msgstr "Ismeretlen"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Képesség sáv megjelenítése"
@@ -6705,7 +6729,7 @@ msgstr "Ismeretlen egér"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Ismeretlen a Windows-on"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Mod verzió:"
@@ -6714,7 +6738,7 @@ msgstr "Mod verzió:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Mod műhely ID-je ismeretlen"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Mentetlen változtatásaid vannak, melyek el fognak veszni.\n"
@@ -6830,7 +6854,7 @@ msgstr "Új név:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

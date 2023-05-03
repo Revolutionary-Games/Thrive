@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-03 15:12+0300\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -202,11 +202,11 @@ msgstr "Použiť zmeny"
 msgid "APRIL"
 msgstr "Apríl"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Naozaj chceš obnoviť VŠETKY predvolené nastavenia?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Naozaj chceš obnoviť predvolené nastavenia ovládania?"
 
@@ -350,9 +350,13 @@ msgstr "stav spustenia:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatický pohyb dopredu"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Automatické ({0}x{1})"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:37
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -371,7 +375,7 @@ msgstr "Fáza Mikróbov"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -574,9 +578,14 @@ msgstr "Prehľadávať"
 msgid "BROWSE_WORKSHOP"
 msgstr "Prehľadávať Workshop"
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "Štruktúra"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:74
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "Štruktúra"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -608,7 +617,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -861,12 +870,17 @@ msgstr ""
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Zvyšuje rýchlosť otáčania veľkých buniek."
 
+#: ../src/industrial_stage/gui/CityScreen.tscn:89
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "Štatistika organizmu"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -878,7 +892,7 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Zavrieť"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Zatvoriť možnosti?"
 
@@ -991,7 +1005,7 @@ msgstr "naša Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Opustiť hru"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Zlúčeniny:"
@@ -1367,7 +1381,7 @@ msgstr "Debugovací panel"
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Predvolené výstupné zariadenie"
 
@@ -1540,7 +1554,7 @@ msgstr "Vypnuté"
 msgid "DISABLE_ALL"
 msgstr "Zakázať všetko"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodiť a pokračovať"
 
@@ -1871,7 +1885,7 @@ msgstr "Epipelagiál"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "Chyba"
 
@@ -1883,7 +1897,7 @@ msgstr "Chyba pri vytváraní priečinka pre mód"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Chyba: Nepodarilo sa uložiť nové nastavenia."
 
@@ -1928,12 +1942,12 @@ msgstr "Od Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Od Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Verzia:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
@@ -1945,6 +1959,11 @@ msgstr ""
 #: ../src/saving/InProgressLoad.cs:116
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:55
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Zadajte existujúce ID"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2264,7 +2283,7 @@ msgstr "Generácia:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Opustiť hru"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr ""
 
@@ -2276,7 +2295,7 @@ msgstr "Varovanie režimu GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr ""
 
@@ -2849,15 +2868,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tento jazyk je dokončený na {0}%"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Na preklade tohto jazyka sa ešte pracuje ({0}% hotovo)"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento preklad nie je dokončený ({0}% hotovo) prosím pomôž nám s ním!"
 
@@ -4019,6 +4038,11 @@ msgstr "Stlmiť"
 msgid "NAME"
 msgstr "Meno:"
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Bióm: {0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 #, fuzzy
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4209,7 +4233,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Priečinok snímkov obrazovky nebol nájdený"
 
@@ -4601,7 +4625,7 @@ msgstr "Odstrániť lokálne údaje"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5009,7 +5033,7 @@ msgstr "Vyžaduje jadro"
 msgid "RESEARCH"
 msgstr "Hľadať"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Resetovať"
 
@@ -5022,7 +5046,7 @@ msgstr "Obnoviť predvolené nastavenia?"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Obnoviť predvolené nastavenia ovládania?"
 
@@ -5031,11 +5055,11 @@ msgstr "Obnoviť predvolené nastavenia ovládania?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Resetovať ovládanie"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predvolené"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnoviť predvolené nastavenia?"
 
@@ -5214,11 +5238,11 @@ msgstr "(začiatočná poloha)"
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstrániť lokálne údaje"
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Uložiť"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložiť a pokračovať"
 
@@ -6324,7 +6348,7 @@ msgstr "Skús spraviť zopár snímiek obrazovky!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Skús spraviť zopár snímiek obrazovky!"
 
@@ -6436,7 +6460,7 @@ msgstr "Rozpojiť všetky"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Rozpojovací mód"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6456,7 +6480,7 @@ msgstr "Zrušiť poslednú zmenu"
 msgid "UNKNOWN"
 msgstr "Neznáme"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
@@ -6469,7 +6493,7 @@ msgstr "Neznáme tlačidlo myši"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Neznáme na Windowse"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 msgid "UNKNOWN_VERSION"
 msgstr "Neznáma verzia"
 
@@ -6477,7 +6501,7 @@ msgstr "Neznáma verzia"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Neznáme Workshop ID pre tento mód"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené zmeny, ktoré budú zahodené.\n"
@@ -6590,7 +6614,7 @@ msgstr "Vertikálne(Osa: {0})"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

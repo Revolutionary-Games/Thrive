@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-03 15:12+0300\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -205,11 +205,11 @@ msgstr ""
 msgid "APRIL"
 msgstr "April"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Är du säker på att du vill nollställa ALLA inställningar till default värden?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Är du säker på att du vill nollställa kontrollinställningarna till default värden?"
 
@@ -356,10 +356,14 @@ msgstr "status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Auto framåt"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Upplösning:"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:37
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -378,7 +382,7 @@ msgstr "Mikrob Stadiet"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -581,9 +585,14 @@ msgstr "Bläddra"
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "Struktur"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:74
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "Struktur"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -615,7 +624,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -880,12 +889,17 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
+#: ../src/industrial_stage/gui/CityScreen.tscn:89
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "Organismstatistik"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -897,7 +911,7 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Stäng"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Stäng inställningar?"
 
@@ -1013,7 +1027,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Föreningar:"
@@ -1405,7 +1419,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standard utgångsenhet"
 
@@ -1581,7 +1595,7 @@ msgstr "Avstängt"
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Radera och fortsätt"
 
@@ -1936,7 +1950,7 @@ msgstr "Epipelagisk"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "ERROR"
 
@@ -1949,7 +1963,7 @@ msgstr "Öppna Skärmbildsmapp"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Misslyckades att spara nya intällningar till konfigurationsfil."
 
@@ -1997,12 +2011,12 @@ msgstr "Av Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Av Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Version:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Självmord"
@@ -2016,6 +2030,11 @@ msgstr "Ett undantag har uppstått medan sparad data laddades"
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Ett undantag har uppstått medan sparad data laddades"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:55
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Skriv över aktuell sparfil:"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2339,7 +2358,7 @@ msgstr "generation:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr ""
 
@@ -2351,7 +2370,7 @@ msgstr "GLES2 Läges Varning"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr ""
 
@@ -2931,15 +2950,15 @@ msgstr "Numpad Minus"
 msgid "LANGUAGE"
 msgstr "Språk:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Detta språk är {0}% komplett"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Det här språket jobbas fortfarande på ({0}% klart)"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla hjälp oss med den!"
 
@@ -4116,6 +4135,11 @@ msgstr "Tyst"
 msgid "NAME"
 msgstr "Namn:"
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Omgivning: {0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativ ATP Balans"
@@ -4313,7 +4337,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Hittade ingen screenshots mapp"
 
@@ -4713,7 +4737,7 @@ msgstr "Cellprocesser"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5132,7 +5156,7 @@ msgstr "Kärna"
 msgid "RESEARCH"
 msgstr "Sök"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Nollställ"
 
@@ -5145,7 +5169,7 @@ msgstr "Nollställ till default?"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Nollställ kontroller till default?"
 
@@ -5154,11 +5178,11 @@ msgstr "Nollställ kontroller till default?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Nollställ Inputs"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Default"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Nollställ till default?"
 
@@ -5342,11 +5366,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Spara"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Spara och fortsätt"
 
@@ -6492,7 +6516,7 @@ msgstr "Testa att ta några screenshots!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Testa att ta några screenshots!"
 
@@ -6630,7 +6654,7 @@ msgstr "Lösgör alla"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Lösgöringsläge"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6650,7 +6674,7 @@ msgstr "Ångra den senaste handlingen"
 msgid "UNKNOWN"
 msgstr "Okänd"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Visa förmågor"
@@ -6664,7 +6688,7 @@ msgstr "Okänd mus"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Okänd mus"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Okänd mus"
@@ -6674,7 +6698,7 @@ msgstr "Okänd mus"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Okänd mus"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Du har osparade ändringar som kommer bli raderade.\n"
@@ -6792,7 +6816,7 @@ msgstr "Hastighet:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
