@@ -8,6 +8,12 @@ using Saving;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
+/// <remarks>
+///   <para>
+///     As this is a very large file, please pay close attention to ordering and grouping of variables and methods to
+///     match the tab and order they exist in the scene.
+///   </para>
+/// </remarks>
 public class OptionsMenu : ControlWithInput
 {
     // GUI Control Paths
