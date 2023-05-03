@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-02 17:26-0500\n"
+"POT-Creation-Date: 2023-05-03 13:50+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -204,11 +204,11 @@ msgstr "Použít změny"
 msgid "APRIL"
 msgstr "Duben"
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2096
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Opravdu chceš resetovat VŠECHNA nastavení ?"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2105
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Jseš si jistý/á, že chceš resetovat ovládání ?"
 
@@ -352,7 +352,7 @@ msgstr "status spuštění:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatický pohyb kupředu"
 
-#: ../src/general/OptionsMenu.cs:1027 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Automatické ({0}x{1})"
 
@@ -373,7 +373,7 @@ msgstr "Mikrobiální Období"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2031 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -601,7 +601,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2182
+#: ../src/general/OptionsMenu.tscn:2184
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -858,7 +858,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit stará uložení"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2257
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -870,7 +870,7 @@ msgstr "Vyčistit stará uložení"
 msgid "CLOSE"
 msgstr "Zavřít"
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2114
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
@@ -983,7 +983,7 @@ msgstr "naše Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Opustit hru"
 
-#: ../src/general/OptionsMenu.tscn:2000
+#: ../src/general/OptionsMenu.tscn:2002
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Sloučeniny:"
@@ -1363,7 +1363,7 @@ msgstr "Debugovací Panel"
 msgid "DECEMBER"
 msgstr "Prosinec"
 
-#: ../src/general/OptionsMenu.cs:1493
+#: ../src/general/OptionsMenu.cs:1485
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Výchozí výstupní zařízení"
 
@@ -1548,7 +1548,7 @@ msgstr "Vypnuto"
 msgid "DISABLE_ALL"
 msgstr "Zakázat vše"
 
-#: ../src/general/OptionsMenu.tscn:2165
+#: ../src/general/OptionsMenu.tscn:2167
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodit a pokračovat"
 
@@ -1590,12 +1590,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
-#: ../src/general/OptionsMenu.tscn:1867
+#: ../src/general/OptionsMenu.tscn:1868
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Rychlost trávení:"
 
-#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
+#: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1892,7 +1892,7 @@ msgstr "Epipelagický"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2193 ../src/general/OptionsMenu.tscn:2201
+#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
 msgid "ERROR"
 msgstr "Chyba"
 
@@ -1904,7 +1904,7 @@ msgstr "Chyba při vytváření složky pro mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Chyba při vytváření souboru mod info"
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Chyba: Nepodařilo se uložit nové nastavení."
 
@@ -1947,12 +1947,12 @@ msgstr "Evoluční strom"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Evoluční strom"
 
-#: ../src/general/OptionsMenu.tscn:1972
+#: ../src/general/OptionsMenu.tscn:1974
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Verze:"
 
-#: ../src/general/OptionsMenu.tscn:1970 ../src/general/OptionsMenu.tscn:1981
+#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
@@ -2294,7 +2294,7 @@ msgstr "Generace:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Navštiv náš GitHub repozitář"
 
-#: ../src/general/OptionsMenu.cs:1041
+#: ../src/general/OptionsMenu.cs:1033
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2306,7 +2306,7 @@ msgstr "Varování režimu GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
 
-#: ../src/general/OptionsMenu.cs:1046
+#: ../src/general/OptionsMenu.cs:1038
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2690,19 +2690,19 @@ msgstr "Opustit hru"
 msgid "JANUARY"
 msgstr "Leden"
 
-#: ../src/general/OptionsMenu.tscn:1899
+#: ../src/general/OptionsMenu.tscn:1901
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mod:"
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Vždy"
 
-#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticky"
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nikdy"
 
@@ -2888,15 +2888,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.cs:1533
+#: ../src/general/OptionsMenu.cs:1536
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tento jazyk je přeložen z {0}%"
 
-#: ../src/general/OptionsMenu.cs:1529
+#: ../src/general/OptionsMenu.cs:1532
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Na překladu do tohoto jazyku se ještě pracuje ({0} hotovo)"
 
-#: ../src/general/OptionsMenu.cs:1525
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento překlad není kompletní ({0}% dokončeno) prosím, pomozte nám s ním!"
 
@@ -3698,7 +3698,7 @@ msgstr "Různé"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Různé 3D Fáze"
 
-#: ../src/general/OptionsMenu.tscn:1927
+#: ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Ostatní"
@@ -3758,7 +3758,7 @@ msgstr "Upravit typ"
 msgid "MODS"
 msgstr "Mody"
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:967
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3844,11 +3844,11 @@ msgstr "Interní název (složky):"
 msgid "MOD_LICENSE"
 msgstr "Licence módu:"
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyby načítání módu"
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:982
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Při načítání jednoho nebo více módů došlo k chybám. Protokoly mohou obsahovat další informace."
 
@@ -4280,7 +4280,7 @@ msgstr "Žádné zaznamenané události"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Složka uložených pozic nebyla nalezena"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:965
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Vypnuto"
@@ -4298,7 +4298,7 @@ msgstr "Nebyly nalezeny žádné uložené hry"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Složka uložených pozic nebyla nalezena"
 
-#: ../src/general/OptionsMenu.tscn:2211
+#: ../src/general/OptionsMenu.tscn:2213
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Složka se snímky obrazovky nebyla nalezena"
 
@@ -4694,7 +4694,7 @@ msgstr "Odstranit místní data"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2221
+#: ../src/general/OptionsMenu.tscn:2223
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5099,7 +5099,7 @@ msgstr "Potřebuje jádro"
 msgid "RESEARCH"
 msgstr "Hledat"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
 msgid "RESET"
 msgstr "Resetovat"
 
@@ -5107,11 +5107,11 @@ msgstr "Resetovat"
 msgid "RESET_DEADZONES"
 msgstr "Resetovat Mrtvý Úhel"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1891
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovat ovládání ?"
 
@@ -5120,11 +5120,11 @@ msgstr "Resetovat ovládání ?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Resetovat ovládání"
 
-#: ../src/general/OptionsMenu.tscn:2082
+#: ../src/general/OptionsMenu.tscn:2084
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Výchozí"
 
-#: ../src/general/OptionsMenu.tscn:2093
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit výchozí nastavení?"
 
@@ -5291,7 +5291,7 @@ msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:977
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5300,16 +5300,16 @@ msgstr ""
 "Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
 "a spíše zaútočí zpět."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:975
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstranit místní data"
 
-#: ../src/general/OptionsMenu.tscn:2056 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Uložit"
 
-#: ../src/general/OptionsMenu.tscn:2155
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložit a pokračovat"
 
@@ -5420,19 +5420,19 @@ msgstr "Signalizující Prvek"
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1938
+#: ../src/general/OptionsMenu.tscn:1940
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Vedlejší účinky:"
 
 #: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
-msgid "SCREEN_EFFECT_GB"
+msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "Vedlejší účinky:"
 
 #: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
-msgid "SCREEN_EFFECT_GBC"
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Vedlejší účinky:"
 
 #: ../simulation_parameters/common/screen_effects.json:8
@@ -5906,12 +5906,12 @@ msgstr "Steam je momentálně nedostupný, prosím zkuste znovu"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nastala neznámá chyba služby Steam"
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Inicializace knihovny klienta služby Steam se nezdařila"
 
-#: ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.tscn:1000
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
@@ -6128,7 +6128,7 @@ msgstr "Teplota."
 msgid "TESTING_TEAM"
 msgstr "Teststeři"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6143,7 +6143,7 @@ msgstr ""
 "\n"
 "Pokud se vám líbí, řekněte o nás i Vašim přátelům, prosím."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:988
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "PROSPERUJEŠ!"
@@ -6422,7 +6422,7 @@ msgstr "Zkuste udělat snímek obrazovky!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Zkus vytvořit uloženou pozici!"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Zkuste udělat snímek obrazovky!"
 
@@ -6607,7 +6607,7 @@ msgstr "Rozpojit všechny"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Rozpojovací mód"
 
-#: ../src/general/OptionsMenu.cs:1594
+#: ../src/general/OptionsMenu.cs:1597
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6630,7 +6630,7 @@ msgstr "Vrátit zpět poslední akci"
 msgid "UNKNOWN"
 msgstr "Neznámý"
 
-#: ../src/general/OptionsMenu.cs:1051
+#: ../src/general/OptionsMenu.cs:1043
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Neznámý"
 
@@ -6642,7 +6642,7 @@ msgstr "Neznámá myš"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Neznáme na Windows"
 
-#: ../src/general/OptionsMenu.cs:1601
+#: ../src/general/OptionsMenu.cs:1604
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Verze modu:"
@@ -6651,7 +6651,7 @@ msgstr "Verze modu:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Neznámé Workshop ID pro tento mod"
 
-#: ../src/general/OptionsMenu.tscn:2132
+#: ../src/general/OptionsMenu.tscn:2134
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené změny, které budou zahozeny.\n"
@@ -6764,7 +6764,7 @@ msgstr "Vertikální (Osa: {0})"
 msgid "VIDEO_MEMORY"
 msgstr "Právě využitá video paměť:"
 
-#: ../src/general/OptionsMenu.cs:1060 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -6778,7 +6778,7 @@ msgstr "Prohlížeč"
 msgid "VIEW_ALL"
 msgstr "Zakázat vše"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"

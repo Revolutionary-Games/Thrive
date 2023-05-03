@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-02 17:26-0500\n"
+"POT-Creation-Date: 2023-05-03 13:50+0300\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -202,11 +202,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2096
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2105
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
@@ -352,7 +352,7 @@ msgstr "실행 상태:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "자동 앞으로 이동"
 
-#: ../src/general/OptionsMenu.cs:1027 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "해상도:"
@@ -374,7 +374,7 @@ msgstr "미생물 단계"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2031 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -615,7 +615,7 @@ msgstr "카메라"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2182
+#: ../src/general/OptionsMenu.tscn:2184
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -890,7 +890,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2257
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -902,7 +902,7 @@ msgstr "이전 저장 정리"
 msgid "CLOSE"
 msgstr "닫기"
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2114
 msgid "CLOSE_OPTIONS"
 msgstr "설정을 종료합니까?"
 
@@ -1017,7 +1017,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:2000
+#: ../src/general/OptionsMenu.tscn:2002
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "화합물:"
@@ -1407,7 +1407,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1493
+#: ../src/general/OptionsMenu.cs:1485
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1590,7 +1590,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2165
+#: ../src/general/OptionsMenu.tscn:2167
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
 
@@ -1638,12 +1638,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1867
+#: ../src/general/OptionsMenu.tscn:1868
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "속도:"
 
-#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
+#: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -1948,7 +1948,7 @@ msgstr "표해수층"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2193 ../src/general/OptionsMenu.tscn:2201
+#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
 msgid "ERROR"
 msgstr "오류"
 
@@ -1961,7 +1961,7 @@ msgstr "저장 오류"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
 
@@ -2004,12 +2004,12 @@ msgstr "진화 계보"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1972
+#: ../src/general/OptionsMenu.tscn:1974
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "세대:"
 
-#: ../src/general/OptionsMenu.tscn:1970 ../src/general/OptionsMenu.tscn:1981
+#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -2330,7 +2330,7 @@ msgstr "세대:"
 msgid "GITHUB_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.cs:1041
+#: ../src/general/OptionsMenu.cs:1033
 msgid "GLES2"
 msgstr ""
 
@@ -2342,7 +2342,7 @@ msgstr "GLES2 모드 경고"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/OptionsMenu.cs:1046
+#: ../src/general/OptionsMenu.cs:1038
 msgid "GLES3"
 msgstr ""
 
@@ -2725,19 +2725,19 @@ msgstr "새로운 키 배치 추가"
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1899
+#: ../src/general/OptionsMenu.tscn:1901
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -2930,16 +2930,16 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr "언어:"
 
-#: ../src/general/OptionsMenu.cs:1533
+#: ../src/general/OptionsMenu.cs:1536
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/general/OptionsMenu.cs:1529
+#: ../src/general/OptionsMenu.cs:1532
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1525
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3755,7 +3755,7 @@ msgstr "기타"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "기타 3D 단계"
 
-#: ../src/general/OptionsMenu.tscn:1927
+#: ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "기타"
@@ -3819,7 +3819,7 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:967
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3910,11 +3910,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:982
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4328,7 +4328,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "저장 폴더 열기"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:965
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "치트 키 활성화"
@@ -4348,7 +4348,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "저장 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:2211
+#: ../src/general/OptionsMenu.tscn:2213
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "스크린샷 폴더 열기"
@@ -4755,7 +4755,7 @@ msgstr "세포 진행률"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2221
+#: ../src/general/OptionsMenu.tscn:2223
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5175,7 +5175,7 @@ msgstr "핵"
 msgid "RESEARCH"
 msgstr "초기화"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
 msgid "RESET"
 msgstr "초기화"
 
@@ -5184,11 +5184,11 @@ msgstr "초기화"
 msgid "RESET_DEADZONES"
 msgstr "기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1891
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
@@ -5197,11 +5197,11 @@ msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 msgid "RESET_KEYBINDINGS"
 msgstr "키 설정 초기화"
 
-#: ../src/general/OptionsMenu.tscn:2082
+#: ../src/general/OptionsMenu.tscn:2084
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "기본값"
 
-#: ../src/general/OptionsMenu.tscn:2093
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "RESET_TO_DEFAULTS"
 msgstr "기본값으로 초기화하시겠습니까?"
 
@@ -5373,7 +5373,7 @@ msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:977
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "이전의 실행 실패로 인해 Thrive가 안전 모드로 시작되었습니다.\n"
@@ -5385,15 +5385,15 @@ msgstr ""
 "\n"
 "시작 문제를 일으키는 원인을 해결하지 않으면 다시 안전 모드에 들어오기 위해 Thrive를 여러 번 재시작하고 오류를 겪어야 할 수도 있습니다."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:975
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2056 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "저장"
 
-#: ../src/general/OptionsMenu.tscn:2155
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "SAVE_AND_CONTINUE"
 msgstr "저장 및 계속"
 
@@ -5510,19 +5510,19 @@ msgstr ""
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1938
+#: ../src/general/OptionsMenu.tscn:1940
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "외부 효과:"
 
 #: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
-msgid "SCREEN_EFFECT_GB"
+msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "외부 효과:"
 
 #: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
-msgid "SCREEN_EFFECT_GBC"
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "외부 효과:"
 
 #: ../simulation_parameters/common/screen_effects.json:8
@@ -6018,12 +6018,12 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "저장 실패! 예외 발생"
 
-#: ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.tscn:1000
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
@@ -6243,7 +6243,7 @@ msgstr "온도."
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6251,7 +6251,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:988
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "번영했습니다!"
@@ -6540,7 +6540,7 @@ msgstr "스크린샷 촬영"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "스크린샷 촬영"
@@ -6738,7 +6738,7 @@ msgstr "모두 결합 해제하기"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1594
+#: ../src/general/OptionsMenu.cs:1597
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6762,7 +6762,7 @@ msgstr "마지막 활동 취소"
 msgid "UNKNOWN"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.cs:1051
+#: ../src/general/OptionsMenu.cs:1043
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "능력"
@@ -6776,7 +6776,7 @@ msgstr "마우스 미확인 키"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.cs:1601
+#: ../src/general/OptionsMenu.cs:1604
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "버전:"
@@ -6786,7 +6786,7 @@ msgstr "버전:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.tscn:2132
+#: ../src/general/OptionsMenu.tscn:2134
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
@@ -6908,7 +6908,7 @@ msgstr "속도:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1060 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6921,7 +6921,7 @@ msgstr "뷰어"
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "동굴"

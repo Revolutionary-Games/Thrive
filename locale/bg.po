@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-02 17:26-0500\n"
+"POT-Creation-Date: 2023-05-03 13:50+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -216,11 +216,11 @@ msgstr "Прилагане"
 msgid "APRIL"
 msgstr "Април"
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2096
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Сигурни ли сте, че искате да възстановите настройките по подразбиране?"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2105
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Сигурни ли сте, че искате да възстановите контролите по подразбиране?"
 
@@ -363,7 +363,7 @@ msgstr "Автоматична еволюция:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Автономно напред"
 
-#: ../src/general/OptionsMenu.cs:1027 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Автоматична ({0}x{1})"
 
@@ -383,7 +383,7 @@ msgstr "Осъзнаване"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2031 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -611,7 +611,7 @@ msgstr "Камера"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2182
+#: ../src/general/OptionsMenu.tscn:2184
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -868,7 +868,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Изтриване на старите записи"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2257
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -880,7 +880,7 @@ msgstr "Изтриване на старите записи"
 msgid "CLOSE"
 msgstr "Затваряне"
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2114
 msgid "CLOSE_OPTIONS"
 msgstr "Затваряне настройките?"
 
@@ -990,7 +990,7 @@ msgstr "Обществена Уикипедия"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на обществената Уикипедия на „Thrive“"
 
-#: ../src/general/OptionsMenu.tscn:2000
+#: ../src/general/OptionsMenu.tscn:2002
 msgid "COMPILED_AT_COLON"
 msgstr "Създадена на:"
 
@@ -1385,7 +1385,7 @@ msgstr "Отстраняване на грешки"
 msgid "DECEMBER"
 msgstr "Декември"
 
-#: ../src/general/OptionsMenu.cs:1493
+#: ../src/general/OptionsMenu.cs:1485
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "По подразбиране"
 
@@ -1568,7 +1568,7 @@ msgstr "Изключено"
 msgid "DISABLE_ALL"
 msgstr "Изключване на всички"
 
-#: ../src/general/OptionsMenu.tscn:2165
+#: ../src/general/OptionsMenu.tscn:2167
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отхвърляне и продължаване"
 
@@ -1610,11 +1610,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Отваряне на сървъра ни в „Discord“"
 
-#: ../src/general/OptionsMenu.tscn:1867
+#: ../src/general/OptionsMenu.tscn:1868
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отхвърлени съобщения:"
 
-#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
+#: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Това е броят на отхвърлените съобщения.\n"
@@ -1909,7 +1909,7 @@ msgstr "Епипелагиал"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "Брадва"
 
-#: ../src/general/OptionsMenu.tscn:2193 ../src/general/OptionsMenu.tscn:2201
+#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
 msgid "ERROR"
 msgstr "Грешка"
 
@@ -1921,7 +1921,7 @@ msgstr "Грешка при създаване на папката на моди
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Грешка при създаване на информационния файл на модификацията"
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Грешка: Неуспешно запазване на промените в конфигурационния файл."
 
@@ -1966,11 +1966,11 @@ msgstr ""
 "\n"
 "Ако виждате този текст, поради друга причина, моля, докладвайте за проблема и приложете дневниците на играта към Вашия доклад."
 
-#: ../src/general/OptionsMenu.tscn:1972
+#: ../src/general/OptionsMenu.tscn:1974
 msgid "EXACT_VERSION_COLON"
 msgstr "Версия на „Thrive“:"
 
-#: ../src/general/OptionsMenu.tscn:1970 ../src/general/OptionsMenu.tscn:1981
+#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
 
@@ -2280,7 +2280,7 @@ msgstr "Поколение:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
 
-#: ../src/general/OptionsMenu.cs:1041
+#: ../src/general/OptionsMenu.cs:1033
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2292,7 +2292,7 @@ msgstr "Предупреждение за GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
-#: ../src/general/OptionsMenu.cs:1046
+#: ../src/general/OptionsMenu.cs:1038
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2668,19 +2668,19 @@ msgstr "Отваряне на страницата ни в „Itch.io“"
 msgid "JANUARY"
 msgstr "Януари"
 
-#: ../src/general/OptionsMenu.tscn:1899
+#: ../src/general/OptionsMenu.tscn:1901
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим за отстраняване на грешки:"
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Включен"
 
-#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматичен"
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Изключен"
 
@@ -2866,15 +2866,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Език:"
 
-#: ../src/general/OptionsMenu.cs:1533
+#: ../src/general/OptionsMenu.cs:1536
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Този превод е завършен на {0} %"
 
-#: ../src/general/OptionsMenu.cs:1529
+#: ../src/general/OptionsMenu.cs:1532
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Този превод е в процес на разработка и е завършен на {0} %"
 
-#: ../src/general/OptionsMenu.cs:1525
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Този превод е в начален етап на разработка и е завършен на {0} %!"
 
@@ -3687,7 +3687,7 @@ msgstr "Разни"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Триизмерно пространство"
 
-#: ../src/general/OptionsMenu.tscn:1927
+#: ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Разни"
@@ -3746,7 +3746,7 @@ msgstr "Свойства"
 msgid "MODS"
 msgstr "Модификации"
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:967
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Налични са инсталирани модификации, които не са включени.\n"
@@ -3835,11 +3835,11 @@ msgstr "Наименование на папката:"
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS"
 msgstr "Грешка по време на зареждането на модификацията"
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:982
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 
@@ -4249,7 +4249,7 @@ msgstr "Няма записани събития"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Папката с вкаменелости не съществува"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:965
 msgid "NO_MODS_ENABLED"
 msgstr "Няма включени модификации"
 
@@ -4266,7 +4266,7 @@ msgstr "Няма създадени записи"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Папката с записи не съществува"
 
-#: ../src/general/OptionsMenu.tscn:2211
+#: ../src/general/OptionsMenu.tscn:2213
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папката със снимки не съществува"
 
@@ -4656,7 +4656,7 @@ msgstr "Заглавие на страницата"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2221
+#: ../src/general/OptionsMenu.tscn:2223
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 msgid "PATCH_NOTES_TITLE"
 msgstr "Бележки към изданието"
@@ -5063,7 +5063,7 @@ msgstr "Нуждае се от ядро"
 msgid "RESEARCH"
 msgstr "Клавиш „Search“"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
 msgid "RESET"
 msgstr "Нулиране"
 
@@ -5071,11 +5071,11 @@ msgstr "Нулиране"
 msgid "RESET_DEADZONES"
 msgstr "Нулиране"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1891
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Нулиране"
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Възстановяване на контролите по подразбиране?"
 
@@ -5083,11 +5083,11 @@ msgstr "Възстановяване на контролите по подраз
 msgid "RESET_KEYBINDINGS"
 msgstr "Нулиране на контролите"
 
-#: ../src/general/OptionsMenu.tscn:2082
+#: ../src/general/OptionsMenu.tscn:2084
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По подразбиране"
 
-#: ../src/general/OptionsMenu.tscn:2093
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "RESET_TO_DEFAULTS"
 msgstr "Възстановяване на настройките по подразбиране?"
 
@@ -5248,7 +5248,7 @@ msgstr "Рустицианинът е протеин, който използв�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:977
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "„Thrive“ е в безопасен режим поради предишно неуспешно стартиране.\n"
@@ -5260,15 +5260,15 @@ msgstr ""
 "\n"
 "Ако проблемът продължи, ще трябва да рестартирате и да причините срив на играта няколко пъти, за да се върнете в безопасен режим."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:975
 msgid "SAFE_MODE_TITLE"
 msgstr "Играта е стартирана в безопасен режим"
 
-#: ../src/general/OptionsMenu.tscn:2056 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Запазване"
 
-#: ../src/general/OptionsMenu.tscn:2155
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "SAVE_AND_CONTINUE"
 msgstr "Запазване на промените"
 
@@ -5378,19 +5378,19 @@ msgstr "Включено"
 msgid "SCALING_ON_INVERSE"
 msgstr "Обратно"
 
-#: ../src/general/OptionsMenu.tscn:1938
+#: ../src/general/OptionsMenu.tscn:1940
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Странични ефекти:"
 
 #: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
-msgid "SCREEN_EFFECT_GB"
+msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "Странични ефекти:"
 
 #: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
-msgid "SCREEN_EFFECT_GBC"
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Странични ефекти:"
 
 #: ../simulation_parameters/common/screen_effects.json:8
@@ -5858,11 +5858,11 @@ msgstr "„Steam“ не е достъпен в момента, моля, опи
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:998
 msgid "STEAM_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
 
-#: ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.tscn:1000
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
@@ -6076,7 +6076,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Изпитатели"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Благодарим Ви за покупката на „Thrive“!\n"
@@ -6092,7 +6092,7 @@ msgstr ""
 "\n"
 "Ще се радваме да споделите за „Thrive“ и на Вашите приятели."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:988
 msgid "THANK_YOU_TITLE"
 msgstr "Благодарим Ви"
 
@@ -6378,7 +6378,7 @@ msgstr "Трябва да направите няколко вкаменелос
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Трябва да направите поне един запис!"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Трябва да направите няколко снимки!"
 
@@ -6568,7 +6568,7 @@ msgstr "Разпадане"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим на отделяне"
 
-#: ../src/general/OptionsMenu.cs:1594
+#: ../src/general/OptionsMenu.cs:1597
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Версия за отстраняване на грешки"
 
@@ -6588,7 +6588,7 @@ msgstr "Отмяна на последното действие"
 msgid "UNKNOWN"
 msgstr "Неизвестен клавиш"
 
-#: ../src/general/OptionsMenu.cs:1051
+#: ../src/general/OptionsMenu.cs:1043
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Неизвестен"
 
@@ -6600,7 +6600,7 @@ msgstr "Неизвестен бутон"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Неизвестна"
 
-#: ../src/general/OptionsMenu.cs:1601
+#: ../src/general/OptionsMenu.cs:1604
 msgid "UNKNOWN_VERSION"
 msgstr "Неизвестна версия"
 
@@ -6608,7 +6608,7 @@ msgstr "Неизвестна версия"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестен идентификационен № за работилницата"
 
-#: ../src/general/OptionsMenu.tscn:2132
+#: ../src/general/OptionsMenu.tscn:2134
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Вашите промени не са запазени и ще бъдат отхвърлени.\n"
@@ -6720,7 +6720,7 @@ msgstr "Вертикална ос: {0}"
 msgid "VIDEO_MEMORY"
 msgstr "Използвана графична памет:"
 
-#: ../src/general/OptionsMenu.cs:1060 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} МиБ"
 
@@ -6733,7 +6733,7 @@ msgstr "Преглед"
 msgid "VIEW_ALL"
 msgstr "Всички версии"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 msgid "VIEW_PATCH_NOTES"
 msgstr "Бележки към изданието"
 

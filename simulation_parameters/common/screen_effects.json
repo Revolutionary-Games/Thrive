@@ -1,22 +1,22 @@
 ﻿{
   "none": {
-    "name": "SCREEN_EFFECT_NONE",
-    "index": 0,
+    "Name": "SCREEN_EFFECT_NONE",
+    "Index": 0,
     "ShaderPath": null
   },
   "greyscale": {
-    "name": "SCREEN_EFFECT_GREYSCALE",
-    "index": 1,
+    "Name": "SCREEN_EFFECT_GREYSCALE",
+    "Index": 1,
     "ShaderPath": "res://shaders/screen_effects/Greyscale.shader"
   },
   "gameboy": {
-    "name": "SCREEN_EFFECT_GB",
-    "index": 2,
+    "Name": "SCREEN_EFFECT_GAMEBOY",
+    "Index": 2,
     "ShaderPath": "res://shaders/screen_effects/Gameboy.shader"
   },
   "gameboycolor": {
-    "name": "SCREEN_EFFECT_GBC",
-    "index": 3,
+    "Name": "SCREEN_EFFECT_GAMEBOY_COLOR",
+    "Index": 3,
     "ShaderPath": "res://shaders/screen_effects/GameboyColor.shader"
   }
 }

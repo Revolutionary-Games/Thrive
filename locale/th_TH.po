@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-02 17:26-0500\n"
+"POT-Creation-Date: 2023-05-03 13:50+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -207,11 +207,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2096
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าทั้งหมดเป็นค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2105
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าการป้อนข้อมูลเป็นค่าเริ่มต้น"
 
@@ -357,7 +357,7 @@ msgstr "ก่อนหน้า:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "เคลื่อนที่ไปข้างหน้าอัตโนมัติ"
 
-#: ../src/general/OptionsMenu.cs:1027 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "ความละเอียด:"
@@ -379,7 +379,7 @@ msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E 
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2031 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -613,7 +613,7 @@ msgstr "กล้อง"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2182
+#: ../src/general/OptionsMenu.tscn:2184
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -886,7 +886,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2257
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -898,7 +898,7 @@ msgstr ""
 msgid "CLOSE"
 msgstr "ปิด"
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2114
 msgid "CLOSE_OPTIONS"
 msgstr "ปิดตัวเลือกไหม"
 
@@ -1003,7 +1003,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:2000
+#: ../src/general/OptionsMenu.tscn:2002
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
@@ -1383,7 +1383,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1493
+#: ../src/general/OptionsMenu.cs:1485
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1556,7 +1556,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2165
+#: ../src/general/OptionsMenu.tscn:2167
 msgid "DISCARD_AND_CONTINUE"
 msgstr "ทิ้งและดำเนินการต่อ"
 
@@ -1594,12 +1594,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:1867
+#: ../src/general/OptionsMenu.tscn:1868
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
+#: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
@@ -1894,7 +1894,7 @@ msgstr "พื้นผิวมหาสมุทรลึก"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2193 ../src/general/OptionsMenu.tscn:2201
+#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
 msgid "ERROR"
 msgstr "ผิดพลาด"
 
@@ -1907,7 +1907,7 @@ msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ผิดพลาด: บันทึกการตั้งค่าใหม่ลงในไฟล์กำหนดค่าไม่สำเร็จ"
 
@@ -1949,12 +1949,12 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1972
+#: ../src/general/OptionsMenu.tscn:1974
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1970 ../src/general/OptionsMenu.tscn:1981
+#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -2280,7 +2280,7 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.cs:1041
+#: ../src/general/OptionsMenu.cs:1033
 msgid "GLES2"
 msgstr ""
 
@@ -2292,7 +2292,7 @@ msgstr "คำเตือนโหมด GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "คุณกำลังเจริญเติบโตด้วย GLES2 สิ่งนี้ยังไม่ผ่านการทดสอบอย่างรุนแรงและมีแนวโน้มที่จะทำให้เกิดปัญหา พยายามอัปเดตไดรเวอร์วิดีโอของคุณและ / หรือบังคับให้ใช้กราฟิก AMD หรือ Nvidia เพื่อเรียกใช้ Thrive"
 
-#: ../src/general/OptionsMenu.cs:1046
+#: ../src/general/OptionsMenu.cs:1038
 msgid "GLES3"
 msgstr ""
 
@@ -2670,19 +2670,19 @@ msgstr "ดำเนินการต่อ"
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1899
+#: ../src/general/OptionsMenu.tscn:1901
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -2868,16 +2868,16 @@ msgstr "เลข -"
 msgid "LANGUAGE"
 msgstr "ภาษา:"
 
-#: ../src/general/OptionsMenu.cs:1533
+#: ../src/general/OptionsMenu.cs:1536
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "ช่วยแปลเกม"
 
-#: ../src/general/OptionsMenu.cs:1529
+#: ../src/general/OptionsMenu.cs:1532
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1525
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3675,7 +3675,7 @@ msgstr "เบ็ดเตล็ด"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "เบ็ดเตล็ด"
 
-#: ../src/general/OptionsMenu.tscn:1927
+#: ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "เพลง"
@@ -3738,7 +3738,7 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:967
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3828,11 +3828,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:982
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4242,7 +4242,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:965
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "เปิดใช้งานโกงคีย์"
@@ -4260,7 +4260,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2211
+#: ../src/general/OptionsMenu.tscn:2213
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
@@ -4661,7 +4661,7 @@ msgstr "\"{0}\" - {1}"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2221
+#: ../src/general/OptionsMenu.tscn:2223
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5072,7 +5072,7 @@ msgstr "นิวเคลียส"
 msgid "RESEARCH"
 msgstr "ค้นหา"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
 msgid "RESET"
 msgstr "รีเซ็ต"
 
@@ -5081,11 +5081,11 @@ msgstr "รีเซ็ต"
 msgid "RESET_DEADZONES"
 msgstr "รีเซ็ตเป็นค่าเริ่มต้นไหม"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1891
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "รีเซ็ตอินพุตเป็นค่าเริ่มต้น?"
 
@@ -5094,11 +5094,11 @@ msgstr "รีเซ็ตอินพุตเป็นค่าเริ่ม
 msgid "RESET_KEYBINDINGS"
 msgstr "รีเซ็ตอินพุต"
 
-#: ../src/general/OptionsMenu.tscn:2082
+#: ../src/general/OptionsMenu.tscn:2084
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:2093
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "RESET_TO_DEFAULTS"
 msgstr "รีเซ็ตเป็นค่าเริ่มต้นไหม"
 
@@ -5272,20 +5272,20 @@ msgstr "Rusticyanin เป็นโปรตีนที่สามารถใ
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Rusticyanin เป็นโปรตีนที่สามารถใช้ก๊าซคาร์บอนไดออกไซด์และออกซิเจนในการออกซิไดซ์เหล็กจากสถานะทางเคมีหนึ่งไปยังอีกสถานะหนึ่ง กระบวนการนี้เรียกว่า Iron Respiration ปล่อยพลังงานออกมาซึ่งเซลล์สามารถเก็บเกี่ยวได้"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:977
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:975
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2056 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "เซฟ"
 
-#: ../src/general/OptionsMenu.tscn:2155
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "SAVE_AND_CONTINUE"
 msgstr "บันทึกและดำเนินการต่อ"
 
@@ -5400,18 +5400,18 @@ msgstr ""
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1938
+#: ../src/general/OptionsMenu.tscn:1940
 msgid "SCREEN_EFFECT"
 msgstr ""
 
 #: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
-msgid "SCREEN_EFFECT_GB"
+msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "ความสามารถ"
 
 #: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
-msgid "SCREEN_EFFECT_GBC"
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "ความสามารถ"
 
 #: ../simulation_parameters/common/screen_effects.json:8
@@ -5904,11 +5904,11 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:998
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.tscn:1000
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
@@ -6128,7 +6128,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6136,7 +6136,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:988
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -6431,7 +6431,7 @@ msgstr "จับภาพหน้าจอ"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "จับภาพหน้าจอ"
@@ -6570,7 +6570,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1594
+#: ../src/general/OptionsMenu.cs:1597
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6590,7 +6590,7 @@ msgstr "เลิกทำการกระทำล่าสุด"
 msgid "UNKNOWN"
 msgstr "ปลดล็อค"
 
-#: ../src/general/OptionsMenu.cs:1051
+#: ../src/general/OptionsMenu.cs:1043
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "ความสามารถ"
@@ -6604,7 +6604,7 @@ msgstr "เมาส์ที่ไม่รู้จัก"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "เมาส์ที่ไม่รู้จัก"
 
-#: ../src/general/OptionsMenu.cs:1601
+#: ../src/general/OptionsMenu.cs:1604
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "เมาส์ที่ไม่รู้จัก"
@@ -6614,7 +6614,7 @@ msgstr "เมาส์ที่ไม่รู้จัก"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "เมาส์ที่ไม่รู้จัก"
 
-#: ../src/general/OptionsMenu.tscn:2132
+#: ../src/general/OptionsMenu.tscn:2134
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
@@ -6732,7 +6732,7 @@ msgstr "เกมส์ใหม่"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1060 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6745,7 +6745,7 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
 

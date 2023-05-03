@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-02 17:26-0500\n"
+"POT-Creation-Date: 2023-05-03 13:50+0300\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -212,11 +212,11 @@ msgstr "Hyväksy Muutokset"
 msgid "APRIL"
 msgstr "Huhtikuu"
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2096
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2105
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
@@ -364,7 +364,7 @@ msgstr "suorituksen status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Liiku automaattisesti eteenpäin"
 
-#: ../src/general/OptionsMenu.cs:1027 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Automaattinen ({0}x{1})"
 
@@ -392,7 +392,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2031 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -627,7 +627,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2182
+#: ../src/general/OptionsMenu.tscn:2184
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -896,7 +896,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Siivoa vanhat tallennukset"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2257
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -908,7 +908,7 @@ msgstr "Siivoa vanhat tallennukset"
 msgid "CLOSE"
 msgstr "Sulje"
 
-#: ../src/general/OptionsMenu.tscn:2112
+#: ../src/general/OptionsMenu.tscn:2114
 msgid "CLOSE_OPTIONS"
 msgstr "Sulje asetukset?"
 
@@ -1024,7 +1024,7 @@ msgstr "Wikimme"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/OptionsMenu.tscn:2000
+#: ../src/general/OptionsMenu.tscn:2002
 msgid "COMPILED_AT_COLON"
 msgstr "Käännetty ajanhetkellä:"
 
@@ -1418,7 +1418,7 @@ msgstr "Virheenkorjauspaneeli"
 msgid "DECEMBER"
 msgstr "Joulukuu"
 
-#: ../src/general/OptionsMenu.cs:1493
+#: ../src/general/OptionsMenu.cs:1485
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Oletus ulostulolaite"
 
@@ -1603,7 +1603,7 @@ msgstr "Ei käytössä"
 msgid "DISABLE_ALL"
 msgstr "Ei käytössä"
 
-#: ../src/general/OptionsMenu.tscn:2165
+#: ../src/general/OptionsMenu.tscn:2167
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
@@ -1650,12 +1650,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/OptionsMenu.tscn:1867
+#: ../src/general/OptionsMenu.tscn:1868
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Nopeus:"
 
-#: ../src/general/OptionsMenu.tscn:1865 ../src/general/OptionsMenu.tscn:1874
+#: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1973,7 +1973,7 @@ msgstr "Epipelaginen vyöhyke"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2193 ../src/general/OptionsMenu.tscn:2201
+#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
 msgid "ERROR"
 msgstr "Virhe"
 
@@ -1986,7 +1986,7 @@ msgstr "Virhe tallennettaessa"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
@@ -2034,12 +2034,12 @@ msgstr "Tehnyt Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Tehnyt Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1972
+#: ../src/general/OptionsMenu.tscn:1974
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1970 ../src/general/OptionsMenu.tscn:1981
+#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Lisää uusi syöte"
@@ -2379,7 +2379,7 @@ msgstr "Sukupolvi:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/OptionsMenu.cs:1041
+#: ../src/general/OptionsMenu.cs:1033
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2391,7 +2391,7 @@ msgstr "GLES2-moodi Varoitus"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1046
+#: ../src/general/OptionsMenu.cs:1038
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2769,19 +2769,19 @@ msgstr "Kuole"
 msgid "JANUARY"
 msgstr "Tammikuu"
 
-#: ../src/general/OptionsMenu.tscn:1899
+#: ../src/general/OptionsMenu.tscn:1901
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON-virheenkäsittelymoodi:"
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Aina"
 
-#: ../src/general/OptionsMenu.tscn:1914 ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:1915
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ei koskaan"
 
@@ -2967,15 +2967,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.cs:1533
+#: ../src/general/OptionsMenu.cs:1536
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tämä kieli on {0}% käännetty"
 
-#: ../src/general/OptionsMenu.cs:1529
+#: ../src/general/OptionsMenu.cs:1532
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:1525
+#: ../src/general/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen kanssa!"
 
@@ -3815,7 +3815,7 @@ msgstr "Muut"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Muut"
 
-#: ../src/general/OptionsMenu.tscn:1927
+#: ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Muut"
@@ -3875,7 +3875,7 @@ msgstr "Vaihda tyyppiä"
 msgid "MODS"
 msgstr "Modit"
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:967
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3967,11 +3967,11 @@ msgstr "Sisäinen nimi (Kansio):"
 msgid "MOD_LICENSE"
 msgstr "Lisenssit"
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS"
 msgstr "Modien latausvirheet"
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:982
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat sisältää lisää tietoa."
 
@@ -4386,7 +4386,7 @@ msgstr "Tapahtumia ei tallennettu"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:965
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Ei käytössä"
@@ -4405,7 +4405,7 @@ msgstr "Tallennuksia ei löytynyt"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/general/OptionsMenu.tscn:2211
+#: ../src/general/OptionsMenu.tscn:2213
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Avaa Näyttökuva kansio"
@@ -4805,7 +4805,7 @@ msgstr "Poista Paikallinen Data"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2221
+#: ../src/general/OptionsMenu.tscn:2223
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5221,7 +5221,7 @@ msgstr "Tuma"
 msgid "RESEARCH"
 msgstr "Hae"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
@@ -5230,11 +5230,11 @@ msgstr "Kumoa muutokset"
 msgid "RESET_DEADZONES"
 msgstr "Palauta oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1891
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2102
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta näppäimien oletukset?"
 
@@ -5242,11 +5242,11 @@ msgstr "Palauta näppäimien oletukset?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Palauta syötteet oletuksiksi"
 
-#: ../src/general/OptionsMenu.tscn:2082
+#: ../src/general/OptionsMenu.tscn:2084
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
-#: ../src/general/OptionsMenu.tscn:2093
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
 
@@ -5416,7 +5416,7 @@ msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea mu
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"iron\"]raudan[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus vaihtelee ympäristön [thrive:compound type=\"carbondioxide\"][/thrive:compound]n ja [thrive:compound type=\"oxygen\"][/thrive:compound]n mukaan."
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:977
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5425,16 +5425,16 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:975
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Poista Paikallinen Data"
 
-#: ../src/general/OptionsMenu.tscn:2056 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Tallenna"
 
-#: ../src/general/OptionsMenu.tscn:2155
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "SAVE_AND_CONTINUE"
 msgstr "Tallenna ja jatka"
 
@@ -5546,19 +5546,19 @@ msgstr "Skaalattu"
 msgid "SCALING_ON_INVERSE"
 msgstr "Käänteisesti skaalattu"
 
-#: ../src/general/OptionsMenu.tscn:1938
+#: ../src/general/OptionsMenu.tscn:1940
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Ulkoiset vaikutukset:"
 
 #: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
-msgid "SCREEN_EFFECT_GB"
+msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "Ulkoiset vaikutukset:"
 
 #: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
-msgid "SCREEN_EFFECT_GBC"
+msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Ulkoiset vaikutukset:"
 
 #: ../simulation_parameters/common/screen_effects.json:8
@@ -6057,12 +6057,12 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Tuntematon Steam-virhe tapahtui"
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.tscn:1000
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
@@ -6287,7 +6287,7 @@ msgstr "Lämpö."
 msgid "TESTING_TEAM"
 msgstr "Testaustiimi"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6302,7 +6302,7 @@ msgstr ""
 "\n"
 "Jos tykkäsit pelistä, kerrothan kavereillesi meistä."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:988
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "OLET SELVIYTYNYT!"
@@ -6588,7 +6588,7 @@ msgstr "Kokeile ottaa ruudunkaappauksia!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Kokeile tallennuksen tekemistä!"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 
@@ -6772,7 +6772,7 @@ msgstr "Erkane kaikista"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1594
+#: ../src/general/OptionsMenu.cs:1597
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6795,7 +6795,7 @@ msgstr "Kumoa viimeisin toimenpide"
 msgid "UNKNOWN"
 msgstr "Tuntematon"
 
-#: ../src/general/OptionsMenu.cs:1051
+#: ../src/general/OptionsMenu.cs:1043
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Näytä kykypalkki"
@@ -6809,7 +6809,7 @@ msgstr "Tuntematon hiiren painike"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.cs:1601
+#: ../src/general/OptionsMenu.cs:1604
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
@@ -6819,7 +6819,7 @@ msgstr "Versio:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.tscn:2132
+#: ../src/general/OptionsMenu.tscn:2134
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
@@ -6938,7 +6938,7 @@ msgstr "Uusi nimi:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1060 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -6952,7 +6952,7 @@ msgstr "Tarkastelija"
 msgid "VIEW_ALL"
 msgstr "Ei käytössä"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1854
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
