@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using Newtonsoft.Json;
 using static FullModDetails;
 
@@ -165,14 +166,24 @@ public class ModInfo
             isVersionBelowMax = VersionUtils.Compare(Constants.Version, MaximumThriveVersion ?? string.Empty) <= 0;
         }
 
-        if ((isVersionAboveMin && isVersionMinDefined) || (isVersionBelowMax && isVersionMaxDefined))
-        {
-            return VersionCompatibility.Compatible;
-        }
-
         if (!isVersionMinDefined && !isVersionMaxDefined)
         {
             return VersionCompatibility.NotExplicitlyCompatible;
+        }
+
+        if (isVersionMinDefined ^ isVersionMaxDefined)
+        {
+            if ((isVersionAboveMin && isVersionMinDefined) || (isVersionBelowMax && isVersionMaxDefined))
+            {
+                return VersionCompatibility.Compatible;
+            }
+        }
+        else if (isVersionMinDefined && isVersionMaxDefined)
+        {
+            if ((isVersionAboveMin && isVersionMinDefined) && (isVersionBelowMax && isVersionMaxDefined))
+            {
+                return VersionCompatibility.Compatible;
+            }
         }
 
         return VersionCompatibility.Incompatible;
