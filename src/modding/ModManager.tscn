@@ -929,6 +929,7 @@ margin_top = 663.0
 margin_right = 1441.0
 margin_bottom = 663.0
 NodeToGiveFocusTo = NodePath("../InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/UnloadedContainer/UnloadedItemList")
+GrabFocusWhenBecomingVisible = true
 
 [node name="NewModGUI" parent="." instance=ExtResource( 6 )]
 visible = false

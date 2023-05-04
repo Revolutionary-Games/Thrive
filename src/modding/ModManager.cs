@@ -1201,7 +1201,7 @@ public class ModManager : Control
             .SequenceEqual(enabledMods.Select(m => m.InternalName));
         applyChangesButton.Disabled = isNotChanged;
         resetButton.Disabled = isNotChanged;
-        
+
         var isEnabledModsEmpty = enabledMods.Count < 1;
         checkButton.Disabled = isEnabledModsEmpty;
         disableAllModsButton.Disabled = isEnabledModsEmpty;

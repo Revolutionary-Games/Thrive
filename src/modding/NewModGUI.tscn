@@ -34,16 +34,17 @@ RequiredModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxCo
 LoadBeforePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadBefore")
 LoadAfterPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadAfter")
 IncompatibleModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModIncompatibleMods")
-IconFileDialogPath = NodePath("IconFileDialog")
-PckFileDialogPath = NodePath("PckFileDialog")
-AssemblyFileDialogPath = NodePath("AssemblyFileDialog")
-PreviewFileDialogPath = NodePath("PreviewFileDialog")
+IconFileDialogPath = NodePath("CustomDialog/IconFileDialog")
+PckFileDialogPath = NodePath("CustomDialog/PckFileDialog")
+AssemblyFileDialogPath = NodePath("CustomDialog/AssemblyFileDialog")
+PreviewFileDialogPath = NodePath("CustomDialog/PreviewFileDialog")
 AssemblyModAutoHarmonyPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/AutoHarmony")
 ErrorDisplayPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
 [node name="CustomDialog" parent="." instance=ExtResource( 1 )]
 visible = true
 ExclusiveAllowCloseOnEscape = false
+PreventsMouseCaptureWhileOpen = false
 WindowTitle = "CREATE_NEW_MOD"
 Resizable = true
 
@@ -700,12 +701,15 @@ margin_bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 text = "CANCEL"
 
-[node name="IconFileDialog" type="FileDialog" parent="."]
+[node name="PckFileDialog" type="FileDialog" parent="CustomDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
-margin_right = -146.0
-margin_bottom = -183.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
 custom_colors/files_disabled = Color( 0, 0, 0, 1 )
 custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
@@ -715,16 +719,36 @@ mode = 0
 access = 2
 filters = PoolStringArray( "" )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="PreviewFileDialog" type="FileDialog" parent="."]
+[node name="IconFileDialog" type="FileDialog" parent="CustomDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
-margin_right = -146.0
-margin_bottom = -183.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
+custom_colors/files_disabled = Color( 0, 0, 0, 1 )
+custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
+popup_exclusive = true
+window_title = "Open a File"
+dialog_hide_on_ok = true
+mode = 0
+access = 2
+filters = PoolStringArray( "" )
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="PreviewFileDialog" type="FileDialog" parent="CustomDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
 custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
 custom_colors/files_disabled = Color( 0, 0, 0, 1 )
 custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
@@ -734,35 +758,16 @@ mode = 1
 access = 2
 filters = PoolStringArray( "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images" )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="PckFileDialog" type="FileDialog" parent="."]
+[node name="AssemblyFileDialog" type="FileDialog" parent="CustomDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
-margin_right = -146.0
-margin_bottom = -183.0
-custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
-custom_colors/files_disabled = Color( 0, 0, 0, 1 )
-custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
-window_title = "Open a File"
-dialog_hide_on_ok = true
-mode = 0
-access = 2
-filters = PoolStringArray( "" )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="AssemblyFileDialog" type="FileDialog" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 20.0
-margin_right = -146.0
-margin_bottom = -183.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
 custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
 custom_colors/files_disabled = Color( 0, 0, 0, 1 )
 custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
@@ -784,7 +789,7 @@ __meta__ = {
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssemblyContainer/ChooseAssemblyButton" to="." method="ChooseAssemblyButtonPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Create" to="." method="Create"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Cancel" to="." method="Cancel"]
-[connection signal="file_selected" from="IconFileDialog" to="." method="IconFileDialogFileSelected"]
-[connection signal="files_selected" from="PreviewFileDialog" to="." method="PreviewFileDialogFilesSelected"]
-[connection signal="file_selected" from="PckFileDialog" to="." method="PckFileDialogFileSelected"]
-[connection signal="file_selected" from="AssemblyFileDialog" to="." method="AssemblyFileDialogFileSelected"]
+[connection signal="file_selected" from="CustomDialog/PckFileDialog" to="." method="PckFileDialogFileSelected"]
+[connection signal="file_selected" from="CustomDialog/IconFileDialog" to="." method="IconFileDialogFileSelected"]
+[connection signal="files_selected" from="CustomDialog/PreviewFileDialog" to="." method="PreviewFileDialogFilesSelected"]
+[connection signal="file_selected" from="CustomDialog/AssemblyFileDialog" to="." method="AssemblyFileDialogFileSelected"]

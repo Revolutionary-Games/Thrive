@@ -437,6 +437,7 @@ public class NewModGUI : Control
     private void IconFileDialogFileSelected(string path)
     {
         using var file = new File();
+
         if (!file.FileExists(iconFileDialog.CurrentFile))
         {
             iconFile.Text = iconFileDialog.CurrentFile;
