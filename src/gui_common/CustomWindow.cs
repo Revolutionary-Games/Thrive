@@ -1,5 +1,4 @@
 ﻿using Godot;
-using Godot.Collections;
 
 /// <summary>
 ///   A custom Control type which defines top-level Controls that also behaves like a Popup.
@@ -16,13 +15,6 @@ public class CustomWindow : Control
     private bool previousVisibilityState;
 
     private bool hasBeenRemovedFromTree;
-
-#pragma warning disable CA2213
-    private Array<AddWindowReorderingSupportToSiblings> windowReorderingNodes = new();
-#pragma warning restore CA2213
-
-    [Signal]
-    public delegate void Dragged(CustomWindow window);
 
     /// <summary>
     ///   Emitted when this window is closed or hidden.
@@ -309,27 +301,6 @@ public class CustomWindow : Control
             RectPosition = fullRect.Position;
             RectSize = fullRect.Size;
         }
-    }
-
-    protected void ConnectToWindowReorderingNodes(int automaticWindowReorderingDepth,
-        Array<NodePath> windowReorderingPaths, bool allowWindowReorderingRecursion)
-    {
-        var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
-            this, automaticWindowReorderingDepth, windowReorderingPaths);
-
-        foreach (var windowReordering in windowReorderingAncestorsIEnumerable)
-        {
-            windowReordering.Node.ConnectWindow(this, windowReordering.Sibling, allowWindowReorderingRecursion);
-            windowReorderingNodes.Add(windowReordering.Node);
-        }
-    }
-
-    protected void DisconnectFromWindowReorderingNodes(bool allowWindowReorderingRecursion)
-    {
-        foreach (var node in windowReorderingNodes)
-            node.DisconnectWindow(this, allowWindowReorderingRecursion);
-
-        windowReorderingNodes.Clear();
     }
 
     /// <summary>

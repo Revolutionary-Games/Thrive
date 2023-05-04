@@ -27,6 +27,7 @@
 /*************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -50,11 +51,17 @@ public class CustomDialog : CustomWindow
     /// <summary>
     ///   Paths to window reordering nodes in ancestors.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This overrides automatic search.
+    ///   </para>
+    /// </remarks>
     [Export]
     public Array<NodePath> WindowReorderingPaths = new();
 
     /// <summary>
-    ///   Finds first window reordering node in ancestors to connect to.
+    ///   Tries to finds first window reordering node in ancestors to connect to
+    ///   up to the specified depth.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -89,6 +96,8 @@ public class CustomDialog : CustomWindow
     private StyleBox closeButtonHighlight = null!;
 
     private Font? titleFont;
+
+    private List<AddWindowReorderingSupportToSiblings> windowReorderingNodes = new();
 #pragma warning restore CA2213
     private Color titleColor;
 
@@ -107,6 +116,9 @@ public class CustomDialog : CustomWindow
     /// </summary>
     [Signal]
     public delegate void Cancelled();
+
+    [Signal]
+    public delegate void Dragged(CustomWindow window);
 
     [Flags]
     private enum DragType
@@ -211,8 +223,7 @@ public class CustomDialog : CustomWindow
         if (showCloseButton)
             _ = CloseButtonFocus.Value;
 
-        ConnectToWindowReorderingNodes(AutomaticWindowReorderingDepth, WindowReorderingPaths,
-            AllowWindowReorderingRecursion);
+        ConnectToWindowReorderingNodes();
 
         base._EnterTree();
     }
@@ -221,7 +232,7 @@ public class CustomDialog : CustomWindow
     {
         base._ExitTree();
 
-        DisconnectFromWindowReorderingNodes(AllowWindowReorderingRecursion);
+        DisconnectFromWindowReorderingNodes();
     }
 
     public override void _Notification(int what)
@@ -429,6 +440,27 @@ public class CustomDialog : CustomWindow
             RectSize = new Vector2(
                 Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
         }
+    }
+
+    protected void ConnectToWindowReorderingNodes()
+    {
+        var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
+            this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
+
+        foreach (var windowReordering in windowReorderingAncestorsIEnumerable)
+        {
+            windowReordering.ReorderingNode.ConnectWindow(
+                this, windowReordering.Sibling, AllowWindowReorderingRecursion);
+            windowReorderingNodes.Add(windowReordering.ReorderingNode);
+        }
+    }
+
+    protected void DisconnectFromWindowReorderingNodes()
+    {
+        foreach (var node in windowReorderingNodes)
+            node.DisconnectWindow(this, AllowWindowReorderingRecursion);
+
+        windowReorderingNodes.Clear();
     }
 
     protected override void Dispose(bool disposing)
