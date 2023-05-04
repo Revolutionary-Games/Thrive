@@ -117,10 +117,11 @@ public class AddWindowReorderingSupportToSiblings : Control
 
     public override void _ExitTree()
     {
+        connectionsEstablished = false;
         windowReorderingAncestors.Clear();
         connectedWindows.Clear();
         connectedSiblings.Clear();
-        connectionsEstablished = false;
+        topSibling = null;
     }
 
     public void ConnectWindow(CustomDialog window, Node topNode, bool recursive)
