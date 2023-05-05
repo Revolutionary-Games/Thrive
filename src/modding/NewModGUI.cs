@@ -138,6 +138,13 @@ public class NewModGUI : Control
     [Signal]
     public delegate void OnAccepted(string newModInfo);
 
+    private enum DialogFileTypes
+    {
+        IconFile,
+        AssemblyFile,
+        PckFile,
+    }
+
     public override void _Ready()
     {
         dialog = GetNode<CustomDialog>(DialogPath);
@@ -434,13 +441,41 @@ public class NewModGUI : Control
         iconFileDialog.PopupCentered();
     }
 
-    private void IconFileDialogFileSelected(string path)
+    private void DialogSingleFileSelected(string dialogSelected)
     {
         using var file = new File();
 
-        if (!file.FileExists(iconFileDialog.CurrentFile))
+        switch ((DialogFileTypes)Enum.Parse(typeof(DialogFileTypes), dialogSelected))
         {
-            iconFile.Text = iconFileDialog.CurrentFile;
+            case DialogFileTypes.IconFile:
+            {
+                if (!file.FileExists(iconFileDialog.CurrentFile))
+                {
+                    iconFile.Text = iconFileDialog.CurrentFile;
+                }
+
+                break;
+            }
+
+            case DialogFileTypes.AssemblyFile:
+            {
+                if (!file.FileExists(assemblyFileDialog.CurrentFile))
+                {
+                    modAssembly.Text = assemblyFileDialog.CurrentFile;
+                }
+
+                break;
+            }
+
+            case DialogFileTypes.PckFile:
+            {
+                if (!file.FileExists(pckFileDialog.CurrentFile))
+                {
+                    pckName.Text = pckFileDialog.CurrentFile;
+                }
+
+                break;
+            }
         }
     }
 
@@ -449,27 +484,9 @@ public class NewModGUI : Control
         pckFileDialog.PopupCentered();
     }
 
-    private void PckFileDialogFileSelected(string path)
-    {
-        using var file = new File();
-        if (!file.FileExists(pckFileDialog.CurrentFile))
-        {
-            pckName.Text = pckFileDialog.CurrentFile;
-        }
-    }
-
     private void ChooseAssemblyButtonPressed()
     {
         assemblyFileDialog.PopupCentered();
-    }
-
-    private void AssemblyFileDialogFileSelected(string path)
-    {
-        using var file = new File();
-        if (!file.FileExists(assemblyFileDialog.CurrentFile))
-        {
-            modAssembly.Text = assemblyFileDialog.CurrentFile;
-        }
     }
 
     private void ChooseImagesButtonPressed()
