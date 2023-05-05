@@ -62,8 +62,8 @@ public class AddWindowReorderingSupportToSiblings : Control
     ///     Used to know if current window is already on the top.
     ///   </para>
     ///   <para>
-    ///     If the window isn't on the top then the topSiblings index is used to know where to move the windows
-    ///     Ancestor in order for it to appear on the top without affecting other nodes that are not part of the
+    ///     If the window isn't on the top then the topSibling's index is used to know where to move the window's
+    ///     ancestor in order for it to appear on the top without affecting other nodes that are not part of the
     ///     reordering system.
     ///   </para>
     /// </remarks>
@@ -90,7 +90,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     ///   find first one.
     /// </summary>
     /// <param name="startingNode">
-    ///   A node to start searching from. The search itself starts from the nodes parent.
+    ///   A node to start searching from. The search itself starts from the node's parent.
     ///   For a window it should start from itself and for a AddWindowReorderingSupportToSiblings it should start
     ///   from its parent because otherwise it would find itself and stop.
     /// </param>
@@ -178,14 +178,7 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         // Find if another connected window has the same sibling
         bool foundSibling = false;
-        foreach (var sibling in connectedSiblings)
-        {
-            if (sibling == windowSibling)
-            {
-                foundSibling = true;
-                break;
-            }
-        }
+        bool foundSibling = connectedSiblings.Contains(windowSibling);
 
         if (!foundSibling)
         {
