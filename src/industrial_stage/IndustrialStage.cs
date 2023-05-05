@@ -16,9 +16,9 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 #pragma warning restore CA2213
 
-    private WorldResource foodResource = null!;
-
-    private long population = 1;
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CitySystem citySystem = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -55,7 +55,9 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         HUD = GetNode<IndustrialHUD>("IndustrialHUD");
 
+        // Systems
         nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
+        citySystem = new CitySystem(rootOfDynamicallySpawned);
     }
 
     public override void _Process(float delta)
@@ -64,17 +66,12 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         if (!IsGameOver())
         {
-            // TODO: city processing system to get resources and research
+            citySystem.Process(delta, this);
 
-            // TODO: actual calculations from cities
-            resourceStorage.Capacity = 1000;
-
-            // TODO: make population consume food
-
-            HandlePopulationGrowth();
+            resourceStorage.Capacity = citySystem.CachedTotalStorage;
         }
 
-        HUD.UpdatePopulationDisplay(population);
+        HUD.UpdatePopulationDisplay(citySystem.CachedTotalPopulation);
     }
 
     public override void StartMusic()
@@ -82,10 +79,10 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         Jukebox.Instance.PlayCategory("IndustrialStage");
     }
 
-    public PlacedCity AddCity(Transform location)
+    public PlacedCity AddCity(Transform location, bool playerCity)
     {
         // TODO: Proper storing of created structures for easier processing
-        var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene);
+        var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene, playerCity);
 
         var binds = new Array();
         binds.Add(city);
@@ -99,7 +96,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         CurrentGame = GameProperties.StartIndustrialStageGame(new WorldGenerationSettings());
 
         // Spawn an initial city
-        AddCity(Transform.Identity);
+        AddCity(Transform.Identity, true);
 
         base.StartNewGame();
     }
@@ -107,7 +104,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     public void TakeInitialResourcesFrom(IResourceContainer resources)
     {
         // Force capacity up temporarily to be able to get probably all of the resources
-        resourceStorage.Capacity = 1000;
+        resourceStorage.Capacity = 10000;
         SocietyResources.TransferFrom(resources);
     }
 
@@ -115,19 +112,16 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         base.SetupStage();
 
-        foodResource = SimulationParameters.Instance.GetWorldResource("food");
-
-        // TODO: capacity from cities
-        resourceStorage.Capacity = 1000;
-
-        // TODO: systems
+        // Get systems started
+        citySystem.CalculateDerivedStats();
+        resourceStorage.Capacity = citySystem.CachedTotalStorage;
     }
 
     protected override void OnGameStarted()
     {
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
-            "You have reached the end of the prototypes. For now...",
+            "To advance select your city to build new structures, then research rocketry to be able to go to space",
             DisplayDuration.ExtraLong);
     }
 
@@ -160,26 +154,6 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         }
 
         base.Dispose(disposing);
-    }
-
-    private void HandlePopulationGrowth()
-    {
-        // TODO: housing calculation
-        var housing = 1000;
-
-        // TODO: adjust food need and reproduction rate based on species properties
-        float requiredForNewMember = 1;
-
-        // Don't grow if not enough housing
-        // And for now just for the prototype only grow when otherwise full on food
-        if (population >= housing || resourceStorage.GetAvailableAmount(foodResource) < resourceStorage.Capacity)
-            return;
-
-        if (resourceStorage.Take(foodResource, requiredForNewMember) > 0)
-        {
-            // Took some food to grow
-            ++population;
-        }
     }
 
     private void OpenCityInfo(PlacedCity city)

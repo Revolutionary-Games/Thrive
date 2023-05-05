@@ -346,11 +346,11 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/society_stage/SocietyCreature.tscn");
     }
 
-    public static PlacedCity SpawnCity(Transform location, Node worldRoot, PackedScene cityScene)
+    public static PlacedCity SpawnCity(Transform location, Node worldRoot, PackedScene cityScene, bool playerCity)
     {
         var city = (PlacedCity)cityScene.Instance();
 
-        city.Init();
+        city.Init(playerCity);
 
         worldRoot.AddChild(city);
         city.Transform = location;

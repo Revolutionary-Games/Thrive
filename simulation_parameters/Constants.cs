@@ -1234,6 +1234,8 @@ public static class Constants
     /// </summary>
     public const float INDUSTRIAL_STAGE_SIZE_MULTIPLIER = 5.0f;
 
+    public const float INDUSTRIAL_STAGE_CITY_PROCESS_INTERVAL = 0.1f;
+
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>

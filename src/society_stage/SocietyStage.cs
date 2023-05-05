@@ -352,6 +352,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         cityPosition.y = 0;
 
         // TODO: preserve the initial city building visuals
-        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition));
+        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition), true);
     }
 }
