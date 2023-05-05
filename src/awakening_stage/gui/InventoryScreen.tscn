@@ -75,8 +75,11 @@ margin_left = 100.0
 margin_top = 27.2
 margin_right = -1138.0
 margin_bottom = -120.0
+AllowWindowReorderingRecursion = true
 WindowTitle = "INVENTORY_ITEMS_ON_GROUND"
 Resizable = true
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GroundPanel"]
 margin_right = 40.0
@@ -101,8 +104,11 @@ margin_left = 100.0
 margin_top = 100.0
 margin_right = -465.0
 margin_bottom = -559.0
+AllowWindowReorderingRecursion = true
 WindowTitle = "INVENTORY_TITLE"
 Resizable = true
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 10
 
 [node name="BaseInventoryContainer" type="HBoxContainer" parent="MainInventory"]
 margin_left = 2.0
@@ -167,8 +173,11 @@ margin_left = 60.0
 margin_top = 100.0
 margin_right = -538.0
 margin_bottom = -600.0
+AllowWindowReorderingRecursion = true
 WindowTitle = "CRAFTING_TITLE"
 Resizable = true
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CraftingPanel"]
 margin_left = 667.0

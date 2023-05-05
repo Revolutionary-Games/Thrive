@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using static CustomDialog;
@@ -41,8 +42,6 @@ public class AddWindowReorderingSupportToSiblings : Control
     [Export]
     public int AutomaticWindowReorderingDepth = 5;
 
-#pragma warning disable CA2213
-
     /// <summary>
     ///   Pairs containing window reordering nodes and what sibling of theirs is an ancestor of this class.
     /// </summary>
@@ -51,8 +50,10 @@ public class AddWindowReorderingSupportToSiblings : Control
     ///     Used to pass the connections from windows.
     ///   </para>
     /// </remarks>
-    private List<(AddWindowReorderingSupportToSiblings ReorderingNode, Node Sibling)> windowReorderingAncestors =
-        new();
+    private readonly List<(AddWindowReorderingSupportToSiblings ReorderingNode, Node Sibling)>
+        windowReorderingAncestors = new();
+
+#pragma warning disable CA2213
 
     /// <summary>
     ///   A sibling that is an ancestor of a window that is currently on top of others.
@@ -91,15 +92,15 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// </summary>
     /// <param name="startingNode">
     ///   A node to start searching from. The search itself starts from the node's parent.
-    ///   For a window it should start from itself and for a AddWindowReorderingSupportToSiblings it should start
-    ///   from its parent because otherwise it would find itself and stop.
+    ///   ReorderingNodePaths must be relative to this node.
+    ///   If this node is reordering node then search automatically skips one step to not return itself.
     /// </param>
     /// <param name="maxSearchDepth">
     ///   Specifies how deep to search. Ignored when reorderingNodePaths is not null.
     /// </param>
     /// <param name="reorderingNodePaths">
-    ///   Paths to window reordering nodes in ancestors. Tries to find every window reordering node from the paths
-    ///   no matter how deep they are.
+    ///   Relative paths to window reordering nodes in ancestors. Tries to find every window reordering node
+    ///   from the paths no matter how deep they are.
     /// </param>
     /// <returns>
     ///   Pairs containing window reordering nodes and what sibling of theirs is an ancestor of this class.
@@ -141,10 +142,12 @@ public class AddWindowReorderingSupportToSiblings : Control
         if (window.IsConnected(nameof(Dragged), this, nameof(OnWindowReorder)))
         {
             // This window is already connected here
+            GD.PrintErr($"A window {window.Name}({window}) tried to connect to {Name}{this} multiple times");
             return;
         }
 
         window.Connect(nameof(Dragged), this, nameof(OnWindowReorder));
+        window.Connect(nameof(Opened), this, nameof(OnWindowReorder));
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -168,19 +171,17 @@ public class AddWindowReorderingSupportToSiblings : Control
         if (!window.IsConnected(nameof(Dragged), this, nameof(OnWindowReorder)))
         {
             // This window has already been disconnected from here
+            GD.PrintErr($"A window {window.Name}({window}) tried to disconnect from {Name}{this} multiple times");
             return;
         }
 
         window.Disconnect(nameof(Dragged), this, nameof(OnWindowReorder));
+        window.Disconnect(nameof(Opened), this, nameof(OnWindowReorder));
 
         var windowSibling = connectedWindows[window];
         connectedWindows.Remove(window);
 
-        // Find if another connected window has the same sibling
-        bool foundSibling = false;
-        bool foundSibling = connectedSiblings.Contains(windowSibling);
-
-        if (!foundSibling)
+        if (!connectedSiblings.Contains(windowSibling))
         {
             // No other window has the same sibling so it can be removed
             connectedSiblings.Remove(windowSibling);
@@ -188,60 +189,6 @@ public class AddWindowReorderingSupportToSiblings : Control
             if (topSibling == windowSibling)
                 topSibling = null;
         }
-    }
-
-    /// <summary>
-    ///   Finds whose windows ancestor is currently on the top
-    /// </summary>
-    public void UpdateTopSibling()
-    {
-        if (topSibling != null)
-        {
-            // Top sibling is already current
-            return;
-        }
-
-        var childCount = parent.GetChildCount();
-
-        // Search for the first sibling that is part of the reordering system
-        for (int i = childCount - 1; i >= 0; --i)
-        {
-            var sibling = parent.GetChild(i);
-            if (!connectedSiblings.Contains(sibling))
-                continue;
-
-            topSibling = sibling;
-            break;
-        }
-    }
-
-    /// <summary>
-    ///   Reoders a window by setting its ancestor to the position of current top window, making it appear on top of
-    ///   others.
-    /// </summary>
-    public void OnWindowReorder(CustomDialog window)
-    {
-        // Get a sibling that is an ancestor of this window
-        Node targetSibling = connectedWindows[window];
-
-        UpdateTopSibling();
-
-        int topSiblingIndex = topSibling!.GetIndex();
-
-        if (topSiblingIndex == targetSibling.GetIndex())
-        {
-            // This window is already on the top
-            return;
-        }
-
-        // Put the sibling on the top
-        parent.MoveChild(targetSibling, topSiblingIndex);
-
-        topSibling = targetSibling;
-
-        // For unexplained reasons this has to be here to update the order visually
-        window.SetAsToplevel(false);
-        window.SetAsToplevel(true);
     }
 
     protected override void Dispose(bool disposing)
@@ -266,6 +213,13 @@ public class AddWindowReorderingSupportToSiblings : Control
     {
         Node childOfAncestor = startingNode;
         Node ancestor = childOfAncestor.GetParent();
+
+        if (startingNode is AddWindowReorderingSupportToSiblings)
+        {
+            // The node is reordering node, skip one step
+            childOfAncestor = ancestor;
+            ancestor = childOfAncestor.GetParent();
+        }
 
         for (int i = 0; i < maxSearchDepth; ++i)
         {
@@ -299,48 +253,95 @@ public class AddWindowReorderingSupportToSiblings : Control
     private static IEnumerable<(AddWindowReorderingSupportToSiblings ReorderingNode, Node Sibling)>
         GetWindowReorderingAncestors(Node startingNode, Array<NodePath> reorderingNodePaths)
     {
-        Node childOfAncestor = startingNode;
-        Node ancestor = childOfAncestor.GetParent();
+        var startingNodePath = startingNode.GetPath();
+        var startingNodePathString = startingNodePath.ToString();
 
-        // This dictionary is used to save window reordering nodes and their parents
-        // The reason for this is because the paths don't have to be in the right order so instead the nodes are saved
-        // into a dictionary for a fast lookup
-        System.Collections.Generic.Dictionary
-            <Node, AddWindowReorderingSupportToSiblings> windowReorderingNodesWithParents = new();
-
-        // Get the window reordering nodes and their parents
         foreach (var path in reorderingNodePaths)
         {
-            var windowReorderingNode = startingNode.GetNodeOrNull<AddWindowReorderingSupportToSiblings>(path);
-
-            if (windowReorderingNode == null)
-                continue;
-
-            windowReorderingNodesWithParents.Add(
-                windowReorderingNode.GetParent(), windowReorderingNode);
-        }
-
-        // Search for the ancestors that are parents of the window reordering nodes
-        while (ancestor != null)
-        {
-            if (windowReorderingNodesWithParents.TryGetValue(ancestor, out var windowReorderingNode))
+            if (path.GetName(path.GetNameCount() - 1) != nameof(AddWindowReorderingSupportToSiblings))
             {
-                // Found a window reordering node that is in one of the specified paths
-
-                windowReorderingNodesWithParents.Remove(ancestor);
-
-                yield return (windowReorderingNode, childOfAncestor);
-
-                if (windowReorderingNodesWithParents.Count == 0)
-                {
-                    // connected to every window reordering node, stop searching
-                    break;
-                }
+                GD.PrintErr($"Path {path} doesn't end with {nameof(AddWindowReorderingSupportToSiblings)}" +
+                    $", reordering connection asked from {startingNode.Name}{startingNode}");
             }
 
-            childOfAncestor = ancestor;
-            ancestor = childOfAncestor.GetParent();
+            var reorderingNode = startingNode.GetNodeOrNull<AddWindowReorderingSupportToSiblings>(path);
+
+            if (reorderingNode == null)
+                continue;
+
+            var reorderingNodeParent = reorderingNode.GetParent();
+            var reorderingNodeParentPath = reorderingNodeParent.GetPath();
+
+            if (!startingNodePathString.Contains(reorderingNodeParentPath))
+            {
+                GD.PrintErr($"Path {path} not found in ancestors, reordering connection asked from" +
+                    $" {startingNode.Name}{startingNode}");
+                continue;
+            }
+
+            var siblingPath = startingNodePath.GetName(reorderingNodeParentPath.GetNameCount());
+            var sibling = reorderingNodeParent.GetNode(siblingPath);
+
+            yield return (reorderingNode, sibling);
         }
+    }
+
+    /// <summary>
+    ///   Finds whose windows ancestor is currently on the top
+    /// </summary>
+    private void UpdateTopSibling()
+    {
+        if (topSibling != null)
+        {
+            // Top sibling is already current
+            return;
+        }
+
+        var childCount = parent.GetChildCount();
+
+        // Search for the first sibling that is part of the reordering system
+        for (int i = childCount - 1; i >= 0; --i)
+        {
+            var sibling = parent.GetChild(i);
+            if (!connectedSiblings.Contains(sibling))
+                continue;
+
+            topSibling = sibling;
+            break;
+        }
+
+        if (topSibling == null)
+            throw new Exception($"{Name}({this}) tried update a top sibling, but wasn't able to find any");
+    }
+
+    /// <summary>
+    ///   Reoders a window by setting its ancestor to the position of current top window, making it appear on top of
+    ///   others.
+    /// </summary>
+    private void OnWindowReorder(CustomDialog window)
+    {
+        // Get a sibling that is an ancestor of this window
+        Node targetSibling = connectedWindows[window];
+
+        UpdateTopSibling();
+
+        int topSiblingIndex = topSibling!.GetIndex();
+
+        if (topSiblingIndex == targetSibling.GetIndex())
+        {
+            // This window is already on the top
+            return;
+        }
+
+        // Put the sibling on the top
+        parent.MoveChild(targetSibling, topSiblingIndex);
+
+        topSibling = targetSibling;
+
+        // For unexplained reasons this has to be here to update the order visually
+        bool isSetAsToplevel = window.IsSetAsToplevel();
+        window.SetAsToplevel(!isSetAsToplevel);
+        window.SetAsToplevel(isSetAsToplevel);
     }
 
     /// <summary>
@@ -354,7 +355,7 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         parent = GetParent();
 
-        var windowReorderingAncestorsIEnumerable = GetWindowReorderingAncestors(parent,
+        var windowReorderingAncestorsIEnumerable = GetWindowReorderingAncestors(this,
             AutomaticWindowReorderingDepth, WindowReorderingPaths);
 
         foreach (var windowReorderingAncestor in windowReorderingAncestorsIEnumerable)

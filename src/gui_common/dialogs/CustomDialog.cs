@@ -71,19 +71,17 @@ public class CustomDialog : CustomWindow
     [Export]
     public int AutomaticWindowReorderingDepth = 10;
 
-    /// <summary>
-    ///   If true, window reordering nodes also connect this window to their ancestors.
-    /// </summary>
-    [Export]
-    public bool AllowWindowReorderingRecursion = true;
-
     private static readonly Lazy<StyleBox> CloseButtonFocus = new(CreateCloseButtonFocusStyle);
+
+    private readonly List<AddWindowReorderingSupportToSiblings> windowReorderingNodes = new();
 
     private string windowTitle = string.Empty;
     private string translatedWindowTitle = string.Empty;
 
     private bool closeHovered;
     private bool closeFocused;
+
+    private bool allowWindowReorderingRecursion = true;
 
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
@@ -97,7 +95,6 @@ public class CustomDialog : CustomWindow
 
     private Font? titleFont;
 
-    private List<AddWindowReorderingSupportToSiblings> windowReorderingNodes = new();
 #pragma warning restore CA2213
     private Color titleColor;
 
@@ -120,6 +117,9 @@ public class CustomDialog : CustomWindow
     [Signal]
     public delegate void Dragged(CustomWindow window);
 
+    [Signal]
+    public delegate void Opened(CustomWindow window);
+
     [Flags]
     private enum DragType
     {
@@ -129,6 +129,24 @@ public class CustomDialog : CustomWindow
         ResizeRight = 1 << 2,
         ResizeBottom = 1 << 3,
         ResizeLeft = 1 << 4,
+    }
+
+    /// <summary>
+    ///   If true, window reordering nodes also connect this window to their ancestors.
+    /// </summary>
+    [Export]
+    public bool AllowWindowReorderingRecursion
+    {
+        get => allowWindowReorderingRecursion;
+        set
+        {
+            if (allowWindowReorderingRecursion == value)
+                return;
+
+            DisconnectFromWindowReorderingNodes();
+            allowWindowReorderingRecursion = value;
+            ConnectToWindowReorderingNodes();
+        }
     }
 
     /// <summary>
@@ -402,6 +420,7 @@ public class CustomDialog : CustomWindow
     {
         base.OnOpen();
         UpdateChildRects();
+        EmitSignal(nameof(Opened), this);
     }
 
     protected override void OnHidden()
@@ -442,27 +461,6 @@ public class CustomDialog : CustomWindow
         }
     }
 
-    protected void ConnectToWindowReorderingNodes()
-    {
-        var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
-            this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
-
-        foreach (var windowReordering in windowReorderingAncestorsIEnumerable)
-        {
-            windowReordering.ReorderingNode.ConnectWindow(
-                this, windowReordering.Sibling, AllowWindowReorderingRecursion);
-            windowReorderingNodes.Add(windowReordering.ReorderingNode);
-        }
-    }
-
-    protected void DisconnectFromWindowReorderingNodes()
-    {
-        foreach (var node in windowReorderingNodes)
-            node.DisconnectWindow(this, AllowWindowReorderingRecursion);
-
-        windowReorderingNodes.Clear();
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -492,6 +490,27 @@ public class CustomDialog : CustomWindow
             ExpandMarginTop = 3,
             ExpandMarginBottom = 3,
         };
+    }
+
+    private void ConnectToWindowReorderingNodes()
+    {
+        var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
+            this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
+
+        foreach (var (reorderingNode, nodeSibling) in windowReorderingAncestorsIEnumerable)
+        {
+            reorderingNode.ConnectWindow(
+                this, nodeSibling, AllowWindowReorderingRecursion);
+            windowReorderingNodes.Add(reorderingNode);
+        }
+    }
+
+    private void DisconnectFromWindowReorderingNodes()
+    {
+        foreach (var node in windowReorderingNodes)
+            node.DisconnectWindow(this, AllowWindowReorderingRecursion);
+
+        windowReorderingNodes.Clear();
     }
 
     /// <summary>
