@@ -111,7 +111,6 @@ public class CustomDialog : CustomWindow
     private StyleBox closeButtonHighlight = null!;
 
     private Font? titleFont;
-
 #pragma warning restore CA2213
     private Color titleColor;
 

@@ -77,7 +77,6 @@ public class AddWindowReorderingSupportToSiblings : Control
     private Node? topSibling;
 
     private Node parent = null!;
-
 #pragma warning restore CA2213
 
     private bool connectionsEstablished;
