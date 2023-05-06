@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -29,6 +29,8 @@ region_rect = Rect2( 0, 0, 258, 1 )
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
@@ -134,6 +136,7 @@ WebFeedsEnabledPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBox
 ShowNewPatchNotesPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ShowNewPatchNotes")
 DismissedNoticeCountPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/DismissedCount")
 JSONDebugModePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug")
+ScreenEffectSelectPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9/ScreenEffect")
 CommitLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Commit")
 BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/BuiltAt")
 UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning")
@@ -1632,7 +1635,7 @@ follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer"]
 margin_right = 718.0
-margin_bottom = 780.0
+margin_bottom = 864.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -1640,7 +1643,7 @@ custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer"]
 margin_right = 708.0
-margin_bottom = 770.0
+margin_bottom = 854.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -1846,6 +1849,7 @@ margin_top = 542.0
 margin_right = 209.0
 margin_bottom = 577.0
 hint_tooltip = "VIEW_PATCH_NOTES_TOOLTIP"
+focus_neighbour_bottom = NodePath("../HBoxContainer8/ResetDismissed")
 size_flags_horizontal = 0
 text = "VIEW_PATCH_NOTES"
 
@@ -1881,6 +1885,7 @@ size_flags_horizontal = 3
 margin_left = 425.0
 margin_right = 702.0
 margin_bottom = 35.0
+focus_neighbour_top = NodePath("../../ViewPatchNotes")
 size_flags_horizontal = 3
 action_mode = 0
 text = "RESET_DISMISSED_POPUPS"
@@ -1907,7 +1912,7 @@ margin_left = 485.0
 margin_right = 702.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 0 )
-focus_neighbour_bottom = NodePath("../../HBoxContainer7/BuiltAt")
+focus_neighbour_bottom = NodePath("../../HBoxContainer9/ScreenEffect")
 text = "JSON_DEBUG_MODE_AUTO"
 items = [ "JSON_DEBUG_MODE_AUTO", null, false, 0, null, "JSON_DEBUG_MODE_ALWAYS", null, false, 1, null, "JSON_DEBUG_MODE_NEVER", null, false, 2, null ]
 selected = 0
@@ -1917,10 +1922,51 @@ margin_top = 667.0
 margin_right = 702.0
 margin_bottom = 671.0
 
-[node name="HBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 681.0
 margin_right = 702.0
-margin_bottom = 735.0
+margin_bottom = 706.0
+text = "MISC_FUN"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 716.0
+margin_right = 702.0
+margin_bottom = 741.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+margin_right = 250.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 250, 0 )
+text = "SCREEN_EFFECT"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+margin_left = 254.0
+margin_right = 498.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 9 )
+
+[node name="ScreenEffect" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+margin_left = 502.0
+margin_right = 702.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+focus_neighbour_bottom = NodePath("../../HBoxContainer7/BuiltAt")
+focus_next = NodePath("../../HBoxContainer7/BuiltAt")
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator4" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 751.0
+margin_right = 702.0
+margin_bottom = 755.0
+rect_pivot_offset = Vector2( -571, -253 )
+
+[node name="HBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 765.0
+margin_right = 702.0
+margin_bottom = 819.0
 
 [node name="CommitInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 margin_right = 702.0
@@ -1947,9 +1993,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 745.0
+margin_top = 829.0
 margin_right = 702.0
-margin_bottom = 770.0
+margin_bottom = 854.0
 
 [node name="BuiltTimeInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_right = 209.0
@@ -2294,6 +2340,7 @@ __meta__ = {
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ViewPatchNotes" to="." method="OnOpenPatchNotesPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug" to="." method="OnJSONDebugModeSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9/ScreenEffect" to="." method="OnScreenEffectSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
