@@ -55,6 +55,9 @@ public class CustomDialog : CustomWindow
     ///   <para>
     ///     This overrides automatic search.
     ///   </para>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
+    ///   </para>
     /// </remarks>
     [Export]
     public Array<NodePath> WindowReorderingPaths = new();
@@ -67,9 +70,23 @@ public class CustomDialog : CustomWindow
     ///   <para>
     ///     Ignored when window reordering paths are not empty.
     ///   </para>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
+    ///   </para>
     /// </remarks>
     [Export]
     public int AutomaticWindowReorderingDepth = 10;
+
+    /// <summary>
+    ///   If true, window reordering nodes also connect this window to their ancestors.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public bool AllowWindowReorderingRecursion = true;
 
     private static readonly Lazy<StyleBox> CloseButtonFocus = new(CreateCloseButtonFocusStyle);
 
@@ -81,7 +98,7 @@ public class CustomDialog : CustomWindow
     private bool closeHovered;
     private bool closeFocused;
 
-    private bool allowWindowReorderingRecursion = true;
+    private bool allowWindowReorderingRecursionCurrent = true;
 
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
@@ -129,24 +146,6 @@ public class CustomDialog : CustomWindow
         ResizeRight = 1 << 2,
         ResizeBottom = 1 << 3,
         ResizeLeft = 1 << 4,
-    }
-
-    /// <summary>
-    ///   If true, window reordering nodes also connect this window to their ancestors.
-    /// </summary>
-    [Export]
-    public bool AllowWindowReorderingRecursion
-    {
-        get => allowWindowReorderingRecursion;
-        set
-        {
-            if (allowWindowReorderingRecursion == value)
-                return;
-
-            DisconnectFromWindowReorderingNodes();
-            allowWindowReorderingRecursion = value;
-            ConnectToWindowReorderingNodes();
-        }
     }
 
     /// <summary>
@@ -494,13 +493,15 @@ public class CustomDialog : CustomWindow
 
     private void ConnectToWindowReorderingNodes()
     {
+        allowWindowReorderingRecursionCurrent = AllowWindowReorderingRecursion;
+
         var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
             this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
 
         foreach (var (reorderingNode, nodeSibling) in windowReorderingAncestorsIEnumerable)
         {
             reorderingNode.ConnectWindow(
-                this, nodeSibling, AllowWindowReorderingRecursion);
+                this, nodeSibling, allowWindowReorderingRecursionCurrent);
             windowReorderingNodes.Add(reorderingNode);
         }
     }
@@ -508,7 +509,7 @@ public class CustomDialog : CustomWindow
     private void DisconnectFromWindowReorderingNodes()
     {
         foreach (var node in windowReorderingNodes)
-            node.DisconnectWindow(this, AllowWindowReorderingRecursion);
+            node.DisconnectWindow(this, allowWindowReorderingRecursionCurrent);
 
         windowReorderingNodes.Clear();
     }

@@ -26,6 +26,9 @@ public class AddWindowReorderingSupportToSiblings : Control
     ///   <para>
     ///     This overrides automatic search.
     ///   </para>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
+    ///   </para>
     /// </remarks>
     [Export]
     public Array<NodePath> WindowReorderingPaths = new();
@@ -37,6 +40,9 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// <remarks>
     ///   <para>
     ///     Ignored when window reordering paths are not empty.
+    ///   </para>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
     ///   </para>
     /// </remarks>
     [Export]
@@ -272,7 +278,7 @@ public class AddWindowReorderingSupportToSiblings : Control
             var reorderingNodeParent = reorderingNode.GetParent();
             var reorderingNodeParentPath = reorderingNodeParent.GetPath();
 
-            if (!startingNodePathString.Contains(reorderingNodeParentPath))
+            if (!startingNodePathString.StartsWith(reorderingNodeParentPath))
             {
                 GD.PrintErr($"Path {path} not found in ancestors, reordering connection asked from" +
                     $" {startingNode.Name}{startingNode}");
