@@ -358,9 +358,21 @@ public class ModLoader : Node
 
     public void LoadMods()
     {
-        var newMods = Settings.Instance.EnabledMods.Value.ToHashSet();
-
-        foreach (var unload in loadedMods.ToList())
+        var newMods = Settings.Instance.EnabledMods.Value;
+        int index = -1;
+        GD.Print("LM: ",loadedMods.Join());
+        GD.Print("NM: ",newMods.Join());
+        foreach (var unload in loadedMods.Skip(loadedMods.FindIndex(e =>
+                 {
+                     index++;
+                     if (index >= newMods.Count)
+                     {
+                         return true;
+                     }
+                     
+                     GD.Print("CHECK: ", e, " || ",newMods[index]);
+                     return e != newMods[index];
+                 }) + 1))
         {
             GD.Print("Unloading mod: ", unload);
 
@@ -381,7 +393,7 @@ public class ModLoader : Node
         UnhandledExceptionLogger.ReportModsEnabled();
         SafeModeStartupHandler.ReportModLoadingStart();
 
-        foreach (var load in newMods.Except(loadedMods))
+        foreach (var load in newMods.ToHashSet().Except(loadedMods))
         {
             GD.Print("Loading mod: ", load);
             LoadMod(load);

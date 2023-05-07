@@ -13,7 +13,7 @@ public class FullModDetails : IEquatable<FullModDetails>
     }
 
     /// <summary>
-    ///     The compatibility with the current version of Thrive.
+    ///   The compatibility with the current version of Thrive.
     /// </summary>
     public enum VersionCompatibility
     {
