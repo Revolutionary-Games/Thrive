@@ -2280,14 +2280,12 @@ public class OptionsMenu : ControlWithInput
 
     private void OnScreenEffectSelected(int index)
     {
-        var currentEffect = Settings.Instance.CurrentScreenEffect;
+        var effect = SimulationParameters.Instance.GetScreenEffectByIndex(index);
 
-        currentEffect.Value = SimulationParameters.Instance.GetScreenEffectByIndex(index);
+        if (effect == SimulationParameters.Instance.GetScreenEffectByIndex(0))
+            effect = null;
 
-        if (currentEffect.Value == SimulationParameters.Instance.GetScreenEffectByIndex(0))
-            currentEffect.Value = null;
-
-        Settings.Instance.CurrentScreenEffect.Value = currentEffect.Value;
+        Settings.Instance.CurrentScreenEffect.Value = effect;
 
         UpdateResetSaveButtonState();
     }
