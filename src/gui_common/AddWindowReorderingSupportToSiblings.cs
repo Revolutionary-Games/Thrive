@@ -31,7 +31,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     ///   </para>
     /// </remarks>
     [Export]
-    public Array<NodePath> WindowReorderingPaths = new();
+    public Array<NodePath>? WindowReorderingPaths;
 
     /// <summary>
     ///   Tries to finds first window reordering node in ancestors to connect to
@@ -203,8 +203,11 @@ public class AddWindowReorderingSupportToSiblings : Control
     {
         if (disposing)
         {
-            foreach (var path in WindowReorderingPaths)
-                path.Dispose();
+            if (WindowReorderingPaths != null)
+            {
+                foreach (var path in WindowReorderingPaths)
+                    path.Dispose();
+            }
         }
 
         base.Dispose(disposing);
