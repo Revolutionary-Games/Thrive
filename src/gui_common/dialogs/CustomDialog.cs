@@ -98,7 +98,11 @@ public class CustomDialog : CustomWindow
     private bool closeHovered;
     private bool closeFocused;
 
-    private bool allowWindowReorderingRecursionCurrent = true;
+    /// <summary>
+    ///   Stored value of what <see cref="AllowWindowReorderingRecursion"/> was when it was applied. Used to guard
+    ///   against changes to that value after its been used which would lead to inconsistent logic without this.
+    /// </summary>
+    private bool usedAllowWindowReorderingRecursion = true;
 
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
@@ -132,9 +136,6 @@ public class CustomDialog : CustomWindow
 
     [Signal]
     public delegate void Dragged(CustomWindow window);
-
-    [Signal]
-    public delegate void Opened(CustomWindow window);
 
     [Flags]
     private enum DragType
@@ -418,7 +419,6 @@ public class CustomDialog : CustomWindow
     {
         base.OnOpen();
         UpdateChildRects();
-        EmitSignal(nameof(Opened), this);
     }
 
     protected override void OnHidden()
@@ -492,15 +492,15 @@ public class CustomDialog : CustomWindow
 
     private void ConnectToWindowReorderingNodes()
     {
-        allowWindowReorderingRecursionCurrent = AllowWindowReorderingRecursion;
+        usedAllowWindowReorderingRecursion = AllowWindowReorderingRecursion;
 
-        var windowReorderingAncestorsIEnumerable = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
+        var windowReorderingAncestors = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
             this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
 
-        foreach (var (reorderingNode, nodeSibling) in windowReorderingAncestorsIEnumerable)
+        foreach (var (reorderingNode, nodeSibling) in windowReorderingAncestors)
         {
             reorderingNode.ConnectWindow(
-                this, nodeSibling, allowWindowReorderingRecursionCurrent);
+                this, nodeSibling, usedAllowWindowReorderingRecursion);
             windowReorderingNodes.Add(reorderingNode);
         }
     }
@@ -508,7 +508,7 @@ public class CustomDialog : CustomWindow
     private void DisconnectFromWindowReorderingNodes()
     {
         foreach (var node in windowReorderingNodes)
-            node.DisconnectWindow(this, allowWindowReorderingRecursionCurrent);
+            node.DisconnectWindow(this, usedAllowWindowReorderingRecursion);
 
         windowReorderingNodes.Clear();
     }

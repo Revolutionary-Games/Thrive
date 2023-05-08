@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
-using static CustomDialog;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Reorders windows by reordering their ancestors that are on the same level as this node.
@@ -59,6 +59,16 @@ public class AddWindowReorderingSupportToSiblings : Control
     private readonly List<(AddWindowReorderingSupportToSiblings ReorderingNode, Node Sibling)>
         windowReorderingAncestors = new();
 
+    /// <summary>
+    ///   Used to save what node to reorder when a window requires to be reordered.
+    /// </summary>
+    private readonly System.Collections.Generic.Dictionary<CustomDialog, Node> connectedWindows = new();
+
+    /// <summary>
+    ///   Used to save what siblings are part of the reordering system to prevent reordering more than is necessary.
+    /// </summary>
+    private readonly HashSet<Node> connectedSiblings = new();
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -80,16 +90,6 @@ public class AddWindowReorderingSupportToSiblings : Control
 #pragma warning restore CA2213
 
     private bool connectionsEstablished;
-
-    /// <summary>
-    ///   Used to save what node to reorder when a window requires to be reordered.
-    /// </summary>
-    private System.Collections.Generic.Dictionary<CustomDialog, Node> connectedWindows = new();
-
-    /// <summary>
-    ///   Used to save what siblings are part of the reordering system to prevent reordering more than is necessary.
-    /// </summary>
-    private HashSet<Node> connectedSiblings = new();
 
     /// <summary>
     ///   Finds window reordering nodes in ancestors, looks for manual paths if set, otherwise uses automatic search to
@@ -144,15 +144,18 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (window.IsConnected(nameof(Dragged), this, nameof(OnWindowReorder)))
+        if (window.IsConnected(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder)))
         {
             // This window is already connected here
-            GD.PrintErr($"A window {window.Name}({window}) tried to connect to {Name}{this} multiple times");
+            GD.PrintErr($"A window {window.Name} ({window}) tried to connect to {Name} ({this}) multiple times");
             return;
         }
 
-        window.Connect(nameof(Dragged), this, nameof(OnWindowReorder));
-        window.Connect(nameof(Opened), this, nameof(OnWindowReorder));
+        window.Connect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
+
+        var binds = new Array();
+        binds.Add(window);
+        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder), binds);
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -173,15 +176,15 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (!window.IsConnected(nameof(Dragged), this, nameof(OnWindowReorder)))
+        if (!window.IsConnected(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder)))
         {
-            // This window has already been disconnected from here
-            GD.PrintErr($"A window {window.Name}({window}) tried to disconnect from {Name}{this} multiple times");
+            GD.PrintErr(
+                $"A window {window.Name}({window}) tried to disconnect from {Name}{this} but it wasn't connected");
             return;
         }
 
-        window.Disconnect(nameof(Dragged), this, nameof(OnWindowReorder));
-        window.Disconnect(nameof(Opened), this, nameof(OnWindowReorder));
+        window.Disconnect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
+        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder));
 
         var windowSibling = connectedWindows[window];
         connectedWindows.Remove(window);
@@ -272,7 +275,10 @@ public class AddWindowReorderingSupportToSiblings : Control
             var reorderingNode = startingNode.GetNodeOrNull<AddWindowReorderingSupportToSiblings>(path);
 
             if (reorderingNode == null)
+            {
+                GD.PrintErr($"Failed to find window reorder node at: {path}");
                 continue;
+            }
 
             var reorderingNodeParent = reorderingNode.GetParent();
             var reorderingNodeParentPath = reorderingNodeParent.GetPath();
@@ -344,6 +350,7 @@ public class AddWindowReorderingSupportToSiblings : Control
         topSibling = targetSibling;
 
         // For unexplained reasons this has to be here to update the order visually
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4349 fix this hack
         bool isSetAsToplevel = window.IsSetAsToplevel();
         window.SetAsToplevel(!isSetAsToplevel);
         window.SetAsToplevel(isSetAsToplevel);

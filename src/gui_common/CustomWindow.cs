@@ -29,6 +29,12 @@ public class CustomWindow : Control
     public delegate void Closed();
 
     /// <summary>
+    ///   Emitted when this is opened
+    /// </summary>
+    [Signal]
+    public delegate void Opened();
+
+    /// <summary>
     ///   Returns true if this window is closing (not yet hidden) after calling <see cref="Close"/>.
     /// </summary>
     /// <remarks>
@@ -135,6 +141,7 @@ public class CustomWindow : Control
                     MouseUnCaptureActive = true;
                     ApplyRectSettings();
                     OnOpen();
+                    EmitSignal(nameof(Opened));
                 }
                 else
                 {
