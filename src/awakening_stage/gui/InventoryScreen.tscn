@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/awakening_stage/gui/InventoryScreen.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Flash"
@@ -63,6 +64,8 @@ TakeAllCraftingResultsPath = NodePath("CraftingPanel/VBoxContainer/CraftingItems
 ClearCraftingInputsPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs")
 GroundPanelPopupPath = NodePath("GroundPanel")
 GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
+
+[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
 
 [node name="GroundPanel" parent="." instance=ExtResource( 2 )]
 anchor_top = 0.74
