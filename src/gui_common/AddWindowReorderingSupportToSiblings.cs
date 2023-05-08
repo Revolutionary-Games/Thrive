@@ -320,7 +320,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     }
 
     /// <summary>
-    ///   Reoders a window by setting its ancestor to the position of current top window, making it appear on top of
+    ///   Reorders a window by setting its ancestor to the position of current top window, making it appear on top of
     ///   others.
     /// </summary>
     private void OnWindowReorder(CustomDialog window)
