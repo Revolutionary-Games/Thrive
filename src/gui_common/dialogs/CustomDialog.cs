@@ -27,7 +27,9 @@
 /*************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   A reimplementation of WindowDialog for a much more customized style and functionality. Suitable for general use
@@ -46,13 +48,60 @@ using Godot;
 /// [Tool]
 public class CustomDialog : CustomWindow
 {
+    /// <summary>
+    ///   Paths to window reordering nodes in ancestors.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This overrides automatic search.
+    ///   </para>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public Array<NodePath>? WindowReorderingPaths;
+
+    /// <summary>
+    ///   Tries to find first window reordering node in ancestors to connect to up to the specified depth.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Ignored when <see cref="WindowReorderingPaths"/> are not empty.
+    ///   </para>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public int AutomaticWindowReorderingDepth = 10;
+
+    /// <summary>
+    ///   If true, window reordering nodes also connect this window to their ancestors.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: Changes take effect when this node enters a tree.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public bool AllowWindowReorderingRecursion = true;
+
     private static readonly Lazy<StyleBox> CloseButtonFocus = new(CreateCloseButtonFocusStyle);
+
+    private readonly List<AddWindowReorderingSupportToSiblings> windowReorderingNodes = new();
 
     private string windowTitle = string.Empty;
     private string translatedWindowTitle = string.Empty;
 
     private bool closeHovered;
     private bool closeFocused;
+
+    /// <summary>
+    ///   Stored value of what <see cref="AllowWindowReorderingRecursion"/> was when it was applied. Used to guard
+    ///   against changes to that value after its been used which would lead to inconsistent logic without this.
+    /// </summary>
+    private bool usedAllowWindowReorderingRecursion = true;
 
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
@@ -83,6 +132,9 @@ public class CustomDialog : CustomWindow
     /// </summary>
     [Signal]
     public delegate void Cancelled();
+
+    [Signal]
+    public delegate void Dragged(CustomWindow window);
 
     [Flags]
     private enum DragType
@@ -187,7 +239,16 @@ public class CustomDialog : CustomWindow
         if (showCloseButton)
             _ = CloseButtonFocus.Value;
 
+        ConnectToWindowReorderingNodes();
+
         base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        DisconnectFromWindowReorderingNodes();
     }
 
     public override void _Notification(int what)
@@ -275,6 +336,8 @@ public class CustomDialog : CustomWindow
                     dragOffset = GetGlobalMousePosition() - RectPosition;
 
                 dragOffsetFar = RectPosition + RectSize - GetGlobalMousePosition();
+
+                EmitSignal(nameof(Dragged), this);
             }
             else if (dragType != DragType.None && !mouseButton.Pressed)
             {
@@ -395,6 +458,20 @@ public class CustomDialog : CustomWindow
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (WindowReorderingPaths != null)
+            {
+                foreach (var path in WindowReorderingPaths)
+                    path.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private static StyleBox CreateCloseButtonFocusStyle()
     {
         // Note that thrive_theme.tres has the normal hovered style for this, this kind of style can't be specified
@@ -413,6 +490,29 @@ public class CustomDialog : CustomWindow
             ExpandMarginTop = 3,
             ExpandMarginBottom = 3,
         };
+    }
+
+    private void ConnectToWindowReorderingNodes()
+    {
+        usedAllowWindowReorderingRecursion = AllowWindowReorderingRecursion;
+
+        var windowReorderingAncestors = AddWindowReorderingSupportToSiblings.GetWindowReorderingAncestors(
+            this, AutomaticWindowReorderingDepth, WindowReorderingPaths);
+
+        foreach (var (reorderingNode, nodeSibling) in windowReorderingAncestors)
+        {
+            reorderingNode.ConnectWindow(
+                this, nodeSibling, usedAllowWindowReorderingRecursion);
+            windowReorderingNodes.Add(reorderingNode);
+        }
+    }
+
+    private void DisconnectFromWindowReorderingNodes()
+    {
+        foreach (var node in windowReorderingNodes)
+            node.DisconnectWindow(this, usedAllowWindowReorderingRecursion);
+
+        windowReorderingNodes.Clear();
     }
 
     /// <summary>
