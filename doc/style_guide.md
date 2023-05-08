@@ -340,11 +340,6 @@ Code style rules
   tools find some problems in your code. You should fix these if your
   pull request (PR) fails the CI build.
 
-- Ruby files should be named with snake_case. When intended as
-  runnable scripts they need to begin with a shebang and be marked
-  executable. RuboCop rules should be followed in ruby
-  files. `snake_case` is used for variable and function names.
-
 - You should familiarize yourself with the codebase at least somewhat
   so that you can use similar approaches in new code as is used in
   existing code as new code should follow the conventions (even if not

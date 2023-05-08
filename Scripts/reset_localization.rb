@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+# TODO: this needs to be converted to C#
+# https://github.com/Revolutionary-Games/Thrive/issues/3765
+
 require 'os'
 require_relative '../RubySetupSystem/RubyCommon'
 
