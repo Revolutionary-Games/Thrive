@@ -63,12 +63,11 @@ public class CustomDialog : CustomWindow
     public Array<NodePath>? WindowReorderingPaths;
 
     /// <summary>
-    ///   Tries to finds first window reordering node in ancestors to connect to
-    ///   up to the specified depth.
+    ///   Tries to find first window reordering node in ancestors to connect to up to the specified depth.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Ignored when window reordering paths are not empty.
+    ///     Ignored when <see cref="WindowReorderingPaths"/> are not empty.
     ///   </para>
     ///   <para>
     ///     NOTE: Changes take effect when this node enters a tree.
