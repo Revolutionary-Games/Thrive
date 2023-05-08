@@ -1,0 +1,227 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test/WindowReorderingSupportTest.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=3]
+
+[node name="WindowReorderingSupportTest" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 3 )]
+
+[node name="Automatic" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="AddWindowReorderingSupportToSiblings" parent="Automatic" instance=ExtResource( 3 )]
+
+[node name="Window1" parent="Automatic" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Window1"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 10
+AllowWindowReorderingRecursion = true
+
+[node name="Control" type="Control" parent="Automatic/Window1"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Control2" type="Control" parent="Automatic/Window1/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Control3" type="Control" parent="Automatic/Window1/Control/Control2"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Child1ReordersWindow1" parent="Automatic/Window1/Control/Control2/Control3" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Child1ReordersWindow1"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 5
+AllowWindowReorderingRecursion = true
+
+[node name="Window2" parent="Automatic" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Window2"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 10
+AllowWindowReorderingRecursion = true
+
+[node name="AddWindowReorderingSupportToSiblings" parent="Automatic/Window2" instance=ExtResource( 3 )]
+AutomaticWindowReorderingDepth = 1
+
+[node name="Child2AlwaysBottomReodersWindow2Manual" parent="Automatic/Window2" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Child2AlwaysBottomReodersWindow2Manual"
+WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="Child2ReordersWindow2" parent="Automatic/Window2" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Child2ReordersWindow2"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 10
+AllowWindowReorderingRecursion = true
+
+[node name="Child2" parent="Automatic/Window2" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Child2"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 10
+AllowWindowReorderingRecursion = false
+
+[node name="Child2AlwaysTop" parent="Automatic/Window2" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Child2AlwaysTop"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="Window3AlwaysTop" parent="Automatic" instance=ExtResource( 1 )]
+visible = true
+margin_right = 200.0
+margin_bottom = 125.0
+WindowTitle = "Window3AlwaysTop"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="AutomaticWindowSet" parent="Automatic" instance=ExtResource( 1 )]
+visible = true
+margin_right = 300.0
+margin_bottom = 300.0
+WindowTitle = "AutomaticWindowSet"
+WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="Manual" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="AddWindowReorderingSupportToSiblings" parent="Manual" instance=ExtResource( 3 )]
+margin_left = 1800.0
+margin_right = 1800.0
+
+[node name="Window12" parent="Manual" instance=ExtResource( 1 )]
+visible = true
+margin_left = 1800.0
+margin_right = 2000.0
+margin_bottom = 125.0
+WindowTitle = "Window12"
+WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="Control" type="Control" parent="Manual/Window12"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Control2" type="Control" parent="Manual/Window12/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Control3" type="Control" parent="Manual/Window12/Control/Control2"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Child1ReordersWindow12" parent="Manual/Window12/Control/Control2/Control3" instance=ExtResource( 1 )]
+visible = true
+margin_left = 900.0
+margin_right = 1100.0
+margin_bottom = 125.0
+WindowTitle = "Child1ReordersWindow12"
+WindowReorderingPaths = [ NodePath("../../../../../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="Window22" parent="Manual" instance=ExtResource( 1 )]
+visible = true
+margin_left = 1800.0
+margin_right = 2000.0
+margin_bottom = 125.0
+WindowTitle = "Window22"
+WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="AddWindowReorderingSupportToSiblings" parent="Manual/Window22" instance=ExtResource( 3 )]
+WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
+
+[node name="Child2AlwaysBottomReodersWindow22" parent="Manual/Window22" instance=ExtResource( 1 )]
+visible = true
+margin_left = 900.0
+margin_right = 1100.0
+margin_bottom = 125.0
+WindowTitle = "Child2AlwaysBottomReodersWindow22"
+WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="Child2ReordersWindow22" parent="Manual/Window22" instance=ExtResource( 1 )]
+visible = true
+margin_left = 900.0
+margin_right = 1100.0
+margin_bottom = 125.0
+WindowTitle = "Child2ReordersWindow22"
+WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings"), NodePath("../../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = false
+
+[node name="Child22" parent="Manual/Window22" instance=ExtResource( 1 )]
+visible = true
+margin_left = 900.0
+margin_right = 1100.0
+margin_bottom = 125.0
+WindowTitle = "Child22"
+WindowReorderingPaths = [ NodePath("../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = false
+
+[node name="Child2AlwaysTop2" parent="Manual/Window22" instance=ExtResource( 1 )]
+visible = true
+margin_left = 900.0
+margin_right = 1100.0
+margin_bottom = 125.0
+WindowTitle = "Child2AlwaysTop2"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="Window3AlwaysTop2" parent="Manual" instance=ExtResource( 1 )]
+visible = true
+margin_left = 1800.0
+margin_right = 2000.0
+margin_bottom = 125.0
+WindowTitle = "Window3AlwaysTop2"
+WindowReorderingPaths = [  ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true
+
+[node name="ManualWindowSet" parent="Manual" instance=ExtResource( 1 )]
+visible = true
+margin_left = 1800.0
+margin_right = 2100.0
+margin_bottom = 300.0
+WindowTitle = "ManualWindowSet"
+WindowReorderingPaths = [ NodePath("../../AddWindowReorderingSupportToSiblings") ]
+AutomaticWindowReorderingDepth = 0
+AllowWindowReorderingRecursion = true

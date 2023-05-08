@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=10]
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
 pause_mode = 2
@@ -28,6 +29,8 @@ CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 AutoEvoPredictionPath = NodePath("AutoEvoPrediction")
 AutoEvoPredictionHighlightPath = NodePath("AutoEvoPredictionHighlight")
 StaySmallTutorialPath = NodePath("StaySmall")
+
+[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
 
 [node name="EditorEntryReport" parent="." instance=ExtResource( 8 )]
 anchor_left = 1.0
