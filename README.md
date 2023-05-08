@@ -53,11 +53,11 @@ by their priority and status. It can be found [here](https://github.com/orgs/Rev
 <img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_2.png" alt="game screenshot" width="900px">
 
 ### Programmers 
-Thrive is written in C# with a few helper scripts written in ruby. In
-order to work on the C# you need to compile Thrive yourself. You can
-find instructions for how to do that in the [setup
-instructions][setupguide]. And if you've never used Godot before
-please read [learning Godot][learninggodot].
+Thrive is written in C#. In order to work on the C# you need to compile Thrive yourself. 
+You can find instructions for how to do that in the [setup instructions][setupguide]. And 
+if you've never used Godot before please read [learning Godot][learninggodot]. This repository
+also contains a few helper scripts written in C# for working on the game. These can be ran
+with dotnet: `dotnet run --project Scripts -- help`
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.

@@ -447,7 +447,16 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
         CurrentGame!.EnterPrototypes();
 
-        GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
+        var modifiedSpecies = GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
+
+        // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
+        // underwater in the awakening stage
+        if (modifiedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        {
+            GD.Print("Preventing player from becoming awakened too soon");
+            modifiedSpecies.KeepPlayerInAwareStage();
+        }
+
         GameWorld.NotifySpeciesChangedStages();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);

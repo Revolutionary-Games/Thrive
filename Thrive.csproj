@@ -248,6 +248,7 @@
     <Compile Include="src\general\utils\TranslationHelper.cs" />
     <Compile Include="src\general\utils\TypeUtils.cs" />
     <Compile Include="src\general\utils\VersionUtils.cs" />
+    <Compile Include="src\gui_common\AddWindowReorderingSupportToSiblings.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\CustomWindow.cs" />
     <Compile Include="src\gui_common\CustomPopupMenu.cs" />
@@ -725,6 +726,7 @@
     <Compile Include="src\tutorial\TutorialState.cs" />
     <Compile Include="src\saving\serializers\RandomConverter.cs" />
     <Compile Include="test\MetaballTest.cs" />
+    <Compile Include="test\WindowReorderingSupportTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
@@ -763,6 +765,7 @@
     <Content Include="Directory.Build.props" />
     <Content Include="export_presets.cfg" />
     <Content Include="global.json" />
+    <Content Include="README.md" />
     <Content Include="RevolutionaryGamesCommon\stylecop.json" />
     <Content Include="RevolutionaryGamesCommon\StyleCop.ruleset" />
     <Content Include="simulation_parameters\awakening_stage\crafting_recipes.json" />
