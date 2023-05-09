@@ -146,7 +146,8 @@ public class TechWebGUI : HBoxContainer
 
         // TODO: show in red if the player doesn't have the research capability
         descriptionBuilder.Append(TranslationServer.Translate("TECHNOLOGY_REQUIRED_LEVEL")
-            .FormatSafe(selectedTechnology.RequiresResearchLevel.GetAttribute<DescriptionAttribute>().Description));
+            .FormatSafe(TranslationServer.Translate(selectedTechnology.RequiresResearchLevel
+                .GetAttribute<DescriptionAttribute>().Description)));
 
         // TODO: a quick description for a technology
 
