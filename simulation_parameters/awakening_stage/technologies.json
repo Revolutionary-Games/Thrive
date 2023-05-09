@@ -41,7 +41,9 @@
     "Name": "TECHNOLOGY_ROCKETRY",
     "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
     "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
-    "GrantsStructures": [],
+    "GrantsUnits": [
+      "simpleSpaceRocket"
+    ],
     "RequiresEarlierTechnology": [],
     "RequiresResearchLevel": "SpaceAge",
     "ResearchPoints": 30
@@ -50,7 +52,10 @@
     "Name": "TECHNOLOGY_ASCENSION",
     "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
     "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
-    "GrantsStructures": [],
+    "GrantsSpaceStructures": [
+      "dysonSwarm",
+      "ascensionGate"
+    ],
     "RequiresEarlierTechnology": [],
     "RequiresResearchLevel": "Scifi",
     "ResearchPoints": 30
