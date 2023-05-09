@@ -2,7 +2,7 @@
   "dysonSwarm": {
     "Name": "STRUCTURE_DYSON_SWARM",
     "WorldRepresentationScene": "res://assets/models/space/DysonSwarm.tscn",
-    "GhostScenePath": "res://assets/models/structures/DysonSwarmGhost.tscn",
+    "GhostScenePath": "res://assets/models/space/structures/DysonSwarmGhost.tscn",
     "ScaffoldingScenePath": "res://assets/models/structures/StructureScaffolding_20x20.tscn",
     "BuildingIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
     "WorldSize": {
@@ -24,14 +24,14 @@
   },
   "ascensionGate": {
     "Name": "STRUCTURE_ASCENSION_GATE",
-    "WorldRepresentationScene": "res://assets/models/space/AscensionGate.tscn",
-    "GhostScenePath": "res://assets/models/structures/AscensionGateGhost.tscn",
-    "ScaffoldingScenePath": "res://assets/models/structures/StructureScaffolding_20x20.tscn",
+    "WorldRepresentationScene": "res://assets/models/space/structures/AscensionGate.tscn",
+    "GhostScenePath": "res://assets/models/space/structures/AscensionGateGhost.tscn",
+    "ScaffoldingScenePath": "res://assets/models/structures/StructureScaffolding_10x10.tscn",
     "BuildingIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
     "WorldSize": {
-      "x": 20,
-      "y": 20,
-      "z": 20
+      "x": 10,
+      "y": 10,
+      "z": 10
     },
     "RequiredResources": {
       "rock": 1
