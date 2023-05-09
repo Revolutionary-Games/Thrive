@@ -1236,6 +1236,8 @@ public static class Constants
 
     public const float INDUSTRIAL_STAGE_CITY_PROCESS_INTERVAL = 0.1f;
 
+    public const float CITY_SCREEN_UPDATE_INTERVAL = 0.1f;
+
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>

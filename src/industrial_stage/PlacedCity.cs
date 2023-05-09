@@ -80,6 +80,19 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
         // TODO: store research to show in the city screen
     }
 
+    public float CalculateFoodProduction()
+    {
+        // Base food growing
+        // TODO: convert this to come from the buildings
+        return Mathf.Log(Population) * 10 + 4;
+    }
+
+    public float CalculateFoodConsumption()
+    {
+        // TODO: scale food need based on species
+        return Population * 2;
+    }
+
     public void OnSelectedThroughLabel()
     {
         EmitSignal(nameof(OnSelected));
@@ -92,17 +105,14 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
 
     private void HandleProduction(float elapsed, IResourceContainer globalResourceHack)
     {
-        // Base food growing
-        // TODO: also change the math for this
-        globalResourceHack.Add(foodResource, (Mathf.Log(Population) * 10 + 4) * elapsed);
+        globalResourceHack.Add(foodResource, CalculateFoodProduction() * elapsed);
 
         // TODO: production from buildings
     }
 
     private void HandleResourceConsumption(float elapsed, IResourceContainer globalResourceHack)
     {
-        // TODO: scale food need based on species
-        float neededFood = Population * 2 * elapsed;
+        float neededFood = CalculateFoodConsumption() * elapsed;
 
         if (globalResourceHack.Take(foodResource, neededFood, true) < neededFood)
         {

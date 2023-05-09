@@ -11,6 +11,10 @@ margin_bottom = 420.0
 rect_min_size = Vector2( 350, 300 )
 script = ExtResource( 2 )
 Resizable = true
+ShortStatsLabelPath = NodePath("VBoxContainer/CityStats")
+AvailableBuildingsContainerPath = NodePath("VBoxContainer/HBoxContainer/LeftSide/ScrollContainer/AvailableBuildings")
+ConstructedBuildingsContainerPath = NodePath("VBoxContainer/HBoxContainer/LeftSide/ScrollContainer2/ConstructedBuildings")
+BuildQueueContainerPath = NodePath("VBoxContainer/HBoxContainer/BuildQueueSide/ScrollContainer/Queue")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 margin_right = 40.0
