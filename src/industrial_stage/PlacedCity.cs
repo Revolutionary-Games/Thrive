@@ -11,6 +11,7 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
         new(() => GD.Load<PackedScene>("res://src/industrial_stage/gui/CityNameLabel.tscn"));
 
     private WorldResource foodResource = null!;
+    private WorldResource rockResource = null!;
 
     /// <summary>
     ///   Emitted when this city is selected by the player
@@ -56,6 +57,7 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
         base._Ready();
 
         foodResource = SimulationParameters.Instance.GetWorldResource("food");
+        rockResource = SimulationParameters.Instance.GetWorldResource("rock");
     }
 
     public void Init(bool playerCity)
@@ -108,6 +110,9 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
         globalResourceHack.Add(foodResource, CalculateFoodProduction() * elapsed);
 
         // TODO: production from buildings
+
+        // Placeholder some resource production
+        globalResourceHack.Add(rockResource, 1 * elapsed);
     }
 
     private void HandleResourceConsumption(float elapsed, IResourceContainer globalResourceHack)
