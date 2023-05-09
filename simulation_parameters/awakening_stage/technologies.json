@@ -36,5 +36,23 @@
     "RequiresEarlierTechnology": [],
     "RequiresResearchLevel": "Primitive",
     "ResearchPoints": 25
+  },
+  "rocketry": {
+    "Name": "TECHNOLOGY_ROCKETRY",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsStructures": [],
+    "RequiresEarlierTechnology": [],
+    "RequiresResearchLevel": "SpaceAge",
+    "ResearchPoints": 30
+  },
+  "ascension": {
+    "Name": "TECHNOLOGY_ASCENSION",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsStructures": [],
+    "RequiresEarlierTechnology": [],
+    "RequiresResearchLevel": "Scifi",
+    "ResearchPoints": 30
   }
 }

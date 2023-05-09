@@ -44,11 +44,18 @@ public class CitySystem
                 continue;
             }
 
+            // TODO: processing for non-player cities
+
             // The following is pretty quick prototype code, there's probably better way to implement this
             city.ProcessIndustrial(elapsed, societyData.SocietyResources);
 
-            storage += city.TotalStorageSpace;
-            population += city.Population;
+            if (city.IsPlayerCity)
+            {
+                city.ProcessResearch(elapsed, societyData);
+
+                storage += city.TotalStorageSpace;
+                population += city.Population;
+            }
         }
 
         elapsed = 0;

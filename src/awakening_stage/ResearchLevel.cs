@@ -13,4 +13,24 @@ public enum ResearchLevel
     ///   Technology level at the start of society stage
     /// </summary>
     Primitive,
+
+    /// <summary>
+    ///   Start of industrial revolution technology level
+    /// </summary>
+    Industrial,
+
+    /// <summary>
+    ///   Technology level that humans currently have
+    /// </summary>
+    SpaceAge,
+
+    /// <summary>
+    ///   Near future / conceivable technology
+    /// </summary>
+    AdvancedSpace,
+
+    /// <summary>
+    ///   Full on science fiction technology level like FTL and ascension
+    /// </summary>
+    Scifi,
 }

@@ -72,6 +72,14 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
         HandlePopulationGrowth(globalResourceHack);
     }
 
+    public void ProcessResearch(float elapsed, ISocietyStructureDataAccess dataAccess)
+    {
+        // TODO: speed and technology level from buildings
+        ResearchComponent.HandleResearchProgressAdding(elapsed, this, 5, ResearchLevel.SpaceAge, dataAccess);
+
+        // TODO: store research to show in the city screen
+    }
+
     public void OnSelectedThroughLabel()
     {
         EmitSignal(nameof(OnSelected));
