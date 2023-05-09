@@ -87,7 +87,8 @@ public class ResourceDisplayBar : HBoxContainer
         }
 
         scienceAmountLabel.AddColorOverride("font_color", NormalResourceAmountColour);
-        scienceAmountLabel.Text = "+" + StringUtils.ThreeDigitFormat(amount);
+        scienceAmountLabel.Text =
+            StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(amount), amount);
     }
 
     protected override void Dispose(bool disposing)

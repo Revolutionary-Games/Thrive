@@ -110,11 +110,13 @@ public partial class CellEditorComponent
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
-        healthModifier.ModifierValue = ((healthChange >= 0) ? "+" : string.Empty)
-            + healthChange.ToString("F0", CultureInfo.CurrentCulture);
+        healthModifier.ModifierValue =
+            StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0", CultureInfo.CurrentCulture),
+                healthChange);
 
-        baseMobilityModifier.ModifierValue = ((baseMobilityChange >= 0) ? "+" : string.Empty)
-            + baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture);
+        baseMobilityModifier.ModifierValue =
+            StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture),
+                baseMobilityChange);
 
         healthModifier.AdjustValueColor(healthChange);
         baseMobilityModifier.AdjustValueColor(baseMobilityChange);
