@@ -41,26 +41,32 @@ margin_bottom = 25.0
 text = "AVAILABLE_CONSTRUCTION_PROJECTS"
 align = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/LeftSide" index="1"]
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/HBoxContainer/LeftSide" index="1"]
+margin_right = 40.0
+margin_bottom = 4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/LeftSide" index="2"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="AvailableBuildings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftSide/ScrollContainer" index="0"]
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/LeftSide" index="2"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/LeftSide" index="3"]
 margin_right = 40.0
 margin_bottom = 4.0
 
-[node name="BuiltLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftSide" index="3"]
+[node name="BuiltLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftSide" index="4"]
 margin_right = 40.0
 margin_bottom = 25.0
 text = "EXISTING_BUILDINGS"
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/LeftSide" index="4"]
+[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/LeftSide" index="5"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
