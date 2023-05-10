@@ -39,6 +39,9 @@ public class UnitType : IRegistryType
     public string UnitIcon { get; private set; } = string.Empty;
 
     [JsonProperty]
+    public float BuildTime { get; private set; } = 30;
+
+    [JsonProperty]
     public bool HasSpaceMovement { get; private set; }
 
     [JsonProperty]

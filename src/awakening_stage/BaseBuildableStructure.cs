@@ -33,7 +33,7 @@ public class BaseBuildableStructure : IRegistryType
 
     [JsonProperty]
     [TranslateFrom(nameof(untranslatedName))]
-    public string Name { get; private set; }
+    public string Name { get; protected set; }
 
     [JsonProperty]
     public string WorldRepresentationScene { get; private set; } = string.Empty;
