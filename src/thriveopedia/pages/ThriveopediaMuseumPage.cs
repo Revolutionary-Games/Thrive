@@ -190,7 +190,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         }
         catch (Exception e)
         {
-            deletionFailedDialog.DialogText = e.Message;
             deletionFailedDialog.PopupCenteredShrink();
 
             GD.PrintErr("Failed to delete fossil file: ", e);

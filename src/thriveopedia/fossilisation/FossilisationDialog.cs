@@ -250,7 +250,6 @@ public class FossilisationDialog : CustomDialog
         }
         catch (Exception e)
         {
-            fossilisationFailedDialog.DialogText = e.Message;
             fossilisationFailedDialog.PopupCenteredShrink();
 
             GD.PrintErr("Failed to save fossil file: ", e);

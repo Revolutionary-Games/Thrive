@@ -184,6 +184,7 @@ margin_bottom = 599.0
 rect_min_size = Vector2( 391, 0 )
 WindowTitle = "FOSSIL_DELETION_FAILED"
 HideCancelButton = true
+DialogText = "FOSSIL_DELETION_FAILED_DESCRIPTION"
 
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="OnOpenInFreebuildConfirmPressed"]

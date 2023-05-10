@@ -244,6 +244,7 @@ margin_bottom = 599.0
 rect_min_size = Vector2( 440, 0 )
 WindowTitle = "FOSSILISATION_FAILED"
 HideCancelButton = true
+DialogText = "FOSSILISATION_FAILED_DESCRIPTION"
 
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextEntered"]
