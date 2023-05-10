@@ -37,7 +37,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
-    private ErrorDialog deletionFailedDialog = null!;
+    private CustomConfirmationDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;
 
     public override string PageName => "Museum";
@@ -54,7 +54,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
-        deletionFailedDialog = GetNode<ErrorDialog>(DeletionFailedDialogPath);
+        deletionFailedDialog = GetNode<CustomConfirmationDialog>(DeletionFailedDialogPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
     }
@@ -190,7 +190,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         }
         catch (Exception e)
         {
-            deletionFailedDialog.ExceptionInfo = e.Message;
+            deletionFailedDialog.DialogText = e.Message;
             deletionFailedDialog.PopupCenteredShrink();
 
             GD.PrintErr("Failed to delete fossil file: ", e);

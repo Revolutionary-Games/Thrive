@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=12]
-[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "invalidSpeciesNameFlash"
@@ -237,12 +236,14 @@ margin_bottom = 599.0
 rect_min_size = Vector2( 440, 0 )
 WindowTitle = "CONFIRM_FOSSILISATION_OVERWRITE"
 
-[node name="FossilisationFailedDialog" parent="." index="3" instance=ExtResource( 13 )]
-margin_top = 4.0
-margin_right = 1270.0
-margin_bottom = 89.0
+[node name="FossilisationFailedDialog" parent="." index="3" instance=ExtResource( 4 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 935.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 440, 0 )
 WindowTitle = "FOSSILISATION_FAILED"
-ErrorMessage = "FOSSILISATION_FAILED_DESCRIPTION"
+HideCancelButton = true
 
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextEntered"]

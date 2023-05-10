@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/thriveopedia/pages/ThriveopediaMuseumPage.cs" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=9]
 
 [node name="ThriveopediaMuseumPage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -177,12 +176,14 @@ margin_bottom = 599.0
 rect_min_size = Vector2( 391, 0 )
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="FossilDeletionFailedDialog" parent="." index="3" instance=ExtResource( 9 )]
-margin_top = 4.0
-margin_right = 1270.0
-margin_bottom = 89.0
+[node name="FossilDeletionFailedDialog" parent="." index="3" instance=ExtResource( 8 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 935.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 391, 0 )
 WindowTitle = "FOSSIL_DELETION_FAILED"
-ErrorMessage = "FOSSIL_DELETION_FAILED_DESCRIPTION"
+HideCancelButton = true
 
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="OnOpenInFreebuildConfirmPressed"]

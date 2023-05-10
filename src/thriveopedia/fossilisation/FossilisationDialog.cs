@@ -34,7 +34,7 @@ public class FossilisationDialog : CustomDialog
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private Button fossiliseButton = null!;
     private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
-    private ErrorDialog fossilisationFailedDialog = null!;
+    private CustomConfirmationDialog fossilisationFailedDialog = null!;
 
     /// <summary>
     ///   The species currently open in the dialog.
@@ -74,7 +74,7 @@ public class FossilisationDialog : CustomDialog
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         fossiliseButton = GetNode<Button>(FossiliseButtonPath);
         overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
-        fossilisationFailedDialog = GetNode<ErrorDialog>(FossilisationFailedDialogPath);
+        fossilisationFailedDialog = GetNode<CustomConfirmationDialog>(FossilisationFailedDialogPath);
 
         // For saving a preview image of the species we need this preview object to keep hold of the raw rendered image
         speciesPreview.KeepPlainImageInMemory = true;
@@ -250,13 +250,13 @@ public class FossilisationDialog : CustomDialog
         }
         catch (Exception e)
         {
-            fossilisationFailedDialog.ExceptionInfo = e.Message;
+            fossilisationFailedDialog.DialogText = e.Message;
             fossilisationFailedDialog.PopupCenteredShrink();
 
             GD.PrintErr("Failed to save fossil file: ", e);
             return;
         }
-        
+
         Hide();
     }
 }
