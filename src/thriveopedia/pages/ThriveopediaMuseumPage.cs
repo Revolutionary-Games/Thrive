@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Thriveopedia page displaying fossilised (saved) organisms.
@@ -26,6 +27,9 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     [Export]
     public NodePath LeaveGameConfirmationDialogPath = null!;
 
+    [Export]
+    public NodePath DeletionFailedDialogPath = null!;
+
     private HFlowContainer cardContainer = null!;
     private Control welcomeLabel = null!;
     private VBoxContainer speciesPreviewContainer = null!;
@@ -33,6 +37,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+    private ErrorDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;
 
     public override string PageName => "Museum";
@@ -49,6 +54,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
+        deletionFailedDialog = GetNode<ErrorDialog>(DeletionFailedDialogPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
     }
@@ -178,7 +184,18 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             return;
         }
 
-        FossilisedSpecies.DeleteFossilFile(fossilName + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        try
+        {
+            FossilisedSpecies.DeleteFossilFile(fossilName + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        }
+        catch (Exception e)
+        {
+            deletionFailedDialog.ExceptionInfo = e.Message;
+            deletionFailedDialog.PopupCenteredShrink();
+
+            GD.PrintErr("Failed to delete fossil file: ", e);
+            return;
+        }
 
         // If the species we just deleted was being displayed in the sidebar
         if (speciesPreview.PreviewSpecies == card.SavedSpecies)
