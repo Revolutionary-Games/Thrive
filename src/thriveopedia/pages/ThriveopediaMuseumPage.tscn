@@ -20,6 +20,10 @@ HexesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VB
 SpeciesDetailsLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 LeaveGameConfirmationDialogPath = NodePath("UnsavedProgressWarning")
 
+[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
+margin_right = 10.0
+margin_bottom = 10.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="1"]
 margin_left = 1.0
 margin_top = 1.0
@@ -70,8 +74,7 @@ size_flags_horizontal = 3
 scroll_horizontal_enabled = false
 
 [node name="HFlowContainer" type="HFlowContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
-margin_right = 525.0
-margin_bottom = 556.0
+margin_right = 519.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

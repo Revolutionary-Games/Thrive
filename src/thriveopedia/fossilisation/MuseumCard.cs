@@ -12,9 +12,6 @@ public class MuseumCard : Button
     public NodePath SpeciesPreviewPath = null!;
 
     [Export]
-    public NodePath DeleteButtonPath = null!;
-
-    [Export]
     public NodePath DeleteConfirmationDialogPath = null!;
 
     private Label? speciesNameLabel;
@@ -23,11 +20,7 @@ public class MuseumCard : Button
     private Species? savedSpecies;
     private Image? fossilPreviewImage;
 
-    private TextureButton? deleteButton;
-
     private CustomConfirmationDialog deleteConfirmationDialog = null!;
-
-    private bool wasPressed;
 
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
@@ -72,7 +65,6 @@ public class MuseumCard : Button
 
         speciesPreview = GetNode<TextureRect>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
-        deleteButton = GetNode<TextureButton>(DeleteButtonPath);
         deleteConfirmationDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmationDialogPath);
 
         UpdateSpeciesName();
@@ -107,37 +99,18 @@ public class MuseumCard : Button
 
     private void OnPressed()
     {
-        // Make sure clicking doesn't pass through from the delete button
-        if (deleteButton?.Pressed ?? false)
-        {
-            Pressed = wasPressed;
-            return;
-        }
-
-        wasPressed = Pressed;
-
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnSpeciesSelected), this);
     }
 
     private void OnMouseEnter()
     {
-        if (deleteButton == null)
-            throw new SceneTreeAttachRequired();
-
-        deleteButton.Visible = true;
-
         GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.Gray, 0.5f);
         GUICommon.Instance.Tween.Start();
     }
 
     private void OnMouseExit()
     {
-        if (deleteButton == null)
-            throw new SceneTreeAttachRequired();
-
-        deleteButton.Visible = false;
-
         GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.White, 0.5f);
         GUICommon.Instance.Tween.Start();
     }

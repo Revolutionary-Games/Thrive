@@ -1,13 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/trashButton.png" type="Texture" id=3]
 [ext_resource path="res://src/thriveopedia/fossilisation/MuseumCard.cs" type="Script" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/trashButtonHover.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/trashButtonActive.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/TrashIcon.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
@@ -45,7 +42,6 @@ action_mode = 0
 script = ExtResource( 4 )
 SpeciesNameLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
 SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
-DeleteButtonPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Delete")
 DeleteConfirmationDialogPath = NodePath("DeleteWarning")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -95,6 +91,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 164.0
+margin_bottom = 19.0
+alignment = 2
+
+[node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 148.0
+margin_right = 162.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 14, 14 )
+mouse_filter = 1
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 24.0
 margin_right = 166.0
@@ -117,26 +131,6 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
-margin_right = 166.0
-margin_bottom = 149.0
-alignment = 2
-
-[node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-visible = false
-margin_left = 136.0
-margin_right = 166.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
-mouse_filter = 1
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 6 )
-texture_hover = ExtResource( 5 )
-texture_disabled = ExtResource( 7 )
-expand = true
-
 [node name="DeleteWarning" parent="." instance=ExtResource( 8 )]
 margin_left = 1.0
 margin_top = 1.0
@@ -149,5 +143,5 @@ DialogText = "DELETE_FOSSIL_CONFIRMATION"
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
 [connection signal="pressed" from="." to="." method="OnPressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Delete" to="." method="OnDeletePressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete" to="." method="OnDeletePressed"]
 [connection signal="Confirmed" from="DeleteWarning" to="." method="OnDeleteConfirmPressed"]
