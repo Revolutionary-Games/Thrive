@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-09 14:14+0300\n"
+"POT-Creation-Date: 2023-05-10 15:41+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -609,7 +609,7 @@ msgstr ""
 msgid "BUILD_CITY"
 msgstr "Структура"
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:78
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Структура"
@@ -915,8 +915,8 @@ msgstr "Лепљива унутрашњост ћелије. Цитоплазма
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
 
-#: ../src/industrial_stage/gui/CityScreen.cs:116
-#: ../src/industrial_stage/gui/CityScreen.tscn:93
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Статистика Организма"
@@ -1150,6 +1150,10 @@ msgstr "Додајте ново везивање тастера"
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Додајте ново везивање тастера"
+
+#: ../src/industrial_stage/UnitType.cs:68
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -2061,7 +2065,7 @@ msgstr "Изузетак се догодио током обраде учита�
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Изнимка се догодила приликом учитавања података за чување"
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:59
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Препиши постојеће чување:"
@@ -6205,6 +6209,15 @@ msgstr "Структурни"
 msgid "STRUCTURE"
 msgstr "Структура"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "Структура"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -6316,7 +6329,7 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Снимите екран"
 
-#: ../simulation_parameters/awakening_stage/technologies.json:50
+#: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -6909,6 +6922,10 @@ msgstr "Поништи"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Опозови последњу акцију"
+
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 #, fuzzy

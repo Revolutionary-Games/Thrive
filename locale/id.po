@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-09 14:14+0300\n"
+"POT-Creation-Date: 2023-05-10 15:41+0300\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -588,7 +588,7 @@ msgstr ""
 msgid "BUILD_CITY"
 msgstr "Struktur"
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:78
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Struktur"
@@ -885,8 +885,8 @@ msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, p
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
-#: ../src/industrial_stage/gui/CityScreen.cs:116
-#: ../src/industrial_stage/gui/CityScreen.tscn:93
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Statistika Organisme"
@@ -1113,6 +1113,10 @@ msgstr "Tambah keybind baru"
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Tambah keybind baru"
+
+#: ../src/industrial_stage/UnitType.cs:68
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -2019,7 +2023,7 @@ msgstr "Sebuah eksepsi terjadi saat sedang memproses obyek yang termuat"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Sebuah eksepsi terjadi saat sedang memuat data save"
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:59
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Timpa save yang sudah ada:"
@@ -6102,6 +6106,15 @@ msgstr "Struktural"
 msgid "STRUCTURE"
 msgstr "Struktur"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "Struktur"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -6213,7 +6226,7 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Ambil tangkapan layar"
 
-#: ../simulation_parameters/awakening_stage/technologies.json:50
+#: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -6804,6 +6817,10 @@ msgstr "Batal"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Batalkan tindakan terakhir"
+
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"

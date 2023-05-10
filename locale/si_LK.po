@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-09 14:14+0300\n"
+"POT-Creation-Date: 2023-05-10 15:41+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Sinhala <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/si/>\n"
@@ -561,7 +561,7 @@ msgstr ""
 msgid "BUILD_CITY"
 msgstr ""
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:78
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
 msgid "BUILD_QUEUE"
 msgstr ""
 
@@ -845,8 +845,8 @@ msgstr ""
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/industrial_stage/gui/CityScreen.cs:116
-#: ../src/industrial_stage/gui/CityScreen.tscn:93
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
 msgid "CITY_SHORT_STATISTICS"
 msgstr ""
 
@@ -1054,6 +1054,10 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.cs:336
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
+msgstr ""
+
+#: ../src/industrial_stage/UnitType.cs:68
+msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
@@ -1890,7 +1894,7 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:59
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
 msgid "EXISTING_BUILDINGS"
 msgstr ""
 
@@ -5615,6 +5619,14 @@ msgstr ""
 msgid "STRUCTURE"
 msgstr ""
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr ""
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -5723,7 +5735,7 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr ""
 
-#: ../simulation_parameters/awakening_stage/technologies.json:50
+#: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -6205,6 +6217,10 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
+msgstr ""
+
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227

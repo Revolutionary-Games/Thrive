@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-09 14:14+0300\n"
+"POT-Creation-Date: 2023-05-10 15:41+0300\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -586,7 +586,7 @@ msgstr "A műhely böngészése"
 msgid "BUILD_CITY"
 msgstr "Struktúra"
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:78
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Struktúra"
@@ -880,8 +880,8 @@ msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
-#: ../src/industrial_stage/gui/CityScreen.cs:116
-#: ../src/industrial_stage/gui/CityScreen.tscn:93
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organizmus statisztikái"
@@ -1106,6 +1106,11 @@ msgstr "Belépés a játékba ezekkel a beállításokkal"
 #: ../src/general/NewGameSettings.cs:336
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Egyes beállítások érvénytelenek"
+
+#: ../src/industrial_stage/UnitType.cs:68
+#, fuzzy
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr "Tritanóp (Kék-Citrom)"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -2003,7 +2008,7 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:59
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Írj be egy létező ID-t"
@@ -6076,6 +6081,15 @@ msgstr "Strukturális"
 msgid "STRUCTURE"
 msgstr "Struktúra"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "Struktúra"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -6186,7 +6200,7 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Képernyőkép készítése"
 
-#: ../simulation_parameters/awakening_stage/technologies.json:50
+#: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -6747,6 +6761,10 @@ msgstr "Visszavonás"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Utolsó akció visszavonása"
+
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"

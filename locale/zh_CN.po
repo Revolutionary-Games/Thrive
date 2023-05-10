@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-09 14:14+0300\n"
+"POT-Creation-Date: 2023-05-10 15:41+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -585,7 +585,7 @@ msgstr "浏览创意工坊"
 msgid "BUILD_CITY"
 msgstr "创造结构"
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:78
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "创造结构"
@@ -870,8 +870,8 @@ msgstr "纤毛与鞭毛相似，但它们不提供方向性推力，而是提供
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "增加大体型细胞的转向速度。"
 
-#: ../src/industrial_stage/gui/CityScreen.cs:116
-#: ../src/industrial_stage/gui/CityScreen.tscn:93
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr ""
@@ -1108,6 +1108,11 @@ msgstr "以当前设定进入游戏"
 #: ../src/general/NewGameSettings.cs:336
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分设置无效"
+
+#: ../src/industrial_stage/UnitType.cs:68
+#, fuzzy
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr "蓝黄色盲"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -2001,7 +2006,7 @@ msgstr "处理载入的对象时发生异常"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
 
-#: ../src/industrial_stage/gui/CityScreen.tscn:59
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "输入已有的编号"
@@ -5938,6 +5943,16 @@ msgstr "结构"
 msgid "STRUCTURE"
 msgstr "结构"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+#, fuzzy
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr "社会中心"
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "社会中心"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "已具有用于建造的材料"
@@ -6052,7 +6067,7 @@ msgstr "标签里只有空格"
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
-#: ../simulation_parameters/awakening_stage/technologies.json:50
+#: ../simulation_parameters/awakening_stage/technologies.json:52
 #, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "社会中心建设"
@@ -6641,6 +6656,10 @@ msgstr "撤销"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤销上一个动作"
+
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"

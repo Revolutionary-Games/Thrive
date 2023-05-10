@@ -61,9 +61,11 @@ public class UnitType : IRegistryType, ICityConstructionProject
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
 
+    // This has to be specified for the translation extractor to work
+    // ReSharper disable once ArrangeObjectCreationWhenTypeEvident
     [JsonIgnore]
     public LocalizedString ProjectName =>
-        new("CONSTRUCTION_UNIT_NAME", new LocalizedString(untranslatedName!));
+        new LocalizedString("CONSTRUCTION_UNIT_NAME", new LocalizedString(untranslatedName!));
 
     [JsonIgnore]
     public IReadOnlyDictionary<WorldResource, int> ConstructionCost => BuildCost;
