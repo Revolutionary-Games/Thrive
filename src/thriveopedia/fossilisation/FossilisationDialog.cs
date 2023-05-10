@@ -256,6 +256,7 @@ public class FossilisationDialog : CustomDialog
             GD.PrintErr("Failed to save fossil file: ", e);
             return;
         }
+        
         Hide();
     }
 }
