@@ -11,6 +11,11 @@ public class AvailableConstructionProjectItem : HBoxContainer
 #pragma warning restore CA2213
 
     private ICityConstructionProject? constructionProject;
+    private bool disabled;
+
+    public delegate void OnItemSelected(ICityConstructionProject project);
+
+    public event OnItemSelected? OnItemSelectedHandler;
 
     public ICityConstructionProject? ConstructionProject
     {
@@ -28,10 +33,21 @@ public class AvailableConstructionProjectItem : HBoxContainer
         }
     }
 
+    public bool Disabled
+    {
+        get => disabled;
+        set
+        {
+            disabled = value;
+            ApplyDisabledState();
+        }
+    }
+
     public override void _Ready()
     {
         button = GetNode<Button>(ButtonPath);
         UpdateText();
+        ApplyDisabledState();
     }
 
     protected override void Dispose(bool disposing)
@@ -39,6 +55,7 @@ public class AvailableConstructionProjectItem : HBoxContainer
         if (disposing)
         {
             ButtonPath?.Dispose();
+            OnItemSelectedHandler = null;
         }
 
         base.Dispose(disposing);
@@ -53,5 +70,26 @@ public class AvailableConstructionProjectItem : HBoxContainer
             throw new InvalidOperationException("Construction project not set");
 
         button.Text = constructionProject.ProjectName.ToString();
+    }
+
+    private void ApplyDisabledState()
+    {
+        if (button == null)
+            return;
+
+        button.Disabled = disabled;
+    }
+
+    private void OnButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (constructionProject == null || OnItemSelectedHandler == null)
+        {
+            GD.PrintErr("Construction project item not setup properly, can't forward click");
+            return;
+        }
+
+        OnItemSelectedHandler?.Invoke(constructionProject);
     }
 }

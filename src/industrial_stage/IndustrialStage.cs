@@ -1,6 +1,7 @@
-﻿using Godot;
-using Godot.Collections;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The main class handling the industrial stage functions
@@ -81,8 +82,19 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
     public PlacedCity AddCity(Transform location, bool playerCity)
     {
-        // TODO: Proper storing of created structures for easier processing
-        var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene, playerCity);
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game not set");
+
+        var techWeb = CurrentGame.TechWeb;
+
+        if (!playerCity)
+        {
+            // TODO: AI civilizations tech web's
+            GD.Print("TODO: implement AI civilization tech unlocking");
+            techWeb = new TechWeb();
+        }
+
+        var city = SpawnHelpers.SpawnCity(location, rootOfDynamicallySpawned, cityScene, playerCity, techWeb);
 
         var binds = new Array();
         binds.Add(city);
@@ -121,7 +133,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
-            "To advance select your city to build new structures, then research rocketry to be able to go to space",
+            "To advance research rocketry and then select your city to build it to be able to go to space",
             DisplayDuration.ExtraLong);
     }
 

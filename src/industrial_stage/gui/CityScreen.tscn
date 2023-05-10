@@ -75,6 +75,7 @@ scroll_horizontal_enabled = false
 [node name="BuildQueueSide" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" index="1"]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 70, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -87,10 +88,14 @@ align = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/BuildQueueSide" index="1"]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="Queue" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/BuildQueueSide/ScrollContainer" index="0"]
+margin_right = 40.0
+size_flags_horizontal = 3
 
 [node name="CityStats" type="Label" parent="VBoxContainer" index="1"]
 margin_right = 40.0

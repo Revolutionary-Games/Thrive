@@ -19,7 +19,7 @@ public class CityScreen : CustomDialog
     [Export]
     public NodePath BuildQueueContainerPath = null!;
 
-    private readonly List<BuildQueueItem> activeBuildQueueItems = new();
+    private readonly List<BuildQueueItemGUI> activeBuildQueueItems = new();
 
 #pragma warning disable CA2213
     private Label shortStatsLabel = null!;
@@ -34,7 +34,8 @@ public class CityScreen : CustomDialog
     private PackedScene availableConstructionItemScene = null!;
 #pragma warning restore CA2213
 
-    private ChildObjectCache<ICityConstructionProject, AvailableConstructionProjectItem> createdConstructionProjectButtons
+    private ChildObjectCache<ICityConstructionProject, AvailableConstructionProjectItem>
+        createdConstructionProjectButtons = null!;
 
     private PlacedCity? managedCity;
 
@@ -52,8 +53,13 @@ public class CityScreen : CustomDialog
 
         buildQueueContainer = GetNode<Container>(BuildQueueContainerPath);
 
-        queueItemScene = GD.Load<PackedScene>("res://src/industrial_stage/gui/BuildQueueItem.tscn");
-        availableConstructionItemScene= GD.Load<PackedScene>("res://src/industrial_stage/gui/BuildQueueItem.tscn");
+        queueItemScene = GD.Load<PackedScene>("res://src/industrial_stage/gui/BuildQueueItemGUI.tscn");
+        availableConstructionItemScene =
+            GD.Load<PackedScene>("res://src/industrial_stage/gui/AvailableConstructionProjectItem.tscn");
+
+        createdConstructionProjectButtons =
+            new ChildObjectCache<ICityConstructionProject, AvailableConstructionProjectItem>(
+                availableBuildingsContainer, CreateAvailableConstructionItem);
     }
 
     public override void _Process(float delta)
@@ -136,32 +142,42 @@ public class CityScreen : CustomDialog
         if (managedCity == null)
             throw new InvalidOperationException("City to manage not set");
 
+        createdConstructionProjectButtons.UnMarkAll();
+
         foreach (var constructionProject in managedCity.GetAvailableConstructionProjects())
         {
+            var item = createdConstructionProjectButtons.GetChild(constructionProject);
 
+            // TODO: show what is missing?
+            item.Disabled = !managedCity.CanStartConstruction(constructionProject);
         }
+
+        createdConstructionProjectButtons.DeleteUnmarked();
     }
 
     private void UpdateBuildQueue()
     {
+        if (managedCity == null)
+            throw new InvalidOperationException("City to manage not set");
+
         int usedIndex = 0;
 
         foreach (var buildQueueItemData in managedCity.GetBuildQueue())
         {
-            BuildQueueItem item;
+            BuildQueueItemGUI itemGUI;
 
             if (usedIndex >= activeBuildQueueItems.Count)
             {
-                item = queueItemScene.Instance<BuildQueueItem>();
-                buildQueueContainer.AddChild(item);
-                activeBuildQueueItems.Add(item);
+                itemGUI = queueItemScene.Instance<BuildQueueItemGUI>();
+                buildQueueContainer.AddChild(itemGUI);
+                activeBuildQueueItems.Add(itemGUI);
             }
             else
             {
-                item = activeBuildQueueItems[usedIndex];
+                itemGUI = activeBuildQueueItems[usedIndex];
             }
 
-            item.Display(buildQueueItemData);
+            itemGUI.Display(buildQueueItemData);
 
             ++usedIndex;
         }
@@ -180,5 +196,28 @@ public class CityScreen : CustomDialog
         constructedBuildingsContainer.QueueFreeChildren();
 
         // TODO: update this (for now there's no buildings to build in cities so this is not done)
+    }
+
+    private AvailableConstructionProjectItem CreateAvailableConstructionItem(ICityConstructionProject project)
+    {
+        var item = availableConstructionItemScene.Instance<AvailableConstructionProjectItem>();
+        item.ConstructionProject = project;
+        item.OnItemSelectedHandler += OnConstructionSelected;
+
+        return item;
+    }
+
+    private void OnConstructionSelected(ICityConstructionProject project)
+    {
+        if (managedCity == null)
+            throw new InvalidOperationException("City to manage not set");
+
+        if (!managedCity.StartConstruction(project))
+        {
+            GD.Print("TODO: show the build start failure");
+        }
+
+        // Immediately update state on the next frame to show the updated conditions
+        elapsed += 1;
     }
 }

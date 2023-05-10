@@ -1238,6 +1238,10 @@ public static class Constants
 
     public const float CITY_SCREEN_UPDATE_INTERVAL = 0.1f;
 
+    public const int CITY_MAX_BUILD_QUEUE_LENGTH = 10;
+
+    public const int CITY_MAX_GARRISONED_UNITS = 10;
+
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>

@@ -65,6 +65,9 @@ public class UnitType : IRegistryType, ICityConstructionProject
     public LocalizedString ProjectName =>
         new("CONSTRUCTION_UNIT_NAME", new LocalizedString(untranslatedName!));
 
+    [JsonIgnore]
+    public IReadOnlyDictionary<WorldResource, int> ConstructionCost => BuildCost;
+
     public void Check(string name)
     {
         using var file = new File();
@@ -85,6 +88,9 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
         if (BuildCost.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required resource amount");
+
+        if (BuildTime <= 0)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Bad build time");
     }
 
     public void Resolve()

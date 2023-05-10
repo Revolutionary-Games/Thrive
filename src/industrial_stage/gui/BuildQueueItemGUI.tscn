@@ -1,12 +1,14 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/industrial_stage/gui/BuildQueueItem.cs" type="Script" id=1]
+[ext_resource path="res://src/industrial_stage/gui/BuildQueueItemGUI.cs" type="Script" id=1]
 
-[node name="BuildQueueItem" type="VBoxContainer"]
+[node name="BuildQueueItemGUI" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
+ProgressBarPath = NodePath("ProgressBar")
+NameLabelPath = NodePath("HBoxContainer/ThingInQueue")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 1280.0
@@ -14,9 +16,12 @@ margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="ThingInQueue" type="Label" parent="HBoxContainer"]
-margin_right = 71.0
+margin_right = 1280.0
 margin_bottom = 14.0
+size_flags_horizontal = 3
 text = "Item name"
+autowrap = true
+max_lines_visible = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -24,6 +29,8 @@ __meta__ = {
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_top = 18.0
 margin_right = 1280.0
-margin_bottom = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 4 )
+size_flags_horizontal = 3
 max_value = 1.0
 percent_visible = false

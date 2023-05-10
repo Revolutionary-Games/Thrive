@@ -31,7 +31,17 @@ public class CitySystem
         elapsed += delta;
 
         if (elapsed < Constants.INDUSTRIAL_STAGE_CITY_PROCESS_INTERVAL)
+        {
+            // TODO: hopefully this scales performance-wise well enough to not cause problems when there are a bunch
+            // of cities
+            foreach (var city in worldRoot.GetChildrenToProcess<PlacedCity>(Constants.CITY_ENTITY_GROUP))
+            {
+                // Smoothly update build queue bars
+                city.ProcessBuildQueueProgressValues(delta);
+            }
+
             return;
+        }
 
         float storage = 0;
         int population = 0;
@@ -45,6 +55,8 @@ public class CitySystem
             }
 
             // TODO: processing for non-player cities
+
+            city.ProcessBuildQueueProgressValues(delta);
 
             // The following is pretty quick prototype code, there's probably better way to implement this
             city.ProcessIndustrial(elapsed, societyData.SocietyResources);

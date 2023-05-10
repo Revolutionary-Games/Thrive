@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   Something that can show progress in a <see cref="BuildQueueItem"/>
+///   Something that can show progress in a <see cref="BuildQueueItemGUI"/>
 /// </summary>
 public interface IBuildQueueProgressItem
 {

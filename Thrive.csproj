@@ -270,9 +270,10 @@
     <Compile Include="src\gui_common\TabButtons.cs" />
     <Compile Include="src\gui_common\TabLevel.cs" />
     <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
+    <Compile Include="src\industrial_stage\BuildQueueItemBase.cs" />
     <Compile Include="src\industrial_stage\CitySystem.cs" />
     <Compile Include="src\industrial_stage\gui\AvailableConstructionProjectItem.cs" />
-    <Compile Include="src\industrial_stage\gui\BuildQueueItem.cs" />
+    <Compile Include="src\industrial_stage\gui\BuildQueueItemGUI.cs" />
     <Compile Include="src\industrial_stage\gui\CityNameLabel.cs" />
     <Compile Include="src\industrial_stage\gui\CityScreen.cs" />
     <Compile Include="src\industrial_stage\gui\IBuildQueueProgressItem.cs" />

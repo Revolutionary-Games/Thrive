@@ -61,4 +61,9 @@ public class TechWeb : IAvailableRecipes
     {
         return unlockedTechnologies.SelectMany(t => t.GrantsStructures);
     }
+
+    public IEnumerable<UnitType> GetAvailableUnits()
+    {
+        return unlockedTechnologies.SelectMany(t => t.GrantsUnits);
+    }
 }
