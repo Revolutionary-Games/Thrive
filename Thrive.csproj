@@ -271,11 +271,15 @@
     <Compile Include="src\gui_common\TabLevel.cs" />
     <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
     <Compile Include="src\industrial_stage\CitySystem.cs" />
+    <Compile Include="src\industrial_stage\gui\AvailableConstructionProjectItem.cs" />
+    <Compile Include="src\industrial_stage\gui\BuildQueueItem.cs" />
     <Compile Include="src\industrial_stage\gui\CityNameLabel.cs" />
     <Compile Include="src\industrial_stage\gui\CityScreen.cs" />
+    <Compile Include="src\industrial_stage\gui\IBuildQueueProgressItem.cs" />
     <Compile Include="src\industrial_stage\gui\IEntityNameLabel.cs" />
     <Compile Include="src\industrial_stage\gui\IndustrialHUD.cs" />
     <Compile Include="src\industrial_stage\gui\StrategicEntityNameLabelSystem.cs" />
+    <Compile Include="src\industrial_stage\ICityConstructionProject.cs" />
     <Compile Include="src\industrial_stage\IEntityWithNameLabel.cs" />
     <Compile Include="src\industrial_stage\IndustrialStage.cs" />
     <Compile Include="src\industrial_stage\PlacedCity.cs" />

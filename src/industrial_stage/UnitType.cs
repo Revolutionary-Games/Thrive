@@ -9,8 +9,13 @@ using Newtonsoft.Json;
 ///   An archetype of an unit the player has. These define the fundamental thing that something is but the plan is to
 ///   allow full customization based on the player's species of the units they have.
 /// </summary>
+/// <remarks>
+///   <para>
+///     For now this implements the <see cref="ICityConstructionProject"/> interface for simplicity for the prototypes
+///   </para>
+/// </remarks>
 [TypeConverter(typeof(UnitTypeStringConverter))]
-public class UnitType : IRegistryType
+public class UnitType : IRegistryType, ICityConstructionProject
 {
     private readonly Lazy<PackedScene> visualScene;
     private readonly Lazy<Texture> icon;
@@ -55,6 +60,10 @@ public class UnitType : IRegistryType
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
+
+    [JsonIgnore]
+    public LocalizedString ProjectName =>
+        new("CONSTRUCTION_UNIT_NAME", new LocalizedString(untranslatedName!));
 
     public void Check(string name)
     {

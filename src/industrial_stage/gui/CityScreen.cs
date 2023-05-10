@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Shows the info and controls for a single city
@@ -17,6 +19,8 @@ public class CityScreen : CustomDialog
     [Export]
     public NodePath BuildQueueContainerPath = null!;
 
+    private readonly List<BuildQueueItem> activeBuildQueueItems = new();
+
 #pragma warning disable CA2213
     private Label shortStatsLabel = null!;
 
@@ -25,7 +29,12 @@ public class CityScreen : CustomDialog
     private Container constructedBuildingsContainer = null!;
 
     private Container buildQueueContainer = null!;
+
+    private PackedScene queueItemScene = null!;
+    private PackedScene availableConstructionItemScene = null!;
 #pragma warning restore CA2213
+
+    private ChildObjectCache<ICityConstructionProject, AvailableConstructionProjectItem> createdConstructionProjectButtons
 
     private PlacedCity? managedCity;
 
@@ -42,6 +51,9 @@ public class CityScreen : CustomDialog
         constructedBuildingsContainer = GetNode<Container>(ConstructedBuildingsContainerPath);
 
         buildQueueContainer = GetNode<Container>(BuildQueueContainerPath);
+
+        queueItemScene = GD.Load<PackedScene>("res://src/industrial_stage/gui/BuildQueueItem.tscn");
+        availableConstructionItemScene= GD.Load<PackedScene>("res://src/industrial_stage/gui/BuildQueueItem.tscn");
     }
 
     public override void _Process(float delta)
@@ -121,22 +133,52 @@ public class CityScreen : CustomDialog
 
     private void UpdateAvailableBuildings()
     {
-        availableBuildingsContainer.QueueFreeChildren();
+        if (managedCity == null)
+            throw new InvalidOperationException("City to manage not set");
 
-        // TODO: update this
+        foreach (var constructionProject in managedCity.GetAvailableConstructionProjects())
+        {
+
+        }
     }
 
     private void UpdateBuildQueue()
     {
-        buildQueueContainer.QueueFreeChildren();
+        int usedIndex = 0;
 
-        // TODO: update this
+        foreach (var buildQueueItemData in managedCity.GetBuildQueue())
+        {
+            BuildQueueItem item;
+
+            if (usedIndex >= activeBuildQueueItems.Count)
+            {
+                item = queueItemScene.Instance<BuildQueueItem>();
+                buildQueueContainer.AddChild(item);
+                activeBuildQueueItems.Add(item);
+            }
+            else
+            {
+                item = activeBuildQueueItems[usedIndex];
+            }
+
+            item.Display(buildQueueItemData);
+
+            ++usedIndex;
+        }
+
+        // Delete excess items that should not show anything
+        while (usedIndex < activeBuildQueueItems.Count)
+        {
+            var lastIndex = activeBuildQueueItems.Count - 1;
+            activeBuildQueueItems[lastIndex].QueueFree();
+            activeBuildQueueItems.RemoveAt(lastIndex);
+        }
     }
 
     private void UpdateConstructedBuildings()
     {
         constructedBuildingsContainer.QueueFreeChildren();
 
-        // TODO: update this
+        // TODO: update this (for now there's no buildings to build in cities so this is not done)
     }
 }
