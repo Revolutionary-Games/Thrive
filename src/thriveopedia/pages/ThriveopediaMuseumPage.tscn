@@ -10,6 +10,7 @@
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=8]
 
 [node name="ThriveopediaMuseumPage" instance=ExtResource( 1 )]
+rect_pivot_offset = Vector2( -469, -108 )
 script = ExtResource( 2 )
 DisplayBackground = false
 CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
@@ -19,6 +20,7 @@ SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/
 HexesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 SpeciesDetailsLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 LeaveGameConfirmationDialogPath = NodePath("UnsavedProgressWarning")
+DeleteConfirmationDialogPath = NodePath("DeleteWarning")
 DeletionFailedDialogPath = NodePath("FossilDeletionFailedDialog")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="1"]
@@ -176,7 +178,16 @@ margin_bottom = 599.0
 rect_min_size = Vector2( 391, 0 )
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="FossilDeletionFailedDialog" parent="." index="3" instance=ExtResource( 8 )]
+[node name="DeleteWarning" parent="." index="3" instance=ExtResource( 8 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 935.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 391, 0 )
+WindowTitle = "CONFIRM_DELETE"
+DialogText = "DELETE_FOSSIL_CONFIRMATION"
+
+[node name="FossilDeletionFailedDialog" parent="." index="4" instance=ExtResource( 8 )]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 935.0
@@ -188,3 +199,4 @@ DialogText = "FOSSIL_DELETION_FAILED_DESCRIPTION"
 
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="OnOpenInFreebuildConfirmPressed"]
+[connection signal="Confirmed" from="DeleteWarning" to="." method="OnConfirmDelete"]

@@ -28,6 +28,9 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     public NodePath LeaveGameConfirmationDialogPath = null!;
 
     [Export]
+    public NodePath DeleteConfirmationDialogPath = null!;
+
+    [Export]
     public NodePath DeletionFailedDialogPath = null!;
 
     private HFlowContainer cardContainer = null!;
@@ -37,8 +40,10 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+    private CustomConfirmationDialog deleteConfirmationDialog = null!;
     private CustomConfirmationDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;
+    private MuseumCard? cardToBeDeleted;
 
     public override string PageName => "Museum";
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
@@ -54,6 +59,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
+        deleteConfirmationDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmationDialogPath);
         deletionFailedDialog = GetNode<CustomConfirmationDialog>(DeletionFailedDialogPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
@@ -176,7 +182,20 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     private void DeleteSpecies(MuseumCard card)
     {
-        var fossilName = card.FossilName;
+        cardToBeDeleted = card;
+
+        deleteConfirmationDialog.PopupCenteredShrink();
+    }
+
+    private void OnConfirmDelete()
+    {
+        if (cardToBeDeleted == null)
+        {
+            GD.PrintErr("Museum card to confirm delete is null");
+            return;
+        }
+
+        var fossilName = cardToBeDeleted.FossilName;
 
         if (fossilName == null)
         {
@@ -197,13 +216,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         }
 
         // If the species we just deleted was being displayed in the sidebar
-        if (speciesPreview.PreviewSpecies == card.SavedSpecies)
+        if (speciesPreview.PreviewSpecies == cardToBeDeleted.SavedSpecies)
         {
             // Revert back to the welcome message
             welcomeLabel.Visible = true;
             speciesPreviewContainer.Visible = false;
         }
 
-        card.DetachAndQueueFree();
+        cardToBeDeleted.DetachAndQueueFree();
+        cardToBeDeleted = null;
     }
 }

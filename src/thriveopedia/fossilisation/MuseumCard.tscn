@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=2]
 [ext_resource path="res://src/thriveopedia/fossilisation/MuseumCard.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=27]
@@ -42,7 +41,6 @@ action_mode = 0
 script = ExtResource( 4 )
 SpeciesNameLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
 SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
-DeleteConfirmationDialogPath = NodePath("DeleteWarning")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -131,17 +129,7 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="DeleteWarning" parent="." instance=ExtResource( 8 )]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 935.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 391, 0 )
-WindowTitle = "CONFIRM_DELETE"
-DialogText = "DELETE_FOSSIL_CONFIRMATION"
-
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
 [connection signal="pressed" from="." to="." method="OnPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete" to="." method="OnDeletePressed"]
-[connection signal="Confirmed" from="DeleteWarning" to="." method="OnDeleteConfirmPressed"]

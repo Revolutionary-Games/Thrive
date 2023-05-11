@@ -11,16 +11,11 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
-    [Export]
-    public NodePath DeleteConfirmationDialogPath = null!;
-
     private Label? speciesNameLabel;
     private TextureRect? speciesPreview;
 
     private Species? savedSpecies;
     private Image? fossilPreviewImage;
-
-    private CustomConfirmationDialog deleteConfirmationDialog = null!;
 
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
@@ -65,7 +60,6 @@ public class MuseumCard : Button
 
         speciesPreview = GetNode<TextureRect>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
-        deleteConfirmationDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmationDialogPath);
 
         UpdateSpeciesName();
         UpdatePreviewImage();
@@ -119,11 +113,6 @@ public class MuseumCard : Button
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        deleteConfirmationDialog.PopupCenteredShrink();
-    }
-
-    private void OnDeleteConfirmPressed()
-    {
         EmitSignal(nameof(OnSpeciesDeleted), this);
     }
 }
