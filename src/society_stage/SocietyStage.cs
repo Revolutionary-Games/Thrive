@@ -338,6 +338,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     private void SwitchToIndustrialScene()
     {
+        GD.Print("Switching to industrial scene");
+
         var industrialStage =
             SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
         industrialStage.CurrentGame = CurrentGame;
