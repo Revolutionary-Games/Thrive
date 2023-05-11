@@ -39,6 +39,15 @@ public class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
         cityScreenPopup.ShowForCity(city);
     }
 
+    /// <summary>
+    ///   Closes all open windows, called when something really important is being shown on screen
+    /// </summary>
+    public void CloseAllOpenWindows()
+    {
+        cityScreenPopup.Close();
+        researchScreen.Close();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

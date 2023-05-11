@@ -293,7 +293,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         toSpaceAnimatedUnit.GlobalTranslation = spaceCraftData.Value.City.GlobalTranslation;
 
-        // TODO: close any open city screen or research etc. panels
+        HUD.CloseAllOpenWindows();
 
         // Start the first phase of the stage move with a camera animation
         movingToSpaceStagePhase = StageMovePhase.ZoomingCamera;
@@ -302,6 +302,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         cameraPanEnd = spaceCraftData.Value.City.GlobalTranslation;
 
         strategicCamera.AllowPlayerInput = false;
+        strategicCamera.MinZoomLevel *= Constants.INDUSTRIAL_TO_SPACE_CAMERA_MIN_HEIGHT_MULTIPLIER;
         strategicCamera._Ready();
     }
 
@@ -322,7 +323,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
                 strategicCamera.WorldLocation = cameraPanStart.Value.LinearInterpolate(cameraPanEnd.Value,
                     Math.Min(stageMoveStepElapsed / Constants.INDUSTRIAL_TO_SPACE_CAMERA_PAN_DURATION, 1));
 
-                if (AnimateCameraZoomTowards(strategicCamera.MinZoomLevel, delta) &&
+                if (AnimateCameraZoomTowards(strategicCamera.MinZoomLevel, delta,
+                        Constants.INDUSTRIAL_TO_SPACE_CAMERA_ZOOM_SPEED) &&
                     stageMoveStepElapsed >= Constants.INDUSTRIAL_TO_SPACE_CAMERA_PAN_DURATION)
                 {
                     // Finished with this step
@@ -359,7 +361,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
                 if (toSpaceAnimatedUnit.GlobalTranslation.y > Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT)
                 {
                     movingToSpaceStagePhase = StageMovePhase.FadingOut;
-                    TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 4);
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut,
+                        Constants.INDUSTRIAL_TO_SPACE_FADE_DURATION);
                 }
 
                 break;
