@@ -141,7 +141,7 @@ public class FossilisedSpecies
         using var directory = new Directory();
 
         if (!directory.FileExists(target))
-            throw new ArgumentException("Fossil with the given name doesn't exist");
+            throw new IOException("Fossil with the given name doesn't exist");
 
         if (directory.Remove(target) != Error.Ok)
         {
@@ -204,19 +204,19 @@ public class FossilisedSpecies
         using (var directory = new Directory())
         {
             if (!directory.FileExists(file))
-                throw new ArgumentException("fossil with the given name doesn't exist");
+                throw new IOException("Fossil with the given name doesn't exist");
         }
 
         var (infoStr, fossilStr, previewImageData) = LoadDataFromFile(file);
 
         if (string.IsNullOrEmpty(infoStr))
         {
-            throw new IOException("couldn't find info content in fossil");
+            throw new IOException("Couldn't find info content in fossil");
         }
 
         if (string.IsNullOrEmpty(fossilStr))
         {
-            throw new IOException("couldn't find fossil content in fossil file");
+            throw new IOException("Couldn't find fossil content in fossil file");
         }
 
         var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
@@ -246,7 +246,7 @@ public class FossilisedSpecies
         reader.Open(file, File.ModeFlags.Read);
 
         if (!reader.IsOpen())
-            throw new ArgumentException("couldn't open the file for reading");
+            throw new IOException("Couldn't open the file for reading");
 
         using var stream = new GodotFileStream(reader);
         using Stream gzoStream = new GZipInputStream(stream);
