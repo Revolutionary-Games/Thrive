@@ -1242,6 +1242,17 @@ public static class Constants
 
     public const int CITY_MAX_GARRISONED_UNITS = 10;
 
+    public const float SPACE_TO_INDUSTRIAL_SCALE_FACTOR = 0.1f;
+
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_PAN_DURATION = 3;
+
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_START = 7;
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED = 0.3f;
+
+    public const float INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION = 0.005f;
+
+    public const float INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT = 100;
+
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>

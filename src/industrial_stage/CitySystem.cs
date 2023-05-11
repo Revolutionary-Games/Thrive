@@ -26,6 +26,12 @@ public class CitySystem
     [JsonIgnore]
     public int CachedTotalPopulation { get; private set; }
 
+    /// <summary>
+    ///   Used to detect when any of the player's cities has built a spacecraft
+    /// </summary>
+    [JsonIgnore]
+    public (PlacedCity City, UnitType Spacecraft)? FirstLaunchableSpacecraft { get; private set; }
+
     public void Process(float delta, ISocietyStructureDataAccess societyData)
     {
         elapsed += delta;
@@ -45,6 +51,7 @@ public class CitySystem
 
         float storage = 0;
         int population = 0;
+        FirstLaunchableSpacecraft = null;
 
         foreach (var city in worldRoot.GetChildrenToProcess<PlacedCity>(Constants.CITY_ENTITY_GROUP))
         {
@@ -67,6 +74,14 @@ public class CitySystem
 
                 storage += city.TotalStorageSpace;
                 population += city.Population;
+
+                foreach (var unit in city.GarrisonedUnits)
+                {
+                    if (unit.HasSpaceMovement)
+                    {
+                        FirstLaunchableSpacecraft ??= (city, unit);
+                    }
+                }
             }
         }
 
@@ -94,5 +109,10 @@ public class CitySystem
 
         CachedTotalStorage = storage;
         CachedTotalPopulation = population;
+    }
+
+    public void ClearLaunchableSpacecraft()
+    {
+        FirstLaunchableSpacecraft = null;
     }
 }

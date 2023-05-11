@@ -42,6 +42,9 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
     [JsonProperty]
     public int Population { get; set; } = 1;
 
+    [JsonIgnore]
+    public IReadOnlyCollection<UnitType> GarrisonedUnits => garrisonedUnits;
+
     // TODO: implement city building
     public bool Completed => true;
 
@@ -188,6 +191,17 @@ public class PlacedCity : Spatial, IEntityWithNameLabel
         }
 
         return existingUnits + units < Constants.CITY_MAX_GARRISONED_UNITS;
+    }
+
+    /// <summary>
+    ///   Notifies the city to remove a garrisoned unit. This doesn't perform what needs to be done to un-garrison, the
+    ///   calling code needs to handle that, this just removes the unit from the garrison data.
+    /// </summary>
+    /// <param name="unit">The unit that left</param>
+    /// <returns>True on success, false if the unit didn't exist</returns>
+    public bool OnUnitUnGarrisoned(UnitType unit)
+    {
+        return garrisonedUnits.Remove(unit);
     }
 
     public bool StartConstruction(ICityConstructionProject constructionProject)
