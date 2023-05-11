@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-17 00:07-0500\n"
+"POT-Creation-Date: 2023-05-10 23:37-0400\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -1164,7 +1164,7 @@ msgstr "Kembali"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:179
 msgid "CONFIRM_EXIT"
 msgstr "Konfirmasi Keluar"
 
@@ -3090,7 +3090,7 @@ msgstr "Buang dan lanjut"
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:208
 msgid "CANCEL"
 msgstr "Batal"
 
@@ -4792,12 +4792,12 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Nama spesies..."
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:146
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nama spesies..."
 
@@ -6008,7 +6008,7 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "Proses Sel"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:195
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus ini secara permanen?"
@@ -6018,18 +6018,28 @@ msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin
 msgid "FOSSILISATION"
 msgstr "populasi:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:142
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:223
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:237
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:245
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "populasi:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:247
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
@@ -6045,16 +6055,6 @@ msgstr "Letakkan organel"
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Letakkan organel"
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:146
-#, fuzzy
-msgid "CONFIRM_DELETE"
-msgstr "Konfirmasi Keluar"
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:147
-#, fuzzy
-msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus ini secara permanen?"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
@@ -6085,22 +6085,44 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:49
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:131
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Bangun-bebas"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:169
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:187
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Konfirmasi Keluar"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:188
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus ini secara permanen?"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:196
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Auto-evo gagal bekerja"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:198
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr ""
+"Gagal memperbarui save karena error berikut:\n"
+"{0}"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"

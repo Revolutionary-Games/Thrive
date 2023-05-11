@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-17 00:07-0500\n"
+"POT-Creation-Date: 2023-05-10 23:37-0400\n"
 "PO-Revision-Date: 2022-12-03 09:31+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1180,7 +1180,7 @@ msgstr "Назад"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:179
 msgid "CONFIRM_EXIT"
 msgstr "Підтвердити вихід"
 
@@ -3034,7 +3034,7 @@ msgstr "Відмінити й продовжити"
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:208
 msgid "CANCEL"
 msgstr "Скасувати"
 
@@ -4705,12 +4705,12 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Назва виду за довга!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:146
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Видова назва має відповідати біномінальній системі іменування ( рід та епітет)!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Назва виду..."
 
@@ -5821,7 +5821,7 @@ msgstr "Дім"
 msgid "PAGE_TITLE"
 msgstr "Назва сторінки"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:195
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Скам'янілі види з існуючою назвою.\n"
@@ -5831,17 +5831,27 @@ msgstr ""
 msgid "FOSSILISATION"
 msgstr "Скам'яніння"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:142
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Цей вид має скам'яніти для збереження в музеї. Ви можете отримати відкрити музей через Трайвопедію, або завантажити види з вільного редактору."
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:223
 msgid "FOSSILISE"
 msgstr "Скам'янілість"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:237
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Підтвердити переназвання"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:245
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "Скам'янілість цього виду"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:247
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "Цей вид має скам'яніти для збереження в музеї. Ви можете отримати відкрити музей через Трайвопедію, або завантажити види з вільного редактору."
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 msgid "MICROBE"
@@ -5854,16 +5864,6 @@ msgstr "Багатоклітинність"
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
 msgid "LATE_MULTICELLULAR"
 msgstr "Пізня Багатоклітинність"
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:146
-#, fuzzy
-msgid "CONFIRM_DELETE"
-msgstr "Підтвердити вихід"
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:147
-#, fuzzy
-msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
@@ -5905,26 +5905,46 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr "Порушення"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:49
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Музей"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:131
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Ви впевнені, що хочете розпочати нову гру за вибраний вид?\n"
 "Ви втратите весь незбережений прогрес."
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Відкрити у Вільному конструктуюванні"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:169
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Вітаємо в музеї! тут ви можете милуватися багтьма видами, котрі були викопаними вами під час всього проходження. Ви можете грати за вид, відкривши його у вільному редакторі.\n"
 "\n"
 "Для скам'янілостей видів, що в грі, натиснувши кнопку. Вибраний мікроб на екрані для скам'яніння цього виду.."
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:187
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Підтвердити вихід"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:188
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:196
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Невдалось створити мод"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:198
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "Оновити вказане збереження не вдалось через помилку:"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"

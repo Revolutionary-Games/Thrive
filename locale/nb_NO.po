@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-17 00:07-0500\n"
+"POT-Creation-Date: 2023-05-10 23:37-0400\n"
 "PO-Revision-Date: 2022-07-26 10:07+0000\n"
 "Last-Translator: Jonas Lindberg <eksno@pm.me>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -1120,7 +1120,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:179
 msgid "CONFIRM_EXIT"
 msgstr ""
 
@@ -2929,7 +2929,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:208
 msgid "CANCEL"
 msgstr ""
 
@@ -4496,12 +4496,12 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:146
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -5583,7 +5583,7 @@ msgstr ""
 msgid "PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:195
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
@@ -5591,16 +5591,24 @@ msgstr ""
 msgid "FOSSILISATION"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:142
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:223
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:237
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
+msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:245
+msgid "FOSSILISATION_FAILED"
+msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:247
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
@@ -5617,14 +5625,6 @@ msgstr "Flercellestadiet"
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Flercellestadiet"
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:146
-msgid "CONFIRM_DELETE"
-msgstr ""
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:147
-msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
@@ -5654,20 +5654,36 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:49
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:131
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:169
 msgid "MUSEUM_WELCOME_TEXT"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:187
+msgid "CONFIRM_DELETE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:188
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:196
+msgid "FOSSIL_DELETION_FAILED"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:198
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29

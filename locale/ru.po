@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-17 00:07-0500\n"
+"POT-Creation-Date: 2023-05-10 23:37-0400\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Михалыч <simsanutiy@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1184,7 +1184,7 @@ msgstr "Назад"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:179
 msgid "CONFIRM_EXIT"
 msgstr "Подтвердить выход"
 
@@ -3074,7 +3074,7 @@ msgstr "Отменить и продолжить"
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:208
 msgid "CANCEL"
 msgstr "Отмена"
 
@@ -4734,12 +4734,12 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Название вида слишком длинное!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:146
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Название вида должно соответствовать биномиальной системе наименования (Род и Эпитет)!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Название вида..."
 
@@ -5858,7 +5858,7 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "Удаление Локальных Данных"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:195
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
@@ -5868,7 +5868,7 @@ msgstr "Удаление этого сохранение будет невозм
 msgid "FOSSILISATION"
 msgstr "популяция:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:142
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -5877,14 +5877,28 @@ msgstr ""
 "Мирные микроорганизмы не будут нападать на других на больших дистанциях\n"
 "и менее склонны использовать токсины против хищников."
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:223
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Оседлый"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:237
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:245
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "популяция:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:247
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr ""
+"Агрессивные микроорганизмы будут преследовать свою добычу на большее расстояние\n"
+"и более склонны бороться с хищниками, когда атакованы.\n"
+"Мирные микроорганизмы не будут нападать на других на больших дистанциях\n"
+"и менее склонны использовать токсины против хищников."
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
@@ -5900,16 +5914,6 @@ msgstr "Этап Многоклеточного микроба"
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Этап Многоклеточного микроба"
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:146
-#, fuzzy
-msgid "CONFIRM_DELETE"
-msgstr "Подтвердить выход"
-
-#: ../src/thriveopedia/fossilisation/MuseumCard.tscn:147
-#, fuzzy
-msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
@@ -5940,22 +5944,42 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:49
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:131
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Свободное Строительство"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:169
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:187
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Подтвердить выход"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:188
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:196
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Не удалось создать мод"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:198
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "Обновление указанного сохранения не удалось выполнить из-за следующей ошибки:"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
