@@ -1020,6 +1020,9 @@ public static class Constants
     public const string CITY_ENTITY_GROUP = "city";
     public const string NAME_LABEL_GROUP = "labeled";
 
+    public const string PLANET_ENTITY_GROUP = "planet";
+    public const string SPACE_FLEET_ENTITY_GROUP = "fleet";
+
     /// <summary>
     ///   Group for entities that can show a progress bar above them in the GUI
     /// </summary>
@@ -1255,6 +1258,10 @@ public static class Constants
     public const float INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION = 0.005f;
 
     public const float INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT = 300;
+
+    public const float PLANET_SCREEN_UPDATE_INTERVAL = 0.1f;
+
+    public const float SPACE_STAGE_PLANET_PROCESS_INTERVAL = 0.1f;
 
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning

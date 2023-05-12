@@ -673,6 +673,12 @@
     <Compile Include="src\society_stage\StrategicCamera.cs" />
     <Compile Include="src\society_stage\StrategicCameraHelpers.cs" />
     <Compile Include="src\society_stage\TechnologyProgress.cs" />
+    <Compile Include="src\space_stage\gui\PlanetScreen.cs" />
+    <Compile Include="src\space_stage\gui\SpaceHUD.cs" />
+    <Compile Include="src\space_stage\PlacedPlanet.cs" />
+    <Compile Include="src\space_stage\PlanetSystem.cs" />
+    <Compile Include="src\space_stage\PlayerSpaceInput.cs" />
+    <Compile Include="src\space_stage\SpaceStage.cs" />
     <Compile Include="src\space_stage\SpaceStructureDefinition.cs" />
     <Compile Include="src\space_stage\structure_components\AscensionComponent.cs" />
     <Compile Include="src\space_stage\structure_components\InterplanetaryEnergyComponent.cs" />
