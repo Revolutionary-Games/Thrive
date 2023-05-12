@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2022-10-14 05:59+0000\n"
 "Last-Translator: TomDev03 <tomascsilvapro@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -632,7 +632,7 @@ msgstr "Câmara"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Cancelar"
 
@@ -1090,13 +1090,18 @@ msgstr ""
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRMAR"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Confirmar Saída"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar Saída"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1444,6 +1449,11 @@ msgstr ""
 "Apagar todos os jogos antigos guardados automática e rapidamente não pode ser revertido, tens a certeza de que desejas apagar permanentemente o seguinte?\n"
 "- {0} jogo(s) guardado(s) automaticamente\n"
 "- {1} jogo(s) guardado(s) rapidamente"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2276,7 +2286,7 @@ msgstr "Erro: {0}"
 msgid "FOSSILISATION"
 msgstr "população:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2284,6 +2294,18 @@ msgstr ""
 "e são mais propensos a lutar contra predadores quando atacados.\n"
 "Micróbios pacíficos não se envolvem com os outros em distâncias maiores\n"
 "e são menos propensos a usar toxinas contra predadores."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "população:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr ""
+"Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:\n"
+"{0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2295,10 +2317,22 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Séssil"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Falha na Criação do Mod"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr ""
+"Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:\n"
+"{0}"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2701,7 +2735,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "O nome do ficheiro guardado não pode conter caracteres especiais (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "O nome da espécie deve estar de acordo com o sistema de nomenclatura binomial (gênero e epíteto)!"
 
@@ -4125,7 +4159,7 @@ msgstr "Colocar organelo"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4341,7 +4375,7 @@ msgstr "Sem Dados a Mostrar"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Sem eventos registado"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nenhum diretório de ficheiros guardados encontrado"
@@ -4445,12 +4479,12 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Abrir diretório"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Abrir pasta de Logs"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4458,7 +4492,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Abrir o ecrã de ajuda"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Modo livre"
@@ -4640,7 +4674,7 @@ msgstr "Substituir o jogo guardado existente:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Substituir jogo guardado existente?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
@@ -5864,7 +5898,7 @@ msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nome da espécie..."
 
@@ -6369,7 +6403,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
@@ -6560,7 +6594,7 @@ msgstr "Diminuir agudos"
 msgid "TREBLEUP"
 msgstr "Aumentar agudos"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Tente tirar algumas capturas de ecrã!"

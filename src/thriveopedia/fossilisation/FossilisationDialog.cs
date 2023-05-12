@@ -19,11 +19,15 @@ public class FossilisationDialog : CustomDialog
     [Export]
     public NodePath OverwriteNameConfirmationDialogPath = null!;
 
+    [Export]
+    public NodePath FossilisationFailedDialogPath = null!;
+
 #pragma warning disable CA2213
     private LineEdit speciesNameEdit = null!;
     private SpeciesDetailsPanel speciesDetailsPanel = null!;
     private Button fossiliseButton = null!;
     private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
+    private CustomConfirmationDialog fossilisationFailedDialog = null!;
     private SpeciesPreview speciesPreview = null!;
 #pragma warning restore CA2213
 
@@ -62,6 +66,7 @@ public class FossilisationDialog : CustomDialog
         speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
         fossiliseButton = GetNode<Button>(FossiliseButtonPath);
         overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
+        fossilisationFailedDialog = GetNode<CustomConfirmationDialog>(FossilisationFailedDialogPath);
         speciesPreview = speciesDetailsPanel.GetNode<SpeciesPreview>(speciesDetailsPanel.SpeciesPreviewPath);
 
         // For saving a preview image of the species we need this preview object to keep hold of the raw rendered image
@@ -118,6 +123,7 @@ public class FossilisationDialog : CustomDialog
                 SpeciesDetailsPanelPath.Dispose();
                 FossiliseButtonPath.Dispose();
                 OverwriteNameConfirmationDialogPath.Dispose();
+                FossilisationFailedDialogPath.Dispose();
             }
         }
 
@@ -229,7 +235,18 @@ public class FossilisationDialog : CustomDialog
 
         savedSpecies.PreviewImage = previewImage;
 
-        savedSpecies.FossiliseToFile();
+        try
+        {
+            savedSpecies.FossiliseToFile();
+        }
+        catch (Exception e)
+        {
+            fossilisationFailedDialog.PopupCenteredShrink();
+
+            GD.PrintErr("Failed to save fossil file: ", e);
+            return;
+        }
+
         Hide();
     }
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -647,7 +647,7 @@ msgstr "Камера"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Отказати"
 
@@ -1120,14 +1120,19 @@ msgstr ""
 msgid "CONFIRM_CAPITAL"
 msgstr "ПОТВРДИ"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "ПОТВРДИ"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "ПОТВРДИ"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1474,6 +1479,11 @@ msgstr ""
 "Брисање свих старих аутоматских и брзих чувања не може се поништити. Да ли сте сигурни да желите трајно избрисати следеће?\n"
 " - {0} Аутоматско чување\n"
 " - {1} Брзо чување"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно да га избришете?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 #, fuzzy
@@ -2307,10 +2317,20 @@ msgstr "Грешка при чувању"
 msgid "FOSSILISATION"
 msgstr "популација:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "популација:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2322,9 +2342,19 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 msgid "FOSSILISE"
 msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Аутоматска-еволуција није успела"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2726,7 +2756,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Учитати неважеће чување?"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -4206,7 +4236,7 @@ msgstr "Поставите органелу"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Мултисампле анти-алиасинг:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4427,7 +4457,7 @@ msgstr ""
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
@@ -4540,11 +4570,11 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4552,7 +4582,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Отворите екран помоћи"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Слободна-Градећи"
@@ -4734,7 +4764,7 @@ msgstr "Препиши постојеће чување:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Препиши постојеће чување:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно да га избришете?"
@@ -6001,7 +6031,7 @@ msgid "SPECIES_LIST"
 msgstr "Врсте Присутне"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Име врсте..."
 
@@ -6510,7 +6540,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
@@ -6707,7 +6737,7 @@ msgstr "Померите надоле"
 msgid "TREBLEUP"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Направите снимак екрана"

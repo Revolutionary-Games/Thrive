@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:28+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -614,7 +614,7 @@ msgstr "Kamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Zrušit"
 
@@ -1061,13 +1061,18 @@ msgstr "Konfigurace"
 msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIT"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Potvrdit ukončení"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Potvrdit ukončení"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1410,6 +1415,11 @@ msgstr ""
 " - {0} Automaticky uložené hry\n"
 " - {1} Rychle uložené hry\n"
 " - {2} Záložní uložené hry"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2242,7 +2252,7 @@ msgstr "Chyba: {0}"
 msgid "FOSSILISATION"
 msgstr "populace:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2250,6 +2260,16 @@ msgstr ""
 "a při napadení predátory jsou náchylnější k boji.\n"
 "Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "populace:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2261,10 +2281,20 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Přisedlost"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Vytvoření módu se nezdařilo"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2659,7 +2689,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Název uložené hry nesmí obsahovat speciální znaky (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Název druhu musí odpovídat binomickému systému pojmenování (rod a epiteton)!"
 
@@ -4105,7 +4135,7 @@ msgstr "Více organel"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vícevzorové vyhlazování:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4315,7 +4345,7 @@ msgstr "Žádná data k zobrazení"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Žádné zaznamenané události"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Složka uložených pozic nebyla nalezena"
@@ -4421,12 +4451,12 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Otevřít složku"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Otevřít složku protokolů"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4434,7 +4464,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Otevřít nápovědu"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Volné stavění"
@@ -4613,7 +4643,7 @@ msgstr "Nahradit existující uloženou pozici:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Přejete si přepsat uloženou hru?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
@@ -5815,7 +5845,7 @@ msgid "SPECIES_LIST"
 msgstr "Přítomné druhy"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Jméno druhu..."
 
@@ -6311,7 +6341,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
@@ -6497,7 +6527,7 @@ msgstr "Ubrat výšky"
 msgid "TREBLEUP"
 msgstr "Přidat výšky"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Zkuste udělat snímek obrazovky!"

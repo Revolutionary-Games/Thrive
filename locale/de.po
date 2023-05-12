@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:28+0300\n"
 "PO-Revision-Date: 2023-02-02 07:29+0000\n"
 "Last-Translator: Raphael Franzen <franzen.raphael@hotmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -625,7 +625,7 @@ msgstr "Kamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Abbrechen"
 
@@ -1067,13 +1067,18 @@ msgstr "Konfiguration"
 msgid "CONFIRM_CAPITAL"
 msgstr "BESTÄTIGEN"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Beenden bestätigen"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Beenden bestätigen"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Überschreiben bestätigen"
 
@@ -1414,6 +1419,11 @@ msgstr ""
 " - {0} Automatische Speicherstände\n"
 " - {1} Schnellspeicherstände\n"
 " - {2} Backup Speicherstände"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2235,9 +2245,21 @@ msgstr "Fehler: {0}"
 msgid "FOSSILISATION"
 msgstr "Fossilisation"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Mache diese Spezies zu einem Fossil um sie im Museum zu speichern. Du kannst von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor laden."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "Diese Art fossilisieren"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr ""
+"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
+"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-Software, wenn dieser Fehler nicht anders verschwindet."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2249,9 +2271,21 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Diese Art fossilisieren (ist bereits fossilisiert)"
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 msgid "FOSSILISE"
 msgstr "Versteinern"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Moderstellung fehlgeschlagen"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr ""
+"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
+"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-Software, wenn dieser Fehler nicht anders verschwindet."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2644,7 +2678,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Name des Speicherstand darf keine Sonderzeichen enthalten(<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Der Name der Art muss dem binomischen Benennungssystem entsprechen (Genus und Epitheton)!"
 
@@ -4064,7 +4098,7 @@ msgstr "Mehrere Organellen"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample Anti-Aliasing:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Willkommen im Museum! Hier können die vielen Arten bewundert werden die während der Spielabläufe fossilisiert wurden. Es kann sogar als eine fossilisierte Art gespielt werden indem man sie im Sandboxmodus aufruft.\n"
@@ -4277,7 +4311,7 @@ msgstr "Keine Daten zu zeigen"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Keine Ereignisse aufgezeichnet"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Kein Fossilienverzeichnis gefunden"
 
@@ -4380,11 +4414,11 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Verzeichnis öffnen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Fossilienordner öffnen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Dies' startet ein neues Spiel im Sandboxmodus mit der selektierten Art.\n"
@@ -4394,7 +4428,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Hilfemenü öffnen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Im Sandboxmodus öffnen"
 
@@ -4572,7 +4606,7 @@ msgstr "Vorhandenen Speicherstand überschreiben:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Vorhandenen Speicherstand überschreiben?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Ein Fossil mit diesem Namen existiert bereits.\n"
@@ -5775,7 +5809,7 @@ msgid "SPECIES_LIST"
 msgstr "Spezienliste"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Speziesname..."
 
@@ -6280,7 +6314,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Startseite"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
@@ -6466,7 +6500,7 @@ msgstr "Audio Höhen runter"
 msgid "TREBLEUP"
 msgstr "Hoch drei"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Versuche ein paar Fossilien zu machen!"
 
