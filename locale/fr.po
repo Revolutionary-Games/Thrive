@@ -507,7 +507,7 @@ msgstr "Résultats:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
-msgstr "Meilleur secteur :"
+msgstr "Meilleure parcelle :"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
 #: ../simulation_parameters/microbe_stage/biomes.json:326
@@ -546,7 +546,7 @@ msgstr "Lier les axes ensemble"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:512
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Probabilité pour chaque secteur avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
+msgstr "Probabilité pour chaque parcelle avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
@@ -1903,9 +1903,9 @@ msgstr ""
 "\n"
 "Ici, vous pouvez revoir ce qui s'est passé au cours des générations précédentes, puis apporter des modifications à votre espèce.\n"
 "\n"
-"Cet onglet vous donne une liste des modifications apportées secteur que vous occupez actuellement. Essayez d'explorer les différents outils à votre disposition pour en savoir plus sur les événements de votre monde !\n"
+"Cet onglet vous donne une liste des modifications apportées à la parcelle que vous occupez actuellement. Essayez d'explorer les différents outils à votre disposition pour en savoir plus sur les événements de votre monde !\n"
 "\n"
-"Lorsque vous êtes prêt, appuyez sur le bouton \"suivant\" en bas à droite pour continuer."
+"Lorsque vous êtes prêt, appuyez sur le bouton \"Suivant\" en bas à droite pour continuer."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
@@ -3402,7 +3402,7 @@ msgstr "L"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Considérer que les secteurs contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
+msgstr "Considérer que les parcelles contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:877
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
@@ -4835,7 +4835,7 @@ msgstr "EXTINCTION DANS LE SECTEUR"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
-msgstr "Carte des secteurs"
+msgstr "Carte des parcelles"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
@@ -4849,32 +4849,31 @@ msgstr "{0} {1}"
 #: ../src/gui_common/PatchNotesDisplayer.tscn:47
 #, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Thrive a démarré en mode sûr"
+msgstr "Vous avez joué pour la dernière fois en version {0},depuis il y a eu une nouvelle parution"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
+#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "Vous avez joué pour la dernière fois en version {0}, depuis il y a eu {1} nouvelles parutions"
 
 #: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Thrive a démarré en mode sûr"
+msgstr "Notes de correctif"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "· {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Modifications :"
 
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
-"Votre espèce s'est éteinte dans ce secteur.\n"
-"Mais ce n'est pas encore fini, vous pouvez encore choisir un nouveau secteur dans lequel jouer !"
+msgstr "Voir touts les détails de cette parution sur [color=#3296e1][url={0}]Github[/url][/color]"
 
 #: ../src/general/MainMenu.tscn:809
 msgid "PATREON_TOOLTIP"
@@ -5614,8 +5613,9 @@ msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Effets externes :"
 
 #: ../simulation_parameters/common/screen_effects.json:8
+#, fuzzy
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Nuances de gris"
 
 #: ../simulation_parameters/common/screen_effects.json:3
 #, fuzzy
