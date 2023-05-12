@@ -11,10 +11,16 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
+    [Export]
+    public NodePath DeleteButtonPath = null!;
+
 #pragma warning disable CA2213
     private Label? speciesNameLabel;
     private TextureRect? speciesPreview;
+    private TextureButton deleteButton = null!;
 #pragma warning restore CA2213
+
+    private Color defaultDeleteModulate;
 
     private Species? savedSpecies;
 
@@ -64,6 +70,9 @@ public class MuseumCard : Button
 
         speciesPreview = GetNode<TextureRect>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
+        deleteButton = GetNode<TextureButton>(DeleteButtonPath);
+
+        defaultDeleteModulate = deleteButton.SelfModulate;
 
         UpdateSpeciesName();
         UpdatePreviewImage();
@@ -77,6 +86,7 @@ public class MuseumCard : Button
             {
                 SpeciesNameLabelPath.Dispose();
                 SpeciesPreviewPath.Dispose();
+                DeleteButtonPath.Dispose();
             }
         }
 
@@ -111,6 +121,9 @@ public class MuseumCard : Button
 
     private void OnPressed()
     {
+        // TODO: it's slightly non-optimal that this triggers first and then OnDeletePressed when pressing on the
+        // delete button. Could maybe queue invoke the species select and skip that if the delete got pressed?
+
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnSpeciesSelected), this);
     }
@@ -132,5 +145,18 @@ public class MuseumCard : Button
         GUICommon.Instance.PlayButtonPressSound();
 
         EmitSignal(nameof(OnSpeciesDeleted), this);
+    }
+
+    private void OnDeleteMouseEntered()
+    {
+        // TODO: unify the approach here with CustomDialog or create variants of the image as another way to do this
+        // properly (reason why that isn't done is due to this issue:
+        // https://github.com/Revolutionary-Games/Thrive/issues/1581
+        deleteButton.SelfModulate = new Color(0.4f, 0.4f, 0.4f);
+    }
+
+    private void OnDeleteMouseExited()
+    {
+        deleteButton.SelfModulate = defaultDeleteModulate;
     }
 }

@@ -41,6 +41,7 @@ action_mode = 0
 script = ExtResource( 4 )
 SpeciesNameLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
 SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
+DeleteButtonPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -102,10 +103,14 @@ margin_left = 148.0
 margin_right = 162.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 14, 14 )
+focus_mode = 0
 mouse_filter = 1
 texture_normal = ExtResource( 9 )
 expand = true
 stretch_mode = 5
+__meta__ = {
+"_editor_description_": "This can't be focused because there's no focus style on this and the hover style is pretty hacky"
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 24.0
@@ -132,4 +137,6 @@ stretch_mode = 6
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
 [connection signal="pressed" from="." to="." method="OnPressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete" to="." method="OnDeleteMouseEntered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete" to="." method="OnDeleteMouseExited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete" to="." method="OnDeletePressed"]
