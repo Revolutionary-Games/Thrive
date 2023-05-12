@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2023-05-11 14:53+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -616,7 +616,7 @@ msgstr "Camera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Cancel"
 
@@ -1056,13 +1056,17 @@ msgstr "Config"
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRM"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+msgid "CONFIRM_DELETE"
+msgstr "Confirm Delete"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Confirm Exit"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Confirm Overwrite"
 
@@ -1416,6 +1420,10 @@ msgstr ""
 " - {0} Auto save(s)\n"
 " - {1} Quick save(s)\n"
 " - {2} Backup save(s)"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Deleting this fossil cannot be undone, are you sure you want to permanently delete this?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2210,9 +2218,17 @@ msgstr "Error: {0}"
 msgid "FOSSILISATION"
 msgstr "Fossilisation"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Fossilise this species to save it in the museum. You can access the museum from the Thriveopedia, or load fossilised species in the freebuild editor."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+msgid "FOSSILISATION_FAILED"
+msgstr "Fossilisation Failed"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "The fossil file could not be written"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2224,9 +2240,17 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Fossilise this species (already fossilised)"
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 msgid "FOSSILISE"
 msgstr "Fossilise"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Fossil Deletion Failed"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "The fossil file could not be deleted"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2607,7 +2631,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Save name may not contain special characters (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Species name must conform to binomial naming system (genus and epithet)!"
 
@@ -4033,7 +4057,7 @@ msgstr "Multiple Organelles"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Welcome to the museum! Here you can admire the many species you've fossilised across all your playthroughs. You can even play as a species by opening it in the freebuild editor.\n"
@@ -4245,7 +4269,7 @@ msgstr "No Data to Show"
 msgid "NO_EVENTS_RECORDED"
 msgstr "No events recorded"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "No fossils directory found"
 
@@ -4347,11 +4371,11 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Open Folder"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Open Fossils Folder"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Are you sure you want to start a new game as the selected species?\n"
@@ -4361,7 +4385,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Open help screen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Open in Freebuild"
 
@@ -4532,7 +4556,7 @@ msgstr "Overwrite existing save:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Overwrite existing save?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "A fossilised species with this name already exists.\n"
@@ -5709,7 +5733,7 @@ msgid "SPECIES_LIST"
 msgstr "Species List"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Species name..."
 
@@ -6206,7 +6230,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Home"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
@@ -6391,7 +6415,7 @@ msgstr "Treble Down"
 msgid "TREBLEUP"
 msgstr "Treble Up"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Try fossilising some species!"
 

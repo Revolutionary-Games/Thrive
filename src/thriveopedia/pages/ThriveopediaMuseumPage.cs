@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Thriveopedia page displaying fossilised (saved) organisms.
@@ -23,6 +24,12 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     [Export]
     public NodePath FossilDirectoryWarningBoxPath = null!;
 
+    [Export]
+    public NodePath DeleteConfirmationDialogPath = null!;
+
+    [Export]
+    public NodePath DeletionFailedDialogPath = null!;
+
 #pragma warning disable CA2213
     private HFlowContainer cardContainer = null!;
     private Control welcomeLabel = null!;
@@ -30,8 +37,12 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private SpeciesDetailsPanel speciesPreviewPanel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
     private CustomConfirmationDialog fossilDirectoryWarningBox = null!;
+    private CustomConfirmationDialog deleteConfirmationDialog = null!;
+    private CustomConfirmationDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;
 #pragma warning restore CA2213
+
+    private MuseumCard? cardToBeDeleted;
 
     public override string PageName => "Museum";
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
@@ -46,6 +57,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         speciesPreviewPanel = GetNode<SpeciesDetailsPanel>(SpeciesPreviewPanelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
         fossilDirectoryWarningBox = GetNode<CustomConfirmationDialog>(FossilDirectoryWarningBoxPath);
+        deleteConfirmationDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmationDialogPath);
+        deletionFailedDialog = GetNode<CustomConfirmationDialog>(DeletionFailedDialogPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
     }
@@ -63,9 +76,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
                 continue;
 
             var card = (MuseumCard)museumCardScene.Instance();
+            card.FossilName = savedSpecies.Name;
             card.SavedSpecies = savedSpecies.Species;
             card.FossilPreviewImage = savedSpecies.PreviewImage;
+
             card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
+            card.Connect(nameof(MuseumCard.OnSpeciesDeleted), this, nameof(DeleteSpecies));
+
             cardContainer.AddChild(card);
         }
     }
@@ -86,6 +103,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
                 SpeciesPreviewPanelPath.Dispose();
                 LeaveGameConfirmationDialogPath.Dispose();
                 FossilDirectoryWarningBoxPath.Dispose();
+                DeleteConfirmationDialogPath.Dispose();
+                DeletionFailedDialogPath.Dispose();
             }
         }
 
@@ -170,5 +189,52 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         if (!FolderHelpers.OpenFolder(Constants.FOSSILISED_SPECIES_FOLDER))
             fossilDirectoryWarningBox.PopupCenteredShrink();
+    }
+
+    private void DeleteSpecies(MuseumCard card)
+    {
+        cardToBeDeleted = card;
+
+        deleteConfirmationDialog.PopupCenteredShrink();
+    }
+
+    private void OnConfirmDelete()
+    {
+        if (cardToBeDeleted == null)
+        {
+            GD.PrintErr("Museum card to confirm delete is null");
+            return;
+        }
+
+        var fossilName = cardToBeDeleted.FossilName;
+
+        if (fossilName == null)
+        {
+            GD.PrintErr("Attempted to delete a fossil with a null file name");
+            return;
+        }
+
+        try
+        {
+            FossilisedSpecies.DeleteFossilFile(fossilName + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        }
+        catch (Exception e)
+        {
+            deletionFailedDialog.PopupCenteredShrink();
+
+            GD.PrintErr("Failed to delete fossil file: ", e);
+            return;
+        }
+
+        // If the species we just deleted was being displayed in the sidebar
+        if (speciesPreviewPanel.PreviewSpecies == cardToBeDeleted.SavedSpecies)
+        {
+            // Revert back to the welcome message
+            welcomeLabel.Visible = true;
+            speciesPreviewContainer.Visible = false;
+        }
+
+        cardToBeDeleted.QueueFree();
+        cardToBeDeleted = null;
     }
 }

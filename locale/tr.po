@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2023-05-04 13:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -617,7 +617,7 @@ msgstr "Kamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "İptal"
 
@@ -1077,13 +1077,18 @@ msgstr "Yapılandırma"
 msgid "CONFIRM_CAPITAL"
 msgstr "ONAYLA"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Çıkışı Onayla"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Çıkışı Onayla"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Üzerine Yazmayı Onayla"
 
@@ -1435,6 +1440,11 @@ msgstr ""
 "- {0} Otomatik kayıt\n"
 "- {1} Çabuk kayıt\n"
 "- {2} Yedek kayıt"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2230,9 +2240,21 @@ msgstr "Hata: {0}"
 msgid "FOSSILISATION"
 msgstr "Fosilleşme"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Müzeye kaydetmek için bu türü fosilleştir. Thriveopedi'den müzeye erişebilirsin veya serbest yapım düzenleyicisinde fosilleşmiş türü yükleyebilirsin."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "Bu türü fosilleştir"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr ""
+"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
+"Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin olun. Eğer bu hata gitmezse, lütfen oyunu Steam istemci yazılımı üzerinden çalıştırın."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2244,9 +2266,21 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Bu türü fosilleştir (zaten fosilleştirildi)"
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 msgid "FOSSILISE"
 msgstr "Fosilleştir"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Mod Oluşturma Başarısız"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr ""
+"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
+"Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin olun. Eğer bu hata gitmezse, lütfen oyunu Steam istemci yazılımı üzerinden çalıştırın."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2627,7 +2661,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Kayıt adı özel karakterler içeremez (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Tür adı, ikili adlandırma sistemine uymalı (cins ve epitet) !"
 
@@ -4053,7 +4087,7 @@ msgstr "Birden Fazla Organel"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Çoklu örnekleme kenar yumuşatma:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Müzeye hoş geldin! Burada, tüm oynadığın oyunlardan fosilleştirmiş olduğun birçok türe hayranlık duyabilirsin. Hatta, serbest yapım düzenleyicisinde açarak, seçtiğin bir türü oynayabilirsin.\n"
@@ -4266,7 +4300,7 @@ msgstr "Gösterilecek Veri Yok"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Hiçbir olay görülmedi"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Fosiller dizini bulunamadı"
 
@@ -4368,11 +4402,11 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Klasörü Aç"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Fosiller Klasörünü Aç"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Seçilen tür ile yeni bir oyuna başlamak istediğine emin misin?\n"
@@ -4382,7 +4416,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Yardım ekranını aç"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Serbest Yapım Editöründe Aç"
 
@@ -4553,7 +4587,7 @@ msgstr "Mevcut kaydın üzerine yaz:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Mevcut kaydın üzerine yazılsın mı?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Bu isimde bir fosilleşmiş tür zaten mevcut.\n"
@@ -5730,7 +5764,7 @@ msgid "SPECIES_LIST"
 msgstr "Tür Listesi"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Tür adı..."
 
@@ -6238,7 +6272,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Ana Sayfa"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Müze"
 
@@ -6423,7 +6457,7 @@ msgstr "Treble Down"
 msgid "TREBLEUP"
 msgstr "Treble Up"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Bazı türleri fosilleştirmeyi dene!"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -622,7 +622,7 @@ msgstr "视角"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "取消"
 
@@ -1082,13 +1082,18 @@ msgstr "设置"
 msgid "CONFIRM_CAPITAL"
 msgstr "确认"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "确认退出"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "确认覆盖"
 
@@ -1441,6 +1446,11 @@ msgstr ""
 "- {0} 个自动存档\n"
 "- {1} 个快速存档\n"
 "- {2} 个备份存档"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "删除此存档将无法撤消，确定要永久删除吗？"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2237,9 +2247,21 @@ msgstr "错误：{0}"
 msgid "FOSSILISATION"
 msgstr "化石"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "将该物种保存至化石中并存放到博物馆里。你可以通过Thrive百科进入博物馆，或在自由编辑器中加载这些化石中的物种。"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "保存该物种到化石中"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr ""
+"Steam 客户端库初始化失败，Steam 功能将不可用。\n"
+"请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2251,9 +2273,21 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "保存该物种到化石中（已保存）"
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 msgid "FOSSILISE"
 msgstr "保存至化石中"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Mod创建失败"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr ""
+"Steam 客户端库初始化失败，Steam 功能将不可用。\n"
+"请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2635,7 +2669,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "存档名称不应包含特殊字符(<>:\"/|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "物种名称必须符合双名法命名系统（属和表名）!"
 
@@ -4060,7 +4094,7 @@ msgstr "多个细胞器"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重采样抗锯齿："
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "欢迎来到博物馆！在这里你可以欣赏许多在你游玩过程中被保存到化石中的众多物种。你甚至可以在自由编辑器中打开它们进行游戏。\n"
@@ -4273,7 +4307,7 @@ msgstr "没有数据可显示"
 msgid "NO_EVENTS_RECORDED"
 msgstr "无事件记录"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目录"
 
@@ -4375,11 +4409,11 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "打开化石目录"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "您确定想作为这个被选中的物种开始一局新的游戏吗？\n"
@@ -4389,7 +4423,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "打开帮助页面"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 msgid "OPEN_IN_FREEBUILD"
 msgstr "在自由编辑器中打开"
 
@@ -4562,7 +4596,7 @@ msgstr "覆写已有的存档："
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "覆写已有的存档？"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "化石库中已有一个与之重名的物种。\n"
@@ -5752,7 +5786,7 @@ msgid "SPECIES_LIST"
 msgstr "物种列表"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "物种名…"
 
@@ -6269,7 +6303,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "主页"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
@@ -6453,7 +6487,7 @@ msgstr "降低高音"
 msgid "TREBLEUP"
 msgstr "提高高音"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "尝试将某些物种变成化石！"
 

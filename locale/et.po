@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -643,7 +643,7 @@ msgstr "Kaamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Tühista"
 
@@ -1101,13 +1101,18 @@ msgstr "Konfiguratsioon"
 msgid "CONFIRM_CAPITAL"
 msgstr "KINNITA"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Kinnitage väljumine"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Kinnitage väljumine"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1460,6 +1465,11 @@ msgstr ""
 "Kõigi vanade automaatsete ja kiirsalvestuste kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite järgmise jäädavalt kustutada?\n"
 " - {0} automaatset salvestamist\n"
 " - {1} kiirsalvestust"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2295,7 +2305,7 @@ msgstr ""
 "ja võib olla tükkide osas palju ambitsioonikam.\n"
 "Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2303,6 +2313,21 @@ msgstr ""
 "ja nad võitlevad rünnaku korral tõenäolisemalt kiskjatega.\n"
 "Rahumeelsed mikroobid ei haara teisi kaugemal\n"
 "ja kasutavad vähem tõenäoliselt toksiine röövloomade vastu."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr ""
+"Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
+"{0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2314,10 +2339,22 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "istuv"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Modifikatsiooni loomine ebaõnnestus"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr ""
+"Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
+"{0}"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2725,7 +2762,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Salvestusnimi ei tohi sisaldada erimärke (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Liigi nimi peab vastama binoomnimesüsteemile (perekond ja epiteet)!"
 
@@ -4226,7 +4263,7 @@ msgstr "Asetage organell"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Mitme proovi antialiasing:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4442,7 +4479,7 @@ msgstr "Kuvatavaid andmeid pole"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Sündmusi pole salvestatud"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Salvestatud kataloogi ei leitud"
@@ -4546,12 +4583,12 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Ava kaust"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Avage logide kaust"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4559,7 +4596,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Avage abiekraan"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Vabaehitus"
@@ -4742,7 +4779,7 @@ msgstr "Olemasoleva salvestuse ülekirjutamine:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Kas kirjutada olemasolev salvestus üle?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
@@ -5972,7 +6009,7 @@ msgid "SPECIES_LIST"
 msgstr "Liikide nimekiri"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Liigi nimi..."
 
@@ -6483,7 +6520,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
@@ -6674,7 +6711,7 @@ msgstr "Treble alla"
 msgid "TREBLEUP"
 msgstr "Treble üles"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Proovige teha ekraanipilte!"

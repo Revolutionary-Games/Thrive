@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2023-04-17 02:02+0000\n"
 "Last-Translator: Zero Cool <zerocool@e.email>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -628,7 +628,7 @@ msgstr "Caméra"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Annuler"
 
@@ -1092,13 +1092,18 @@ msgstr "Configuration"
 msgid "CONFIRM_CAPITAL"
 msgstr "ACCEPTER"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Confirmer la sortie"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Confirmer la sortie"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Confirmez l'écrasement"
 
@@ -1460,6 +1465,11 @@ msgstr ""
 " - {0} Sauvegarde(s) automatique(s)\n"
 " - {1} Sauvegarde(s) rapide(s)\n"
 " - {2} Sauvegarde(s) de secours"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Supprimer cette sauvegarde est définitif, êtes-vous sûr de vouloir la supprimer définitivement ?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 #, fuzzy
@@ -2301,7 +2311,7 @@ msgstr "Erreur: {0}"
 msgid "FOSSILISATION"
 msgstr "Fossilisation"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2309,6 +2319,16 @@ msgstr ""
 "et sont plus enclins à affronter un assaillant.\n"
 "Les microbes pacifiques ne poursuivront pas les autres cellules si elles se tiennent à distance\n"
 "et utiliseront moins de toxines contre les prédateurs."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "Fossiliser cette espèce"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "La mise à jour de la sauvegarde a échouée à cause de cette erreur :"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2320,9 +2340,19 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Fossiliser cette espèce (déjà fossilisée)"
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 msgid "FOSSILISE"
 msgstr "Fossiliser"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "L'Auto-évo n'a pas pu se lancer"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "La mise à jour de la sauvegarde a échouée à cause de cette erreur :"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2721,7 +2751,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Le nom sauvegardé ne doit pas contenir de caractères spéciaux (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Le nom d'espèce doit respecter la nomenclature binomiale (genre et épithète) !"
 
@@ -4188,7 +4218,7 @@ msgstr "Placer organite"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anticrénelage plusieurs échantillons :"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Bienvenue au musée ! Ici, vous pouvez admirer les nombreuses espèces que vous avez fossilisées au cours de toutes vos parties. Vous pouvez même incarner une espèce en l'ouvrant dans l'éditeur de construction libre.\n"
@@ -4402,7 +4432,7 @@ msgstr "Aucune donnée à afficher"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Aucun évènement enregistré"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Pas de dossier de sauvegarde trouvé"
@@ -4508,12 +4538,12 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Ouvrir le dossier des Logs"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Ouvrir le dossier des Logs"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Êtes-vous sûr de vouloir commencer une nouvelle partie avec l'espèce sélectionnée ?\n"
@@ -4523,7 +4553,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Ouvrir l'écran d'aide"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Construction Libre"
@@ -4704,7 +4734,7 @@ msgstr "Réécriture sur la sauvegarde existante :"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Remplacer la sauvegarde existante?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Supprimer cette sauvegarde est définitif, êtes-vous sûr de vouloir la supprimer définitivement ?"
@@ -5938,7 +5968,7 @@ msgid "SPECIES_LIST"
 msgstr "Espèces Présentes"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l’espèce..."
 
@@ -6451,7 +6481,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Accueil"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Musée"
 
@@ -6639,7 +6669,7 @@ msgstr "Réduire le volume aigu"
 msgid "TREBLEUP"
 msgstr "Aigus vers le haut"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Essayez de prendre une capture d'écran !"

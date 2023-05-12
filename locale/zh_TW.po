@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-11 14:49+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -624,7 +624,7 @@ msgstr "視角"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "取消"
 
@@ -1066,13 +1066,18 @@ msgstr "設置"
 msgid "CONFIRM_CAPITAL"
 msgstr "確認"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "確認退出"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "確認退出"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "確認改寫"
 
@@ -1427,6 +1432,11 @@ msgstr ""
 "刪除所有自動和快速存檔將無法撤消，確定要永久刪除這些存檔嗎？\n"
 "- {0} 個自動存檔\n"
 "- {1} 個快速存檔"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 #, fuzzy
@@ -2276,7 +2286,7 @@ msgstr "錯誤：{0}"
 msgid "FOSSILISATION"
 msgstr "變化石"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2284,6 +2294,16 @@ msgstr ""
 "並且在受到攻擊時更有可能與捕食者作鬥爭。\n"
 "和平型微生物不會在意更遠距離的其它微生物，\n"
 "並且不太可能使用毒素來對付捕食者。"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "將該物種化石化"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "更新此存檔失敗，錯誤："
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2295,10 +2315,20 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "將該物種化石化（已化石化）"
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "沉着"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Mod創建失敗"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "更新此存檔失敗，錯誤："
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2701,7 +2731,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "存檔名稱不應包含特殊字符(<>:\"/|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "物種名稱必須符合雙名法命名系統（屬和表名）!"
 
@@ -4170,7 +4200,7 @@ msgstr "放置細胞器"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重採樣抗鋸齒："
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "歡迎來到博物館！ 在這裡你可以欣賞眾多在遊玩過程中被化石化的物種。 你甚至可以在自由編輯器中用它們進行遊戲。\n"
@@ -4394,7 +4424,7 @@ msgstr "沒有數據可顯示"
 msgid "NO_EVENTS_RECORDED"
 msgstr "沒有事件被記錄"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到存檔目錄"
@@ -4500,12 +4530,12 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "打開文件夾"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "打開日誌文件夾"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "你確定要使用此物種開始新遊戲嗎？\n"
@@ -4515,7 +4545,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "打開幫助界面"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "自由編輯器"
@@ -4698,7 +4728,7 @@ msgstr "覆寫現有的存檔："
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "覆寫現有的存檔？"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
@@ -5936,7 +5966,7 @@ msgid "SPECIES_LIST"
 msgstr "物種列表"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "物種名..."
 
@@ -6443,7 +6473,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
@@ -6632,7 +6662,7 @@ msgstr "高音降低"
 msgid "TREBLEUP"
 msgstr "高音提高"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "嘗試截一些圖吧！"
