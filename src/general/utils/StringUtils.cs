@@ -221,6 +221,38 @@ public static class StringUtils
         return value.ToString(CultureInfo.CurrentCulture);
     }
 
+    public static string FormatPositiveWithLeadingPlus(long value)
+    {
+        if (value < 0)
+            return value.ToString(CultureInfo.CurrentCulture);
+
+        return '+' + value.ToString(CultureInfo.CurrentCulture);
+    }
+
+    public static string FormatPositiveWithLeadingPlus(float value)
+    {
+        if (value < 0)
+            return value.ToString(CultureInfo.CurrentCulture);
+
+        return '+' + value.ToString(CultureInfo.CurrentCulture);
+    }
+
+    public static string FormatPositiveWithLeadingPlus(string formatted, long value)
+    {
+        if (value < 0)
+            return formatted;
+
+        return '+' + formatted;
+    }
+
+    public static string FormatPositiveWithLeadingPlus(string formatted, double value)
+    {
+        if (value < 0)
+            return formatted;
+
+        return '+' + formatted;
+    }
+
     /// <summary>
     ///   Formats two numbers separated by a slash. The numbers will have
     ///   up to 3 digits each.

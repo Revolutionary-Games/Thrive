@@ -45,6 +45,7 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\awakening_stage\BaseBuildableStructure.cs" />
     <Compile Include="src\awakening_stage\CraftingHelpers.cs" />
     <Compile Include="src\awakening_stage\CraftingRecipe.cs" />
     <Compile Include="src\awakening_stage\Equipment.cs" />
@@ -269,10 +270,22 @@
     <Compile Include="src\gui_common\TabButtons.cs" />
     <Compile Include="src\gui_common\TabLevel.cs" />
     <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
+    <Compile Include="src\industrial_stage\BuildQueueItemBase.cs" />
+    <Compile Include="src\industrial_stage\CitySystem.cs" />
+    <Compile Include="src\industrial_stage\gui\AvailableConstructionProjectItem.cs" />
+    <Compile Include="src\industrial_stage\gui\BuildQueueItemGUI.cs" />
+    <Compile Include="src\industrial_stage\gui\CityNameLabel.cs" />
+    <Compile Include="src\industrial_stage\gui\CityScreen.cs" />
+    <Compile Include="src\industrial_stage\gui\IBuildQueueProgressItem.cs" />
+    <Compile Include="src\industrial_stage\gui\IEntityNameLabel.cs" />
     <Compile Include="src\industrial_stage\gui\IndustrialHUD.cs" />
+    <Compile Include="src\industrial_stage\gui\StrategicEntityNameLabelSystem.cs" />
+    <Compile Include="src\industrial_stage\ICityConstructionProject.cs" />
+    <Compile Include="src\industrial_stage\IEntityWithNameLabel.cs" />
     <Compile Include="src\industrial_stage\IndustrialStage.cs" />
     <Compile Include="src\industrial_stage\PlacedCity.cs" />
     <Compile Include="src\industrial_stage\PlayerIndustrialInput.cs" />
+    <Compile Include="src\industrial_stage\UnitType.cs" />
     <Compile Include="src\late_multicellular_stage\MovementMode.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularSpeciesType.cs" />
     <Compile Include="src\late_multicellular_stage\ProgressBarSystem.cs" />
@@ -660,6 +673,11 @@
     <Compile Include="src\society_stage\StrategicCamera.cs" />
     <Compile Include="src\society_stage\StrategicCameraHelpers.cs" />
     <Compile Include="src\society_stage\TechnologyProgress.cs" />
+    <Compile Include="src\space_stage\SpaceStructureDefinition.cs" />
+    <Compile Include="src\space_stage\structure_components\AscensionComponent.cs" />
+    <Compile Include="src\space_stage\structure_components\InterplanetaryEnergyComponent.cs" />
+    <Compile Include="src\space_stage\structure_components\ISpaceStructureComponentFactory.cs" />
+    <Compile Include="src\space_stage\structure_components\SpaceStructureComponent.cs" />
     <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
     <Compile Include="src\stage_starters\AwareStageStarter.cs" />
     <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />
@@ -777,6 +795,7 @@
     <Content Include="simulation_parameters\common\patch_notes.yml" />
     <Content Include="simulation_parameters\common\screen_effects.json" />
     <Content Include="simulation_parameters\common\translations_info.json" />
+    <Content Include="simulation_parameters\industrial_stage\units.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />
     <Content Include="simulation_parameters\microbe_stage\bio_processes.json" />
@@ -785,6 +804,7 @@
     <Content Include="simulation_parameters\microbe_stage\organelles.json" />
     <Content Include="simulation_parameters\microbe_stage\patch_syllables.json" />
     <Content Include="simulation_parameters\microbe_stage\species_names.json" />
+    <Content Include="simulation_parameters\space_stage\space_structures.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="third_party\ThirdParty.csproj" />

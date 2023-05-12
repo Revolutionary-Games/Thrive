@@ -338,6 +338,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
 
     private void SwitchToIndustrialScene()
     {
+        GD.Print("Switching to industrial scene");
+
         var industrialStage =
             SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
         industrialStage.CurrentGame = CurrentGame;
@@ -352,6 +354,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         cityPosition.y = 0;
 
         // TODO: preserve the initial city building visuals
-        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition));
+        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition), true);
     }
 }

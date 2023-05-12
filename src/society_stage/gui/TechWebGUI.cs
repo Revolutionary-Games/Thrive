@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Text;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -11,13 +13,19 @@ public class TechWebGUI : HBoxContainer
     public NodePath? TechnologyNameLabelPath;
 
     [Export]
+    public NodePath SelectedTechnologyDescriptionLabelPath = null!;
+
+    [Export]
     public NodePath ResearchButtonPath = null!;
 
     [Export]
     public NodePath TechNodesContainerPath = null!;
 
+    private readonly StringBuilder descriptionBuilder = new();
+
 #pragma warning disable CA2213
     private Label technologyNameLabel = null!;
+    private CustomRichTextLabel selectedTechnologyDescriptionLabel = null!;
     private Button researchButton = null!;
 
     private Control techNodesContainer = null!;
@@ -32,6 +40,7 @@ public class TechWebGUI : HBoxContainer
     public override void _Ready()
     {
         technologyNameLabel = GetNode<Label>(TechnologyNameLabelPath);
+        selectedTechnologyDescriptionLabel = GetNode<CustomRichTextLabel>(SelectedTechnologyDescriptionLabelPath);
         researchButton = GetNode<Button>(ResearchButtonPath);
         techNodesContainer = GetNode<Control>(TechNodesContainerPath);
     }
@@ -101,6 +110,7 @@ public class TechWebGUI : HBoxContainer
             if (TechnologyNameLabelPath != null)
             {
                 TechnologyNameLabelPath.Dispose();
+                SelectedTechnologyDescriptionLabelPath.Dispose();
                 ResearchButtonPath.Dispose();
                 TechNodesContainerPath.Dispose();
             }
@@ -122,6 +132,7 @@ public class TechWebGUI : HBoxContainer
         if (selectedTechnology == null)
         {
             technologyNameLabel.Text = TranslationServer.Translate("SELECT_A_TECHNOLOGY");
+            selectedTechnologyDescriptionLabel.Text = null;
             researchButton.Disabled = true;
             return;
         }
@@ -131,9 +142,19 @@ public class TechWebGUI : HBoxContainer
 
         technologyNameLabel.Text = selectedTechnology.Name;
 
+        // TODO: different sized fonts for the different sections
+
+        // TODO: show in red if the player doesn't have the research capability
+        descriptionBuilder.Append(TranslationServer.Translate("TECHNOLOGY_REQUIRED_LEVEL")
+            .FormatSafe(TranslationServer.Translate(selectedTechnology.RequiresResearchLevel
+                .GetAttribute<DescriptionAttribute>().Description)));
+
         // TODO: a quick description for a technology
 
         // TODO: display all the data about the technology
+
+        selectedTechnologyDescriptionLabel.Text = descriptionBuilder.ToString();
+        descriptionBuilder.Clear();
 
         // TODO: query the tech web for if the technology can be researched (pre-requisites fulfilled)
         researchButton.Disabled = techWeb.HasTechnology(selectedTechnology);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-11 14:49+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -215,11 +215,11 @@ msgstr "应用更变"
 msgid "APRIL"
 msgstr "四月"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "你确定要把输入设置重置为默认值吗？"
 
@@ -272,12 +272,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:314
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:315
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP产出不足！"
 
@@ -362,9 +362,13 @@ msgstr "自动进化运行状态："
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自动前移"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "自动（{0}x{1}）"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:41
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -383,7 +387,7 @@ msgstr "微生物阶段"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -408,7 +412,7 @@ msgstr "退格键"
 msgid "BASE_MOBILITY"
 msgstr "基础移动能力"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
@@ -446,7 +450,7 @@ msgstr "成为宏观生物（{0}/{1}）"
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
 msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
@@ -576,9 +580,14 @@ msgstr "浏览"
 msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "创造结构"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "创造结构"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -609,7 +618,7 @@ msgstr "视角"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -861,12 +870,37 @@ msgstr "纤毛与鞭毛相似，但它们不提供方向性推力，而是提供
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "增加大体型细胞的转向速度。"
 
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr ""
+"[b]当前代：[/b]\n"
+"  {0}\n"
+"[b]区域数：[/b]\n"
+"  {1}\n"
+"[b]自动进化运行时间：[/b]\n"
+"  {2}\n"
+"[b]总物种数：[/b]\n"
+"  {3}\n"
+"[b]现存物种数：[/b]\n"
+"  {4}\n"
+"[b]区域物种数：[/b]\n"
+"  平均值 {5}，标准差 {6}\n"
+"[b]总种群数量：[/b]\n"
+"  {7}\n"
+"[b]优势种：[/b]\n"
+"  {8}\n"
+"[b]单细胞生物基本信息：[/b]\n"
+"  平均大小：{9}\n"
+"[b]基本细胞器信息：[/b]"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -874,11 +908,11 @@ msgstr "清除旧存档"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "关闭"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
@@ -987,7 +1021,7 @@ msgstr "社区wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的社区wiki"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 msgid "COMPILED_AT_COLON"
 msgstr "编译于："
 
@@ -1066,6 +1100,16 @@ msgstr "进入工业阶段？"
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "通过建立工厂，你将进入工业阶段。继续下一阶段？"
 
+#: ../src/industrial_stage/IndustrialStage.tscn:75
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
+msgstr "进入工业阶段？"
+
+#: ../src/industrial_stage/IndustrialStage.tscn:76
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
+msgstr "通过建立工厂，你将进入工业阶段。继续下一阶段？"
+
 #: ../src/general/NewGameSettings.cs:329
 #: ../src/general/NewGameSettings.tscn:1193
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
@@ -1075,11 +1119,16 @@ msgstr "以当前设定进入游戏"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分设置无效"
 
+#: ../src/industrial_stage/UnitType.cs:68
+#, fuzzy
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr "蓝黄色盲"
+
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "文件夹{0}的内容将会上传到创意工坊"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
 msgid "CONTINUE_THRIVING"
 msgstr "继续游戏"
 
@@ -1140,7 +1189,7 @@ msgstr "红绿色盲"
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:249
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "清除选中的材料"
 
@@ -1152,11 +1201,11 @@ msgstr "错误：消耗合成物品时出现内部BUG"
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "找不到合成原料"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "输入材料"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:184
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "已知合成配方"
 
@@ -1181,21 +1230,21 @@ msgstr "{0} ({1})"
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "石质手斧"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:280
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo结果："
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:215
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "选择一个合成配方或添加物品到过滤器中"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:293
 msgid "CRAFTING_TAKE_ALL"
 msgstr "全部拿走"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:170
 msgid "CRAFTING_TITLE"
 msgstr "合成"
 
@@ -1375,7 +1424,7 @@ msgstr "调试菜单"
 msgid "DECEMBER"
 msgstr "十二月"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
@@ -1538,7 +1587,7 @@ msgstr "消化速度"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "消化速度："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1558,7 +1607,7 @@ msgstr "已禁用"
 msgid "DISABLE_ALL"
 msgstr "全部禁用"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
@@ -1808,7 +1857,7 @@ msgstr "编辑器"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "进入编辑器并修改你的物种"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "欢迎来到微生物编辑器。\n"
@@ -1839,11 +1888,11 @@ msgstr "启用编辑器"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "启用GUI闪烁特效"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
@@ -1896,7 +1945,7 @@ msgstr "上远洋带"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "斧头"
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "错误"
 
@@ -1908,7 +1957,7 @@ msgstr "为mod创建文件夹时出错"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "为mod创建info文件时出错"
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
@@ -1951,11 +2000,11 @@ msgstr ""
 "\n"
 "如果不是因为以上两种原因，那就是出bug了。请通知开发团队并提供游戏日志。"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 msgid "EXACT_VERSION_COLON"
 msgstr "精确版本："
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "这是编译此版本 Thrive 的确切 Commit"
 
@@ -1966,6 +2015,11 @@ msgstr "处理载入的对象时发生异常"
 #: ../src/saving/InProgressLoad.cs:116
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "输入已有的编号"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2264,7 +2318,7 @@ msgstr "世代："
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2276,7 +2330,7 @@ msgstr "GLES2模式警告"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2321,7 +2375,7 @@ msgstr "上帝模式"
 msgid "GOOGLY_EYE_CELL"
 msgstr "呆滞眼球细胞"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
 msgid "GOT_IT"
 msgstr "明白了"
 
@@ -2597,19 +2651,19 @@ msgstr "无效的网址格式"
 msgid "INVALID_URL_SCHEME"
 msgstr "无效的URL Schemes"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:78
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr "在地上的物品"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:104
 msgid "INVENTORY_TITLE"
 msgstr "物品栏"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:153
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr "合成"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:147
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "地面"
 
@@ -2843,15 +2897,15 @@ msgstr "小键盘-键"
 msgid "LANGUAGE"
 msgstr "语言："
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此翻译已完成 {0}%"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "此翻译仍在开发中（已完成 {0}%）"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
@@ -3491,7 +3545,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "微生物阶段"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通过移动到白色的云上来收集葡萄糖。\n"
@@ -3500,21 +3554,21 @@ msgstr ""
 "\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
 "\n"
 "尝试所有按键几秒钟以继续。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
 "\n"
 "尝试所有按键几秒钟以继续。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "注意环境面板上的光强变化。\n"
@@ -3523,7 +3577,7 @@ msgstr ""
 "光合作用在夜间无效。\n"
 "因此，请确保您有足够的存储空间来过夜。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
@@ -3610,7 +3664,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]可以通过化学质体和化学合成蛋白转换成[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound]可以通过铁硫菌蓝蛋白转换成[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
@@ -3685,7 +3739,7 @@ msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "已混合......"
 
@@ -4047,6 +4101,11 @@ msgstr "静音"
 msgid "NAME"
 msgstr "名称："
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "生物群系：{0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "ATP开支为负"
@@ -4235,7 +4294,7 @@ msgstr "未找到存档"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存档目录"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截图目录"
 
@@ -4438,7 +4497,7 @@ msgstr "可以被用来捅其它细胞或抵挡它们的毒素。"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:363
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
 msgid "OSMOREGULATION"
 msgstr "渗透调节"
 
@@ -4621,7 +4680,7 @@ msgstr "你上次玩Thrive的时间{0},目前已经有一个新版本发布了"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "你上次玩Thrive的时间{0},目前已经更新了{1}个版本"
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4683,11 +4742,10 @@ msgstr "和平"
 #: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
@@ -5028,7 +5086,7 @@ msgstr "需要细胞核"
 msgid "RESEARCH"
 msgstr "搜索"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "重置"
 
@@ -5040,7 +5098,7 @@ msgstr "重置死区"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "重置被禁用的弹出窗口"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "将输入重置为默认值？"
 
@@ -5048,11 +5106,11 @@ msgstr "将输入重置为默认值？"
 msgid "RESET_KEYBINDINGS"
 msgstr "重置按键绑定"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默认"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置为默认值？"
 
@@ -5229,11 +5287,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "保存"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存并继续"
 
@@ -5433,8 +5491,8 @@ msgstr "选择一个地区以显示详细"
 msgid "SELECT_A_SPECIES"
 msgstr "选择一个物种"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:124
-#: ../src/society_stage/gui/TechWebGUI.tscn:54
+#: ../src/society_stage/gui/TechWebGUI.cs:134
+#: ../src/society_stage/gui/TechWebGUI.tscn:56
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "选择一个地区以显示详细"
@@ -5495,7 +5553,7 @@ msgstr "自动显示新的补丁说明"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "在主菜单中自动显示新版Thrive的补丁说明"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "SHOW_TUTORIALS"
 msgstr "显示教程"
 
@@ -5643,7 +5701,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:781
+#: ../src/microbe_stage/MicrobeStage.cs:790
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
@@ -5751,7 +5809,7 @@ msgstr "开始校准"
 msgid "START_GAME"
 msgstr "开始游戏"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:77
+#: ../src/society_stage/gui/TechWebGUI.tscn:80
 #, fuzzy
 msgid "START_RESEARCH"
 msgstr "需要重新启动"
@@ -5895,6 +5953,16 @@ msgstr "结构"
 msgid "STRUCTURE"
 msgstr "结构"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+#, fuzzy
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr "社会中心"
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "社会中心"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "已具有用于建造的材料"
@@ -6009,9 +6077,54 @@ msgstr "标签里只有空格"
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:52
+#, fuzzy
+msgid "TECHNOLOGY_ASCENSION"
+msgstr "社会中心建设"
+
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "渔猎采集"
+
+#: ../src/awakening_stage/ResearchLevel.cs:36
+#, fuzzy
+msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
+msgstr "解锁的科技：{0}"
+
+#: ../src/awakening_stage/ResearchLevel.cs:24
+#, fuzzy
+msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
+msgstr "解锁的科技：{0}"
+
+#: ../src/awakening_stage/ResearchLevel.cs:12
+#, fuzzy
+msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
+msgstr "社会中心建设"
+
+#: ../src/awakening_stage/ResearchLevel.cs:18
+#, fuzzy
+msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
+msgstr "解锁的科技：{0}"
+
+#: ../src/awakening_stage/ResearchLevel.cs:42
+#, fuzzy
+msgid "TECHNOLOGY_LEVEL_SCIFI"
+msgstr "简单石质工具"
+
+#: ../src/awakening_stage/ResearchLevel.cs:30
+#, fuzzy
+msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
+msgstr "社会中心建设"
+
+#: ../src/society_stage/gui/TechWebGUI.cs:148
+#, fuzzy
+msgid "TECHNOLOGY_REQUIRED_LEVEL"
+msgstr "社会中心建设"
+
+#: ../simulation_parameters/awakening_stage/technologies.json:41
+#, fuzzy
+msgid "TECHNOLOGY_ROCKETRY"
+msgstr "社会中心建设"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6348,19 +6461,19 @@ msgstr "尝试将某些物种变成化石！"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "试着存个档吧！"
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "试着截一些图吧！"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
 msgid "TUTORIAL"
 msgstr "教程"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "欢迎来到早期多细胞生物阶段!\n"
@@ -6373,7 +6486,7 @@ msgstr ""
 "\n"
 "如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "这个面板显示对你未来种群数量的预测。auto-evo的人口模拟提供了这些数字。\n"
@@ -6384,7 +6497,7 @@ msgstr ""
 "\n"
 "你可以通过按面板上的问号按钮查看预测背后的更多详细信息。按下它以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "这是细胞编辑器，你可以通过花费变异点（MP）从你的物种中添加或删除细胞器。每一世代你都会且只会有100MP，所以不用费心去存留。\n"
@@ -6393,7 +6506,7 @@ msgstr ""
 "\n"
 "要继续，从左边的面板上选择一个细胞器。然后左键点击屏幕中间显示的六角形旁边，你可以用[thrive:input]e_rotate_left[/thrive:input] 和 [thrive:input]e_rotate_right[/thrive:input]旋转部件。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "这些就是改变物种的基础操作了。作为点睛之笔，你可以通过点击左下角的名称来重新命名你的物种。\n"
@@ -6404,7 +6517,7 @@ msgstr ""
 "\n"
 "祝你好运！"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "这里是地区图。\n"
@@ -6415,7 +6528,7 @@ msgstr ""
 "\n"
 "选择一个地区来继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "移除细胞器也算是一种变异，因此需要消耗变异点，除非这些细胞器是在当代内添加的。\n"
@@ -6426,7 +6539,7 @@ msgstr ""
 "\n"
 "按撤销按钮以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "在菜单中选择细胞器时，请务必详读并理解弹出的提示。不考虑其机能的使用可能会变得弊大于利。\n"
@@ -6435,7 +6548,7 @@ msgstr ""
 "\n"
 "按下重做按钮（和撤销按钮在一起）以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "你应该专注于一种或两种能量来源，这样你就不需要拥有所有资源才能产生足够的ATP来生存。\n"
@@ -6444,7 +6557,7 @@ msgstr ""
 "\n"
 "一个可能的策略是只带着一个六角格的细胞质，先前往表层地区再获得光合作用细胞器。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "你已经存活的足够久以让你的细胞分裂了。\n"
@@ -6453,21 +6566,21 @@ msgstr ""
 "\n"
 "按右下角闪烁的编辑器按钮以进入编辑器。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "你的细胞已经被吞噬，正在被消化。进度显示在你的健康栏上。一旦完成或达到最大的时间限制，你的细胞就会死亡。\n"
 "\n"
 "你可以使用自杀按钮跳过并重生，但请记住，你总是有机会逃脱的！"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "你的细胞对一次可吞噬的物体的能力是有限的。这个限制基于大小；较小的细胞的容量较小。\n"
 "\n"
 "当充满时，细胞不能吞噬更多的东西。要继续吞噬，要等到一个或多个摄入的物体被完全消化。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "在吞噬模式下，通过在物体上移动来吞噬它们。按[thrive:input]g_toggle_engulf[/thrive:input]来切换吞噬模式。\n"
@@ -6476,14 +6589,14 @@ msgstr ""
 "\n"
 "沿着你的细胞上出现的路线前往附近的可吞噬物体。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "遇到困难？请查看帮助菜单。你可以用左下角的问号按钮打开它。\n"
 "\n"
 "还有一个提示：你可以用滚轮放大你的视野。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "你已经收集了足够多的 [thrive:compound type=\"ammonia\"][/thrive:compound] 和 [thrive:compound type=\"phosphates\"][/thrive:compound]. 然而，由于你现在所在的细胞群落并非是一个多细胞生物，你现在无法进行繁殖。\n"
@@ -6491,21 +6604,21 @@ msgstr ""
 "你需要离开这个细胞群落才能繁殖并进入细胞编辑器，除非你决定成为多细胞生物。\n"
 "按下 [thrive:input]g_unbind_all[/thrive:input] 以离开这个细胞群落从而继续繁殖。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
 "\n"
 "右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
 "要完全离开细胞群，你可以点击你自己的细胞或按[thrive:input]g_unbind_all[/thrive:input]。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
@@ -6538,7 +6651,7 @@ msgstr "取消所有连接"
 msgid "UNBIND_HELP_TEXT"
 msgstr "解连接模式"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "这是一个调试版本，下面的信息可能不是最新的"
 
@@ -6554,11 +6667,15 @@ msgstr "撤销"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤销上一个动作"
 
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
 msgstr "鼠标未知键"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "未知"
 
@@ -6570,7 +6687,7 @@ msgstr "鼠标未知键"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "在Windows上未知"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 msgid "UNKNOWN_VERSION"
 msgstr "未知版本"
 
@@ -6578,7 +6695,7 @@ msgstr "未知版本"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "此Mod的创意工坊编号未知"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改将被丢弃。\n"
@@ -6688,7 +6805,7 @@ msgstr "垂直（{0}轴）"
 msgid "VIDEO_MEMORY"
 msgstr "当前使用的视频内存："
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0}MiB"
 

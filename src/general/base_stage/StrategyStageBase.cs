@@ -14,13 +14,13 @@ public abstract class StrategyStageBase : StageBase, IStrategyStage
     [JsonProperty]
     protected SocietyResourceStorage resourceStorage = new();
 
-    private readonly Dictionary<object, float> activeResearchContributions = new();
-
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private StrategicCamera strategicCamera = null!;
+    protected StrategicCamera strategicCamera = null!;
 #pragma warning restore CA2213
+
+    private readonly Dictionary<object, float> activeResearchContributions = new();
 
     /// <summary>
     ///   Where the stage's strategic view camera is looking at

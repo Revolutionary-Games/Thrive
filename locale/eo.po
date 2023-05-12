@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-11 14:49+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -209,11 +209,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Ĉu vi certas, ke vi volas restarigi ĈIUJN agordojn al defaŭltaj valoroj?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Ĉu vi certas, ke vi volas reagordi la enirajn agordojn al defaŭltaj valoroj?"
 
@@ -266,12 +266,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP-bilanco"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:314
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktado"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:315
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
 
@@ -361,10 +361,14 @@ msgstr "Lanĉa stato:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Antaŭeniĝu aŭtomate"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Distingivo:"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:41
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -390,7 +394,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -418,7 +422,7 @@ msgstr "Reen"
 msgid "BASE_MOBILITY"
 msgstr "Movebleco"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "BASE_MOVEMENT"
 msgstr "Baza Movado"
 
@@ -457,7 +461,7 @@ msgstr ""
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
 msgid "BEGIN_THRIVING"
 msgstr "Komencu Prosperadon(Thriving)"
 
@@ -600,9 +604,14 @@ msgstr ""
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "Strukturo"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "Strukturo"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -634,7 +643,7 @@ msgstr "Kamerao"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -908,12 +917,18 @@ msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "Organisma Statistiko"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Forigi Malnovajn Konservadojn"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -921,11 +936,11 @@ msgstr "Forigi Malnovajn Konservadojn"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Fermu"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Ĉu fermu agordojn?"
 
@@ -1040,7 +1055,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Kunmetaĵoj:"
@@ -1127,6 +1142,16 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
+#: ../src/industrial_stage/IndustrialStage.tscn:75
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#: ../src/industrial_stage/IndustrialStage.tscn:76
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
 #: ../src/general/NewGameSettings.cs:329
 #: ../src/general/NewGameSettings.tscn:1193
 #, fuzzy
@@ -1138,11 +1163,15 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Aldonunovan funkcion por klavo"
 
+#: ../src/industrial_stage/UnitType.cs:68
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr ""
+
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Komencu Prosperadon(Thriving)"
@@ -1198,7 +1227,7 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:249
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
@@ -1211,11 +1240,11 @@ msgstr ""
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "VI PROSPERIS!"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:184
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
@@ -1241,21 +1270,21 @@ msgstr "Resultoj de aŭtomata evoluo:"
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:280
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Resultoj de aŭtomata evoluo:"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:215
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:293
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:170
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "VI PROSPERIS!"
@@ -1431,7 +1460,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1593,7 +1622,7 @@ msgstr "Rimedo-Absorba Rapideo"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Rapideco:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1615,7 +1644,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Forĵetu kaj"
 
@@ -1879,7 +1908,7 @@ msgstr "Redaktilo"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -1914,11 +1943,11 @@ msgstr "Ebligu la redaktilon"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Eksteraj efikoj:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -1975,7 +2004,7 @@ msgstr "Epipelagika"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "Eraro"
 
@@ -1988,7 +2017,7 @@ msgstr "Eraro de konservado"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Eraro: Malsukcesis konservi novajn agordojn en agorda dosiero."
 
@@ -2031,12 +2060,12 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Generacio:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -2050,6 +2079,11 @@ msgstr "Escepto okazis dum prilaborado de ŝarĝitaj objektoj"
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Escepto okazis dum ŝarĝo de la konservadaj datumoj"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Anstataŭigi ekzistantan konservadon:"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2364,7 +2398,7 @@ msgstr "Generacio:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr ""
 
@@ -2376,7 +2410,7 @@ msgstr "Averto Modo GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr ""
 
@@ -2422,7 +2456,7 @@ msgstr ""
 msgid "GOOGLY_EYE_CELL"
 msgstr "Ĉelo de la ludanto"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
 msgid "GOT_IT"
 msgstr "Komprenita"
 
@@ -2714,20 +2748,20 @@ msgstr ""
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:78
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:104
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "VI PROSPERIS!"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:153
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:147
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -2966,16 +3000,16 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr "Lingvo:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Helpu Traduki La Ludon"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3645,21 +3679,21 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kolektu glukozon (blankajn nubojn) moviĝante super ili.\n"
 "Via ĉelo bezonas glukozon por produkti energion por resti viva.\n"
 "Sekvu la linion de via ĉelo al proksima glukozo."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3667,7 +3701,7 @@ msgstr ""
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3676,7 +3710,7 @@ msgstr ""
 "Vi regeneras sanon dum vi havas ATP-ojn.\n"
 "Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
@@ -3766,7 +3800,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "Hidrogena Sulfido povas esti konvertita je glukozo per kemoplastoj kaj kemosintezaj proteinoj. Fero povas esti transformita en ATP per rusticianino."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
@@ -3847,7 +3881,7 @@ msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) est
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4213,6 +4247,11 @@ msgstr "Silentigi"
 msgid "NAME"
 msgstr "Nomo:"
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Biomo: {0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativa ATP-Balanco"
@@ -4415,7 +4454,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Malfermu Konservadan Adresaron"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Malfermu Ekrankopian Dosierujon"
@@ -4632,7 +4671,7 @@ msgstr "Piku aliajn ĉelojn per ĉi tio."
 msgid "ORGANISM_STATISTICS"
 msgstr "Organisma Statistiko"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:363
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
 msgid "OSMOREGULATION"
 msgstr "Osmoregado"
 
@@ -4827,7 +4866,7 @@ msgstr "Ĉelaj Procezoj"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4891,11 +4930,10 @@ msgstr ""
 #: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
@@ -5251,7 +5289,7 @@ msgstr "Kerno/Nukleo"
 msgid "RESEARCH"
 msgstr "Rekomencu"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Rekomencu"
 
@@ -5264,7 +5302,7 @@ msgstr "Ĉu restarigu al defaŭltaj?"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ĉu restarigu enirojn al defaŭltaj?"
 
@@ -5273,11 +5311,11 @@ msgstr "Ĉu restarigu enirojn al defaŭltaj?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Restarigu"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaŭlte"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ĉu restarigu al defaŭltaj?"
 
@@ -5461,11 +5499,11 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Konservu"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Konservu kaj"
 
@@ -5680,8 +5718,8 @@ msgstr "Elektu flikaĵon por montri detalojn ĉi tie"
 msgid "SELECT_A_SPECIES"
 msgstr "Elektu flikaĵon por montri detalojn ĉi tie"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:124
-#: ../src/society_stage/gui/TechWebGUI.tscn:54
+#: ../src/society_stage/gui/TechWebGUI.cs:134
+#: ../src/society_stage/gui/TechWebGUI.tscn:56
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Elektu flikaĵon por montri detalojn ĉi tie"
@@ -5746,7 +5784,7 @@ msgstr "Kaverno"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Montru lernilojn"
@@ -5931,7 +5969,7 @@ msgstr "Generu amoniakon"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:781
+#: ../src/microbe_stage/MicrobeStage.cs:790
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6037,7 +6075,7 @@ msgstr ""
 msgid "START_GAME"
 msgstr "Konservu"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:77
+#: ../src/society_stage/gui/TechWebGUI.tscn:80
 msgid "START_RESEARCH"
 msgstr ""
 
@@ -6193,6 +6231,15 @@ msgstr "Struktura"
 msgid "STRUCTURE"
 msgstr "Strukturo"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "Strukturo"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -6304,8 +6351,44 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Prenu ekrankopion"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:52
+msgid "TECHNOLOGY_ASCENSION"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:36
+msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:24
+msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:12
+msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:18
+msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:42
+msgid "TECHNOLOGY_LEVEL_SCIFI"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:30
+msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
+msgstr ""
+
+#: ../src/society_stage/gui/TechWebGUI.cs:148
+msgid "TECHNOLOGY_REQUIRED_LEVEL"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:41
+msgid "TECHNOLOGY_ROCKETRY"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
@@ -6649,26 +6732,26 @@ msgstr "Prenu ekrankopion"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prenu ekrankopion"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Lernilo"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -6681,7 +6764,7 @@ msgstr ""
 "\n"
 "Elektu flikaĵon por daŭrigi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -6692,7 +6775,7 @@ msgstr ""
 "\n"
 "Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
@@ -6704,7 +6787,7 @@ msgstr ""
 "\n"
 "Bonŝancon!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -6715,7 +6798,7 @@ msgstr ""
 "\n"
 "Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -6727,7 +6810,7 @@ msgstr ""
 "\n"
 "Alklaku la malfaran butonon por daŭrigi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
@@ -6739,7 +6822,7 @@ msgstr ""
 "\n"
 "Premu la refaran butonon (proksiman al la malfara butono) por daŭrigi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
@@ -6749,7 +6832,7 @@ msgstr ""
 "\n"
 "Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas bona elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de la ekrano por aldoni tiun organeton al via specio."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6761,7 +6844,7 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -6769,7 +6852,7 @@ msgstr ""
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6777,7 +6860,7 @@ msgstr ""
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -6785,12 +6868,12 @@ msgstr ""
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6798,14 +6881,14 @@ msgstr ""
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado de sufiĉe da amoniako kaj fosfatoj.\n"
 "Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi bezonas."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6813,7 +6896,7 @@ msgstr ""
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Lernilo"
@@ -6850,7 +6933,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6869,12 +6952,16 @@ msgstr "Malfaru"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Malfaru la lastan agon"
 
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 #, fuzzy
 msgid "UNKNOWN"
 msgstr "Nekonata musbutono"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Kapabloj"
@@ -6888,7 +6975,7 @@ msgstr "Nekonata musbutono"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Nekonata musbutono"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
@@ -6898,7 +6985,7 @@ msgstr "Versio:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Nekonata musbutono"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Vi havas nesavitajn ŝanĝojn kiuj estis forĵetotajn.\n"
@@ -7020,7 +7107,7 @@ msgstr "Rapideco:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

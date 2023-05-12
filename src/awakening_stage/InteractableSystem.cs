@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using Godot;
 
+/// <summary>
+///   Handles positioning the interact buttons on screen on top of interactable entities
+/// </summary>
 public class InteractableSystem : Control
 {
     [Export]

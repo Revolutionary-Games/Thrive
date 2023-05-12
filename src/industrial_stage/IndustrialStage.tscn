@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/industrial_stage/IndustrialStage.cs" type="Script" id=1]
 [ext_resource path="res://src/society_stage/StrategicCamera.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://src/industrial_stage/gui/IndustrialHUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/industrial_stage/PlayerIndustrialInput.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/industrial_stage/gui/StrategicEntityNameLabelSystem.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 3 )
@@ -37,6 +39,8 @@ script = ExtResource( 1 )
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("IndustrialHUD")
 StrategicCameraPath = NodePath("World/StrategicCamera")
+NameLabelSystemPath = NodePath("StrategicEntityNameLabelSystem")
+SpaceMoveConfirmationPopupPath = NodePath("ConfirmSpaceStage")
 
 [node name="World" type="Node" parent="."]
 
@@ -60,11 +64,21 @@ mesh = SubResource( 5 )
 
 [node name="PlayerIndustrialInput" parent="." instance=ExtResource( 9 )]
 
+[node name="StrategicEntityNameLabelSystem" parent="." instance=ExtResource( 10 )]
+visible = false
+
 [node name="IndustrialHUD" parent="." instance=ExtResource( 7 )]
 MenuPath = NodePath("../PauseMenu")
+
+[node name="ConfirmSpaceStage" parent="." instance=ExtResource( 11 )]
+rect_min_size = Vector2( 300, 0 )
+WindowTitle = "CONFIRM_MOVE_TO_SPACE_STAGE"
+DialogText = "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
 
 [connection signal="OnOpenMenu" from="IndustrialHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="IndustrialHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnStartResearching" from="IndustrialHUD" to="." method="StartResearching"]
+[connection signal="Cancelled" from="ConfirmSpaceStage" to="." method="CancelMoveToNextStage"]
+[connection signal="Confirmed" from="ConfirmSpaceStage" to="." method="ConfirmMoveToNextStage"]
