@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/logo.png-55f2b57192982ac2d31383be3614d7f4.stex"
+path="res://.import/Tidepool.png-912955e6149eb5d7a57e15775484f077.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/gui/logo.png"
-dest_files=[ "res://.import/logo.png-55f2b57192982ac2d31383be3614d7f4.stex" ]
+source_file="res://assets/textures/background/panoramas/Tidepool.png"
+dest_files=[ "res://.import/Tidepool.png-912955e6149eb5d7a57e15775484f077.stex" ]
 
 [params]
 
@@ -21,8 +21,8 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=false
-flags/anisotropic=false
+flags/mipmaps=true
+flags/anisotropic=true
 flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
