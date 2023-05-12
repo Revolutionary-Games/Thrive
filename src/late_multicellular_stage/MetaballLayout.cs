@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -37,11 +36,6 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     public IEnumerator<T> GetEnumerator()
     {
         return metaballs.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 
     public void Add(T metaball)
@@ -105,6 +99,43 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     }
 
     /// <summary>
+    ///   Detects if a new metaball would overlap and also returns the closest metaball to the position
+    /// </summary>
+    /// <param name="metaball">The metaball to check overlap for</param>
+    /// <param name="assumeOverlapIsClosest">
+    ///   If true the search for closest metaball ends when an overlap is detected
+    /// </param>
+    /// <returns>Tuple of overlap status and the closest metaball</returns>
+    public (bool Overlap, T ClosestMetaball) CheckOverlapAndFindClosest(T metaball, bool assumeOverlapIsClosest = true)
+    {
+        float closestDistance = float.MaxValue;
+        T? closestMetaball = null;
+        bool overlap = false;
+
+        foreach (var existingMetaball in metaballs)
+        {
+            var distance = (existingMetaball.Position - metaball.Position).Length();
+
+            if (distance < closestDistance)
+                closestMetaball = existingMetaball;
+
+            if (distance - existingMetaball.Radius - metaball.Radius < MathUtils.EPSILON)
+            {
+                // Overlapping metaball
+                overlap = true;
+
+                if (assumeOverlapIsClosest)
+                    return (true, existingMetaball);
+            }
+        }
+
+        if (closestMetaball == null)
+            throw new InvalidOperationException("No metaballs exist, can't find closest");
+
+        return (overlap, closestMetaball);
+    }
+
+    /// <summary>
     ///   Sanity check that metaballs are touching and not detached, throws if invalid
     /// </summary>
     public void VerifyMetaballsAreTouching()
@@ -116,7 +147,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
             var distance = (metaball.Parent.Position - metaball.Position).Length();
 
-            if (Mathf.Abs(distance - metaball.Radius - metaball.Parent.Radius) > MathUtils.EPSILON)
+            if (distance - metaball.Radius - metaball.Parent.Radius > MathUtils.EPSILON)
                 throw new Exception("Metaball is not touching its parent");
         }
     }
@@ -152,6 +183,11 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
             return true;
 
         return IsDescendantsOf(descendant.Parent, parent);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 
     public IEnumerable<T> GetMetaballsNotTouchingParents(float contactThreshold = 0.1f, float toleranceMultiplier = 2)

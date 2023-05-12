@@ -52,6 +52,21 @@ public class SettingValue<TValueType> : IAssignableSetting
         return !(lhs == rhs);
     }
 
+    /// <summary>
+    ///   Casts a parameter object into a SettingValue generic of a matching type (if possible) and then
+    ///   copies the value from it.
+    /// </summary>
+    public void AssignFrom(object obj)
+    {
+        // Convert the object to the correct concrete type if possible.
+        var settingObject = obj as SettingValue<TValueType>;
+
+        if (settingObject == null)
+            throw new InvalidOperationException("Attempted to assign a SettingValue with an incorrect object type.");
+
+        Value = settingObject.Value;
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj == null)
@@ -120,20 +135,5 @@ public class SettingValue<TValueType> : IAssignableSetting
     public override int GetHashCode()
     {
         return 17 ^ (value?.GetHashCode() ?? 9);
-    }
-
-    /// <summary>
-    ///   Casts a parameter object into a SettingValue generic of a matching type (if possible) and then
-    ///   copies the value from it.
-    /// </summary>
-    public void AssignFrom(object obj)
-    {
-        // Convert the object to the correct concrete type if possible.
-        var settingObject = obj as SettingValue<TValueType>;
-
-        if (settingObject == null)
-            throw new InvalidOperationException("Attempted to assign a SettingValue with an incorrect object type.");
-
-        Value = settingObject.Value;
     }
 }

@@ -7,7 +7,7 @@ using Godot;
 public class ThriveopediaMuseumPage : ThriveopediaPage
 {
     [Export]
-    public NodePath CardContainerPath = null!;
+    public NodePath? CardContainerPath;
 
     [Export]
     public NodePath WelcomeLabelPath = null!;
@@ -16,16 +16,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     public NodePath SpeciesPreviewContainerPath = null!;
 
     [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexesPreviewPath = null!;
-
-    [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
+    public NodePath SpeciesPreviewPanelPath = null!;
 
     [Export]
     public NodePath LeaveGameConfirmationDialogPath = null!;
+
+    [Export]
+    public NodePath FossilDirectoryWarningBoxPath = null!;
 
     [Export]
     public NodePath DeleteConfirmationDialogPath = null!;
@@ -33,16 +30,18 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     [Export]
     public NodePath DeletionFailedDialogPath = null!;
 
+#pragma warning disable CA2213
     private HFlowContainer cardContainer = null!;
     private Control welcomeLabel = null!;
     private VBoxContainer speciesPreviewContainer = null!;
-    private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
-    private CustomRichTextLabel speciesDetailsLabel = null!;
+    private SpeciesDetailsPanel speciesPreviewPanel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+    private CustomConfirmationDialog fossilDirectoryWarningBox = null!;
     private CustomConfirmationDialog deleteConfirmationDialog = null!;
     private CustomConfirmationDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;
+#pragma warning restore CA2213
+
     private MuseumCard? cardToBeDeleted;
 
     public override string PageName => "Museum";
@@ -55,10 +54,9 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         cardContainer = GetNode<HFlowContainer>(CardContainerPath);
         welcomeLabel = GetNode<Control>(WelcomeLabelPath);
         speciesPreviewContainer = GetNode<VBoxContainer>(SpeciesPreviewContainerPath);
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
+        speciesPreviewPanel = GetNode<SpeciesDetailsPanel>(SpeciesPreviewPanelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
+        fossilDirectoryWarningBox = GetNode<CustomConfirmationDialog>(FossilDirectoryWarningBoxPath);
         deleteConfirmationDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmationDialogPath);
         deletionFailedDialog = GetNode<CustomConfirmationDialog>(DeletionFailedDialogPath);
 
@@ -71,9 +69,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
-            var card = (MuseumCard)museumCardScene.Instance();
-
             var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
+
+            // Don't add cards for corrupt fossils
+            if (savedSpecies == null)
+                continue;
+
+            var card = (MuseumCard)museumCardScene.Instance();
 
             card.FossilName = savedSpecies.Name;
             card.SavedSpecies = savedSpecies.Species;
@@ -86,6 +88,26 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     public override void UpdateCurrentWorldDetails()
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CardContainerPath != null)
+            {
+                CardContainerPath.Dispose();
+                WelcomeLabelPath.Dispose();
+                SpeciesPreviewContainerPath.Dispose();
+                SpeciesPreviewPanelPath.Dispose();
+                LeaveGameConfirmationDialogPath.Dispose();
+                FossilDirectoryWarningBoxPath.Dispose();
+                DeleteConfirmationDialogPath.Dispose();
+                DeletionFailedDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateSpeciesPreview(MuseumCard card)
@@ -105,36 +127,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         var species = card.SavedSpecies;
 
-        if (species == null)
-        {
-            GD.PrintErr("Attempted to load a null species");
-            return;
-        }
-
-        speciesPreview.PreviewSpecies = species;
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", species);
-        }
-
-        UpdateSpeciesDetail(species);
-    }
-
-    private void UpdateSpeciesDetail(Species species)
-    {
-        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
+        speciesPreviewPanel.PreviewSpecies = species;
     }
 
     private void OnOpenInFreebuildPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (speciesPreview.PreviewSpecies == null)
+        if (speciesPreviewPanel.PreviewSpecies == null)
             return;
 
         // If we're opening from a game in progress, warn the player
@@ -145,21 +145,21 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             return;
         }
 
-        if (speciesPreview.PreviewSpecies is not MicrobeSpecies)
+        if (speciesPreviewPanel.PreviewSpecies is not MicrobeSpecies)
         {
             GD.PrintErr("Loading non-microbe species is not yet implemented");
             return;
         }
 
-        TransitionToFreebuild(speciesPreview.PreviewSpecies);
+        TransitionToFreebuild(speciesPreviewPanel.PreviewSpecies);
     }
 
     private void OnOpenInFreebuildConfirmPressed()
     {
-        if (speciesPreview.PreviewSpecies == null)
+        if (speciesPreviewPanel.PreviewSpecies == null)
             return;
 
-        TransitionToFreebuild(speciesPreview.PreviewSpecies);
+        TransitionToFreebuild(speciesPreviewPanel.PreviewSpecies);
     }
 
     private void TransitionToFreebuild(Species startingSpecies)
@@ -168,6 +168,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
+            MainMenu.OnEnteringGame();
+
             // Instantiate a new editor scene
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
@@ -178,6 +180,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
         }, false);
+    }
+
+    private void OnOpenFossilFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (!FolderHelpers.OpenFolder(Constants.FOSSILISED_SPECIES_FOLDER))
+            fossilDirectoryWarningBox.PopupCenteredShrink();
     }
 
     private void DeleteSpecies(MuseumCard card)
@@ -216,7 +226,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         }
 
         // If the species we just deleted was being displayed in the sidebar
-        if (speciesPreview.PreviewSpecies == cardToBeDeleted.SavedSpecies)
+        if (speciesPreviewPanel.PreviewSpecies == cardToBeDeleted.SavedSpecies)
         {
             // Revert back to the welcome message
             welcomeLabel.Visible = true;

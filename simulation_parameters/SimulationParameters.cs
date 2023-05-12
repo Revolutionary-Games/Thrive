@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 using Directory = Godot.Directory;
 using File = Godot.File;
 
@@ -33,7 +35,17 @@ public class SimulationParameters : Node
     private GameCredits gameCredits = null!;
     private DayNightConfiguration lightCycle = null!;
     private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
+    private Dictionary<string, ScreenEffect> screenEffects = null!;
     private BuildInfo? buildInfo;
+    private Dictionary<string, VersionPatchNotes> oldVersionNotes = null!;
+    private Dictionary<string, VersionPatchNotes> newerVersionNotes = null!;
+    private Dictionary<string, WorldResource> worldResources = null!;
+    private Dictionary<string, EquipmentDefinition> equipment = null!;
+    private Dictionary<string, CraftingRecipe> craftingRecipes = null!;
+    private Dictionary<string, StructureDefinition> structures = null!;
+    private Dictionary<string, UnitType> unitTypes = null!;
+    private Dictionary<string, SpaceStructureDefinition> spaceStructures = null!;
+    private Dictionary<string, Technology> technologies = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -57,8 +69,10 @@ public class SimulationParameters : Node
     ///   Loads the simulation configuration parameters from JSON files
     /// </summary>
     /// <remarks>
-    ///   This is now loaded in _Ready as otherwise the <see cref="ModLoader"/>'s _Ready would run after simulation
-    ///   parameters are loaded causing some data that might want to be overridden by mods to be loaded too early.
+    ///   <para>
+    ///     This is now loaded in _Ready as otherwise the <see cref="ModLoader"/>'s _Ready would run after simulation
+    ///     parameters are loaded causing some data that might want to be overridden by mods to be loaded too early.
+    ///   </para>
     /// </remarks>
     public override void _Ready()
     {
@@ -70,7 +84,11 @@ public class SimulationParameters : Node
         // Loading compounds and enzymes needs a custom JSON deserializer that can load their respective objects, but
         // the loader can't always be active because that breaks saving
         {
-            var deserializers = new JsonConverter[] { new CompoundLoader(null), new EnzymeLoader(null) };
+            var deserializers = new JsonConverter[]
+            {
+                new DirectTypeLoadOverride(typeof(Compound), null),
+                new DirectTypeLoadOverride(typeof(Enzyme), null),
+            };
 
             compounds = LoadRegistry<Compound>(
                 "res://simulation_parameters/microbe_stage/compounds.json", deserializers);
@@ -110,8 +128,43 @@ public class SimulationParameters : Node
         difficultyPresets =
             LoadRegistry<DifficultyPreset>("res://simulation_parameters/common/difficulty_presets.json");
 
+        screenEffects =
+            LoadRegistry<ScreenEffect>("res://simulation_parameters/common/screen_effects.json");
+
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
+
+        oldVersionNotes = LoadRegistry<VersionPatchNotes>("res://simulation_parameters/common/older_patch_notes.json");
+
+        newerVersionNotes =
+            LoadYamlFile<Dictionary<string, VersionPatchNotes>>("res://simulation_parameters/common/patch_notes.yml");
+
+        worldResources =
+            LoadRegistry<WorldResource>("res://simulation_parameters/awakening_stage/world_resources.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(WorldResource), null) });
+
+        equipment =
+            LoadRegistry<EquipmentDefinition>("res://simulation_parameters/awakening_stage/equipment.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(EquipmentDefinition), null) });
+
+        craftingRecipes =
+            LoadRegistry<CraftingRecipe>("res://simulation_parameters/awakening_stage/crafting_recipes.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(CraftingRecipe), null) });
+
+        structures =
+            LoadRegistry<StructureDefinition>("res://simulation_parameters/awakening_stage/structures.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(StructureDefinition), null) });
+
+        unitTypes =
+            LoadRegistry<UnitType>("res://simulation_parameters/industrial_stage/units.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(UnitType), null) });
+
+        spaceStructures =
+            LoadRegistry<SpaceStructureDefinition>("res://simulation_parameters/space_stage/space_structures.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(SpaceStructureDefinition), null) });
+
+        technologies =
+            LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
 
         // Build info is only loaded if the file is present
         using var directory = new Directory();
@@ -293,6 +346,21 @@ public class SimulationParameters : Node
         return difficultyPresets.Values;
     }
 
+    public ScreenEffect GetScreenEffect(string name)
+    {
+        return screenEffects[name];
+    }
+
+    public ScreenEffect GetScreenEffectByIndex(int index)
+    {
+        return screenEffects.Values.First(p => p.Index == index);
+    }
+
+    public IEnumerable<ScreenEffect> GetAllScreenEffects()
+    {
+        return screenEffects.Values;
+    }
+
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
@@ -354,6 +422,64 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
+    ///   Returns all of the known patch notes data
+    /// </summary>
+    /// <returns>Enumerable of the patch notes, this needs to be ordered from the oldest to the newest</returns>
+    public IEnumerable<KeyValuePair<string, VersionPatchNotes>> GetPatchNotes()
+    {
+        foreach (var note in oldVersionNotes)
+            yield return note;
+
+        foreach (var note in newerVersionNotes)
+            yield return note;
+    }
+
+    public WorldResource GetWorldResource(string name)
+    {
+        return worldResources[name];
+    }
+
+    public bool DoesWorldResourceExist(string name)
+    {
+        return worldResources.ContainsKey(name);
+    }
+
+    public EquipmentDefinition GetBaseEquipmentDefinition(string name)
+    {
+        return equipment[name];
+    }
+
+    public CraftingRecipe GetCraftingRecipe(string name)
+    {
+        return craftingRecipes[name];
+    }
+
+    public StructureDefinition GetStructure(string name)
+    {
+        return structures[name];
+    }
+
+    public UnitType GetUnitType(string name)
+    {
+        return unitTypes[name];
+    }
+
+    public SpaceStructureDefinition GetSpaceStructure(string name)
+    {
+        return spaceStructures[name];
+    }
+
+    public Technology GetTechnology(string name)
+    {
+        return technologies[name];
+    }
+
+    public IEnumerable<Technology> GetTechnologies()
+    {
+        return technologies.Values;
+    }
+
+    /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
     public void ApplyTranslations()
@@ -370,6 +496,16 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(inputGroups);
         ApplyRegistryObjectTranslations(gallery);
         ApplyRegistryObjectTranslations(difficultyPresets);
+        ApplyRegistryObjectTranslations(screenEffects);
+        ApplyRegistryObjectTranslations(oldVersionNotes);
+        ApplyRegistryObjectTranslations(newerVersionNotes);
+        ApplyRegistryObjectTranslations(worldResources);
+        ApplyRegistryObjectTranslations(equipment);
+        ApplyRegistryObjectTranslations(craftingRecipes);
+        ApplyRegistryObjectTranslations(structures);
+        ApplyRegistryObjectTranslations(unitTypes);
+        ApplyRegistryObjectTranslations(spaceStructures);
+        ApplyRegistryObjectTranslations(technologies);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -421,6 +557,9 @@ public class SimulationParameters : Node
         // This might be completely unnecessary
         file.Close();
 
+        if (string.IsNullOrEmpty(result))
+            throw new IOException($"Failed to read registry file: {path}");
+
         return result;
     }
 
@@ -441,6 +580,15 @@ public class SimulationParameters : Node
 
         // ReSharper restore HeuristicUnreachableCode
 #pragma warning restore CS0162
+
+        return result;
+    }
+
+    private T LoadYamlFile<T>(string path)
+    {
+        var deserializer = new DeserializerBuilder().WithNamingConvention(PascalCaseNamingConvention.Instance).Build();
+
+        var result = deserializer.Deserialize<T>(ReadJSONFile(path));
 
         return result;
     }
@@ -492,6 +640,16 @@ public class SimulationParameters : Node
         CheckRegistryType(inputGroups);
         CheckRegistryType(gallery);
         CheckRegistryType(difficultyPresets);
+        CheckRegistryType(screenEffects);
+        CheckRegistryType(oldVersionNotes);
+        CheckRegistryType(newerVersionNotes);
+        CheckRegistryType(worldResources);
+        CheckRegistryType(equipment);
+        CheckRegistryType(craftingRecipes);
+        CheckRegistryType(structures);
+        CheckRegistryType(unitTypes);
+        CheckRegistryType(spaceStructures);
+        CheckRegistryType(technologies);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -502,6 +660,12 @@ public class SimulationParameters : Node
         lightCycle.Check(string.Empty);
         lightCycle.InternalName = DAY_NIGHT_CYCLE_NAME;
         buildInfo?.Check(string.Empty);
+
+        if (oldVersionNotes.Count < 1)
+            throw new Exception("Could not read old versions data");
+
+        if (newerVersionNotes.Count < 1)
+            throw new Exception("Could not read newer version patch notes data");
     }
 
     private void ResolveValueRelationships()
@@ -536,12 +700,31 @@ public class SimulationParameters : Node
             entry.Value.Resolve();
         }
 
+        foreach (var entry in structures)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in unitTypes)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in spaceStructures)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in technologies)
+        {
+            entry.Value.Resolve(this);
+        }
+
         NameGenerator.Resolve(this);
 
         BuildOrganelleChances();
 
-        // TODO: there could also be a check for making sure
-        // non-existent compounds, processes etc. are not used
+        // TODO: there could also be a check for making sure non-existent compounds, processes etc. are not used
     }
 
     private void BuildOrganelleChances()

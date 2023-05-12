@@ -24,10 +24,16 @@ public class SegmentedBar : HBoxContainer
     /// </remarks>
     public float MaxValue;
 
-    private readonly PackedScene iconProgressBarScene =
-        GD.Load<PackedScene>("res://src/gui_common/IconProgressBar.tscn");
+#pragma warning disable CA2213
+    private readonly PackedScene iconProgressBarScene;
+#pragma warning restore CA2213
 
     private List<KeyValuePair<string, float>> barValues = new();
+
+    public SegmentedBar()
+    {
+        iconProgressBarScene = GD.Load<PackedScene>("res://src/gui_common/IconProgressBar.tscn");
+    }
 
     [Signal]
     public delegate void SubBarMouseEnter();

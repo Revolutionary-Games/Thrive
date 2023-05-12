@@ -3,8 +3,8 @@
 /// </summary>
 public interface ITutorialInput
 {
-    void OnTutorialDisabled();
-    void OnTutorialEnabled();
+    public void OnTutorialDisabled();
+    public void OnTutorialEnabled();
 
     /// <summary>
     ///   Player closed the current tutorial
@@ -13,13 +13,13 @@ public interface ITutorialInput
     ///   This has the name of the variable controlling the specific tutorial, is set when there can be multiple
     ///   tutorials open at once and only one needs to be closed
     /// </param>
-    void OnCurrentTutorialClosed(string name);
+    public void OnCurrentTutorialClosed(string name);
 
     /// <summary>
     ///   Close all open tutorials
     /// </summary>
-    void OnTutorialClosed();
+    public void OnTutorialClosed();
 
-    void OnNextPressed();
-    void Process(ITutorialGUI tutorialGUI, float delta);
+    public void OnNextPressed();
+    public void Process(ITutorialGUI tutorialGUI, float delta);
 }

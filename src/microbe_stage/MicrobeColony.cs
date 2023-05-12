@@ -8,10 +8,12 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class MicrobeColony
 {
-    private Microbe.MicrobeState state;
+    private MicrobeState state;
 
-    private bool hexCountDirty = true;
+    private bool membersDirty = true;
     private float hexCount;
+    private bool canEngulf;
+    private float entityWeight;
 
     [JsonConstructor]
     private MicrobeColony(Microbe master)
@@ -41,7 +43,7 @@ public class MicrobeColony
     public ColonyCompoundBag ColonyCompounds { get; private set; }
 
     [JsonProperty]
-    public Microbe.MicrobeState State
+    public MicrobeState State
     {
         get => state;
         set
@@ -63,9 +65,44 @@ public class MicrobeColony
     {
         get
         {
-            if (hexCountDirty)
-                UpdateHexCount();
+            if (membersDirty)
+                UpdateDerivedProperties();
             return hexCount;
+        }
+    }
+
+    /// <summary>
+    ///   Whether one or more member of this colony is allowed to enter engulf mode.
+    /// </summary>
+    [JsonIgnore]
+    public bool CanEngulf
+    {
+        get
+        {
+            if (membersDirty)
+                UpdateDerivedProperties();
+            return canEngulf;
+        }
+    }
+
+    /// <summary>
+    ///   Total entity weight of the colony. Colony member weights are modified with a multiplier to end up with
+    ///   this number;
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this doesn't include the <see cref="Master"/> weight as the intended use for this property is
+    ///     to be read through <see cref="Microbe.EntityWeight"/> where this is added on top for the colony lead cell.
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public float EntityWeight
+    {
+        get
+        {
+            if (membersDirty)
+                UpdateDerivedProperties();
+            return entityWeight;
         }
     }
 
@@ -85,7 +122,11 @@ public class MicrobeColony
     ///   Creates a colony for a microbe, with the given microbe as the master,
     ///   and handles related updates (like microbe's colony and access to the editor button).
     /// </summary>
-    /// <remarks>Should be used instead of the colony constructor, unless for loading from Json.</remarks>
+    /// <remarks>
+    ///   <para>
+    ///     Should be used instead of the colony constructor, unless for loading from Json.
+    ///   </para>
+    /// </remarks>
     public static void CreateColonyForMicrobe(Microbe microbe)
     {
         microbe.Colony = new MicrobeColony(microbe);
@@ -110,8 +151,8 @@ public class MicrobeColony
         if (microbe.ColonyChildren == null)
             throw new ArgumentException("Invalid microbe with no colony children setup on it");
 
-        if (State == Microbe.MicrobeState.Unbinding)
-            State = Microbe.MicrobeState.Normal;
+        if (State == MicrobeState.Unbinding)
+            State = MicrobeState.Normal;
 
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
@@ -138,7 +179,7 @@ public class MicrobeColony
         if (microbe != Master)
             Master.Mass -= microbe.Mass;
 
-        hexCountDirty = true;
+        membersDirty = true;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -156,16 +197,42 @@ public class MicrobeColony
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
 
-        hexCountDirty = true;
+        membersDirty = true;
     }
 
-    private void UpdateHexCount()
+    private void UpdateDerivedProperties()
+    {
+        UpdateHexCountAndWeight();
+        UpdateCanEngulf();
+
+        membersDirty = false;
+    }
+
+    private void UpdateHexCountAndWeight()
     {
         hexCount = 0;
+        entityWeight = 0;
 
         foreach (var member in ColonyMembers)
         {
             hexCount += member.EngulfSize;
+
+            if (member != Master)
+                entityWeight += member.EntityWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER;
+        }
+    }
+
+    private void UpdateCanEngulf()
+    {
+        canEngulf = false;
+
+        foreach (var member in ColonyMembers)
+        {
+            if (!member.CanEngulf)
+                continue;
+
+            canEngulf = true;
+            break;
         }
     }
 }

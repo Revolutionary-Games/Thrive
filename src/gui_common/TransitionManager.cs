@@ -10,8 +10,10 @@ public class TransitionManager : ControlWithInput
 {
     private static TransitionManager? instance;
 
+#pragma warning disable CA2213
     private readonly PackedScene screenFadeScene;
     private readonly PackedScene cutsceneScene;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   A queue of running and pending transition sequences.
@@ -34,6 +36,22 @@ public class TransitionManager : ControlWithInput
     public bool HasQueuedTransitions => queuedSequences.Count > 0;
 
     private ScreenFade.FadeType? LastFadedType { get; set; }
+
+    public override void _Process(float delta)
+    {
+        if (queuedSequences.Count > 0)
+        {
+            var sequence = queuedSequences.Peek();
+
+            sequence.Process();
+
+            if (sequence.Finished)
+            {
+                queuedSequences.Dequeue();
+                SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
+            }
+        }
+    }
 
     /// <summary>
     ///   Helper method for creating a screen fade.
@@ -65,22 +83,6 @@ public class TransitionManager : ControlWithInput
         cutscene.Stream = GD.Load<VideoStream>(path);
 
         return cutscene;
-    }
-
-    public override void _Process(float delta)
-    {
-        if (queuedSequences.Count > 0)
-        {
-            var sequence = queuedSequences.Peek();
-
-            sequence.Process();
-
-            if (sequence.Finished)
-            {
-                queuedSequences.Dequeue();
-                SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
-            }
-        }
     }
 
     [RunOnKeyDown("ui_cancel", OnlyUnhandled = false)]
@@ -158,6 +160,18 @@ public class TransitionManager : ControlWithInput
         bool skippable = true, bool skipPrevious = true)
     {
         AddSequence(CreateScreenFade(fadeType, duration), onFinishedCallback, skippable, skipPrevious);
+    }
+
+    /// <summary>
+    ///   Instantly fades out the screen, used in game initialization situations where otherwise a brief flash of
+    ///   the game content would appear
+    /// </summary>
+    public void FadeOutInstantly()
+    {
+        var fader = CreateScreenFade(ScreenFade.FadeType.FadeOut, 0);
+
+        AddSequence(fader, null, false, true);
+        fader.SetToEndState();
     }
 
     /// <summary>

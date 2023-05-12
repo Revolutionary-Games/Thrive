@@ -13,7 +13,7 @@ public class Compound : IRegistryType
     /// <summary>
     ///   Display name for the user to see
     /// </summary>
-    [TranslateFrom("untranslatedName")]
+    [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
     public float Volume;
@@ -67,9 +67,9 @@ public class Compound : IRegistryType
     /// </summary>
     public Texture? LoadedIcon;
 
-#pragma warning disable 169 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169
+#pragma warning restore 169,649
 
     public string InternalName { get; set; } = null!;
 

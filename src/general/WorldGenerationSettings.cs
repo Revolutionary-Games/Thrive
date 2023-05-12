@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -48,15 +47,6 @@ public class WorldGenerationSettings
 
         [Description("LIFE_ORIGIN_PANSPERMIA")]
         Panspermia,
-    }
-
-    public enum PatchMapType
-    {
-        [Description("PATCH_MAP_TYPE_PROCEDURAL")]
-        Procedural,
-
-        [Description("PATCH_MAP_TYPE_CLASSIC")]
-        Classic,
     }
 
     /// <summary>
@@ -108,11 +98,6 @@ public class WorldGenerationSettings
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>
-    ///  Basic patch map generation type (procedural or the static classic map)
-    /// </summary>
-    public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
-
-    /// <summary>
     ///   Whether the day/night cycle in this game is enabled
     /// </summary>
     public bool DayNightCycleEnabled { get; set; }
@@ -129,12 +114,12 @@ public class WorldGenerationSettings
     public float DaytimeFraction { get; set; }
 
     /// <summary>
-    ///  Whether the player can enter the Multicellular Stage in this game
+    ///   Whether the player can enter the Multicellular Stage in this game
     /// </summary>
     public bool IncludeMulticellular { get; set; } = true;
 
     /// <summary>
-    ///  Whether Easter eggs are enabled in this game
+    ///   Whether Easter eggs are enabled in this game
     /// </summary>
     public bool EasterEggs { get; set; } = true;
 
@@ -143,21 +128,6 @@ public class WorldGenerationSettings
     /// </summary>
     public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
         SimulationParameters.Instance.AutoEvoConfiguration;
-
-    public override string ToString()
-    {
-        return "World generation settings: [" +
-            $"LAWK: {LAWK}" +
-            $", Difficulty: {Difficulty.GetDescriptionString()}" +
-            $", Life origin: {Origin}" +
-            $", Seed: {Seed}" +
-            $", Map type: {MapType}" +
-            $", Day/night cycle enabled: {DayNightCycleEnabled}" +
-            $", Day length: {DayLength}" +
-            $", Include multicellular: {IncludeMulticellular}" +
-            $", Easter eggs: {EasterEggs}" +
-            "]";
-    }
 
     /// <summary>
     ///   Generates a formatted string containing translated difficulty details.
@@ -168,7 +138,7 @@ public class WorldGenerationSettings
             difficulty.Name :
             TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
 
-        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("DIFFICULTY_DETAILS_STRING"),
+        return TranslationServer.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(
             translatedDifficulty,
             MPMultiplier,
             AIMutationMultiplier,
@@ -186,8 +156,7 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedPlanetString()
     {
-        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PLANET_DETAILS_STRING"),
-            TranslationServer.Translate(MapType.GetAttribute<DescriptionAttribute>().Description),
+        return TranslationServer.Translate("PLANET_DETAILS_STRING").FormatSafe(
             TranslationHelper.TranslateFeatureFlag(LAWK),
             TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
             TranslationHelper.TranslateFeatureFlag(DayNightCycleEnabled),
@@ -200,8 +169,22 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedMiscString()
     {
-        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("WORLD_MISC_DETAILS_STRING"),
+        return TranslationServer.Translate("WORLD_MISC_DETAILS_STRING").FormatSafe(
             TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
             TranslationHelper.TranslateFeatureFlag(EasterEggs));
+    }
+
+    public override string ToString()
+    {
+        return "World generation settings: [" +
+            $"LAWK: {LAWK}" +
+            $", Difficulty: {Difficulty.GetDescriptionString()}" +
+            $", Life origin: {Origin}" +
+            $", Seed: {Seed}" +
+            $", Day/night cycle enabled: {DayNightCycleEnabled}" +
+            $", Day length: {DayLength}" +
+            $", Include multicellular: {IncludeMulticellular}" +
+            $", Easter eggs: {EasterEggs}" +
+            "]";
     }
 }

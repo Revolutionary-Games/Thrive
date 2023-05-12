@@ -36,7 +36,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         WritableFullSpeedRequiredEnvironmentalInputs;
 
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
+    public IReadOnlyDictionary<Compound, float> Outputs => WritableOutputs;
 
     public float CurrentSpeed { get; set; }
 
@@ -52,4 +52,29 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public float Efficiency { get; set; }
 
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
+
+    public bool Equals(IProcessDisplayInfo other)
+    {
+        return Equals((object)other);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return ReferenceEquals(this, obj) || (obj is ProcessSpeedInformation other && Equals(other));
+    }
+
+    public override int GetHashCode()
+    {
+        return 239 ^ Process.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return $"Process speed {CurrentSpeed} for {Process}";
+    }
+
+    protected bool Equals(ProcessSpeedInformation other)
+    {
+        return Process.Equals(other.Process);
+    }
 }

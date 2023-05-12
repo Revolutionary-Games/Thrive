@@ -10,7 +10,7 @@ public class Biome : IRegistryType
     /// <summary>
     ///   Name of the biome, for showing to the player in the GUI
     /// </summary>
-    [TranslateFrom("untranslatedName")]
+    [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
     /// <summary>
@@ -35,9 +35,9 @@ public class Biome : IRegistryType
 
     public BiomeConditions Conditions = null!;
 
-#pragma warning disable 169 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169
+#pragma warning restore 169,649
 
     public string InternalName { get; set; } = null!;
 

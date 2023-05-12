@@ -7,8 +7,10 @@ using Godot;
 /// </summary>
 public class CompoundAmount : HBoxContainer
 {
+#pragma warning disable CA2213
     private Label? amountLabel;
     private TextureRect? icon;
+#pragma warning restore CA2213
 
     private Compound? compound;
 
@@ -179,14 +181,9 @@ public class CompoundAmount : HBoxContainer
             numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
         }
 
-        if (PrefixPositiveWithPlus && amount >= 0)
-        {
-            amountLabel.Text = "+" + numberPart;
-        }
-        else
-        {
-            amountLabel.Text = numberPart;
-        }
+        amountLabel.Text = PrefixPositiveWithPlus ?
+            StringUtils.FormatPositiveWithLeadingPlus(numberPart, amount) :
+            numberPart;
     }
 
     private void UpdateColour()

@@ -1,0 +1,46 @@
+﻿{
+  "dysonSwarm": {
+    "Name": "STRUCTURE_DYSON_SWARM",
+    "WorldRepresentationScene": "res://assets/models/space/structures/DysonSwarm.tscn",
+    "GhostScenePath": "res://assets/models/space/structures/DysonSwarmGhost.tscn",
+    "ScaffoldingScenePath": "res://assets/models/structures/StructureScaffolding_20x20.tscn",
+    "BuildingIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "WorldSize": {
+      "x": 20,
+      "y": 20,
+      "z": 20
+    },
+    "RequiredResources": {
+      "rock": 1
+    },
+    "ScaffoldingCost": {
+      "rock": 1
+    },
+    "Components": {
+      "InterplanetaryEnergy": {
+        "Amount": 10000
+      }
+    }
+  },
+  "ascensionGate": {
+    "Name": "STRUCTURE_ASCENSION_GATE",
+    "WorldRepresentationScene": "res://assets/models/space/structures/AscensionGate.tscn",
+    "GhostScenePath": "res://assets/models/space/structures/AscensionGateGhost.tscn",
+    "ScaffoldingScenePath": "res://assets/models/structures/StructureScaffolding_10x10.tscn",
+    "BuildingIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "WorldSize": {
+      "x": 10,
+      "y": 10,
+      "z": 10
+    },
+    "RequiredResources": {
+      "rock": 1
+    },
+    "ScaffoldingCost": {
+      "rock": 1
+    },
+    "Components": {
+      "Ascension": {}
+    }
+  }
+}

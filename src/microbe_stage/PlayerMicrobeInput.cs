@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -15,10 +16,13 @@ public class PlayerMicrobeInput : NodeWithInput
 {
     private bool autoMove;
 
+#pragma warning disable CA2213 // this is our parent object
+
     /// <summary>
     ///   A reference to the stage is kept to get to the player object and also the cloud spawning.
     /// </summary>
     private MicrobeStage stage = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {
@@ -32,11 +36,10 @@ public class PlayerMicrobeInput : NodeWithInput
         autoMove = !autoMove;
     }
 
-    // TODO: when using controller movement this should be screen relative movement by default
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-    [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
-    public void OnMovement(float delta, float forwardMovement, float leftRightMovement)
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = true, TrackInputMethod = true)]
+    public void OnMovement(float delta, float forwardMovement, float leftRightMovement, ActiveInputMethod inputMethod)
     {
         _ = delta;
         const float epsilon = 0.01f;
@@ -47,21 +50,58 @@ public class PlayerMicrobeInput : NodeWithInput
             autoMove = false;
         }
 
-        if (stage.Player != null)
+        var player = stage.Player;
+        if (player != null)
         {
-            if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+            if (player.State == MicrobeState.Unbinding)
             {
-                stage.Player.MovementDirection = Vector3.Zero;
+                // It's probably fine to not update the tutorial state here with events as this state doesn't last
+                // that long and the player needs a pretty long time to get so far in the game as to get here
+                player.MovementDirection = Vector3.Zero;
                 return;
+            }
+
+            bool screenRelative = false;
+            var settingValue = Settings.Instance.TwoDimensionalMovement.Value;
+
+            if (settingValue == TwoDimensionalMovementMode.ScreenRelative ||
+                (settingValue == TwoDimensionalMovementMode.Automatic && inputMethod == ActiveInputMethod.Controller))
+            {
+                screenRelative = true;
             }
 
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
-            // TODO: change this line to only normalize when length exceeds 1 to make slowly moving with a controller
-            // work
-            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
+            if (inputMethod == ActiveInputMethod.Controller)
+            {
+                // TODO: look direction for controller input  https://github.com/Revolutionary-Games/Thrive/issues/4034
+                player.LookAtPoint = player.GlobalTranslation + new Vector3(0, 0, -10);
+            }
+            else
+            {
+                player.LookAtPoint = stage.Camera.CursorWorldPos;
+            }
 
-            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
+            // Rotate the inputs when we want to use screen relative movement to make it happen
+            if (screenRelative)
+            {
+                // Rotate the opposite of the player orientation to get back to screen
+                movement = player.GlobalTransform.basis.Quat().Inverse().Xform(movement);
+            }
+
+            if (autoMove)
+            {
+                player.MovementDirection = new Vector3(0, 0, -1);
+            }
+            else
+            {
+                // We only normalize when the length is over to make moving slowly with a controller work
+                player.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
+            }
+
+            stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement,
+                new MicrobeMovementEventArgs(screenRelative, player.MovementDirection,
+                    player.LookAtPoint - player.GlobalTranslation), this);
         }
     }
 
@@ -83,13 +123,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.Engulf)
+        if (stage.Player.State == MicrobeState.Engulf)
         {
-            stage.Player.State = Microbe.MicrobeState.Normal;
+            stage.Player.State = MicrobeState.Normal;
         }
-        else if (!stage.Player.Membrane.Type.CellWall)
+        else if (stage.Player.CanEngulfInColony())
         {
-            stage.Player.State = Microbe.MicrobeState.Engulf;
+            stage.Player.State = MicrobeState.Engulf;
         }
     }
 
@@ -99,13 +139,13 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.Binding)
+        if (stage.Player.State == MicrobeState.Binding)
         {
-            stage.Player.State = Microbe.MicrobeState.Normal;
+            stage.Player.State = MicrobeState.Normal;
         }
         else if (stage.Player.CanBind)
         {
-            stage.Player.State = Microbe.MicrobeState.Binding;
+            stage.Player.State = MicrobeState.Binding;
         }
     }
 
@@ -115,15 +155,15 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player == null)
             return;
 
-        if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+        if (stage.Player.State == MicrobeState.Unbinding)
         {
             stage.HUD.HintText = string.Empty;
-            stage.Player.State = Microbe.MicrobeState.Normal;
+            stage.Player.State = MicrobeState.Normal;
         }
         else if (stage.Player.Colony != null && !stage.Player.IsMulticellular)
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
-            stage.Player.State = Microbe.MicrobeState.Unbinding;
+            stage.Player.State = MicrobeState.Unbinding;
         }
     }
 
@@ -136,14 +176,26 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
     public bool AcceptUnbind()
     {
-        if (stage.Player?.State != Microbe.MicrobeState.Unbinding)
+        if (stage.Player?.State != MicrobeState.Unbinding)
             return false;
 
-        if (stage.HoverInfo.HoveredMicrobes.Count == 0)
+        var inspectables = stage.HoverInfo.InspectableEntities.ToList();
+        if (inspectables.Count == 0)
             return false;
 
-        var target = stage.HoverInfo.HoveredMicrobes[0];
-        RemoveCellFromColony(target);
+        var target = inspectables[0];
+        if (target is not Microbe microbe)
+            return false;
+
+        var raycastData = stage.HoverInfo.GetRaycastData(target);
+        if (raycastData == null)
+            return false;
+
+        var actualMicrobe = microbe.GetMicrobeFromShape(raycastData.Value.Shape);
+        if (actualMicrobe == null)
+            return false;
+
+        RemoveCellFromColony(actualMicrobe);
 
         stage.HUD.HintText = string.Empty;
         return true;

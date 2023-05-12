@@ -10,11 +10,16 @@ public class SceneManager : Node
 
     private bool alreadyQuit;
 
+#pragma warning disable CA2213
     private Node internalRootNode = null!;
+
+    private PostShutdownActions shutdownActions;
+#pragma warning restore CA2213
 
     private SceneManager()
     {
         instance = this;
+        shutdownActions = new PostShutdownActions();
     }
 
     public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -22,22 +27,45 @@ public class SceneManager : Node
     public override void _Ready()
     {
         internalRootNode = GetTree().Root;
+
+        // Need to do this with a delay to avoid a problem with the node setup
+        Invoke.Instance.Perform(() =>
+        {
+            internalRootNode.AddChild(shutdownActions);
+            EnsureShutdownIsLastChild();
+        });
     }
 
     /// <summary>
     ///   Switches to a game state
     /// </summary>
     /// <param name="state">The game state to switch to, this automatically looks up the right scene</param>
-    public void SwitchToScene(MainGameState state)
+    /// <returns>The scene that was switched to</returns>
+    public Node SwitchToScene(MainGameState state)
     {
-        SwitchToScene(LoadScene(state).Instance());
+        var scene = LoadScene(state).Instance();
+        SwitchToScene(scene);
+
+        return scene;
     }
 
-    public void SwitchToScene(string scenePath)
+    public Node SwitchToScene(string scenePath)
     {
-        SwitchToScene(LoadScene(scenePath).Instance());
+        var scene = LoadScene(scenePath).Instance();
+        SwitchToScene(scene);
+
+        return scene;
     }
 
+    /// <summary>
+    ///   Switched to a new scene
+    /// </summary>
+    /// <param name="newSceneRoot">The new scene root</param>
+    /// <param name="keepOldRoot">If true the old root is preserved (not freed)</param>
+    /// <returns>
+    ///   When keeping the old root, this will be a reference to the old scene. When not null this must be switched
+    ///   back to later or freed manually by the code calling this.
+    /// </returns>
     public Node? SwitchToScene(Node newSceneRoot, bool keepOldRoot = false)
     {
         var oldRoot = GetTree().CurrentScene;
@@ -51,6 +79,8 @@ public class SceneManager : Node
         internalRootNode.AddChild(newSceneRoot);
         GetTree().CurrentScene = newSceneRoot;
         ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
+
+        EnsureShutdownIsLastChild();
 
         if (!keepOldRoot)
         {
@@ -87,6 +117,8 @@ public class SceneManager : Node
     public void AttachScene(Node scene)
     {
         internalRootNode.AddChild(scene);
+
+        EnsureShutdownIsLastChild();
     }
 
     public void DetachScene(Node scene)
@@ -124,6 +156,10 @@ public class SceneManager : Node
                 return LoadScene("res://src/late_multicellular_stage/MulticellularStage.tscn");
             case MainGameState.LateMulticellularEditor:
                 return LoadScene("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn");
+            case MainGameState.SocietyStage:
+                return LoadScene("res://src/society_stage/SocietyStage.tscn");
+            case MainGameState.IndustrialStage:
+                return LoadScene("res://src/industrial_stage/IndustrialStage.tscn");
             default:
                 throw new ArgumentException("unknown scene path for given game state");
         }
@@ -156,5 +192,15 @@ public class SceneManager : Node
         GetTree().Quit();
 
         alreadyQuit = true;
+    }
+
+    /// <summary>
+    ///   Ensures the shutdown node is last in tree order, this is needed for it to actually execute last
+    /// </summary>
+    private void EnsureShutdownIsLastChild()
+    {
+        var index = internalRootNode.GetChildCount();
+
+        internalRootNode.MoveChild(shutdownActions, index);
     }
 }

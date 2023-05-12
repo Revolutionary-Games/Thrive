@@ -7,13 +7,16 @@ using Godot;
 public class NewGameSettings : ControlWithInput
 {
     [Export]
-    public NodePath BasicOptionsPath = null!;
+    public NodePath? BasicOptionsPath;
 
     [Export]
     public NodePath AdvancedOptionsPath = null!;
 
     [Export]
     public NodePath BasicButtonPath = null!;
+
+    [Export]
+    public NodePath BackButtonPath = null!;
 
     [Export]
     public NodePath AdvancedButtonPath = null!;
@@ -91,9 +94,6 @@ public class NewGameSettings : ControlWithInput
     public NodePath LimitGrowthRateButtonPath = null!;
 
     [Export]
-    public NodePath MapTypeButtonPath = null!;
-
-    [Export]
     public NodePath LifeOriginButtonPath = null!;
 
     [Export]
@@ -130,12 +130,14 @@ public class NewGameSettings : ControlWithInput
     public NodePath EasterEggsButtonPath = null!;
 
     [Export]
-    public NodePath ConfirmButtonPath = null!;
+    public NodePath StartButtonPath = null!;
+
+#pragma warning disable CA2213
 
     // Main controls
     private PanelContainer basicOptions = null!;
     private PanelContainer advancedOptions = null!;
-    private HBoxContainer tabButtons = null!;
+    private TabButtons tabButtons = null!;
     private Control difficultyTab = null!;
     private Control planetTab = null!;
     private Control miscTab = null!;
@@ -144,7 +146,8 @@ public class NewGameSettings : ControlWithInput
     private Button miscTabButton = null!;
     private Button basicButton = null!;
     private Button advancedButton = null!;
-    private Button confirmButton = null!;
+    private Button backButton = null!;
+    private Button startButton = null!;
 
     // Difficulty controls
     private OptionButton difficultyPresetButton = null!;
@@ -166,7 +169,6 @@ public class NewGameSettings : ControlWithInput
     private Button limitGrowthRateButton = null!;
 
     // Planet controls
-    private OptionButton mapTypeButton = null!;
     private OptionButton lifeOriginButton = null!;
     private OptionButton lifeOriginButtonAdvanced = null!;
     private Button lawkButton = null!;
@@ -181,6 +183,7 @@ public class NewGameSettings : ControlWithInput
     // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
+#pragma warning restore CA2213
 
     private SelectedOptionsTab selectedOptionsTab;
 
@@ -196,6 +199,9 @@ public class NewGameSettings : ControlWithInput
     [Signal]
     public delegate void OnWantToSwitchToOptionsMenu();
 
+    [Signal]
+    public delegate void OnNewGameVideoStarted();
+
     private enum SelectedOptionsTab
     {
         Difficulty,
@@ -209,13 +215,14 @@ public class NewGameSettings : ControlWithInput
         advancedOptions = GetNode<PanelContainer>(AdvancedOptionsPath);
         basicButton = GetNode<Button>(BasicButtonPath);
         advancedButton = GetNode<Button>(AdvancedButtonPath);
-        tabButtons = GetNode<HBoxContainer>(TabButtonsPath);
+        tabButtons = GetNode<TabButtons>(TabButtonsPath);
         difficultyTab = GetNode<Control>(DifficultyTabPath);
         planetTab = GetNode<Control>(PlanetTabPath);
         miscTab = GetNode<Control>(MiscTabPath);
-        difficultyTabButton = GetNode<Button>(DifficultyTabButtonPath);
-        planetTabButton = GetNode<Button>(PlanetTabButtonPath);
-        miscTabButton = GetNode<Button>(MiscTabButtonPath);
+        difficultyTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, DifficultyTabButtonPath));
+        planetTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PlanetTabButtonPath));
+        miscTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscTabButtonPath));
 
         difficultyPresetButton = GetNode<OptionButton>(DifficultyPresetButtonPath);
         difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);
@@ -234,7 +241,6 @@ public class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
-        mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
@@ -247,7 +253,8 @@ public class NewGameSettings : ControlWithInput
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
-        confirmButton = GetNode<Button>(ConfirmButtonPath);
+        backButton = GetNode<Button>(BackButtonPath);
+        startButton = GetNode<Button>(StartButtonPath);
 
         mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
         mpMultiplier.MaxValue = Constants.MAX_MP_MULTIPLIER;
@@ -318,16 +325,70 @@ public class NewGameSettings : ControlWithInput
         {
             GUICommon.MarkInputAsValid(gameSeed);
             GUICommon.MarkInputAsValid(gameSeedAdvanced);
-            confirmButton.Disabled = false;
-            confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
+            startButton.Disabled = false;
+            startButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
             GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
-            confirmButton.Disabled = true;
-            confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
+            startButton.Disabled = true;
+            startButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (BasicOptionsPath != null)
+            {
+                BasicOptionsPath.Dispose();
+                AdvancedOptionsPath.Dispose();
+                BasicButtonPath.Dispose();
+                AdvancedButtonPath.Dispose();
+                TabButtonsPath.Dispose();
+                DifficultyTabPath.Dispose();
+                PlanetTabPath.Dispose();
+                MiscTabPath.Dispose();
+                DifficultyTabButtonPath.Dispose();
+                PlanetTabButtonPath.Dispose();
+                MiscTabButtonPath.Dispose();
+                DifficultyPresetButtonPath.Dispose();
+                DifficultyPresetAdvancedButtonPath.Dispose();
+                MPMultiplierPath.Dispose();
+                MPMultiplierReadoutPath.Dispose();
+                MutationRatePath.Dispose();
+                MutationRateReadoutPath.Dispose();
+                CompoundDensityPath.Dispose();
+                CompoundDensityReadoutPath.Dispose();
+                PlayerDeathPopulationPenaltyPath.Dispose();
+                PlayerDeathPopulationPenaltyReadoutPath.Dispose();
+                GlucoseDecayRatePath.Dispose();
+                GlucoseDecayRateReadoutPath.Dispose();
+                OsmoregulationMultiplierPath.Dispose();
+                OsmoregulationMultiplierReadoutPath.Dispose();
+                FreeGlucoseCloudButtonPath.Dispose();
+                PassiveReproductionButtonPath.Dispose();
+                LimitGrowthRateButtonPath.Dispose();
+                LifeOriginButtonPath.Dispose();
+                LifeOriginButtonAdvancedPath.Dispose();
+                LAWKButtonPath.Dispose();
+                LAWKAdvancedButtonPath.Dispose();
+                DayNightCycleButtonPath.Dispose();
+                DayLengthContainerPath.Dispose();
+                DayLengthPath.Dispose();
+                DayLengthReadoutPath.Dispose();
+                GameSeedPath.Dispose();
+                GameSeedAdvancedPath.Dispose();
+                IncludeMulticellularButtonPath.Dispose();
+                EasterEggsButtonPath.Dispose();
+                BackButtonPath.Dispose();
+                StartButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void InitialiseToPreset(DifficultyPreset preset)
@@ -388,53 +449,8 @@ public class NewGameSettings : ControlWithInput
         selectedOptionsTab = selection;
     }
 
-    // GUI Control Callbacks
-
-    private void OnBackPressed()
+    private void StartGame()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        Exit();
-    }
-
-    private bool Exit()
-    {
-        EmitSignal(nameof(OnNewGameSettingsClosed));
-        return true;
-    }
-
-    private void OnAdvancedPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        ProcessAdvancedSelection();
-    }
-
-    private void ProcessAdvancedSelection()
-    {
-        basicOptions.Visible = false;
-        advancedButton.Visible = false;
-
-        advancedOptions.Visible = true;
-        basicButton.Visible = true;
-        tabButtons.Visible = true;
-    }
-
-    private void OnBasicPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        advancedOptions.Visible = false;
-        basicButton.Visible = false;
-        tabButtons.Visible = false;
-
-        advancedButton.Visible = true;
-        basicOptions.Visible = true;
-    }
-
-    private void OnConfirmPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
         var settings = new WorldGenerationSettings();
 
         var difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
@@ -461,7 +477,6 @@ public class NewGameSettings : ControlWithInput
             settings.Difficulty = difficulty;
         }
 
-        settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.Pressed;
         settings.DayNightCycleEnabled = dayNightCycleButton.Pressed;
@@ -475,22 +490,7 @@ public class NewGameSettings : ControlWithInput
         // before the stage music starts)
         Jukebox.Instance.Stop(true);
 
-        var transitions = new List<ITransition>();
-
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
-            SafeModeStartupHandler.AreVideosAllowed())
-        {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f));
-        }
-        else
-        {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
-        }
-
-        TransitionManager.Instance.AddSequence(transitions, () =>
+        void OnStartGame()
         {
             MainMenu.OnEnteringGame();
 
@@ -498,10 +498,77 @@ public class NewGameSettings : ControlWithInput
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
             SceneManager.Instance.SwitchToScene(microbeStage);
-        });
+        }
+
+        var transitions = new List<ITransition>();
+
+        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
+            SafeModeStartupHandler.AreVideosAllowed())
+        {
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
+
+            TransitionManager.Instance.AddSequence(transitions, () =>
+            {
+                // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
+                EmitSignal(nameof(OnNewGameVideoStarted));
+            });
+
+            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateCutscene(
+                "res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame);
+        }
+        else
+        {
+            // People who disable the cutscene are impatient anyway so use a reduced fade time
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
+            TransitionManager.Instance.AddSequence(transitions, OnStartGame);
+        }
+    }
+
+    // GUI Control Callbacks
+
+    private void OnBackPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        Exit();
+    }
+
+    private bool Exit()
+    {
+        EmitSignal(nameof(OnNewGameSettingsClosed));
+        return true;
+    }
+
+    private void OnAdvancedPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetAdvancedView(true);
+    }
+
+    private void OnBasicPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetAdvancedView(false);
+    }
+
+    private void SetAdvancedView(bool advanced)
+    {
+        advancedButton.Visible = !advanced;
+        basicOptions.Visible = !advanced;
+        backButton.Visible = !advanced;
+        basicButton.Visible = advanced;
+        advancedOptions.Visible = advanced;
+        tabButtons.Visible = advanced;
+    }
+
+    private void OnConfirmPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        StartGame();
 
         // Disable the button to prevent it being executed again.
-        confirmButton.Disabled = true;
+        startButton.Disabled = true;
     }
 
     private void OnDifficultyPresetSelected(int index)
@@ -516,7 +583,7 @@ public class NewGameSettings : ControlWithInput
         if (preset.InternalName == custom.InternalName)
         {
             ChangeSettingsTab(SelectedOptionsTab.Difficulty.ToString());
-            ProcessAdvancedSelection();
+            SetAdvancedView(true);
             return;
         }
 
@@ -658,20 +725,6 @@ public class NewGameSettings : ControlWithInput
     private void OnMapTypeSelected(int index)
     {
         _ = index;
-    }
-
-    private WorldGenerationSettings.PatchMapType MapTypeIndexToValue(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                return WorldGenerationSettings.PatchMapType.Procedural;
-            case 1:
-                return WorldGenerationSettings.PatchMapType.Classic;
-            default:
-                GD.PrintErr($"Index {index} does not correspond to known map type");
-                return WorldGenerationSettings.PatchMapType.Procedural;
-        }
     }
 
     private void OnLAWKToggled(bool pressed)

@@ -7,11 +7,11 @@ public interface IOrganelleComponentFactory
     ///   Creates a new organelle component of the type that this factory makes
     /// </summary>
     /// <returns>The created component.</returns>
-    IOrganelleComponent Create();
+    public IOrganelleComponent Create();
 
     /// <summary>
     ///   Checks that values are valid. Throws InvalidRegistryData if not good.
     /// </summary>
     /// <param name="name">Name of the current object for easier reporting.</param>
-    void Check(string name);
+    public void Check(string name);
 }

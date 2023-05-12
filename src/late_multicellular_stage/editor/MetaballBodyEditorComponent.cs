@@ -13,6 +13,9 @@ public partial class MetaballBodyEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
+    public NodePath? TabButtonsPath;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -60,7 +63,12 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     public NodePath MetaballPopupMenuPath = null!;
 
+    [Export]
+    public NodePath CannotReduceBrainPowerPopupPath = null!;
+
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
+
+#pragma warning disable CA2213
 
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
@@ -96,7 +104,10 @@ public partial class MetaballBodyEditorComponent :
 
     private MetaballPopupMenu metaballPopupMenu = null!;
 
+    private CustomConfirmationDialog cannotReduceBrainPowerPopup = null!;
+
     private PackedScene metaballDisplayerScene = null!;
+#pragma warning restore CA2213
 
     // TODO: add way to control the size of the placed metaball
     [JsonProperty]
@@ -146,19 +157,6 @@ public partial class MetaballBodyEditorComponent :
         RegisterTooltips();
     }
 
-    public override void Init(LateMulticellularEditor owningEditor, bool fresh)
-    {
-        base.Init(owningEditor, fresh);
-        behaviourEditor.Init(owningEditor, fresh);
-
-        if (!fresh)
-        {
-            UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
-        }
-
-        UpdateCancelButtonVisibility();
-    }
-
     public override void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -168,17 +166,24 @@ public partial class MetaballBodyEditorComponent :
 
         NodeReferencesResolved = true;
 
+        if (TabButtonsPath == null)
+            throw new MissingExportVariableValueException();
+
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(StructureTabButtonPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
 
         reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
-        reproductionTabButton = GetNode<Button>(ReproductionTabButtonPath);
+        reproductionTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReproductionTabButtonPath));
 
-        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
-        appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
+        appearanceTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
 
         cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
 
@@ -195,49 +200,21 @@ public partial class MetaballBodyEditorComponent :
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
 
         metaballPopupMenu = GetNode<MetaballPopupMenu>(MetaballPopupMenuPath);
+
+        cannotReduceBrainPowerPopup = GetNode<CustomConfirmationDialog>(CannotReduceBrainPowerPopupPath);
     }
 
-    public override void OnEditorSpeciesSetup(Species species)
+    public override void Init(LateMulticellularEditor owningEditor, bool fresh)
     {
-        UpdateCellTypeSelections();
+        base.Init(owningEditor, fresh);
+        behaviourEditor.Init(owningEditor, fresh);
 
-        behaviourEditor.OnEditorSpeciesSetup(species);
-
-        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
-
-        foreach (var metaball in Editor.EditedSpecies.BodyLayout)
+        if (!fresh)
         {
-            editedMetaballs.Add(metaball.Clone(metaballMapping));
+            UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
         }
 
-        newName = species.FormattedName;
-
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
-
-        UpdateArrow(false);
-    }
-
-    public override void OnFinishEditing()
-    {
-        var editedSpecies = Editor.EditedSpecies;
-
-        editedSpecies.BodyLayout.Clear();
-
-        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
-
-        // Make sure we process things with parents first
-        // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
-        // objects
-        foreach (var metaball in editedMetaballs.OrderBy(m => m.CalculateTreeDepth()))
-        {
-            editedSpecies.BodyLayout.Add(metaball.Clone(metaballMapping));
-        }
-
-        editedSpecies.OnEdited();
-
-        editedSpecies.UpdateNameIfValid(newName);
-
-        behaviourEditor.OnFinishEditing();
+        UpdateCancelButtonVisibility();
     }
 
     public override void _Process(float delta)
@@ -289,11 +266,77 @@ public partial class MetaballBodyEditorComponent :
         }
     }
 
+    public override void OnEditorSpeciesSetup(Species species)
+    {
+        UpdateCellTypeSelections();
+
+        behaviourEditor.OnEditorSpeciesSetup(species);
+
+        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+
+        foreach (var metaball in Editor.EditedSpecies.BodyLayout)
+        {
+            editedMetaballs.Add(metaball.Clone(metaballMapping));
+        }
+
+        newName = species.FormattedName;
+
+        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
+
+        UpdateArrow(false);
+    }
+
+    public override void OnFinishEditing()
+    {
+        var editedSpecies = Editor.EditedSpecies;
+
+        editedSpecies.BodyLayout.Clear();
+
+        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+
+        // Make sure we process things with parents first
+        // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
+        // objects
+        foreach (var metaball in editedMetaballs.OrderBy(m => m.CalculateTreeDepth()))
+        {
+            editedSpecies.BodyLayout.Add(metaball.Clone(metaballMapping));
+        }
+
+        var previousStage = editedSpecies.MulticellularType;
+
+        editedSpecies.OnEdited();
+
+        // Make awakening an explicit step instead of automatic
+        if (previousStage != editedSpecies.MulticellularType &&
+            editedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        {
+            GD.Print("Player is now eligible for awakening, preventing automatic move there");
+            editedSpecies.KeepPlayerInAwareStage();
+        }
+
+        editedSpecies.UpdateNameIfValid(newName);
+
+        behaviourEditor.OnFinishEditing();
+    }
+
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
         var editorUserOverrides = userOverrides.ToList();
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
+
+        // TODO: hook this up once we have editing the creature scale in the editor
+        var creatureScale = 1.0f;
+        var newTypeWouldBe =
+            LateMulticellularSpecies.CalculateMulticellularTypeFromLayout(editedMetaballs, creatureScale);
+
+        // Disallow going back stages
+        if (newTypeWouldBe < Editor.EditedSpecies.MulticellularType)
+        {
+            GD.Print("Reducing brain power would go back a stage, not allowing");
+            cannotReduceBrainPowerPopup.PopupCenteredShrink();
+            return false;
+        }
 
         if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
             return true;
@@ -476,6 +519,36 @@ public partial class MetaballBodyEditorComponent :
         }
 
         return highestPointInMiddleRows;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TabButtonsPath != null)
+            {
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                ReproductionTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                AppearanceTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                ReproductionTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                AppearanceTabPath.Dispose();
+                CellTypeSelectionListPath.Dispose();
+                ModifyTypeButtonPath.Dispose();
+                DeleteTypeButtonPath.Dispose();
+                DuplicateTypeButtonPath.Dispose();
+                CannotDeleteInUseTypeDialogPath.Dispose();
+                DuplicateCellTypeDialogPath.Dispose();
+                DuplicateCellTypeNamePath.Dispose();
+                MetaballPopupMenuPath.Dispose();
+                CannotReduceBrainPowerPopupPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species)
@@ -910,7 +983,7 @@ public partial class MetaballBodyEditorComponent :
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
-        duplicateCellTypeName.GrabFocus();
+        duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
         duplicateCellTypeName.CaretPosition = type.TypeName.Length;
     }

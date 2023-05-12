@@ -8,11 +8,20 @@ using Saving;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
+/// <remarks>
+///   <para>
+///     As this is a very large file, please pay close attention to ordering and grouping of variables and methods to
+///     match the tab and order they exist in the scene.
+///   </para>
+/// </remarks>
 public class OptionsMenu : ControlWithInput
 {
     // GUI Control Paths
 
     // Options control buttons.
+
+    [Export]
+    public NodePath? BackButtonPath;
 
     [Export]
     public NodePath ResetButtonPath = null!;
@@ -21,6 +30,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath SaveButtonPath = null!;
 
     // Tab selector buttons.
+    [Export]
+    public NodePath TabButtonsPath = null!;
+
     [Export]
     public NodePath GraphicsButtonPath = null!;
 
@@ -65,6 +77,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath ChromaticAberrationTogglePath = null!;
 
     [Export]
+    public NodePath ControllerPromptTypePath = null!;
+
+    [Export]
     public NodePath DisplayAbilitiesBarTogglePath = null!;
 
     [Export]
@@ -75,6 +90,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath DisplayPartNamesTogglePath = null!;
+
+    [Export]
+    public NodePath DisplayMenu3DBackgroundsTogglePath = null!;
 
     [Export]
     public NodePath GpuNamePath = null!;
@@ -206,6 +224,18 @@ public class OptionsMenu : ControlWithInput
     public NodePath ControllerVerticalInvertedPath = null!;
 
     [Export]
+    public NodePath TwoDimensionalMovementPath = null!;
+
+    [Export]
+    public NodePath ThreeDimensionalMovementPath = null!;
+
+    [Export]
+    public NodePath MouseEdgePanEnabledPath = null!;
+
+    [Export]
+    public NodePath MouseEdgePanSensitivityPath = null!;
+
+    [Export]
     public NodePath InputGroupListPath = null!;
 
     [Export]
@@ -258,10 +288,19 @@ public class OptionsMenu : ControlWithInput
     public NodePath CustomUsernamePath = null!;
 
     [Export]
+    public NodePath WebFeedsEnabledPath = null!;
+
+    [Export]
+    public NodePath ShowNewPatchNotesPath = null!;
+
+    [Export]
     public NodePath DismissedNoticeCountPath = null!;
 
     [Export]
     public NodePath JSONDebugModePath = null!;
+
+    [Export]
+    public NodePath ScreenEffectSelectPath = null!;
 
     [Export]
     public NodePath CommitLabelPath = null!;
@@ -272,6 +311,12 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath UnsavedProgressWarningPath = null!;
 
+    [Export]
+    public NodePath PatchNotesBoxPath = null!;
+
+    [Export]
+    public NodePath PatchNotesDisplayerPath = null!;
+
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
@@ -280,10 +325,13 @@ public class OptionsMenu : ControlWithInput
         .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+#pragma warning disable CA2213
+    private Button backButton = null!;
     private Button resetButton = null!;
     private Button saveButton = null!;
 
     // Tab selector buttons
+    private TabButtons tabButtons = null!;
     private Button graphicsButton = null!;
     private Button soundButton = null!;
     private Button performanceButton = null!;
@@ -300,10 +348,12 @@ public class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting = null!;
     private CustomCheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
+    private OptionButton controllerPromptType = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
     private CustomCheckBox displayPartNamesToggle = null!;
+    private CustomCheckBox displayMenu3DBackgroundsToggle = null!;
     private Label gpuName = null!;
     private Label usedRendererName = null!;
     private Label videoMemory = null!;
@@ -355,6 +405,12 @@ public class OptionsMenu : ControlWithInput
     private Slider controllerVerticalSensitivity = null!;
     private Button controllerVerticalInverted = null!;
 
+    private OptionButton twoDimensionalMovement = null!;
+    private OptionButton threeDimensionalMovement = null!;
+
+    private Button mouseEdgePanEnabled = null!;
+    private Slider mouseEdgePanSensitivity = null!;
+
     private InputGroupList inputGroupList = null!;
 
     private ControllerDeadzoneConfiguration deadzoneConfigurationPopup = null!;
@@ -370,8 +426,11 @@ public class OptionsMenu : ControlWithInput
     private SpinBox maxQuickSaves = null!;
     private CustomCheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
+    private CustomCheckBox webFeedsEnabled = null!;
+    private CustomCheckBox showNewPatchNotes = null!;
     private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
+    private OptionButton screenEffectSelect = null!;
     private Label commitLabel = null!;
     private Label builtAtLabel = null!;
 
@@ -383,6 +442,10 @@ public class OptionsMenu : ControlWithInput
     private CustomDialog backConfirmationBox = null!;
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
+
+    private CustomDialog patchNotesBox = null!;
+    private PatchNotesDisplayer patchNotesDisplayer = null!;
+#pragma warning restore CA2213
 
     // Misc
 
@@ -398,6 +461,8 @@ public class OptionsMenu : ControlWithInput
     private bool savedTutorialsEnabled;
 
     private GameProperties? gameProperties;
+
+    private bool nodeReferencesResolved;
 
     // Signals
 
@@ -424,16 +489,53 @@ public class OptionsMenu : ControlWithInput
 
     public override void _Ready()
     {
+        ResolveNodeReferences(true);
+
+        LoadLanguages();
+        LoadAudioOutputDevices();
+        LoadScreenEffects();
+
+        inputGroupList.OnControlsChanged += OnControlsChanged;
+
+        deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
+
+        GetViewport().Connect("size_changed", this, nameof(DisplayResolution));
+
+        selectedOptionsTab = OptionsTab.Graphics;
+    }
+
+    public void ResolveNodeReferences(bool calledFromReady)
+    {
+        if (nodeReferencesResolved)
+            return;
+
         // Options control buttons
+        backButton = GetNode<Button>(BackButtonPath);
         resetButton = GetNode<Button>(ResetButtonPath);
         saveButton = GetNode<Button>(SaveButtonPath);
 
         // Tab selector buttons
-        graphicsButton = GetNode<Button>(GraphicsButtonPath);
-        soundButton = GetNode<Button>(SoundButtonPath);
-        performanceButton = GetNode<Button>(PerformanceButtonPath);
-        inputsButton = GetNode<Button>(InputsButtonPath);
-        miscButton = GetNode<Button>(MiscButtonPath);
+        tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
+        // When _Ready is called the tab buttons will have been adjusted, so how we find the buttons needs different
+        // approaches based on how early this is called
+        if (calledFromReady)
+        {
+            graphicsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, GraphicsButtonPath));
+            soundButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, SoundButtonPath));
+            performanceButton =
+                GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PerformanceButtonPath));
+            inputsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, InputsButtonPath));
+            miscButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscButtonPath));
+        }
+        else
+        {
+            graphicsButton = GetNode<Button>(GraphicsButtonPath);
+            soundButton = GetNode<Button>(SoundButtonPath);
+            performanceButton = GetNode<Button>(PerformanceButtonPath);
+            inputsButton = GetNode<Button>(InputsButtonPath);
+            miscButton = GetNode<Button>(MiscButtonPath);
+        }
 
         // Graphics
         graphicsTab = GetNode<Control>(GraphicsTabPath);
@@ -445,10 +547,12 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
+        controllerPromptType = GetNode<OptionButton>(ControllerPromptTypePath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
         displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
+        displayMenu3DBackgroundsToggle = GetNode<CustomCheckBox>(DisplayMenu3DBackgroundsTogglePath);
         gpuName = GetNode<Label>(GpuNamePath);
         usedRendererName = GetNode<Label>(UsedRendererNamePath);
         videoMemory = GetNode<Label>(VideoMemoryPath);
@@ -469,9 +573,6 @@ public class OptionsMenu : ControlWithInput
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
         languageProgressLabel = GetNode<Label>(LanguageProgressLabelPath);
-
-        LoadLanguages();
-        LoadAudioOutputDevices();
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
@@ -502,11 +603,15 @@ public class OptionsMenu : ControlWithInput
         controllerVerticalSensitivity = GetNode<Slider>(ControllerVerticalSensitivityPath);
         controllerVerticalInverted = GetNode<Button>(ControllerVerticalInvertedPath);
 
+        twoDimensionalMovement = GetNode<OptionButton>(TwoDimensionalMovementPath);
+        threeDimensionalMovement = GetNode<OptionButton>(ThreeDimensionalMovementPath);
+
+        mouseEdgePanEnabled = GetNode<Button>(MouseEdgePanEnabledPath);
+        mouseEdgePanSensitivity = GetNode<Slider>(MouseEdgePanSensitivityPath);
+
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
-        inputGroupList.OnControlsChanged += OnControlsChanged;
 
         deadzoneConfigurationPopup = GetNode<ControllerDeadzoneConfiguration>(DeadzoneConfigurationPopupPath);
-        deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -520,23 +625,46 @@ public class OptionsMenu : ControlWithInput
         tutorialsEnabled = GetNode<CustomCheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
+        webFeedsEnabled = GetNode<CustomCheckBox>(WebFeedsEnabledPath);
+        showNewPatchNotes = GetNode<CustomCheckBox>(ShowNewPatchNotesPath);
         dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
+        screenEffectSelect = GetNode<OptionButton>(ScreenEffectSelectPath);
         commitLabel = GetNode<Label>(CommitLabelPath);
         builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
+        builtAtLabel.RegisterCustomFocusDrawer();
         unsavedProgressWarningEnabled = GetNode<CustomCheckBox>(UnsavedProgressWarningPath);
 
         screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
         backConfirmationBox = GetNode<CustomDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
+        patchNotesBox = GetNode<CustomDialog>(PatchNotesBoxPath);
+        patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
 
-        selectedOptionsTab = OptionsTab.Graphics;
+        nodeReferencesResolved = true;
+    }
 
-        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
-        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
-        assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
-        unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        ResolveNodeReferences(false);
+
+        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options", false);
+        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
+        assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options", false);
+        unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options", false);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        cloudResolutionTitle.UnRegisterToolTipForControl("cloudResolution", "options");
+        guiLightEffectsToggle.UnRegisterToolTipForControl("guiLightEffects", "options");
+        assumeHyperthreading.UnRegisterToolTipForControl("assumeHyperthreading", "options");
+        unsavedProgressWarningEnabled.UnRegisterToolTipForControl("unsavedProgressWarning", "options");
     }
 
     public override void _Notification(int what)
@@ -547,10 +675,6 @@ public class OptionsMenu : ControlWithInput
             UpdateDefaultAudioOutputDeviceText();
             DisplayResolution();
             DisplayGpuInfo();
-        }
-        else if (what == NotificationResized)
-        {
-            DisplayResolution();
         }
     }
 
@@ -615,6 +739,8 @@ public class OptionsMenu : ControlWithInput
         // that is not efficient at all so instead we should set a flag here and ignore settings compare calls
         // while it is active
 
+        var simulationParameters = SimulationParameters.Instance;
+
         // Graphics
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
@@ -623,10 +749,12 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
+        controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.Pressed = settings.DisplayPartNames;
+        displayMenu3DBackgroundsToggle.Pressed = settings.Menu3DBackgroundEnabled;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -682,6 +810,13 @@ public class OptionsMenu : ControlWithInput
             ControllerInputSensitivityToBarValue(settings.VerticalControllerLookSensitivity);
         controllerVerticalInverted.Pressed = settings.InvertVerticalControllerLook;
 
+        twoDimensionalMovement.Selected = Movement2DToIndex(settings.TwoDimensionalMovement);
+        threeDimensionalMovement.Selected = Movement3DToIndex(settings.ThreeDimensionalMovement);
+
+        mouseEdgePanEnabled.Pressed = settings.PanStrategyViewWithMouse;
+        mouseEdgePanSensitivity.Value = settings.PanStrategyViewMouseSpeed;
+        mouseEdgePanSensitivity.Editable = mouseEdgePanEnabled.Pressed;
+
         BuildInputRebindControls();
 
         // Misc
@@ -698,7 +833,12 @@ public class OptionsMenu : ControlWithInput
             settings.CustomUsername :
             Settings.EnvironmentUserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+        webFeedsEnabled.Pressed = settings.ThriveNewsFeedEnabled;
+        showNewPatchNotes.Pressed = settings.ShowNewPatchNotes;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
+        screenEffectSelect.Selected = settings.CurrentScreenEffect.Value != null ?
+            settings.CurrentScreenEffect.Value.Index :
+            simulationParameters.GetScreenEffectByIndex(0).Index;
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
 
         UpdateDismissedNoticeCount();
@@ -730,6 +870,115 @@ public class OptionsMenu : ControlWithInput
     public void SelectOptionsTab(OptionsTab tab)
     {
         ChangeSettingsTab(tab.ToString());
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (BackButtonPath != null)
+            {
+                BackButtonPath.Dispose();
+                ResetButtonPath.Dispose();
+                SaveButtonPath.Dispose();
+                TabButtonsPath.Dispose();
+                GraphicsButtonPath.Dispose();
+                SoundButtonPath.Dispose();
+                PerformanceButtonPath.Dispose();
+                InputsButtonPath.Dispose();
+                MiscButtonPath.Dispose();
+                GraphicsTabPath.Dispose();
+                VSyncPath.Dispose();
+                FullScreenPath.Dispose();
+                MSAAResolutionPath.Dispose();
+                ResolutionPath.Dispose();
+                MaxFramesPerSecondPath.Dispose();
+                ColourblindSettingPath.Dispose();
+                ChromaticAberrationSliderPath.Dispose();
+                ChromaticAberrationTogglePath.Dispose();
+                ControllerPromptTypePath.Dispose();
+                DisplayAbilitiesBarTogglePath.Dispose();
+                DisplayBackgroundParticlesTogglePath.Dispose();
+                GUILightEffectsTogglePath.Dispose();
+                DisplayPartNamesTogglePath.Dispose();
+                DisplayMenu3DBackgroundsTogglePath.Dispose();
+                GpuNamePath.Dispose();
+                UsedRendererNamePath.Dispose();
+                VideoMemoryPath.Dispose();
+                SoundTabPath.Dispose();
+                MasterVolumePath.Dispose();
+                MasterMutedPath.Dispose();
+                MusicVolumePath.Dispose();
+                MusicMutedPath.Dispose();
+                AmbianceVolumePath.Dispose();
+                AmbianceMutedPath.Dispose();
+                SFXVolumePath.Dispose();
+                SFXMutedPath.Dispose();
+                GUIVolumePath.Dispose();
+                GUIMutedPath.Dispose();
+                AudioOutputDeviceSelectionPath.Dispose();
+                LanguageSelectionPath.Dispose();
+                ResetLanguageButtonPath.Dispose();
+                LanguageProgressLabelPath.Dispose();
+                PerformanceTabPath.Dispose();
+                CloudIntervalPath.Dispose();
+                CloudResolutionTitlePath.Dispose();
+                CloudResolutionPath.Dispose();
+                RunAutoEvoDuringGameplayPath.Dispose();
+                DetectedCPUCountPath.Dispose();
+                ActiveThreadCountPath.Dispose();
+                AssumeHyperthreadingPath.Dispose();
+                UseManualThreadCountPath.Dispose();
+                ThreadCountSliderPath.Dispose();
+                MaxSpawnedEntitiesPath.Dispose();
+                InputsTabPath.Dispose();
+                MouseAxisSensitivitiesBoundPath.Dispose();
+                MouseHorizontalSensitivityPath.Dispose();
+                MouseHorizontalInvertedPath.Dispose();
+                MouseVerticalSensitivityPath.Dispose();
+                MouseVerticalInvertedPath.Dispose();
+                MouseWindowSizeScalingPath.Dispose();
+                MouseWindowSizeScalingWithLogicalSizePath.Dispose();
+                ControllerAxisSensitivitiesBoundPath.Dispose();
+                ControllerHorizontalSensitivityPath.Dispose();
+                ControllerHorizontalInvertedPath.Dispose();
+                ControllerVerticalSensitivityPath.Dispose();
+                ControllerVerticalInvertedPath.Dispose();
+                TwoDimensionalMovementPath.Dispose();
+                ThreeDimensionalMovementPath.Dispose();
+                MouseEdgePanEnabledPath.Dispose();
+                MouseEdgePanSensitivityPath.Dispose();
+                InputGroupListPath.Dispose();
+                DeadzoneConfigurationPopupPath.Dispose();
+                MiscTabPath.Dispose();
+                PlayIntroPath.Dispose();
+                PlayMicrobeIntroPath.Dispose();
+                TutorialsEnabledOnNewGamePath.Dispose();
+                CheatsPath.Dispose();
+                AutoSavePath.Dispose();
+                MaxAutoSavesPath.Dispose();
+                MaxQuickSavesPath.Dispose();
+                BackConfirmationBoxPath.Dispose();
+                TutorialsEnabledPath.Dispose();
+                ScreenshotDirectoryWarningBoxPath.Dispose();
+                DefaultsConfirmationBoxPath.Dispose();
+                ErrorAcceptBoxPath.Dispose();
+                PatchNotesBoxPath.Dispose();
+                PatchNotesDisplayerPath.Dispose();
+                CustomUsernameEnabledPath.Dispose();
+                CustomUsernamePath.Dispose();
+                WebFeedsEnabledPath.Dispose();
+                ShowNewPatchNotesPath.Dispose();
+                DismissedNoticeCountPath.Dispose();
+                JSONDebugModePath.Dispose();
+                ScreenEffectSelectPath.Dispose();
+                CommitLabelPath.Dispose();
+                BuiltAtLabelPath.Dispose();
+                UnsavedProgressWarningPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -765,7 +1014,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    /// Displays the current viewport resolution
+    ///   Displays the current viewport resolution
     /// </summary>
     private void DisplayResolution()
     {
@@ -778,7 +1027,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    /// Displays the GPU name, the display driver name and used video memory
+    ///   Displays the GPU name, the display driver name and used video memory
     /// </summary>
     private void DisplayGpuInfo()
     {
@@ -828,6 +1077,10 @@ public class OptionsMenu : ControlWithInput
         inputsTab.Hide();
         miscTab.Hide();
 
+        var invalidNodePath = new NodePath();
+        backButton.FocusNeighbourTop = invalidNodePath;
+        backButton.FocusPrevious = invalidNodePath;
+
         switch (selection)
         {
             case OptionsTab.Graphics:
@@ -845,6 +1098,12 @@ public class OptionsMenu : ControlWithInput
             case OptionsTab.Inputs:
                 inputsTab.Show();
                 inputsButton.Pressed = true;
+
+                // This needs different neighbours here to not mess with the inputs list as badly
+                var neighbourPath = mouseAxisSensitivitiesBound.GetPath();
+                backButton.FocusNeighbourTop = neighbourPath;
+                backButton.FocusPrevious = neighbourPath;
+
                 break;
             case OptionsTab.Miscellaneous:
                 miscTab.Show();
@@ -1252,6 +1511,17 @@ public class OptionsMenu : ControlWithInput
         }
     }
 
+    private void LoadScreenEffects()
+    {
+        var screenEffects = SimulationParameters.Instance.GetAllScreenEffects();
+
+        foreach (var effect in screenEffects.OrderBy(p => p.Index))
+        {
+            // The untranslated name will be translated automatically by Godot during runtime
+            screenEffectSelect.AddItem(effect.UntranslatedName);
+        }
+    }
+
     private void UpdateCurrentLanguageProgress()
     {
         string locale = TranslationServer.GetLocale();
@@ -1294,6 +1564,7 @@ public class OptionsMenu : ControlWithInput
             return false;
         }
 
+        ClearInputRebindingControls();
         EmitSignal(nameof(OnOptionsClosed));
         return true;
     }
@@ -1520,6 +1791,44 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private int ControllerPromptTypeToIndex(ControllerType controllerType)
+    {
+        // This is done like this to ensure that invalid values don't get converted to out of range values (for
+        // example when settings might be loaded that were saved by a newer Thrive version)
+        switch (controllerType)
+        {
+            case ControllerType.Automatic:
+            case ControllerType.Xbox360:
+            case ControllerType.XboxOne:
+            case ControllerType.XboxSeriesX:
+            case ControllerType.PlayStation3:
+            case ControllerType.PlayStation4:
+            case ControllerType.PlayStation5:
+                return (int)controllerType;
+            default:
+                GD.PrintErr("Invalid controller type value");
+                return 0;
+        }
+    }
+
+    private ControllerType ControllerIndexToPromptType(int index)
+    {
+        if (index is >= 0 and <= (int)ControllerType.PlayStation5)
+        {
+            return (ControllerType)index;
+        }
+
+        GD.PrintErr("Invalid controller type index");
+        return ControllerType.Automatic;
+    }
+
+    private void OnControllerTypeSelected(int index)
+    {
+        Settings.Instance.ControllerPromptType.Value = ControllerIndexToPromptType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnDisplayBackgroundParticlesToggled(bool toggle)
     {
         Settings.Instance.DisplayBackgroundParticles.Value = toggle;
@@ -1537,6 +1846,13 @@ public class OptionsMenu : ControlWithInput
     private void OnDisplayPartNamesToggled(bool toggle)
     {
         Settings.Instance.DisplayPartNames.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDisplay3DMenuBackgroundsToggled(bool toggle)
+    {
+        Settings.Instance.Menu3DBackgroundEnabled.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
@@ -1663,10 +1979,21 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+
+        // Apply the current value to the slider to make sure it is showing the actual setting value
+        if (pressed)
+        {
+            threadCountSlider.Value = Settings.Instance.ThreadCount.Value;
+        }
     }
 
     private void OnManualThreadCountChanged(float value)
     {
+        // Ignore setting these things when we are using automatic thread count to prevent unnecessarily settings
+        // being detected as changed
+        if (!Settings.Instance.UseManualThreadCount.Value)
+            return;
+
         int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
         Settings.Instance.ThreadCount.Value = threads;
         Settings.Instance.ApplyThreadSettings();
@@ -1783,6 +2110,84 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private int Movement2DToIndex(TwoDimensionalMovementMode movementMode)
+    {
+        switch (movementMode)
+        {
+            case TwoDimensionalMovementMode.Automatic:
+            case TwoDimensionalMovementMode.PlayerRelative:
+            case TwoDimensionalMovementMode.ScreenRelative:
+                return (int)movementMode;
+            default:
+                GD.PrintErr("Invalid 2D movement type value");
+                return 0;
+        }
+    }
+
+    private TwoDimensionalMovementMode Movement2DIndexToType(int index)
+    {
+        if (index is >= 0 and <= (int)TwoDimensionalMovementMode.ScreenRelative)
+        {
+            return (TwoDimensionalMovementMode)index;
+        }
+
+        GD.PrintErr("Invalid movement 2D type index");
+        return TwoDimensionalMovementMode.Automatic;
+    }
+
+    private void OnMovement2DTypeSelected(int index)
+    {
+        Settings.Instance.TwoDimensionalMovement.Value = Movement2DIndexToType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private int Movement3DToIndex(ThreeDimensionalMovementMode movementMode)
+    {
+        switch (movementMode)
+        {
+            case ThreeDimensionalMovementMode.ScreenRelative:
+            case ThreeDimensionalMovementMode.WorldRelative:
+                return (int)movementMode;
+            default:
+                GD.PrintErr("Invalid 3D movement type value");
+                return 0;
+        }
+    }
+
+    private ThreeDimensionalMovementMode Movement3DIndexToMovementType(int index)
+    {
+        if (index is >= 0 and <= (int)ThreeDimensionalMovementMode.WorldRelative)
+        {
+            return (ThreeDimensionalMovementMode)index;
+        }
+
+        GD.PrintErr("Invalid 3D movement type index");
+        return ThreeDimensionalMovementMode.ScreenRelative;
+    }
+
+    private void OnMovement3DTypeSelected(int index)
+    {
+        Settings.Instance.ThreeDimensionalMovement.Value = Movement3DIndexToMovementType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseEdgePanToggled(bool pressed)
+    {
+        Settings.Instance.PanStrategyViewWithMouse.Value = pressed;
+        mouseEdgePanSensitivity.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseEdgePanSensitivityChanged(float value)
+    {
+        Settings.Instance.PanStrategyViewMouseSpeed.Value = value;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnOpenDeadzoneConfigurationPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -1879,6 +2284,18 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnScreenEffectSelected(int index)
+    {
+        var effect = SimulationParameters.Instance.GetScreenEffectByIndex(index);
+
+        if (effect == SimulationParameters.Instance.GetScreenEffectByIndex(0))
+            effect = null;
+
+        Settings.Instance.CurrentScreenEffect.Value = effect;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnUnsavedProgressWarningToggled(bool pressed)
     {
         Settings.Instance.ShowUnsavedProgressWarning.Value = pressed;
@@ -1889,6 +2306,11 @@ public class OptionsMenu : ControlWithInput
     private void BuildInputRebindControls()
     {
         inputGroupList.InitGroupList();
+    }
+
+    private void ClearInputRebindingControls()
+    {
+        inputGroupList.ClearGroupList();
     }
 
     private void OnOpenScreenshotFolder()
@@ -1917,6 +2339,20 @@ public class OptionsMenu : ControlWithInput
         {
             Settings.Instance.CustomUsername.Value = text;
         }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnWebFeedsEnabledToggled(bool pressed)
+    {
+        Settings.Instance.ThriveNewsFeedEnabled.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnPatchNotesEnabledToggled(bool pressed)
+    {
+        Settings.Instance.ShowNewPatchNotes.Value = pressed;
 
         UpdateResetSaveButtonState();
     }
@@ -1980,5 +2416,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDismissedNoticeCount();
+    }
+
+    private void OnOpenPatchNotesPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        patchNotesDisplayer.ShowLatest();
+        patchNotesBox.PopupCenteredShrink();
     }
 }

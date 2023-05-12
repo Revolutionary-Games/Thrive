@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=2]
-[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=3]
+[ext_resource path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs" type="Script" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=9]
 
@@ -14,9 +11,7 @@ script = ExtResource( 8 )
 DisplayBackground = false
 DisabledInFreebuildPath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DisabledInFreebuild")
 EvolutionaryTreePath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
-SpeciesDetailsLabelPath = NodePath("Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
-SpeciesPreviewPath = NodePath("Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
-HexPreviewPath = NodePath("Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
+SpeciesDetailsPanelPath = NodePath("Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 
 [node name="Viewer" type="Control" parent="." index="1"]
 margin_left = 1.0
@@ -34,7 +29,7 @@ size_flags_vertical = 3
 custom_constants/separation = 15
 
 [node name="PanelContainer" type="PanelContainer" parent="Viewer/HBoxContainer" index="0"]
-margin_right = 567.0
+margin_right = 545.0
 margin_bottom = 598.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -42,7 +37,7 @@ size_flags_vertical = 3
 [node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/PanelContainer" index="0"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 566.0
+margin_right = 544.0
 margin_bottom = 597.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -52,7 +47,7 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 555.0
+margin_right = 533.0
 margin_bottom = 586.0
 
 [node name="DisabledInFreebuild" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
@@ -78,77 +73,30 @@ autowrap = true
 [node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 545.0
+margin_right = 523.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SpeciesDetailPanel" type="PanelContainer" parent="Viewer/HBoxContainer" index="1"]
-margin_left = 582.0
+[node name="PanelContainer2" type="PanelContainer" parent="Viewer/HBoxContainer" index="1"]
+margin_left = 560.0
 margin_right = 934.0
 margin_bottom = 598.0
 
-[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/PanelContainer2" index="0"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 351.0
+margin_right = 373.0
 margin_bottom = 597.0
-rect_min_size = Vector2( 350, 0 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer" index="0"]
+[node name="SpeciesDetailsPanel" parent="Viewer/HBoxContainer/PanelContainer2/MarginContainer" index="0" instance=ExtResource( 1 )]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 340.0
+margin_right = 362.0
 margin_bottom = 586.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer" index="0"]
-margin_right = 330.0
-margin_bottom = 576.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 320.0
-margin_bottom = 566.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
-margin_right = 310.0
-margin_bottom = 556.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="0"]
-margin_right = 310.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 0, 200 )
-
-[node name="SpeciesPreview" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource( 5 )]
-margin_right = 153.0
-margin_bottom = 200.0
-script = ExtResource( 2 )
-
-[node name="CellHexPreview" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource( 5 )]
-margin_left = 157.0
-margin_right = 310.0
-margin_bottom = 200.0
-script = ExtResource( 3 )
-
-[node name="SpeciesInfoLabel" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="1" instance=ExtResource( 7 )]
-margin_top = 204.0
-margin_right = 310.0
-margin_bottom = 556.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-scroll_active = false
 
 [connection signal="SpeciesSelected" from="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]

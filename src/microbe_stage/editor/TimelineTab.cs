@@ -7,7 +7,7 @@ using Godot;
 public class TimelineTab : PanelContainer
 {
     [Export]
-    public NodePath GlobalEventsContainerPath = null!;
+    public NodePath? GlobalEventsContainerPath;
 
     [Export]
     public NodePath LocalEventsContainerPath = null!;
@@ -21,23 +21,33 @@ public class TimelineTab : PanelContainer
     [Export]
     public NodePath GlobalFilterButtonPath = null!;
 
-    private readonly PackedScene customRichTextLabelScene = GD.Load<PackedScene>(
-        "res://src/gui_common/CustomRichTextLabel.tscn");
+#pragma warning disable CA2213
+    private readonly PackedScene customRichTextLabelScene;
 
-    private readonly StyleBoxTexture eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
-        "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
+    private readonly StyleBoxTexture eventHighlightStyleBox;
 
     private VBoxContainer globalEventsContainer = null!;
     private VBoxContainer localEventsContainer = null!;
     private ScrollContainer scrollContainer = null!;
     private Button localFilterButton = null!;
     private Button globalFilterButton = null!;
+#pragma warning restore CA2213
+
     private double lastUpdateGameTime = -1;
 
     private Filters eventFilter = Filters.Local;
 
     private List<TimelineSection>? cachedLocalTimelineElements;
     private List<TimelineSection>? cachedGlobalTimelineElements;
+
+    public TimelineTab()
+    {
+        customRichTextLabelScene = GD.Load<PackedScene>(
+            "res://src/gui_common/CustomRichTextLabel.tscn");
+
+        eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
+            "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
+    }
 
     public enum Filters
     {
@@ -140,6 +150,23 @@ public class TimelineTab : PanelContainer
         scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.y);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (GlobalEventsContainerPath != null)
+            {
+                GlobalEventsContainerPath.Dispose();
+                LocalEventsContainerPath.Dispose();
+                ScrollContainerPath.Dispose();
+                LocalFilterButtonPath.Dispose();
+                GlobalFilterButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void ApplyEventsFilter()
     {
         switch (EventFilter)
@@ -178,7 +205,9 @@ public class TimelineTab : PanelContainer
 
         private readonly (double TimePeriod, List<GameEventDescription> Events) data;
 
+#pragma warning disable CA2213
         private Control? headerContainer;
+#pragma warning restore CA2213
 
         public TimelineSection(PackedScene customRichTextLabelScene, StyleBoxTexture eventHighlightStyleBox,
             (double TimePeriod, List<GameEventDescription> Events) data)

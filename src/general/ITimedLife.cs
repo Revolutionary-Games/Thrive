@@ -3,7 +3,7 @@
 /// </summary>
 public interface ITimedLife
 {
-    float TimeToLiveRemaining { get; set; }
+    public float TimeToLiveRemaining { get; set; }
 
-    void OnTimeOver();
+    public void OnTimeOver();
 }

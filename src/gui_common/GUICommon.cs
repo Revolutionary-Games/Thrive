@@ -8,26 +8,20 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
-public class GUICommon : NodeWithInput
+public class GUICommon : Node
 {
     private static GUICommon? instance;
 
-    private AudioStream buttonPressSound;
+#pragma warning disable CA2213
+    private AudioStream buttonPressSound = null!;
+#pragma warning restore CA2213
 
     private GUICommon()
     {
         instance = this;
 
-        AudioSources = new List<AudioStreamPlayer>();
-
         Tween = new Tween();
         AddChild(Tween);
-
-        // Keep this node running even while paused
-        PauseMode = PauseModeEnum.Process;
-
-        buttonPressSound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
     public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -38,28 +32,22 @@ public class GUICommon : NodeWithInput
     public Tween Tween { get; }
 
     /// <summary>
-    ///   Checks whether the top-most modal on the modal stack is an exclusive popup.
+    ///   Access to the logical size of the GUI drawing area for non-GUI components
     /// </summary>
-    public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
+    public Rect2 ViewportRect { get; private set; }
+
+    public Vector2 ViewportSize => ViewportRect.Size;
 
     /// <summary>
     ///   The audio players for UI sound effects.
     /// </summary>
-    private List<AudioStreamPlayer> AudioSources { get; }
+    private List<AudioStreamPlayer> AudioSources { get; } = new();
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
         var child = control.GetChild<Control>(0);
 
         return child.RectMinSize;
-    }
-
-    public static void PopupMinSizeMarginPosition(Popup popup)
-    {
-        var left = popup.MarginLeft;
-        var top = popup.MarginTop;
-        popup.PopupCenteredMinsize();
-        popup.RectPosition = new Vector2(left, top);
     }
 
     public static void SmoothlyUpdateBar(Range bar, float target, float delta)
@@ -91,6 +79,16 @@ public class GUICommon : NodeWithInput
         return GD.Load(file) as Texture;
     }
 
+    public static string RequirementFulfillmentIconRichText(bool fulfilled)
+    {
+        if (fulfilled)
+        {
+            return "[thrive:icon]ConditionFulfilled[/thrive:icon]";
+        }
+
+        return "[thrive:icon]ConditionInsufficient[/thrive:icon]";
+    }
+
     public static void MarkInputAsInvalid(LineEdit control)
     {
         control.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
@@ -101,42 +99,15 @@ public class GUICommon : NodeWithInput
         control.Set("custom_colors/font_color", new Color(1, 1, 1));
     }
 
-    /// <summary>
-    ///   Closes any currently active exclusive modal popups.
-    /// </summary>
-    [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
-    public bool HideCurrentlyActiveExclusivePopup()
+    public override void _Ready()
     {
-        var popup = GetCurrentlyActiveExclusivePopup();
-        var customPopup = popup as ICustomPopup;
+        base._Ready();
 
-        if (!IsAnyExclusivePopupActive || customPopup is { ExclusiveAllowCloseOnEscape: false })
-        {
-            return false;
-        }
+        // Keep this node running even while paused
+        PauseMode = PauseModeEnum.Process;
 
-        if (customPopup != null)
-        {
-            customPopup.CustomHide();
-            popup!.EmitSignal(nameof(CustomDialog.Closed));
-        }
-        else
-        {
-            popup!.Hide();
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
-    /// </summary>
-    public Popup? GetCurrentlyActiveExclusivePopup()
-    {
-        if (GetViewport().GetModalStackTop() is Popup popup && popup.PopupExclusive)
-            return popup;
-
-        return null;
+        buttonPressSound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
     /// <summary>
@@ -224,9 +195,17 @@ public class GUICommon : NodeWithInput
     }
 
     /// <summary>
-    ///   Creates an icon for the given compound.
+    ///   Creates an icon for the given compound name.
     /// </summary>
     public TextureRect CreateCompoundIcon(string compoundName, float sizeX = 20.0f, float sizeY = 20.0f)
+    {
+        return CreateIcon(SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon!, sizeX, sizeY);
+    }
+
+    /// <summary>
+    ///   Creates an icon from the given texture.
+    /// </summary>
+    public TextureRect CreateIcon(Texture texture, float sizeX = 20.0f, float sizeY = 20.0f)
     {
         var element = new TextureRect
         {
@@ -234,7 +213,7 @@ public class GUICommon : NodeWithInput
             RectMinSize = new Vector2(sizeX, sizeY),
             SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-            Texture = SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon,
+            Texture = texture,
         };
 
         return element;
@@ -256,6 +235,16 @@ public class GUICommon : NodeWithInput
     internal void ProxyDrawFocus(Control target)
     {
         target.DrawCustomFocusBorderIfFocused();
+    }
+
+    /// <summary>
+    ///   Report a new viewport size. Should only be called by a single <see cref="Control"/> derived autoloaded
+    ///   component.
+    /// </summary>
+    /// <param name="size">The new size</param>
+    internal void ReportViewportRect(Rect2 size)
+    {
+        ViewportRect = size;
     }
 
     private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)

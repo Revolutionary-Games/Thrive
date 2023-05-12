@@ -39,7 +39,7 @@ public class Asset
     ///   Combines asset title, artist name and extended description into one structured string.
     /// </summary>
     /// <param name="extended">
-    ///     Includes the extended description if true (and it's not empty).
+    ///   Includes the extended description if true (and it's not empty).
     /// </param>
     public string BuildDescription(bool extended)
     {

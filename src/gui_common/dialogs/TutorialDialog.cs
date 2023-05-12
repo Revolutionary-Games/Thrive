@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   A window dialog for tutorials with custom behaviors such as show (pop-up) delay and animation.
@@ -8,21 +9,41 @@
 public class TutorialDialog : CustomDialog
 {
     [Export]
-    public NodePath LabelPath = null!;
+    public NodePath? LabelPath;
 
+#pragma warning disable CA2213
     private CustomRichTextLabel? label;
 
+    // TODO: would make more sense for code consistency that this was defined in the scene for this class
     private Tween tween = new();
+#pragma warning restore CA2213
 
     private string description = string.Empty;
+    private string controllerDescription = string.Empty;
 
-    [Export(PropertyHint.MultilineText)]
+    private ActiveInputMethod showingTextForInput;
+
+    [Export]
     public string Description
     {
         get => description;
         set
         {
             description = value;
+            UpdateLabel();
+        }
+    }
+
+    /// <summary>
+    ///   Alternative description used when a controller is used for the game
+    /// </summary>
+    [Export]
+    public string DescriptionForController
+    {
+        get => controllerDescription;
+        set
+        {
+            controllerDescription = value;
             UpdateLabel();
         }
     }
@@ -37,13 +58,33 @@ public class TutorialDialog : CustomDialog
     {
         label = GetNode<CustomRichTextLabel>(LabelPath);
 
-        UpdateLabel();
-
         AddChild(tween);
+
+        CheckShownTextVersion();
+        UpdateLabel();
     }
 
-    protected override void OnShown()
+    public override void _EnterTree()
     {
+        base._EnterTree();
+
+        if (label != null)
+            CheckShownTextVersion();
+
+        KeyPromptHelper.IconsChanged += OnInputTypeChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        KeyPromptHelper.IconsChanged -= OnInputTypeChanged;
+    }
+
+    protected override void OnOpen()
+    {
+        base.OnOpen();
+
         // Don't animate if currently running inside the editor
         if (Engine.EditorHint)
             return;
@@ -57,11 +98,53 @@ public class TutorialDialog : CustomDialog
         tween.Start();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            LabelPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateLabel()
     {
         if (label == null)
             return;
 
-        label.ExtendedBbcode = TranslationServer.Translate(Description);
+        var oldText = label.ExtendedBbcode;
+
+        string newText;
+
+        if (showingTextForInput == ActiveInputMethod.Controller && !string.IsNullOrWhiteSpace(DescriptionForController))
+        {
+            newText = TranslationServer.Translate(DescriptionForController);
+        }
+        else
+        {
+            newText = TranslationServer.Translate(Description);
+        }
+
+        // We only set the text if it is actually different to avoid an extra parsing
+        if (oldText != newText)
+            label.ExtendedBbcode = newText;
+    }
+
+    private void OnInputTypeChanged(object sender, EventArgs e)
+    {
+        CheckShownTextVersion();
+    }
+
+    private void CheckShownTextVersion()
+    {
+        var activeMethod = KeyPromptHelper.InputMethod;
+
+        if (showingTextForInput == activeMethod)
+            return;
+
+        showingTextForInput = activeMethod;
+
+        UpdateLabel();
     }
 }

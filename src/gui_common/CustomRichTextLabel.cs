@@ -15,6 +15,7 @@ public class CustomRichTextLabel : RichTextLabel
     private string? heightWorkaroundRanForString;
 
     private bool registeredForInputChanges;
+    private bool reactToLanguageChange;
 
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
@@ -36,6 +37,16 @@ public class CustomRichTextLabel : RichTextLabel
         ///   Retrieves value by key. Special handling for every key. Expandable.
         /// </summary>
         Constant,
+
+        /// <summary>
+        ///   A crafting resource (icon) by key
+        /// </summary>
+        Resource,
+
+        /// <summary>
+        ///   A general purpose icon from a specific set of available icons
+        /// </summary>
+        Icon,
     }
 
     /// <summary>
@@ -62,6 +73,14 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _Ready()
+    {
+        // Make sure bbcode is enabled
+        BbcodeEnabled = true;
+
+        Connect("meta_clicked", this, nameof(OnMetaClicked));
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
@@ -73,12 +92,12 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
-    public override void _Ready()
+    public override void _Notification(int what)
     {
-        // Make sure bbcode is enabled
-        BbcodeEnabled = true;
+        base._Notification(what);
 
-        Connect("meta_clicked", this, nameof(OnMetaClicked));
+        if (what == NotificationTranslationChanged && reactToLanguageChange)
+            ParseCustomTags();
     }
 
     public override void _Draw()
@@ -114,7 +133,9 @@ public class CustomRichTextLabel : RichTextLabel
             return;
         }
 
+        var old = extendedBbcode;
         var translated = TranslationServer.Translate(extendedBbcode);
+        reactToLanguageChange = old != translated;
 
         try
         {
@@ -404,12 +425,14 @@ public class CustomRichTextLabel : RichTextLabel
                     registeredForInputChanges = true;
                 }
 
-                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input), 30, 0, 9);
+                // TODO: add support for showing the overlay image / text saying the direction for axis type inputs
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0, 9);
 
                 break;
             }
 
             case ThriveBbCode.Constant:
+            {
                 var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
                 parsedAttributes.TryGetValue("format", out string format);
 
@@ -474,6 +497,87 @@ public class CustomRichTextLabel : RichTextLabel
                 }
 
                 break;
+            }
+
+            case ThriveBbCode.Resource:
+            {
+                var internalName = string.Empty;
+
+                if (pairs.TryGetValue("type", out string value))
+                {
+                    if (!value.StartsAndEndsWith("\""))
+                        break;
+
+                    internalName = value.Substring(1, value.Length - 2);
+                }
+
+                if (string.IsNullOrEmpty(internalName))
+                {
+                    GD.PrintErr("Resource: Type not specified in bbcode");
+                    break;
+                }
+
+                // Check compound existence and aborts if it's not valid
+                if (!simulationParameters.DoesWorldResourceExist(internalName))
+                {
+                    GD.PrintErr($"Resource: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                var resource = simulationParameters.GetWorldResource(internalName);
+
+                // Resources by default don't show the name
+                bool showName = false;
+
+                if (pairs.TryGetValue("type", out value))
+                {
+                    showName = string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+                }
+
+                if (!showName)
+                {
+                    output = GetResizedImage(resource.InventoryIcon, 20, 0, 3);
+                }
+                else
+                {
+                    // When override text is not used, use the default name
+                    if (string.IsNullOrEmpty(input))
+                        input = resource.Name;
+
+                    output = $"[b]{input}[/b] {GetResizedImage(resource.InventoryIcon, 20, 0, 3)}";
+                }
+
+                break;
+            }
+
+            case ThriveBbCode.Icon:
+            {
+                // TODO: allow overriding size or width (Constant handling has parsing for custom format)
+
+                switch (input)
+                {
+                    case "ConditionInsufficient":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/RequirementInsufficient.png", 20, 0,
+                            3);
+                        break;
+                    }
+
+                    case "ConditionFulfilled":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/RequirementFulfilled.png", 20, 0, 3);
+                        break;
+                    }
+
+                    default:
+                    {
+                        GD.PrintErr($"Icon: \"{input}\" doesn't exist, referenced in bbcode");
+                        break;
+                    }
+                }
+
+                break;
+            }
         }
 
         return output;

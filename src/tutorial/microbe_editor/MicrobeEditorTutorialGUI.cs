@@ -6,7 +6,7 @@
 public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 {
     [Export]
-    public NodePath EditorEntryReportPath = null!;
+    public NodePath? EditorEntryReportPath;
 
     [Export]
     public NodePath PatchMapPath = null!;
@@ -38,6 +38,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath StaySmallTutorialPath = null!;
 
+#pragma warning disable CA2213
     private CustomDialog editorEntryReport = null!;
     private CustomDialog patchMap = null!;
     private CustomDialog cellEditorIntroduction = null!;
@@ -46,6 +47,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomDialog cellEditorClosingWords = null!;
     private CustomDialog autoEvoPrediction = null!;
     private CustomDialog staySmallTutorial = null!;
+#pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
     public ITutorialInput? EventReceiver { get; set; }
@@ -247,5 +249,28 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public void OnTutorialEnabledValueChanged(bool value)
     {
         TutorialEnabledSelected = value;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (EditorEntryReportPath != null)
+            {
+                EditorEntryReportPath.Dispose();
+                PatchMapPath.Dispose();
+                CellEditorIntroductionPath.Dispose();
+                CellEditorUndoPath.Dispose();
+                CellEditorUndoHighlightPath.Dispose();
+                CellEditorRedoPath.Dispose();
+                CellEditorRedoHighlightPath.Dispose();
+                CellEditorClosingWordsPath.Dispose();
+                AutoEvoPredictionPath.Dispose();
+                AutoEvoPredictionHighlightPath.Dispose();
+                StaySmallTutorialPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 }

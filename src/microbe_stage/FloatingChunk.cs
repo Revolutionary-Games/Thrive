@@ -8,11 +8,13 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, IEngulfable
+public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntity
 {
+#pragma warning disable CA2213 // a shared resource from the chunk definition
     [Export]
     [JsonProperty]
     public PackedScene GraphicsScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If this is null, a sphere shape is used as a default for collision detections.
@@ -36,7 +38,10 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new();
 
+#pragma warning disable CA2213
     private MeshInstance? chunkMesh;
+    private Particles? particles;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private bool isDissolving;
@@ -49,9 +54,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
     [JsonProperty]
     private float dissolveEffectValue;
-
-    [JsonProperty]
-    private bool isParticles;
 
     [JsonProperty]
     private float elapsedSinceProcess;
@@ -71,7 +73,19 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public Spatial EntityNode => this;
 
     [JsonIgnore]
-    public GeometryInstance EntityGraphics => chunkMesh ?? throw new InstanceNotLoadedYetException();
+    public GeometryInstance EntityGraphics
+    {
+        get
+        {
+            if (chunkMesh != null)
+                return chunkMesh;
+
+            if (particles != null)
+                return particles;
+
+            throw new InstanceNotLoadedYetException();
+        }
+    }
 
     [JsonIgnore]
     public int RenderPriority
@@ -175,6 +189,19 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         }
     }
 
+    [JsonIgnore]
+    public string ReadableName => TranslationServer.Translate(ChunkName);
+
+    public override void _Ready()
+    {
+        InitGraphics();
+
+        if (chunkMesh == null && particles == null)
+            throw new InvalidOperationException("Can't make a chunk without graphics scene");
+
+        InitPhysics();
+    }
+
     /// <summary>
     ///   Grabs data from the type to initialize this
     /// </summary>
@@ -263,16 +290,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
             config.DissolverEnzyme = RequisiteEnzymeToDigest.InternalName;
 
         return config;
-    }
-
-    public override void _Ready()
-    {
-        InitGraphics();
-
-        if (chunkMesh == null && !isParticles)
-            throw new InvalidOperationException("Can't make a chunk without graphics scene");
-
-        InitPhysics();
     }
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
@@ -397,6 +414,67 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         }
     }
 
+    public void OnMouseEnter(RaycastResult result)
+    {
+    }
+
+    public void OnMouseExit(RaycastResult result)
+    {
+    }
+
+    private void InitGraphics()
+    {
+        var graphicsNode = GraphicsScene.Instance();
+        GetNode("NodeToScale").AddChild(graphicsNode);
+
+        if (!string.IsNullOrEmpty(ModelNodePath))
+        {
+            chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
+            return;
+        }
+
+        if (graphicsNode.IsClass("MeshInstance"))
+        {
+            chunkMesh = (MeshInstance)graphicsNode;
+        }
+        else if (graphicsNode.IsClass("Particles"))
+        {
+            particles = (Particles)graphicsNode;
+        }
+        else
+        {
+            throw new Exception("Invalid class");
+        }
+    }
+
+    private void InitPhysics()
+    {
+        // Apply physics shape
+        var shape = GetNode<CollisionShape>("CollisionShape");
+
+        if (ConvexPhysicsMesh == null)
+        {
+            var sphereShape = new SphereShape { Radius = Radius };
+            shape.Shape = sphereShape;
+        }
+        else
+        {
+            if (chunkMesh == null)
+                throw new InvalidOperationException("Can't use convex physics shape without mesh for chunk");
+
+            shape.Shape = ConvexPhysicsMesh;
+            shape.Transform = chunkMesh.Transform;
+        }
+
+        // Needs physics callback when this is engulfable or damaging
+        if (Damages > 0 || DeleteOnTouch || EngulfSize > 0)
+        {
+            ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
+            Connect("body_shape_entered", this, nameof(OnContactBegin));
+            Connect("body_shape_exited", this, nameof(OnContactEnd));
+        }
+    }
+
     /// <summary>
     ///   Vents compounds if this is a chunk that contains compounds
     /// </summary>
@@ -480,59 +558,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         chunkMesh.MaterialOverride.RenderPriority = RenderPriority;
     }
 
-    private void InitGraphics()
-    {
-        var graphicsNode = GraphicsScene.Instance();
-        GetNode("NodeToScale").AddChild(graphicsNode);
-
-        if (!string.IsNullOrEmpty(ModelNodePath))
-        {
-            chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
-            return;
-        }
-
-        if (graphicsNode.IsClass("MeshInstance"))
-        {
-            chunkMesh = (MeshInstance)graphicsNode;
-        }
-        else if (graphicsNode.IsClass("Particles"))
-        {
-            isParticles = true;
-        }
-        else
-        {
-            throw new Exception("Invalid class");
-        }
-    }
-
-    private void InitPhysics()
-    {
-        // Apply physics shape
-        var shape = GetNode<CollisionShape>("CollisionShape");
-
-        if (ConvexPhysicsMesh == null)
-        {
-            var sphereShape = new SphereShape { Radius = Radius };
-            shape.Shape = sphereShape;
-        }
-        else
-        {
-            if (chunkMesh == null)
-                throw new InvalidOperationException("Can't use convex physics shape without mesh for chunk");
-
-            shape.Shape = ConvexPhysicsMesh;
-            shape.Transform = chunkMesh.Transform;
-        }
-
-        // Needs physics callback when this is engulfable or damaging
-        if (Damages > 0 || DeleteOnTouch || EngulfSize > 0)
-        {
-            ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-            Connect("body_shape_entered", this, nameof(OnContactBegin));
-            Connect("body_shape_exited", this, nameof(OnContactEnd));
-        }
-    }
-
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
         _ = bodyID;
@@ -584,11 +609,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         {
             isDissolving = true;
         }
-        else if (isParticles && !isFadingParticles)
+        else if (particles != null && !isFadingParticles)
         {
             isFadingParticles = true;
-
-            var particles = GetNode("NodeToScale").GetChild<Particles>(0);
 
             // Disable collisions
             CollisionLayer = 0;
@@ -597,7 +620,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
             particles.Emitting = false;
             particleFadeTimer = particles.Lifetime;
         }
-        else if (!isParticles)
+        else if (particles == null)
         {
             this.DestroyDetachAndQueueFree();
         }

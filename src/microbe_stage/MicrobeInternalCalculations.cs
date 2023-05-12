@@ -246,11 +246,15 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///  Symmetric flagella are a corner case for speed calculations because the sum of all
-    ///  directions is kind of broken in their case, so we have to choose which one of the symmetric flagella
-    ///  we must discard from the direction calculation
-    ///  Here we only discard if the flagella we input is the "bad" one
+    ///   Symmetric flagella are a corner case for speed calculations because the sum of all
+    ///   directions is kind of broken in their case, so we have to choose which one of the symmetric flagella
+    ///   we must discard from the direction calculation
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Here we only discard if the flagella we input is the "bad" one
+    ///   </para>
+    /// </remarks>
     private static Vector3 ChooseFromSymmetricFlagella(IEnumerable<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {

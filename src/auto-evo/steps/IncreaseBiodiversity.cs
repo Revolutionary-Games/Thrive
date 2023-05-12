@@ -57,7 +57,7 @@
 
         private void CheckCurrentPatchSpecies(RunResults results)
         {
-            foreach (var candidateSpecies in patch.SpeciesInPatch)
+            foreach (var candidateSpecies in patch.SpeciesInPatch.OrderBy(_ => random.Next()))
             {
                 if (candidateSpecies.Value < configuration.NewBiodiversityIncreasingSpeciesPopulation)
                     continue;
@@ -144,7 +144,7 @@
                 // TODO: should we apply the population reduction to splitFrom?
             }
 
-            PopulationSimulation.Simulate(config, cache);
+            PopulationSimulation.Simulate(config, cache, random);
 
             var population = config.Results.GetPopulationInPatch(split, patch);
 

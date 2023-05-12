@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=5]
-[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=6]
-[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/gui_common/SpeciesDetailsPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=10]
@@ -38,10 +36,8 @@ script = ExtResource( 1 )
 WindowTitle = "FOSSILISATION"
 ExclusiveAllowCloseOnEscape = false
 NameEditPath = NodePath("VBoxContainer2/HBoxContainer2/SpeciesName")
-SpeciesPreviewPath = NodePath("VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
-HexPreviewPath = NodePath("VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
+SpeciesDetailsPanelPath = NodePath("VBoxContainer2/SpeciesDetails")
 FossiliseButtonPath = NodePath("VBoxContainer2/HBoxContainer/FossiliseButton")
-SpeciesDetailsLabelPath = NodePath("VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 OverwriteNameConfirmationDialogPath = NodePath("OverwriteNameConfirmation")
 FossilisationFailedDialogPath = NodePath("FossilisationFailedDialog")
 
@@ -52,7 +48,11 @@ margin_right = 152.0
 [node name="Label" parent="VBoxContainer" index="0"]
 margin_right = 137.0
 
-[node name="HBoxContainer" parent="VBoxContainer" index="1"]
+[node name="FocusGrabber" parent="VBoxContainer" index="1"]
+margin_right = 137.0
+NodeToGiveFocusTo = NodePath("../../VBoxContainer2/HBoxContainer/CancelButton")
+
+[node name="HBoxContainer" parent="VBoxContainer" index="2"]
 margin_right = 137.0
 
 [node name="Spacer" parent="VBoxContainer/HBoxContainer" index="0"]
@@ -81,14 +81,14 @@ margin_right = 353.0
 margin_bottom = 409.0
 
 [node name="Spacer2" type="Control" parent="VBoxContainer2" index="0"]
-margin_right = 342.0
+margin_right = 352.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 342, 16 )
 size_flags_horizontal = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2" index="1"]
 margin_top = 20.0
-margin_right = 342.0
+margin_right = 352.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 275, 0 )
 
@@ -129,78 +129,35 @@ __meta__ = {
 
 [node name="Spacer" type="Control" parent="VBoxContainer2" index="2"]
 margin_top = 55.0
-margin_right = 342.0
+margin_right = 352.0
 margin_bottom = 71.0
 rect_min_size = Vector2( 342, 16 )
 size_flags_horizontal = 3
 
-[node name="Description" parent="VBoxContainer2" index="3" instance=ExtResource( 3 )]
+[node name="SpeciesDetails" parent="VBoxContainer2" index="3" instance=ExtResource( 5 )]
 margin_top = 75.0
-margin_right = 342.0
-margin_bottom = 119.0
+margin_bottom = 375.0
+
+[node name="Description" parent="VBoxContainer2" index="4" instance=ExtResource( 3 )]
+margin_top = 379.0
+margin_right = 352.0
+margin_bottom = 423.0
 rect_min_size = Vector2( 342, 44 )
 ExtendedBbcode = "FOSSILISATION_EXPLANATION"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2" index="4"]
-margin_top = 123.0
-margin_right = 342.0
-margin_bottom = 362.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2/MarginContainer" index="0"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 332.0
-margin_bottom = 229.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/ScrollContainer" index="0"]
-margin_right = 322.0
-margin_bottom = 226.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer" index="0"]
-margin_right = 316.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 0, 200 )
-
-[node name="SpeciesPreview" parent="VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource( 7 )]
-margin_right = 156.0
-margin_bottom = 200.0
-script = ExtResource( 5 )
-
-[node name="CellHexPreview" parent="VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource( 7 )]
-margin_left = 160.0
-margin_right = 316.0
-margin_bottom = 200.0
-script = ExtResource( 6 )
-
-[node name="SpeciesInfoLabel" parent="VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer" index="1" instance=ExtResource( 3 )]
-margin_top = 204.0
-margin_right = 316.0
-margin_bottom = 226.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-scroll_active = false
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" index="5"]
-margin_top = 366.0
-margin_right = 342.0
-margin_bottom = 398.0
+margin_top = 427.0
+margin_right = 352.0
+margin_bottom = 459.0
 
 [node name="Spacer" type="Control" parent="VBoxContainer2/HBoxContainer" index="0"]
-margin_right = 50.0
+margin_right = 53.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1"]
-margin_left = 54.0
-margin_right = 134.0
+margin_left = 57.0
+margin_right = 137.0
 margin_bottom = 32.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 8 )
@@ -208,14 +165,14 @@ enabled_focus_mode = 0
 text = "CANCEL"
 
 [node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2"]
-margin_left = 138.0
-margin_right = 188.0
+margin_left = 141.0
+margin_right = 195.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
-margin_left = 192.0
-margin_right = 287.0
+margin_left = 199.0
+margin_right = 294.0
 margin_bottom = 32.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 8 )
@@ -223,8 +180,8 @@ enabled_focus_mode = 0
 text = "FOSSILISE"
 
 [node name="Spacer3" type="Control" parent="VBoxContainer2/HBoxContainer" index="4"]
-margin_left = 291.0
-margin_right = 342.0
+margin_left = 298.0
+margin_right = 352.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 

@@ -20,14 +20,16 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\BuildInfo.cs" />
-    <Compile Include="simulation_parameters\CompoundLoader.cs" />
-    <Compile Include="simulation_parameters\EnzymeLoader.cs" />
+    <Compile Include="simulation_parameters\DirectTypeLoadOverride.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\IRegistryAssignable.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
+    <Compile Include="simulation_parameters\VersionPatchNotes.cs" />
     <Compile Include="src\auto-evo\AutoEvoExploringTool.cs" />
+    <Compile Include="src\auto-evo\AutoEvoExploringTool.Export.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
     <Compile Include="src\auto-evo\EvolutionaryTree.cs" />
     <Compile Include="src\auto-evo\EvolutionaryTreeNode.cs" />
@@ -43,6 +45,57 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\awakening_stage\BaseBuildableStructure.cs" />
+    <Compile Include="src\awakening_stage\CraftingHelpers.cs" />
+    <Compile Include="src\awakening_stage\CraftingRecipe.cs" />
+    <Compile Include="src\awakening_stage\Equipment.cs" />
+    <Compile Include="src\awakening_stage\EquipmentCategory.cs" />
+    <Compile Include="src\awakening_stage\EquipmentDefinition.cs" />
+    <Compile Include="src\awakening_stage\EquipmentSlot.cs" />
+    <Compile Include="src\awakening_stage\EquipmentSlotType.cs" />
+    <Compile Include="src\awakening_stage\gui\RecipeListItem.cs" />
+    <Compile Include="src\awakening_stage\gui\SelectBuildingPopup.cs" />
+    <Compile Include="src\awakening_stage\IAcceptsResourceDeposit.cs" />
+    <Compile Include="src\awakening_stage\IActionProgressSource.cs" />
+    <Compile Include="src\awakening_stage\IAggregateResourceSource.cs" />
+    <Compile Include="src\awakening_stage\IAvailableRecipes.cs" />
+    <Compile Include="src\awakening_stage\ICharacterInventory.cs" />
+    <Compile Include="src\awakening_stage\IConstructable.cs" />
+    <Compile Include="src\awakening_stage\IHarvestAction.cs" />
+    <Compile Include="src\awakening_stage\IInteractableEntity.cs" />
+    <Compile Include="src\awakening_stage\IInventory.cs" />
+    <Compile Include="src\awakening_stage\IInventoryItem.cs" />
+    <Compile Include="src\awakening_stage\gui\InteractablePopup.cs" />
+    <Compile Include="src\awakening_stage\InteractableSystem.cs" />
+    <Compile Include="src\awakening_stage\InteractionType.cs" />
+    <Compile Include="src\awakening_stage\gui\InventoryDragData.cs" />
+    <Compile Include="src\awakening_stage\gui\InventorySlot.cs" />
+    <Compile Include="src\awakening_stage\gui\InventoryScreen.cs" />
+    <Compile Include="src\awakening_stage\InventorySlotCategory.cs" />
+    <Compile Include="src\awakening_stage\InventorySlotData.cs" />
+    <Compile Include="src\awakening_stage\IProgressReportableActionSource.cs" />
+    <Compile Include="src\awakening_stage\IStructureSelectionReceiver.cs" />
+    <Compile Include="src\awakening_stage\ITimedActionSource.cs" />
+    <Compile Include="src\awakening_stage\PlacedStructure.cs" />
+    <Compile Include="src\awakening_stage\ResearchLevel.cs" />
+    <Compile Include="src\awakening_stage\ResourceAmountHelpers.cs" />
+    <Compile Include="src\awakening_stage\ResourceEntity.cs" />
+    <Compile Include="src\awakening_stage\StructureDefinition.cs" />
+    <Compile Include="src\awakening_stage\structure_components\FactoryComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\HousingComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\ISocietyStructureDataAccess.cs" />
+    <Compile Include="src\awakening_stage\structure_components\IStructureComponentFactory.cs" />
+    <Compile Include="src\awakening_stage\structure_components\ResearchComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\ResourceGathererComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\SocietyCenterComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\StructureComponent.cs" />
+    <Compile Include="src\awakening_stage\structure_components\StructureStorageComponent.cs" />
+    <Compile Include="src\awakening_stage\TechWeb.cs" />
+    <Compile Include="src\awakening_stage\WorldResource.cs" />
+    <Compile Include="src\awakening_stage\Technology.cs" />
+    <Compile Include="src\benchmark\BenchmarkHelpers.cs" />
+    <Compile Include="src\benchmark\DummySpawnSystem.cs" />
+    <Compile Include="src\benchmark\microbe\MicrobeBenchmark.cs" />
     <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
     <Compile Include="src\early_multicellular_stage\CellType.cs" />
@@ -62,16 +115,28 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\DebugOverlays.Inspector.cs" />
     <Compile Include="src\engine\DebugOverlays.SceneTreeDumper.cs" />
+    <Compile Include="src\engine\GUIFocusSetter.cs" />
+    <Compile Include="src\engine\input\ActiveInputMethod.cs" />
     <Compile Include="src\engine\input\ControllerAxisVisualizer.cs" />
     <Compile Include="src\engine\input\ControllerDeadzoneConfiguration.cs" />
     <Compile Include="src\engine\input\ControllerInputAxisVisualizationContainer.cs" />
+    <Compile Include="src\engine\input\ControllerType.cs" />
+    <Compile Include="src\engine\input\ControllerTypeDetection.cs" />
+    <Compile Include="src\engine\input\MouseCaptureManager.cs" />
     <Compile Include="src\engine\input\MouseInputScaling.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAndRepeatAttribute.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAttribute.cs" />
     <Compile Include="src\engine\input\RunOnRelativeMouseAttribute.cs" />
+    <Compile Include="src\engine\input\ThreeDimensionalMovementMode.cs" />
+    <Compile Include="src\engine\input\TwoDimensionalMovementMode.cs" />
     <Compile Include="src\engine\IResource.cs" />
     <Compile Include="src\engine\ITextureResource.cs" />
+    <Compile Include="src\engine\LastPlayedVersion.cs" />
+    <Compile Include="src\engine\MissingExportVariableValueException.cs" />
+    <Compile Include="src\engine\PostShutdownActions.cs" />
+    <Compile Include="src\engine\RaycastResult.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
     <Compile Include="src\engine\SafeModeStartupHandler.cs" />
     <Compile Include="src\engine\StartupAttemptInfo.cs" />
@@ -88,7 +153,7 @@
     <Compile Include="src\engine\LocalizedString.cs" />
     <Compile Include="src\engine\LocalizedStringBuilder.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
-    <Compile Include="src\engine\CollisionObjectHelpers.cs" />
+    <Compile Include="src\engine\PhysicsHelpers.cs" />
     <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\FileDropHandler.cs" />
@@ -135,61 +200,120 @@
     <Compile Include="src\general\Asset.cs" />
     <Compile Include="src\general\AssetCategory.cs" />
     <Compile Include="src\general\AssetType.cs" />
+    <Compile Include="src\general\base_stage\CreatureStageBase.cs" />
+    <Compile Include="src\general\base_stage\CreatureStageHUDBase.cs" />
+    <Compile Include="src\general\base_stage\EditorBase.cs" />
+    <Compile Include="src\general\base_stage\EditorComponentBase.cs" />
+    <Compile Include="src\general\base_stage\EditorComponentWithActionsBase.cs" />
+    <Compile Include="src\general\base_stage\EditorUserOverride.cs" />
+    <Compile Include="src\general\base_stage\HexEditorComponentBase.cs" />
+    <Compile Include="src\general\base_stage\HexEditorSymmetry.cs" />
+    <Compile Include="src\general\base_stage\HexEditorSymmetryExtensions.cs" />
+    <Compile Include="src\general\base_stage\HUDBase.cs" />
+    <Compile Include="src\general\base_stage\HUDWithPausing.cs" />
+    <Compile Include="src\general\base_stage\ICreatureStage.cs" />
+    <Compile Include="src\general\base_stage\ICreatureStageHUD.cs" />
+    <Compile Include="src\general\base_stage\ICurrentGameInfo.cs" />
+    <Compile Include="src\general\base_stage\IEditor.cs" />
+    <Compile Include="src\general\base_stage\IEditorComponent.cs" />
+    <Compile Include="src\general\base_stage\IEditorWithActions.cs" />
+    <Compile Include="src\general\base_stage\IEditorWithPatches.cs" />
+    <Compile Include="src\general\base_stage\IHexEditor.cs" />
+    <Compile Include="src\general\base_stage\IReturnableGameState.cs" />
+    <Compile Include="src\general\base_stage\IStageBase.cs" />
+    <Compile Include="src\general\base_stage\IStageHUD.cs" />
+    <Compile Include="src\general\base_stage\IStrategyStage.cs" />
+    <Compile Include="src\general\base_stage\IStrategyStageHUD.cs" />
+    <Compile Include="src\general\base_stage\StageBase.cs" />
+    <Compile Include="src\general\base_stage\StrategyStageBase.cs" />
+    <Compile Include="src\general\base_stage\StrategyStageHUDBase.cs" />
     <Compile Include="src\general\CustomDifficulty.cs" />
-    <Compile Include="src\general\DictionaryWithFallback.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
-    <Compile Include="src\general\MultiCollection.cs" />
+    <Compile Include="src\general\IInspectableEntity.cs" />
+    <Compile Include="src\general\IPlayerReadableName.cs" />
+    <Compile Include="src\general\PlayerInspectInfo.cs" />
+    <Compile Include="src\general\ThriveNewsFeed.cs" />
+    <Compile Include="src\general\utils\ColorUtils.cs" />
+    <Compile Include="src\general\utils\DictionaryUtils.cs" />
+    <Compile Include="src\general\utils\DictionaryWithFallback.cs" />
+    <Compile Include="src\general\utils\EnumHelper.cs" />
+    <Compile Include="src\general\utils\HtmlToBbCodeConverter.cs" />
+    <Compile Include="src\general\utils\JSONHelpers.cs" />
+    <Compile Include="src\general\utils\ListUtils.cs" />
+    <Compile Include="src\general\utils\MarkdownToBbCodeConverter.cs" />
+    <Compile Include="src\general\utils\MathUtils.cs" />
+    <Compile Include="src\general\utils\MultiCollection.cs" />
+    <Compile Include="src\general\utils\RandomUtils.cs" />
+    <Compile Include="src\general\utils\ShuffleBag.cs" />
+    <Compile Include="src\general\utils\StringUtils.cs" />
+    <Compile Include="src\general\utils\TranslationHelper.cs" />
+    <Compile Include="src\general\utils\TypeUtils.cs" />
+    <Compile Include="src\general\utils\VersionUtils.cs" />
+    <Compile Include="src\gui_common\AddWindowReorderingSupportToSiblings.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
+    <Compile Include="src\gui_common\CustomWindow.cs" />
+    <Compile Include="src\gui_common\CustomPopupMenu.cs" />
+    <Compile Include="src\gui_common\dialogs\PermanentlyDismissibleDialog.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
+    <Compile Include="src\gui_common\DragResult.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
+    <Compile Include="src\gui_common\FocusGrabber.cs" />
+    <Compile Include="src\gui_common\InspectedEntityLabel.cs" />
+    <Compile Include="src\gui_common\ModalManager.cs" />
+    <Compile Include="src\gui_common\MouseHoverPanel.cs" />
+    <Compile Include="src\gui_common\PatchNotesDisplayer.cs" />
+    <Compile Include="src\gui_common\PatchNotesList.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
+    <Compile Include="src\gui_common\ShowWhenInputTypeMatches.cs" />
+    <Compile Include="src\gui_common\SpeciesDetailsPanel.cs" />
+    <Compile Include="src\gui_common\SpeciesDetailsPanelWithFossilisation.cs" />
+    <Compile Include="src\gui_common\TabButtons.cs" />
+    <Compile Include="src\gui_common\TabLevel.cs" />
+    <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
+    <Compile Include="src\industrial_stage\BuildQueueItemBase.cs" />
+    <Compile Include="src\industrial_stage\CitySystem.cs" />
+    <Compile Include="src\industrial_stage\gui\AvailableConstructionProjectItem.cs" />
+    <Compile Include="src\industrial_stage\gui\BuildQueueItemGUI.cs" />
+    <Compile Include="src\industrial_stage\gui\CityNameLabel.cs" />
+    <Compile Include="src\industrial_stage\gui\CityScreen.cs" />
+    <Compile Include="src\industrial_stage\gui\IBuildQueueProgressItem.cs" />
+    <Compile Include="src\industrial_stage\gui\IEntityNameLabel.cs" />
+    <Compile Include="src\industrial_stage\gui\IndustrialHUD.cs" />
+    <Compile Include="src\industrial_stage\gui\StrategicEntityNameLabelSystem.cs" />
+    <Compile Include="src\industrial_stage\ICityConstructionProject.cs" />
+    <Compile Include="src\industrial_stage\IEntityWithNameLabel.cs" />
+    <Compile Include="src\industrial_stage\IndustrialStage.cs" />
+    <Compile Include="src\industrial_stage\PlacedCity.cs" />
+    <Compile Include="src\industrial_stage\PlayerIndustrialInput.cs" />
+    <Compile Include="src\industrial_stage\UnitType.cs" />
+    <Compile Include="src\late_multicellular_stage\MovementMode.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularSpeciesType.cs" />
+    <Compile Include="src\late_multicellular_stage\ProgressBarSystem.cs" />
+    <Compile Include="src\late_multicellular_stage\ReproductionLocation.cs" />
+    <Compile Include="src\microbe_stage\AvailableUpgrade.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\general\CombinableActionData.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
-    <Compile Include="src\general\EditorBase.cs" />
     <Compile Include="src\general\BehaviouralValueType.cs" />
     <Compile Include="src\general\BehaviourDictionary.cs" />
-    <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\CompoundAmountType.cs" />
     <Compile Include="src\general\DayNightCycle.cs" />
     <Compile Include="src\general\DayNightConfiguration.cs" />
-    <Compile Include="src\general\EditorComponentBase.cs" />
-    <Compile Include="src\general\EditorComponentWithActionsBase.cs" />
-    <Compile Include="src\general\EditorUserOverride.cs" />
     <Compile Include="src\general\Gallery.cs" />
-    <Compile Include="src\general\EnumHelper.cs" />
     <Compile Include="src\general\GameEventDescription.cs" />
-    <Compile Include="src\general\HexEditorComponentBase.cs" />
-    <Compile Include="src\general\HexEditorSymmetry.cs" />
-    <Compile Include="src\general\HexEditorSymmetryExtensions.cs" />
     <Compile Include="src\general\HexLayout.cs" />
     <Compile Include="src\general\HexWithData.cs" />
     <Compile Include="src\general\HybridAudioPlayer.cs" />
-    <Compile Include="src\general\IEditor.cs" />
-    <Compile Include="src\general\IEditorComponent.cs" />
-    <Compile Include="src\general\IEditorWithActions.cs" />
-    <Compile Include="src\general\IEditorWithPatches.cs" />
     <Compile Include="src\general\IEntity.cs" />
     <Compile Include="src\general\IGraphicalEntity.cs" />
-    <Compile Include="src\general\IHexEditor.cs" />
     <Compile Include="src\general\IndividualHexLayout.cs" />
     <Compile Include="src\general\IPositionedHex.cs" />
-    <Compile Include="src\general\IReturnableGameState.cs" />
-    <Compile Include="src\general\IStage.cs" />
-    <Compile Include="src\general\IStageHUD.cs" />
-    <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\ActionInterferenceMode.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\OrbitCamera.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
-    <Compile Include="src\general\StageBase.cs" />
-    <Compile Include="src\general\StageHUDBase.cs" />
-    <Compile Include="src\general\StringUtils.cs" />
-    <Compile Include="src\general\TranslationHelper.cs" />
-    <Compile Include="src\general\TypeUtils.cs" />
-    <Compile Include="src\general\ShuffleBag.cs" />
     <Compile Include="src\gui_common\art_gallery\GalleryCardAudio.cs" />
     <Compile Include="src\gui_common\art_gallery\GalleryDetailsTooltip.cs" />
     <Compile Include="src\gui_common\art_gallery\GalleryCardModel.cs" />
@@ -200,6 +324,7 @@
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
+    <Compile Include="src\engine\ScreenFilter.cs" />
     <Compile Include="src\gui_common\ActionButton.cs" />
     <Compile Include="src\gui_common\CheatMenu.cs" />
     <Compile Include="src\gui_common\ChemicalEquation.cs" />
@@ -207,14 +332,13 @@
     <Compile Include="src\gui_common\CompoundListBox.cs" />
     <Compile Include="src\gui_common\CustomCheckBox.cs" />
     <Compile Include="src\gui_common\CreditsScroll.cs" />
-    <Compile Include="src\gui_common\CustomDialog.cs" />
+    <Compile Include="src\gui_common\dialogs\CustomDialog.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
     <Compile Include="src\gui_common\CustomExpandingWordWrappedLabel.cs" />
     <Compile Include="src\gui_common\DraggableScrollContainer.cs" />
     <Compile Include="src\gui_common\art_gallery\GalleryViewer.cs" />
     <Compile Include="src\gui_common\dialogs\TutorialDialog.cs" />
     <Compile Include="src\gui_common\art_gallery\GalleryCard.cs" />
-    <Compile Include="src\gui_common\ICustomPopup.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
@@ -231,8 +355,10 @@
     <Compile Include="src\late_multicellular_stage\MulticellularCamera.cs" />
     <Compile Include="src\late_multicellular_stage\PlayerMulticellularInput.cs" />
     <Compile Include="src\microbe_stage\BiomeType.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\OrganelleUpgradeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\ColourActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\ICellEditorComponent.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\ModifierInfoLabel.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\SelectionMenuToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ToolTipCallbackData.cs" />
@@ -313,7 +439,10 @@
     <Compile Include="src\microbe_stage\Endosome.cs" />
     <Compile Include="src\microbe_stage\Enzyme.cs" />
     <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
-    <Compile Include="src\microbe_stage\HoveredCompoundControl.cs" />
+    <Compile Include="src\microbe_stage\gui\DisplayDuration.cs" />
+    <Compile Include="src\microbe_stage\gui\HUDMessages.cs" />
+    <Compile Include="src\microbe_stage\gui\IHUDMessage.cs" />
+    <Compile Include="src\microbe_stage\gui\SimpleHUDMessage.cs" />
     <Compile Include="src\microbe_stage\HUDBottomBar.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
@@ -340,8 +469,12 @@
     <Compile Include="src\microbe_stage\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\CompoundBalance.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\MicrobeInspectInfo.cs" />
+    <Compile Include="src\microbe_stage\MicrobeState.cs" />
     <Compile Include="src\microbe_stage\MicrobeSystem.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\AxonComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\MyofibrilComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SlimeJetComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\EmptyOrganelleComponent.cs" />
     <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
@@ -374,13 +507,11 @@
     <Compile Include="src\microbe_stage\PatchNameOverlay.cs" />
     <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
-    <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
-    <Compile Include="src\general\MathUtils.cs" />
     <Compile Include="src\microbe_stage\MembraneType.cs" />
     <Compile Include="simulation_parameters\SimulationParameters.cs" />
     <Compile Include="src\microbe_stage\Background.cs" />
@@ -399,6 +530,7 @@
     <Compile Include="src\microbe_stage\organelle_components\AgentVacuoleComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\MovementComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\PilusComponent.cs" />
+    <Compile Include="src\microbe_stage\StrictProcessDisplayInfoEquality.cs" />
     <Compile Include="src\microbe_stage\TweakedProcess.cs" />
     <Compile Include="src\microbe_stage\CompoundBag.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudSystem.cs" />
@@ -420,6 +552,7 @@
     <Compile Include="src\general\GameWorld.cs" />
     <Compile Include="src\general\WorldGenerationSettings.cs" />
     <Compile Include="src\general\DifficultyPreset.cs" />
+    <Compile Include="src\engine\ScreenEffect.cs" />
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
     <Compile Include="src\microbe_stage\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\IProcessable.cs" />
@@ -433,16 +566,13 @@
     <Compile Include="src\microbe_stage\OrganelleTemplate.cs" />
     <Compile Include="src\general\Int2.cs" />
     <Compile Include="src\microbe_stage\IPositionedOrganelle.cs" />
-    <Compile Include="src\general\ListUtils.cs" />
     <Compile Include="src\general\ActionHistory.cs" />
     <Compile Include="src\general\ReversibleAction.cs" />
     <Compile Include="src\general\Mutations.cs" />
     <Compile Include="src\microbe_stage\ProcessSpeedInformation.cs" />
     <Compile Include="src\microbe_stage\OrganelleEfficiency.cs" />
     <Compile Include="src\microbe_stage\EnergyBalanceInfo.cs" />
-    <Compile Include="src\general\RandomUtils.cs" />
     <Compile Include="src\microbe_stage\organelle_components\ExternallyPositionedComponent.cs" />
-    <Compile Include="src\general\DictionaryUtils.cs" />
     <Compile Include="src\auto-evo\AutoEvo.cs" />
     <Compile Include="src\auto-evo\AutoEvoConfiguration.cs" />
     <Compile Include="src\auto-evo\AutoEvoRun.cs" />
@@ -529,7 +659,30 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
-    <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\society_stage\CitizenMovingSystem.cs" />
+    <Compile Include="src\society_stage\gui\ResearchScreen.cs" />
+    <Compile Include="src\society_stage\gui\ResourceDisplayBar.cs" />
+    <Compile Include="src\society_stage\gui\TechWebGUI.cs" />
+    <Compile Include="src\society_stage\IResourceContainer.cs" />
+    <Compile Include="src\society_stage\gui\SocietyHUD.cs" />
+    <Compile Include="src\society_stage\PlayerSocietyInput.cs" />
+    <Compile Include="src\society_stage\SocietyCreature.cs" />
+    <Compile Include="src\society_stage\SocietyResourceStorage.cs" />
+    <Compile Include="src\society_stage\SocietyStage.cs" />
+    <Compile Include="src\society_stage\SocietyStructureSystem.cs" />
+    <Compile Include="src\society_stage\StrategicCamera.cs" />
+    <Compile Include="src\society_stage\StrategicCameraHelpers.cs" />
+    <Compile Include="src\society_stage\TechnologyProgress.cs" />
+    <Compile Include="src\space_stage\SpaceStructureDefinition.cs" />
+    <Compile Include="src\space_stage\structure_components\AscensionComponent.cs" />
+    <Compile Include="src\space_stage\structure_components\InterplanetaryEnergyComponent.cs" />
+    <Compile Include="src\space_stage\structure_components\ISpaceStructureComponentFactory.cs" />
+    <Compile Include="src\space_stage\structure_components\SpaceStructureComponent.cs" />
+    <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
+    <Compile Include="src\stage_starters\AwareStageStarter.cs" />
+    <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />
+    <Compile Include="src\stage_starters\EarlyMulticellularStageStarter.cs" />
+    <Compile Include="src\stage_starters\SimpleStageStarter.cs" />
     <Compile Include="src\steam\ISteamClient.cs" />
     <Compile Include="src\steam\ISteamSignalReceiver.cs" />
     <Compile Include="src\steam\SteamHandler.cs" />
@@ -564,6 +717,7 @@
     <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
     <Compile Include="src\tutorial\microbe_editor\StaySmallTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\CheckTheHelpMenu.cs" />
+    <Compile Include="src\tutorial\microbe_stage\DayNightTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\LeaveColonyTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfedExplanation.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfmentExplanation.cs" />
@@ -584,6 +738,7 @@
     <Compile Include="src\tutorial\TutorialState.cs" />
     <Compile Include="src\saving\serializers\RandomConverter.cs" />
     <Compile Include="test\MetaballTest.cs" />
+    <Compile Include="test\WindowReorderingSupportTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
@@ -592,17 +747,20 @@
     <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AngleSharp">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.2</Version>
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
     </PackageReference>
     <PackageReference Include="SharpZipLib">
-      <Version>1.3.3</Version>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers">
-      <Version>1.2.0-beta.435</Version>
+      <Version>1.4.2</Version>
     </PackageReference>
     <PackageReference Include="Nito.Collections.Deque">
       <Version>1.1.1</Version>
@@ -610,13 +768,23 @@
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.2</Version>
     </PackageReference>
+    <PackageReference Include="YamlDotNet">
+      <Version>13.1.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
+    <Content Include="Directory.Build.props" />
     <Content Include="export_presets.cfg" />
     <Content Include="global.json" />
+    <Content Include="README.md" />
     <Content Include="RevolutionaryGamesCommon\stylecop.json" />
     <Content Include="RevolutionaryGamesCommon\StyleCop.ruleset" />
+    <Content Include="simulation_parameters\awakening_stage\crafting_recipes.json" />
+    <Content Include="simulation_parameters\awakening_stage\equipment.json" />
+    <Content Include="simulation_parameters\awakening_stage\structures.json" />
+    <Content Include="simulation_parameters\awakening_stage\technologies.json" />
+    <Content Include="simulation_parameters\awakening_stage\world_resources.json" />
     <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
     <Content Include="simulation_parameters\common\difficulty_presets.json" />
@@ -624,7 +792,10 @@
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
+    <Content Include="simulation_parameters\common\patch_notes.yml" />
+    <Content Include="simulation_parameters\common\screen_effects.json" />
     <Content Include="simulation_parameters\common\translations_info.json" />
+    <Content Include="simulation_parameters\industrial_stage\units.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />
     <Content Include="simulation_parameters\microbe_stage\bio_processes.json" />
@@ -633,6 +804,7 @@
     <Content Include="simulation_parameters\microbe_stage\organelles.json" />
     <Content Include="simulation_parameters\microbe_stage\patch_syllables.json" />
     <Content Include="simulation_parameters\microbe_stage\species_names.json" />
+    <Content Include="simulation_parameters\space_stage\space_structures.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="third_party\ThirdParty.csproj" />

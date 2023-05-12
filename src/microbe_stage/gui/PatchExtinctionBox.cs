@@ -4,7 +4,7 @@ using Godot;
 public class PatchExtinctionBox : Control
 {
     [Export]
-    public NodePath PatchMapDrawerPath = null!;
+    public NodePath? PatchMapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
@@ -12,9 +12,11 @@ public class PatchExtinctionBox : Control
     [Export]
     public NodePath AnimationPlayer = null!;
 
+#pragma warning disable CA2213
     private PatchMapDrawer mapDrawer = null!;
     private PatchDetailsPanel detailsPanel = null!;
     private AnimationPlayer animationPlayer = null!;
+#pragma warning restore CA2213
 
     public PatchMap? Map
     {
@@ -56,6 +58,21 @@ public class PatchExtinctionBox : Control
             animationPlayer.Play();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PatchMapDrawerPath != null)
+            {
+                PatchMapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                AnimationPlayer.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void NewPatchSelected(Patch patch)
     {
         if (OnMovedToNewPatch == null)
@@ -91,6 +108,6 @@ public class PatchExtinctionBox : Control
     private void OnFindCurrentPatchPressed()
     {
         // Unlike the editor patch map, don't select the player patch here, since it's disabled
-        mapDrawer.CenterScroll();
+        mapDrawer.CenterToCurrentPatch();
     }
 }

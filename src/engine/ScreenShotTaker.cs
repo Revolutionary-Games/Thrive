@@ -118,8 +118,7 @@ public class ScreenShotTaker : NodeWithInput
     ///   Invokes itself to:
     ///   1: Hide the ScreenFilter and wait a frame.
     ///   2: Wait another frame.
-    ///   3: Take the screenshot, show the filter and then save
-    ///      the screenshot in a task to not block the game.
+    ///   3: Take the screenshot, show the filter and then save the screenshot in a task to not block the game.
     /// </summary>
     private void ScreenFilterScreenshotStepper()
     {

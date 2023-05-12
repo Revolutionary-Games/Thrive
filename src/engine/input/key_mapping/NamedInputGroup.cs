@@ -6,11 +6,11 @@ using Newtonsoft.Json;
 /// </summary>
 public class NamedInputGroup : IRegistryType
 {
-#pragma warning disable 169 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedGroupName;
-#pragma warning restore 169
+#pragma warning restore 169,649
 
-    [TranslateFrom("untranslatedGroupName")]
+    [TranslateFrom(nameof(untranslatedGroupName))]
     public string GroupName { get; set; } = null!;
 
     public IReadOnlyList<string> EnvironmentId { get; set; } = null!;

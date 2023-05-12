@@ -30,8 +30,6 @@ public class ThriveJsonConverter : IDisposable
     private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
     private bool disposed;
 
-    // private IReferenceResolver referenceResolver = new Default;
-
     private ThriveJsonConverter(SaveContext context)
     {
         this.context = context;

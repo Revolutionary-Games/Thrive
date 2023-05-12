@@ -10,7 +10,7 @@ using Godot;
 public class Thriveopedia : ControlWithInput
 {
     [Export]
-    public NodePath BackButtonPath = null!;
+    public NodePath? BackButtonPath;
 
     [Export]
     public NodePath ForwardButtonPath = null!;
@@ -33,6 +33,7 @@ public class Thriveopedia : ControlWithInput
     [Export]
     public NodePath HomePagePath = null!;
 
+#pragma warning disable CA2213
     private TextureButton backButton = null!;
     private TextureButton forwardButton = null!;
     private MarginContainer pageContainer = null!;
@@ -41,12 +42,13 @@ public class Thriveopedia : ControlWithInput
     private Label pageTitle = null!;
     private Tree pageTree = null!;
 
-    private bool treeCollapsed;
-
     /// <summary>
     ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
     /// </summary>
     private ThriveopediaHomePage homePage = null!;
+#pragma warning restore CA2213
+
+    private bool treeCollapsed;
 
     /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu.
@@ -160,6 +162,11 @@ public class Thriveopedia : ControlWithInput
             foreach (var page in allPages.Keys)
                 page.OnThriveopediaOpened();
         }
+        else if (what == NotificationTranslationChanged)
+        {
+            foreach (var page in allPages)
+                UpdatePageInTree(page.Value, page.Key);
+        }
     }
 
     /// <summary>
@@ -209,6 +216,26 @@ public class Thriveopedia : ControlWithInput
     {
         // By default, assume we're navigating to this page normally
         ChangePage(pageName, true, true);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (BackButtonPath != null)
+            {
+                BackButtonPath.Dispose();
+                ForwardButtonPath.Dispose();
+                PageContainerPath.Dispose();
+                PageTreeContainerPath.Dispose();
+                PageTreeContainerAnimPath.Dispose();
+                PageTitlePath.Dispose();
+                PageTreePath.Dispose();
+                HomePagePath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -269,13 +296,15 @@ public class Thriveopedia : ControlWithInput
     {
         var pageInTree = pageTree.CreateItem(parentName != null ? allPages[GetPage(parentName)] : null);
 
-        // Set the name of the tree item so we can reference it later
-        pageInTree.SetMeta("name", page.PageName);
-
-        // Godot doesn't appear to have a left margin for text in items, so add some manual padding
-        pageInTree.SetText(0, "  " + page.TranslatedPageName);
+        UpdatePageInTree(pageInTree, page);
 
         return pageInTree;
+    }
+
+    private void UpdatePageInTree(TreeItem item, ThriveopediaPage page)
+    {
+        // Godot doesn't appear to have a left margin for text in items, so add some manual padding
+        item.SetText(0, "  " + page.TranslatedPageName);
     }
 
     /// <summary>
@@ -292,12 +321,13 @@ public class Thriveopedia : ControlWithInput
 
     private void OnPageSelectedFromPageTree()
     {
-        var name = (string)pageTree.GetSelected().GetMeta("name");
+        var selected = pageTree.GetSelected();
+        var name = allPages.First(p => p.Value == selected).Key.PageName;
         ChangePage(name);
     }
 
     /// <summary>
-    ///    Opens an existing Thriveopedia page, optionally adding it to the page history.
+    ///   Opens an existing Thriveopedia page, optionally adding it to the page history.
     /// </summary>
     /// <param name="pageName">The name of the page</param>
     /// <param name="addToHistory">Whether this page should be added to the history</param>

@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/microbe_stage/editor/TimelineTab.cs" type="Script" id=4]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/scrollPanelVerticalFade.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Big.tres" type="DynamicFont" id=8]
@@ -35,17 +36,33 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="ButtonGroup" id=31]
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=41]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
+bg_color = Color( 0.00784314, 0.607843, 0.329412, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=42]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.666667, 1, 0.941176, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -73,7 +90,7 @@ anchor_bottom = 1.0
 margin_top = -0.200001
 theme = ExtResource( 9 )
 script = ExtResource( 11 )
-FinishOrNextButtonPath = NodePath("NextTabButton/Button")
+FinishOrNextButtonPath = NodePath("NextTabButton/NextTabButton")
 AutoEvoSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
 TimelineSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
 AutoEvoSubtabPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel")
@@ -152,6 +169,9 @@ margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 33.0
 rect_min_size = Vector2( 0, 32 )
+focus_neighbour_right = NodePath("../../../../../../../../NextTabButton/NextTabButton")
+focus_neighbour_bottom = NodePath("../../../../../../../../NextTabButton/NextTabButton")
+focus_next = NodePath("../../../../../../../../NextTabButton/NextTabButton")
 size_flags_vertical = 4
 custom_constants/hseparation = 0
 clip_text = true
@@ -192,6 +212,7 @@ margin_top = 5.0
 margin_right = 638.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
+focus_mode = 0
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
@@ -206,6 +227,7 @@ margin_top = 5.0
 margin_right = 742.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
+focus_mode = 0
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 3 )
 disabled = true
@@ -220,6 +242,7 @@ margin_top = 5.0
 margin_right = 846.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
+focus_mode = 0
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
@@ -726,16 +749,23 @@ grow_horizontal = 0
 rect_min_size = Vector2( 150, 0 )
 custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Button" type="Button" parent="NextTabButton"]
+[node name="FocusGrabber" parent="NextTabButton" instance=ExtResource( 5 )]
 margin_right = 150.0
 margin_bottom = 40.0
+NodeToGiveFocusTo = NodePath("../NextTabButton")
+
+[node name="NextTabButton" type="Button" parent="NextTabButton"]
+margin_right = 150.0
+margin_bottom = 40.0
+focus_neighbour_left = NodePath("../../MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+focus_neighbour_top = NodePath("../../MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+focus_next = NodePath(".")
+focus_previous = NodePath("../../MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
 mouse_filter = 1
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_styles/hover = SubResource( 26 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_styles/hover = SubResource( 41 )
+custom_styles/focus = SubResource( 42 )
 custom_styles/normal = SubResource( 27 )
 text = "NEXT_CAPITAL"
 __meta__ = {
@@ -753,7 +783,7 @@ __meta__ = {
 [connection signal="mouse_entered" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendMoused" binds= [ "sunlight", true ]]
 [connection signal="mouse_exited" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendMoused" binds= [ "sunlight", false ]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="." method="OnPhysicalConditionsChartLegendPressed" binds= [ "sunlight" ]]
-[connection signal="pressed" from="NextTabButton/Button" to="." method="NextOrFinishClicked"]
+[connection signal="pressed" from="NextTabButton/NextTabButton" to="." method="NextOrFinishClicked"]
 
 [editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]
 [editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]

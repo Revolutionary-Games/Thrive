@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-[SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification =
-    "We don't manually dispose Godot derived types")]
-public class PauseMenu : CustomDialog
+public class PauseMenu : CustomWindow
 {
     [Export]
     public string HelpCategory = null!;
 
     [Export]
-    public NodePath PrimaryMenuPath = null!;
+    public NodePath? PrimaryMenuPath;
 
     [Export]
     public NodePath ThriveopediaPath = null!;
@@ -36,6 +33,7 @@ public class PauseMenu : CustomDialog
     [Export]
     public NodePath UnsavedProgressWarningPath = null!;
 
+#pragma warning disable CA2213
     private Control primaryMenu = null!;
     private Thriveopedia thriveopedia = null!;
     private HelpScreen helpScreen = null!;
@@ -44,6 +42,7 @@ public class PauseMenu : CustomDialog
     private NewSaveMenu saveMenu = null!;
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
+#pragma warning restore CA2213
 
     private bool paused;
 
@@ -116,7 +115,7 @@ public class PauseMenu : CustomDialog
             if (GameLoading)
                 return true;
 
-            if (GUICommon.Instance.IsAnyExclusivePopupActive)
+            if (ModalManager.Instance.IsTopMostPopupExclusive)
                 return true;
 
             if (TransitionManager.Instance.HasQueuedTransitions)
@@ -195,6 +194,22 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    public override void _Ready()
+    {
+        // We have our custom logic for this
+        PreventsMouseCaptureWhileOpen = false;
+
+        primaryMenu = GetNode<Control>(PrimaryMenuPath);
+        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
+        loadMenu = GetNode<Control>(LoadMenuPath);
+        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
+        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
+        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        unsavedProgressWarning.Connect(nameof(CustomDialog.Cancelled), this, nameof(CancelExit));
+    }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -215,20 +230,6 @@ public class PauseMenu : CustomDialog
         Paused = false;
 
         GetTree().AutoAcceptQuit = true;
-    }
-
-    public override void _Ready()
-    {
-        primaryMenu = GetNode<Control>(PrimaryMenuPath);
-        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
-        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
-        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
-        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-
-        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
-        unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
     }
 
     public override void _Notification(int notification)
@@ -296,25 +297,6 @@ public class PauseMenu : CustomDialog
         thriveopedia.ChangePage(pageName);
     }
 
-    public void Open()
-    {
-        if (Visible)
-            return;
-
-        animationPlayer.Play("Open");
-        Paused = true;
-        exiting = false;
-    }
-
-    public void Close()
-    {
-        if (!Visible)
-            return;
-
-        animationPlayer.Play("Close");
-        Paused = false;
-    }
-
     public void OpenToHelp()
     {
         Open();
@@ -341,6 +323,43 @@ public class PauseMenu : CustomDialog
         }
 
         SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
+    protected override void OnOpen()
+    {
+        animationPlayer.Play("Open");
+        Paused = true;
+        exiting = false;
+    }
+
+    protected override void OnClose()
+    {
+        animationPlayer.Play("Close");
+        Paused = false;
+
+        // Uncapture the mouse while we are playing the close animation, this doesn't seem to actually uncapture the
+        // mouse any faster, though, likely an engine problem
+        MouseUnCaptureActive = false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PrimaryMenuPath != null)
+            {
+                PrimaryMenuPath.Dispose();
+                ThriveopediaPath.Dispose();
+                HelpScreenPath.Dispose();
+                LoadMenuPath.Dispose();
+                OptionsMenuPath.Dispose();
+                SaveMenuPath.Dispose();
+                LoadSaveListPath.Dispose();
+                UnsavedProgressWarningPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private Control? GetControlFromMenuEnum(ActiveMenuType value)
@@ -479,6 +498,11 @@ public class PauseMenu : CustomDialog
         ActiveMenu = ActiveMenuType.Options;
     }
 
+    private void OpenReportBugPressed()
+    {
+        OS.ShellOpen("https://community.revolutionarygamesstudio.com/c/bug-reports/13");
+    }
+
     private void OnThriveopediaClosed()
     {
         ActiveMenu = ActiveMenuType.Primary;
@@ -488,6 +512,8 @@ public class PauseMenu : CustomDialog
     {
         // Remove all pause locks before changing to the new game
         PauseManager.Instance.ForceClear();
+
+        MouseUnCaptureActive = false;
     }
 
     private void OnOptionsClosed()
@@ -525,6 +551,7 @@ public class PauseMenu : CustomDialog
     /// </summary>
     private void OnSwitchToMenu()
     {
+        MouseUnCaptureActive = false;
         SceneManager.Instance.ReturnToMenu();
     }
 
@@ -537,5 +564,6 @@ public class PauseMenu : CustomDialog
     {
         _ = saveName;
         Paused = false;
+        MouseUnCaptureActive = false;
     }
 }

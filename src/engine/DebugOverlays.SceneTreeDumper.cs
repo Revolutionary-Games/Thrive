@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///  Partial class: Scene tree dumper
+///   Partial class: Scene tree dumper
 /// </summary>
 public partial class DebugOverlays
 {

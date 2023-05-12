@@ -1,5 +1,5 @@
 ﻿Thrive Game
-Copyright (C) 2013-2022  Revolutionary Games
+Copyright (C) 2013-2023  Revolutionary Games
 
 This version of Thrive is distributed through Valve's digital distribution
 service Steam by Revolutionary Games Studio and licensed only for use as

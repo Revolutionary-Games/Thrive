@@ -80,6 +80,15 @@ public class ChildObjectCache<TKey, TNode>
     }
 
     /// <summary>
+    ///   Gets all children. Doesn't mark any of the children as recently used.
+    /// </summary>
+    /// <returns>Enumerable of existing child nodes</returns>
+    public IEnumerable<TNode> GetChildren()
+    {
+        return createdChildren.Values.Select(v => v.Node);
+    }
+
+    /// <summary>
     ///   Makes the children be in the order they were last accessed with GetChild
     /// </summary>
     public void ApplyOrder()

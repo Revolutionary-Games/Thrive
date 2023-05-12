@@ -6,6 +6,7 @@
 /// </summary>
 public class EvolutionaryTreeNode : TextureButton
 {
+#pragma warning disable CA2213
     private Texture unpressedNormalGreen = null!;
     private Texture unpressedHoveredGreen = null!;
     private Texture pressedNormalGreen = null!;
@@ -13,6 +14,7 @@ public class EvolutionaryTreeNode : TextureButton
     private Texture unpressedNormalRed = null!;
     private Texture unpressedHoveredRed = null!;
     private Texture pressedNormalRed = null!;
+#pragma warning restore CA2213
 
     // Due to the fact that Godot doesn't have a pressed hover texture builtin, this is commented out.
     // private Texture pressedHoveredGreen = null!;

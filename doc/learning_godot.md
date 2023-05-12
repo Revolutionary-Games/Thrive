@@ -7,7 +7,7 @@ in its editor.
 
 If you have never worked with Godot before it is recommended you
 start with the official documentation, specifically the [step by step
-section](https://docs.godotengine.org/en/stable/getting_started/step_by_step/intro_to_the_editor_interface.html)
+section](https://docs.godotengine.org/en/stable/getting_started/step_by_step/index.html)
 which goes over the basics of how the engine works. Additionally you
 should look at the [C# scripting section](https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html)
 since that is the language used by Thrive.

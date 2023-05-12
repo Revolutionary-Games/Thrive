@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class CompoundBag : ICompoundStorage
 {
-    [JsonProperty]
     private readonly HashSet<Compound> usefulCompounds = new();
 
     /// <summary>
@@ -53,6 +52,17 @@ public class CompoundBag : ICompoundStorage
         Compounds.TryGetValue(compound, out var amount);
 
         return amount;
+    }
+
+    /// <summary>
+    ///   The space available for a compound of given type. If not useful no free space is ever reported.
+    /// </summary>
+    /// <param name="compound">The compound type to check</param>
+    /// <returns>The free space available</returns>
+    public float GetFreeSpaceForCompound(Compound compound)
+    {
+        // Due to venting not triggering immediately at capacity, we use max here to avoid negative free space
+        return Math.Max(GetCapacityForCompound(compound) - GetCompoundAmount(compound), 0);
     }
 
     public float TakeCompound(Compound compound, float amount)

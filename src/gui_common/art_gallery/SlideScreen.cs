@@ -4,13 +4,13 @@ using Godot;
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
 /// </summary>
-public class SlideScreen : CustomDialog
+public class SlideScreen : CustomWindow
 {
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
 
     [Export]
-    public NodePath SlideTextureRectPath = null!;
+    public NodePath? SlideTextureRectPath;
 
     [Export]
     public NodePath SlideToolbarPath = null!;
@@ -39,6 +39,7 @@ public class SlideScreen : CustomDialog
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
+#pragma warning disable CA2213
     private CrossFadableTextureRect? slideTextureRect;
     private Control? toolbar;
     private Button? closeButton;
@@ -52,6 +53,7 @@ public class SlideScreen : CustomDialog
 
     private Tween popupTween = null!;
     private Tween toolbarTween = null!;
+#pragma warning restore CA2213
 
     private float toolbarHideTimer;
     private float slideshowTimer;
@@ -105,18 +107,6 @@ public class SlideScreen : CustomDialog
         }
     }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        InputManager.RegisterReceiver(this);
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        InputManager.UnregisterReceiver(this);
-    }
-
     public override void _Ready()
     {
         slideTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
@@ -136,6 +126,18 @@ public class SlideScreen : CustomDialog
         UpdateScreen();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputManager.UnregisterReceiver(this);
+    }
+
     public override void _Process(float delta)
     {
         if (toolbarHideTimer >= 0 && Visible)
@@ -149,9 +151,6 @@ public class SlideScreen : CustomDialog
                 toolbarTween.Start();
             }
 
-            if (Input.MouseMode == Input.MouseModeEnum.Hidden)
-                Input.MouseMode = Input.MouseModeEnum.Visible;
-
             if (toolbarHideTimer < 0)
             {
                 toolbarTween.InterpolateProperty(
@@ -159,7 +158,11 @@ public class SlideScreen : CustomDialog
                 toolbarTween.InterpolateProperty(
                     closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                 toolbarTween.Start();
-                Input.MouseMode = Input.MouseModeEnum.Hidden;
+                MouseCaptureManager.SetMouseHideState(true);
+            }
+            else
+            {
+                MouseCaptureManager.SetMouseHideState(false);
             }
         }
 
@@ -179,23 +182,70 @@ public class SlideScreen : CustomDialog
     }
 
     [RunOnKeyDownWithRepeat("ui_right", OnlyUnhandled = false)]
-    public void OnSlideToRight()
+    public bool OnSlideToRight()
     {
-        AdvanceSlide();
+        if (!Visible)
+            return false;
+
+        return AdvanceSlide();
     }
 
     [RunOnKeyDownWithRepeat("ui_left", OnlyUnhandled = false)]
-    public void OnSlideToLeft()
+    public bool OnSlideToLeft()
     {
-        RetreatSlide();
+        if (!Visible)
+            return false;
+
+        return RetreatSlide();
     }
 
-    public override void CustomShow()
+    public bool AdvanceSlide(bool fade = false, int searchCounter = 0)
     {
         if (Items == null)
-            return;
+            return false;
 
-        base.CustomShow();
+        currentSlideIndex = (currentSlideIndex + 1) % Items.Count;
+
+        // Can be shown in a slideshow check is only done here because slideshow only moves forward
+        if (!Items[CurrentSlideIndex].CanBeShownInASlideshow && SlideshowMode)
+        {
+            // TODO: rewrite this to an iterative method, in case we have slideshows with thousands of items
+            // Limit recursion to the number of items total
+            if (searchCounter < Items.Count)
+            {
+                // Keep advancing until we found an item that allows slideshow
+                return AdvanceSlide(fade, ++searchCounter);
+            }
+
+            // Advancing failed
+            return false;
+        }
+
+        ChangeSlide(fade);
+        return true;
+    }
+
+    public bool RetreatSlide(bool fade = false)
+    {
+        if (Items == null)
+            return false;
+
+        --currentSlideIndex;
+
+        if (currentSlideIndex < 0)
+            currentSlideIndex = Items.Count - 1;
+
+        ChangeSlide(fade);
+        return true;
+    }
+
+    protected override void OnOpen()
+    {
+        if (Items == null)
+        {
+            Hide();
+            return;
+        }
 
         SlideControlsVisible = false;
 
@@ -213,14 +263,16 @@ public class SlideScreen : CustomDialog
             popupTween.Connect("tween_completed", this, nameof(OnScaledUp), null, (uint)ConnectFlags.Oneshot);
     }
 
-    public override void CustomHide()
+    protected override void OnClose()
     {
         if (Items == null)
+        {
+            Hide();
             return;
+        }
 
         FullRect = false;
         SlideControlsVisible = false;
-        BoundToScreenArea = false;
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
 
@@ -235,53 +287,39 @@ public class SlideScreen : CustomDialog
             popupTween.Connect("tween_completed", this, nameof(OnScaledDown), null, (uint)ConnectFlags.Oneshot);
     }
 
-    public void AdvanceSlide(bool fade = false, int searchCounter = 0)
-    {
-        if (Items == null)
-            return;
-
-        currentSlideIndex = (currentSlideIndex + 1) % Items.Count;
-
-        // Can be shown in a slideshow check is only done here because slideshow only moves forward
-        if (!Items[CurrentSlideIndex].CanBeShownInASlideshow && SlideshowMode)
-        {
-            // Limit recursion to the number of items total
-            if (searchCounter < Items.Count)
-            {
-                // Keep advancing until we found an item that allows slideshow
-                AdvanceSlide(fade, ++searchCounter);
-            }
-
-            return;
-        }
-
-        ChangeSlide(fade);
-    }
-
-    public void RetreatSlide(bool fade = false)
-    {
-        if (Items == null)
-            return;
-
-        --currentSlideIndex;
-
-        if (currentSlideIndex < 0)
-            currentSlideIndex = Items.Count - 1;
-
-        ChangeSlide(fade);
-    }
-
     protected override void OnHidden()
     {
         base.OnHidden();
         SlideshowMode = false;
-        Input.MouseMode = Input.MouseModeEnum.Visible;
+        MouseCaptureManager.SetMouseHideState(false);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SlideTextureRectPath != null)
+            {
+                SlideTextureRectPath.Dispose();
+                SlideToolbarPath.Dispose();
+                SlideCloseButtonPath.Dispose();
+                SlideShowModeButtonPath.Dispose();
+                SlideTitleLabelPath.Dispose();
+                ModelViewerContainerPath.Dispose();
+                ModelViewerPath.Dispose();
+                ModelHolderPath.Dispose();
+                ModelViewerCameraPath.Dispose();
+                PlaybackControlsPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void ChangeSlide(bool fade)
     {
         if (!Visible)
-            CustomShow();
+            Open();
 
         if (!fade)
         {
@@ -385,7 +423,6 @@ public class SlideScreen : CustomDialog
 
         SlideControlsVisible = true;
         FullRect = true;
-        BoundToScreenArea = true;
     }
 
     private void OnScaledDown(Object @object, NodePath key)
@@ -417,7 +454,7 @@ public class SlideScreen : CustomDialog
 
     private void OnCloseButtonPressed()
     {
-        CustomHide();
+        Close();
     }
 
     private void OnCloseButtonUpdate()

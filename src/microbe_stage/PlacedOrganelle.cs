@@ -26,10 +26,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private Microbe? currentShapesParent;
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Used to update the tint
     /// </summary>
     private ShaderMaterial? organelleMaterial;
+
+    private Spatial? organelleSceneInstance;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
@@ -37,7 +42,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft = new();
 
-    private Spatial? organelleSceneInstance;
     private List<IOrganelleComponent>? components;
 
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
@@ -180,6 +184,26 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public bool IsLoadedFromSave { get; set; }
 
+    /// <summary>
+    ///   Guards against adding this to the scene not through OnAddedToMicrobe
+    /// </summary>
+    public override void _Ready()
+    {
+        if (Definition == null)
+            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
+
+        if (ParentMicrobe == null)
+        {
+            throw new InvalidOperationException(
+                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
+        }
+
+        if (IsLoadedFromSave)
+            FinishAttachToMicrobe();
+
+        ApplyScale();
+    }
+
     public bool HasShape(uint searchShape)
     {
         return shapes.Contains(searchShape);
@@ -199,26 +223,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         return false;
-    }
-
-    /// <summary>
-    ///   Guards against adding this to the scene not through OnAddedToMicrobe
-    /// </summary>
-    public override void _Ready()
-    {
-        if (Definition == null)
-            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
-
-        if (ParentMicrobe == null)
-        {
-            throw new InvalidOperationException(
-                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
-        }
-
-        if (IsLoadedFromSave)
-            FinishAttachToMicrobe();
-
-        ApplyScale();
     }
 
     /// <summary>
@@ -466,8 +470,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///  Returns the rotated position, as it should be in the colony.
-    ///  Used for re-parenting shapes to other microbes
+    ///   Returns the rotated position, as it should be in the colony.
+    ///   Used for re-parenting shapes to other microbes
     /// </summary>
     public Vector3 RotatedPositionInsideColony(Vector3 shapePosition)
     {
@@ -499,7 +503,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///  Re-parents the organelle shape to the "to" microbe.
+    ///   Re-parents the organelle shape to the "to" microbe.
     /// </summary>
     public void ReParentShapes(Microbe to, Vector3 offset)
     {
@@ -571,7 +575,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         //     !IsLoadedFromSave)
         //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
-        MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
+        // We don't need preview cells to be collidable (as it can lag the editor if the cell is massive).
+        if (!ParentMicrobe.IsForPreviewOnly)
+            MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
 
         if (Definition.Enzymes != null)
         {

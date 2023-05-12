@@ -6,9 +6,11 @@
 /// </summary>
 public class ModifierInfoLabel : HBoxContainer
 {
+#pragma warning disable CA2213
     private Label? nameLabel;
     private Label? valueLabel;
     private TextureRect? icon;
+#pragma warning restore CA2213
 
     private string displayName = string.Empty;
     private string modifierValue = string.Empty;

@@ -10,13 +10,13 @@ public interface ISteamClient : ISteamSignalReceiver, IDisposable
     /// <summary>
     ///   True if the Steam client has been initialized
     /// </summary>
-    bool IsLoaded { get; }
+    public bool IsLoaded { get; }
 
-    string DisplayName { get; }
+    public string DisplayName { get; }
 
     public ulong AppId { get; }
 
-    void Init();
+    public void Init();
 
     /// <summary>
     ///   Sets up receiver to receive callbacks
@@ -28,20 +28,20 @@ public interface ISteamClient : ISteamSignalReceiver, IDisposable
     ///     Note that for many of the received signals they need to be forwarded to this object for further processing.
     ///   </para>
     /// </remarks>
-    void ConnectSignals<T>(T receiver)
+    public void ConnectSignals<T>(T receiver)
         where T : Object, ISteamSignalReceiver;
 
-    void Process(float delta);
-    void CreateWorkshopItem(Action<WorkshopResult> callback);
-    ulong StartWorkshopItemUpdate(ulong itemId);
-    bool SetWorkshopItemTitle(ulong updateHandle, string title);
-    bool SetWorkshopItemDescription(ulong updateHandle, string? description);
-    bool SetWorkshopItemVisibility(ulong updateHandle, SteamItemVisibility visibility);
-    bool SetWorkshopItemContentFolder(ulong updateHandle, string contentFolder);
-    bool SetWorkshopItemPreview(ulong updateHandle, string previewImage);
-    void SubmitWorkshopItemUpdate(ulong updateHandle, string? changeNotes, Action<WorkshopResult> callback);
-    SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId);
-    bool SetWorkshopItemTags(ulong updateHandle, List<string>? tags);
-    List<string> GetInstalledWorkshopItemFolders();
-    void OpenWorkshopItemInOverlayBrowser(ulong itemId);
+    public void Process(float delta);
+    public void CreateWorkshopItem(Action<WorkshopResult> callback);
+    public ulong StartWorkshopItemUpdate(ulong itemId);
+    public bool SetWorkshopItemTitle(ulong updateHandle, string title);
+    public bool SetWorkshopItemDescription(ulong updateHandle, string? description);
+    public bool SetWorkshopItemVisibility(ulong updateHandle, SteamItemVisibility visibility);
+    public bool SetWorkshopItemContentFolder(ulong updateHandle, string contentFolder);
+    public bool SetWorkshopItemPreview(ulong updateHandle, string previewImage);
+    public void SubmitWorkshopItemUpdate(ulong updateHandle, string? changeNotes, Action<WorkshopResult> callback);
+    public SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId);
+    public bool SetWorkshopItemTags(ulong updateHandle, List<string>? tags);
+    public List<string> GetInstalledWorkshopItemFolders();
+    public void OpenWorkshopItemInOverlayBrowser(ulong itemId);
 }

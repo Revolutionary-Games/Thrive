@@ -34,6 +34,34 @@ public class InputManager : Node
     /// </remarks>
     private Dictionary<InputAttribute, List<WeakReference>> attributes = new();
 
+    /// <summary>
+    ///   The last used input method by the player
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: does this need to default to controller in some cases?
+    ///   </para>
+    /// </remarks>
+    private ActiveInputMethod usedInputMethod = ActiveInputMethod.Keyboard;
+
+    private float inputChangeDelay;
+    private bool queuedInputChange;
+
+    /// <summary>
+    ///   Used to detect when the used controller
+    /// </summary>
+    private int? lastUsedControllerId;
+
+    /// <summary>
+    ///   Used to detect when controller name changes to check if we should swap the used controller type variable
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: is this better than just detecting the last connected controller type?
+    ///   </para>
+    /// </remarks>
+    private string? lastUsedControllerName;
+
     public InputManager()
     {
         staticInstance = this;
@@ -71,6 +99,9 @@ public class InputManager : Node
                      .attributes
                      .Where(p => p.Key.Method?.DeclaringType?.IsInstanceOfType(instance) == true))
         {
+            if (inputAttribute.Value.Any(i => i.Target == instance))
+                throw new InvalidOperationException("instance is already registered: " + instance.GetType().Name);
+
             inputAttribute.Value.Add(reference);
             registered = true;
         }
@@ -137,19 +168,55 @@ public class InputManager : Node
         staticInstance._UnhandledInput(inputEvent);
     }
 
-    public static void OnPostLoad()
+    /// <summary>
+    ///   Always converts an input event to an input method type
+    /// </summary>
+    /// <param name="event">The event to look at and make the determination</param>
+    /// <returns>The detected input type or the default value</returns>
+    public static ActiveInputMethod InputMethodFromInput(InputEvent @event)
     {
-        if (staticInstance == null)
-            throw new InstanceNotLoadedYetException();
+        if (@event is InputEventJoypadButton or InputEventJoypadMotion)
+        {
+            return ActiveInputMethod.Controller;
+        }
 
-        staticInstance.DoPostLoad();
+        // Everything that isn't a controller is currently a keyboard
+        return ActiveInputMethod.Keyboard;
     }
 
     public override void _Ready()
     {
         base._Ready();
 
+        Input.Singleton.Connect("joy_connection_changed", this, nameof(OnConnectedControllersChanged));
+
         DoPostLoad();
+
+        try
+        {
+            // Detect initial controllers
+            var controllers = Input.GetConnectedJoypads();
+
+            if (controllers.Count > 0)
+            {
+                // Apply button style from initial controller
+
+                int controllerId = (int)controllers[0];
+                lastUsedControllerName = Input.GetJoyName(controllerId);
+                lastUsedControllerId = controllerId;
+
+                GD.Print("First connected controller is: ", lastUsedControllerName);
+            }
+
+            // Apply button prompt types anyway even if there's no plugged in controller
+            ApplyInputPromptTypes();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Startup controller style applying failed: ", e);
+        }
+
+        Settings.Instance.ControllerPromptType.OnChanged += _ => ApplyInputPromptTypes();
     }
 
     /// <summary>
@@ -161,12 +228,31 @@ public class InputManager : Node
         if (staticInstance == null)
             throw new InstanceNotLoadedYetException();
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
+        if (inputChangeDelay > 0)
+        {
+            inputChangeDelay -= delta;
+
+            if (inputChangeDelay <= 0)
+            {
+                inputChangeDelay = 0;
+
+                if (queuedInputChange)
+                    ApplyInputPromptTypes();
+            }
+        }
 
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.OnProcess(delta);
+    }
+
+    public override void _Notification(int what)
+    {
+        // If the window goes out of focus, we don't receive the key released events
+        // We reset our held down keys if the player tabs out while pressing a key
+        if (what == NotificationWmFocusOut)
+        {
+            OnFocusLost();
+        }
     }
 
     /// <summary>
@@ -195,16 +281,6 @@ public class InputManager : Node
             return;
 
         OnInput(false, @event);
-    }
-
-    public override void _Notification(int what)
-    {
-        // If the window goes out of focus, we don't receive the key released events
-        // We reset our held down keys if the player tabs out while pressing a key
-        if (what == NotificationWmFocusOut)
-        {
-            OnFocusLost();
-        }
     }
 
     internal static bool CallMethod(InputAttribute attribute, object[] parameters)
@@ -331,6 +407,8 @@ public class InputManager : Node
 
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
+        UpdateUsedInputMethodType(@event);
+
         bool isDown = false;
 
         // For now let's always assume mouse motion is not a "down" action
@@ -399,6 +477,7 @@ public class InputManager : Node
 
     private void StartTimer()
     {
+        // TODO: switch this to using a timer variable like elsewhere in the code
         var timer = new Timer
         {
             Autostart = true,
@@ -408,6 +487,106 @@ public class InputManager : Node
         };
         timer.Connect("timeout", this, nameof(ClearExpiredReferences));
         AddChild(timer);
+    }
+
+    private void UpdateUsedInputMethodType(InputEvent @event)
+    {
+        ActiveInputMethod? wantedInputMethod = null;
+        int? joypadId = null;
+
+        // TODO: should mouse buttons switch the input method or not? In case a user needs to click something to get
+        // past something
+        if (@event is InputEventKey /* or InputEventMouseButton */)
+        {
+            wantedInputMethod = ActiveInputMethod.Keyboard;
+        }
+        else if (@event is InputEventJoypadButton joypadButton)
+        {
+            if (joypadButton.Device == -1)
+            {
+                // Emulated mouse
+            }
+            else
+            {
+                joypadId = joypadButton.Device;
+                wantedInputMethod = ActiveInputMethod.Controller;
+            }
+        }
+
+        // Exit if we don't know what mode we want to be in
+        if (wantedInputMethod == null)
+            return;
+
+        // or we are already in the right mode (and also controller mode is right)
+        if (wantedInputMethod.Value == usedInputMethod)
+        {
+            if (usedInputMethod != ActiveInputMethod.Controller || lastUsedControllerId == joypadId)
+                return;
+        }
+
+        // Skip changing input method if the input is an action that shouldn't change input type
+        if (Constants.ActionsThatDoNotChangeInputMethod.Any(a => @event.IsAction(a)))
+            return;
+
+        usedInputMethod = wantedInputMethod.Value;
+
+        if (joypadId != null)
+        {
+            if (lastUsedControllerId != joypadId)
+            {
+                // Used controller changed
+                lastUsedControllerId = joypadId;
+
+                lastUsedControllerName = Input.GetJoyName(lastUsedControllerId.Value);
+                GD.Print("Controller name is now: ", lastUsedControllerName);
+            }
+        }
+
+        // This delay prevents the icons from changing each frame if multiple input types are firing at the same time
+        // TODO: it would probably be nice to gradually increase this delay when rapid changes are detected
+        if (inputChangeDelay > 0)
+        {
+            queuedInputChange = true;
+        }
+        else
+        {
+            ApplyInputPromptTypes();
+        }
+
+        inputChangeDelay = Constants.MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE;
+    }
+
+    private void ApplyInputPromptTypes()
+    {
+        var settingsControllerValue = Settings.Instance.ControllerPromptType.Value;
+
+        if (settingsControllerValue != ControllerType.Automatic)
+        {
+            KeyPromptHelper.ActiveControllerType = settingsControllerValue;
+        }
+        else if (lastUsedControllerName != null)
+        {
+            KeyPromptHelper.ActiveControllerType =
+                ControllerTypeDetection.DetectControllerTypeFromName(lastUsedControllerName);
+        }
+
+        KeyPromptHelper.InputMethod = usedInputMethod;
+        queuedInputChange = false;
+    }
+
+    private void OnConnectedControllersChanged(int device, bool connected)
+    {
+        // This connected signal doesn't seem to apply during startup, instead only when a controller is reconnected
+        if (connected)
+        {
+            GD.Print($"Controller {device} connected");
+        }
+        else
+        {
+            GD.Print($"Controller {device} was disconnected");
+        }
+
+        lastUsedControllerId = null;
     }
 
     private void LoadControllerDeadzones()

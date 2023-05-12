@@ -44,16 +44,18 @@ EditorGridPath = NodePath("../../EditorWorld/Grid")
 CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 
 [node name="Report" parent="MicrobeEditorGUI" instance=ExtResource( 6 )]
+margin_top = 0.0
 
 [node name="PatchMap" parent="MicrobeEditorGUI" instance=ExtResource( 7 )]
 visible = false
 
 [node name="MicrobeEditorTabButtons" parent="MicrobeEditorGUI" instance=ExtResource( 5 )]
+margin_right = 350.0
+margin_bottom = 45.0
 
 [node name="EditorCommonBottomLeftButtons" parent="MicrobeEditorGUI" instance=ExtResource( 4 )]
 
 [node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource( 39 )]
-visible = false
 margin_left = 10.0
 margin_top = 30.0
 
@@ -68,7 +70,6 @@ CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
 CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
 [node name="PauseMenu" parent="." instance=ExtResource( 52 )]
-theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -182,6 +183,11 @@ public class OrganelleDefinition : IRegistryType
     public string? UpgradeGUI;
 
     /// <summary>
+    ///   The upgrades that are available for this organelle type
+    /// </summary>
+    public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -201,7 +207,18 @@ public class OrganelleDefinition : IRegistryType
         Protein,
         External,
         Organelle,
+
+        /// <summary>
+        ///   Only available starting in multicellular
+        /// </summary>
+        Multicellular,
     }
+
+    /// <summary>
+    ///   <see cref="Name"/> without any special characters (line changes etc.)
+    /// </summary>
+    [JsonIgnore]
+    public string NameWithoutSpecialCharacters => Name.Replace('\n', ' ');
 
     /// <summary>
     ///   The total amount of compounds in InitialComposition
@@ -378,11 +395,31 @@ public class OrganelleDefinition : IRegistryType
                     "Duplicate hex position");
             }
         }
+
+        foreach (var availableUpgrade in AvailableUpgrades)
+        {
+            availableUpgrade.Value.InternalName = availableUpgrade.Key;
+            availableUpgrade.Value.Check(availableUpgrade.Key);
+
+            if ((availableUpgrade.Key == Constants.ORGANELLE_UPGRADE_SPECIAL_NONE &&
+                    !availableUpgrade.Value.IsDefault) ||
+                (availableUpgrade.Key != Constants.ORGANELLE_UPGRADE_SPECIAL_NONE && availableUpgrade.Value.IsDefault))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Default upgrade must be named 'none', and the name must not be used by other upgrades");
+            }
+        }
+
+        // Fail with multiple default upgrades
+        if (AvailableUpgrades.Values.Count(u => u.IsDefault) > 1)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Multiple default upgrades specified");
+        }
     }
 
     /// <summary>
-    ///   Resolves references to external resources so that during
-    ///   runtime they don't need to be looked up
+    ///   Resolves references to external resources so that during runtime they don't need to be looked up
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
@@ -432,11 +469,21 @@ public class OrganelleDefinition : IRegistryType
         }
 
         ComputeFactoryCache();
+
+        foreach (var availableUpgrade in AvailableUpgrades.Values)
+        {
+            availableUpgrade.Resolve();
+        }
     }
 
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
+
+        foreach (var availableUpgrade in AvailableUpgrades.Values)
+        {
+            availableUpgrade.ApplyTranslations();
+        }
     }
 
     public override string ToString()
@@ -464,6 +511,8 @@ public class OrganelleDefinition : IRegistryType
         public SignalingAgentComponentFactory? SignalingAgent;
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
+        public AxonComponentFactory? Axon;
+        public MyofibrilComponentFactory? Myofibril;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -558,6 +607,20 @@ public class OrganelleDefinition : IRegistryType
             {
                 Lysosome.Check(name);
                 allFactories.Add(Lysosome);
+                ++count;
+            }
+
+            if (Axon != null)
+            {
+                Axon.Check(name);
+                allFactories.Add(Axon);
+                ++count;
+            }
+
+            if (Myofibril != null)
+            {
+                Myofibril.Check(name);
+                allFactories.Add(Myofibril);
                 ++count;
             }
         }

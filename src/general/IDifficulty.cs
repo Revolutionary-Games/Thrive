@@ -35,7 +35,7 @@ public interface IDifficulty : IRegistryAssignable
     public float OsmoregulationMultiplier { get; }
 
     /// <summary>
-    ///  Whether the player starts with a free glucose cloud each time they exit the editor
+    ///   Whether the player starts with a free glucose cloud each time they exit the editor
     /// </summary>
     public bool FreeGlucoseCloud { get; }
 

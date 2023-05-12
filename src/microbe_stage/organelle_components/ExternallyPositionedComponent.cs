@@ -97,7 +97,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     }
 
     /// <summary>
-    ///  Gets the angle of rotation of an externally placed organelle
+    ///   Gets the angle of rotation of an externally placed organelle
     /// </summary>
     /// <param name="delta">The difference between the cell middle and the external organelle position</param>
     protected float GetAngle(Vector3 delta)

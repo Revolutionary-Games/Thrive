@@ -5,7 +5,7 @@ using Godot;
 public class ControllerDeadzoneConfiguration : CustomDialog
 {
     [Export]
-    public NodePath VisualizationContainerPath = null!;
+    public NodePath? VisualizationContainerPath;
 
     [Export]
     public NodePath StartButtonPath = null!;
@@ -22,12 +22,15 @@ public class ControllerDeadzoneConfiguration : CustomDialog
     private const float SettleDownTimeStart = 4.5f;
     private const float SettleDownTimeIncreaseMultiplier = 5;
 
+#pragma warning disable CA2213
     private ControllerInputAxisVisualizationContainer visualizationContainer = null!;
 
     private Button startButton = null!;
     private Button applyButton = null!;
 
     private Label statusLabel = null!;
+
+#pragma warning restore CA2213
 
     private bool calibrating;
     private float timeRemaining;
@@ -89,8 +92,10 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
     }
 
-    private void OnBecomeVisible()
+    protected override void OnOpen()
     {
+        base.OnOpen();
+
         statusLabel.Text = string.Empty;
         visualizationContainer.Start();
 
@@ -111,11 +116,36 @@ public class ControllerDeadzoneConfiguration : CustomDialog
         }
 
         // For some reason a label grabs focus if we don't call this with a delay
-        Invoke.Instance.Queue(() => startButton.GrabFocus());
+        startButton.GrabFocusInOpeningPopup();
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnCancel();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (VisualizationContainerPath != null)
+            {
+                VisualizationContainerPath.Dispose();
+                StartButtonPath.Dispose();
+                ApplyButtonPath.Dispose();
+                StatusLabelPath.Dispose();
+                ExplanationLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnCancel()
     {
+        // TODO: this should also reset the text / timers so that reopening the configuration quickly works correctly
+
         visualizationContainer.Stop();
     }
 

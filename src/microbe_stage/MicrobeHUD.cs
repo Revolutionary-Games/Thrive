@@ -9,10 +9,10 @@ using Newtonsoft.Json;
 ///   Manages the microbe HUD
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class MicrobeHUD : StageHUDBase<MicrobeStage>
+public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
     [Export]
-    public NodePath MulticellularButtonPath = null!;
+    public NodePath? MulticellularButtonPath;
 
     [Export]
     public NodePath MulticellularConfirmPopupPath = null!;
@@ -24,13 +24,23 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     public NodePath IngestedMatterBarPath = null!;
 
     [Export]
-    public PackedScene WinBoxScene = null!;
-
-    [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
     [Export]
     public NodePath UnbindAllHotkeyPath = null!;
+
+#pragma warning disable CA2213
+    [Export]
+    public PackedScene WinBoxScene = null!;
+
+    // These are category keys for MouseHoverPanel
+    private const string COMPOUNDS_CATEGORY = "compounds";
+    private const string SPECIES_CATEGORY = "species";
+    private const string FLOATING_CHUNKS_CATEGORY = "chunks";
+    private const string AGENTS_CATEGORY = "agents";
+
+    private readonly Dictionary<(string Category, string Name), int> hoveredEntities = new();
+    private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
 
     private ActionButton bindingModeHotkey = null!;
     private ActionButton unbindAllHotkey = null!;
@@ -42,6 +52,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     private ProgressBar ingestedMatterBar = null!;
 
     private CustomDialog? winBox;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
@@ -73,6 +84,18 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
         unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
 
+        mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
+        mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
+        mouseHoverPanel.AddCategory(FLOATING_CHUNKS_CATEGORY, new LocalizedString("FLOATING_CHUNKS_COLON"));
+        mouseHoverPanel.AddCategory(AGENTS_CATEGORY, new LocalizedString("AGENTS_COLON"));
+
+        foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
+        {
+            var hoveredCompoundControl = mouseHoverPanel.AddItem(
+                COMPOUNDS_CATEGORY, compound.Name, compound.LoadedIcon);
+            hoveredCompoundControls.Add(compound, hoveredCompoundControl);
+        }
+
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
     }
@@ -93,6 +116,17 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         {
             multicellularButton.Visible = false;
             macroscopicButton.Visible = false;
+        }
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateColonySizeForMulticellular();
+            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -174,7 +208,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 continue;
 
             var button = FossilisationButtonScene.Instance<FossilisationButton>();
-            button.AttachedOrganism = microbe;
+            button.AttachedEntity = microbe;
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
@@ -187,17 +221,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 TranslationServer.Translate("FOSSILISATION_HINT");
 
             fossilisationButtonLayer.AddChild(button);
-        }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateColonySizeForMulticellular();
-            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -307,22 +330,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         stage!.Player!.CalculateReproductionProgress(out gatheredCompounds, out totalNeededCompounds);
     }
 
-    protected override IEnumerable<(bool Player, Species Species)> GetHoveredSpecies()
-    {
-        return stage!.HoverInfo.HoveredMicrobes.Select(m => (m.IsPlayerMicrobe, m.Species));
-    }
-
-    protected override IReadOnlyDictionary<Compound, float> GetHoveredCompounds()
-    {
-        return stage!.HoverInfo.HoveredCompounds;
-    }
-
-    protected override string GetMouseHoverCoordinateText()
-    {
-        return TranslationServer.Translate("STUFF_AT")
-            .FormatSafe(stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
-    }
-
     protected override void UpdateAbilitiesHotBar()
     {
         var player = stage!.Player!;
@@ -342,14 +349,102 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             showSlime = player.SlimeJets.Count > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showSlime,
-            player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
+        UpdateBaseAbilitiesBar(player.CanEngulfInColony(), showToxin, showSlime,
+            player.HasSignalingAgent, player.State == MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;
         unbindAllHotkey.Visible = player.CanUnbind;
 
-        bindingModeHotkey.Pressed = player.State == Microbe.MicrobeState.Binding;
+        bindingModeHotkey.Pressed = player.State == MicrobeState.Binding;
         unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+    }
+
+    protected override void UpdateHoverInfo(float delta)
+    {
+        stage!.HoverInfo.Process(delta);
+
+        // Show hovered compound information in GUI
+        foreach (var compound in hoveredCompoundControls)
+        {
+            var compoundControl = compound.Value;
+            stage.HoverInfo.HoveredCompounds.TryGetValue(compound.Key, out float amount);
+
+            // It is not useful to show trace amounts of a compound, so those are skipped
+            if (amount < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
+            {
+                compoundControl.Visible = false;
+                continue;
+            }
+
+            compoundControl.SetText(compound.Key.Name);
+            compoundControl.SetDescription(GetCompoundDensityCategory(amount) ?? TranslationServer.Translate("N_A"));
+            compoundControl.SetDescriptionColor(GetCompoundDensityCategoryColor(amount));
+            compoundControl.Visible = true;
+        }
+
+        // Refresh list
+        mouseHoverPanel.ClearEntries(SPECIES_CATEGORY);
+        mouseHoverPanel.ClearEntries(FLOATING_CHUNKS_CATEGORY);
+        mouseHoverPanel.ClearEntries(AGENTS_CATEGORY);
+
+        // Show the entity's name and count of hovered entities
+        hoveredEntities.Clear();
+
+        foreach (var entity in stage.HoverInfo.InspectableEntities)
+        {
+            var category = string.Empty;
+
+            if (entity is Microbe microbe)
+            {
+                if (microbe.IsPlayerMicrobe)
+                {
+                    // Special handling for player
+                    var label = mouseHoverPanel.AddItem(SPECIES_CATEGORY, entity.ReadableName);
+                    label.SetDescription(TranslationServer.Translate("PLAYER"));
+                    continue;
+                }
+
+                category = SPECIES_CATEGORY;
+            }
+            else if (entity is FloatingChunk)
+            {
+                category = FLOATING_CHUNKS_CATEGORY;
+            }
+            else if (entity is AgentProjectile)
+            {
+                category = AGENTS_CATEGORY;
+            }
+
+            var key = (category, entity.ReadableName);
+            hoveredEntities.TryGetValue(key, out int count);
+            hoveredEntities[key] = count + 1;
+        }
+
+        foreach (var hoveredEntity in hoveredEntities)
+        {
+            var item = mouseHoverPanel.AddItem(hoveredEntity.Key.Category, hoveredEntity.Key.Name);
+
+            if (hoveredEntity.Value > 1)
+                item.SetDescription(TranslationServer.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MulticellularButtonPath != null)
+            {
+                MulticellularButtonPath.Dispose();
+                MulticellularConfirmPopupPath.Dispose();
+                MacroscopicButtonPath.Dispose();
+                IngestedMatterBarPath.Dispose();
+                BindingModeHotkeyPath.Dispose();
+                UnbindAllHotkeyPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnRadialItemSelected(int itemId)

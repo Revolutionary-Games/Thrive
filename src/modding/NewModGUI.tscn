@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/modding/NewModGUI.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=3]
 
@@ -471,7 +471,7 @@ margin_bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 text = "CANCEL"
 
-[connection signal="popup_hide" from="CustomDialog" to="." method="Closed"]
+[connection signal="hide" from="CustomDialog" to="." method="Closed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/HelpLine/LinkButton" to="." method="WikiLinkPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Create" to="." method="Create"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Cancel" to="." method="Cancel"]

@@ -194,6 +194,9 @@ public class RunOnAxisAttribute : InputAttribute
             }
         }
 
+        if (wasUsed && TrackInputMethod)
+            LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+
         return wasUsed;
     }
 
@@ -261,7 +264,16 @@ public class RunOnAxisAttribute : InputAttribute
         // If UseDiscreteKeyInputs is true CurrentResult evaluation actually changes state, which is not optimal...
         var currentResult = GetCurrentResult(delta);
         if (Math.Abs(currentResult - DefaultState) > MathUtils.EPSILON || InvokeAlsoWithNoInput)
-            CallMethod(delta, currentResult);
+        {
+            if (TrackInputMethod)
+            {
+                CallMethod(delta, currentResult, TrackInputMethod);
+            }
+            else
+            {
+                CallMethod(delta, currentResult);
+            }
+        }
     }
 
     public override void FocusLost()

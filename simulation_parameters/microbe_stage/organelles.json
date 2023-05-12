@@ -20,7 +20,7 @@
     "chanceToCreate": 0.5,
     "mass": 0.3,
     "displayScene": "res://assets/models/organelles/Pilus.tscn",
-    "name": "PREDATORY_PILUS",
+    "name": "ORGANELLE_PILUS",
     "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
     "editorButtonGroup": "External",
     "editorButtonOrder": 2
@@ -43,9 +43,6 @@
     "components": {
       "storage": {
         "capacity": 0.5
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "enzymes": {
@@ -81,9 +78,6 @@
     "components": {
       "storage": {
         "capacity": 0.5
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 2,
@@ -115,9 +109,6 @@
     "components": {
       "storage": {
         "capacity": 15
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 2,
@@ -151,9 +142,6 @@
     "components": {
       "storage": {
         "capacity": 0.5
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 2,
@@ -184,9 +172,6 @@
       "bacterial_oxytoxySynthesis": 1
     },
     "components": {
-      "processor": {
-        "colourChangeFactor": 1
-      },
       "storage": {
         "capacity": 0.5
       },
@@ -225,9 +210,6 @@
     "components": {
       "storage": {
         "capacity": 0.5
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 2,
@@ -259,9 +241,6 @@
     "components": {
       "storage": {
         "capacity": 0.5
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 2,
@@ -297,9 +276,6 @@
     "components": {
       "storage": {
         "capacity": 1
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 0,
@@ -332,9 +308,6 @@
     "components": {
       "storage": {
         "capacity": 0.5
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 2,
@@ -371,9 +344,6 @@
     "components": {
       "storage": {
         "capacity": 1
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 0,
@@ -471,9 +441,6 @@
     "components": {
       "storage": {
         "capacity": 1
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 0,
@@ -580,9 +547,6 @@
     "components": {
       "storage": {
         "capacity": 1.5
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 0,
@@ -613,9 +577,6 @@
     "components": {
       "storage": {
         "capacity": 1
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 1,
@@ -738,7 +699,6 @@
       "mucilage_synthesis": 1
     },
     "components": {
-      "processor": {},
       "storage": {
         "capacity": 0.5
       },
@@ -828,9 +788,6 @@
     "components": {
       "storage": {
         "capacity": 1
-      },
-      "processor": {
-        "colourChangeFactor": 1
       }
     },
     "prokaryoteChance": 0,
@@ -874,7 +831,20 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
     "requiresNucleus": true,
     "editorButtonGroup": "External",
-    "editorButtonOrder": 5
+    "editorButtonOrder": 5,
+    "availableUpgrades": {
+      "none": {
+        "isDefault": true,
+        "name": "UPGRADE_NAME_NONE",
+        "description": "UPGRADE_DESCRIPTION_NONE"
+      },
+      "pull": {
+        "name": "UPGRADE_CILIA_PULL",
+        "description": "UPGRADE_CILIA_PULL_DESCRIPTION",
+        "mpCost": 25,
+        "iconPath": "res://assets/textures/gui/bevel/part_upgrades/CiliaPullIcon.png"
+      }
+    }
   },
   "lysosome": {
     "mpCost": 45,
@@ -910,5 +880,73 @@
     "requiresNucleus": true,
     "editorButtonGroup": "Organelle",
     "editorButtonOrder": 5
+  },
+  "axon": {
+    "mpCost": 100,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "axon": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0,
+    "mass": 0.15,
+    "displayScene": "res://assets/models/organelles/Axon.tscn",
+    "name": "ORGANELLE_AXON",
+    "iconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Multicellular",
+    "editorButtonOrder": 1
+  },
+  "myofibril": {
+    "mpCost": 50,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": 1,
+        "q": 0
+      },
+      {
+        "r": 2,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      },
+      {
+        "r": -2,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "myofibril": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0,
+    "mass": 0.2,
+    "displayScene": "res://assets/models/organelles/Myofibril.tscn",
+    "name": "ORGANELLE_MYOFIBRIL",
+    "iconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Multicellular",
+    "editorButtonOrder": 2
   }
 }

@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 5, 1.391, 0.054 )
+
+[node name="StructureScaffolding" type="StaticBody"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21655, 4.85964 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21655, -5.05666 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.04108, 1.21655, -0.076 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.99528, 1.21655, -0.076 )
+shape = SubResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15265, 1.18906, 4.91701 )
+radius = 0.327036
+height = 2.847
+sides = 12
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06209, 1.18906, 4.91861 )
+radius = 0.327036
+height = 2.847
+sides = 12
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13417, 1.18906, -4.93747 )
+radius = 0.327036
+height = 2.847
+sides = 12
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16776, 1.18906, -5.26535 )
+radius = 0.327036
+height = 2.847
+sides = 12
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.92255 )
+width = 10.0857
+height = 0.181296
+depth = 0.257234
+
+[node name="CSGBox8" type="CSGBox" parent="."]
+transform = Transform( 0.999893, -0.0081506, 0.0121119, 0.00815, 0.999967, 9.87224e-05, -0.0121123, 0, 0.999927, 0, 1.98828, 4.92255 )
+width = 10.4492
+height = 0.181296
+depth = 0.257234
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.14064 )
+width = 10.5443
+height = 0.181296
+depth = 0.257234
+
+[node name="CSGBox7" type="CSGBox" parent="."]
+transform = Transform( 0.999502, -0.0219196, -0.0227168, 0.0219139, 0.99976, -0.000498062, 0.0227222, 0, 0.999742, 0, 1.80351, -5.18263 )
+width = 10.6824
+height = 0.181296
+depth = 0.257234
+
+[node name="CSGBox3" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.13276, 0, 0.0222807 )
+width = 9.97527
+height = 0.181296
+depth = 0.257234
+
+[node name="CSGBox6" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.13276, 1.87417, 0.0222807 )
+width = 9.73102
+height = 0.181296
+depth = 0.257234
+
+[node name="CSGBox4" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.06488, 0, 0.0222807 )
+width = 9.81942
+height = 0.181296
+depth = 0.257234
+
+[node name="CSGBox5" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0.0546539, 0.998505, -2.389e-09, 0.998505, -0.0546539, -4.36461e-08, 5.06488, 1.52236, 0.0222807 )
+width = 9.97522
+height = 0.181296
+depth = 0.257234

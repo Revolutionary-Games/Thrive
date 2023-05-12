@@ -12,6 +12,7 @@ using ScriptsBase.Utilities;
 
 public static class TranslationProgressTool
 {
+    // TODO: share this constant with Thrive once a common module is created
     public const string TRANSLATIONS_PROGRESS_FILE = "simulation_parameters/common/translations_info.json";
 
     public static async Task<bool> Run(CancellationToken cancellationToken)

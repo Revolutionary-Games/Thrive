@@ -23,6 +23,15 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
     /// <summary>
+    ///   How long the initial compounds should last (in seconds)
+    /// </summary>
+    public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
+
+    public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
+
+    /// <summary>
     ///   The maximum duration the player is shown being ingested before they are auto respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
@@ -45,6 +54,13 @@ public static class Constants
     ///   Scale factor for amount of compound in each spawned cloud
     /// </summary>
     public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
+
+    /// <summary>
+    ///   Threshold under which entities start to spawn around the player
+    ///   The value is in the range 0-1 and is the fraction of the maximum
+    ///   allowed entities.
+    /// </summary>
+    public const float ENTITY_SPAWNING_AROUND_PLAYER_THRESHOLD = 0.8f;
 
     /// <summary>
     ///   Scale factor for how dense microbes spawn (also affected by their populations).
@@ -92,18 +108,23 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
-    // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
-    public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
-
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
+
+    public const float MEMBRANE_ROOM_FOR_ORGANELLES = 1.9f;
+    public const float MEMBRANE_NUMBER_OF_WAVES = 9.0f;
+    public const float MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE = 0.3f;
+    public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER = 0.025f;
+    public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
     /// </summary>
     /// <remarks>
-    ///   this is applied *per* hex
+    ///   <para>
+    ///     this is applied *per* hex
+    ///   </para>
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
@@ -114,6 +135,8 @@ public static class Constants
     public const float CELL_BASE_THRUST = 50.6f;
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
+
+    public const float MICROBE_DIGESTION_UPDATE_INTERVAL = 0.0333f;
 
     public const float CELL_BASE_ROTATION = 0.2f;
     public const float CELL_MAX_ROTATION = 0.40f;
@@ -137,6 +160,12 @@ public static class Constants
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
+    public const float CILIA_PULLING_FORCE_GROW_STEP = 2.0f;
+    public const float CILIA_PULLING_FORCE = 20.0f;
+    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
+    public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
+
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 350;
@@ -147,6 +176,23 @@ public static class Constants
     ///   the spawn system has spawned things until the limit is full, the spawned things can still reproduce.
     /// </summary>
     public const float REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER = 1.15f;
+
+    /// <summary>
+    ///   If the entity limit is over this once the player has reproduced, force despawning will happen
+    /// </summary>
+    public const float REPRODUCTION_PLAYER_ALLOWED_ENTITY_LIMIT_EXCEED = 1.25f;
+
+    /// <summary>
+    ///   Once reproduced player copies take this much or more of the overall entity limit, they are preferred to
+    ///   despawn first.
+    /// </summary>
+    public const float PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER = 0.30f;
+
+    /// <summary>
+    ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
+    ///   heavier than normal microbes, as such this is set pretty high.
+    /// </summary>
+    public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 1.15f;
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
@@ -183,6 +229,8 @@ public static class Constants
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
+
+    public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
     ///   How often the microbe AI processes each microbe
@@ -329,6 +377,37 @@ public static class Constants
     public const int DESPAWNING_CHUNK_LIFETIME = 150;
 
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
+
+    public const float INTERACTION_BUTTONS_FULL_UPDATE_INTERVAL = 0.1f;
+
+    public const int INTERACTION_BUTTONS_MAX_COUNT = 50;
+
+    public const float INTERACTION_BUTTON_DEFAULT_Y_OFFSET = 1.0f;
+
+    public const int INTERACTION_BUTTON_SIZE = 32;
+    public const int INTERACTION_BUTTON_X_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+    public const int INTERACTION_BUTTON_Y_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+
+    public const float INTERACTION_DEFAULT_VISIBILITY_DISTANCE = 20.0f;
+    public const float INTERACTION_DEFAULT_INTERACT_DISTANCE = 8.5f;
+
+    public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
+
+    public const float WORLD_PROGRESS_BAR_FULL_UPDATE_INTERVAL = 0.1f;
+    public const float WORLD_PROGRESS_BAR_MAX_DISTANCE = 15.0f;
+    public const float WORLD_PROGRESS_BAR_MAX_COUNT = 15;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_WIDTH = 125;
+    public const float WORLD_PROGRESS_BAR_MIN_WIDTH_TO_SHOW = 20;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_HEIGHT = 18;
+    public const float WORLD_PROGRESS_BAR_MIN_HEIGHT = 6;
+    public const float WORLD_PROGRESS_BAR_DISTANCE_SIZE_SCALE = 1.0f;
+    public const float WORLD_PROGRESS_DEFAULT_Y_OFFSET = 3.5f;
+
+    public const float INVENTORY_DRAG_START_ALLOWANCE = 0.15f;
+
+    public const float NAME_LABELS_FULL_UPDATE_INTERVAL = 0.2f;
+    public const int NAME_LABELS_MAX_COUNT_PER_CATEGORY = 30;
+    public const float NAME_LABEL_VISIBILITY_DISTANCE = 200.0f;
 
     /// <summary>
     ///   This is used just as the default value for health and max
@@ -558,12 +637,14 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 
+    public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
+
     public const int METABALL_ADD_COST = 7;
     public const int METABALL_REMOVE_COST = 5;
     public const int METABALL_MOVE_COST = 3;
     public const int METABALL_RESIZE_COST = 3;
 
-    public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
+    public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
@@ -772,14 +853,19 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
-    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
+    public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
+    public const float HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER = 35;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
+
+    public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panel are
@@ -817,6 +903,14 @@ public static class Constants
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
     public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
+
+    public const float BRAIN_POWER_REQUIRED_FOR_AWARE = 0.5f;
+    public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;
+
+    /// <summary>
+    ///   Squared distance after which a timed action is canceled due to moving too much
+    /// </summary>
+    public const float ACTION_CANCEL_DISTANCE = 5;
 
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
@@ -919,6 +1013,22 @@ public static class Constants
 
     public const string PLAYER_GROUP = "player";
 
+    public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
+
+    public const string INTERACTABLE_GROUP = "interactable";
+
+    public const string CITY_ENTITY_GROUP = "city";
+    public const string NAME_LABEL_GROUP = "labeled";
+
+    /// <summary>
+    ///   Group for entities that can show a progress bar above them in the GUI
+    /// </summary>
+    public const string PROGRESS_ENTITY_GROUP = "progress";
+
+    public const string STRUCTURE_ENTITY_GROUP = "structure";
+
+    public const string CITIZEN_GROUP = "citizen";
+
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
@@ -927,9 +1037,13 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
+    public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
+    /// <summary>
+    ///   This is used in Steam mode, so don't remove even if this shows as unused
+    /// </summary>
     public const int MAX_PATH_LENGTH = 1024;
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
@@ -941,6 +1055,8 @@ public static class Constants
 
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
 
+    public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
+
     public const string LICENSE_FILE = "res://LICENSE.txt";
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
@@ -950,6 +1066,9 @@ public static class Constants
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
+
+    public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
+    public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
 
     public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
 
@@ -1092,12 +1211,67 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    /// <summary>
+    ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
+    ///   than the long message time as defined in <see cref="HUDMessages.TimeToFadeFromDuration"/>
+    /// </summary>
+    public const float HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR = 11.2f;
+
+    public const float SOCIETY_STAGE_ENTER_ANIMATION_DURATION = 15;
+
+    public const float SOCIETY_STAGE_BUILDING_PROCESS_INTERVAL = 0.05f;
+
+    public const float SOCIETY_STAGE_CITIZEN_PROCESS_INTERVAL = 0.05f;
+
+    public const float SOCIETY_STAGE_CITIZEN_SPAWN_INTERVAL = 5.0f;
+
+    public const float SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL = 1.0f;
+
+    public const float SOCIETY_CAMERA_ZOOM_INDUSTRIAL_EQUIVALENT = INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
+
+    /// <summary>
+    ///   Scale of the world in industrial stage compared to the society stage
+    /// </summary>
+    public const float INDUSTRIAL_STAGE_SIZE_MULTIPLIER = 5.0f;
+
+    public const float INDUSTRIAL_STAGE_CITY_PROCESS_INTERVAL = 0.1f;
+
+    public const float CITY_SCREEN_UPDATE_INTERVAL = 0.1f;
+
+    public const int CITY_MAX_BUILD_QUEUE_LENGTH = 10;
+
+    public const int CITY_MAX_GARRISONED_UNITS = 10;
+
+    public const float SPACE_TO_INDUSTRIAL_SCALE_FACTOR = 0.1f;
+
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_PAN_DURATION = 2.5f;
+
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_START = 12;
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_ROCKET_FOLLOW_SPEED = 0.1f;
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_MIN_HEIGHT_MULTIPLIER = 0.6f;
+    public const float INDUSTRIAL_TO_SPACE_CAMERA_ZOOM_SPEED = 0.6f;
+    public const float INDUSTRIAL_TO_SPACE_FADE_DURATION = 4;
+
+    public const float INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION = 0.005f;
+
+    public const float INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT = 300;
+
+    /// <summary>
+    ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
+    /// </summary>
+    public const int EDGE_PAN_PIXEL_THRESHOLD = 4;
+
+    public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
+    public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
+
     // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
     public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
     public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
 
     public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
     public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
+
+    public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
 
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 
@@ -1112,6 +1286,17 @@ public static class Constants
     public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN_CONSTANT = 0.007f;
 
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
+
+    /// <summary>
+    ///   Controls whether benchmarks start off showing the hardware info, or only after some results are generated
+    /// </summary>
+    public const bool BENCHMARKS_SHOW_HARDWARE_INFO_IMMEDIATELY = true;
+
+    public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
+    public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
+
+    public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
+    public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.
@@ -1153,6 +1338,23 @@ public static class Constants
     public static readonly Regex BackupRegex = new(@"^.*\.backup\." + SAVE_EXTENSION + "$");
     public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
     public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
+
+    /// <summary>
+    ///   When any action is triggered matching any of these, input method change is prevented.
+    ///   This is used to allow taking screenshots with the keyboard while playing with a controller, for example.
+    /// </summary>
+    public static readonly IReadOnlyCollection<string> ActionsThatDoNotChangeInputMethod = new[]
+    {
+        "screenshot",
+        "toggle_FPS",
+    };
+
+    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
+    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
+    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
+
+    public static readonly Regex NewsFeedRegexDeleteContent =
+        new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.

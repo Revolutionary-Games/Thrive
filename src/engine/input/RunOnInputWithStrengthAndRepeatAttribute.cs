@@ -28,6 +28,12 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
             // TODO: this isn't verified to work fine with mouse or controller inputs
             Strength = @event.GetActionStrength(InputName, false);
 
+            if (TrackInputMethod)
+            {
+                LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+                return CallMethod(Strength, LastUsedInputMethod);
+            }
+
             return CallMethod(Strength);
         }
 

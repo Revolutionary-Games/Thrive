@@ -317,7 +317,7 @@ public class PatchMap : ISaveLoadable
     ///   Returns all species on the map with > 0 population
     /// </summary>
     /// <returns>
-    ///     Non-Extinct creatures
+    ///   Non-Extinct creatures
     /// </returns>
     public List<Species> FindAllSpeciesWithPopulation()
     {

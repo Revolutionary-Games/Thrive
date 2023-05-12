@@ -6,6 +6,7 @@ using Godot;
 /// </summary>
 public class CustomCheckBox : Button
 {
+#pragma warning disable CA2213
     private Texture unpressedNormal = null!;
     private Texture unpressedHovered = null!;
     private Texture unpressedClicked = null!;
@@ -18,8 +19,14 @@ public class CustomCheckBox : Button
     private Texture radioPressedNormal = null!;
     private Texture radioPressedHovered = null!;
     private Texture radioPressedClicked = null!;
+#pragma warning restore CA2213
+
+    private Color normalColor;
+    private Color pressedColor;
+    private Color focusColor;
 
     private bool pressing;
+    private bool focused;
     private State currentState;
 
     private enum State
@@ -50,7 +57,28 @@ public class CustomCheckBox : Button
         radioPressedHovered = GetIcon("RadioPressedHovered", "CheckBox");
         radioPressedClicked = GetIcon("RadioPressedClicked", "CheckBox");
 
+        normalColor = GetColor("font_color");
+        focusColor = GetColor("font_color_focus");
+        pressedColor = GetColor("font_color_pressed");
+
         UpdateIcon();
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what is NotificationFocusEnter or NotificationFocusExit)
+        {
+            focused = what == NotificationFocusEnter;
+
+            // Update font colour based on focused state to make things more clear which box is focused (and more
+            // consistent with mouse hover)
+            AddColorOverride("font_color", focused ? focusColor : normalColor);
+            AddColorOverride("font_color_pressed", focused ? focusColor : pressedColor);
+
+            Update();
+        }
     }
 
     public override void _Draw()
@@ -64,9 +92,9 @@ public class CustomCheckBox : Button
             currentState = GetDrawMode() switch
             {
                 DrawMode.Disabled => State.Disabled,
-                DrawMode.Normal => State.UnpressedNormal,
+                DrawMode.Normal => focused ? State.UnpressedHovered : State.UnpressedNormal,
                 DrawMode.Hover => State.UnpressedHovered,
-                DrawMode.Pressed => State.PressedNormal,
+                DrawMode.Pressed => focused ? State.PressedHovered : State.PressedNormal,
                 DrawMode.HoverPressed => State.PressedHovered,
                 _ => throw new ArgumentOutOfRangeException(GetDrawMode().ToString()),
             };

@@ -13,6 +13,9 @@ public partial class CellBodyPlanEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
+    public NodePath? TabButtonsPath;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -58,6 +61,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
+#pragma warning disable CA2213
+
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
     private Button reproductionTabButton = null!;
@@ -91,6 +96,7 @@ public partial class CellBodyPlanEditorComponent :
     private PackedScene microbeScene = null!;
 
     private CellPopupMenu cellPopupMenu = null!;
+#pragma warning restore CA2213
 
     // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
     private List<Microbe> pendingScaleApplies = new();
@@ -145,6 +151,47 @@ public partial class CellBodyPlanEditorComponent :
         RegisterTooltips();
     }
 
+    public override void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        base.ResolveNodeReferences();
+
+        NodeReferencesResolved = true;
+
+        if (TabButtonsPath == null)
+            throw new MissingExportVariableValueException();
+
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
+        structureTab = GetNode<PanelContainer>(StructureTabPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
+
+        reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
+        reproductionTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReproductionTabButtonPath));
+
+        behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
+
+        cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
+
+        modifyTypeButton = GetNode<Button>(ModifyTypeButtonPath);
+
+        deleteTypeButton = GetNode<Button>(DeleteTypeButtonPath);
+
+        duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
+
+        cannotDeleteInUseTypeDialog = GetNode<CustomDialog>(CannotDeleteInUseTypeDialogPath);
+
+        duplicateCellTypeDialog = GetNode<CustomDialog>(DuplicateCellTypeDialogPath);
+
+        duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
+
+        cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
+    }
+
     public override void Init(EarlyMulticellularEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
@@ -181,39 +228,79 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCancelButtonVisibility();
     }
 
-    public override void ResolveNodeReferences()
+    public override void _Process(float delta)
     {
-        if (NodeReferencesResolved)
+        base._Process(delta);
+
+        if (!Visible)
             return;
 
-        base.ResolveNodeReferences();
+        var debugOverlay = DebugOverlays.Instance;
 
-        NodeReferencesResolved = true;
+        if (debugOverlay.PerformanceMetricsVisible)
+        {
+            var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
+            debugOverlay.ReportEntities(roughCount, 0);
+        }
 
-        structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(StructureTabButtonPath);
+        if (cellDataDirty)
+        {
+            OnCellsChanged();
+            cellDataDirty = false;
+        }
 
-        reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
-        reproductionTabButton = GetNode<Button>(ReproductionTabButtonPath);
+        foreach (var microbe in thisFrameScaleApplies)
+        {
+            // This check is here for simplicity's sake as model display nodes can be destroyed on subsequent frames
+            if (!IsInstanceValid(microbe))
+                continue;
 
-        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
-        behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+            // Scale is computed so that all the cells are the size of 1 hex when placed
+            // TODO: figure out why the extra multiplier to make things smaller is needed
+            microbe.OverrideScaleForPreview(1.0f / microbe.Radius * Constants.DEFAULT_HEX_SIZE *
+                Constants.MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER);
+        }
 
-        cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
+        thisFrameScaleApplies.Clear();
 
-        modifyTypeButton = GetNode<Button>(ModifyTypeButtonPath);
+        var tempList = thisFrameScaleApplies;
+        thisFrameScaleApplies = nextFrameScaleApplies;
+        nextFrameScaleApplies = pendingScaleApplies;
+        pendingScaleApplies = tempList;
 
-        deleteTypeButton = GetNode<Button>(DeleteTypeButtonPath);
+        // Show the cell that is about to be placed
+        if (activeActionName != null && Editor.ShowHover)
+        {
+            GetMouseHex(out int q, out int r);
 
-        duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
+            var effectiveSymmetry = Symmetry;
 
-        cannotDeleteInUseTypeDialog = GetNode<CustomDialog>(CannotDeleteInUseTypeDialogPath);
+            var cellType = CellTypeFromName(activeActionName);
 
-        duplicateCellTypeDialog = GetNode<CustomDialog>(DuplicateCellTypeDialogPath);
+            if (MovingPlacedHex == null)
+            {
+                // Can place stuff at all?
+                // TODO: should placementRotation be used here in some way?
+                isPlacementProbablyValid = IsValidPlacement(
+                    new HexWithData<CellTemplate>(new CellTemplate(cellType))
+                    {
+                        Position = new Hex(q, r),
+                    });
+            }
+            else
+            {
+                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
 
-        duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
+                if (!Settings.Instance.MoveOrganellesWithSymmetry)
+                    effectiveSymmetry = HexEditorSymmetry.None;
+            }
 
-        cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
+            RunWithSymmetry(q, r,
+                (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                effectiveSymmetry);
+        }
+
+        forceUpdateCellGraphics = false;
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -303,81 +390,6 @@ public partial class CellBodyPlanEditorComponent :
         editedSpecies.UpdateNameIfValid(newName);
 
         behaviourEditor.OnFinishEditing();
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        if (!Visible)
-            return;
-
-        var debugOverlay = DebugOverlays.Instance;
-
-        if (debugOverlay.PerformanceMetricsVisible)
-        {
-            var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(roughCount, 0);
-        }
-
-        if (cellDataDirty)
-        {
-            OnCellsChanged();
-            cellDataDirty = false;
-        }
-
-        foreach (var microbe in thisFrameScaleApplies)
-        {
-            // This check is here for simplicity's sake as model display nodes can be destroyed on subsequent frames
-            if (!IsInstanceValid(microbe))
-                continue;
-
-            // Scale is computed so that all the cells are the size of 1 hex when placed
-            // TODO: figure out why the extra multiplier to make things smaller is needed
-            microbe.OverrideScaleForPreview(1.0f / microbe.Radius * Constants.DEFAULT_HEX_SIZE *
-                Constants.MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER);
-        }
-
-        thisFrameScaleApplies.Clear();
-
-        var tempList = thisFrameScaleApplies;
-        thisFrameScaleApplies = nextFrameScaleApplies;
-        nextFrameScaleApplies = pendingScaleApplies;
-        pendingScaleApplies = tempList;
-
-        // Show the cell that is about to be placed
-        if (activeActionName != null && Editor.ShowHover)
-        {
-            GetMouseHex(out int q, out int r);
-
-            var effectiveSymmetry = Symmetry;
-
-            var cellType = CellTypeFromName(activeActionName);
-
-            if (MovingPlacedHex == null)
-            {
-                // Can place stuff at all?
-                // TODO: should placementRotation be used here in some way?
-                isPlacementProbablyValid = IsValidPlacement(
-                    new HexWithData<CellTemplate>(new CellTemplate(cellType))
-                    {
-                        Position = new Hex(q, r),
-                    });
-            }
-            else
-            {
-                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
-
-                if (!Settings.Instance.MoveOrganellesWithSymmetry)
-                    effectiveSymmetry = HexEditorSymmetry.None;
-            }
-
-            RunWithSymmetry(q, r,
-                (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
-                effectiveSymmetry);
-        }
-
-        forceUpdateCellGraphics = false;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -562,6 +574,33 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         return highestPointInMiddleRows;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TabButtonsPath != null)
+            {
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                ReproductionTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                ReproductionTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                CellTypeSelectionListPath.Dispose();
+                ModifyTypeButtonPath.Dispose();
+                DeleteTypeButtonPath.Dispose();
+                DuplicateTypeButtonPath.Dispose();
+                CannotDeleteInUseTypeDialogPath.Dispose();
+                DuplicateCellTypeDialogPath.Dispose();
+                DuplicateCellTypeNamePath.Dispose();
+                CellPopupMenuPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species)
@@ -1034,7 +1073,9 @@ public partial class CellBodyPlanEditorComponent :
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
-        duplicateCellTypeName.GrabFocus();
+        // This isn't absolutely necessary but makes the dialog open a bit nicer in that the same thing stays focused
+        // the entire time and doesn't change due to the focus grabber a tiny bit later
+        duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
         duplicateCellTypeName.CaretPosition = type.TypeName.Length;
     }

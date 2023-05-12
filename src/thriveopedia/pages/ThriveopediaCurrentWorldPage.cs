@@ -6,7 +6,7 @@
 public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 {
     [Export]
-    public NodePath DifficultyDetailsPath = null!;
+    public NodePath? DifficultyDetailsPath;
 
     [Export]
     public NodePath PlanetDetailsPath = null!;
@@ -14,9 +14,11 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     [Export]
     public NodePath MiscDetailsPath = null!;
 
+#pragma warning disable CA2213
     private RichTextLabel difficultyDetails = null!;
     private RichTextLabel planetDetails = null!;
     private RichTextLabel miscDetails = null!;
+#pragma warning restore CA2213
 
     public override string PageName => "CurrentWorld";
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE");
@@ -50,5 +52,25 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 
     public override void OnNavigationPanelSizeChanged(bool collapsed)
     {
+    }
+
+    public override void OnTranslationChanged()
+    {
+        UpdateCurrentWorldDetails();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (DifficultyDetailsPath != null)
+            {
+                DifficultyDetailsPath.Dispose();
+                PlanetDetailsPath.Dispose();
+                MiscDetailsPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 }

@@ -122,6 +122,8 @@ public partial class CellEditorComponent
 
             // Organelle placement *might* affect auto-evo in the future so this is here for that reason
             StartAutoEvoPrediction();
+
+            UpdateStats();
         }
         else
         {
@@ -140,6 +142,7 @@ public partial class CellEditorComponent
 
         UpdateAlreadyPlacedVisuals();
         StartAutoEvoPrediction();
+        UpdateStats();
 
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
@@ -203,8 +206,7 @@ public partial class CellEditorComponent
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane,
-            previewBiomeConditions);
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
@@ -225,8 +227,7 @@ public partial class CellEditorComponent
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane,
-            previewBiomeConditions);
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
@@ -269,6 +270,34 @@ public partial class CellEditorComponent
     {
         Colour = data.PreviousColour;
         OnColourChanged();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
+    {
+        data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
+
+        // Uncomment when upgrades can visually affect the cell
+        // UpdateAlreadyPlacedVisuals();
+
+        UpdateStats();
+
+        // Organelle upgrades will in the future affect auto-evo
+        StartAutoEvoPrediction();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
+    {
+        data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
+
+        // Uncomment when upgrades can visually affect the cell
+        // UpdateAlreadyPlacedVisuals();
+
+        UpdateStats();
+
+        // Organelle upgrades will in the future affect auto-evo
+        StartAutoEvoPrediction();
     }
 
     /// <summary>

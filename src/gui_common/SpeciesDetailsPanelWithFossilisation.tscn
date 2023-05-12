@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/SpeciesDetailsPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=6]
+
+[node name="SpeciesDetailsPanelWithFossilisation" type="VBoxContainer"]
+margin_right = 352.0
+margin_bottom = 598.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+SpeciesDetailsPanelPath = NodePath("SpeciesDetailsPanel")
+FossilisationButtonPath = NodePath("FossiliseButton")
+FossilisationDialogPath = NodePath("FossilisationDialog")
+
+[node name="SpeciesDetailsPanel" parent="." instance=ExtResource( 2 )]
+
+[node name="FossiliseButton" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 566.0
+margin_right = 223.0
+margin_bottom = 598.0
+focus_mode = 0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 4 )
+disabled = true
+enabled_focus_mode = 0
+text = "FOSSILISE"
+
+[node name="FossilisationDialog" parent="." instance=ExtResource( 6 )]
+margin_top = 340.0
+margin_bottom = 760.0
+
+[connection signal="pressed" from="FossiliseButton" to="." method="OnFossilisePressed"]

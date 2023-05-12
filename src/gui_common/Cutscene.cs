@@ -5,7 +5,9 @@
 /// </summary>
 public class Cutscene : Control, ITransition
 {
+#pragma warning disable CA2213
     private VideoPlayer? cutsceneVideoPlayer;
+#pragma warning restore CA2213
 
     private VideoStream? stream;
     private float volume;

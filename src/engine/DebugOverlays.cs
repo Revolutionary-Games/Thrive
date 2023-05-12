@@ -7,10 +7,16 @@
 public partial class DebugOverlays : Control
 {
     [Export]
+    public NodePath? DebugCoordinatesPath;
+
+    [Export]
     public NodePath FPSCheckBoxPath = null!;
 
     [Export]
     public NodePath PerformanceMetricsCheckBoxPath = null!;
+
+    [Export]
+    public NodePath InspectorCheckboxPath = null!;
 
     [Export]
     public NodePath DebugPanelDialogPath = null!;
@@ -24,14 +30,24 @@ public partial class DebugOverlays : Control
     [Export]
     public NodePath EntityLabelsPath = null!;
 
+    [Export]
+    public NodePath InspectorDialogPath = null!;
+
     private static DebugOverlays? instance;
 
+#pragma warning disable CA2213
+    private Label debugCoordinates = null!;
+    private CustomDialog inspectorDialog = null!;
     private CustomDialog debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
+    private CustomCheckBox inspectorCheckbox = null!;
     private Control fpsCounter = null!;
     private CustomDialog performanceMetrics = null!;
     private Control labelsLayer = null!;
+#pragma warning restore CA2213
+
+    private Rect2? reportedViewportSize;
 
     private DebugOverlays()
     {
@@ -39,6 +55,26 @@ public partial class DebugOverlays : Control
     }
 
     public static DebugOverlays Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        debugCoordinates = GetNode<Label>(DebugCoordinatesPath);
+        inspectorDialog = GetNode<CustomDialog>(InspectorDialogPath);
+        inspectorCheckbox = GetNode<CustomCheckBox>(InspectorCheckboxPath);
+        fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
+        performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
+        debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
+        fpsCounter = GetNode<Control>(FPSCounterPath);
+        performanceMetrics = GetNode<CustomDialog>(PerformanceMetricsPath);
+        labelsLayer = GetNode<Control>(EntityLabelsPath);
+        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
+        fpsLabel = GetNode<Label>(FPSLabelPath);
+        deltaLabel = GetNode<Label>(DeltaLabelPath);
+        metricsText = GetNode<Label>(MetricsTextPath);
+        fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
+    }
 
     public override void _EnterTree()
     {
@@ -55,26 +91,12 @@ public partial class DebugOverlays : Control
         InputManager.UnregisterReceiver(this);
     }
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
-        performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
-        debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
-        fpsCounter = GetNode<Control>(FPSCounterPath);
-        performanceMetrics = GetNode<CustomDialog>(PerformanceMetricsPath);
-        labelsLayer = GetNode<Control>(EntityLabelsPath);
-        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
-        fpsLabel = GetNode<Label>(FPSLabelPath);
-        deltaLabel = GetNode<Label>(DeltaLabelPath);
-        metricsText = GetNode<Label>(MetricsTextPath);
-        fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);
+
+        if (inspectorDialog.Visible)
+            UpdateInspector();
 
         // Entity label
         if (showEntityLabels)
@@ -87,6 +109,17 @@ public partial class DebugOverlays : Control
         // FPS counter
         if (fpsCounter.Visible)
             UpdateFPS();
+
+        // Parts of the game that aren't the GUI may want to know the actual logical size of our window (for example to
+        // check mouse coordinates), so this seems like a sensible place to do that as there's no longer a general
+        // overlay manager class
+        var size = GetViewportRect();
+
+        if (reportedViewportSize != size)
+        {
+            GUICommon.Instance.ReportViewportRect(size);
+            reportedViewportSize = size;
+        }
     }
 
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
@@ -112,6 +145,32 @@ public partial class DebugOverlays : Control
     public void OnFpsToggled()
     {
         fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (DebugCoordinatesPath != null)
+            {
+                DebugCoordinatesPath.Dispose();
+                FPSCheckBoxPath.Dispose();
+                FPSLabelPath.Dispose();
+                DeltaLabelPath.Dispose();
+                MetricsTextPath.Dispose();
+                InspectorDialogPath.Dispose();
+
+                PerformanceMetricsCheckBoxPath.Dispose();
+                InspectorCheckboxPath.Dispose();
+                DebugPanelDialogPath.Dispose();
+                FPSCounterPath.Dispose();
+                PerformanceMetricsPath.Dispose();
+                EntityLabelsPath.Dispose();
+                FPSDisplayLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)

@@ -46,7 +46,7 @@
             // Only assign engulf score if one can actually engulf
             var engulfScore = 0.0f;
             if (microbeSpeciesHexSize / preyHexSize >
-                Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
+                Constants.ENGULF_SIZE_RATIO_REQ && microbeSpecies.CanEngulf)
             {
                 // Catch scores grossly accounts for how many preys you catch in a run;
                 var catchScore = 0.0f;

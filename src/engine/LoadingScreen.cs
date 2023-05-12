@@ -7,7 +7,7 @@ using Godot;
 public class LoadingScreen : Control
 {
     [Export]
-    public NodePath ArtworkPath = null!;
+    public NodePath? ArtworkPath;
 
     [Export]
     public NodePath ArtDescriptionPath = null!;
@@ -37,6 +37,7 @@ public class LoadingScreen : Control
 
     private readonly Random random = new();
 
+#pragma warning disable CA2213
     private CrossFadableTextureRect artworkRect = null!;
     private Label? artDescriptionLabel;
     private Label? loadingMessageLabel;
@@ -44,9 +45,10 @@ public class LoadingScreen : Control
     private CustomRichTextLabel? tipLabel;
     private Control spinner = null!;
 
-    private bool wasVisible;
-
     private Timer randomizeTimer = null!;
+#pragma warning restore CA2213
+
+    private bool wasVisible;
 
     private string? loadingMessage;
     private string? tip;
@@ -141,6 +143,26 @@ public class LoadingScreen : Control
         Hide();
     }
 
+    public override void _Process(float delta)
+    {
+        // Only elapse passed time if this is visible
+        if (!Visible)
+        {
+            if (wasVisible)
+            {
+                wasVisible = false;
+                randomizeTimer.Stop();
+            }
+
+            return;
+        }
+
+        // Spin the spinner
+        totalElapsed += delta;
+
+        spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+    }
+
     /// <summary>
     ///   Shows this and updates the shown messages. If this just became visible also loads new art and tip
     /// </summary>
@@ -188,28 +210,23 @@ public class LoadingScreen : Control
         ArtDescription = artwork.BuildDescription(true);
     }
 
-    public override void _Process(float delta)
+    protected override void Dispose(bool disposing)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        // Only elapse passed time if this is visible
-        if (!Visible)
+        if (disposing)
         {
-            if (wasVisible)
+            if (ArtworkPath != null)
             {
-                wasVisible = false;
-                randomizeTimer.Stop();
+                ArtworkPath.Dispose();
+                ArtDescriptionPath.Dispose();
+                LoadingMessagePath.Dispose();
+                LoadingDescriptionPath.Dispose();
+                TipLabelPath.Dispose();
+                RandomizeTimerPath.Dispose();
+                SpinnerPath.Dispose();
             }
-
-            return;
         }
 
-        // Spin the spinner
-        totalElapsed += delta;
-
-        spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+        base.Dispose(disposing);
     }
 
     private void OnBecomeVisible()

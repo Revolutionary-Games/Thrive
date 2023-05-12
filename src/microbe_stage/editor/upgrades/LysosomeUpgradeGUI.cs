@@ -4,16 +4,17 @@ using Godot;
 public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
-    public NodePath EnzymesPath = null!;
+    public NodePath? EnzymesPath;
 
     [Export]
     public NodePath EnzymeDescriptionPath = null!;
 
+#pragma warning disable CA2213
     private OptionButton enzymes = null!;
     private Label description = null!;
+#pragma warning restore CA2213
 
     private List<Enzyme>? shownChoices;
-    private OrganelleTemplate? storedOrganelle;
 
     public override void _Ready()
     {
@@ -25,7 +26,6 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void OnStartFor(OrganelleTemplate organelle)
     {
-        storedOrganelle = organelle;
         shownChoices = SimulationParameters.Instance.GetHydrolyticEnzymes();
 
         foreach (var enzyme in shownChoices)
@@ -53,25 +53,39 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         UpdateDescription();
     }
 
-    public void ApplyChanges(ICellEditorData editor)
+    public bool ApplyChanges(ICellEditorComponent editorComponent, OrganelleUpgrades organelleUpgrades)
     {
-        if (storedOrganelle == null || shownChoices == null)
+        if (shownChoices == null)
         {
             GD.PrintErr("Lysosome upgrade GUI was not opened properly");
-            return;
+            return false;
         }
 
         // Force some compound to be selected
         if (enzymes.Selected == -1)
             enzymes.Selected = 0;
 
-        // TODO: make an undoable action
-        storedOrganelle.SetCustomUpgradeObject(new LysosomeUpgrades(shownChoices[enzymes.Selected]));
+        organelleUpgrades.CustomUpgradeData = new LysosomeUpgrades(shownChoices[enzymes.Selected]);
+        return true;
     }
 
     public Vector2 GetMinDialogSize()
     {
         return new Vector2(420, 135);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (EnzymesPath != null)
+            {
+                EnzymesPath.Dispose();
+                EnzymeDescriptionPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnEnzymeSelected(int index)

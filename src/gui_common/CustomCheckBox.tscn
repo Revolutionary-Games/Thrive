@@ -17,22 +17,20 @@
 [node name="CheckBox" type="Button"]
 margin_right = 10.0
 theme = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.670588, 0.670588, 0.670588, 1 )
+custom_colors/font_color_focus = Color( 0.466667, 0.670588, 0.709804, 1 )
+custom_colors/font_color = Color( 0.901961, 0.901961, 0.901961, 1 )
+custom_colors/font_color_hover = Color( 0.717647, 0.847059, 0.870588, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_constants/hseparation = 5
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_colors/font_color_disabled = Color( 0.901961, 0.901961, 0.901961, 1 )
-custom_colors/font_color = Color( 0.901961, 0.901961, 0.901961, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_constants/hseparation = 5
 toggle_mode = true
 shortcut_in_tooltip = false
 icon = ExtResource( 3 )
 flat = true
 align = 0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

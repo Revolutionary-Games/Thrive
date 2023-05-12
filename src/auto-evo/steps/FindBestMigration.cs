@@ -46,7 +46,7 @@
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
-            PopulationSimulation.Simulate(config, cache);
+            PopulationSimulation.Simulate(config, cache, random);
 
             var population = config.Results.GetGlobalPopulation(species);
 
@@ -74,7 +74,7 @@
             // (assuming in the future no global effects of migrations are added, which would need a full patch map
             // simulation anyway). However that would need to take into account that the no-migration variant,
             // as it simulates all patches, would always result in higher populations
-            PopulationSimulation.Simulate(config, cache);
+            PopulationSimulation.Simulate(config, cache, random);
 
             var population = config.Results.GetGlobalPopulation(species);
 

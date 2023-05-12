@@ -15,11 +15,6 @@ public class TweakedProcess : ICloneable
 
     public BioProcess Process { get; }
 
-    public object Clone()
-    {
-        return new TweakedProcess(Process, Rate);
-    }
-
     public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj))
@@ -30,6 +25,11 @@ public class TweakedProcess : ICloneable
             return Equals(casted);
 
         return false;
+    }
+
+    public object Clone()
+    {
+        return new TweakedProcess(Process, Rate);
     }
 
     public override int GetHashCode()

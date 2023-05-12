@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/thriveopedia/Thriveopedia.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/navigationButtonHover.png" type="Texture" id=23]
 [ext_resource path="res://assets/textures/gui/bevel/navigationButtonActive.png" type="Texture" id=24]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Big.tres" type="DynamicFont" id=25]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=26]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Collapse"
@@ -195,9 +196,12 @@ margin_right = 35.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "TOGGLE_NAVIGATION_TREE"
+focus_neighbour_right = NodePath("../BackButton")
+focus_next = NodePath("../BackButton")
 texture_normal = ExtResource( 22 )
 texture_pressed = ExtResource( 24 )
 texture_hover = ExtResource( 23 )
+texture_focused = ExtResource( 23 )
 expand = true
 
 [node name="SearchButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -205,11 +209,13 @@ margin_left = 39.0
 margin_right = 74.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
+focus_mode = 0
 disabled = true
 texture_normal = ExtResource( 17 )
 texture_pressed = ExtResource( 15 )
 texture_hover = ExtResource( 16 )
 texture_disabled = ExtResource( 18 )
+texture_focused = ExtResource( 16 )
 expand = true
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -224,12 +230,17 @@ margin_right = 152.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "PAGE_BACK"
-focus_mode = 0
+focus_neighbour_left = NodePath("../CollapseTreeButton")
+focus_neighbour_right = NodePath("../ForwardButton")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/PageTree")
+focus_next = NodePath("../ForwardButton")
+focus_previous = NodePath("../CollapseTreeButton")
 disabled = true
 texture_normal = ExtResource( 11 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 13 )
 texture_disabled = ExtResource( 8 )
+texture_focused = ExtResource( 13 )
 expand = true
 
 [node name="ForwardButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -238,12 +249,17 @@ margin_right = 191.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "PAGE_FORWARD"
-focus_mode = 0
+focus_neighbour_left = NodePath("../BackButton")
+focus_neighbour_right = NodePath("../HomeButton")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/PageTree")
+focus_next = NodePath("../HomeButton")
+focus_previous = NodePath("../BackButton")
 disabled = true
 texture_normal = ExtResource( 12 )
 texture_pressed = ExtResource( 14 )
 texture_hover = ExtResource( 10 )
 texture_disabled = ExtResource( 9 )
+texture_focused = ExtResource( 10 )
 expand = true
 
 [node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -252,9 +268,15 @@ margin_right = 230.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "HOME"
+focus_neighbour_left = NodePath("../ForwardButton")
+focus_neighbour_right = NodePath("../CloseButton")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/PageTree")
+focus_next = NodePath("../CloseButton")
+focus_previous = NodePath("../ForwardButton")
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
 expand = true
 
 [node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -272,11 +294,18 @@ custom_fonts/font = ExtResource( 25 )
 text = "PAGE_TITLE"
 align = 1
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 382.0
-margin_right = 1211.0
+margin_right = 1207.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
+
+[node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource( 26 )]
+margin_left = 1211.0
+margin_right = 1211.0
+margin_bottom = 35.0
+Priority = 2
+NodeToGiveFocusTo = NodePath("../CloseButton")
 
 [node name="CloseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 1215.0
@@ -284,9 +313,12 @@ margin_right = 1250.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "CLOSE"
+focus_neighbour_left = NodePath("../HomeButton")
+focus_previous = NodePath("../HomeButton")
 texture_normal = ExtResource( 19 )
 texture_pressed = ExtResource( 21 )
 texture_hover = ExtResource( 20 )
+texture_focused = ExtResource( 20 )
 expand = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

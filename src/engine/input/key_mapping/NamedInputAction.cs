@@ -6,16 +6,16 @@ using Newtonsoft.Json;
 /// </summary>
 public class NamedInputAction : IRegistryType
 {
-#pragma warning disable 169 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169
+#pragma warning restore 169,649
 
     public string InputName { get; set; } = null!;
 
     /// <summary>
     ///   The user readable name
     /// </summary>
-    [TranslateFrom("untranslatedName")]
+    [TranslateFrom(nameof(untranslatedName))]
     public string Name { get; set; } = null!;
 
     [JsonIgnore]

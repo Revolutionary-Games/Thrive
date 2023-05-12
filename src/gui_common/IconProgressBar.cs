@@ -12,9 +12,11 @@ public class IconProgressBar : ColorRect
 
     private bool highlighted;
 
+#pragma warning disable CA2213
     private TextureRect icon = null!;
 
     private ColorRect highlight = null!;
+#pragma warning restore CA2213
 
     public Vector2 BarSize
     {

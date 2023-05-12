@@ -4,13 +4,10 @@ using Godot;
 public class RadialPopup : CustomDialog
 {
     [Export]
-    public NodePath RadialPath = null!;
+    public NodePath? RadialPath;
 
     [Signal]
     public delegate void OnItemSelected(int itemId);
-
-    [Signal]
-    public delegate void OnCanceled(int itemId);
 
     public RadialMenu Radial { get; private set; } = null!;
 
@@ -41,7 +38,7 @@ public class RadialPopup : CustomDialog
 
     public void ShowWithItems(IEnumerable<(string Text, int Id)> items)
     {
-        Popup_();
+        Open();
         Radial.ShowWithItems(items);
     }
 
@@ -55,15 +52,26 @@ public class RadialPopup : CustomDialog
         return true;
     }
 
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        EmitSignal(nameof(Cancelled));
+        Radial.Visible = false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            RadialPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void ForwardSelected(int itemId)
     {
         EmitSignal(nameof(OnItemSelected), itemId);
         Hide();
-    }
-
-    private void OnClosed()
-    {
-        EmitSignal(nameof(OnCanceled));
-        Radial.Visible = false;
     }
 }

@@ -7,24 +7,46 @@ using Newtonsoft.Json;
 ///   Manages the multicellular HUD scene
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class MulticellularHUD : StageHUDBase<MulticellularStage>
+public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 {
     [Export]
-    public NodePath MoveToLandPopupPath = null!;
+    public NodePath? MoveToLandPopupPath;
 
     [Export]
     public NodePath ToLandButtonPath = null!;
 
     [Export]
-    public NodePath AwareButtonPath = null!;
-
-    [Export]
     public NodePath AwakenButtonPath = null!;
 
+    [Export]
+    public NodePath AwakenConfirmPopupPath = null!;
+
+    [Export]
+    public NodePath InteractActionPath = null!;
+
+    [Export]
+    public NodePath InventoryButtonPath = null!;
+
+    [Export]
+    public NodePath BuildButtonPath = null!;
+
+    [Export]
+    public NodePath InventoryScreenPath = null!;
+
+#pragma warning disable CA2213
     private CustomDialog moveToLandPopup = null!;
     private Button toLandButton = null!;
-    private Button awareButton = null!;
     private Button awakenButton = null!;
+    private CustomDialog awakenConfirmPopup = null!;
+
+    private ActionButton interactAction = null!;
+    private ActionButton inventoryButton = null!;
+    private ActionButton buildButton = null!;
+
+    private InventoryScreen inventoryScreen = null!;
+#pragma warning restore CA2213
+
+    private float? lastBrainPower;
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
@@ -32,6 +54,18 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     [Signal]
     public new delegate void OnOpenMenuToHelp();
+
+    [Signal]
+    public delegate void OnInteractButtonPressed();
+
+    [Signal]
+    public delegate void OnOpenInventoryPressed();
+
+    [Signal]
+    public delegate void OnOpenBuildPressed();
+
+    [JsonIgnore]
+    public bool IsInventoryOpen => inventoryScreen.IsOpen;
 
     protected override string? UnPauseHelpText => null;
 
@@ -41,11 +75,14 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
         moveToLandPopup = GetNode<CustomDialog>(MoveToLandPopupPath);
         toLandButton = GetNode<Button>(ToLandButtonPath);
-        awareButton = GetNode<Button>(AwareButtonPath);
         awakenButton = GetNode<Button>(AwakenButtonPath);
+        awakenConfirmPopup = GetNode<CustomDialog>(AwakenConfirmPopupPath);
 
-        // TODO: implement this button
-        toLandButton.Disabled = true;
+        interactAction = GetNode<ActionButton>(InteractActionPath);
+        inventoryButton = GetNode<ActionButton>(InventoryButtonPath);
+        buildButton = GetNode<ActionButton>(BuildButtonPath);
+
+        inventoryScreen = GetNode<InventoryScreen>(InventoryScreenPath);
     }
 
     public override void _Process(float delta)
@@ -57,18 +94,45 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
         if (stage.HasPlayer)
         {
-            UpdateAwareButton(stage.Player!);
             UpdateAwakenButton(stage.Player!);
+
+            // If the player is already in the awakening stage they can't move to land anymore
+            if (stage.Player!.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+            {
+                toLandButton.Visible = false;
+            }
+            else
+            {
+                // Hide the land button when already on the land in the prototype
+                toLandButton.Visible = stage.Player!.MovementMode == MovementMode.Swimming;
+            }
         }
         else
         {
-            awareButton.Visible = false;
             awakenButton.Visible = false;
+            toLandButton.Visible = false;
         }
     }
 
     public override void ShowFossilisationButtons()
     {
+    }
+
+    public void OpenInventory(MulticellularCreature creature, IEnumerable<IInteractableEntity> groundObjects,
+        bool playerTechnologies = true)
+    {
+        inventoryScreen.OpenInventory(creature, playerTechnologies ? stage!.CurrentGame!.TechWeb : null);
+        inventoryScreen.UpdateGroundItems(groundObjects);
+    }
+
+    public void CloseInventory()
+    {
+        inventoryScreen.Close();
+    }
+
+    public void SelectItemForCrafting(IInteractableEntity target)
+    {
+        inventoryScreen.AddItemToCrafting(target);
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -125,54 +189,124 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         return stage!.Player!.ProcessStatistics;
     }
 
-    protected override IEnumerable<(bool Player, Species Species)> GetHoveredSpecies()
+    protected override void UpdateHoverInfo(float delta)
     {
-        // TODO: implement nearby species
-        return Array.Empty<(bool Player, Species Species)>();
-    }
-
-    protected override IReadOnlyDictionary<Compound, float> GetHoveredCompounds()
-    {
-        // TODO: implement nearby compounds
-        return new Dictionary<Compound, float>();
-    }
-
-    protected override string GetMouseHoverCoordinateText()
-    {
-        // TODO: get world point for cursor
-        throw new NotImplementedException();
+        // TODO: implement looked at entities
     }
 
     protected override void UpdateAbilitiesHotBar()
     {
+        // This button is visible when the player is in the awakening stage
+        bool isAwakened = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
+        interactAction.Visible = isAwakened;
+        inventoryButton.Visible = isAwakened;
+        buildButton.Visible = isAwakened;
+
+        // TODO: figure out why this doesn't display correctly in the UI
+        inventoryButton.Pressed = IsInventoryOpen;
     }
 
-    private void UpdateAwareButton(MulticellularCreature player)
+    protected override void Dispose(bool disposing)
     {
-        // TODO: condition
-        awakenButton.Visible = true;
-        awakenButton.Disabled = true;
+        if (disposing)
+        {
+            if (MoveToLandPopupPath != null)
+            {
+                MoveToLandPopupPath.Dispose();
+                ToLandButtonPath.Dispose();
+                AwakenButtonPath.Dispose();
+                AwakenConfirmPopupPath.Dispose();
+                InteractActionPath.Dispose();
+                InventoryButtonPath.Dispose();
+                BuildButtonPath.Dispose();
+                InventoryScreenPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
-    private void OnBecomeAwarePressed()
+    private void OnMoveToLandPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // TODO: aware stage not done yet
-        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
+        moveToLandPopup.PopupCenteredShrink();
+
+        // TODO: make the cursor visible while this popup is open
+    }
+
+    private void OnMoveToLandConfirmed()
+    {
+        if (stage?.Player == null)
+        {
+            GD.Print("Player is missing to move to land");
+            return;
+        }
+
+        GD.Print("Moving player to land");
+
+        toLandButton.Disabled = true;
+
+        EnsureGameIsUnpausedForEditor();
+
+        // TODO: this is entirely placeholder feature
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.TeleportToLand, false);
     }
 
     private void OnAwakenPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // TODO: awakening stage not done yet
-        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
+        awakenConfirmPopup.PopupCenteredShrink();
+
+        // TODO: make the cursor visible while this popup is open
     }
 
     private void UpdateAwakenButton(MulticellularCreature player)
     {
-        // TODO: condition
-        awakenButton.Visible = false;
+        if (player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+        {
+            awakenButton.Visible = false;
+            return;
+        }
+
+        float brainPower = player.Species.BrainPower;
+
+        // TODO: require being ready to reproduce? Or do we want the player first to play as an awakened creature
+        // before getting to the editor where they can still make some changes?
+
+        // Doesn't matter as this is just for updating the GUI
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (lastBrainPower == brainPower)
+            return;
+
+        lastBrainPower = brainPower;
+
+        var limit = Constants.BRAIN_POWER_REQUIRED_FOR_AWAKENING;
+
+        awakenButton.Disabled = brainPower < limit;
+        awakenButton.Text = TranslationServer.Translate("ACTION_AWAKEN").FormatSafe(brainPower, limit);
+    }
+
+    private void OnAwakenConfirmed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        stage!.MoveToAwakeningStage();
+    }
+
+    private void ForwardInteractButton()
+    {
+        EmitSignal(nameof(OnInteractButtonPressed));
+    }
+
+    private void ForwardOpenInventory()
+    {
+        EmitSignal(nameof(OnOpenInventoryPressed));
+    }
+
+    private void ForwardBuildPressed()
+    {
+        EmitSignal(nameof(OnOpenBuildPressed));
     }
 }

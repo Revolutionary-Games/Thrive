@@ -44,6 +44,7 @@ Code style rules
   - `rot`
   - `str`
   - `rect` (when related to class names and variables holding instances of those classes)
+  - `tech` (short for technology)
 
 - Variables and functions are camelCase or PascalCase depending on
   their visibility. Classes are PascalCase with leading upper
@@ -317,6 +318,7 @@ Code style rules
 - When trying to save dynamic type objects, the base type that is used in
   the containing object (even if it is an interface) needs to specify the
   thrive serializer using `[UseThriveSerializer]` attribute.
+  For more information see [saving_system.md](saving_system.md).
 
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it
@@ -337,11 +339,6 @@ Code style rules
 - Continuous Integration (CI) will check if the formatting scripts and
   tools find some problems in your code. You should fix these if your
   pull request (PR) fails the CI build.
-
-- Ruby files should be named with snake_case. When intended as
-  runnable scripts they need to begin with a shebang and be marked
-  executable. RuboCop rules should be followed in ruby
-  files. `snake_case` is used for variable and function names.
 
 - You should familiarize yourself with the codebase at least somewhat
   so that you can use similar approaches in new code as is used in
@@ -364,6 +361,9 @@ Code style rules
 
 Godot usage
 -----------
+
+- GUIs need to be usable with the mouse and a controller. See
+  [making_guis.md](making_guis.md).
 
 - Do not use Control margins to try to position elements, that's not good
   Godot usage. Use proper parent container and min size instead.
@@ -418,11 +418,60 @@ Godot usage
 - To remove all children of a Node use `FreeChildren` or
   `QueueFreeChildren` extension methods.
 
-- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or `Free`
-  instead. Also don't override Dispose in Node derived types, instead
-  use the tree enter and exit callbacks to handle resources that need
-  releasing when removed (unless it is a game entity for which there's
-  a special mechanism, `IEntity` destroyed callbacks)
+- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or
+  `Free` instead. Also don't override Dispose in Node derived types to
+  detect when the Node is removed, instead use the tree enter and exit
+  callbacks to handle resources that need releasing when removed
+  (unless it is a game entity for which there's a special mechanism,
+  `IEntity` destroyed callbacks)
+
+- DO NOT DISPOSE `GD.Load<T>` loaded resources. Any calls with the
+  same resource path will result in the same object instance being
+  returned. So it is not safe to dispose as other users may still be
+  using it.
+
+- For scene attached Nodes, they do not need to be manually freed or
+  disposed. Godot will automatically free them along with the parent.
+
+- `NodePath` variables should be disposed as they aren't part of the
+  scene tree or Godot properties it likely knows about. So disposing
+  those variables will speed up their clearing.
+
+- Automatic code checks will complain about `CA2213` due to the above.
+  For the above cases use `#pragma warning disable CA2213` and
+  `#pragma warning restore CA2213` around the block of variables to
+  suppress the warning. The warning is not globally suppressed as
+  non-Godot objects should still be disposed according to good style
+  so the warning helps in catching these cases. For example many
+  standard C# classes need to be disposed and for those objects, even
+  when they are held by Godot objects, custom dispose methods should
+  be implemented.
+
+- For most Godot-derived types a `Dispose` method just needs to be
+  added to dispose any `NodePath` variables. Note that Godot sometimes
+  creates partly initialized objects (for example autoloads, when
+  loading saves, and objects that Godot editor creates
+  internally). For that reason the `Dispose` method needs to work even
+  with those partly initialized objects. To take this into account the
+  `Dispose` method should check that the `Export` variables are set
+  (the first `NodePath` variable needs to be set nullable) like this:
+
+```c#
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (FirstControlPath != null)
+            {
+                FirstControlPath.Dispose();
+                SecondControlPath.Dispose();
+                ThirdControlPathAndSoOn.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+```
 
 - Avoid using a constructor to setup Godot resources, usually Node
   derived types should mostly do Godot Node related, constructor-like
@@ -491,7 +540,7 @@ Godot usage
 - We have rewritten several controls to workaround Godot bugs or limitations,
   and add custom features. All these rewritten/customized controls are placed
   in "res://src/gui_common/". Currently there are `CustomCheckBox`,
-  `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
+  `CustomWindow`, `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
   `TweakedColourPicker`. Consider using these custom types rather than the
   built-in types to ensure consistency across the GUI.
@@ -513,12 +562,15 @@ Godot usage
   (`?`). The content of the popup should give more details and also
   end with a question.
 
-- Popups should be shown with `PopupCenteredShrink()`. If size
-  shrinking is not desired, `PopupCentered()` should be used
-  instead. Unless there's a good reason why something else is
-  required, prefer to use either of them. Don't use `Popup_` prefer to
-  use `Show` or `ShowModal` only if those both don't work then you can
-  consider using `Popup_`.
+- Popups (which derives from `CustomWindow`) should be shown with
+  `PopupCenteredShrink()`. However, if you don't wish to center the popup,
+  simply use `CustomWindow.OpenModal()`.
+
+- Using built-in `Popup` is not recommended since a custom one tailored
+  for the game already exist but for posterity similar rules in
+  the above point still stands. In addition, don't use `Popup.Popup_`,
+  instead prefer to use `Popup.Show` or `Popup.ShowModal`, only if those
+  don't work then you can consider using `Popup.Popup_`.
 
 - Don't use `Godot.Color(string)` constructor, unless explicitly
   needed. An explicit need is for example loading from JSON or from

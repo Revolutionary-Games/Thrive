@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -77,6 +78,9 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
 
     [JsonIgnore]
+    public bool CanEngulf => !MembraneType.CellWall;
+
+    [JsonIgnore]
     public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
 
     public override void OnEdited()
@@ -98,45 +102,51 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
     }
 
-    public void SetInitialCompoundsForDefault()
-    {
-        InitialCompounds.Clear();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("atp"), 30);
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("glucose"), 10);
-    }
-
-    public void SetInitialCompoundsForIron()
-    {
-        SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("iron"), 10);
-    }
-
-    public void SetInitialCompoundsForChemo()
-    {
-        SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 10);
-    }
-
     public override void UpdateInitialCompounds()
     {
-        var simulation = SimulationParameters.Instance;
+        // Since the initial compounds are only set once per species they can't be calculated for each Biome.
+        // So, the compound balance calculation uses the default biome.
+        // Also we should not overtly punish photosynthesizers so we just use the consumption here (instead of
+        // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
+        // which could basically make them die instantly in certain situations)
+        var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
+        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
+            biomeConditions, CompoundAmountType.Biome);
 
-        var rusticyanin = simulation.GetOrganelleType("rusticyanin");
-        var chemo = simulation.GetOrganelleType("chemoplast");
-        var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
+        var glucose = SimulationParameters.Instance.GetCompound("glucose");
+        var atp = SimulationParameters.Instance.GetCompound("atp");
+        bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
-        if (Organelles.Any(o => o.Definition == rusticyanin))
+        var cachedCapacity = StorageCapacity;
+
+        InitialCompounds.Clear();
+
+        foreach (var compoundBalance in compoundBalances)
         {
-            SetInitialCompoundsForIron();
-        }
-        else if (Organelles.Any(o => o.Definition == chemo ||
-                     o.Definition == chemoProtein))
-        {
-            SetInitialCompoundsForChemo();
-        }
-        else
-        {
-            SetInitialCompoundsForDefault();
+            // Skip ATP as it we don't want to give any initial ATP
+            if (compoundBalance.Key == atp)
+                continue;
+
+            if (compoundBalance.Key == glucose && giveBonusGlucose)
+            {
+                InitialCompounds.Add(compoundBalance.Key, cachedCapacity);
+                continue;
+            }
+
+            var balanceValue = compoundBalance.Value;
+
+            // Skip compounds there's no consumption for (from processes)
+            if (balanceValue.Consumption.Count < 1)
+                continue;
+
+            // Initial compounds should suffice for a fixed amount of time of consumption.
+            var compoundInitialAmount =
+                Math.Abs(balanceValue.Consumption.SumValues()) * Constants.INITIAL_COMPOUND_TIME;
+
+            if (compoundInitialAmount > cachedCapacity)
+                compoundInitialAmount = cachedCapacity;
+
+            InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
     }
 
@@ -158,6 +168,23 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         MembraneRigidity = casted.MembraneRigidity;
     }
 
+    public void ApplySceneParameters(Spatial instancedScene)
+    {
+        var microbe = (Microbe)instancedScene;
+        microbe.IsForPreviewOnly = true;
+
+        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
+        microbe._Ready();
+
+        microbe.ApplySpecies(this);
+    }
+
+    public float CalculatePhotographDistance(Spatial instancedScene)
+    {
+        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
+            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+    }
+
     public override object Clone()
     {
         var result = new MicrobeSpecies(ID, Genus, Epithet);
@@ -174,17 +201,6 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         }
 
         return result;
-    }
-
-    public override string GetDetailString()
-    {
-        return base.GetDetailString() + "\n" +
-            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                MembraneType.Name,
-                MembraneRigidity,
-                BaseSpeed,
-                BaseRotationSpeed,
-                BaseHexSize);
     }
 
     public override int GetVisualHashCode()
@@ -205,20 +221,14 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         return hash;
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public override string GetDetailString()
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
-
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        microbe.ApplySpecies(this);
-    }
-
-    public float CalculatePhotographDistance(Spatial instancedScene)
-    {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        return base.GetDetailString() + "\n" +
+            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
+                MembraneType.Name,
+                MembraneRigidity,
+                BaseSpeed,
+                BaseRotationSpeed,
+                BaseHexSize);
     }
 }

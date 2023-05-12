@@ -11,14 +11,19 @@ using Godot;
 public class InputGroupItem : VBoxContainer
 {
     [Export]
-    public NodePath InputGroupHeaderPath = null!;
+    public NodePath? InputGroupHeaderPath;
 
     [Export]
     public NodePath InputActionsContainerPath = null!;
 
+#pragma warning disable CA2213
     private Label? inputGroupHeader;
     private VBoxContainer inputActionsContainer = null!;
+#pragma warning restore CA2213
+
     private string groupName = "error";
+
+    private FocusFlowDynamicChildrenHelper focusHelper = null!;
 
     /// <summary>
     ///   The display name for the group
@@ -76,6 +81,31 @@ public class InputGroupItem : VBoxContainer
         {
             inputActionsContainer.AddChild(action);
         }
+
+        focusHelper = new FocusFlowDynamicChildrenHelper(this,
+            FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.None,
+            FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Vertical);
+    }
+
+    public InputActionItem GetLastInputInGroup()
+    {
+        return Actions.Last();
+    }
+
+    /// <summary>
+    ///   Called when the parent has tweaked navigation layout and this object should tweak its children's layouts
+    /// </summary>
+    public void NotifyFocusAdjusted()
+    {
+        focusHelper.ReReadOwnerNeighbours();
+        focusHelper.ApplyNavigationFlow(Actions, Actions.SelectFirstFocusableChild());
+
+        // focusHelper.ApplyNavigationFlow(Actions.SelectFirstFocusableChild());
+
+        foreach (var action in Actions)
+        {
+            action.NotifyFocusAdjusted();
+        }
     }
 
     internal static InputGroupItem BuildGUI(InputGroupList associatedList, NamedInputGroup data,
@@ -94,6 +124,20 @@ public class InputGroupItem : VBoxContainer
         // When the result is attached to the scene tree it attaches the child objects. So it *must* be attached
         // at least one otherwise the child objects leak
         return result;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (InputGroupHeaderPath != null)
+            {
+                InputGroupHeaderPath.Dispose();
+                InputActionsContainerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void ApplyGroupName()

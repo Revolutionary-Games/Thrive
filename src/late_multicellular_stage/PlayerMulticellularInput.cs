@@ -9,7 +9,9 @@ public class PlayerMulticellularInput : NodeWithInput
     private bool autoMove;
     private bool mouseUnCapturePressed;
 
+#pragma warning disable CA2213 // this is our parent object
     private MulticellularStage stage = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {
@@ -24,7 +26,7 @@ public class PlayerMulticellularInput : NodeWithInput
         base._ExitTree();
 
         // Release our mouse capture, _Process shouldn't get called again after this exited the tree
-        SetMouseCapture(false);
+        MouseCaptureManager.SetGameStateWantedCaptureState(false);
     }
 
     public override void _Process(float delta)
@@ -32,7 +34,7 @@ public class PlayerMulticellularInput : NodeWithInput
         base._Process(delta);
 
         // Handle the GUI mouse capture
-        SetMouseCapture(!mouseUnCapturePressed && !PauseManager.Instance.Paused);
+        MouseCaptureManager.SetGameStateWantedCaptureState(!mouseUnCapturePressed && !PauseManager.Instance.Paused);
     }
 
     [RunOnKeyDown("g_hold_forward")]
@@ -70,20 +72,31 @@ public class PlayerMulticellularInput : NodeWithInput
 
         if (stage.Player != null)
         {
+            Vector3 movement;
+
             if (autoMove)
             {
-                stage.Player.MovementDirection = new Vector3(0, 0, -1);
+                movement = new Vector3(0, 0, -1);
             }
             else
             {
-                var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+                movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
                 // To allow slow movement with a controller
                 if (movement.Length() > 1)
                     movement = movement.Normalized();
-
-                stage.Player.MovementDirection = movement;
             }
+
+            if (autoMove || Settings.Instance.ThreeDimensionalMovement.Value !=
+                ThreeDimensionalMovementMode.WorldRelative)
+            {
+                // Rotate movement direction by the 2D rotation of the camera
+                var rotation = new Quat(new Vector3(0, 1, 0), stage.PlayerCamera.YRotation);
+
+                movement = rotation.Xform(movement);
+            }
+
+            stage.Player.MovementDirection = movement;
         }
     }
 
@@ -126,6 +139,30 @@ public class PlayerMulticellularInput : NodeWithInput
         stage.RotateCamera(yawMovement, pitchMovement);
     }
 
+    [RunOnKeyDown("g_interact")]
+    public void InteractWithEnvironment()
+    {
+        stage.AttemptPlayerWorldInteraction();
+    }
+
+    [RunOnKeyDown("g_inventory")]
+    public void OpenInventory()
+    {
+        stage.TogglePlayerInventory();
+    }
+
+    [RunOnKeyDown("g_build_structure")]
+    public void OpenBuildMenu()
+    {
+        stage.PerformBuildOrOpenMenu();
+    }
+
+    [RunOnKeyDown("ui_cancel")]
+    public bool CancelBuild()
+    {
+        return stage.CancelBuildingPlaceIfInProgress();
+    }
+
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {
@@ -155,6 +192,8 @@ public class PlayerMulticellularInput : NodeWithInput
     [RunOnKeyDown("g_pack_commands")]
     public bool ShowSignalingCommandsMenu()
     {
+        // TODO: implement the communication technology that unlocks when using the commands
+
         // TODO: implement
 
         // if (stage.Player?.HasSignalingAgent != true)
@@ -184,14 +223,5 @@ public class PlayerMulticellularInput : NodeWithInput
         {
             stage.HUD.ShowReproductionDialog();
         }
-    }
-
-    private void SetMouseCapture(bool captured)
-    {
-        // TODO: if we use controller input mouse should be Input.MouseModeEnum.Hidden
-        var wanted = captured ? Input.MouseModeEnum.Captured : Input.MouseModeEnum.Visible;
-
-        if (Input.MouseMode != wanted)
-            Input.MouseMode = wanted;
     }
 }

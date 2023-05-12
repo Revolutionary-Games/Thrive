@@ -25,6 +25,36 @@ public class RegistryTypeStringConverter : TypeConverter
                 new SupportedRegistryType(typeof(Enzyme), "enzyme",
                     name => SimulationParameters.Instance.GetEnzyme(name))
             },
+            {
+                "worldResource",
+                new SupportedRegistryType(typeof(WorldResource), "worldResource",
+                    name => SimulationParameters.Instance.GetWorldResource(name))
+            },
+            {
+                "equipment",
+                new SupportedRegistryType(typeof(EquipmentDefinition), "equipment",
+                    name => SimulationParameters.Instance.GetBaseEquipmentDefinition(name))
+            },
+            {
+                "recipe",
+                new SupportedRegistryType(typeof(CraftingRecipe), "recipe",
+                    name => SimulationParameters.Instance.GetCraftingRecipe(name))
+            },
+            {
+                "structure",
+                new SupportedRegistryType(typeof(StructureDefinition), "structure",
+                    name => SimulationParameters.Instance.GetStructure(name))
+            },
+            {
+                "unitType",
+                new SupportedRegistryType(typeof(UnitType), "unitType",
+                    name => SimulationParameters.Instance.GetUnitType(name))
+            },
+            {
+                "spaceStructure",
+                new SupportedRegistryType(typeof(SpaceStructureDefinition), "spaceStructure",
+                    name => SimulationParameters.Instance.GetSpaceStructure(name))
+            },
         };
 
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -141,4 +171,52 @@ public class CompoundStringConverter : RegistryTypeStringSingleTypeConverter<Com
 public class EnzymeStringConverter : RegistryTypeStringSingleTypeConverter<Enzyme>
 {
     protected override string TypeName => "enzyme";
+}
+
+/// <summary>
+///   Specific converter for <see cref="WorldResource"/>
+/// </summary>
+public class WorldResourceStringConverter : RegistryTypeStringSingleTypeConverter<WorldResource>
+{
+    protected override string TypeName => "worldResource";
+}
+
+/// <summary>
+///   Specific converter for <see cref="EquipmentDefinition"/>
+/// </summary>
+public class EquipmentDefinitionStringConverter : RegistryTypeStringSingleTypeConverter<EquipmentDefinition>
+{
+    protected override string TypeName => "equipment";
+}
+
+/// <summary>
+///   Specific converter for <see cref="CraftingRecipe"/>
+/// </summary>
+public class CraftingRecipeStringConverter : RegistryTypeStringSingleTypeConverter<CraftingRecipe>
+{
+    protected override string TypeName => "recipe";
+}
+
+/// <summary>
+///   Specific converter for <see cref="StructureDefinition"/>
+/// </summary>
+public class StructureStringConverter : RegistryTypeStringSingleTypeConverter<StructureDefinition>
+{
+    protected override string TypeName => "structure";
+}
+
+/// <summary>
+///   Specific converter for <see cref="UnitType"/>
+/// </summary>
+public class UnitTypeStringConverter : RegistryTypeStringSingleTypeConverter<UnitType>
+{
+    protected override string TypeName => "unitType";
+}
+
+/// <summary>
+///   Specific converter for <see cref="SpaceStructureDefinition"/>
+/// </summary>
+public class SpaceStructureStringConverter : RegistryTypeStringSingleTypeConverter<SpaceStructureDefinition>
+{
+    protected override string TypeName => "spaceStructure";
 }

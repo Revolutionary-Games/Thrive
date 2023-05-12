@@ -21,9 +21,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 AddInputEventPath = NodePath("InputEventsContainer/AddEventButton")
 InputActionHeaderPath = NodePath("InputActionHeader")
 InputEventsContainerPath = NodePath("InputEventsContainer")
@@ -40,21 +37,23 @@ __meta__ = {
 [node name="InputEventsContainer" type="HBoxContainer" parent="."]
 margin_top = 24.0
 margin_right = 1280.0
-margin_bottom = 48.0
+margin_bottom = 51.0
 custom_constants/separation = 10
 
 [node name="AddEventButton" type="Button" parent="InputEventsContainer"]
-margin_right = 24.0
-margin_bottom = 24.0
-focus_mode = 0
+margin_right = 26.0
+margin_bottom = 27.0
+focus_neighbour_right = NodePath(".")
 size_flags_stretch_ratio = 0.0
+custom_colors/font_color_focus = Color( 0.184314, 0.588235, 0.184314, 1 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+"
 __meta__ = {
 "_editor_description_": ""
 }
+
 [connection signal="pressed" from="InputEventsContainer/AddEventButton" to="." method="OnAddEventButtonPressed"]

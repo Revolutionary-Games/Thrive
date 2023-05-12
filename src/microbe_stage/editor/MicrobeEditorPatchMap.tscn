@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=1]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=14]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=18]
@@ -23,6 +24,22 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=42]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.666667, 1, 0.941176, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -121,6 +138,8 @@ size_flags_vertical = 2
 [node name="FindCurrentPatchButton" type="Button" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer"]
 margin_right = 187.0
 margin_bottom = 30.0
+focus_neighbour_bottom = NodePath("../../../../../../MarginContainer2/NextTabButton")
+focus_next = NodePath("../../../../../../MarginContainer2/NextTabButton")
 custom_fonts/font = ExtResource( 7 )
 text = "FIND_CURRENT_PATCH"
 
@@ -148,16 +167,23 @@ grow_horizontal = 0
 rect_min_size = Vector2( 150, 0 )
 custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="FocusGrabber" parent="MarginContainer2" instance=ExtResource( 4 )]
+margin_right = 150.0
+margin_bottom = 40.0
+NodeToGiveFocusTo = NodePath("../NextTabButton")
 
 [node name="NextTabButton" type="Button" parent="MarginContainer2"]
 margin_right = 150.0
 margin_bottom = 40.0
+focus_neighbour_left = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
+focus_neighbour_top = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
+focus_next = NodePath(".")
+focus_previous = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
 mouse_filter = 1
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 26 )
+custom_styles/focus = SubResource( 42 )
 custom_styles/normal = SubResource( 27 )
 text = "NEXT_CAPITAL"
 __meta__ = {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -54,6 +55,10 @@ public class GameProperties
     ///   Set to true when the player has entered the stage prototypes and some extra restrictions apply
     /// </summary>
     public bool InPrototypes { get; private set; }
+
+    // Not saved for now as this is only in prototypes
+    [JsonIgnore]
+    public TechWeb TechWeb { get; private set; } = new();
 
     /// <summary>
     ///   Starts a new game in the microbe stage
@@ -115,6 +120,96 @@ public class GameProperties
         game.GameWorld.ChangeSpeciesToLateMulticellular(earlySpecies);
 
         game.EnterPrototypes();
+
+        return game;
+    }
+
+    public static GameProperties StartNewAwareStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartNewLateMulticellularGame(settings);
+
+        // Modify the player species to have enough brain power to reach the target stage
+        var playerSpecies = (LateMulticellularSpecies)game.GameWorld.PlayerSpecies;
+
+        // Create the brain tissue type
+        var brainType = (CellType)playerSpecies.CellTypes.First().Clone();
+        brainType.TypeName = TranslationServer.Translate("BRAIN_CELL_NAME_DEFAULT");
+        brainType.Colour = new Color(0.807f, 0.498f, 0.498f);
+
+        var axon = SimulationParameters.Instance.GetOrganelleType("axon");
+
+        for (int r = 0; r > -1000; --r)
+        {
+            var template = new OrganelleTemplate(axon, new Hex(0, r), 0);
+
+            if (!brainType.Organelles.CanPlaceAndIsTouching(template, true, false))
+                continue;
+
+            brainType.Organelles.Add(template);
+            brainType.RepositionToOrigin();
+            break;
+        }
+
+        if (!brainType.IsBrainTissueType())
+            throw new Exception("Converting to brain tissue type failed");
+
+        playerSpecies.CellTypes.Add(brainType);
+
+        // Place enough of that for becoming aware
+        while (LateMulticellularSpecies.CalculateMulticellularTypeFromLayout(playerSpecies.BodyLayout,
+                   playerSpecies.Scale) == MulticellularSpeciesType.LateMulticellular)
+        {
+            AddBrainTissue(playerSpecies);
+        }
+
+        playerSpecies.OnEdited();
+
+        if (playerSpecies.MulticellularType != MulticellularSpeciesType.Aware)
+            throw new Exception("Adding enough brain power to reach aware stage failed");
+
+        return game;
+    }
+
+    public static GameProperties StartNewAwakeningStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartNewAwareStageGame(settings);
+
+        // Further modify the player species to qualify for awakening stage
+        var playerSpecies = (LateMulticellularSpecies)game.GameWorld.PlayerSpecies;
+
+        while (LateMulticellularSpecies.CalculateMulticellularTypeFromLayout(playerSpecies.BodyLayout,
+                   playerSpecies.Scale) != MulticellularSpeciesType.Awakened)
+        {
+            AddBrainTissue(playerSpecies);
+        }
+
+        playerSpecies.OnEdited();
+
+        if (playerSpecies.MulticellularType != MulticellularSpeciesType.Awakened)
+            throw new Exception("Adding enough brain power to reach awakening stage failed");
+
+        return game;
+    }
+
+    public static GameProperties StartSocietyStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartNewAwakeningStageGame(settings);
+
+        // Initial tech unlocks the player needs
+        var simulationParameters = SimulationParameters.Instance;
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("simpleStoneTools"));
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("societyCenter"));
+
+        return game;
+    }
+
+    public static GameProperties StartIndustrialStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartSocietyStageGame(settings);
+
+        // Initial tech unlocks the player needs
+        var simulationParameters = SimulationParameters.Instance;
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("steamPower"));
 
         return game;
     }
@@ -261,5 +356,66 @@ public class GameProperties
         }
 
         species.RepositionToOrigin();
+    }
+
+    private static void AddBrainTissue(LateMulticellularSpecies species, float brainTissueSize = 1)
+    {
+        var axonType = species.CellTypes.First(c => c.IsBrainTissueType());
+
+        // TODO: a more intelligent algorithm
+        // For now just find free positions above the origin and link it to the closest metaball
+        var offsetsToCheck = new[]
+        {
+            new Vector3(0, 0, 0),
+            new Vector3(1, 0, 0),
+            new Vector3(1, 0, 1),
+            new Vector3(-1, 0, 1),
+            new Vector3(-1, 0, -1),
+            new Vector3(0, 0, 1),
+            new Vector3(0, 0, -1),
+            new Vector3(-1, 0, 0),
+        };
+
+        var metaball = new MulticellularMetaball(axonType)
+        {
+            Size = brainTissueSize,
+        };
+
+        // Start at a slightly positive value to put the brain above
+        for (float y = 0.6f; y < 100; y += 0.34f)
+        {
+            for (float radius = 0; radius < 5; radius += 0.5f)
+            {
+                foreach (var offset in offsetsToCheck)
+                {
+                    var position = offset * radius + new Vector3(0, y, 0);
+
+                    metaball.Position = position;
+
+                    var (overlap, parent) = species.BodyLayout.CheckOverlapAndFindClosest(metaball);
+
+                    if (overlap)
+                        continue;
+
+                    // Found a suitable place, adjust the position to be touching the parent
+                    metaball.Parent = parent;
+                    metaball.AdjustPositionToTouchParent();
+
+                    // Skip if now the metaball would end up being inside something else
+                    // TODO: a better approach would be to slide the metaball around its parent until it is no longer
+                    // touching
+                    if (species.BodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
+                    {
+                        metaball.Parent = null;
+                        continue;
+                    }
+
+                    species.BodyLayout.Add(metaball);
+                    return;
+                }
+            }
+        }
+
+        throw new Exception("Could not find a place to put more brain tissue");
     }
 }

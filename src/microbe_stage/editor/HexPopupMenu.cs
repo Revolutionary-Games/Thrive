@@ -5,10 +5,10 @@ using Godot;
 /// <summary>
 ///   Base class for more specialized right click popup menus for the editor
 /// </summary>
-public abstract class HexPopupMenu : PopupPanel
+public abstract class HexPopupMenu : CustomPopupMenu
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath DeleteButtonPath = null!;
@@ -19,10 +19,12 @@ public abstract class HexPopupMenu : PopupPanel
     [Export]
     public NodePath ModifyButtonPath = null!;
 
+#pragma warning disable CA2213
     protected Label? titleLabel;
     protected Button? deleteButton;
     protected Button? moveButton;
     protected Button? modifyButton;
+#pragma warning restore CA2213
 
     private bool showPopup;
     private bool enableDelete = true;
@@ -54,12 +56,11 @@ public abstract class HexPopupMenu : PopupPanel
             if (ShowPopup)
             {
                 RectPosition = GetViewport().GetMousePosition();
-                ShowModal();
-                SetAsMinsize();
+                OpenModal();
             }
             else
             {
-                Hide();
+                Close();
             }
 
             UpdateDeleteButton();
@@ -109,10 +110,7 @@ public abstract class HexPopupMenu : PopupPanel
 
     public override void _Ready()
     {
-        titleLabel = GetNode<Label>(TitleLabelPath);
-        deleteButton = GetNode<Button>(DeleteButtonPath);
-        moveButton = GetNode<Button>(MoveButtonPath);
-        modifyButton = GetNode<Button>(ModifyButtonPath);
+        base._Ready();
 
         UpdateModifyButton();
     }
@@ -136,7 +134,7 @@ public abstract class HexPopupMenu : PopupPanel
         {
             EmitSignal(nameof(DeletePressed));
 
-            Hide();
+            Close();
 
             return true;
         }
@@ -152,7 +150,7 @@ public abstract class HexPopupMenu : PopupPanel
         {
             EmitSignal(nameof(MovePressed));
 
-            Hide();
+            Close();
 
             return true;
         }
@@ -161,11 +159,35 @@ public abstract class HexPopupMenu : PopupPanel
         return false;
     }
 
+    protected override void ResolveNodeReferences()
+    {
+        titleLabel = GetNode<Label>(TitleLabelPath);
+        deleteButton = GetNode<Button>(DeleteButtonPath);
+        moveButton = GetNode<Button>(MoveButtonPath);
+        modifyButton = GetNode<Button>(ModifyButtonPath);
+    }
+
     protected abstract void UpdateTitleLabel();
 
     protected abstract void UpdateDeleteButton();
 
     protected abstract void UpdateMoveButton();
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                DeleteButtonPath.Dispose();
+                MoveButtonPath.Dispose();
+                ModifyButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
 
     private void UpdateModifyButton()
     {
@@ -177,9 +199,10 @@ public abstract class HexPopupMenu : PopupPanel
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)
     {
-        var icon = GetNode<TextureRect>("VBoxContainer/" + optionName + "/MarginContainer/HBoxContainer/Icon");
-        var nameLabel = GetNode<Label>("VBoxContainer/" + optionName + "/MarginContainer/HBoxContainer/Name");
-        var mpLabel = GetNode<Label>("VBoxContainer/" + optionName + "/MarginContainer/HBoxContainer/MpCost");
+        var prefix = "Panel/Control/VBoxContainer/";
+        var icon = GetNode<TextureRect>(prefix + optionName + "/MarginContainer/HBoxContainer/Icon");
+        var nameLabel = GetNode<Label>(prefix + optionName + "/MarginContainer/HBoxContainer/Name");
+        var mpLabel = GetNode<Label>(prefix + optionName + "/MarginContainer/HBoxContainer/MpCost");
 
         if (pressed)
         {
@@ -201,7 +224,7 @@ public abstract class HexPopupMenu : PopupPanel
 
         EmitSignal(nameof(DeletePressed));
 
-        Hide();
+        Close();
     }
 
     private void OnMovePressed()
@@ -210,7 +233,7 @@ public abstract class HexPopupMenu : PopupPanel
 
         EmitSignal(nameof(MovePressed));
 
-        Hide();
+        Close();
     }
 
     private void OnModifyPressed()
@@ -219,6 +242,6 @@ public abstract class HexPopupMenu : PopupPanel
 
         EmitSignal(nameof(ModifyPressed));
 
-        Hide();
+        Close();
     }
 }

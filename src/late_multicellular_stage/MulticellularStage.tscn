@@ -1,19 +1,42 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" type="Script" id=4]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/general/PlayerInspectInfo.cs" type="Script" id=6]
+[ext_resource path="res://src/awakening_stage/InteractableSystem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/awakening_stage/gui/InteractablePopup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/textures/background/panoramas/Epipelagic.png" type="Texture" id=9]
+[ext_resource path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
+[ext_resource path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
+
+[sub_resource type="PanoramaSky" id=1]
+resource_local_to_scene = true
+panorama = ExtResource( 9 )
+
+[sub_resource type="Environment" id=2]
+resource_local_to_scene = true
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.0313726, 0.443137, 0.482353, 1 )
+dof_blur_far_distance = 50.0
+dof_blur_far_transition = 25.0
+dof_blur_far_amount = 0.05
 
 [node name="MulticellularStage" type="Node"]
 process_priority = -1
 script = ExtResource( 1 )
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MulticellularHUD")
+InteractableSystemPath = NodePath("InteractableSystem")
+InteractionPopupPath = NodePath("InteractablePopup")
+ProgressBarSystemPath = NodePath("ProgressBarSystem")
+SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
+WorldEnvironmentNodePath = NodePath("World/WorldEnvironment")
 
 [node name="World" type="Node" parent="."]
 
@@ -25,14 +48,24 @@ HUDRootPath = NodePath("MulticellularHUD")
 transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
 shadow_enabled = true
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource( 2 )
+
 [node name="PlayerLookingAtInfo" type="Node" parent="."]
 pause_mode = 2
-script = ExtResource( 84 )
+script = ExtResource( 6 )
 
 [node name="PlayerMulticellularInput" type="Node" parent="."]
 script = ExtResource( 4 )
 
+[node name="InteractableSystem" parent="." instance=ExtResource( 7 )]
+pause_mode = 1
+
+[node name="ProgressBarSystem" parent="." instance=ExtResource( 12 )]
+
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
+MenuPath = NodePath("../PauseMenu")
+MicrobeControlRadialPath = NodePath("../RadialPopup")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
 
@@ -49,6 +82,10 @@ margin_top = 120.0
 margin_right = 822.0
 margin_bottom = 540.0
 
+[node name="InteractablePopup" parent="." instance=ExtResource( 8 )]
+
+[node name="SelectBuildingPopup" parent="." instance=ExtResource( 10 )]
+
 [node name="RadialPopup" parent="." instance=ExtResource( 87 )]
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
@@ -64,6 +101,9 @@ __meta__ = {
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 
+[connection signal="OnInteractButtonPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="InteractWithEnvironment"]
+[connection signal="OnOpenBuildPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="OpenBuildMenu"]
+[connection signal="OnOpenInventoryPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="OpenInventory"]
 [connection signal="OnOpenMenu" from="MulticellularHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MulticellularHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]

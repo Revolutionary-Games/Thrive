@@ -8,10 +8,10 @@ public class GalleryViewer : CustomDialog
     public const string ALL_CATEGORY = "All";
 
     [Export]
-    public NodePath GalleryGridPath = null!;
+    public NodePath? GalleryGridPath;
 
     [Export]
-    public NodePath TabButtonsContainerPath = null!;
+    public NodePath TabButtonsPath = null!;
 
     [Export]
     public NodePath AssetsCategoryDropdownPath = null!;
@@ -19,6 +19,7 @@ public class GalleryViewer : CustomDialog
     [Export]
     public NodePath SlideshowButtonPath = null!;
 
+#pragma warning disable CA2213
     [Export]
     public PackedScene GalleryCardScene = null!;
 
@@ -31,13 +32,18 @@ public class GalleryViewer : CustomDialog
     [Export]
     public PackedScene GalleryDetailsToolTipScene = null!;
 
+    private readonly List<(Control Control, ICustomToolTip ToolTip)> registeredToolTips = new();
+
     // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
     private GridContainer cardTile = null!;
 
-    private HBoxContainer tabButtonsContainer = null!;
+    private TabButtons tabButtons = null!;
     private OptionButton assetsCategoryDropdown = null!;
     private SlideScreen slideScreen = null!;
     private Button slideshowButton = null!;
+#pragma warning restore CA2213
+
+    private bool tooltipsDetached;
 
     /// <summary>
     ///   Holds gallery categories and their respective asset categories with their respective indexes in the category
@@ -83,9 +89,27 @@ public class GalleryViewer : CustomDialog
     {
         slideScreen = GetNode<SlideScreen>("SlideScreen");
         cardTile = GetNode<GridContainer>(GalleryGridPath);
-        tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
+        tabButtons = GetNode<TabButtons>(TabButtonsPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
         slideshowButton = GetNode<Button>(SlideshowButtonPath);
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        if (tooltipsDetached)
+            ReAttachToolTips();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (registeredToolTips.Count > 0)
+            DetachToolTips();
+
+        UnregisterToolTips();
     }
 
     public override void _Process(float delta)
@@ -126,12 +150,29 @@ public class GalleryViewer : CustomDialog
         StopAllPlayback();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (GalleryGridPath != null)
+            {
+                GalleryGridPath.Dispose();
+                TabButtonsPath.Dispose();
+                AssetsCategoryDropdownPath.Dispose();
+                SlideshowButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void InitializeGallery()
     {
         GD.Print("Initializing gallery viewer");
 
-        tabButtonsContainer.QueueFreeChildren();
+        tabButtons.ClearTabButtons();
         cardTile.QueueFreeChildren();
+        UnregisterToolTips();
 
         var tabsButtonGroup = new ButtonGroup();
         var itemsButtonGroup = new ButtonGroup();
@@ -162,7 +203,7 @@ public class GalleryViewer : CustomDialog
             };
 
             firstEntry ??= tabButton;
-            tabButtonsContainer.AddChild(tabButton);
+            tabButtons.AddNewTab(tabButton);
 
             categoryCards[gallery.Key][ALL_CATEGORY] = new List<GalleryCard>();
 
@@ -253,15 +294,27 @@ public class GalleryViewer : CustomDialog
         item.Group = buttonGroup;
         item.Connect(nameof(GalleryCard.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
 
-        var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
-        tooltip.Name = "galleryCard_" + asset.ResourcePath.GetFile();
+        // Reuse existing tooltip if possible
+        var name = "galleryCard_" + asset.ResourcePath.GetFile();
+
+        var tooltip = ToolTipManager.Instance.GetToolTipIfExists<GalleryDetailsTooltip>(name, "artGallery");
+
+        if (tooltip == null)
+        {
+            // Need to create a new tooltip
+            tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
+            tooltip.Name = name;
+            ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
+        }
+
         tooltip.DisplayName = string.IsNullOrEmpty(asset.Title) ?
             TranslationServer.Translate("UNTITLED") :
             asset.Title!;
         tooltip.Description = asset.Description;
         tooltip.Artist = asset.Artist;
-        item.RegisterToolTipForControl(tooltip);
-        ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
+
+        item.RegisterToolTipForControl(tooltip, false);
+        registeredToolTips.Add((item, tooltip));
 
         return item;
     }
@@ -315,7 +368,7 @@ public class GalleryViewer : CustomDialog
             return;
 
         slideScreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
-        slideScreen.CustomShow();
+        slideScreen.OpenModal();
     }
 
     private void OnGalleryItemPressed(GalleryCard item)
@@ -383,7 +436,7 @@ public class GalleryViewer : CustomDialog
 
         slideScreen.CurrentSlideIndex = CurrentCards.FindIndex(c => c.CanBeShownInASlideshow);
         slideScreen.SlideshowMode = true;
-        slideScreen.CustomShow();
+        slideScreen.OpenModal();
     }
 
     private void OnPlaybackStarted(object sender, EventArgs args)
@@ -417,5 +470,42 @@ public class GalleryViewer : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
+    }
+
+    private void UnregisterToolTips()
+    {
+        tooltipsDetached = false;
+        if (registeredToolTips.Count < 1)
+            return;
+
+        foreach (var (control, tooltip) in registeredToolTips)
+        {
+            control.UnRegisterToolTipForControl(tooltip);
+        }
+
+        registeredToolTips.Clear();
+    }
+
+    private void DetachToolTips()
+    {
+        tooltipsDetached = true;
+
+        foreach (var (control, tooltip) in registeredToolTips)
+        {
+            control.UnRegisterToolTipForControl(tooltip);
+        }
+    }
+
+    private void ReAttachToolTips()
+    {
+        if (!tooltipsDetached)
+            return;
+
+        foreach (var (control, tooltip) in registeredToolTips)
+        {
+            control.RegisterToolTipForControl(tooltip, false);
+        }
+
+        tooltipsDetached = false;
     }
 }

@@ -11,7 +11,7 @@ public class TimedWorldOperations
     private List<IWorldEffect> effects = new();
 
     /// <summary>
-    /// Called when time passes
+    ///   Called when time passes
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -33,7 +33,7 @@ public class TimedWorldOperations
     }
 
     /// <summary>
-    /// Registers an effect to run when time passes
+    ///   Registers an effect to run when time passes
     /// </summary>
     public void RegisterEffect(string name, IWorldEffect effect)
     {

@@ -28,25 +28,28 @@ public abstract class InputAttribute : Attribute
 
     /// <summary>
     ///   Defines the priority of the input.
-    ///   Priority defines which method gets to consume an input if two method match the input.
+    ///   Priority defines which method gets to consume an input if two method match the input. Higher priority value
+    ///   means the input gets processed sooner (inputs are processed in descending order).
     /// </summary>
     public int Priority { get; set; }
 
     /// <summary>
-    ///   This class needs a custom equals to work in <see cref="InputManager.attributes"/> but a full value comparison
-    ///   would sap way too much performance so we use the references for equality and hash code.
+    ///   If true, this input tracks how this is interacted with (keyboard/mouse or controller) and updates
+    ///   <see cref="LastUsedInputMethod"/>. This will also add the used input method as a call parameter in the
+    ///   callback (after all other normal parameters from the input system).
     /// </summary>
-    /// <param name="obj">The object to compare against</param>
-    /// <returns>True if equal</returns>
-    public override bool Equals(object obj)
-    {
-        return ReferenceEquals(this, obj);
-    }
+    public bool TrackInputMethod { get; set; }
 
-    public override int GetHashCode()
-    {
-        return RuntimeHelpers.GetHashCode(this);
-    }
+    /// <summary>
+    ///   The input method last used to trigger this input. Only set if <see cref="TrackInputMethod"/> is true
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Even if a different default value is added this, probably doesn't need changing as only really the axis
+    ///     that triggers with no input can end up using this value before it is set.
+    ///   </para>
+    /// </remarks>
+    public ActiveInputMethod LastUsedInputMethod { get; protected set; } = ActiveInputMethod.Keyboard;
 
     /// <summary>
     ///   Processes input event for this attribute
@@ -66,6 +69,22 @@ public abstract class InputAttribute : Attribute
     ///   Is used to reset things to their unpressed state.
     /// </summary>
     public abstract void FocusLost();
+
+    /// <summary>
+    ///   This class needs a custom equals to work in <see cref="InputManager.attributes"/> but a full value comparison
+    ///   would sap way too much performance so we use the references for equality and hash code.
+    /// </summary>
+    /// <param name="obj">The object to compare against</param>
+    /// <returns>True if equal</returns>
+    public override bool Equals(object obj)
+    {
+        return ReferenceEquals(this, obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return RuntimeHelpers.GetHashCode(this);
+    }
 
     /// <summary>
     ///   Sets the associated method. Called by InputManager.LoadAttributes().

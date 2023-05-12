@@ -72,9 +72,19 @@ public class RunOnKeyAttribute : InputAttribute
         // Exact match is not used as doing things like holding down shift makes all inputs no longer work
         if (@event.IsActionPressed(InputName, false, false))
         {
+            if (TrackInputMethod)
+                LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+
             if (CallMethodInOnInput && !CallbackRequiresElapsedTime)
             {
-                result = CallMethod(0.0f);
+                if (TrackInputMethod)
+                {
+                    result = CallMethod(0.0f, LastUsedInputMethod);
+                }
+                else
+                {
+                    result = CallMethod(0.0f);
+                }
             }
             else
             {
@@ -99,7 +109,15 @@ public class RunOnKeyAttribute : InputAttribute
         if (HeldDown || primed)
         {
             primed = false;
-            CallMethod(delta);
+
+            if (TrackInputMethod)
+            {
+                CallMethod(delta, LastUsedInputMethod);
+            }
+            else
+            {
+                CallMethod(delta);
+            }
         }
     }
 

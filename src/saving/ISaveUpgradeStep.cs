@@ -16,14 +16,14 @@
         /// <param name="inputSave">Save name that can be used to read the save data</param>
         /// <param name="outputSave">Target name of the upgraded save</param>
         /// <returns>The new version of the upgraded save</returns>
-        string PerformUpgrade(SaveInformation saveInfo, string inputSave, string outputSave);
+        public string PerformUpgrade(SaveInformation saveInfo, string inputSave, string outputSave);
 
         /// <summary>
         ///   Calculates what the version of save would be if PerformUpgrade is ran on it
         /// </summary>
         /// <param name="saveInfo">The save info to inspect</param>
         /// <returns>The version after upgrade, null if can't upgrade</returns>
-        string VersionAfterUpgrade(SaveInformation saveInfo);
+        public string VersionAfterUpgrade(SaveInformation saveInfo);
     }
 
     public static class SaveUpgradeSteps
@@ -76,6 +76,10 @@
                 { "0.5.10.0-rc1", new UpgradeJustVersionNumber("0.5.10.0") },
                 { "0.5.10.0", new UpgradeJustVersionNumber("0.6.0.0-rc1") },
                 { "0.6.0.0-rc1", new UpgradeJustVersionNumber("0.6.0.0") },
+                { "0.6.0.0", new UpgradeJustVersionNumber("0.6.1.0-rc1") },
+                { "0.6.1.0-rc1", new UpgradeJustVersionNumber("0.6.1.0") },
+                { "0.6.1.0", new UpgradeJustVersionNumber("0.6.2.0-rc1") },
+                { "0.6.2.0-rc1", new UpgradeJustVersionNumber("0.6.2.0") },
             };
         }
     }
@@ -138,28 +142,32 @@
         /// <param name="children">The children of the given property</param>
         /// <remarks>
         ///   <para>
-        ///     Changes a json like
-        ///     "1": {
-        ///       ...
-        ///       "Aggression": 126.188889,
-        ///       "Opportunism": 34.3588943,
-        ///       "Fear": 52.6969757,
-        ///       "Activity": 74.67135,
-        ///       "Focus": 111.778221,
-        ///       ...
-        ///     }
-        ///     to
-        ///     "1": {
-        ///       ...
-        ///       "Behaviour": {
+        ///     Changes a json like:
+        ///     <code>
+        ///       "1": {
+        ///         ...
         ///         "Aggression": 126.188889,
         ///         "Opportunism": 34.3588943,
         ///         "Fear": 52.6969757,
         ///         "Activity": 74.67135,
-        ///         "Focus": 111.778221
-        ///       },
-        ///       ...
-        ///     }
+        ///         "Focus": 111.778221,
+        ///         ...
+        ///       }
+        ///     </code>
+        ///     to
+        ///     <code>
+        ///       "1": {
+        ///         ...
+        ///         "Behaviour": {
+        ///           "Aggression": 126.188889,
+        ///           "Opportunism": 34.3588943,
+        ///           "Fear": 52.6969757,
+        ///           "Activity": 74.67135,
+        ///           "Focus": 111.778221
+        ///         },
+        ///         ...
+        ///       }
+        ///     </code>
         ///   </para>
         /// </remarks>
         private void UpgradeBehaviouralValues(JProperty property, JEnumerable<JProperty> children)

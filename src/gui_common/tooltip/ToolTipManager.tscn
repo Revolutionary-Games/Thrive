@@ -25,7 +25,7 @@ corner_radius_bottom_left = 5
 
 [node name="ToolTipManager" type="CanvasLayer"]
 pause_mode = 2
-layer = 3
+layer = 128
 script = ExtResource( 23 )
 
 [node name="GroupHolder" type="Control" parent="."]
@@ -1314,9 +1314,9 @@ expand = true
 
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
-DisplayName = "PREDATORY_PILUS"
-ProcessesDescription = "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-Description = "PREDATORY_PILUS_DESCRIPTION"
+DisplayName = "ORGANELLE_PILUS"
+ProcessesDescription = "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+Description = "ORGANELLE_PILUS_DESCRIPTION"
 MutationPointCost = 30
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/pilus" index="0"]
@@ -2495,6 +2495,54 @@ margin_bottom = 243.0
 [node name="Description" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer" index="6"]
 margin_top = 258.0
 margin_bottom = 280.0
+
+[node name="axon" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
+margin_bottom = 173.0
+DisplayName = "ORGANELLE_AXON"
+Description = "ORGANELLE_AXON_DESCRIPTION"
+MutationPointCost = 60
+RequiresNucleus = true
+
+[node name="ProcessesDescription" parent="GroupHolder/organelleSelection/axon/MarginContainer/VBoxContainer" index="2"]
+visible = false
+
+[node name="ProcessList" parent="GroupHolder/organelleSelection/axon/MarginContainer/VBoxContainer" index="3"]
+visible = false
+
+[node name="ModifierList" parent="GroupHolder/organelleSelection/axon/MarginContainer/VBoxContainer" index="4"]
+visible = false
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/axon/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="Description" parent="GroupHolder/organelleSelection/axon/MarginContainer/VBoxContainer" index="6"]
+margin_top = 42.0
+margin_bottom = 59.0
+
+[node name="myofibril" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
+margin_bottom = 173.0
+DisplayName = "ORGANELLE_MYOFIBRIL"
+Description = "ORGANELLE_MYOFIBRIL_DESCRIPTION"
+MutationPointCost = 25
+RequiresNucleus = true
+
+[node name="ProcessesDescription" parent="GroupHolder/organelleSelection/myofibril/MarginContainer/VBoxContainer" index="2"]
+visible = false
+
+[node name="ProcessList" parent="GroupHolder/organelleSelection/myofibril/MarginContainer/VBoxContainer" index="3"]
+visible = false
+
+[node name="ModifierList" parent="GroupHolder/organelleSelection/myofibril/MarginContainer/VBoxContainer" index="4"]
+visible = false
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/myofibril/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="Description" parent="GroupHolder/organelleSelection/myofibril/MarginContainer/VBoxContainer" index="6"]
+margin_top = 42.0
+margin_bottom = 59.0
 
 [node name="membraneSelection" type="Control" parent="GroupHolder"]
 margin_right = 40.0
@@ -4087,7 +4135,7 @@ mouse_filter = 2
 
 [node name="navigationHint" parent="GroupHolder/patchMap" instance=ExtResource( 1 )]
 Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
-DisplayDelay = 0.5
+DisplayDelay = 2.5
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [editable path="GroupHolder/editor/rigiditySlider"]
@@ -4117,6 +4165,8 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [editable path="GroupHolder/organelleSelection/signalingAgent"]
 [editable path="GroupHolder/organelleSelection/bioluminescentVacuole"]
 [editable path="GroupHolder/organelleSelection/lysosome"]
+[editable path="GroupHolder/organelleSelection/axon"]
+[editable path="GroupHolder/organelleSelection/myofibril"]
 [editable path="GroupHolder/membraneSelection/single"]
 [editable path="GroupHolder/membraneSelection/double"]
 [editable path="GroupHolder/membraneSelection/cellulose"]

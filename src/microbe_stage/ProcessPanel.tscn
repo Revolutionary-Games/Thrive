@@ -1,24 +1,26 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/ProcessList.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/microbe_stage/ProcessPanel.cs" type="Script" id=3]
 
-[node name="ProcessPanel" type="Popup"]
+[node name="ProcessPanel" instance=ExtResource( 1 )]
 process_priority = 5
 margin_right = 400.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 400, 600 )
-theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": ""
 }
+PreventsMouseCaptureWhileOpen = false
 WindowTitle = "PROCESS_PANEL_TITLE"
 Resizable = true
 ProcessListPath = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ProcessList")
+ShowCustomCloseButton = false
 CloseButtonContainerPath = NodePath("MarginContainer/VBoxContainer/BottomButtonContainer")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." index="0"]
 pause_mode = 1
 margin_right = 90.0
 margin_bottom = 56.0
@@ -32,7 +34,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 85.0
@@ -40,35 +42,35 @@ margin_bottom = 49.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" index="0"]
 margin_right = 70.0
 margin_bottom = 4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" index="0"]
 margin_right = 70.0
 margin_bottom = 4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ProcessList" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+[node name="ProcessList" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" index="0" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 70.0
 margin_bottom = 4.0
 size_flags_vertical = 3
 
-[node name="BottomButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="BottomButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="1"]
 margin_top = 8.0
 margin_right = 70.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/BottomButtonContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/BottomButtonContainer" index="0"]
 margin_right = 70.0
 margin_bottom = 32.0
 text = "CLOSE"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomButtonContainer/Button" to="." method="OnClosePressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomButtonContainer/Button" to="." method="OnCloseButtonPressed"]

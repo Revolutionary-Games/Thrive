@@ -7,9 +7,11 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
-public class AgentProjectile : RigidBody, ITimedLife, IEntity
+public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
 {
+#pragma warning disable CA2213
     private Particles particles = null!;
+#pragma warning restore CA2213
 
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
@@ -20,14 +22,11 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
 
     public AliveMarker AliveMarker { get; } = new();
 
+    [JsonIgnore]
+    public string ReadableName => Properties?.ToString() ?? TranslationServer.Translate("N_A");
+
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
-
-    public void OnTimeOver()
-    {
-        if (FadeTimeRemaining == null)
-            BeginDestroy();
-    }
 
     public override void _Ready()
     {
@@ -54,9 +53,23 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
             this.DestroyDetachAndQueueFree();
     }
 
+    public void OnTimeOver()
+    {
+        if (FadeTimeRemaining == null)
+            BeginDestroy();
+    }
+
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
+    }
+
+    public void OnMouseEnter(RaycastResult raycastResult)
+    {
+    }
+
+    public void OnMouseExit(RaycastResult raycastResult)
+    {
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)

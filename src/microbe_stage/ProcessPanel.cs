@@ -7,7 +7,7 @@ using Godot;
 public class ProcessPanel : CustomDialog
 {
     [Export]
-    public NodePath ProcessListPath = null!;
+    public NodePath? ProcessListPath;
 
     [Export]
     public bool ShowCustomCloseButton;
@@ -15,12 +15,11 @@ public class ProcessPanel : CustomDialog
     [Export]
     public NodePath CloseButtonContainerPath = null!;
 
+#pragma warning disable CA2213
     private ProcessList processList = null!;
 
     private Container closeButtonContainer = null!;
-
-    [Signal]
-    public delegate void OnClosed();
+#pragma warning restore CA2213
 
     public ProcessStatistics? ShownData { get; set; }
 
@@ -40,7 +39,7 @@ public class ProcessPanel : CustomDialog
         if (ShownData != null)
         {
             // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues()).ToList();
+            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues());
         }
         else
         {
@@ -48,15 +47,17 @@ public class ProcessPanel : CustomDialog
         }
     }
 
-    protected override void OnHidden()
+    protected override void Dispose(bool disposing)
     {
-        base.OnHidden();
-        EmitSignal(nameof(OnClosed));
-    }
+        if (disposing)
+        {
+            if (ProcessListPath != null)
+            {
+                ProcessListPath.Dispose();
+                CloseButtonContainerPath.Dispose();
+            }
+        }
 
-    private void OnClosePressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        CustomHide();
+        base.Dispose(disposing);
     }
 }

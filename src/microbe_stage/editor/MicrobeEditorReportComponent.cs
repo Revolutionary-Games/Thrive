@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
     [Export]
-    public NodePath AutoEvoSubtabButtonPath = null!;
+    public NodePath? AutoEvoSubtabButtonPath;
 
     [Export]
     public NodePath TimelineSubtabButtonPath = null!;
@@ -63,6 +63,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     [Export]
     public NodePath ReportTabPatchSelectorPath = null!;
 
+#pragma warning disable CA2213
     private Button autoEvoSubtabButton = null!;
     private Button timelineSubtabButton = null!;
 
@@ -84,6 +85,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     private LineChart speciesPopulationChart = null!;
 
     private Texture temperatureIcon = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
@@ -231,6 +233,35 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (AutoEvoSubtabButtonPath != null)
+            {
+                AutoEvoSubtabButtonPath.Dispose();
+                TimelineSubtabButtonPath.Dispose();
+                AutoEvoSubtabPath.Dispose();
+                TimelineSubtabPath.Dispose();
+                TimelineEventsContainerPath.Dispose();
+                TimeIndicatorPath.Dispose();
+                PhysicalConditionsIconLegendPath.Dispose();
+                TemperatureChartPath.Dispose();
+                SunlightChartPath.Dispose();
+                AtmosphericGassesChartPath.Dispose();
+                CompoundsChartPath.Dispose();
+                SpeciesPopulationChartPath.Dispose();
+                GlucoseReductionLabelPath.Dispose();
+                AutoEvoLabelPath.Dispose();
+                ExternalEffectsLabelPath.Dispose();
+                ReportTabPatchNamePath.Dispose();
+                ReportTabPatchSelectorPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateReportTabPatchSelectorSelection(int patchID)
     {
         reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchID));
@@ -260,7 +291,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         foreach (var snapshot in patch.History)
         {
-            foreach (var entry in snapshot.Biome.Compounds)
+            foreach (var entry in snapshot.Biome.CombinedCompounds)
             {
                 var dataset = new LineChartData
                 {
@@ -287,13 +318,13 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         for (int i = patch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = patch.History.ElementAt(i);
-
             var temperature = SimulationParameters.Instance.GetCompound("temperature");
+            var combinedCompounds = snapshot.Biome.CombinedCompounds;
 
             temperatureData.AddPoint(DataPoint.GetDataPoint(snapshot.TimePeriod,
-                snapshot.Biome.Compounds[temperature].Ambient, markerColour: temperatureData.Colour));
+                combinedCompounds[temperature].Ambient, markerColour: temperatureData.Colour));
 
-            foreach (var entry in snapshot.Biome.Compounds)
+            foreach (var entry in combinedCompounds)
             {
                 var dataset = GetChartForCompound(entry.Key.InternalName)?.GetDataSet(entry.Key.Name);
 
@@ -469,13 +500,14 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     /// <summary>
     ///   Returns a chart which should contain the given compound.
     /// </summary>
+    /// <returns>Null if the given compound shouldn't be included in any chart.</returns>
     private LineChart? GetChartForCompound(string compoundName)
     {
         switch (compoundName)
         {
             case "atp":
-                return null;
             case "oxytoxy":
+            case "temperature":
                 return null;
             case "sunlight":
                 return sunlightChart;

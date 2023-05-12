@@ -54,117 +54,151 @@ public class Settings
     /// <summary>
     ///   Sets whether the game window is in fullscreen mode
     /// </summary>
-    public SettingValue<bool> FullScreen { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> FullScreen { get; private set; } = new(true);
 
     /// <summary>
     ///   Sets whether the game window will use vsync
     /// </summary>
-    public SettingValue<bool> VSync { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> VSync { get; private set; } = new(true);
 
     /// <summary>
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
-    public SettingValue<Viewport.MSAA> MSAAResolution { get; set; } =
+    [JsonProperty]
+    public SettingValue<Viewport.MSAA> MSAAResolution { get; private set; } =
         new(Viewport.MSAA.Msaa2x);
 
     /// <summary>
     ///   Sets the maximum framerate of the game window
     /// </summary>
-    public SettingValue<int> MaxFramesPerSecond { get; set; } = new(360);
+    [JsonProperty]
+    public SettingValue<int> MaxFramesPerSecond { get; private set; } = new(360);
 
     /// <summary>
     ///   Optionally applies a colour filter to the screen to aid colourblind individuals
     ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
     /// </summary>
-    public SettingValue<int> ColourblindSetting { get; set; } = new(0);
+    [JsonProperty]
+    public SettingValue<int> ColourblindSetting { get; private set; } = new(0);
 
     /// <summary>
     ///   The amount of Chromatic Aberration to apply to the screen
     /// </summary>
-    public SettingValue<float> ChromaticAmount { get; set; } = new(15.0f);
+    [JsonProperty]
+    public SettingValue<float> ChromaticAmount { get; private set; } = new(15.0f);
 
     /// <summary>
     ///   Enable or Disable Chromatic Aberration for screen
     /// </summary>
-    public SettingValue<bool> ChromaticEnabled { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> ChromaticEnabled { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Type of controller button prompts to show
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
     /// </summary>
-    public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> DisplayAbilitiesHotBar { get; private set; } = new(true);
 
     /// <summary>
     ///   Display or hide the background particles in game background particles can also be in foreground
     /// </summary>
-    public SettingValue<bool> DisplayBackgroundParticles { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> DisplayBackgroundParticles { get; private set; } = new(true);
 
     /// <summary>
     ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
     ///   surrounding the editor button sometimes disappearing with the light effect turned on.
     /// </summary>
-    public SettingValue<bool> GUILightEffectsEnabled { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> GUILightEffectsEnabled { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Enable or disable 3D background scenes in the menu
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> Menu3DBackgroundEnabled { get; private set; } = new(true);
 
     /// <summary>
     ///   Display or hide part names in the editor, for accessibility reasons
     /// </summary>
-    public SettingValue<bool> DisplayPartNames { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> DisplayPartNames { get; private set; } = new(false);
 
     // Sound Properties
 
     /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
-    public SettingValue<float> VolumeMaster { get; set; } = new(0.0f);
+    [JsonProperty]
+    public SettingValue<float> VolumeMaster { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   If true all sounds are muted
     /// </summary>
-    public SettingValue<bool> VolumeMasterMuted { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> VolumeMasterMuted { get; private set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the music audio bus
     /// </summary>
-    public SettingValue<float> VolumeMusic { get; set; } = new(0.0f);
+    [JsonProperty]
+    public SettingValue<float> VolumeMusic { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   If true music is muted
     /// </summary>
-    public SettingValue<bool> VolumeMusicMuted { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> VolumeMusicMuted { get; private set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the ambiance audio bus
     /// </summary>
-    public SettingValue<float> VolumeAmbiance { get; set; } = new(0.0f);
+    [JsonProperty]
+    public SettingValue<float> VolumeAmbiance { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   If true ambiance is muted
     /// </summary>
-    public SettingValue<bool> VolumeAmbianceMuted { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> VolumeAmbianceMuted { get; private set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the sfx audio bus
     /// </summary>
-    public SettingValue<float> VolumeSFX { get; set; } = new(0.0f);
+    [JsonProperty]
+    public SettingValue<float> VolumeSFX { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   If true sfx is muted
     /// </summary>
-    public SettingValue<bool> VolumeSFXMuted { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> VolumeSFXMuted { get; private set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the gui audio bus
     /// </summary>
-    public SettingValue<float> VolumeGUI { get; set; } = new(0.0f);
+    [JsonProperty]
+    public SettingValue<float> VolumeGUI { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   If true gui audio bus is muted
     /// </summary>
-    public SettingValue<bool> VolumeGUIMuted { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> VolumeGUIMuted { get; private set; } = new(false);
 
-    public SettingValue<string?> SelectedAudioOutputDevice { get; set; } =
+    [JsonProperty]
+    public SettingValue<string?> SelectedAudioOutputDevice { get; private set; } =
         new(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
 
-    public SettingValue<string?> SelectedLanguage { get; set; } = new(null);
+    public SettingValue<string?> SelectedLanguage { get; private set; } = new(null);
 
     // Performance Properties
 
@@ -180,41 +214,47 @@ public class Settings
     ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
     ///   </para>
     /// </remarks>
-    public SettingValue<float> CloudUpdateInterval { get; set; } = new(0.040f);
+    [JsonProperty]
+    public SettingValue<float> CloudUpdateInterval { get; private set; } = new(0.040f);
 
     /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
     ///   cloud is and the performance is better.
     /// </summary>
-    public SettingValue<int> CloudResolution { get; set; } = new(2);
+    [JsonProperty]
+    public SettingValue<int> CloudResolution { get; private set; } = new(2);
 
     /// <summary>
     ///   If true an auto-evo run is started during gameplay,
     ///   taking up one of the background threads.
     /// </summary>
-    public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> RunAutoEvoDuringGamePlay { get; private set; } = new(true);
 
     /// <summary>
     ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
     /// </summary>
-    public SettingValue<bool> AssumeCPUHasHyperthreading { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> AssumeCPUHasHyperthreading { get; private set; } = new(true);
 
     /// <summary>
     ///   Only if this is true the ThreadCount will be followed
     /// </summary>
-    public SettingValue<bool> UseManualThreadCount { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> UseManualThreadCount { get; private set; } = new(false);
 
     /// <summary>
     ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
     /// </summary>
-    public SettingValue<int> ThreadCount { get; set; } = new(4);
+    [JsonProperty]
+    public SettingValue<int> ThreadCount { get; private set; } = new(4);
 
     /// <summary>
     ///   Sets the maximum number of entities that can exist at one time.
     /// </summary>
     [JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]
-    public SettingValue<int> MaxSpawnedEntities { get; set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
+    public SettingValue<int> MaxSpawnedEntities { get; private set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
 
     // Misc Properties
 
@@ -222,67 +262,98 @@ public class Settings
     ///   When true the main intro is played. Note <see cref="LaunchOptions.VideosEnabled"/> must also be true to play
     ///   any videos as they need to be able to be skipped due to a rare Godot engine crash when playing them.
     /// </summary>
-    public SettingValue<bool> PlayIntroVideo { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> PlayIntroVideo { get; private set; } = new(true);
 
     /// <summary>
     ///   When true the microbe intro is played on new game
     /// </summary>
-    public SettingValue<bool> PlayMicrobeIntroVideo { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> PlayMicrobeIntroVideo { get; private set; } = new(true);
 
     /// <summary>
     ///   If false auto saving will be disabled
     /// </summary>
-    public SettingValue<bool> AutoSaveEnabled { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> AutoSaveEnabled { get; private set; } = new(true);
 
     /// <summary>
     ///   Number of auto saves to keep
     /// </summary>
-    public SettingValue<int> MaxAutoSaves { get; set; } = new(5);
+    [JsonProperty]
+    public SettingValue<int> MaxAutoSaves { get; private set; } = new(5);
 
     /// <summary>
     ///   Number of quick saves to keep
     /// </summary>
-    public SettingValue<int> MaxQuickSaves { get; set; } = new(5);
+    [JsonProperty]
+    public SettingValue<int> MaxQuickSaves { get; private set; } = new(5);
 
     /// <summary>
     ///   Saves the current settings by writing them to the settings configuration file.
     ///   Show tutorial messages
     /// </summary>
-    public SettingValue<bool> TutorialsEnabled { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> TutorialsEnabled { get; private set; } = new(true);
 
     /// <summary>
     ///   When true cheats are enabled
     /// </summary>
-    public SettingValue<bool> CheatsEnabled { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> CheatsEnabled { get; private set; } = new(false);
+
+    /// <summary>
+    ///   Enables online news feed
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> ThriveNewsFeedEnabled { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Enables showing new patch notes when the game is updated
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> ShowNewPatchNotes { get; private set; } = new(true);
 
     /// <summary>
     ///   If false username will be set to System username
     /// </summary>
-    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> CustomUsernameEnabled { get; private set; } = new(false);
 
     /// <summary>
     ///   Username that the user can choose
     /// </summary>
-    public SettingValue<string?> CustomUsername { get; set; } = new(null);
+    [JsonProperty]
+    public SettingValue<string?> CustomUsername { get; private set; } = new(null);
 
     /// <summary>
     ///   List of notices that have been permanently dismissed (well at least until manually reset)
     /// </summary>
-    public SettingValue<IReadOnlyCollection<DismissibleNotice>> PermanentlyDismissedNotices { get; set; } =
+    [JsonProperty]
+    public SettingValue<IReadOnlyCollection<DismissibleNotice>> PermanentlyDismissedNotices { get; private set; } =
         new(new HashSet<DismissibleNotice>());
 
     /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
-    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
+    [JsonProperty]
+    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; private set; } =
         new(JSONDebug.DebugMode.Automatic);
+
+    /// <summary>
+    ///   The screen effect currently being used
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<ScreenEffect?> CurrentScreenEffect { get; private set; } = new(null);
 
     /// <summary>
     ///   Enables/disables the unsaved progress warning popup for when the player tries to quit the game.
     /// </summary>
-    public SettingValue<bool> ShowUnsavedProgressWarning { get; set; } = new(true);
+    [JsonProperty]
+    public SettingValue<bool> ShowUnsavedProgressWarning { get; private set; } = new(true);
 
-    public SettingValue<bool> MoveOrganellesWithSymmetry { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> MoveOrganellesWithSymmetry { get; private set; } = new(false);
 
     // Input properties
 
@@ -291,61 +362,99 @@ public class Settings
     ///   It stores the godot actions like g_move_left and
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
-    public SettingValue<InputDataList> CurrentControls { get; set; } =
+    [JsonProperty]
+    public SettingValue<InputDataList> CurrentControls { get; private set; } =
         new(GetDefaultControls());
 
     /// <summary>
     ///   How sensitive mouse looking is in the vertical direction. As mouse movement is the number of pixels moved
     ///   this multiplier needs to be very low compared to the controller multiplier.
     /// </summary>
-    public SettingValue<float> VerticalMouseLookSensitivity { get; set; } = new(0.003f);
+    [JsonProperty]
+    public SettingValue<float> VerticalMouseLookSensitivity { get; private set; } = new(0.003f);
 
     /// <summary>
     ///   How sensitive mouse looking is in the horizontal direction
     /// </summary>
-    public SettingValue<float> HorizontalMouseLookSensitivity { get; set; } = new(0.003f);
+    [JsonProperty]
+    public SettingValue<float> HorizontalMouseLookSensitivity { get; private set; } = new(0.003f);
 
     /// <summary>
     ///   If true inverts the vertical axis inputs for mouse
     /// </summary>
-    public SettingValue<bool> InvertVerticalMouseLook { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> InvertVerticalMouseLook { get; private set; } = new(false);
 
     /// <summary>
     ///   If true inverts the horizontal axis inputs for mouse
     /// </summary>
-    public SettingValue<bool> InvertHorizontalMouseLook { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> InvertHorizontalMouseLook { get; private set; } = new(false);
 
     /// <summary>
     ///   When true, mouse inputs going through <see cref="InputManager"/> are scaled by the current window size
     /// </summary>
-    public SettingValue<MouseInputScaling> ScaleMouseInputByWindowSize { get; set; } =
+    [JsonProperty]
+    public SettingValue<MouseInputScaling> ScaleMouseInputByWindowSize { get; private set; } =
         new(MouseInputScaling.ScaleReverse);
 
     /// <summary>
     ///   Modifies behaviour of <see cref="ScaleMouseInputByWindowSize"/> to either use the logical Godot window size
     ///   (<see cref="LoadingScreen.LogicalDrawingAreaSize"/>) or the actual operating system window size
     /// </summary>
-    public SettingValue<bool> InputWindowSizeIsLogicalSize { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> InputWindowSizeIsLogicalSize { get; private set; } = new(false);
 
     /// <summary>
     ///   How sensitive controller looking is in the vertical direction
     /// </summary>
-    public SettingValue<float> VerticalControllerLookSensitivity { get; set; } = new(1);
+    [JsonProperty]
+    public SettingValue<float> VerticalControllerLookSensitivity { get; private set; } = new(1);
 
     /// <summary>
     ///   How sensitive controller looking is in the horizontal direction
     /// </summary>
-    public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1.4f);
+    [JsonProperty]
+    public SettingValue<float> HorizontalControllerLookSensitivity { get; private set; } = new(1.4f);
 
     /// <summary>
     ///   If true inverts the vertical axis inputs for controller
     /// </summary>
-    public SettingValue<bool> InvertVerticalControllerLook { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> InvertVerticalControllerLook { get; private set; } = new(false);
 
     /// <summary>
     ///   If true inverts the horizontal axis inputs for controller
     /// </summary>
-    public SettingValue<bool> InvertHorizontalControllerLook { get; set; } = new(false);
+    [JsonProperty]
+    public SettingValue<bool> InvertHorizontalControllerLook { get; private set; } = new(false);
+
+    /// <summary>
+    ///   Sets how left/right inputs are interpreted in 2D (for example the microbe stage)
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<TwoDimensionalMovementMode> TwoDimensionalMovement { get; private set; } =
+        new(TwoDimensionalMovementMode.Automatic);
+
+    /// <summary>
+    ///   Sets how movement direction inputs are interpreted for 3D movement
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<ThreeDimensionalMovementMode> ThreeDimensionalMovement { get; private set; } =
+        new(ThreeDimensionalMovementMode.ScreenRelative);
+
+    // TODO: control in options
+    /// <summary>
+    ///   If true putting the mouse to a screen edge pans the strategy view
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> PanStrategyViewWithMouse { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Speed of the mouse edge panning
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> PanStrategyViewMouseSpeed { get; private set; } = new(30);
 
     /// <summary>
     ///   How big the deadzones are for controller axes
@@ -355,7 +464,8 @@ public class Settings
     ///     This should have <see cref="JoystickList.AxisMax"/> values in here to have one for each supported axis.
     ///   </para>
     /// </remarks>
-    public SettingValue<IReadOnlyList<float>> ControllerAxisDeadzoneAxes { get; set; } = new(new[]
+    [JsonProperty]
+    public SettingValue<IReadOnlyList<float>> ControllerAxisDeadzoneAxes { get; private set; } = new(new[]
     {
         Constants.CONTROLLER_DEFAULT_DEADZONE,
         Constants.CONTROLLER_DEFAULT_DEADZONE,
@@ -370,7 +480,8 @@ public class Settings
     });
 
     // Settings that are edited from elsewhere than the main options menu
-    public SettingValue<IReadOnlyList<string>> EnabledMods { get; set; } = new(new List<string>());
+    [JsonProperty]
+    public SettingValue<IReadOnlyList<string>> EnabledMods { get; private set; } = new(new List<string>());
 
     // Computed properties from other settings
 
@@ -419,7 +530,7 @@ public class Settings
     {
         return new InputDataList(InputMap.GetActions().OfType<string>()
             .ToDictionary(p => p,
-                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                p => InputMap.GetActionList(p).OfType<InputEvent>().Select(
                     x => new SpecifiedInputKey(x)).ToList())!);
     }
 
@@ -520,64 +631,6 @@ public class Settings
             GD.PrintErr("Failed to save settings to mark notice as permanently dismissed: ", notice);
 
         return true;
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj == null)
-        {
-            return false;
-        }
-
-        if (GetType() != obj.GetType())
-        {
-            return false;
-        }
-
-        return Equals((Settings)obj);
-    }
-
-    public bool Equals(Settings obj)
-    {
-        // Compare all properties in the two objects for equality.
-        var type = GetType();
-
-        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-        {
-            // Returns if any of the properties don't match.
-            object thisValue = property.GetValue(this);
-            object objValue = property.GetValue(obj);
-
-            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public override int GetHashCode()
-    {
-        int hashCode = 17;
-
-        var type = GetType();
-
-        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            hashCode ^= property.GetHashCode();
-
-        return hashCode;
-    }
-
-    /// <summary>
-    ///   Returns a cloned deep copy of the settings object.
-    /// </summary>
-    public Settings Clone()
-    {
-        Settings settings = new Settings();
-        settings.CopySettings(this);
-
-        return settings;
     }
 
     /// <summary>
@@ -775,6 +828,64 @@ public class Settings
         TranslationServer.SetLocale(language);
 
         GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        if (GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        return Equals((Settings)obj);
+    }
+
+    public bool Equals(Settings obj)
+    {
+        // Compare all properties in the two objects for equality.
+        var type = GetType();
+
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+        {
+            // Returns if any of the properties don't match.
+            object thisValue = property.GetValue(this);
+            object objValue = property.GetValue(obj);
+
+            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Returns a cloned deep copy of the settings object.
+    /// </summary>
+    public Settings Clone()
+    {
+        Settings settings = new Settings();
+        settings.CopySettings(this);
+
+        return settings;
+    }
+
+    public override int GetHashCode()
+    {
+        int hashCode = 17;
+
+        var type = GetType();
+
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            hashCode ^= property.GetHashCode();
+
+        return hashCode;
     }
 
     /// <summary>

@@ -65,7 +65,7 @@
             score *= chunkEaterSpeed * species.Behaviour.Activity;
 
             // If the species can't engulf, then they are dependent on only eating the runoff compounds
-            if (microbeSpecies.MembraneType.CellWall ||
+            if (!microbeSpecies.CanEngulf ||
                 simulationCache.GetBaseHexSizeForSpecies(microbeSpecies) < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
             {
                 score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;

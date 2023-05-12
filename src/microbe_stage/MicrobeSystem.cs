@@ -19,10 +19,6 @@ public class MicrobeSystem
 
     public void Process(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
             .ToArray();
 

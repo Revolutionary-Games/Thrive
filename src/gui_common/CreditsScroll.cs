@@ -45,10 +45,12 @@ public class CreditsScroll : Container
 
     private GameCredits credits = null!;
 
+#pragma warning disable CA2213
     private Control logo = null!;
     private Control revolutionaryGames = null!;
     private Control supportedBy = null!;
     private Control developersHeading = null!;
+#pragma warning restore CA2213
 
     private float normalScrollSpeed;
 

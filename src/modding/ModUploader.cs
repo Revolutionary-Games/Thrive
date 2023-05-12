@@ -7,7 +7,7 @@ using Path = System.IO.Path;
 public class ModUploader : Control
 {
     [Export]
-    public NodePath UploadDialogPath = null!;
+    public NodePath? UploadDialogPath;
 
     [Export]
     public NodePath ModSelectPath = null!;
@@ -69,6 +69,7 @@ public class ModUploader : Control
     [Export]
     public NodePath UploadSucceededTextPath = null!;
 
+#pragma warning disable CA2213
     private CustomConfirmationDialog uploadDialog = null!;
 
     private OptionButton modSelect = null!;
@@ -97,6 +98,7 @@ public class ModUploader : Control
 
     private CustomRichTextLabel workshopNotice = null!;
     private Label errorDisplay = null!;
+#pragma warning restore CA2213
 
     private List<FullModDetails>? mods;
 
@@ -166,6 +168,39 @@ public class ModUploader : Control
 
         uploadDialog.PopupCenteredShrink();
         UpdateUploadButtonStatus();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (UploadDialogPath != null)
+            {
+                UploadDialogPath.Dispose();
+                ModSelectPath.Dispose();
+                UnknownItemActionsPath.Dispose();
+                CreateNewButtonPath.Dispose();
+                ShowManualEnterIdPath.Dispose();
+                ManualIdEntryPath.Dispose();
+                AcceptManualIdPath.Dispose();
+                ManualEnterIdSectionPath.Dispose();
+                DetailsEditorPath.Dispose();
+                EditedTitlePath.Dispose();
+                EditedDescriptionPath.Dispose();
+                EditedVisibilityPath.Dispose();
+                EditedTagsPath.Dispose();
+                PreviewImageRectPath.Dispose();
+                ToBeUploadedContentLocationPath.Dispose();
+                ErrorDisplayPath.Dispose();
+                FileSelectDialogPath.Dispose();
+                WorkshopNoticePath.Dispose();
+                ChangeNotesPath.Dispose();
+                UploadSucceededDialogPath.Dispose();
+                UploadSucceededTextPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateAvailableModsList()

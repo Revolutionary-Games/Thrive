@@ -7,9 +7,11 @@ using Godot;
 public class CompoundBalanceDisplay : VBoxContainer
 {
     [Export]
-    public NodePath CompoundListContainerPath = null!;
+    public NodePath? CompoundListContainerPath;
 
+#pragma warning disable CA2213
     private VBoxContainer compoundListContainer = null!;
+#pragma warning restore CA2213
 
     private ChildObjectCache<Compound, CompoundAmount> childCache = null!;
 
@@ -38,5 +40,15 @@ public class CompoundBalanceDisplay : VBoxContainer
 
         childCache.DeleteUnmarked();
         childCache.ApplyOrder();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            CompoundListContainerPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }

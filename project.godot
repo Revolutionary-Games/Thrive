@@ -37,6 +37,7 @@ ModLoader="*res://src/modding/ModLoader.cs"
 SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
 InputManager="*res://src/engine/input/InputManager.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
+ModalManager="*res://src/gui_common/ModalManager.tscn"
 SceneManager="*res://src/engine/SceneManager.cs"
 ScreenOverlays="*res://src/engine/ScreenOverlays.tscn"
 ToolTipManager="*res://src/gui_common/tooltip/ToolTipManager.tscn"
@@ -49,6 +50,7 @@ FileDropHandler="*res://src/engine/FileDropHandler.cs"
 ProceduralDataCache="*res://src/engine/ProceduralDataCache.cs"
 PhotoStudio="*res://src/engine/PhotoStudio.tscn"
 PauseManager="*res://src/engine/PauseManager.cs"
+GUIFocusSetter="*res://src/engine/GUIFocusSetter.cs"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
 [debug]
@@ -160,7 +162,7 @@ g_cheat_ammonia={
 }
 g_cheat_phosphates={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 g_cheat_editor={
@@ -324,6 +326,7 @@ e_cancel_current_action={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 e_delete={
@@ -422,11 +425,52 @@ g_secrete_slime={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+ui_tab_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_tab_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_tab_secondary_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_tab_secondary_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+g_interact={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_build_structure={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":78,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_science={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
 3d_physics/layer_1="Common"
 3d_physics/layer_2="Microbe"
+3d_physics/layer_31="Misc"
 
 [locale]
 
@@ -441,6 +485,10 @@ file_logging/max_log_files=8
 [memory]
 
 limits/message_queue/max_size_kb=8192
+
+[mono]
+
+project/assembly_name="Thrive"
 
 [physics]
 

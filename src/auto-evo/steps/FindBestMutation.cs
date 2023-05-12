@@ -13,6 +13,7 @@
         private readonly WorldGenerationSettings worldSettings;
         private readonly PatchMap map;
         private readonly Species species;
+        private readonly Random random;
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
         private readonly SimulationCache cache;
@@ -20,7 +21,7 @@
         private readonly Mutations mutations = new();
 
         public FindBestMutation(IAutoEvoConfiguration configuration,
-            WorldGenerationSettings worldSettings, PatchMap map, Species species,
+            WorldGenerationSettings worldSettings, PatchMap map, Species species, Random random,
             int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)
@@ -29,6 +30,7 @@
             this.worldSettings = worldSettings;
             this.map = map;
             this.species = species;
+            this.random = new Random(random.Next());
             this.splitThresholdFraction = splitThresholdFraction;
             this.splitThresholdAmount = splitThresholdAmount;
             cache = new SimulationCache(worldSettings);
@@ -54,7 +56,7 @@
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
-            PopulationSimulation.Simulate(config, cache);
+            PopulationSimulation.Simulate(config, cache, random);
 
             return new AttemptResult(null, config.Results.GetPopulationInPatches(species));
         }
@@ -72,7 +74,7 @@
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);
 
-            PopulationSimulation.Simulate(config, cache);
+            PopulationSimulation.Simulate(config, cache, random);
 
             return new AttemptResult(mutated, config.Results.GetPopulationInPatches(mutated));
         }

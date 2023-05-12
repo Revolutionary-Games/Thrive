@@ -21,10 +21,12 @@ public class ErrorDialog : CustomDialog
     /// </summary>
     private Action? onCloseCallback;
 
+#pragma warning disable CA2213
     private Label? extraDescriptionLabel;
     private Label? exceptionLabel;
     private VBoxContainer exceptionBox = null!;
     private Control copyException = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The main error message.
@@ -85,12 +87,18 @@ public class ErrorDialog : CustomDialog
         ErrorMessage = message;
         ExceptionInfo = exception;
         copyException.Visible = allowExceptionCopy;
-        this.PopupCenteredShrink();
+        PopupCenteredShrink();
 
         onDismissReturnToMenu = returnToMenu;
         onCloseCallback = onClosed;
 
         PauseManager.Instance.AddPause(PauseLock);
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnErrorDialogDismissed();
     }
 
     private void UpdateMessage()

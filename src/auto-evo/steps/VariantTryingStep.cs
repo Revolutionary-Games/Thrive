@@ -23,7 +23,7 @@
 
         public interface IAttemptResult
         {
-            long Score { get; }
+            public long Score { get; }
         }
 
         public int TotalSteps => (tryCurrentVariant ? 1 : 0) + variantsToTry;

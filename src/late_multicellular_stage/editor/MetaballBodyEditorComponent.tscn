@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -9,9 +9,11 @@
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/warningBadge.png" type="Texture" id=14]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -151,6 +153,22 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id=41]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.666667, 1, 0.941176, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="StyleBoxFlat" id=16]
 content_margin_left = 5.0
 content_margin_right = 5.0
@@ -167,6 +185,125 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 21, 21 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 134, -8.58575 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:custom_constants/margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:custom_constants/margin_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:custom_constants/margin_left")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("..:custom_constants/margin_bottom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "hide"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+
 [node name="MetaballBodyEditorComponent" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -176,11 +313,13 @@ FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
+FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 IslandErrorPath = NodePath("IslandError")
-StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow/Structure")
-ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow/Reproduction")
-BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow/Behaviour")
-AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow/Appearance")
+TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
+StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
+ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
+BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
+AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance")
 StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 ReproductionTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
@@ -193,6 +332,7 @@ CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewTissueTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 MetaballPopupMenuPath = NodePath("MetaballPopupMenu")
+CannotReduceBrainPowerPopupPath = NodePath("CannotReduceBrainPowerStage")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -270,21 +410,16 @@ __meta__ = {
 "_editor_description_": "To add a new item to a cell parts list, instantiate MicrobePartSelection scene into the list and change its node name with the defined internal name of a cell part object (e.g. organelle, membrane) it represents. Note that if the object is registered in the JSON files, the values of the newly-added item would be automatically updated at runtime, otherwise it wouldn't. Final step is to assign the item into the appropriate Group in the Node tab (see the existing selection buttons for reference)."
 }
 
-[node name="Tabs" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 318.0
-margin_bottom = 64.0
+margin_bottom = 28.0
+LevelOnScreen = 1
 
-[node name="FirstTabRow" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs"]
-margin_right = 318.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 0, 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow"]
+[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_right = 103.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -303,10 +438,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Internals" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow"]
+[node name="Internals" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_left = 107.0
 margin_right = 210.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
@@ -325,10 +460,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow"]
+[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_left = 214.0
 margin_right = 318.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
@@ -346,18 +481,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SecondTabRow" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs"]
-margin_top = 34.0
-margin_right = 318.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 0, 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Appearance" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow"]
-margin_right = 99.0
-margin_bottom = 30.0
+[node name="Appearance" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+visible = false
+margin_left = 268.0
+margin_right = 364.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -375,10 +503,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Movement" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow"]
-margin_left = 103.0
-margin_right = 202.0
-margin_bottom = 30.0
+[node name="Movement" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+visible = false
+margin_left = 268.0
+margin_right = 353.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -397,10 +526,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reproduction" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow"]
-margin_left = 206.0
-margin_right = 318.0
-margin_bottom = 30.0
+[node name="Reproduction" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+visible = false
+margin_left = 268.0
+margin_right = 380.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -419,7 +549,7 @@ __meta__ = {
 }
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_top = 74.0
+margin_top = 38.0
 margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
@@ -428,7 +558,7 @@ custom_styles/panel = SubResource( 7 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
 margin_right = 318.0
-margin_bottom = 482.0
+margin_bottom = 518.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -653,13 +783,46 @@ margin_right = 150.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 mouse_filter = 1
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 15 )
+custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 16 )
 text = "NEXT_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -21.0
+margin_top = -10.0
+margin_bottom = 11.0
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
+visible = false
+margin_left = 134.0
+margin_top = -8.58575
+margin_right = 155.0
+margin_bottom = 12.4143
+rect_min_size = Vector2( 21, 21 )
+rect_pivot_offset = Vector2( 0, 10 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 14 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
+anims/RESET = SubResource( 17 )
+anims/hide = SubResource( 18 )
+anims/show = SubResource( 19 )
 
 [node name="IslandError" parent="." instance=ExtResource( 7 )]
 margin_right = 600.0
@@ -674,10 +837,16 @@ WindowTitle = "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 HideCancelButton = true
 DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
 
+[node name="CannotReduceBrainPowerStage" parent="." instance=ExtResource( 7 )]
+WindowTitle = "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
+HideCancelButton = true
+DialogText = "CANNOT_REDUCE_BRAIN_POWER_STAGE"
+
 [node name="NewTissueTypeSetup" parent="." instance=ExtResource( 7 )]
 rect_min_size = Vector2( 550, 90 )
 WindowTitle = "CREATE_NEW_TISSUE_TYPE"
 HideOnOk = false
+NodeToGiveFocusOnOpen = NodePath("VBoxContainer2/NewName")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NewTissueTypeSetup"]
 margin_right = 40.0
@@ -724,11 +893,11 @@ mouse_filter = 2
 [connection signal="gui_input" from="." to="." method="OnMetaballEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnMetaballEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnMetaballEditorMouseExited"]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow/Appearance" to="." method="SetSelectionMenuTab" binds= [ "Appearance" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow/Movement" to="." method="SetSelectionMenuTab" binds= [ "Movement" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow/Reproduction" to="." method="SetSelectionMenuTab" binds= [ "Reproduction" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance" to="." method="SetSelectionMenuTab" binds= [ "Appearance" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Movement" to="." method="SetSelectionMenuTab" binds= [ "Movement" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= [ "Reproduction" ]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]

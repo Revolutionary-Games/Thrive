@@ -72,6 +72,18 @@ public class RegistryTypeConverter : BaseThriveConverter
         if (objectType == typeof(Enzyme))
             return Context.Simulation.GetEnzyme(name);
 
+        if (objectType == typeof(WorldResource))
+            return Context.Simulation.GetWorldResource(name);
+
+        if (objectType == typeof(CraftingRecipe))
+            return Context.Simulation.GetCraftingRecipe(name);
+
+        if (objectType == typeof(EquipmentDefinition))
+            return Context.Simulation.GetBaseEquipmentDefinition(name);
+
+        if (objectType == typeof(Technology))
+            return Context.Simulation.GetTechnology(name);
+
         if (typeof(DayNightConfiguration).IsAssignableFrom(objectType) &&
             name == SimulationParameters.DAY_NIGHT_CYCLE_NAME)
         {

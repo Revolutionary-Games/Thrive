@@ -14,6 +14,11 @@ public enum TutorialEventType
     MicrobePlayerOrientation,
 
     /// <summary>
+    ///   Player movement in the microbe stage, args is <see cref="MicrobeMovementEventArgs"/>
+    /// </summary>
+    MicrobePlayerMovement,
+
+    /// <summary>
     ///   There are tutorial relevant compounds near the player, args is <see cref="EntityPositionEventArgs"/>
     /// </summary>
     MicrobeCompoundsNearPlayer,
@@ -122,4 +127,9 @@ public enum TutorialEventType
     ///   Player opened the auto-evo prediction details
     /// </summary>
     MicrobeEditorAutoEvoPredictionOpened,
+
+    /// <summary>
+    ///   Player enters a patch with more than 0 sunlight at noon
+    /// </summary>
+    MicrobePlayerEnterSunlightPatch,
 }

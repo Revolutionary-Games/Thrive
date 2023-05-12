@@ -36,17 +36,6 @@ public abstract class CheatMenu : CustomDialog
         }
     }
 
-    [RunOnKeyDown("g_cheat_menu")]
-    public bool ToggleCheatMenu()
-    {
-        // Is closed and cheats disabled
-        if (!CanOpenMenu && !IsMenuOpen)
-            return false;
-
-        IsMenuOpen = !IsMenuOpen;
-        return true;
-    }
-
     public override void _Ready()
     {
         ReloadGUI();
@@ -65,6 +54,17 @@ public abstract class CheatMenu : CustomDialog
         InputManager.UnregisterReceiver(this);
         CheatManager.OnHideCheatMenus -= OnHideCheatMenus;
         base._ExitTree();
+    }
+
+    [RunOnKeyDown("g_cheat_menu")]
+    public bool ToggleCheatMenu()
+    {
+        // Is closed and cheats disabled
+        if (!CanOpenMenu && !IsMenuOpen)
+            return false;
+
+        IsMenuOpen = !IsMenuOpen;
+        return true;
     }
 
     public void SetInfiniteMP(bool value)

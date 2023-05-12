@@ -8,7 +8,7 @@ using Godot;
 public class ChemicalEquation : VBoxContainer
 {
     [Export]
-    public NodePath TitlePath = null!;
+    public NodePath? TitlePath;
 
     [Export]
     public NodePath SpinnerPath = null!;
@@ -16,12 +16,24 @@ public class ChemicalEquation : VBoxContainer
     [Export]
     public NodePath FirstLineContainerPath = null!;
 
+#pragma warning disable CA2213
     private Label? title;
     private TextureRect? spinner;
     private HBoxContainer firstLineContainer = null!;
+
+    private Texture equationArrowTexture = null!;
+
+    // Dynamically generated controls
+    private CompoundListBox? leftSide;
+    private TextureRect? equationArrow;
+    private CompoundListBox? rightSide;
+    private Label? perSecondLabel;
+    private Label? environmentSeparator;
+    private CompoundListBox? environmentSection;
+#pragma warning restore CA2213
+
     private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
-    private Texture equationArrowTexture = null!;
     private Color defaultTitleColour = Colors.White;
 
     /// <summary>
@@ -36,14 +48,6 @@ public class ChemicalEquation : VBoxContainer
     /// </summary>
     private bool hasNoInputs;
 
-    // Dynamically generated controls
-    private CompoundListBox? leftSide;
-    private TextureRect? equationArrow;
-    private CompoundListBox? rightSide;
-    private Label? perSecondLabel;
-    private Label? environmentSeparator;
-    private CompoundListBox? environmentSection;
-
     public IProcessDisplayInfo? EquationFromProcess
     {
         get => equationFromProcess;
@@ -52,7 +56,7 @@ public class ChemicalEquation : VBoxContainer
             if (equationFromProcess == null && value == null)
                 return;
 
-            if (equationFromProcess?.Equals(value) == true)
+            if (value != null && equationFromProcess?.Equals(value) == true)
                 return;
 
             equationFromProcess = value;
@@ -114,10 +118,6 @@ public class ChemicalEquation : VBoxContainer
 
     public override void _Process(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         if (ShowSpinner && EquationFromProcess != null)
         {
             currentSpinnerRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
@@ -143,6 +143,21 @@ public class ChemicalEquation : VBoxContainer
             if (environmentSeparator != null)
                 environmentSeparator.Text = GetEnvironmentLabelText();
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TitlePath != null)
+            {
+                TitlePath.Dispose();
+                SpinnerPath.Dispose();
+                FirstLineContainerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateEquation()

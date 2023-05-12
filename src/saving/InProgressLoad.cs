@@ -89,6 +89,9 @@ public class InProgressLoad
                 return;
             case State.ReadingData:
             {
+                // Make sure mouse is not being captured if anything left the capture on
+                MouseCaptureManager.ForceDisableCapture();
+
                 // Start suppressing loaded node deletion
                 TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
 
@@ -190,6 +193,8 @@ public class InProgressLoad
 
                 if (success)
                 {
+                    MainMenu.OnEnteringGame();
+
                     TransitionManager.Instance.AddSequence(
                         ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);
 

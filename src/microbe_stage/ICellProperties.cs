@@ -13,6 +13,11 @@ public interface ICellProperties
     public bool IsBacteria { get; set; }
     public float BaseRotationSpeed { get; set; }
 
+    /// <summary>
+    ///   Returns true if this cell fills all the requirements needed to engulf.
+    /// </summary>
+    public bool CanEngulf { get; }
+
     public string FormattedName { get; }
 
     /// <summary>

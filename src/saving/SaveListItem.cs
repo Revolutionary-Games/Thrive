@@ -14,7 +14,7 @@ public class SaveListItem : PanelContainer
     public bool Loadable = true;
 
     [Export]
-    public NodePath SaveNamePath = null!;
+    public NodePath? SaveNamePath;
 
     [Export]
     public NodePath ScreenshotPath = null!;
@@ -48,6 +48,7 @@ public class SaveListItem : PanelContainer
 
     private static readonly object ResizeLock = new();
 
+#pragma warning disable CA2213
     private Label? saveNameLabel;
     private TextureRect screenshot = null!;
     private Label version = null!;
@@ -59,6 +60,7 @@ public class SaveListItem : PanelContainer
     private Label description = null!;
     private Button loadButton = null!;
     private Panel? highlightPanel;
+#pragma warning restore CA2213
 
     private string saveName = string.Empty;
     private int versionDifference;
@@ -293,6 +295,29 @@ public class SaveListItem : PanelContainer
         }
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, LoadSave, true);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SaveNamePath != null)
+            {
+                SaveNamePath.Dispose();
+                ScreenshotPath.Dispose();
+                VersionPath.Dispose();
+                VersionWarningPath.Dispose();
+                TypePath.Dispose();
+                CreatedAtPath.Dispose();
+                CreatedByPath.Dispose();
+                CreatedOnPlatformPath.Dispose();
+                DescriptionPath.Dispose();
+                LoadButtonPath.Dispose();
+                HighlightPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void LoadSave()

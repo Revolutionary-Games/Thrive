@@ -1,14 +1,14 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/MouseHoverPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/actions/OpenInventory.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=10]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.cs" type="Script" id=11]
 [ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=12]
@@ -23,8 +23,13 @@
 [ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=22]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/parts/slimeJetAction.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" type="Texture" id=24]
+[ext_resource path="res://src/microbe_stage/gui/HUDMessages.tscn" type="PackedScene" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=26]
+[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/actions/InteractAction.png" type="Texture" id=28]
+[ext_resource path="res://src/awakening_stage/gui/InventoryScreen.tscn" type="PackedScene" id=29]
+[ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=30]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
@@ -58,9 +63,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=76]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=78]
-
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
@@ -380,6 +382,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id=34]
+bg_color = Color( 0.168627, 0.0470588, 0.552941, 1 )
 draw_center = false
 border_width_left = 2
 border_width_top = 2
@@ -404,13 +407,14 @@ script = ExtResource( 11 )
 __meta__ = {
 "_editor_description_": ""
 }
+HUDMessagesPath = NodePath("HUDMessages")
+PausePromptPath = NodePath("PausePrompt")
+PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 CompoundsGroupAnimationPlayerPath = NodePath("CompoundsPanelAnimationPlayer")
 EnvironmentGroupAnimationPlayerPath = NodePath("EnvironmentPanelAnimationPlayer")
 PanelsTweenPath = NodePath("BottomLeft/LeftPanels/PanelsTween")
 LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
-MouseHoverPanelPath = NodePath("MouseHoverPanel")
-HoveredCellsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/List")
-MenuPath = NodePath("../PauseMenu")
+MouseHoverPanelPath = NodePath("TopRight/MouseHoverPanel")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
@@ -442,181 +446,48 @@ PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBa
 EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
+HotBarPath = NodePath("ScrollContainer/HotBar")
+EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Eating")
+SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
+SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
+AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
+OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
+MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
+AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
+FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
+BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
+FossilisationButtonScene = ExtResource( 27 )
 MicrobePickupOrganelleSound = ExtResource( 18 )
 AmmoniaBW = ExtResource( 23 )
 PhosphatesBW = ExtResource( 15 )
 AmmoniaInv = ExtResource( 20 )
 PhosphatesInv = ExtResource( 21 )
-HotBarPath = NodePath("ScrollContainer/HotBar")
-EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Eating")
-SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
-SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
-MicrobeControlRadialPath = NodePath("../RadialPopup")
-PausePromptPath = NodePath("PausePrompt")
-PauseInfoPath = NodePath("PausePrompt/PauseInfo")
-HoveredCompoundsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/List")
-HoverPanelSeparatorPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/SpeciesSeparator")
-AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
-OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
-MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
-AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 ExtinctionBoxScene = ExtResource( 70 )
 PatchExtinctionBoxScene = ExtResource( 16 )
-FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
-BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 MoveToLandPopupPath = NodePath("MoveToLandConfirmation")
 ToLandButtonPath = NodePath("BottomRight/VBoxContainer/ToLand")
-AwareButtonPath = NodePath("BottomRight/VBoxContainer/Control/Aware")
 AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
+AwakenConfirmPopupPath = NodePath("MoveToAwakeningConfirm")
+InteractActionPath = NodePath("ScrollContainer/HotBar/Interact")
+InventoryButtonPath = NodePath("ScrollContainer/HotBar/Inventory")
+BuildButtonPath = NodePath("ScrollContainer/HotBar/Build")
+InventoryScreenPath = NodePath("InventoryScreen")
 
-[node name="MouseHoverPanel" type="MarginContainer" parent="."]
+[node name="TopRight" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -300.0
+margin_left = -260.0
+margin_bottom = -641.0
 grow_horizontal = 0
 mouse_filter = 2
 theme = ExtResource( 5 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="MouseHoverPanel"]
+[node name="MouseHoverPanel" parent="TopRight" instance=ExtResource( 6 )]
 margin_top = 10.0
-margin_right = 250.0
-margin_bottom = 79.0
-rect_min_size = Vector2( 250, 0 )
-mouse_filter = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="MouseHoverPanel/PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 249.0
-margin_bottom = 68.0
-mouse_filter = 2
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 238.0
-margin_bottom = 57.0
-mouse_filter = 2
-
-[node name="LookedAt" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 228.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 6 )
-text = "LOOKING_AT"
-align = 1
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="TitleSeparator" type="HSeparator" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 23.0
-margin_right = 228.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 0, 5 )
-mouse_filter = 2
-
-[node name="NothingHere" type="MarginContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 32.0
-margin_right = 228.0
-margin_bottom = 52.0
-mouse_filter = 2
-custom_constants/margin_left = 10
-
-[node name="NothingHereLabel" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/NothingHere"]
-margin_left = 10.0
-margin_right = 228.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 9 )
-text = "NOTHING_HERE"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HoveredCompounds" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 56.0
-margin_right = 218.0
-margin_bottom = 80.0
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
-margin_right = 218.0
-margin_bottom = 20.0
-mouse_filter = 2
-custom_constants/margin_left = 10
-
-[node name="CompoundsLabel" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/MarginContainer"]
-margin_left = 10.0
-margin_right = 218.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 9 )
-text = "COMPOUNDS_COLON"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="List" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
-margin_top = 24.0
-margin_right = 218.0
-margin_bottom = 24.0
-mouse_filter = 2
-theme = SubResource( 1 )
-
-[node name="SpeciesSeparator" type="HSeparator" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 56.0
-margin_right = 218.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 0, 5 )
-mouse_filter = 2
-
-[node name="HoveredCells" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 56.0
-margin_right = 208.0
-margin_bottom = 97.0
-mouse_filter = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells"]
-margin_right = 208.0
-margin_bottom = 20.0
-mouse_filter = 2
-custom_constants/margin_left = 10
-
-[node name="SpeciesLabel" type="Label" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/MarginContainer2"]
-margin_left = 10.0
-margin_right = 208.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 9 )
-text = "SPECIES_COLON"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="List" type="VBoxContainer" parent="MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells"]
-margin_top = 24.0
-margin_right = 208.0
-margin_bottom = 41.0
-mouse_filter = 2
-theme = SubResource( 1 )
+margin_bottom = 83.0
 
 [node name="TopLeft" type="Control" parent="."]
 margin_right = 469.0
@@ -736,7 +607,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_top = 64.0
 margin_right = 197.0
-margin_bottom = 249.0
+margin_bottom = 255.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
 custom_constants/margin_bottom = 10
@@ -748,7 +619,7 @@ __meta__ = {
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 197.0
-margin_bottom = 175.0
+margin_bottom = 181.0
 
 [node name="Oxygen" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
@@ -930,7 +801,7 @@ self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
 margin_top = 87.0
 margin_right = 162.0
-margin_bottom = 112.0
+margin_bottom = 114.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="TemperatureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
@@ -984,9 +855,9 @@ __meta__ = {
 [node name="Sunlight" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 116.0
+margin_top = 118.0
 margin_right = 162.0
-margin_bottom = 141.0
+margin_bottom = 145.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="LightIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
@@ -1039,9 +910,9 @@ __meta__ = {
 [node name="Pressure" type="ProgressBar" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 145.0
+margin_top = 149.0
 margin_right = 162.0
-margin_bottom = 170.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="PressureIcon" type="TextureRect" parent="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
@@ -1693,41 +1564,31 @@ margin_right = 219.0
 margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
 text = "MOVE_TO_LAND"
 
 [node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer"]
-margin_left = 86.0
+margin_left = 80.0
 margin_top = 38.0
 margin_right = 219.0
 margin_bottom = 68.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Aware" type="Button" parent="BottomRight/VBoxContainer/Control"]
-margin_right = 133.0
-margin_bottom = 30.0
-grow_horizontal = 0
-grow_vertical = 0
-hint_tooltip = "TO_BE_IMPLEMENTED"
-size_flags_horizontal = 8
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 7 )
-disabled = true
-text = "BECOME_AWARE"
-
 [node name="Awaken" type="Button" parent="BottomRight/VBoxContainer/Control"]
-margin_left = 59.0
-margin_right = 133.0
+margin_right = 139.0
 margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
+hint_tooltip = "ACTION_AWAKEN_TOOLTIP"
+focus_mode = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
-text = "AWAKEN"
+text = "ACTION_AWAKEN"
 
 [node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
 margin_left = 88.0
@@ -2046,10 +1907,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Interact" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_ENGULF"
+custom_styles/hover = SubResource( 33 )
+custom_styles/pressed = SubResource( 33 )
+custom_styles/normal = SubResource( 34 )
+ActionIcon = ExtResource( 28 )
+ActionName = "g_interact"
+
+[node name="Inventory" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_INVENTORY"
+ActionIcon = ExtResource( 9 )
+ActionName = "g_inventory"
+
+[node name="Build" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "BUILD_STRUCTURE"
+ActionIcon = ExtResource( 30 )
+ActionName = "g_build_structure"
+
 [node name="Eating" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
 visible = false
-margin_left = 277.0
-margin_right = 323.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF"
 custom_styles/hover = SubResource( 33 )
@@ -2066,7 +1965,6 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "FIRE_TOXIN"
-focus_mode = 2
 ActionIcon = ExtResource( 19 )
 ActionName = "g_fire_toxin"
 
@@ -2090,7 +1988,6 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "SECRETE_SLIME"
-focus_mode = 2
 disabled = true
 ActionIcon = ExtResource( 24 )
 ActionName = "g_secrete_slime"
@@ -2108,12 +2005,26 @@ __meta__ = {
 [node name="PausePrompt" parent="." instance=ExtResource( 77 )]
 visible = false
 
+[node name="InventoryScreen" parent="." instance=ExtResource( 29 )]
+
 [node name="PatchNameOverlay" parent="." instance=ExtResource( 12 )]
 visible = false
 
+[node name="HUDMessages" parent="." instance=ExtResource( 25 )]
+margin_left = 270.0
+margin_top = 90.0
+margin_right = -270.0
+margin_bottom = -525.0
+
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource( 17 )]
+rect_min_size = Vector2( 450, 0 )
 WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
 DialogText = "MOVING_TO_LAND_PROTOTYPE"
+
+[node name="MoveToAwakeningConfirm" parent="." instance=ExtResource( 17 )]
+rect_min_size = Vector2( 450, 0 )
+WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
+DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
@@ -2127,11 +2038,15 @@ DialogText = "MOVING_TO_LAND_PROTOTYPE"
 [connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
 [connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnBecomeMacroscopicPressed"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Aware" to="." method="OnBecomeMulticellularPressed"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnBecomeMacroscopicPressed"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnAwakenPressed"]
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Interact" to="." method="ForwardInteractButton"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Inventory" to="." method="ForwardOpenInventory"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildPressed"]
+[connection signal="Confirmed" from="MoveToLandConfirmation" to="." method="OnMoveToLandConfirmed"]
+[connection signal="Confirmed" from="MoveToAwakeningConfirm" to="." method="OnAwakenConfirmed"]
 
 [editable path="PausePrompt"]

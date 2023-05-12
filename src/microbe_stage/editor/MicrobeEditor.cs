@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -19,6 +19,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     [Export]
     public NodePath CellEditorTabPath = null!;
 
+#pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -32,6 +33,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     private CellEditorComponent cellEditorTab = null!;
 
     private MicrobeEditorTutorialGUI tutorialGUI = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
@@ -117,20 +119,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
     }
 
-    protected override void OnEnterEditor()
-    {
-        base.OnEnterEditor();
-
-        if (!IsLoadedFromSave)
-            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
-    }
-
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
-    {
-        // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
-        // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);
-    }
-
     protected override void InitEditor(bool fresh)
     {
         patchMapTab.SetMap(CurrentGame.GameWorld.Map);
@@ -165,13 +153,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         cellEditorTab.SendUndoRedoToTutorial(TutorialState);
     }
 
-    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
-    {
-        yield return reportTab;
-        yield return patchMapTab;
-        yield return cellEditorTab;
-    }
-
     protected override void InitEditorGUI(bool fresh)
     {
         reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
@@ -184,6 +165,27 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         }
 
         patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
+    }
+
+    protected override void OnEnterEditor()
+    {
+        base.OnEnterEditor();
+
+        if (!IsLoadedFromSave)
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
+    }
+
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
+    {
+        // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
+        // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);
+    }
+
+    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
+    {
+        yield return reportTab;
+        yield return patchMapTab;
+        yield return cellEditorTab;
     }
 
     protected override void OnEditorReady()
@@ -310,6 +312,21 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 #pragma warning restore 162
 
         base.SetupEditedSpecies();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnSelectPatchForReportTab(Patch patch)

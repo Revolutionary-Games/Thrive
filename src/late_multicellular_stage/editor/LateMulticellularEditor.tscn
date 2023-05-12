@@ -62,6 +62,8 @@ IsMulticellularEditor = true
 visible = false
 
 [node name="MicrobeEditorTabButtons" parent="LateMulticellularEditorGUI" instance=ExtResource( 3 )]
+margin_right = 350.0
+margin_bottom = 45.0
 IsForMulticellular = true
 
 [node name="EditorCommonBottomLeftButtons" parent="LateMulticellularEditorGUI" instance=ExtResource( 4 )]
@@ -89,8 +91,8 @@ HelpCategory = "MicrobeEditor"
 [connection signal="OnCellTypeToEditSelected" from="LateMulticellularEditorGUI/MetaballBodyEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="LateMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="LateMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnOpenStatistics" from="LateMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
 [connection signal="OnOpenMenu" from="LateMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
+[connection signal="OnOpenStatistics" from="LateMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]

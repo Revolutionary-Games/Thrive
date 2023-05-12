@@ -36,6 +36,7 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
             {
                 Strength = @event.GetActionStrength(InputName, false);
 
+                // As TrackInputMethod is not always true, we do our own check here
                 usedControllerEvent = @event is InputEventJoypadMotion;
             }
             else
@@ -51,7 +52,14 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
     {
         if (ReadHeldOrPrimedAndResetPrimed())
         {
-            CallMethod(delta, Strength);
+            if (TrackInputMethod)
+            {
+                CallMethod(delta, Strength, LastUsedInputMethod);
+            }
+            else
+            {
+                CallMethod(delta, Strength);
+            }
         }
     }
 

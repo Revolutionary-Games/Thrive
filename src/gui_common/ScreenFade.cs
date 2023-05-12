@@ -1,12 +1,15 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Controls the screen fade transition
 /// </summary>
 public class ScreenFade : Control, ITransition
 {
+#pragma warning disable CA2213
     private ColorRect? rect;
     private Tween fader = null!;
+#pragma warning restore CA2213
 
     private FadeType currentFadeType;
 
@@ -94,6 +97,29 @@ public class ScreenFade : Control, ITransition
     public void Clear()
     {
         this.DetachAndQueueFree();
+    }
+
+    public void SetToEndState()
+    {
+        if (rect == null)
+            throw new InvalidOperationException("Instance not initialized yet");
+
+        fader.RemoveAll();
+
+        switch (CurrentFadeType)
+        {
+            case FadeType.FadeIn:
+                rect.Color = new Color(0, 0, 0, 0);
+                break;
+            case FadeType.FadeOut:
+                rect.Color = new Color(0, 0, 0, 1);
+                break;
+            default:
+                GD.PrintErr("Unknown fade type to reach end state with");
+                break;
+        }
+
+        Finished = true;
     }
 
     private void SetInitialColours()

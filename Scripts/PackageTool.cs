@@ -18,6 +18,7 @@ using SharedBase.Utilities;
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
     private const string EXPECTED_THRIVE_DATA_FOLDER = "data_Thrive";
+    private const string EXPECTED_THRIVE_WASM = "Thrive.wasm";
 
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
         "Revolutionary Games Studio (under a special license) due to Steam being incompatible with the GPL license!";
@@ -32,6 +33,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         PackagePlatform.Windows,
         PackagePlatform.Windows32,
         PackagePlatform.Mac,
+        PackagePlatform.Web,
     };
 
     /// <summary>
@@ -117,7 +119,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
             else
             {
-                DefaultPlatforms = ThrivePlatforms.Where(p => p != PackagePlatform.Mac).ToList();
+                DefaultPlatforms = ThrivePlatforms.Where(p => p != PackagePlatform.Mac && p != PackagePlatform.Web)
+                    .ToList();
             }
         }
 
@@ -133,6 +136,26 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private string ReadmeFile => Path.Join(options.OutputFolder, "README.txt");
     private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
     private string SteamLicenseFile => Path.Join(options.OutputFolder, "LICENSE_steam.txt");
+
+    public static async Task EnsureGodotIgnoreFileExistsInFolder(string folder)
+    {
+        var ignoreFile = Path.Join(folder, ".gdignore");
+
+        if (!File.Exists(ignoreFile))
+        {
+            await using var writer = File.Create(ignoreFile);
+        }
+    }
+
+    public static void RemoveGodotIgnoreFileIfExistsInFolder(string folder)
+    {
+        var ignoreFile = Path.Join(folder, ".gdignore");
+
+        if (File.Exists(ignoreFile))
+        {
+            File.Delete(ignoreFile);
+        }
+    }
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
@@ -175,12 +198,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         await CreateDynamicallyGeneratedFiles(cancellationToken);
 
         // Make sure godot ignores the builds folder in terms of imports
-        var ignoreFile = Path.Join(options.OutputFolder, ".gdignore");
-
-        if (!File.Exists(ignoreFile))
-        {
-            await using var writer = File.Create(ignoreFile);
-        }
+        await EnsureGodotIgnoreFileExistsInFolder(options.OutputFolder);
 
         if (!await CheckGodotIsAvailable(cancellationToken))
             return false;
@@ -214,12 +232,21 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
         // TODO: mac steam support
-        if (options.Steam != null && platform != PackagePlatform.Mac)
+        if (options.Steam != null && platform is not PackagePlatform.Mac and not PackagePlatform.Web)
         {
             if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,
                     SteamBuild.ConvertPackagePlatformToSteam(platform)))
             {
                 ColourConsole.WriteErrorLine("Failed to set wanted Steam mode");
+                return false;
+            }
+        }
+        else
+        {
+            // Force disable Steam for unsupported platforms
+            if (!await SteamBuild.SetBuildMode(false, true, cancellationToken, SteamBuild.SteamPlatform.Linux))
+            {
+                ColourConsole.WriteErrorLine("Failed to set Steam to not be used mode");
                 return false;
             }
         }
@@ -231,7 +258,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> Export(PackagePlatform platform, string folder,
         CancellationToken cancellationToken)
     {
-        var target = GodotTargetFromPlatform(platform);
+        var target = ThriveProperties.GodotTargetFromPlatform(platform, steamMode);
 
         ColourConsole.WriteInfoLine($"Starting export for target: {target}");
 
@@ -239,7 +266,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         ColourConsole.WriteNormalLine($"Exporting to folder: {folder}");
 
-        var targetFile = Path.Join(folder, "Thrive" + GodotTargetExtension(platform));
+        var targetFile = Path.Join(folder, "Thrive" + ThriveProperties.GodotTargetExtension(platform));
 
         var startInfo = new ProcessStartInfo("godot");
         startInfo.ArgumentList.Add("--no-window");
@@ -255,7 +282,19 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return false;
         }
 
-        if (platform != PackagePlatform.Mac)
+        if (platform == PackagePlatform.Web)
+        {
+            var expectedWebFile = Path.Join(folder, EXPECTED_THRIVE_WASM);
+
+            if (!File.Exists(expectedWebFile))
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected web file ({expectedWebFile}) was not created on export. " +
+                    "Are export templates installed?");
+                return false;
+            }
+        }
+        else if (platform != PackagePlatform.Mac)
         {
             var expectedDataFolder = Path.Join(folder, EXPECTED_THRIVE_DATA_FOLDER);
 
@@ -391,7 +430,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // Write meta file needed for upload
             await Dehydration.WriteMetaFile(Path.GetFileNameWithoutExtension(folderOrArchive), cacheForNextMetaToWrite,
                 thriveVersion,
-                GodotTargetFromPlatform(platform), target, cancellationToken);
+                ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target, cancellationToken);
 
             cacheForNextMetaToWrite = null;
 
@@ -554,52 +593,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         checkedGodot = true;
         return true;
-    }
-
-    private string GodotTargetFromPlatform(PackagePlatform platform)
-    {
-        if (steamMode)
-        {
-            switch (platform)
-            {
-                case PackagePlatform.Linux:
-                    return "Linux/X11_steam";
-                case PackagePlatform.Windows:
-                    return "Windows Desktop_steam";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-            }
-        }
-
-        switch (platform)
-        {
-            case PackagePlatform.Linux:
-                return "Linux/X11";
-            case PackagePlatform.Windows:
-                return "Windows Desktop";
-            case PackagePlatform.Windows32:
-                return "Windows Desktop (32-bit)";
-            case PackagePlatform.Mac:
-                return "Mac OSX";
-            default:
-                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-        }
-    }
-
-    private string GodotTargetExtension(PackagePlatform platform)
-    {
-        switch (platform)
-        {
-            case PackagePlatform.Linux:
-                return string.Empty;
-            case PackagePlatform.Windows32:
-            case PackagePlatform.Windows:
-                return ".exe";
-            case PackagePlatform.Mac:
-                return ".zip";
-            default:
-                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-        }
     }
 
     private async Task CreateDynamicallyGeneratedFiles(CancellationToken cancellationToken)

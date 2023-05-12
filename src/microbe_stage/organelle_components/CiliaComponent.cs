@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
+[SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable",
+    Justification = "We don't dispose Godot scene-attached objects")]
 public class CiliaComponent : ExternallyPositionedComponent
 {
+    private const string CILIA_PULL_UPGRADE_NAME = "pull";
+
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private float currentSpeed = 1.0f;
@@ -12,6 +17,9 @@ public class CiliaComponent : ExternallyPositionedComponent
     private Quat? previousCellRotation;
 
     private AnimationPlayer? animation;
+
+    private Area? attractorArea;
+    private SphereShape? attractorShape;
 
     public override void UpdateAsync(float delta)
     {
@@ -46,8 +54,16 @@ public class CiliaComponent : ExternallyPositionedComponent
         var rawRotation = previousCellRotation.Value.AngleTo(currentCellRotation);
         var rotationSpeed = rawRotation * Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
 
-        targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
-            Constants.CILIA_MAX_ANIMATION_SPEED);
+        if (microbe.State == MicrobeState.Engulf && attractorArea != null)
+        {
+            // We are using cilia pulling, play animation at fixed rate
+            targetSpeed = Constants.CILIA_CURRENT_GENERATION_ANIMATION_SPEED;
+        }
+        else
+        {
+            targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
+                Constants.CILIA_MAX_ANIMATION_SPEED);
+        }
 
         previousCellRotation = currentCellRotation;
 
@@ -81,6 +97,25 @@ public class CiliaComponent : ExternallyPositionedComponent
             // better to do things correctly here as this is newer code...
             SetSpeedFactor(targetSpeed);
         }
+
+        if (attractorArea != null)
+        {
+            // Enable cilia pulling force if parent cell is not in engulf mode and is not being engulfed
+            var enable = organelle!.ParentMicrobe!.State == MicrobeState.Engulf &&
+                organelle.ParentMicrobe.PhagocytosisStep == PhagocytosisPhase.None;
+
+            // The approach of disabling the underlying collision shape or the Area's Monitoring property makes the
+            // Area lose its hold over any overlapping bodies once re-enabled. The following should be the proper way
+            // to do it without side effects.
+            attractorArea.SpaceOverride = enable ? Area.SpaceOverrideEnum.Combine : Area.SpaceOverrideEnum.Disabled;
+        }
+
+        if (attractorShape != null)
+        {
+            // Make the pulling force's radius scales with the organelle's growth value
+            attractorShape.Radius = Constants.CILIA_PULLING_FORCE_FIELD_RADIUS +
+                (Constants.CILIA_PULLING_FORCE_GROW_STEP * organelle!.GrowthValue);
+        }
     }
 
     protected override void CustomAttach()
@@ -96,6 +131,33 @@ public class CiliaComponent : ExternallyPositionedComponent
         }
 
         SetSpeedFactor(Constants.CILIA_DEFAULT_ANIMATION_SPEED);
+
+        // Only pulling cilia gets the following physics features
+        if (organelle.Upgrades?.UnlockedFeatures.Contains(CILIA_PULL_UPGRADE_NAME) != true)
+            return;
+
+        var microbe = organelle.ParentMicrobe!;
+
+        attractorArea = new Area
+        {
+            GravityPoint = true,
+            GravityDistanceScale = Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR,
+            Gravity = Constants.CILIA_PULLING_FORCE,
+            CollisionLayer = 0,
+            CollisionMask = microbe.CollisionMask,
+            Translation = Hex.AxialToCartesian(organelle.Position),
+        };
+
+        attractorShape ??= new SphereShape();
+        attractorArea.ShapeOwnerAddShape(attractorArea.CreateShapeOwner(attractorShape), attractorShape);
+        microbe.AddChild(attractorArea);
+    }
+
+    protected override void CustomDetach()
+    {
+        attractorArea?.DetachAndQueueFree();
+        attractorArea = null;
+        attractorShape = null;
     }
 
     protected override bool NeedsUpdateAnyway()

@@ -25,9 +25,6 @@ public class ProceduralDataCache : Node
 
     public override void _Process(float delta)
     {
-        if (delta <= 0)
-            return;
-
         currentTime += delta;
         timeSinceClean += delta;
 

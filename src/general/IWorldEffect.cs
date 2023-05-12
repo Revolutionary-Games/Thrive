@@ -9,9 +9,9 @@ public interface IWorldEffect
     /// <summary>
     ///   Called when added to a world. The best time to do dynamic casts
     /// </summary>
-    void OnRegisterToWorld();
+    public void OnRegisterToWorld();
 
-    void OnTimePassed(double elapsed, double totalTimePassed);
+    public void OnTimePassed(double elapsed, double totalTimePassed);
 }
 
 /// <summary>

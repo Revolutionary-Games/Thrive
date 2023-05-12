@@ -3,7 +3,7 @@
 public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath DescriptionLabelPath = null!;
@@ -11,9 +11,11 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
     [Export]
     public NodePath ArtistLabelPath = null!;
 
+#pragma warning disable CA2213
     private Label? titleLabel;
     private Label? descriptionLabel;
     private Label? artistLabel;
+#pragma warning restore CA2213
 
     private string? title;
     private string? description;
@@ -72,6 +74,21 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
     {
         if (what == NotificationTranslationChanged)
             UpdateContent();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                DescriptionLabelPath.Dispose();
+                ArtistLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateContent()

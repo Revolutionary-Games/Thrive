@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -49,7 +50,7 @@
 
             // Directly feed the population results to the main results object
 
-            PopulationSimulation.Simulate(config, null);
+            PopulationSimulation.Simulate(config, null, new Random());
 
             return true;
         }

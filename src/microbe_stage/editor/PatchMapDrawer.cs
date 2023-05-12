@@ -17,8 +17,10 @@ public class PatchMapDrawer : Control
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
 
+#pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
+#pragma warning restore CA2213
 
     private readonly Dictionary<Patch, PatchMapNode> nodes = new();
 
@@ -27,7 +29,9 @@ public class PatchMapDrawer : Control
     /// </summary>
     private readonly Dictionary<Int2, Vector2[]> connections = new();
 
+#pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+#pragma warning restore CA2213
 
     private PatchMap map = null!;
 
@@ -42,7 +46,7 @@ public class PatchMapDrawer : Control
     private Patch? playerPatch;
 
     [Signal]
-    public delegate void OnCurrentPatchCentered(Vector2 coordinates);
+    public delegate void OnCurrentPatchCentered(Vector2 coordinates, bool smoothed);
 
     public PatchMap? Map
     {
@@ -62,6 +66,9 @@ public class PatchMapDrawer : Control
         }
     }
 
+    /// <summary>
+    ///   The current patch the player is in.
+    /// </summary>
     public Patch? PlayerPatch
     {
         get => playerPatch;
@@ -146,14 +153,20 @@ public class PatchMapDrawer : Control
         // Scroll to player patch only when first drawn
         if (!alreadyDrawn)
         {
-            CenterScroll();
+            // Just snap, it can get pretty annoying otherwise
+            CenterToCurrentPatch(false);
+
             alreadyDrawn = true;
         }
     }
 
-    public void CenterScroll()
+    /// <summary>
+    ///   Centers the map to the coordinates of current patch.
+    /// </summary>
+    /// <param name="smoothed">If true, smoothly pans the view to the destination, otherwise just snaps.</param>
+    public void CenterToCurrentPatch(bool smoothed = true)
     {
-        EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates);
+        EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates, smoothed);
     }
 
     public void MarkDirty()
@@ -361,9 +374,9 @@ public class PatchMapDrawer : Control
     ///   the one with highest priority.
     /// </summary>
     /// <remarks>
-    ///  <para>
-    ///    Priority: Direct path > L-shape path > Z-shape path > U-shape path
-    /// </para>
+    ///   <para>
+    ///     Priority: Direct path > L-shape path > Z-shape path > U-shape path
+    ///   </para>
     /// </remarks>
     /// <returns>Path represented in a Vector2 array</returns>
     private Vector2[] GetLeastIntersectingPath(PatchRegion start, PatchRegion end)

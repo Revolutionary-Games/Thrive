@@ -51,6 +51,9 @@ public class RunOnAxisGroupAttribute : InputAttribute
                 wasUsed = true;
         }
 
+        if (wasUsed && TrackInputMethod)
+            LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+
         return wasUsed;
     }
 
@@ -69,6 +72,9 @@ public class RunOnAxisGroupAttribute : InputAttribute
             ++parameterOffset;
             ++wantedLength;
         }
+
+        if (TrackInputMethod)
+            ++wantedLength;
 
         if (callParameters?.Length != wantedLength)
             callParameters = new object[wantedLength];
@@ -105,6 +111,9 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
         if (InvokeWithDelta)
             callParameters[0] = delta;
+
+        if (TrackInputMethod)
+            callParameters[wantedLength - 1] = LastUsedInputMethod;
 
         CallMethod(callParameters);
     }

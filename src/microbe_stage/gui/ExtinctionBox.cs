@@ -3,13 +3,15 @@
 public class ExtinctionBox : CustomDialog
 {
     [Export]
-    public NodePath ExtinctionMenuPath = null!;
+    public NodePath? ExtinctionMenuPath;
 
     [Export]
     public NodePath LoadMenuPath = null!;
 
+#pragma warning disable CA2213
     private Control extinctionMenu = null!;
     private Control loadMenu = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {
@@ -40,6 +42,20 @@ public class ExtinctionBox : CustomDialog
         loadMenu.Hide();
         extinctionMenu.Show();
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ExtinctionMenuPath != null)
+            {
+                ExtinctionMenuPath.Dispose();
+                LoadMenuPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OpenLoadGamePressed()

@@ -10,6 +10,7 @@ __meta__ = {
 "_editor_description_": "Base rotation of the camera
 "
 }
+Current = true
 
 [node name="CameraPosition" type="Spatial" parent="."]
 __meta__ = {
@@ -24,5 +25,6 @@ margin = 0.08
 process_priority = 100
 doppler_tracking = 2
 fov = 90.0
+far = 400.0
 
 [node name="Listener" type="Listener" parent="CameraPosition/SpringArm/Camera"]

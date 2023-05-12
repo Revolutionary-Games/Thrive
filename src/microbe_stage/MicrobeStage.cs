@@ -11,10 +11,10 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : StageBase<Microbe>
+public class MicrobeStage : CreatureStageBase<Microbe>
 {
     [Export]
-    public NodePath GuidanceLinePath = null!;
+    public NodePath? GuidanceLinePath;
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
@@ -32,8 +32,10 @@ public class MicrobeStage : StageBase<Microbe>
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
+#pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
+#pragma warning restore CA2213
     private Vector3? guidancePosition;
 
     private List<GuidanceLine> chemoreceptionLines = new();
@@ -76,13 +78,13 @@ public class MicrobeStage : StageBase<Microbe>
     public MicrobeHUD HUD { get; private set; } = null!;
 
     [JsonIgnore]
-    public PlayerHoverInfo HoverInfo { get; private set; } = null!;
+    public MicrobeInspectInfo HoverInfo { get; private set; } = null!;
 
     [JsonIgnore]
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    protected override IStageHUD BaseHUD => HUD;
+    protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
@@ -105,10 +107,35 @@ public class MicrobeStage : StageBase<Microbe>
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
-        HoverInfo.Init(Camera, Clouds);
+        HoverInfo.Init(Clouds, Camera);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
+    }
+
+    public override void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        base.ResolveNodeReferences();
+
+        HUD = GetNode<MicrobeHUD>("MicrobeHUD");
+        tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
+        HoverInfo = GetNode<MicrobeInspectInfo>("PlayerHoverInfo");
+        Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
+        Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
+        guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
+
+        // These need to be created here as well for child property save load to work
+        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
+        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
+        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
+        microbeSystem = new MicrobeSystem(rootOfDynamicallySpawned);
+        floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
+        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
+        spawner = new SpawnSystem(rootOfDynamicallySpawned);
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem, worldLight, CurrentGame);
     }
 
     public override void _EnterTree()
@@ -125,30 +152,96 @@ public class MicrobeStage : StageBase<Microbe>
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
     }
 
-    public override void ResolveNodeReferences()
+    public override void _Process(float delta)
     {
-        if (NodeReferencesResolved)
+        base._Process(delta);
+
+        FluidSystem.Process(delta);
+        TimedLifeSystem.Process(delta);
+        ProcessSystem.Process(delta);
+        floatingChunkSystem.Process(delta, Player?.Translation);
+        microbeAISystem.Process(delta);
+        microbeSystem.Process(delta);
+
+        if (gameOver)
             return;
 
-        base.ResolveNodeReferences();
+        if (playerExtinctInCurrentPatch)
+            return;
 
-        HUD = GetNode<MicrobeHUD>("MicrobeHUD");
-        tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
-        HoverInfo = GetNode<PlayerHoverInfo>("PlayerHoverInfo");
-        Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
-        Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
-        guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
+        if (Player != null)
+        {
+            var playerTransform = Player.GlobalTransform;
 
-        // These need to be created here as well for child property save load to work
-        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
-        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
-        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
-        microbeSystem = new MicrobeSystem(rootOfDynamicallySpawned);
-        floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
-        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
-        spawner = new SpawnSystem(rootOfDynamicallySpawned);
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame, lightCycle);
+            DebugOverlays.Instance.ReportPositionCoordinates(playerTransform.origin);
+            DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
+
+            spawner.Process(delta, playerTransform.origin);
+            Clouds.ReportPlayerPosition(playerTransform.origin);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
+                new RotationEventArgs(playerTransform.basis, Player.RotationDegrees), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
+                new CompoundBagEventArgs(Player.Compounds), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
+                new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
+
+            // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
+            // relevant, for example only when in a colony or just leaving a colony should the player colony
+            // info be sent
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
+                new MicrobeColonyEventArgs(Player.Colony), this);
+
+            elapsedSinceEntityPositionCheck += delta;
+
+            if (elapsedSinceEntityPositionCheck > Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL)
+            {
+                elapsedSinceEntityPositionCheck = 0;
+
+                if (TutorialState.WantsNearbyCompoundInfo())
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerTransform.origin,
+                            glucose)),
+                        this);
+                }
+
+                if (TutorialState.WantsNearbyEngulfableInfo())
+                {
+                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
+                    var engulfables = entities.OfType<IEngulfable>().ToList();
+
+                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
+                        new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
+                }
+
+                guidancePosition = TutorialState.GetPlayerGuidancePosition();
+            }
+
+            if (guidancePosition != null)
+            {
+                guidanceLine.Visible = true;
+                guidanceLine.LineStart = playerTransform.origin;
+                guidanceLine.LineEnd = guidancePosition.Value;
+            }
+            else
+            {
+                guidanceLine.Visible = false;
+            }
+        }
+        else
+        {
+            guidanceLine.Visible = false;
+        }
+
+        UpdateLinePlayerPosition();
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        FluidSystem.PhysicsProcess(delta);
     }
 
     public override void OnFinishTransitioning()
@@ -188,107 +281,6 @@ public class MicrobeStage : StageBase<Microbe>
             "MicrobeStage");
     }
 
-    public override void _PhysicsProcess(float delta)
-    {
-        FluidSystem.PhysicsProcess(delta);
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        FluidSystem.Process(delta);
-        TimedLifeSystem.Process(delta);
-        ProcessSystem.Process(delta);
-        floatingChunkSystem.Process(delta, Player?.Translation);
-        microbeAISystem.Process(delta);
-        microbeSystem.Process(delta);
-
-        // TODO: only update these like 60 times a second
-        if (GameWorld.Map.CurrentPatch != null)
-            patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-        patchManager.UpdateAllPatchLightLevels();
-
-        if (gameOver)
-            return;
-
-        if (playerExtinctInCurrentPatch)
-            return;
-
-        if (Player != null)
-        {
-            var playerTransform = Player.GlobalTransform;
-            spawner.Process(delta, playerTransform.origin);
-            Clouds.ReportPlayerPosition(playerTransform.origin);
-
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
-
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
-                new CompoundBagEventArgs(Player.Compounds), this);
-
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
-                new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
-
-            // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
-            // relevant, for example only when in a colony or just leaving a colony should the player colony
-            // info be sent
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                new MicrobeColonyEventArgs(Player.Colony), this);
-
-            elapsedSinceEntityPositionCheck += delta;
-
-            if (elapsedSinceEntityPositionCheck > Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL)
-            {
-                elapsedSinceEntityPositionCheck = 0;
-
-                if (TutorialState.WantsNearbyCompoundInfo())
-                {
-                    TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
-                            glucose)),
-                        this);
-                }
-
-                if (TutorialState.WantsNearbyEngulfableInfo())
-                {
-                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
-                    var engulfables = entities.OfType<IEngulfable>().ToList();
-
-                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                        new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
-                }
-
-                guidancePosition = TutorialState.GetPlayerGuidancePosition();
-            }
-
-            if (guidancePosition != null)
-            {
-                guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.GlobalTransform.origin;
-                guidanceLine.LineEnd = guidancePosition.Value;
-            }
-            else
-            {
-                guidanceLine.Visible = false;
-            }
-        }
-        else
-        {
-            guidanceLine.Visible = false;
-        }
-
-        UpdateLinePlayerPosition();
-
-        // TODO: only update these like 60 times a second
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
-        UpdateDayLightEffects();
-    }
-
     [RunOnKeyDown("g_pause")]
     public void PauseKeyPressed()
     {
@@ -326,6 +318,8 @@ public class MicrobeStage : StageBase<Microbe>
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
+
+            // TODO: severely limit the MP points in awakening stage
         }
         else
         {
@@ -453,7 +447,16 @@ public class MicrobeStage : StageBase<Microbe>
 
         CurrentGame!.EnterPrototypes();
 
-        GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
+        var modifiedSpecies = GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
+
+        // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
+        // underwater in the awakening stage
+        if (modifiedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        {
+            GD.Print("Preventing player from becoming awakened too soon");
+            modifiedSpecies.KeepPlayerInAwareStage();
+        }
+
         GameWorld.NotifySpeciesChangedStages();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
@@ -492,27 +495,62 @@ public class MicrobeStage : StageBase<Microbe>
             wonOnce = true;
         }
 
+        // Update the player's cell
+        Player!.ApplySpecies(Player.Species);
+
+        // Reset all the duplicates organelles of the player
+        Player.ResetOrganelleLayout();
+
+        var playerPosition = Player.GlobalTransform.origin;
+
         // Spawn another cell from the player species
-        // This is done first to ensure that the player colony is still intact for spawn separation calculation
-        var daughter = Player!.Divide();
+        // This needs to be done after updating the player so that multicellular organisms are accurately separated
+        var daughter = Player.Divide();
+
+        daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
 
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
-            // TODO: add more extra offset between the player and the divided cell
+            if (daughter.Colony != null)
+            {
+                // Add more extra offset between the player and the divided cell
+                var daughterPosition = daughter.GlobalTransform.origin;
+                var direction = (playerPosition - daughterPosition).Normalized();
+
+                var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
+
+                float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
+
+                daughter.Translation += -direction * distance;
+            }
         }
 
-        // Update the player's cell
-        Player.ApplySpecies(Player.Species);
-
-        // Reset all the duplicates organelles of the player
-        Player.ResetOrganelleLayout();
+        // This is queued to run to reduce the massive lag spike that anyway happens on this frame
+        // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
+        // frame and won't be available on the next one
+        Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
+            rootOfDynamicallySpawned);
 
         if (!CurrentGame.TutorialState.Enabled)
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
+        }
+        else
+        {
+            // Show day/night cycle tutorial when entering a patch with sunlight
+            if (GameWorld.WorldSettings.DayNightCycleEnabled)
+            {
+                var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+                var patchSunlight = GameWorld.Map.CurrentPatch!.GetCompoundAmount(sunlight, CompoundAmountType.Biome);
+
+                if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+                }
+            }
         }
     }
 
@@ -553,7 +591,6 @@ public class MicrobeStage : StageBase<Microbe>
     {
         patchManager.CurrentGame = CurrentGame;
 
-        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
@@ -583,6 +620,8 @@ public class MicrobeStage : StageBase<Microbe>
         Player.OnSuccessfulEngulfment = OnPlayerIngesting;
 
         Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
+
+        Player.OnNoticeMessage = OnPlayerNoticeMessage;
 
         Camera.ObjectToFollow = Player;
 
@@ -617,9 +656,9 @@ public class MicrobeStage : StageBase<Microbe>
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
-    protected override void GameOver()
+    protected override void OnGameOver()
     {
-        base.GameOver();
+        base.OnGameOver();
 
         guidanceLine.Visible = false;
     }
@@ -660,21 +699,24 @@ public class MicrobeStage : StageBase<Microbe>
         UpdatePatchLightLevelSettings();
     }
 
-    private void UpdateBackground()
+    protected override void OnLightLevelUpdate()
     {
-        Camera.SetBackground(SimulationParameters.Instance.GetBackground(
-            GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
-    }
+        if (GameWorld.Map.CurrentPatch == null)
+            return;
 
-    /// <summary>
-    ///   Updates the background lighting and does various post-effects
-    /// </summary>
-    private void UpdateDayLightEffects()
-    {
+        // TODO: it would make more sense for the GameWorld to update its patch map data based on the
+        // light cycle in it.
+        patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+        GameWorld.UpdateGlobalLightLevels();
+
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+
+        // Updates the background lighting and does various post-effects
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
             // This might need to be refactored for efficiency but, it works for now
-            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle.DayLightFraction;
+            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") *
+                GameWorld.LightCycle.DayLightFraction;
 
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightLevel / maxLightLevel;
@@ -684,6 +726,22 @@ public class MicrobeStage : StageBase<Microbe>
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void UpdateBackground()
+    {
+        Camera.SetBackground(SimulationParameters.Instance.GetBackground(
+            GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
     }
 
     private void UpdatePatchLightLevelSettings()
@@ -788,13 +846,20 @@ public class MicrobeStage : StageBase<Microbe>
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+        if (hostile.CanDigestObject(player) == Microbe.DigestCheckResult.Ok)
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfmentLimitReached(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerNoticeMessage(Microbe player, IHUDMessage message)
+    {
+        HUD.HUDMessages.ShowMessage(message);
     }
 
     /// <summary>

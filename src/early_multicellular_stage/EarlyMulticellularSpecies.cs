@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
@@ -63,24 +64,28 @@ public class EarlyMulticellularSpecies : Species
 
     public override void UpdateInitialCompounds()
     {
-        var simulation = SimulationParameters.Instance;
+        // Since the initial compounds are only set once per species they can't be calculated for each Biome.
+        // So, the compound balance calculation uses the default biome.
+        var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
+        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Cells[0].Organelles,
+            biomeConditions, CompoundAmountType.Biome);
+        var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Cells[0].Organelles);
 
-        var rusticyanin = simulation.GetOrganelleType("rusticyanin");
-        var chemo = simulation.GetOrganelleType("chemoplast");
-        var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
+        InitialCompounds.Clear();
 
-        if (Organelles.Any(o => o.Definition == rusticyanin))
+        foreach (var compoundBalance in compoundBalances)
         {
-            SetInitialCompoundsForIron();
-        }
-        else if (Organelles.Any(o => o.Definition == chemo ||
-                     o.Definition == chemoProtein))
-        {
-            SetInitialCompoundsForChemo();
-        }
-        else
-        {
-            SetInitialCompoundsForDefault();
+            if (compoundBalance.Value.Balance >= 0)
+                continue;
+
+            // Initial compounds should suffice for a fixed amount of time.
+            // Some extra is given to accommodate multicellular growth
+            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) *
+                Constants.INITIAL_COMPOUND_TIME * Constants.MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER;
+            if (compoundInitialAmount > storageCapacity)
+                compoundInitialAmount = storageCapacity;
+
+            InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
     }
 
@@ -137,26 +142,5 @@ public class EarlyMulticellularSpecies : Species
         }
 
         return result;
-    }
-
-    private void SetInitialCompoundsForDefault()
-    {
-        InitialCompounds.Clear();
-
-        // TODO: modify these numbers based on the cell count or something more accurate
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("atp"), 60);
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("glucose"), 30);
-    }
-
-    private void SetInitialCompoundsForIron()
-    {
-        SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("iron"), 30);
-    }
-
-    private void SetInitialCompoundsForChemo()
-    {
-        SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 30);
     }
 }

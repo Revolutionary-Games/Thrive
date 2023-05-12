@@ -4,7 +4,9 @@ public class GalleryCardModel : GalleryCard
 {
     private ImageTask? imageTask;
 
+#pragma warning disable CA2213
     private Texture imageLoadingIcon = null!;
+#pragma warning restore CA2213
 
     private bool finishedLoadingImage;
 

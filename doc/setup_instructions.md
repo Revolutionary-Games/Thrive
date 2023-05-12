@@ -30,7 +30,8 @@ if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
 through the [previous Godot
 versions](https://downloads.tuxfamily.org/godotengine/) to get the
-right version.
+right version. Using a different version than what is mentioned above
+will cause issues.
 
 Godot is self-contained, meaning that you just extract the downloaded
 archive and run the Godot executable in it.
@@ -76,12 +77,12 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need, .NET SDK. Recommended version currently is 6.0, but a
+Next you need, .NET SDK. Recommended version currently is 7.0, but a
 newer version may also work.
 
 On Linux you can use your package manager to install that. The package
-might be called `dotnet-sdk-6.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-6.0`
+might be called `dotnet-sdk-7.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-7.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an
@@ -205,17 +206,24 @@ have your own repository to work with. There is an in-depth guide
 for working with forks
 [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962).
 
-Next, use `git clone --recursive` to copy your fork to your computer. If you're
-setting up Thrive just for testing or because you want to try in
-development features you don't need to fork the project, and can clone
-the main Thrive repository.
+Next, use `git clone --recursive` to copy your fork to your
+computer. If you're setting up Thrive just for testing or because you
+want to try in development features you don't need to fork the
+project, and can clone the main Thrive repository. If you cloned
+without the `--recursive` flag, you can initialize the submodules
+afterwards. See the instructions for that a bit later in this
+document. Also if you run into sudden build issues updating the
+submodules is a good first step to solving such a problem.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/terminal_git_clone.png" alt="termina running git clone">
 
 Terminal showing git clone command. If you don't see the line with
 "filtering content", then you don't have Git LFS working correctly.
 If you don't have Github ssh key setup, you'll want to use a HTTPS URL
-for cloning.
+for cloning. Note that the screenshot is slightly outdated as it
+doesn't clone the submodules with the `--recursive` flag. So use the
+up to date command in this document rather than what is shown in the
+screenshot.
 
 If you use the "download as zip" option on Github, it won't work. This
 is because that option won't properly include the Git LFS files in it.
@@ -378,6 +386,7 @@ the main menu.
 
 If it didn't work you can try these:
 
+- The troubleshooting tips at the end of this document
 - Thrive community forums
 - Thrive developer forums
 - Thrive community discord
@@ -452,91 +461,13 @@ If you are planning to do anything that would require translation, or
 simply to translate the game into your locale language you may need
 a few more tools.
 
+If you just want to easily make translations, you can find
+instructions for how to do that online in this
+[document](working_with_translations.md).
+
 **NOTE: if you are simply planning to edit or add a new localization, Poedit is
 enough. You can find more information on how to translate the game with poedit
  [here](working_with_translations.md#Translating-the-game-into-a-new-language).**
-
-### Python 3
-
-The tool used to extract strings from the game files is using
-[Python 3](https://www.python.org/downloads).
-You'll need it if you are planning to add or edit strings in the game.
-
-NOTE: Linux users should already have it installed.
-You can use the command `python --version` to make sure you have it. On some distros 
-the command is named `python3`, in which case `pip` maybe named `pip3`.
-If you don't have Python, you can use the package manager of your distribution to 
-install the `python3` package.
-
-### Babel and Babel_thrive
-
-Babel and its extension [Babel_thrive](https://github.com/Revolutionary-Games/pybabel-godot-thrive)
-are the tools used for extracting strings from the game files.
-Just like Python, you'll want to download these if you are planning
-to add or edit strings into the game.
-
-You can quickly install these by using the command 
-`pip install Babel Babel-Thrive` or 
-`pip3 install Babel Babel-Thrive`
-if you have Python installed. On Linux you need to use the `--user`
-flag to get the `pybabel` command to work, installing with sudo won't
-work.
-
-A slightly more difficult way to install the required pip packages is
-to first navigate in command prompt / terminal to the Thrive base
-folder and run the following:
-
-```
-pip install -r docker/ci/requirements.txt --user
-```
-
-That will make sure that you have compatible versions of the
-requirements. If you try to update for example the Babel version, the
-plain install command won't do it. So it is recommended that you use
-the above command with the provided `requirements.txt` file which
-tells pip the exact versions that should be installed.
-
-#### virtualenv
-
-You can use virtualenv to not have to install the Thrive required
-python packages globally. This can especially help if you have
-conflicting globally installed packages.
-
-First install virtualenv:
-```sh
-pip install virtualenv
-```
-
-Then create the virtualenv folder (for example in the Thrive root
-folder):
-
-```sh
-virtualenv venv -p python3
-```
-
-This creates a folder called `venv` that will contain the python
-environment.
-
-You need to activate it each time in terminal or command prompt you
-want to use python from that environment.
-
-On unix like systems:
-```sh
-source venv/bin/activate
-```
-
-On Windows:
-```sh
-venv\Scripts\activate.bat
-```
-
-Then install the required packages and run the localization scripts
-while in the environment:
-
-```sh
-pip install -r docker/ci/requirements.txt
-dotnet run --project Scripts -- localization
-```
 
 ### Poedit (optional)
 
@@ -554,8 +485,11 @@ If you want to run the translation scripts and checks, you need the gettext comm
 line tools. They are also an alternative to using Poedit, with the gettext tools you can just
 use them and a plain text editor to work on translations.
 
-On Windows you can download precompiled versions of the tools. You will likely need to extract
-them and then add the folder you extracted them in to your PATH for them to be found.
+On Windows you can download precompiled versions of the tools. You
+will likely need to extract them and then add the folder you extracted
+them in to your PATH for them to be found. Note that there are some
+really old versions floating around on the internet. You should try to
+find at least version `0.21`.
 
 On Linux use your package manager to install the `gettext` package. On Mac the same package
 is available through Homebrew.
@@ -614,6 +548,12 @@ git submodule update --init --recursive
 because if they are not you will have missing or outdated files. Once
 you have done that check the other troubleshooting tips if that didn't
 help.
+
+If you especially get errors for `RevolutionaryGamesCommon` (for
+example
+`RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj`
+or other csproj or .cs files missing), first try initializing and
+updating git submodules and building again.
 
 ### Troubleshooting regarding Godot automatically breaking
 

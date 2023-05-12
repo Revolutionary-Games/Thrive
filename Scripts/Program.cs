@@ -16,7 +16,7 @@ public class Program
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, LocalizationOptions, CleanupOptions,
                 PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions,
-                TranslationProgressOptions, CreditsOptions>(args)
+                TranslationProgressOptions, CreditsOptions, GeneratorOptions, GodotProjectValidMakerOptions>(args)
             .MapResult(
                 (CheckOptions options) => RunChecks(options),
                 (TestOptions options) => RunTests(options),
@@ -30,6 +30,8 @@ public class Program
                 (GodotTemplateOptions options) => RunTemplateInstall(options),
                 (TranslationProgressOptions options) => RunTranslationProgress(options),
                 (CreditsOptions options) => RunCreditsUpdate(options),
+                (GeneratorOptions options) => RunFileGenerator(options),
+                (GodotProjectValidMakerOptions options) => RunProjectValidMaker(options),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -215,6 +217,32 @@ public class Program
         return CreditsUpdater.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
+    private static int RunFileGenerator(GeneratorOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running file generating tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        var tool = new FileGenerator(options);
+
+        return tool.Run(tokenSource.Token).Result;
+    }
+
+    private static int RunProjectValidMaker(GodotProjectValidMakerOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteInfoLine("Attempting to make Thrive Godot project valid for C# compile...");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        var tool = new GodotProjectValidMaker(options);
+
+        return tool.Run(tokenSource.Token).Result;
+    }
+
     public class CheckOptions : CheckOptionsBase
     {
     }
@@ -307,6 +335,19 @@ public class Program
 
     [Verb("credits", HelpText = "Updates credits with some automatically (and some needing manual) retrieved files")]
     public class CreditsOptions : ScriptOptionsBase
+    {
+    }
+
+    [Verb("generate", HelpText = "Generates various kinds of files")]
+    public class GeneratorOptions : ScriptOptionsBase
+    {
+        [Value(0, MetaName = "TYPE", Required = true,
+            HelpText = "Which type of file to generate ('List' prints a list of available types)")]
+        public FileTypeToGenerate Type { get; set; }
+    }
+
+    [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile")]
+    public class GodotProjectValidMakerOptions : ScriptOptionsBase
     {
     }
 }

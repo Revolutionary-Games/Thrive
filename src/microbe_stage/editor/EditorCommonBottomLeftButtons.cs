@@ -3,13 +3,15 @@
 public class EditorCommonBottomLeftButtons : MarginContainer
 {
     [Export]
-    public NodePath MenuButtonPath = null!;
+    public NodePath? MenuButtonPath;
 
     [Export]
     public NodePath HelpButtonPath = null!;
 
+#pragma warning disable CA2213
     private TextureButton menuButton = null!;
     private TextureButton helpButton = null!;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnOpenMenu();
@@ -29,6 +31,20 @@ public class EditorCommonBottomLeftButtons : MarginContainer
 
         helpButton.RegisterToolTipForControl("helpButton");
         menuButton.RegisterToolTipForControl("menuButton");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MenuButtonPath != null)
+            {
+                MenuButtonPath.Dispose();
+                HelpButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnMenuButtonPressed()

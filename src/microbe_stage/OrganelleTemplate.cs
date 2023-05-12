@@ -43,12 +43,6 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex
     [JsonIgnore]
     public IEnumerable<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
-    public void SetCustomUpgradeObject(IComponentSpecificUpgrades upgrades)
-    {
-        Upgrades ??= new OrganelleUpgrades();
-        Upgrades.CustomUpgradeData = upgrades;
-    }
-
     public bool MatchesDefinition(IActionHex other)
     {
         return Definition == ((OrganelleTemplate)other).Definition;

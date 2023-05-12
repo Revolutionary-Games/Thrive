@@ -3,5 +3,5 @@
 /// </summary>
 public interface IAssignableSetting
 {
-    void AssignFrom(object obj);
+    public void AssignFrom(object obj);
 }

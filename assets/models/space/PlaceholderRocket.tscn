@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id=2]
+radius = 0.5
+height = 1.0
+radial_segments = 32
+rings = 16
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.0808989, 0.957303 )
+colors = PoolColorArray( 0.172549, 0.172549, 0.172549, 1, 0.470588, 0.470588, 0.470588, 1 )
+
+[node name="PlaceHolderRocket" type="Spatial"]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98545, 0 )
+radius = 0.906584
+height = 10.1784
+sides = 16
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2255, 0 )
+radius = 0.906584
+height = 2.28669
+sides = 16
+cone = true
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09984, 0 )
+width = 3.04291
+height = 2.61609
+depth = 0.2211
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.09984, 0 )
+width = 3.04291
+height = 2.61609
+depth = 0.2211
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.078578, 0 )
+material_override = SubResource( 1 )
+cast_shadow = 0
+amount = 256
+lifetime = 15.0
+randomness = 0.14
+lifetime_randomness = 0.09
+mesh = SubResource( 2 )
+emission_shape = 5
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+direction = Vector3( 0, -1, 0 )
+spread = 5.54
+flatness = 0.07
+gravity = Vector3( 0, -0.2, 0 )
+initial_velocity = 17.54
+initial_velocity_random = 0.07
+angular_velocity = 37.89
+angular_velocity_random = 0.04
+radial_accel = -1.75
+damping = 0.1
+color = Color( 0.270588, 0.270588, 0.270588, 1 )
+color_ramp = SubResource( 3 )

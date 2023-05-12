@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 5.0
@@ -70,34 +71,32 @@ corner_radius_bottom_left = 5
 [sub_resource type="ButtonGroup" id=35]
 
 [node name="MicrobeEditorTabButtons" type="MarginContainer"]
-margin_right = 353.0
-margin_bottom = 45.0
+margin_right = 278.0
+margin_bottom = 38.0
 custom_constants/margin_right = 5
-custom_constants/margin_top = 10
+custom_constants/margin_top = 5
 custom_constants/margin_left = 15
 custom_constants/margin_bottom = 5
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-ReportTabButtonPath = NodePath("HBoxContainer/ReportButton")
-PatchMapButtonPath = NodePath("HBoxContainer/PatchMapButton")
-CellEditorButtonPath = NodePath("HBoxContainer/CellEditorButton")
-CellTypeTabPath = NodePath("HBoxContainer/CellTypeEditorButton")
+TabButtonsPath = NodePath("TabButtons")
+ReportTabButtonPath = NodePath("TabButtons/ReportButton")
+PatchMapButtonPath = NodePath("TabButtons/PatchMapButton")
+CellEditorButtonPath = NodePath("TabButtons/CellEditorButton")
+CellTypeTabPath = NodePath("TabButtons/CellTypeEditorButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="TabButtons" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 15.0
-margin_top = 10.0
-margin_right = 348.0
-margin_bottom = 40.0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_top = 5.0
+margin_right = 273.0
+margin_bottom = 33.0
+NoWrap = true
 
-[node name="ReportButton" type="Button" parent="HBoxContainer"]
-margin_right = 71.0
-margin_bottom = 30.0
+[node name="ReportButton" type="Button" parent="TabButtons"]
+margin_right = 60.0
+margin_bottom = 28.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -115,10 +114,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PatchMapButton" type="Button" parent="HBoxContainer"]
-margin_left = 81.0
-margin_right = 169.0
-margin_bottom = 30.0
+[node name="PatchMapButton" type="Button" parent="TabButtons"]
+margin_left = 64.0
+margin_right = 152.0
+margin_bottom = 28.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -135,10 +135,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CellEditorButton" type="Button" parent="HBoxContainer"]
-margin_left = 179.0
-margin_right = 251.0
-margin_bottom = 30.0
+[node name="CellEditorButton" type="Button" parent="TabButtons"]
+margin_left = 156.0
+margin_right = 213.0
+margin_bottom = 28.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -155,10 +156,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CellTypeEditorButton" type="Button" parent="HBoxContainer"]
-margin_left = 261.0
-margin_right = 333.0
-margin_bottom = 30.0
+[node name="CellTypeEditorButton" type="Button" parent="TabButtons"]
+margin_left = 217.0
+margin_right = 258.0
+margin_bottom = 28.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -175,7 +177,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="HBoxContainer/ReportButton" to="." method="SetEditorTab" binds= [ "Report" ]]
-[connection signal="pressed" from="HBoxContainer/PatchMapButton" to="." method="SetEditorTab" binds= [ "PatchMap" ]]
-[connection signal="pressed" from="HBoxContainer/CellEditorButton" to="." method="SetEditorTab" binds= [ "CellEditor" ]]
-[connection signal="pressed" from="HBoxContainer/CellTypeEditorButton" to="." method="SetEditorTab" binds= [ "CellTypeEditor" ]]
+[connection signal="pressed" from="TabButtons/ReportButton" to="." method="SetEditorTab" binds= [ "Report" ]]
+[connection signal="pressed" from="TabButtons/PatchMapButton" to="." method="SetEditorTab" binds= [ "PatchMap" ]]
+[connection signal="pressed" from="TabButtons/CellEditorButton" to="." method="SetEditorTab" binds= [ "CellEditor" ]]
+[connection signal="pressed" from="TabButtons/CellTypeEditorButton" to="." method="SetEditorTab" binds= [ "CellTypeEditor" ]]

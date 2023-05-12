@@ -19,7 +19,7 @@
 public abstract class PhotographablePreview : Control
 {
     [Export]
-    public NodePath TextureRectPath = null!;
+    public NodePath? TextureRectPath;
 
     /// <summary>
     ///   If true then the plain <see cref="Image"/> version of the preview texture is also kept in memory
@@ -27,10 +27,14 @@ public abstract class PhotographablePreview : Control
     [Export]
     public bool KeepPlainImageInMemory;
 
+#pragma warning disable CA2213
     private TextureRect textureRect = null!;
-    private ImageTask? task;
     private Texture loadingTexture = null!;
+#pragma warning restore CA2213
 
+    private ImageTask? task;
+
+    // TODO: conclude if we should dispose this or if caching might in the future share these
     private Image? finishedImage;
 
     public override void _Ready()
@@ -103,4 +107,14 @@ public abstract class PhotographablePreview : Control
     /// </example>
     /// <returns>An image task, or null if condition not satisfied</returns>
     protected abstract ImageTask? SetupImageTask();
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            TextureRectPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
 }

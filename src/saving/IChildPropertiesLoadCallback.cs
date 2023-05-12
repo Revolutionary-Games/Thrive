@@ -1,5 +1,5 @@
 ﻿public interface IChildPropertiesLoadCallback
 {
-    void OnNoPropertiesLoaded();
-    void OnPropertiesLoaded();
+    public void OnNoPropertiesLoaded();
+    public void OnPropertiesLoaded();
 }
