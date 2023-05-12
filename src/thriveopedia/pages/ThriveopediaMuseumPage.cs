@@ -76,12 +76,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
                 continue;
 
             var card = (MuseumCard)museumCardScene.Instance();
-
             card.FossilName = savedSpecies.Name;
             card.SavedSpecies = savedSpecies.Species;
             card.FossilPreviewImage = savedSpecies.PreviewImage;
+
             card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
             card.Connect(nameof(MuseumCard.OnSpeciesDeleted), this, nameof(DeleteSpecies));
+
             cardContainer.AddChild(card);
         }
     }
@@ -233,7 +234,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             speciesPreviewContainer.Visible = false;
         }
 
-        cardToBeDeleted.DetachAndQueueFree();
+        cardToBeDeleted.QueueFree();
         cardToBeDeleted = null;
     }
 }
