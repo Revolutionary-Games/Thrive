@@ -398,21 +398,23 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         GD.Print("Switching to space scene");
 
-        // TODO: implement this change:
-        /*var industrialStage =
-            SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
-        industrialStage.CurrentGame = CurrentGame;
-        industrialStage.TakeInitialResourcesFrom(SocietyResources);
+        var spaceStage =
+            SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
+        spaceStage.CurrentGame = CurrentGame;
 
-        SceneManager.Instance.SwitchToScene(industrialStage);
+        SceneManager.Instance.SwitchToScene(spaceStage);
 
-        // Preserve some of the state when moving to the stage for extra continuity
-        industrialStage.CameraWorldPoint = CameraWorldPoint / Constants.INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
+        // Copy our resources to the new stage, this is after the scene switch to make sure the storage capacity is
+        // initialized already
+        spaceStage.TakeInitialResourcesFrom(SocietyResources);
 
-        var cityPosition = industrialStage.CameraWorldPoint;
-        cityPosition.y = 0;
+        spaceStage.AddPlanet(Transform.Identity, true);
 
-        // TODO: preserve the initial city building visuals
-        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition), true);*/
+        // TODO: preserve the actual cities placed on the starting planet
+
+        // TODO: copy the initial spaceship going to space
+        throw new NotImplementedException();
+
+        int a;
     }
 }
