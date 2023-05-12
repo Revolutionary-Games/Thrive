@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-11 14:49+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -212,11 +212,11 @@ msgstr "Zastosuj zmiany"
 msgid "APRIL"
 msgstr "Kwiecień"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości domyślnych?"
 
@@ -269,12 +269,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Balans ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:314
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
 msgstr "Produkcja ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:315
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
@@ -359,9 +359,13 @@ msgstr "Status Auto-Evo:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatyczne poruszanie do przodu"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:41
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -379,7 +383,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -404,7 +408,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Podstawowa Mobilność"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "BASE_MOVEMENT"
 msgstr "Bazowa prędkość"
 
@@ -442,7 +446,7 @@ msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 msgid "BECOME_MULTICELLULAR"
 msgstr "Zostań organizmem wielokomórkowym! ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
 msgid "BEGIN_THRIVING"
 msgstr "Zacznij żyć"
 
@@ -573,9 +577,14 @@ msgstr "Przeglądaj"
 msgid "BROWSE_WORKSHOP"
 msgstr "Przeglądaj Warsztat Steam"
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 msgid "BUILD_CITY"
 msgstr "Zbuduj Miasto"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
+#, fuzzy
+msgid "BUILD_QUEUE"
+msgstr "Struktura"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -605,7 +614,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -857,12 +866,37 @@ msgstr "Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę 
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Zwiększa prędkość obrotu większych komórek."
 
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr ""
+"[b]Pokolenia:[/b]\n"
+"    {0}\n"
+"[b]Wszystkie Obszary:[/b]\n"
+"    {1}\n"
+"[b]Całkowity Czas Auto-Ewo:[/b]\n"
+"    {2}\n"
+"[b]Wszystkie Gatunki:[/b]\n"
+"    {3}\n"
+"[b]Nadal Żyjące Gatunki:[/b]\n"
+"    {4}\n"
+"[b]Liczba Gatunków na Obszar:[/b]\n"
+"    Średnio {5}; Standardowe odchylenie {6}\n"
+"[b]Całkowita Populacja:[/b]\n"
+"    {7}\n"
+"[b]Najliczniejszy Gatunek:[/b]\n"
+"    {8}\n"
+"[b]Podstawowe Dane Gatunków Mikrobów:[/b]\n"
+"    Średnia wielkość w heksach: {9}\n"
+"[b]Ogólne Dane Organelli:[/b]"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Usuń stare zapisy"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -870,11 +904,11 @@ msgstr "Usuń stare zapisy"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Zamknij"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
@@ -983,7 +1017,7 @@ msgstr "Wiki Społeczności"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Odwiedź naszą wiki społeczności"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 msgid "COMPILED_AT_COLON"
 msgstr "Zbudowane w:"
 
@@ -1062,6 +1096,16 @@ msgstr "Przejść do Fazy Cywilizacji?"
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Budując fabrykę przejdziesz w fazę cywilizacji. Kontynuować do następnego etapu?"
 
+#: ../src/industrial_stage/IndustrialStage.tscn:75
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
+msgstr "Przejść do Fazy Cywilizacji?"
+
+#: ../src/industrial_stage/IndustrialStage.tscn:76
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
+msgstr "Budując fabrykę przejdziesz w fazę cywilizacji. Kontynuować do następnego etapu?"
+
 #: ../src/general/NewGameSettings.cs:329
 #: ../src/general/NewGameSettings.tscn:1193
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
@@ -1071,11 +1115,16 @@ msgstr "Wejdź do gry z tymi ustawieniami"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Niektóre ustawienia są nieważnie"
 
+#: ../src/industrial_stage/UnitType.cs:68
+#, fuzzy
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr "Tritanopia (Niebieski-Żółty)"
+
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Zawartość warsztatu zostanie wczytana z folderu: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
 msgid "CONTINUE_THRIVING"
 msgstr "Kontynuuj Rozkwitanie"
 
@@ -1136,7 +1185,7 @@ msgstr "Protanopia (Czerwony-Zielony)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Niebieski-Żółty)"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:249
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Wyczyść wybrane klawisze"
 
@@ -1148,11 +1197,11 @@ msgstr ""
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Wejścia"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:184
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Znane Receptury"
 
@@ -1177,20 +1226,20 @@ msgstr "{0} ({1})"
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Kamienna Siekiera Ręczna"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:280
 msgid "CRAFTING_RESULTS"
 msgstr "Wyniki"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:215
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Wybierz recepturą bądź dodaj przedmioty do filtra"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:293
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Weź Wszystko"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:170
 msgid "CRAFTING_TITLE"
 msgstr "Craftowanie"
 
@@ -1370,7 +1419,7 @@ msgstr "Panel Debugowania"
 msgid "DECEMBER"
 msgstr "Grudzień"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Domyślne urządzenie wyjściowe"
 
@@ -1533,7 +1582,7 @@ msgstr "Szybkość Trawienia"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Szybkość Trawienia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1553,7 +1602,7 @@ msgstr "Wył"
 msgid "DISABLE_ALL"
 msgstr "Wyłącz wszystko"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odrzuć i kontynuuj"
 
@@ -1800,7 +1849,7 @@ msgstr "Edytor"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w Edytorze Mikrobów.\n"
@@ -1831,11 +1880,11 @@ msgstr "Włącz edytor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Włącz efekty świetlne GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -1888,7 +1937,7 @@ msgstr "Epipelagial"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "Siekiera"
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "Błąd"
 
@@ -1900,7 +1949,7 @@ msgstr "Błąd podczas tworzenia folderu dla modyfikacji"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Błąd przy zmienianiu moda w plik"
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
@@ -1940,11 +1989,11 @@ msgstr "Drzewo Filogenetyczne"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 msgid "EXACT_VERSION_COLON"
 msgstr "Dokładna Wersja Thrive:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
@@ -1955,6 +2004,11 @@ msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 #: ../src/saving/InProgressLoad.cs:116
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Podczas wczytywania danych zapisu nastąpił wyjątek"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Podaj Istniejące ID"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2253,7 +2307,7 @@ msgstr "Generacja:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Odwiedź naszą stronę GitHub"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2265,7 +2319,7 @@ msgstr "Ostrzeżenie Tryb GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2310,7 +2364,7 @@ msgstr "Tryb Boga"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Komórka oczka"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
 msgid "GOT_IT"
 msgstr "Rozumiem"
 
@@ -2586,19 +2640,19 @@ msgstr "Niepoprawny format URL"
 msgid "INVALID_URL_SCHEME"
 msgstr "Niepoprawny schemat URL"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:78
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:104
 msgid "INVENTORY_TITLE"
 msgstr "Ekwipunek"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:153
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr "Tworzenie"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:147
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -2832,15 +2886,15 @@ msgstr "Numeryczny -"
 msgid "LANGUAGE"
 msgstr "Język:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ten język jest gotów w {0}%"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Ten język nadal jest w trakcie tłumaczenia ({0}% ukończenia)"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli możesz, pomóż to zmienić!"
 
@@ -3488,7 +3542,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Etap Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Zbierz glukozę (białe chmury) przepływając przez nie.\n"
@@ -3497,7 +3551,7 @@ msgstr ""
 "\n"
 "Podążaj za linią wychodzącą z twojej komórki do pobliskiej glukozy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Aby kontrolować twoją komórkę, użyj klawiszy pokazanych przy twojej komórce na środku ekranu i myszki aby kontrolować kierunek komórki.\n"
@@ -3506,7 +3560,7 @@ msgstr ""
 "\n"
 "Wypróbuj wszystkie klawisze przez kilka sekund aby kontynuować."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3514,7 +3568,7 @@ msgstr ""
 "\n"
 "Wypróbuj wszystkie klawisze przez kilka sekund aby kontynuować."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "Wypatruj spadku poziomu światła słonecznego na panelu środowiska.\n"
@@ -3523,7 +3577,7 @@ msgstr ""
 "Fotosynteza jest nieefektywna nocą.\n"
 "Upewnij się, że masz wystarczająco magazynu by przetrwać noc."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Pilnuj swojego paska zdrowia obok paska ATP (prawy dolny róg)?\n"
@@ -3610,7 +3664,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] może zostać przetworzony w [thrive:compound type=\"glucose\"][/thrive:compound] przez chemoplasty i białka chemosyntezujące. [thrive:compound type=\"iron\"][/thrive:compound] może zostać utlenione przez rustycyjaninę wydzielając [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
@@ -3685,7 +3739,7 @@ msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to st
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Mieszane..."
 
@@ -4042,6 +4096,11 @@ msgstr "Wycisz"
 msgid "NAME"
 msgstr "Nazwa:"
 
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Biom: {0}"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatywny balans ATP"
@@ -4231,7 +4290,7 @@ msgstr "Nie Znaleziono Zapisów"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Nie znaleziono katalogu zapisów"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Nie znaleziono katalogu zrzutów ekranu"
 
@@ -4437,7 +4496,7 @@ msgstr "Może zostać użyte do dźgania innych komórek lub obrony przed ich to
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:363
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
 msgid "OSMOREGULATION"
 msgstr "Osmoregulacja"
 
@@ -4618,7 +4677,7 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4677,11 +4736,10 @@ msgstr "Pokojowość"
 #: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
@@ -5016,7 +5074,7 @@ msgstr "Wymaga Jądra"
 msgid "RESEARCH"
 msgstr "Wyszukaj"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Reset"
 
@@ -5028,7 +5086,7 @@ msgstr "Resetuj Strefy Martwe"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Zresetuj Odrzucone Popupy"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Zresetować wejścia do domyślnych?"
 
@@ -5036,11 +5094,11 @@ msgstr "Zresetować wejścia do domyślnych?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Zresetuj Skróty Klawiszowe"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Domyślne"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Przywrócić do domyślnych?"
 
@@ -5212,11 +5270,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Zapisz"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Zapisz i kontynuuj"
 
@@ -5417,8 +5475,8 @@ msgstr "Wybierz obszar by zobaczyć jego szczegóły"
 msgid "SELECT_A_SPECIES"
 msgstr "Wybierz gatunek"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:124
-#: ../src/society_stage/gui/TechWebGUI.tscn:54
+#: ../src/society_stage/gui/TechWebGUI.cs:134
+#: ../src/society_stage/gui/TechWebGUI.tscn:56
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Wybierz obszar by zobaczyć jego szczegóły"
@@ -5479,7 +5537,7 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "SHOW_TUTORIALS"
 msgstr "Pokazuj samouczki"
 
@@ -5627,7 +5685,7 @@ msgstr "Stwórz amoniak"
 msgid "SPAWN_ENEMY"
 msgstr "Przywołaj Przeciwnika"
 
-#: ../src/microbe_stage/MicrobeStage.cs:781
+#: ../src/microbe_stage/MicrobeStage.cs:790
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo nastawionych gatunków"
 
@@ -5736,7 +5794,7 @@ msgstr "Rozpocznij Kalibrację"
 msgid "START_GAME"
 msgstr "Zapisz Grę"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:77
+#: ../src/society_stage/gui/TechWebGUI.tscn:80
 #, fuzzy
 msgid "START_RESEARCH"
 msgstr "Wymagany Restart"
@@ -5881,6 +5939,15 @@ msgstr "Strukturalne"
 msgid "STRUCTURE"
 msgstr "Struktura"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "Struktura"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -5991,8 +6058,44 @@ msgstr "Tagi zawierają tylko znaki białe"
 msgid "TAKE_SCREENSHOT"
 msgstr "Zrzut ekranu"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:52
+msgid "TECHNOLOGY_ASCENSION"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:36
+msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:24
+msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:12
+msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:18
+msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:42
+msgid "TECHNOLOGY_LEVEL_SCIFI"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:30
+msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
+msgstr ""
+
+#: ../src/society_stage/gui/TechWebGUI.cs:148
+msgid "TECHNOLOGY_REQUIRED_LEVEL"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:41
+msgid "TECHNOLOGY_ROCKETRY"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
@@ -6323,19 +6426,19 @@ msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Spróbuj zapisać!"
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
 msgid "TUTORIAL"
 msgstr "Samouczek"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Witaj we Wczesnym Etapie Wielokomórkowym!\n"
@@ -6348,7 +6451,7 @@ msgstr ""
 "\n"
 "Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji auto-ewolucji.\n"
@@ -6359,7 +6462,7 @@ msgstr ""
 "\n"
 "Możesz dowiedzieć się więcej klikając pytajnik na tym panelu. Naciśnij, by kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie punktów mutacji (MP). W każdym pokoleniu zawsze masz 100 MP, więc nie przejmuj się oszczędzaniem!\n"
@@ -6368,7 +6471,7 @@ msgstr ""
 "\n"
 "By kontynuować, wybież część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To są podstawy edycji gatunku. Na zakończenie, możesz zmienić nazwę swojego gatunku poprzez kliknięcie w imię w lewym, dolnym rogu i edytowanie tekstu.\n"
@@ -6379,7 +6482,7 @@ msgstr ""
 "\n"
 "Powodzenia!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "To jest mapa obszarów.\n"
@@ -6390,7 +6493,7 @@ msgstr ""
 "\n"
 "Spróbuj wybrać jakiś obszar by kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Usuwanie organelli również kosztuje PM, jako iż jest to mutacja, chyba że zostały dodane w obecnej sesji.\n"
@@ -6401,7 +6504,7 @@ msgstr ""
 "\n"
 "Kliknij przycisk cofnij aby kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Wybierając części z menu, zwracaj szczególną uwagę na podpowiedzi które wyskakują by zrozumieć co te części robią. Mogą one bardziej szkodzić niż pomagać jeśli nie przejmujesz się ich działaniem.\n"
@@ -6410,7 +6513,7 @@ msgstr ""
 "\n"
 "Naciśnij przycisk ponów (obok przycisku cofnij) by kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Skup się na jednym lub dwóch źródłach energii, żebyś nie potrzebował wszystkich istniejących zadobów aby przetrwać.\n"
@@ -6419,7 +6522,7 @@ msgstr ""
 "\n"
 "Jedną z możliwych strategii jest pozostanie pojedynczym heksem cytoplazmy i udawanie się do środowisk powierzchniowych zanim dodasz organella fotosyntezujace."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Zdobyłeś wystarczająco dużo zasobów żeby twoja komórka mogła się rozmnożyć.\n"
@@ -6428,21 +6531,21 @@ msgstr ""
 "\n"
 "Aby otworzyć edytor naciśnij durzy migający przycisk w prawym dolnym rogu."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Twoja komórka została wchłonięta i jest trawiona. Postęp jest pokazany na twoim pasku zdrowia. Twoja komórka będzie martwa gdy ten proces się zakończy bądź maksymalny limit czasu osiągnięty.\n"
 "\n"
 "Możesz się zabić by pominąć i odrodzić się, lecz pamiętaj, zawsze jest szansa ucieczki!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Twoja komórka ma limitowaną pojemność dla obiektów które mogą być wchłonięte jednocześnie. Ten limit jest bazowany na wielkości; mniejsze komórki mają mniej pojemności.\n"
 "\n"
 "Gdy pełna, komórka nie może pochłaniać więcej rzeczy. By kontynuować wchłanianie, poczekaj aż jeden lub więcej wchłoniętych obiektów zostało w pełni strawionych."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6451,14 +6554,14 @@ msgstr ""
 "\n"
 "Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
 "\n"
 "Jeszcze jedna wskazówka: możesz zwiększyć pole widzenia za pomocą kółka myszy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Jesteś pełen [thrive:compound type=\"ammonia\"][/thrive:compound] oraz [thrive:compound type=\"phosphates\"][/thrive:compound]. Jednakże, jako iż jesteś w niewielokomórkowej kolonii, nie zachodzi u ciebie postęp rozmnażania.\n"
@@ -6466,20 +6569,20 @@ msgstr ""
 "Musisz opuścić kolonię by dostać się do edytora o ile nie planujesz przejścia do wielokomórkowości.\n"
 "Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle poprzez zebranie wystarczająco dużo amoniaku i fosforanów.\n"
 "Patrz na paski w prawym dolnym rogu żeby sprawdzić ile jeszcze potrzebujesz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
 "\n"
 "Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
 
@@ -6512,7 +6615,7 @@ msgstr "Odwiąż wszystkie"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Tryb rozdzielenia"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie przestarzałe"
 
@@ -6528,11 +6631,15 @@ msgstr "Cofnij"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Cofnij ostatnią czynność"
 
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
 msgstr "Nieznany"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Nieznany"
 
@@ -6544,7 +6651,7 @@ msgstr "Nieznany myszy"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Nieznany na Windowsie"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 msgid "UNKNOWN_VERSION"
 msgstr "Nieznana wersja"
 
@@ -6552,7 +6659,7 @@ msgstr "Nieznana wersja"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Nieznane ID Sklepu Dla Tego Moda"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Masz niezapisane zmiany które zostaną odrzucone.\n"
@@ -6662,7 +6769,7 @@ msgstr "Pion (Oś: {0})"
 msgid "VIDEO_MEMORY"
 msgstr "Obecnie wykorzystana pamięć wideo:"
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 

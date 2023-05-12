@@ -256,14 +256,15 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             // Apply the value to the text labels as percentage (except for Health)
             if (modifier.Name == "health")
             {
-                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
-                    + deltaValue.ToString("F0", CultureInfo.CurrentCulture);
+                modifier.ModifierValue =
+                    StringUtils.FormatPositiveWithLeadingPlus(deltaValue.ToString("F0", CultureInfo.CurrentCulture),
+                        deltaValue);
             }
             else
             {
-                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
-                    + TranslationServer.Translate("PERCENTAGE_VALUE")
-                        .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
+                modifier.ModifierValue = StringUtils.FormatPositiveWithLeadingPlus(TranslationServer
+                    .Translate("PERCENTAGE_VALUE")
+                    .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture)), deltaValue);
             }
 
             if (modifier.Name == "osmoregulationCost")

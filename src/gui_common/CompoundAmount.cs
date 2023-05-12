@@ -181,14 +181,9 @@ public class CompoundAmount : HBoxContainer
             numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
         }
 
-        if (PrefixPositiveWithPlus && amount >= 0)
-        {
-            amountLabel.Text = "+" + numberPart;
-        }
-        else
-        {
-            amountLabel.Text = numberPart;
-        }
+        amountLabel.Text = PrefixPositiveWithPlus ?
+            StringUtils.FormatPositiveWithLeadingPlus(numberPart, amount) :
+            numberPart;
     }
 
     private void UpdateColour()

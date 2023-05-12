@@ -17,15 +17,9 @@ public class ResearchComponent : StructureComponent
         this.researchLevel = researchLevel;
     }
 
-    public override void ProcessSociety(float delta, ISocietyStructureDataAccess dataAccess)
+    public static void HandleResearchProgressAdding(float delta, object researchSource, float speed,
+        ResearchLevel researchLevel, ISocietyStructureDataAccess dataAccess)
     {
-        timeUntilTick -= delta;
-
-        if (timeUntilTick > 0)
-            return;
-
-        timeUntilTick += Constants.SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL;
-
         var technologyProgress = dataAccess.CurrentlyResearchedTechnology;
 
         bool canResearch = technologyProgress != null;
@@ -42,14 +36,27 @@ public class ResearchComponent : StructureComponent
 
         if (canResearch)
         {
-            var researchPoints = speed * Constants.SOCIETY_STAGE_CITIZEN_SPAWN_INTERVAL;
+            var researchPoints = speed * delta;
             technologyProgress!.AddProgress(researchPoints);
-            dataAccess.AddActiveResearchContribution(this, researchPoints);
+            dataAccess.AddActiveResearchContribution(researchSource, researchPoints);
         }
         else
         {
-            dataAccess.RemoveActiveResearchContribution(this);
+            dataAccess.RemoveActiveResearchContribution(researchSource);
         }
+    }
+
+    public override void ProcessSociety(float delta, ISocietyStructureDataAccess dataAccess)
+    {
+        timeUntilTick -= delta;
+
+        if (timeUntilTick > 0)
+            return;
+
+        timeUntilTick += Constants.SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL;
+
+        HandleResearchProgressAdding(Constants.SOCIETY_STAGE_RESEARCH_PROGRESS_INTERVAL, this, speed, researchLevel,
+            dataAccess);
     }
 }
 

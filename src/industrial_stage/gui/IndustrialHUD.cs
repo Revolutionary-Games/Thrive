@@ -9,8 +9,13 @@ public class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
     [Export]
     public NodePath? PopulationLabelPath;
 
+    [Export]
+    public NodePath CityScreenPopupPath = null!;
+
 #pragma warning disable CA2213
     private Label populationLabel = null!;
+
+    private CityScreen cityScreenPopup = null!;
 #pragma warning restore CA2213
 
     // TODO: real button referencing text for this
@@ -21,7 +26,7 @@ public class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
         base._Ready();
 
         populationLabel = GetNode<Label>(PopulationLabelPath);
-        researchScreen = GetNode<ResearchScreen>(ResearchScreenPath);
+        cityScreenPopup = GetNode<CityScreen>(CityScreenPopupPath);
     }
 
     public void UpdatePopulationDisplay(long population)
@@ -29,11 +34,29 @@ public class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
         populationLabel.Text = StringUtils.ThreeDigitFormat(population);
     }
 
+    public void OpenCityScreen(PlacedCity city)
+    {
+        cityScreenPopup.ShowForCity(city);
+    }
+
+    /// <summary>
+    ///   Closes all open windows, called when something really important is being shown on screen
+    /// </summary>
+    public void CloseAllOpenWindows()
+    {
+        cityScreenPopup.Close();
+        researchScreen.Close();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            PopulationLabelPath?.Dispose();
+            if (PopulationLabelPath != null)
+            {
+                PopulationLabelPath.Dispose();
+                CityScreenPopupPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);
