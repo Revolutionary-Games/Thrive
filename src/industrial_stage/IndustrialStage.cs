@@ -421,7 +421,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
             spaceCraftData = (null!, SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"));
         }
 
-        var fleet = spaceStage.AddFleet(new Transform(Basis.Identity, new Vector3(10, 0, 0)), spaceCraftData.Value.Spacecraft, true);
+        var fleet = spaceStage.AddFleet(new Transform(Basis.Identity, new Vector3(10, 0, 0)),
+            spaceCraftData.Value.Spacecraft, true);
 
         // Focus the camera initially on the ship to make the stage transition smoother
         spaceStage.ZoomOutFromFleet(fleet);

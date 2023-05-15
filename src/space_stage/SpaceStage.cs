@@ -1,6 +1,7 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   The main class handling the space stage functions (and also the ascension stage as that just adds some extra
@@ -118,7 +119,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         var planet = SpawnHelpers.SpawnPlanet(location, rootOfDynamicallySpawned, planetScene, playerPlanet, techWeb);
 
-        var binds = new Godot.Collections.Array();
+        var binds = new Array();
         binds.Add(planet);
         planet.Connect(nameof(PlacedPlanet.OnSelected), this, nameof(OpenPlanetInfo), binds);
 
@@ -129,7 +130,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         var fleet = SpawnHelpers.SpawnFleet(location, rootOfDynamicallySpawned, fleetScene, playerFleet, initialShip);
 
-        var binds = new Godot.Collections.Array();
+        var binds = new Array();
         binds.Add(fleet);
         fleet.Connect(nameof(SpaceFleet.OnSelected), this, nameof(OpenFleetInfo), binds);
 
