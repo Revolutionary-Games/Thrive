@@ -76,14 +76,14 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
         rockResource = SimulationParameters.Instance.GetWorldResource("rock");
     }
 
-    public override void _Process(float delta)
-    {
-    }
-
     public void Init(bool playerOwned, TechWeb cityAvailableTechnologies)
     {
         IsPlayerOwned = playerOwned;
         availableTechnology = cityAvailableTechnologies;
+    }
+
+    public override void _Process(float delta)
+    {
     }
 
     public void ProcessSpace(float elapsed, IResourceContainer globalResourceHack)

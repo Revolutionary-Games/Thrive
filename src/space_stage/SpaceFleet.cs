@@ -81,17 +81,17 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel
         nodeReferencesResolved = true;
     }
 
-    public override void _Process(float delta)
-    {
-        // TODO: handle moving towards the destination
-    }
-
     public void Init(UnitType ships, bool playerFleet)
     {
         ResolveNodeReferences();
 
         SetShips(ships);
         IsPlayerFleet = playerFleet;
+    }
+
+    public override void _Process(float delta)
+    {
+        // TODO: handle moving towards the destination
     }
 
     public void OnSelectedThroughLabel()
