@@ -12,7 +12,15 @@ PlanetScreenPopupPath = NodePath("PlanetScreen")
 visible = false
 
 [node name="Build" parent="ScrollContainer/HotBar" index="0"]
-hint_tooltip = "BUILD_SPACE_STRUCTURE"
+visible = false
 disabled = true
+
+[node name="Research" parent="ScrollContainer/HotBar" index="1"]
+margin_left = 226.0
+margin_right = 272.0
+
+[node name="Posses" parent="ScrollContainer/HotBar" index="2"]
+margin_left = 278.0
+margin_right = 324.0
 
 [node name="PlanetScreen" parent="." index="8" instance=ExtResource( 2 )]
