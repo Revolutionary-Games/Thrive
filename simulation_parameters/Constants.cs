@@ -607,6 +607,7 @@ public static class Constants
     ///   Osmoregulation ATP cost per second per hex
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
+    public const float NUCLEUS_OSMOREGULATION_REDUCTION = 0.90f;
 
     /// <summary>
     ///   The default contact store count for objects using contact reporting
