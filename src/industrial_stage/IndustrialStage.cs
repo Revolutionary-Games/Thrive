@@ -126,7 +126,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         if (!playerCity)
         {
-            // TODO: AI civilizations tech web's
+            // TODO: AI civilizations' tech webs
             GD.Print("TODO: implement AI civilization tech unlocking");
             techWeb = new TechWeb();
         }
@@ -362,7 +362,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
                 {
                     movingToSpaceStagePhase = StageMovePhase.FadingOut;
                     TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut,
-                        Constants.INDUSTRIAL_TO_SPACE_FADE_DURATION);
+                        Constants.INDUSTRIAL_TO_SPACE_FADE_DURATION, SwitchToSpaceScene);
                 }
 
                 break;
@@ -412,9 +412,21 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         // TODO: preserve the actual cities placed on the starting planet
 
-        // TODO: copy the initial spaceship going to space
-        throw new NotImplementedException();
+        // Create initial fleet from the ship going to space
+        var spaceCraftData = citySystem.FirstLaunchableSpacecraft;
+        if (spaceCraftData == null)
+        {
+            GD.PrintErr("Spacecraft to put in initial fleet not found, using fallback unit");
 
-        int a;
+            spaceCraftData = (null!, SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"));
+        }
+
+        var fleet = spaceStage.AddFleet(new Transform(Basis.Identity, new Vector3(10, 0, 0)), spaceCraftData.Value.Spacecraft, true);
+
+        // Focus the camera initially on the ship to make the stage transition smoother
+        spaceStage.ZoomOutFromFleet(fleet);
+
+        // TODO: queue a move order to have the fleet be moving
+        // fleet.QueueOrder();
     }
 }

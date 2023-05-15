@@ -83,49 +83,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( 0, 100, 0 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 107.741, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 1.001, 1.001, 1.001 ) ]
-}
 
 [node name="PlacedPlanet" type="Spatial"]
 transform = Transform( -0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="PlaceholderPlanetGraphics" type="Spatial" parent="."]
-transform = Transform( -0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0 )
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 
 [node name="MenuPlanet" parent="PlaceholderPlanetGraphics" instance=ExtResource( 2 )]
-transform = Transform( 9.97738, 0, 0.67226, 0, 10, 0, -0.67226, 0, 9.97738, 0, 0, 0 )
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
 
 [node name="MenuPlanetClouds" parent="PlaceholderPlanetGraphics/MenuPlanet" instance=ExtResource( 3 )]
-transform = Transform( 0.999434, 0, -0.033632, 0, 1, 0, 0.033632, 0, 0.999434, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Ahtmosphere" parent="PlaceholderPlanetGraphics/MenuPlanet" instance=ExtResource( 4 )]
 transform = Transform( 1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0 )
 
 [node name="FakeAtmoshereParticle" type="CPUParticles" parent="PlaceholderPlanetGraphics/MenuPlanet"]
-transform = Transform( 680, 0, 0, 0, 680, 0, 0, 0, 680, 0, 0, 0 )
+transform = Transform( 650, 0, 0, 0, 650, 0, 0, 0, 650, 0, 0, 0 )
 amount = 2
 lifetime = 1.42
 preprocess = 2.08

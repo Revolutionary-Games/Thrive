@@ -389,6 +389,27 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/space_stage/PlacedPlanet.tscn");
     }
 
+    public static SpaceFleet SpawnFleet(Transform location, Node worldRoot, PackedScene fleetScene,
+        bool playerFleet, UnitType initialShip)
+    {
+        var fleet = (SpaceFleet)fleetScene.Instance();
+
+        fleet.Init(initialShip, playerFleet);
+
+        worldRoot.AddChild(fleet);
+        fleet.Transform = location;
+
+        fleet.AddToGroup(Constants.SPACE_FLEET_ENTITY_GROUP);
+        fleet.AddToGroup(Constants.NAME_LABEL_GROUP);
+
+        return fleet;
+    }
+
+    public static PackedScene LoadFleetScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/SpaceFleet.tscn");
+    }
+
     private static Quat RandomRotationForResourceEntity(Random random)
     {
         return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),

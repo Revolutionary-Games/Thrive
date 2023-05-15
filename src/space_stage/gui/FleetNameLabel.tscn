@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/space_stage/gui/FleetNameLabel.cs" type="Script" id=2]
+
+[node name="FleetNameLabel" type="Button"]
+margin_right = 173.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 30, 5 )
+theme = ExtResource( 1 )
+text = "Pangonian Fleet"
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[connection signal="pressed" from="." to="." method="ForwardSelection"]

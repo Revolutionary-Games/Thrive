@@ -2,14 +2,14 @@
 using Godot;
 using Newtonsoft.Json;
 
-/// <summary>
-///   Shows a label with a city name and size for selecting that city
-/// </summary>
-public class CityNameLabel : Button, IEntityNameLabel
+public class FleetNameLabel : Button, IEntityNameLabel
 {
     private string translationTemplate = null!;
 
-    public CityNameLabel()
+    private string? previousName;
+    private float previousStrength;
+
+    public FleetNameLabel()
     {
         UpdateTranslationTemplate();
     }
@@ -35,25 +35,30 @@ public class CityNameLabel : Button, IEntityNameLabel
 
         switch (entity)
         {
-            case PlacedCity city:
-                newText = translationTemplate.FormatSafe(city.CityName, city.Population);
-                break;
+            case SpaceFleet fleet:
 
-            case PlacedPlanet planet:
-                newText = translationTemplate.FormatSafe(planet.PlanetName, planet.Population);
+                if (fleet.FleetName == previousName &&
+                    Math.Abs(fleet.CombatPower - previousStrength) < MathUtils.EPSILON)
+                {
+                    return;
+                }
+
+                previousName = fleet.FleetName;
+                previousStrength = fleet.CombatPower;
+
+                newText = translationTemplate.FormatSafe(previousName, previousStrength);
                 break;
 
             default:
                 throw new ArgumentException("Unsupported entity type", nameof(entity));
         }
 
-        // TODO: check if comparing against the old text is faster than always applying the new value
         Text = newText;
     }
 
     private void UpdateTranslationTemplate()
     {
-        translationTemplate = TranslationServer.Translate("NAME_LABEL_CITY");
+        translationTemplate = TranslationServer.Translate("NAME_LABEL_FLEET");
     }
 
     private void ForwardSelection()

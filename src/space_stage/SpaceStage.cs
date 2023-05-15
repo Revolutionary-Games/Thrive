@@ -20,11 +20,15 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     // private CustomConfirmationDialog descendConfirmationPopup = null!;
 
     private PackedScene planetScene = null!;
+    private PackedScene fleetScene = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private PlanetSystem planetSystem = null!;
+
+    private bool zoomingOutFromFleet;
+    private float targetZoomOutLevel;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -43,6 +47,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         ResolveNodeReferences();
 
         planetScene = SpawnHelpers.LoadPlanetScene();
+        fleetScene = SpawnHelpers.LoadFleetScene();
 
         nameLabelSystem.Init(strategicCamera, rootOfDynamicallySpawned);
         nameLabelSystem.Visible = true;
@@ -72,6 +77,16 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         base._Process(delta);
 
+        if (zoomingOutFromFleet)
+        {
+            if (AnimateCameraZoomTowards(targetZoomOutLevel, delta, 0.8f))
+            {
+                // Zoom complete, unlock the camera for normal movement
+                strategicCamera.AllowPlayerInput = false;
+                zoomingOutFromFleet = false;
+            }
+        }
+
         if (!IsGameOver())
         {
             planetSystem.Process(delta, this);
@@ -96,7 +111,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         if (!playerPlanet)
         {
-            // TODO: AI civilizations tech web's
+            // TODO: AI civilizations' tech webs
             GD.Print("TODO: implement AI civilization tech unlocking");
             techWeb = new TechWeb();
         }
@@ -110,17 +125,45 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         return planet;
     }
 
+    public SpaceFleet AddFleet(Transform location, UnitType initialShip, bool playerFleet)
+    {
+        var fleet = SpawnHelpers.SpawnFleet(location, rootOfDynamicallySpawned, fleetScene, playerFleet, initialShip);
+
+        var binds = new Godot.Collections.Array();
+        binds.Add(fleet);
+        fleet.Connect(nameof(SpaceFleet.OnSelected), this, nameof(OpenFleetInfo), binds);
+
+        return fleet;
+    }
+
     public override void StartNewGame()
     {
         CurrentGame = GameProperties.StartSpaceStageGame(new WorldGenerationSettings());
 
         // Spawn an initial planet
-        AddPlanet(Transform.Identity, true);
-
-        // TODO: initial spaceship like when coming from industrial
-        throw new NotImplementedException();
+        var planet = AddPlanet(Transform.Identity, true);
 
         base.StartNewGame();
+
+        // Initial spaceship like when coming from industrial
+        var initialShip = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
+
+        AddFleet(new Transform(Basis.Identity, planet.GlobalTranslation + new Vector3(15, 0, 0)), initialShip,
+            true);
+    }
+
+    /// <summary>
+    ///   Jumps the camera to a fleet position and then smoothly zooms out
+    /// </summary>
+    /// <param name="fleet">The fleet to zoom out from</param>
+    public void ZoomOutFromFleet(SpaceFleet fleet)
+    {
+        strategicCamera.WorldLocation = fleet.GlobalTranslation;
+
+        targetZoomOutLevel = strategicCamera.ZoomLevel;
+        strategicCamera.ZoomLevel = strategicCamera.MinZoomLevel;
+
+        zoomingOutFromFleet = true;
     }
 
     public void TakeInitialResourcesFrom(IResourceContainer resources)
@@ -141,7 +184,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
-            "Research and build space energy structures, then an ascension gate and activate it",
+            "Research and build the Ascension Gate and energy structures to power it, then activate it",
             DisplayDuration.ExtraLong);
     }
 
@@ -186,5 +229,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private void OpenPlanetInfo(PlacedPlanet planet)
     {
         HUD.OpenPlanetScreen(planet);
+    }
+
+    private void OpenFleetInfo(PlacedPlanet planet)
+    {
+        // TODO: implement this
+        throw new NotImplementedException();
     }
 }

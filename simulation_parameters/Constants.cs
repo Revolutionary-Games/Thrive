@@ -1263,6 +1263,8 @@ public static class Constants
 
     public const float SPACE_STAGE_PLANET_PROCESS_INTERVAL = 0.1f;
 
+    public const float SPACE_FLEET_MODEL_SCALE = 0.1f;
+
     /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>

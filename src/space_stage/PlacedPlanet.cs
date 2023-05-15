@@ -32,8 +32,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
 
     // TODO: automatically take a name from one of the planet's cities (probably the player's capital would be good?)
     [JsonProperty]
-    public string PlanetName { get; } =
-        SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).ContinentName;
+    public string PlanetName { get; private set; } = null!;
 
     [JsonProperty]
     public int Population { get; set; }
@@ -49,7 +48,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
     public float TotalStorageSpace => 10000;
 
     [JsonIgnore]
-    public Vector3 LabelOffset => new(0, 5, 0);
+    public Vector3 LabelOffset => new(0, 8, 0);
 
     [JsonIgnore]
     public Type NameLabelType => typeof(CityNameLabel);
@@ -66,6 +65,9 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
     public override void _Ready()
     {
         base._Ready();
+
+        if (string.IsNullOrEmpty(PlanetName))
+            PlanetName = SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).ContinentName;
 
         foodResource = SimulationParameters.Instance.GetWorldResource("food");
         rockResource = SimulationParameters.Instance.GetWorldResource("rock");
@@ -106,7 +108,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
     {
         // Base food growing
         // TODO: convert this to come from the buildings
-        return Mathf.Log(Population) * 50 + 40;
+        return Mathf.Log(Math.Max(Population, 1)) * 50 + 40;
     }
 
     public float CalculateFoodConsumption()
