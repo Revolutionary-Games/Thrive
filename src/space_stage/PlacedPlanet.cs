@@ -67,7 +67,10 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
         base._Ready();
 
         if (string.IsNullOrEmpty(PlanetName))
-            PlanetName = SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).ContinentName;
+        {
+            var generatedPart = SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).ContinentName;
+            PlanetName = $"{generatedPart} {StringUtils.NameIndexSuffix(0)}";
+        }
 
         foodResource = SimulationParameters.Instance.GetWorldResource("food");
         rockResource = SimulationParameters.Instance.GetWorldResource("rock");

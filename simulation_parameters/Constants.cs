@@ -1266,6 +1266,11 @@ public static class Constants
     public const float SPACE_FLEET_MODEL_SCALE = 0.1f;
 
     /// <summary>
+    ///   Names like "Pangonia Primus" are cool so we use those until it makes more sense to switch to roman numerals
+    /// </summary>
+    public const int NAMING_SWITCH_TO_ROMAN_NUMERALS_AFTER = 10;
+
+    /// <summary>
     ///   How many pixels the cursor needs to be from a screen edge to activate edge panning
     /// </summary>
     public const int EDGE_PAN_PIXEL_THRESHOLD = 4;
