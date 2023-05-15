@@ -407,7 +407,7 @@ public static class Constants
 
     public const float NAME_LABELS_FULL_UPDATE_INTERVAL = 0.2f;
     public const int NAME_LABELS_MAX_COUNT_PER_CATEGORY = 30;
-    public const float NAME_LABEL_VISIBILITY_DISTANCE = 200.0f;
+    public const float NAME_LABEL_VISIBILITY_DISTANCE = 300.0f;
 
     /// <summary>
     ///   This is used just as the default value for health and max
