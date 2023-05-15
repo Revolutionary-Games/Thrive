@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Manages the screen transitions, usually used for when
-///   switching scenes. This is autoloaded
+///   Manages the screen transitions, usually used for when switching scenes. This is autoloaded.
 /// </summary>
 public class TransitionManager : ControlWithInput
 {
@@ -96,10 +95,15 @@ public class TransitionManager : ControlWithInput
     }
 
     /// <summary>
-    ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions. This defaults to skipping any
-    ///   previous sequences, can be changed with <paramref name="skipPrevious"/> parameter.
-    ///   Invokes the specified action when the sequence is finished.
+    ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions and invokes the specified
+    ///   <paramref name="onFinishedCallback"/> action when the sequence finishes.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: This skips previously added sequences by default, this behavior is controlled by
+    ///     <paramref name="skipPrevious"/>.
+    ///   </para>
+    /// </remarks>
     /// <param name="transitions">Order of transitions</param>
     /// <param name="onFinishedCallback">The action to invoke when the sequence is finished</param>
     /// <param name="skippable">If true, the sequence can be skipped</param>
@@ -132,10 +136,15 @@ public class TransitionManager : ControlWithInput
     }
 
     /// <summary>
-    ///   Enqueues a new <see cref="Sequence"/> from the given transition. This defaults to skipping any
-    ///   previous sequences, can be changed with <paramref name="skipPrevious"/> parameter.
-    ///   Invokes the specified action when the sequence is finished.
+    ///   Enqueues a new <see cref="Sequence"/> from the given transition and invokes the specified
+    ///   <paramref name="onFinishedCallback"/> action when the sequence finishes.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: This skips previously added sequences by default, this behavior is controlled by
+    ///     <paramref name="skipPrevious"/>.
+    ///   </para>
+    /// </remarks>
     /// <param name="transition">The specified transition</param>
     /// <param name="onFinishedCallback">The action to invoke when the sequence is finished</param>
     /// <param name="skippable">If true, the sequence can be skipped</param>
@@ -147,13 +156,17 @@ public class TransitionManager : ControlWithInput
     }
 
     /// <summary>
-    ///   Enqueues a new <see cref="Sequence"/> from the given type of screen fade.
-    ///   Invokes the specified action when the sequence is finished.
+    ///   Enqueues a new <see cref="Sequence"/> from the given type of screen fade and invokes the specified
+    ///   <paramref name="onFinishedCallback"/> action when the sequence finishes.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     A single screen fade is commonly used which is why a dedicated overload method is
     ///     supported to make it easier to invoke with less verbosity.
+    ///   </para>
+    ///   <para>
+    ///     NOTE: This skips previously added sequences by default, this behavior is controlled by
+    ///     <paramref name="skipPrevious"/>.
     ///   </para>
     /// </remarks>
     public void AddSequence(ScreenFade.FadeType fadeType, float duration, Action? onFinishedCallback = null,
