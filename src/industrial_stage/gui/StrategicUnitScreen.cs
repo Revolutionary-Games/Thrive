@@ -142,6 +142,16 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
     /// </summary>
     protected abstract void RefreshShownData();
 
+    protected virtual void OnMoveStart()
+    {
+        OnUnhandledActionType();
+    }
+
+    protected virtual void OnConstructStart()
+    {
+        OnUnhandledActionType();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -151,16 +161,6 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         }
 
         base.Dispose(disposing);
-    }
-
-    protected virtual void OnMoveStart()
-    {
-        OnUnhandledActionType();
-    }
-
-    protected virtual void OnConstructStart()
-    {
-        OnUnhandledActionType();
     }
 
     private void OnUnhandledActionType()
