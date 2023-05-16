@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -2232,10 +2232,14 @@ msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 �
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 세포막에서 이어지는 채찍 모양의 단백질 섬유 다발입니다."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "행성에서 멸종"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+msgid "FLEET_UNITS"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
@@ -4227,6 +4231,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "생태계: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "생태계: {0}"
@@ -6884,6 +6889,16 @@ msgstr "실행 취소"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "마지막 활동 취소"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "변이 점수"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "변이 점수"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"

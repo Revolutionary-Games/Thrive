@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -2188,10 +2188,15 @@ msgstr "Джгутик є батогоподібнім мішечком з пу�
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Використання [thrive:compound type=\"atp\"][/thrive:compound] пришвидчує рух клітини."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "вимерли на цілій планеті"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -4151,6 +4156,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "Біом: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Біом: {0}"
@@ -6701,6 +6707,16 @@ msgstr "Скасувати"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Скасувати попередню дію"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Завершити конструкцію"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Збирати"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"

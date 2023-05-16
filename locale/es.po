@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Rubén <chocolateconchurrosyazucar@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -2204,10 +2204,15 @@ msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en una dirección."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "se extinguió del planeta"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
@@ -4192,6 +4197,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "Bioma: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Bioma: {0}"
@@ -6804,6 +6810,16 @@ msgstr "Deshacer"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Deshacer la última acción"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Velocidad de mutación de la AI"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Velocidad de mutación de la AI"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"

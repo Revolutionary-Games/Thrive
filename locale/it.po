@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -2186,10 +2186,15 @@ msgstr "Il flagello è un fascio di proteine simile a una frusta che si estende 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Consuma [thrive:compound type=\"atp\"][/thrive:compound]. Aumenta la velocità di movimento della cellula."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "si è estinto dal pianeta"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
@@ -4195,6 +4200,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "Bioma: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Bioma: {0}"
@@ -6764,6 +6770,16 @@ msgstr "Annulla l'ultima azione"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Annulla l'ultima azione"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Tasso mutazione IA"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Tasso mutazione IA"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"

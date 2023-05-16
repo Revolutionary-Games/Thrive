@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -2231,10 +2231,14 @@ msgstr ""
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "dog ut på planeten"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+msgid "FLEET_UNITS"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
@@ -4196,6 +4200,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "Omgivning: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Omgivning: {0}"
@@ -6773,6 +6778,16 @@ msgstr "Ångra"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Mutationspoäng"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Mutationspoäng"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"

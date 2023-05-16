@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -2271,10 +2271,15 @@ msgstr ""
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen solun liikkumisnopeutta."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "sukupuuttoon planeetalta"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
@@ -4291,6 +4296,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "Biomi: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Biomi: {0}"
@@ -6920,6 +6926,16 @@ msgstr "Kumoa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Kumoa viimeisin toimenpide"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Mutaatiopisteet"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Mutaatiopisteet"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"

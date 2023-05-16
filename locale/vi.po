@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2055,8 +2055,12 @@ msgstr ""
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 msgid "FLEET_NAME_FROM_PLACE"
+msgstr ""
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+msgid "FLEET_UNITS"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
@@ -3849,6 +3853,7 @@ msgid "NAME_LABEL_CITY"
 msgstr ""
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 msgid "NAME_LABEL_FLEET"
 msgstr ""
 
@@ -6221,6 +6226,14 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
+msgstr ""
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr ""
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+msgid "UNIT_ACTION_MOVE"
 msgstr ""
 
 #: ../simulation_parameters/industrial_stage/units.json:3

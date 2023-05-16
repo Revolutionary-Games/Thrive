@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
-"PO-Revision-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
+"PO-Revision-Date: 2023-05-16 15:14+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2162,9 +2162,13 @@ msgstr "The flagellum (plural: flagella) is a whip-like bundle of protein fibers
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the movement speed of the cell."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "{0} Fleet"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+msgid "FLEET_UNITS"
+msgstr "Fleet Units"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -4112,6 +4116,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 msgid "NAME_LABEL_FLEET"
 msgstr "{0} (PWR: {1})"
 
@@ -6641,6 +6646,14 @@ msgstr "Undo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Undo the last action"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Construct"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+msgid "UNIT_ACTION_MOVE"
+msgstr "Move"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"

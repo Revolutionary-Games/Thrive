@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-15 16:34+0300\n"
+"POT-Creation-Date: 2023-05-16 15:13+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -2184,10 +2184,15 @@ msgstr "Жгутик представляет собой похожий на х�
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Использует [thrive:compound type=\"atp\"][/thrive:compound] чтобы повысить скорость передвижения клетки."
 
-#: ../src/space_stage/SpaceFleet.cs:66
+#: ../src/space_stage/SpaceFleet.cs:76
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "вымерли с планеты"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -4144,6 +4149,7 @@ msgid "NAME_LABEL_CITY"
 msgstr "Биом: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:37
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Биом: {0}"
@@ -6685,6 +6691,16 @@ msgstr "Отменить"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отменить последнее действие"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Завершить Строительство"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Собрать"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
