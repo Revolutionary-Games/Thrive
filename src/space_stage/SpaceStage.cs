@@ -30,6 +30,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     private bool zoomingOutFromFleet;
     private float targetZoomOutLevel;
+    private float minZoomLevelToRestore;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -80,10 +81,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         if (zoomingOutFromFleet)
         {
-            if (AnimateCameraZoomTowards(targetZoomOutLevel, delta, 0.8f))
+            if (AnimateCameraZoomTowards(targetZoomOutLevel, delta, Constants.SPACE_INITIAL_ANIMATION_ZOOM_SPEED))
             {
                 // Zoom complete, unlock the camera for normal movement
-                strategicCamera.AllowPlayerInput = false;
+                strategicCamera.AllowPlayerInput = true;
+                strategicCamera.MinZoomLevel = minZoomLevelToRestore;
                 zoomingOutFromFleet = false;
             }
         }
@@ -162,7 +164,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         strategicCamera.WorldLocation = fleet.GlobalTranslation;
 
         targetZoomOutLevel = strategicCamera.ZoomLevel;
-        strategicCamera.ZoomLevel = strategicCamera.MinZoomLevel;
+        minZoomLevelToRestore = strategicCamera.MinZoomLevel;
+
+        var startZoom = minZoomLevelToRestore * Constants.SPACE_INITIAL_ANIMATION_MIN_ZOOM_SCALE;
+        strategicCamera.MinZoomLevel = startZoom;
+        strategicCamera.ZoomLevel = startZoom;
 
         zoomingOutFromFleet = true;
     }

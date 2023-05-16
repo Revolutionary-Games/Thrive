@@ -285,8 +285,10 @@
     <Compile Include="src\industrial_stage\IEntityWithNameLabel.cs" />
     <Compile Include="src\industrial_stage\IndustrialStage.cs" />
     <Compile Include="src\industrial_stage\IStrategicUnit.cs" />
+    <Compile Include="src\industrial_stage\IUnitOrder.cs" />
     <Compile Include="src\industrial_stage\PlacedCity.cs" />
     <Compile Include="src\industrial_stage\PlayerIndustrialInput.cs" />
+    <Compile Include="src\industrial_stage\UnitOrderBase.cs" />
     <Compile Include="src\industrial_stage\UnitType.cs" />
     <Compile Include="src\late_multicellular_stage\MovementMode.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularSpeciesType.cs" />
@@ -675,6 +677,7 @@
     <Compile Include="src\society_stage\StrategicCamera.cs" />
     <Compile Include="src\society_stage\StrategicCameraHelpers.cs" />
     <Compile Include="src\society_stage\TechnologyProgress.cs" />
+    <Compile Include="src\space_stage\FleetMovementOrder.cs" />
     <Compile Include="src\space_stage\gui\FleetNameLabel.cs" />
     <Compile Include="src\space_stage\gui\PlanetScreen.cs" />
     <Compile Include="src\space_stage\gui\SpaceFleetInfoPopup.cs" />

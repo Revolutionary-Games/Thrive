@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using Nito.Collections;
 
 /// <summary>
 ///   A fleet (or just one) ship out in space.
@@ -36,6 +37,9 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
     [JsonIgnore]
     public string UnitScreenTitle => TranslationServer.Translate("NAME_LABEL_FLEET").FormatSafe(UnitName, CombatPower);
 
+    [JsonProperty]
+    public Deque<IUnitOrder> QueuedOrders { get; private set; } = new();
+
     // TODO: fleet colour to show empire colour on the name labels
 
     [JsonIgnore]
@@ -48,6 +52,12 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
     // TODO: implement this
     [JsonIgnore]
     public float CombatPower => 1;
+
+    /// <summary>
+    ///   Flying speed of the fleet
+    /// </summary>
+    [JsonProperty]
+    public float Speed { get; private set; } = 1;
 
     [JsonProperty]
     public bool IsPlayerFleet { get; private set; }
@@ -101,7 +111,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
 
     public override void _Process(float delta)
     {
-        // TODO: handle moving towards the destination
+        this.ProcessOrderQueue(delta);
     }
 
     public void OnSelectedThroughLabel()

@@ -421,13 +421,13 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
             spaceCraftData = (null!, SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"));
         }
 
-        var fleet = spaceStage.AddFleet(new Transform(Basis.Identity, new Vector3(10, 0, 0)),
+        var fleet = spaceStage.AddFleet(new Transform(Basis.Identity, new Vector3(6, 0, 0)),
             spaceCraftData.Value.Spacecraft, true);
 
         // Focus the camera initially on the ship to make the stage transition smoother
         spaceStage.ZoomOutFromFleet(fleet);
 
-        // TODO: queue a move order to have the fleet be moving
-        // fleet.QueueOrder();
+        // Add an order to have the fleet be moving
+        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
     }
 }

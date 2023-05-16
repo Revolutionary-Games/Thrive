@@ -13,6 +13,8 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
     protected override void RefreshShownData()
     {
         // TODO: refresh the shown data
+
+        // TODO: show fleet status from the order queue (idle or performing some order)
     }
 
     protected override IEnumerable<string> ListSubUnits()
