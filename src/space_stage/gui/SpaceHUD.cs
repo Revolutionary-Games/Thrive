@@ -12,10 +12,14 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>
     [Export]
     public NodePath PlanetScreenPopupPath = null!;
 
+    [Export]
+    public NodePath FleetPopupPath = null!;
+
 #pragma warning disable CA2213
     private Label populationLabel = null!;
 
     private PlanetScreen planetScreenPopup = null!;
+    private SpaceFleetInfoPopup fleetPopup = null!;
 #pragma warning restore CA2213
 
     // TODO: real button referencing text for this
@@ -27,6 +31,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>
 
         populationLabel = GetNode<Label>(PopulationLabelPath);
         planetScreenPopup = GetNode<PlanetScreen>(PlanetScreenPopupPath);
+        fleetPopup = GetNode<SpaceFleetInfoPopup>(FleetPopupPath);
     }
 
     public void UpdatePopulationDisplay(long population)
@@ -39,6 +44,11 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>
         planetScreenPopup.ShowForPlanet(planet);
     }
 
+    public void OpenFleetInfo(SpaceFleet fleet)
+    {
+        fleetPopup.ShowForUnit(fleet);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -47,6 +57,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>
             {
                 PopulationLabelPath.Dispose();
                 PlanetScreenPopupPath.Dispose();
+                FleetPopupPath.Dispose();
             }
         }
 

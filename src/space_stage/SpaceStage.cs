@@ -232,9 +232,8 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.OpenPlanetScreen(planet);
     }
 
-    private void OpenFleetInfo(PlacedPlanet planet)
+    private void OpenFleetInfo(SpaceFleet fleet)
     {
-        // TODO: implement this
-        throw new NotImplementedException();
+        HUD.OpenFleetInfo(fleet);
     }
 }

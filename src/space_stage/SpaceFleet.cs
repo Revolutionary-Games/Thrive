@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   A fleet (or just one) ship out in space.
 /// </summary>
-public class SpaceFleet : Spatial, IEntityWithNameLabel
+public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
 {
     [Export]
     public NodePath? VisualsParentPath;
@@ -19,6 +20,9 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel
 
     private bool nodeReferencesResolved;
 
+    [JsonProperty]
+    private List<UnitType>? ships;
+
     /// <summary>
     ///   Emitted when this planet is selected by the player
     /// </summary>
@@ -27,9 +31,15 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel
 
     // TODO: more interesting name generation / include AI empire names by default
     [JsonProperty]
-    public string FleetName { get; private set; } = null!;
+    public string UnitName { get; private set; } = null!;
+
+    [JsonIgnore]
+    public string UnitScreenTitle => TranslationServer.Translate("NAME_LABEL_FLEET").FormatSafe(UnitName, CombatPower);
 
     // TODO: fleet colour to show empire colour on the name labels
+
+    [JsonIgnore]
+    public IReadOnlyList<UnitType> Ships => ships ?? throw new InvalidOperationException("Not initialized");
 
     // TODO: implement this check properly
     [JsonIgnore]
@@ -61,9 +71,9 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel
     {
         ResolveNodeReferences();
 
-        if (string.IsNullOrEmpty(FleetName))
+        if (string.IsNullOrEmpty(UnitName))
         {
-            FleetName = TranslationServer.Translate("FLEET_NAME_FROM_PLACE").FormatSafe(
+            UnitName = TranslationServer.Translate("FLEET_NAME_FROM_PLACE").FormatSafe(
                 SimulationParameters.Instance.PatchMapNameGenerator.Next(new Random()).RegionName);
         }
 
@@ -119,6 +129,8 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel
     /// </summary>
     private void SetShips(UnitType ship)
     {
+        ships = new List<UnitType> { ship };
+
         // TODO: proper positioning and scaling for multiple ships
         visualsParent.AddChild(ship.WorldRepresentation.Instance());
 

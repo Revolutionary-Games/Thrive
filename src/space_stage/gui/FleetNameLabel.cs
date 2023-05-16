@@ -37,13 +37,13 @@ public class FleetNameLabel : Button, IEntityNameLabel
         {
             case SpaceFleet fleet:
 
-                if (fleet.FleetName == previousName &&
+                if (fleet.UnitName == previousName &&
                     Math.Abs(fleet.CombatPower - previousStrength) < MathUtils.EPSILON)
                 {
                     return;
                 }
 
-                previousName = fleet.FleetName;
+                previousName = fleet.UnitName;
                 previousStrength = fleet.CombatPower;
 
                 newText = translationTemplate.FormatSafe(previousName, previousStrength);

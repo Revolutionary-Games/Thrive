@@ -1260,6 +1260,7 @@ public static class Constants
     public const float INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT = 300;
 
     public const float PLANET_SCREEN_UPDATE_INTERVAL = 0.1f;
+    public const float UNIT_SCREEN_UPDATE_INTERVAL = 0.05f;
 
     public const float SPACE_STAGE_PLANET_PROCESS_INTERVAL = 0.1f;
 
