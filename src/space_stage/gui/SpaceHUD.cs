@@ -49,6 +49,16 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>
         fleetPopup.ShowForUnit(fleet);
     }
 
+    public void CloseFleetInfo()
+    {
+        fleetPopup.Close();
+    }
+
+    public SpaceFleet? GetSelectedFleet()
+    {
+        return fleetPopup.OpenedForUnit;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

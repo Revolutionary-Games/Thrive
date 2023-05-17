@@ -155,6 +155,42 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             true);
     }
 
+    public void SelectUnitUnderCursor()
+    {
+        // TODO: allow multi selection when holding down shift
+
+        var location = strategicCamera.CursorWorldPos;
+
+        var fleet = FindFleetAtWorldPosition(location);
+
+        if (fleet == null)
+        {
+            // Ensure no fleet is selected if nothing can be selected
+            HUD.CloseFleetInfo();
+        }
+        else
+        {
+            OpenFleetInfo(fleet);
+        }
+
+        // TODO: selected units should have some kind of indicator around them
+    }
+
+    public void PerformUnitContextCommandIfSelected()
+    {
+        var fleet = HUD.GetSelectedFleet();
+
+        // Disabled as the context sensitive check below when written will make this not usable with null propagate
+        // ReSharper disable once UseNullPropagation
+        if (fleet == null)
+            return;
+
+        // TODO: context sensitive commands (for now assumes movement always)
+
+        // TODO: implement order queue only happening with shift pressed
+        fleet.PerformOrder(new FleetMovementOrder(fleet, strategicCamera.CursorWorldPos));
+    }
+
     /// <summary>
     ///   Jumps the camera to a fleet position and then smoothly zooms out
     /// </summary>
@@ -241,5 +277,30 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private void OpenFleetInfo(SpaceFleet fleet)
     {
         HUD.OpenFleetInfo(fleet);
+    }
+
+    private SpaceFleet? FindFleetAtWorldPosition(Vector3 location)
+    {
+        var radiusSquared = Constants.SPACE_FLEET_SELECTION_RADIUS * Constants.SPACE_FLEET_SELECTION_RADIUS;
+
+        float bestDistance = float.MaxValue;
+        SpaceFleet? bestFleet = null;
+
+        foreach (var fleet in rootOfDynamicallySpawned.GetChildrenToProcess<SpaceFleet>(Constants
+                     .SPACE_FLEET_ENTITY_GROUP))
+        {
+            var distance = fleet.GlobalTranslation.DistanceSquaredTo(location);
+
+            if (distance <= radiusSquared)
+            {
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestFleet = fleet;
+                }
+            }
+        }
+
+        return bestFleet;
     }
 }

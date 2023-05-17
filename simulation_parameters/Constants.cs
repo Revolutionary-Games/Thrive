@@ -1269,6 +1269,8 @@ public static class Constants
     public const float SPACE_INITIAL_ANIMATION_MIN_ZOOM_SCALE = 0.3f;
     public const float SPACE_INITIAL_ANIMATION_ZOOM_SPEED = 0.08f;
 
+    public const float SPACE_FLEET_SELECTION_RADIUS = 1.7f;
+
     /// <summary>
     ///   Names like "Pangonia Primus" are cool so we use those until it makes more sense to switch to roman numerals
     /// </summary>

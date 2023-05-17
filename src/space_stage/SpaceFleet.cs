@@ -57,7 +57,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
     ///   Flying speed of the fleet
     /// </summary>
     [JsonProperty]
-    public float Speed { get; private set; } = 1;
+    public float Speed { get; private set; } = 1.3f;
 
     [JsonProperty]
     public bool IsPlayerFleet { get; private set; }

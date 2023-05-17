@@ -21,4 +21,10 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
     {
         return managedUnit!.Ships.Select(s => s.Name);
     }
+
+    protected override void OnMoveStart()
+    {
+        // TODO: turn cursor into a movement selector and make left click trigger movement for one click
+        // TODO: for controller input this needs a bit more complicated UX
+    }
 }

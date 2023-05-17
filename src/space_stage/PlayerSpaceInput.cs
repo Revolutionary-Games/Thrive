@@ -35,4 +35,18 @@ public class PlayerSpaceInput : NodeWithInput
         // return stage.CancelBuildingPlaceIfInProgress();
         return false;
     }
+
+    [RunOnKeyDown("e_primary", Priority = -1)]
+    public void SelectUnitUnderCursor()
+    {
+        // TODO: allow dragging a box to select multiple units
+
+        stage.SelectUnitUnderCursor();
+    }
+
+    [RunOnKeyDown("e_secondary")]
+    public void PerformUnitContextCommand()
+    {
+        stage.PerformUnitContextCommandIfSelected();
+    }
 }

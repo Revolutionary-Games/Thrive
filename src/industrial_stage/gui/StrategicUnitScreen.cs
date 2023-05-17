@@ -28,6 +28,11 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
 
     private float elapsed = 1;
 
+    /// <summary>
+    ///   The unit this screen is open for, or null
+    /// </summary>
+    public T? OpenedForUnit => Visible ? managedUnit : null;
+
     public override void _Ready()
     {
         base._Ready();
