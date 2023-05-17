@@ -318,7 +318,9 @@ public class NewModGUI : Control
         assemblyModClass.Text = editedInfo.AssemblyModClass;
         dependencies.Text = editedInfo.Dependencies == null ? string.Empty : string.Join(", ", editedInfo.Dependencies);
         requiredMods.Text = editedInfo.RequiredMods == null ? string.Empty : string.Join(", ", editedInfo.RequiredMods);
-        loadBefore.Text = editedInfo.LoadBeforeThis == null ? string.Empty : string.Join(", ", editedInfo.LoadBeforeThis);
+        loadBefore.Text = editedInfo.LoadBeforeThis == null ?
+            string.Empty :
+            string.Join(", ", editedInfo.LoadBeforeThis);
         loadAfter.Text = editedInfo.LoadAfterThis == null ? string.Empty : string.Join(", ", editedInfo.LoadAfterThis);
         incompatibleMods.Text = editedInfo.IncompatibleMods == null ?
             string.Empty :

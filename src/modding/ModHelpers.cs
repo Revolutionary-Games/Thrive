@@ -106,7 +106,8 @@ public static class ModHelpers
             {
                 result.Append(new LocalizedString("MOD_ERROR_INCOMPATIBLE_MOD", offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name));
-                result.Append(new LocalizedString("MOD_ERROR_INCOMPATIBLE_MOD_FIX", string.IsNullOrWhiteSpace(otherMod.Name) ?
+                result.Append(new LocalizedString("MOD_ERROR_INCOMPATIBLE_MOD_FIX",
+                    string.IsNullOrWhiteSpace(otherMod.Name) ?
                     otherMod.InternalName :
                     otherMod.Name));
                 break;

@@ -1026,7 +1026,8 @@ public class ModManager : Control
 
     private void UpdateGalleryUI()
     {
-        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) + TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
+        galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) +
+            TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") + 
             selectedModPreviewImagesContainer.GetTabCount();
         galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
             selectedModPreviewImagesContainer.GetTabCount() - 1;
@@ -1508,7 +1509,11 @@ public class ModManager : Control
     /// <summary>
     ///   Handles the movement of the Mod in the ItemList by any amount
     /// </summary>
-    private void MoveModInItemList(ItemList list, List<FullModDetails> modList, bool moveUp, int currentIndex, int amount)
+    private void MoveModInItemList(ItemList list,
+        List<FullModDetails> modList,
+        bool moveUp,
+        int currentIndex,
+        int amount)
     {
         int newIndex;
         if (moveUp)

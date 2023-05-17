@@ -213,7 +213,8 @@ public class ModLoader : Node
     ///   This checks if the mod is valid in dictionary of mods
     ///   If you want to check if a mod is valid in a list use of the above functions
     /// </summary>
-    public static ModListValidationError IsModValid(FullModDetails currentMod, Dictionary<string, FullModDetails> modDictionary)
+    public static ModListValidationError IsModValid(FullModDetails currentMod,
+        Dictionary<string, FullModDetails> modDictionary)
     {
         var currentModInfo = currentMod.Info;
 
@@ -359,20 +360,8 @@ public class ModLoader : Node
     public void LoadMods()
     {
         var newMods = Settings.Instance.EnabledMods.Value;
-        int index = -1;
-        GD.Print("LM: ",loadedMods.Join());
-        GD.Print("NM: ",newMods.Join());
-        foreach (var unload in loadedMods.Skip(loadedMods.FindIndex(e =>
-                 {
-                     index++;
-                     if (index >= newMods.Count)
-                     {
-                         return true;
-                     }
-                     
-                     GD.Print("CHECK: ", e, " || ",newMods[index]);
-                     return e != newMods[index];
-                 }) + 1))
+
+        foreach (var unload in loadedMods)
         {
             GD.Print("Unloading mod: ", unload);
 
@@ -531,7 +520,10 @@ public class ModLoader : Node
             catch (Exception e)
             {
                 GD.PrintErr("Could not load mod assembly due to exception: ", e);
-                modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION").FormatSafe(name, e)));
+                modErrors.Add(new ModdingError(info,
+                    TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION")
+                        .FormatSafe(name,
+                            e)));
                 return;
             }
 
@@ -546,7 +538,8 @@ public class ModLoader : Node
         if (!loadedSomething)
         {
             GD.Print("A mod contained no loadable resources");
-            modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES").FormatSafe(name)));
+            modErrors.Add(new ModdingError(info,
+                TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES").FormatSafe(name)));
         }
     }
 
@@ -557,7 +550,9 @@ public class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't unload mod due to failed info reading: ", name);
-            var moddingError = new ModdingError(name, TranslationServer.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name));
+            var moddingError = new ModdingError(name,
+                TranslationServer.Translate("CANT_LOAD_MOD_INFO")
+                    .FormatSafe(name));
             modErrors.Add(moddingError);
             return;
         }
@@ -571,14 +566,18 @@ public class ModLoader : Node
                 if (!mod.Unload())
                 {
                     GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
-                    modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED").FormatSafe(name)));
+                    modErrors.Add(new ModdingError(info,
+                        TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED")
+                            .FormatSafe(name)));
                 }
             }
             catch (Exception e)
             {
                 GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
-                modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION")
-                    .FormatSafe(name, e)));
+                modErrors.Add(new ModdingError(info,
+                    TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION")
+                        .FormatSafe(name,
+                            e)));
             }
 
             loadedModAssemblies.Remove(name);
@@ -663,7 +662,10 @@ public class ModLoader : Node
         if (type == null)
         {
             GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-            modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className)));
+            modErrors.Add(new ModdingError(info,
+                TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND")
+                    .FormatSafe(name,
+                        className)));
             return false;
         }
 
@@ -673,7 +675,10 @@ public class ModLoader : Node
             if (type == null)
             {
                 GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-                modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className)));
+                modErrors.Add(new ModdingError(info,
+                    TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND")
+                        .FormatSafe(name,
+                            className)));
                 return false;
             }
 
@@ -682,7 +687,9 @@ public class ModLoader : Node
             if (!mod.Initialize(modInterface!, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
-                modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED").FormatSafe(name)));
+                modErrors.Add(new ModdingError(info,
+                    TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED")
+                        .FormatSafe(name)));
             }
 
             loadedModAssemblies.Add(name, mod);
@@ -696,7 +703,10 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") initialization failed with an exception: ", e);
-            modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION").FormatSafe(name, e)));
+            modErrors.Add(new ModdingError(info,
+                TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION")
+                    .FormatSafe(name,
+                        e)));
         }
 
         return true;
@@ -719,7 +729,10 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", info.InternalName, ") harmony loading failed with an exception: ", e);
-            modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(info.InternalName, e)));
+            modErrors.Add(new ModdingError(info,
+                TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION")
+                    .FormatSafe(info.InternalName,
+                        e)));
         }
     }
 
@@ -740,7 +753,10 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", info.InternalName, ") harmony unload failed with an exception: ", e);
-            modErrors.Add(new ModdingError(info, TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(info.InternalName, e)));
+            modErrors.Add(new ModdingError(info,
+                TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION")
+                    .FormatSafe(info.InternalName,
+                        e)));
         }
     }
 
