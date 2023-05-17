@@ -22,11 +22,21 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     private PackedScene planetScene = null!;
     private PackedScene fleetScene = null!;
+    private PackedScene structureScene = null!;
+
+    private Spatial? structureToPlaceGhost;
 #pragma warning restore CA2213
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private PlanetSystem planetSystem = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private SpaceStructureSystem structureSystem = null!;
+
+    private SpaceStructureDefinition? structureTypeToPlace;
+    private SpaceFleet? structurePlacingFleet;
 
     private bool zoomingOutFromFleet;
     private float targetZoomOutLevel;
@@ -50,6 +60,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         planetScene = SpawnHelpers.LoadPlanetScene();
         fleetScene = SpawnHelpers.LoadFleetScene();
+        structureScene = SpawnHelpers.LoadSpaceStructureScene();
 
         nameLabelSystem.Init(strategicCamera, rootOfDynamicallySpawned);
         nameLabelSystem.Visible = true;
@@ -73,6 +84,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         // Systems
         nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
         planetSystem = new PlanetSystem(rootOfDynamicallySpawned);
+        structureSystem = new SpaceStructureSystem(rootOfDynamicallySpawned);
     }
 
     public override void _Process(float delta)
@@ -94,8 +106,19 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         {
             planetSystem.Process(delta, this);
 
+            structureSystem.Process(delta, this);
+
             resourceStorage.Capacity = planetSystem.CachedTotalStorage;
 
+            // Update the place to place the selected structure
+            if (structureToPlaceGhost != null)
+            {
+                // TODO: placement validity checks (placement restrictions and hitting other structures), show the
+                // ghost differently when can't place
+                structureToPlaceGhost.GlobalTranslation = GetPlayerCursorPointedWorldPosition();
+            }
+
+            // TODO: prototype code that can be entirely removed once the relevant feature is done
             if (!zoomingOutFromFleet)
             {
                 if (strategicCamera.ZoomLevel <= strategicCamera.MinZoomLevel)
@@ -150,6 +173,20 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         return fleet;
     }
 
+    public PlacedSpaceStructure AddStructure(SpaceStructureDefinition structureDefinition, Transform location,
+        bool playerOwned)
+    {
+        var structure = SpawnHelpers.SpawnSpaceStructure(structureDefinition, location, rootOfDynamicallySpawned,
+            structureScene,
+            playerOwned);
+
+        var binds = new Array();
+        binds.Add(structure);
+        structure.Connect(nameof(PlacedSpaceStructure.OnSelected), this, nameof(OpenStructureInfo), binds);
+
+        return structure;
+    }
+
     public override void StartNewGame()
     {
         CurrentGame = GameProperties.StartSpaceStageGame(new WorldGenerationSettings());
@@ -170,9 +207,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         // TODO: allow multi selection when holding down shift
 
-        var location = strategicCamera.CursorWorldPos;
-
-        var fleet = FindFleetAtWorldPosition(location);
+        var fleet = FindFleetAtWorldPosition(GetPlayerCursorPointedWorldPosition());
 
         if (fleet == null)
         {
@@ -199,7 +234,47 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         // TODO: context sensitive commands (for now assumes movement always)
 
         // TODO: implement order queue only happening with shift pressed
-        fleet.PerformOrder(new FleetMovementOrder(fleet, strategicCamera.CursorWorldPos));
+        fleet.PerformOrder(new FleetMovementOrder(fleet, GetPlayerCursorPointedWorldPosition()));
+    }
+
+    public void StartPlacingStructure(SpaceFleet fleetToConstructWith, SpaceStructureDefinition structureDefinition)
+    {
+        CancelStructurePlaceIfInProgress();
+
+        structureTypeToPlace = structureDefinition;
+        structurePlacingFleet = fleetToConstructWith;
+
+        structureToPlaceGhost = structureTypeToPlace.GhostScene.Instance<Spatial>();
+
+        rootOfDynamicallySpawned.AddChild(structureToPlaceGhost);
+    }
+
+    public bool AttemptPlaceStructureIfInProgress()
+    {
+        if (structureTypeToPlace == null)
+            return false;
+
+        if (!PlaceCurrentStructureIfPossible())
+        {
+            // TODO: play an invalid placement sound (and show a hud message when the condition for failure is
+            // complex
+            GD.Print("Couldn't place selected structure");
+            return true;
+        }
+
+        return true;
+    }
+
+    public bool CancelStructurePlaceIfInProgress()
+    {
+        if (structureTypeToPlace == null)
+            return false;
+
+        structureToPlaceGhost?.QueueFree();
+        structureToPlaceGhost = null;
+
+        structureTypeToPlace = null;
+        return true;
     }
 
     /// <summary>
@@ -232,6 +307,8 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         // Get systems started
         planetSystem.CalculateDerivedStats();
         resourceStorage.Capacity = planetSystem.CachedTotalStorage;
+
+        structureSystem.CalculateDerivedStats();
     }
 
     protected override void OnGameStarted()
@@ -280,6 +357,46 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         base.Dispose(disposing);
     }
 
+    private bool PlaceCurrentStructureIfPossible()
+    {
+        if (structureTypeToPlace == null || structureToPlaceGhost == null)
+            return false;
+
+        if (!structureTypeToPlace.TakeResourcesToStartIfPossible(resourceStorage))
+            return false;
+
+        // TODO: free space (and other conditions) check, could maybe set a flag in _Process that is then used here
+
+        // Create the structure
+        var structure = AddStructure(structureTypeToPlace, structureToPlaceGhost.GlobalTransform, true);
+
+        structureToPlaceGhost?.QueueFree();
+        structureToPlaceGhost = null;
+
+        structureTypeToPlace = null;
+
+        // Make the fleet go and build it
+        if (structurePlacingFleet == null)
+        {
+            GD.PrintErr("No fleet to construct placed structure with");
+            return true;
+        }
+
+        // TODO: more intelligent action interrupt / queueing
+
+        // TODO: more intelligent calculation for the distance from which building is possible
+        float buildDistance = 1;
+
+        var structureToFleet = structurePlacingFleet.GlobalTranslation - structure.GlobalTranslation;
+
+        var placeToBuildFrom = structureToFleet.Normalized() * buildDistance;
+
+        structurePlacingFleet.QueueOrder(new FleetMovementOrder(structurePlacingFleet, placeToBuildFrom));
+        structurePlacingFleet.QueueOrder(new FleetBuildOrder(structurePlacingFleet, structure, SocietyResources));
+
+        return true;
+    }
+
     private void OpenPlanetInfo(PlacedPlanet planet)
     {
         HUD.OpenPlanetScreen(planet);
@@ -288,6 +405,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private void OpenFleetInfo(SpaceFleet fleet)
     {
         HUD.OpenFleetInfo(fleet);
+    }
+
+    private void OpenStructureInfo(PlacedSpaceStructure structure)
+    {
+        throw new NotImplementedException();
     }
 
     private SpaceFleet? FindFleetAtWorldPosition(Vector3 location)

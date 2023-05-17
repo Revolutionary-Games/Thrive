@@ -25,7 +25,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
     private List<UnitType>? ships;
 
     /// <summary>
-    ///   Emitted when this planet is selected by the player
+    ///   Emitted when this fleet is selected by the player
     /// </summary>
     [Signal]
     public delegate void OnSelected();

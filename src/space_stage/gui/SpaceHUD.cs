@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   HUD for the space stage. Very similar to <see cref="SocietyHUD"/>
@@ -84,8 +83,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
             return;
         }
 
-        // TODO: forward to the stage
-        throw new NotImplementedException();
+        stage!.StartPlacingStructure(fleetToConstructWith, structureDefinition);
     }
 
     protected override void Dispose(bool disposing)

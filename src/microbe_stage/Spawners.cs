@@ -405,6 +405,27 @@ public static class SpawnHelpers
         return fleet;
     }
 
+    public static PlacedSpaceStructure SpawnSpaceStructure(SpaceStructureDefinition structureDefinition,
+        Transform location, Node worldNode, PackedScene structureScene, bool playerOwned)
+    {
+        var structureEntity = structureScene.Instance<PlacedSpaceStructure>();
+
+        worldNode.AddChild(structureEntity);
+        structureEntity.Init(structureDefinition, playerOwned);
+
+        structureEntity.AddToGroup(Constants.NAME_LABEL_GROUP);
+        structureEntity.AddToGroup(Constants.SPACE_STRUCTURE_ENTITY_GROUP);
+
+        structureEntity.Transform = location;
+
+        return structureEntity;
+    }
+
+    public static PackedScene LoadSpaceStructureScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/PlacedSpaceStructure.tscn");
+    }
+
     public static PackedScene LoadFleetScene()
     {
         return GD.Load<PackedScene>("res://src/space_stage/SpaceFleet.tscn");

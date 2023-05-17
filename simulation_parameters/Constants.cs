@@ -1022,6 +1022,7 @@ public static class Constants
 
     public const string PLANET_ENTITY_GROUP = "planet";
     public const string SPACE_FLEET_ENTITY_GROUP = "fleet";
+    public const string SPACE_STRUCTURE_ENTITY_GROUP = "s_structure";
 
     /// <summary>
     ///   Group for entities that can show a progress bar above them in the GUI
@@ -1263,6 +1264,7 @@ public static class Constants
     public const float UNIT_SCREEN_UPDATE_INTERVAL = 0.05f;
 
     public const float SPACE_STAGE_PLANET_PROCESS_INTERVAL = 0.1f;
+    public const float SPACE_STAGE_STRUCTURE_PROCESS_INTERVAL = 0.1f;
 
     public const float SPACE_FLEET_MODEL_SCALE = 0.1f;
 

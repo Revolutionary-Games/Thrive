@@ -178,6 +178,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
         selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), this, resourceStorage);
     }
 
+    // TODO: for uniformity these (primary, secondary) should probably go through the society input node like in
+    // space stage
     [RunOnKeyDown("e_primary")]
     public bool PlaceGhostBuilding()
     {

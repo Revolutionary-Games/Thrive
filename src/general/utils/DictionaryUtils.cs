@@ -63,7 +63,8 @@ public static class DictionaryUtils
     /// <summary>
     ///   Creates a new merged dictionary with summed keys
     /// </summary>
-    public static Dictionary<T, int> AsMerged<T>(this Dictionary<T, int> items1, Dictionary<T, int> items2)
+    public static IReadOnlyDictionary<T, int> AsMerged<T>(this IReadOnlyDictionary<T, int> items1,
+        IReadOnlyDictionary<T, int> items2)
     {
         var result = items1.CloneShallow();
 
@@ -91,7 +92,7 @@ public static class DictionaryUtils
         }
     }
 
-    public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
+    public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary)
     {
         var result = new Dictionary<TKey, TValue>(dictionary.Count);
 

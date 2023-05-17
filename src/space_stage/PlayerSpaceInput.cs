@@ -31,14 +31,15 @@ public class PlayerSpaceInput : NodeWithInput
     [RunOnKeyDown("ui_cancel")]
     public bool CancelBuild()
     {
-        // TODO:
-        // return stage.CancelBuildingPlaceIfInProgress();
-        return false;
+        return stage.CancelStructurePlaceIfInProgress();
     }
 
     [RunOnKeyDown("e_primary", Priority = -1)]
     public void SelectUnitUnderCursor()
     {
+        if (stage.AttemptPlaceStructureIfInProgress())
+            return;
+
         // TODO: allow dragging a box to select multiple units
 
         stage.SelectUnitUnderCursor();
@@ -47,6 +48,9 @@ public class PlayerSpaceInput : NodeWithInput
     [RunOnKeyDown("e_secondary")]
     public void PerformUnitContextCommand()
     {
+        if (stage.CancelStructurePlaceIfInProgress())
+            return;
+
         stage.PerformUnitContextCommandIfSelected();
     }
 }

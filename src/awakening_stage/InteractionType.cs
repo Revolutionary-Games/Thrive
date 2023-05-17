@@ -22,4 +22,10 @@ public enum InteractionType
     /// </summary>
     [Description("INTERACTION_FOUND_SETTLEMENT")]
     FoundSettlement,
+
+    /// <summary>
+    ///   Activate an ascension gate to beat the game
+    /// </summary>
+    [Description("INTERACTION_ACTIVATE_ASCENSION")]
+    ActivateAscension,
 }
