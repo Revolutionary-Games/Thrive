@@ -4,7 +4,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The main class handling the society stage functions
 /// </summary>
-public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStructureSelectionReceiver
+public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
+    IStructureSelectionReceiver<StructureDefinition>
 {
     [Export]
     public NodePath? SelectBuildingPopupPath;

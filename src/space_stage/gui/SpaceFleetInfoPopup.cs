@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Info and control popup for a <see cref="SpaceFleet"/>
 /// </summary>
 public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
 {
+    [Signal]
+    public delegate void OnConstructOptionSelected(SpaceFleet fleet);
+
     protected override void UpdateAll()
     {
     }
@@ -26,5 +30,17 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
     {
         // TODO: turn cursor into a movement selector and make left click trigger movement for one click
         // TODO: for controller input this needs a bit more complicated UX
+    }
+
+    protected override void OnConstructStart()
+    {
+        if (managedUnit != null)
+        {
+            EmitSignal(nameof(OnConstructOptionSelected), managedUnit);
+        }
+        else
+        {
+            base.OnConstructStart();
+        }
     }
 }

@@ -90,6 +90,11 @@ public class BaseBuildableStructure : IRegistryType
         return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, ScaffoldingCost);
     }
 
+    public WorldResource? CanStart(IResourceContainer availableMaterials)
+    {
+        return availableMaterials.CalculateMissingResource(ScaffoldingCost);
+    }
+
     public WorldResource? CanFullyBuild(IReadOnlyDictionary<WorldResource, int> availableMaterials)
     {
         return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, TotalCost);

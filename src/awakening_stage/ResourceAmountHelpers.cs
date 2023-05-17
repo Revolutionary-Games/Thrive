@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 public static class ResourceAmountHelpers
@@ -33,6 +34,15 @@ public static class ResourceAmountHelpers
         return availableAmount >= requiredAmount;
     }
 
+    public static bool HasEnoughResource(WorldResource resource, float availableAmount,
+        IReadOnlyDictionary<WorldResource, int> requiredResources)
+    {
+        if (!requiredResources.TryGetValue(resource, out var requiredAmount))
+            return false;
+
+        return availableAmount >= requiredAmount;
+    }
+
     public static void CreateRichTextForResourceAmounts(IReadOnlyDictionary<WorldResource, int> requiredResources,
         IReadOnlyDictionary<WorldResource, int> availableResources, StringBuilder stringBuilder,
         bool requirementMetIconFirst = false)
@@ -50,20 +60,54 @@ public static class ResourceAmountHelpers
 
             bool enough = HasEnoughResource(tuple.Key, availableAmount, requiredResources);
 
-            if (requirementMetIconFirst)
-                AddRequirementConditionFulfillIcon(stringBuilder, enough);
-
-            stringBuilder.Append(tuple.Value);
-
-            // Icon for this material
-            // TODO: make these clickable to show what the required material is
-            stringBuilder.Append($"[thrive:resource type=\"{tuple.Key.InternalName}\"][/thrive:resource]");
-
-            if (!requirementMetIconFirst)
-                AddRequirementConditionFulfillIcon(stringBuilder, enough);
+            WriteResourceText(stringBuilder, tuple.Value.ToString(CultureInfo.CurrentCulture), tuple.Key.InternalName,
+                enough, requirementMetIconFirst);
 
             first = false;
         }
+    }
+
+    /// <summary>
+    ///   Variant of this method that allows resource container to be used as data source. This is in this class to
+    ///   make this be next to the other method doing basically the same thing.
+    /// </summary>
+    public static void CreateRichTextForResourceAmounts(IReadOnlyDictionary<WorldResource, int> requiredResources,
+        IResourceContainer availableResources, StringBuilder stringBuilder,
+        bool requirementMetIconFirst = false)
+    {
+        bool first = true;
+
+        foreach (var tuple in requiredResources)
+        {
+            if (!first)
+            {
+                stringBuilder.Append(", ");
+            }
+
+            bool enough = HasEnoughResource(tuple.Key, availableResources.GetAvailableAmount(tuple.Key),
+                requiredResources);
+
+            WriteResourceText(stringBuilder, tuple.Value.ToString(CultureInfo.CurrentCulture), tuple.Key.InternalName,
+                enough, requirementMetIconFirst);
+
+            first = false;
+        }
+    }
+
+    private static void WriteResourceText(StringBuilder stringBuilder, string amount, string resourceType, bool enough,
+        bool requirementMetIconFirst)
+    {
+        if (requirementMetIconFirst)
+            AddRequirementConditionFulfillIcon(stringBuilder, enough);
+
+        stringBuilder.Append(amount);
+
+        // Icon for this material
+        // TODO: make these clickable to show what the required material is
+        stringBuilder.Append($"[thrive:resource type=\"{resourceType}\"][/thrive:resource]");
+
+        if (!requirementMetIconFirst)
+            AddRequirementConditionFulfillIcon(stringBuilder, enough);
     }
 
     private static void AddRequirementConditionFulfillIcon(StringBuilder stringBuilder, bool enough)

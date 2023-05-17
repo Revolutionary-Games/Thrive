@@ -4,29 +4,22 @@ using System.Text;
 using Godot;
 
 /// <summary>
-///   Allows selecting a structure type from a list of available ones
+///   Allows selecting a thing for a space fleet to build
 /// </summary>
-public class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition>
+public class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDefinition>
 {
-    private readonly List<StructureDefinition> validDefinitions = new();
+    private readonly List<SpaceStructureDefinition> validDefinitions = new();
 
     /// <summary>
-    ///   Opens this popup to allow selecting from the available structures
+    ///   Opens this popup to allow selecting from the available space structures
     /// </summary>
-    /// <param name="availableStructures">Which structures to show as available</param>
-    /// <param name="selectionReceiver">
-    ///   Object receiving the selected structure. This is used instead of signals to allow passing a C# object that is
-    ///   not necessarily a Godot object.
-    /// </param>
-    /// <param name="availableResources">Available resources to determine which structures are buildable</param>
-    public void OpenWithStructures(IEnumerable<StructureDefinition> availableStructures,
-        IStructureSelectionReceiver<StructureDefinition> selectionReceiver, IAggregateResourceSource availableResources)
+    public void OpenWithStructures(IEnumerable<SpaceStructureDefinition> availableStructures,
+        IStructureSelectionReceiver<SpaceStructureDefinition> selectionReceiver,
+        IResourceContainer availableResources)
     {
         validDefinitions.Clear();
         validDefinitions.AddRange(availableStructures);
         receiver = selectionReceiver;
-
-        var allResources = availableResources.CalculateWholeAvailableResources();
 
         // Update the structure buttons
         // TODO: cache buttons we can reuse
@@ -41,8 +34,7 @@ public class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition
 
             var createdButtonHolder = new CreatedButton(availableStructure, button, richText);
 
-            // createdButtons.Add(availableStructure, createdButtonHolder);
-            createdButtonHolder.UpdateResourceCost(allResources, stringBuilder, stringBuilder2);
+            createdButtonHolder.UpdateResourceCost(availableResources, stringBuilder, stringBuilder2);
 
             HandleAddingStructureSelector(structureContent, !createdButtonHolder.Disabled, nameof(OnStructureSelected),
                 availableStructure.InternalName, button, ref firstButton);
@@ -68,16 +60,15 @@ public class SelectBuildingPopup : StructureToBuildPopupBase<StructureDefinition
 
     private class CreatedButton : CreatedButtonBase
     {
-        private readonly StructureDefinition structureDefinition;
+        private readonly SpaceStructureDefinition structureDefinition;
 
-        public CreatedButton(StructureDefinition structureDefinition, Button nativeNode,
+        public CreatedButton(SpaceStructureDefinition structureDefinition, Button nativeNode,
             CustomRichTextLabel customRichTextLabel) : base(nativeNode, customRichTextLabel)
         {
             this.structureDefinition = structureDefinition;
         }
 
-        public void UpdateResourceCost(IReadOnlyDictionary<WorldResource, int> allResources,
-            StringBuilder stringBuilder, StringBuilder stringBuilder2)
+        public void UpdateResourceCost(IResourceContainer allResources, StringBuilder stringBuilder, StringBuilder stringBuilder2)
         {
             // Disabled if can't start the building
             bool canStart = structureDefinition.CanStart(allResources) == null;

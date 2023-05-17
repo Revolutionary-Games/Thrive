@@ -55,6 +55,7 @@
     <Compile Include="src\awakening_stage\EquipmentSlotType.cs" />
     <Compile Include="src\awakening_stage\gui\RecipeListItem.cs" />
     <Compile Include="src\awakening_stage\gui\SelectBuildingPopup.cs" />
+    <Compile Include="src\awakening_stage\gui\StructureToBuildPopupBase.cs" />
     <Compile Include="src\awakening_stage\IAcceptsResourceDeposit.cs" />
     <Compile Include="src\awakening_stage\IActionProgressSource.cs" />
     <Compile Include="src\awakening_stage\IAggregateResourceSource.cs" />
@@ -680,6 +681,7 @@
     <Compile Include="src\space_stage\FleetMovementOrder.cs" />
     <Compile Include="src\space_stage\gui\FleetNameLabel.cs" />
     <Compile Include="src\space_stage\gui\PlanetScreen.cs" />
+    <Compile Include="src\space_stage\gui\SpaceConstructionPopup.cs" />
     <Compile Include="src\space_stage\gui\SpaceFleetInfoPopup.cs" />
     <Compile Include="src\space_stage\gui\SpaceHUD.cs" />
     <Compile Include="src\space_stage\PlacedPlanet.cs" />
