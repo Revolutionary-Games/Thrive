@@ -35,7 +35,7 @@ public static class ResourceAmountHelpers
 
     public static void CreateRichTextForResourceAmounts(IReadOnlyDictionary<WorldResource, int> requiredResources,
         IReadOnlyDictionary<WorldResource, int> availableResources, StringBuilder stringBuilder,
-        bool requirementMetIconFirst = true)
+        bool requirementMetIconFirst = false)
     {
         bool first = true;
 
