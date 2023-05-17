@@ -95,6 +95,17 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             planetSystem.Process(delta, this);
 
             resourceStorage.Capacity = planetSystem.CachedTotalStorage;
+
+            if (!zoomingOutFromFleet)
+            {
+                if (strategicCamera.ZoomLevel <= strategicCamera.MinZoomLevel)
+                {
+                    // Intentionally not translated prototype message
+                    HUD.HUDMessages.ShowMessage(
+                        "Zooming back into planets is a planned Space Stage feature, it will be added at some point",
+                        DisplayDuration.Short);
+                }
+            }
         }
 
         HUD.UpdatePopulationDisplay(planetSystem.CachedTotalPopulation);
