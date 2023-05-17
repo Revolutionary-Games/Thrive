@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/industrial_stage/gui/CityNameLabel.cs" type="Script" id=2]
+
+[node name="CityNameLabel" type="Button"]
+margin_right = 104.0
+margin_bottom = 35.0
+focus_mode = 0
+theme = ExtResource( 1 )
+text = "Pangonia"
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[connection signal="pressed" from="." to="." method="ForwardSelection"]

@@ -39,6 +39,7 @@ NameEditPath = NodePath("VBoxContainer2/HBoxContainer2/SpeciesName")
 SpeciesDetailsPanelPath = NodePath("VBoxContainer2/SpeciesDetails")
 FossiliseButtonPath = NodePath("VBoxContainer2/HBoxContainer/FossiliseButton")
 OverwriteNameConfirmationDialogPath = NodePath("OverwriteNameConfirmation")
+FossilisationFailedDialogPath = NodePath("FossilisationFailedDialog")
 
 [node name="VBoxContainer" parent="." index="0"]
 visible = false
@@ -191,6 +192,16 @@ margin_right = 935.0
 margin_bottom = 599.0
 rect_min_size = Vector2( 440, 0 )
 WindowTitle = "CONFIRM_FOSSILISATION_OVERWRITE"
+
+[node name="FossilisationFailedDialog" parent="." index="3" instance=ExtResource( 4 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 935.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 440, 0 )
+WindowTitle = "FOSSILISATION_FAILED"
+HideCancelButton = true
+DialogText = "FOSSILISATION_FAILED_DESCRIPTION"
 
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextEntered"]

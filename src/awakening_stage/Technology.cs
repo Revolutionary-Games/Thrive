@@ -44,6 +44,16 @@ public class Technology : IRegistryType
     [JsonProperty]
     public IReadOnlyList<StructureDefinition> GrantsStructures { get; private set; } = new List<StructureDefinition>();
 
+    /// <summary>
+    ///   Units are industrial and later "proper" units
+    /// </summary>
+    [JsonProperty]
+    public IReadOnlyList<UnitType> GrantsUnits { get; private set; } = new List<UnitType>();
+
+    [JsonProperty]
+    public IReadOnlyList<SpaceStructureDefinition> GrantsSpaceStructure { get; private set; } =
+        new List<SpaceStructureDefinition>();
+
     [JsonIgnore]
     public IReadOnlyList<Technology> RequiresTechnologies { get; private set; } = new List<Technology>();
 

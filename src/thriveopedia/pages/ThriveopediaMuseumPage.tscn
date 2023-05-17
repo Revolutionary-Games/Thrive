@@ -15,6 +15,8 @@ SpeciesPreviewContainerPath = NodePath("HBoxContainer/SpeciesDetailsPanel/Margin
 SpeciesPreviewPanelPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/SpeciesDetailsPanel")
 LeaveGameConfirmationDialogPath = NodePath("UnsavedProgressWarning")
 FossilDirectoryWarningBoxPath = NodePath("NoDirectoryDialog")
+DeleteConfirmationDialogPath = NodePath("DeleteWarning")
+DeletionFailedDialogPath = NodePath("FossilDeletionFailedDialog")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="1"]
 margin_left = 1.0
@@ -152,6 +154,26 @@ WindowTitle = "NO_FOSSIL_DIRECTORY"
 HideCancelButton = true
 DialogText = "TRY_FOSSILISING_SOME_SPECIES"
 
+[node name="DeleteWarning" parent="." index="4" instance=ExtResource( 8 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 935.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 391, 0 )
+WindowTitle = "CONFIRM_DELETE"
+DialogText = "DELETE_FOSSIL_CONFIRMATION"
+
+[node name="FossilDeletionFailedDialog" parent="." index="5" instance=ExtResource( 8 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 935.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 391, 0 )
+WindowTitle = "FOSSIL_DELETION_FAILED"
+HideCancelButton = true
+DialogText = "FOSSIL_DELETION_FAILED_DESCRIPTION"
+
 [connection signal="pressed" from="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/CenterContainer/FossilFolder" to="." method="OnOpenFossilFolder"]
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="OnOpenInFreebuildConfirmPressed"]
+[connection signal="Confirmed" from="DeleteWarning" to="." method="OnConfirmDelete"]

@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
+[ext_resource path="res://assets/misc/thrive_logo_big.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/textures/gui/social_media/discord.png" type="Texture" id=13]
@@ -211,11 +211,14 @@ __meta__ = {
 }
 
 [node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
-margin_left = 556.0
-margin_top = 26.0
-margin_right = 723.0
-margin_bottom = 194.0
+margin_left = 539.0
+margin_top = 10.0
+margin_right = 739.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 200, 200 )
 texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }

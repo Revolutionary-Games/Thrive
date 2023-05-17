@@ -43,6 +43,18 @@ public interface IResourceContainer
 
 public static class ResourceContainerHelpers
 {
+    public static WorldResource? CalculateMissingResource(this IResourceContainer resourceContainer,
+        IEnumerable<KeyValuePair<WorldResource, int>> requiredResources)
+    {
+        foreach (var required in requiredResources)
+        {
+            if (resourceContainer.GetAvailableAmount(required.Key) < required.Value)
+                return required.Key;
+        }
+
+        return null;
+    }
+
     public static bool TakeResourcesIfPossible(this IResourceContainer resourceContainer,
         IReadOnlyCollection<KeyValuePair<WorldResource, int>> neededResources)
     {

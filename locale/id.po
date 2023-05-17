@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -204,11 +204,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Apakah kamu yakin ingin menyetel ulang SEMUA pengaturan ke nilai semula?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Apakah kamu yakin ingin menyetel ulang pengaturan input ke nilai semula?"
 
@@ -262,12 +262,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Keseimbangan ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:314
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
 msgstr "Produksi ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:315
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKSI ATP TERLALU RENDAH!"
 
@@ -355,10 +355,14 @@ msgstr "status auto-evo:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Gerak otomatis depan"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolusi:"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:41
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -377,7 +381,7 @@ msgstr "Tahapan Mikrob"
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -403,7 +407,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Mobilitas"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "BASE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
@@ -442,7 +446,7 @@ msgstr ""
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
 msgid "BEGIN_THRIVING"
 msgstr "Mulai Berkembang"
 
@@ -579,9 +583,14 @@ msgstr ""
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "Struktur"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "Struktur"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -613,11 +622,11 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Batal"
 
@@ -876,12 +885,18 @@ msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, p
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "Statistika Organisme"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Bersihkan Save Lama"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -889,11 +904,11 @@ msgstr "Bersihkan Save Lama"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Tutup"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Tutup pilihan?"
 
@@ -1003,7 +1018,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Keluar dari permainan"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Senyawa:"
@@ -1069,13 +1084,18 @@ msgstr "Konfigurasi"
 msgid "CONFIRM_CAPITAL"
 msgstr "KONFIRMASI"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Konfirmasi Keluar"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Konfirmasi Keluar"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1086,6 +1106,16 @@ msgstr ""
 #: ../src/society_stage/SocietyStage.tscn:86
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#: ../src/industrial_stage/IndustrialStage.tscn:75
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#: ../src/industrial_stage/IndustrialStage.tscn:76
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
 #: ../src/general/NewGameSettings.cs:329
@@ -1099,11 +1129,15 @@ msgstr "Tambah keybind baru"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Tambah keybind baru"
 
+#: ../src/industrial_stage/UnitType.cs:68
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr ""
+
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Mulai Berkembang"
@@ -1159,7 +1193,7 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:249
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
@@ -1172,11 +1206,11 @@ msgstr ""
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "KAMU TELAH BERKEMBANG!"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:184
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr ""
 
@@ -1202,21 +1236,21 @@ msgstr "Hasil auto-evo:"
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:280
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Hasil auto-evo:"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:215
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:293
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:170
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "KAMU TELAH BERKEMBANG!"
@@ -1390,7 +1424,7 @@ msgstr "Panel Debug"
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Perangkat output bawaan"
 
@@ -1407,6 +1441,11 @@ msgstr ""
 "Semua save otomatis dan save cepat lawas yang akan dihapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus save berikut?\n"
 " - {0} Save otomatis\n"
 " - {1} Save cepat"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus ini secara permanen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 #, fuzzy
@@ -1555,7 +1594,7 @@ msgstr "Kecepatan Serap Sumber Daya"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Kecepatan:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1575,7 +1614,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Buang dan lanjut"
 
@@ -1835,7 +1874,7 @@ msgstr "Editor"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -1868,11 +1907,11 @@ msgstr "Aktifkan editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktifkan Efek Cahaya GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -1928,7 +1967,7 @@ msgstr "Epipelagik"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "Error"
 
@@ -1941,7 +1980,7 @@ msgstr "Error Menyimpan"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Gagal menyimpan pengaturan baru ke file konfigurasi."
 
@@ -1984,12 +2023,12 @@ msgstr "Pohon Evolusi"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Pohon Evolusi"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Generasi:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -2003,6 +2042,11 @@ msgstr "Sebuah eksepsi terjadi saat sedang memproses obyek yang termuat"
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Sebuah eksepsi terjadi saat sedang memuat data save"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Timpa save yang sudah ada:"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2247,10 +2291,22 @@ msgstr "Error Menyimpan"
 msgid "FOSSILISATION"
 msgstr "populasi:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "populasi:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr ""
+"Gagal memperbarui save karena error berikut:\n"
+"{0}"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2262,9 +2318,21 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 msgid "FOSSILISE"
 msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Auto-evo gagal bekerja"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr ""
+"Gagal memperbarui save karena error berikut:\n"
+"{0}"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2331,7 +2399,7 @@ msgstr "Generasi:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Keluar dari permainan"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr ""
 
@@ -2343,7 +2411,7 @@ msgstr "Peringatan Mode GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr ""
 
@@ -2388,7 +2456,7 @@ msgstr "Mode Kebal"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Sel mata googly"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
 msgid "GOT_IT"
 msgstr "Baiklah"
 
@@ -2666,7 +2734,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Muat save tidak valid?"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -2683,20 +2751,20 @@ msgstr ""
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:78
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:104
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:153
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:147
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -2927,16 +2995,16 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Bahasa:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bantu Alih Bahasa Permainan"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Terjemahan ini masih dalam tahap pengerjaan ({0}% selesai)"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Terjemahan ini sangat belum lengkap ({0}% selesai) tolong bantu kami menerjemahkannya!"
 
@@ -3584,21 +3652,21 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Tahapan Mikrob"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kumpulkan glukosa (awan putih) dengan bergerak ke atas mereka.\n"
 "Selmu membutuhkan glukosa agar dapat memproduksi energi untuk bertahan hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Untuk mengendalikan selmu gunakan tombol-tombol yang tertampil dekat selmu (pusat layar) dan gunakan mouse untuk mengendalikan orientasi sel.\n"
 "\n"
 "Coba semua tombol selama beberapa detik untuk lanjut."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3606,7 +3674,7 @@ msgstr ""
 "\n"
 "Coba semua tombol selama beberapa detik untuk lanjut."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3615,7 +3683,7 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
@@ -3702,7 +3770,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"glucose\"][/thrive:compound] melalui kemoplas dan protein pengkemosintesis. [thrive:compound type=\"iron\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"atp\"][/thrive:compound] melalui rustisianin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
@@ -3781,7 +3849,7 @@ msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang t
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4108,7 +4176,7 @@ msgstr "Letakkan organel"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multisampel:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4145,6 +4213,11 @@ msgstr "Bisu"
 #: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
 msgstr "Nama:"
+
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Bioma: {0}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4316,7 +4389,7 @@ msgstr "Tidak Ada Data Untuk Ditampilkan"
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Buka Direktori Save"
@@ -4340,7 +4413,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Buka Direktori Save"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Buka Folder Tangkapan Layar"
@@ -4425,12 +4498,12 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Buka Folder Catatan"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Buka Folder Catatan"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4438,7 +4511,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Buka tampilan bantuan"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Bangun-bebas"
@@ -4551,7 +4624,7 @@ msgstr "Tusuk sel lain dengan ini."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organisme"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:363
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
 msgid "OSMOREGULATION"
 msgstr "Osmoregulasi"
 
@@ -4620,7 +4693,7 @@ msgstr "Timpa save yang sudah ada:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Timpa save yang sudah ada:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus ini secara permanen?"
@@ -4745,7 +4818,7 @@ msgstr "Proses Sel"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4809,11 +4882,10 @@ msgstr ""
 #: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
@@ -5161,7 +5233,7 @@ msgstr "Nukleus"
 msgid "RESEARCH"
 msgstr "Search"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Setel ulang"
 
@@ -5174,7 +5246,7 @@ msgstr "Setel ulang ke semula?"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Setel ulang input ke semula?"
 
@@ -5183,11 +5255,11 @@ msgstr "Setel ulang input ke semula?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Setel Ulang Input"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Semula"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Setel ulang ke semula?"
 
@@ -5366,11 +5438,11 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Simpan"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Simpan dan lanjut"
 
@@ -5585,8 +5657,8 @@ msgstr "Pilih daerah untuk menampilkan rincian"
 msgid "SELECT_A_SPECIES"
 msgstr "Pilih spesies"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:124
-#: ../src/society_stage/gui/TechWebGUI.tscn:54
+#: ../src/society_stage/gui/TechWebGUI.cs:134
+#: ../src/society_stage/gui/TechWebGUI.tscn:56
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Pilih daerah untuk menampilkan rincian"
@@ -5651,7 +5723,7 @@ msgstr "Gua"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Gua"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Tampilkan tutorial"
@@ -5815,7 +5887,7 @@ msgstr "Munculkan amonia"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:781
+#: ../src/microbe_stage/MicrobeStage.cs:790
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5866,7 +5938,7 @@ msgid "SPECIES_LIST"
 msgstr "Daftar Spesies"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nama spesies..."
 
@@ -5927,7 +5999,7 @@ msgstr ""
 msgid "START_GAME"
 msgstr "Simpan Permainan"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:77
+#: ../src/society_stage/gui/TechWebGUI.tscn:80
 msgid "START_RESEARCH"
 msgstr ""
 
@@ -6078,6 +6150,15 @@ msgstr "Struktural"
 msgid "STRUCTURE"
 msgstr "Struktur"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "Struktur"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -6189,8 +6270,44 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Ambil tangkapan layar"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:52
+msgid "TECHNOLOGY_ASCENSION"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:36
+msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:24
+msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:12
+msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:18
+msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:42
+msgid "TECHNOLOGY_LEVEL_SCIFI"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:30
+msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
+msgstr ""
+
+#: ../src/society_stage/gui/TechWebGUI.cs:148
+msgid "TECHNOLOGY_REQUIRED_LEVEL"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:41
+msgid "TECHNOLOGY_ROCKETRY"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
@@ -6328,7 +6445,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
@@ -6518,7 +6635,7 @@ msgstr "Treble Down"
 msgid "TREBLEUP"
 msgstr "Treble Up"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Ambil tangkapan layar"
@@ -6527,26 +6644,26 @@ msgstr "Ambil tangkapan layar"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Coba buat save!"
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Ambil tangkapan layar"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Memuat Editor Mikroba"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -6559,7 +6676,7 @@ msgstr ""
 "\n"
 "Pilih daerah untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -6570,7 +6687,7 @@ msgstr ""
 "\n"
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
@@ -6582,7 +6699,7 @@ msgstr ""
 "\n"
 "Semoga beruntung!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -6593,7 +6710,7 @@ msgstr ""
 "\n"
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -6605,7 +6722,7 @@ msgstr ""
 "\n"
 "Klik tombol undo untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
@@ -6617,7 +6734,7 @@ msgstr ""
 "\n"
 "Tekan tombol redo (disebelah tombol undo) untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
@@ -6627,7 +6744,7 @@ msgstr ""
 "\n"
 "Untuk lanjut, pilih organel dari panel di sebelah kiri (sitoplasma adalah pilihan yang baik). Kemudian klik kiri disebelah hex yang ditampilkan di pertengahan layar untuk menambahkan organel pada spesiesmu."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6637,7 +6754,7 @@ msgstr ""
 "\n"
 "Untuk memasuki editor tekan tombol editor yang sedang berpendar di kanan bawah."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -6645,7 +6762,7 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6653,7 +6770,7 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -6661,12 +6778,12 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6674,14 +6791,14 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan muengumpulkan amonia dan fosfat yang cukup.\n"
 "Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu perlukan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6689,7 +6806,7 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
@@ -6726,7 +6843,7 @@ msgstr "Lepas semua"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Mode Lepas"
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6745,11 +6862,15 @@ msgstr "Batal"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Batalkan tindakan terakhir"
 
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Tampilkan Bilah Kemampuan Sel"
@@ -6762,7 +6883,7 @@ msgstr ""
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tidak diketahui di Windows"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versi:"
@@ -6771,7 +6892,7 @@ msgstr "Versi:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Kamu memiliki perubahan yang belum tersimpan yang akan dibuang.\n"
@@ -6892,7 +7013,7 @@ msgstr "Nama Baru:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 

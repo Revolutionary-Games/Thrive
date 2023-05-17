@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-03 13:50+0300\n"
+"POT-Creation-Date: 2023-05-12 09:29+0300\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -212,11 +212,11 @@ msgstr "Hyväksy Muutokset"
 msgid "APRIL"
 msgstr "Huhtikuu"
 
-#: ../src/general/OptionsMenu.tscn:2096
+#: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:2105
+#: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
@@ -270,12 +270,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP Tasapaino"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:314
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
 msgstr "ATP:n tuotanto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:315
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP:n TUOTANTO ON LIIAN ALHAINEN!"
 
@@ -364,9 +364,13 @@ msgstr "suorituksen status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Liiku automaattisesti eteenpäin"
 
-#: ../src/general/OptionsMenu.cs:1019 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Automaattinen ({0}x{1})"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:41
+msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -392,7 +396,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
 #: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1140
-#: ../src/general/OptionsMenu.tscn:2033 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -418,7 +422,7 @@ msgstr "Askelpalautin"
 msgid "BASE_MOBILITY"
 msgstr "Liikkuvuus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "BASE_MOVEMENT"
 msgstr "Perus liikkuminen"
 
@@ -457,7 +461,7 @@ msgstr "Muutu Makroskooppiseksi ({0}/{1})"
 msgid "BECOME_MULTICELLULAR"
 msgstr "Muutu Monisoluiseksi ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
 msgid "BEGIN_THRIVING"
 msgstr "Aloita selviytyminen"
 
@@ -593,9 +597,14 @@ msgstr "Selaa"
 msgid "BROWSE_WORKSHOP"
 msgstr "Selaa Steam Workshopia"
 
-#: ../src/industrial_stage/gui/IndustrialHUD.tscn:13
+#: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 #, fuzzy
 msgid "BUILD_CITY"
+msgstr "Rakenne"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:85
+#, fuzzy
+msgid "BUILD_QUEUE"
 msgstr "Rakenne"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
@@ -627,11 +636,11 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2184
+#: ../src/general/OptionsMenu.tscn:2186
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Peruuta"
 
@@ -891,12 +900,18 @@ msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiine
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
+#: ../src/industrial_stage/gui/CityScreen.cs:134
+#: ../src/industrial_stage/gui/CityScreen.tscn:104
+#, fuzzy
+msgid "CITY_SHORT_STATISTICS"
+msgstr "Statistiikkaa organismista"
+
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Siivoa vanhat tallennukset"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2259
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2261
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -904,11 +919,11 @@ msgstr "Siivoa vanhat tallennukset"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Sulje"
 
-#: ../src/general/OptionsMenu.tscn:2114
+#: ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Sulje asetukset?"
 
@@ -1024,7 +1039,7 @@ msgstr "Wikimme"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2004
 msgid "COMPILED_AT_COLON"
 msgstr "Käännetty ajanhetkellä:"
 
@@ -1092,13 +1107,18 @@ msgstr "Vahvista"
 msgid "CONFIRM_CAPITAL"
 msgstr "VAHVISTA"
 
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#, fuzzy
+msgid "CONFIRM_DELETE"
+msgstr "Vahvista poistuminen"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
 msgid "CONFIRM_EXIT"
 msgstr "Vahvista poistuminen"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:193
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
@@ -1109,6 +1129,16 @@ msgstr ""
 #: ../src/society_stage/SocietyStage.tscn:86
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#: ../src/industrial_stage/IndustrialStage.tscn:75
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#: ../src/industrial_stage/IndustrialStage.tscn:76
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 #: ../src/general/NewGameSettings.cs:329
@@ -1122,11 +1152,16 @@ msgstr "Pysäytysmenu"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pysäytysmenu"
 
+#: ../src/industrial_stage/UnitType.cs:68
+#, fuzzy
+msgid "CONSTRUCTION_UNIT_NAME"
+msgstr "Tritanopia (sininen-keltainen)"
+
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Aloita selviytyminen"
@@ -1182,7 +1217,7 @@ msgstr "Protanopia (punavihersokeus)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (sininen-keltainen)"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:246
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:249
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
 
@@ -1195,11 +1230,11 @@ msgstr ""
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Käänteisesti skaalattu"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:231
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:181
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:184
 #, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Käänteisesti skaalattu"
@@ -1227,21 +1262,21 @@ msgstr "Auto-evo tulokset:"
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:277
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:280
 #, fuzzy
 msgid "CRAFTING_RESULTS"
 msgstr "Auto-evo tulokset:"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:212
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:215
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:290
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:293
 msgid "CRAFTING_TAKE_ALL"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:167
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:170
 #, fuzzy
 msgid "CRAFTING_TITLE"
 msgstr "Otsikko puuttuu"
@@ -1418,7 +1453,7 @@ msgstr "Virheenkorjauspaneeli"
 msgid "DECEMBER"
 msgstr "Joulukuu"
 
-#: ../src/general/OptionsMenu.cs:1485
+#: ../src/general/OptionsMenu.cs:1491
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Oletus ulostulolaite"
 
@@ -1435,6 +1470,11 @@ msgstr ""
 "Kaikkien Automaattisten- ja pikatallennuksien poistamista ei voida peruttaa, oletko varma, että haluatko pysyvästi poistaa seuraavat?\n"
 "- {0} Automaattiset tallennukset\n"
 "- {1} Pikatallennukset"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#, fuzzy
+msgid "DELETE_FOSSIL_CONFIRMATION"
+msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 #, fuzzy
@@ -1582,7 +1622,7 @@ msgstr "Resurssien imeytymisen nopeus"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Nopeus:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1603,7 +1643,7 @@ msgstr "Ei käytössä"
 msgid "DISABLE_ALL"
 msgstr "Ei käytössä"
 
-#: ../src/general/OptionsMenu.tscn:2167
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
@@ -1879,7 +1919,7 @@ msgstr "Editori"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Tervetuloa mikrobieditoriin.\n"
@@ -1912,11 +1952,11 @@ msgstr "Avaa editorin lukitus"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Käytä käyttöliittymän valoefektejä"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -1973,7 +2013,7 @@ msgstr "Epipelaginen vyöhyke"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "Virhe"
 
@@ -1986,7 +2026,7 @@ msgstr "Virhe tallennettaessa"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
@@ -2034,12 +2074,12 @@ msgstr "Tehnyt Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Tehnyt Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1972 ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Lisää uusi syöte"
@@ -2053,6 +2093,11 @@ msgstr "Poikkeus tapahtui prosessoidessa ladattuja objekteja"
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Poikkeus tapahtui ladattaessa tallennuksen tietoja"
+
+#: ../src/industrial_stage/gui/CityScreen.tscn:64
+#, fuzzy
+msgid "EXISTING_BUILDINGS"
+msgstr "Korvaa aikaisempi tallennus:"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2285,7 +2330,7 @@ msgstr "Virhe: {0}"
 msgid "FOSSILISATION"
 msgstr "populaatio:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:145
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -2293,6 +2338,16 @@ msgstr ""
 "ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
 "Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
 "käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
+#, fuzzy
+msgid "FOSSILISATION_FAILED"
+msgstr "populaatio:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
+#, fuzzy
+msgid "FOSSILISATION_FAILED_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2304,10 +2359,20 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:179
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:180
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Sessiili"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED"
+msgstr "Auto-evon suorittaminen epäonnistui"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#, fuzzy
+msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2379,7 +2444,7 @@ msgstr "Sukupolvi:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/OptionsMenu.cs:1033
+#: ../src/general/OptionsMenu.cs:1039
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2391,7 +2456,7 @@ msgstr "GLES2-moodi Varoitus"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1044
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2437,7 +2502,7 @@ msgstr "Kuolemattomuus"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Pelaajan solu"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
 msgid "GOT_IT"
 msgstr "Selvä"
 
@@ -2706,7 +2771,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Tiedostonimessä ei voi käyttää erikoismerkkejä (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:150
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -2723,20 +2788,20 @@ msgstr "Virheellinen URL muoto"
 msgid "INVALID_URL_SCHEME"
 msgstr "Virheellinen URL-osoitemalli"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:75
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:78
 msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:101
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:104
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:150
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:153
 msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr ""
 
-#: ../src/awakening_stage/gui/InventoryScreen.tscn:144
+#: ../src/awakening_stage/gui/InventoryScreen.tscn:147
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
@@ -2967,15 +3032,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.cs:1536
+#: ../src/general/OptionsMenu.cs:1542
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tämä kieli on {0}% käännetty"
 
-#: ../src/general/OptionsMenu.cs:1532
+#: ../src/general/OptionsMenu.cs:1538
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:1528
+#: ../src/general/OptionsMenu.cs:1534
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen kanssa!"
 
@@ -3646,7 +3711,7 @@ msgstr ""
 "\n"
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kerää glukooria (valkeat yhdistepilvet) liikkumalla niihin.\n"
@@ -3655,14 +3720,14 @@ msgstr ""
 "\n"
 "Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
 "\n"
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3670,7 +3735,7 @@ msgstr ""
 "\n"
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3679,7 +3744,7 @@ msgstr ""
 "Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
 "Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
@@ -3768,7 +3833,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "Rikkivety voidaan muuttaa glukoosiksi kemoplastien ja kemosyntesoivien proteiinien avulla. Rauta voidaan muuttaa rusticyaniinin avulla ATP:ksi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
@@ -3845,7 +3910,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4168,7 +4233,7 @@ msgstr "Useita elimiä"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Monen näytteen reunanpehmennys:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4209,6 +4274,11 @@ msgstr "Mykistä"
 #: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
 msgstr "Nimi:"
+
+#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#, fuzzy
+msgid "NAME_LABEL_CITY"
+msgstr "Biomi: {0}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4381,7 +4451,7 @@ msgstr "Ei dataa näytettäväksi"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Tapahtumia ei tallennettu"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
@@ -4405,7 +4475,7 @@ msgstr "Tallennuksia ei löytynyt"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2215
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Avaa Näyttökuva kansio"
@@ -4484,12 +4554,12 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Avaa lokien kansio"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Avaa lokien kansio"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4497,7 +4567,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Avaa apuvalikko"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Vapaa rakentelu"
@@ -4614,7 +4684,7 @@ msgstr "Pistä muita soluja tällä."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:363
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
 msgid "OSMOREGULATION"
 msgstr "Osmoregulaatio"
 
@@ -4681,7 +4751,7 @@ msgstr "Korvaa aikaisempi tallennus:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Korvataanko aikaisempi tallennus?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:180
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
@@ -4805,7 +4875,7 @@ msgstr "Poista Paikallinen Data"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2223
+#: ../src/general/OptionsMenu.tscn:2225
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4868,11 +4938,10 @@ msgstr "Rauhallinen"
 #: ../src/general/NewGameSettings.cs:685
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
@@ -5221,7 +5290,7 @@ msgstr "Tuma"
 msgid "RESEARCH"
 msgstr "Hae"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2044
+#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
@@ -5234,7 +5303,7 @@ msgstr "Palauta oletukset?"
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta näppäimien oletukset?"
 
@@ -5242,11 +5311,11 @@ msgstr "Palauta näppäimien oletukset?"
 msgid "RESET_KEYBINDINGS"
 msgstr "Palauta syötteet oletuksiksi"
 
-#: ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
 
@@ -5430,11 +5499,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Poista Paikallinen Data"
 
-#: ../src/general/OptionsMenu.tscn:2058 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Tallenna"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Tallenna ja jatka"
 
@@ -5643,8 +5712,8 @@ msgstr "Valitse alue nähdäksesi sen tiedot tässä"
 msgid "SELECT_A_SPECIES"
 msgstr "Valitse alue nähdäksesi sen tiedot tässä"
 
-#: ../src/society_stage/gui/TechWebGUI.cs:124
-#: ../src/society_stage/gui/TechWebGUI.tscn:54
+#: ../src/society_stage/gui/TechWebGUI.cs:134
+#: ../src/society_stage/gui/TechWebGUI.tscn:56
 #, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
 msgstr "Valitse alue nähdäksesi sen tiedot tässä"
@@ -5709,7 +5778,7 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Näytä tutoriaalit"
@@ -5880,7 +5949,7 @@ msgstr "Luo ammoniakkia"
 msgid "SPAWN_ENEMY"
 msgstr "Luo vihollinen"
 
-#: ../src/microbe_stage/MicrobeStage.cs:781
+#: ../src/microbe_stage/MicrobeStage.cs:790
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Luo vihollinen"
@@ -5924,7 +5993,7 @@ msgid "SPECIES_LIST"
 msgstr "Lista lajeista"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:105
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Lajin nimi..."
 
@@ -5983,7 +6052,7 @@ msgstr "Aloita kalibrointi"
 msgid "START_GAME"
 msgstr "Tallenna Peli"
 
-#: ../src/society_stage/gui/TechWebGUI.tscn:77
+#: ../src/society_stage/gui/TechWebGUI.tscn:80
 #, fuzzy
 msgid "START_RESEARCH"
 msgstr "Uudelleenkäynnistys Vaaditaan"
@@ -6139,6 +6208,15 @@ msgstr "Rakenteellinen"
 msgid "STRUCTURE"
 msgstr "Rakenne"
 
+#: ../simulation_parameters/space_stage/space_structures.json:26
+msgid "STRUCTURE_ASCENSION_GATE"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/space_structures.json:3
+#, fuzzy
+msgid "STRUCTURE_DYSON_SWARM"
+msgstr "Rakenne"
+
 #: ../src/awakening_stage/PlacedStructure.cs:68
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -6249,8 +6327,45 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Ota ruudunkaappaus"
 
+#: ../simulation_parameters/awakening_stage/technologies.json:52
+msgid "TECHNOLOGY_ASCENSION"
+msgstr ""
+
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:36
+msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:24
+msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:12
+msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:18
+msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:42
+msgid "TECHNOLOGY_LEVEL_SCIFI"
+msgstr ""
+
+#: ../src/awakening_stage/ResearchLevel.cs:30
+#, fuzzy
+msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
+msgstr "Keskiverto"
+
+#: ../src/society_stage/gui/TechWebGUI.cs:148
+msgid "TECHNOLOGY_REQUIRED_LEVEL"
+msgstr ""
+
+#: ../simulation_parameters/awakening_stage/technologies.json:41
+msgid "TECHNOLOGY_ROCKETRY"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
@@ -6390,7 +6505,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Etusivu"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:48
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museo"
 
@@ -6579,7 +6694,7 @@ msgstr ""
 msgid "TREBLEUP"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
@@ -6588,25 +6703,25 @@ msgstr "Kokeile ottaa ruudunkaappauksia!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Kokeile tallennuksen tekemistä!"
 
-#: ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriaali"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Ladataan mikrobieditoria"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Tältä paneelilta näet tulevan populaatiosi ennusteen. Auto-evo simuloi nämä populaation tunnusluvut.\n"
@@ -6617,7 +6732,7 @@ msgstr ""
 "\n"
 "Voit katsoa tarkempaa tietoa ennusteesta klikkaamalla ?-merkkiä paneelista. Klikkaa sitä jatkaaksesi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
@@ -6626,7 +6741,7 @@ msgstr ""
 "\n"
 "Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:124
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Olet nyt käynyt solun rakentamisen perusteet. Viimeistelläksesi voit vielä nimetä lajisi klikkaamalla lajin nimeä alhaalla vasemmalla, ja muokkaamalla nimeä.\n"
@@ -6637,7 +6752,7 @@ msgstr ""
 "\n"
 "Lykkyä tykö!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Tämä on ympäristökartta.\n"
@@ -6648,7 +6763,7 @@ msgstr ""
 "\n"
 "Kokeile valita uusi ympäristö jatkaaksesi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Soluelimien poistaminen kuluttaa MP:tä sillä se mutaatioaskel lajillesi - paitsi silloin kun ne on tehty nykyisessä editorin sessiossa.\n"
@@ -6659,7 +6774,7 @@ msgstr ""
 "\n"
 "Paina undo-painiketta jatkaaksesi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Valitessasi osia valikosta, huomioi avautuvat selitteet ymmärtääksesi mitä kukin osa tekee. Joistakin osista voi olla enemmän haittaa kuin hyötyä, jos niiden soveltuvuutta ei harkitse tarkoin.\n"
@@ -6668,7 +6783,7 @@ msgstr ""
 "\n"
 "Paina redo-painiketta jatkaaksesi (undo-painikkeen vieressä)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "On suositeltavaa erikoistua vain yhteen tai kahteen energianlähteeseen, jotta et tarvitse montaa yhdistettä elääksesi.\n"
@@ -6677,7 +6792,7 @@ msgstr ""
 "\n"
 "Hyvä alkustrategia voi olla pysyä yksittäisenä solulimana ja suunnata ympäristöissä pinnalle, jossa voi käyttää fotosynteesin soluelimiä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Olet kerännyt tarpeeksi yhdisteitä, jotta solusi voi jakaantua.\n"
@@ -6686,7 +6801,7 @@ msgstr ""
 "\n"
 "Avataksesi editorin, paina suurta vilkkuvaa painiketta alhaalla oikealla."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -6694,7 +6809,7 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6702,7 +6817,7 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -6710,12 +6825,12 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6723,20 +6838,20 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
 "Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
 
@@ -6772,7 +6887,7 @@ msgstr "Erkane kaikista"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1597
+#: ../src/general/OptionsMenu.cs:1603
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6791,11 +6906,15 @@ msgstr "Kumoa"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Kumoa viimeisin toimenpide"
 
+#: ../simulation_parameters/industrial_stage/units.json:3
+msgid "UNIT_SIMPLE_ROCKET"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
 msgstr "Tuntematon"
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1049
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Näytä kykypalkki"
@@ -6809,7 +6928,7 @@ msgstr "Tuntematon hiiren painike"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.cs:1604
+#: ../src/general/OptionsMenu.cs:1610
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
@@ -6819,7 +6938,7 @@ msgstr "Versio:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.tscn:2134
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
@@ -6938,7 +7057,7 @@ msgstr "Uusi nimi:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1052 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 

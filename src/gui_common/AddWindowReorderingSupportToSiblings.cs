@@ -18,6 +18,10 @@ using Array = Godot.Collections.Array;
 ///     The reason for this is because the name of the node is used when establishing connections. This also means
 ///     that after adding the scene instance it may not be renamed.
 ///   </para>
+///   <para>
+///     WARNING: this node has to be in the hierarchy before any GUI nodes this is going to manage. Otherwise
+///     unregistering errors will be triggered.
+///   </para>
 /// </remarks>
 public class AddWindowReorderingSupportToSiblings : Control
 {
@@ -161,6 +165,13 @@ public class AddWindowReorderingSupportToSiblings : Control
             return;
         }
 
+        if (connectedWindows.TryGetValue(window, out _))
+        {
+            GD.PrintErr($"A window {window.Name} ({window}) tried to connect to {Name} ({this}) " +
+                "as duplicate reference");
+            return;
+        }
+
         window.Connect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
 
         var binds = new Array();
@@ -173,6 +184,10 @@ public class AddWindowReorderingSupportToSiblings : Control
         // Update top sibling
         if (topSibling == null || topSibling.GetIndex() < topNode.GetIndex())
             topSibling = topNode;
+
+#if DEBUG
+        CheckThisNodeIsNotBelowRegistered(topNode);
+#endif
     }
 
     public void DisconnectWindow(CustomDialog window, bool recursive)
@@ -196,7 +211,15 @@ public class AddWindowReorderingSupportToSiblings : Control
         window.Disconnect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
         window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder));
 
-        var windowSibling = connectedWindows[window];
+        if (!connectedWindows.TryGetValue(window, out var windowSibling))
+        {
+            GD.PrintErr(
+                $"A window {window.Name} ({window}) tried to disconnect from {Name} ({this}) but it wasn't in " +
+                "the connected window list. This may happen if the reorder node is not early enough in the node " +
+                "hierarchy.");
+            return;
+        }
+
         connectedWindows.Remove(window);
 
         if (connectedWindows.All(w => w.Value != windowSibling))
@@ -392,5 +415,14 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
 
         connectionsEstablished = true;
+    }
+
+    private void CheckThisNodeIsNotBelowRegistered(Node registeredNode)
+    {
+        if (GetIndex() >= registeredNode.GetIndex())
+        {
+            GD.PrintErr($"{nameof(AddWindowReorderingSupportToSiblings)} is higher index than a registered " +
+                "window. The reordering node should be before any potential GUI nodes it needs to manage");
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/CreditsScroll.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=3]
+[ext_resource path="res://assets/misc/thrive_logo_big.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-BiggerPlus.tres" type="DynamicFont" id=6]
@@ -13,9 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 LogoPath = NodePath("LogoContainer")
 RevolutionaryGamesPath = NodePath("ByRevolutionaryGames")
 SupportedByPath = NodePath("SupportedBy")
@@ -29,10 +26,13 @@ margin_top = 250.0
 margin_bottom = 418.0
 
 [node name="Logo" type="TextureRect" parent="LogoContainer"]
-margin_left = 556.0
-margin_right = 723.0
-margin_bottom = 168.0
+margin_left = 540.0
+margin_right = 740.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
 texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
