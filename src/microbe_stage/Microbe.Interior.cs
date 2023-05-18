@@ -1191,7 +1191,7 @@ public partial class Microbe
         }
 
         if (CellTypeProperties.IsBacteria != true)
-            osmoregulationCost *= Constants.NUCLEUS_OSMOREGULATION_REDUCTION;
+            osmoregulationCost *= Constants.NUCLEUS_OSMOREGULATION_MULTIPLIER;
 
         if (Species.PlayerSpecies)
             osmoregulationCost *= CurrentGame.GameWorld.WorldSettings.OsmoregulationMultiplier;
