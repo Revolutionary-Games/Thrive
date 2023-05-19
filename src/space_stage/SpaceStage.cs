@@ -385,11 +385,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         // TODO: more intelligent action interrupt / queueing
 
         // TODO: more intelligent calculation for the distance from which building is possible
-        float buildDistance = 1;
+        float buildDistance = 5;
 
         var structureToFleet = structurePlacingFleet.GlobalTranslation - structure.GlobalTranslation;
 
-        var placeToBuildFrom = structureToFleet.Normalized() * buildDistance;
+        var placeToBuildFrom = structure.GlobalTranslation + structureToFleet.Normalized() * buildDistance;
 
         structurePlacingFleet.QueueOrder(new FleetMovementOrder(structurePlacingFleet, placeToBuildFrom));
         structurePlacingFleet.QueueOrder(new FleetBuildOrder(structurePlacingFleet, structure, SocietyResources));
