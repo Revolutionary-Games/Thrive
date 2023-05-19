@@ -366,7 +366,7 @@ msgstr "Авто ({0}x{1})"
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
 #: ../src/space_stage/gui/PlanetScreen.tscn:37
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Доступные строительные проекты"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -583,9 +583,8 @@ msgstr "Построить город"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
 #: ../src/space_stage/gui/PlanetScreen.tscn:81
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "Построить Структуру"
+msgstr "Очередь постройки"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -872,28 +871,8 @@ msgstr "Повышает скорость поворота клеток."
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
 #: ../src/space_stage/gui/PlanetScreen.cs:91
 #: ../src/space_stage/gui/PlanetScreen.tscn:100
-#, fuzzy
 msgid "CITY_SHORT_STATISTICS"
-msgstr ""
-"[b]Поколения:[/b]\n"
-"  {0}\n"
-"[b]Всего биомов:[/b]\n"
-"  {1}\n"
-"[b]Общая длительность авто-эволюции:[/b]\n"
-"  {2}\n"
-"[b]Всего видов:[/b]\n"
-"  {3}\n"
-"[b]Живые на данный момент виды:[/b]\n"
-"  {4}\n"
-"[b]Количество видов на биом:[/b]\n"
-"  Среднее кол-во {5}; Средняя убыль {6}\n"
-"[b]Всего живых существ:[/b]\n"
-"  {7}\n"
-"[b]Самый многочисленный вид:[/b]\n"
-"  {8}\n"
-"[b]Основная информация о микробах:[/b]\n"
-"  Средний размер цитоплазмы: {9}\n"
-"[b]Средняя информация об органеллах:[/b]"
+msgstr "Популяция: {0} Еда: {1} Наука: {2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1083,9 +1062,8 @@ msgid "CONFIRM_CAPITAL"
 msgstr "ПОДТВЕРДИТЬ"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "Подтвердить выход"
+msgstr "Подтвердить удаление"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
@@ -1106,14 +1084,17 @@ msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Поставив фабрику вы дойдёте до индустриальной стадии.Перейти на следующую стадию?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "Переместиться на Индустриальную Стадию?"
+msgstr "Переместиться на Космическую стадию?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "Поставив фабрику вы дойдёте до индустриальной стадии.Перейти на следующую стадию?"
+msgstr ""
+"Теперь вы можете достичь Космической стадии, запустив первый космический объект.\n"
+"\n"
+"В текущем прототипе вы не можете вернуться к своей планете, но дальнейшие планы предполагают то, что вы сможете приближаться и отдаляться по отношению к планетам в Космической Стадии.\n"
+"\n"
+"Отмена запуска уничтожит космический объект. Запустить космический объект?"
 
 #: ../src/general/NewGameSettings.cs:329
 #: ../src/general/NewGameSettings.tscn:1193
@@ -1125,9 +1106,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Некоторые настройки неправильные"
 
 #: ../src/industrial_stage/UnitType.cs:68
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Тританопия (Син.-Жел.)"
+msgstr "Единица: {0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -1447,9 +1427,8 @@ msgstr ""
 " - {2} Резервную(ые) копию(и)"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
+msgstr "Удаление окаменелости не может быть отменено, вы действительно хотите удалить навсегда окаменелость?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -2026,9 +2005,8 @@ msgstr "Во время загрузки сохранённых данных п�
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
 #: ../src/space_stage/gui/PlanetScreen.tscn:60
-#, fuzzy
 msgid "EXISTING_BUILDINGS"
-msgstr "Ввести существующий ID"
+msgstr "Постройки"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2261,16 +2239,12 @@ msgid "FOSSILISATION_EXPLANATION"
 msgstr "Окамените этот вид, чтобы сохранить его в музее. Вы можете получить доступ к музею из Thriveopedia или загрузить ископаемые виды в бесплатном редакторе."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Ископаемые этого вида"
+msgstr "Окаменение провалилось"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
-"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
+msgstr "Файл окаменелости не может быть записан"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2287,16 +2261,12 @@ msgid "FOSSILISE"
 msgstr "Превратить в окаменелость"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Не удалось создать мод"
+msgstr "Удаление окаменелости провалилось"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
-"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
-"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
+msgstr "Файл окаменелости не может быть удалён"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -4160,9 +4130,8 @@ msgid "NAME"
 msgstr "Имя:"
 
 #: ../src/industrial_stage/gui/CityNameLabel.cs:56
-#, fuzzy
 msgid "NAME_LABEL_CITY"
-msgstr "Биом: {0}"
+msgstr "{0}({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
@@ -6031,14 +6000,12 @@ msgid "STRUCTURE"
 msgstr "Структура"
 
 #: ../simulation_parameters/space_stage/space_structures.json:26
-#, fuzzy
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Центр Общества"
+msgstr "Врата вознесения"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
-#, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "Центр Общества"
+msgstr "Рой Дайсена"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
@@ -6152,53 +6119,44 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Сделать снимок экрана"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
-#, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "Постройка центра общества"
+msgstr "Вознесение"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Охота и собирательство"
 
 #: ../src/awakening_stage/ResearchLevel.cs:36
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr "Открыта технология: {0}"
+msgstr "Расширенный космос"
 
 #: ../src/awakening_stage/ResearchLevel.cs:24
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr "Открыта технология: {0}"
+msgstr "Индустриальный"
 
 #: ../src/awakening_stage/ResearchLevel.cs:12
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr "Постройка центра общества"
+msgstr "Пре-общество"
 
 #: ../src/awakening_stage/ResearchLevel.cs:18
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr "Открыта технология: {0}"
+msgstr "Примитивный"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr "Базовые инструменты из камня"
+msgstr "Сайфай"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr "Постройка центра общества"
+msgstr "Эра космоса"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:148
-#, fuzzy
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr "Постройка центра общества"
+msgstr "Необходимый уровень технологий: {0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
-#, fuzzy
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr "Постройка центра общества"
+msgstr "Ракетная техника"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6753,7 +6711,7 @@ msgstr "Собрать"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Базовая Ракета"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
