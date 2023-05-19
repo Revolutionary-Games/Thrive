@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
 "PO-Revision-Date: 2023-05-04 13:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -2608,7 +2608,7 @@ msgstr "İncele"
 msgid "INSPECTOR"
 msgstr "Denetleyici"
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Hasat Et"
@@ -2633,7 +2633,12 @@ msgstr "Malzeme Yerleştir"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Malzeme Yerleştir (uygun taşınan bir öğe yok)"
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "Hasat Et"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "Bir Yerleşim Alanı Kur"
 
@@ -5746,6 +5751,11 @@ msgstr "Uzay Evresi"
 #, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
 msgstr "İnşaat için gerekli malzemeler yerleştirildi"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "İnşa edilen: {0}"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
 #, fuzzy

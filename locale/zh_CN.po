@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2616,7 +2616,7 @@ msgstr "检查"
 msgid "INSPECTOR"
 msgstr "检查"
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "收割"
@@ -2641,7 +2641,12 @@ msgstr "投放材料"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "投放材料（没有合适的携带物品）"
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "收割"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "成立一个聚居地"
 
@@ -5769,6 +5774,11 @@ msgstr "微生物阶段"
 #, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
 msgstr "已具有用于建造的材料"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "正在建造：{0}"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
 #, fuzzy

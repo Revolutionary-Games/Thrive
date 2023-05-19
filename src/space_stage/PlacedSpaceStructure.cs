@@ -62,7 +62,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
             if (Completed)
             {
                 // TODO: implement structure finished type specific text
-                return string.Empty;
+                return TranslationServer.Translate("SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION");
             }
 
             if (missingResourcesToFullyConstruct == null)
@@ -135,23 +135,34 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
         }
     }
 
-    public IEnumerable<(InteractionType Type, string? DisabledAlternativeText)>? GetExtraAvailableActions()
+    public IEnumerable<(InteractionType Type, string? DisabledAlternativeText)> GetAvailableActions()
     {
-        if (!Completed)
-            return null;
-
         var result = new List<(InteractionType Type, string? DisabledAlternativeText)>();
+
+        if (!Completed)
+        {
+            result.Add((InteractionType.Destroy, null));
+            return result;
+        }
 
         foreach (var component in componentInstances)
         {
             component.GetExtraAvailableActions(result);
         }
 
+        result.Add((InteractionType.Destroy, null));
         return result;
     }
 
-    public bool PerformExtraAction(InteractionType interactionType)
+    public bool PerformAction(InteractionType interactionType)
     {
+        if (interactionType == InteractionType.Destroy)
+        {
+            // TODO: maybe refund some resources?
+            this.DestroyAndQueueFree();
+            return true;
+        }
+
         if (!Completed)
             return false;
 

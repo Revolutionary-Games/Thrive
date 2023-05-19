@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
-"PO-Revision-Date: 2023-05-19 10:57+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
+"PO-Revision-Date: 2023-05-19 11:29+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2576,7 +2576,7 @@ msgstr "Inspect"
 msgid "INSPECTOR"
 msgstr "Inspector"
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activate Ascension Gate"
 
@@ -2600,7 +2600,11 @@ msgstr "Deposit Materials"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Deposit Materials (no suitable carried items)"
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+msgid "INTERACTION_DESTROY"
+msgstr "Destroy"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "Found a Settlement"
 
@@ -5709,6 +5713,10 @@ msgstr "Space Stage"
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
 msgstr "Structure is waiting for construction fleet to build"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "No extra information available"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"

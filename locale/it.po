@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -2623,7 +2623,7 @@ msgstr "Ispeziona"
 msgid "INSPECTOR"
 msgstr "Ispeziona"
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Tasso mutazione IA"
@@ -2651,7 +2651,12 @@ msgstr "Tasso mutazione IA"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "Tasso mutazione IA"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "Tasso mutazione IA"
@@ -5838,6 +5843,11 @@ msgstr "Fase Microbica"
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 #, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Struttura"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr "Struttura"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74

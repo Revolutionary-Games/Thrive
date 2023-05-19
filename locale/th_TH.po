@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -2612,7 +2612,7 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "ความเข้มข้นของ"
@@ -2640,7 +2640,12 @@ msgstr "ความเข้มข้นของ"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "ความเข้มข้นของ"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "ความเข้มข้นของ"
@@ -5826,6 +5831,11 @@ msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 #, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "ด้วยความเข้มข้นของ"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr "ด้วยความเข้มข้นของ"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74

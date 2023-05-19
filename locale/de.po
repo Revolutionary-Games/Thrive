@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
 "PO-Revision-Date: 2023-02-02 07:29+0000\n"
 "Last-Translator: Raphael Franzen <franzen.raphael@hotmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -2619,7 +2619,7 @@ msgstr "Untersuchen"
 msgid "INSPECTOR"
 msgstr "Untersuchen"
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "KI Mutationsrate"
@@ -2647,7 +2647,12 @@ msgstr "KI Mutationsrate"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "KI Mutationsrate"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "KI Mutationsrate"
@@ -5790,6 +5795,11 @@ msgstr "Mikroben Stadium"
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 #, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Struktur"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr "Struktur"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74

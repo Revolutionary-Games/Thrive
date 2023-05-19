@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Orders a space flee to build a structure (doesn't check distance, separate move order needs to be created first)
@@ -16,25 +17,33 @@ public class FleetBuildOrder : UnitOrderBase<SpaceFleet>
         IResourceContainer availableResources) : base(fleet)
     {
         this.availableResources = availableResources;
-        TargetStructure = targetStructure;
+        TargetStructure = new EntityReference<PlacedSpaceStructure>(targetStructure);
     }
 
     [JsonProperty]
-    public PlacedSpaceStructure TargetStructure { get; }
+    public EntityReference<PlacedSpaceStructure> TargetStructure { get; }
 
     protected override bool WorkOnOrder(float delta)
     {
+        var target = TargetStructure.Value;
+
+        if (target == null)
+        {
+            GD.Print("Canceling build order as structure is gone");
+            return true;
+        }
+
         if (!resourcesDeposited)
         {
             // TODO: maybe gradually take resources?
-            if (TargetStructure.DepositBulkResources(availableResources))
+            if (target.DepositBulkResources(availableResources))
                 resourcesDeposited = true;
 
             return false;
         }
 
         // TODO: make the construction take time / animate it
-        TargetStructure.OnFinishConstruction();
+        target.OnFinishConstruction();
 
         return true;
     }

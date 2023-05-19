@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -2504,7 +2504,7 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "kama ante pi sike ante"
@@ -2532,7 +2532,12 @@ msgstr "kama ante pi sike ante"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "kama ante pi sike ante"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "kama ante pi sike ante"
@@ -5450,6 +5455,10 @@ msgstr ""
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr ""
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr ""
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74

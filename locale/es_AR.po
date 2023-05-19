@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"POT-Creation-Date: 2023-05-19 11:29+0300\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -2574,7 +2574,7 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:29
+#: ../src/awakening_stage/InteractionType.cs:32
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Depredación de {0}"
@@ -2600,7 +2600,12 @@ msgstr "Depredación de {0}"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "Depredación de {0}"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr ""
 
@@ -5726,6 +5731,11 @@ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
 msgstr ""
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "población:"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
