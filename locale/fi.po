@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 11:29+0300\n"
+"POT-Creation-Date: 2023-05-19 11:42+0300\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -2717,6 +2717,11 @@ msgstr ""
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Mutaatiopisteet"
 
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "Mutaatiopisteet"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
@@ -5378,6 +5383,11 @@ msgstr "Resurssien imeytymisen nopeus"
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Paine"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "Katsele lähdekoodia"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 #, fuzzy

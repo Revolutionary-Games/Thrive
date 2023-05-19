@@ -122,6 +122,9 @@ public class SpaceStructureInfoPopup : CustomDialog
         {
             var button = interactionButtons.GetChild(type);
 
+            // TODO: somehow ensure the buttons are in the correct order (right now new actions becoming available
+            // cause the buttons to be in inconsistent order compared to reopening the popup)
+
             if (disabled != null)
             {
                 if (button.Disabled != true)

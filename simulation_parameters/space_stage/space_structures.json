@@ -18,7 +18,7 @@
     },
     "Components": {
       "InterplanetaryEnergy": {
-        "Amount": 10000
+        "Amount": 1000
       }
     }
   },
@@ -40,7 +40,9 @@
       "rock": 50
     },
     "Components": {
-      "Ascension": {}
+      "Ascension": {
+        "EnergyRequired": 10000
+      }
     }
   }
 }

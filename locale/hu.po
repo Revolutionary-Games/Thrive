@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 11:29+0300\n"
+"POT-Creation-Date: 2023-05-19 11:42+0300\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -2666,6 +2666,11 @@ msgstr "Ellenőriz"
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "MI mutációs mértéke"
 
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "MI mutációs mértéke"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
@@ -5315,6 +5320,11 @@ msgstr ""
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Nyomás"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "A forráskód megtekintése"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 #, fuzzy

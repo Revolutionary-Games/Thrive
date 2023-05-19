@@ -51,6 +51,9 @@ public class SpaceStructureDefinition : BaseBuildableStructure
 #pragma warning disable CS0649 // set from JSON
         [JsonProperty]
         private AscensionComponentFactory? ascension;
+
+        [JsonProperty]
+        private InterplanetaryEnergyComponentFactory? interplanetaryEnergy;
 #pragma warning restore CS0649
 
         [JsonIgnore]
@@ -63,6 +66,9 @@ public class SpaceStructureDefinition : BaseBuildableStructure
         {
             if (ascension != null)
                 allFactories.Add(ascension);
+
+            if (interplanetaryEnergy != null)
+                allFactories.Add(interplanetaryEnergy);
 
             foreach (var componentFactory in allFactories)
             {
