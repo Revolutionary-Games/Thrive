@@ -20,8 +20,7 @@ public class AscensionComponent : SpaceStructureComponent
         if (interactionType == InteractionType.ActivateAscension)
         {
             GD.Print("Ascension gate is activated");
-            throw new NotImplementedException();
-
+            GD.Print("TODO: implement ascension");
             return true;
         }
 
