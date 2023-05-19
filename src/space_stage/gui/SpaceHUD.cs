@@ -18,12 +18,17 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
     [Export]
     public NodePath ConstructionPopupPath = null!;
 
+    [Export]
+    public NodePath StructurePopupPath = null!;
+
 #pragma warning disable CA2213
     private Label populationLabel = null!;
 
     private PlanetScreen planetScreenPopup = null!;
     private SpaceFleetInfoPopup fleetPopup = null!;
     private SpaceConstructionPopup constructionPopup = null!;
+
+    private SpaceStructureInfoPopup structurePopup = null!;
 #pragma warning restore CA2213
 
     private SpaceFleet? fleetToConstructWith;
@@ -39,6 +44,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
         planetScreenPopup = GetNode<PlanetScreen>(PlanetScreenPopupPath);
         fleetPopup = GetNode<SpaceFleetInfoPopup>(FleetPopupPath);
         constructionPopup = GetNode<SpaceConstructionPopup>(ConstructionPopupPath);
+        structurePopup = GetNode<SpaceStructureInfoPopup>(StructurePopupPath);
     }
 
     public void UpdatePopulationDisplay(long population)
@@ -64,6 +70,11 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
     public SpaceFleet? GetSelectedFleet()
     {
         return fleetPopup.OpenedForUnit;
+    }
+
+    public void OpenStructureInfo(PlacedSpaceStructure structure)
+    {
+        structurePopup.ShowForStructure(structure);
     }
 
     public void ShowConstructionOptionsForFleet(SpaceFleet fleet)
@@ -96,6 +107,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
                 PlanetScreenPopupPath.Dispose();
                 FleetPopupPath.Dispose();
                 ConstructionPopupPath.Dispose();
+                StructurePopupPath.Dispose();
             }
         }
 

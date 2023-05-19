@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -50,6 +51,30 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
                 return typeName;
 
             return TranslationServer.Translate("STRUCTURE_IN_PROGRESS_CONSTRUCTION").FormatSafe(typeName);
+        }
+    }
+
+    [JsonIgnore]
+    public string? StructureExtraDescription
+    {
+        get
+        {
+            if (Completed)
+            {
+                // TODO: implement structure finished type specific text
+                return string.Empty;
+            }
+
+            if (missingResourcesToFullyConstruct == null)
+                return TranslationServer.Translate("SPACE_STRUCTURE_HAS_RESOURCES");
+
+            // Display the still required resources
+            string resourceAmountFormat = TranslationServer.Translate("RESOURCE_AMOUNT_SHORT");
+
+            return TranslationServer.Translate("SPACE_STRUCTURE_WAITING_CONSTRUCTION")
+                .FormatSafe(string.Join(", ",
+                    missingResourcesToFullyConstruct.Select(r =>
+                        resourceAmountFormat.FormatSafe(r.Key.Name, r.Value))));
         }
     }
 
@@ -187,7 +212,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
 
     public void OnSelectedThroughLabel()
     {
-        EmitSignal(nameof(OnSelected), this);
+        EmitSignal(nameof(OnSelected));
     }
 
     private void OnCompleted()

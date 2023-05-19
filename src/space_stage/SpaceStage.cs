@@ -409,7 +409,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     private void OpenStructureInfo(PlacedSpaceStructure structure)
     {
-        throw new NotImplementedException();
+        HUD.OpenStructureInfo(structure);
     }
 
     private SpaceFleet? FindFleetAtWorldPosition(Vector3 location)

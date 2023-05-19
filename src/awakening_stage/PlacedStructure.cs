@@ -57,6 +57,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     public Vector3? ExtraInteractionCenterOffset =>
         Definition?.InteractOffset ?? throw new InvalidOperationException("Not initialized");
 
+    [JsonIgnore]
     public string? ExtraInteractionPopupDescription
     {
         get
