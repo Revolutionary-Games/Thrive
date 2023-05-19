@@ -36,4 +36,6 @@ public enum MainGameState
     SocietyStage,
 
     IndustrialStage,
+
+    SpaceStage,
 }

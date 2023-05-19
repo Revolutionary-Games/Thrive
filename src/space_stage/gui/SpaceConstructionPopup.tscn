@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/space_stage/gui/SpaceConstructionPopup.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=2]
+
+[node name="SpaceConstructionPopup" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+PopupPath = NodePath("CustomDialog")
+ButtonsContainerPath = NodePath("CustomDialog/VBoxContainer/ScrollContainer/ButtonContainer")
+CancelButtonPath = NodePath("CustomDialog/VBoxContainer/Cancel")
+
+[node name="CustomDialog" parent="." instance=ExtResource( 2 )]
+margin_right = 0.0
+margin_bottom = 0.0
+Exclusive = true
+WindowTitle = "SELECT_SPACE_STRUCTURE_TITLE"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 300, 400 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CustomDialog/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 361.0
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CustomDialog/VBoxContainer/ScrollContainer"]
+margin_right = 300.0
+size_flags_horizontal = 3
+custom_constants/separation = 5
+
+[node name="Cancel" type="Button" parent="CustomDialog/VBoxContainer"]
+margin_left = 105.0
+margin_top = 365.0
+margin_right = 194.0
+margin_bottom = 400.0
+size_flags_horizontal = 4
+text = "CANCEL"
+
+[connection signal="pressed" from="CustomDialog/VBoxContainer/Cancel" to="CustomDialog" method="OnCloseButtonPressed"]

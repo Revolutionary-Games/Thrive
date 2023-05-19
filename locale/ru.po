@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 09:29+0300\n"
+"POT-Creation-Date: 2023-05-19 11:42+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -232,7 +232,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Картина от {0}"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "Галерея изображений"
 
@@ -330,7 +330,7 @@ msgstr "Автосохранение во время игры"
 msgid "AUTO_EVO"
 msgstr "Авто-Эволюция"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:417
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения авто-эво"
 
@@ -364,6 +364,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Авто ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
+#: ../src/space_stage/gui/PlanetScreen.tscn:37
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -380,8 +381,8 @@ msgid "AWARE_STAGE"
 msgstr "Стадия Сознания"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
-#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
+#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
 #: ../src/general/NewGameSettings.tscn:1140
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -480,7 +481,7 @@ msgstr "Оппортунизм"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м ниже уровня моря"
 
-#: ../src/general/MainMenu.tscn:428
+#: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
 msgstr "Тестирование производительности"
 
@@ -581,6 +582,7 @@ msgid "BUILD_CITY"
 msgstr "Построить город"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
+#: ../src/space_stage/gui/PlanetScreen.tscn:81
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Построить Структуру"
@@ -617,6 +619,7 @@ msgstr "Камера"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Отмена"
@@ -867,6 +870,8 @@ msgstr "Повышает скорость поворота клеток."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
+#: ../src/space_stage/gui/PlanetScreen.cs:91
+#: ../src/space_stage/gui/PlanetScreen.tscn:100
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr ""
@@ -1000,19 +1005,19 @@ msgstr "Общие способности"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "Общий Редактор и Стадии Стратегии"
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:674
 msgid "COMMUNITY_FORUM"
 msgstr "Форум сообщества"
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:669
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Присоединитесь к сообществу Thrive или на наш форум"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:716
 msgid "COMMUNITY_WIKI"
 msgstr "Wiki Сообщества"
 
-#: ../src/general/MainMenu.tscn:708
+#: ../src/general/MainMenu.tscn:711
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Зайти на нашу Wiki"
 
@@ -1077,14 +1082,14 @@ msgstr "Конфигурация"
 msgid "CONFIRM_CAPITAL"
 msgstr "ПОДТВЕРДИТЬ"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
 #, fuzzy
 msgid "CONFIRM_DELETE"
 msgstr "Подтвердить выход"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
 msgstr "Подтвердить выход"
 
@@ -1299,7 +1304,7 @@ msgstr "Создание..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Создание объектов из сохранения"
 
-#: ../src/general/MainMenu.tscn:352
+#: ../src/general/MainMenu.tscn:355
 msgid "CREDITS"
 msgstr "Титры"
 
@@ -1441,7 +1446,7 @@ msgstr ""
 " - {1} Быстрое(ые) сохранение(я)\n"
 " - {2} Резервную(ые) копию(и)"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
 #, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
@@ -1505,11 +1510,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Разработчики"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:688
 msgid "DEVELOPMENT_FORUM"
 msgstr "Форум Разработчиков"
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:683
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Посмотреть новости с полей разработки на нашем форуме Разработчиков"
 
@@ -1517,11 +1522,11 @@ msgstr "Посмотреть новости с полей разработки �
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Разработка поддержана командой Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:702
 msgid "DEVELOPMENT_WIKI"
 msgstr "Wiki Разработчиков"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:697
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Зайти на WIKI разработчиков"
 
@@ -1649,7 +1654,7 @@ msgstr ""
 "Среди размещённых органелл, имеются несоединённые с остальными.\n"
 "Пожалуйста соедините все размещённые органеллы с другими или отмените свои действия."
 
-#: ../src/general/MainMenu.tscn:857
+#: ../src/general/MainMenu.tscn:860
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
 
@@ -2020,6 +2025,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Во время загрузки сохранённых данных произошла ошибка"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
+#: ../src/space_stage/gui/PlanetScreen.tscn:60
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Ввести существующий ID"
@@ -2028,7 +2034,7 @@ msgstr "Ввести существующий ID"
 msgid "EXIT"
 msgstr "Выход"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:364
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Выйти в лаунчер"
 
@@ -2078,7 +2084,7 @@ msgstr "Вымерли в биоме"
 msgid "EXTINCT_SPECIES"
 msgstr "Вымершие Виды"
 
-#: ../src/general/MainMenu.tscn:344
+#: ../src/general/MainMenu.tscn:347
 msgid "EXTRAS"
 msgstr "Дополнительное"
 
@@ -2086,7 +2092,7 @@ msgstr "Дополнительное"
 msgid "EXTRA_OPTIONS"
 msgstr "Дополнительные Настройки"
 
-#: ../src/general/MainMenu.tscn:869
+#: ../src/general/MainMenu.tscn:872
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Посетить нашу страницу на Facebook"
 
@@ -2179,6 +2185,16 @@ msgstr "Жгутик представляет собой похожий на х�
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Использует [thrive:compound type=\"atp\"][/thrive:compound] чтобы повысить скорость передвижения клетки."
 
+#: ../src/space_stage/SpaceFleet.cs:86
+#, fuzzy
+msgid "FLEET_NAME_FROM_PLACE"
+msgstr "вымерли с планеты"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
+
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Окружающие фрагменты:"
@@ -2270,12 +2286,12 @@ msgstr "Окаменелость этого вида (уже окаменело�
 msgid "FOSSILISE"
 msgstr "Превратить в окаменелость"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Не удалось создать мод"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
@@ -2341,7 +2357,7 @@ msgstr "Поколения"
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/general/MainMenu.tscn:821
+#: ../src/general/MainMenu.tscn:824
 msgid "GITHUB_TOOLTIP"
 msgstr "Посетить наш Github-репозиторий"
 
@@ -2349,11 +2365,11 @@ msgstr "Посетить наш Github-репозиторий"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
@@ -2592,6 +2608,16 @@ msgstr "Проверить"
 msgid "INSPECTOR"
 msgstr "Инспектор"
 
+#: ../src/awakening_stage/InteractionType.cs:32
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Собрать"
+
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "Собрать"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Завершить Строительство"
@@ -2612,7 +2638,12 @@ msgstr "Заложить Материалы"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Заложить Материалы (нет подходящих носимых вами предметов)"
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "Собрать"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "Основать поселение"
 
@@ -2661,7 +2692,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Имя сохранения может не содержать специальных символов (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:156
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Название вида должно соответствовать биномиальной системе наименования (Род и Эпитет)!"
 
@@ -2717,7 +2748,7 @@ msgstr "Железо"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Железная хемолитоавтотрофия"
 
-#: ../src/general/MainMenu.tscn:797
+#: ../src/general/MainMenu.tscn:800
 msgid "ITCH_TOOLTIP"
 msgstr "Посетить нашу страницу на itch.io"
 
@@ -3093,7 +3124,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Левая кнопка мыши"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:529
 msgid "LICENSES"
 msgstr "Лицензии"
 
@@ -3256,12 +3287,12 @@ msgstr "Нажмите кнопку отмены в редакторе для и
 msgid "LOAD_FINISHED"
 msgstr "Загрузка завершена"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Загрузить сохраненные игры"
 
@@ -3460,7 +3491,7 @@ msgid "MICROBES_COUNT"
 msgstr "Количество микробов:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:588
 msgid "MICROBE_BENCHMARK"
 msgstr "Тест производительности на Микробах"
 
@@ -3543,7 +3574,7 @@ msgstr "В каждом поколении у вас есть 100 очков м�
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы можете изменить свой вида (добавляя, передвигая или удаляя органеллы), чтобы повысить успех вашего вида. Каждое посещение редактора в Микробной Фазе представляет [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] миллионов лет эволюции."
 
-#: ../src/general/MainMenu.tscn:403
+#: ../src/general/MainMenu.tscn:406
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Свободный микробный редактор"
 
@@ -3794,11 +3825,11 @@ msgstr "Модифицировать Органеллу"
 msgid "MODIFY_TYPE"
 msgstr "Изменить Вид"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:506
 msgid "MODS"
 msgstr "Моды"
 
-#: ../src/general/MainMenu.tscn:967
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Установленные моды были обнаружены, но нет включенных модов.\n"
@@ -3887,11 +3918,11 @@ msgstr "Внутреннее имя (Папки):"
 msgid "MOD_LICENSE"
 msgstr "Лицензия мода:"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr "Ошибки при загрузке модов"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
@@ -4039,7 +4070,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Переместиться на сушу?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Превращаемся в общество..."
 
@@ -4087,7 +4118,7 @@ msgstr "Разместить Органеллу"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множественная выборка сглаживания:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:135
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Добро пожаловать в музей! Здесь вы можете полюбоваться на виды, которых вы окаменели во время всех ваших прохождений. Вы даже можете играть за вид, открыв его в режиме свободного строительства.\n"
@@ -4128,10 +4159,20 @@ msgstr "Заглушить"
 msgid "NAME"
 msgstr "Имя:"
 
-#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#: ../src/industrial_stage/gui/CityNameLabel.cs:56
 #, fuzzy
 msgid "NAME_LABEL_CITY"
 msgstr "Биом: {0}"
+
+#: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:38
+#, fuzzy
+msgid "NAME_LABEL_FLEET"
+msgstr "Биом: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4161,11 +4202,11 @@ msgstr "НОВОСТИ"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Начальная популяция увеличивающих биоразнообразие видов"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME"
 msgstr "Новая игра"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:297
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Начать новую игру"
 
@@ -4247,7 +4288,7 @@ msgstr "Самая основная форма мембраны, она имее
 msgid "NOTHING_HERE"
 msgstr "Здесь ничего нет"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Не с чем взаимодействовать"
 
@@ -4300,11 +4341,11 @@ msgstr "Нет данных для отображения"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Никаких событий не зафиксировано"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Не найдена дирректория окаменелостей"
 
-#: ../src/general/MainMenu.tscn:965
+#: ../src/general/MainMenu.tscn:968
 msgid "NO_MODS_ENABLED"
 msgstr "Отсутствуют включенные моды"
 
@@ -4375,11 +4416,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Октябрь"
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:660
 msgid "OFFICIAL_WEBSITE"
 msgstr "Официальный сайт"
 
-#: ../src/general/MainMenu.tscn:648
+#: ../src/general/MainMenu.tscn:651
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Зайти на официальный сайт Revolutionary Games"
 
@@ -4402,11 +4443,11 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Открыть папку"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:88
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Открыть папку с окаменелостями"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Вы уверены, что хотите начать новую игру за выбранный вид?\n"
@@ -4416,7 +4457,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Открыть экран помощи"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:119
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Открыть в свободном редакторе клеток"
 
@@ -4471,11 +4512,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Рисковый"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
 
@@ -4587,7 +4628,7 @@ msgstr "Перезаписать существующее сохранение:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Перезаписать существующее сохранение?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Окаменелый вид с таким названием уже существует.\n"
@@ -4722,7 +4763,7 @@ msgstr "Изменения:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Просмотреть полный список изменений этого обновления на [color=#3796e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:809
+#: ../src/general/MainMenu.tscn:812
 msgid "PATREON_TOOLTIP"
 msgstr "Зайти на нашу страницу на Patreon"
 
@@ -4760,7 +4801,7 @@ msgstr "Мирный"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:685
+#: ../src/general/NewGameSettings.cs:682
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4998,11 +5039,11 @@ msgstr "Быстрая загрузка"
 msgid "QUICK_SAVE"
 msgstr "Быстрое сохранение"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:376
 msgid "QUIT"
 msgstr "Выйти"
 
-#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Выйти из игры"
@@ -5044,7 +5085,7 @@ msgstr "Готово"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Рекомендуемая версия Thrive:"
 
-#: ../src/general/MainMenu.tscn:845
+#: ../src/general/MainMenu.tscn:848
 msgid "REDDIT_TOOLTIP"
 msgstr "Посетить наш саб-реддит"
 
@@ -5069,7 +5110,7 @@ msgstr "Возврат миграций в случае вымирания в в
 msgid "REPORT"
 msgstr "Отчёт"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Сообщить о баге"
 
@@ -5151,9 +5192,15 @@ msgstr "Разрешение:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорость Поглощения Ресурсов"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "Камень"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5204,7 +5251,7 @@ msgstr ""
 "Вы действительно хотите вернуться в главное меню?\n"
 "Весь несохраненный прогресс будет утерян."
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:775
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Посетить официальный сайт Revolutionary Games"
 
@@ -5290,7 +5337,7 @@ msgstr "Рустицианин - это белок, способный испо�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive запущен в безопасном режиме из-за предыдущей ошибки запуска.\n"
@@ -5302,7 +5349,7 @@ msgstr ""
 "\n"
 "Если вы не устраните проблему, вызывающую сбой при запуске, вам потребуется перезапустить Thrive несколько раз, чтобы вернуться в безопасный режим."
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:978
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive запущен в безопасном режиме"
 
@@ -5527,6 +5574,11 @@ msgstr "Выберите вариант"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Выбрать превью"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Выбор структуры"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "Выбор структуры"
@@ -5704,6 +5756,21 @@ msgstr "Пробел"
 #: ../simulation_parameters/common/gallery.json:469
 msgid "SPACE_STAGE"
 msgstr "Стадия Космоса"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Материалы, что нужны для строительства были заложены"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "Строится: {0}"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+#, fuzzy
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr "Строится: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5891,17 +5958,17 @@ msgstr "Steam в настоящее время недоступен, пожал�
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Произошла неизвестная ошибка Steam"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:1001
 msgid "STEAM_INIT_FAILED"
 msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:1003
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
 "Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
 
-#: ../src/general/MainMenu.tscn:785
+#: ../src/general/MainMenu.tscn:788
 msgid "STEAM_TOOLTIP"
 msgstr "Посетить нашу страницу в Steam"
 
@@ -5973,7 +6040,7 @@ msgstr "Центр Общества"
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Центр Общества"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Материалы, что нужны для строительства были заложены"
 
@@ -5982,18 +6049,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr "Логово Охотников-собирателей"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Строится: {0}"
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "Необходимые материалы, без которых строительство не завершится: {0}"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (начальная цена:{1} , в итоге: {2})"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0}(НЕДОСТАТОЧНО, ДЛЯ НАЧАЛА НУЖНО :{1}, в конечном счёте:{2})"
 
@@ -6143,7 +6213,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Энергия на основе пара"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Открыта технология: {0}"
 
@@ -6164,7 +6234,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Команда Тестирования"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Благодарим вас за поддержку развития Thrive, купив эту копию Thrive!\n"
@@ -6180,7 +6250,7 @@ msgstr ""
 "\n"
 "Если вам понравилась игра, расскажите о нас своим друзьям."
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:991
 msgid "THANK_YOU_TITLE"
 msgstr "Спасибо"
 
@@ -6239,7 +6309,7 @@ msgstr "Этот мод загружен из Мастерской Steam"
 msgid "THREADS"
 msgstr "Потоки:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
@@ -6400,7 +6470,7 @@ msgstr "Пауза"
 msgid "TOGGLE_UNBINDING"
 msgstr "Переключить развязку"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:331
 msgid "TOOLS"
 msgstr "Инструменты"
 
@@ -6457,7 +6527,7 @@ msgstr "TrebleDown"
 msgid "TREBLEUP"
 msgstr "TrebleUp"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:155
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Попробуйте сохранить окаменелости некоторых видов!"
 
@@ -6626,7 +6696,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Обучение"
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:884
 msgid "TWITTER_TOOLTIP"
 msgstr "Посетите нашу ленту в Twitter"
 
@@ -6670,6 +6740,16 @@ msgstr "Отменить"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отменить последнее действие"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Завершить Строительство"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Собрать"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
@@ -6830,7 +6910,7 @@ msgstr "Просмотреть Заметки Обновления"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Просмотреть последние или все заметки обновлений Thrive"
 
-#: ../src/general/MainMenu.tscn:336
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr "Открыть исходный код"
 
@@ -6842,7 +6922,7 @@ msgstr "VIP-Спонсоры"
 msgid "VISIBLE"
 msgstr "Видимый"
 
-#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложить идею"
 
@@ -6997,7 +7077,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "лет"
 
-#: ../src/general/MainMenu.tscn:833
+#: ../src/general/MainMenu.tscn:836
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Зайти на наш Ютуб Канал"
 
@@ -7018,6 +7098,10 @@ msgstr "Увеличить масштаб"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "BUILD_SPACE_STRUCTURE"
+#~ msgstr "Построить Структуру"
 
 #, fuzzy
 #~ msgid "ENABLED"

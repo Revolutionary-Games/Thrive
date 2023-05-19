@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -30,9 +31,21 @@ public class CityNameLabel : Button, IEntityNameLabel
 
     public void UpdateFromEntity(IEntityWithNameLabel entity)
     {
-        var city = (PlacedCity)entity;
+        string newText;
 
-        var newText = translationTemplate.FormatSafe(city.CityName, city.Population);
+        switch (entity)
+        {
+            case PlacedCity city:
+                newText = translationTemplate.FormatSafe(city.CityName, city.Population);
+                break;
+
+            case PlacedPlanet planet:
+                newText = translationTemplate.FormatSafe(planet.PlanetName, planet.Population);
+                break;
+
+            default:
+                throw new ArgumentException("Unsupported entity type", nameof(entity));
+        }
 
         // TODO: check if comparing against the old text is faster than always applying the new value
         Text = newText;

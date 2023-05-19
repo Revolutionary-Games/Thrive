@@ -1,4 +1,4 @@
-﻿public interface IStructureSelectionReceiver
+﻿public interface IStructureSelectionReceiver<T>
 {
-    public void OnStructureTypeSelected(StructureDefinition structureDefinition);
+    public void OnStructureTypeSelected(T structureDefinition);
 }

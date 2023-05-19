@@ -367,6 +367,70 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/industrial_stage/PlacedCity.tscn");
     }
 
+    public static PlacedPlanet SpawnPlanet(Transform location, Node worldRoot, PackedScene planetScene,
+        bool playerPlanet,
+        TechWeb availableTechnology)
+    {
+        var planet = (PlacedPlanet)planetScene.Instance();
+
+        planet.Init(playerPlanet, availableTechnology);
+
+        worldRoot.AddChild(planet);
+        planet.Transform = location;
+
+        planet.AddToGroup(Constants.PLANET_ENTITY_GROUP);
+        planet.AddToGroup(Constants.NAME_LABEL_GROUP);
+
+        return planet;
+    }
+
+    public static PackedScene LoadPlanetScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/PlacedPlanet.tscn");
+    }
+
+    public static SpaceFleet SpawnFleet(Transform location, Node worldRoot, PackedScene fleetScene,
+        bool playerFleet, UnitType initialShip)
+    {
+        var fleet = (SpaceFleet)fleetScene.Instance();
+
+        fleet.Init(initialShip, playerFleet);
+
+        worldRoot.AddChild(fleet);
+        fleet.Transform = location;
+
+        fleet.AddToGroup(Constants.SPACE_FLEET_ENTITY_GROUP);
+        fleet.AddToGroup(Constants.NAME_LABEL_GROUP);
+
+        return fleet;
+    }
+
+    public static PlacedSpaceStructure SpawnSpaceStructure(SpaceStructureDefinition structureDefinition,
+        Transform location, Node worldNode, PackedScene structureScene, bool playerOwned)
+    {
+        var structureEntity = structureScene.Instance<PlacedSpaceStructure>();
+
+        worldNode.AddChild(structureEntity);
+        structureEntity.Init(structureDefinition, playerOwned);
+
+        structureEntity.AddToGroup(Constants.NAME_LABEL_GROUP);
+        structureEntity.AddToGroup(Constants.SPACE_STRUCTURE_ENTITY_GROUP);
+
+        structureEntity.Transform = location;
+
+        return structureEntity;
+    }
+
+    public static PackedScene LoadSpaceStructureScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/PlacedSpaceStructure.tscn");
+    }
+
+    public static PackedScene LoadFleetScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/SpaceFleet.tscn");
+    }
+
     private static Quat RandomRotationForResourceEntity(Random random)
     {
         return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
