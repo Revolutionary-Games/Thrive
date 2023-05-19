@@ -369,7 +369,7 @@ msgstr "自动（{0}x{1}）"
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
 #: ../src/space_stage/gui/PlanetScreen.tscn:37
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "可用的建筑项目"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -582,15 +582,13 @@ msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
 #: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "创造结构"
+msgstr "建造城市"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
 #: ../src/space_stage/gui/PlanetScreen.tscn:81
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "创造结构"
+msgstr "建设队列"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -1088,9 +1086,8 @@ msgid "CONFIRM_CAPITAL"
 msgstr "确认"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "确认退出"
+msgstr "确认删除"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
@@ -1111,14 +1108,17 @@ msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "通过建立工厂，你将进入工业阶段。继续下一阶段？"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "进入工业阶段？"
+msgstr "进入太空阶段？"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "通过建立工厂，你将进入工业阶段。继续下一阶段？"
+msgstr ""
+"你现在可以发射宇宙飞船以突破到太空阶段。\n"
+"\n"
+"但是你无法观察行星地表，不过你可以在太空中放大或缩小你的视角。\n"
+"\n"
+"如果取消发射会摧毁这个宇宙飞船。确认发射火箭吗？"
 
 #: ../src/general/NewGameSettings.cs:329
 #: ../src/general/NewGameSettings.tscn:1193
@@ -6783,8 +6783,9 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "收割"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
+#, fuzzy
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "简易火箭"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
