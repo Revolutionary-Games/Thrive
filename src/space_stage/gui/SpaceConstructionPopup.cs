@@ -68,7 +68,8 @@ public class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStructureDe
             this.structureDefinition = structureDefinition;
         }
 
-        public void UpdateResourceCost(IResourceContainer allResources, StringBuilder stringBuilder, StringBuilder stringBuilder2)
+        public void UpdateResourceCost(IResourceContainer allResources, StringBuilder stringBuilder,
+            StringBuilder stringBuilder2)
         {
             // Disabled if can't start the building
             bool canStart = structureDefinition.CanStart(allResources) == null;
