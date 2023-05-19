@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-16 15:13+0300\n"
+"POT-Creation-Date: 2023-05-19 10:55+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -616,6 +616,7 @@ msgstr "Kamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Zrušit"
@@ -2194,12 +2195,12 @@ msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, kte
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Využívá [thrive:compound type=\"atp\"][/thrive:compound] ke zvýšení rychlosti pohybu buňky."
 
-#: ../src/space_stage/SpaceFleet.cs:76
+#: ../src/space_stage/SpaceFleet.cs:86
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "vyhynul na této planetě"
 
-#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
 #, fuzzy
 msgid "FLEET_UNITS"
 msgstr "{0} {1}"
@@ -2629,6 +2630,11 @@ msgstr "Prohlédnout"
 #, fuzzy
 msgid "INSPECTOR"
 msgstr "Prohlédnout"
+
+#: ../src/awakening_stage/InteractionType.cs:29
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Rychlost mutace AI"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
@@ -4095,7 +4101,7 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
@@ -4194,10 +4200,14 @@ msgid "NAME_LABEL_CITY"
 msgstr "Biom: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
-#: ../src/space_stage/SpaceFleet.cs:37
+#: ../src/space_stage/SpaceFleet.cs:38
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Biom: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4313,7 +4323,7 @@ msgstr "Nejzákladnější forma membrány, má malou ochranu proti poškození.
 msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5236,7 +5246,8 @@ msgstr "Rozlišení:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rychlost absorpce zdrojů"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Tlak"
@@ -5623,6 +5634,11 @@ msgstr "Vyberte možnost"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Vybrat náhled obrázku"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Struktura"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
@@ -5806,6 +5822,15 @@ msgstr "Mezerník"
 #, fuzzy
 msgid "SPACE_STAGE"
 msgstr "Mikrobiální Období"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Struktura"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -6079,7 +6104,7 @@ msgstr ""
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Struktura"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
@@ -6088,18 +6113,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
@@ -6242,7 +6270,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6761,12 +6789,12 @@ msgstr "Vrátit"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Vrátit zpět poslední akci"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Rychlost mutace AI"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Rychlost mutace AI"
@@ -7126,10 +7154,6 @@ msgstr "Přiblížit"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
-
-#, fuzzy
-#~ msgid "BUILD_SPACE_STRUCTURE"
-#~ msgstr "Struktura"
 
 #, fuzzy
 #~ msgid "ENABLED"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-16 15:13+0300\n"
+"POT-Creation-Date: 2023-05-19 10:55+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -619,6 +619,7 @@ msgstr "Камера"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Отмена"
@@ -2184,12 +2185,12 @@ msgstr "Жгутик представляет собой похожий на х�
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Использует [thrive:compound type=\"atp\"][/thrive:compound] чтобы повысить скорость передвижения клетки."
 
-#: ../src/space_stage/SpaceFleet.cs:76
+#: ../src/space_stage/SpaceFleet.cs:86
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "вымерли с планеты"
 
-#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
 #, fuzzy
 msgid "FLEET_UNITS"
 msgstr "{0} {1}"
@@ -2606,6 +2607,11 @@ msgstr "Проверить"
 #: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
 msgid "INSPECTOR"
 msgstr "Инспектор"
+
+#: ../src/awakening_stage/InteractionType.cs:29
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Собрать"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -4054,7 +4060,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Переместиться на сушу?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Превращаемся в общество..."
 
@@ -4149,10 +4155,14 @@ msgid "NAME_LABEL_CITY"
 msgstr "Биом: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
-#: ../src/space_stage/SpaceFleet.cs:37
+#: ../src/space_stage/SpaceFleet.cs:38
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Биом: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4268,7 +4278,7 @@ msgstr "Самая основная форма мембраны, она имее
 msgid "NOTHING_HERE"
 msgstr "Здесь ничего нет"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Не с чем взаимодействовать"
 
@@ -5172,7 +5182,8 @@ msgstr "Разрешение:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорость Поглощения Ресурсов"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
@@ -5548,6 +5559,11 @@ msgstr "Выберите вариант"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Выбрать превью"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Выбор структуры"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "Выбор структуры"
@@ -5725,6 +5741,16 @@ msgstr "Пробел"
 #: ../simulation_parameters/common/gallery.json:469
 msgid "SPACE_STAGE"
 msgstr "Стадия Космоса"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Материалы, что нужны для строительства были заложены"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+#, fuzzy
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr "Строится: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5994,7 +6020,7 @@ msgstr "Центр Общества"
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Центр Общества"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Материалы, что нужны для строительства были заложены"
 
@@ -6003,18 +6029,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr "Логово Охотников-собирателей"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Строится: {0}"
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "Необходимые материалы, без которых строительство не завершится: {0}"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (начальная цена:{1} , в итоге: {2})"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0}(НЕДОСТАТОЧНО, ДЛЯ НАЧАЛА НУЖНО :{1}, в конечном счёте:{2})"
 
@@ -6164,7 +6193,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Энергия на основе пара"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Открыта технология: {0}"
 
@@ -6692,12 +6721,12 @@ msgstr "Отменить"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отменить последнее действие"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Завершить Строительство"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Собрать"

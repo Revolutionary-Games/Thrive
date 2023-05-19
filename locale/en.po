@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-16 15:13+0300\n"
-"PO-Revision-Date: 2023-05-16 15:14+0300\n"
+"POT-Creation-Date: 2023-05-19 10:55+0300\n"
+"PO-Revision-Date: 2023-05-19 10:57+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -618,6 +618,7 @@ msgstr "Camera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Cancel"
@@ -2162,11 +2163,11 @@ msgstr "The flagellum (plural: flagella) is a whip-like bundle of protein fibers
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the movement speed of the cell."
 
-#: ../src/space_stage/SpaceFleet.cs:76
+#: ../src/space_stage/SpaceFleet.cs:86
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "{0} Fleet"
 
-#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
 msgid "FLEET_UNITS"
 msgstr "Fleet Units"
 
@@ -2574,6 +2575,10 @@ msgstr "Inspect"
 #: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
 msgid "INSPECTOR"
 msgstr "Inspector"
+
+#: ../src/awakening_stage/InteractionType.cs:29
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Activate Ascension Gate"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -4022,7 +4027,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Move to Land?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Transforming into a society..."
 
@@ -4116,9 +4121,13 @@ msgid "NAME_LABEL_CITY"
 msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
-#: ../src/space_stage/SpaceFleet.cs:37
+#: ../src/space_stage/SpaceFleet.cs:38
 msgid "NAME_LABEL_FLEET"
 msgstr "{0} (PWR: {1})"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr "{0} (U)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4234,7 +4243,7 @@ msgstr "The most basic form of membrane, it has little protection against damage
 msgid "NOTHING_HERE"
 msgstr "Nothing here"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Nothing to interact with"
 
@@ -5138,7 +5147,8 @@ msgstr "Resolution:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
@@ -5514,6 +5524,10 @@ msgstr "Select An Option"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Select Preview Image"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Select Structure to Construct"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "Select Structure to Place"
@@ -5691,6 +5705,14 @@ msgstr "Space"
 #: ../simulation_parameters/common/gallery.json:469
 msgid "SPACE_STAGE"
 msgstr "Space Stage"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Structure is waiting for construction fleet to build"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr "Structure is waiting for construction fleet and resources: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5958,7 +5980,7 @@ msgstr "Ascension Gate"
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Dyson Swarm"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Materials needed for construction have been deposited"
 
@@ -5967,18 +5989,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr "Hunter-Gatherer Lodge"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Constructing: {0}"
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "Needed materials before construction can be finished: {0}"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (start cost: {1}, total: {2})"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (NOT ENOUGH TO START: {1}, total: {2})"
 
@@ -6119,7 +6144,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Steam Power"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Unlocked technology: {0}"
 
@@ -6647,11 +6672,11 @@ msgstr "Undo"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Undo the last action"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Construct"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
 msgid "UNIT_ACTION_MOVE"
 msgstr "Move"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-16 15:13+0300\n"
+"POT-Creation-Date: 2023-05-19 10:55+0300\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -638,6 +638,7 @@ msgstr "Camera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Annuleer"
@@ -2255,12 +2256,12 @@ msgstr "Het flagellum (meervoud: flagella) is een zweepachtige bundel van prote√
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de snelheid van de cell te verhogen."
 
-#: ../src/space_stage/SpaceFleet.cs:76
+#: ../src/space_stage/SpaceFleet.cs:86
 #, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "stierf uit op de planeet"
 
-#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:39
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
 msgid "FLEET_UNITS"
 msgstr ""
 
@@ -2699,6 +2700,11 @@ msgstr ""
 #: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
 msgid "INSPECTOR"
 msgstr ""
+
+#: ../src/awakening_stage/InteractionType.cs:29
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Mutatiepunten"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
@@ -4148,7 +4154,7 @@ msgstr "Protanope (Rood-Groen)"
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Protanope (Rood-Groen)"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Protanope (Rood-Groen)"
@@ -4249,10 +4255,14 @@ msgid "NAME_LABEL_CITY"
 msgstr "Bioom: {0}"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
-#: ../src/space_stage/SpaceFleet.cs:37
+#: ../src/space_stage/SpaceFleet.cs:38
 #, fuzzy
 msgid "NAME_LABEL_FLEET"
 msgstr "Bioom: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4372,7 +4382,7 @@ msgstr "De simpelste membraanvorm, het heeft weinig bescherming tegen schade. He
 msgid "NOTHING_HERE"
 msgstr "Hier is niets"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5322,7 +5332,8 @@ msgstr "Resolutie:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Grondstofabsorbtiesnelheid"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Druk."
@@ -5723,6 +5734,11 @@ msgstr "Geselecteerd:"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Selecteer voorbeeldafbeelding"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Structuur"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
@@ -5914,6 +5930,15 @@ msgstr "Space(toets)"
 #, fuzzy
 msgid "SPACE_STAGE"
 msgstr "Microbestadium"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Structuur"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -6185,7 +6210,7 @@ msgstr ""
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Structuur"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
@@ -6194,18 +6219,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
@@ -6348,7 +6376,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6893,12 +6921,12 @@ msgstr "Ongedaan maken"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Maak de laatste handeling ongedaan"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutatiepunten"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:91
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Mutatiepunten"
@@ -7266,10 +7294,6 @@ msgstr "Inzoomen"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
-
-#, fuzzy
-#~ msgid "BUILD_SPACE_STRUCTURE"
-#~ msgstr "Structuur"
 
 #, fuzzy
 #~ msgid "ENABLED"
