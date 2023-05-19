@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Storage of a society's resources
 /// </summary>
+[JsonObject(IsReference = true)]
 public class SocietyResourceStorage : IResourceContainer, IAggregateResourceSource
 {
     [JsonProperty]

@@ -86,12 +86,12 @@ public class EntityReference<T>
         return value.Value;
     }
 
-    public static bool operator ==(EntityReference<T> lhs, EntityReference<T> rhs)
+    public static bool operator ==(EntityReference<T> lhs, EntityReference<T>? rhs)
     {
         return Equals(lhs, rhs);
     }
 
-    public static bool operator !=(EntityReference<T> lhs, EntityReference<T> rhs)
+    public static bool operator !=(EntityReference<T> lhs, EntityReference<T>? rhs)
     {
         return !(lhs == rhs);
     }
