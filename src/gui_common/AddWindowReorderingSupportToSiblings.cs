@@ -81,6 +81,11 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// </remarks>
     private readonly HashSet<Node> connectedSiblings = new();
 
+    /// <summary>
+    ///   Used to save windows that ore opened at once to preserve their order.
+    /// </summary>
+    private readonly List<CustomDialog> openedWindows = new();
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -176,7 +181,7 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         var binds = new Array();
         binds.Add(window);
-        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder), binds);
+        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen), binds);
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -209,7 +214,7 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
 
         window.Disconnect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
-        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder));
+        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen));
 
         if (!connectedWindows.TryGetValue(window, out var windowSibling))
         {
@@ -392,6 +397,32 @@ public class AddWindowReorderingSupportToSiblings : Control
         bool isSetAsToplevel = window.IsSetAsToplevel();
         window.SetAsToplevel(!isSetAsToplevel);
         window.SetAsToplevel(isSetAsToplevel);
+    }
+
+    private void OnWindowOpen(CustomDialog window)
+    {
+        // Tell the system that there is an opened window and wait in case more windows will be opened at once.
+        if (openedWindows.Count == 0)
+            CallDeferred(nameof(ReorderOpenedWindows));
+
+        openedWindows.Add(window);
+    }
+
+    private void ReorderOpenedWindows()
+    {
+        // Sort the windows to make sure they are updated in the right order.
+        openedWindows.Sort(delegate (CustomDialog first, CustomDialog second)
+        {
+            return connectedWindows[first].GetIndex().CompareTo(connectedWindows[second].GetIndex());
+        });
+
+        // Reorder the windows.
+        foreach (CustomDialog window in openedWindows)
+        {
+            OnWindowReorder(window);
+        }
+
+        openedWindows.Clear();
     }
 
     /// <summary>
