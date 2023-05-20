@@ -411,7 +411,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     private void ReorderOpenedWindows()
     {
         // Sort the windows to make sure they are updated in the right order.
-        openedWindows.Sort(delegate (CustomDialog first, CustomDialog second)
+        openedWindows.Sort(delegate(CustomDialog first, CustomDialog second)
         {
             return connectedWindows[first].GetIndex().CompareTo(connectedWindows[second].GetIndex());
         });

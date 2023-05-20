@@ -664,7 +664,7 @@ public class CustomDialog : CustomWindow
         if (closeButton != null)
             return;
 
-        closeButton = new TextureButton()
+        closeButton = new TextureButton
         {
             Expand = true,
             RectMinSize = new Vector2(14, 14),
