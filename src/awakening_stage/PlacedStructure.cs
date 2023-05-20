@@ -57,6 +57,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
     public Vector3? ExtraInteractionCenterOffset =>
         Definition?.InteractOffset ?? throw new InvalidOperationException("Not initialized");
 
+    [JsonIgnore]
     public string? ExtraInteractionPopupDescription
     {
         get
@@ -110,7 +111,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
         if (!fullyConstructed)
         {
-            missingResourcesToFullyConstruct = definition.RequiredResources;
+            missingResourcesToFullyConstruct = definition.RequiredResources.CloneShallow();
 
             // Setup scaffolding
             scaffoldingParent.AddChild(definition.ScaffoldingScene.Instance());
@@ -256,7 +257,7 @@ public class PlacedStructure : Spatial, IInteractableEntity, IConstructable
 
     public void OnFinishTimeTakingAction()
     {
-        if (missingResourcesToFullyConstruct != null)
+        if (!HasRequiredResourcesToConstruct)
             GD.PrintErr("Structure force completed (due to an action) even though it still needs resources");
 
         OnCompleted();

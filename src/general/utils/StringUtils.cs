@@ -284,4 +284,318 @@ public static class StringUtils
     {
         return ThreeDigitFormat(numerator) + " / " + ThreeDigitFormat(denominator);
     }
+
+    /// <summary>
+    ///   Returns a suffix for a planet given which number of planet it is
+    /// </summary>
+    /// <param name="index">The index of the planet</param>
+    /// <param name="capitalize">When true the names are capitalized</param>
+    /// <param name="realLatin">
+    ///   When true real latin words are used instead of the slightly butchered names like "prime"
+    /// </param>
+    /// <param name="switchToNumeralsAfter">
+    ///   Highest value to show as fully typed out before switching to roman numerals
+    /// </param>
+    /// <returns>A name suffix</returns>
+    public static string NameIndexSuffix(int index, bool capitalize = true, bool realLatin = true,
+        int switchToNumeralsAfter = Constants.NAMING_SWITCH_TO_ROMAN_NUMERALS_AFTER)
+    {
+        ++index;
+
+        if (index > switchToNumeralsAfter)
+            return FormatAsRomanNumerals(index);
+
+        // ReSharper disable StringLiteralTypo
+
+        // The switches are a bit long and repetitive here but that's done here to avoid having to modify the string
+        // in any way which would be slower at runtime
+        if (!realLatin)
+        {
+            // It was hard to find a number sequence with prime in it so there's just a few tweaked non-real latin
+            // forms here, otherwise we use the real latin words
+            if (capitalize)
+            {
+                switch (index)
+                {
+                    case 1:
+                        return "Prime";
+                    case 2:
+                        return "Secundus";
+                    case 3:
+                        return "Tertiam";
+                    case 4:
+                        return "Quaternam";
+                }
+            }
+            else
+            {
+                switch (index)
+                {
+                    case 1:
+                        return "prime";
+                    case 2:
+                        return "secundus";
+                    case 3:
+                        return "tertiam";
+                    case 4:
+                        return "quaternam";
+                }
+            }
+        }
+
+        if (capitalize)
+        {
+            switch (index)
+            {
+                case 1:
+                    return "Primus";
+                case 2:
+                    return "Secundus";
+                case 3:
+                    return "Tertius";
+                case 4:
+                    return "Quartus";
+                case 5:
+                    return "Quintus";
+                case 6:
+                    return "Sextus";
+                case 7:
+                    return "Septimus";
+                case 8:
+                    return "Octavus";
+                case 9:
+                    return "Nonus";
+                case 10:
+                    return "Decimus";
+                case 11:
+                    return "Undecimus";
+                case 12:
+                    return "Duodecimus";
+                case 13:
+                    return "Tertius decimus";
+                case 14:
+                    return "Quartus decimus";
+                case 15:
+                    return "Quintus decimus";
+                case 16:
+                    return "Sextus decimus";
+                case 17:
+                    return "Septimus decimus";
+                case 18:
+                    return "Duodevicesimus";
+                case 19:
+                    return "Undevicesimus";
+                case 20:
+                    return "Vicesimus";
+            }
+        }
+        else
+        {
+            switch (index)
+            {
+                case 1:
+                    return "primus";
+                case 2:
+                    return "secundus";
+                case 3:
+                    return "tertius";
+                case 4:
+                    return "quartus";
+                case 5:
+                    return "quintus";
+                case 6:
+                    return "sextus";
+                case 7:
+                    return "septimus";
+                case 8:
+                    return "octavus";
+                case 9:
+                    return "nonus";
+                case 10:
+                    return "decimus";
+                case 11:
+                    return "undecimus";
+                case 12:
+                    return "duodecimus";
+                case 13:
+                    return "tertius decimus";
+                case 14:
+                    return "quartus decimus";
+                case 15:
+                    return "quintus decimus";
+                case 16:
+                    return "sextus decimus";
+                case 17:
+                    return "septimus decimus";
+                case 18:
+                    return "duodevicesimus";
+                case 19:
+                    return "undevicesimus";
+                case 20:
+                    return "vicesimus";
+            }
+        }
+
+        // ReSharper restore StringLiteralTypo
+
+        // Fallback to roman numerals
+        return FormatAsRomanNumerals(index);
+    }
+
+    public static string FormatAsRomanNumerals(int number)
+    {
+        if (number == 0)
+        {
+            // Romans don't use a zero, but we don't want to throw an exception here so just returning 0 is done
+            return "0";
+        }
+
+        var builder = new StringBuilder(10);
+
+        if (number < 0)
+        {
+            // This also isn't a thing in roman numerals but we should support this
+            builder.Append('-');
+
+            number *= -1;
+        }
+
+        while (number >= 1000)
+        {
+            number -= 1000;
+            builder.Append('M');
+        }
+
+        if (number >= 900)
+        {
+            number -= 900;
+            builder.Append("CM");
+        }
+
+        while (number >= 500)
+        {
+            number -= 500;
+            builder.Append('D');
+        }
+
+        if (number >= 400)
+        {
+            number -= 400;
+            builder.Append("CD");
+        }
+
+        while (number >= 100)
+        {
+            number -= 100;
+            builder.Append('C');
+        }
+
+        if (number >= 90)
+        {
+            number -= 90;
+            builder.Append("XC");
+        }
+
+        while (number >= 50)
+        {
+            number -= 50;
+            builder.Append('L');
+        }
+
+        if (number >= 40)
+        {
+            number -= 40;
+            builder.Append("XL");
+        }
+
+        while (number >= 10)
+        {
+            number -= 10;
+            builder.Append('X');
+        }
+
+        if (number >= 9)
+        {
+            number -= 9;
+            builder.Append("IX");
+        }
+
+        while (number >= 5)
+        {
+            number -= 5;
+            builder.Append('V');
+        }
+
+        if (number >= 4)
+        {
+            number -= 4;
+            builder.Append("IV");
+        }
+
+        while (number > 0)
+        {
+            --number;
+            builder.Append('I');
+        }
+
+        return builder.ToString();
+    }
+
+    // TODO: proper unit tests: https://github.com/Revolutionary-Games/Thrive/issues/1571
+    public static void TestRomanNumerals()
+    {
+        // ReSharper disable StringLiteralTypo
+        if (FormatAsRomanNumerals(1) != "I")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(3) != "III")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(4) != "IV")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(7) != "VII")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(14) != "XIV")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(39) != "XXXIX")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(246) != "CCXLVI")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(789) != "DCCLXXXIX")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(2421) != "MMCDXXI")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(160) != "CLX")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(207) != "CCVII")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(1009) != "MIX")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(1066) != "MLXVI")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(1776) != "MDCCLXXVI")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(1918) != "MCMXVIII")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(1944) != "MCMXLIV")
+            throw new Exception();
+
+        if (FormatAsRomanNumerals(2023) != "MMXXIII")
+            throw new Exception();
+
+        // ReSharper restore StringLiteralTypo
+    }
 }

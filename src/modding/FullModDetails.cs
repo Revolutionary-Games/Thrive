@@ -17,16 +17,24 @@ public class FullModDetails : IEquatable<FullModDetails>
     /// </summary>
     public enum VersionCompatibility
     {
-        /// <summary>It has been explicitly stated to be incompatible.</summary>
+        /// <summary>
+        ///   It has been explicitly stated to be incompatible.
+        /// </summary>
         Incompatible = -2,
 
-        /// <summary>It might not be compatible as it has not been explicitly stated to be compatible.</summary>
+        /// <summary>
+        ///   It might not be compatible as it has not been explicitly stated to be compatible.
+        /// </summary>
         NotExplicitlyCompatible,
 
-        /// <summary>The variable has not been set or no version compatibility has been stated.</summary>
+        /// <summary>
+        ///   The variable has not been set or no version compatibility has been stated.
+        /// </summary>
         Unknown,
 
-        /// <summary>It has been explicitly stated to be compatible.</summary>
+        /// <summary>
+        ///   It has been explicitly stated to be compatible.
+        /// </summary>
         Compatible,
     }
 

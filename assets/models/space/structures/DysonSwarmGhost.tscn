@@ -4,6 +4,7 @@
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
+flags_unshaded = true
 albedo_color = Color( 0.843137, 0.843137, 0.843137, 0.686275 )
 
 [node name="DysonSwarm" instance=ExtResource( 1 )]

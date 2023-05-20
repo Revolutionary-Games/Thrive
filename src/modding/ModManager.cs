@@ -1027,7 +1027,7 @@ public class ModManager : Control
     private void UpdateGalleryUI()
     {
         galleryLabel.Text = (selectedModPreviewImagesContainer.CurrentTab + 1) +
-            TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") + 
+            TranslationServer.Translate("MOD_LOADER_GALLERY_DIVIDER") +
             selectedModPreviewImagesContainer.GetTabCount();
         galleryRightButton.Disabled = selectedModPreviewImagesContainer.CurrentTab >=
             selectedModPreviewImagesContainer.GetTabCount() - 1;

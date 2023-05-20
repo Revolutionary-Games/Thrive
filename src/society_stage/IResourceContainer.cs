@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   An abstract resource container that can hold some amount of resources
 /// </summary>
+[JsonObject(IsReference = true)]
 public interface IResourceContainer
 {
     /// <summary>
