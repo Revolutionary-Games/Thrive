@@ -92,7 +92,6 @@ public class ProcessSystem
 
         foreach (var organelle in organelles)
         {
-
             if (organelle.Definition == nucleus)
             {
                 hasNucleus = true;
@@ -158,7 +157,7 @@ public class ProcessSystem
             result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
 
-        if(hasNucleus)
+        if (hasNucleus)
         {
             result.Osmoregulation *= Constants.NUCLEUS_OSMOREGULATION_MULTIPLIER;
         }
