@@ -86,8 +86,18 @@ public class ProcessSystem
 
         int hexCount = 0;
 
+        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
+        bool hasNucleus = false;
+
         foreach (var organelle in organelles)
         {
+
+            if (organelle.Definition == nucleus)
+            {
+                hasNucleus = true;
+            }
+
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome, amountType);
@@ -146,6 +156,11 @@ public class ProcessSystem
         if (isPlayerSpecies)
         {
             result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
+        }
+
+        if(hasNucleus)
+        {
+            result.Osmoregulation *= Constants.NUCLEUS_OSMOREGULATION_MULTIPLIER;
         }
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
