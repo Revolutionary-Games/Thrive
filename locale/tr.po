@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 09:29+0300\n"
+"POT-Creation-Date: 2023-05-19 11:42+0300\n"
 "PO-Revision-Date: 2023-05-04 13:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -232,7 +232,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Resmi yapan: {0}"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "Sanat Galerisi"
 
@@ -330,7 +330,7 @@ msgstr "Oyun esnasında otomatik olarak kaydet"
 msgid "AUTO_EVO"
 msgstr "Oto-Evrim"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:417
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Oto-Evrim Keşif Aracı"
 
@@ -364,8 +364,9 @@ msgid "AUTO_RESOLUTION"
 msgstr "Otomatik ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
+#: ../src/space_stage/gui/PlanetScreen.tscn:37
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Mevcut İnşaat Projeleri"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -380,8 +381,8 @@ msgid "AWARE_STAGE"
 msgstr "Farkındalık Evresi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
-#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
+#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
 #: ../src/general/NewGameSettings.tscn:1140
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -480,7 +481,7 @@ msgstr "Fırsatçılık"
 msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
-#: ../src/general/MainMenu.tscn:428
+#: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
 msgstr "Performans Ölçümleri"
 
@@ -581,9 +582,9 @@ msgid "BUILD_CITY"
 msgstr "Bir Şehir Kur"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#, fuzzy
+#: ../src/space_stage/gui/PlanetScreen.tscn:81
 msgid "BUILD_QUEUE"
-msgstr "Bir Yapı İnşa Et"
+msgstr "İnşa Sırası"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -617,6 +618,7 @@ msgstr "Kamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "İptal"
@@ -867,28 +869,10 @@ msgstr "Büyük hücrelerin dönme hızını arttırır."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#, fuzzy
+#: ../src/space_stage/gui/PlanetScreen.cs:91
+#: ../src/space_stage/gui/PlanetScreen.tscn:100
 msgid "CITY_SHORT_STATISTICS"
-msgstr ""
-"[b]Kuşaklar:[/b]\n"
-"   {0}\n"
-"[b]Toplam Arazi :[/b]\n"
-"   {1}\n"
-"[b]Toplam Oto-Evrim Süresi:[/b]\n"
-"   {2}\n"
-"[b]Toplam Tür:[/b]\n"
-"   {3}\n"
-"[b]Hayatta Olan Türler:[/b]\n"
-"   {4}\n"
-"[b]Arazi Başına Tür Sayısı:[/b]\n"
-"   Ortalama {5}; Standart sapma {6}\n"
-"[b]Toplam Popülasyon:[/b]\n"
-"   {7}\n"
-"[b]En Kalabalık Tür:[/b]\n"
-"   {8}\n"
-"[b]Temel Mikrop Türü Verileri:[/b]\n"
-"   Ortalama altıgen boyutu: {9}\n"
-"[b]Genel Organel Verileri:[/b]"
+msgstr "Nüfus: {0} Gıda: {1} Bilim: {2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1000,19 +984,19 @@ msgstr "Ortak Yetenekler"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "Ortak Editör ve Strateji Evreleri"
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:674
 msgid "COMMUNITY_FORUM"
 msgstr "Topluluk Forumu"
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:669
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Topluluk forumumuzda Thrive topluluğuna katıl"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:716
 msgid "COMMUNITY_WIKI"
 msgstr "Topluluk Vikisi"
 
-#: ../src/general/MainMenu.tscn:708
+#: ../src/general/MainMenu.tscn:711
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Topluluk vikimizi ziyaret et"
 
@@ -1077,14 +1061,13 @@ msgstr "Yapılandırma"
 msgid "CONFIRM_CAPITAL"
 msgstr "ONAYLA"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
 msgid "CONFIRM_DELETE"
-msgstr "Çıkışı Onayla"
+msgstr "Silmeyi Onayla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
 msgstr "Çıkışı Onayla"
 
@@ -1101,14 +1084,17 @@ msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Bir fabrika yerleştirerek sanayi evresine yükseleceksin. Sonraki evreye geçilsin mi?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "Sanayi Evresi'ne Geçilsin mi?"
+msgstr "Uzay Evresi'ne Geçilsin mi?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "Bir fabrika yerleştirerek sanayi evresine yükseleceksin. Sonraki evreye geçilsin mi?"
+msgstr ""
+"Artık, ilk uzay aracını fırlatarak Uzay Evresi'ne yükselebilirsin.\n"
+"\n"
+"Şimdilik, prototiplerde kendi gezegenine dönemezsin. Ancak sonraki plan, Uzay Evresi'ndeki gezegenleri yakınlaştırmaya ve uzaklaştırmaya imkan vermek.\n"
+"\n"
+"Fırlatmayı iptal etmek, uzay aracı birimini imha edecek. Uzay aracı fırlatılsın mı?"
 
 #: ../src/general/NewGameSettings.cs:329
 #: ../src/general/NewGameSettings.tscn:1193
@@ -1120,9 +1106,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Bazı ayarlar geçersiz"
 
 #: ../src/industrial_stage/UnitType.cs:68
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Tritanop (Mavi-Sarı)"
+msgstr "Birim: {0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -1299,7 +1284,7 @@ msgstr "Oluşturuluyor..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kayıttan nesneler oluşturuluyor"
 
-#: ../src/general/MainMenu.tscn:352
+#: ../src/general/MainMenu.tscn:355
 msgid "CREDITS"
 msgstr "Jenerik"
 
@@ -1441,10 +1426,9 @@ msgstr ""
 "- {1} Çabuk kayıt\n"
 "- {2} Yedek kayıt"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
-#, fuzzy
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
+msgstr "Bu fosili silme işlemi geri alınamaz, fosili kalıcı olarak silmek istediğinden emin misin?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -1505,11 +1489,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Oyun Geliştiricileri"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:688
 msgid "DEVELOPMENT_FORUM"
 msgstr "Gelişme Forumu"
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:683
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Gelişme forumumuzda gelişim güncellemelerini incele"
 
@@ -1517,11 +1501,11 @@ msgstr "Gelişme forumumuzda gelişim güncellemelerini incele"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Oyunun Geliştirilmesi Revolutionary Games Studio Tarafından Desteklenmiştir"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:702
 msgid "DEVELOPMENT_WIKI"
 msgstr "Gelişme Vikisi"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:697
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Geliştirici vikimizi ziyaret et"
 
@@ -1649,7 +1633,7 @@ msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş organeller var.\n"
 "Lütfen yerleştirdiğin bütün organelleri birbirine bağla veya değişikliklerini geri al."
 
-#: ../src/general/MainMenu.tscn:857
+#: ../src/general/MainMenu.tscn:860
 msgid "DISCORD_TOOLTIP"
 msgstr "Discord topluluk sunucumuza katıl"
 
@@ -2020,15 +2004,15 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#, fuzzy
+#: ../src/space_stage/gui/PlanetScreen.tscn:60
 msgid "EXISTING_BUILDINGS"
-msgstr "Mevcut ID'yi Gir"
+msgstr "Binalar"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
 msgstr "Çık"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:364
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Çık ve Başlatıcıya Dön"
 
@@ -2078,7 +2062,7 @@ msgstr "arazide nesli tükendi"
 msgid "EXTINCT_SPECIES"
 msgstr "Nesli Tükenen Tür"
 
-#: ../src/general/MainMenu.tscn:344
+#: ../src/general/MainMenu.tscn:347
 msgid "EXTRAS"
 msgstr "Ekstralar"
 
@@ -2086,7 +2070,7 @@ msgstr "Ekstralar"
 msgid "EXTRA_OPTIONS"
 msgstr "Ek Seçenekler"
 
-#: ../src/general/MainMenu.tscn:869
+#: ../src/general/MainMenu.tscn:872
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Facebook sayfamızı ziyaret et"
 
@@ -2179,6 +2163,16 @@ msgstr "Kamçı (veya Flagellum), hücrenin bir doğrultuda kıvrılması ve ile
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanır."
 
+#: ../src/space_stage/SpaceFleet.cs:86
+#, fuzzy
+msgid "FLEET_NAME_FROM_PLACE"
+msgstr "gezegende nesli tükendi"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
+
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Yüzen Parçalar:"
@@ -2245,16 +2239,12 @@ msgid "FOSSILISATION_EXPLANATION"
 msgstr "Müzeye kaydetmek için bu türü fosilleştir. Thriveopedi'den müzeye erişebilirsin veya serbest yapım düzenleyicisinde fosilleşmiş türü yükleyebilirsin."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Bu türü fosilleştir"
+msgstr "Fosilleştirme Başarısız"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
-"Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin olun. Eğer bu hata gitmezse, lütfen oyunu Steam istemci yazılımı üzerinden çalıştırın."
+msgstr "Fosil dosyası yazılamadı"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2270,17 +2260,13 @@ msgstr "Bu türü fosilleştir (zaten fosilleştirildi)"
 msgid "FOSSILISE"
 msgstr "Fosilleştir"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
-#, fuzzy
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Mod Oluşturma Başarısız"
+msgstr "Fosil Silme Başarısız"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
-#, fuzzy
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
-"Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin olun. Eğer bu hata gitmezse, lütfen oyunu Steam istemci yazılımı üzerinden çalıştırın."
+msgstr "Fosil dosyası silinemedi"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2341,7 +2327,7 @@ msgstr "Kuşaklar"
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
 
-#: ../src/general/MainMenu.tscn:821
+#: ../src/general/MainMenu.tscn:824
 msgid "GITHUB_TOOLTIP"
 msgstr "GitHub depomuzu ziyaret et"
 
@@ -2349,11 +2335,11 @@ msgstr "GitHub depomuzu ziyaret et"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mod Uyarısı"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Thrive'ı GLES2 ile çalıştırmaktasın. Bu mod ciddi derecede test edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya zorla."
 
@@ -2592,6 +2578,16 @@ msgstr "İncele"
 msgid "INSPECTOR"
 msgstr "Denetleyici"
 
+#: ../src/awakening_stage/InteractionType.cs:32
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Hasat Et"
+
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "Hasat Et"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
 msgstr "İnşaatı Bitir"
@@ -2612,7 +2608,12 @@ msgstr "Malzeme Yerleştir"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Malzeme Yerleştir (uygun taşınan bir öğe yok)"
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "Hasat Et"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "Bir Yerleşim Alanı Kur"
 
@@ -2661,7 +2662,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Kayıt adı özel karakterler içeremez (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:156
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Tür adı, ikili adlandırma sistemine uymalı (cins ve epitet) !"
 
@@ -2717,7 +2718,7 @@ msgstr "Demir"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Demir Kemolitoototrofisi"
 
-#: ../src/general/MainMenu.tscn:797
+#: ../src/general/MainMenu.tscn:800
 msgid "ITCH_TOOLTIP"
 msgstr "Itch.io sayfamızı ziyaret et"
 
@@ -3093,7 +3094,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Sol fare tuşu"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:529
 msgid "LICENSES"
 msgstr "Lisanslar"
 
@@ -3256,12 +3257,12 @@ msgstr "Bir hatayı düzeltmek için düzenleyicideki geri al butonuna basın"
 msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Oyun Yükle"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Daha önce kaydedilmiş oyunları yükle"
 
@@ -3460,7 +3461,7 @@ msgid "MICROBES_COUNT"
 msgstr "Mikrop sayısı:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:588
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikrop Performansı"
 
@@ -3543,7 +3544,7 @@ msgstr "Her kuşakta, harcanacak 100 mutasyon puanınız (MP) vardır ve her de�
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Her çoğaldığınızda, Mikrop Düzenleyicisi'ne giriş yaparsınız. Burada, türünüzün başarısını arttırmak için türünüzde (organelleri ekleyerek, taşıyarak veya kaldırarak) değişiklikler yapabilirsiniz. Mikrop Evresi'nde düzenleyiciye yapılan her ziyaret, [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
 
-#: ../src/general/MainMenu.tscn:403
+#: ../src/general/MainMenu.tscn:406
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrop Düzenleyicisi Serbest Yapım Modu"
 
@@ -3794,11 +3795,11 @@ msgstr "Organelde Değişiklik Yap"
 msgid "MODIFY_TYPE"
 msgstr "Türde Değişiklik Yap"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:506
 msgid "MODS"
 msgstr "Modlar"
 
-#: ../src/general/MainMenu.tscn:967
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Yüklü modlar algılandı ancak etkinleştirilmiş bir mod yok.\n"
@@ -3887,11 +3888,11 @@ msgstr "İç (Klasör) Ad:"
 msgid "MOD_LICENSE"
 msgstr "Mod Lisansı:"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Yükleme Hataları"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi içerebilir."
 
@@ -4039,7 +4040,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Karaya Çıkılsın mı?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Bir topluluğa dönüştürülüyor..."
 
@@ -4087,7 +4088,7 @@ msgstr "Birden Fazla Organel"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Çoklu örnekleme kenar yumuşatma:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:135
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Müzeye hoş geldin! Burada, tüm oynadığın oyunlardan fosilleştirmiş olduğun birçok türe hayranlık duyabilirsin. Hatta, serbest yapım düzenleyicisinde açarak, seçtiğin bir türü oynayabilirsin.\n"
@@ -4128,10 +4129,19 @@ msgstr "Sessiz"
 msgid "NAME"
 msgstr "Ad:"
 
-#: ../src/industrial_stage/gui/CityNameLabel.cs:43
-#, fuzzy
+#: ../src/industrial_stage/gui/CityNameLabel.cs:56
 msgid "NAME_LABEL_CITY"
+msgstr "{0} ({1})"
+
+#: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:38
+#, fuzzy
+msgid "NAME_LABEL_FLEET"
 msgstr "Biyom: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4161,11 +4171,11 @@ msgstr "HABERLER"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Biyoçeşitliliği artıran türler için başlangıç popülasyonu"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME"
 msgstr "Yeni Oyun"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:297
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Yeni bir oyun başlat"
 
@@ -4247,7 +4257,7 @@ msgstr "Hücre zarının en temel formu. Hasara karşı koruyuculuğu çok azdı
 msgid "NOTHING_HERE"
 msgstr "Burada bir şey yok"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Etkileşim kurulacak bir şey yok"
 
@@ -4300,11 +4310,11 @@ msgstr "Gösterilecek Veri Yok"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Hiçbir olay görülmedi"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Fosiller dizini bulunamadı"
 
-#: ../src/general/MainMenu.tscn:965
+#: ../src/general/MainMenu.tscn:968
 msgid "NO_MODS_ENABLED"
 msgstr "Hiçbir Mod Etkinleştirilmedi"
 
@@ -4375,11 +4385,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Ekim"
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:660
 msgid "OFFICIAL_WEBSITE"
 msgstr "Resmi Web Sitesi"
 
-#: ../src/general/MainMenu.tscn:648
+#: ../src/general/MainMenu.tscn:651
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Revolutionary Games'in web sitesini ziyaret et"
 
@@ -4402,11 +4412,11 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Klasörü Aç"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:88
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Fosiller Klasörünü Aç"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Seçilen tür ile yeni bir oyuna başlamak istediğine emin misin?\n"
@@ -4416,7 +4426,7 @@ msgstr ""
 msgid "OPEN_HELP_SCREEN"
 msgstr "Yardım ekranını aç"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:119
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Serbest Yapım Editöründe Aç"
 
@@ -4471,11 +4481,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Fırsatçı"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Ayarlar"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ayarlarını değiştir"
 
@@ -4587,7 +4597,7 @@ msgstr "Mevcut kaydın üzerine yaz:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Mevcut kaydın üzerine yazılsın mı?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Bu isimde bir fosilleşmiş tür zaten mevcut.\n"
@@ -4722,7 +4732,7 @@ msgstr "Değişiklikler:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Bu sürümün tüm ayrıntılarını [color=#3796e1][url={0}]Github[/url][/color] üzerinde görüntüleyin"
 
-#: ../src/general/MainMenu.tscn:809
+#: ../src/general/MainMenu.tscn:812
 msgid "PATREON_TOOLTIP"
 msgstr "Patreon sayfamızı ziyaret et"
 
@@ -4760,7 +4770,7 @@ msgstr "Barışçıl"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:685
+#: ../src/general/NewGameSettings.cs:682
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4998,11 +5008,11 @@ msgstr "Hızlı yükle"
 msgid "QUICK_SAVE"
 msgstr "Hızlı kaydet"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:376
 msgid "QUIT"
 msgstr "Çıkış"
 
-#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Oyundan çık"
@@ -5044,7 +5054,7 @@ msgstr "Hazır"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Önerilen Thrive:"
 
-#: ../src/general/MainMenu.tscn:845
+#: ../src/general/MainMenu.tscn:848
 msgid "REDDIT_TOOLTIP"
 msgstr "Subreddit'imizi ziyaret et"
 
@@ -5069,7 +5079,7 @@ msgstr "Soy tükenmesi durumunda, hedef arazideki göçleri iade et"
 msgid "REPORT"
 msgstr "Rapor"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Bir Hata Bildir"
 
@@ -5151,9 +5161,15 @@ msgstr "Çözünürlük:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Kaynak Emme Hızı"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "Taş"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5204,7 +5220,7 @@ msgstr ""
 "Ana menüye dönmek istediğine emin misin?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:775
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Revolutionary Games'in resmi sitelerini ziyaret et"
 
@@ -5290,7 +5306,7 @@ msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Bir önceki başlatma hatasından dolayı, Thrive güvenli modda başladı.\n"
@@ -5302,7 +5318,7 @@ msgstr ""
 "\n"
 "Eğer başlatma hatasına neden olan sorunu düzeltmezsen, güvenli moda geri dönmek için Thrive'ı defalarca yeniden başlatman gerekecek."
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:978
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive, Güvenli Modda Başlatıldı"
 
@@ -5527,6 +5543,11 @@ msgstr "Bir Seçenek Seç"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Resim Önizlemesi Seç"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Yerleştirilecek Yapıyı Seç"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "Yerleştirilecek Yapıyı Seç"
@@ -5704,6 +5725,21 @@ msgstr "Boşluk"
 #: ../simulation_parameters/common/gallery.json:469
 msgid "SPACE_STAGE"
 msgstr "Uzay Evresi"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "İnşaat için gerekli malzemeler yerleştirildi"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "İnşa edilen: {0}"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+#, fuzzy
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr "İnşa edilen: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5891,17 +5927,17 @@ msgstr "Steam şu an mevcut değil, lütfen tekrar dene"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Bilinmeyen Steam hatası meydana geldi"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:1001
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam'i Başlatma Başarısız"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:1003
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
 "Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin olun. Eğer bu hata gitmezse, lütfen oyunu Steam istemci yazılımı üzerinden çalıştırın."
 
-#: ../src/general/MainMenu.tscn:785
+#: ../src/general/MainMenu.tscn:788
 msgid "STEAM_TOOLTIP"
 msgstr "Steam sayfamızı ziyaret et"
 
@@ -5964,16 +6000,14 @@ msgid "STRUCTURE"
 msgstr "Yapı"
 
 #: ../simulation_parameters/space_stage/space_structures.json:26
-#, fuzzy
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Topluluk Merkezi"
+msgstr "Tırmanış Kapısı"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
-#, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "Topluluk Merkezi"
+msgstr "Dyson Küresi"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "İnşaat için gerekli malzemeler yerleştirildi"
 
@@ -5982,18 +6016,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr "Avcı-Toplayıcı Kulübesi"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "İnşa edilen: {0}"
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "İnşaat bitirilmeden önce gereken malzemeler: {0}"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (başlangıç maliyeti: {1}, toplam: {2})"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (BAŞLAMAK İÇİN YETERLİ DEĞİL: {1}, toplam: {2})"
 
@@ -6082,53 +6119,44 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Ekran görüntüsü al"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
-#, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "Topluluk Merkezi İnşaatı"
+msgstr "Tırmanış"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Avcı-Toplayıcılık"
 
 #: ../src/awakening_stage/ResearchLevel.cs:36
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr "Kilidi açılan teknoloji: {0}"
+msgstr "Gelişmiş Uzay"
 
 #: ../src/awakening_stage/ResearchLevel.cs:24
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr "Kilidi açılan teknoloji: {0}"
+msgstr "Sanayi"
 
 #: ../src/awakening_stage/ResearchLevel.cs:12
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr "Topluluk Merkezi İnşaatı"
+msgstr "Topluluk Öncesi"
 
 #: ../src/awakening_stage/ResearchLevel.cs:18
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr "Kilidi açılan teknoloji: {0}"
+msgstr "İlkel"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr "Basit Taş Aletler"
+msgstr "Bilimkurgu"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr "Topluluk Merkezi İnşaatı"
+msgstr "Uzay Çağı"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:148
-#, fuzzy
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr "Topluluk Merkezi İnşaatı"
+msgstr "Gerekli teknoloji seviyesi: {0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
-#, fuzzy
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr "Topluluk Merkezi İnşaatı"
+msgstr "Roketçilik"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6143,7 +6171,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Buhar Gücü"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Kilidi açılan teknoloji: {0}"
 
@@ -6164,7 +6192,7 @@ msgstr "Sıc."
 msgid "TESTING_TEAM"
 msgstr "Deneme Ekibi"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Thrive'ın bu kopyasını satın alarak Thrive'ın gelişimine katkıda bulunduğun teşekkür ederiz.\n"
@@ -6180,7 +6208,7 @@ msgstr ""
 "\n"
 "Eğer oyunu beğendiysen, lütfen arkadaşlarına bizden bahset."
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:991
 msgid "THANK_YOU_TITLE"
 msgstr "Teşekkürler"
 
@@ -6239,7 +6267,7 @@ msgstr "Bu mod, Steam Atölyesi'nden yüklendi"
 msgid "THREADS"
 msgstr "İş Parçacıkları:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedi"
 
@@ -6400,7 +6428,7 @@ msgstr "Oyunu duraklat"
 msgid "TOGGLE_UNBINDING"
 msgstr "Bağ koparma moduna geç"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:331
 msgid "TOOLS"
 msgstr "Araçlar"
 
@@ -6457,7 +6485,7 @@ msgstr "Treble Down"
 msgid "TREBLEUP"
 msgstr "Treble Up"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:155
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Bazı türleri fosilleştirmeyi dene!"
 
@@ -6626,7 +6654,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:884
 msgid "TWITTER_TOOLTIP"
 msgstr "Twitter yayınımızı ziyaret et"
 
@@ -6671,9 +6699,19 @@ msgstr "Geri al"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
 
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "İnşaatı Bitir"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Hasat Et"
+
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Basit Roket"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
@@ -6830,7 +6868,7 @@ msgstr "Yama Notlarını Görüntüle"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "En son veya tüm Thrive yama notlarını şimdi görüntüle"
 
-#: ../src/general/MainMenu.tscn:336
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr "Kaynak Kodunu İncele"
 
@@ -6842,7 +6880,7 @@ msgstr "VIP Destekçiler"
 msgid "VISIBLE"
 msgstr "Görünür"
 
-#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Bir Özellik Öner"
 
@@ -6997,7 +7035,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "yıl"
 
-#: ../src/general/MainMenu.tscn:833
+#: ../src/general/MainMenu.tscn:836
 msgid "YOUTUBE_TOOLTIP"
 msgstr "YouTube kanalımızı ziyaret et"
 
@@ -7018,6 +7056,10 @@ msgstr "Yakınlaştır"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#, fuzzy
+#~ msgid "BUILD_SPACE_STRUCTURE"
+#~ msgstr "Bir Yapı İnşa Et"
 
 #, fuzzy
 #~ msgid "ENABLED"

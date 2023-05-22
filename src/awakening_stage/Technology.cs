@@ -51,7 +51,7 @@ public class Technology : IRegistryType
     public IReadOnlyList<UnitType> GrantsUnits { get; private set; } = new List<UnitType>();
 
     [JsonProperty]
-    public IReadOnlyList<SpaceStructureDefinition> GrantsSpaceStructure { get; private set; } =
+    public IReadOnlyList<SpaceStructureDefinition> GrantsSpaceStructures { get; private set; } =
         new List<SpaceStructureDefinition>();
 
     [JsonIgnore]

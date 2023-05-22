@@ -160,6 +160,8 @@ public class SceneManager : Node
                 return LoadScene("res://src/society_stage/SocietyStage.tscn");
             case MainGameState.IndustrialStage:
                 return LoadScene("res://src/industrial_stage/IndustrialStage.tscn");
+            case MainGameState.SpaceStage:
+                return LoadScene("res://src/space_stage/SpaceStage.tscn");
             default:
                 throw new ArgumentException("unknown scene path for given game state");
         }
