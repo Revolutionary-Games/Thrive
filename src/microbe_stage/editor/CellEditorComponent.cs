@@ -1542,7 +1542,7 @@ public partial class CellEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true, true,
             Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current);
 
         UpdateEnergyBalance(energyBalance);

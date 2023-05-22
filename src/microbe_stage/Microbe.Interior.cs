@@ -1190,7 +1190,7 @@ public partial class Microbe
             osmoregulationCost *= 20.0f / (20.0f + Colony.ColonyMembers.Count);
         }
 
-        if (CellTypeProperties.IsBacteria != true)
+        if (CellTypeProperties.IsBacteria == false)
             osmoregulationCost *= Constants.NUCLEUS_OSMOREGULATION_MULTIPLIER;
 
         if (Species.PlayerSpecies)
