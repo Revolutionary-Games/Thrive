@@ -84,7 +84,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// <summary>
     ///   Used to save windows that ore opened at once to preserve their order.
     /// </summary>
-    private readonly List<CustomDialog> openedWindows = new();
+    private readonly List<CustomDialog> justOpenedWindows = new();
 
 #pragma warning disable CA2213
 
@@ -402,27 +402,27 @@ public class AddWindowReorderingSupportToSiblings : Control
     private void OnWindowOpen(CustomDialog window)
     {
         // Tell the system that there is an opened window and wait in case more windows will be opened at once.
-        if (openedWindows.Count == 0)
-            CallDeferred(nameof(ReorderOpenedWindows));
+        if (justOpenedWindows.Count == 0)
+            Invoke.Instance.QueueForObject(ReorderOpenedWindows, this);
 
-        openedWindows.Add(window);
+        justOpenedWindows.Add(window);
     }
 
     private void ReorderOpenedWindows()
     {
         // Sort the windows to make sure they are updated in the right order.
-        openedWindows.Sort(delegate(CustomDialog first, CustomDialog second)
+        justOpenedWindows.Sort((first, second) =>
         {
             return connectedWindows[first].GetIndex().CompareTo(connectedWindows[second].GetIndex());
         });
 
         // Reorder the windows.
-        foreach (CustomDialog window in openedWindows)
+        foreach (CustomDialog window in justOpenedWindows)
         {
             OnWindowReorder(window);
         }
 
-        openedWindows.Clear();
+        justOpenedWindows.Clear();
     }
 
     /// <summary>

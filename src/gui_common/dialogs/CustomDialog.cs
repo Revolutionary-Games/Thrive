@@ -318,6 +318,8 @@ public class CustomDialog : CustomWindow
         var closeButtonRect = closeButton!.GetRect();
 
         // Draw close button
+        // We render this in a custom way because rendering it in a child node causes a bug where render order
+        // breaks in some cases: https://github.com/Revolutionary-Games/Thrive/issues/4365
         DrawTextureRect(closeButtonTexture, closeButtonRect, false, closeButtonColor);
 
         // Draw close button highlight
