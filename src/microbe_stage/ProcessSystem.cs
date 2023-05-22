@@ -57,8 +57,8 @@ public class ProcessSystem
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, isPlayerSpecies, isBacteria,
-            worldSettings, amountType);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, isPlayerSpecies,
+            isBacteria, worldSettings, amountType);
     }
 
     /// <summary>
