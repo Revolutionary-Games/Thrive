@@ -11,7 +11,7 @@ public class AscensionComponent : SpaceStructureComponent
 
     private bool missingEnergy = true;
 
-    public AscensionComponent(float energyRequired)
+    public AscensionComponent(PlacedSpaceStructure owningStructure, float energyRequired) : base(owningStructure)
     {
         this.energyRequired = energyRequired;
 
@@ -40,18 +40,25 @@ public class AscensionComponent : SpaceStructureComponent
 
     public override bool PerformExtraAction(InteractionType interactionType)
     {
-        if (interactionType == InteractionType.ActivateAscension)
+        if (interactionType != InteractionType.ActivateAscension)
+            return false;
+
+        // TODO: actually confirm there's enough energy as the player energy amount could have fallen since the
+        // action allowed status changed
+
+        GD.Print("Ascension gate is activated");
+
+        // TODO: a cleaner way to do this
+        var stage = owningStructure.FirstAncestorOfType<SpaceStage>();
+
+        if (stage == null)
         {
-            // TODO: actually confirm there's enough energy as the player energy amount could have fallen since the
-            // action allowed status changed
-
-            GD.Print("Ascension gate is activated");
-
-            GD.Print("TODO: implement ascension");
+            GD.PrintErr("Could not find parent space stage of ascension component to perform ascension");
             return true;
         }
 
-        return base.PerformExtraAction(interactionType);
+        stage.OnStartAscension(owningStructure);
+        return true;
     }
 }
 
@@ -60,9 +67,9 @@ public class AscensionComponentFactory : ISpaceStructureComponentFactory
     [JsonProperty]
     public float EnergyRequired { get; private set; }
 
-    public SpaceStructureComponent Create()
+    public SpaceStructureComponent Create(PlacedSpaceStructure owningStructure)
     {
-        return new AscensionComponent(EnergyRequired);
+        return new AscensionComponent(owningStructure, EnergyRequired);
     }
 
     public void Check(string name)

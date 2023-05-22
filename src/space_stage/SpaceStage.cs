@@ -38,9 +38,28 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private SpaceStructureDefinition? structureTypeToPlace;
     private SpaceFleet? structurePlacingFleet;
 
+    [JsonProperty]
     private bool zoomingOutFromFleet;
+
+    [JsonProperty]
     private float targetZoomOutLevel;
+
+    [JsonProperty]
     private float minZoomLevelToRestore;
+
+    [JsonProperty]
+    private bool playingAscensionAnimation;
+
+    private bool fadingOutToAscension;
+
+    [JsonProperty]
+    private float ascendAnimationElapsed;
+
+    [JsonProperty]
+    private Vector3 ascendAnimationStart;
+
+    [JsonProperty]
+    private Vector3 ascendAnimationEnd;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -99,6 +118,26 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                 strategicCamera.AllowPlayerInput = true;
                 strategicCamera.MinZoomLevel = minZoomLevelToRestore;
                 zoomingOutFromFleet = false;
+            }
+        }
+        else if (playingAscensionAnimation)
+        {
+            if (!fadingOutToAscension)
+            {
+                ascendAnimationElapsed += delta;
+
+                strategicCamera.WorldLocation = ascendAnimationStart.LinearInterpolate(ascendAnimationEnd,
+                    Math.Min(1, ascendAnimationElapsed / Constants.SPACE_ASCEND_ANIMATION_DURATION));
+
+                if (AnimateCameraZoomTowards(strategicCamera.MinZoomLevel, delta,
+                        Constants.SPACE_ASCEND_ANIMATION_ZOOM_SPEED) &&
+                    ascendAnimationElapsed >= Constants.SPACE_ASCEND_ANIMATION_DURATION)
+                {
+                    fadingOutToAscension = true;
+
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut,
+                        Constants.SPACE_ASCEND_SCREEN_FADE, SwitchToAscensionScene, false);
+                }
             }
         }
 
@@ -203,6 +242,29 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             true);
     }
 
+    public void SetupForExistingGameFromAnotherStage(bool spawnPlanet, UnitType spacecraft,
+        IResourceContainer? societyResources)
+    {
+        if (GetTree() == null)
+            throw new InvalidOperationException("This can only be called after this is scene attached");
+
+        // Copy resources from the other stage
+        if (societyResources != null)
+            TakeInitialResourcesFrom(SocietyResources);
+
+        if (spawnPlanet)
+            AddPlanet(Transform.Identity, true);
+
+        var fleet = AddFleet(new Transform(Basis.Identity, new Vector3(6, 0, 0)),
+            spacecraft, true);
+
+        // Focus the camera initially on the ship to make the stage transition smoother
+        ZoomOutFromFleet(fleet);
+
+        // Add an order to have the fleet be moving
+        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
+    }
+
     public void SelectUnitUnderCursor()
     {
         // TODO: allow multi selection when holding down shift
@@ -298,6 +360,18 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     public void TakeInitialResourcesFrom(IResourceContainer resources)
     {
         SocietyResources.TransferFrom(resources);
+    }
+
+    public void OnStartAscension(PlacedSpaceStructure ascensionGate)
+    {
+        playingAscensionAnimation = true;
+        ascendAnimationElapsed = 0;
+        strategicCamera.MinZoomLevel *= Constants.SPACE_ASCEND_ANIMATION_MIN_ZOOM_SCALE;
+
+        ascendAnimationStart = strategicCamera.WorldLocation;
+        ascendAnimationEnd = ascensionGate.GlobalTranslation;
+
+        strategicCamera.AllowPlayerInput = false;
     }
 
     protected override void SetupStage()
@@ -435,5 +509,17 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         }
 
         return bestFleet;
+    }
+
+    private void SwitchToAscensionScene()
+    {
+        GD.Print("Switching to ascension ceremony scene");
+
+        var ascensionScene =
+            SceneManager.Instance.LoadScene(MainGameState.AscensionCeremony).Instance<AscensionCeremony>();
+        ascensionScene.CurrentGame = CurrentGame;
+        ascensionScene.ReturnToScene = this;
+
+        SceneManager.Instance.SwitchToScene(ascensionScene);
     }
 }

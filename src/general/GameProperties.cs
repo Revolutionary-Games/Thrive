@@ -225,6 +225,17 @@ public class GameProperties
         return game;
     }
 
+    public static GameProperties StartAscensionStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartSpaceStageGame(settings);
+
+        // Initial tech unlocks the player needs
+        var simulationParameters = SimulationParameters.Instance;
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("ascension"));
+
+        return game;
+    }
+
     /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>
