@@ -77,6 +77,18 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
         structurePopup.ShowForStructure(structure);
     }
 
+    /// <summary>
+    ///   Closes all open windows, called when something really important is being shown on screen
+    /// </summary>
+    public void CloseAllOpenWindows()
+    {
+        planetScreenPopup.Close();
+        fleetPopup.Close();
+        constructionPopup.Close();
+        structurePopup.Close();
+        researchScreen.Close();
+    }
+
     public void ShowConstructionOptionsForFleet(SpaceFleet fleet)
     {
         fleetToConstructWith = fleet;

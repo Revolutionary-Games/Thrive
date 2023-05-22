@@ -46,6 +46,8 @@ public class AscensionCeremony : Node
 
     private State currentState;
 
+    private bool returningToScene;
+
     private enum State
     {
         WalkingToRamp,
@@ -91,7 +93,8 @@ public class AscensionCeremony : Node
         base._ExitTree();
 
         // Delete the scene if we aren't returning to it
-        ReturnToScene?.QueueFree();
+        if (!returningToScene)
+            ReturnToScene?.QueueFree();
     }
 
     public override void _Process(float delta)
@@ -226,15 +229,14 @@ public class AscensionCeremony : Node
 
         currentState = State.FadingOut;
 
-        // TODO: mark game as ascended
-        // CurrentGame.
-
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 1, SwitchToSpaceScene, false);
     }
 
     private void SwitchToSpaceScene()
     {
         GD.Print("Switching to space scene from ascension gate");
+
+        returningToScene = true;
 
         if (ReturnToScene == null)
         {
@@ -247,12 +249,16 @@ public class AscensionCeremony : Node
             // We need to setup things here like done when coming from the industrial stage
             spaceStage.SetupForExistingGameFromAnotherStage(true,
                 SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"), null);
+
+            spaceStage.OnBecomeAscended();
         }
         else
         {
-            // TODO: zooming out from the ascension gate object?
             SceneManager.Instance.SwitchToScene(ReturnToScene);
-            ReturnToScene = null;
+
+            // TODO: zooming out from the ascension gate object?
+
+            ReturnToScene.OnReturnedFromAscension();
         }
     }
 }

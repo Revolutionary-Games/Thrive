@@ -61,6 +61,8 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     [JsonProperty]
     private Vector3 ascendAnimationEnd;
 
+    private float defaultZoomLevel;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public SpaceHUD HUD { get; private set; } = null!;
@@ -87,6 +89,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.Init(this);
 
         SetupStage();
+
+        minZoomLevelToRestore = strategicCamera.MinZoomLevel;
+        defaultZoomLevel = strategicCamera.ZoomLevel;
     }
 
     public override void ResolveNodeReferences()
@@ -366,12 +371,35 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         playingAscensionAnimation = true;
         ascendAnimationElapsed = 0;
+        minZoomLevelToRestore = strategicCamera.MinZoomLevel;
         strategicCamera.MinZoomLevel *= Constants.SPACE_ASCEND_ANIMATION_MIN_ZOOM_SCALE;
 
         ascendAnimationStart = strategicCamera.WorldLocation;
         ascendAnimationEnd = ascensionGate.GlobalTranslation;
 
         strategicCamera.AllowPlayerInput = false;
+
+        HUD.CloseAllOpenWindows();
+    }
+
+    public void OnReturnedFromAscension()
+    {
+        // Restore player input to the camera
+        strategicCamera.AllowPlayerInput = true;
+        strategicCamera.MinZoomLevel = minZoomLevelToRestore;
+        strategicCamera.ZoomLevel = defaultZoomLevel;
+
+        // Replay the animation
+        HUD.OnEnterStageTransition(true, true);
+
+        // And finally setup things right for the ascension
+    }
+
+    public void OnBecomeAscended()
+    {
+        // TODO: modify the current game to be an ascended game
+
+        // TODO: show an ascension popup
     }
 
     protected override void SetupStage()
@@ -518,8 +546,16 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         var ascensionScene =
             SceneManager.Instance.LoadScene(MainGameState.AscensionCeremony).Instance<AscensionCeremony>();
         ascensionScene.CurrentGame = CurrentGame;
-        ascensionScene.ReturnToScene = this;
 
-        SceneManager.Instance.SwitchToScene(ascensionScene);
+        var us = (SpaceStage?)SceneManager.Instance.SwitchToScene(ascensionScene, true);
+
+        if (us == this)
+        {
+            ascensionScene.ReturnToScene = this;
+        }
+        else
+        {
+            GD.PrintErr("Could not save current space stage");
+        }
     }
 }
