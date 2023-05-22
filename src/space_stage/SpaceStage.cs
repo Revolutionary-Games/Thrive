@@ -12,13 +12,17 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     [Export]
     public NodePath? NameLabelSystemPath;
 
-    // [Export]
-    // public NodePath DescendConfirmationPopupPath = null!;
+    [Export]
+    public NodePath AscensionCongratulationsPopupPath = null!;
+
+    [Export]
+    public NodePath DescendSetupPopupPath = null!;
 
 #pragma warning disable CA2213
     private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 
-    // private CustomConfirmationDialog descendConfirmationPopup = null!;
+    private AscensionCongratulationsPopup ascensionCongratulationsPopup = null!;
+    private DescendConfirmationDialog descendConfirmationPopup = null!;
 
     private PackedScene planetScene = null!;
     private PackedScene fleetScene = null!;
@@ -103,7 +107,8 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         HUD = GetNode<SpaceHUD>("SpaceHUD");
 
-        // descendConfirmationPopup = GetNode<CustomConfirmationDialog>(DescendConfirmationPopupPath);
+        ascensionCongratulationsPopup = GetNode<AscensionCongratulationsPopup>(AscensionCongratulationsPopupPath);
+        descendConfirmationPopup = GetNode<DescendConfirmationDialog>(DescendSetupPopupPath);
 
         // Systems
         nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
@@ -397,9 +402,15 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     public void OnBecomeAscended()
     {
-        // TODO: modify the current game to be an ascended game
+        if (CurrentGame == null)
+            throw new InvalidOperationException("No current game");
 
-        // TODO: show an ascension popup
+        CurrentGame.OnBecomeAscended();
+
+        // Show a message about becoming ascended
+        ascensionCongratulationsPopup.ShowWithInfo(CurrentGame);
+
+        // TODO: notify the hud about ascension if there's something in there that needs to react?
     }
 
     protected override void SetupStage()
@@ -446,13 +457,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         if (disposing)
         {
-            // When DescendConfirmationPopupPath is uncommented this will be needed
-            // ReSharper disable once UseNullPropagation
             if (NameLabelSystemPath != null)
             {
                 NameLabelSystemPath.Dispose();
-
-                // DescendConfirmationPopupPath.Dispose();
+                AscensionCongratulationsPopupPath.Dispose();
+                DescendSetupPopupPath.Dispose();
             }
         }
 

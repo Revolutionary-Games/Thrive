@@ -45,6 +45,18 @@ public class GameProperties
     public bool FreeBuild => freeBuild;
 
     /// <summary>
+    ///   True when the player is currently ascended and should be allowed to do anything
+    /// </summary>
+    [JsonProperty]
+    public bool Ascended { get; private set; }
+
+    /// <summary>
+    ///   Counts how many times the player has ascended with the current game in total
+    /// </summary>
+    [JsonProperty]
+    public int AscensionCounter { get; private set; }
+
+    /// <summary>
     ///   The tutorial state for this game
     /// </summary>
     [JsonProperty]
@@ -267,6 +279,32 @@ public class GameProperties
     {
         GD.Print("Game is in now in prototypes. EXPECT MAJOR BUGS!");
         InPrototypes = true;
+    }
+
+    public void OnBecomeAscended()
+    {
+        if (Ascended)
+        {
+            GD.PrintErr("Already ascended");
+            return;
+        }
+
+        GD.Print("Current game is now ascended");
+        Ascended = true;
+        ++AscensionCounter;
+
+        // TODO: stop game time tracking to have a stable final time for this save
+    }
+
+    public void OnDescend()
+    {
+        GD.Print("Descending from ascended status");
+        Ascended = false;
+
+        // TODO: resume game time tracking
+
+        // TODO: make this method take in new world parameters to use
+        throw new NotImplementedException();
     }
 
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
