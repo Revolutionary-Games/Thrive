@@ -296,15 +296,16 @@ public class GameProperties
         // TODO: stop game time tracking to have a stable final time for this save
     }
 
-    public void OnDescend()
+    public void BecomeDescendedVersionOf(GameProperties descendedGame)
     {
-        GD.Print("Descending from ascended status");
-        Ascended = false;
+        AscensionCounter = descendedGame.AscensionCounter;
 
-        // TODO: resume game time tracking
+        // TODO: copy total game time
 
-        // TODO: make this method take in new world parameters to use
-        throw new NotImplementedException();
+        // TODO: copy anything else?
+
+        // Modify the game and world to make sure the descension perks are applied
+        ApplyDescensionPerks();
     }
 
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
@@ -477,5 +478,18 @@ public class GameProperties
         }
 
         throw new Exception("Could not find a place to put more brain tissue");
+    }
+
+    private void ApplyDescensionPerks()
+    {
+        // TODO: implement the other perks
+        float osmoregulationMultiplier = Mathf.Pow(0.8f, AscensionCounter);
+
+        // Need to ensure the world has a custom difficulty we can modify here
+        var modifiedDifficulty = GameWorld.WorldSettings.Difficulty.Clone();
+
+        modifiedDifficulty.OsmoregulationMultiplier *= osmoregulationMultiplier;
+
+        GameWorld.WorldSettings.Difficulty = modifiedDifficulty;
     }
 }

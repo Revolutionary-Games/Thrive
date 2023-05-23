@@ -6,6 +6,12 @@ using Godot;
 
 public class NewGameSettings : ControlWithInput
 {
+    /// <summary>
+    ///   When true this menu works differently to facilitate beginning the microbe stage in a descended game
+    /// </summary>
+    [Export]
+    public bool Descending;
+
     [Export]
     public NodePath? BasicOptionsPath;
 
@@ -132,6 +138,9 @@ public class NewGameSettings : ControlWithInput
     [Export]
     public NodePath StartButtonPath = null!;
 
+    [Export]
+    public NodePath CheckOptionsMenuAdviceContainerPath = null!;
+
 #pragma warning disable CA2213
 
     // Main controls
@@ -183,9 +192,17 @@ public class NewGameSettings : ControlWithInput
     // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
+
+    // Other
+    private Container checkOptionsMenuAdviceContainer = null!;
 #pragma warning restore CA2213
 
     private SelectedOptionsTab selectedOptionsTab;
+
+    /// <summary>
+    ///   If not null this is used as the base to start a new descended game
+    /// </summary>
+    private GameProperties? descendedGame;
 
     private int latestValidSeed;
 
@@ -269,6 +286,8 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplier.MinValue = Constants.MIN_OSMOREGULATION_MULTIPLIER;
         osmoregulationMultiplier.MaxValue = Constants.MAX_OSMOREGULATION_MULTIPLIER;
 
+        checkOptionsMenuAdviceContainer = GetNode<Container>(CheckOptionsMenuAdviceContainerPath);
+
         var simulationParameters = SimulationParameters.Instance;
 
         difficultyPresets = simulationParameters.GetAllDifficultyPresets();
@@ -292,6 +311,12 @@ public class NewGameSettings : ControlWithInput
 
         // Make sure non-lawk options are disabled if lawk is set to true on start-up
         UpdateLifeOriginOptions(lawkButton.Pressed);
+
+        if (Descending)
+        {
+            backButton.Visible = false;
+            checkOptionsMenuAdviceContainer.Visible = false;
+        }
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -317,6 +342,52 @@ public class NewGameSettings : ControlWithInput
             return;
 
         Show();
+    }
+
+    public void OpenFromDescendScreen(GameProperties currentGame)
+    {
+        if (!Descending)
+            GD.PrintErr("Incorrectly configured new game settings opened for descending");
+
+        GD.Print("Opening new game for descending, overriding current settings");
+
+        descendedGame = currentGame;
+        Show();
+
+        var settings = descendedGame.GameWorld.WorldSettings;
+        var difficulty = settings.Difficulty;
+
+        // Override the settings that were set by this opening as default to keep the settings consistent with the
+        // previous game
+        mpMultiplier.Value = difficulty.MPMultiplier;
+        aiMutationRate.Value = difficulty.AIMutationMultiplier;
+        compoundDensity.Value = difficulty.CompoundDensity;
+        playerDeathPopulationPenalty.Value = difficulty.PlayerDeathPopulationPenalty;
+        glucoseDecayRate.Value = difficulty.GlucoseDecay * 100;
+        osmoregulationMultiplier.Value = difficulty.OsmoregulationMultiplier;
+        freeGlucoseCloudButton.Pressed = difficulty.FreeGlucoseCloud;
+        passiveReproductionButton.Pressed = difficulty.PassiveReproduction;
+        limitGrowthRateButton.Pressed = difficulty.LimitGrowthRate;
+
+        UpdateSelectedDifficultyPresetControl();
+
+        lifeOriginButton.Selected = (int)settings.Origin;
+
+        lawkButton.Pressed = settings.LAWK;
+        dayNightCycleButton.Pressed = settings.DayNightCycleEnabled;
+        dayLength.Value = settings.DayLength;
+
+        // Copy the seed from the settings, as there isn't one method to set this, this is done a bit clumsily like
+        // this
+        var seedText = settings.Seed.ToString();
+        gameSeed.Text = seedText;
+        gameSeedAdvanced.Text = seedText;
+        SetSeed(seedText);
+
+        // Always set prototypes to true as the player must have been there to descend
+        includeMulticellularButton.Pressed = true;
+
+        easterEggsButton.Pressed = settings.EasterEggs;
     }
 
     public void ReportValidityOfGameSeed(bool valid)
@@ -385,6 +456,7 @@ public class NewGameSettings : ControlWithInput
                 EasterEggsButtonPath.Dispose();
                 BackButtonPath.Dispose();
                 StartButtonPath.Dispose();
+                CheckOptionsMenuAdviceContainerPath.Dispose();
             }
         }
 
@@ -497,6 +569,13 @@ public class NewGameSettings : ControlWithInput
             // TODO: Add loading screen while changing between scenes
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
+
+            if (descendedGame != null)
+            {
+                GD.Print("Applying old game data to starting microbe stage");
+                microbeStage.CurrentGame.BecomeDescendedVersionOf(descendedGame);
+            }
+
             SceneManager.Instance.SwitchToScene(microbeStage);
         }
 
@@ -552,7 +631,7 @@ public class NewGameSettings : ControlWithInput
     {
         advancedButton.Visible = !advanced;
         basicOptions.Visible = !advanced;
-        backButton.Visible = !advanced;
+        backButton.Visible = !advanced && !Descending;
         basicButton.Visible = advanced;
         advancedOptions.Visible = advanced;
         tabButtons.Visible = advanced;
