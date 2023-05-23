@@ -8,7 +8,7 @@ public class DescendConfirmationDialog : CustomConfirmationDialog
     public void ShowForGame(GameProperties gameProperties)
     {
         game = gameProperties;
-        Open();
+        PopupCenteredShrink();
     }
 
     protected override void OnOpen()

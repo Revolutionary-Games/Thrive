@@ -4,7 +4,9 @@
 [ext_resource path="res://src/ascension_stage/DescendConfirmationDialog.cs" type="Script" id=2]
 
 [node name="DescendConfirmationDialog" instance=ExtResource( 1 )]
-rect_min_size = Vector2( 400, 500 )
+margin_right = 400.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 400, 350 )
 script = ExtResource( 2 )
 WindowTitle = "DESCEND_CONFIRMATION"
 DialogText = "DESCEND_CONFIRMATION_EXPLANATION"
