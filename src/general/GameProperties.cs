@@ -214,6 +214,17 @@ public class GameProperties
         return game;
     }
 
+    public static GameProperties StartSpaceStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartIndustrialStageGame(settings);
+
+        // Initial tech unlocks the player needs
+        var simulationParameters = SimulationParameters.Instance;
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("rocketry"));
+
+        return game;
+    }
+
     /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>

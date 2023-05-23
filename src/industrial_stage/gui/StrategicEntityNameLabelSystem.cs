@@ -5,6 +5,12 @@ using Godot;
 /// <summary>
 ///   Displays fancy selection name labels on top of strategic entities
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: the labels should scale their size as they are visually farther away from the camera. And also some way
+///     to prioritize some object types to have their labels on top would be nice
+///   </para>
+/// </remarks>
 public class StrategicEntityNameLabelSystem : Control
 {
     /// <summary>

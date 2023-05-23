@@ -4,7 +4,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The main class handling the society stage functions
 /// </summary>
-public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStructureSelectionReceiver
+public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
+    IStructureSelectionReceiver<StructureDefinition>
 {
     [Export]
     public NodePath? SelectBuildingPopupPath;
@@ -177,6 +178,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess, IStr
         selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), this, resourceStorage);
     }
 
+    // TODO: for uniformity these (primary, secondary) should probably go through the society input node like in
+    // space stage
     [RunOnKeyDown("e_primary")]
     public bool PlaceGhostBuilding()
     {

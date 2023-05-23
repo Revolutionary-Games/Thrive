@@ -18,6 +18,10 @@ using Array = Godot.Collections.Array;
 ///     The reason for this is because the name of the node is used when establishing connections. This also means
 ///     that after adding the scene instance it may not be renamed.
 ///   </para>
+///   <para>
+///     WARNING: this node has to be in the hierarchy before any GUI nodes this is going to manage. Otherwise
+///     unregistering errors will be triggered.
+///   </para>
 /// </remarks>
 public class AddWindowReorderingSupportToSiblings : Control
 {
@@ -77,6 +81,11 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// </remarks>
     private readonly HashSet<Node> connectedSiblings = new();
 
+    /// <summary>
+    ///   Used to save windows that are opened at once to preserve their order.
+    /// </summary>
+    private readonly List<CustomDialog> justOpenedWindows = new();
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -98,6 +107,8 @@ public class AddWindowReorderingSupportToSiblings : Control
 #pragma warning restore CA2213
 
     private bool connectionsEstablished;
+
+    private bool reorderOpenedWindowsQueued;
 
     /// <summary>
     ///   Finds window reordering nodes in ancestors, looks for manual paths if set, otherwise uses automatic search to
@@ -161,11 +172,18 @@ public class AddWindowReorderingSupportToSiblings : Control
             return;
         }
 
+        if (connectedWindows.TryGetValue(window, out _))
+        {
+            GD.PrintErr($"A window {window.Name} ({window}) tried to connect to {Name} ({this}) " +
+                "as duplicate reference");
+            return;
+        }
+
         window.Connect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
 
         var binds = new Array();
         binds.Add(window);
-        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder), binds);
+        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen), binds);
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -173,6 +191,10 @@ public class AddWindowReorderingSupportToSiblings : Control
         // Update top sibling
         if (topSibling == null || topSibling.GetIndex() < topNode.GetIndex())
             topSibling = topNode;
+
+#if DEBUG
+        CheckThisNodeIsNotBelowRegistered(topNode);
+#endif
     }
 
     public void DisconnectWindow(CustomDialog window, bool recursive)
@@ -194,9 +216,17 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
 
         window.Disconnect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
-        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder));
+        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen));
 
-        var windowSibling = connectedWindows[window];
+        if (!connectedWindows.TryGetValue(window, out var windowSibling))
+        {
+            GD.PrintErr(
+                $"A window {window.Name} ({window}) tried to disconnect from {Name} ({this}) but it wasn't in " +
+                "the connected window list. This may happen if the reorder node is not early enough in the node " +
+                "hierarchy.");
+            return;
+        }
+
         connectedWindows.Remove(window);
 
         if (connectedWindows.All(w => w.Value != windowSibling))
@@ -207,6 +237,8 @@ public class AddWindowReorderingSupportToSiblings : Control
             if (topSibling == windowSibling)
                 topSibling = null;
         }
+
+        justOpenedWindows.Remove(window);
     }
 
     protected override void Dispose(bool disposing)
@@ -371,6 +403,52 @@ public class AddWindowReorderingSupportToSiblings : Control
         window.SetAsToplevel(isSetAsToplevel);
     }
 
+    private void OnWindowOpen(CustomDialog window)
+    {
+        if (justOpenedWindows.Contains(window))
+        {
+            // This window is already queued to be opened
+            return;
+        }
+
+        if (!reorderOpenedWindowsQueued)
+        {
+            // Tell the system that there is an opened window and wait in case more windows will be opened at once
+            reorderOpenedWindowsQueued = true;
+            Invoke.Instance.QueueForObject(ReorderOpenedWindows, this);
+        }
+
+        justOpenedWindows.Add(window);
+    }
+
+    private void ReorderOpenedWindows()
+    {
+        try
+        {
+            // Sort the windows to make sure they are updated in the right order
+            justOpenedWindows.Sort((first, second) =>
+            {
+                return connectedWindows[first].GetIndex().CompareTo(connectedWindows[second].GetIndex());
+            });
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Exception occurred in {Name} ({this}) in {nameof(ReorderOpenedWindows)}:\n{e}");
+
+            // Remove invalid windows
+            justOpenedWindows.RemoveAll(window => !IsInstanceValid(window) || !connectedWindows.ContainsKey(window));
+        }
+
+        // Reorder the windows
+        foreach (CustomDialog window in justOpenedWindows)
+        {
+            OnWindowReorder(window);
+        }
+
+        justOpenedWindows.Clear();
+        reorderOpenedWindowsQueued = false;
+    }
+
     /// <summary>
     ///   This is used to setup a connection with other window reordering nodes so it knows to who it will connect the
     ///   windows that ask recursive connections.
@@ -392,5 +470,14 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
 
         connectionsEstablished = true;
+    }
+
+    private void CheckThisNodeIsNotBelowRegistered(Node registeredNode)
+    {
+        if (GetIndex() >= registeredNode.GetIndex())
+        {
+            GD.PrintErr($"{nameof(AddWindowReorderingSupportToSiblings)} is higher index than a registered " +
+                "window. The reordering node should be before any potential GUI nodes it needs to manage");
+        }
     }
 }

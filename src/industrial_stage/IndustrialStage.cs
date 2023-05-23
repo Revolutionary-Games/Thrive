@@ -126,7 +126,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         if (!playerCity)
         {
-            // TODO: AI civilizations tech web's
+            // TODO: AI civilizations' tech webs
             GD.Print("TODO: implement AI civilization tech unlocking");
             techWeb = new TechWeb();
         }
@@ -362,7 +362,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
                 {
                     movingToSpaceStagePhase = StageMovePhase.FadingOut;
                     TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut,
-                        Constants.INDUSTRIAL_TO_SPACE_FADE_DURATION);
+                        Constants.INDUSTRIAL_TO_SPACE_FADE_DURATION, SwitchToSpaceScene);
                 }
 
                 break;
@@ -398,21 +398,36 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         GD.Print("Switching to space scene");
 
-        // TODO: implement this change:
-        /*var industrialStage =
-            SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
-        industrialStage.CurrentGame = CurrentGame;
-        industrialStage.TakeInitialResourcesFrom(SocietyResources);
+        var spaceStage =
+            SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
+        spaceStage.CurrentGame = CurrentGame;
 
-        SceneManager.Instance.SwitchToScene(industrialStage);
+        SceneManager.Instance.SwitchToScene(spaceStage);
 
-        // Preserve some of the state when moving to the stage for extra continuity
-        industrialStage.CameraWorldPoint = CameraWorldPoint / Constants.INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
+        // Copy our resources to the new stage, this is after the scene switch to make sure the storage capacity is
+        // initialized already
+        spaceStage.TakeInitialResourcesFrom(SocietyResources);
 
-        var cityPosition = industrialStage.CameraWorldPoint;
-        cityPosition.y = 0;
+        spaceStage.AddPlanet(Transform.Identity, true);
 
-        // TODO: preserve the initial city building visuals
-        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition), true);*/
+        // TODO: preserve the actual cities placed on the starting planet
+
+        // Create initial fleet from the ship going to space
+        var spaceCraftData = citySystem.FirstLaunchableSpacecraft;
+        if (spaceCraftData == null)
+        {
+            GD.PrintErr("Spacecraft to put in initial fleet not found, using fallback unit");
+
+            spaceCraftData = (null!, SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"));
+        }
+
+        var fleet = spaceStage.AddFleet(new Transform(Basis.Identity, new Vector3(6, 0, 0)),
+            spaceCraftData.Value.Spacecraft, true);
+
+        // Focus the camera initially on the ship to make the stage transition smoother
+        spaceStage.ZoomOutFromFleet(fleet);
+
+        // Add an order to have the fleet be moving
+        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
     }
 }
