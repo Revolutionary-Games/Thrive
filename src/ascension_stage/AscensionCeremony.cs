@@ -85,6 +85,8 @@ public class AscensionCeremony : Node
         // Start the fade in
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 1, null, false);
 
+        // TODO: should this force unpause to really ensure the player can't get stuck here?
+
         // TODO: ascension room music?
     }
 

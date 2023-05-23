@@ -388,7 +388,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         minZoomLevelToRestore = strategicCamera.MinZoomLevel;
         ascendAnimationEnd = ascensionGate.GlobalTranslation;
 
-        ascensionCongratulationsPopup.PopupCenteredShrink();
+        ascensionMoveConfirmationPopup.PopupCenteredShrink();
         PauseManager.Instance.AddPause(nameof(ascensionMoveConfirmationPopup));
     }
 
@@ -403,6 +403,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.OnEnterStageTransition(true, true);
 
         // And finally setup things right for the ascension
+
+        // Show the congratulations popup for being ascended
+        ascensionCongratulationsPopup.PopupCenteredShrink();
     }
 
     public void OnBecomeAscended()
