@@ -387,6 +387,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         if (CurrentGame!.Ascended)
         {
+            GD.Print("Player is already ascended");
             HUD.HUDMessages.ShowMessage(TranslationServer.Translate("ALREADY_ASCENDED"));
             return;
         }
@@ -400,6 +401,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     public void OnReturnedFromAscension()
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game info not set");
+
         // Restore player input to the camera
         strategicCamera.AllowPlayerInput = true;
         strategicCamera.MinZoomLevel = minZoomLevelToRestore;
@@ -411,7 +415,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         // And finally setup things right for the ascension
 
         // Show the congratulations popup for being ascended
-        ascensionCongratulationsPopup.PopupCenteredShrink();
+        ascensionCongratulationsPopup.ShowWithInfo(CurrentGame);
     }
 
     public void OnBecomeAscended()
@@ -601,5 +605,12 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         {
             GD.PrintErr("Could not save current space stage");
         }
+    }
+
+    private void OnDescendButtonPressed()
+    {
+        // TODO: create a button that triggers this
+
+        descendConfirmationPopup.ShowForGame(CurrentGame!);
     }
 }

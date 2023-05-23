@@ -10,6 +10,6 @@ public class AscensionCongratulationsPopup : CustomConfirmationDialog
         DialogText = TranslationServer.Translate("ASCENSION_CONGRATULATIONS_CONTENT")
             .FormatSafe(currentGame.AscensionCounter);
 
-        Show();
+        PopupCenteredShrink();
     }
 }
