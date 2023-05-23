@@ -13,6 +13,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     public NodePath? NameLabelSystemPath;
 
     [Export]
+    public NodePath AscensionMoveConfirmationPopupPath = null!;
+
+    [Export]
     public NodePath AscensionCongratulationsPopupPath = null!;
 
     [Export]
@@ -21,6 +24,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 #pragma warning disable CA2213
     private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 
+    private CustomConfirmationDialog ascensionMoveConfirmationPopup = null!;
     private AscensionCongratulationsPopup ascensionCongratulationsPopup = null!;
     private DescendConfirmationDialog descendConfirmationPopup = null!;
 
@@ -107,6 +111,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         HUD = GetNode<SpaceHUD>("SpaceHUD");
 
+        ascensionMoveConfirmationPopup = GetNode<CustomConfirmationDialog>(AscensionMoveConfirmationPopupPath);
         ascensionCongratulationsPopup = GetNode<AscensionCongratulationsPopup>(AscensionCongratulationsPopupPath);
         descendConfirmationPopup = GetNode<DescendConfirmationDialog>(DescendSetupPopupPath);
 
@@ -374,17 +379,17 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     public void OnStartAscension(PlacedSpaceStructure ascensionGate)
     {
-        playingAscensionAnimation = true;
-        ascendAnimationElapsed = 0;
-        minZoomLevelToRestore = strategicCamera.MinZoomLevel;
-        strategicCamera.MinZoomLevel *= Constants.SPACE_ASCEND_ANIMATION_MIN_ZOOM_SCALE;
+        if (ascensionMoveConfirmationPopup.Visible)
+        {
+            GD.PrintErr("Ascension move confirm is already open");
+            return;
+        }
 
-        ascendAnimationStart = strategicCamera.WorldLocation;
+        minZoomLevelToRestore = strategicCamera.MinZoomLevel;
         ascendAnimationEnd = ascensionGate.GlobalTranslation;
 
-        strategicCamera.AllowPlayerInput = false;
-
-        HUD.CloseAllOpenWindows();
+        ascensionCongratulationsPopup.PopupCenteredShrink();
+        PauseManager.Instance.AddPause(nameof(ascensionMoveConfirmationPopup));
     }
 
     public void OnReturnedFromAscension()
@@ -460,6 +465,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             if (NameLabelSystemPath != null)
             {
                 NameLabelSystemPath.Dispose();
+                AscensionMoveConfirmationPopupPath.Dispose();
                 AscensionCongratulationsPopupPath.Dispose();
                 DescendSetupPopupPath.Dispose();
             }
@@ -546,6 +552,26 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         }
 
         return bestFleet;
+    }
+
+    private void OnConfirmMoveToAscension()
+    {
+        playingAscensionAnimation = true;
+        ascendAnimationElapsed = 0;
+        strategicCamera.MinZoomLevel *= Constants.SPACE_ASCEND_ANIMATION_MIN_ZOOM_SCALE;
+
+        ascendAnimationStart = strategicCamera.WorldLocation;
+
+        strategicCamera.AllowPlayerInput = false;
+
+        HUD.CloseAllOpenWindows();
+
+        PauseManager.Instance.Resume(nameof(ascensionMoveConfirmationPopup));
+    }
+
+    private void CancelMoveToAscension()
+    {
+        PauseManager.Instance.Resume(nameof(ascensionMoveConfirmationPopup));
     }
 
     private void SwitchToAscensionScene()
