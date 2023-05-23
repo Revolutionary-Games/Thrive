@@ -243,16 +243,11 @@ public class AscensionCeremony : Node
         if (ReturnToScene == null)
         {
             GD.Print("Returning to a new space scene as we didn't have one already");
-            var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
-            spaceStage.CurrentGame = CurrentGame;
 
+            var spaceStage = AscensionStageStarter.SetupNewAscendedSpaceStage(CurrentGame);
             SceneManager.Instance.SwitchToScene(spaceStage);
 
-            // We need to setup things here like done when coming from the industrial stage
-            spaceStage.SetupForExistingGameFromAnotherStage(true,
-                SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"), null);
-
-            spaceStage.OnBecomeAscended();
+            AscensionStageStarter.PrepareSpaceStageForFreshAscension(spaceStage);
         }
         else
         {
