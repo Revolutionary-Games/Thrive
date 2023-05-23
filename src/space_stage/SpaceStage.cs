@@ -413,6 +413,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.OnEnterStageTransition(true, true);
 
         // And finally setup things right for the ascension
+        OnBecomeAscended();
 
         // Show the congratulations popup for being ascended
         ascensionCongratulationsPopup.ShowWithInfo(CurrentGame);
@@ -424,9 +425,6 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             throw new InvalidOperationException("No current game");
 
         CurrentGame.OnBecomeAscended();
-
-        // Show a message about becoming ascended
-        ascensionCongratulationsPopup.ShowWithInfo(CurrentGame);
 
         // TODO: notify the hud about ascension if there's something in there that needs to react?
     }
