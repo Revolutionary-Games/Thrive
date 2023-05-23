@@ -431,15 +431,12 @@ public class AddWindowReorderingSupportToSiblings : Control
                 return connectedWindows[first].GetIndex().CompareTo(connectedWindows[second].GetIndex());
             });
         }
-        catch (InvalidOperationException)
+        catch (Exception e)
         {
-            int oldCount = justOpenedWindows.Count;
+            GD.PrintErr(e);
 
             // Remove invalid windows
-            justOpenedWindows.RemoveAll(window => !IsInstanceValid(window));
-
-            GD.PrintErr($"{Name} ({this}) attempted to reorder a window that was destroyed" +
-                $" ({oldCount - justOpenedWindows.Count}x)");
+            justOpenedWindows.RemoveAll(window => !IsInstanceValid(window) || !connectedWindows.ContainsKey(window));
         }
 
         // Reorder the windows
