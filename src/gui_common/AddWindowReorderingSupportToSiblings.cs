@@ -433,7 +433,7 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
         catch (Exception e)
         {
-            GD.PrintErr(e);
+            GD.PrintErr($"Exception occurred in {Name} ({this}) in {nameof(ReorderOpenedWindows)}:\n{e}");
 
             // Remove invalid windows
             justOpenedWindows.RemoveAll(window => !IsInstanceValid(window) || !connectedWindows.ContainsKey(window));
