@@ -385,6 +385,12 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             return;
         }
 
+        if (CurrentGame!.Ascended)
+        {
+            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("ALREADY_ASCENDED"));
+            return;
+        }
+
         minZoomLevelToRestore = strategicCamera.MinZoomLevel;
         ascendAnimationEnd = ascensionGate.GlobalTranslation;
 

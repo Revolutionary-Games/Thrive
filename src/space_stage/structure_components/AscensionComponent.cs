@@ -46,7 +46,7 @@ public class AscensionComponent : SpaceStructureComponent
         // TODO: actually confirm there's enough energy as the player energy amount could have fallen since the
         // action allowed status changed
 
-        GD.Print("Ascension gate is activated");
+        GD.Print("Ascension gate is triggered");
 
         // TODO: a cleaner way to do this
         var stage = owningStructure.FirstAncestorOfType<SpaceStage>();
