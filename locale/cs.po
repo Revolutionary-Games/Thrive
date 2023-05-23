@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-23 10:58+0300\n"
+"POT-Creation-Date: 2023-05-23 11:34+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -160,7 +160,7 @@ msgstr "Obecné statistiky všech světů"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/space_stage/SpaceStage.cs:390
+#: ../src/space_stage/SpaceStage.cs:391
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1477,6 +1477,11 @@ msgstr "Smazání vybraných uložení nelze vrátit zpět. Opravdu chceš trval
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Smazat tuto uloženou hru?"
+
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
 #: ../src/ascension_stage/DescendConfirmationDialog.tscn:9
 #, fuzzy

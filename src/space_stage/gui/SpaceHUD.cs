@@ -21,6 +21,9 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
     [Export]
     public NodePath StructurePopupPath = null!;
 
+    [Export]
+    public NodePath DescendButtonPath = null!;
+
 #pragma warning disable CA2213
     private Label populationLabel = null!;
 
@@ -29,9 +32,14 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
     private SpaceConstructionPopup constructionPopup = null!;
 
     private SpaceStructureInfoPopup structurePopup = null!;
+
+    private Button descendButton = null!;
 #pragma warning restore CA2213
 
     private SpaceFleet? fleetToConstructWith;
+
+    [Signal]
+    public delegate void OnDescendPressed();
 
     // TODO: real button referencing text for this
     protected override string UnPauseHelpText => "TODO: unpause text for this stage";
@@ -45,6 +53,20 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
         fleetPopup = GetNode<SpaceFleetInfoPopup>(FleetPopupPath);
         constructionPopup = GetNode<SpaceConstructionPopup>(ConstructionPopupPath);
         structurePopup = GetNode<SpaceStructureInfoPopup>(StructurePopupPath);
+
+        descendButton = GetNode<Button>(DescendButtonPath);
+    }
+
+    public override void Init(SpaceStage containedInStage)
+    {
+        base.Init(containedInStage);
+
+        UpdateButtonState();
+    }
+
+    public void OnAscended()
+    {
+        UpdateButtonState();
     }
 
     public void UpdatePopulationDisplay(long population)
@@ -120,9 +142,22 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
                 FleetPopupPath.Dispose();
                 ConstructionPopupPath.Dispose();
                 StructurePopupPath.Dispose();
+                DescendButtonPath.Dispose();
             }
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateButtonState()
+    {
+        descendButton.Visible = stage?.CurrentGame?.Ascended == true;
+    }
+
+    private void ForwardDescendPress()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(OnDescendPressed));
     }
 }

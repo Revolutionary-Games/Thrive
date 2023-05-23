@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-23 10:58+0300\n"
+"POT-Creation-Date: 2023-05-23 11:34+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -168,7 +168,7 @@ msgstr ""
 "  Среднее {9}; Стандартное отклонение {10}\n"
 "[b]Общие данные по органеллам:[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:390
+#: ../src/space_stage/SpaceStage.cs:391
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1486,6 +1486,11 @@ msgstr "Удаление выбранного(ых) сохранения(й) б�
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Удалить это cохранение?"
+
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
 
 #: ../src/ascension_stage/DescendConfirmationDialog.tscn:9
 #, fuzzy

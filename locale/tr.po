@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-23 10:58+0300\n"
+"POT-Creation-Date: 2023-05-23 11:34+0300\n"
 "PO-Revision-Date: 2023-05-04 13:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -168,7 +168,7 @@ msgstr ""
 "   Ortalama {9}; Standart sapma {10}\n"
 "[b]Genel Organel Verileri[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:390
+#: ../src/space_stage/SpaceStage.cs:391
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1486,6 +1486,11 @@ msgstr "Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı ol
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Bu kayıt silinsin mi?"
+
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
 
 #: ../src/ascension_stage/DescendConfirmationDialog.tscn:9
 #, fuzzy

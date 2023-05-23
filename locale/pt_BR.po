@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-23 10:58+0300\n"
+"POT-Creation-Date: 2023-05-23 11:34+0300\n"
 "PO-Revision-Date: 2023-03-09 06:58+0000\n"
 "Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -168,7 +168,7 @@ msgstr ""
 "  Média {9}; Desvio padrão {10}\n"
 "[b]Dados Gerais de Organelas:[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:390
+#: ../src/space_stage/SpaceStage.cs:391
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1515,6 +1515,11 @@ msgstr "Apagar o(s) jogo(s) salvo(s) é irreversível, você tem certeza que que
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Apagar o jogo salvo?"
+
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
 
 #: ../src/ascension_stage/DescendConfirmationDialog.tscn:9
 #, fuzzy

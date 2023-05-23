@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-23 10:58+0300\n"
-"PO-Revision-Date: 2023-05-23 11:13+0300\n"
+"POT-Creation-Date: 2023-05-23 11:34+0300\n"
+"PO-Revision-Date: 2023-05-23 11:35+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -168,7 +168,7 @@ msgstr ""
 "  Average {9}; Standard deviation {10}\n"
 "[b]Generic Organelle Data:[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:390
+#: ../src/space_stage/SpaceStage.cs:391
 msgid "ALREADY_ASCENDED"
 msgstr "You are already ascended"
 
@@ -1490,6 +1490,10 @@ msgstr "Deleting the selected save(s) cannot be undone, are you sure you want to
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Delete this save?"
+
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+msgid "DESCEND_BUTTON"
+msgstr "Descend"
 
 #: ../src/ascension_stage/DescendConfirmationDialog.tscn:9
 msgid "DESCEND_CONFIRMATION"

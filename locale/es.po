@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-23 10:58+0300\n"
+"POT-Creation-Date: 2023-05-23 11:34+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Rubén <chocolateconchurrosyazucar@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -160,7 +160,7 @@ msgstr "Estadísticas genéricas de todos los mundos"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
-#: ../src/space_stage/SpaceStage.cs:390
+#: ../src/space_stage/SpaceStage.cs:391
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1490,6 +1490,11 @@ msgstr "Eliminar la(s) partida(s) seleccionada(s) es irreversible, ¿Estás segu
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "¿Deseas eliminar esta partida?"
+
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Eliminar esta partida es irreversible. ¿Estás seguro de querer eliminarla permanentemente?"
 
 #: ../src/ascension_stage/DescendConfirmationDialog.tscn:9
 #, fuzzy

@@ -426,7 +426,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         CurrentGame.OnBecomeAscended();
 
-        // TODO: notify the hud about ascension if there's something in there that needs to react?
+        HUD.OnAscended();
     }
 
     protected override void SetupStage()
@@ -607,8 +607,6 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     private void OnDescendButtonPressed()
     {
-        // TODO: create a button that triggers this
-
         descendConfirmationPopup.ShowForGame(CurrentGame!);
     }
 }

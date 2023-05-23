@@ -226,6 +226,7 @@ margin_bottom = 500.0
 
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
 
+[connection signal="OnDescendPressed" from="SpaceHUD" to="." method="OnDescendButtonPressed"]
 [connection signal="OnOpenMenu" from="SpaceHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="SpaceHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnStartResearching" from="SpaceHUD" to="." method="StartResearching"]
