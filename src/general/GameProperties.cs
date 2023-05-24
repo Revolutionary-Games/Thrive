@@ -300,6 +300,9 @@ public class GameProperties
     {
         AscensionCounter = descendedGame.AscensionCounter;
 
+        // Disable tutorials, as we can assume that playing a second playthrough doesn't need tutorials
+        TutorialState.Enabled = false;
+
         // TODO: copy total game time
 
         // TODO: copy anything else?
