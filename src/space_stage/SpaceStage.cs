@@ -404,6 +404,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game info not set");
 
+        // Stop the credits music if it got started
+        StartMusic();
+
         // Restore player input to the camera
         strategicCamera.AllowPlayerInput = true;
         strategicCamera.MinZoomLevel = minZoomLevelToRestore;
