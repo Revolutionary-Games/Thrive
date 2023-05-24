@@ -54,6 +54,11 @@ public class HoldKeyPrompt : KeyPrompt
     [Signal]
     public delegate void OnPressedLongEnough();
 
+    /// <summary>
+    ///   Value between 0-1 indicating how far along the press is currently
+    /// </summary>
+    public float HoldProgress => holdProgress;
+
     public override void _Process(float delta)
     {
         if (!ShowPress)
@@ -142,7 +147,7 @@ public class HoldKeyPrompt : KeyPrompt
         {
             var ourSize = RectSize;
 
-            var drawHeight = (int)Mathf.Round(ourSize.y * holdProgress);
+            var drawHeight = ourSize.y * holdProgress;
 
             // Ensure at least one pixel drawn if there's some progress
             if (drawHeight < 1)
