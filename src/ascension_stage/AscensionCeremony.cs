@@ -11,6 +11,9 @@ public class AscensionCeremony : Node
     public float SpeciesWalkSpeed = 3.0f;
 
     [Export]
+    public float ScreenFadeDuration = 5;
+
+    [Export]
     public NodePath? GateWalkerSpawnPointPath;
 
     [Export]
@@ -28,6 +31,21 @@ public class AscensionCeremony : Node
     [Export]
     public NodePath AscensionPointPath = null!;
 
+    [Export]
+    public NodePath CreditsDisplayPath = null!;
+
+    [Export]
+    public NodePath CreditsSkipInfoContainerPath = null!;
+
+    [Export]
+    public NodePath CreditsSkipPromptPath = null!;
+
+    [Export]
+    public NodePath CustomScreenBlankerPath = null!;
+
+    [Export]
+    public NodePath WorldCameraToDisablePath = null!;
+
     private readonly List<Spatial> observerSpawnPoints = new();
 
 #pragma warning disable CA2213
@@ -39,10 +57,18 @@ public class AscensionCeremony : Node
     private Spatial rampEndPoint = null!;
     private Spatial ascensionPoint = null!;
 
+    private CreditsScroll creditsDisplay = null!;
+    private Control creditsSkipInfoContainer = null!;
+    private HoldKeyPrompt creditsSkipPrompt = null!;
+
+    private ColorRect customScreenBlanker = null!;
+
+    private Camera worldCameraToDisable = null!;
+
     private MulticellularCreature? gateWalker;
 #pragma warning restore CA2213
 
-    private float elapsed;
+    private float stateTimer;
 
     private State currentState;
 
@@ -53,7 +79,10 @@ public class AscensionCeremony : Node
         WalkingToRamp,
         ClimbingRamp,
         WalkingToAscension,
+        Ascending,
         FadingOut,
+        Credits,
+        Ended,
     }
 
     public GameProperties? CurrentGame { get; set; }
@@ -73,12 +102,23 @@ public class AscensionCeremony : Node
         rampEndPoint = GetNode<Spatial>(RampEndPointPath);
         ascensionPoint = GetNode<Spatial>(AscensionPointPath);
 
+        creditsDisplay = GetNode<CreditsScroll>(CreditsDisplayPath);
+        creditsSkipInfoContainer = GetNode<Control>(CreditsSkipInfoContainerPath);
+        creditsSkipPrompt = GetNode<HoldKeyPrompt>(CreditsSkipPromptPath);
+
+        customScreenBlanker = GetNode<ColorRect>(CustomScreenBlankerPath);
+
+        worldCameraToDisable = GetNode<Camera>(WorldCameraToDisablePath);
+
         // Setup a new game if not already started
         if (CurrentGame == null)
         {
             GD.Print("Starting a new ascension game");
             CurrentGame = GameProperties.StartAscensionStageGame(new WorldGenerationSettings());
         }
+
+        creditsDisplay.Visible = false;
+        creditsSkipInfoContainer.Visible = false;
 
         SetupSceneActors();
 
@@ -101,39 +141,103 @@ public class AscensionCeremony : Node
 
     public override void _Process(float delta)
     {
-        elapsed += delta;
-
-        // To prevent getting stuck in the scene in case it doesn't work
-        if (elapsed > Constants.ASCENSION_CEREMONY_MAX_DURATION)
+        if (currentState is State.FadingOut or State.Credits)
         {
-            OnCeremonyEnded();
+            // Show the info on skipping if it is pressed
+            creditsSkipInfoContainer.Visible = creditsSkipPrompt.HoldProgress > 0;
+
+            // TODO: show the skip button for a second if the player is pressing random buttons
+        }
+        else
+        {
+            creditsSkipInfoContainer.Visible = false;
         }
 
         switch (currentState)
         {
             case State.WalkingToRamp:
+            {
                 if (WalkTowards(rampStartPoint.GlobalTranslation, delta))
-                {
                     currentState = State.ClimbingRamp;
-                }
 
                 break;
+            }
+
             case State.ClimbingRamp:
+            {
                 if (WalkTowards(rampEndPoint.GlobalTranslation, delta))
-                {
                     currentState = State.WalkingToAscension;
-                }
 
                 break;
+            }
+
             case State.WalkingToAscension:
+            {
                 if (WalkTowards(ascensionPoint.GlobalTranslation, delta))
                 {
-                    // TODO: play a sound effect?
-                    OnCeremonyEnded();
+                    // Stop the music a bit before switching to the credits theme
+                    Jukebox.Instance.Stop(true);
+
+                    // TODO: play a sound effect for the ascension
+                    currentState = State.Ascending;
+                    stateTimer = 0;
                 }
 
                 break;
+            }
+
+            case State.Ascending:
+            {
+                // TODO: some kind of actual ascending animation
+                if (gateWalker != null)
+                {
+                    gateWalker.GlobalTranslation += new Vector3(0, 200 * delta, 0);
+                }
+
+                stateTimer += delta;
+
+                if (stateTimer > 3)
+                {
+                    // Start already playing the credits to overlap with the normal screen a bit
+                    creditsDisplay.Visible = true;
+                    creditsDisplay.Restart();
+
+                    // Enable the skip button
+                    creditsSkipPrompt.ShowPress = true;
+
+                    currentState = State.FadingOut;
+                    stateTimer = 0;
+                }
+
+                break;
+            }
+
             case State.FadingOut:
+            {
+                // To make the credits stay on top, we use a custom screen blanking animation
+                stateTimer += delta;
+
+                customScreenBlanker.Visible = true;
+
+                var alpha = Math.Min(1, stateTimer / ScreenFadeDuration);
+                customScreenBlanker.Color = new Color(0, 0, 0, alpha);
+
+                if (stateTimer > ScreenFadeDuration)
+                {
+                    OnPlayCreditsMusic();
+
+                    // Fade complete, stop rendering the 3D scene
+                    worldCameraToDisable.Current = false;
+
+                    Invoke.Instance.Queue(() => rootOfDynamicallySpawned.QueueFreeChildren());
+                }
+
+                break;
+            }
+
+            case State.Credits:
+                break;
+            case State.Ended:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -152,6 +256,11 @@ public class AscensionCeremony : Node
                 RampStartPointPath.Dispose();
                 RampEndPointPath.Dispose();
                 AscensionPointPath.Dispose();
+                CreditsDisplayPath.Dispose();
+                CreditsSkipInfoContainerPath.Dispose();
+                CreditsSkipPromptPath.Dispose();
+                CustomScreenBlankerPath.Dispose();
+                WorldCameraToDisablePath.Dispose();
             }
 
             foreach (var spawnPointPath in ObserverSpawnPointPaths)
@@ -226,12 +335,26 @@ public class AscensionCeremony : Node
 
     private void OnCeremonyEnded()
     {
-        if (currentState == State.FadingOut)
+        if (currentState == State.Ended)
             return;
 
-        currentState = State.FadingOut;
+        currentState = State.Ended;
 
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 1, SwitchToSpaceScene, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 1.0f, SwitchToSpaceScene, false);
+    }
+
+    private void OnPlayCreditsMusic()
+    {
+        currentState = State.Credits;
+        Jukebox.Instance.PlayCategory("Credits");
+    }
+
+    private void OnSkipCredits()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        GD.Print("Skipping credits by user request");
+
+        OnCeremonyEnded();
     }
 
     private void SwitchToSpaceScene()

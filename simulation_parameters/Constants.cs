@@ -1278,8 +1278,6 @@ public static class Constants
 
     public const float SPACE_FLEET_SELECTION_RADIUS = 1.7f;
 
-    public const float ASCENSION_CEREMONY_MAX_DURATION = 45;
-
     /// <summary>
     ///   Names like "Pangonia Primus" are cool so we use those until it makes more sense to switch to roman numerals
     /// </summary>
