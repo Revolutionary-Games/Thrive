@@ -1,6 +1,7 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Base for all stages
@@ -51,6 +52,12 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
 
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame?.GameWorld ?? throw new InvalidOperationException("Game not started yet");
+
+    /// <summary>
+    ///   True when the player is ascended and they should be let to do crazy stuff
+    /// </summary>
+    [JsonIgnore]
+    public bool Ascended => CurrentGame?.Ascended == true;
 
     [JsonIgnore]
     public Node GameStateRoot => this;
@@ -165,6 +172,24 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     public abstract void OnFinishLoading(Save save);
 
     /// <summary>
+    ///   Tries to open God Tools for the specified game object
+    /// </summary>
+    /// <param name="godotEntity">
+    ///   The object that was passed through Godot signals. This uses the Godot type here to ensure
+    /// </param>
+    public virtual void OpenGodToolsForEntity(Object godotEntity)
+    {
+        if (godotEntity is IEntity entity)
+        {
+            OnOpenGodTools(entity);
+        }
+        else
+        {
+            GD.PrintErr("Unknown godot passed object to open god tools for: ", godotEntity);
+        }
+    }
+
+    /// <summary>
     ///   Prepares the stage for playing. Also begins a new game if one hasn't been started yet for easier debugging.
     /// </summary>
     protected virtual void SetupStage()
@@ -207,6 +232,12 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     protected abstract void PerformQuickSave();
 
     protected abstract void OnLightLevelUpdate();
+
+    // TODO: implement for all stages
+    protected virtual void OnOpenGodTools(IEntity entity)
+    {
+        GD.PrintErr("Non-implemented God tools opening for entity in stage type: ", GetType().Name);
+    }
 
     protected override void Dispose(bool disposing)
     {

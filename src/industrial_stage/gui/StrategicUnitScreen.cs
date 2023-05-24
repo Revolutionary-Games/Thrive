@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Base class for strategy stage controllable unit popup screens. For showing info about the unit and giving options
@@ -8,7 +9,7 @@ using Godot;
 /// </summary>
 /// <typeparam name="T">The type of unit controller</typeparam>
 public abstract class StrategicUnitScreen<T> : CustomDialog
-    where T : class, IStrategicUnit
+    where T : Object, IStrategicUnit
 {
     [Export]
     public NodePath? ActionButtonsContainerPath;
@@ -27,6 +28,9 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
     protected T? managedUnit;
 
     private float elapsed = 1;
+
+    [Signal]
+    public delegate void OnOpenGodTools(Object unit);
 
     /// <summary>
     ///   The unit this screen is open for, or null
@@ -59,7 +63,7 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         }
     }
 
-    public void ShowForUnit(T unit)
+    public void ShowForUnit(T unit, bool showGodTools)
     {
         if (Visible)
         {
@@ -71,7 +75,7 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
 
         UpdateTitle();
         UpdateAll();
-        SetupAvailableActionButtons();
+        SetupAvailableActionButtons(showGodTools);
 
         if (unitListContainer != null)
         {
@@ -86,7 +90,7 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         WindowTitle = managedUnit?.UnitScreenTitle ?? "ERROR";
     }
 
-    protected void SetupAvailableActionButtons()
+    protected void SetupAvailableActionButtons(bool showGodTools)
     {
         actionButtonsContainer.QueueFreeChildren();
 
@@ -108,6 +112,18 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         button2.Connect("pressed", this, nameof(OnConstructStart));
 
         actionButtonsContainer.AddChild(button2);
+
+        if (showGodTools)
+        {
+            var godButton = new Button
+            {
+                Text = TranslationServer.Translate("OPEN_GOD_TOOLS"),
+            };
+
+            godButton.Connect("pressed", this, nameof(ForwardGodTools));
+
+            actionButtonsContainer.AddChild(godButton);
+        }
     }
 
     protected virtual void SetupUnitList()
@@ -171,5 +187,14 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
     private void OnUnhandledActionType()
     {
         GD.PrintErr("Non-overridden base action type method was called for a unit screen");
+    }
+
+    private void ForwardGodTools()
+    {
+        if (managedUnit == null)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(nameof(OnOpenGodTools), managedUnit);
     }
 }

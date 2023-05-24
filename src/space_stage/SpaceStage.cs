@@ -22,12 +22,17 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     [Export]
     public NodePath DescendSetupPopupPath = null!;
 
+    [Export]
+    public NodePath GodToolsPath = null!;
+
 #pragma warning disable CA2213
     private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 
     private CustomConfirmationDialog ascensionMoveConfirmationPopup = null!;
     private AscensionCongratulationsPopup ascensionCongratulationsPopup = null!;
     private DescendConfirmationDialog descendConfirmationPopup = null!;
+
+    private GodToolsPopup godTools = null!;
 
     private PackedScene planetScene = null!;
     private PackedScene fleetScene = null!;
@@ -115,6 +120,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         ascensionMoveConfirmationPopup = GetNode<CustomConfirmationDialog>(AscensionMoveConfirmationPopupPath);
         ascensionCongratulationsPopup = GetNode<AscensionCongratulationsPopup>(AscensionCongratulationsPopupPath);
         descendConfirmationPopup = GetNode<DescendConfirmationDialog>(DescendSetupPopupPath);
+        godTools = GetNode<GodToolsPopup>(GodToolsPath);
 
         // Systems
         nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
@@ -185,7 +191,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                 }
             }
 
-            if (CurrentGame!.Ascended)
+            if (Ascended)
             {
                 // Just fill up all resource storages to give infinite stuff in ascension
                 foreach (var resource in resourceStorage.GetAvailableResources().ToList())
@@ -482,6 +488,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void OnOpenGodTools(IEntity entity)
+    {
+        godTools.OpenForEntity(entity);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -492,6 +503,7 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                 AscensionMoveConfirmationPopupPath.Dispose();
                 AscensionCongratulationsPopupPath.Dispose();
                 DescendSetupPopupPath.Dispose();
+                GodToolsPath.Dispose();
             }
         }
 

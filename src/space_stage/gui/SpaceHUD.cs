@@ -38,6 +38,8 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
 
     private SpaceFleet? fleetToConstructWith;
 
+    private bool wasAscended;
+
     [Signal]
     public delegate void OnDescendPressed();
 
@@ -62,11 +64,26 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
         base.Init(containedInStage);
 
         UpdateButtonState();
+
+        wasAscended = containedInStage.Ascended;
+
+        // Setup multi level god tools signals, these are done this way as they would be pretty annoying to hook up
+        // all over the place purely through Godot
+        fleetPopup.Connect(nameof(SpaceFleetInfoPopup.OnOpenGodTools), containedInStage,
+            nameof(StageBase.OpenGodToolsForEntity));
     }
 
     public void OnAscended()
     {
         UpdateButtonState();
+
+        if (!wasAscended)
+        {
+            wasAscended = true;
+
+            // Close all windows to have them be reopened by the player to get the ascension stuff in them
+            CloseAllOpenWindows();
+        }
     }
 
     public void UpdatePopulationDisplay(long population)
@@ -81,7 +98,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
 
     public void OpenFleetInfo(SpaceFleet fleet)
     {
-        fleetPopup.ShowForUnit(fleet);
+        fleetPopup.ShowForUnit(fleet, stage!.Ascended);
     }
 
     public void CloseFleetInfo()
