@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 11:48+0300\n"
+"POT-Creation-Date: 2023-05-24 15:54+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -66,6 +66,11 @@ msgstr "前往覺醒階段。達到一定腦力（帶有軸突的組織）後開
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "正在進行其他行動"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "確認退出"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -171,7 +176,7 @@ msgstr ""
 "平均值 {9}，方差 {10} \n"
 "[b]基本細胞器資訊：[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:391
+#: ../src/space_stage/SpaceStage.cs:407
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1100,12 +1105,12 @@ msgstr "確認退出"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "確認改寫"
 
-#: ../src/space_stage/SpaceStage.tscn:216
+#: ../src/space_stage/SpaceStage.tscn:220
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr "（人工智能物種突變的速度）"
 
-#: ../src/space_stage/SpaceStage.tscn:217
+#: ../src/space_stage/SpaceStage.tscn:221
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr "（人工智能物種突變的速度）"
@@ -2499,6 +2504,11 @@ msgstr "糖酵解"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "上帝模式"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:15
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "經過的時間：{0:#,#} 年"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -4628,6 +4638,11 @@ msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "你確定要使用此物種開始新遊戲嗎？\n"
 "你會失去任何未保存的進度。"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "打開信息網址"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -7004,12 +7019,12 @@ msgstr "撤銷"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤銷上一個動作"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "突變點數"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "突變點數"

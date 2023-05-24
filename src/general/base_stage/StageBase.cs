@@ -177,8 +177,11 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     /// <param name="godotEntity">
     ///   The object that was passed through Godot signals. This uses the Godot type here to ensure
     /// </param>
-    public virtual void OpenGodToolsForEntity(Object godotEntity)
+    public virtual void OpenGodToolsForEntity(Object? godotEntity)
     {
+        if (godotEntity == null || !IsInstanceValid(godotEntity))
+            return;
+
         if (godotEntity is IEntity entity)
         {
             OnOpenGodTools(entity);

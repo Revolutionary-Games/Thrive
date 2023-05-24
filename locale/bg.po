@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 11:48+0300\n"
+"POT-Creation-Date: 2023-05-24 15:54+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -68,6 +68,11 @@ msgstr "Пробуждане"
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Последното действие не е завършено"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "Потвърждение за изход"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -172,7 +177,7 @@ msgstr ""
 "  Средно: {9}; Стандартно отклонение: {10}\n"
 "[b]Общи данни за органелите:[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:391
+#: ../src/space_stage/SpaceStage.cs:407
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1119,12 +1124,12 @@ msgstr "Потвърждение за изход"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Потвърждение за презаписване"
 
-#: ../src/space_stage/SpaceStage.tscn:216
+#: ../src/space_stage/SpaceStage.tscn:220
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr "Индустриализация"
 
-#: ../src/space_stage/SpaceStage.tscn:217
+#: ../src/space_stage/SpaceStage.tscn:221
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr "(определя скоростта на мутация на Вашите съперници)"
@@ -2461,6 +2466,11 @@ msgstr "Гликолиза"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Безсмъртие"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:15
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Отваряне на сървъра ни в „Discord“"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -4530,6 +4540,11 @@ msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да започнете нова игра с избраните създания?\n"
 "Всички незапазени промени ще бъдат изгубени."
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "Хранилище"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -6831,12 +6846,12 @@ msgstr "Отмяна"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отмяна на последното действие"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Мутационна скорост"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Мутационна скорост"

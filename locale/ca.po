@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 11:48+0300\n"
+"POT-Creation-Date: 2023-05-24 15:54+0300\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -69,6 +69,11 @@ msgstr "Despertar"
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Acció bloquejada mentre una altra s'està duent a terme"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "Confirmar Sortida"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -163,7 +168,7 @@ msgstr "Estadístiques Generals de tots els mons"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
-#: ../src/space_stage/SpaceStage.cs:391
+#: ../src/space_stage/SpaceStage.cs:407
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1103,12 +1108,12 @@ msgstr "Confirmar Sortida"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:216
+#: ../src/space_stage/SpaceStage.tscn:220
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
 
-#: ../src/space_stage/SpaceStage.tscn:217
+#: ../src/space_stage/SpaceStage.tscn:221
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
@@ -2466,6 +2471,11 @@ msgstr "Glicòlisi"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Mode Déu"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:15
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Han passat: {0:#,#} anys"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -4573,6 +4583,11 @@ msgstr "Obrir Carpeta de Registres"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "Obrir Informació de l'URL"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -6892,12 +6907,12 @@ msgstr "Desfer l'acció"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfer la darrera acció"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Taxa de mutació de la IA"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Taxa de mutació de la IA"

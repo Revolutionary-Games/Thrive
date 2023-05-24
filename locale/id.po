@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 11:48+0300\n"
+"POT-Creation-Date: 2023-05-24 15:54+0300\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -67,6 +67,11 @@ msgstr "Tambah keybind baru"
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Tindakan diblokir saat yang lain sedang berlangsung"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "Konfirmasi Keluar"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -159,7 +164,7 @@ msgstr "Statistika Organisme"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Statistika Organisme"
 
-#: ../src/space_stage/SpaceStage.cs:391
+#: ../src/space_stage/SpaceStage.cs:407
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1118,12 +1123,12 @@ msgstr "Konfirmasi Keluar"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:216
+#: ../src/space_stage/SpaceStage.tscn:220
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/space_stage/SpaceStage.tscn:217
+#: ../src/space_stage/SpaceStage.tscn:221
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
@@ -2495,6 +2500,11 @@ msgstr "Glikolisis"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Mode Kebal"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:15
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Tambah keybind baru"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -4589,6 +4599,11 @@ msgstr "Buka Folder Catatan"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "Open URL"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -6973,12 +6988,12 @@ msgstr "Batal"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Batalkan tindakan terakhir"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Poin Mutasi"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Poin Mutasi"

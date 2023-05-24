@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 11:48+0300\n"
+"POT-Creation-Date: 2023-05-24 15:54+0300\n"
 "PO-Revision-Date: 2023-04-17 02:02+0000\n"
 "Last-Translator: Zero Cool <zerocool@e.email>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -68,6 +68,11 @@ msgstr "Conscient"
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Action bloquée pendant qu'une autre est en cours"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "Confirmer la sortie"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -172,7 +177,7 @@ msgstr ""
 "  Moyenne{9}; écart-type {10}\n"
 "[b]Données génériques des organites:[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:391
+#: ../src/space_stage/SpaceStage.cs:407
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1126,12 +1131,12 @@ msgstr "Confirmer la sortie"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Confirmez l'écrasement"
 
-#: ../src/space_stage/SpaceStage.tscn:216
+#: ../src/space_stage/SpaceStage.tscn:220
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr "(vitesse de mutation des espèces controllées par l'IA)"
 
-#: ../src/space_stage/SpaceStage.tscn:217
+#: ../src/space_stage/SpaceStage.tscn:221
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr "(vitesse de mutation des espèces controllées par l'IA)"
@@ -2520,6 +2525,11 @@ msgstr "Glycolyse"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Mode Tout-Puissant"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:15
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Rejoint notre serveur Discord de la communauté"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -4637,6 +4647,11 @@ msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Êtes-vous sûr de vouloir commencer une nouvelle partie avec l'espèce sélectionnée ?\n"
 "Vous perdrez toute progression non sauvegardée."
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "Ouvre l'URL"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -7007,12 +7022,12 @@ msgstr "Annuler"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Annuler la dernière action"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Taux de mutation de l'IA"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Taux de mutation de l'IA"
