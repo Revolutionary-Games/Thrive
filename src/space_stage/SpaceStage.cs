@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -181,6 +182,15 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                     HUD.HUDMessages.ShowMessage(
                         "Zooming back into planets is a planned Space Stage feature, it will be added at some point",
                         DisplayDuration.Short);
+                }
+            }
+
+            if (CurrentGame!.Ascended)
+            {
+                // Just fill up all resource storages to give infinite stuff in ascension
+                foreach (var resource in resourceStorage.GetAvailableResources().ToList())
+                {
+                    resourceStorage.Add(resource, resourceStorage.Capacity);
                 }
             }
         }
