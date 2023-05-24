@@ -191,7 +191,7 @@ public class AscensionCeremony : Node
                 // TODO: some kind of actual ascending animation
                 if (gateWalker != null)
                 {
-                    gateWalker.GlobalTranslation += new Vector3(0, 200 * delta, 0);
+                    gateWalker.GlobalTranslation += new Vector3(0, 300 * delta, 0);
                 }
 
                 stateTimer += delta;
