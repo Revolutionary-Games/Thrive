@@ -23,7 +23,7 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
 
     protected override IEnumerable<string> ListSubUnits()
     {
-        return managedUnit!.Ships.Select(s => s.Name);
+        return OpenedForUnit?.Ships.Select(s => s.Name) ?? System.Array.Empty<string>();
     }
 
     protected override void OnMoveStart()
@@ -34,9 +34,10 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
 
     protected override void OnConstructStart()
     {
-        if (managedUnit != null)
+        var target = OpenedForUnit;
+        if (target != null)
         {
-            EmitSignal(nameof(OnConstructOptionSelected), managedUnit);
+            EmitSignal(nameof(OnConstructOptionSelected), target);
         }
         else
         {

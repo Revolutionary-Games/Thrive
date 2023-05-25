@@ -9,7 +9,7 @@ using Object = Godot.Object;
 /// </summary>
 /// <typeparam name="T">The type of unit controller</typeparam>
 public abstract class StrategicUnitScreen<T> : CustomDialog
-    where T : Object, IStrategicUnit
+    where T : Object, IStrategicUnit, IEntity
 {
     [Export]
     public NodePath? ActionButtonsContainerPath;
@@ -25,7 +25,7 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
     protected Container? unitListContainer;
 #pragma warning restore CA2213
 
-    protected T? managedUnit;
+    protected EntityReference<T>? managedUnit;
 
     private float elapsed = 1;
 
@@ -35,7 +35,7 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
     /// <summary>
     ///   The unit this screen is open for, or null
     /// </summary>
-    public T? OpenedForUnit => Visible ? managedUnit : null;
+    public T? OpenedForUnit => Visible ? managedUnit?.Value : null;
 
     public override void _Ready()
     {
@@ -51,10 +51,20 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
     {
         base._Process(delta);
 
+        if (!Visible)
+            return;
+
         elapsed += delta;
 
-        if (elapsed >= Constants.UNIT_SCREEN_UPDATE_INTERVAL && managedUnit != null)
+        if (elapsed >= Constants.UNIT_SCREEN_UPDATE_INTERVAL)
         {
+            if (OpenedForUnit == null)
+            {
+                GD.Print("Closing unit screen with now missing unit");
+                Close();
+                return;
+            }
+
             elapsed = 0;
             RefreshShownData();
             UpdateTitle();
@@ -71,9 +81,8 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         }
 
         elapsed = 1;
-        managedUnit = unit;
+        managedUnit = new EntityReference<T>(unit);
 
-        UpdateTitle();
         UpdateAll();
         SetupAvailableActionButtons(showGodTools);
 
@@ -83,11 +92,12 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         }
 
         Show();
+        UpdateTitle();
     }
 
     protected void UpdateTitle()
     {
-        WindowTitle = managedUnit?.UnitScreenTitle ?? "ERROR";
+        WindowTitle = OpenedForUnit?.UnitScreenTitle ?? "ERROR";
     }
 
     protected void SetupAvailableActionButtons(bool showGodTools)
@@ -103,6 +113,8 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         button1.Connect("pressed", this, nameof(OnMoveStart));
 
         actionButtonsContainer.AddChild(button1);
+
+        // TODO: stop action (not added for now to avoid players accidentally leaving unfinishable buildings around
 
         var button2 = new Button
         {
@@ -191,10 +203,11 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
 
     private void ForwardGodTools()
     {
-        if (managedUnit == null)
+        var target = OpenedForUnit;
+        if (target == null)
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnOpenGodTools), managedUnit);
+        EmitSignal(nameof(OnOpenGodTools), target);
     }
 }
