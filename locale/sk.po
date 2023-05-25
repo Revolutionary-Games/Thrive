@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 15:54+0300\n"
+"POT-Creation-Date: 2023-05-25 10:04+0300\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -70,9 +70,29 @@ msgstr "Prebudiť sa"
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Akcia je zablokovaná, kým prebieha iná"
 
-#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
 #, fuzzy
 msgid "ACTION_DELETE"
+msgstr "Potvrdiť ukončenie"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Populácia druhu"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Potvrdiť ukončenie"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "Celková populácia:"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
 msgstr "Potvrdiť ukončenie"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
@@ -163,7 +183,7 @@ msgstr "Štatistika organizmu"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Štatistika organizmu"
 
-#: ../src/space_stage/SpaceStage.cs:407
+#: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -374,7 +394,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Automatické ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -604,7 +624,7 @@ msgid "BUILD_CITY"
 msgstr "Štruktúra"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Štruktúra"
@@ -894,8 +914,8 @@ msgstr "Zvyšuje rýchlosť otáčania veľkých buniek."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Štatistika organizmu"
@@ -2035,7 +2055,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Zadajte existujúce ID"
@@ -4459,7 +4479,8 @@ msgstr "Otvoriť priečinok protokolov"
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
 #, fuzzy
 msgid "OPEN_GOD_TOOLS"
 msgstr "Otvoriť URL Info"
@@ -6692,12 +6713,12 @@ msgstr "Zrušiť"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Zrušiť poslednú zmenu"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Miera mutácie AI"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Miera mutácie AI"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 15:54+0300\n"
-"PO-Revision-Date: 2023-05-24 15:54+0300\n"
+"POT-Creation-Date: 2023-05-25 10:04+0300\n"
+"PO-Revision-Date: 2023-05-25 10:05+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -67,9 +67,25 @@ msgstr "Move to the Awakening Stage. Available once you have enough brain power 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Action blocked while another is in progress"
 
-#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
 msgid "ACTION_DELETE"
 msgstr "Delete"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Double Population"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Duplicate Units"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+msgid "ACTION_HALF_POPULATION"
+msgstr "Halve Population"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+msgid "ACTION_TELEPORT"
+msgstr "Teleport"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -172,7 +188,7 @@ msgstr ""
 "  Average {9}; Standard deviation {10}\n"
 "[b]Generic Organelle Data:[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:407
+#: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
 msgstr "You are already ascended"
 
@@ -388,7 +404,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr "Available Construction Projects"
 
@@ -606,7 +622,7 @@ msgid "BUILD_CITY"
 msgstr "Build a City"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 msgid "BUILD_QUEUE"
 msgstr "Build Queue"
 
@@ -893,8 +909,8 @@ msgstr "Increases turning speed of large cells."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Pop: {0} Food: {1} Science: {2}"
 
@@ -2058,7 +2074,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 msgid "EXISTING_BUILDINGS"
 msgstr "Buildings"
 
@@ -4478,7 +4494,8 @@ msgstr ""
 "Are you sure you want to start a new game as the selected species?\n"
 "You will lose any unsaved progress."
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
 msgid "OPEN_GOD_TOOLS"
 msgstr "God Tools"
 
@@ -6754,11 +6771,11 @@ msgstr "Undo"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Undo the last action"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Construct"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 msgid "UNIT_ACTION_MOVE"
 msgstr "Move"
 
@@ -7733,9 +7750,6 @@ msgstr "Zoom out"
 
 #~ msgid "PATCH_EXTINCTION"
 #~ msgstr "Patch Extinction"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} with population: {1}"
 
 #~ msgid "PREVIOUS"
 #~ msgstr "previous:"

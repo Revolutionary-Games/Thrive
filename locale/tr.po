@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 15:54+0300\n"
+"POT-Creation-Date: 2023-05-25 10:04+0300\n"
 "PO-Revision-Date: 2023-05-04 13:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -67,9 +67,29 @@ msgstr "Uyanış Evresi'ne Geç. Yeterli beyin gücüne sahip olduğunda açıl�
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Başka bir eylem devam ettiğinden, mevcut işlem engellendi"
 
-#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
 #, fuzzy
 msgid "ACTION_DELETE"
+msgstr "Silmeyi Onayla"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Tür Popülasyonu"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Silmeyi Onayla"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "{0}: {1} popülasyonla"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
 msgstr "Silmeyi Onayla"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
@@ -173,7 +193,7 @@ msgstr ""
 "   Ortalama {9}; Standart sapma {10}\n"
 "[b]Genel Organel Verileri[/b]"
 
-#: ../src/space_stage/SpaceStage.cs:407
+#: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -383,7 +403,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Otomatik ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr "Mevcut İnşaat Projeleri"
 
@@ -601,7 +621,7 @@ msgid "BUILD_CITY"
 msgstr "Bir Şehir Kur"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 msgid "BUILD_QUEUE"
 msgstr "İnşa Sırası"
 
@@ -888,8 +908,8 @@ msgstr "Büyük hücrelerin dönme hızını arttırır."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Nüfus: {0} Gıda: {1} Bilim: {2}"
 
@@ -2053,7 +2073,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 msgid "EXISTING_BUILDINGS"
 msgstr "Binalar"
 
@@ -4481,7 +4501,8 @@ msgstr ""
 "Seçilen tür ile yeni bir oyuna başlamak istediğine emin misin?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
 #, fuzzy
 msgid "OPEN_GOD_TOOLS"
 msgstr "Bilgi URL'sini Aç"
@@ -6763,12 +6784,12 @@ msgstr "Geri al"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "İnşaatı Bitir"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Hasat Et"
@@ -7259,9 +7280,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "arazilerdeki popülasyon:"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0}: {1} popülasyonla"
 
 #~ msgid "SAVING"
 #~ msgstr "Kaydediliyor..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 15:54+0300\n"
+"POT-Creation-Date: 2023-05-25 10:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -65,9 +65,28 @@ msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tie
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Aksie is geblock terwyl ander aksies aan die gang is"
 
-#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
 #, fuzzy
 msgid "ACTION_DELETE"
+msgstr "Word wakker ({0:F1}/{1:F1})"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr ""
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Word wakker ({0:F1}/{1:F1})"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
 msgstr "Word wakker ({0:F1}/{1:F1})"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
@@ -152,7 +171,7 @@ msgstr ""
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.cs:407
+#: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -357,7 +376,7 @@ msgid "AUTO_RESOLUTION"
 msgstr ""
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -575,7 +594,7 @@ msgid "BUILD_CITY"
 msgstr ""
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 msgid "BUILD_QUEUE"
 msgstr ""
 
@@ -862,8 +881,8 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 msgid "CITY_SHORT_STATISTICS"
 msgstr ""
 
@@ -1939,7 +1958,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 msgid "EXISTING_BUILDINGS"
 msgstr ""
 
@@ -4187,7 +4206,8 @@ msgstr ""
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
 msgid "OPEN_GOD_TOOLS"
 msgstr ""
 
@@ -6319,11 +6339,11 @@ msgstr ""
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr ""
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 msgid "UNIT_ACTION_MOVE"
 msgstr ""
 

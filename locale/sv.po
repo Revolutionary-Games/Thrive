@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 15:54+0300\n"
+"POT-Creation-Date: 2023-05-25 10:04+0300\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -68,9 +68,29 @@ msgstr "Självmord"
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Åtgärd blockerad medan en annan pågår"
 
-#: ../src/ascension_stage/gui/GodToolsPopup.cs:53
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
 #, fuzzy
 msgid "ACTION_DELETE"
+msgstr "Bekräfta Stängning"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Artbefolkning"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Bekräfta Stängning"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "{0} med befolkning: {1}"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
 msgstr "Bekräfta Stängning"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
@@ -166,7 +186,7 @@ msgstr "Organismstatistik"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Organismstatistik"
 
-#: ../src/space_stage/SpaceStage.cs:407
+#: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -381,7 +401,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Upplösning:"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -611,7 +631,7 @@ msgid "BUILD_CITY"
 msgstr "Struktur"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Struktur"
@@ -913,8 +933,8 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismstatistik"
@@ -2111,7 +2131,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Ett undantag har uppstått medan sparad data laddades"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Skriv över aktuell sparfil:"
@@ -4567,7 +4587,8 @@ msgstr "Öppna Logmapp"
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:120
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
 #, fuzzy
 msgid "OPEN_GOD_TOOLS"
 msgstr "Öppen URL"
@@ -6890,12 +6911,12 @@ msgstr "Ångra"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:109
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutationspoäng"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:100
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Mutationspoäng"
@@ -7330,9 +7351,6 @@ msgstr "Zooma ut"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "befolkning i platser:"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} med befolkning: {1}"
 
 #~ msgid "SAVING"
 #~ msgstr "Sparar..."
