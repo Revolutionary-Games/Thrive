@@ -46,6 +46,9 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     [JsonProperty]
     private float toSpaceUnitAcceleration;
 
+    [JsonProperty]
+    private UnitType? launchedSpacecraftType;
+
     private enum StageMovePhase
     {
         NotMoving,
@@ -278,6 +281,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         if (!spaceCraftData.Value.City.OnUnitUnGarrisoned(spacecraft))
             GD.PrintErr("Failed to un-garrison spacecraft for launch");
 
+        launchedSpacecraftType = spacecraft;
+
         // TODO: switch to using proper in-play unit class here
         // For now the prototype just displays the visuals
         var scene = spacecraft.WorldRepresentation;
@@ -404,16 +409,16 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         SceneManager.Instance.SwitchToScene(spaceStage);
 
         // Create initial fleet from the ship going to space
-        var spaceCraftData = citySystem.FirstLaunchableSpacecraft;
-        if (spaceCraftData == null)
+        if (launchedSpacecraftType == null)
         {
             GD.PrintErr("Spacecraft to put in initial fleet not found, using fallback unit");
 
-            spaceCraftData = (null!, SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"));
+            launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
         }
 
         // TODO: preserve the actual cities placed on the starting planet
 
-        spaceStage.SetupForExistingGameFromAnotherStage(true, spaceCraftData.Value.Spacecraft, SocietyResources);
+        spaceStage.SetupForExistingGameFromAnotherStage(true, launchedSpacecraftType, SocietyResources);
+        launchedSpacecraftType = null;
     }
 }
