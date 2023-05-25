@@ -273,7 +273,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     private Control agentsPanel = null!;
     private ProgressBar oxytoxyBar = null!;
     private ProgressBar mucilageBar = null!;
-    private CustomDialog? extinctionBox;
+    private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
@@ -573,7 +573,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instance<CustomDialog>();
+        extinctionBox = ExtinctionBoxScene.Instance<CustomWindow>();
         winExtinctBoxHolder.AddChild(extinctionBox);
         extinctionBox.Show();
     }

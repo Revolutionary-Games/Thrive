@@ -5,7 +5,7 @@ using Godot;
 
 // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 // [Tool]
-public class LicensesDisplay : CustomDialog
+public class LicensesDisplay : CustomWindow
 {
     [Export]
     public NodePath? TextsContainerPath;

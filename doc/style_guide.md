@@ -540,7 +540,7 @@ Godot usage
 - We have rewritten several controls to workaround Godot bugs or limitations,
   and add custom features. All these rewritten/customized controls are placed
   in "res://src/gui_common/". Currently there are `CustomCheckBox`,
-  `CustomWindow`, `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
+  `TopLevelContainer`, `CustomWindow`, `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
   `TweakedColourPicker`. Consider using these custom types rather than the
   built-in types to ensure consistency across the GUI.
@@ -562,9 +562,9 @@ Godot usage
   (`?`). The content of the popup should give more details and also
   end with a question.
 
-- Popups (which derives from `CustomWindow`) should be shown with
+- Popups (which derives from `TopLevelContainer`) should be shown with
   `PopupCenteredShrink()`. However, if you don't wish to center the popup,
-  simply use `CustomWindow.OpenModal()`.
+  simply use `TopLevelContainer.OpenModal()`.
 
 - Using built-in `Popup` is not recommended since a custom one tailored
   for the game already exist but for posterity similar rules in

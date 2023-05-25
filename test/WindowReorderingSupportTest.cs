@@ -12,7 +12,7 @@ public class WindowReorderingSupportTest : Control
     {
         foreach (Node child in children)
         {
-            (child as CustomWindow)?.Show();
+            (child as TopLevelContainer)?.Show();
             EnableAllWindows(child.GetChildren());
         }
     }

@@ -22,7 +22,7 @@ public abstract class StructureToBuildPopupBase<TSelection> : Control
     protected readonly StringBuilder stringBuilder2 = new();
 
 #pragma warning disable CA2213
-    protected CustomDialog popup = null!;
+    protected CustomWindow popup = null!;
     protected Container buttonsContainer = null!;
     protected Button cancelButton = null!;
 
@@ -33,7 +33,7 @@ public abstract class StructureToBuildPopupBase<TSelection> : Control
 
     public override void _Ready()
     {
-        popup = GetNode<CustomDialog>(PopupPath);
+        popup = GetNode<CustomWindow>(PopupPath);
         buttonsContainer = GetNode<Container>(ButtonsContainerPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
 

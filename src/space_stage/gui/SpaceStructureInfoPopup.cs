@@ -7,7 +7,7 @@ using Container = Godot.Container;
 /// <summary>
 ///   Info and possible actions on a space structure
 /// </summary>
-public class SpaceStructureInfoPopup : CustomDialog
+public class SpaceStructureInfoPopup : CustomWindow
 {
     [Export]
     public NodePath? StructureStatusTextLabelPath;

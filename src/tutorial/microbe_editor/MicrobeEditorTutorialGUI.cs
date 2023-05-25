@@ -39,14 +39,14 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public NodePath StaySmallTutorialPath = null!;
 
 #pragma warning disable CA2213
-    private CustomDialog editorEntryReport = null!;
-    private CustomDialog patchMap = null!;
-    private CustomDialog cellEditorIntroduction = null!;
-    private CustomDialog cellEditorUndo = null!;
-    private CustomDialog cellEditorRedo = null!;
-    private CustomDialog cellEditorClosingWords = null!;
-    private CustomDialog autoEvoPrediction = null!;
-    private CustomDialog staySmallTutorial = null!;
+    private CustomWindow editorEntryReport = null!;
+    private CustomWindow patchMap = null!;
+    private CustomWindow cellEditorIntroduction = null!;
+    private CustomWindow cellEditorUndo = null!;
+    private CustomWindow cellEditorRedo = null!;
+    private CustomWindow cellEditorClosingWords = null!;
+    private CustomWindow autoEvoPrediction = null!;
+    private CustomWindow staySmallTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -215,14 +215,14 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        editorEntryReport = GetNode<CustomDialog>(EditorEntryReportPath);
-        patchMap = GetNode<CustomDialog>(PatchMapPath);
-        cellEditorIntroduction = GetNode<CustomDialog>(CellEditorIntroductionPath);
-        cellEditorUndo = GetNode<CustomDialog>(CellEditorUndoPath);
-        cellEditorRedo = GetNode<CustomDialog>(CellEditorRedoPath);
-        cellEditorClosingWords = GetNode<CustomDialog>(CellEditorClosingWordsPath);
-        autoEvoPrediction = GetNode<CustomDialog>(AutoEvoPredictionPath);
-        staySmallTutorial = GetNode<CustomDialog>(StaySmallTutorialPath);
+        editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
+        patchMap = GetNode<CustomWindow>(PatchMapPath);
+        cellEditorIntroduction = GetNode<CustomWindow>(CellEditorIntroductionPath);
+        cellEditorUndo = GetNode<CustomWindow>(CellEditorUndoPath);
+        cellEditorRedo = GetNode<CustomWindow>(CellEditorRedoPath);
+        cellEditorClosingWords = GetNode<CustomWindow>(CellEditorClosingWordsPath);
+        autoEvoPrediction = GetNode<CustomWindow>(AutoEvoPredictionPath);
+        staySmallTutorial = GetNode<CustomWindow>(StaySmallTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);

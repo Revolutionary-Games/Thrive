@@ -149,7 +149,7 @@ public class MuseumCard : Button
 
     private void OnDeleteMouseEntered()
     {
-        // TODO: unify the approach here with CustomDialog or create variants of the image as another way to do this
+        // TODO: unify the approach here with CustomWindow or create variants of the image as another way to do this
         // properly (reason why that isn't done is due to this issue:
         // https://github.com/Revolutionary-Games/Thrive/issues/1581
         deleteButton.SelfModulate = new Color(0.4f, 0.4f, 0.4f);

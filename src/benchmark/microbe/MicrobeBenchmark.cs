@@ -82,7 +82,7 @@ public class MicrobeBenchmark : Node
     private readonly List<float> fpsValues = new();
 
 #pragma warning disable CA2213
-    private CustomDialog guiContainer = null!;
+    private CustomWindow guiContainer = null!;
     private Label fpsLabel = null!;
     private Label phaseLabel = null!;
     private Label microbesCountLabel = null!;
@@ -145,7 +145,7 @@ public class MicrobeBenchmark : Node
 
     public override void _Ready()
     {
-        guiContainer = GetNode<CustomDialog>(GUIContainerPath);
+        guiContainer = GetNode<CustomWindow>(GUIContainerPath);
         fpsLabel = GetNode<Label>(FPSLabelPath);
         phaseLabel = GetNode<Label>(PhaseLabelPath);
         microbesCountLabel = GetNode<Label>(MicrobesCountLabelPath);

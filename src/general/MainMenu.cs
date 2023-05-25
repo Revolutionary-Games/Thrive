@@ -143,7 +143,7 @@ public class MainMenu : NodeWithInput
 
     private CustomConfirmationDialog steamFailedPopup = null!;
 
-    private CustomDialog safeModeWarning = null!;
+    private CustomWindow safeModeWarning = null!;
 
     private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
     private PermanentlyDismissibleDialog thanksDialog = null!;
@@ -432,7 +432,7 @@ public class MainMenu : NodeWithInput
         thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
-        safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
+        safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
         modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(

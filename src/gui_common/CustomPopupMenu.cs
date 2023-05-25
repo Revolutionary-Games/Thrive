@@ -4,7 +4,7 @@
 ///   A custom <see cref="Control"/> that displays a list of options. Opening and closing can be animated.
 ///   For the built-in engine version, see <see cref="PopupMenu"/>.
 /// </summary>
-public class CustomPopupMenu : CustomWindow
+public class CustomPopupMenu : TopLevelContainer
 {
     [Export]
     public NodePath? PanelPath;

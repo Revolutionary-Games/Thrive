@@ -46,7 +46,7 @@ using Godot.Collections;
 /// </remarks>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomDialog : CustomWindow
+public class CustomWindow : TopLevelContainer
 {
     /// <summary>
     ///   Paths to window reordering nodes in ancestors.
@@ -130,13 +130,13 @@ public class CustomDialog : CustomWindow
 
     /// <summary>
     ///   This is emitted by any means to hide this dialog (when not accepting) but NOT the hiding itself, for that use
-    ///   <see cref="CustomWindow.Closed"/> signal OR <see cref="OnHidden"/>.
+    ///   <see cref="TopLevelContainer.Closed"/> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
     public delegate void Cancelled();
 
     [Signal]
-    public delegate void Dragged(CustomWindow window);
+    public delegate void Dragged(TopLevelContainer window);
 
     [Flags]
     private enum DragType

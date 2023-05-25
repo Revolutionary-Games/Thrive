@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Controls the process panel contents
 /// </summary>
-public class ProcessPanel : CustomDialog
+public class ProcessPanel : CustomWindow
 {
     [Export]
     public NodePath? ProcessListPath;
