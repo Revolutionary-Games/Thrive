@@ -1271,6 +1271,11 @@ public static class Constants
     public const float SPACE_INITIAL_ANIMATION_MIN_ZOOM_SCALE = 0.3f;
     public const float SPACE_INITIAL_ANIMATION_ZOOM_SPEED = 0.08f;
 
+    public const float SPACE_ASCEND_ANIMATION_MIN_ZOOM_SCALE = 0.2f;
+    public const float SPACE_ASCEND_ANIMATION_DURATION = 2.5f;
+    public const float SPACE_ASCEND_ANIMATION_ZOOM_SPEED = 0.5f;
+    public const float SPACE_ASCEND_SCREEN_FADE = 0.8f;
+
     public const float SPACE_FLEET_SELECTION_RADIUS = 1.7f;
 
     /// <summary>

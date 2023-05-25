@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 11:42+0300\n"
+"POT-Creation-Date: 2023-05-25 10:04+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Rubén <chocolateconchurrosyazucar@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -68,6 +68,31 @@ msgstr "Avanzar al estadio del despertar. Solo disponible una vez tengas suficie
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Acción bloqueada mientras otra esta en progreso"
 
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "Confirmar salída"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Población de las Especies"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Confirmar salída"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "{0} con población: {1}"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
+msgstr "Confirmar salída"
+
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "Activa"
@@ -90,11 +115,11 @@ msgstr "Se ha detectado un problema en las validaciones adicionales: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Agregar nueva tecla personalizada"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
 msgstr "Avanzado"
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abre las opciones avanzadas"
 
@@ -129,11 +154,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agresiva"
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:475
 msgid "AI_MUTATION_RATE"
 msgstr "Velocidad de mutación de la AI"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(Velocidad con la cual las species de la AI mutan)"
 
@@ -159,6 +184,10 @@ msgstr "Estadísticas genéricas de todos los mundos"
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Estadísticas del Organismo"
+
+#: ../src/space_stage/SpaceStage.cs:410
+msgid "ALREADY_ASCENDED"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -227,6 +256,16 @@ msgstr "Arte por {0}"
 #: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "Galeria de arte"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
+#, fuzzy
+msgid "ASCENSION_CONGRATULATIONS"
+msgstr "Población de las Especies"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
+msgid "ASCENSION_CONGRATULATIONS_CONTENT"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -357,7 +396,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -377,7 +416,7 @@ msgstr "Etapa de microbio"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
 #: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -407,11 +446,11 @@ msgstr "Mobilidad"
 msgid "BASE_MOVEMENT"
 msgstr "Movimiento Base"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
 msgstr "Básico"
 
-#: ../src/general/NewGameSettings.tscn:1157
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Vuelve a opciones simples"
 
@@ -557,7 +596,7 @@ msgstr "Vacuola Bioluminiscente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:148
 #, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurona"
@@ -580,7 +619,7 @@ msgid "BUILD_CITY"
 msgstr "Estructura"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Estructura"
@@ -871,8 +910,8 @@ msgstr "Aumenta la velocidad de rotación de células grandes."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Estadísticas del Organismo"
@@ -1033,11 +1072,11 @@ msgstr "Balance de compuestos"
 msgid "COMPOUND_CLOUDS"
 msgstr "Nubes de compuestos"
 
-#: ../src/general/NewGameSettings.tscn:529
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Densidad de las nubes de compuestos"
 
-#: ../src/general/NewGameSettings.tscn:569
+#: ../src/general/NewGameSettings.tscn:574
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(Densidad de las nubes de compuestos en el ambiente)"
 
@@ -1080,6 +1119,16 @@ msgstr "Confirmar salída"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Confirmar sobreescritura"
 
+#: ../src/space_stage/SpaceStage.tscn:220
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+msgstr "(Velocidad con la cual las species de la AI mutan)"
+
+#: ../src/space_stage/SpaceStage.tscn:221
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+msgstr "(Velocidad con la cual las species de la AI mutan)"
+
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr ""
@@ -1099,12 +1148,12 @@ msgstr "(Velocidad con la cual las species de la AI mutan)"
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "(Velocidad con la cual las species de la AI mutan)"
 
-#: ../src/general/NewGameSettings.cs:329
-#: ../src/general/NewGameSettings.tscn:1193
+#: ../src/general/NewGameSettings.cs:400
+#: ../src/general/NewGameSettings.tscn:1198
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Entrar al juego con esta configuración"
 
-#: ../src/general/NewGameSettings.cs:336
+#: ../src/general/NewGameSettings.cs:407
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Ciertas opciones son invalidas"
 
@@ -1360,22 +1409,22 @@ msgstr "Glicólisis Citoplasmática"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:945
 #, fuzzy
 msgid "DAY_LENGTH"
 msgstr "Duración del día"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:988
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(Crea secretor en el juego aleatoriamente)"
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:916
 #, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Habilitar ciclo día/noche"
 
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:925
 #, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(ADVERTENCIA: la fotosíntesis se vuelve mucho menos viable)"
@@ -1396,7 +1445,7 @@ msgstr "Las calibraciones de la zona muerta han sido reiniciadas"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Configuración de zona muerta"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:966
+#: ../src/microbe_stage/Microbe.Contact.cs:964
 msgid "DEATH"
 msgstr "muerte"
 
@@ -1467,6 +1516,21 @@ msgstr "Eliminar la(s) partida(s) seleccionada(s) es irreversible, ¿Estás segu
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "¿Deseas eliminar esta partida?"
 
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Eliminar esta partida es irreversible. ¿Estás seguro de querer eliminarla permanentemente?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
+#, fuzzy
+msgid "DESCEND_CONFIRMATION"
+msgstr "Eliminar esta partida es irreversible. ¿Estás seguro de querer eliminarla permanentemente?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
+#, fuzzy
+msgid "DESCEND_CONFIRMATION_EXPLANATION"
+msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
+
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Descripción:"
@@ -1526,7 +1590,7 @@ msgstr "Devorado"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Colaboradores de desarrollo"
 
-#: ../src/general/NewGameSettings.tscn:298
+#: ../src/general/NewGameSettings.tscn:303
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Dificultad"
@@ -1546,8 +1610,8 @@ msgstr ""
 "Ganar progreso de reproducción pasivamente: {8}\n"
 "Limitar el crecimiento del uso de compuestos: {9}"
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr "Dificultad predeterminada"
 
@@ -1835,11 +1899,11 @@ msgstr "Un consejo: las bacterias pueden ser mas fuertes de lo que aparentan. Pu
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Un consejo: puedes cazar otras especies hasta la extinción si no eres cuidadoso. Otras especies pueden hacer lo mismo."
 
-#: ../src/general/NewGameSettings.tscn:1117
+#: ../src/general/NewGameSettings.tscn:1122
 msgid "EASTER_EGGS"
 msgstr "Incluye Easter Eggs"
 
-#: ../src/general/NewGameSettings.tscn:1125
+#: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(Crea secretor en el juego aleatoriamente)"
 
@@ -1925,11 +1989,11 @@ msgstr "Etiqueta de entidades"
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retención ambiental de glucosa"
 
-#: ../src/general/NewGameSettings.tscn:686
+#: ../src/general/NewGameSettings.tscn:691
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(proporción de glucosa retenida en el ambiente en cada generación)"
 
@@ -1984,7 +2048,7 @@ msgstr "Error al guardar"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1232
+#: ../src/microbe_stage/Microbe.Contact.cs:1230
 msgid "ESCAPE_ENGULFING"
 msgstr "Engullición evadida"
 
@@ -2020,7 +2084,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Una excepción ha ocurrido al cargar los datos guardados"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Introducir ID existente"
@@ -2338,11 +2402,11 @@ msgstr "Delta: {0}"
 msgid "FREEBUILDING"
 msgstr "Modo Libre"
 
-#: ../src/general/NewGameSettings.tscn:758
+#: ../src/general/NewGameSettings.tscn:763
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Nuble de glucosa gratuita al salir del editor"
 
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(empieza con una nube de glucosa en cada generación)"
 
@@ -2420,6 +2484,11 @@ msgstr "Glicólisis"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Modo Dios"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:15
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Únete a nuestro servidor de Discord"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2518,6 +2587,11 @@ msgstr "Mantén pulsado para mostrar el cursor"
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Mantener [thrive:input]g_free_cursor[/thrive:input] para mostrar el cursor"
 
+#: ../src/ascension_stage/AscensionCeremony.tscn:231
+#, fuzzy
+msgid "HOLD_TO_SKIP_CREDITS"
+msgstr "Mantén pulsado para mostrar el cursor"
+
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
 msgstr "Inicio"
@@ -2575,11 +2649,11 @@ msgstr "Número de ID inválido"
 msgid "ID_NUMBER"
 msgstr "Número ID"
 
-#: ../src/general/NewGameSettings.tscn:1096
+#: ../src/general/NewGameSettings.tscn:1101
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Incluye prototipos de futuras etapas"
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
 
@@ -3083,13 +3157,13 @@ msgstr "Correo"
 msgid "LAUNCHMEDIA"
 msgstr "Multimedia"
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:849
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr "Solo usar VCLC"
 
-#: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:162
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restringir partes y habilidades a la Vida Como La Conocemos)"
 
@@ -3169,37 +3243,37 @@ msgstr "Licencias"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Aquí se muestras las licencias de Thrive"
 
-#: ../src/general/NewGameSettings.tscn:180
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:881
 msgid "LIFE_ORIGIN"
 msgstr "Origen de la vida"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:885
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:890
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(zona inicial)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (aleatorio)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Un pequeño y calido estanque"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:205
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Ciertas opciones serán deshabilitadas si \"Solo usar VCLC\" está activado"
 
-#: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:895
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Fuentes hidrotermales"
@@ -3243,11 +3317,11 @@ msgstr "Luz"
 msgid "LIMIT_EXTREME"
 msgstr "Extremo"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Limita el crecimiento del uso de compuestos"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:813
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
 
@@ -3801,7 +3875,7 @@ msgstr "Versión mínima:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "¡No se pueden mostrar menos de {0} dataset(s)!"
 
-#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Misc."
 
@@ -4185,11 +4259,11 @@ msgstr "Volumen de la Música"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Intentos de mutación por especie"
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Multiplicador de costo de mutación"
 
-#: ../src/general/NewGameSettings.tscn:451
+#: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(Costo de orgánulos, membranas, y otros objetos en el editor)"
 
@@ -4258,7 +4332,7 @@ msgstr "Nueva Partida"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Nueva partida"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Nota: Puedes cambiar opciones de rendimiento en cualquier momento en [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menú de opciones[/url][/color] para mejorar el rendimiento del juego"
 
@@ -4341,7 +4415,7 @@ msgstr "No hay nada aquí"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "No hay nada con lo que interactuar"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:370
+#: ../src/microbe_stage/Microbe.Contact.cs:368
 #, fuzzy
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Dañado por no tener nada de ATP"
@@ -4356,12 +4430,12 @@ msgstr "Dañado por toxinas en la materia ingerida"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Falta {0} para engullir al objetivo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1790
+#: ../src/microbe_stage/Microbe.Contact.cs:1788
 #, fuzzy
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "El tamaño actual de la célula es demasiado pequeño para engullir al objetivo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1785
+#: ../src/microbe_stage/Microbe.Contact.cs:1783
 #, fuzzy
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "No hay espacio suficiente en el almacenamiento de materia ingerida para engullir al objetivo"
@@ -4510,6 +4584,12 @@ msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "¿Estás seguro de empezar una nueva partida con la especie seleccionada?\n"
 "Perderás cualquier progreso no guardado."
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "Abrir URL de información"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -4665,11 +4745,11 @@ msgstr "Osmorregulación"
 msgid "OSMOREGULATION_COST"
 msgstr "Costo de Osmorregulación"
 
-#: ../src/general/NewGameSettings.tscn:705
+#: ../src/general/NewGameSettings.tscn:710
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Multiplicador de costo de osmorregulación"
 
-#: ../src/general/NewGameSettings.tscn:745
+#: ../src/general/NewGameSettings.tscn:750
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(costo de la osmorregulación de la especie del jugador)"
 
@@ -4768,11 +4848,11 @@ msgstr "Mover cámara a la derecha"
 msgid "PAN_CAMERA_UP"
 msgstr "Mover cámara hacia arriba"
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:784
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Gana progreso passivo de reproducción"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:792
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
 
@@ -4874,7 +4954,7 @@ msgstr "Pacífica"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:682
+#: ../src/general/NewGameSettings.cs:761
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4927,7 +5007,7 @@ msgstr "Resistencia Física"
 msgid "PLACE_ORGANELLE"
 msgstr "Colocar orgánulos"
 
-#: ../src/general/NewGameSettings.tscn:308
+#: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeta"
@@ -4941,12 +5021,12 @@ msgstr ""
 "Origen de la vida: {2}\n"
 "Semilla aleatoria del planeta: {3}"
 
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1067
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generación de Planeta próximamente!"
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semilla de generación del Planeta"
 
@@ -4955,11 +5035,11 @@ msgstr "Semilla de generación del Planeta"
 msgid "PLAYER"
 msgstr "Célula del jugador"
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Penalization de población por muerte del jugador"
 
-#: ../src/general/NewGameSettings.tscn:628
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(Reducción en la población de la especie del jugador por cada muerte del mismo)"
 
@@ -5135,8 +5215,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Nombre de especies aleatorio"
 
-#: ../src/general/NewGameSettings.tscn:241
-#: ../src/general/NewGameSettings.tscn:1009
+#: ../src/general/NewGameSettings.tscn:242
+#: ../src/general/NewGameSettings.tscn:1014
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "El valor usado para generar el planeta, debe ser un numero positivo"
 
@@ -5981,7 +6061,7 @@ msgstr "Comenzando"
 msgid "START_CALIBRATION"
 msgstr "Iniciar calibración"
 
-#: ../src/general/NewGameSettings.tscn:1196
+#: ../src/general/NewGameSettings.tscn:1201
 #, fuzzy
 msgid "START_GAME"
 msgstr "Guardar Partida"
@@ -6161,13 +6241,13 @@ msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "Materiales necesarios para poder terminar la construcción: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
-#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 #, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (Coste inicial: {1}, total: {2})"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
-#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 #, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (NO ES SUFICIENTE PARA EMPEZAR: {1}, total: {2})"
@@ -6182,11 +6262,11 @@ msgstr "Centro de sociedad"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Centro de sociedad"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:785
+#: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
 msgstr "Caza exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:778
+#: ../src/microbe_stage/Microbe.Contact.cs:776
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "Búsqueda de recursos exitosa"
 
@@ -6860,12 +6940,12 @@ msgstr "Deshacer"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Deshacer la última acción"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Velocidad de mutación de la AI"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "Velocidad de mutación de la AI"
@@ -7345,9 +7425,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "Población en regiones:"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} con población: {1}"
 
 #~ msgid "SAVING"
 #~ msgstr "Guardando..."

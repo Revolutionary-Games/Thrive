@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/HoldKeyPrompt.cs" type="Script" id=2]
+
+[node name="HoldKeyPrompt" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+RequiredHoldTime = 1.0
+HoldIndicatorMarginSize = 0
+SinglePressHoldProgress = 0.1
+DecayRate = 4.0
+DecayRateAfterPress = 10.0
+HoldIndicatorColour = Color( 0, 0.74902, 0.713726, 1 )
+HoldIndicatorFilledColour = Color( 0.0666667, 1, 0.835294, 1 )

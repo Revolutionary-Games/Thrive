@@ -243,9 +243,7 @@ public class PlacedSpaceStructure : Spatial, IEntityWithNameLabel
         // Create the components
         foreach (var factory in Definition.Components.Factories)
         {
-            // TODO: add the this parameter if it will be needed
-            // componentInstances.Add(factory.Create(this));
-            componentInstances.Add(factory.Create());
+            componentInstances.Add(factory.Create(this));
         }
     }
 }

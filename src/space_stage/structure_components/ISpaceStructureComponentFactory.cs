@@ -3,6 +3,6 @@
 /// </summary>
 public interface ISpaceStructureComponentFactory
 {
-    public SpaceStructureComponent Create();
+    public SpaceStructureComponent Create(PlacedSpaceStructure owningStructure);
     public void Check(string name);
 }
