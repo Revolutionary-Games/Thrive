@@ -37,6 +37,8 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
     /// </summary>
     public T? OpenedForUnit => Visible ? managedUnit?.Value : null;
 
+    protected T? UnitEvenWhileClosed => managedUnit?.Value;
+
     public override void _Ready()
     {
         base._Ready();
@@ -58,7 +60,7 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
 
         if (elapsed >= Constants.UNIT_SCREEN_UPDATE_INTERVAL)
         {
-            if (OpenedForUnit == null)
+            if (UnitEvenWhileClosed == null)
             {
                 GD.Print("Closing unit screen with now missing unit");
                 Close();
@@ -83,6 +85,7 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         elapsed = 1;
         managedUnit = new EntityReference<T>(unit);
 
+        UpdateTitle();
         UpdateAll();
         SetupAvailableActionButtons(showGodTools);
 
@@ -92,12 +95,11 @@ public abstract class StrategicUnitScreen<T> : CustomDialog
         }
 
         Show();
-        UpdateTitle();
     }
 
     protected void UpdateTitle()
     {
-        WindowTitle = OpenedForUnit?.UnitScreenTitle ?? "ERROR";
+        WindowTitle = UnitEvenWhileClosed?.UnitScreenTitle ?? "ERROR";
     }
 
     protected void SetupAvailableActionButtons(bool showGodTools)

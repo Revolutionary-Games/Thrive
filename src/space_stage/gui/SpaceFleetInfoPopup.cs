@@ -23,7 +23,7 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
 
     protected override IEnumerable<string> ListSubUnits()
     {
-        return OpenedForUnit?.Ships.Select(s => s.Name) ?? System.Array.Empty<string>();
+        return UnitEvenWhileClosed?.Ships.Select(s => s.Name) ?? System.Array.Empty<string>();
     }
 
     protected override void OnMoveStart()
