@@ -342,8 +342,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         rootOfDynamicallySpawned.AddChild(structureToPlaceGhost);
     }
 
-    public bool AttemptPlaceStructureIfInProgress()
+    public bool AttemptPlaceIfInProgress()
     {
+        if (godTools.PlayerClickedLocation(strategicCamera.CursorWorldPos))
+            return true;
+
         if (structureTypeToPlace == null)
             return false;
 

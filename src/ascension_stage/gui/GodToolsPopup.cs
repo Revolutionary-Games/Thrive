@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Shows the god tools available to mess with a game object
@@ -19,6 +18,8 @@ public class GodToolsPopup : CustomDialog
 
     private EntityReference<IEntity>? targetEntity;
 
+    private bool wantsTeleport;
+
     public bool WantsPlayerToPickLocation { get; private set; }
 
     public override void _Ready()
@@ -31,6 +32,13 @@ public class GodToolsPopup : CustomDialog
     {
         if (!Visible)
             return;
+
+        // Close if the target is gone
+        if (GetTarget() == null)
+        {
+            GD.Print("Closing god tools for a disappeared target");
+            Close();
+        }
     }
 
     public void OpenForEntity(IEntity entity)
@@ -43,6 +51,7 @@ public class GodToolsPopup : CustomDialog
         }
 
         actionButtonsContainer.QueueFreeChildren();
+        wantsTeleport = false;
 
         targetEntityNameLabel.Text = entity.EntityNode.Name;
 
@@ -50,9 +59,16 @@ public class GodToolsPopup : CustomDialog
 
         // TODO: entity specific buttons
 
+        if (entity is Spatial)
+        {
+            AddActionButton(TranslationServer.Translate("ACTION_TELEPORT"), nameof(OnTeleportState), true);
+        }
+
         AddActionButton(TranslationServer.Translate("ACTION_DELETE"), nameof(OnDelete));
 
-        Open(true);
+        Open(false);
+
+        UpdateWantsToPickLocation();
     }
 
     /// <summary>
@@ -62,25 +78,47 @@ public class GodToolsPopup : CustomDialog
     /// <returns>True when this acted on the click, false otherwise</returns>
     public bool PlayerClickedLocation(Vector3 location)
     {
-        if (!WantsPlayerToPickLocation)
+        if (!Visible || !WantsPlayerToPickLocation)
             return false;
 
-        throw new NotImplementedException();
+        if (wantsTeleport)
+        {
+            // TODO: auto reset this? (needs to reset the button state)
+            // wantsTeleport = false;
 
-        return true;
+            var target = GetTarget();
+
+            if (target is Spatial spatial)
+            {
+                spatial.GlobalTranslation = location;
+            }
+            else
+            {
+                GD.PrintErr("Can't teleport current entity (null or invalid cast)");
+            }
+
+            UpdateWantsToPickLocation();
+            return true;
+        }
+
+        return false;
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ActionButtonsContainerPath?.Dispose();
+            if (ActionButtonsContainerPath != null)
+            {
+                ActionButtonsContainerPath.Dispose();
+                TargetEntityNameLabelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);
     }
 
-    private void AddActionButton(string text, string methodName)
+    private void AddActionButton(string text, string methodName, bool toggleButton = false)
     {
         var button = new Button
         {
@@ -88,7 +126,15 @@ public class GodToolsPopup : CustomDialog
             SizeFlagsHorizontal = 0,
         };
 
-        button.Connect("pressed", this, methodName);
+        if (toggleButton)
+        {
+            button.ToggleMode = true;
+            button.Connect("toggled", this, methodName);
+        }
+        else
+        {
+            button.Connect("pressed", this, methodName);
+        }
 
         actionButtonsContainer.AddChild(button);
     }
@@ -103,6 +149,17 @@ public class GodToolsPopup : CustomDialog
         Close();
     }
 
+    private void OnTeleportState(bool pressed)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        wantsTeleport = pressed;
+        UpdateWantsToPickLocation();
+
+        // TODO: add some kind of visual indicator for when this is active that follows the cursor / world point
+        // the cursor is over
+    }
+
     private IEntity? GetTarget()
     {
         var target = targetEntity?.Value;
@@ -115,5 +172,10 @@ public class GodToolsPopup : CustomDialog
         }
 
         return target;
+    }
+
+    private void UpdateWantsToPickLocation()
+    {
+        WantsPlayerToPickLocation = wantsTeleport;
     }
 }
