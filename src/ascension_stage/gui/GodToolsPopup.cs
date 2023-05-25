@@ -63,6 +63,10 @@ public class GodToolsPopup : CustomDialog
             case SpaceFleet:
                 AddActionButton(TranslationServer.Translate("ACTION_DUPLICATE_UNITS"), nameof(OnDuplicateUnits));
                 break;
+            case PlacedPlanet:
+                AddActionButton(TranslationServer.Translate("ACTION_DOUBLE_POPULATION"), nameof(OnDoublePopulation));
+                AddActionButton(TranslationServer.Translate("ACTION_HALF_POPULATION"), nameof(OnHalfPopulation));
+                break;
         }
 
         if (entity is Spatial)
@@ -171,7 +175,6 @@ public class GodToolsPopup : CustomDialog
         GUICommon.Instance.PlayButtonPressSound();
 
         var target = GetTarget();
-
         if (target == null)
             return;
 
@@ -186,6 +189,50 @@ public class GodToolsPopup : CustomDialog
                 break;
             default:
                 GD.PrintErr("Unknown entity to handle to duplicate units");
+                break;
+        }
+    }
+
+    private void OnDoublePopulation()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var target = GetTarget();
+        if (target == null)
+            return;
+
+        switch (target)
+        {
+            case PlacedPlanet planet:
+                planet.Population *= 2;
+
+                break;
+            default:
+                GD.PrintErr("Unknown entity to handle to double population");
+                break;
+        }
+    }
+
+    private void OnHalfPopulation()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var target = GetTarget();
+        if (target == null)
+            return;
+
+        switch (target)
+        {
+            case PlacedPlanet planet:
+                planet.Population /= 2;
+
+                // Make sure there's at least someone there so that the planet can still grow
+                if (planet.Population < 1)
+                    planet.Population = 1;
+
+                break;
+            default:
+                GD.PrintErr("Unknown entity to handle to half population");
                 break;
         }
     }

@@ -71,6 +71,9 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
         // all over the place purely through Godot
         fleetPopup.Connect(nameof(SpaceFleetInfoPopup.OnOpenGodTools), containedInStage,
             nameof(StageBase.OpenGodToolsForEntity));
+
+        planetScreenPopup.Connect(nameof(PlanetScreen.OnOpenGodTools), containedInStage,
+            nameof(StageBase.OpenGodToolsForEntity));
     }
 
     public void OnAscended()
@@ -93,7 +96,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
 
     public void OpenPlanetScreen(PlacedPlanet planet)
     {
-        planetScreenPopup.ShowForPlanet(planet);
+        planetScreenPopup.ShowForPlanet(planet, stage!.Ascended);
     }
 
     public void OpenFleetInfo(SpaceFleet fleet)
