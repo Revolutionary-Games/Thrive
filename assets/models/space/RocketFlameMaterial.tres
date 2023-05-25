@@ -1,0 +1,19 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://assets/textures/blurry_circle.png" type="Texture" id=1]
+
+[resource]
+flags_transparent = true
+vertex_color_is_srgb = true
+params_depth_draw_mode = 3
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0, 0, 0, 1 )
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.898039, 0.635294, 0.392157, 1 )
+emission_energy = 9.35
+emission_operator = 0
+emission_on_uv2 = false

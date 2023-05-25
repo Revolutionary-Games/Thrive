@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/space_stage/SpaceStage.cs" type="Script" id=1]
 [ext_resource path="res://src/society_stage/StrategicCamera.tscn" type="PackedScene" id=2]
@@ -14,6 +14,10 @@
 [ext_resource path="res://assets/textures/iron_bump.png" type="Texture" id=12]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=13]
 [ext_resource path="res://assets/models/IronRock1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/ascension_stage/gui/AscensionCongratulationsPopup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/ascension_stage/gui/DescendConfirmationDialog.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/ascension_stage/gui/GodToolsPopup.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ProceduralSky" id=2]
 radiance_size = 3
@@ -116,6 +120,10 @@ PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("SpaceHUD")
 StrategicCameraPath = NodePath("World/StrategicCamera")
 NameLabelSystemPath = NodePath("StrategicEntityNameLabelSystem")
+AscensionMoveConfirmationPopupPath = NodePath("AscensionConfirmation")
+AscensionCongratulationsPopupPath = NodePath("AscensionCongratulationsPopup")
+DescendSetupPopupPath = NodePath("DescendConfirmationDialog")
+GodToolsPath = NodePath("GodToolsPopup")
 
 [node name="World" type="Node" parent="."]
 
@@ -205,8 +213,25 @@ visible = false
 [node name="SpaceHUD" parent="." instance=ExtResource( 7 )]
 MenuPath = NodePath("../PauseMenu")
 
+[node name="GodToolsPopup" parent="." instance=ExtResource( 18 )]
+
+[node name="AscensionConfirmation" parent="." instance=ExtResource( 17 )]
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+DialogText = "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+
+[node name="AscensionCongratulationsPopup" parent="." instance=ExtResource( 15 )]
+margin_right = 450.0
+margin_bottom = 300.0
+
+[node name="DescendConfirmationDialog" parent="." instance=ExtResource( 16 )]
+margin_bottom = 500.0
+
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
 
+[connection signal="OnDescendPressed" from="SpaceHUD" to="." method="OnDescendButtonPressed"]
 [connection signal="OnOpenMenu" from="SpaceHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="SpaceHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnStartResearching" from="SpaceHUD" to="." method="StartResearching"]
+[connection signal="Cancelled" from="AscensionConfirmation" to="." method="CancelMoveToAscension"]
+[connection signal="Confirmed" from="AscensionConfirmation" to="." method="OnConfirmMoveToAscension"]

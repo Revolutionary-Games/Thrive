@@ -24,6 +24,8 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
 
         var adjustedSpeed = delta * Unit.Speed;
 
+        // TODO: adjust the fleet rotation towards the travel direction
+
         if (distanceToTarget < adjustedSpeed)
         {
             Unit.GlobalTranslation = TargetPosition;

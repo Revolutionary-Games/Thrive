@@ -28,6 +28,11 @@
     <Compile Include="simulation_parameters\IRegistryAssignable.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="simulation_parameters\VersionPatchNotes.cs" />
+    <Compile Include="src\ascension_stage\AscensionCeremony.cs" />
+    <Compile Include="src\ascension_stage\gui\AscensionCongratulationsPopup.cs" />
+    <Compile Include="src\ascension_stage\gui\DescendConfirmationDialog.cs" />
+    <Compile Include="src\ascension_stage\gui\DescendSetupScreen.cs" />
+    <Compile Include="src\ascension_stage\gui\GodToolsPopup.cs" />
     <Compile Include="src\auto-evo\AutoEvoExploringTool.cs" />
     <Compile Include="src\auto-evo\AutoEvoExploringTool.Export.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
@@ -259,6 +264,7 @@
     <Compile Include="src\gui_common\DragResult.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
+    <Compile Include="src\gui_common\HoldKeyPrompt.cs" />
     <Compile Include="src\gui_common\InspectedEntityLabel.cs" />
     <Compile Include="src\gui_common\ModalManager.cs" />
     <Compile Include="src\gui_common\MouseHoverPanel.cs" />
@@ -699,6 +705,7 @@
     <Compile Include="src\space_stage\structure_components\InterplanetaryEnergyComponent.cs" />
     <Compile Include="src\space_stage\structure_components\ISpaceStructureComponentFactory.cs" />
     <Compile Include="src\space_stage\structure_components\SpaceStructureComponent.cs" />
+    <Compile Include="src\stage_starters\AscensionStageStarter.cs" />
     <Compile Include="src\stage_starters\AwakeningStageStarter.cs" />
     <Compile Include="src\stage_starters\AwareStageStarter.cs" />
     <Compile Include="src\stage_starters\ComplexStageStarterBase.cs" />
