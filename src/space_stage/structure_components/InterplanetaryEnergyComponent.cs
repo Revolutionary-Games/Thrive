@@ -4,7 +4,7 @@ public class InterplanetaryEnergyComponent : SpaceStructureComponent
 {
     private readonly WorldResource energyResource;
 
-    public InterplanetaryEnergyComponent(float energy)
+    public InterplanetaryEnergyComponent(PlacedSpaceStructure owningStructure, float energy) : base(owningStructure)
     {
         Energy = energy;
 
@@ -24,9 +24,9 @@ public class InterplanetaryEnergyComponentFactory : ISpaceStructureComponentFact
     [JsonProperty]
     public float Amount { get; private set; }
 
-    public SpaceStructureComponent Create()
+    public SpaceStructureComponent Create(PlacedSpaceStructure owningStructure)
     {
-        return new InterplanetaryEnergyComponent(Amount);
+        return new InterplanetaryEnergyComponent(owningStructure, Amount);
     }
 
     public void Check(string name)

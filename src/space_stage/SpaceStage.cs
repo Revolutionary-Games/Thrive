@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -12,13 +13,26 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     [Export]
     public NodePath? NameLabelSystemPath;
 
-    // [Export]
-    // public NodePath DescendConfirmationPopupPath = null!;
+    [Export]
+    public NodePath AscensionMoveConfirmationPopupPath = null!;
+
+    [Export]
+    public NodePath AscensionCongratulationsPopupPath = null!;
+
+    [Export]
+    public NodePath DescendSetupPopupPath = null!;
+
+    [Export]
+    public NodePath GodToolsPath = null!;
 
 #pragma warning disable CA2213
     private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 
-    // private CustomConfirmationDialog descendConfirmationPopup = null!;
+    private CustomConfirmationDialog ascensionMoveConfirmationPopup = null!;
+    private AscensionCongratulationsPopup ascensionCongratulationsPopup = null!;
+    private DescendConfirmationDialog descendConfirmationPopup = null!;
+
+    private GodToolsPopup godTools = null!;
 
     private PackedScene planetScene = null!;
     private PackedScene fleetScene = null!;
@@ -38,9 +52,30 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     private SpaceStructureDefinition? structureTypeToPlace;
     private SpaceFleet? structurePlacingFleet;
 
+    [JsonProperty]
     private bool zoomingOutFromFleet;
+
+    [JsonProperty]
     private float targetZoomOutLevel;
+
+    [JsonProperty]
     private float minZoomLevelToRestore;
+
+    [JsonProperty]
+    private bool playingAscensionAnimation;
+
+    private bool fadingOutToAscension;
+
+    [JsonProperty]
+    private float ascendAnimationElapsed;
+
+    [JsonProperty]
+    private Vector3 ascendAnimationStart;
+
+    [JsonProperty]
+    private Vector3 ascendAnimationEnd;
+
+    private float defaultZoomLevel;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -68,6 +103,9 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.Init(this);
 
         SetupStage();
+
+        minZoomLevelToRestore = strategicCamera.MinZoomLevel;
+        defaultZoomLevel = strategicCamera.ZoomLevel;
     }
 
     public override void ResolveNodeReferences()
@@ -79,7 +117,10 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         HUD = GetNode<SpaceHUD>("SpaceHUD");
 
-        // descendConfirmationPopup = GetNode<CustomConfirmationDialog>(DescendConfirmationPopupPath);
+        ascensionMoveConfirmationPopup = GetNode<CustomConfirmationDialog>(AscensionMoveConfirmationPopupPath);
+        ascensionCongratulationsPopup = GetNode<AscensionCongratulationsPopup>(AscensionCongratulationsPopupPath);
+        descendConfirmationPopup = GetNode<DescendConfirmationDialog>(DescendSetupPopupPath);
+        godTools = GetNode<GodToolsPopup>(GodToolsPath);
 
         // Systems
         nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
@@ -99,6 +140,26 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                 strategicCamera.AllowPlayerInput = true;
                 strategicCamera.MinZoomLevel = minZoomLevelToRestore;
                 zoomingOutFromFleet = false;
+            }
+        }
+        else if (playingAscensionAnimation)
+        {
+            if (!fadingOutToAscension)
+            {
+                ascendAnimationElapsed += delta;
+
+                strategicCamera.WorldLocation = ascendAnimationStart.LinearInterpolate(ascendAnimationEnd,
+                    Math.Min(1, ascendAnimationElapsed / Constants.SPACE_ASCEND_ANIMATION_DURATION));
+
+                if (AnimateCameraZoomTowards(strategicCamera.MinZoomLevel, delta,
+                        Constants.SPACE_ASCEND_ANIMATION_ZOOM_SPEED) &&
+                    ascendAnimationElapsed >= Constants.SPACE_ASCEND_ANIMATION_DURATION)
+                {
+                    fadingOutToAscension = true;
+
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut,
+                        Constants.SPACE_ASCEND_SCREEN_FADE, SwitchToAscensionScene, false);
+                }
             }
         }
 
@@ -127,6 +188,15 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                     HUD.HUDMessages.ShowMessage(
                         "Zooming back into planets is a planned Space Stage feature, it will be added at some point",
                         DisplayDuration.Short);
+                }
+            }
+
+            if (Ascended)
+            {
+                // Just fill up all resource storages to give infinite stuff in ascension
+                foreach (var resource in resourceStorage.GetAvailableResources().ToList())
+                {
+                    resourceStorage.Add(resource, resourceStorage.Capacity);
                 }
             }
         }
@@ -203,6 +273,29 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             true);
     }
 
+    public void SetupForExistingGameFromAnotherStage(bool spawnPlanet, UnitType spacecraft,
+        IResourceContainer? societyResources)
+    {
+        if (GetTree() == null)
+            throw new InvalidOperationException("This can only be called after this is scene attached");
+
+        // Copy resources from the other stage
+        if (societyResources != null)
+            TakeInitialResourcesFrom(SocietyResources);
+
+        if (spawnPlanet)
+            AddPlanet(Transform.Identity, true);
+
+        var fleet = AddFleet(new Transform(Basis.Identity, new Vector3(6, 0, 0)),
+            spacecraft, true);
+
+        // Focus the camera initially on the ship to make the stage transition smoother
+        ZoomOutFromFleet(fleet);
+
+        // Add an order to have the fleet be moving
+        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
+    }
+
     public void SelectUnitUnderCursor()
     {
         // TODO: allow multi selection when holding down shift
@@ -249,8 +342,11 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         rootOfDynamicallySpawned.AddChild(structureToPlaceGhost);
     }
 
-    public bool AttemptPlaceStructureIfInProgress()
+    public bool AttemptPlaceIfInProgress()
     {
+        if (godTools.PlayerClickedLocation(strategicCamera.CursorWorldPos))
+            return true;
+
         if (structureTypeToPlace == null)
             return false;
 
@@ -300,6 +396,61 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         SocietyResources.TransferFrom(resources);
     }
 
+    public void OnStartAscension(PlacedSpaceStructure ascensionGate)
+    {
+        if (ascensionMoveConfirmationPopup.Visible)
+        {
+            GD.PrintErr("Ascension move confirm is already open");
+            return;
+        }
+
+        if (CurrentGame!.Ascended)
+        {
+            GD.Print("Player is already ascended");
+            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("ALREADY_ASCENDED"));
+            return;
+        }
+
+        minZoomLevelToRestore = strategicCamera.MinZoomLevel;
+        ascendAnimationEnd = ascensionGate.GlobalTranslation;
+
+        ascensionMoveConfirmationPopup.PopupCenteredShrink();
+        PauseManager.Instance.AddPause(nameof(ascensionMoveConfirmationPopup));
+    }
+
+    public void OnReturnedFromAscension()
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game info not set");
+
+        // Stop the credits music if it got started
+        StartMusic();
+
+        // Restore player input to the camera
+        strategicCamera.AllowPlayerInput = true;
+        strategicCamera.MinZoomLevel = minZoomLevelToRestore;
+        strategicCamera.ZoomLevel = defaultZoomLevel;
+
+        // Replay the animation
+        HUD.OnEnterStageTransition(true, true);
+
+        // And finally setup things right for the ascension
+        OnBecomeAscended();
+
+        // Show the congratulations popup for being ascended
+        ascensionCongratulationsPopup.ShowWithInfo(CurrentGame);
+    }
+
+    public void OnBecomeAscended()
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("No current game");
+
+        CurrentGame.OnBecomeAscended();
+
+        HUD.OnAscended();
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -340,17 +491,22 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void OnOpenGodTools(IEntity entity)
+    {
+        godTools.OpenForEntity(entity);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            // When DescendConfirmationPopupPath is uncommented this will be needed
-            // ReSharper disable once UseNullPropagation
             if (NameLabelSystemPath != null)
             {
                 NameLabelSystemPath.Dispose();
-
-                // DescendConfirmationPopupPath.Dispose();
+                AscensionMoveConfirmationPopupPath.Dispose();
+                AscensionCongratulationsPopupPath.Dispose();
+                DescendSetupPopupPath.Dispose();
+                GodToolsPath.Dispose();
             }
         }
 
@@ -435,5 +591,50 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         }
 
         return bestFleet;
+    }
+
+    private void OnConfirmMoveToAscension()
+    {
+        playingAscensionAnimation = true;
+        ascendAnimationElapsed = 0;
+        strategicCamera.MinZoomLevel *= Constants.SPACE_ASCEND_ANIMATION_MIN_ZOOM_SCALE;
+
+        ascendAnimationStart = strategicCamera.WorldLocation;
+
+        strategicCamera.AllowPlayerInput = false;
+
+        HUD.CloseAllOpenWindows();
+
+        PauseManager.Instance.Resume(nameof(ascensionMoveConfirmationPopup));
+    }
+
+    private void CancelMoveToAscension()
+    {
+        PauseManager.Instance.Resume(nameof(ascensionMoveConfirmationPopup));
+    }
+
+    private void SwitchToAscensionScene()
+    {
+        GD.Print("Switching to ascension ceremony scene");
+
+        var ascensionScene =
+            SceneManager.Instance.LoadScene(MainGameState.AscensionCeremony).Instance<AscensionCeremony>();
+        ascensionScene.CurrentGame = CurrentGame;
+
+        var us = (SpaceStage?)SceneManager.Instance.SwitchToScene(ascensionScene, true);
+
+        if (us == this)
+        {
+            ascensionScene.ReturnToScene = this;
+        }
+        else
+        {
+            GD.PrintErr("Could not save current space stage");
+        }
+    }
+
+    private void OnDescendButtonPressed()
+    {
+        descendConfirmationPopup.ShowForGame(CurrentGame!);
     }
 }

@@ -37,7 +37,7 @@ public class PlayerSpaceInput : NodeWithInput
     [RunOnKeyDown("e_primary", Priority = -1)]
     public void SelectUnitUnderCursor()
     {
-        if (stage.AttemptPlaceStructureIfInProgress())
+        if (stage.AttemptPlaceIfInProgress())
             return;
 
         // TODO: allow dragging a box to select multiple units

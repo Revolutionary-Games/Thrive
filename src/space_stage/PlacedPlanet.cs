@@ -137,7 +137,7 @@ public class PlacedPlanet : Spatial, IEntityWithNameLabel
         // TODO: production from buildings
 
         // Placeholder some resource production
-        globalResourceHack.Add(rockResource, 10 * elapsed);
+        globalResourceHack.Add(rockResource, (10 + Mathf.Log(Math.Max(Population, 1)) * 3) * elapsed);
     }
 
     private void HandleResourceConsumption(float elapsed, IResourceContainer globalResourceHack)

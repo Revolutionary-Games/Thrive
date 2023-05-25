@@ -14,6 +14,7 @@ PlanetScreenPopupPath = NodePath("PlanetScreen")
 FleetPopupPath = NodePath("SpaceFleetInfoPopup")
 ConstructionPopupPath = NodePath("SpaceConstructionPopup")
 StructurePopupPath = NodePath("SpaceStructureInfoPopup")
+DescendButtonPath = NodePath("Descend")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." index="0" instance=ExtResource( 5 )]
 
@@ -40,4 +41,16 @@ margin_right = 324.0
 
 [node name="SpaceConstructionPopup" parent="." index="12" instance=ExtResource( 6 )]
 
+[node name="Descend" type="Button" parent="." index="13"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -235.369
+margin_top = -45.1216
+margin_right = -40.3691
+margin_bottom = -10.1216
+text = "DESCEND_BUTTON"
+
 [connection signal="OnConstructOptionSelected" from="SpaceFleetInfoPopup" to="." method="ShowConstructionOptionsForFleet"]
+[connection signal="pressed" from="Descend" to="." method="ForwardDescendPress"]
