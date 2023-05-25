@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Shows the god tools available to mess with a game object
@@ -57,7 +58,12 @@ public class GodToolsPopup : CustomDialog
 
         targetEntity = new EntityReference<IEntity>(entity);
 
-        // TODO: entity specific buttons
+        switch (entity)
+        {
+            case SpaceFleet:
+                AddActionButton(TranslationServer.Translate("ACTION_DUPLICATE_UNITS"), nameof(OnDuplicateUnits));
+                break;
+        }
 
         if (entity is Spatial)
         {
@@ -158,6 +164,30 @@ public class GodToolsPopup : CustomDialog
 
         // TODO: add some kind of visual indicator for when this is active that follows the cursor / world point
         // the cursor is over
+    }
+
+    private void OnDuplicateUnits()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var target = GetTarget();
+
+        if (target == null)
+            return;
+
+        switch (target)
+        {
+            case SpaceFleet fleet:
+                foreach (var unit in fleet.Ships.ToList())
+                {
+                    fleet.AddShip(unit);
+                }
+
+                break;
+            default:
+                GD.PrintErr("Unknown entity to handle to duplicate units");
+                break;
+        }
     }
 
     private IEntity? GetTarget()
