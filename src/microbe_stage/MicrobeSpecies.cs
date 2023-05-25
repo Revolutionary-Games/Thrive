@@ -72,7 +72,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     /// </summary>
     [JsonIgnore]
     public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
-        * (IsBacteria ? 0.5f : 1.0f);
+        * (IsBacteria ? 0.4f : 1.0f);
 
     [JsonIgnore]
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);

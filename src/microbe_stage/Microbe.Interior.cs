@@ -294,7 +294,7 @@ public partial class Microbe
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
 
         if (CellTypeProperties.IsBacteria)
-            ejectionDistance *= 0.5f;
+            ejectionDistance *= 0.4f;
 
         var props = new AgentProperties(Species, agentType);
 
@@ -414,7 +414,7 @@ public partial class Microbe
         float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
 
         if (CellTypeProperties.IsBacteria)
-            width *= 0.5f;
+            width *= 0.4f;
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + direction * width,
@@ -1410,7 +1410,7 @@ public partial class Microbe
 
         // The membrane radius doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
-            distance *= 0.5f;
+            distance *= 0.4f;
 
         distance += displacement;
 

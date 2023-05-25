@@ -195,7 +195,7 @@ public partial class Microbe
             var size = HexCount * (1 - DigestedAmount);
 
             if (CellTypeProperties.IsBacteria)
-                return size * 0.5f;
+                return size * 0.4f;
 
             return size;
         }
@@ -1548,7 +1548,7 @@ public partial class Microbe
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.5f;
+            nearestPointOfMembraneToTarget *= 0.4f;
 
         // From the calculated nearest point of membrane above we then linearly interpolate it by the engulfed's
         // normalized radius to this cell's center in order to "shrink" the point relative to this cell's origin.
@@ -1638,7 +1638,7 @@ public partial class Microbe
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.5f;
+            nearestPointOfMembraneToTarget *= 0.4f;
 
         // If engulfer cell is dead (us) or the engulfed is positioned outside any of our closest membrane, immediately
         // eject it without animation

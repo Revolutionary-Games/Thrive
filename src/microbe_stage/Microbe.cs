@@ -164,7 +164,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             var radius = Membrane.EncompassingCircleRadius;
 
             if (CellTypeProperties.IsBacteria)
-                radius *= 0.5f;
+                radius *= 0.4f;
 
             return radius;
         }
@@ -1078,9 +1078,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     {
         var scale = new Vector3(1.0f, 1.0f, 1.0f);
 
-        // Bacteria are 50% the size of other cells
+        // Bacteria are 25% the size of other cells
         if (CellTypeProperties.IsBacteria)
-            scale = new Vector3(0.5f, 0.5f, 0.5f);
+            scale = new Vector3(0.4f, 0.4f, 0.4f);
 
         ApplyScale(scale);
     }
