@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -23,7 +24,7 @@ public class SpaceFleetInfoPopup : StrategicUnitScreen<SpaceFleet>
 
     protected override IEnumerable<string> ListSubUnits()
     {
-        return UnitEvenWhileClosed?.Ships.Select(s => s.Name) ?? System.Array.Empty<string>();
+        return UnitEvenWhileClosed?.Ships.Select(s => s.Name) ?? Array.Empty<string>();
     }
 
     protected override void OnMoveStart()

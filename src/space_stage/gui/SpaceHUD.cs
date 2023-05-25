@@ -69,7 +69,7 @@ public class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionRec
 
         // Setup multi level god tools signals, these are done this way as they would be pretty annoying to hook up
         // all over the place purely through Godot
-        fleetPopup.Connect(nameof(SpaceFleetInfoPopup.OnOpenGodTools), containedInStage,
+        fleetPopup.Connect(nameof(StrategicUnitScreen<SpaceFleet>.OnOpenGodTools), containedInStage,
             nameof(StageBase.OpenGodToolsForEntity));
 
         planetScreenPopup.Connect(nameof(PlanetScreen.OnOpenGodTools), containedInStage,
