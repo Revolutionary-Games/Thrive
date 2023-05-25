@@ -387,6 +387,10 @@ public class NewGameSettings : ControlWithInput
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.Pressed = true;
 
+        // And also turn LAWK off because if the player initially played with it on they'll probably want to experience
+        // what they missed now. If they still wanted to play with LAWK on they can just put the checkbox back
+        lawkButton.Pressed = false;
+
         easterEggsButton.Pressed = settings.EasterEggs;
     }
 
