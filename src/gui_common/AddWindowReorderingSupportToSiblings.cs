@@ -81,6 +81,11 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// </remarks>
     private readonly HashSet<Node> connectedSiblings = new();
 
+    /// <summary>
+    ///   Used to save windows that are opened at once to preserve their order.
+    /// </summary>
+    private readonly List<CustomDialog> justOpenedWindows = new();
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -102,6 +107,8 @@ public class AddWindowReorderingSupportToSiblings : Control
 #pragma warning restore CA2213
 
     private bool connectionsEstablished;
+
+    private bool reorderOpenedWindowsQueued;
 
     /// <summary>
     ///   Finds window reordering nodes in ancestors, looks for manual paths if set, otherwise uses automatic search to
@@ -176,7 +183,7 @@ public class AddWindowReorderingSupportToSiblings : Control
 
         var binds = new Array();
         binds.Add(window);
-        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder), binds);
+        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen), binds);
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -209,7 +216,7 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
 
         window.Disconnect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
-        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowReorder));
+        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen));
 
         if (!connectedWindows.TryGetValue(window, out var windowSibling))
         {
@@ -230,6 +237,8 @@ public class AddWindowReorderingSupportToSiblings : Control
             if (topSibling == windowSibling)
                 topSibling = null;
         }
+
+        justOpenedWindows.Remove(window);
     }
 
     protected override void Dispose(bool disposing)
@@ -392,6 +401,52 @@ public class AddWindowReorderingSupportToSiblings : Control
         bool isSetAsToplevel = window.IsSetAsToplevel();
         window.SetAsToplevel(!isSetAsToplevel);
         window.SetAsToplevel(isSetAsToplevel);
+    }
+
+    private void OnWindowOpen(CustomDialog window)
+    {
+        if (justOpenedWindows.Contains(window))
+        {
+            // This window is already queued to be opened
+            return;
+        }
+
+        if (!reorderOpenedWindowsQueued)
+        {
+            // Tell the system that there is an opened window and wait in case more windows will be opened at once
+            reorderOpenedWindowsQueued = true;
+            Invoke.Instance.QueueForObject(ReorderOpenedWindows, this);
+        }
+
+        justOpenedWindows.Add(window);
+    }
+
+    private void ReorderOpenedWindows()
+    {
+        try
+        {
+            // Sort the windows to make sure they are updated in the right order
+            justOpenedWindows.Sort((first, second) =>
+            {
+                return connectedWindows[first].GetIndex().CompareTo(connectedWindows[second].GetIndex());
+            });
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Exception occurred in {Name} ({this}) in {nameof(ReorderOpenedWindows)}:\n{e}");
+
+            // Remove invalid windows
+            justOpenedWindows.RemoveAll(window => !IsInstanceValid(window) || !connectedWindows.ContainsKey(window));
+        }
+
+        // Reorder the windows
+        foreach (CustomDialog window in justOpenedWindows)
+        {
+            OnWindowReorder(window);
+        }
+
+        justOpenedWindows.Clear();
+        reorderOpenedWindowsQueued = false;
     }
 
     /// <summary>
