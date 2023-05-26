@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-25 10:04+0300\n"
+"POT-Creation-Date: 2023-05-26 10:40+0300\n"
 "PO-Revision-Date: 2023-05-04 13:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -68,29 +68,24 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Başka bir eylem devam ettiğinden, mevcut işlem engellendi"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Silmeyi Onayla"
+msgstr "Sil"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Tür Popülasyonu"
+msgstr "Popülasyonu İki Katına Çıkar"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Silmeyi Onayla"
+msgstr "Birimlerin Kopyasını Çıkart"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0}: {1} popülasyonla"
+msgstr "Popülasyonu Yarıya İndir"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Silmeyi Onayla"
+msgstr "Işınlan"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -195,7 +190,7 @@ msgstr ""
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Evreni zaten tırmandın"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -266,14 +261,20 @@ msgid "ART_GALLERY"
 msgstr "Sanat Galerisi"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Tür Popülasyonu"
+msgstr "Tebrikler!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Evreni tırmandın ve oyunu tamamladın. Oyunun sonuna ulaştığın için tebrikler!\n"
+"\n"
+"Sanal alanda oyalanmak için kilidi açılmış Tanrı Araçları ile, Uzay Evresi'ni oynamaya devam edebilirsin.\n"
+"\n"
+"Evrene inmek, mevcut kayıtta Mikrop Evresi'ne dönmek ve baştan sona bütün evreleri ekstra avantajlar ile oynamak da ayrıca mümkün.\n"
+"\n"
+"Bu kayıttaki toplam tırmanma sayısı: {0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -1115,19 +1116,17 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Üzerine Yazmayı Onayla"
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "Uzay Evresi'ne Geçilsin mi?"
+msgstr "Tırmanış Evresi'ne Geçilsin mi?"
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
-"Artık, ilk uzay aracını fırlatarak Uzay Evresi'ne yükselebilirsin.\n"
+"Artık evreni tırmanabilir ve Tırmanış Kapısı'nı etkinleştirerek Tırmanış Evresi'ne ulaşabilirsin.\n"
 "\n"
-"Şimdilik, prototiplerde kendi gezegenine dönemezsin. Ancak sonraki plan, Uzay Evresi'ndeki gezegenleri yakınlaştırmaya ve uzaklaştırmaya imkan vermek.\n"
+"Bu işlem, mevcut kayıtta kullanabileceğin bazı yeni Tanrı Araçları gibi sınırsız gücün kilidini açacak.\n"
 "\n"
-"Fırlatmayı iptal etmek, uzay aracı birimini imha edecek. Uzay aracı fırlatılsın mı?"
+"Evreni tırmanmak ayrıca oyunu kazanmak demektir ama oynamaya devam edebileceksin. Evren tırmanılsın mı?"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
@@ -1150,16 +1149,16 @@ msgstr ""
 "\n"
 "Fırlatmayı iptal etmek, uzay aracı birimini imha edecek. Uzay aracı fırlatılsın mı?"
 
-#: ../src/general/NewGameSettings.cs:400
+#: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Oyuna bu ayarlarla gir"
 
-#: ../src/general/NewGameSettings.cs:407
+#: ../src/general/NewGameSettings.cs:411
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Bazı ayarlar geçersiz"
 
-#: ../src/industrial_stage/UnitType.cs:68
+#: ../src/industrial_stage/UnitType.cs:79
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Birim: {0}"
 
@@ -1513,19 +1512,21 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Bu kayıt silinsin mi?"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
+msgstr "Evrene İn"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
+msgstr "Evrene İnmek istediğine emin misin?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "Müzeye kaydetmek için bu türü fosilleştir. Thriveopedi'den müzeye erişebilirsin veya serbest yapım düzenleyicisinde fosilleşmiş türü yükleyebilirsin."
+msgstr ""
+"Evrene inmek, senin evreni tırmanma pozisyonunu kaldırır ve seni Mikrop Evresi'ne geri döndürür. Böylece mevcut kayıtta, oyunu baştan sona tekrar oynayabilirsin.\n"
+"\n"
+"Yeni oyun için bir evrene iniş avantajı alacaksın. Gelecek bir sürümde bu avantajı kendin seçebileceksin. Ancak şimdilik bu avantaj, ozmoregülasyonda %20'lik bir azalma olacak.\n"
+"\n"
+"Evrene inmeyi onayladığında, örneğin, farklı bir haritada oynamak için yeni bir gezegen tohumu seçerek veya BH'yi devre dışı bırakarak oyun ayarlarını düzenleyebilirsin."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -2233,14 +2234,12 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanır."
 
 #: ../src/space_stage/SpaceFleet.cs:86
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "gezegende nesli tükendi"
+msgstr "{0} Filosu"
 
 #: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "Filo Birimleri"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -2443,10 +2442,9 @@ msgstr "Glikoliz"
 msgid "GODMODE"
 msgstr "Tanrı Modu"
 
-#: ../src/ascension_stage/gui/GodToolsPopup.tscn:15
-#, fuzzy
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
 msgid "GOD_TOOLS_TITLE"
-msgstr "Discord topluluk sunucumuza katıl"
+msgstr "Tanrı Araçları"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2545,9 +2543,8 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "İmleci göstermek için [thrive:input]g_free_cursor[/thrive:input] tuşunu basılı tut"
 
 #: ../src/ascension_stage/AscensionCeremony.tscn:231
-#, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
-msgstr "İmleci göstermek için basılı tut"
+msgstr "Atlamak için basılı tut"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
@@ -2658,14 +2655,12 @@ msgid "INSPECTOR"
 msgstr "Denetleyici"
 
 #: ../src/awakening_stage/InteractionType.cs:32
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Hasat Et"
+msgstr "Tırmanış Kapısını Etkinleştir"
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Hasat Et"
+msgstr "Tırmanış Kapısını Etkinleştir (EKSİK ENERJİ)"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -2688,9 +2683,8 @@ msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Malzeme Yerleştir (uygun taşınan bir öğe yok)"
 
 #: ../src/awakening_stage/InteractionType.cs:20
-#, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "Hasat Et"
+msgstr "İmha Et"
 
 #: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
@@ -4214,13 +4208,12 @@ msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
-#, fuzzy
 msgid "NAME_LABEL_FLEET"
-msgstr "Biyom: {0}"
+msgstr "{0} (GÜÇ: {1})"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (Y)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4503,9 +4496,8 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
 #: ../src/space_stage/gui/PlanetScreen.tscn:108
-#, fuzzy
 msgid "OPEN_GOD_TOOLS"
-msgstr "Bilgi URL'sini Aç"
+msgstr "Tanrı Araçları"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -4855,7 +4847,7 @@ msgstr "Barışçıl"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:761
+#: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -5252,9 +5244,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:18
-#, fuzzy
 msgid "RESOURCE_ENERGY"
-msgstr "Taş"
+msgstr "Enerji"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5629,9 +5620,8 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Resim Önizlemesi Seç"
 
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
-#, fuzzy
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr "Yerleştirilecek Yapıyı Seç"
+msgstr "İnşa Edilecek Yapıyı Seç"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
@@ -5812,19 +5802,16 @@ msgid "SPACE_STAGE"
 msgstr "Uzay Evresi"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
-#, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr "İnşaat için gerekli malzemeler yerleştirildi"
+msgstr "Yapı inşa edilmek için inşaat filosunu bekliyor"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:65
-#, fuzzy
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr "İnşa edilen: {0}"
+msgstr "Ekstra bir bilgi mevcut değil"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
-#, fuzzy
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr "İnşa edilen: {0}"
+msgstr "Yapı inşa edilmek için inşaat filosu ve kaynak bekliyor: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -6785,14 +6772,12 @@ msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
-#, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "İnşaatı Bitir"
+msgstr "İnşa Et"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
-#, fuzzy
 msgid "UNIT_ACTION_MOVE"
-msgstr "Hasat Et"
+msgstr "Hareket Et"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
@@ -7564,3 +7549,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "STATUS_COLON"
 #~ msgstr "Durum:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0}: {1} popülasyonla"
