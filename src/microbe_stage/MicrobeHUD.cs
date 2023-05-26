@@ -46,12 +46,12 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private ActionButton unbindAllHotkey = null!;
 
     private Button multicellularButton = null!;
-    private CustomDialog multicellularConfirmPopup = null!;
+    private CustomWindow multicellularConfirmPopup = null!;
     private Button macroscopicButton = null!;
 
     private ProgressBar ingestedMatterBar = null!;
 
-    private CustomDialog? winBox;
+    private CustomWindow? winBox;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -78,7 +78,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar = GetNode<ProgressBar>(IngestedMatterBarPath);
 
         multicellularButton = GetNode<Button>(MulticellularButtonPath);
-        multicellularConfirmPopup = GetNode<CustomDialog>(MulticellularConfirmPopupPath);
+        multicellularConfirmPopup = GetNode<CustomWindow>(MulticellularConfirmPopupPath);
         macroscopicButton = GetNode<Button>(MacroscopicButtonPath);
 
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
@@ -191,7 +191,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         winExtinctBoxHolder.Show();
 
-        winBox = WinBoxScene.Instance<CustomDialog>();
+        winBox = WinBoxScene.Instance<CustomWindow>();
         winExtinctBoxHolder.AddChild(winBox);
         winBox.Show();
 

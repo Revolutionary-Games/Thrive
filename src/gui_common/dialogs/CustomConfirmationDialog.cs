@@ -5,7 +5,7 @@
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomConfirmationDialog : CustomDialog
+public class CustomConfirmationDialog : CustomWindow
 {
     [Export]
     public bool HideOnOk = true;
@@ -35,7 +35,7 @@ public class CustomConfirmationDialog : CustomDialog
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomDialog.Cancelled"/>.
+    ///   Emitted when OK button is pressed. For Cancel see <see cref="CustomWindow.Cancelled"/>.
     /// </summary>
     [Signal]
     public delegate void Confirmed();

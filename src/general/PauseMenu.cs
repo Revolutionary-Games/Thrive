@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : CustomWindow
+public class PauseMenu : TopLevelContainer
 {
     [Export]
     public string HelpCategory = null!;
@@ -207,7 +207,7 @@ public class PauseMenu : CustomWindow
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        unsavedProgressWarning.Connect(nameof(CustomDialog.Cancelled), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomWindow.Cancelled), this, nameof(CancelExit));
     }
 
     public override void _EnterTree()
