@@ -208,6 +208,14 @@ public static class KeyPromptHelper
     /// </summary>
     public static string GetPathForKeyboardKey(string name)
     {
+        // Map some key names to match the icon set used key names
+        switch (name)
+        {
+            case "Escape":
+                name = "Esc";
+                break;
+        }
+
         if (!AvailableKeys.Contains(name))
             return GetPathForInvalidKey();
 
