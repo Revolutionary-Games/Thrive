@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Shows the god tools available to mess with a game object
 /// </summary>
-public class GodToolsPopup : CustomDialog
+public class GodToolsPopup : CustomWindow
 {
     [Export]
     public NodePath? ActionButtonsContainerPath;

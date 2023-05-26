@@ -83,9 +83,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private Button duplicateTypeButton = null!;
 
-    private CustomDialog cannotDeleteInUseTypeDialog = null!;
+    private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
-    private CustomDialog duplicateCellTypeDialog = null!;
+    private CustomWindow duplicateCellTypeDialog = null!;
 
     private LineEdit duplicateCellTypeName = null!;
 
@@ -183,9 +183,9 @@ public partial class CellBodyPlanEditorComponent :
 
         duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
 
-        cannotDeleteInUseTypeDialog = GetNode<CustomDialog>(CannotDeleteInUseTypeDialogPath);
+        cannotDeleteInUseTypeDialog = GetNode<CustomWindow>(CannotDeleteInUseTypeDialogPath);
 
-        duplicateCellTypeDialog = GetNode<CustomDialog>(DuplicateCellTypeDialogPath);
+        duplicateCellTypeDialog = GetNode<CustomWindow>(DuplicateCellTypeDialogPath);
 
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
 

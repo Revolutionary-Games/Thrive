@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Shows the info and controls for a single city
 /// </summary>
-public class CityScreen : CustomDialog
+public class CityScreen : CustomWindow
 {
     [Export]
     public NodePath? ShortStatsLabelPath;
