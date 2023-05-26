@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 public class UnitType : IRegistryType, ICityConstructionProject
 {
     private readonly Lazy<PackedScene> visualScene;
+    private readonly Lazy<PackedScene> spaceVisuals;
     private readonly Lazy<Texture> icon;
 
 #pragma warning disable 169,649 // Used through reflection
@@ -30,6 +31,7 @@ public class UnitType : IRegistryType, ICityConstructionProject
         Name = name;
 
         visualScene = new Lazy<PackedScene>(LoadWorldScene);
+        spaceVisuals = new Lazy<PackedScene>(LoadSpaceWorldScene);
         icon = new Lazy<Texture>(LoadIcon);
     }
 
@@ -39,6 +41,12 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
     [JsonProperty]
     public string VisualScene { get; private set; } = string.Empty;
+
+    /// <summary>
+    ///   Alternative visuals to use when in space (if not set uses the <see cref="VisualScene"/>)
+    /// </summary>
+    [JsonProperty]
+    public string SpaceVisuals { get; private set; } = string.Empty;
 
     [JsonProperty]
     public string UnitIcon { get; private set; } = string.Empty;
@@ -54,6 +62,9 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
     [JsonIgnore]
     public PackedScene WorldRepresentation => visualScene.Value;
+
+    [JsonIgnore]
+    public PackedScene WorldRepresentationSpace => spaceVisuals.Value;
 
     [JsonIgnore]
     public Texture Icon => icon.Value;
@@ -81,6 +92,12 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
         if (string.IsNullOrEmpty(VisualScene) || !file.FileExists(VisualScene))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing world representation scene");
+
+        if (string.IsNullOrWhiteSpace(SpaceVisuals))
+            SpaceVisuals = VisualScene;
+
+        if (!file.FileExists(SpaceVisuals))
+            throw new InvalidRegistryDataException(name, GetType().Name, "Missing space visuals scene scene");
 
         if (string.IsNullOrEmpty(UnitIcon))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing icon");
@@ -113,6 +130,11 @@ public class UnitType : IRegistryType, ICityConstructionProject
     private PackedScene LoadWorldScene()
     {
         return GD.Load<PackedScene>(VisualScene);
+    }
+
+    private PackedScene LoadSpaceWorldScene()
+    {
+        return GD.Load<PackedScene>(SpaceVisuals);
     }
 
     private Texture LoadIcon()
