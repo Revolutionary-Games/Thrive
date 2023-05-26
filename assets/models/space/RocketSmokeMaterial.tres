@@ -1,0 +1,18 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/menu_backgrounds/SingleClouds.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" type="Texture" id=2]
+
+[resource]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+params_depth_draw_mode = 3
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+normal_enabled = true
+normal_scale = 0.62
+normal_texture = ExtResource( 2 )

@@ -200,7 +200,7 @@ public static class KeyPromptHelper
     /// </summary>
     public static string GetPathForInvalidKey()
     {
-        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/Blanks/Blank_{BlankTheme}_Normal.png";
+        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Unknown_Key_{Theme}.png";
     }
 
     /// <summary>

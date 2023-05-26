@@ -417,7 +417,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         }
 
         // Placeholder trees
-        var treeScene = GD.Load<PackedScene>("res://assets/models/PlaceholderTree.tscn");
+        var treeScene = GD.Load<PackedScene>("res://assets/models/Tree01.tscn");
 
         foreach (var position in new[]
                  {
