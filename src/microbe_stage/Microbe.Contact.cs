@@ -1443,7 +1443,7 @@ public partial class Microbe
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
                 var attacker = otherIsPilus ? touchedMicrobe : thisMicrobe;
 
-                //Target is not too big to harm with pilus
+                // Target is not too big to harm with pilus
                 if (target.EngulfSize < attacker.EngulfSize * Constants.PILUS_INEFFECTIVE_RATIO)
                 {
                     Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
