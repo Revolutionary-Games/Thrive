@@ -893,7 +893,7 @@ public partial class Microbe
                 Dissolves = true,
                 Mass = 1.0f,
                 Radius = 1.0f,
-                Size = 3.0f,
+                Size = 2.0f,
                 VentAmount = 0.1f,
 
                 // Add compounds
