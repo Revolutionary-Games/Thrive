@@ -417,7 +417,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         }
 
         // Placeholder trees
-        var treeScene = GD.Load<PackedScene>("res://assets/models/PlaceholderTree.tscn");
+        var treeScene = GD.Load<PackedScene>("res://assets/models/Tree01.tscn");
 
         foreach (var position in new[]
                  {
@@ -475,7 +475,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature>
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
             "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
-            "Interact with tool parts to advance.", DisplayDuration.ExtraLong);
+            "Pick up rocks to craft an axe to get resources to build a Society Center to advance.",
+            DisplayDuration.ExtraLong);
 
         // Music is different in the awakening stage (and we don't visit the editor here so we need to trigger a music
         // change here)

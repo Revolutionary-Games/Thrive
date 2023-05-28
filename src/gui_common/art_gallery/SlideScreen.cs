@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
 /// </summary>
-public class SlideScreen : CustomWindow
+public class SlideScreen : TopLevelContainer
 {
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;

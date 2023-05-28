@@ -4,6 +4,7 @@
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
+flags_unshaded = true
 albedo_color = Color( 0.905882, 0.905882, 0.905882, 0.658824 )
 
 [node name="AscensionGate" instance=ExtResource( 1 )]

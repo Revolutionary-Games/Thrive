@@ -161,9 +161,9 @@ public class ModManager : Control
 
     private Button applyChangesButton = null!;
 
-    private CustomDialog unAppliedChangesWarning = null!;
+    private CustomWindow unAppliedChangesWarning = null!;
 
-    private CustomDialog modFullInfoPopup = null!;
+    private CustomWindow modFullInfoPopup = null!;
     private Label fullInfoName = null!;
     private Label fullInfoInternalName = null!;
     private Label fullInfoAuthor = null!;
@@ -193,7 +193,7 @@ public class ModManager : Control
 
     private ErrorDialog modErrorDialog = null!;
 
-    private CustomDialog restartRequired = null!;
+    private CustomWindow restartRequired = null!;
 #pragma warning restore CA2213
 
     private FullModDetails? selectedMod;
@@ -366,9 +366,9 @@ public class ModManager : Control
 
         applyChangesButton = GetNode<Button>(ApplyChangesButtonPath);
 
-        unAppliedChangesWarning = GetNode<CustomDialog>(UnAppliedChangesWarningPath);
+        unAppliedChangesWarning = GetNode<CustomWindow>(UnAppliedChangesWarningPath);
 
-        modFullInfoPopup = GetNode<CustomDialog>(ModFullInfoPopupPath);
+        modFullInfoPopup = GetNode<CustomWindow>(ModFullInfoPopupPath);
         fullInfoName = GetNode<Label>(FullInfoNamePath);
         fullInfoInternalName = GetNode<Label>(FullInfoInternalNamePath);
         fullInfoAuthor = GetNode<Label>(FullInfoAuthorPath);
@@ -394,7 +394,7 @@ public class ModManager : Control
         modUploader = GetNode<ModUploader>(ModUploaderPath);
 
         modErrorDialog = GetNode<ErrorDialog>(ModErrorDialogPath);
-        restartRequired = GetNode<CustomDialog>(RestartRequiredPath);
+        restartRequired = GetNode<CustomWindow>(RestartRequiredPath);
 
         // These are hidden in the editor to make selecting UI elements there easier
         newModGUI.Visible = true;

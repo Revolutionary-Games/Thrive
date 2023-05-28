@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 09:29+0300\n"
+"POT-Creation-Date: 2023-05-26 10:40+0300\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -69,6 +69,31 @@ msgstr "Пробуждане"
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Последното действие не е завършено"
 
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "Потвърждение за изход"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Популация на създанията"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Потвърждение за изход"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "{0}: {1} индивида"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
+msgstr "Потвърждение за изход"
+
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "Енергично"
@@ -91,11 +116,11 @@ msgstr "Допълнителните проверки откриха пробл�
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Добавяне на нов клавиш"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
 msgstr "Разширени"
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на разширените настройки"
 
@@ -130,11 +155,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Агресивно"
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:475
 msgid "AI_MUTATION_RATE"
 msgstr "Мутационна скорост"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(определя скоростта на мутация на Вашите съперници)"
 
@@ -171,6 +196,10 @@ msgstr ""
 "[b]Среден размер на създанията:[/b]\n"
 "  Средно: {9}; Стандартно отклонение: {10}\n"
 "[b]Общи данни за органелите:[/b]"
+
+#: ../src/space_stage/SpaceStage.cs:410
+msgid "ALREADY_ASCENDED"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -236,9 +265,19 @@ msgstr "„{0}“ — {1}"
 msgid "ART_BY"
 msgstr "От: {0}"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "Галерия"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
+#, fuzzy
+msgid "ASCENSION_CONGRATULATIONS"
+msgstr "Популация на създанията"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
+msgid "ASCENSION_CONGRATULATIONS_CONTENT"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -334,7 +373,7 @@ msgstr "Автоматичен запис по време на игра"
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:417
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
@@ -368,6 +407,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Автоматична ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -384,9 +424,9 @@ msgid "AWARE_STAGE"
 msgstr "Осъзнаване"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
-#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -416,11 +456,11 @@ msgstr "Базова подвижност"
 msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
 msgstr "Основни"
 
-#: ../src/general/NewGameSettings.tscn:1157
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на основните настройки"
 
@@ -484,7 +524,7 @@ msgstr "Самонадеяност"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/general/MainMenu.tscn:428
+#: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -565,7 +605,7 @@ msgstr "Биолуминесцентна вакуола"
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Неврон"
 
@@ -587,6 +627,7 @@ msgid "BUILD_CITY"
 msgstr "Структура"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Структура"
@@ -624,6 +665,7 @@ msgstr "Камера"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Отказ"
@@ -874,6 +916,8 @@ msgstr "Увеличават скоростта на завъртане на к�
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr ""
@@ -1008,19 +1052,19 @@ msgstr "Способности"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:674
 msgid "COMMUNITY_FORUM"
 msgstr "Обществен форум"
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:669
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Отваряне на обществения форум на „Thrive“"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:716
 msgid "COMMUNITY_WIKI"
 msgstr "Обществена Уикипедия"
 
-#: ../src/general/MainMenu.tscn:708
+#: ../src/general/MainMenu.tscn:711
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на обществената Уикипедия на „Thrive“"
 
@@ -1053,11 +1097,11 @@ msgstr "Баланс на химичните съединения"
 msgid "COMPOUND_CLOUDS"
 msgstr "Облаци"
 
-#: ../src/general/NewGameSettings.tscn:529
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Гъстота на облаците"
 
-#: ../src/general/NewGameSettings.tscn:569
+#: ../src/general/NewGameSettings.tscn:574
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(определя гъстотата на облаците в околната среда)"
 
@@ -1085,20 +1129,30 @@ msgstr "Настройки"
 msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
 #, fuzzy
 msgid "CONFIRM_DELETE"
 msgstr "Потвърждение за изход"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Потвърждение за презаписване"
+
+#: ../src/space_stage/SpaceStage.tscn:220
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+msgstr "Индустриализация"
+
+#: ../src/space_stage/SpaceStage.tscn:221
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+msgstr "(определя скоростта на мутация на Вашите съперници)"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 #, fuzzy
@@ -1120,16 +1174,16 @@ msgstr "Индустриализация"
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "(определя скоростта на мутация на Вашите съперници)"
 
-#: ../src/general/NewGameSettings.cs:329
-#: ../src/general/NewGameSettings.tscn:1193
+#: ../src/general/NewGameSettings.cs:404
+#: ../src/general/NewGameSettings.tscn:1198
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Завършване на промените и започване на играта"
 
-#: ../src/general/NewGameSettings.cs:336
+#: ../src/general/NewGameSettings.cs:411
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Невалидни настройки"
 
-#: ../src/industrial_stage/UnitType.cs:68
+#: ../src/industrial_stage/UnitType.cs:79
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Тританопия (синьо и жълто)"
@@ -1315,7 +1369,7 @@ msgstr "Създаване..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Създаване на обектите от записа"
 
-#: ../src/general/MainMenu.tscn:352
+#: ../src/general/MainMenu.tscn:355
 msgid "CREDITS"
 msgstr "Екип"
 
@@ -1390,19 +1444,19 @@ msgstr "Цитоплазмена гликолиза"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
 msgstr "Продължителност на деня"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:988
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(в секунди)"
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:916
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Денонощен цикъл"
 
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:925
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
@@ -1422,7 +1476,7 @@ msgstr "Калибрирането е нулирано"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Мъртви зони на контролера"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:966
+#: ../src/microbe_stage/Microbe.Contact.cs:964
 msgid "DEATH"
 msgstr "измиране"
 
@@ -1457,7 +1511,7 @@ msgstr ""
 " - бързи записи: {1}\n"
 " - резервни записи: {2}"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
 #, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
@@ -1490,6 +1544,21 @@ msgstr "Изтриването не може да бъде отменено, с�
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Изтриване на този запис?"
 
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
+#, fuzzy
+msgid "DESCEND_CONFIRMATION"
+msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
+#, fuzzy
+msgid "DESCEND_CONFIRMATION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
+
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Описание:"
@@ -1521,11 +1590,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Разработчици"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:688
 msgid "DEVELOPMENT_FORUM"
 msgstr "Частен форум"
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:683
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Отваряне на частния форум на „Thrive“"
 
@@ -1533,11 +1602,11 @@ msgstr "Отваряне на частния форум на „Thrive“"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Разработката се поддържа от „Revolutionary Games Studio“ ry"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:702
 msgid "DEVELOPMENT_WIKI"
 msgstr "Частна Уикипедия"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:697
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на частната Уикипедия на „Thrive“"
 
@@ -1549,7 +1618,7 @@ msgstr "Погълнат"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Вътрешни поддръжници"
 
-#: ../src/general/NewGameSettings.tscn:298
+#: ../src/general/NewGameSettings.tscn:303
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Трудност"
@@ -1569,8 +1638,8 @@ msgstr ""
 "Пасивно усвояване на хранителните вещества: {8}\n"
 "Ограничаване на растежа: {9}"
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr "Ниво на трудност"
 
@@ -1665,7 +1734,7 @@ msgstr ""
 "Има органели, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/general/MainMenu.tscn:857
+#: ../src/general/MainMenu.tscn:860
 msgid "DISCORD_TOOLTIP"
 msgstr "Отваряне на сървъра ни в „Discord“"
 
@@ -1858,11 +1927,11 @@ msgstr "Ето един съвет — бактериите може да са �
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Ето един съвет — ако ловувате дадени създания, без да искате, може напълно да ги унищожите, но не само Вие сте способни на това."
 
-#: ../src/general/NewGameSettings.tscn:1117
+#: ../src/general/NewGameSettings.tscn:1122
 msgid "EASTER_EGGS"
 msgstr "Включване на тайните обекти на играта"
 
-#: ../src/general/NewGameSettings.tscn:1125
+#: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(на произволен принцип)"
 
@@ -1948,11 +2017,11 @@ msgstr "Надписи на обектите"
 msgid "ENVIRONMENT"
 msgstr "Околна среда"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Задържане на глюкозата в околната среда"
 
-#: ../src/general/NewGameSettings.tscn:686
+#: ../src/general/NewGameSettings.tscn:691
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(определя концентрацията на глюкоза в околната среда след всяко отваряне на редактора)"
 
@@ -2006,7 +2075,7 @@ msgstr "Грешка по време на запазването"
 msgid "ESCAPE"
 msgstr "Клавиш „Esc“"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1232
+#: ../src/microbe_stage/Microbe.Contact.cs:1230
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -2042,6 +2111,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Грешка по време на зареждането на запазените данни"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Въвеждане на съществуващ идентификационен №"
@@ -2050,7 +2120,7 @@ msgstr "Въвеждане на съществуващ идентификаци�
 msgid "EXIT"
 msgstr "Изход"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:364
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Стартираща програма"
 
@@ -2100,7 +2170,7 @@ msgstr "изчезнаха от зоната"
 msgid "EXTINCT_SPECIES"
 msgstr "Изчезнали създания"
 
-#: ../src/general/MainMenu.tscn:344
+#: ../src/general/MainMenu.tscn:347
 msgid "EXTRAS"
 msgstr "Екстри"
 
@@ -2108,7 +2178,7 @@ msgstr "Екстри"
 msgid "EXTRA_OPTIONS"
 msgstr "Допълнителни опции"
 
-#: ../src/general/MainMenu.tscn:869
+#: ../src/general/MainMenu.tscn:872
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Отваряне на страницата ни във „Facebook“"
 
@@ -2201,6 +2271,16 @@ msgstr "Камшичето е протеин с формата на камшик
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да увеличи скоростта на движение на клетката."
 
+#: ../src/space_stage/SpaceFleet.cs:86
+#, fuzzy
+msgid "FLEET_NAME_FROM_PLACE"
+msgstr "изчезнаха от планетата"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
+
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
@@ -2291,12 +2371,12 @@ msgstr "Вкаменяване на тези създания (вече са в�
 msgid "FOSSILISE"
 msgstr "Вкаменяване"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Създаването на модификацията е неуспешно"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
@@ -2324,11 +2404,11 @@ msgstr "Δ: {0}"
 msgid "FREEBUILDING"
 msgstr "Неограничени"
 
-#: ../src/general/NewGameSettings.tscn:758
+#: ../src/general/NewGameSettings.tscn:763
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Създаване на облак от глюкоза при излизане от редактора"
 
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(създава облак от глюкоза близо до Вашето създание след всяко отваряне на редактора)"
 
@@ -2360,7 +2440,7 @@ msgstr "Поколение"
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/general/MainMenu.tscn:821
+#: ../src/general/MainMenu.tscn:824
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
 
@@ -2368,11 +2448,11 @@ msgstr "Отваряне на хранилището ни в „GitHub“"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за GLES2"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
@@ -2406,6 +2486,11 @@ msgstr "Гликолиза"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Безсмъртие"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Отваряне на сървъра ни в „Discord“"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2503,6 +2588,11 @@ msgstr "Показване на курсора чрез задържане"
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Задръжте [thrive:input]g_free_cursor[/thrive:input] за показване на курсора"
 
+#: ../src/ascension_stage/AscensionCeremony.tscn:231
+#, fuzzy
+msgid "HOLD_TO_SKIP_CREDITS"
+msgstr "Показване на курсора чрез задържане"
+
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
 msgstr "Начало"
@@ -2559,11 +2649,11 @@ msgstr "Идентификационният № не е валиден"
 msgid "ID_NUMBER"
 msgstr "Идентификационен №"
 
-#: ../src/general/NewGameSettings.tscn:1096
+#: ../src/general/NewGameSettings.tscn:1101
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включване на следващите етапи на играта"
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
 
@@ -2615,6 +2705,16 @@ msgstr "Инспектиране"
 msgid "INSPECTOR"
 msgstr "Инспектиране"
 
+#: ../src/awakening_stage/InteractionType.cs:32
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Мутационна скорост"
+
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "Мутационна скорост"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
@@ -2637,7 +2737,12 @@ msgstr "Мутационна скорост"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "Мутационна скорост"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "Мутационна скорост"
@@ -2688,7 +2793,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Наименованието на записа не трябва да съдържа специални знаци: (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:156
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Наименованието трябва да отговаря на бинарната номенклатура (родово название и видов епитет)!"
 
@@ -2744,7 +2849,7 @@ msgstr "Желязо"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Желязна хемолитоавтотрофия"
 
-#: ../src/general/MainMenu.tscn:797
+#: ../src/general/MainMenu.tscn:800
 msgid "ITCH_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Itch.io“"
 
@@ -3042,13 +3147,13 @@ msgstr "Клавиш „Mail“"
 msgid "LAUNCHMEDIA"
 msgstr "Клавиш „Media“"
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:849
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr "Земеподобен живот"
 
-#: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:162
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ограничава еволюцията на някои органели и способности)"
 
@@ -3120,7 +3225,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Ляв бутон"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:529
 msgid "LICENSES"
 msgstr "Лицензи"
 
@@ -3128,37 +3233,37 @@ msgstr "Лицензи"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Описание на лицензите"
 
-#: ../src/general/NewGameSettings.tscn:180
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:881
 msgid "LIFE_ORIGIN"
 msgstr "Произход на живота"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:885
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:890
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(начално местообитание)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Извънземен (произволен)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Топло езерце"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:205
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Зависи от включването на „Земеподобен живот“"
 
-#: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:895
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Хидротермални комини"
@@ -3197,11 +3302,11 @@ msgstr "Максимална светлина"
 msgid "LIMIT_EXTREME"
 msgstr "Екстремен"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Ограничаване на растежа"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:813
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(ограничава скоростта на растеж на създанията)"
 
@@ -3284,12 +3389,12 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "LOAD_FINISHED"
 msgstr "Зареждането приключи"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Зареждане на запазените игри"
 
@@ -3489,7 +3594,7 @@ msgid "MICROBES_COUNT"
 msgstr "Микроб"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:588
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Микробен редактор"
@@ -3573,7 +3678,7 @@ msgstr "Всяко поколение разполага със 100 мутаци
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "По време на възпроизвеждане, микробният редактор ще бъде отворен, в него може да променяте Вашето създание (като добавяте, премествате или премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора е равно на [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] милиона години еволюция."
 
-#: ../src/general/MainMenu.tscn:403
+#: ../src/general/MainMenu.tscn:406
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
 
@@ -3758,7 +3863,7 @@ msgstr "Минимална:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Не е възможно показването на по-малко от {0} набор(а) от данни!"
 
-#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Разни"
 
@@ -3826,11 +3931,11 @@ msgstr "Свойства на органела"
 msgid "MODIFY_TYPE"
 msgstr "Свойства"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:506
 msgid "MODS"
 msgstr "Модификации"
 
-#: ../src/general/MainMenu.tscn:967
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Налични са инсталирани модификации, които не са включени.\n"
@@ -3919,11 +4024,11 @@ msgstr "Наименование на папката:"
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr "Грешка по време на зареждането на модификацията"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 
@@ -4073,7 +4178,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Колонизиране на сушата?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Превръщане в общество..."
 
@@ -4121,7 +4226,7 @@ msgstr "Няколко органела"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множествено изглаждане:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:135
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Добре дошли в музея! Тук може да се възхищавате на създанията, които сте вкаменили по време на Вашите игри. Може дори да играете с тях, като ги отворите в редактора.\n"
@@ -4140,11 +4245,11 @@ msgstr "Музика"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Брой на опитите за мутация на създанията"
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Мутационен разход"
 
-#: ../src/general/NewGameSettings.tscn:451
+#: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(определя разхода на мутационни точки в редактора)"
 
@@ -4162,10 +4267,20 @@ msgstr "Заглушаване"
 msgid "NAME"
 msgstr "Наименование:"
 
-#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#: ../src/industrial_stage/gui/CityNameLabel.cs:56
 #, fuzzy
 msgid "NAME_LABEL_CITY"
 msgstr "Биом: {0}"
+
+#: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:38
+#, fuzzy
+msgid "NAME_LABEL_FLEET"
+msgstr "Биом: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4195,15 +4310,15 @@ msgstr "НОВИНИ"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Начална популация на създанията, увеличаващи биоразнообразието"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:297
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Започване на нова игра"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Важно: Ако имате проблеми с производителността на играта, натиснете [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]тук[/url][/color]"
 
@@ -4281,11 +4396,11 @@ msgstr "Това е най-обикновена мембрана, която н�
 msgid "NOTHING_HERE"
 msgstr "Няма нищо"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:370
+#: ../src/microbe_stage/Microbe.Contact.cs:368
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
@@ -4297,11 +4412,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1790
+#: ../src/microbe_stage/Microbe.Contact.cs:1788
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1785
+#: ../src/microbe_stage/Microbe.Contact.cs:1783
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4334,11 +4449,11 @@ msgstr "Няма данни"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Няма записани събития"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Папката с вкаменелости не съществува"
 
-#: ../src/general/MainMenu.tscn:965
+#: ../src/general/MainMenu.tscn:968
 msgid "NO_MODS_ENABLED"
 msgstr "Няма включени модификации"
 
@@ -4409,11 +4524,11 @@ msgstr "{0} пъти"
 msgid "OCTOBER"
 msgstr "Октомври"
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:660
 msgid "OFFICIAL_WEBSITE"
 msgstr "Официален сайт"
 
-#: ../src/general/MainMenu.tscn:648
+#: ../src/general/MainMenu.tscn:651
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Отваряне на официалния сайт на „Revolutionary Games“"
 
@@ -4436,21 +4551,27 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Местоположение"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:88
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Местоположение на вкаменелостите"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да започнете нова игра с избраните създания?\n"
 "Всички незапазени промени ще бъдат изгубени."
 
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "Хранилище"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "Отваряне на ръководството"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:119
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Отваряне в редактора"
 
@@ -4507,11 +4628,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Самонадеяно"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Отваряне на настройките"
 
@@ -4598,11 +4719,11 @@ msgstr "Осморегулация"
 msgid "OSMOREGULATION_COST"
 msgstr "Осморегулационен разход"
 
-#: ../src/general/NewGameSettings.tscn:705
+#: ../src/general/NewGameSettings.tscn:710
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Осморегулационен разход"
 
-#: ../src/general/NewGameSettings.tscn:745
+#: ../src/general/NewGameSettings.tscn:750
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(определя разхода на осморегулация на Вашите създания)"
 
@@ -4626,7 +4747,7 @@ msgstr "Съществуващи записи:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Презаписване на съществуващия запис?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Вкаменени създания с това наименование вече съществуват.\n"
@@ -4701,11 +4822,11 @@ msgstr "Преместване надясно"
 msgid "PAN_CAMERA_UP"
 msgstr "Преместване нагоре"
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:784
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Пасивно усвояване на хранителните вещества"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:792
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
@@ -4765,7 +4886,7 @@ msgstr ""
 "Вашите създания изчезнаха от тази зона.\n"
 "Но това не е краят, може да изберете друга зона за да продължите!"
 
-#: ../src/general/MainMenu.tscn:809
+#: ../src/general/MainMenu.tscn:812
 msgid "PATREON_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Patreon“"
 
@@ -4803,7 +4924,7 @@ msgstr "Пасивно"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:685
+#: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4856,7 +4977,7 @@ msgstr "Физическа устойчивост"
 msgid "PLACE_ORGANELLE"
 msgstr "Добавяне на органел или друг обект"
 
-#: ../src/general/NewGameSettings.tscn:308
+#: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Планета"
@@ -4871,12 +4992,12 @@ msgstr ""
 "Продължителност на деня: {3} секунди\n"
 "Произволен идентификатор на планетата: {4}"
 
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1067
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Създаването на планетата е в процес на разработка!"
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволен идентификатор на планетата"
 
@@ -4885,11 +5006,11 @@ msgstr "Произволен идентификатор на планетата"
 msgid "PLAYER"
 msgstr "Вашето създание"
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Коефициент на измиране"
 
-#: ../src/general/NewGameSettings.tscn:628
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(определя мащаба на измиране на индивидите от Вашите създания)"
 
@@ -5043,11 +5164,11 @@ msgstr "Бързо зареждане"
 msgid "QUICK_SAVE"
 msgstr "Бързо записване"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:376
 msgid "QUIT"
 msgstr "Изход"
 
-#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Излизане от играта"
@@ -5062,8 +5183,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Произволно наименование"
 
-#: ../src/general/NewGameSettings.tscn:241
-#: ../src/general/NewGameSettings.tscn:1009
+#: ../src/general/NewGameSettings.tscn:242
+#: ../src/general/NewGameSettings.tscn:1014
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Идентификаторът трябва да е положително цяло число"
 
@@ -5089,7 +5210,7 @@ msgstr "Готова"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Препоръчителна:"
 
-#: ../src/general/MainMenu.tscn:845
+#: ../src/general/MainMenu.tscn:848
 msgid "REDDIT_TOOLTIP"
 msgstr "Отваряне на общността ни в „Reddit“"
 
@@ -5114,7 +5235,7 @@ msgstr "Възстановяване на преселената популац�
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Неизправности"
 
@@ -5197,9 +5318,15 @@ msgstr "Резолюция:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорост на усвояване на веществата"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "Камъни"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5250,7 +5377,7 @@ msgstr ""
 "Сигурни ли сте, че искате да се върнете в главното меню?\n"
 "Всички незапазени промени ще бъдат изгубени."
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:775
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Отваряне на официалните сайтове на „Revolutionary Games“"
 
@@ -5336,7 +5463,7 @@ msgstr "Рустицианинът е протеин, който използв�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "„Thrive“ е в безопасен режим поради предишно неуспешно стартиране.\n"
@@ -5348,7 +5475,7 @@ msgstr ""
 "\n"
 "Ако проблемът продължи, ще трябва да рестартирате и да причините срив на играта няколко пъти, за да се върнете в безопасен режим."
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:978
 msgid "SAFE_MODE_TITLE"
 msgstr "Играта е стартирана в безопасен режим"
 
@@ -5579,6 +5706,11 @@ msgstr "Изберете команда"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Избиране на изображение"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Структура"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
@@ -5758,6 +5890,20 @@ msgstr "Интервал"
 msgid "SPACE_STAGE"
 msgstr "Космическа колонизация"
 
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Структура"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "Структура"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "Създаване на амоняк"
@@ -5870,7 +6016,7 @@ msgstr "Започната"
 msgid "START_CALIBRATION"
 msgstr "Калибриране"
 
-#: ../src/general/NewGameSettings.tscn:1196
+#: ../src/general/NewGameSettings.tscn:1201
 #, fuzzy
 msgid "START_GAME"
 msgstr "Запазване"
@@ -5946,16 +6092,16 @@ msgstr "„Steam“ не е достъпен в момента, моля, опи
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:1001
 msgid "STEAM_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
 
-#: ../src/general/MainMenu.tscn:785
+#: ../src/general/MainMenu.tscn:788
 msgid "STEAM_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Steam“"
 
@@ -6027,7 +6173,7 @@ msgstr ""
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Структура"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
@@ -6036,18 +6182,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
@@ -6059,11 +6208,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:785
+#: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:778
+#: ../src/microbe_stage/Microbe.Contact.cs:776
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно плячкосване"
 
@@ -6189,7 +6338,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6210,7 +6359,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Изпитатели"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Благодарим Ви за покупката на „Thrive“!\n"
@@ -6226,7 +6375,7 @@ msgstr ""
 "\n"
 "Ще се радваме да споделите за „Thrive“ и на Вашите приятели."
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:991
 msgid "THANK_YOU_TITLE"
 msgstr "Благодарим Ви"
 
@@ -6285,7 +6434,7 @@ msgstr "Тази модификация е изтеглена от „Steam Work
 msgid "THREADS"
 msgstr "Нишки:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Трайвопедия"
 
@@ -6447,7 +6596,7 @@ msgstr "Прекъсване на играта"
 msgid "TOGGLE_UNBINDING"
 msgstr "Отделяне"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:331
 msgid "TOOLS"
 msgstr "Инструменти"
 
@@ -6504,7 +6653,7 @@ msgstr "Клавиш „Treble Down“"
 msgid "TREBLEUP"
 msgstr "Клавиш „Treble Up“"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:155
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Трябва да направите няколко вкаменелости!"
 
@@ -6673,7 +6822,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:884
 msgid "TWITTER_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Twitter“"
 
@@ -6717,6 +6866,16 @@ msgstr "Отмяна"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отмяна на последното действие"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Мутационна скорост"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Мутационна скорост"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
@@ -6880,7 +7039,7 @@ msgstr "Бележки към изданието"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
 
-#: ../src/general/MainMenu.tscn:336
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"
 
@@ -6892,7 +7051,7 @@ msgstr "Значими поддръжници"
 msgid "VISIBLE"
 msgstr "Видима"
 
-#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложения"
 
@@ -7048,7 +7207,7 @@ msgstr "„Xbox Series X“"
 msgid "YEARS"
 msgstr "години"
 
-#: ../src/general/MainMenu.tscn:833
+#: ../src/general/MainMenu.tscn:836
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Отваряне на канала ни в „YouTube“"
 
@@ -7216,9 +7375,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "текуща популация в зоните:"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0}: {1} индивида"
 
 #~ msgid "SAVING"
 #~ msgstr "Запазване..."

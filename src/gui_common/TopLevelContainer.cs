@@ -6,10 +6,10 @@
 /// <remarks>
 ///   <para>
 ///     Note that this doesn't have window decorations, for things that should act like windows use
-///     <see cref="CustomDialog"/> as the base class / scene.
+///     <see cref="CustomWindow"/> as the base class / scene.
 ///   </para>
 /// </remarks>
-public class CustomWindow : Control
+public class TopLevelContainer : Control
 {
     private bool mouseUnCaptureActive;
     private bool previousVisibilityState;

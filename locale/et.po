@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 09:29+0300\n"
+"POT-Creation-Date: 2023-05-26 10:40+0300\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -71,6 +71,31 @@ msgstr "vabasurm"
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "Kinnitage väljumine"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Liikide populatsioon"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Kinnitage väljumine"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "Rahvaarv kokku:"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
+msgstr "Kinnitage väljumine"
+
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "tegev"
@@ -93,11 +118,11 @@ msgstr "Täiendavad kontrollimised tuvastasid probleemi: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisage uus võtme sidumine"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1177
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
@@ -133,12 +158,12 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agressiivne"
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:475
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:515
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
@@ -168,6 +193,10 @@ msgstr "Organismi statistika"
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Organismi statistika"
+
+#: ../src/space_stage/SpaceStage.cs:410
+msgid "ALREADY_ASCENDED"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -235,9 +264,19 @@ msgstr "\"{0}\" – {1}"
 msgid "ART_BY"
 msgstr "Kunst autorilt {0}"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "Kunstigalerii"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
+#, fuzzy
+msgid "ASCENSION_CONGRATULATIONS"
+msgstr "Liikide populatsioon"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
+msgid "ASCENSION_CONGRATULATIONS_CONTENT"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -335,7 +374,7 @@ msgstr "Automaatne salvestamine mängu ajal"
 msgid "AUTO_EVO"
 msgstr "auto-evo"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:417
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "käitamise olek:"
@@ -372,6 +411,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Resolutsioon:"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -396,9 +436,9 @@ msgstr ""
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
-#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -429,11 +469,11 @@ msgstr "Liikuvus"
 msgid "BASE_MOVEMENT"
 msgstr "Aluse liikumine"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1157
+#: ../src/general/NewGameSettings.tscn:1162
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "vabasurm"
@@ -503,7 +543,7 @@ msgstr "Käitumine"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}–{1} m allpool merepinda"
 
-#: ../src/general/MainMenu.tscn:428
+#: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -584,7 +624,7 @@ msgstr "Bioluminestseeruv vakuool"
 msgid "BIOME_LABEL"
 msgstr "biome: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -606,6 +646,7 @@ msgid "BUILD_CITY"
 msgstr "Struktuur"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Struktuur"
@@ -643,6 +684,7 @@ msgstr "Kaamera"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "Tühista"
@@ -899,6 +941,8 @@ msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [t
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismi statistika"
@@ -1014,21 +1058,21 @@ msgstr "Võimed"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:674
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:669
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Lisage uus võtme sidumine"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:716
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "meie Viki"
 
-#: ../src/general/MainMenu.tscn:708
+#: ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "vabasurm"
@@ -1064,12 +1108,12 @@ msgstr "Liitsaldod"
 msgid "COMPOUND_CLOUDS"
 msgstr "Liitpilved"
 
-#: ../src/general/NewGameSettings.tscn:529
+#: ../src/general/NewGameSettings.tscn:534
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Liitpilved"
 
-#: ../src/general/NewGameSettings.tscn:569
+#: ../src/general/NewGameSettings.tscn:574
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1101,20 +1145,30 @@ msgstr "Konfiguratsioon"
 msgid "CONFIRM_CAPITAL"
 msgstr "KINNITA"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
 #, fuzzy
 msgid "CONFIRM_DELETE"
 msgstr "Kinnitage väljumine"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
 msgstr "Kinnitage väljumine"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
+
+#: ../src/space_stage/SpaceStage.tscn:220
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#: ../src/space_stage/SpaceStage.tscn:221
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
@@ -1135,18 +1189,18 @@ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. L
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.cs:329
-#: ../src/general/NewGameSettings.tscn:1193
+#: ../src/general/NewGameSettings.cs:404
+#: ../src/general/NewGameSettings.tscn:1198
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/NewGameSettings.cs:336
+#: ../src/general/NewGameSettings.cs:411
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pausi menüü"
 
-#: ../src/industrial_stage/UnitType.cs:68
+#: ../src/industrial_stage/UnitType.cs:79
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Tritanope (sinine-kollane)"
@@ -1333,7 +1387,7 @@ msgstr "Loomine..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objektide loomine salvestamisest"
 
-#: ../src/general/MainMenu.tscn:352
+#: ../src/general/MainMenu.tscn:355
 msgid "CREDITS"
 msgstr "Krediidid"
 
@@ -1391,11 +1445,11 @@ msgstr "Tsütoplasma glükolüüs"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:988
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
@@ -1404,11 +1458,11 @@ msgstr ""
 "Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
 "ja tõenäoliselt ründab tagasi."
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:916
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:925
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1431,7 +1485,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:966
+#: ../src/microbe_stage/Microbe.Contact.cs:964
 msgid "DEATH"
 msgstr "surma"
 
@@ -1466,7 +1520,7 @@ msgstr ""
 " - {0} automaatset salvestamist\n"
 " - {1} kiirsalvestust"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
 #, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
@@ -1499,6 +1553,25 @@ msgstr "Valitud salvestus(t)e kustutamist ei saa tagasi võtta. Kas olete kindel
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Kas kustutada see salvestus?"
 
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
+#, fuzzy
+msgid "DESCEND_CONFIRMATION"
+msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
+#, fuzzy
+msgid "DESCEND_CONFIRMATION_EXPLANATION"
+msgstr ""
+"Agressiivsed mikroobid ajavad saaki taga suuremate vahemaade tagant\n"
+"ja nad võitlevad rünnaku korral tõenäolisemalt kiskjatega.\n"
+"Rahumeelsed mikroobid ei haara teisi kaugemal\n"
+"ja kasutavad vähem tõenäoliselt toksiine röövloomade vastu."
+
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Kirjeldus:"
@@ -1530,12 +1603,12 @@ msgstr "Devbuildsi toetajad"
 msgid "DEVELOPERS"
 msgstr "Arendajad"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:688
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Arendust toetab Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:683
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Lisage uus võtme sidumine"
@@ -1544,12 +1617,12 @@ msgstr "Lisage uus võtme sidumine"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Arendust toetab Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:702
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Arendajad"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:697
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Abi"
@@ -1562,7 +1635,7 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr "Devbuildsi toetajad"
 
-#: ../src/general/NewGameSettings.tscn:298
+#: ../src/general/NewGameSettings.tscn:303
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr ""
@@ -1573,8 +1646,8 @@ msgstr ""
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Kohandatud"
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
@@ -1674,7 +1747,7 @@ msgstr ""
 "Seal on paigutatud organellid, mis ei ole ülejäänud osaga ühendatud.\n"
 "Ühendage kõik paigutatud organellid üksteisega või võtke muudatused tagasi."
 
-#: ../src/general/MainMenu.tscn:857
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
@@ -1870,12 +1943,12 @@ msgstr "Siin on näpunäide, bakterid võivad olla tugevamad, kui nad paistavad,
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Siin on näpunäide. Kui te ei ole piisavalt ettevaatlik, võite teisi liike väljasuremiseni jahtida. Ka teised liigid saavad sellega hakkama."
 
-#: ../src/general/NewGameSettings.tscn:1117
+#: ../src/general/NewGameSettings.tscn:1122
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Lõbus fakt: Didinium ja Paramecium on õpikunäide kiskja ja saakloomade suhetest, mida on aastakümneid uuritud. Nüüd, kas sa oled Didinium või Paramecium? Kiskja või saak?"
 
-#: ../src/general/NewGameSettings.tscn:1125
+#: ../src/general/NewGameSettings.tscn:1130
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1968,11 +2041,11 @@ msgstr "biome: {0}"
 msgid "ENVIRONMENT"
 msgstr "Keskkond"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:686
+#: ../src/general/NewGameSettings.tscn:691
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
@@ -2032,7 +2105,7 @@ msgstr "Viga salvestamisel"
 msgid "ESCAPE"
 msgstr "esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1232
+#: ../src/microbe_stage/Microbe.Contact.cs:1230
 msgid "ESCAPE_ENGULFING"
 msgstr "neelamisest pääsemine"
 
@@ -2069,6 +2142,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Salvestusandmete laadimisel juhtus erand"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Sisestage olemasolev ID"
@@ -2077,7 +2151,7 @@ msgstr "Sisestage olemasolev ID"
 msgid "EXIT"
 msgstr "Välju"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:364
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Käivitage E"
@@ -2131,7 +2205,7 @@ msgstr "Lapist välja surnud"
 msgid "EXTINCT_SPECIES"
 msgstr "Väljasurnud liigid"
 
-#: ../src/general/MainMenu.tscn:344
+#: ../src/general/MainMenu.tscn:347
 msgid "EXTRAS"
 msgstr "Lisad"
 
@@ -2139,7 +2213,7 @@ msgstr "Lisad"
 msgid "EXTRA_OPTIONS"
 msgstr "Lisavalikud"
 
-#: ../src/general/MainMenu.tscn:869
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Peata mäng"
@@ -2238,6 +2312,15 @@ msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Kasutab [thrive:compound type=\"atp\"][/thrive:compound] lahtri liikumiskiiruse suurendamiseks."
+
+#: ../src/space_stage/SpaceFleet.cs:86
+#, fuzzy
+msgid "FLEET_NAME_FROM_PLACE"
+msgstr "suri planeedilt välja"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
+msgid "FLEET_UNITS"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
@@ -2344,12 +2427,12 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "istuv"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Modifikatsiooni loomine ebaõnnestus"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
@@ -2382,11 +2465,11 @@ msgstr "Aeroobne hingamine"
 msgid "FREEBUILDING"
 msgstr "Vabaehitus"
 
-#: ../src/general/NewGameSettings.tscn:758
+#: ../src/general/NewGameSettings.tscn:763
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2424,7 +2507,7 @@ msgstr "Põlvkond:"
 msgid "GENERATION_COLON"
 msgstr "Põlvkond:"
 
-#: ../src/general/MainMenu.tscn:821
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "vabasurm"
@@ -2433,11 +2516,11 @@ msgstr "vabasurm"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 režiimi hoiatus"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
 
@@ -2471,6 +2554,11 @@ msgstr "Glükolüüs"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Jumalarežiim"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Möödunud aeg: {0:#,#} aastat"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2571,6 +2659,10 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
+#: ../src/ascension_stage/AscensionCeremony.tscn:231
+msgid "HOLD_TO_SKIP_CREDITS"
+msgstr ""
+
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 #, fuzzy
 msgid "HOME"
@@ -2629,12 +2721,12 @@ msgstr "ID ei ole kehtiv number"
 msgid "ID_NUMBER"
 msgstr "Isikukood"
 
-#: ../src/general/NewGameSettings.tscn:1096
+#: ../src/general/NewGameSettings.tscn:1101
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -2687,6 +2779,16 @@ msgstr "Kontrollige"
 msgid "INSPECTOR"
 msgstr "Kontrollige"
 
+#: ../src/awakening_stage/InteractionType.cs:32
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "Mutatsioonipunktid"
+
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "Mutatsioonipunktid"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
@@ -2710,7 +2812,12 @@ msgstr "Mutatsioonipunktid"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "Mutatsioonipunktid"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "Mutatsioonipunktid"
@@ -2762,7 +2869,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Salvestusnimi ei tohi sisaldada erimärke (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:156
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Liigi nimi peab vastama binoomnimesüsteemile (perekond ja epiteet)!"
 
@@ -2818,7 +2925,7 @@ msgstr "Raud"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Raua kemolitoautotroofia"
 
-#: ../src/general/MainMenu.tscn:797
+#: ../src/general/MainMenu.tscn:800
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "vabasurm"
@@ -3118,13 +3225,13 @@ msgstr "mail"
 msgid "LAUNCHMEDIA"
 msgstr "Meedia"
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:849
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:162
+#: ../src/general/NewGameSettings.tscn:862
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -3201,7 +3308,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Vasak hiir"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:529
 msgid "LICENSES"
 msgstr "Litsentsid"
 
@@ -3209,13 +3316,13 @@ msgstr "Litsentsid"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Siin kuvatakse Thrive'i osi hõlmavad litsentsid"
 
-#: ../src/general/NewGameSettings.tscn:180
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:881
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:885
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:890
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -3224,28 +3331,28 @@ msgstr ""
 "Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
 "ja tõenäoliselt ründab tagasi."
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:205
+#: ../src/general/NewGameSettings.tscn:898
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:895
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -3287,12 +3394,12 @@ msgstr "Valgus"
 msgid "LIMIT_EXTREME"
 msgstr "Lisad"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "KINNITA"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:813
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
@@ -3380,12 +3487,12 @@ msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 msgid "LOAD_FINISHED"
 msgstr "Laadimine lõpetatud"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Laadi mäng"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
@@ -3592,7 +3699,7 @@ msgstr ""
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:588
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikroobide redaktori laadimine"
@@ -3679,7 +3786,7 @@ msgstr "Igal põlvkonnal on teil kulutada 100 mutatsioonipunkti (MP) ja iga muud
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Iga kord, kui paljunete, sisenete mikroobide redaktorisse, kus saate oma liigis muudatusi teha (lisades, liigutades või eemaldades organelle), et oma liigi edu suurendada. Iga mikroobide staadiumis toimetaja külastus tähistab [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonit aastat evolutsiooni."
 
-#: ../src/general/MainMenu.tscn:403
+#: ../src/general/MainMenu.tscn:406
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuildi redaktor"
 
@@ -3866,7 +3973,7 @@ msgstr "Minimaalne:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lubatud kuvada vähem kui {0} andmestikku!"
 
-#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Muud"
 
@@ -3937,11 +4044,11 @@ msgstr "Muuda Organelle"
 msgid "MODIFY_TYPE"
 msgstr "Muuda tüüp"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:506
 msgid "MODS"
 msgstr "Modifikatsioonid"
 
-#: ../src/general/MainMenu.tscn:967
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4030,11 +4137,11 @@ msgstr "Sisemine (kausta) nimi:"
 msgid "MOD_LICENSE"
 msgstr "Modifikatsiooni litsents:"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr "Modifikaadi laadimise vead"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ühe või mitme modifikatsiooni laadimisel ilmnesid vead. Logid võivad sisaldada lisateavet."
 
@@ -4202,7 +4309,7 @@ msgstr ""
 "\n"
 "Kui otsustate jätkata, siis mõistke, et hilisemad etapid on prototüübid ja ärge kurtke nende ebatäielikkuse üle."
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
@@ -4263,7 +4370,7 @@ msgstr "Asetage organell"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Mitme proovi antialiasing:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:135
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4280,11 +4387,11 @@ msgstr "Muusika helitugevus"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:451
+#: ../src/general/NewGameSettings.tscn:456
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
@@ -4305,10 +4412,20 @@ msgstr "Vaigista"
 msgid "NAME"
 msgstr "Nimi:"
 
-#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#: ../src/industrial_stage/gui/CityNameLabel.cs:56
 #, fuzzy
 msgid "NAME_LABEL_CITY"
 msgstr "biome: {0}"
+
+#: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:38
+#, fuzzy
+msgid "NAME_LABEL_FLEET"
+msgstr "biome: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4338,16 +4455,16 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME"
 msgstr "Uus mäng"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:297
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4425,11 +4542,11 @@ msgstr "Membraani kõige elementaarsem vorm, sellel on vähe kaitset kahjustuste
 msgid "NOTHING_HERE"
 msgstr "Siin pole midagi"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:370
+#: ../src/microbe_stage/Microbe.Contact.cs:368
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
@@ -4441,11 +4558,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1790
+#: ../src/microbe_stage/Microbe.Contact.cs:1788
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1785
+#: ../src/microbe_stage/Microbe.Contact.cs:1783
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4479,12 +4596,12 @@ msgstr "Kuvatavaid andmeid pole"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Sündmusi pole salvestatud"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Salvestatud kataloogi ei leitud"
 
-#: ../src/general/MainMenu.tscn:965
+#: ../src/general/MainMenu.tscn:968
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "töövõimetu"
@@ -4555,11 +4672,11 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "oktoober"
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:660
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:648
+#: ../src/general/MainMenu.tscn:651
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "vabasurm"
@@ -4583,20 +4700,26 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "Ava kaust"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:88
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Avage logide kaust"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "Ava teabe URL"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "Avage abiekraan"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:119
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Vabaehitus"
@@ -4655,11 +4778,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Oportunistlik"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Valikud"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Abi"
@@ -4749,12 +4872,12 @@ msgstr "osmoregulatsioon"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulatsiooni maksumus"
 
-#: ../src/general/NewGameSettings.tscn:705
+#: ../src/general/NewGameSettings.tscn:710
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulatsiooni maksumus"
 
-#: ../src/general/NewGameSettings.tscn:745
+#: ../src/general/NewGameSettings.tscn:750
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulatsiooni maksumus"
@@ -4779,7 +4902,7 @@ msgstr "Olemasoleva salvestuse ülekirjutamine:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Kas kirjutada olemasolev salvestus üle?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
@@ -4856,12 +4979,12 @@ msgstr "Paneerige paremale"
 msgid "PAN_CAMERA_UP"
 msgstr "Panner ülespoole"
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:784
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:792
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
@@ -4922,7 +5045,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Nii nagu 99% kõigist kunagi eksisteerinud liikidest, on ka teie liik välja surnud. Teised täidavad teie nišši ja arenevad hästi, kuid see pole teie. Teid unustatakse, ebaõnnestunud evolutsioonikatse."
 
-#: ../src/general/MainMenu.tscn:809
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Peata mäng"
@@ -4963,7 +5086,7 @@ msgstr "Rahulik"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:685
+#: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -5016,7 +5139,7 @@ msgstr "Füüsiline vastupanu"
 msgid "PLACE_ORGANELLE"
 msgstr "Asetage organell"
 
-#: ../src/general/NewGameSettings.tscn:308
+#: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr ""
@@ -5026,12 +5149,12 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1067
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -5040,11 +5163,11 @@ msgstr ""
 msgid "PLAYER"
 msgstr "Mängija rakk"
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:628
+#: ../src/general/NewGameSettings.tscn:633
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
@@ -5199,11 +5322,11 @@ msgstr "Kiire laadimine"
 msgid "QUICK_SAVE"
 msgstr "Kiire salvestamine"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:376
 msgid "QUIT"
 msgstr "Lõpeta"
 
-#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
 #: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -5219,8 +5342,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Juhusliku liigi nimi"
 
-#: ../src/general/NewGameSettings.tscn:241
-#: ../src/general/NewGameSettings.tscn:1009
+#: ../src/general/NewGameSettings.tscn:242
+#: ../src/general/NewGameSettings.tscn:1014
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Peata mäng"
@@ -5249,7 +5372,7 @@ msgstr "Teemad:"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Soovitatav Thrive:"
 
-#: ../src/general/MainMenu.tscn:845
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Jätkake mängu"
@@ -5275,7 +5398,7 @@ msgstr ""
 msgid "REPORT"
 msgstr "teade"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "teade"
@@ -5363,10 +5486,16 @@ msgstr "Resolutsioon:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Ressursi neeldumiskiirus"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "Surve."
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "Vaadake lähtekoodi"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 #, fuzzy
@@ -5421,7 +5550,7 @@ msgstr ""
 "Kas soovite kindlasti peamenüüst väljuda?\n"
 "Kaotate kõik salvestamata edusammud."
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:775
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Autor Revolutionary Games Studio"
@@ -5510,7 +5639,7 @@ msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdio
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja [thrive:compound type=\"hapnik\"][/thrive:ühend]."
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:980
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5519,7 +5648,7 @@ msgstr ""
 "Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
 "ja tõenäoliselt ründab tagasi."
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:978
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Eemaldage kohalikud andmed"
@@ -5759,6 +5888,11 @@ msgstr "Valige valik"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Valige Pildi eelvaade"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "Struktuur"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
@@ -5958,6 +6092,20 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "Struktuur"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "Struktuur"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "Kudema ammoniaaki"
@@ -6063,7 +6211,7 @@ msgstr "alustamine"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1196
+#: ../src/general/NewGameSettings.tscn:1201
 #, fuzzy
 msgid "START_GAME"
 msgstr "Salvesta mäng"
@@ -6139,19 +6287,19 @@ msgstr "Steam pole praegu saadaval, proovige uuesti"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ilmnes tundmatu Steami viga"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:1001
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam kliendi teegi lähtestamine ebaõnnestus"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
 "{0}"
 
-#: ../src/general/MainMenu.tscn:785
+#: ../src/general/MainMenu.tscn:788
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Peata mäng"
@@ -6233,7 +6381,7 @@ msgstr ""
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Struktuur"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
@@ -6242,18 +6390,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
@@ -6265,11 +6416,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:785
+#: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
 msgstr "edukas tapmine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:778
+#: ../src/microbe_stage/Microbe.Contact.cs:776
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "edukas pühkimine"
 
@@ -6396,7 +6547,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6417,7 +6568,7 @@ msgstr "temperatuur."
 msgid "TESTING_TEAM"
 msgstr "Testimismeeskond"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6432,7 +6583,7 @@ msgstr ""
 "\n"
 "Kui teile mäng meeldis, rääkige meist oma sõpradele."
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:991
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "SA OLED ÕIDULIKUD!"
@@ -6496,7 +6647,7 @@ msgstr "See mod laaditakse alla Steami töökojast"
 msgid "THREADS"
 msgstr "Teemad:"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6653,7 +6804,7 @@ msgstr "Paus"
 msgid "TOGGLE_UNBINDING"
 msgstr "Lülita lahti sidumine"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:331
 msgid "TOOLS"
 msgstr "Tööriistad"
 
@@ -6711,7 +6862,7 @@ msgstr "Treble alla"
 msgid "TREBLEUP"
 msgstr "Treble üles"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:155
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Proovige teha ekraanipilte!"
@@ -6873,7 +7024,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vaata nüüd"
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
@@ -6921,6 +7072,16 @@ msgstr "Võta tagasi"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Võta viimane toiming tagasi"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "Mutatsioonipunktid"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "Mutatsioonipunktid"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
@@ -7094,7 +7255,7 @@ msgstr "{0} {1}"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/general/MainMenu.tscn:336
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vaadake lähtekoodi"
 
@@ -7106,7 +7267,7 @@ msgstr "VIP toetajad"
 msgid "VISIBLE"
 msgstr "Nähtav"
 
-#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7262,7 +7423,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "aastat"
 
-#: ../src/general/MainMenu.tscn:833
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Peata mäng"

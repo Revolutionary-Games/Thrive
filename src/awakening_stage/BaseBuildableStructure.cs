@@ -54,14 +54,16 @@ public class BaseBuildableStructure : IRegistryType
     ///   The cost to finish this structure once scaffolding is placed
     /// </summary>
     [JsonProperty]
-    public Dictionary<WorldResource, int> RequiredResources { get; private set; } = new();
+    public IReadOnlyDictionary<WorldResource, int> RequiredResources { get; private set; } =
+        new Dictionary<WorldResource, int>();
 
     /// <summary>
     ///   The cost of placing this structure after which <see cref="RequiredResources"/> need to be added to finish
     ///   the construction
     /// </summary>
     [JsonProperty]
-    public Dictionary<WorldResource, int> ScaffoldingCost { get; private set; } = new();
+    public IReadOnlyDictionary<WorldResource, int> ScaffoldingCost { get; private set; } =
+        new Dictionary<WorldResource, int>();
 
     /// <summary>
     ///   The total resource cost of building this structure
@@ -88,6 +90,11 @@ public class BaseBuildableStructure : IRegistryType
     public WorldResource? CanStart(IReadOnlyDictionary<WorldResource, int> availableMaterials)
     {
         return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, ScaffoldingCost);
+    }
+
+    public WorldResource? CanStart(IResourceContainer availableMaterials)
+    {
+        return availableMaterials.CalculateMissingResource(ScaffoldingCost);
     }
 
     public WorldResource? CanFullyBuild(IReadOnlyDictionary<WorldResource, int> availableMaterials)

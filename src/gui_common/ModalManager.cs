@@ -5,7 +5,7 @@ using Godot.Collections;
 using Nito.Collections;
 
 /// <summary>
-///   Handles a stack of <see cref="CustomWindow"/>s that block GUI inputs.
+///   Handles a stack of <see cref="TopLevelContainer"/>s that block GUI inputs.
 /// </summary>
 public class ModalManager : NodeWithInput
 {
@@ -15,16 +15,16 @@ public class ModalManager : NodeWithInput
     ///   Contains the original parents of modal windows. Used to return them to the right place in the scene after
     ///   they are no longer displayed.
     /// </summary>
-    private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> originalParents = new();
+    private readonly System.Collections.Generic.Dictionary<TopLevelContainer, Node> originalParents = new();
 
-    private readonly Deque<CustomWindow> modalStack = new();
-    private readonly Queue<CustomWindow> demotedModals = new();
+    private readonly Deque<TopLevelContainer> modalStack = new();
+    private readonly Queue<TopLevelContainer> demotedModals = new();
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CanvasLayer canvasLayer = null!;
     private Control activeModalContainer = null!;
 
-    private CustomWindow? topMostWindowGivenFocus;
+    private TopLevelContainer? topMostWindowGivenFocus;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     private bool modalsDirty = true;
@@ -70,7 +70,7 @@ public class ModalManager : NodeWithInput
     ///     <see cref="Invoke.Queue"/>.
     ///   </para>
     /// </remarks>
-    public void MakeModal(CustomWindow popup)
+    public void MakeModal(TopLevelContainer popup)
     {
         if (modalStack.Contains(popup))
             return;
@@ -80,7 +80,7 @@ public class ModalManager : NodeWithInput
         modalsDirty = true;
 
         var binds = new Array { popup };
-        popup.CheckAndConnect(nameof(CustomWindow.Closed), this, nameof(OnModalLost), binds,
+        popup.CheckAndConnect(nameof(TopLevelContainer.Closed), this, nameof(OnModalLost), binds,
             (uint)ConnectFlags.Oneshot);
     }
 
@@ -100,8 +100,8 @@ public class ModalManager : NodeWithInput
 
         // This is emitted before closing to allow window using components to differentiate between "cancel" and
         // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
-        if (popup is CustomDialog dialog)
-            dialog.EmitSignal(nameof(CustomDialog.Cancelled));
+        if (popup is CustomWindow dialog)
+            dialog.EmitSignal(nameof(CustomWindow.Cancelled));
 
         popup.Close();
         popup.Notification(Control.NotificationModalClose);
@@ -112,7 +112,7 @@ public class ModalManager : NodeWithInput
     /// <summary>
     ///   Returns the top-most popup in the modal stack if there's any and it's exclusive, otherwise null.
     /// </summary>
-    public CustomWindow? GetTopMostPopupIfExclusive()
+    public TopLevelContainer? GetTopMostPopupIfExclusive()
     {
         if (modalStack.Count <= 0)
             return null;
@@ -202,8 +202,8 @@ public class ModalManager : NodeWithInput
 
             if (!top.Exclusive)
             {
-                if (top is CustomDialog dialog)
-                    dialog.EmitSignal(nameof(CustomDialog.Cancelled));
+                if (top is CustomWindow dialog)
+                    dialog.EmitSignal(nameof(CustomWindow.Cancelled));
 
                 // The crux of the custom modal system, to have an overridable hide behavior!
                 top.Close();
@@ -215,7 +215,7 @@ public class ModalManager : NodeWithInput
     /// <summary>
     ///   Called when <paramref name="popup"/> is closed.
     /// </summary>
-    private void OnModalLost(CustomWindow popup)
+    private void OnModalLost(TopLevelContainer popup)
     {
         if (!modalStack.Contains(popup))
             return;

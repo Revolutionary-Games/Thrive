@@ -322,10 +322,8 @@ public partial class Microbe
 
         if (source is "toxin" or "oxytoxy")
         {
-            // TODO: Replace this take damage sound with a more appropriate one.
-
             // Play the toxin sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
             // TODO: fix this, currently "toxin" is used both by microbes and chunks, as well as damage from ingested
             // toxins

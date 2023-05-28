@@ -36,8 +36,8 @@ public class KeyPrompt : CenterContainer
     public Color PressedColour = new(0.7f, 0.7f, 0.7f, 1);
 
 #pragma warning disable CA2213
-    private TextureRect? primaryIcon;
-    private TextureRect secondaryIcon = null!;
+    protected TextureRect? primaryIcon;
+    protected TextureRect secondaryIcon = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -72,7 +72,10 @@ public class KeyPrompt : CenterContainer
     public override void _Process(float delta)
     {
         if (!ShowPress)
+        {
+            // TODO: reset the pressed status colour if it was previously pressed?
             return;
+        }
 
         if (string.IsNullOrEmpty(ActionName) || !Input.IsActionPressed(ActionName))
         {
@@ -130,7 +133,7 @@ public class KeyPrompt : CenterContainer
         }
     }
 
-    private void ApplySize()
+    protected virtual void ApplySize()
     {
         var size = RectSize;
         primaryIcon!.RectMinSize = size;

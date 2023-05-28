@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 09:29+0300\n"
+"POT-Creation-Date: 2023-05-26 10:40+0300\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -68,6 +68,31 @@ msgstr "进入启蒙阶段。一旦你有足够的脑力就可以使用（需要
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "当另一个行动在进行时无法进行行动"
 
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "确认删除"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "该物种的种群数量"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "确认删除"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "{0} 种群数量： {1}"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
+msgstr "确认删除"
+
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "活泼"
@@ -90,11 +115,11 @@ msgstr "额外验证检测到了一个问题：{0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "添加新的绑定键位"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
 msgstr "高级"
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "打开高级菜单"
 
@@ -129,11 +154,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "激进"
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:475
 msgid "AI_MUTATION_RATE"
 msgstr "AI突变率"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "（AI物种突变的速度）"
 
@@ -170,6 +195,10 @@ msgstr ""
 "[b]单细胞生物大小：[/b]\n"
 "  平均值 {9}，方差 {10}\n"
 "[b]基本细胞器信息：[/b]"
+
+#: ../src/space_stage/SpaceStage.cs:410
+msgid "ALREADY_ASCENDED"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -235,9 +264,19 @@ msgstr "“{0}” - {1}"
 msgid "ART_BY"
 msgstr "由{0}创作"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
+#, fuzzy
+msgid "ASCENSION_CONGRATULATIONS"
+msgstr "该物种的种群数量"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
+msgid "ASCENSION_CONGRATULATIONS_CONTENT"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -333,7 +372,7 @@ msgstr "游戏中启用自动保存"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:417
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo探索工具"
 
@@ -367,8 +406,9 @@ msgid "AUTO_RESOLUTION"
 msgstr "自动（{0}x{1}）"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "可用的建筑项目"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -384,9 +424,9 @@ msgid "AWARE_STAGE"
 msgstr "微生物阶段"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
-#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -416,11 +456,11 @@ msgstr "基础移动能力"
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
 msgstr "基本"
 
-#: ../src/general/NewGameSettings.tscn:1157
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "回到基本菜单"
 
@@ -484,7 +524,7 @@ msgstr "投机性"
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
-#: ../src/general/MainMenu.tscn:428
+#: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
 msgstr "载入"
 
@@ -564,7 +604,7 @@ msgstr "生物发光液泡"
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神经元"
 
@@ -581,14 +621,13 @@ msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
 #: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "创造结构"
+msgstr "建造城市"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#, fuzzy
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 msgid "BUILD_QUEUE"
-msgstr "创造结构"
+msgstr "建设队列"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -622,6 +661,7 @@ msgstr "视角"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "取消"
@@ -872,6 +912,8 @@ msgstr "增加大体型细胞的转向速度。"
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr ""
@@ -1005,19 +1047,19 @@ msgstr "常见能力"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "多功能编辑器和策略规划阶段"
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:674
 msgid "COMMUNITY_FORUM"
 msgstr "社区论坛"
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:669
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "在我们的社区论坛上加入Thrive社区"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:716
 msgid "COMMUNITY_WIKI"
 msgstr "社区wiki"
 
-#: ../src/general/MainMenu.tscn:708
+#: ../src/general/MainMenu.tscn:711
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的社区wiki"
 
@@ -1050,11 +1092,11 @@ msgstr "化合物收支"
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
 
-#: ../src/general/NewGameSettings.tscn:529
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "化合物云密度"
 
-#: ../src/general/NewGameSettings.tscn:569
+#: ../src/general/NewGameSettings.tscn:574
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "（环境中化合物云的密度）"
 
@@ -1082,20 +1124,34 @@ msgstr "设置"
 msgid "CONFIRM_CAPITAL"
 msgstr "确认"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
 msgid "CONFIRM_DELETE"
-msgstr "确认退出"
+msgstr "确认删除"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "确认覆盖"
+
+#: ../src/space_stage/SpaceStage.tscn:220
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+msgstr "进入太空阶段？"
+
+#: ../src/space_stage/SpaceStage.tscn:221
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+msgstr ""
+"你现在可以发射宇宙飞船以突破到太空阶段。\n"
+"\n"
+"但是你无法观察行星地表，不过你可以在太空中放大或缩小你的视角。\n"
+"\n"
+"如果取消发射会摧毁这个宇宙飞船。确认发射火箭吗？"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
@@ -1106,25 +1162,28 @@ msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "通过建立工厂，你将进入工业阶段。继续下一阶段？"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "进入工业阶段？"
+msgstr "进入太空阶段？"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "通过建立工厂，你将进入工业阶段。继续下一阶段？"
+msgstr ""
+"你现在可以发射宇宙飞船以突破到太空阶段。\n"
+"\n"
+"但是你无法观察行星地表，不过你可以在太空中放大或缩小你的视角。\n"
+"\n"
+"如果取消发射会摧毁这个宇宙飞船。确认发射火箭吗？"
 
-#: ../src/general/NewGameSettings.cs:329
-#: ../src/general/NewGameSettings.tscn:1193
+#: ../src/general/NewGameSettings.cs:404
+#: ../src/general/NewGameSettings.tscn:1198
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "以当前设定进入游戏"
 
-#: ../src/general/NewGameSettings.cs:336
+#: ../src/general/NewGameSettings.cs:411
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分设置无效"
 
-#: ../src/industrial_stage/UnitType.cs:68
+#: ../src/industrial_stage/UnitType.cs:79
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "蓝黄色盲"
@@ -1305,7 +1364,7 @@ msgstr "创建中……"
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
 
-#: ../src/general/MainMenu.tscn:352
+#: ../src/general/MainMenu.tscn:355
 msgid "CREDITS"
 msgstr "制作人名单"
 
@@ -1378,19 +1437,19 @@ msgstr "细胞质糖酵解"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
 msgstr "日长"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:988
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "（游戏中一天在现实中对应的秒数）"
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:916
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "启用昼夜循环"
 
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:925
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "（提示：光合作用会被削弱）"
 
@@ -1410,7 +1469,7 @@ msgstr "死区已重置"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "死区控制"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:966
+#: ../src/microbe_stage/Microbe.Contact.cs:964
 msgid "DEATH"
 msgstr "死亡数"
 
@@ -1447,7 +1506,7 @@ msgstr ""
 "- {1} 个快速存档\n"
 "- {2} 个备份存档"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
 #, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "删除此存档将无法撤消，确定要永久删除吗？"
@@ -1480,6 +1539,21 @@ msgstr "删除被选中的这些存档将无法撤消，确定要永久删除这
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "删除这个存档？"
 
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "删除此存档将无法撤消，确定要永久删除吗？"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
+#, fuzzy
+msgid "DESCEND_CONFIRMATION"
+msgstr "删除此存档将无法撤消，确定要永久删除吗？"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
+#, fuzzy
+msgid "DESCEND_CONFIRMATION_EXPLANATION"
+msgstr "将该物种保存至化石中并存放到博物馆里。你可以通过Thrive百科进入博物馆，或在自由编辑器中加载这些化石中的物种。"
+
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "描述："
@@ -1511,11 +1585,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "开发者"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:688
 msgid "DEVELOPMENT_FORUM"
 msgstr "开发论坛"
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:683
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "在开发论坛上了解开发进度"
 
@@ -1523,11 +1597,11 @@ msgstr "在开发论坛上了解开发进度"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "由Revolutionary Games Studio ry支持的开发"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:702
 msgid "DEVELOPMENT_WIKI"
 msgstr "开发者wiki"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:697
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的开发者wiki"
 
@@ -1539,7 +1613,7 @@ msgstr "被吞噬"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Devbuilds 支持者"
 
-#: ../src/general/NewGameSettings.tscn:298
+#: ../src/general/NewGameSettings.tscn:303
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "难度"
@@ -1559,8 +1633,8 @@ msgstr ""
 "被动获得的繁殖进度: {8}\n"
 "限制繁殖化合物使用: {9}"
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr "难度预设"
 
@@ -1655,7 +1729,7 @@ msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/general/MainMenu.tscn:857
+#: ../src/general/MainMenu.tscn:860
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
@@ -1846,11 +1920,11 @@ msgstr "小提示：细菌可能比它们看上去要强。它们或许体型很
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "小提示：如果你不足够小心的话你可以把其它物种捕猎到灭绝，它们也可以被其它物种捕猎到灭绝。"
 
-#: ../src/general/NewGameSettings.tscn:1117
+#: ../src/general/NewGameSettings.tscn:1122
 msgid "EASTER_EGGS"
 msgstr "包含彩蛋"
 
-#: ../src/general/NewGameSettings.tscn:1125
+#: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "（游戏中会随机生成彩蛋）"
 
@@ -1935,11 +2009,11 @@ msgstr "实体标签"
 msgid "ENVIRONMENT"
 msgstr "环境"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "环境葡萄糖保留"
 
-#: ../src/general/NewGameSettings.tscn:686
+#: ../src/general/NewGameSettings.tscn:691
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "（每一代后环境葡萄糖保留的比例）"
 
@@ -1991,7 +2065,7 @@ msgstr "存档时出错"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1232
+#: ../src/microbe_stage/Microbe.Contact.cs:1230
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -2027,6 +2101,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "输入已有的编号"
@@ -2035,7 +2110,7 @@ msgstr "输入已有的编号"
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:364
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至启动器"
 
@@ -2085,7 +2160,7 @@ msgstr "在这个地区里灭绝了"
 msgid "EXTINCT_SPECIES"
 msgstr "灭绝物种"
 
-#: ../src/general/MainMenu.tscn:344
+#: ../src/general/MainMenu.tscn:347
 msgid "EXTRAS"
 msgstr "额外内容"
 
@@ -2093,7 +2168,7 @@ msgstr "额外内容"
 msgid "EXTRA_OPTIONS"
 msgstr "额外选项"
 
-#: ../src/general/MainMenu.tscn:869
+#: ../src/general/MainMenu.tscn:872
 msgid "FACEBOOK_TOOLTIP"
 msgstr "访问我们的Facebook页面"
 
@@ -2186,6 +2261,16 @@ msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
 
+#: ../src/space_stage/SpaceFleet.cs:86
+#, fuzzy
+msgid "FLEET_NAME_FROM_PLACE"
+msgstr "从这个星球上灭绝了"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
+#, fuzzy
+msgid "FLEET_UNITS"
+msgstr "{0} {1}"
+
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "漂浮的碎块："
@@ -2277,12 +2362,12 @@ msgstr "保存该物种到化石中（已保存）"
 msgid "FOSSILISE"
 msgstr "保存至化石中"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Mod创建失败"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
@@ -2312,11 +2397,11 @@ msgstr "帧时长：{0}"
 msgid "FREEBUILDING"
 msgstr "自由编辑器"
 
-#: ../src/general/NewGameSettings.tscn:758
+#: ../src/general/NewGameSettings.tscn:763
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "在离开编辑器时额外的葡萄糖云"
 
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "（每一代开始时在玩家旁自动生成一块葡萄糖云）"
 
@@ -2348,7 +2433,7 @@ msgstr "世代"
 msgid "GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/general/MainMenu.tscn:821
+#: ../src/general/MainMenu.tscn:824
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
@@ -2356,11 +2441,11 @@ msgstr "访问我们在GitHub上的代码仓库"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
@@ -2394,6 +2479,11 @@ msgstr "糖酵解"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "上帝模式"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "加入我们社区的Discord服务器"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2491,6 +2581,11 @@ msgstr "按住以显示鼠标指针"
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "按住[thrive:input]g_free_cursor[/thrive:input]以显示鼠标指针"
 
+#: ../src/ascension_stage/AscensionCeremony.tscn:231
+#, fuzzy
+msgid "HOLD_TO_SKIP_CREDITS"
+msgstr "按住以显示鼠标指针"
+
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
 msgstr "主页"
@@ -2547,11 +2642,11 @@ msgstr "ID无效"
 msgid "ID_NUMBER"
 msgstr "编号"
 
-#: ../src/general/NewGameSettings.tscn:1096
+#: ../src/general/NewGameSettings.tscn:1101
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "包含测试阶段"
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "（当你进入测试阶段，一些功能可能无法使用）"
 
@@ -2600,6 +2695,16 @@ msgstr "检查"
 msgid "INSPECTOR"
 msgstr "检查"
 
+#: ../src/awakening_stage/InteractionType.cs:32
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "收割"
+
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "收割"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
 msgstr "完成建造"
@@ -2620,7 +2725,12 @@ msgstr "投放材料"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "投放材料（没有合适的携带物品）"
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "收割"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "成立一个聚居地"
 
@@ -2669,7 +2779,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "存档名称不应包含特殊字符(<>:\"/|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:156
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "物种名称必须符合双名法命名系统（属和表名）!"
 
@@ -2725,7 +2835,7 @@ msgstr "铁"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "铁化能无机自养"
 
-#: ../src/general/MainMenu.tscn:797
+#: ../src/general/MainMenu.tscn:800
 msgid "ITCH_TOOLTIP"
 msgstr "访问我们在Itch.io上的页面"
 
@@ -3023,13 +3133,13 @@ msgstr "邮件"
 msgid "LAUNCHMEDIA"
 msgstr "媒体"
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:849
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr "仅限已知生命形式"
 
-#: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:162
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "（只允许使用人类已观测到的生物的组件与能力）"
 
@@ -3101,7 +3211,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "鼠标左键"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:529
 msgid "LICENSES"
 msgstr "许可"
 
@@ -3109,37 +3219,37 @@ msgstr "许可"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "此处是涵盖Thrive各部分内容的许可证"
 
-#: ../src/general/NewGameSettings.tscn:180
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:881
 msgid "LIFE_ORIGIN"
 msgstr "生物起源"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:885
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:890
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "（开始游戏的地区）"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "宇生说（随机）"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "温暖的小片水域"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:205
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "如果LAWK启用，部分选项将不可用"
 
-#: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:895
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "热泉"
@@ -3177,11 +3287,11 @@ msgstr "光强最大值"
 msgid "LIMIT_EXTREME"
 msgstr "极多"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 msgid "LIMIT_GROWTH_RATE"
 msgstr "限制繁殖化合物使用"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:813
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "（启用时会限制生长速度，如果关闭的话那么生长速度便仅受可用的化合物数量的影响）"
 
@@ -3264,12 +3374,12 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 msgid "LOAD_FINISHED"
 msgstr "载入完成"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "载入之前保存的游戏"
 
@@ -3468,7 +3578,7 @@ msgid "MICROBES_COUNT"
 msgstr "微生物计数："
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:588
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物编辑器"
@@ -3548,7 +3658,7 @@ msgstr "每一代，你都有100个变异点可供花费，任何变化都需要
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]x10⁶年的进化时间。"
 
-#: ../src/general/MainMenu.tscn:403
+#: ../src/general/MainMenu.tscn:406
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
@@ -3730,7 +3840,7 @@ msgstr "最低："
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "不允许显示少于{0}个数据集！"
 
-#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "杂项"
 
@@ -3798,11 +3908,11 @@ msgstr "修改细胞器"
 msgid "MODIFY_TYPE"
 msgstr "修改类型"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:506
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:967
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "检测到安装的模组，但没有启用的模组。\n"
@@ -3891,11 +4001,11 @@ msgstr "内部（文件夹）名称："
 msgid "MOD_LICENSE"
 msgstr "此Mod的许可："
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
 
@@ -4045,7 +4155,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "成为陆地生物？"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "成为陆地生物中......"
@@ -4094,7 +4204,7 @@ msgstr "多个细胞器"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重采样抗锯齿："
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:135
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "欢迎来到博物馆！在这里你可以欣赏许多在你游玩过程中被保存到化石中的众多物种。你甚至可以在自由编辑器中打开它们进行游戏。\n"
@@ -4113,11 +4223,11 @@ msgstr "音乐音量"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "每个物种的变异尝试次数"
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "突变成本系数"
 
-#: ../src/general/NewGameSettings.tscn:451
+#: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "（细胞器，膜和编辑器中其它选项的耗费）"
 
@@ -4135,10 +4245,20 @@ msgstr "静音"
 msgid "NAME"
 msgstr "名称："
 
-#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#: ../src/industrial_stage/gui/CityNameLabel.cs:56
 #, fuzzy
 msgid "NAME_LABEL_CITY"
 msgstr "生物群系：{0}"
+
+#: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:38
+#, fuzzy
+msgid "NAME_LABEL_FLEET"
+msgstr "生物群系：{0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4168,15 +4288,15 @@ msgstr "新闻"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "增加生物多样性物种的初始种群数量"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:297
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "开始新游戏"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "注意：您可以随时在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]选项菜单[/url][/color]中更改性能相关选项以提高游戏性能"
 
@@ -4254,11 +4374,11 @@ msgstr "最基础的细胞膜，基本没啥保护能力。同时也需要很多
 msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "没有可以交互的物体"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:370
+#: ../src/microbe_stage/Microbe.Contact.cs:368
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因ATP耗尽而受伤"
 
@@ -4270,11 +4390,11 @@ msgstr "由于摄入物体中的毒素而受伤"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "没有用于吞噬目标的 {0}"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1790
+#: ../src/microbe_stage/Microbe.Contact.cs:1788
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "目前细胞大小不足以吞噬目标"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1785
+#: ../src/microbe_stage/Microbe.Contact.cs:1783
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "没有足够存储空间以摄入被吞噬的目标"
 
@@ -4307,11 +4427,11 @@ msgstr "没有数据可显示"
 msgid "NO_EVENTS_RECORDED"
 msgstr "无事件记录"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目录"
 
-#: ../src/general/MainMenu.tscn:965
+#: ../src/general/MainMenu.tscn:968
 msgid "NO_MODS_ENABLED"
 msgstr "模组已禁用"
 
@@ -4382,11 +4502,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "十月"
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:660
 msgid "OFFICIAL_WEBSITE"
 msgstr "官方网站"
 
-#: ../src/general/MainMenu.tscn:648
+#: ../src/general/MainMenu.tscn:651
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "访问Revolutionary Games的官方网站"
 
@@ -4409,21 +4529,27 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:88
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "打开化石目录"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "您确定想作为这个被选中的物种开始一局新的游戏吗？\n"
 "您将失去任何未保存的进度。"
 
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "打开Mod网址"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "打开帮助页面"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:119
 msgid "OPEN_IN_FREEBUILD"
 msgstr "在自由编辑器中打开"
 
@@ -4480,11 +4606,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "机会主义"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "选项"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "改变你的设置"
 
@@ -4568,11 +4694,11 @@ msgstr "渗透调节"
 msgid "OSMOREGULATION_COST"
 msgstr "渗透调节消耗"
 
-#: ../src/general/NewGameSettings.tscn:705
+#: ../src/general/NewGameSettings.tscn:710
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "渗透调节消耗系数"
 
-#: ../src/general/NewGameSettings.tscn:745
+#: ../src/general/NewGameSettings.tscn:750
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "（调节玩家物种渗透调节的消耗）"
 
@@ -4596,7 +4722,7 @@ msgstr "覆写已有的存档："
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "覆写已有的存档？"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "化石库中已有一个与之重名的物种。\n"
@@ -4671,11 +4797,11 @@ msgstr "向右平移"
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:784
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "被动获得的繁殖进度"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:792
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
@@ -4735,7 +4861,7 @@ msgstr ""
 "你的物种已经在这个地区中灭绝了。\n"
 "但这还没有结束，你仍然可以选择一个新的地区继续游玩！"
 
-#: ../src/general/MainMenu.tscn:809
+#: ../src/general/MainMenu.tscn:812
 msgid "PATREON_TOOLTIP"
 msgstr "访问我们在Patreon上的页面"
 
@@ -4773,7 +4899,7 @@ msgstr "和平"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:685
+#: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4826,7 +4952,7 @@ msgstr "物防"
 msgid "PLACE_ORGANELLE"
 msgstr "放置细胞器"
 
-#: ../src/general/NewGameSettings.tscn:308
+#: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "星球"
@@ -4841,12 +4967,12 @@ msgstr ""
 "一天的长度：{3}秒\n"
 "行星随机种子：{4}"
 
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1067
 msgid "PLANET_GENERATION_TEASER"
 msgstr "行星生成即将发布！"
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
 
@@ -4855,11 +4981,11 @@ msgstr "世界生成种子"
 msgid "PLAYER"
 msgstr "玩家细胞"
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "玩家死亡惩罚"
 
-#: ../src/general/NewGameSettings.tscn:628
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "（当玩家死亡时玩家物种的种群数量下降的系数）"
 
@@ -5012,11 +5138,11 @@ msgstr "快速读档"
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:376
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "退出游戏"
@@ -5031,8 +5157,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "随机化物种名称"
 
-#: ../src/general/NewGameSettings.tscn:241
-#: ../src/general/NewGameSettings.tscn:1009
+#: ../src/general/NewGameSettings.tscn:242
+#: ../src/general/NewGameSettings.tscn:1014
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
 
@@ -5058,7 +5184,7 @@ msgstr "准备就绪"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推荐的Thrive版本："
 
-#: ../src/general/MainMenu.tscn:845
+#: ../src/general/MainMenu.tscn:848
 msgid "REDDIT_TOOLTIP"
 msgstr "访问我们的subreddit页面"
 
@@ -5083,7 +5209,7 @@ msgstr "在目标地区灭绝的情况下，退还迁移的费用"
 msgid "REPORT"
 msgstr "报告"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "报告一个bug"
 
@@ -5166,9 +5292,15 @@ msgstr "分辨率："
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "物质吸收速度"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "石头"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5219,7 +5351,7 @@ msgstr ""
 "你确定要退出到主菜单吗？\n"
 "你会失去任何未保存的进度。"
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:775
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "访问Revolutionary Games Studio网站"
 
@@ -5305,7 +5437,7 @@ msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。"
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "由于先前的启动错误，Thrive已在安全模式下启动。\n"
@@ -5317,7 +5449,7 @@ msgstr ""
 "\n"
 "如果你未能修复导致启动错误的问题，你在未来几次启动中将会崩溃数次并最后再次返回安全模式。"
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:978
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
@@ -5548,6 +5680,11 @@ msgstr "选择一个选项"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "选择预览图"
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "选择要放置的结构"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "选择要放置的结构"
@@ -5728,6 +5865,21 @@ msgstr "空格"
 msgid "SPACE_STAGE"
 msgstr "微生物阶段"
 
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "已具有用于建造的材料"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "正在建造：{0}"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+#, fuzzy
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr "正在建造：{0}"
+
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "生成氨"
@@ -5840,7 +5992,7 @@ msgstr "启动中"
 msgid "START_CALIBRATION"
 msgstr "开始校准"
 
-#: ../src/general/NewGameSettings.tscn:1196
+#: ../src/general/NewGameSettings.tscn:1201
 msgid "START_GAME"
 msgstr "开始游戏"
 
@@ -5915,17 +6067,17 @@ msgstr "Steam系统目前不可用，请重试"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "发生了未知的Steam错误"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:1001
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam 初始化失败"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:1003
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam 客户端库初始化失败，Steam 功能将不可用。\n"
 "请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
-#: ../src/general/MainMenu.tscn:785
+#: ../src/general/MainMenu.tscn:788
 msgid "STEAM_TOOLTIP"
 msgstr "访问我们在Steam上的页面"
 
@@ -5998,7 +6150,7 @@ msgstr "社会中心"
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "社会中心"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "已具有用于建造的材料"
 
@@ -6007,14 +6159,16 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr "渔猎采集者居所"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "正在建造：{0}"
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "完成该建筑所需要的材料: {0}"
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 #, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
@@ -6022,7 +6176,8 @@ msgstr ""
 "if is how many I total have , \"total\" traslate to \"目前共有{2}单位\", \n"
 "if is It total cost ,\"total\" traslate to \"总共需要{2}单位\""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 #, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0}（当前缺少{1}单位，总共需要：{2}单位）"
@@ -6036,11 +6191,11 @@ msgstr "社会中心"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Steam创意工坊启用的模组"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:785
+#: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:778
+#: ../src/microbe_stage/Microbe.Contact.cs:776
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
@@ -6175,7 +6330,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Steam模组"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "解锁的科技：{0}"
 
@@ -6196,7 +6351,7 @@ msgstr "温度"
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
@@ -6212,7 +6367,7 @@ msgstr ""
 "\n"
 "如果你喜欢这款游戏，记得也向你的朋友们推荐下。"
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:991
 msgid "THANK_YOU_TITLE"
 msgstr "感谢"
 
@@ -6271,7 +6426,7 @@ msgstr "这个mod是在Steam创意工坊下载的"
 msgid "THREADS"
 msgstr "线程："
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thrive百科"
 
@@ -6433,7 +6588,7 @@ msgstr "暂停"
 msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:331
 msgid "TOOLS"
 msgstr "工具"
 
@@ -6488,7 +6643,7 @@ msgstr "降低高音"
 msgid "TREBLEUP"
 msgstr "提高高音"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:155
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "尝试将某些物种变成化石！"
 
@@ -6657,7 +6812,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:884
 msgid "TWITTER_TOOLTIP"
 msgstr "访问我们的推特"
 
@@ -6702,9 +6857,20 @@ msgstr "撤销"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤销上一个动作"
 
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "完成建造"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "收割"
+
 #: ../simulation_parameters/industrial_stage/units.json:3
+#, fuzzy
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "简易火箭"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
@@ -6861,7 +7027,7 @@ msgstr "查看补丁说明"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "查看最近或所有的Thrive补丁信息"
 
-#: ../src/general/MainMenu.tscn:336
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
 
@@ -6873,7 +7039,7 @@ msgstr "VIP 支持者"
 msgid "VISIBLE"
 msgstr "可见"
 
-#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "提出功能建议"
 
@@ -7028,7 +7194,7 @@ msgstr "Xbox X 系列"
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/general/MainMenu.tscn:833
+#: ../src/general/MainMenu.tscn:836
 msgid "YOUTUBE_TOOLTIP"
 msgstr "访问我们的YouTube频道"
 
@@ -7049,6 +7215,10 @@ msgstr "放大"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "BUILD_SPACE_STRUCTURE"
+#~ msgstr "创造结构"
 
 #, fuzzy
 #~ msgid "ENABLED"
@@ -7164,9 +7334,6 @@ msgstr "缩小"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "地区中的种群数量："
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} 种群数量： {1}"
 
 #~ msgid "SAVING"
 #~ msgstr "保存中……"

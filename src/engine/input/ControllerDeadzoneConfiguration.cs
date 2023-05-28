@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public class ControllerDeadzoneConfiguration : CustomDialog
+public class ControllerDeadzoneConfiguration : CustomWindow
 {
     [Export]
     public NodePath? VisualizationContainerPath;

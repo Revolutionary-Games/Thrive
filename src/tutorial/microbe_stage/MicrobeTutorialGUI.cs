@@ -70,25 +70,25 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath EditorButtonHighlightPath = null!;
 
 #pragma warning disable CA2213
-    private CustomDialog microbeWelcomeMessage = null!;
+    private CustomWindow microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
     private Control microbeMovementKeyLeft = null!;
     private Control microbeMovementKeyRight = null!;
     private Control microbeMovementKeyBackwards = null!;
-    private CustomDialog microbeMovementPopup = null!;
-    private CustomDialog glucoseTutorial = null!;
-    private CustomDialog stayingAlive = null!;
-    private CustomDialog reproductionTutorial = null!;
-    private CustomDialog editorButtonTutorial = null!;
-    private CustomDialog unbindTutorial = null!;
-    private CustomDialog checkTheHelpMenu = null!;
-    private CustomDialog engulfmentExplanation = null!;
-    private CustomDialog engulfedExplanation = null!;
-    private CustomDialog engulfmentFullCapacity = null!;
-    private CustomDialog leaveColonyTutorial = null!;
-    private CustomDialog earlyMulticellularWelcome = null!;
-    private CustomDialog dayNightTutorial = null!;
+    private CustomWindow microbeMovementPopup = null!;
+    private CustomWindow glucoseTutorial = null!;
+    private CustomWindow stayingAlive = null!;
+    private CustomWindow reproductionTutorial = null!;
+    private CustomWindow editorButtonTutorial = null!;
+    private CustomWindow unbindTutorial = null!;
+    private CustomWindow checkTheHelpMenu = null!;
+    private CustomWindow engulfmentExplanation = null!;
+    private CustomWindow engulfedExplanation = null!;
+    private CustomWindow engulfmentFullCapacity = null!;
+    private CustomWindow leaveColonyTutorial = null!;
+    private CustomWindow earlyMulticellularWelcome = null!;
+    private CustomWindow dayNightTutorial = null!;
 #pragma warning restore CA2213
 
     [Signal]
@@ -388,25 +388,25 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<CustomWindow>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
-        microbeMovementPopup = GetNode<CustomDialog>(MicrobeMovementPopupPath);
+        microbeMovementPopup = GetNode<CustomWindow>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
         microbeMovementKeyLeft = GetNode<Control>(MicrobeMovementKeyLeftPath);
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
-        glucoseTutorial = GetNode<CustomDialog>(GlucoseTutorialPath);
-        stayingAlive = GetNode<CustomDialog>(StayingAlivePath);
-        reproductionTutorial = GetNode<CustomDialog>(ReproductionTutorialPath);
-        editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
-        unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
-        checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
-        engulfmentExplanation = GetNode<CustomDialog>(EngulfmentExplanationPath);
-        engulfedExplanation = GetNode<CustomDialog>(EngulfedExplanationPath);
-        engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
-        leaveColonyTutorial = GetNode<CustomDialog>(LeaveColonyTutorialPath);
-        earlyMulticellularWelcome = GetNode<CustomDialog>(EarlyMulticellularWelcomePath);
-        dayNightTutorial = GetNode<CustomDialog>(DayNightTutorialPath);
+        glucoseTutorial = GetNode<CustomWindow>(GlucoseTutorialPath);
+        stayingAlive = GetNode<CustomWindow>(StayingAlivePath);
+        reproductionTutorial = GetNode<CustomWindow>(ReproductionTutorialPath);
+        editorButtonTutorial = GetNode<CustomWindow>(EditorButtonTutorialPath);
+        unbindTutorial = GetNode<CustomWindow>(UnbindTutorialPath);
+        checkTheHelpMenu = GetNode<CustomWindow>(CheckTheHelpMenuPath);
+        engulfmentExplanation = GetNode<CustomWindow>(EngulfmentExplanationPath);
+        engulfedExplanation = GetNode<CustomWindow>(EngulfedExplanationPath);
+        engulfmentFullCapacity = GetNode<CustomWindow>(EngulfmentFullCapacityPath);
+        leaveColonyTutorial = GetNode<CustomWindow>(LeaveColonyTutorialPath);
+        earlyMulticellularWelcome = GetNode<CustomWindow>(EarlyMulticellularWelcomePath);
+        dayNightTutorial = GetNode<CustomWindow>(DayNightTutorialPath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 

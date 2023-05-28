@@ -36,4 +36,11 @@ public enum MainGameState
     SocietyStage,
 
     IndustrialStage,
+
+    SpaceStage,
+
+    /// <summary>
+    ///   The cutscene where the player gets to ascension
+    /// </summary>
+    AscensionCeremony,
 }

@@ -34,10 +34,10 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
     public NodePath InventoryScreenPath = null!;
 
 #pragma warning disable CA2213
-    private CustomDialog moveToLandPopup = null!;
+    private CustomWindow moveToLandPopup = null!;
     private Button toLandButton = null!;
     private Button awakenButton = null!;
-    private CustomDialog awakenConfirmPopup = null!;
+    private CustomWindow awakenConfirmPopup = null!;
 
     private ActionButton interactAction = null!;
     private ActionButton inventoryButton = null!;
@@ -73,10 +73,10 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
     {
         base._Ready();
 
-        moveToLandPopup = GetNode<CustomDialog>(MoveToLandPopupPath);
+        moveToLandPopup = GetNode<CustomWindow>(MoveToLandPopupPath);
         toLandButton = GetNode<Button>(ToLandButtonPath);
         awakenButton = GetNode<Button>(AwakenButtonPath);
-        awakenConfirmPopup = GetNode<CustomDialog>(AwakenConfirmPopupPath);
+        awakenConfirmPopup = GetNode<CustomWindow>(AwakenConfirmPopupPath);
 
         interactAction = GetNode<ActionButton>(InteractActionPath);
         inventoryButton = GetNode<ActionButton>(InventoryButtonPath);

@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Dialog for fossilising (saving) a given species.
 /// </summary>
-public class FossilisationDialog : CustomDialog
+public class FossilisationDialog : CustomWindow
 {
     [Export]
     public NodePath? NameEditPath;

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/society_stage/gui/SocietyHUD.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/space_stage/gui/PlanetScreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/space_stage/gui/SpaceHUD.cs" type="Script" id=3]
+[ext_resource path="res://src/space_stage/gui/SpaceFleetInfoPopup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/space_stage/gui/SpaceConstructionPopup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/space_stage/gui/SpaceStructureInfoPopup.tscn" type="PackedScene" id=7]
+
+[node name="SpaceHUD" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+PlanetScreenPopupPath = NodePath("PlanetScreen")
+FleetPopupPath = NodePath("SpaceFleetInfoPopup")
+ConstructionPopupPath = NodePath("SpaceConstructionPopup")
+StructurePopupPath = NodePath("SpaceStructureInfoPopup")
+DescendButtonPath = NodePath("Descend")
+
+[node name="AddWindowReorderingSupportToSiblings" parent="." index="0" instance=ExtResource( 5 )]
+
+[node name="BottomRight" parent="." index="1"]
+visible = false
+
+[node name="Build" parent="ScrollContainer/HotBar" index="0"]
+visible = false
+disabled = true
+
+[node name="Research" parent="ScrollContainer/HotBar" index="1"]
+margin_left = 226.0
+margin_right = 272.0
+
+[node name="Posses" parent="ScrollContainer/HotBar" index="2"]
+margin_left = 278.0
+margin_right = 324.0
+
+[node name="PlanetScreen" parent="." index="9" instance=ExtResource( 2 )]
+
+[node name="SpaceStructureInfoPopup" parent="." index="10" instance=ExtResource( 7 )]
+
+[node name="SpaceFleetInfoPopup" parent="." index="11" instance=ExtResource( 4 )]
+
+[node name="SpaceConstructionPopup" parent="." index="12" instance=ExtResource( 6 )]
+
+[node name="Descend" type="Button" parent="." index="13"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -235.369
+margin_top = -45.1216
+margin_right = -40.3691
+margin_bottom = -10.1216
+text = "DESCEND_BUTTON"
+
+[connection signal="OnConstructOptionSelected" from="SpaceFleetInfoPopup" to="." method="ShowConstructionOptionsForFleet"]
+[connection signal="pressed" from="Descend" to="." method="ForwardDescendPress"]

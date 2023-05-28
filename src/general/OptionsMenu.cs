@@ -439,11 +439,11 @@ public class OptionsMenu : ControlWithInput
 
     // Confirmation Boxes
     private CustomConfirmationDialog screenshotDirectoryWarningBox = null!;
-    private CustomDialog backConfirmationBox = null!;
+    private CustomWindow backConfirmationBox = null!;
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
 
-    private CustomDialog patchNotesBox = null!;
+    private CustomWindow patchNotesBox = null!;
     private PatchNotesDisplayer patchNotesDisplayer = null!;
 #pragma warning restore CA2213
 
@@ -636,10 +636,10 @@ public class OptionsMenu : ControlWithInput
         unsavedProgressWarningEnabled = GetNode<CustomCheckBox>(UnsavedProgressWarningPath);
 
         screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
-        backConfirmationBox = GetNode<CustomDialog>(BackConfirmationBoxPath);
+        backConfirmationBox = GetNode<CustomWindow>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
-        patchNotesBox = GetNode<CustomDialog>(PatchNotesBoxPath);
+        patchNotesBox = GetNode<CustomWindow>(PatchNotesBoxPath);
         patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
 
         nodeReferencesResolved = true;

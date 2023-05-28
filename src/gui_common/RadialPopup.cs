@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class RadialPopup : CustomDialog
+public class RadialPopup : CustomWindow
 {
     [Export]
     public NodePath? RadialPath;

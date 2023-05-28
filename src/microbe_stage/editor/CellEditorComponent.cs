@@ -222,7 +222,7 @@ public partial class CellEditorComponent :
 
     private CompoundBalanceDisplay compoundBalance = null!;
 
-    private CustomDialog autoEvoPredictionExplanationPopup = null!;
+    private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
     private PackedScene organelleSelectionButtonScene = null!;
@@ -597,7 +597,7 @@ public partial class CellEditorComponent :
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
-        autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
+        autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
     }
 

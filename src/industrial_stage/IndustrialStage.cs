@@ -46,6 +46,9 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     [JsonProperty]
     private float toSpaceUnitAcceleration;
 
+    [JsonProperty]
+    private UnitType? launchedSpacecraftType;
+
     private enum StageMovePhase
     {
         NotMoving,
@@ -126,7 +129,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 
         if (!playerCity)
         {
-            // TODO: AI civilizations tech web's
+            // TODO: AI civilizations' tech webs
             GD.Print("TODO: implement AI civilization tech unlocking");
             techWeb = new TechWeb();
         }
@@ -278,6 +281,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         if (!spaceCraftData.Value.City.OnUnitUnGarrisoned(spacecraft))
             GD.PrintErr("Failed to un-garrison spacecraft for launch");
 
+        launchedSpacecraftType = spacecraft;
+
         // TODO: switch to using proper in-play unit class here
         // For now the prototype just displays the visuals
         var scene = spacecraft.WorldRepresentation;
@@ -362,7 +367,7 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
                 {
                     movingToSpaceStagePhase = StageMovePhase.FadingOut;
                     TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut,
-                        Constants.INDUSTRIAL_TO_SPACE_FADE_DURATION);
+                        Constants.INDUSTRIAL_TO_SPACE_FADE_DURATION, SwitchToSpaceScene);
                 }
 
                 break;
@@ -398,21 +403,22 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         GD.Print("Switching to space scene");
 
-        // TODO: implement this change:
-        /*var industrialStage =
-            SceneManager.Instance.LoadScene(MainGameState.IndustrialStage).Instance<IndustrialStage>();
-        industrialStage.CurrentGame = CurrentGame;
-        industrialStage.TakeInitialResourcesFrom(SocietyResources);
+        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
+        spaceStage.CurrentGame = CurrentGame;
 
-        SceneManager.Instance.SwitchToScene(industrialStage);
+        SceneManager.Instance.SwitchToScene(spaceStage);
 
-        // Preserve some of the state when moving to the stage for extra continuity
-        industrialStage.CameraWorldPoint = CameraWorldPoint / Constants.INDUSTRIAL_STAGE_SIZE_MULTIPLIER;
+        // Create initial fleet from the ship going to space
+        if (launchedSpacecraftType == null)
+        {
+            GD.PrintErr("Spacecraft to put in initial fleet not found, using fallback unit");
 
-        var cityPosition = industrialStage.CameraWorldPoint;
-        cityPosition.y = 0;
+            launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
+        }
 
-        // TODO: preserve the initial city building visuals
-        industrialStage.AddCity(new Transform(Basis.Identity, cityPosition), true);*/
+        // TODO: preserve the actual cities placed on the starting planet
+
+        spaceStage.SetupForExistingGameFromAnotherStage(true, launchedSpacecraftType, SocietyResources);
+        launchedSpacecraftType = null;
     }
 }

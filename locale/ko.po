@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 09:29+0300\n"
+"POT-Creation-Date: 2023-05-26 10:40+0300\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -68,6 +68,31 @@ msgstr "새로운 키 배치 추가"
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
+#, fuzzy
+msgid "ACTION_DELETE"
+msgstr "나가기 확인"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "종:"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "나가기 확인"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "{0} 의 개체수: {1}"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+#, fuzzy
+msgid "ACTION_TELEPORT"
+msgstr "나가기 확인"
+
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr ""
@@ -90,11 +115,11 @@ msgstr "자동 진화 실행 실패"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1177
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -126,12 +151,12 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:475
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "변이 점수"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(AI 종이 변이하는 속도)"
 
@@ -157,6 +182,10 @@ msgstr "생체 상태창"
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "생체 상태창"
+
+#: ../src/space_stage/SpaceStage.cs:410
+msgid "ALREADY_ASCENDED"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -224,8 +253,18 @@ msgstr "번영했습니다!"
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
+msgstr ""
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
+#, fuzzy
+msgid "ASCENSION_CONGRATULATIONS"
+msgstr "종:"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
+msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:325
@@ -321,7 +360,7 @@ msgstr "진행 중 자동 저장"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:417
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "실행 상태:"
@@ -358,6 +397,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "해상도:"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
@@ -375,9 +415,9 @@ msgid "AWARE_STAGE"
 msgstr "미생물 단계"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
-#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -410,11 +450,11 @@ msgstr "기동성"
 msgid "BASE_MOVEMENT"
 msgstr "기초 이동"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1157
+#: ../src/general/NewGameSettings.tscn:1162
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -485,7 +525,7 @@ msgstr "행동"
 msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
-#: ../src/general/MainMenu.tscn:428
+#: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -569,7 +609,7 @@ msgstr "생물발광 액포"
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -591,6 +631,7 @@ msgid "BUILD_CITY"
 msgstr "구조"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "구조"
@@ -628,6 +669,7 @@ msgstr "카메라"
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
 msgid "CANCEL"
 msgstr "취소"
@@ -896,6 +938,8 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "생체 상태창"
@@ -1014,20 +1058,20 @@ msgstr "능력"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:674
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:669
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:716
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:708
+#: ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -1064,12 +1108,12 @@ msgstr "성분 비율"
 msgid "COMPOUND_CLOUDS"
 msgstr "화합물 구름"
 
-#: ../src/general/NewGameSettings.tscn:529
+#: ../src/general/NewGameSettings.tscn:534
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "화합물 구름"
 
-#: ../src/general/NewGameSettings.tscn:569
+#: ../src/general/NewGameSettings.tscn:574
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "화합물 구름"
@@ -1100,20 +1144,30 @@ msgstr "설정"
 msgid "CONFIRM_CAPITAL"
 msgstr "확인"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
 #, fuzzy
 msgid "CONFIRM_DELETE"
 msgstr "나가기 확인"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
 msgstr "나가기 확인"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
+
+#: ../src/space_stage/SpaceStage.tscn:220
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+msgstr "(AI 종이 변이하는 속도)"
+
+#: ../src/space_stage/SpaceStage.tscn:221
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+msgstr "(AI 종이 변이하는 속도)"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
@@ -1134,18 +1188,18 @@ msgstr "(AI 종이 변이하는 속도)"
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "(AI 종이 변이하는 속도)"
 
-#: ../src/general/NewGameSettings.cs:329
-#: ../src/general/NewGameSettings.tscn:1193
+#: ../src/general/NewGameSettings.cs:404
+#: ../src/general/NewGameSettings.tscn:1198
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/NewGameSettings.cs:336
+#: ../src/general/NewGameSettings.cs:411
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/industrial_stage/UnitType.cs:68
+#: ../src/industrial_stage/UnitType.cs:79
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
 
@@ -1332,7 +1386,7 @@ msgstr "검색..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "저장된 객체 생성 중"
 
-#: ../src/general/MainMenu.tscn:352
+#: ../src/general/MainMenu.tscn:355
 msgid "CREDITS"
 msgstr "크레딧"
 
@@ -1390,19 +1444,19 @@ msgstr "세포질 해당 작용"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:988
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(게임 시간으로 하루의 길이가 현실 시간으로 몇 초인지)"
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:916
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:925
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1424,7 +1478,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:966
+#: ../src/microbe_stage/Microbe.Contact.cs:964
 msgid "DEATH"
 msgstr ""
 
@@ -1459,7 +1513,7 @@ msgstr ""
 " - {0} 자동 저장\n"
 " - {1} 빠른 저장"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:165
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
 #, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
@@ -1495,6 +1549,21 @@ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적�
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "이 저장을 삭제합니까?"
 
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
+#, fuzzy
+msgid "DESCEND_CONFIRMATION"
+msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
+#, fuzzy
+msgid "DESCEND_CONFIRMATION_EXPLANATION"
+msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "설명:"
@@ -1526,11 +1595,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:688
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:683
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -1539,11 +1608,11 @@ msgstr "새로운 키 배치 추가"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:702
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:697
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -1556,7 +1625,7 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:298
+#: ../src/general/NewGameSettings.tscn:303
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr ""
@@ -1566,8 +1635,8 @@ msgstr ""
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
@@ -1672,7 +1741,7 @@ msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
-#: ../src/general/MainMenu.tscn:857
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -1868,12 +1937,12 @@ msgstr "팁 하나, 박테리아는 보이는 것보다 더 강할 수 있으며
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "팁 하나, 다른 종들이 그랬던 것 처럼, 조심하지 않는다면 당신의 손으로 멸종을 초래할 수 도 있습니다."
 
-#: ../src/general/NewGameSettings.tscn:1117
+#: ../src/general/NewGameSettings.tscn:1122
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "농담 하나, 강섬모충속과 짚신벌레속은 수십 년 간 연구된 포식자와 피식자 관계의 교과서입니다, 당신은 강섬모충속입니까 아니면 짚신벌레속입니까? 사냥꾼입니까 아니면 사냥감입니까?"
 
-#: ../src/general/NewGameSettings.tscn:1125
+#: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(게임 안에서 무작위로 생성되는 비밀)"
 
@@ -1966,11 +2035,11 @@ msgstr "생태계: {0}"
 msgid "ENVIRONMENT"
 msgstr "환경"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:686
+#: ../src/general/NewGameSettings.tscn:691
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(매 세대마다 환경에 남는 포도당의 비율)"
 
@@ -2026,7 +2095,7 @@ msgstr "저장 오류"
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1232
+#: ../src/microbe_stage/Microbe.Contact.cs:1230
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
@@ -2064,6 +2133,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "저장된 데이터를 불러오는 중 예기치 못한 일이 발생했습니다"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "저장 덮어쓰기:"
@@ -2072,7 +2142,7 @@ msgstr "저장 덮어쓰기:"
 msgid "EXIT"
 msgstr "종료"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:364
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2125,7 +2195,7 @@ msgstr "지역에서 멸종"
 msgid "EXTINCT_SPECIES"
 msgstr "멸종"
 
-#: ../src/general/MainMenu.tscn:344
+#: ../src/general/MainMenu.tscn:347
 msgid "EXTRAS"
 msgstr "추가요소"
 
@@ -2133,7 +2203,7 @@ msgstr "추가요소"
 msgid "EXTRA_OPTIONS"
 msgstr "추가 설정"
 
-#: ../src/general/MainMenu.tscn:869
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -2227,6 +2297,15 @@ msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 �
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 세포막에서 이어지는 채찍 모양의 단백질 섬유 다발입니다."
 
+#: ../src/space_stage/SpaceFleet.cs:86
+#, fuzzy
+msgid "FLEET_NAME_FROM_PLACE"
+msgstr "행성에서 멸종"
+
+#: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
+msgid "FLEET_UNITS"
+msgstr ""
+
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
@@ -2318,12 +2397,12 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:173
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:175
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
@@ -2353,11 +2432,11 @@ msgstr "호흡"
 msgid "FREEBUILDING"
 msgstr "자유 구성"
 
-#: ../src/general/NewGameSettings.tscn:758
+#: ../src/general/NewGameSettings.tscn:763
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
@@ -2389,7 +2468,7 @@ msgstr "세대"
 msgid "GENERATION_COLON"
 msgstr "세대:"
 
-#: ../src/general/MainMenu.tscn:821
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -2398,11 +2477,11 @@ msgstr "새로운 키 배치 추가"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 모드 경고"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
@@ -2436,6 +2515,11 @@ msgstr "포도당"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr ""
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "새로운 키 배치 추가"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2534,6 +2618,11 @@ msgstr "눌러서 커서 보이기"
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
+#: ../src/ascension_stage/AscensionCeremony.tscn:231
+#, fuzzy
+msgid "HOLD_TO_SKIP_CREDITS"
+msgstr "눌러서 커서 보이기"
+
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
 msgstr ""
@@ -2591,12 +2680,12 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1096
+#: ../src/general/NewGameSettings.tscn:1101
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "세포 기관 배치"
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -2649,6 +2738,16 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
+#: ../src/awakening_stage/InteractionType.cs:32
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION"
+msgstr "변이 점수"
+
+#: ../src/space_stage/structure_components/AscensionComponent.cs:33
+#, fuzzy
+msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
+msgstr "변이 점수"
+
 #: ../src/awakening_stage/InteractionType.cs:17
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
@@ -2672,7 +2771,12 @@ msgstr "변이 점수"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#: ../src/awakening_stage/InteractionType.cs:23
+#: ../src/awakening_stage/InteractionType.cs:20
+#, fuzzy
+msgid "INTERACTION_DESTROY"
+msgstr "변이 점수"
+
+#: ../src/awakening_stage/InteractionType.cs:26
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
 msgstr "변이 점수"
@@ -2726,7 +2830,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:155
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:156
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -2780,7 +2884,7 @@ msgstr "철"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "철 화학합성독립영양"
 
-#: ../src/general/MainMenu.tscn:797
+#: ../src/general/MainMenu.tscn:800
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -3088,13 +3192,13 @@ msgstr ""
 msgid "LAUNCHMEDIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:849
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:162
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(기관과 능력을 우리에게 알려진 생명(LAWK)으로 제한)"
 
@@ -3167,7 +3271,7 @@ msgstr "마우스 왼쪽 버튼"
 msgid "LEFT_MOUSE"
 msgstr "마우스 왼쪽 버튼"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:529
 msgid "LICENSES"
 msgstr ""
 
@@ -3175,38 +3279,38 @@ msgstr ""
 msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:180
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:881
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:885
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:890
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:205
+#: ../src/general/NewGameSettings.tscn:898
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:895
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -3248,12 +3352,12 @@ msgstr "빛"
 msgid "LIMIT_EXTREME"
 msgstr "추가요소"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "확인"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:813
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
 
@@ -3342,12 +3446,12 @@ msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습�
 msgid "LOAD_FINISHED"
 msgstr "불러오기 완료"
 
-#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "불러오기"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -3555,7 +3659,7 @@ msgstr ""
 "이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:588
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "미생물 편집기"
@@ -3629,7 +3733,7 @@ msgstr "각 세대마다, 100 변이 점수(MP)를 사용할 수 있으며, 각�
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "당신이 번식할 때마다, 미생물 편집기에 입장하며, 당신의 종을 변화하여(세포 기관의 추가, 이동, 제거를 통해) 성공적인 종의 종속을 이어갈 수 있습니다. 미생물 단계에서의 편집기 입장은 수백만년 분의 진화에 해당 됩니다."
 
-#: ../src/general/MainMenu.tscn:403
+#: ../src/general/MainMenu.tscn:406
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
@@ -3806,7 +3910,7 @@ msgstr "버전:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
 
-#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "기타"
 
@@ -3879,11 +3983,11 @@ msgstr "세포 기관 제거"
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:506
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:967
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3974,11 +4078,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4122,7 +4226,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:583
+#: ../src/late_multicellular_stage/MulticellularStage.cs:584
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
@@ -4173,7 +4277,7 @@ msgstr "세포 기관 배치"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "멀티샘플 안티-앨리어싱:"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:136
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:135
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
@@ -4189,11 +4293,11 @@ msgstr "음악 음량"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "각 종의 변이 시도 횟수"
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:451
+#: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -4211,10 +4315,20 @@ msgstr "음소거"
 msgid "NAME"
 msgstr "이름:"
 
-#: ../src/industrial_stage/gui/CityNameLabel.cs:43
+#: ../src/industrial_stage/gui/CityNameLabel.cs:56
 #, fuzzy
 msgid "NAME_LABEL_CITY"
 msgstr "생태계: {0}"
+
+#: ../src/space_stage/gui/FleetNameLabel.cs:61
+#: ../src/space_stage/SpaceFleet.cs:38
+#, fuzzy
+msgid "NAME_LABEL_FLEET"
+msgstr "생태계: {0}"
+
+#: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4244,16 +4358,16 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "생물 다양성을 증진하는 종의 최초 개체수"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME"
 msgstr "새 게임"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:297
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4337,11 +4451,11 @@ msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기�
 msgid "NOTHING_HERE"
 msgstr "아무것도 없음"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:502
+#: ../src/late_multicellular_stage/MulticellularStage.cs:503
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:370
+#: ../src/microbe_stage/Microbe.Contact.cs:368
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
@@ -4353,11 +4467,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1790
+#: ../src/microbe_stage/Microbe.Contact.cs:1788
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1785
+#: ../src/microbe_stage/Microbe.Contact.cs:1783
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4392,12 +4506,12 @@ msgstr ""
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "저장 폴더 열기"
 
-#: ../src/general/MainMenu.tscn:965
+#: ../src/general/MainMenu.tscn:968
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "치트 키 활성화"
@@ -4476,11 +4590,11 @@ msgstr "마우스 오른쪽 버튼"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:660
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:648
+#: ../src/general/MainMenu.tscn:651
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -4505,20 +4619,26 @@ msgstr ""
 msgid "OPEN_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:89
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:88
 #, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:143
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "로그 폴더 열기"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "도움말 열기"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:120
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:119
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "자유 구성"
@@ -4573,11 +4693,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "설정"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -4668,12 +4788,12 @@ msgstr "삼투압 조절"
 msgid "OSMOREGULATION_COST"
 msgstr "삼투압 비용"
 
-#: ../src/general/NewGameSettings.tscn:705
+#: ../src/general/NewGameSettings.tscn:710
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "삼투압 비용"
 
-#: ../src/general/NewGameSettings.tscn:745
+#: ../src/general/NewGameSettings.tscn:750
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "삼투압 비용"
@@ -4699,7 +4819,7 @@ msgstr "저장 덮어쓰기:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "저장 덮어쓰기:"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:185
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
@@ -4778,11 +4898,11 @@ msgstr "오른쪽으로 시야 이동"
 msgid "PAN_CAMERA_UP"
 msgstr "위쪽으로 시야 이동"
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:784
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "번식 진도를 자동으로 진전"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:792
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
 
@@ -4843,7 +4963,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "이전에 존재했던 다른 99%의 종처럼, 당신의 종 또한 멸종했습니다. 나머지는 당신의 자리에 들어가 번영을 누리겠지만, 당신은 아닙니다. 당신은 잊혀질 것이고, 진화의 실패한 표상이 될 것입니다."
 
-#: ../src/general/MainMenu.tscn:809
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -4885,7 +5005,7 @@ msgstr ""
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:685
+#: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4938,7 +5058,7 @@ msgstr "물리 저항"
 msgid "PLACE_ORGANELLE"
 msgstr "세포 기관 배치"
 
-#: ../src/general/NewGameSettings.tscn:308
+#: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr ""
@@ -4949,12 +5069,12 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr "로그 폴더 열기"
 
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1067
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -4963,11 +5083,11 @@ msgstr ""
 msgid "PLAYER"
 msgstr "플레이어 세포"
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:628
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(플레이어가 죽을 때마다 플레이어 종의 개체수가 감소하는 정도)"
 
@@ -5125,11 +5245,11 @@ msgstr "빠른 불러오기"
 msgid "QUICK_SAVE"
 msgstr "빠른 저장"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:376
 msgid "QUIT"
 msgstr "종료"
 
-#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
 #: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -5144,8 +5264,8 @@ msgstr "GLES2 모드 경고"
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:241
-#: ../src/general/NewGameSettings.tscn:1009
+#: ../src/general/NewGameSettings.tscn:242
+#: ../src/general/NewGameSettings.tscn:1014
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "재개"
@@ -5173,7 +5293,7 @@ msgstr "준비"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:845
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "재개"
@@ -5199,7 +5319,7 @@ msgstr "목표 지역에서 멸종 시 이주를 다시 지원"
 msgid "REPORT"
 msgstr "보고"
 
-#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "보고"
@@ -5291,10 +5411,16 @@ msgstr "해상도:"
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "자원 흡수 속도"
 
-#: ../src/awakening_stage/PlacedStructure.cs:71
+#: ../src/awakening_stage/PlacedStructure.cs:72
+#: ../src/space_stage/PlacedSpaceStructure.cs:72
 #, fuzzy
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "압력."
+
+#: ../simulation_parameters/awakening_stage/world_resources.json:18
+#, fuzzy
+msgid "RESOURCE_ENERGY"
+msgstr "소스 코드 보기"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 #, fuzzy
@@ -5350,7 +5476,7 @@ msgstr ""
 "정말 주 메뉴로 나가시겠어요?\n"
 "저장되지 않은 진행 상황을 모두 잃게 됩니다."
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:775
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -5441,7 +5567,7 @@ msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../src/general/MainMenu.tscn:977
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "이전의 실행 실패로 인해 Thrive가 안전 모드로 시작되었습니다.\n"
@@ -5453,7 +5579,7 @@ msgstr ""
 "\n"
 "시작 문제를 일으키는 원인을 해결하지 않으면 다시 안전 모드에 들어오기 위해 Thrive를 여러 번 재시작하고 오류를 겪어야 할 수도 있습니다."
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:978
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5698,6 +5824,11 @@ msgstr "선택됨:"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
+#: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
+#, fuzzy
+msgid "SELECT_SPACE_STRUCTURE_TITLE"
+msgstr "구조"
+
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
@@ -5900,6 +6031,20 @@ msgstr ""
 msgid "SPACE_STAGE"
 msgstr "미생물 단계"
 
+#: ../src/space_stage/PlacedSpaceStructure.cs:69
+#, fuzzy
+msgid "SPACE_STRUCTURE_HAS_RESOURCES"
+msgstr "구조"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:65
+#, fuzzy
+msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
+msgstr "구조"
+
+#: ../src/space_stage/PlacedSpaceStructure.cs:74
+msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
+msgstr ""
+
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
 msgstr "암모니아 배치"
@@ -6008,7 +6153,7 @@ msgstr "시작하는 중"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1196
+#: ../src/general/NewGameSettings.tscn:1201
 #, fuzzy
 msgid "START_GAME"
 msgstr "저장"
@@ -6086,17 +6231,17 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:1001
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "저장 실패! 예외 발생"
 
-#: ../src/general/MainMenu.tscn:1000
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/general/MainMenu.tscn:785
+#: ../src/general/MainMenu.tscn:788
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "재개"
@@ -6171,7 +6316,7 @@ msgstr ""
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "구조"
 
-#: ../src/awakening_stage/PlacedStructure.cs:68
+#: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
 
@@ -6180,18 +6325,21 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
+#: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr ""
 
-#: ../src/awakening_stage/PlacedStructure.cs:73
+#: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:217
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
-#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:212
+#: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
@@ -6203,11 +6351,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:785
+#: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:778
+#: ../src/microbe_stage/Microbe.Contact.cs:776
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
@@ -6335,7 +6483,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:827
+#: ../src/late_multicellular_stage/MulticellularStage.cs:828
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6356,7 +6504,7 @@ msgstr "온도."
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6364,7 +6512,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:991
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "번영했습니다!"
@@ -6427,7 +6575,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6583,7 +6731,7 @@ msgstr "일시 정지"
 msgid "TOGGLE_UNBINDING"
 msgstr "결합 해제 켜고 끄기"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:331
 msgid "TOOLS"
 msgstr "도구"
 
@@ -6644,7 +6792,7 @@ msgstr "휠 아래로"
 msgid "TREBLEUP"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:155
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "스크린샷 촬영"
@@ -6819,7 +6967,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "튜토리얼"
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -6869,6 +7017,16 @@ msgstr "실행 취소"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:104
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "마지막 활동 취소"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
+#, fuzzy
+msgid "UNIT_ACTION_CONSTRUCT"
+msgstr "변이 점수"
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
+#, fuzzy
+msgid "UNIT_ACTION_MOVE"
+msgstr "변이 점수"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
@@ -7048,7 +7206,7 @@ msgstr "동굴"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "동굴"
 
-#: ../src/general/MainMenu.tscn:336
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr "소스 코드 보기"
 
@@ -7060,7 +7218,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7224,7 +7382,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "년"
 
-#: ../src/general/MainMenu.tscn:833
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "재개"
@@ -7343,9 +7501,6 @@ msgstr "축소"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "주변 개체 수:"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} 의 개체수: {1}"
 
 #~ msgid "SAVING"
 #~ msgstr "저장 중..."

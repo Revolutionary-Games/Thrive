@@ -2,12 +2,21 @@
 
 public class InterplanetaryEnergyComponent : SpaceStructureComponent
 {
-    public InterplanetaryEnergyComponent(float energy)
+    private readonly WorldResource energyResource;
+
+    public InterplanetaryEnergyComponent(PlacedSpaceStructure owningStructure, float energy) : base(owningStructure)
     {
         Energy = energy;
+
+        energyResource = SimulationParameters.Instance.GetWorldResource("energy");
     }
 
     public float Energy { get; }
+
+    public override void ProcessSpace(float delta, ISocietyStructureDataAccess dataAccess)
+    {
+        dataAccess.SocietyResources.Add(energyResource, delta * Energy);
+    }
 }
 
 public class InterplanetaryEnergyComponentFactory : ISpaceStructureComponentFactory
@@ -15,9 +24,9 @@ public class InterplanetaryEnergyComponentFactory : ISpaceStructureComponentFact
     [JsonProperty]
     public float Amount { get; private set; }
 
-    public SpaceStructureComponent Create()
+    public SpaceStructureComponent Create(PlacedSpaceStructure owningStructure)
     {
-        return new InterplanetaryEnergyComponent(Amount);
+        return new InterplanetaryEnergyComponent(owningStructure, Amount);
     }
 
     public void Check(string name)
