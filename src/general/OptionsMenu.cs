@@ -317,10 +317,10 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath PatchNotesDisplayerPath = null!;
 
-    private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
-        .OrderBy(i => i, StringComparer.InvariantCulture)
-        .ToList();
+    private static readonly Lazy<List<string>> LanguagesCache = new(() => TranslationServer.GetLoadedLocales()
+        .Cast<string>().OrderBy(i => i, StringComparer.InvariantCulture).ToList());
 
+    // TODO: this should be refreshed periodically to support user plugging in new devices
     private static readonly List<string> AudioOutputDevicesCache = AudioServer
         .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
@@ -464,6 +464,8 @@ public class OptionsMenu : ControlWithInput
 
     private bool nodeReferencesResolved;
 
+    private bool elementItemSelectionsInitialized;
+
     // Signals
 
     [Signal]
@@ -484,16 +486,18 @@ public class OptionsMenu : ControlWithInput
         Miscellaneous,
     }
 
-    private static List<string> Languages => LanguagesCache;
+    private static List<string> Languages => LanguagesCache.Value;
     private static List<string> AudioOutputDevices => AudioOutputDevicesCache;
 
     public override void _Ready()
     {
         ResolveNodeReferences(true);
 
-        LoadLanguages();
-        LoadAudioOutputDevices();
-        LoadScreenEffects();
+        if (IsVisibleInTree())
+        {
+            GD.Print("Immediately loading options menu items as it is visible in _Ready");
+            InitializeOptionsSelections();
+        }
 
         inputGroupList.OnControlsChanged += OnControlsChanged;
 
@@ -687,6 +691,8 @@ public class OptionsMenu : ControlWithInput
         if (Visible)
             return;
 
+        InitializeOptionsSelections();
+
         // Copy the live game settings so we can check against them for changes.
         savedSettings = Settings.Instance.Clone();
 
@@ -708,6 +714,8 @@ public class OptionsMenu : ControlWithInput
         // Shouldn't do anything if options is already open.
         if (Visible)
             return;
+
+        InitializeOptionsSelections();
 
         // Copy the live game settings so we can check against them for changes.
         savedSettings = Settings.Instance.Clone();
@@ -979,6 +987,18 @@ public class OptionsMenu : ControlWithInput
         }
 
         base.Dispose(disposing);
+    }
+
+    private void InitializeOptionsSelections()
+    {
+        if (elementItemSelectionsInitialized)
+            return;
+
+        elementItemSelectionsInitialized = true;
+
+        LoadLanguages();
+        LoadAudioOutputDevices();
+        LoadScreenEffects();
     }
 
     private void SwitchMode(OptionsMode mode)
