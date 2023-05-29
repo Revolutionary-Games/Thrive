@@ -119,7 +119,9 @@ public class SaveStatusOverlay : Control
     public void ShowError(string title, string message, string exception, bool wasLoading, bool returnToMenu = false,
         Action? onClosed = null, bool allowExceptionCopy = true)
     {
-        if (!wasLoading)
+        // When explicitly failing with a message, don't want to show the advice as that text always does fully explain
+        // what is wrong
+        if (!wasLoading && !string.IsNullOrWhiteSpace(exception) && allowExceptionCopy)
         {
             errorJsonDebugAdvice.Visible = true;
 
@@ -131,6 +133,10 @@ public class SaveStatusOverlay : Control
             {
                 SetJsonDebugLabelMissingFileText();
             }
+        }
+        else
+        {
+            errorJsonDebugAdvice.Visible = false;
         }
 
         // TODO: could the exception have the last few lines from the json debug log included?
