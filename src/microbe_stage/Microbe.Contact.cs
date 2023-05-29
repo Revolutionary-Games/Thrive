@@ -195,7 +195,7 @@ public partial class Microbe
             var size = HexCount * (1 - DigestedAmount);
 
             if (CellTypeProperties.IsBacteria)
-                return size * 0.4f;
+                return size * 0.5f;
 
             return size;
         }
@@ -891,7 +891,7 @@ public partial class Microbe
                 Dissolves = true,
                 Mass = 1.0f,
                 Radius = 1.0f,
-                Size = 2.0f,
+                Size = 3.0f,
                 VentAmount = 0.1f,
 
                 // Add compounds
@@ -1439,14 +1439,20 @@ public partial class Microbe
                     return;
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
-                var attacker = otherIsPilus ? touchedMicrobe : thisMicrobe;
+                var prey = otherIsPilus ? touchedMicrobe : thisMicrobe;
 
-                // Target is not too big to harm with pilus
-                if (target.EngulfSize < attacker.EngulfSize * Constants.PILUS_INEFFECTIVE_RATIO)
-                {
-                    Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
-                    return;
-                }
+                //Allow cells of larger size to ignore pili when engulfing
+                if (target.EngulfSize > prey.EngulfSize * Constants.PILUS_INEFFECTIVE_RATIO)
+                    {
+                        Invoke.Instance.Perform(() =>
+                        {
+                            thisMicrobe.CheckStartEngulfingOnCandidate(touchedMicrobe);
+                            thisMicrobe.CheckBinding();
+                        });
+                    }
+
+                Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
+                return;
             }
 
             // Pili don't stop engulfing
@@ -1551,7 +1557,7 @@ public partial class Microbe
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.4f;
+            nearestPointOfMembraneToTarget *= 0.5f;
 
         // From the calculated nearest point of membrane above we then linearly interpolate it by the engulfed's
         // normalized radius to this cell's center in order to "shrink" the point relative to this cell's origin.
@@ -1641,7 +1647,7 @@ public partial class Microbe
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
-            nearestPointOfMembraneToTarget *= 0.4f;
+            nearestPointOfMembraneToTarget *= 0.5f;
 
         // If engulfer cell is dead (us) or the engulfed is positioned outside any of our closest membrane, immediately
         // eject it without animation

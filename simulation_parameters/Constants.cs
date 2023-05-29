@@ -606,7 +606,7 @@ public static class Constants
     /// <summary>
     ///   How much larger a cell has to be to ignore the pilus collision of another on contact.
     /// </summary>
-    public const float PILUS_INEFFECTIVE_RATIO = 2.0f;
+    public const float PILUS_INEFFECTIVE_RATIO = 2.5f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
