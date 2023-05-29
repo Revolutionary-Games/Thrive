@@ -1078,7 +1078,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     {
         var scale = new Vector3(1.0f, 1.0f, 1.0f);
 
-        // Bacteria are 40% the size of other cells
+        // Bacteria are 50% the size of other cells
         if (CellTypeProperties.IsBacteria)
             scale = new Vector3(0.5f, 0.5f, 0.5f);
 
