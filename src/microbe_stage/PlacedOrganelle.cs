@@ -528,7 +528,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             // Scale for bacteria physics.
             if (ParentMicrobe.CellTypeProperties.IsBacteria)
-                shapePosition *= 0.4f;
+                shapePosition *= 0.5f;
 
             shapePosition += offset;
 
@@ -630,7 +630,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         // Scale the physics hex size down for bacteria
         if (ParentMicrobe!.CellTypeProperties.IsBacteria)
-            hexSize *= 0.4f;
+            hexSize *= 0.5f;
 
         // Add hex collision shapes
         foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
@@ -644,7 +644,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             // Scale for bacteria physics.
             if (ParentMicrobe.CellTypeProperties.IsBacteria)
-                shapePosition *= 0.4f;
+                shapePosition *= 0.5f;
 
             // Create a transform for a shape position
             var transform = new Transform(Quat.Identity, shapePosition);

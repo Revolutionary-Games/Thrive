@@ -86,7 +86,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
         if (organelle.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
-            membraneCoords *= 0.4f;
+            membraneCoords *= 0.5f;
         }
 
         var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
@@ -113,7 +113,7 @@ public class PilusComponent : ExternallyPositionedComponent
         // Scale the size down for bacteria
         if (organelle!.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
-            pilusSize *= 0.4f;
+            pilusSize *= 0.5f;
         }
 
         // TODO: Godot doesn't have Cone shape.
