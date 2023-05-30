@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class ErrorDialog : CustomDialog
+public class ErrorDialog : CustomWindow
 {
     private string errorMessage = string.Empty;
     private string? exceptionInfo;

@@ -3,7 +3,7 @@
 /// <summary>
 ///   Shows info about a single planet
 /// </summary>
-public class PlanetScreen : CustomDialog
+public class PlanetScreen : CustomWindow
 {
     [Export]
     public NodePath? ShortStatsLabelPath;

@@ -8,7 +8,7 @@ using Object = Godot.Object;
 ///   to control it.
 /// </summary>
 /// <typeparam name="T">The type of unit controller</typeparam>
-public abstract class StrategicUnitScreen<T> : CustomDialog
+public abstract class StrategicUnitScreen<T> : CustomWindow
     where T : Object, IStrategicUnit, IEntity
 {
     [Export]

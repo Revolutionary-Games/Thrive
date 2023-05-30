@@ -540,7 +540,7 @@ Godot usage
 - We have rewritten several controls to workaround Godot bugs or limitations,
   and add custom features. All these rewritten/customized controls are placed
   in "res://src/gui_common/". Currently there are `CustomCheckBox`,
-  `CustomWindow`, `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
+  `TopLevelContainer`, `CustomWindow`, `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
   `TweakedColourPicker`. Consider using these custom types rather than the
   built-in types to ensure consistency across the GUI.
@@ -562,9 +562,9 @@ Godot usage
   (`?`). The content of the popup should give more details and also
   end with a question.
 
-- Popups (which derives from `CustomWindow`) should be shown with
+- Popups (which derives from `TopLevelContainer`) should be shown with
   `PopupCenteredShrink()`. However, if you don't wish to center the popup,
-  simply use `CustomWindow.OpenModal()`.
+  simply use `TopLevelContainer.OpenModal()`.
 
 - Using built-in `Popup` is not recommended since a custom one tailored
   for the game already exist but for posterity similar rules in
@@ -597,6 +597,14 @@ Other recommended approaches
   `[JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]`. This way
   the options menu doesn't need complicated adapting logic as
   otherwise it would show misleading values to the player.
+
+- When using new words that would be detected as typos by Rider, the
+  words should be added to the project dictionary. The dictionary is
+  in `Thrive.sln.DotSettings` file. For example if "florbing" was a
+  valid new concept that needed to be used in the code, it could be
+  added by adding the following line next to the other dictionary
+  entries: `<s:Boolean
+  x:Key="/Default/UserDictionary/Words/=florbing/@EntryIndexedValue">True</s:Boolean>`
 
 Other files
 -----------

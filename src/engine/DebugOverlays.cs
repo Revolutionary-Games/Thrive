@@ -37,13 +37,13 @@ public partial class DebugOverlays : Control
 
 #pragma warning disable CA2213
     private Label debugCoordinates = null!;
-    private CustomDialog inspectorDialog = null!;
-    private CustomDialog debugPanelDialog = null!;
+    private CustomWindow inspectorDialog = null!;
+    private CustomWindow debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
     private CustomCheckBox inspectorCheckbox = null!;
     private Control fpsCounter = null!;
-    private CustomDialog performanceMetrics = null!;
+    private CustomWindow performanceMetrics = null!;
     private Control labelsLayer = null!;
 #pragma warning restore CA2213
 
@@ -61,13 +61,13 @@ public partial class DebugOverlays : Control
         base._Ready();
 
         debugCoordinates = GetNode<Label>(DebugCoordinatesPath);
-        inspectorDialog = GetNode<CustomDialog>(InspectorDialogPath);
+        inspectorDialog = GetNode<CustomWindow>(InspectorDialogPath);
         inspectorCheckbox = GetNode<CustomCheckBox>(InspectorCheckboxPath);
         fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
         performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
-        debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
+        debugPanelDialog = GetNode<CustomWindow>(DebugPanelDialogPath);
         fpsCounter = GetNode<Control>(FPSCounterPath);
-        performanceMetrics = GetNode<CustomDialog>(PerformanceMetricsPath);
+        performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);
         labelsLayer = GetNode<Control>(EntityLabelsPath);
         smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
         fpsLabel = GetNode<Label>(FPSLabelPath);

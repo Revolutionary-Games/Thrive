@@ -136,7 +136,7 @@ public class LineChart : VBoxContainer
     private HBoxContainer legendContainer = null!;
     private GridContainer extraLegendContainer = null!;
     private TextureButton inspectButton = null!;
-    private CustomDialog chartPopup = null!;
+    private CustomWindow chartPopup = null!;
     private LineChart? childChart;
 #pragma warning restore CA2213
 
@@ -259,7 +259,7 @@ public class LineChart : VBoxContainer
         legendContainer = GetNode<HBoxContainer>(LegendsContainerPath);
         extraLegendContainer = GetNode<GridContainer>(ExtraLegendContainerPath);
         inspectButton = GetNode<TextureButton>(InspectButtonPath);
-        chartPopup = GetNode<CustomDialog>("ChartPopup");
+        chartPopup = GetNode<CustomWindow>("ChartPopup");
         defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
         hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
         vLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/vSeparatorUp.png");

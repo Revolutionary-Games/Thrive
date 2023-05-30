@@ -13,4 +13,10 @@ public static class FolderHelpers
 
         return result != Error.FileNotFound;
     }
+
+    public static bool OpenFile(string path)
+    {
+        // Opening files currently works the exact same way as folders
+        return OpenFolder(path);
+    }
 }

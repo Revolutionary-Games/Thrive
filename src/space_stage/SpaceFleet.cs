@@ -123,7 +123,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
 
         // TODO: see the visuals info in SetShips
 
-        var newVisuals = unit.WorldRepresentation.Instance<Spatial>();
+        var newVisuals = unit.WorldRepresentationSpace.Instance<Spatial>();
         visualsParent.AddChild(newVisuals);
         newVisuals.Translation = ships.Count * new Vector3(2.5f, 0, 0);
     }
@@ -156,7 +156,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
         ships = new List<UnitType> { ship };
 
         // TODO: proper positioning and scaling for multiple ships
-        visualsParent.AddChild(ship.WorldRepresentation.Instance());
+        visualsParent.AddChild(ship.WorldRepresentationSpace.Instance());
 
         // TODO: fleet model rotations
     }

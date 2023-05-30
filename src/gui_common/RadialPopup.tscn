@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/RadialPopup.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/RadialMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=3]
 
 [node name="RadialPopup" instance=ExtResource( 3 )]
 anchor_right = 1.0

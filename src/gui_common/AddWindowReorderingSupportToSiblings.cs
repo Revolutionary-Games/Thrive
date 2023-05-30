@@ -68,7 +68,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// <summary>
     ///   Used to save what node to reorder when a window requires to be reordered.
     /// </summary>
-    private readonly System.Collections.Generic.Dictionary<CustomDialog, Node> connectedWindows = new();
+    private readonly System.Collections.Generic.Dictionary<CustomWindow, Node> connectedWindows = new();
 
     /// <summary>
     ///   Used to save what siblings are part of the reordering system to prevent reordering more than is necessary.
@@ -84,7 +84,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     /// <summary>
     ///   Used to save windows that are opened at once to preserve their order.
     /// </summary>
-    private readonly List<CustomDialog> justOpenedWindows = new();
+    private readonly List<CustomWindow> justOpenedWindows = new();
 
 #pragma warning disable CA2213
 
@@ -151,7 +151,7 @@ public class AddWindowReorderingSupportToSiblings : Control
         topSibling = null;
     }
 
-    public void ConnectWindow(CustomDialog window, Node topNode, bool recursive)
+    public void ConnectWindow(CustomWindow window, Node topNode, bool recursive)
     {
         // Make sure to be connected to other window reordering nodes before trying to connect the window
         Setup();
@@ -165,7 +165,7 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (window.IsConnected(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder)))
+        if (window.IsConnected(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder)))
         {
             // This window is already connected here
             GD.PrintErr($"A window {window.Name} ({window}) tried to connect to {Name} ({this}) multiple times");
@@ -179,11 +179,11 @@ public class AddWindowReorderingSupportToSiblings : Control
             return;
         }
 
-        window.Connect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
+        window.Connect(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder));
 
         var binds = new Array();
         binds.Add(window);
-        window.Connect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen), binds);
+        window.Connect(nameof(TopLevelContainer.Opened), this, nameof(OnWindowOpen), binds);
 
         connectedWindows.Add(window, topNode);
         connectedSiblings.Add(topNode);
@@ -197,7 +197,7 @@ public class AddWindowReorderingSupportToSiblings : Control
 #endif
     }
 
-    public void DisconnectWindow(CustomDialog window, bool recursive)
+    public void DisconnectWindow(CustomWindow window, bool recursive)
     {
         if (recursive)
         {
@@ -208,15 +208,15 @@ public class AddWindowReorderingSupportToSiblings : Control
             }
         }
 
-        if (!window.IsConnected(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder)))
+        if (!window.IsConnected(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder)))
         {
             GD.PrintErr(
                 $"A window {window.Name} ({window}) tried to disconnect from {Name} ({this}) but it wasn't connected");
             return;
         }
 
-        window.Disconnect(nameof(CustomDialog.Dragged), this, nameof(OnWindowReorder));
-        window.Disconnect(nameof(CustomWindow.Opened), this, nameof(OnWindowOpen));
+        window.Disconnect(nameof(CustomWindow.Dragged), this, nameof(OnWindowReorder));
+        window.Disconnect(nameof(TopLevelContainer.Opened), this, nameof(OnWindowOpen));
 
         if (!connectedWindows.TryGetValue(window, out var windowSibling))
         {
@@ -376,7 +376,7 @@ public class AddWindowReorderingSupportToSiblings : Control
     ///   Reorders a window by setting its ancestor to the position of current top window, making it appear on top of
     ///   others.
     /// </summary>
-    private void OnWindowReorder(CustomDialog window)
+    private void OnWindowReorder(CustomWindow window)
     {
         // Get a sibling that is an ancestor of this window
         var targetSibling = connectedWindows[window];
@@ -403,7 +403,7 @@ public class AddWindowReorderingSupportToSiblings : Control
         window.SetAsToplevel(isSetAsToplevel);
     }
 
-    private void OnWindowOpen(CustomDialog window)
+    private void OnWindowOpen(CustomWindow window)
     {
         if (justOpenedWindows.Contains(window))
         {
@@ -440,7 +440,7 @@ public class AddWindowReorderingSupportToSiblings : Control
         }
 
         // Reorder the windows
-        foreach (CustomDialog window in justOpenedWindows)
+        foreach (CustomWindow window in justOpenedWindows)
         {
             OnWindowReorder(window);
         }

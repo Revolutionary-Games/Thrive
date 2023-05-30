@@ -22,7 +22,7 @@ public class InteractablePopup : Control
     [Export]
     public Font InteractionButtonFont = null!;
 
-    private CustomDialog popup = null!;
+    private CustomWindow popup = null!;
     private Container buttonsContainer = null!;
     private Button cancelButton = null!;
 
@@ -40,7 +40,7 @@ public class InteractablePopup : Control
 
     public override void _Ready()
     {
-        popup = GetNode<CustomDialog>(PopupPath);
+        popup = GetNode<CustomWindow>(PopupPath);
         buttonsContainer = GetNode<Container>(ButtonsContainerPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
         extraInfoLabel = GetNode<Label>(ExtraInfoLabelPath);
