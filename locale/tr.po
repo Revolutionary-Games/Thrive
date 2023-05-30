@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-29 14:37+0300\n"
-"PO-Revision-Date: 2023-05-04 13:02+0000\n"
+"PO-Revision-Date: 2023-05-30 12:54+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -5417,12 +5417,11 @@ msgstr "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak si
 #: ../src/saving/SaveStatusOverlay.cs:166
 #: ../src/saving/SaveStatusOverlay.tscn:113
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
+msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. O dosya olmadan, bu problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
 
 #: ../src/saving/SaveStatusOverlay.cs:173
-#, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON hata ayıklama modu:"
+msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ekstra bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
