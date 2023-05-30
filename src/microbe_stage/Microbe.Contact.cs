@@ -1441,15 +1441,15 @@ public partial class Microbe
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
                 var prey = otherIsPilus ? touchedMicrobe : thisMicrobe;
 
-                //Allow cells of larger size to ignore pili when engulfing
+                // Allow cells of larger size to ignore pili when engulfing
                 if (target.EngulfSize > prey.EngulfSize * Constants.PILUS_INEFFECTIVE_RATIO)
+                {
+                    Invoke.Instance.Perform(() =>
                     {
-                        Invoke.Instance.Perform(() =>
-                        {
-                            thisMicrobe.CheckStartEngulfingOnCandidate(touchedMicrobe);
-                            thisMicrobe.CheckBinding();
-                        });
-                    }
+                        thisMicrobe.CheckStartEngulfingOnCandidate(touchedMicrobe);
+                        thisMicrobe.CheckBinding();
+                    });
+                }
 
                 Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
                 return;
