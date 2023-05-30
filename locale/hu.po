@@ -718,7 +718,7 @@ msgstr "Jelenlegi akció visszavonása"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Az a sejttípus ami része a testnek nem törölhető"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
@@ -1165,9 +1165,8 @@ msgid "COMPOUNDS"
 msgstr "Vegyületek"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:87
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "A környezet és a vegyületek mutatása / elrejtése"
+msgstr "Az összetevők mutatása / elrejtése"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
