@@ -21,4 +21,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\src\native\NativeConstants.cs">
+      <Link>NativeConstants.cs</Link>
+    </Compile>
+  </ItemGroup>
+
 </Project>

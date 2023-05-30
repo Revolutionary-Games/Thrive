@@ -1,0 +1,22 @@
+#pragma once
+
+//
+// File configured by CMake do not edit Include.h (you can edit Include.h.in)
+//
+
+// clang-format off
+#define THRIVE_LIBRARY_VERSION @NATIVE_LIBRARY_VERSION@
+// clang-format on
+
+#ifdef THRIVE_NATIVE_BUILD
+#ifdef WIN32
+#define THRIVE_NATIVE_API __declspec(dllexport)
+#else
+#define THRIVE_NATIVE_API __attribute__((visibility("default")))
+#endif // WIN32
+#else
+#ifdef WIN32
+#define THRIVE_NATIVE_API __declspec(dllimport)
+#else
+#endif // WIN32
+#endif // THRIVE_NATIVE_BUILD
