@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-26 10:40+0300\n"
+"POT-Creation-Date: 2023-05-29 14:37+0300\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -5607,6 +5607,16 @@ msgstr "Automatisch opslaan"
 #: ../src/saving/SaveList.cs:242
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
+
+#: ../src/saving/SaveStatusOverlay.cs:166
+#: ../src/saving/SaveStatusOverlay.tscn:113
+msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+msgstr ""
+
+#: ../src/saving/SaveStatusOverlay.cs:173
+#, fuzzy
+msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+msgstr "JSON debug modus:"
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
