@@ -598,6 +598,14 @@ Other recommended approaches
   the options menu doesn't need complicated adapting logic as
   otherwise it would show misleading values to the player.
 
+- When using new words that would be detected as typos by Rider, the
+  words should be added to the project dictionary. The dictionary is
+  in `Thrive.sln.DotSettings` file. For example if "florbing" was a
+  valid new concept that needed to be used in the code, it could be
+  added by adding the following line next to the other dictionary
+  entries: `<s:Boolean
+  x:Key="/Default/UserDictionary/Words/=florbing/@EntryIndexedValue">True</s:Boolean>`
+
 Other files
 -----------
 
