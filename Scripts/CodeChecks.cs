@@ -29,7 +29,13 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                     },
                     new BomChecker(BomChecker.Mode.Disallowed, FilesNotAllowedToHaveBom),
                     new CfgCheck(AssemblyInfoReader.ReadVersionFromAssemblyInfo()),
-                    new DisallowedFileType(".gd", ".mo"))
+                    new DisallowedFileType(".gd", ".mo", ".gltf")
+                    {
+                        ExtraErrorMessages =
+                        {
+                            { ".gltf", "glTF files should be compressed into .glb files to save space" },
+                        },
+                    })
             },
             { "compile", new CompileCheck() },
             { "inspectcode", new InspectCode() },
