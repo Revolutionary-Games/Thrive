@@ -1,32 +1,18 @@
-[gd_resource type="Theme" load_steps=77 format=2]
+[gd_resource type="Theme" load_steps=63 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=17]
-[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=20]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=21]
 [ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-BoldItalic-Small.tres" type="DynamicFont" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/radioA.png" type="Texture" id=24]
-[ext_resource path="res://assets/textures/gui/bevel/radioB.png" type="Texture" id=25]
-[ext_resource path="res://assets/textures/gui/bevel/radioAhover.png" type="Texture" id=26]
-[ext_resource path="res://assets/textures/gui/bevel/radioBhover.png" type="Texture" id=27]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=28]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -163,7 +149,6 @@ border_width_bottom = 3
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxTexture" id=16]
-texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 429, 1 )
 expand_margin_left = 10.0
 expand_margin_right = 10.0
@@ -516,22 +501,22 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = ExtResource( 8 )
-CheckBox/icons/PressedClicked = ExtResource( 19 )
-CheckBox/icons/PressedHovered = ExtResource( 20 )
-CheckBox/icons/PressedNormal = ExtResource( 5 )
-CheckBox/icons/RadioPressedClicked = ExtResource( 27 )
-CheckBox/icons/RadioPressedHovered = ExtResource( 27 )
-CheckBox/icons/RadioPressedNormal = ExtResource( 25 )
-CheckBox/icons/RadioUnpressedClicked = ExtResource( 26 )
-CheckBox/icons/RadioUnpressedHovered = ExtResource( 26 )
-CheckBox/icons/RadioUnpressedNormal = ExtResource( 24 )
-CheckBox/icons/UnpressedClicked = ExtResource( 20 )
-CheckBox/icons/UnpressedHovered = ExtResource( 18 )
-CheckBox/icons/UnpressedNormal = ExtResource( 6 )
-CheckBox/icons/checked = ExtResource( 5 )
-CheckBox/icons/radio_checked = ExtResource( 25 )
-CheckBox/icons/radio_unchecked = ExtResource( 24 )
-CheckBox/icons/unchecked = ExtResource( 6 )
+CheckBox/icons/PressedClicked = null
+CheckBox/icons/PressedHovered = null
+CheckBox/icons/PressedNormal = null
+CheckBox/icons/RadioPressedClicked = null
+CheckBox/icons/RadioPressedHovered = null
+CheckBox/icons/RadioPressedNormal = null
+CheckBox/icons/RadioUnpressedClicked = null
+CheckBox/icons/RadioUnpressedHovered = null
+CheckBox/icons/RadioUnpressedNormal = null
+CheckBox/icons/UnpressedClicked = null
+CheckBox/icons/UnpressedHovered = null
+CheckBox/icons/UnpressedNormal = null
+CheckBox/icons/checked = null
+CheckBox/icons/radio_checked = null
+CheckBox/icons/radio_unchecked = null
+CheckBox/icons/unchecked = null
 CheckBox/styles/disabled = SubResource( 6 )
 CheckBox/styles/focus = SubResource( 7 )
 CheckBox/styles/hover = SubResource( 8 )
@@ -644,9 +629,9 @@ HScrollBar/styles/scroll = SubResource( 15 )
 HScrollBar/styles/scroll_focus = null
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource( 16 )
-HSlider/icons/grabber = ExtResource( 2 )
-HSlider/icons/grabber_disabled = ExtResource( 7 )
-HSlider/icons/grabber_highlight = ExtResource( 3 )
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource( 17 )
 HSlider/styles/grabber_area_highlight = SubResource( 18 )
@@ -737,11 +722,11 @@ PopupMenu/colors/font_color_hover = Color( 1, 1, 1, 1 )
 PopupMenu/constants/hseparation = 2
 PopupMenu/constants/vseparation = 4
 PopupMenu/fonts/font = ExtResource( 10 )
-PopupMenu/icons/checked = ExtResource( 5 )
-PopupMenu/icons/radio_checked = ExtResource( 5 )
-PopupMenu/icons/radio_unchecked = ExtResource( 6 )
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
 PopupMenu/icons/submenu = null
-PopupMenu/icons/unchecked = ExtResource( 6 )
+PopupMenu/icons/unchecked = null
 PopupMenu/styles/hover = SubResource( 28 )
 PopupMenu/styles/labeled_separator_left = SubResource( 43 )
 PopupMenu/styles/labeled_separator_right = SubResource( 44 )
@@ -943,7 +928,7 @@ WindowDialog/fonts/custom_title_font = ExtResource( 15 )
 WindowDialog/fonts/title_font = ExtResource( 11 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/icons/custom_close = ExtResource( 12 )
+WindowDialog/icons/custom_close = null
 WindowDialog/styles/custom_close_highlight = SubResource( 39 )
 WindowDialog/styles/custom_panel = SubResource( 40 )
 WindowDialog/styles/custom_titlebar = SubResource( 51 )
