@@ -1439,10 +1439,11 @@ public partial class Microbe
                     return;
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
-                var prey = otherIsPilus ? touchedMicrobe : thisMicrobe;
+                var potentialPrey = otherIsPilus ? touchedMicrobe : thisMicrobe;
 
-                // Allow cells of larger size to ignore pili when engulfing
-                if (target.EngulfSize > prey.EngulfSize * Constants.PILUS_INEFFECTIVE_RATIO)
+                // Cells of signficantly larger size can engulf through pili
+                // Target is attacker in this event, so cells with pili are referred to as potentialPrey
+                if (target.EngulfSize > potentialPrey.EngulfSize * Constants.PILUS_INEFFECTIVE_AGAINST_ENGULFMENT_RATIO)
                 {
                     Invoke.Instance.Perform(() =>
                     {
