@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "Include.h"
+
 #include "interop/CStructures.h"
 
 /// \file Defines all of the API methods that can be called from C#
@@ -13,10 +14,10 @@ extern "C"
     /// used
     [[maybe_unused]] THRIVE_NATIVE_API int32_t CheckAPIVersion();
 
-    /// \summary Prepares the native library for use, must be called first (right after the version check)
+    /// \brief Prepares the native library for use, must be called first (right after the version check)
     [[maybe_unused]] THRIVE_NATIVE_API int32_t InitThriveLibrary();
 
-    /// \summary Prepares the native library for shutdown should be called before the process is ended and after all
+    /// \brief Prepares the native library for shutdown should be called before the process is ended and after all
     /// other calls to the library have been performed
     [[maybe_unused]] THRIVE_NATIVE_API void ShutdownThriveLibrary();
 

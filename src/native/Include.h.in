@@ -18,5 +18,8 @@
 #ifdef WIN32
 #define THRIVE_NATIVE_API __declspec(dllimport)
 #else
+#define THRIVE_NATIVE_API __attribute__((visibility("default")))
 #endif // WIN32
 #endif // THRIVE_NATIVE_BUILD
+
+#cmakedefine USE_OBJECT_POOLS

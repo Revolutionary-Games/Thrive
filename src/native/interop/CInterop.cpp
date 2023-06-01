@@ -5,6 +5,7 @@
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-reinterpret-cast"
+
 // ------------------------------------ //
 int32_t CheckAPIVersion()
 {
@@ -21,6 +22,7 @@ void ShutdownThriveLibrary()
 {
     // TODO: shutdown actions
 }
+
 // ------------------------------------ //
 PhysicalWorld* CreatePhysicalWorld()
 {
@@ -34,6 +36,5 @@ void DestroyPhysicalWorld(PhysicalWorld* physicalWorld)
 
     delete reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld);
 }
-
 
 #pragma clang diagnostic pop
