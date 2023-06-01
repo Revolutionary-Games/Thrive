@@ -315,21 +315,24 @@ public class CustomWindow : TopLevelContainer
         DrawString(titleFont, titlePosition, translatedWindowTitle, titleColor,
             (int)(RectSize.x - customPanel.GetMinimumSize().x));
 
-        var closeButtonRect = closeButton!.GetRect();
-
-        // Draw close button
-        // We render this in a custom way because rendering it in a child node causes a bug where render order
-        // breaks in some cases: https://github.com/Revolutionary-Games/Thrive/issues/4365
-        DrawTextureRect(closeButtonTexture, closeButtonRect, false, closeButtonColor);
-
-        // Draw close button highlight
-        if (closeHovered)
+        // Draw close button (if this window has a close button)
+        if (closeButton != null)
         {
-            DrawStyleBox(closeButtonHighlight, closeButtonRect);
-        }
-        else if (closeFocused)
-        {
-            DrawStyleBox(CloseButtonFocus.Value, closeButtonRect);
+            var closeButtonRect = closeButton!.GetRect();
+
+            // We render this in a custom way because rendering it in a child node causes a bug where render order
+            // breaks in some cases: https://github.com/Revolutionary-Games/Thrive/issues/4365
+            DrawTextureRect(closeButtonTexture, closeButtonRect, false, closeButtonColor);
+
+            // Draw close button highlight
+            if (closeHovered)
+            {
+                DrawStyleBox(closeButtonHighlight, closeButtonRect);
+            }
+            else if (closeFocused)
+            {
+                DrawStyleBox(CloseButtonFocus.Value, closeButtonRect);
+            }
         }
     }
 
@@ -656,7 +659,7 @@ public class CustomWindow : TopLevelContainer
         {
             if (closeButton != null)
             {
-                RemoveChild(closeButton);
+                closeButton.DetachAndQueueFree();
                 closeButton = null;
             }
 
