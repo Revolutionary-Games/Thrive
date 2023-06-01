@@ -11,4 +11,8 @@ set(USE_AVX2 ON)
 # This is way too unsupported to enable in a general build
 set(USE_AVX512 OFF)
 
+# Need to force Jolt to be position independent to allow linking into shared
+# libraries
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 add_subdirectory(JoltPhysics/Build)

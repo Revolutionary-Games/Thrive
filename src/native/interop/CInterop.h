@@ -10,6 +10,8 @@
 
 extern "C"
 {
+    typedef void (*OnLogMessage)(const char* message, int32_t messageLength, int8_t logLevel);
+
     /// \returns The API version the native library was compiled with, if different from C# the library should not be
     /// used
     [[maybe_unused]] THRIVE_NATIVE_API int32_t CheckAPIVersion();
@@ -23,7 +25,13 @@ extern "C"
 
     // ------------------------------------ //
 
-    [[maybe_unused]] THRIVE_NATIVE_API PhysicalWorld* CreatePhysicalWorld();
+    [[maybe_unused]] THRIVE_NATIVE_API void SetLogLevel(int8_t level);
+    [[maybe_unused]] THRIVE_NATIVE_API void SetLogForwardingCallback(OnLogMessage callback);
 
+    // ------------------------------------ //
+
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicalWorld* CreatePhysicalWorld();
     [[maybe_unused]] THRIVE_NATIVE_API void DestroyPhysicalWorld(PhysicalWorld* physicalWorld);
+
+    [[maybe_unused]] THRIVE_NATIVE_API bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta);
 }

@@ -22,8 +22,16 @@ set(BUILD_SHARED_LIBS OFF)
 # Common options
 if(CMAKE_BUILD_TYPE STREQUAL "")
   set(CMAKE_BUILD_TYPE Release CACHE STRING
-    "Set the build type, usually Release or RelWithDebInfo" FORCE)
-endif(CMAKE_BUILD_TYPE STREQUAL "")
+    "Set the build type, usually Debug or Distribution" FORCE)
+endif()
+
+# A bit unneeded Jolt hack
+# # This and the following hack is required due to Jolt being very debug-y in
+# # release mode
+# elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+# set(CMAKE_BUILD_TYPE Distribution)
+# elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+# set(CMAKE_BUILD_TYPE Distribution)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/debug")

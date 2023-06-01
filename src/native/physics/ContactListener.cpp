@@ -1,7 +1,7 @@
 // ------------------------------------ //
 #include "ContactListener.hpp"
 
-#include <Jolt/Physics/Body/Body.h>
+#include "Jolt/Physics/Body/Body.h"
 // ------------------------------------ //
 using namespace Thrive::Physics;
 

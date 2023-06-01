@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Godot;
-using Directory = System.IO.Directory;
-using File = System.IO.File;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   Calling interface from C# to the native code side of things for the native module
@@ -32,6 +27,7 @@ public static class NativeInterop
         // instead of using DllImportAttribute, also mono_dllmap_insert doesn't work as still the attributes load
         // before that can be used to set. With .NET 7 it should be possible to finally cleanly fix this:
         // https://learn.microsoft.com/en-us/dotnet/standard/native-interop/cross-platform#custom-import-resolver
+        // `NativeLibrary.Load` would probably also be a good way to do something
 
         int version = NativeMethods.CheckAPIVersion();
 
@@ -42,6 +38,11 @@ public static class NativeInterop
         }
 
         GD.Print("Loaded native Thrive library version ", version);
+
+        // Enable debug logging if this is being debugged
+#if DEBUG
+        NativeMethods.SetLogLevel(NativeMethods.LogLevel.Debug);
+#endif
     }
 
     /// <summary>
@@ -53,6 +54,8 @@ public static class NativeInterop
         // Settings are passed as probably in the future something needs to be setup right in the native side of
         // things for the initial settings
         _ = settings;
+
+        NativeMethods.SetLogForwardingCallback(ForwardMessage);
 
         var result = NativeMethods.InitThriveLibrary();
 
@@ -69,10 +72,39 @@ public static class NativeInterop
     {
         NativeMethods.ShutdownThriveLibrary();
     }
+
+    private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
+    {
+        var message = Marshal.PtrToStringAnsi(messageData, messageLength);
+
+        if (level <= NativeMethods.LogLevel.Info)
+        {
+            GD.Print("[NATIVE] ", message);
+        }
+        else if (level <= NativeMethods.LogLevel.Warning)
+        {
+            // TODO: something different for warning level?
+            GD.Print("[NATIVE] WARNING:", message);
+        }
+        else
+        {
+            GD.PrintErr("[NATIVE] ", message);
+        }
+    }
 }
 
 internal static class NativeMethods
 {
+    internal delegate void OnLogMessage(IntPtr messageData, int messageLength, LogLevel level);
+
+    internal enum LogLevel : byte
+    {
+        Debug = 0,
+        Info = 1,
+        Warning = 2,
+        Error = 3,
+    }
+
     [DllImport("thrive_native")]
     internal static extern int CheckAPIVersion();
 
@@ -81,4 +113,10 @@ internal static class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
+
+    [DllImport("thrive_native")]
+    internal static extern void SetLogLevel(LogLevel level);
+
+    [DllImport("thrive_native")]
+    internal static extern void SetLogForwardingCallback(OnLogMessage callback);
 }

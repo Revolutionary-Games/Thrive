@@ -3,11 +3,14 @@ add_library(thrive_native SHARED
   "${PROJECT_BINARY_DIR}/Include.h" core/ForwardDefinitions.hpp
   interop/CInterop.cpp interop/CInterop.h
   interop/CStructures.h
-  physics/PhysicalWorld.cpp physics/PhysicalWorld.hpp
-  physics/Layers.hpp
+  core/Logger.cpp core/Logger.hpp
+  core/Mutex.hpp
   core/TaskSystem.cpp core/TaskSystem.hpp
   physics/ContactListener.cpp physics/ContactListener.hpp
-  core/Mutex.hpp)
+  physics/Layers.hpp
+  physics/PhysicalWorld.cpp physics/PhysicalWorld.hpp
+  physics/ShapeCreator.cpp physics/ShapeCreator.hpp
+  physics/SimpleShapes.cpp physics/SimpleShapes.hpp)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_native PRIVATE /W4 /wd4068)

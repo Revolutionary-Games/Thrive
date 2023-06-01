@@ -64,14 +64,14 @@ EmptyLineBeforeAccessModifier: LogicalBlock
 FixNamespaceComments: true
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex: "<(Jolt|boost).*>"
+  - Regex: "(<|\")(Jolt|boost).*"
     Priority: 2
   - Regex: "<.*>"
     Priority: 1
-  - Regex: "\"(Include.h).*"
+  - Regex: "\"Include\\.h.*"
     Priority: 3
     SortPriority: 3
-  - Regex: "\"(core\/ForwardDefinitions.hpp).*"
+  - Regex: "\"(core\/ForwardDefinitions\\.hpp).*"
     Priority: 3
     SortPriority: 4
   - Regex: "\".*\/"
@@ -79,7 +79,7 @@ IncludeCategories:
   - Regex: ".*"
     Priority: 6
 IndentAccessModifiers: false
-IndentCaseLabels: false
+IndentCaseLabels: true
 IndentCaseBlocks: false
 IndentExternBlock: AfterExternBlock
 IndentGotoLabels: false
