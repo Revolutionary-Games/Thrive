@@ -68,29 +68,24 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Действие заблокировано, поскольку другое еще совершается"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Подтвердить удаление"
+msgstr "Удалить"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Популяция Вида"
+msgstr "Помножить Популяцию на двое"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Подтвердить удаление"
+msgstr "Повторить единицы"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} из популяции: {1}"
+msgstr "Поделить Популяцию на двое"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Подтвердить удаление"
+msgstr "Телепортировать"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -195,7 +190,7 @@ msgstr ""
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Вы уже вознеслись"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -266,14 +261,20 @@ msgid "ART_GALLERY"
 msgstr "Галерея изображений"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Популяция Вида"
+msgstr "Поздравляем!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Вы вознеслись и прошли игру. Поздравляем с тем, что дошли до конца игры.\n"
+"\n"
+"Вы можете продолжить играть в Стадии Космоса с открытыми Божественными Инструментами в песочнице.\n"
+"\n"
+"Так же возможно опуститься и вернуться к микробной стадии в этом сохранении и вновь проходить все стадии, но с доступом к облегчающим модификаторам.\n"
+"\n"
+"Количество вознесений в данном сохранении:{0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -1115,19 +1116,17 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Подтвердите перезапись"
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "Переместиться на Космическую стадию?"
+msgstr "Переместиться на Стадию Вознесения?"
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
-"Теперь вы можете достичь Космической стадии, запустив первый космический объект.\n"
+"Теперь вы можете возвыситься и достигнуть Стадии Вознесения, активировав Врата Вознесения.\n"
 "\n"
-"В текущем прототипе вы не можете вернуться к своей планете, но дальнейшие планы предполагают то, что вы сможете приближаться и отдаляться по отношению к планетам в Космической Стадии.\n"
+"Активировав врата вознесения вы сможете получить неограниченную мощь в виде божественных инструментов, что вы сможете использовать далее в этом сохранении.\n"
 "\n"
-"Отмена запуска уничтожит космический объект. Запустить космический объект?"
+"Вознесясь, вы завершите игру, но вы сможете играть и далее. Вознестись?"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
@@ -1513,19 +1512,21 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Удалить это cохранение?"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
+msgstr "Стать опущенным"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
+msgstr "Точно ли вы собираетесь опуститься?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "Окамените этот вид, чтобы сохранить его в музее. Вы можете получить доступ к музею из Thriveopedia или загрузить ископаемые виды в бесплатном редакторе."
+msgstr ""
+"Опустившись вы лишитесь своего статуса вознесения и вернётесь к микробной стадии. С этого момента вы сможете играть в игру с данного сохранения.\n"
+"\n"
+"Вы сможете выбрать перк опущения для нового прохождения. В следующих версиях вы сможете сами выбирать перки, но временно будет доступен лишь один перк с 20% уменьшением осморегуляции.\n"
+"\n"
+"если вы подтвердите то, что охотите опуститься вы сможете в игровых настройках создать новый игровой мир с настройками, словно вы находитесь в игровом меню при старте новой игры."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -2442,9 +2443,8 @@ msgid "GODMODE"
 msgstr "Режим Бога"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
-#, fuzzy
 msgid "GOD_TOOLS_TITLE"
-msgstr "Присоединяйтесь к нашему Discord серверу"
+msgstr "Божественные Инструменты"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2543,9 +2543,8 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Удерживайте [thrive:input]g_free_cursor[/thrive:input] для курсора"
 
 #: ../src/ascension_stage/AscensionCeremony.tscn:231
-#, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
-msgstr "Зажать, чтобы показать курсор"
+msgstr "Задержите для пропуска"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
@@ -4497,9 +4496,8 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
 #: ../src/space_stage/gui/PlanetScreen.tscn:108
-#, fuzzy
 msgid "OPEN_GOD_TOOLS"
-msgstr "Открыть информационный URL-адрес"
+msgstr "Божественные Инструменты"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
