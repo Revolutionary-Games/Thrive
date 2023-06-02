@@ -5,10 +5,13 @@ add_library(thrive_native SHARED
   interop/CStructures.h
   core/Logger.cpp core/Logger.hpp
   core/Mutex.hpp
+  core/NonCopyable.hpp core/Reference.hpp
+  core/RefCounted.hpp
   core/TaskSystem.cpp core/TaskSystem.hpp
   physics/ContactListener.cpp physics/ContactListener.hpp
   physics/Layers.hpp
   physics/PhysicalWorld.cpp physics/PhysicalWorld.hpp
+  physics/PhysicsBody.cpp physics/PhysicsBody.hpp
   physics/ShapeCreator.cpp physics/ShapeCreator.hpp
   physics/SimpleShapes.cpp physics/SimpleShapes.hpp)
 
@@ -31,14 +34,17 @@ endif()
 target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 
 target_link_libraries(thrive_native PRIVATE Jolt)
-# target_link_libraries(thrive_native PRIVATE stuff)
+target_link_libraries(thrive_native PUBLIC Boost::intrusive)
 
 target_include_directories(thrive_native PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 # target_include_directories(thrive_native PUBLIC "../../third_party/JoltPhysics/")
 
+# TODO: the one private precompiled header will probably cause issues with
+# other libraries linking to this
 target_precompile_headers(thrive_native PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
-  PRIVATE "../../third_party/JoltPhysics/Jolt/Jolt.h" "core/ForwardDefinitions.hpp")
+  "core/ForwardDefinitions.hpp" "core/RefCounted.hpp"
+  PRIVATE "../../third_party/JoltPhysics/Jolt/Jolt.h")
 
 set_target_properties(thrive_native PROPERTIES
   CXX_STANDARD 17

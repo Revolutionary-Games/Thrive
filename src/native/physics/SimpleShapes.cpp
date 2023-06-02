@@ -7,8 +7,10 @@
 #include "Jolt/Physics/Collision/Shape/ScaledShape.h"
 #include "Jolt/Physics/Collision/Shape/Shape.h"
 #include "Jolt/Physics/Collision/Shape/SphereShape.h"
+
 // ------------------------------------ //
-using namespace Thrive::Physics;
+namespace Thrive::Physics
+{
 
 JPH::RefConst<JPH::Shape> SimpleShapes::CreateSphere(float radius, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
@@ -44,3 +46,5 @@ JPH::RefConst<JPH::Shape> SimpleShapes::Scale(const JPH::RefConst<JPH::Shape>& s
 {
     return new JPH::ScaledShape(shape, JPH::Vec3(scale, scale, scale));
 }
+
+} // namespace Thrive::Physics

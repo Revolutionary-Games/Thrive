@@ -2,8 +2,10 @@
 #include "ContactListener.hpp"
 
 #include "Jolt/Physics/Body/Body.h"
+
 // ------------------------------------ //
-using namespace Thrive::Physics;
+namespace Thrive::Physics
+{
 
 JPH::ValidateResult ContactListener::OnContactValidate(const JPH::Body& body1, const JPH::Body& body2,
     JPH::RVec3Arg baseOffset, const JPH::CollideShapeResult& collisionResult)
@@ -72,3 +74,5 @@ void ContactListener::OnContactRemoved(const JPH::SubShapeIDPair& subShapePair)
     if (chainedListener != nullptr)
         chainedListener->OnContactRemoved(subShapePair);
 }
+
+} // namespace Thrive::Physics

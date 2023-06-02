@@ -2,8 +2,10 @@
 #include "Logger.hpp"
 
 #include <iostream>
+
 // ------------------------------------ //
-using namespace Thrive;
+namespace Thrive
+{
 
 void Logger::Log(std::string_view message, LogLevel level)
 {
@@ -41,3 +43,5 @@ void Logger::SetLogTargetOverride(std::function<void(std::string_view, LogLevel)
         isRedirected = true;
     }
 }
+
+} // namespace Thrive

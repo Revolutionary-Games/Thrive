@@ -2,6 +2,8 @@
 
 /// \file Forward definitions for various important classes in this library for reducing header include amounts
 
+#include "Reference.hpp"
+
 namespace Thrive
 {
 class TaskSystem;

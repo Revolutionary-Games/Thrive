@@ -12,7 +12,8 @@
 
 #include "ContactListener.hpp"
 // ------------------------------------ //
-using namespace Thrive::Physics;
+namespace Thrive::Physics
+{
 
 PhysicalWorld::PhysicalWorld()
 {

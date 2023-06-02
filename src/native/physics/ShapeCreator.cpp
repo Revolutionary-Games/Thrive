@@ -6,8 +6,10 @@
 #include "Jolt/Physics/Collision/Shape/MeshShape.h"
 #include "Jolt/Physics/Collision/Shape/MutableCompoundShape.h"
 #include "Jolt/Physics/Collision/Shape/StaticCompoundShape.h"
+
 // ------------------------------------ //
-using namespace Thrive::Physics;
+namespace Thrive::Physics
+{
 
 JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(const JPH::Array<JPH::Vec3>& points,
     float convexRadius /*= 0.01f*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
@@ -55,3 +57,5 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateMesh(
 
     return mesh.Create().Get();
 }
+
+} // namespace Thrive::Physics

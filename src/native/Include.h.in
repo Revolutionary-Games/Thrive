@@ -23,3 +23,5 @@
 #endif // THRIVE_NATIVE_BUILD
 
 #cmakedefine USE_OBJECT_POOLS
+
+#define FORCE_INLINE __attribute__((always_inline))
