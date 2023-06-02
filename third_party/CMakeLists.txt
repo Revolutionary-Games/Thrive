@@ -15,4 +15,7 @@ set(USE_AVX512 OFF)
 # libraries
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-add_subdirectory(JoltPhysics/Build)
+add_subdirectory(JoltPhysics/Build EXCLUDE_FROM_ALL)
+
+# Boost libraries
+add_subdirectory(boost EXCLUDE_FROM_ALL)
