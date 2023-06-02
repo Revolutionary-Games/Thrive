@@ -44,6 +44,7 @@ protected:
     friend void intrusive_ptr_add_ref(const RefCounted* obj)
     {
         // TODO: have someone really knowledgeable determine what's the right memory order here and in release
+        // https://en.cppreference.com/w/cpp/atomic/memory_order
         // obj->refCount.fetch_add(1, std::memory_order_relaxed);
         obj->refCount.fetch_add(1, std::memory_order_release);
     }

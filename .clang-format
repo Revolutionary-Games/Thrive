@@ -64,7 +64,7 @@ EmptyLineBeforeAccessModifier: LogicalBlock
 FixNamespaceComments: true
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex: "(<|\")(Jolt|boost).*"
+  - Regex: "(<|\")(Jolt|boost)\/.*"
     Priority: 2
   - Regex: "<.*>"
     Priority: 1
@@ -101,6 +101,8 @@ NamespaceIndentation: None
 #   -
 PPIndentWidth: 1
 PackConstructorInitializers: BinPack
+PenaltyExcessCharacter: 100
+PenaltyReturnTypeOnItsOwnLine: 20
 PointerAlignment: Left
 QualifierAlignment: Custom
 QualifierOrder:

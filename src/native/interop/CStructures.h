@@ -8,6 +8,26 @@
 extern "C"
 {
     typedef struct PhysicalWorld PhysicalWorld;
+    typedef struct PhysicsBody PhysicsBody;
+    typedef struct PhysicsShape PhysicsShape;
+
+    typedef struct JVec3
+    {
+        double X, Y, Z;
+    } JVec3;
+
+    typedef struct JVecF3
+    {
+        float X, Y, Z;
+    } JVecF3;
+
+    typedef struct JQuat
+    {
+        float X, Y, Z, W;
+
+    } JQuat;
+
+    static const inline JQuat QuatIdentity = JQuat{0, 0, 0, 1};
 }
 
 #pragma clang diagnostic pop

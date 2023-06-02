@@ -141,6 +141,9 @@
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
+    <Compile Include="src\engine\physics\PhysicalWorld.cs" />
+    <Compile Include="src\engine\physics\PhysicsBody.cs" />
+    <Compile Include="src\engine\physics\PhysicsShape.cs" />
     <Compile Include="src\engine\PostShutdownActions.cs" />
     <Compile Include="src\engine\RaycastResult.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
@@ -779,6 +782,7 @@
     <Compile Include="src\tutorial\TutorialState.cs" />
     <Compile Include="src\saving\serializers\RandomConverter.cs" />
     <Compile Include="test\MetaballTest.cs" />
+    <Compile Include="test\PhysicsTest.cs" />
     <Compile Include="test\WindowReorderingSupportTest.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\VacuoleUpgradeGUI.cs" />
   </ItemGroup>

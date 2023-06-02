@@ -12,6 +12,9 @@ extern "C"
 {
     typedef void (*OnLogMessage)(const char* message, int32_t messageLength, int8_t logLevel);
 
+    // ------------------------------------ //
+    // General
+
     /// \returns The API version the native library was compiled with, if different from C# the library should not be
     /// used
     [[maybe_unused]] THRIVE_NATIVE_API int32_t CheckAPIVersion();
@@ -24,14 +27,36 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void ShutdownThriveLibrary();
 
     // ------------------------------------ //
+    // Logging
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetLogLevel(int8_t level);
     [[maybe_unused]] THRIVE_NATIVE_API void SetLogForwardingCallback(OnLogMessage callback);
 
     // ------------------------------------ //
+    // Physics world
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicalWorld* CreatePhysicalWorld();
     [[maybe_unused]] THRIVE_NATIVE_API void DestroyPhysicalWorld(PhysicalWorld* physicalWorld);
 
     [[maybe_unused]] THRIVE_NATIVE_API bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta);
+
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBody(
+        PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateStaticBody(
+        PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void DestroyPhysicalWorldBody(PhysicalWorld* physicalWorld, PhysicsBody* body);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyTransform(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver, JQuat* rotationReceiver);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void ReleasePhysicsBodyReference(PhysicsBody* body);
+
+    // ------------------------------------ //
+    // Physics shapes
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateBoxShape(float halfSideLength);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateBoxShapeWithDimensions(JVecF3 halfDimensions);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateSphereShape(float radius);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
 }

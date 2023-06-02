@@ -3,10 +3,11 @@
 #include <memory>
 #include <optional>
 
+#include "Jolt/Core/Reference.h"
+#include "Jolt/Physics/Body/MotionType.h"
 #include "Jolt/Physics/PhysicsSettings.h"
 
 #include "Include.h"
-#include "core/ForwardDefinitions.hpp"
 
 #include "Layers.hpp"
 
@@ -16,23 +17,43 @@ class PhysicsSystem;
 class TempAllocator;
 class JobSystemThreadPool;
 class BodyID;
+class Shape;
 } // namespace JPH
 
 namespace Thrive::Physics
 {
 
+class PhysicsBody;
+
 /// \brief Main handling class of the physics simulation
+///
+/// Before starting the physics an allocator needs to be enabled for Jolt (for example the C interface library init
+/// does this) and collision types registered.
 class PhysicalWorld
 {
 public:
     PhysicalWorld();
     ~PhysicalWorld();
 
+    // TODO: multithread this and allow physics to run while other stuff happens
     /// \brief Process physics
     /// \returns True when enough time has passed and physics was stepped
     bool Process(float delta);
 
     // TODO: physics debug drawing
+
+    Ref<PhysicsBody> CreateMovingBody(
+        const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity());
+
+    Ref<PhysicsBody> CreateStaticBody(
+        const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity());
+
+    void DestroyBody(const Ref<PhysicsBody>& body);
+
+    void ReadBodyTransform(JPH::BodyID bodyId, JPH::RVec3& positionReceiver, JPH::Quat& rotationReceiver) const;
+
+    void SetGravity(JPH::Vec3 newGravity);
+    void RemoveGravity();
 
     /// \brief Cast a ray from start point to endOffset (i.e. end = start + endOffset)
     /// \returns When hit something a tuple of the fraction from start to end, the hit position, and the ID of the hit
@@ -45,8 +66,16 @@ private:
 
     void StepPhysics(JPH::JobSystemThreadPool& jobs, float time);
 
+    Ref<PhysicsBody> CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
+        JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity());
+
+    void OnPostBodyAdded(const Ref<PhysicsBody>& body);
+
 private:
     float elapsedSinceUpdate = 0;
+
+    int bodyCount = 0;
+    bool changesToBodies = true;
 
     // TODO: rename all the following fields
 
