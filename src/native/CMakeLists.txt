@@ -2,19 +2,21 @@
 add_library(thrive_native SHARED
   "${PROJECT_BINARY_DIR}/Include.h" core/ForwardDefinitions.hpp
   interop/CInterop.cpp interop/CInterop.h
-  interop/CStructures.h  interop/JoltTypeConversions.hpp
+  interop/CStructures.h interop/JoltTypeConversions.hpp
   core/Logger.cpp core/Logger.hpp
   core/Mutex.hpp
   core/NonCopyable.hpp core/Reference.hpp
   core/RefCounted.hpp
   core/TaskSystem.cpp core/TaskSystem.hpp
+  core/Time.hpp
   physics/ContactListener.cpp physics/ContactListener.hpp
   physics/Layers.hpp
   physics/PhysicalWorld.cpp physics/PhysicalWorld.hpp
   physics/PhysicsBody.cpp physics/PhysicsBody.hpp
   physics/ShapeCreator.cpp physics/ShapeCreator.hpp
+  physics/ShapeWrapper.cpp physics/ShapeWrapper.hpp
   physics/SimpleShapes.cpp physics/SimpleShapes.hpp
-  physics/ShapeWrapper.cpp physics/ShapeWrapper.hpp)
+  physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_native PRIVATE /W4 /wd4068)
@@ -35,7 +37,8 @@ endif()
 target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 
 target_link_libraries(thrive_native PRIVATE Jolt)
-target_link_libraries(thrive_native PUBLIC Boost::intrusive)
+target_link_libraries(thrive_native PUBLIC Boost::intrusive
+  Boost::circular_buffer)
 
 target_include_directories(thrive_native PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 

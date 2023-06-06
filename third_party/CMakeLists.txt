@@ -2,6 +2,8 @@
 
 # JoltPhysics
 
+# TODO: option for turning JPH_TRACK_BROADPHASE_STATS on for debugging
+
 # Might as well get used to double precision impact now as we'll want that eventually anyway
 set(DOUBLE_PRECISION ON)
 

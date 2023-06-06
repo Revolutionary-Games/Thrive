@@ -3,6 +3,8 @@
 #include "Jolt/Core/Reference.h"
 #include "Jolt/Physics/Body/BodyID.h"
 
+#include "core/ForwardDefinitions.hpp"
+
 namespace JPH
 {
 class BodyID;
@@ -19,12 +21,13 @@ class PhysicalWorld;
 class PhysicsBody : public RefCounted
 {
     friend PhysicalWorld;
+    friend BodyActivationListener;
 
 protected:
-    PhysicsBody(JPH::Body* body, JPH::BodyID bodyId);
+    PhysicsBody(JPH::Body* body, JPH::BodyID bodyId) noexcept;
 
 public:
-    ~PhysicsBody();
+    ~PhysicsBody() noexcept;
 
     PhysicsBody(const PhysicsBody& other) = delete;
     PhysicsBody(PhysicsBody&& other) = delete;
@@ -33,21 +36,34 @@ public:
     PhysicsBody& operator=(PhysicsBody&& other) = delete;
 
     /// \brief Retrieves an instance of this class from a physics body user data
-    static inline PhysicsBody* FromJoltBody(const JPH::Body* body);
+    [[nodiscard]] static PhysicsBody* FromJoltBody(const JPH::Body* body) noexcept;
 
-    inline JPH::BodyID GetId() const
+    [[nodiscard]] static PhysicsBody* FromJoltBody(uint64_t bodyUserData) noexcept;
+
+    [[nodiscard]] bool IsActive() const noexcept
+    {
+        return active;
+    }
+
+    [[nodiscard]] inline JPH::BodyID GetId() const
     {
         return id;
     }
 
 protected:
-    void MarkUsedInWorld();
-    void MarkRemovedFromWorld();
+    void MarkUsedInWorld() noexcept;
+    void MarkRemovedFromWorld() noexcept;
+
+    inline void NotifyActiveStatus(bool newActiveValue) noexcept
+    {
+        active = newActiveValue;
+    }
 
 private:
     const JPH::BodyID id;
 
     bool inWorld = false;
+    bool active = true;
 
     // PhysicalWorld* owningWorld;
 };

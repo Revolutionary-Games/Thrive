@@ -4,6 +4,7 @@
 #include <cstring>
 
 // TODO: switch to a custom thread pool
+#include "boost/circular_buffer.hpp"
 #include "Jolt/Core/JobSystemThreadPool.h"
 #include "Jolt/Physics/Body/BodyCreationSettings.h"
 #include "Jolt/Physics/Collision/CastResult.h"
@@ -13,14 +14,60 @@
 
 // #include "core/TaskSystem.hpp"
 
+#include "core/Time.hpp"
+
+#include "BodyActivationListener.hpp"
 #include "ContactListener.hpp"
 #include "PhysicsBody.hpp"
+
+JPH_SUPPRESS_WARNINGS
 
 // ------------------------------------ //
 namespace Thrive::Physics
 {
 
-PhysicalWorld::PhysicalWorld()
+class PhysicalWorld::Pimpl
+{
+public:
+    Pimpl() : durationBuffer(30)
+    {
+    }
+
+    float AddAndCalculateAverageTime(float duration)
+    {
+        durationBuffer.push_back(duration);
+
+        const auto size = durationBuffer.size();
+
+        if (size < 1)
+        {
+            LOG_ERROR("Duration circular buffer empty");
+            return -1;
+        }
+
+        float durations = 0;
+
+        for (const auto value : durationBuffer)
+        {
+            durations += value;
+        }
+
+        return durations / static_cast<float>(size);
+    }
+
+public:
+    BroadPhaseLayerInterface broadPhaseLayer;
+    ObjectToBroadPhaseLayerFilter objectToBroadPhaseLayer;
+    ObjectLayerPairFilter objectToObjectPair;
+
+    JPH::PhysicsSettings physicsSettings;
+
+    boost::circular_buffer<float> durationBuffer;
+
+    JPH::Vec3 gravity = JPH::Vec3(0, -9.81f, 0);
+};
+
+PhysicalWorld::PhysicalWorld() : pimpl(std::make_unique<Pimpl>())
 {
 #ifdef USE_OBJECT_POOLS
     tempAllocator = std::make_unique<JPH::TempAllocatorImpl>(32 * 1024 * 1024);
@@ -29,7 +76,8 @@ PhysicalWorld::PhysicalWorld()
 #endif
 
     // Create job system
-    // TODO: configurable threads
+    // TODO: configurable threads (should be about 1-8), or well if we share thread with other systems then maybe up
+    // to like any cores not used by the C# background tasks
     int physicsThreads = 2;
     jobSystem =
         std::make_unique<JPH::JobSystemThreadPool>(JPH::cMaxPhysicsJobs, JPH::cMaxPhysicsBarriers, physicsThreads);
@@ -50,18 +98,21 @@ PhysicalWorld::~PhysicalWorld()
 void PhysicalWorld::InitPhysicsWorld()
 {
     physicsSystem = std::make_unique<JPH::PhysicsSystem>();
-    physicsSystem->Init(maxBodies, maxBodyMutexes, maxBodyPairs, maxContactConstraints, broadPhaseLayer,
-        objectToBroadPhaseLayer, objectToObjectPair);
-    physicsSystem->SetPhysicsSettings(physicsSettings);
+    physicsSystem->Init(maxBodies, maxBodyMutexes, maxBodyPairs, maxContactConstraints, pimpl->broadPhaseLayer,
+        pimpl->objectToBroadPhaseLayer, pimpl->objectToObjectPair);
+    physicsSystem->SetPhysicsSettings(pimpl->physicsSettings);
 
-    physicsSystem->SetGravity(gravity);
+    physicsSystem->SetGravity(pimpl->gravity);
 
+    // Contact listening
     contactListener = std::make_unique<ContactListener>();
 
     // contactListener->SetNextListener(something);
     physicsSystem->SetContactListener(contactListener.get());
 
-    // TODO: activation listener
+    // Activation listening
+    activationListener = std::make_unique<BodyActivationListener>();
+    physicsSystem->SetBodyActivationListener(activationListener.get());
 }
 
 // ------------------------------------ //
@@ -76,6 +127,8 @@ bool PhysicalWorld::Process(float delta)
     bool simulatedPhysics = false;
 
     // TODO: limit max steps per frame to avoid massive potential for lag spikes
+    // TODO: alternatively to this it is possible to use a bigger timestep at once but then collision steps and
+    // integration steps should be incremented
     while (elapsedSinceUpdate > singlePhysicsFrame)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
@@ -215,9 +268,9 @@ std::optional<std::tuple<float, JPH::Vec3, JPH::BodyID>> PhysicalWorld::CastRay(
 // ------------------------------------ //
 void PhysicalWorld::SetGravity(JPH::Vec3 newGravity)
 {
-    gravity = newGravity;
+    pimpl->gravity = newGravity;
 
-    physicsSystem->SetGravity(gravity);
+    physicsSystem->SetGravity(pimpl->gravity);
 }
 
 void PhysicalWorld::RemoveGravity()
@@ -230,16 +283,37 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
 {
     if (changesToBodies)
     {
-        // TODO: maybe delay this by some time if only like one body changed?
-        changesToBodies = true;
-        physicsSystem->OptimizeBroadPhase();
+        if (simulationsToNextOptimization <= 0)
+        {
+            // Queue an optimization
+            simulationsToNextOptimization = simulationsBetweenBroadPhaseOptimization;
+        }
+
+        changesToBodies = false;
+    }
+
+    // Optimize broadphase (but at most quite rarely)
+    if (simulationsToNextOptimization > 0)
+    {
+        if (--simulationsToNextOptimization <= 0)
+        {
+            simulationsToNextOptimization = 0;
+
+            // Time to optimize
+            physicsSystem->OptimizeBroadPhase();
+        }
     }
 
     // TODO: physics processing time tracking with a high resolution timer (should get the average time over the last
     // second)
+    const auto start = TimingClock::now();
+
+    // TODO: apply per physics frame forces
 
     const auto result =
         physicsSystem->Update(time, collisionStepsPerUpdate, integrationSubSteps, tempAllocator.get(), &jobs);
+
+    const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 
     switch (result)
     {
@@ -257,6 +331,10 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
         default:
             LOG_ERROR("Physics update error: unknown");
     }
+
+    latestPhysicsTime = elapsed;
+
+    averagePhysicsTime = pimpl->AddAndCalculateAverageTime(elapsed);
 }
 
 Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,

@@ -45,15 +45,18 @@ protected:
     {
         // TODO: have someone really knowledgeable determine what's the right memory order here and in release
         // https://en.cppreference.com/w/cpp/atomic/memory_order
-        // obj->refCount.fetch_add(1, std::memory_order_relaxed);
-        obj->refCount.fetch_add(1, std::memory_order_release);
+
+        // Jolt also uses this approach, so it should be good
+        obj->refCount.fetch_add(1, std::memory_order_relaxed);
+
+        // obj->refCount.fetch_add(1, std::memory_order_release);
     }
 
     friend void intrusive_ptr_release(const RefCounted* obj)
     {
-        // if (obj->refCount.fetch_sub(1, std::memory_order_release) == 1)
-
-        if (obj->refCount.fetch_sub(1, std::memory_order_acq_rel) == 1)
+        // if (obj->refCount.fetch_sub(1, std::memory_order_acq_rel) == 1)
+        // Jolt also uses this
+        if (obj->refCount.fetch_sub(1, std::memory_order_release) == 1)
         {
             std::atomic_thread_fence(std::memory_order_acquire);
             delete obj;

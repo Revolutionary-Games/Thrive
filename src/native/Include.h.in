@@ -25,3 +25,5 @@
 #cmakedefine USE_OBJECT_POOLS
 
 #define FORCE_INLINE __attribute__((always_inline))
+
+#define UNUSED(x) (void)x

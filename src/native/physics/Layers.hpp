@@ -71,7 +71,8 @@ public:
     {
         // This is where the layer mapping is defined
         // Hopefully this gets optimized very well by the compiler (the samples used a map but that was probably worse
-        // approach than this for performance)
+        // approach than this for performance). At least in release mode with llvm this gets compiled down to just
+        // a few assembly instructions and the layer to layer collide checks are many more instructions
 
         switch (layer)
         {
