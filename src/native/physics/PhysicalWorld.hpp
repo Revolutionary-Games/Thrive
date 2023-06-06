@@ -44,18 +44,42 @@ public:
 
     // TODO: physics debug drawing
 
-    Ref<PhysicsBody> CreateMovingBody(
-        const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity());
+    // ------------------------------------ //
+    // Bodies
+    Ref<PhysicsBody> CreateMovingBody(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
+        JPH::Quat rotation = JPH::Quat::sIdentity(), bool addToWorld = true);
 
-    Ref<PhysicsBody> CreateStaticBody(
-        const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity());
+    Ref<PhysicsBody> CreateStaticBody(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
+        JPH::Quat rotation = JPH::Quat::sIdentity(), bool addToWorld = true);
+
+    /// \brief Add a body that has been created but not added to the physics simulation in this world
+    void AddBody(PhysicsBody& body, bool activate);
 
     void DestroyBody(const Ref<PhysicsBody>& body);
 
     void ReadBodyTransform(JPH::BodyID bodyId, JPH::RVec3& positionReceiver, JPH::Quat& rotationReceiver) const;
 
+    void GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse);
+    void SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity);
+
+    void SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity);
+    void GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse);
+
+    void ApplyBodyControl(
+        JPH::BodyID bodyId, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float reachTargetInSeconds);
+
+    // ------------------------------------ //
+    // Constraints
+    Ref<TrackedConstraint> CreateAxisLockConstraint(
+        PhysicsBody& body, JPH::Vec3 axis, bool lockRotation, bool useInertiaToLockRotation = false);
+
+    void DestroyConstraint(TrackedConstraint& constraint);
+
     void SetGravity(JPH::Vec3 newGravity);
     void RemoveGravity();
+
+    // ------------------------------------ //
+    // Misc
 
     /// \brief Cast a ray from start point to endOffset (i.e. end = start + endOffset)
     /// \returns When hit something a tuple of the fraction from start to end, the hit position, and the ID of the hit
@@ -82,7 +106,7 @@ private:
     Ref<PhysicsBody> CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
         JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity());
 
-    void OnPostBodyAdded(const Ref<PhysicsBody>& body);
+    void OnPostBodyAdded(PhysicsBody& body);
 
 private:
     float elapsedSinceUpdate = 0;

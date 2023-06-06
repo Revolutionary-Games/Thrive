@@ -11,8 +11,10 @@
 
 #include "physics/PhysicalWorld.hpp"
 #include "physics/PhysicsBody.hpp"
+#include "physics/ShapeCreator.hpp"
 #include "physics/ShapeWrapper.hpp"
 #include "physics/SimpleShapes.hpp"
+#include "physics/TrackedConstraint.hpp"
 
 #include "JoltTypeConversions.hpp"
 
@@ -99,11 +101,11 @@ bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta)
 }
 
 PhysicsBody* PhysicalWorldCreateMovingBody(
-    PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation /*= QuatIdentity*/)
+    PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation, bool addToWorld)
 {
     const auto body = reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
                           ->CreateMovingBody(reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(),
-                              Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation));
+                              Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), addToWorld);
 
     if (body)
         body->AddRef();
@@ -112,16 +114,25 @@ PhysicsBody* PhysicalWorldCreateMovingBody(
 }
 
 PhysicsBody* PhysicalWorldCreateStaticBody(
-    PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation)
+    PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation, bool addToWorld)
 {
     const auto body = reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
                           ->CreateStaticBody(reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(),
-                              Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation));
+                              Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), addToWorld);
 
     if (body)
         body->AddRef();
 
     return reinterpret_cast<PhysicsBody*>(body.get());
+}
+
+void PhysicalWorldAddBody(PhysicalWorld* physicalWorld, PhysicsBody* body, bool activate)
+{
+    if (body == nullptr)
+        return;
+
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->AddBody(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), activate);
 }
 
 void DestroyPhysicalWorldBody(PhysicalWorld* physicalWorld, PhysicsBody* body)
@@ -159,6 +170,28 @@ void ReadPhysicsBodyTransform(
 
 #pragma clang diagnostic pop
 
+void GiveImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->GiveImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(impulse));
+}
+
+void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 movementImpulse, JQuat targetRotation,
+    float reachTargetInSeconds)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->ApplyBodyControl(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+            Thrive::Vec3FromCAPI(movementImpulse), Thrive::QuatFromCAPI(targetRotation), reachTargetInSeconds);
+}
+
+void PhysicsBodyAddAxisLock(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->CreateAxisLockConstraint(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), Thrive::Vec3FromCAPI(axis),
+            lockRotation, useInertiaToLockRotation);
+}
+
 float PhysicalWorldGetPhysicsLatestTime(PhysicalWorld* physicalWorld)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->GetLatestPhysicsTime();
@@ -170,6 +203,7 @@ float PhysicalWorldGetPhysicsAverageTime(PhysicalWorld* physicalWorld)
 }
 
 // ------------------------------------ //
+
 void ReleasePhysicsBodyReference(PhysicsBody* body)
 {
     if (body == nullptr)
@@ -179,26 +213,50 @@ void ReleasePhysicsBodyReference(PhysicsBody* body)
 }
 
 // ------------------------------------ //
-PhysicsShape* CreateBoxShape(float halfSideLength)
+PhysicsShape* CreateBoxShape(float halfSideLength, float density)
 {
-    auto result = new Thrive::Physics::ShapeWrapper(Thrive::Physics::SimpleShapes::CreateBox(halfSideLength));
+    auto result = new Thrive::Physics::ShapeWrapper(Thrive::Physics::SimpleShapes::CreateBox(halfSideLength, density));
     result->AddRef();
 
     return reinterpret_cast<PhysicsShape*>(result);
 }
 
-PhysicsShape* CreateBoxShapeWithDimensions(JVecF3 halfDimensions)
+PhysicsShape* CreateBoxShapeWithDimensions(JVecF3 halfDimensions, float density)
 {
     auto result = new Thrive::Physics::ShapeWrapper(
-        Thrive::Physics::SimpleShapes::CreateBox(Thrive::Vec3FromCAPI(halfDimensions)));
+        Thrive::Physics::SimpleShapes::CreateBox(Thrive::Vec3FromCAPI(halfDimensions), density));
     result->AddRef();
 
     return reinterpret_cast<PhysicsShape*>(result);
 }
 
-PhysicsShape* CreateSphereShape(float radius)
+PhysicsShape* CreateSphereShape(float radius, float density)
 {
-    auto result = new Thrive::Physics::ShapeWrapper(Thrive::Physics::SimpleShapes::CreateSphere(radius));
+    auto result = new Thrive::Physics::ShapeWrapper(Thrive::Physics::SimpleShapes::CreateSphere(radius, density));
+    result->AddRef();
+
+    return reinterpret_cast<PhysicsShape*>(result);
+}
+
+PhysicsShape* CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density, float scale)
+{
+    // We don't want to do any extra data copies here (as the C# marshalling already copies stuff) so this API takes
+    // in the JVecF3 pointer
+
+    auto result = new Thrive::Physics::ShapeWrapper(
+        Thrive::Physics::ShapeCreator::CreateMicrobeShapeConvex(points, pointCount, density, scale));
+    result->AddRef();
+
+    return reinterpret_cast<PhysicsShape*>(result);
+}
+
+PhysicsShape* CreateMicrobeShapeSpheres(JVecF3* points, uint32_t pointCount, float density, float scale)
+{
+    // We don't want to do any extra data copies here (as the C# marshalling already copies stuff) so this API takes
+    // in the JVecF3 pointer
+
+    auto result = new Thrive::Physics::ShapeWrapper(
+        Thrive::Physics::ShapeCreator::CreateMicrobeShapeSpheres(points, pointCount, density, scale));
     result->AddRef();
 
     return reinterpret_cast<PhysicsShape*>(result);

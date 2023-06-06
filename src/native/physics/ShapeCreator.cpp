@@ -7,14 +7,19 @@
 #include "Jolt/Physics/Collision/Shape/MutableCompoundShape.h"
 #include "Jolt/Physics/Collision/Shape/StaticCompoundShape.h"
 
+#include "core/Logger.hpp"
+
 // ------------------------------------ //
 namespace Thrive::Physics
 {
 
-JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(const JPH::Array<JPH::Vec3>& points,
+JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(const JPH::Array<JPH::Vec3>& points, float density /*= 1000*/,
     float convexRadius /*= 0.01f*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
-    return JPH::ConvexHullShapeSettings(points, convexRadius, material).Create().Get();
+    auto settings = JPH::ConvexHullShapeSettings(points, convexRadius, material);
+    settings.SetDensity(density);
+
+    return settings.Create().Get();
 }
 
 JPH::RefConst<JPH::Shape> ShapeCreator::CreateStaticCompound(
@@ -56,6 +61,85 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateMesh(
     mesh.mIndexedTriangles = std::move(triangles);
 
     return mesh.Create().Get();
+}
+
+// ------------------------------------ //
+JPH::RefConst<JPH::Shape> ShapeCreator::CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density,
+    float scale, float thickness /*= 0.1f*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
+{
+    if (pointCount < 1)
+    {
+        LOG_ERROR("Microbe shape point count is 0");
+        return nullptr;
+    }
+
+    // We don't use any of the explicit constructors as we want to do any needed type and scale conversions when
+    // actually copying data to the array in the settings
+    auto settings = JPH::ConvexHullShapeSettings();
+    settings.mMaxConvexRadius = JPH::cDefaultConvexRadius;
+
+    auto& pointTarget = settings.mPoints;
+    pointTarget.reserve(pointCount * 2);
+
+    if (scale != 1)
+    {
+        for (uint32_t i = 0; i < pointCount; ++i)
+        {
+            const auto& sourcePoint = points[i];
+
+            const auto scaledX = sourcePoint.X * scale;
+            const auto scaledY = sourcePoint.Y * scale;
+            const auto scaledZ = sourcePoint.Z * scale;
+
+            pointTarget.emplace_back(scaledX, scaledY, scaledZ);
+            pointTarget.emplace_back(scaledX, scaledY + thickness, scaledZ);
+        }
+    }
+    else
+    {
+        for (uint32_t i = 0; i < pointCount; ++i)
+        {
+            const auto& sourcePoint = points[i];
+
+            pointTarget.emplace_back(sourcePoint.X, sourcePoint.Y, sourcePoint.Z);
+            pointTarget.emplace_back(sourcePoint.X, sourcePoint.Y + thickness, sourcePoint.Z);
+        }
+    }
+
+    if (material != nullptr)
+        settings.mMaterial = material;
+
+    settings.SetDensity(density);
+
+    return settings.Create().Get();
+}
+
+JPH::RefConst<JPH::Shape> ShapeCreator::CreateMicrobeShapeSpheres(
+    JVecF3* points, uint32_t pointCount, float density, float scale, const JPH::PhysicsMaterial* material /*= nullptr*/)
+{
+    if (pointCount < 1)
+    {
+        LOG_ERROR("Microbe shape point count is 0");
+        return nullptr;
+    }
+
+    const auto sphereShape = SimpleShapes::CreateSphere(1 * scale, density, material);
+
+    JPH::StaticCompoundShapeSettings settings;
+
+    const auto rotation = JPH::Quat::sIdentity();
+
+    for (uint32_t i = 0; i < pointCount; ++i)
+    {
+        const auto& sourcePoint = points[i];
+
+        settings.AddShape(
+            {sourcePoint.X * scale, sourcePoint.Y * scale, sourcePoint.Z * scale}, rotation, sphereShape.GetPtr(), 0);
+    }
+
+    // Individual materials and densities are set in the sub shapes, hopefully that is enough
+
+    return settings.Create().Get();
 }
 
 } // namespace Thrive::Physics

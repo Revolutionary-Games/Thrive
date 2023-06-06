@@ -9,14 +9,16 @@ add_library(thrive_native SHARED
   core/RefCounted.hpp
   core/TaskSystem.cpp core/TaskSystem.hpp
   core/Time.hpp
+  physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp
   physics/ContactListener.cpp physics/ContactListener.hpp
+  physics/CustomConstraintTypes.hpp
   physics/Layers.hpp
   physics/PhysicalWorld.cpp physics/PhysicalWorld.hpp
   physics/PhysicsBody.cpp physics/PhysicsBody.hpp
   physics/ShapeCreator.cpp physics/ShapeCreator.hpp
   physics/ShapeWrapper.cpp physics/ShapeWrapper.hpp
   physics/SimpleShapes.cpp physics/SimpleShapes.hpp
-  physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp)
+  physics/TrackedConstraint.cpp physics/TrackedConstraint.hpp)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_native PRIVATE /W4 /wd4068)

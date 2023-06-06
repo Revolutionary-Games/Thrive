@@ -24,12 +24,40 @@ public class PhysicsShape : IDisposable
 
     public static PhysicsShape CreateBox(Vector3 halfDimensions)
     {
-        return new PhysicsShape(NativeMethods.CreateBoxShapeWithDimensions(new NativeMethods.JVecF3(halfDimensions)));
+        return new PhysicsShape(NativeMethods.CreateBoxShapeWithDimensions(new JVecF3(halfDimensions)));
     }
 
     public static PhysicsShape CreateSphere(float radius)
     {
         return new PhysicsShape(NativeMethods.CreateSphereShape(radius));
+    }
+
+    // TODO: hashing and caching based on the parameters to avoid needing to constantly create new shapes
+    public static PhysicsShape CreateMicrobeShape(JVecF3[] organellePositions, float overallDensity,
+        bool scaleAsBacteria, bool createAsSpheres = false)
+    {
+        var gch = GCHandle.Alloc(organellePositions, GCHandleType.Pinned);
+
+        PhysicsShape result;
+        try
+        {
+            if (createAsSpheres)
+            {
+                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(gch.AddrOfPinnedObject(),
+                    (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
+            }
+            else
+            {
+                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeSpheres(gch.AddrOfPinnedObject(),
+                    (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
+            }
+        }
+        finally
+        {
+            gch.Free();
+        }
+
+        return result;
     }
 
     public void Dispose()
@@ -78,6 +106,14 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateSphereShape(float radius);
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr CreateMicrobeShapeConvex(IntPtr microbePoints, uint pointCount, float density,
+        float scale);
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr CreateMicrobeShapeSpheres(IntPtr microbePoints, uint pointCount, float density,
+        float scale);
 
     [DllImport("thrive_native")]
     internal static extern void ReleaseShape(IntPtr shape);

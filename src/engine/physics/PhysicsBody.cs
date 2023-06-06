@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Godot;
 
 public class PhysicsBody : IDisposable
 {
@@ -9,6 +10,13 @@ public class PhysicsBody : IDisposable
     internal PhysicsBody(IntPtr nativeInstance)
     {
         this.nativeInstance = nativeInstance;
+
+        if (this.nativeInstance.ToInt64() == 0)
+        {
+            // TODO: should this crash the game?
+            GD.PrintErr(
+                "Physics body can't be created from null native pointer, we probably ran out of physics bodies");
+        }
     }
 
     ~PhysicsBody()

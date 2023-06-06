@@ -22,6 +22,7 @@ class PhysicsBody : public RefCounted
 {
     friend PhysicalWorld;
     friend BodyActivationListener;
+    friend TrackedConstraint;
 
 protected:
     PhysicsBody(JPH::Body* body, JPH::BodyID bodyId) noexcept;
@@ -40,9 +41,14 @@ public:
 
     [[nodiscard]] static PhysicsBody* FromJoltBody(uint64_t bodyUserData) noexcept;
 
-    [[nodiscard]] bool IsActive() const noexcept
+    [[nodiscard]] inline bool IsActive() const noexcept
     {
         return active;
+    }
+
+    [[nodiscard]] inline bool IsInWorld() const noexcept
+    {
+        return inWorld;
     }
 
     [[nodiscard]] inline JPH::BodyID GetId() const
@@ -50,9 +56,16 @@ public:
         return id;
     }
 
+    [[nodiscard]] inline const auto& GetConstraints() const noexcept{
+        return constraintsThisIsPartOf;
+    }
+
 protected:
     void MarkUsedInWorld() noexcept;
     void MarkRemovedFromWorld() noexcept;
+
+    void NotifyConstraintAdded(TrackedConstraint& constraint) noexcept;
+    void NotifyConstraintRemoved(TrackedConstraint& constraint) noexcept;
 
     inline void NotifyActiveStatus(bool newActiveValue) noexcept
     {
@@ -64,6 +77,8 @@ private:
 
     bool inWorld = false;
     bool active = true;
+
+    std::vector<Ref<TrackedConstraint>> constraintsThisIsPartOf;
 
     // PhysicalWorld* owningWorld;
 };

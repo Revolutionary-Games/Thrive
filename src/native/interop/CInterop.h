@@ -40,15 +40,27 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta);
 
-    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBody(
-        PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity);
-    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateStaticBody(
-        PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBody(PhysicalWorld* physicalWorld,
+        PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateStaticBody(PhysicalWorld* physicalWorld,
+        PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldAddBody(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, bool activate);
 
     [[maybe_unused]] THRIVE_NATIVE_API void DestroyPhysicalWorldBody(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
     [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyTransform(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver, JQuat* rotationReceiver);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void GiveImpulse(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body,
+        JVecF3 movementImpulse, JQuat targetRotation, float reachTargetInSeconds);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddAxisLock(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation);
 
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsLatestTime(PhysicalWorld* physicalWorld);
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsAverageTime(PhysicalWorld* physicalWorld);
@@ -59,9 +71,15 @@ extern "C"
 
     // ------------------------------------ //
     // Physics shapes
-    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateBoxShape(float halfSideLength);
-    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateBoxShapeWithDimensions(JVecF3 halfDimensions);
-    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateSphereShape(float radius);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateBoxShape(float halfSideLength, float density = 1000);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateBoxShapeWithDimensions(
+        JVecF3 halfDimensions, float density = 1000);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateSphereShape(float radius, float density = 1000);
+
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateMicrobeShapeConvex(
+        JVecF3* points, uint32_t pointCount, float density, float scale);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateMicrobeShapeSpheres(
+        JVecF3* points, uint32_t pointCount, float density, float scale);
 
     [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
 }

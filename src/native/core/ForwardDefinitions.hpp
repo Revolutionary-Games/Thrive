@@ -14,5 +14,8 @@ namespace Physics
 {
 class ContactListener;
 class BodyActivationListener;
+class PhysicsBody;
+class PhysicalWorld;
+class TrackedConstraint;
 } // namespace Physics
 } // namespace Thrive

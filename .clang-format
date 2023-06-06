@@ -151,8 +151,9 @@ SpacesInSquareBrackets: false
 Standard: c++17
 # StatementAttributeLikeMacros:
 #   -
-# StatementMacros:
-#   -
+StatementMacros:
+  - JPH_ADD_ATTRIBUTE
+  - JPH_ADD_BASE_CLASS
 TabWidth: 4
 # TypenameMacros:
 #   -

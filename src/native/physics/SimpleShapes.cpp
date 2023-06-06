@@ -12,33 +12,46 @@
 namespace Thrive::Physics
 {
 
-JPH::RefConst<JPH::Shape> SimpleShapes::CreateSphere(float radius, const JPH::PhysicsMaterial* material /*= nullptr*/)
+JPH::RefConst<JPH::Shape> SimpleShapes::CreateSphere(
+    float radius, float density /*= 1000*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
-    return new JPH::SphereShape(radius, material);
+    auto shape = new JPH::SphereShape(radius, material);
+    shape->SetDensity(density);
+
+    return shape;
 }
 
 JPH::RefConst<JPH::Shape> SimpleShapes::CreateBox(
-    float halfSideLength, const JPH::PhysicsMaterial* material /*= nullptr*/)
+    float halfSideLength, float density /*= 1000*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
-    return CreateBox(JPH::Vec3(halfSideLength, halfSideLength, halfSideLength), material);
+    return CreateBox(JPH::Vec3(halfSideLength, halfSideLength, halfSideLength), density, material);
 }
 
 JPH::RefConst<JPH::Shape> SimpleShapes::CreateBox(
-    JPH::Vec3 halfExtends, const JPH::PhysicsMaterial* material /*= nullptr*/)
+    JPH::Vec3 halfExtends, float density /*= 1000*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
-    return new JPH::BoxShape(halfExtends, JPH::cDefaultConvexRadius, material);
+    auto shape = new JPH::BoxShape(halfExtends, JPH::cDefaultConvexRadius, material);
+    shape->SetDensity(density);
+
+    return shape;
 }
 
 JPH::RefConst<JPH::Shape> SimpleShapes::CreateCylinder(
-    float halfHeight, float radius, const JPH::PhysicsMaterial* material /*= nullptr*/)
+    float halfHeight, float radius, float density /*= 1000*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
-    return new JPH::CylinderShape(halfHeight, radius, JPH::cDefaultConvexRadius, material);
+    auto shape = new JPH::CylinderShape(halfHeight, radius, JPH::cDefaultConvexRadius, material);
+    shape->SetDensity(density);
+
+    return shape;
 }
 
 JPH::RefConst<JPH::Shape> SimpleShapes::CreateCapsule(
-    float halfHeight, float radius, const JPH::PhysicsMaterial* material /*= nullptr*/)
+    float halfHeight, float radius, float density /*= 1000*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
-    return new JPH::CapsuleShape(halfHeight, radius, material);
+    auto shape = new JPH::CapsuleShape(halfHeight, radius, material);
+    shape->SetDensity(density);
+
+    return shape;
 }
 
 // ------------------------------------ //

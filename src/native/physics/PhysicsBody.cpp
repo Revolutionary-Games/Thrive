@@ -5,6 +5,8 @@
 
 #include "core/Logger.hpp"
 
+#include "TrackedConstraint.hpp"
+
 // ------------------------------------ //
 namespace Thrive::Physics
 {
@@ -54,6 +56,27 @@ void PhysicsBody::MarkRemovedFromWorld() noexcept
         LOG_ERROR("PhysicsBody marked removed from world when it wasn't used in the first place");
 
     inWorld = false;
+}
+
+void PhysicsBody::NotifyConstraintAdded(TrackedConstraint& constraint) noexcept
+{
+    constraintsThisIsPartOf.emplace_back(&constraint);
+
+    // To save on performance this doesn't check on duplicate constraint adds
+}
+
+void PhysicsBody::NotifyConstraintRemoved(TrackedConstraint& constraint) noexcept
+{
+    for (auto iter = constraintsThisIsPartOf.rbegin(); iter != constraintsThisIsPartOf.rend(); ++iter)
+    {
+        if (iter->get() == &constraint)
+        {
+            constraintsThisIsPartOf.erase((iter + 1).base());
+            return;
+        }
+    }
+
+    LOG_ERROR("PhysicsBody notified of removed constraint that this wasn't a part of");
 }
 
 } // namespace Thrive::Physics
