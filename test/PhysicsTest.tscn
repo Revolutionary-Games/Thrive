@@ -24,6 +24,9 @@ CameraPath = NodePath("RenderingRoot/Camera")
 GUIWindowRootPath = NodePath("GUI/CustomWindow")
 DeltaLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/Frametime")
 PhysicsTimingLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/PhysicsTiming")
+TestNameLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer/TestType")
+TestExtraInfoLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/ExtraTestTypeInfo")
+PhysicsBodiesCountLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer2/BodyCount")
 
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -39,6 +42,36 @@ margin_right = 80.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 80, 50 )
 
+[node name="HFlowContainer" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 5.38925e+08
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
+text = "Test type:"
+
+[node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="TestType" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+align = 2
+
+[node name="ExtraTestTypeInfo" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+autowrap = true
+
 [node name="PhysicsTiming" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 25.0
@@ -51,6 +84,29 @@ margin_right = 40.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 5.38925e+08
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
+margin_right = 40.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
+text = "Bodies:"
+
+[node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="BodyCount" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+align = 2
 
 [node name="RenderingRoot" type="Spatial" parent="."]
 

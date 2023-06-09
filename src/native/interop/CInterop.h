@@ -50,6 +50,12 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API void DestroyPhysicalWorldBody(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void SetPhysicsBodyLinearDamping(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, float damping);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void SetPhysicsBodyLinearAndAngularDamping(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, float linearDamping, float angularDamping);
+
     [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyTransform(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver, JQuat* rotationReceiver);
 
@@ -59,8 +65,16 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body,
         JVecF3 movementImpulse, JQuat targetRotation, float reachTargetInSeconds);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPosition(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate);
+
+    [[maybe_unused]] THRIVE_NATIVE_API bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body);
+
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddAxisLock(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldSetGravity(PhysicalWorld* physicalWorld, JVecF3 gravity);
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldRemoveGravity(PhysicalWorld* physicalWorld);
 
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsLatestTime(PhysicalWorld* physicalWorld);
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsAverageTime(PhysicalWorld* physicalWorld);

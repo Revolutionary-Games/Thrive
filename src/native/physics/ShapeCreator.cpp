@@ -65,7 +65,7 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateMesh(
 
 // ------------------------------------ //
 JPH::RefConst<JPH::Shape> ShapeCreator::CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density,
-    float scale, float thickness /*= 0.1f*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
+    float scale, float thickness /*= 0.2f*/, const JPH::PhysicsMaterial* material /*= nullptr*/)
 {
     if (pointCount < 1)
     {

@@ -57,6 +57,8 @@ public:
 
     void DestroyBody(const Ref<PhysicsBody>& body);
 
+    void SetDamping(JPH::BodyID bodyId, float damping, const float* angularDamping = nullptr);
+
     void ReadBodyTransform(JPH::BodyID bodyId, JPH::RVec3& positionReceiver, JPH::Quat& rotationReceiver) const;
 
     void GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse);
@@ -67,6 +69,12 @@ public:
 
     void ApplyBodyControl(
         JPH::BodyID bodyId, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float reachTargetInSeconds);
+
+    void SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool activate = true);
+
+    /// \brief Ensures body's Y coordinate is 0, if not moves it so that it is 0
+    /// \returns True if the body's position changed, false if no fix was needed
+    bool FixBodyYCoordinateToZero(JPH::BodyID bodyId);
 
     // ------------------------------------ //
     // Constraints

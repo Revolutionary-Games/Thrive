@@ -144,6 +144,19 @@ void DestroyPhysicalWorldBody(PhysicalWorld* physicalWorld, PhysicsBody* body)
         ->DestroyBody(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body));
 }
 
+void SetPhysicsBodyLinearDamping(PhysicalWorld* physicalWorld, PhysicsBody* body, float damping)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetDamping(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), damping, nullptr);
+}
+
+void SetPhysicsBodyLinearAndAngularDamping(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, float linearDamping, float angularDamping)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetDamping(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), linearDamping, &angularDamping);
+}
+
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
 
@@ -184,12 +197,35 @@ void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 mo
             Thrive::Vec3FromCAPI(movementImpulse), Thrive::QuatFromCAPI(targetRotation), reachTargetInSeconds);
 }
 
+void SetBodyPosition(PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetPosition(
+            reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::DVec3FromCAPI(position), activate);
+}
+
+bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->FixBodyYCoordinateToZero(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId());
+}
+
 void PhysicsBodyAddAxisLock(
     PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
         ->CreateAxisLockConstraint(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), Thrive::Vec3FromCAPI(axis),
             lockRotation, useInertiaToLockRotation);
+}
+
+void PhysicalWorldSetGravity(PhysicalWorld* physicalWorld, JVecF3 gravity)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->SetGravity(Thrive::Vec3FromCAPI(gravity));
+}
+
+void PhysicalWorldRemoveGravity(PhysicalWorld* physicalWorld)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->RemoveGravity();
 }
 
 float PhysicalWorldGetPhysicsLatestTime(PhysicalWorld* physicalWorld)

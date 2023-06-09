@@ -71,6 +71,19 @@ public class PhysicalWorld : IDisposable
         NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
+    public void SetDamping(PhysicsBody body, float linearDamping, float? angularDamping = null)
+    {
+        if (angularDamping != null)
+        {
+            NativeMethods.SetPhysicsBodyLinearAndAngularDamping(AccessWorldInternal(), body.AccessBodyInternal(),
+                linearDamping, angularDamping.Value);
+        }
+        else
+        {
+            NativeMethods.SetPhysicsBodyLinearDamping(AccessWorldInternal(), body.AccessBodyInternal(), linearDamping);
+        }
+    }
+
     public Transform ReadBodyTransform(PhysicsBody body)
     {
         // TODO: could probably make things a bit more efficient if the C# body stored the body ID to avoid one level
@@ -93,6 +106,16 @@ public class PhysicalWorld : IDisposable
             new JVecF3(movementImpulse), new JQuat(lookDirection), rotationSpeedSeconds);
     }
 
+    public void SetBodyPosition(PhysicsBody body, Vector3 position)
+    {
+        NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
+    }
+
+    public bool FixBodyYCoordinateToZero(PhysicsBody body)
+    {
+        return NativeMethods.FixBodyYCoordinateToZero(AccessWorldInternal(), body.AccessBodyInternal());
+    }
+
     /// <summary>
     ///   Makes this body unable to move on the given axis. Used to make microbes move only in a 2D plane. Call after
     ///   the body is added to the world.
@@ -106,6 +129,18 @@ public class PhysicalWorld : IDisposable
     {
         NativeMethods.PhysicsBodyAddAxisLock(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(axis),
             lockRotation);
+    }
+
+    public void SetGravity(JVecF3? gravity = null)
+    {
+        gravity ??= new JVecF3(0.0f, -9.81f, 0.0f);
+
+        NativeMethods.PhysicalWorldSetGravity(AccessWorldInternal(), gravity.Value);
+    }
+
+    public void RemoveGravity()
+    {
+        NativeMethods.PhysicalWorldRemoveGravity(AccessWorldInternal());
     }
 
     public void Dispose()
@@ -170,6 +205,13 @@ internal static partial class NativeMethods
     internal static extern void DestroyPhysicalWorldBody(IntPtr physicalWorld, IntPtr body);
 
     [DllImport("thrive_native")]
+    internal static extern void SetPhysicsBodyLinearDamping(IntPtr physicalWorld, IntPtr body, float damping);
+
+    [DllImport("thrive_native")]
+    internal static extern void SetPhysicsBodyLinearAndAngularDamping(IntPtr physicalWorld, IntPtr body,
+        float linearDamping, float angularDamping);
+
+    [DllImport("thrive_native")]
     internal static extern void ReadPhysicsBodyTransform(IntPtr world, IntPtr body, [Out] out JVec3 position,
         [Out] out JQuat orientation);
 
@@ -181,8 +223,20 @@ internal static partial class NativeMethods
         JQuat targetRotation, float reachTargetInSeconds);
 
     [DllImport("thrive_native")]
+    internal static extern void SetBodyPosition(IntPtr world, IntPtr body, JVec3 position, bool activate = true);
+
+    [DllImport("thrive_native")]
+    internal static extern bool FixBodyYCoordinateToZero(IntPtr world, IntPtr body);
+
+    [DllImport("thrive_native")]
     internal static extern IntPtr PhysicsBodyAddAxisLock(IntPtr physicalWorld, IntPtr body,
-        JVecF3 axi, bool lockRotation, bool useInertiaToLockRotation = false);
+        JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation = false);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicalWorldSetGravity(IntPtr physicalWorld, JVecF3 gravity);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicalWorldRemoveGravity(IntPtr physicalWorld);
 
     [DllImport("thrive_native")]
     internal static extern float PhysicalWorldGetPhysicsLatestTime(IntPtr physicalWorld);

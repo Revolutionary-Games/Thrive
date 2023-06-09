@@ -56,5 +56,12 @@ public struct JVecF3
         Z = vector.z;
     }
 
+    public JVecF3(float x, float y, float z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+    }
+
     public static implicit operator Vector3(JVecF3 d) => new(d.X, d.Y, d.Z);
 }
