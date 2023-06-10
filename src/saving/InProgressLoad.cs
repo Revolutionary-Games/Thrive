@@ -204,8 +204,7 @@ public class InProgressLoad
                 else
                 {
                     SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_LOADING"),
-                        message, exception, true,
-                        () => LoadingScreen.Instance.Hide());
+                        message, exception, true, true, () => LoadingScreen.Instance.Hide());
                 }
 
                 IsLoading = false;

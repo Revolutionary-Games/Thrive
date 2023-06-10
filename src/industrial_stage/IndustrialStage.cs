@@ -46,6 +46,9 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     [JsonProperty]
     private float toSpaceUnitAcceleration;
 
+    [JsonProperty]
+    private UnitType? launchedSpacecraftType;
+
     private enum StageMovePhase
     {
         NotMoving,
@@ -278,6 +281,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         if (!spaceCraftData.Value.City.OnUnitUnGarrisoned(spacecraft))
             GD.PrintErr("Failed to un-garrison spacecraft for launch");
 
+        launchedSpacecraftType = spacecraft;
+
         // TODO: switch to using proper in-play unit class here
         // For now the prototype just displays the visuals
         var scene = spacecraft.WorldRepresentation;
@@ -398,36 +403,22 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         GD.Print("Switching to space scene");
 
-        var spaceStage =
-            SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
+        var spaceStage = SceneManager.Instance.LoadScene(MainGameState.SpaceStage).Instance<SpaceStage>();
         spaceStage.CurrentGame = CurrentGame;
 
         SceneManager.Instance.SwitchToScene(spaceStage);
 
-        // Copy our resources to the new stage, this is after the scene switch to make sure the storage capacity is
-        // initialized already
-        spaceStage.TakeInitialResourcesFrom(SocietyResources);
-
-        spaceStage.AddPlanet(Transform.Identity, true);
-
-        // TODO: preserve the actual cities placed on the starting planet
-
         // Create initial fleet from the ship going to space
-        var spaceCraftData = citySystem.FirstLaunchableSpacecraft;
-        if (spaceCraftData == null)
+        if (launchedSpacecraftType == null)
         {
             GD.PrintErr("Spacecraft to put in initial fleet not found, using fallback unit");
 
-            spaceCraftData = (null!, SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"));
+            launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
         }
 
-        var fleet = spaceStage.AddFleet(new Transform(Basis.Identity, new Vector3(6, 0, 0)),
-            spaceCraftData.Value.Spacecraft, true);
+        // TODO: preserve the actual cities placed on the starting planet
 
-        // Focus the camera initially on the ship to make the stage transition smoother
-        spaceStage.ZoomOutFromFleet(fleet);
-
-        // Add an order to have the fleet be moving
-        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
+        spaceStage.SetupForExistingGameFromAnotherStage(true, launchedSpacecraftType, SocietyResources);
+        launchedSpacecraftType = null;
     }
 }

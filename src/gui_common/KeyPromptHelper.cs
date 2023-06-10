@@ -200,7 +200,7 @@ public static class KeyPromptHelper
     /// </summary>
     public static string GetPathForInvalidKey()
     {
-        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/Blanks/Blank_{BlankTheme}_Normal.png";
+        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Unknown_Key_{Theme}.png";
     }
 
     /// <summary>
@@ -208,6 +208,14 @@ public static class KeyPromptHelper
     /// </summary>
     public static string GetPathForKeyboardKey(string name)
     {
+        // Map some key names to match the icon set used key names
+        switch (name)
+        {
+            case "Escape":
+                name = "Esc";
+                break;
+        }
+
         if (!AvailableKeys.Contains(name))
             return GetPathForInvalidKey();
 

@@ -46,7 +46,7 @@ using Godot.Collections;
 /// </remarks>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class CustomDialog : CustomWindow
+public class CustomWindow : TopLevelContainer
 {
     /// <summary>
     ///   Paths to window reordering nodes in ancestors.
@@ -108,6 +108,7 @@ public class CustomDialog : CustomWindow
 
 #pragma warning disable CA2213
     private TextureButton? closeButton;
+    private Texture closeButtonTexture = null!;
 
     private StyleBox customPanel = null!;
     private StyleBox titleBarPanel = null!;
@@ -116,6 +117,7 @@ public class CustomDialog : CustomWindow
     private Font? titleFont;
 #pragma warning restore CA2213
     private Color titleColor;
+    private Color closeButtonColor;
 
     private DragType dragType = DragType.None;
 
@@ -128,13 +130,13 @@ public class CustomDialog : CustomWindow
 
     /// <summary>
     ///   This is emitted by any means to hide this dialog (when not accepting) but NOT the hiding itself, for that use
-    ///   <see cref="CustomWindow.Closed"/> signal OR <see cref="OnHidden"/>.
+    ///   <see cref="TopLevelContainer.Closed"/> signal OR <see cref="OnHidden"/>.
     /// </summary>
     [Signal]
     public delegate void Cancelled();
 
     [Signal]
-    public delegate void Dragged(CustomWindow window);
+    public delegate void Dragged(TopLevelContainer window);
 
     [Flags]
     private enum DragType
@@ -231,7 +233,9 @@ public class CustomDialog : CustomWindow
         titleFont = GetFont("custom_title_font", "WindowDialog");
         titleHeight = GetConstant("custom_title_height", "WindowDialog");
         titleColor = GetColor("custom_title_color", "WindowDialog");
+        closeButtonColor = GetColor("custom_close_color", "WindowDialog");
         closeButtonHighlight = GetStylebox("custom_close_highlight", "WindowDialog");
+        closeButtonTexture = GetIcon("custom_close", "WindowDialog");
         scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
         customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
 
@@ -311,14 +315,24 @@ public class CustomDialog : CustomWindow
         DrawString(titleFont, titlePosition, translatedWindowTitle, titleColor,
             (int)(RectSize.x - customPanel.GetMinimumSize().x));
 
-        // Draw close button highlight
-        if (closeHovered)
+        // Draw close button (if this window has a close button)
+        if (closeButton != null)
         {
-            DrawStyleBox(closeButtonHighlight, closeButton!.GetRect());
-        }
-        else if (closeFocused)
-        {
-            DrawStyleBox(CloseButtonFocus.Value, closeButton!.GetRect());
+            var closeButtonRect = closeButton!.GetRect();
+
+            // We render this in a custom way because rendering it in a child node causes a bug where render order
+            // breaks in some cases: https://github.com/Revolutionary-Games/Thrive/issues/4365
+            DrawTextureRect(closeButtonTexture, closeButtonRect, false, closeButtonColor);
+
+            // Draw close button highlight
+            if (closeHovered)
+            {
+                DrawStyleBox(closeButtonHighlight, closeButtonRect);
+            }
+            else if (closeFocused)
+            {
+                DrawStyleBox(CloseButtonFocus.Value, closeButtonRect);
+            }
         }
     }
 
@@ -327,7 +341,7 @@ public class CustomDialog : CustomWindow
         // Handle title bar dragging
         if (@event is InputEventMouseButton { ButtonIndex: (int)ButtonList.Left } mouseButton)
         {
-            if (mouseButton.Pressed && Movable)
+            if (mouseButton.Pressed && Movable && !closeHovered)
             {
                 // Begin a possible dragging operation
                 dragType = DragHitTest(new Vector2(mouseButton.Position.x, mouseButton.Position.y));
@@ -645,7 +659,7 @@ public class CustomDialog : CustomWindow
         {
             if (closeButton != null)
             {
-                RemoveChild(closeButton);
+                closeButton.DetachAndQueueFree();
                 closeButton = null;
             }
 
@@ -655,15 +669,11 @@ public class CustomDialog : CustomWindow
         if (closeButton != null)
             return;
 
-        var closeColor = GetColor("custom_close_color", "WindowDialog");
-
         closeButton = new TextureButton
         {
             Expand = true,
             RectMinSize = new Vector2(14, 14),
-            SelfModulate = closeColor,
             MouseFilter = MouseFilterEnum.Pass,
-            TextureNormal = GetIcon("custom_close", "WindowDialog"),
         };
 
         closeButton.SetAnchorsPreset(LayoutPreset.TopRight);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 11:42+0300\n"
+"POT-Creation-Date: 2023-05-29 14:37+0300\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1472
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D mozgás stílus:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
@@ -33,16 +33,15 @@ msgstr "3D Mozgás"
 
 #: ../src/general/OptionsMenu.tscn:1504
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D mozgás stílus:"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
 msgstr "Képességek"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
-#, fuzzy
 msgid "ABORT"
-msgstr "Megszakítva."
+msgstr "Megszakítva"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -55,19 +54,43 @@ msgstr "Abisszopelágikus"
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "Felébred ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Öngyilkosság"
+msgstr "Lépj át az Ébredés szakaszába. Elérhető, ha rendelkezel elegendő agyi erővel (axonokkal rendelkező szövettípus)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:681
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
+#, fuzzy
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Akció blokkolva, miközben egy másik folyamatban van"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
+msgid "ACTION_DELETE"
+msgstr "Törlés"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+#, fuzzy
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "A fajok populációi"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+#, fuzzy
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Megkettőzött egység"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+#, fuzzy
+msgid "ACTION_HALF_POPULATION"
+msgstr "Fél populáció"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+msgid "ACTION_TELEPORT"
+msgstr "Teleportálás"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -84,19 +107,19 @@ msgstr ""
 "A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
 
 #: ../src/modding/NewModGUI.cs:322
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Auto-evo futtatása sikertelen"
+msgstr "A további jóváhagyások problémát észleltek:{0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
+#, fuzzy
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Új billentyű hozzáadása"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
 msgstr "Speciális"
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Speciális beállítási nézet megnyitása"
 
@@ -107,17 +130,16 @@ msgstr "Aerob Nitrifikáció"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
-msgstr "Ágensek"
+msgstr "Ügynökök"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
 #, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Készítő:"
+msgstr "Hatóanyagok:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "{0} {1}"
+msgstr "{0} hatóanyag"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -131,13 +153,13 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agresszív"
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:475
 msgid "AI_MUTATION_RATE"
-msgstr "MI mutációs mértéke"
+msgstr "AI mutációs arány"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+msgstr "(a sebesség, mely alatt az AI fajok mutálódnak)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:407
@@ -153,14 +175,18 @@ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Fajok mutációkihagyásának engedélyezése (ha a rendszer nem talált megfelelő mutációt)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Organizmus statisztikái"
+msgstr "Álltlános statisztika az összes világról"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Organizmus statisztikái"
+
+#: ../src/space_stage/SpaceStage.cs:410
+#, fuzzy
+msgid "ALREADY_ASCENDED"
+msgstr "Te már felemelkedtél"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -179,20 +205,19 @@ msgstr "Ammónia"
 
 #: ../src/general/OptionsMenu.tscn:1692
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Megtartható automentések mennyisége:"
+msgstr "Megtartható automatikus mentések száma:"
 
 #: ../src/general/OptionsMenu.tscn:1720
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Megtartható gyorsmentések mennyisége:"
+msgstr "Megtartható gyorsmentések száma:"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:101
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerob Nitrifikáció"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
-#, fuzzy
 msgid "APPEARANCE"
-msgstr "Teljesítmény"
+msgstr "Kinézet"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
@@ -209,7 +234,7 @@ msgstr "Április"
 
 #: ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Biztos MINDEN beállítást vissza akarsz állítani alap értékekre?"
+msgstr "Biztos MINDEN beállítást vissza akarsz állítani az alap értelmezetre?"
 
 #: ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
@@ -217,7 +242,7 @@ msgstr "Biztos vissza akarod állítani a bemeneti beállításokat az alapokra?
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
-msgstr "Készítő:"
+msgstr "Művész:"
 
 #: ../src/general/Asset.cs:50
 msgid "ARTWORK_TITLE"
@@ -230,6 +255,22 @@ msgstr "A rajzot {0} készítette"
 #: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "Rajz galéria"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
+msgid "ASCENSION_CONGRATULATIONS"
+msgstr "Gratulálok!"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
+msgid "ASCENSION_CONGRATULATIONS_CONTENT"
+msgstr ""
+"Felemelkedtél és befejezted a játékot. Gratulálunk, hogy elérted a játék végét!\n"
+"\n"
+"Tovább játszhatsz az űrszakaszban feloldott isteni eszközökkel, hogy szabadmódban szórakozhass.\n"
+"\n"
+"Az is lehetséges, hogy ebben a mentésben leereszkedj és visszatérj a baktérium szakaszba, és újra végigjátszd az összes szakaszt extra képességekkel.\n"
+"\n"
+"Összes feljutott idő ebben a mentésben: {0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -246,6 +287,8 @@ msgstr "A CPU hyperthread engedélyezésének feltételezése"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Nem lehet automatikusan felismerni, hogy a hyperthreading engedélyezve van-e vagy sem.\n"
+"Ez befolyásolja a szálak alapértelmezett számát, mivel a hyperthreading szálak nem olyan gyorsak, mint a valódi CPU-magok."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
@@ -272,9 +315,8 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
 
 #: ../src/saving/NewSaveMenu.tscn:146
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Auto-evo futtatása sikertelen"
+msgstr "A mentési fájl írása sikertelen volt. A mentési név túl hosszú lehet, vagy nincs írási hozzáférése a mentési mappához."
 
 #: ../src/gui_common/MouseHoverPanel.tscn:46
 msgid "AT_CURSOR"
@@ -282,7 +324,7 @@ msgstr "A kurzornál:"
 
 #: ../src/general/OptionsMenu.tscn:871
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr "Audio eszköz:"
+msgstr "Audio kimeneti eszköz:"
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "AUGUST"
@@ -294,19 +336,17 @@ msgid "AUTO"
 msgstr "Auto"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+msgstr "Ez a panel mutatja azokat a számokat, amelyek alapján az auto-evo becslés működik. Az a teljes energia, amelyet egy faj képes befogadni, és a faj egy egyedére jutó költség határozza meg a végső populációt. Az Auto-evo a valóság egyszerűsített modelljét használja, hogy kiszámítsa, mennyire jól teljesítenek a fajok az általuk összegyűjthető energia alapján. Minden egyes táplálékforrás esetében meg van adva, hogy a faj mennyi energiát nyer belőle. Emellett az adott forrásból rendelkezésre álló teljes energia is megjelenik. Az, hogy a faj mekkora hányadot nyer a teljes energiából, azon alapul, hogy a teljes alkalmassághoz képest mekkora az ő alkalmasságuk. Az alkalmasság annak mérőszáma, hogy a faj mennyire jól tudja hasznosítani az adott táplálékforrást."
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel,{2}-n belül, mert: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
 msgid "AUTO-EVO_PREDICTION"
-msgstr "Auto-evo előrejelzés"
+msgstr "Auto-evo becslés"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
@@ -327,9 +367,8 @@ msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
 #: ../src/general/MainMenu.tscn:417
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "futtatási státusz:"
+msgstr "Auto-Evo felfedező eszköz"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
@@ -349,9 +388,8 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "futtatási státusz:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "futtatási státusz:"
+msgstr "Auto-Evo státusz:"
 
 #: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
@@ -362,9 +400,9 @@ msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Elérhető építési projektek"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -372,17 +410,16 @@ msgstr "Elérhető modok"
 
 #: ../simulation_parameters/common/gallery.json:430
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Felkelési fázis"
 
 #: ../simulation_parameters/common/gallery.json:419
-#, fuzzy
 msgid "AWARE_STAGE"
-msgstr "Sejtfázis"
+msgstr "Tudatos fázis"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
 #: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -392,11 +429,11 @@ msgstr "Vissza"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Holtjáték"
+msgstr "fordított perjel"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr "Backspace"
+msgstr "Törlés"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
@@ -412,11 +449,11 @@ msgstr "Alap mozgékonyság"
 msgid "BASE_MOVEMENT"
 msgstr "Alap mozgás"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
 msgstr "Alap"
 
-#: ../src/general/NewGameSettings.tscn:1157
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Visszatérés alap beállítási nézetbe"
 
@@ -439,12 +476,12 @@ msgstr "Batipelágikus"
 #: ../src/microbe_stage/MicrobeHUD.cs:545
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Makroszkopikussá válni ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:509
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Többsejtűvé válni ({0}/{1})"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
 msgid "BEGIN_THRIVING"
@@ -462,45 +499,40 @@ msgid "BEHAVIOUR_ACTIVITY"
 msgstr "Viselkedés"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Viselkedés"
+msgstr "Aggresszió"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Viselkedés"
+msgstr "Félelem"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Viselkedés"
+msgstr "Fókuszálás"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Viselkedés"
+msgstr "Opportunizmus"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
 msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}m-el a tenger alatt"
+msgstr "{0}-{1}m-el a tengerszint alatt"
 
 #: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Teljesítmény teszt"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "Betöltés befejezve"
+msgstr "Teljesítmény teszt befejezve"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Teljesítmény teszt fázis:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Eredméynek:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
@@ -566,7 +598,7 @@ msgstr "Foszforeszkáló vakuólum"
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -588,7 +620,7 @@ msgid "BUILD_CITY"
 msgstr "Struktúra"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Struktúra"
@@ -645,7 +677,7 @@ msgstr "Jelenlegi akció visszavonása"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Az a sejttípus ami része a testnek nem törölhető"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
@@ -885,8 +917,8 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thri
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organizmus statisztikái"
@@ -1036,9 +1068,8 @@ msgid "COMPOUNDS"
 msgstr "Vegyületek"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:87
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "A környezet és a vegyületek mutatása / elrejtése"
+msgstr "Az összetevők mutatása / elrejtése"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
@@ -1052,11 +1083,11 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr "Vegyületfelhők"
 
-#: ../src/general/NewGameSettings.tscn:529
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Vegyületfelhők sűrűsége"
 
-#: ../src/general/NewGameSettings.tscn:569
+#: ../src/general/NewGameSettings.tscn:574
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(a vegyületfelhők sűrűsége a környezetben)"
 
@@ -1099,6 +1130,16 @@ msgstr "Kilépés elfogadása"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
+#: ../src/space_stage/SpaceStage.tscn:220
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#: ../src/space_stage/SpaceStage.tscn:221
+#, fuzzy
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr ""
@@ -1118,16 +1159,16 @@ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
-#: ../src/general/NewGameSettings.cs:329
-#: ../src/general/NewGameSettings.tscn:1193
+#: ../src/general/NewGameSettings.cs:404
+#: ../src/general/NewGameSettings.tscn:1198
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Belépés a játékba ezekkel a beállításokkal"
 
-#: ../src/general/NewGameSettings.cs:336
+#: ../src/general/NewGameSettings.cs:411
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Egyes beállítások érvénytelenek"
 
-#: ../src/industrial_stage/UnitType.cs:68
+#: ../src/industrial_stage/UnitType.cs:79
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Tritanóp (Kék-Citrom)"
@@ -1186,9 +1227,8 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Hiba másolása vágólapra"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Auto-Evo eredmények:"
+msgstr "Eredmények másolása"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_PROTANOPE"
@@ -1233,18 +1273,16 @@ msgstr ""
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
-#, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr "Auto-Evo eredmények:"
+msgstr "{0} ({1})"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:280
-#, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Auto-Evo eredmények:"
+msgstr "Eredmények"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:215
@@ -1372,20 +1410,20 @@ msgstr "Citoplazma glikolízis"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:988
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(random megidézett titkok a játékban)"
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:916
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:925
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1408,7 +1446,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:966
+#: ../src/microbe_stage/Microbe.Contact.cs:964
 msgid "DEATH"
 msgstr ""
 
@@ -1476,6 +1514,25 @@ msgstr "Biztos végérvényesen törölni akarsz {0} mentést?"
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Törlöd ezt a mentést?"
 
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+#, fuzzy
+msgid "DESCEND_BUTTON"
+msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
+#, fuzzy
+msgid "DESCEND_CONFIRMATION"
+msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
+#, fuzzy
+msgid "DESCEND_CONFIRMATION_EXPLANATION"
+msgstr ""
+"Az agresszív sejtek a prédáikat távolabbról is le fogják vadászni,\n"
+"és nagyobb eséllyel küzdenek más ragadozók ellen, ha megtámadják őket.\n"
+"A békés sejtek nem kergetnek más prédákat,\n"
+"és kevesebb eséllyel használnak mérgeket ragadozók ellen."
+
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Leírás:"
@@ -1489,9 +1546,8 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "A leírás túl hosszú"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Entitások maximális száma:"
+msgstr "Összes entitás eltüntetése"
 
 #: ../src/general/OptionsMenu.tscn:1090
 msgid "DETECTED_CPU_COUNT"
@@ -1538,7 +1594,7 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr "Devbuild támogatók"
 
-#: ../src/general/NewGameSettings.tscn:298
+#: ../src/general/NewGameSettings.tscn:303
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Nehézség"
@@ -1549,8 +1605,8 @@ msgstr "Nehézség"
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Előre beállított nehézség"
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr "Előre beállított nehézség"
 
@@ -1576,9 +1632,8 @@ msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "A leírás túl hosszú"
+msgstr "Emésztés hatékonysága"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
 #, fuzzy
@@ -1804,7 +1859,7 @@ msgstr "Itt egy kis tanács. Ha a sejted 150 hexagon nagyságú, akkor a nagy va
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e őket azonosítani."
+msgstr "A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e őket azonosítani!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
@@ -1846,11 +1901,11 @@ msgstr "Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy k
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz írtani, viszont ezt ők is megtehetik veled."
 
-#: ../src/general/NewGameSettings.tscn:1117
+#: ../src/general/NewGameSettings.tscn:1122
 msgid "EASTER_EGGS"
 msgstr "\"Húsvéti tojások\" engedélyezése"
 
-#: ../src/general/NewGameSettings.tscn:1125
+#: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(random megidézett titkok a játékban)"
 
@@ -1937,11 +1992,11 @@ msgstr "Entitás címke"
 msgid "ENVIRONMENT"
 msgstr "Környezet"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Környezetben lévő glükóz mennyisége"
 
-#: ../src/general/NewGameSettings.tscn:686
+#: ../src/general/NewGameSettings.tscn:691
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
@@ -1997,7 +2052,7 @@ msgstr "Mentési hiba"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1232
+#: ../src/microbe_stage/Microbe.Contact.cs:1230
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2034,7 +2089,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
 msgstr "Írj be egy létező ID-t"
@@ -2292,9 +2347,8 @@ msgid "FORM_ERROR_MESSAGE"
 msgstr "Hiba: {0}"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
-#, fuzzy
 msgid "FOSSILISATION"
-msgstr "populáció:"
+msgstr "Fosszilizáció"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:146
 #, fuzzy
@@ -2306,9 +2360,8 @@ msgstr ""
 "és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "populáció:"
+msgstr "A fosszilizáció sikertelen"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
 #, fuzzy
@@ -2367,11 +2420,11 @@ msgstr "Delta: {0}"
 msgid "FREEBUILDING"
 msgstr "Szabad szerkesztés"
 
-#: ../src/general/NewGameSettings.tscn:758
+#: ../src/general/NewGameSettings.tscn:763
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Ingyenes glükóz felhő a szerkesztő elhagyásakor"
 
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz a sejted)"
 
@@ -2396,9 +2449,8 @@ msgid "GENERAL"
 msgstr "Alap"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:760
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "Generáció:"
+msgstr "Generációk"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
@@ -2452,6 +2504,11 @@ msgstr "Glikolízis"
 msgid "GODMODE"
 msgstr "Isten mód"
 
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
+#, fuzzy
+msgid "GOD_TOOLS_TITLE"
+msgstr "Segítség"
+
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
 #: ../simulation_parameters/microbe_stage/biomes.json:517
@@ -2475,9 +2532,8 @@ msgid "GPL_LICENSE_HEADING"
 msgstr "A GLP licenc szövege a következő:"
 
 #: ../src/general/OptionsMenu.tscn:491
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "GPU:"
 
 #: ../src/general/OptionsMenu.tscn:177
 msgid "GRAPHICS"
@@ -2546,6 +2602,11 @@ msgstr "Tartsd nyomva a kurzor megjelenítéséhez"
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
+#: ../src/ascension_stage/AscensionCeremony.tscn:231
+#, fuzzy
+msgid "HOLD_TO_SKIP_CREDITS"
+msgstr "Tartsd nyomva a kurzor megjelenítéséhez"
+
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 #, fuzzy
 msgid "HOME"
@@ -2604,11 +2665,11 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr "ID száma"
 
-#: ../src/general/NewGameSettings.tscn:1096
+#: ../src/general/NewGameSettings.tscn:1101
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Későbbi fázisok prototípusainak engedélyezése"
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
 
@@ -3107,13 +3168,13 @@ msgstr "Levél"
 msgid "LAUNCHMEDIA"
 msgstr "Média"
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:849
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr "Csak LAWK"
 
-#: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:162
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(Egyes részek, és képességek nem lesznek elérhetők, csak azok, melyek a való életben is léteznek. Innen jön a LAWK [Life As We Know it] kifelyezés.)"
 
@@ -3193,37 +3254,37 @@ msgstr "Licenszek"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "A Thrive egyes részeire vonatkozó licenszek itt láthatóak"
 
-#: ../src/general/NewGameSettings.tscn:180
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:881
 msgid "LIFE_ORIGIN"
 msgstr "Az élet eredete"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:885
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:890
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(kezdő helyszín)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Pánspermia (véletlen)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Kis meleg tavacska"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:205
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Egyes beállítások lehet, hogy nem elérhetők, hogyha a LAWK engedélyezve van"
 
-#: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:895
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hidrotermális nyílások"
@@ -3265,12 +3326,12 @@ msgstr "Fény"
 msgid "LIMIT_EXTREME"
 msgstr "Extrém"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Elfogad"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:813
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
@@ -3641,9 +3702,8 @@ msgstr "Sejtszerkesztő"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:973
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1017
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Organizmus statisztikái"
+msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:227
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3817,7 +3877,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Nem engedélyezett {0}-nál/nél kevesebb adathalmaz mutatása!"
 
-#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Egyéb"
 
@@ -4229,11 +4289,11 @@ msgstr "Zene hangereje"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutáció pont"
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutációs költség szorzó"
 
-#: ../src/general/NewGameSettings.tscn:451
+#: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(a szervek, membránok, és egyéb dolgok költsége a szerkesztőben)"
 
@@ -4302,7 +4362,7 @@ msgstr "Új játék"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Új játék indítása"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4384,7 +4444,7 @@ msgstr "Semmi nincs itt"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:370
+#: ../src/microbe_stage/Microbe.Contact.cs:368
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
@@ -4396,11 +4456,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1790
+#: ../src/microbe_stage/Microbe.Contact.cs:1788
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1785
+#: ../src/microbe_stage/Microbe.Contact.cs:1783
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4547,6 +4607,12 @@ msgstr "Feljegyzés mappa megnyitása"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
+#, fuzzy
+msgid "OPEN_GOD_TOOLS"
+msgstr "A mod URL-jének megnyitása"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -4705,11 +4771,11 @@ msgstr "Ozmoreguláció"
 msgid "OSMOREGULATION_COST"
 msgstr "Ozmoreguláció ára"
 
-#: ../src/general/NewGameSettings.tscn:705
+#: ../src/general/NewGameSettings.tscn:710
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Ozmoreguláció költségének szorzója"
 
-#: ../src/general/NewGameSettings.tscn:745
+#: ../src/general/NewGameSettings.tscn:750
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(a játékos fajának az ozmoregulációs költsége)"
 
@@ -4776,14 +4842,12 @@ msgid "PAGEUP"
 msgstr "Page Up"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:232
-#, fuzzy
 msgid "PAGE_BACK"
-msgstr "Back"
+msgstr "Vissza lapoz"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:251
-#, fuzzy
 msgid "PAGE_FORWARD"
-msgstr "Forward"
+msgstr "Előre lapoz"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:294
 #, fuzzy
@@ -4810,12 +4874,12 @@ msgstr "Pásztázás jobbra"
 msgid "PAN_CAMERA_UP"
 msgstr "Pásztázás felfelé"
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:784
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:792
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
@@ -4825,9 +4889,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Korábbi Fejlesztők"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
+msgstr ""
+"A fajod kihalt ezen a területen.\n"
+"De még nincs vége, még mindig választhatsz egy új patchet, ahol játszhatsz!"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
@@ -4917,7 +4982,7 @@ msgstr "Békés"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:682
+#: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4970,7 +5035,7 @@ msgstr "Fizikai állóképesség"
 msgid "PLACE_ORGANELLE"
 msgstr "Sejtszervecske elhelyezése"
 
-#: ../src/general/NewGameSettings.tscn:308
+#: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Bolygó"
@@ -4981,12 +5046,12 @@ msgstr "Bolygó"
 msgid "PLANET_DETAILS_STRING"
 msgstr "Mappa megnyitása"
 
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1067
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Bolygó generálás hamarosan!"
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
 msgstr "Véletlen bolygó seed"
 
@@ -4995,11 +5060,11 @@ msgstr "Véletlen bolygó seed"
 msgid "PLAYER"
 msgstr "Játékos sejtje"
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "A játékos halála utáni populáció egyedszámának csökkenése"
 
-#: ../src/general/NewGameSettings.tscn:628
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(a játékos halála után a játékos fajának a populációjának az egyedszámának csökkenése)"
 
@@ -5172,8 +5237,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Faj nevének randomizálása"
 
-#: ../src/general/NewGameSettings.tscn:241
-#: ../src/general/NewGameSettings.tscn:1009
+#: ../src/general/NewGameSettings.tscn:242
+#: ../src/general/NewGameSettings.tscn:1014
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
@@ -5495,6 +5560,16 @@ msgstr "Automentés"
 #: ../src/saving/SaveList.cs:242
 msgid "SAVE_DELETE_WARNING"
 msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
+
+#: ../src/saving/SaveStatusOverlay.cs:166
+#: ../src/saving/SaveStatusOverlay.tscn:113
+msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+msgstr ""
+
+#: ../src/saving/SaveStatusOverlay.cs:173
+#, fuzzy
+msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+msgstr "JSON debug mód:"
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5987,9 +6062,8 @@ msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Faj neve..."
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:284
-#, fuzzy
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
-msgstr "Faj neve..."
+msgstr "Faj neve túl hosszú!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:523
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:551
@@ -6037,7 +6111,7 @@ msgstr "Indítás"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1196
+#: ../src/general/NewGameSettings.tscn:1201
 #, fuzzy
 msgid "START_GAME"
 msgstr "Játék mentése"
@@ -6218,12 +6292,12 @@ msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
-#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr ""
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
-#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
 
@@ -6235,11 +6309,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:785
+#: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
 msgstr "sikeres ölés"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:778
+#: ../src/microbe_stage/Microbe.Contact.cs:776
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -6403,9 +6477,8 @@ msgstr ""
 "Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
 
 #: ../src/general/MainMenu.tscn:991
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Köszönjük"
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "THEORY_TEAM"
@@ -6717,15 +6790,15 @@ msgstr ""
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Üdvözöllek a Sejtszerkesztőben.\n"
-"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
 "\n"
-"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
 "\n"
-"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
+"\n"
+"Sok szerencsét!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 #, fuzzy
@@ -6767,12 +6840,11 @@ msgstr ""
 "A szerkesztőbe való belépéshez kattints a villogó szerkesztő gombra a képernyő jobb alsó sarkában."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
+"A sejtjét bekebelezték, és elkezdtek emészteni. A haladást az egészségsáv mutatja. A sejted elpusztul, amint befejeződik, vagy a maximális időkorlátot elérte.\n"
 "\n"
-"Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
+"A pusztulás gombot használhatod a kihagyáshoz és a újra éledéshez, de ne feledd, hogy mindig van esély arra, hogy megmenekülj!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 #, fuzzy
@@ -6875,12 +6947,12 @@ msgstr "Visszavonás"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Utolsó akció visszavonása"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "MI mutációs mértéke"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 #, fuzzy
 msgid "UNIT_ACTION_MOVE"
 msgstr "MI mutációs mértéke"
@@ -7226,9 +7298,8 @@ msgid "YEARS"
 msgstr "évek"
 
 #: ../src/general/MainMenu.tscn:836
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Játék szüneteltetése"
+msgstr "Látogasd meg YouTube csatornánkat"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "YOU_CAN_MAKE_PULL_REQUEST"

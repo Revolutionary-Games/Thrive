@@ -45,6 +45,18 @@ public class GameProperties
     public bool FreeBuild => freeBuild;
 
     /// <summary>
+    ///   True when the player is currently ascended and should be allowed to do anything
+    /// </summary>
+    [JsonProperty]
+    public bool Ascended { get; private set; }
+
+    /// <summary>
+    ///   Counts how many times the player has ascended with the current game in total
+    /// </summary>
+    [JsonProperty]
+    public int AscensionCounter { get; private set; }
+
+    /// <summary>
     ///   The tutorial state for this game
     /// </summary>
     [JsonProperty]
@@ -225,6 +237,17 @@ public class GameProperties
         return game;
     }
 
+    public static GameProperties StartAscensionStageGame(WorldGenerationSettings settings)
+    {
+        var game = StartSpaceStageGame(settings);
+
+        // Initial tech unlocks the player needs
+        var simulationParameters = SimulationParameters.Instance;
+        game.TechWeb.UnlockTechnology(simulationParameters.GetTechnology("ascension"));
+
+        return game;
+    }
+
     /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>
@@ -256,6 +279,36 @@ public class GameProperties
     {
         GD.Print("Game is in now in prototypes. EXPECT MAJOR BUGS!");
         InPrototypes = true;
+    }
+
+    public void OnBecomeAscended()
+    {
+        if (Ascended)
+        {
+            GD.PrintErr("Already ascended");
+            return;
+        }
+
+        GD.Print("Current game is now ascended");
+        Ascended = true;
+        ++AscensionCounter;
+
+        // TODO: stop game time tracking to have a stable final time for this save
+    }
+
+    public void BecomeDescendedVersionOf(GameProperties descendedGame)
+    {
+        AscensionCounter = descendedGame.AscensionCounter;
+
+        // Disable tutorials, as we can assume that playing a second playthrough doesn't need tutorials
+        TutorialState.Enabled = false;
+
+        // TODO: copy total game time
+
+        // TODO: copy anything else?
+
+        // Modify the game and world to make sure the descension perks are applied
+        ApplyDescensionPerks();
     }
 
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
@@ -428,5 +481,18 @@ public class GameProperties
         }
 
         throw new Exception("Could not find a place to put more brain tissue");
+    }
+
+    private void ApplyDescensionPerks()
+    {
+        // TODO: implement the other perks
+        float osmoregulationMultiplier = Mathf.Pow(0.8f, AscensionCounter);
+
+        // Need to ensure the world has a custom difficulty we can modify here
+        var modifiedDifficulty = GameWorld.WorldSettings.Difficulty.Clone();
+
+        modifiedDifficulty.OsmoregulationMultiplier *= osmoregulationMultiplier;
+
+        GameWorld.WorldSettings.Difficulty = modifiedDifficulty;
     }
 }

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-19 11:42+0300\n"
-"PO-Revision-Date: 2023-05-04 13:02+0000\n"
+"POT-Creation-Date: 2023-05-29 14:37+0300\n"
+"PO-Revision-Date: 2023-05-30 12:54+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -67,6 +67,26 @@ msgstr "Uyanış Evresi'ne Geç. Yeterli beyin gücüne sahip olduğunda açıl�
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Başka bir eylem devam ettiğinden, mevcut işlem engellendi"
 
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:77
+msgid "ACTION_DELETE"
+msgstr "Sil"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:67
+msgid "ACTION_DOUBLE_POPULATION"
+msgstr "Popülasyonu İki Katına Çıkar"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:64
+msgid "ACTION_DUPLICATE_UNITS"
+msgstr "Birimlerin Kopyasını Çıkart"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:68
+msgid "ACTION_HALF_POPULATION"
+msgstr "Popülasyonu Yarıya İndir"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.cs:74
+msgid "ACTION_TELEPORT"
+msgstr "Işınlan"
+
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "Hareketli"
@@ -89,11 +109,11 @@ msgstr "Ek doğrulamalar bir sorun algıladı: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Yeni bir tuş ataması ekle"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
 msgstr "Gelişmiş"
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Gelişmiş kurulum görünümünü aç"
 
@@ -126,11 +146,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Saldırgan"
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:475
 msgid "AI_MUTATION_RATE"
 msgstr "AI mutasyon hızı"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(AI türlerinin mutasyona uğrama hızı)"
 
@@ -167,6 +187,10 @@ msgstr ""
 "[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
 "   Ortalama {9}; Standart sapma {10}\n"
 "[b]Genel Organel Verileri[/b]"
+
+#: ../src/space_stage/SpaceStage.cs:410
+msgid "ALREADY_ASCENDED"
+msgstr "Evreni zaten tırmandın"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -235,6 +259,22 @@ msgstr "Resmi yapan: {0}"
 #: ../src/general/MainMenu.tscn:519
 msgid "ART_GALLERY"
 msgstr "Sanat Galerisi"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
+msgid "ASCENSION_CONGRATULATIONS"
+msgstr "Tebrikler!"
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
+msgid "ASCENSION_CONGRATULATIONS_CONTENT"
+msgstr ""
+"Evreni tırmandın ve oyunu tamamladın. Oyunun sonuna ulaştığın için tebrikler!\n"
+"\n"
+"Sanal alanda oyalanmak için kilidi açılmış Tanrı Araçları ile, Uzay Evresi'ni oynamaya devam edebilirsin.\n"
+"\n"
+"Evrene inmek, mevcut kayıtta Mikrop Evresi'ne dönmek ve baştan sona bütün evreleri ekstra avantajlar ile oynamak da ayrıca mümkün.\n"
+"\n"
+"Bu kayıttaki toplam tırmanma sayısı: {0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -364,7 +404,7 @@ msgid "AUTO_RESOLUTION"
 msgstr "Otomatik ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
-#: ../src/space_stage/gui/PlanetScreen.tscn:37
+#: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr "Mevcut İnşaat Projeleri"
 
@@ -383,7 +423,7 @@ msgstr "Farkındalık Evresi"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
 #: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -413,11 +453,11 @@ msgstr "Temel Hareketlilik"
 msgid "BASE_MOVEMENT"
 msgstr "Temel Hareket"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
 msgstr "Temel"
 
-#: ../src/general/NewGameSettings.tscn:1157
+#: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Temel kurulum görünümüne dön"
 
@@ -561,7 +601,7 @@ msgstr "Biyolüminesant Koful"
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
 
-#: ../src/general/GameProperties.cs:136
+#: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Nöron"
 
@@ -582,7 +622,7 @@ msgid "BUILD_CITY"
 msgstr "Bir Şehir Kur"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
-#: ../src/space_stage/gui/PlanetScreen.tscn:81
+#: ../src/space_stage/gui/PlanetScreen.tscn:88
 msgid "BUILD_QUEUE"
 msgstr "İnşa Sırası"
 
@@ -869,8 +909,8 @@ msgstr "Büyük hücrelerin dönme hızını arttırır."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
-#: ../src/space_stage/gui/PlanetScreen.cs:91
-#: ../src/space_stage/gui/PlanetScreen.tscn:100
+#: ../src/space_stage/gui/PlanetScreen.cs:118
+#: ../src/space_stage/gui/PlanetScreen.tscn:115
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Nüfus: {0} Gıda: {1} Bilim: {2}"
 
@@ -1029,11 +1069,11 @@ msgstr "Bileşik Dengesi"
 msgid "COMPOUND_CLOUDS"
 msgstr "Bileşik bulutları"
 
-#: ../src/general/NewGameSettings.tscn:529
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Bileşik bulutu sıklığı"
 
-#: ../src/general/NewGameSettings.tscn:569
+#: ../src/general/NewGameSettings.tscn:574
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(ortamdaki bileşik bulutlarının sıklığı)"
 
@@ -1075,6 +1115,19 @@ msgstr "Çıkışı Onayla"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Üzerine Yazmayı Onayla"
 
+#: ../src/space_stage/SpaceStage.tscn:220
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
+msgstr "Tırmanış Evresi'ne Geçilsin mi?"
+
+#: ../src/space_stage/SpaceStage.tscn:221
+msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
+msgstr ""
+"Artık evreni tırmanabilir ve Tırmanış Kapısı'nı etkinleştirerek Tırmanış Evresi'ne ulaşabilirsin.\n"
+"\n"
+"Bu işlem, mevcut kayıtta kullanabileceğin bazı yeni Tanrı Araçları gibi sınırsız gücün kilidini açacak.\n"
+"\n"
+"Evreni tırmanmak ayrıca oyunu kazanmak demektir ama oynamaya devam edebileceksin. Evren tırmanılsın mı?"
+
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Sanayi Evresi'ne Geçilsin mi?"
@@ -1096,16 +1149,16 @@ msgstr ""
 "\n"
 "Fırlatmayı iptal etmek, uzay aracı birimini imha edecek. Uzay aracı fırlatılsın mı?"
 
-#: ../src/general/NewGameSettings.cs:329
-#: ../src/general/NewGameSettings.tscn:1193
+#: ../src/general/NewGameSettings.cs:404
+#: ../src/general/NewGameSettings.tscn:1198
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Oyuna bu ayarlarla gir"
 
-#: ../src/general/NewGameSettings.cs:336
+#: ../src/general/NewGameSettings.cs:411
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Bazı ayarlar geçersiz"
 
-#: ../src/industrial_stage/UnitType.cs:68
+#: ../src/industrial_stage/UnitType.cs:79
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Birim: {0}"
 
@@ -1357,19 +1410,19 @@ msgstr "Sitoplazma Glikolizi"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
 
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
 msgstr "Gün Uzunluğu"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:988
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(oyun içinde geçen bir günün gerçek zamandaki saniye uzunluğu)"
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:916
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Gece gündüz döngüsünü etkinleştir"
 
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:925
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(UYARI: fotosentez daha olanaksız hale gelir)"
 
@@ -1389,7 +1442,7 @@ msgstr "Ölü bölge kalibrasyonu sıfırlandı"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Ölü Bölge Yapılandırması"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:966
+#: ../src/microbe_stage/Microbe.Contact.cs:964
 msgid "DEATH"
 msgstr "ölüm"
 
@@ -1458,6 +1511,23 @@ msgstr "Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı ol
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Bu kayıt silinsin mi?"
 
+#: ../src/space_stage/gui/SpaceHUD.tscn:53
+msgid "DESCEND_BUTTON"
+msgstr "Evrene İn"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
+msgid "DESCEND_CONFIRMATION"
+msgstr "Evrene İnmek istediğine emin misin?"
+
+#: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
+msgid "DESCEND_CONFIRMATION_EXPLANATION"
+msgstr ""
+"Evrene inmek, senin evreni tırmanma pozisyonunu kaldırır ve seni Mikrop Evresi'ne geri döndürür. Böylece mevcut kayıtta, oyunu baştan sona tekrar oynayabilirsin.\n"
+"\n"
+"Yeni oyun için bir evrene iniş avantajı alacaksın. Gelecek bir sürümde bu avantajı kendin seçebileceksin. Ancak şimdilik bu avantaj, ozmoregülasyonda %20'lik bir azalma olacak.\n"
+"\n"
+"Evrene inmeyi onayladığında, örneğin, farklı bir haritada oynamak için yeni bir gezegen tohumu seçerek veya BH'yi devre dışı bırakarak oyun ayarlarını düzenleyebilirsin."
+
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Açıklama:"
@@ -1517,7 +1587,7 @@ msgstr "Yutuldun"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Geliştirme Sürümü Destekçileri"
 
-#: ../src/general/NewGameSettings.tscn:298
+#: ../src/general/NewGameSettings.tscn:303
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Zorluk"
@@ -1537,8 +1607,8 @@ msgstr ""
 "Üreme işlemini pasif olarak gerçekleştir: {8}\n"
 "Büyümeyi sağlayan bileşiklerin kullanımını sınırlandır: {9}"
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr "Zorluk ön ayarı"
 
@@ -1823,11 +1893,11 @@ msgstr "İşte sana ipucu, bakteriler göründüğünden daha güçlü olabilir;
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "İşte sana ipucu, eğer yeterince dikkatli olmazsan, diğer türleri avlayarak soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca başka türler de neden olabilir."
 
-#: ../src/general/NewGameSettings.tscn:1117
+#: ../src/general/NewGameSettings.tscn:1122
 msgid "EASTER_EGGS"
 msgstr "Sürpriz yumurtaları dahil et"
 
-#: ../src/general/NewGameSettings.tscn:1125
+#: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(oyunda rastgele oluşan gizemler)"
 
@@ -1912,11 +1982,11 @@ msgstr "Varlık etiketi"
 msgid "ENVIRONMENT"
 msgstr "Ortam"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Çevresel glukoz tutulma payı"
 
-#: ../src/general/NewGameSettings.tscn:686
+#: ../src/general/NewGameSettings.tscn:691
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(her kuşakta, ortamda tutulan glukoz oranı)"
 
@@ -1968,7 +2038,7 @@ msgstr "Kaydetme Hatası"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1232
+#: ../src/microbe_stage/Microbe.Contact.cs:1230
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -2004,7 +2074,7 @@ msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
-#: ../src/space_stage/gui/PlanetScreen.tscn:60
+#: ../src/space_stage/gui/PlanetScreen.tscn:65
 msgid "EXISTING_BUILDINGS"
 msgstr "Binalar"
 
@@ -2164,14 +2234,12 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanır."
 
 #: ../src/space_stage/SpaceFleet.cs:86
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "gezegende nesli tükendi"
+msgstr "{0} Filosu"
 
 #: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "Filo Birimleri"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -2291,11 +2359,11 @@ msgstr "Delta: {0}"
 msgid "FREEBUILDING"
 msgstr "Serbest yapım modu"
 
-#: ../src/general/NewGameSettings.tscn:758
+#: ../src/general/NewGameSettings.tscn:763
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Düzenleyiciden ayrıldığında bedava glukoz bulutu"
 
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(her kuşağa, yakınlardaki serbest bir glukoz bulutuyla başla)"
 
@@ -2373,6 +2441,10 @@ msgstr "Glikoliz"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Tanrı Modu"
+
+#: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
+msgid "GOD_TOOLS_TITLE"
+msgstr "Tanrı Araçları"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2470,6 +2542,10 @@ msgstr "İmleci göstermek için basılı tut"
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "İmleci göstermek için [thrive:input]g_free_cursor[/thrive:input] tuşunu basılı tut"
 
+#: ../src/ascension_stage/AscensionCeremony.tscn:231
+msgid "HOLD_TO_SKIP_CREDITS"
+msgstr "Atlamak için basılı tut"
+
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
 msgstr "Ana Sayfa"
@@ -2526,11 +2602,11 @@ msgstr "ID geçerli bir sayı değil"
 msgid "ID_NUMBER"
 msgstr "ID Numarası"
 
-#: ../src/general/NewGameSettings.tscn:1096
+#: ../src/general/NewGameSettings.tscn:1101
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Sonraki evre prototiplerini dahil et"
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)"
 
@@ -2579,14 +2655,12 @@ msgid "INSPECTOR"
 msgstr "Denetleyici"
 
 #: ../src/awakening_stage/InteractionType.cs:32
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Hasat Et"
+msgstr "Tırmanış Kapısını Etkinleştir"
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Hasat Et"
+msgstr "Tırmanış Kapısını Etkinleştir (EKSİK ENERJİ)"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -2609,9 +2683,8 @@ msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Malzeme Yerleştir (uygun taşınan bir öğe yok)"
 
 #: ../src/awakening_stage/InteractionType.cs:20
-#, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "Hasat Et"
+msgstr "İmha Et"
 
 #: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
@@ -3016,13 +3089,13 @@ msgstr "Mail"
 msgid "LAUNCHMEDIA"
 msgstr "Media"
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:849
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr "Sadece BH"
 
-#: ../src/general/NewGameSettings.tscn:161
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:162
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(parçaları ve yetenekleri sadece Bildiğimiz Hayat ile kısıtlar)"
 
@@ -3102,37 +3175,37 @@ msgstr "Lisanslar"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Thrive'ın bir bölümünü kapsayan lisanslar burada gösterilmektedir"
 
-#: ../src/general/NewGameSettings.tscn:180
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:881
 msgid "LIFE_ORIGIN"
 msgstr "Hayat kökeni"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:885
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:890
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(başlama yeri)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermi (rastgele)"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Küçük ılık gölet"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:205
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Sadece BH etkinleştirildiğinde bazı ayarlar devre dışı kalabilir"
 
-#: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:895
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hidrotermal bacalar"
@@ -3170,11 +3243,11 @@ msgstr "Maksimum ışık"
 msgid "LIMIT_EXTREME"
 msgstr "En büyük"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Büyümeyi sağlayan bileşiklerin kullanımını sınırlandır"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:813
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(etkinleştirildiğinde büyüme hızını sınırlandırır, devre dışı bırakıldığında sadece mevcut bileşikler büyüme hızını etkiler)"
 
@@ -3728,7 +3801,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha az gösterilemez!"
 
-#: ../src/general/NewGameSettings.tscn:318 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Diğer"
 
@@ -4107,11 +4180,11 @@ msgstr "Müzik seviyesi"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Tür başına mutasyon denemesi"
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutasyon maliyet çarpanı"
 
-#: ../src/general/NewGameSettings.tscn:451
+#: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(organellerin, hücre zarlarının ve diğer öğelerin düzenleyicideki maliyeti)"
 
@@ -4135,13 +4208,12 @@ msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
-#, fuzzy
 msgid "NAME_LABEL_FLEET"
-msgstr "Biyom: {0}"
+msgstr "{0} (GÜÇ: {1})"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (Y)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4179,7 +4251,7 @@ msgstr "Yeni Oyun"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Yeni bir oyun başlat"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Not: Oyunun performansını arttırmak için performans ile ilgili ayarları her an [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]ayarlar menüsünden[/url][/color] değiştirebilirsin"
 
@@ -4261,7 +4333,7 @@ msgstr "Burada bir şey yok"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Etkileşim kurulacak bir şey yok"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:370
+#: ../src/microbe_stage/Microbe.Contact.cs:368
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "ATP olmadığından dolayı hasar alınıyor"
 
@@ -4273,11 +4345,11 @@ msgstr "İçeri alınan maddedeki toksinler tarafından hasar alınıyor"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Hedefi yutmak için {0} eksik"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1790
+#: ../src/microbe_stage/Microbe.Contact.cs:1788
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Mevcut hücre büyüklüğü, hedefi yutmak için çok küçük"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1785
+#: ../src/microbe_stage/Microbe.Contact.cs:1783
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "İçeri alınan madde deposunda, hedefi yutmak için yeterli alan yok"
 
@@ -4421,6 +4493,11 @@ msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Seçilen tür ile yeni bir oyuna başlamak istediğine emin misin?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
+
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
+#: ../src/space_stage/gui/PlanetScreen.tscn:108
+msgid "OPEN_GOD_TOOLS"
+msgstr "Tanrı Araçları"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -4569,11 +4646,11 @@ msgstr "Ozmoregülasyon"
 msgid "OSMOREGULATION_COST"
 msgstr "Ozmoregülasyon Maliyeti"
 
-#: ../src/general/NewGameSettings.tscn:705
+#: ../src/general/NewGameSettings.tscn:710
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Ozmoregülasyon maliyet çarpanı"
 
-#: ../src/general/NewGameSettings.tscn:745
+#: ../src/general/NewGameSettings.tscn:750
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(oyuncu türünün ozmoregülasyon maliyeti)"
 
@@ -4672,11 +4749,11 @@ msgstr "Kamerayı sağa çevir"
 msgid "PAN_CAMERA_UP"
 msgstr "Kamerayı yukarı çevir"
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:784
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Üreme işlemini pasif olarak gerçekleştir"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:792
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(üreme bileşiklerini herhangi bir şey yapmadan, pasif olarak, ortamdan al)"
 
@@ -4770,7 +4847,7 @@ msgstr "Barışçıl"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:682
+#: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4823,7 +4900,7 @@ msgstr "Fiziksel Direnç"
 msgid "PLACE_ORGANELLE"
 msgstr "Organel yerleştir (veya diğer yerleştirilebilen şey)"
 
-#: ../src/general/NewGameSettings.tscn:308
+#: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Gezegen"
@@ -4838,12 +4915,12 @@ msgstr ""
 "Gün uzunluğu: {3} saniye\n"
 "Rastgele gezegen tohumu: {4}"
 
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1067
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Gezegen oluşturma çok yakında!"
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
 
@@ -4851,11 +4928,11 @@ msgstr "Rastgele gezegen tohumu"
 msgid "PLAYER"
 msgstr "Oyuncu"
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Oyuncu ölümü popülasyon cezası"
 
-#: ../src/general/NewGameSettings.tscn:628
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(her oyuncu ölümü için oyuncu türünün popülasyonunda azalma katsayısı)"
 
@@ -5027,8 +5104,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Tür adını rastgele seç"
 
-#: ../src/general/NewGameSettings.tscn:241
-#: ../src/general/NewGameSettings.tscn:1009
+#: ../src/general/NewGameSettings.tscn:242
+#: ../src/general/NewGameSettings.tscn:1014
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmalıdır"
 
@@ -5167,9 +5244,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:18
-#, fuzzy
 msgid "RESOURCE_ENERGY"
-msgstr "Taş"
+msgstr "Enerji"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5337,6 +5413,15 @@ msgstr "Otomatik kayıt"
 #: ../src/saving/SaveList.cs:242
 msgid "SAVE_DELETE_WARNING"
 msgstr "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek istediğinden emin misin?"
+
+#: ../src/saving/SaveStatusOverlay.cs:166
+#: ../src/saving/SaveStatusOverlay.tscn:113
+msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. O dosya olmadan, bu problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
+
+#: ../src/saving/SaveStatusOverlay.cs:173
+msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ekstra bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5544,9 +5629,8 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Resim Önizlemesi Seç"
 
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
-#, fuzzy
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr "Yerleştirilecek Yapıyı Seç"
+msgstr "İnşa Edilecek Yapıyı Seç"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
@@ -5727,19 +5811,16 @@ msgid "SPACE_STAGE"
 msgstr "Uzay Evresi"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
-#, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr "İnşaat için gerekli malzemeler yerleştirildi"
+msgstr "Yapı inşa edilmek için inşaat filosunu bekliyor"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:65
-#, fuzzy
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr "İnşa edilen: {0}"
+msgstr "Ekstra bir bilgi mevcut değil"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
-#, fuzzy
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr "İnşa edilen: {0}"
+msgstr "Yapı inşa edilmek için inşaat filosu ve kaynak bekliyor: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5853,7 +5934,7 @@ msgstr "Başlıyor"
 msgid "START_CALIBRATION"
 msgstr "Kalibrasyonu Başlat"
 
-#: ../src/general/NewGameSettings.tscn:1196
+#: ../src/general/NewGameSettings.tscn:1201
 msgid "START_GAME"
 msgstr "Oyunu Başlat"
 
@@ -6025,12 +6106,12 @@ msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr "İnşaat bitirilmeden önce gereken malzemeler: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
-#: ../src/space_stage/gui/SpaceConstructionPopup.cs:94
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (başlangıç maliyeti: {1}, toplam: {2})"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
-#: ../src/space_stage/gui/SpaceConstructionPopup.cs:89
+#: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (BAŞLAMAK İÇİN YETERLİ DEĞİL: {1}, toplam: {2})"
 
@@ -6042,11 +6123,11 @@ msgstr "Topluluk Merkezi"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Buharla Çalışan Fabrika"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:785
+#: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:778
+#: ../src/microbe_stage/Microbe.Contact.cs:776
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
@@ -6699,15 +6780,13 @@ msgstr "Geri al"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:105
-#, fuzzy
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "İnşaatı Bitir"
+msgstr "İnşa Et"
 
-#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:96
-#, fuzzy
+#: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
 msgid "UNIT_ACTION_MOVE"
-msgstr "Hasat Et"
+msgstr "Hareket Et"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
@@ -7196,9 +7275,6 @@ msgstr "Uzaklaştır"
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "arazilerdeki popülasyon:"
 
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0}: {1} popülasyonla"
-
 #~ msgid "SAVING"
 #~ msgstr "Kaydediliyor..."
 
@@ -7482,3 +7558,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "STATUS_COLON"
 #~ msgstr "Durum:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0}: {1} popülasyonla"

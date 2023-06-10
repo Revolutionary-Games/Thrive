@@ -1,0 +1,244 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/ascension_stage/AscensionCeremony.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+[ext_resource path="res://src/gui_common/HoldKeyPrompt.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ProceduralSky" id=2]
+radiance_size = 3
+sky_energy = 0.0
+ground_energy = 0.0
+sun_latitude = -19.71
+sun_longitude = 57.77
+sun_angle_max = 96.99
+sun_curve = 0.0170754
+sun_energy = 0.0
+texture_size = 4
+
+[sub_resource type="Environment" id=4]
+background_mode = 2
+background_sky = SubResource( 2 )
+background_sky_orientation = Basis( 0.963975, 0.265994, 0, -0.239279, 0.867158, 0.436786, 0.116182, -0.421051, 0.899565 )
+background_energy = 2.47
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.0
+ambient_light_sky_contribution = 0.24
+auto_exposure_scale = 1.46
+auto_exposure_min_luma = 1.54
+auto_exposure_max_luma = 6.58
+auto_exposure_speed = 21.47
+ss_reflections_enabled = true
+ssao_enabled = true
+ssao_radius = 3.42
+dof_blur_far_distance = 65.13
+dof_blur_far_transition = 1565.05
+dof_blur_far_amount = 0.12
+dof_blur_far_quality = 2
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/4 = true
+glow_levels/6 = true
+glow_levels/7 = true
+glow_intensity = 0.5
+glow_strength = 0.85
+glow_bloom = 0.7
+glow_blend_mode = 1
+glow_hdr_threshold = 1.29
+glow_hdr_luminance_cap = 156.51
+glow_hdr_scale = 2.2
+glow_high_quality = true
+adjustment_brightness = 1.06
+adjustment_contrast = 0.97
+adjustment_saturation = 0.99
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 3.02798, 0.0101852, 2.99321 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.121569, 0.121569, 0.121569, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+params_blend_mode = 1
+albedo_color = Color( 0.270588, 0.909804, 0.976471, 0.666667 )
+emission_enabled = true
+emission = Color( 0.247059, 0.996078, 1, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="AscensionCeremony" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+GateWalkerSpawnPointPath = NodePath("World/GateWalkerSpawnPoint")
+ObserverSpawnPointPaths = [ NodePath("World/ObserverSpawnPoint"), NodePath("World/ObserverSpawnPoint2"), NodePath("World/ObserverSpawnPoint3") ]
+RootOfDynamicallySpawnedPath = NodePath("World/DynamicallySpawned")
+RampStartPointPath = NodePath("World/RampStartPoint")
+RampEndPointPath = NodePath("World/RampEndPoint")
+AscensionPointPath = NodePath("World/AscensionGatePoint")
+CreditsDisplayPath = NodePath("CreditsDisplay/CreditsScroll")
+CreditsSkipInfoContainerPath = NodePath("CreditsDisplay/SkipInfoContainer")
+CreditsSkipPromptPath = NodePath("CreditsDisplay/SkipInfoContainer/SkipPrompt")
+CustomScreenBlankerPath = NodePath("CustomBlanker")
+WorldCameraToDisablePath = NodePath("World/StaticCamera")
+
+[node name="World" type="Node" parent="."]
+
+[node name="StaticCamera" type="Camera" parent="World"]
+transform = Transform( 0.895238, -0.115327, 0.430405, 0, 0.965926, 0.258819, -0.445589, -0.231705, 0.864733, 15.9463, 9.97621, 27.0589 )
+current = true
+fov = 80.0
+near = 0.01
+
+[node name="Listener" type="Listener" parent="World/StaticCamera"]
+current = true
+
+[node name="DynamicallySpawned" type="Node" parent="World"]
+
+[node name="WorldLight" type="DirectionalLight" parent="World"]
+transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource( 4 )
+
+[node name="GateLight" type="OmniLight" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468164, 4.72071, -0.00111282 )
+light_color = Color( 0.223529, 0.92549, 1, 1 )
+light_energy = 1.2
+omni_range = 35.0259
+omni_attenuation = 1.36604
+
+[node name="AscensionGateInterior" type="Spatial" parent="World"]
+
+[node name="FloorCollision" type="StaticBody" parent="World/AscensionGateInterior"]
+
+[node name="CollisionShape" type="CollisionShape" parent="World/AscensionGateInterior/FloorCollision"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Floor" type="CSGBox" parent="World/AscensionGateInterior"]
+width = 50.0
+height = 0.048
+depth = 70.0
+material = SubResource( 5 )
+
+[node name="Ceiling" type="CSGBox" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.0129, 0 )
+width = 50.0
+height = 0.0430779
+depth = 70.0
+material = SubResource( 5 )
+
+[node name="Pillar" type="CSGCylinder" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8468, 11.9681, -34.6675 )
+height = 24.0
+sides = 12
+
+[node name="Pillar2" type="CSGCylinder" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 34.8368 )
+height = 24.0
+sides = 12
+
+[node name="Pillar3" type="CSGCylinder" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 0.186778 )
+height = 24.0
+sides = 12
+
+[node name="Pillar4" type="CSGCylinder" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, -18.5713 )
+height = 24.0
+sides = 12
+
+[node name="Pillar5" type="CSGCylinder" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 18.968 )
+height = 24.0
+sides = 12
+
+[node name="CSGBox3" type="CSGBox" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0 )
+width = 18.0
+height = 4.0
+depth = 4.0
+
+[node name="CSGBox4" type="CSGBox" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.76172, 0 )
+width = 12.0
+height = 12.0
+depth = 0.396676
+material = SubResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="World/AscensionGateInterior"]
+transform = Transform( 1, 0, 0, 0, 0.979845, -0.199761, 0, 0.199761, 0.979845, 0.0424042, 0.518774, 6.70115 )
+width = 7.0
+height = 1.0
+depth = 10.0
+
+[node name="GateWalkerSpawnPoint" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0819778, -3.8147e-06, 34.3979 )
+
+[node name="RampStartPoint" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.6382 )
+
+[node name="RampEndPoint" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14208, 2.02097 )
+
+[node name="AscensionGatePoint" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1171, -0.544976 )
+
+[node name="ObserverSpawnPoint" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6221, 0, -29.2539 )
+
+[node name="ObserverSpawnPoint2" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.38661, 0, -30.9077 )
+
+[node name="ObserverSpawnPoint3" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.46, 0.926355, 11.5192 )
+
+[node name="CustomBlanker" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CreditsDisplay" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+
+[node name="CreditsScroll" parent="CreditsDisplay" instance=ExtResource( 2 )]
+AutoStart = false
+
+[node name="SkipInfoContainer" type="HBoxContainer" parent="CreditsDisplay"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -287.045
+margin_top = -50.7925
+margin_right = -10.0453
+margin_bottom = -10.7925
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="Label" type="Label" parent="CreditsDisplay/SkipInfoContainer"]
+margin_top = 7.0
+margin_right = 233.0
+margin_bottom = 32.0
+text = "HOLD_TO_SKIP_CREDITS"
+
+[node name="SkipPrompt" parent="CreditsDisplay/SkipInfoContainer" instance=ExtResource( 4 )]
+margin_left = 237.0
+margin_right = 277.0
+rect_min_size = Vector2( 40, 40 )
+ActionName = "ui_cancel"
+ShowPress = false
+RequiredHoldTime = 5.0
+SinglePressHoldProgress = 0.15
+DecayRate = 3.0
+
+[connection signal="OnFinishedSignal" from="CreditsDisplay/CreditsScroll" to="." method="OnCeremonyEnded"]
+[connection signal="OnPressedLongEnough" from="CreditsDisplay/SkipInfoContainer/SkipPrompt" to="." method="OnSkipCredits"]

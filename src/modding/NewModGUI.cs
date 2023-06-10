@@ -94,7 +94,7 @@ public class NewModGUI : Control
     public NodePath ErrorDisplayPath = null!;
 
 #pragma warning disable CA2213
-    private CustomDialog dialog = null!;
+    private CustomWindow dialog = null!;
 
     private LineEdit internalName = null!;
     private LineEdit name = null!;
@@ -147,7 +147,7 @@ public class NewModGUI : Control
 
     public override void _Ready()
     {
-        dialog = GetNode<CustomDialog>(DialogPath);
+        dialog = GetNode<CustomWindow>(DialogPath);
 
         internalName = GetNode<LineEdit>(InternalNamePath);
         name = GetNode<LineEdit>(NamePath);

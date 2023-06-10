@@ -1055,7 +1055,8 @@ public static class Constants
     public const string LOGS_FOLDER_NAME = "logs";
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
-    public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
+    public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/" + JSON_DEBUG_OUTPUT_FILE_NAME;
+    public const string JSON_DEBUG_OUTPUT_FILE_NAME = "json_debug.txt";
 
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
 
@@ -1274,6 +1275,11 @@ public static class Constants
 
     public const float SPACE_INITIAL_ANIMATION_MIN_ZOOM_SCALE = 0.3f;
     public const float SPACE_INITIAL_ANIMATION_ZOOM_SPEED = 0.08f;
+
+    public const float SPACE_ASCEND_ANIMATION_MIN_ZOOM_SCALE = 0.2f;
+    public const float SPACE_ASCEND_ANIMATION_DURATION = 2.5f;
+    public const float SPACE_ASCEND_ANIMATION_ZOOM_SPEED = 0.5f;
+    public const float SPACE_ASCEND_SCREEN_FADE = 0.8f;
 
     public const float SPACE_FLEET_SELECTION_RADIUS = 1.7f;
 

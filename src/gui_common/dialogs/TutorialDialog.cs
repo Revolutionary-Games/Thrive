@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class TutorialDialog : CustomDialog
+public class TutorialDialog : CustomWindow
 {
     [Export]
     public NodePath? LabelPath;

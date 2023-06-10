@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Screen for showing the player's technology options in the strategy stages
 /// </summary>
-public class ResearchScreen : CustomDialog
+public class ResearchScreen : CustomWindow
 {
     [Export]
     public NodePath? TechWebGUIPath;

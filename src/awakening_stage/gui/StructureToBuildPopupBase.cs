@@ -6,7 +6,7 @@ using Godot.Collections;
 ///   Base type for all menus where selecting a building / structure to be built can be done
 /// </summary>
 /// <typeparam name="TSelection">The type of object this is allowing selecting from</typeparam>
-public class StructureToBuildPopupBase<TSelection> : Control
+public abstract class StructureToBuildPopupBase<TSelection> : Control
 {
     [Export]
     public NodePath? PopupPath;
@@ -22,7 +22,7 @@ public class StructureToBuildPopupBase<TSelection> : Control
     protected readonly StringBuilder stringBuilder2 = new();
 
 #pragma warning disable CA2213
-    protected CustomDialog popup = null!;
+    protected CustomWindow popup = null!;
     protected Container buttonsContainer = null!;
     protected Button cancelButton = null!;
 
@@ -33,7 +33,7 @@ public class StructureToBuildPopupBase<TSelection> : Control
 
     public override void _Ready()
     {
-        popup = GetNode<CustomDialog>(PopupPath);
+        popup = GetNode<CustomWindow>(PopupPath);
         buttonsContainer = GetNode<Container>(ButtonsContainerPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
 
@@ -41,6 +41,11 @@ public class StructureToBuildPopupBase<TSelection> : Control
 
         // This is invisible in the editor to make it nicer to edit things
         Visible = true;
+    }
+
+    public void Close()
+    {
+        popup.Close();
     }
 
     protected void ForwardSelectionToReceiver(TSelection selected)

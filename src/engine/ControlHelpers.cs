@@ -14,7 +14,7 @@ public static class ControlHelpers
     /// <remarks>
     ///   <para>
     ///     NOTE: This should be rarely used since for popups you should've already been using the ones
-    ///     deriving from <see cref="CustomWindow"/> anyway. This is kept here as a backup.
+    ///     deriving from <see cref="TopLevelContainer"/> anyway. This is kept here as a backup.
     ///   </para>
     /// </remarks>
     public static void PopupCenteredShrink(this Popup popup, bool runSizeUnstuck = true)

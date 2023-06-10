@@ -114,6 +114,20 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
         this.ProcessOrderQueue(delta);
     }
 
+    public void AddShip(UnitType unit)
+    {
+        if (ships == null)
+            throw new InvalidOperationException("Not initialized");
+
+        ships.Add(unit);
+
+        // TODO: see the visuals info in SetShips
+
+        var newVisuals = unit.WorldRepresentationSpace.Instance<Spatial>();
+        visualsParent.AddChild(newVisuals);
+        newVisuals.Translation = ships.Count * new Vector3(2.5f, 0, 0);
+    }
+
     public void OnSelectedThroughLabel()
     {
         EmitSignal(nameof(OnSelected));
@@ -142,7 +156,7 @@ public class SpaceFleet : Spatial, IEntityWithNameLabel, IStrategicUnit
         ships = new List<UnitType> { ship };
 
         // TODO: proper positioning and scaling for multiple ships
-        visualsParent.AddChild(ship.WorldRepresentation.Instance());
+        visualsParent.AddChild(ship.WorldRepresentationSpace.Instance());
 
         // TODO: fleet model rotations
     }

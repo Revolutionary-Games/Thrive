@@ -245,7 +245,7 @@ public class InProgressSave : IDisposable
                 {
                     SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
                     SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
-                        message, exceptionOrFailureMessage, false, null, exceptionOrMessageIsException);
+                        message, exceptionOrFailureMessage, false, false, null, exceptionOrMessageIsException);
                 }
 
                 IsSaving = false;

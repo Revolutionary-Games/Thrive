@@ -75,6 +75,7 @@ GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/P
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
+CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -82,9 +83,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 365.0
-margin_top = 208.0
+margin_top = 214.0
 margin_right = 915.0
-margin_bottom = 512.0
+margin_bottom = 506.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
@@ -92,14 +93,14 @@ __meta__ = {
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 550.0
-margin_bottom = 264.0
+margin_bottom = 252.0
 rect_min_size = Vector2( 550, 200 )
 
 [node name="Main" type="MarginContainer" parent="CenterContainer/VBoxContainer/BasicOptions"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 549.0
-margin_bottom = 263.0
+margin_bottom = 251.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -109,7 +110,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 533.0
-margin_bottom = 247.0
+margin_bottom = 235.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -263,20 +264,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+[node name="CheckPerformanceSettingsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 186.0
 margin_right = 518.0
-margin_bottom = 186.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
-margin_top = 196.0
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer"]
 margin_right = 518.0
-margin_bottom = 200.0
 
-[node name="CustomRichTextLabel" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 210.0
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer"]
+margin_top = 4.0
 margin_right = 518.0
-margin_bottom = 232.0
+margin_bottom = 8.0
+
+[node name="CustomRichTextLabel" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer" instance=ExtResource( 11 )]
+margin_top = 12.0
+margin_right = 518.0
+margin_bottom = 34.0
 ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 
 [node name="TabButtons" parent="CenterContainer/VBoxContainer" instance=ExtResource( 13 )]
@@ -1126,9 +1131,9 @@ text = "EASTER_EGGS_EXPLANATION"
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 269.0
+margin_top = 257.0
 margin_right = 550.0
-margin_bottom = 304.0
+margin_bottom = 292.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -1203,7 +1208,7 @@ __meta__ = {
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
-[connection signal="meta_clicked" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CustomRichTextLabel" to="." method="PerformanceNoteLinkClicked"]
+[connection signal="meta_clicked" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer/CustomRichTextLabel" to="." method="PerformanceNoteLinkClicked"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= [ "Difficulty" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= [ "Planet" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= [ "Miscellaneous" ]]

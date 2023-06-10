@@ -79,7 +79,7 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
         researchScreen = GetNode<ResearchScreen>(ResearchScreenPath);
     }
 
-    public void Init(TStage containedInStage)
+    public virtual void Init(TStage containedInStage)
     {
         stage = containedInStage;
     }
