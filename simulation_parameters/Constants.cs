@@ -604,11 +604,6 @@ public static class Constants
     public const float PILUS_INVULNERABLE_TIME = 0.25f;
 
     /// <summary>
-    ///   How much larger a cell has to be to ignore the pilus collision of another on contact.
-    /// </summary>
-    public const float PILUS_INEFFECTIVE_AGAINST_ENGULFMENT_RATIO = 2.5f;
-
-    /// <summary>
     ///   Osmoregulation ATP cost per second per hex
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
