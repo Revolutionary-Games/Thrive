@@ -24,8 +24,12 @@ extern "C"
     typedef struct JQuat
     {
         float X, Y, Z, W;
-
     } JQuat;
+
+    typedef struct JColour
+    {
+        float R, G, B, A;
+    } JColour;
 
     static const inline JQuat QuatIdentity = JQuat{0, 0, 0, 1};
 }

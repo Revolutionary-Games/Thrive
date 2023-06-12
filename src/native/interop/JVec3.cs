@@ -18,7 +18,10 @@ public struct JVec3
         Z = vector.z;
     }
 
-    public static implicit operator Vector3(JVec3 d) => new((float)d.X, (float)d.Y, (float)d.Z);
+    public static implicit operator Vector3(JVec3 d)
+    {
+        return new Vector3((float)d.X, (float)d.Y, (float)d.Z);
+    }
 }
 
 [StructLayout(LayoutKind.Sequential)]
@@ -39,7 +42,10 @@ public struct JQuat
         W = quat.w;
     }
 
-    public static implicit operator Quat(JQuat d) => new(d.X, d.Y, d.Z, d.W);
+    public static implicit operator Quat(JQuat d)
+    {
+        return new Quat(d.X, d.Y, d.Z, d.W);
+    }
 }
 
 [StructLayout(LayoutKind.Sequential)]
@@ -63,5 +69,38 @@ public struct JVecF3
         Z = z;
     }
 
-    public static implicit operator Vector3(JVecF3 d) => new(d.X, d.Y, d.Z);
+    public static implicit operator Vector3(JVecF3 d)
+    {
+        return new Vector3(d.X, d.Y, d.Z);
+    }
+}
+
+[StructLayout(LayoutKind.Sequential)]
+public struct JColour
+{
+    public float R;
+    public float G;
+    public float B;
+    public float A;
+
+    public JColour(Color color)
+    {
+        R = color.r;
+        G = color.g;
+        B = color.b;
+        A = color.a;
+    }
+
+    public JColour(float r, float g, float b, float a)
+    {
+        R = r;
+        G = g;
+        B = b;
+        A = a;
+    }
+
+    public static implicit operator Color(JColour d)
+    {
+        return new Color(d.R, d.G, d.B, d.A);
+    }
 }

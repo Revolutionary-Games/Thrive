@@ -9,6 +9,7 @@
 #include "Jolt/Jolt.h"
 #include "Jolt/RegisterTypes.h"
 
+#include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
 #include "physics/PhysicsBody.hpp"
 #include "physics/ShapeCreator.hpp"
@@ -189,12 +190,29 @@ void GiveImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse
         ->GiveImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(impulse));
 }
 
-void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 movementImpulse, JQuat targetRotation,
-    float reachTargetInSeconds)
+void SetBodyControl(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 movementImpulse, JQuat targetRotation, float rotationRate)
 {
+    if (physicalWorld == nullptr || body == nullptr)
+    {
+        LOG_ERROR("Invalid call to physics body applying control");
+        return;
+    }
+
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->ApplyBodyControl(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
-            Thrive::Vec3FromCAPI(movementImpulse), Thrive::QuatFromCAPI(targetRotation), reachTargetInSeconds);
+        ->SetBodyControl(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), Thrive::Vec3FromCAPI(movementImpulse),
+            Thrive::QuatFromCAPI(targetRotation), rotationRate);
+}
+
+void DisableBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body)
+{
+    if (physicalWorld == nullptr || body == nullptr)
+    {
+        return;
+    }
+
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->DisableBodyControl(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body));
 }
 
 void SetBodyPosition(PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate)
@@ -210,12 +228,11 @@ bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
         ->FixBodyYCoordinateToZero(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId());
 }
 
-void PhysicsBodyAddAxisLock(
-    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation)
+void PhysicsBodyAddAxisLock(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->CreateAxisLockConstraint(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), Thrive::Vec3FromCAPI(axis),
-            lockRotation, useInertiaToLockRotation);
+        ->CreateAxisLockConstraint(
+            *reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), Thrive::Vec3FromCAPI(axis), lockRotation);
 }
 
 void PhysicalWorldSetGravity(PhysicalWorld* physicalWorld, JVecF3 gravity)
@@ -238,8 +255,23 @@ float PhysicalWorldGetPhysicsAverageTime(PhysicalWorld* physicalWorld)
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->GetAveragePhysicsTime();
 }
 
-// ------------------------------------ //
+bool PhysicalWorldDumpPhysicsState(PhysicalWorld* physicalWorld, const char* path)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->DumpSystemState(path);
+}
 
+void PhysicalWorldSetDebugDrawLevel(PhysicalWorld* physicalWorld, int32_t level)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->SetDebugLevel(level);
+}
+
+void PhysicalWorldSetDebugDrawCameraLocation(PhysicalWorld* physicalWorld, JVecF3 position)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetDebugCameraLocation(Thrive::Vec3FromCAPI(position));
+}
+
+// ------------------------------------ //
 void ReleasePhysicsBodyReference(PhysicsBody* body)
 {
     if (body == nullptr)
@@ -304,6 +336,42 @@ void ReleaseShape(PhysicsShape* shape)
         return;
 
     reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->Release();
+}
+
+// ------------------------------------ //
+bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
+{
+#ifdef JPH_DEBUG_RENDERER
+    if (!lineDraw || !triangleDraw)
+    {
+        DisableDebugDrawerCallbacks();
+        return false;
+    }
+
+    auto& instance = Thrive::Physics::DebugDrawForwarder::GetInstance();
+
+    instance.SetOutputLineReceiver([lineDraw](JPH::RVec3Arg from, JPH::RVec3Arg to, JPH::Float4 colour)
+        { lineDraw(Thrive::DVec3ToCAPI(from), Thrive::DVec3ToCAPI(to), Thrive::ColorToCAPI(colour)); });
+
+    instance.SetOutputTriangleReceiver(
+        [triangleDraw](JPH::RVec3Arg v1, JPH::RVec3Arg v2, JPH::RVec3Arg v3, JPH::Float4 colour)
+        {
+            triangleDraw(
+                Thrive::DVec3ToCAPI(v1), Thrive::DVec3ToCAPI(v2), Thrive::DVec3ToCAPI(v3), Thrive::ColorToCAPI(colour));
+        });
+    return true;
+#else
+    UNUSED(lineDraw);
+    UNUSED(triangleDraw);
+    return false;
+#endif
+}
+
+void DisableDebugDrawerCallbacks()
+{
+#ifdef JPH_DEBUG_RENDERER
+    Thrive::Physics::DebugDrawForwarder::GetInstance().ClearOutputReceivers();
+#endif
 }
 
 #pragma clang diagnostic pop

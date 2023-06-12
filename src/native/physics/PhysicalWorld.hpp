@@ -23,6 +23,7 @@ namespace Thrive::Physics
 {
 
 class PhysicsBody;
+class StepListener;
 
 /// \brief Main handling class of the physics simulation
 ///
@@ -30,6 +31,8 @@ class PhysicsBody;
 /// does this) and collision types registered.
 class PhysicalWorld
 {
+    friend StepListener;
+
     // Pimpl-idiom class for hiding some properties to reduce needed headers and size of this class
     class Pimpl;
 
@@ -67,8 +70,9 @@ public:
     void SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity);
     void GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse);
 
-    void ApplyBodyControl(
-        JPH::BodyID bodyId, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float reachTargetInSeconds);
+    void SetBodyControl(
+        PhysicsBody& bodyWrapper, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float rotationRate);
+    void DisableBodyControl(PhysicsBody& bodyWrapper);
 
     void SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool activate = true);
 
@@ -78,8 +82,7 @@ public:
 
     // ------------------------------------ //
     // Constraints
-    Ref<TrackedConstraint> CreateAxisLockConstraint(
-        PhysicsBody& body, JPH::Vec3 axis, bool lockRotation, bool useInertiaToLockRotation = false);
+    Ref<TrackedConstraint> CreateAxisLockConstraint(PhysicsBody& body, JPH::Vec3 axis, bool lockRotation);
 
     void DestroyConstraint(TrackedConstraint& constraint);
 
@@ -105,6 +108,18 @@ public:
         return averagePhysicsTime;
     }
 
+    bool DumpSystemState(std::string_view path);
+
+    inline void SetDebugLevel(int level) noexcept
+    {
+        debugDrawLevel = level;
+    }
+
+    void SetDebugCameraLocation(JPH::Vec3Arg position) noexcept;
+
+protected:
+    void PerformPhysicsStepOperations(float delta);
+
 private:
     /// \brief Creates the physics system
     void InitPhysicsWorld();
@@ -116,6 +131,10 @@ private:
 
     void OnPostBodyAdded(PhysicsBody& body);
 
+    void ApplyBodyControl(PhysicsBody& bodyWrapper);
+
+    void DrawPhysics(float delta);
+
 private:
     float elapsedSinceUpdate = 0;
 
@@ -125,11 +144,23 @@ private:
     float latestPhysicsTime = 0;
     float averagePhysicsTime = 0;
 
+    /// \brief Debug draw level (0 is disabled)
+    ///
+    /// 1 is just bodies
+    /// 2 is also contacts
+    /// 3 is also active contact points
+    /// 4 is also body bounding boxes and velocities
+    /// 5 is also constraints
+    /// 6 is also constraint limits
+    /// 7 is also constraint reference frames
+    int debugDrawLevel = 0;
+
     /// \brief The main part, the physics system that simulates this world
     std::unique_ptr<JPH::PhysicsSystem> physicsSystem;
 
     std::unique_ptr<ContactListener> contactListener;
     std::unique_ptr<BodyActivationListener> activationListener;
+    std::unique_ptr<StepListener> stepListener;
 
     // TODO: switch to this custom one
     // std::unique_ptr<TaskSystem> jobSystem;

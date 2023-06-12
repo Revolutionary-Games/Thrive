@@ -2,6 +2,9 @@
 #include "ContactListener.hpp"
 
 #include "Jolt/Physics/Body/Body.h"
+#include "Jolt/Physics/Collision/CollideShape.h"
+
+#include "DebugDrawForwarder.hpp"
 
 // ------------------------------------ //
 namespace Thrive::Physics
@@ -19,6 +22,27 @@ JPH::ValidateResult ContactListener::OnContactValidate(const JPH::Body& body1, c
     {
         result = JPH::ContactListener::OnContactValidate(body1, body2, baseOffset, collisionResult);
     }
+
+#ifdef JPH_DEBUG_RENDERER
+    if (debugDrawer != nullptr)
+    {
+        const auto contact_point = baseOffset + collisionResult.mContactPointOn1;
+
+        if (result != JPH::ValidateResult::RejectContact &&
+            result != JPH::ValidateResult::RejectAllContactsForThisBodyPair)
+        {
+            debugDrawer->DrawArrow(contact_point,
+                contact_point - collisionResult.mPenetrationAxis.NormalizedOr(JPH::Vec3::sZero()), JPH::Color::sBlue,
+                0.05f);
+        }
+        else
+        {
+            debugDrawer->DrawArrow(contact_point,
+                contact_point - collisionResult.mPenetrationAxis.NormalizedOr(JPH::Vec3::sZero()), JPH::Color::sDarkRed,
+                0.05f);
+        }
+    }
+#endif
 
     return result;
 }
@@ -38,6 +62,18 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
 
     if (chainedListener != nullptr)
         chainedListener->OnContactAdded(body1, body2, manifold, settings);
+
+#ifdef JPH_DEBUG_RENDERER
+    if (debugDrawer != nullptr)
+    {
+        debugDrawer->DrawWirePolygon(JPH::RMat44::sTranslation(manifold.mBaseOffset),
+            manifold.mRelativeContactPointsOn1, JPH::Color::sGreen, 0.05f);
+        debugDrawer->DrawWirePolygon(JPH::RMat44::sTranslation(manifold.mBaseOffset),
+            manifold.mRelativeContactPointsOn2, JPH::Color::sGreen, 0.05f);
+        debugDrawer->DrawArrow(manifold.GetWorldSpaceContactPointOn1(0),
+            manifold.GetWorldSpaceContactPointOn1(0) + manifold.mWorldSpaceNormal, JPH::Color::sGreen, 0.05f);
+    }
+#endif
 }
 
 void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body& body2,
@@ -58,6 +94,18 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
 
     if (chainedListener != nullptr)
         chainedListener->OnContactPersisted(body1, body2, manifold, settings);
+
+#ifdef JPH_DEBUG_RENDERER
+    if (!drawOnlyNew && debugDrawer != nullptr)
+    {
+        debugDrawer->DrawWirePolygon(JPH::RMat44::sTranslation(manifold.mBaseOffset),
+            manifold.mRelativeContactPointsOn1, JPH::Color::sYellow, 0.05f);
+        debugDrawer->DrawWirePolygon(JPH::RMat44::sTranslation(manifold.mBaseOffset),
+            manifold.mRelativeContactPointsOn2, JPH::Color::sYellow, 0.05f);
+        debugDrawer->DrawArrow(manifold.GetWorldSpaceContactPointOn1(0),
+            manifold.GetWorldSpaceContactPointOn1(0) + manifold.mWorldSpaceNormal, JPH::Color::sYellow, 0.05f);
+    }
+#endif
 }
 
 void ContactListener::OnContactRemoved(const JPH::SubShapeIDPair& subShapePair)
@@ -75,4 +123,18 @@ void ContactListener::OnContactRemoved(const JPH::SubShapeIDPair& subShapePair)
         chainedListener->OnContactRemoved(subShapePair);
 }
 
+// ------------------------------------ //
+#ifdef JPH_DEBUG_RENDERER
+void ContactListener::DrawActiveContacts(JPH::DebugRenderer& debugRenderer)
+{
+    Lock lock(currentCollisionsMutex);
+    for (const auto& collision : currentCollisions)
+    {
+        for (const auto offset : collision.second.second)
+        {
+            debugRenderer.DrawWireSphere(collision.second.first + offset, 0.05f, JPH::Color::sRed, 1);
+        }
+    }
+}
+#endif
 } // namespace Thrive::Physics

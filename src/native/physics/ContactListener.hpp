@@ -4,6 +4,13 @@
 
 #include "core/Mutex.hpp"
 
+#ifdef JPH_DEBUG_RENDERER
+namespace JPH
+{
+class DebugRenderer;
+} // namespace JPH
+#endif
+
 namespace Thrive::Physics
 {
 /// \brief Contact listener implementation
@@ -28,6 +35,22 @@ public:
         chainedListener = listener;
     }
 
+#ifdef JPH_DEBUG_RENDERER
+    void DrawActiveContacts(JPH::DebugRenderer& debugRenderer);
+
+    inline void SetDebugDraw(JPH::DebugRenderer* debugRenderer)
+    {
+        debugDrawer = debugRenderer;
+    }
+
+    /// \brief When using physics debug draw rate limiting we only want to draw new things to avoid missing drawing
+    /// anything
+    inline void SetDrawOnlyNewContacts(bool onlyNew)
+    {
+        drawOnlyNew = onlyNew;
+    }
+#endif
+
 private:
     Mutex currentCollisionsMutex;
 
@@ -35,6 +58,11 @@ private:
     std::unordered_map<JPH::SubShapeIDPair, CollisionPair> currentCollisions;
 
     JPH::ContactListener* chainedListener = nullptr;
+
+#ifdef JPH_DEBUG_RENDERER
+    JPH::DebugRenderer* debugDrawer = nullptr;
+    bool drawOnlyNew = false;
+#endif
 };
 
 } // namespace Thrive::Physics

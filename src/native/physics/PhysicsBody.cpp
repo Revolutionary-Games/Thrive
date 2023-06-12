@@ -5,6 +5,7 @@
 
 #include "core/Logger.hpp"
 
+#include "BodyControlState.hpp"
 #include "TrackedConstraint.hpp"
 
 // ------------------------------------ //
@@ -39,6 +40,28 @@ PhysicsBody* PhysicsBody::FromJoltBody(uint64_t bodyUserData) noexcept
         return nullptr;
 
     return reinterpret_cast<PhysicsBody*>(bodyUserData);
+}
+
+// ------------------------------------ //
+bool PhysicsBody::EnableBodyControlIfNotAlready() noexcept
+{
+    // If already enabled
+    if (bodyControlStateIfActive != nullptr)
+        return false;
+
+    bodyControlStateIfActive = std::make_unique<BodyControlState>();
+
+    return true;
+}
+
+bool PhysicsBody::DisableBodyControl() noexcept
+{
+    if (bodyControlStateIfActive == nullptr)
+        return false;
+
+    bodyControlStateIfActive.reset();
+
+    return true;
 }
 
 // ------------------------------------ //

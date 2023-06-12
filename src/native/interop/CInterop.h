@@ -11,6 +11,8 @@
 extern "C"
 {
     typedef void (*OnLogMessage)(const char* message, int32_t messageLength, int8_t logLevel);
+    typedef void (*OnLineDraw)(JVec3 from, JVec3 to, JColour colour);
+    typedef void (*OnTriangleDraw)(JVec3 vertex1, JVec3 vertex2, JVec3 vertex3, JColour colour);
 
     // ------------------------------------ //
     // General
@@ -63,7 +65,11 @@ extern "C"
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse);
 
     [[maybe_unused]] THRIVE_NATIVE_API void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body,
-        JVecF3 movementImpulse, JQuat targetRotation, float reachTargetInSeconds);
+        JVecF3 movementImpulse, JQuat targetRotation, float rotationRate);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body,
+        JVecF3 movementImpulse, JQuat targetRotation, float rotationRate);
+    [[maybe_unused]] THRIVE_NATIVE_API void DisableBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPosition(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate);
@@ -71,13 +77,21 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddAxisLock(
-        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation);
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation);
 
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldSetGravity(PhysicalWorld* physicalWorld, JVecF3 gravity);
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldRemoveGravity(PhysicalWorld* physicalWorld);
 
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsLatestTime(PhysicalWorld* physicalWorld);
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsAverageTime(PhysicalWorld* physicalWorld);
+
+    [[maybe_unused]] THRIVE_NATIVE_API bool PhysicalWorldDumpPhysicsState(
+        PhysicalWorld* physicalWorld, const char* path);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldSetDebugDrawLevel(
+        PhysicalWorld* physicalWorld, int32_t level = 0);
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldSetDebugDrawCameraLocation(
+        PhysicalWorld* physicalWorld, JVecF3 position);
 
     // ------------------------------------ //
     // Body functions
@@ -96,4 +110,9 @@ extern "C"
         JVecF3* points, uint32_t pointCount, float density, float scale);
 
     [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
+
+    // ------------------------------------ //
+    // Misc
+    [[maybe_unused]] THRIVE_NATIVE_API bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);
+    [[maybe_unused]] THRIVE_NATIVE_API void DisableDebugDrawerCallbacks();
 }

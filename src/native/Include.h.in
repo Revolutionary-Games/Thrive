@@ -27,3 +27,9 @@
 #define FORCE_INLINE __attribute__((always_inline))
 
 #define UNUSED(x) (void)x
+
+namespace Thrive
+{
+constexpr float PI = 3.14159265;
+constexpr double PI_DOUBLE = 3.1415926535897932;
+} // namespace Thrive

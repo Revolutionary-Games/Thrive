@@ -13,6 +13,20 @@ public class PhysicalWorld : IDisposable
     private PhysicalWorld(IntPtr nativeInstance)
     {
         this.nativeInstance = nativeInstance;
+
+        var debugDrawer = DebugDrawer.Instance;
+        debugDrawer.OnPhysicsDebugLevelChangedHandler += SetUpdatedDebugLevel;
+        debugDrawer.OnPhysicsDebugCameraPositionChangedHandler += UpdateDebugCameraInfo;
+
+        // Apply debug level set before this object was created (as we can't have received the signal about the
+        // incremented debug level
+        var currentDebugLevel = debugDrawer.DebugLevel;
+
+        if (currentDebugLevel > 0)
+        {
+            SetUpdatedDebugLevel(currentDebugLevel);
+            UpdateDebugCameraInfo(debugDrawer.DebugCameraLocation);
+        }
     }
 
     ~PhysicalWorld()
@@ -100,10 +114,18 @@ public class PhysicalWorld : IDisposable
     }
 
     public void ApplyBodyMicrobeControl(PhysicsBody body, Vector3 movementImpulse, Quat lookDirection,
-        float rotationSpeedSeconds)
+        float rotationSpeedDivisor)
     {
-        NativeMethods.ApplyBodyControl(AccessWorldInternal(), body.AccessBodyInternal(),
-            new JVecF3(movementImpulse), new JQuat(lookDirection), rotationSpeedSeconds);
+        if (rotationSpeedDivisor < 1)
+            throw new ArgumentException("Rotation rate divisor needs to be 1 or above");
+
+        NativeMethods.SetBodyControl(AccessWorldInternal(), body.AccessBodyInternal(),
+            new JVecF3(movementImpulse), new JQuat(lookDirection), rotationSpeedDivisor);
+    }
+
+    public void DisableMicrobeBodyControl(PhysicsBody body)
+    {
+        NativeMethods.DisableBodyControl(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
     public void SetBodyPosition(PhysicsBody body, Vector3 position)
@@ -143,6 +165,11 @@ public class PhysicalWorld : IDisposable
         NativeMethods.PhysicalWorldRemoveGravity(AccessWorldInternal());
     }
 
+    public bool DumpPhysicsState(string path)
+    {
+        return NativeMethods.PhysicalWorldDumpPhysicsState(AccessWorldInternal(), path);
+    }
+
     public void Dispose()
     {
         Dispose(true);
@@ -162,6 +189,8 @@ public class PhysicalWorld : IDisposable
         ReleaseUnmanagedResources();
         if (disposing)
         {
+            DebugDrawer.Instance.OnPhysicsDebugLevelChangedHandler -= SetUpdatedDebugLevel;
+
             disposed = true;
         }
     }
@@ -172,6 +201,22 @@ public class PhysicalWorld : IDisposable
         {
             NativeMethods.DestroyPhysicalWorld(nativeInstance);
             nativeInstance = new IntPtr(0);
+        }
+    }
+
+    private void SetUpdatedDebugLevel(int level)
+    {
+        if (nativeInstance.ToInt64() != 0)
+        {
+            NativeMethods.PhysicalWorldSetDebugDrawLevel(AccessWorldInternal(), level);
+        }
+    }
+
+    private void UpdateDebugCameraInfo(Vector3 position)
+    {
+        if (nativeInstance.ToInt64() != 0)
+        {
+            NativeMethods.PhysicalWorldSetDebugDrawCameraLocation(AccessWorldInternal(), new JVecF3(position));
         }
     }
 }
@@ -219,8 +264,11 @@ internal static partial class NativeMethods
     internal static extern void GiveImpulse(IntPtr world, IntPtr body, JVecF3 impulse);
 
     [DllImport("thrive_native")]
-    internal static extern void ApplyBodyControl(IntPtr world, IntPtr body, JVecF3 movementImpulse,
+    internal static extern void SetBodyControl(IntPtr world, IntPtr body, JVecF3 movementImpulse,
         JQuat targetRotation, float reachTargetInSeconds);
+
+    [DllImport("thrive_native")]
+    internal static extern void DisableBodyControl(IntPtr world, IntPtr body);
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyPosition(IntPtr world, IntPtr body, JVec3 position, bool activate = true);
@@ -229,8 +277,8 @@ internal static partial class NativeMethods
     internal static extern bool FixBodyYCoordinateToZero(IntPtr world, IntPtr body);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr PhysicsBodyAddAxisLock(IntPtr physicalWorld, IntPtr body,
-        JVecF3 axis, bool lockRotation, bool useInertiaToLockRotation = false);
+    internal static extern IntPtr PhysicsBodyAddAxisLock(IntPtr physicalWorld, IntPtr body, JVecF3 axis,
+        bool lockRotation);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicalWorldSetGravity(IntPtr physicalWorld, JVecF3 gravity);
@@ -243,4 +291,13 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern float PhysicalWorldGetPhysicsAverageTime(IntPtr physicalWorld);
+
+    [DllImport("thrive_native", CharSet = CharSet.Ansi, BestFitMapping = false)]
+    internal static extern bool PhysicalWorldDumpPhysicsState(IntPtr physicalWorld, string path);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicalWorldSetDebugDrawLevel(IntPtr physicalWorld, int level);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicalWorldSetDebugDrawCameraLocation(IntPtr physicalWorld, JVecF3 position);
 }

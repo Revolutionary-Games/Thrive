@@ -8,6 +8,16 @@ using Godot;
 public static class NativeInterop
 {
     private static bool loadCalled;
+    private static bool debugDrawIsPossible;
+
+    public delegate void OnLineDraw(Vector3 from, Vector3 to, Color colour);
+
+    public delegate void OnTriangleDraw(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Color colour);
+
+    // These forwarding static event handlers are needed, otherwise the callback coming back will have just entirely
+    // bogus "this" values
+    private static event OnLineDraw? OnLineDrawHandler;
+    private static event OnTriangleDraw? OnTriangleDrawHandler;
 
     /// <summary>
     ///   Performs any initialization needed by the native library (note has to be called after the library is loaded)
@@ -26,6 +36,16 @@ public static class NativeInterop
         if (result != 0)
         {
             throw new InvalidOperationException($"Failed to initialize Thrive native library, code: {result}");
+        }
+
+        try
+        {
+            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(ForwardLineDraw, ForwardTriangleDraw);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to initialize potential for debug drawing: ", e);
+            debugDrawIsPossible = false;
         }
     }
 
@@ -70,7 +90,28 @@ public static class NativeInterop
     /// </summary>
     public static void Shutdown()
     {
+        NativeMethods.DisableDebugDrawerCallbacks();
         NativeMethods.ShutdownThriveLibrary();
+    }
+
+    public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
+    {
+        if (!debugDrawIsPossible)
+            return false;
+
+        OnLineDrawHandler += lineDraw;
+        OnTriangleDrawHandler += triangleDraw;
+
+        return true;
+    }
+
+    public static void RemoveDebugDrawer()
+    {
+        // TODO: do single objects need to be able to unregister?
+        OnLineDrawHandler = null;
+        OnTriangleDrawHandler = null;
+
+        NativeMethods.DisableDebugDrawerCallbacks();
     }
 
     private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
@@ -91,6 +132,17 @@ public static class NativeInterop
             GD.PrintErr("[NATIVE] ", message);
         }
     }
+
+    private static void ForwardLineDraw(JVec3 from, JVec3 to, JColour colour)
+    {
+        // TODO: is it possible to preserve precision by for example positioning the debug draw near the player?
+        OnLineDrawHandler?.Invoke(from, to, colour);
+    }
+
+    private static void ForwardTriangleDraw(JVec3 vertex1, JVec3 vertex2, JVec3 vertex3, JColour colour)
+    {
+        OnTriangleDrawHandler?.Invoke(vertex1, vertex2, vertex3, colour);
+    }
 }
 
 /// <summary>
@@ -100,6 +152,10 @@ public static class NativeInterop
 internal static partial class NativeMethods
 {
     internal delegate void OnLogMessage(IntPtr messageData, int messageLength, LogLevel level);
+
+    internal delegate void OnLineDraw(JVec3 from, JVec3 to, JColour colour);
+
+    internal delegate void OnTriangleDraw(JVec3 vertex1, JVec3 vertex2, JVec3 vertex3, JColour colour);
 
     internal enum LogLevel : byte
     {
@@ -123,6 +179,12 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void SetLogForwardingCallback(OnLogMessage callback);
+
+    [DllImport("thrive_native")]
+    internal static extern bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);
+
+    [DllImport("thrive_native")]
+    internal static extern void DisableDebugDrawerCallbacks();
 
     // The wrapper-specific methods are in their respective files like PhysicalWorld.cs etc.
 }

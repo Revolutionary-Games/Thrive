@@ -42,4 +42,14 @@ FORCE_INLINE JQuat QuatToCAPI(JPH::Quat quat)
     return JQuat{quat.GetX(), quat.GetY(), quat.GetZ(), quat.GetW()};
 }
 
+FORCE_INLINE JColour ColorToCAPI(JPH::Float4 colour)
+{
+    return {colour.x, colour.y, colour.z, colour.w};
+}
+
+FORCE_INLINE JPH::Float4 ColorFromCAPI(JColour colour)
+{
+    return {colour.R, colour.G, colour.B, colour.A};
+}
+
 } // namespace Thrive

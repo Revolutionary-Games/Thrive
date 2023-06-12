@@ -1098,6 +1098,8 @@ public static class Constants
 
     public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
 
+    public const string PHYSICS_DUMP_PATH = LOGS_FOLDER + "/physics_dump.bin";
+
     public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
 
     /// <summary>
@@ -1236,6 +1238,11 @@ public static class Constants
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+
+    /// <summary>
+    ///   If set to true then physics debug draw gets enabled when the game starts
+    /// </summary>
+    public const bool AUTOMATICALLY_TURN_ON_PHYSICS_DEBUG_DRAW = false;
 
     /// <summary>
     ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)

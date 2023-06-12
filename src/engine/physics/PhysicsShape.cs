@@ -43,12 +43,12 @@ public class PhysicsShape : IDisposable
         {
             if (createAsSpheres)
             {
-                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(gch.AddrOfPinnedObject(),
+                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeSpheres(gch.AddrOfPinnedObject(),
                     (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
             }
             else
             {
-                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeSpheres(gch.AddrOfPinnedObject(),
+                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(gch.AddrOfPinnedObject(),
                     (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
             }
         }

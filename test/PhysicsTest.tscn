@@ -27,6 +27,7 @@ PhysicsTimingLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/PhysicsTiming"
 TestNameLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer/TestType")
 TestExtraInfoLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/ExtraTestTypeInfo")
 PhysicsBodiesCountLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer2/BodyCount")
+SpawnPatternInfoLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer3/Pattern")
 
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -108,12 +109,37 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
 align = 2
 
+[node name="HFlowContainer3" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 5.38925e+08
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
+margin_right = 40.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
+text = "Spawn pattern:"
+
+[node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Pattern" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+align = 2
+
 [node name="RenderingRoot" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="RenderingRoot"]
 transform = Transform( 1, 0, 0, 0, 0.834617, 0.55083, 0, -0.55083, 0.834617, 0, 5.382, 9.099 )
 current = true
 fov = 90.0
+near = 0.01
+far = 200.0
 
 [node name="Listener" type="Listener" parent="RenderingRoot/Camera"]
 

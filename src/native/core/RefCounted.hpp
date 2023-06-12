@@ -25,7 +25,7 @@ protected:
         // put this in an intrusive_ptr
     }
 
-    inline THRIVE_NATIVE_API ~RefCounted() = default;
+    inline THRIVE_NATIVE_API virtual ~RefCounted() = default;
 
 public:
     /// \brief Adds one to the reference count of this object

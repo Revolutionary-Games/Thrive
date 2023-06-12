@@ -47,7 +47,7 @@ public:
 
     // TODO: pili
     static JPH::RefConst<JPH::Shape> CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density = 1000,
-        float scale = 1, float thickness = 0.2f, const JPH::PhysicsMaterial* material = nullptr);
+        float scale = 1, float thickness = 1.0f, const JPH::PhysicsMaterial* material = nullptr);
     static JPH::RefConst<JPH::Shape> CreateMicrobeShapeSpheres(JVecF3* points, uint32_t pointCount,
         float density = 1000, float scale = 1, const JPH::PhysicsMaterial* material = nullptr);
 };

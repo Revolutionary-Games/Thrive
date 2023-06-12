@@ -2,15 +2,18 @@
 #include "PhysicalWorld.hpp"
 
 #include <cstring>
+#include <fstream>
 
 #include "boost/circular_buffer.hpp"
 
 // TODO: switch to a custom thread pool
 #include "Jolt/Core/JobSystemThreadPool.h"
+#include "Jolt/Core/StreamWrapper.h"
 #include "Jolt/Physics/Body/BodyCreationSettings.h"
 #include "Jolt/Physics/Collision/CastResult.h"
 #include "Jolt/Physics/Collision/RayCast.h"
 #include "Jolt/Physics/Constraints/SixDOFConstraint.h"
+#include "Jolt/Physics/PhysicsScene.h"
 #include "Jolt/Physics/PhysicsSettings.h"
 #include "Jolt/Physics/PhysicsSystem.h"
 
@@ -19,8 +22,11 @@
 #include "core/Time.hpp"
 
 #include "BodyActivationListener.hpp"
+#include "BodyControlState.hpp"
 #include "ContactListener.hpp"
+#include "DebugDrawForwarder.hpp"
 #include "PhysicsBody.hpp"
+#include "StepListener.hpp"
 #include "TrackedConstraint.hpp"
 
 JPH_SUPPRESS_WARNINGS
@@ -34,6 +40,18 @@ class PhysicalWorld::Pimpl
 public:
     Pimpl() : durationBuffer(30)
     {
+#ifdef JPH_DEBUG_RENDERER
+        // Convex shapes
+        // This is very expensive in terms of debug rendering data amount
+        bodyDrawSettings.mDrawGetSupportFunction = false;
+
+        // Wireframe is preferred when
+        bodyDrawSettings.mDrawShapeWireframe = true;
+
+        bodyDrawSettings.mDrawCenterOfMassTransform = true;
+
+        // TODO: some of the extra settings should be enableable
+#endif
     }
 
     float AddAndCalculateAverageTime(float duration)
@@ -67,7 +85,15 @@ public:
 
     boost::circular_buffer<float> durationBuffer;
 
+    std::vector<Ref<PhysicsBody>> bodiesWithPerStepControl;
+
     JPH::Vec3 gravity = JPH::Vec3(0, -9.81f, 0);
+
+#ifdef JPH_DEBUG_RENDERER
+    JPH::BodyManager::DrawSettings bodyDrawSettings;
+
+    JPH::Vec3Arg debugDrawCameraLocation = {};
+#endif
 };
 
 PhysicalWorld::PhysicalWorld() : pimpl(std::make_unique<Pimpl>())
@@ -116,6 +142,9 @@ void PhysicalWorld::InitPhysicsWorld()
     // Activation listening
     activationListener = std::make_unique<BodyActivationListener>();
     physicsSystem->SetBodyActivationListener(activationListener.get());
+
+    stepListener = std::make_unique<StepListener>(*this);
+    physicsSystem->AddStepListener(stepListener.get());
 }
 
 // ------------------------------------ //
@@ -128,6 +157,7 @@ bool PhysicalWorld::Process(float delta)
     const auto singlePhysicsFrame = 1 / physicsFrameRate;
 
     bool simulatedPhysics = false;
+    float simulatedTime = 0;
 
     // TODO: limit max steps per frame to avoid massive potential for lag spikes
     // TODO: alternatively to this it is possible to use a bigger timestep at once but then collision steps and
@@ -135,6 +165,7 @@ bool PhysicalWorld::Process(float delta)
     while (elapsedSinceUpdate > singlePhysicsFrame)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
+        simulatedTime += singlePhysicsFrame;
         StepPhysics(*jobSystem, singlePhysicsFrame);
         simulatedPhysics = true;
     }
@@ -143,6 +174,8 @@ bool PhysicalWorld::Process(float delta)
         return false;
 
     // TODO: Trigger stuff from the collision detection (but maybe some stuff needs to trigger for each step?)
+
+    DrawPhysics(simulatedTime);
 
     return true;
 }
@@ -231,6 +264,9 @@ void PhysicalWorld::DestroyBody(const Ref<PhysicsBody>& body)
     {
         DestroyConstraint(*body->GetConstraints().back());
     }
+
+    if (body->GetBodyControlState() != nullptr)
+        DisableBodyControl(*body);
 
     bodyInterface.RemoveBody(body->GetId());
     body->MarkRemovedFromWorld();
@@ -337,40 +373,73 @@ void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
     body.AddAngularImpulse(impulse);
 }
 
-void PhysicalWorld::ApplyBodyControl(
-    JPH::BodyID bodyId, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float reachTargetInSeconds)
+void PhysicalWorld::SetBodyControl(
+    PhysicsBody& bodyWrapper, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float rotationRate)
 {
-    if (reachTargetInSeconds <= 0)
+    // Used to detect when the target has changed enough to warrant logic change in the control apply. This needs
+    // to be relatively large to avoid oscillation
+    constexpr auto newRotationTargetAfter = 0.01f;
+
+    if (rotationRate <= 0)
     {
-        LOG_ERROR("Invalid reachTargetInSeconds variable for controlling a body, needs to be positive");
+        LOG_ERROR("Invalid rotationRate variable for controlling a body, needs to be positive");
         return;
     }
 
-    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded())
+    BodyControlState* state;
+
+    bool justEnabled = bodyWrapper.EnableBodyControlIfNotAlready();
+
+    state = bodyWrapper.GetBodyControlState();
+
+    if (state == nullptr)
     {
-        LOG_ERROR("Couldn't lock body for applying body control");
+        LOG_ERROR("Logic error in body control state creation (state should have been created)");
         return;
     }
 
-    JPH::Body& body = lock.GetBody();
-
-    body.AddImpulse(movementImpulse);
-
-    const auto& currentRotation = body.GetRotation();
-
-    // TODO: make sure the math is fine here for the body control to feel file
-    const auto difference = currentRotation * targetRotation.Inversed();
-
-    // TODO: tweak this parameter to make sure there's no jitter around the right orientation (this is now slightly
-    // smaller than the default value)
-    if (difference.IsClose(JPH::Quat::sIdentity(), 1.0e-5f))
+    if (justEnabled)
     {
-        body.SetAngularVelocityClamped({0, 0, 0});
+        // TODO: avoid duplicates if someone else will also add items to this list
+        pimpl->bodiesWithPerStepControl.emplace_back(&bodyWrapper);
+
+        state->previousTarget = targetRotation;
+        state->targetRotation = targetRotation;
+        state->targetChanged = true;
+        state->justStarted = true;
     }
     else
     {
-        body.SetAngularVelocityClamped(difference.GetEulerAngles() / reachTargetInSeconds);
+        state->targetRotation = targetRotation;
+
+        if (!targetRotation.IsClose(state->previousTarget, newRotationTargetAfter))
+        {
+            state->targetChanged = true;
+            state->previousTarget = state->targetRotation;
+        }
+    }
+
+    state->movement = movementImpulse;
+    state->rotationRate = rotationRate;
+}
+
+void PhysicalWorld::DisableBodyControl(PhysicsBody& bodyWrapper)
+{
+    if (bodyWrapper.DisableBodyControl())
+    {
+        auto& registeredIn = pimpl->bodiesWithPerStepControl;
+
+        for (auto iter = registeredIn.begin(); iter != registeredIn.end(); ++iter)
+        {
+            if ((*iter).get() == &bodyWrapper)
+            {
+                // TODO: if items can be in this vector for multiple reasons this will need to check that
+                registeredIn.erase(iter);
+                return;
+            }
+        }
+
+        LOG_ERROR("Didn't find body in internal vector of bodies needing operations for control disable");
     }
 }
 
@@ -408,8 +477,7 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
 }
 
 // ------------------------------------ //
-Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(
-    PhysicsBody& body, JPH::Vec3 axis, bool lockRotation, bool useInertiaToLockRotation /*= false*/)
+Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(PhysicsBody& body, JPH::Vec3 axis, bool lockRotation)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), body.GetId());
     if (!lock.Succeeded())
@@ -433,7 +501,7 @@ Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(
     if (axis.GetZ() != 0)
         constraintSettings.MakeFixedAxis(JPH::SixDOFConstraintSettings::TranslationZ);
 
-    if (lockRotation && !useInertiaToLockRotation)
+    if (lockRotation)
     {
         if (axis.GetX() != 0)
         {
@@ -453,41 +521,47 @@ Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(
             constraintSettings.MakeFixedAxis(JPH::SixDOFConstraintSettings::RotationZ);
         }
     }
-    else if (lockRotation)
+
+    // Non-working inertia based approach. See:
+    // https://github.com/jrouwe/JoltPhysics/discussions/180#discussioncomment-6182600
+    // Locking approach by inertia from:
+    // JoltPhysics/Samples/Tests/General/TwoDFunnelTest.cpp
+    // This disallows changing the object mass properties (likely shape) after doing this
+    /*JPH::MassProperties mass_properties = lock.GetBody().GetShape()->GetMassProperties();
+    JPH::MotionProperties* mp = lock.GetBody().GetMotionProperties();
+    mp->SetInverseMass(1.0f / mass_properties.mMass);
+
+    // Start off with allowing all rotation
+    JPH::Vec3 inverseInertiaVector = JPH::Vec3(1.0f / mass_properties.mInertia.GetAxisX().Length(),
+        1.0f / mass_properties.mInertia.GetAxisY().Length(), 1.0f / mass_properties.mInertia.GetAxisZ().Length());
+
+    // And then remove the axes that are not allowed
+    if (axis.GetX() != 0)
     {
-        // Locking approach by inertia from: https://github.com/jrouwe/JoltPhysics/pull/378/files
-        // JoltPhysics/Samples/Tests/General/TwoDFunnelTest.cpp
-        // This disallows changing the object mass properties (likely shape) after doing this
-        // TODO: check if this is the better approach overall compared to the above locking of rotational axes
-        JPH::MassProperties mass_properties = lock.GetBody().GetShape()->GetMassProperties();
-        JPH::MotionProperties* mp = lock.GetBody().GetMotionProperties();
-        mp->SetInverseMass(1.0f / mass_properties.mMass);
-
-        // Start off with allowing all rotation
-        JPH::Vec3 inverseInertiaVector = JPH::Vec3(1.0f / mass_properties.mInertia.GetAxisX().Length(),
-            1.0f / mass_properties.mInertia.GetAxisY().Length(), 1.0f / mass_properties.mInertia.GetAxisZ().Length());
-
-        // And then remove the axes that are not allowed
-        if (axis.GetX() != 0)
-        {
-            inverseInertiaVector.SetY(0);
-            inverseInertiaVector.SetZ(0);
-        }
-
-        if (axis.GetY() != 0)
-        {
-            inverseInertiaVector.SetX(0);
-            inverseInertiaVector.SetZ(0);
-        }
-
-        if (axis.GetZ() != 0)
-        {
-            inverseInertiaVector.SetX(0);
-            inverseInertiaVector.SetY(0);
-        }
-
-        mp->SetInverseInertia(inverseInertiaVector, JPH::Quat::sIdentity());
+        inverseInertiaVector.SetY(0);
+        inverseInertiaVector.SetZ(0);
     }
+
+    if (axis.GetY() != 0)
+    {
+        inverseInertiaVector.SetX(0);
+        inverseInertiaVector.SetZ(0);
+    }
+
+    if (axis.GetZ() != 0)
+    {
+        inverseInertiaVector.SetX(0);
+        inverseInertiaVector.SetY(0);
+    }
+
+    // For some reason overriding this like the following results in slightly more stable physics (but still very
+    // wobly)
+    // inverseInertiaVector = JPH::Vec3(0, 1.0f / mass_properties.mInertia.GetAxisY().Length(), 0);
+
+    mp->SetInverseInertia(inverseInertiaVector, JPH::Quat::sIdentity());*/
+
+    // Needed for precision on the axis lock to actually stay relatively close to the target value
+    constraintSettings.mPosition1 = constraintSettings.mPosition2 = lock.GetBody().GetCenterOfMassPosition();
 
     auto constraintPtr = (JPH::SixDOFConstraint*)constraintSettings.Create(JPH::Body::sFixedToWorld, lock.GetBody());
 
@@ -565,6 +639,29 @@ void PhysicalWorld::RemoveGravity()
 }
 
 // ------------------------------------ //
+bool PhysicalWorld::DumpSystemState(std::string_view path)
+{
+    // Dump a Jolt snapshot to the path
+    JPH::Ref<JPH::PhysicsScene> scene = new JPH::PhysicsScene();
+    scene->FromPhysicsSystem(physicsSystem.get());
+
+    std::ofstream stream(path.data(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
+    JPH::StreamOutWrapper wrapper(stream);
+
+    if (stream.is_open())
+    {
+        scene->SaveBinaryState(wrapper, true, true);
+    }
+    else
+    {
+        LOG_ERROR(std::string("Can't dump physics state to non-writable file at: ") + path.data());
+        return false;
+    }
+
+    return true;
+}
+
+// ------------------------------------ //
 void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
 {
     if (changesToBodies)
@@ -623,6 +720,19 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
     averagePhysicsTime = pimpl->AddAndCalculateAverageTime(elapsed);
 }
 
+void PhysicalWorld::PerformPhysicsStepOperations(float delta)
+{
+    // Apply per-step physics body state
+    // TODO: multithreading if there's a ton of bodies using this
+    for (const auto& bodyPtr : pimpl->bodiesWithPerStepControl)
+    {
+        auto& body = *bodyPtr;
+
+        if (body.GetBodyControlState() != nullptr)
+            ApplyBodyControl(body);
+    }
+}
+
 Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
     JPH::RVec3Arg position, JPH::Quat rotation /*= JPH::Quat::sIdentity()*/)
 {
@@ -657,5 +767,170 @@ void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
     body.AddRef();
     ++bodyCount;
 }
+
+// ------------------------------------ //
+void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper)
+{
+    constexpr auto allowedRotationDifference = 0.0001f;
+    constexpr auto closeToTargetThreshold = 0.23f;
+    constexpr auto overshootDetectWhenAllAnglesLessThan = PI * 0.025f;
+
+    BodyControlState* controlState = bodyWrapper.GetBodyControlState();
+    const auto bodyId = bodyWrapper.GetId();
+
+    // This method is called by the step listener meaning that all bodies are already locked so this needs to be used
+    // like this
+    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterfaceNoLock(), bodyId);
+    if (!lock.Succeeded())
+    {
+        LOG_ERROR("Couldn't lock body for applying body control");
+        return;
+    }
+
+    JPH::Body& body = lock.GetBody();
+
+    body.AddImpulse(controlState->movement);
+
+    const auto& currentRotation = body.GetRotation();
+
+    const auto inversedTargetRotation = controlState->targetRotation.Inversed();
+    const auto difference = currentRotation * inversedTargetRotation;
+
+    if (difference.IsClose(JPH::Quat::sIdentity(), allowedRotationDifference))
+    {
+        // At rotation target, stop rotation
+        // TODO: we could allow small velocities to allow external objects to force our rotation off a bit after which
+        // this would correct itself
+        body.SetAngularVelocity({0, 0, 0});
+    }
+    else
+    {
+        // Not currently at the rotation target
+        const auto differenceAngles = difference.GetEulerAngles();
+
+        bool setNormalVelocity = true;
+
+        if (!controlState->justStarted && !controlState->targetChanged)
+        {
+            // Check if we overshot the target and should stop to avoid oscillating
+
+            // Compare the current rotation state with the previous one to detect if we are now on different side of
+            // the target rotation than the previous rotation was
+            const auto oldDifference = controlState->previousRotation * inversedTargetRotation;
+            const auto oldAngles = oldDifference.GetEulerAngles();
+
+            const auto angleDifference = oldAngles - differenceAngles;
+
+            bool potentiallyOvershot = std::signbit(oldAngles.GetX()) != std::signbit(differenceAngles.GetX()) ||
+                std::signbit(oldAngles.GetY()) != std::signbit(differenceAngles.GetY()) ||
+                std::signbit(oldAngles.GetZ()) != std::signbit(differenceAngles.GetZ());
+
+            // If the signs are different and the angles are close enough (to make sure if we overshoot a ton we
+            // correct) then detect an overshoot
+            if (potentiallyOvershot && std::abs(angleDifference.GetX()) < overshootDetectWhenAllAnglesLessThan &&
+                std::abs(angleDifference.GetY()) < overshootDetectWhenAllAnglesLessThan &&
+                std::abs(angleDifference.GetZ()) < overshootDetectWhenAllAnglesLessThan)
+            {
+                // Overshot and we are within angle limits, reset velocity to 0 to prevent oscillation
+                body.SetAngularVelocity({0, 0, 0});
+                setNormalVelocity = false;
+            }
+        }
+
+        if (setNormalVelocity)
+        {
+            // When near the target slow down rotation
+            const bool nearTarget = difference.IsClose(JPH::Quat::sIdentity(), closeToTargetThreshold);
+
+            if (nearTarget)
+            {
+                body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate * 0.5f);
+            }
+            else
+            {
+                body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
+            }
+        }
+    }
+
+    controlState->previousRotation = currentRotation;
+    controlState->justStarted = false;
+    controlState->targetChanged = false;
+}
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "readability-make-member-function-const"
+#pragma ide diagnostic ignored "readability-convert-member-functions-to-static"
+
+void PhysicalWorld::DrawPhysics(float delta)
+{
+    if (debugDrawLevel < 1)
+    {
+#ifdef JPH_DEBUG_RENDERER
+        contactListener->SetDebugDraw(nullptr);
+#endif
+
+        return;
+    }
+
+#ifdef JPH_DEBUG_RENDERER
+    auto& drawer = DebugDrawForwarder::GetInstance();
+
+    if (!drawer.HasAReceiver())
+        return;
+
+    drawer.SetCameraPositionForLOD(pimpl->debugDrawCameraLocation);
+
+    if (!drawer.TimeToRenderDebug(delta))
+    {
+        // Rate limiting the drawing
+        // New contacts will be drawn on the next non-rate limited frame
+        contactListener->SetDrawOnlyNewContacts(true);
+        return;
+    }
+
+    if (debugDrawLevel > 2)
+    {
+        contactListener->SetDebugDraw(&drawer);
+        contactListener->SetDrawOnlyNewContacts(false);
+    }
+    else
+    {
+        contactListener->SetDebugDraw(nullptr);
+    }
+
+    pimpl->bodyDrawSettings.mDrawBoundingBox = debugDrawLevel > 1;
+    pimpl->bodyDrawSettings.mDrawVelocity = debugDrawLevel > 1;
+
+    physicsSystem->DrawBodies(pimpl->bodyDrawSettings, &drawer);
+
+    if (debugDrawLevel > 3)
+    {
+        contactListener->DrawActiveContacts(drawer);
+    }
+
+    if (debugDrawLevel > 4)
+        physicsSystem->DrawConstraints(&drawer);
+
+    if (debugDrawLevel > 5)
+        physicsSystem->DrawConstraintLimits(&drawer);
+
+    if (debugDrawLevel > 6)
+        physicsSystem->DrawConstraintReferenceFrame(&drawer);
+
+    drawer.FlushOutput();
+#endif
+}
+
+void PhysicalWorld::SetDebugCameraLocation(JPH::Vec3Arg position) noexcept
+{
+#ifdef JPH_DEBUG_RENDERER
+    pimpl->debugDrawCameraLocation = position;
+#else
+    UNUSED(position);
+#endif
+}
+
+#pragma clang diagnostic pop
 
 } // namespace Thrive::Physics

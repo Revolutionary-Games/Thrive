@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "Jolt/Core/Reference.h"
 #include "Jolt/Physics/Body/BodyID.h"
 
@@ -16,6 +18,7 @@ namespace Thrive::Physics
 {
 
 class PhysicalWorld;
+class BodyControlState;
 
 /// \brief Our physics body wrapper that has extra data
 class PhysicsBody : public RefCounted
@@ -56,11 +59,20 @@ public:
         return id;
     }
 
-    [[nodiscard]] inline const auto& GetConstraints() const noexcept{
+    [[nodiscard]] const inline auto& GetConstraints() const noexcept
+    {
         return constraintsThisIsPartOf;
     }
 
+    [[nodiscard]] inline BodyControlState* GetBodyControlState() const noexcept
+    {
+        return bodyControlStateIfActive.get();
+    }
+
 protected:
+    bool EnableBodyControlIfNotAlready() noexcept;
+    bool DisableBodyControl() noexcept;
+
     void MarkUsedInWorld() noexcept;
     void MarkRemovedFromWorld() noexcept;
 
@@ -79,6 +91,8 @@ private:
     bool active = true;
 
     std::vector<Ref<TrackedConstraint>> constraintsThisIsPartOf;
+
+    std::unique_ptr<BodyControlState> bodyControlStateIfActive;
 
     // PhysicalWorld* owningWorld;
 };
