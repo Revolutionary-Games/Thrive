@@ -51,14 +51,14 @@ public class ProcessSystem
     ///   can be specified to be a different type of value)
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, bool isPlayerSpecies, bool hasNucleus,
+        BiomeConditions biome, MembraneType membrane, bool isPlayerSpecies, bool isBacteria,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, isPlayerSpecies,
-            hasNucleus, worldSettings, amountType);
+            isBacteria, worldSettings, amountType);
     }
 
     /// <summary>
@@ -72,12 +72,12 @@ public class ProcessSystem
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
-    /// <param name="hasNucleus">Whether this microbe does not have a nucleus and is considered prokaryotic</param>
+    /// <param name="isBacteria">Whether this microbe does not have a nucleus and is considered prokaryotic</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
-        bool isPlayerSpecies, bool hasNucleus, WorldGenerationSettings worldSettings, CompoundAmountType amountType)
+        bool isPlayerSpecies, bool isBacteria, WorldGenerationSettings worldSettings, CompoundAmountType amountType)
     {
         var result = new EnergyBalanceInfo();
 
@@ -87,14 +87,8 @@ public class ProcessSystem
 
         int hexCount = 0;
 
-        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         foreach (var organelle in organelles)
         {
-            if (organelle.Definition == nucleus)
-            {
-                hasNucleus = false;
-            }
 
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
@@ -156,7 +150,7 @@ public class ProcessSystem
             result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
 
-        if (hasNucleus == false)
+        if (isBacteria == false)
         {
             result.Osmoregulation *= Constants.NUCLEUS_OSMOREGULATION_MULTIPLIER;
         }
