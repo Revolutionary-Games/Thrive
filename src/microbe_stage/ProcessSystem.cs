@@ -89,7 +89,6 @@ public class ProcessSystem
 
         foreach (var organelle in organelles)
         {
-
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome, amountType);
