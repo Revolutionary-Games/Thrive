@@ -93,8 +93,6 @@ public class MicrobeBenchmark : Node
     private Node worldRoot = null!;
     private Node dynamicRoot = null!;
 
-    private PackedScene microbeScene = null!;
-
     private CompoundCloudSystem? cloudSystem;
 #pragma warning restore CA2213
 
@@ -104,21 +102,15 @@ public class MicrobeBenchmark : Node
 
     private GameWorld? world;
     private GameProperties? gameProperties;
-    private FluidSystem? fluidSystem;
-    private MicrobeSystem? microbeSystem;
-    private ProcessSystem? processSystem;
-    private MicrobeAISystem? microbeAI;
-    private FloatingChunkSystem? chunkSystem;
-    private TimedLifeSystem? timedLifeSystem;
+
+    private MicrobeWorldSimulation? microbeSimulation;
 
     private Random random = new(RANDOM_SEED);
-    private Random aiRandom = new();
 
     private int aiGroup1Seed;
     private int aiGroup2Seed;
 
     private bool preventDying;
-    private bool runAI;
 
     private int internalPhaseCounter;
     private float timer;
@@ -155,8 +147,6 @@ public class MicrobeBenchmark : Node
 
         worldRoot = GetNode<Node>(WorldRootPath);
         dynamicRoot = GetNode<Node>(DynamicRootPath);
-
-        microbeScene = SpawnHelpers.LoadMicrobeScene();
 
         guiContainer.Visible = true;
         benchmarkFinishedText.Visible = false;
@@ -199,20 +189,8 @@ public class MicrobeBenchmark : Node
             }
         }
 
-        processSystem?.Process(delta);
-
-        // Run the microbe system to process microbes
-        microbeSystem?.Process(delta);
-
-        chunkSystem?.Process(delta, new Vector3(0, 0, 0));
-        timedLifeSystem?.Process(delta);
-
-        if (runAI)
-        {
-            // The AI thinking randomly adds some randomness
-            // Update AI for the cells
-            microbeAI?.Process(delta, aiRandom);
-        }
+        microbeSimulation?.ProcessFrameLogic(delta);
+        microbeSimulation?.ProcessLogic(delta);
 
         switch (internalPhaseCounter)
         {
@@ -223,11 +201,14 @@ public class MicrobeBenchmark : Node
                 BenchmarkHelpers.PerformBenchmarkSetup(storedSettings);
 
                 GenerateWorldAndSpecies();
-                SetupEnoughGameSystemsToRun();
+                SetupSimulation();
+
+                if (microbeSimulation == null)
+                    throw new InvalidOperationException("Microbe sim not setup");
 
                 spawnAngle = 0;
                 spawnDistance = 1;
-                runAI = false;
+                microbeSimulation.RunAI = false;
                 preventDying = true;
 
                 IncrementPhase();
@@ -279,8 +260,8 @@ public class MicrobeBenchmark : Node
             case 4:
             {
                 // Enable AI
-                runAI = true;
-                aiRandom = new Random(aiGroup1Seed);
+                microbeSimulation!.RunAI = true;
+                microbeSimulation.OverrideMicrobeAIRandomSeed(aiGroup1Seed);
 
                 IncrementPhase();
                 break;
@@ -311,13 +292,13 @@ public class MicrobeBenchmark : Node
                 preventDying = false;
                 spawnCounter = 0;
 
-                dynamicRoot.FreeChildren();
+                microbeSimulation.DestroyAllEntities();
                 spawnedMicrobes.Clear();
                 cloudSystem!.EmptyAllClouds();
 
                 spawnAngle = 0;
                 spawnDistance = 1;
-                aiRandom = new Random(aiGroup2Seed);
+                microbeSimulation!.OverrideMicrobeAIRandomSeed(aiGroup2Seed);
 
                 IncrementPhase();
                 break;
@@ -403,6 +384,8 @@ public class MicrobeBenchmark : Node
     {
         if (disposing)
         {
+            microbeSimulation?.Dispose();
+
             if (GUIContainerPath != null)
             {
                 GUIContainerPath.Dispose();
@@ -464,26 +447,16 @@ public class MicrobeBenchmark : Node
         }
     }
 
-    private void SetupEnoughGameSystemsToRun()
+    private void SetupSimulation()
     {
-        fluidSystem = new FluidSystem(worldRoot);
-
         cloudSystem = new CompoundCloudSystem();
         worldRoot.AddChild(cloudSystem);
 
-        cloudSystem.Init(fluidSystem);
-
-        microbeSystem = new MicrobeSystem(dynamicRoot);
-        microbeAI = new MicrobeAISystem(dynamicRoot, cloudSystem);
-
-        processSystem = new ProcessSystem(dynamicRoot);
+        microbeSimulation = new MicrobeWorldSimulation();
+        microbeSimulation.Init(dynamicRoot, cloudSystem);
 
         // ReSharper disable once StringLiteralTypo
-        processSystem.SetBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
-
-        chunkSystem = new FloatingChunkSystem(dynamicRoot, cloudSystem);
-
-        timedLifeSystem = new TimedLifeSystem(dynamicRoot);
+        microbeSimulation.SetSimulationBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
     }
 
     private void SpawnAndUpdatePositionState()
@@ -507,8 +480,9 @@ public class MicrobeBenchmark : Node
 
     private void SpawnMicrobe(Vector3 position)
     {
-        var microbe = SpawnHelpers.SpawnMicrobe(generatedSpecies[spawnCounter % generatedSpecies.Count], position,
-            dynamicRoot, microbeScene, true, cloudSystem!, dummySpawnSystem, gameProperties!);
+        var microbe = SpawnHelpers.SpawnMicrobe(microbeSimulation!,
+            generatedSpecies[spawnCounter % generatedSpecies.Count], position,
+            true, dummySpawnSystem, gameProperties!);
 
         spawnedMicrobes.Add(new EntityReference<Microbe>(microbe));
         ++spawnCounter;

@@ -34,7 +34,7 @@ public class CiliaComponent : ExternallyPositionedComponent
             return;
         }
 
-        var currentCellRotation = microbe.GlobalTransform.basis.Quat();
+        var currentCellRotation = microbe.Rotation;
 
         if (previousCellRotation == null)
         {
@@ -138,7 +138,9 @@ public class CiliaComponent : ExternallyPositionedComponent
 
         var microbe = organelle.ParentMicrobe!;
 
-        attractorArea = new Area
+        throw new NotImplementedException();
+
+        /*attractorArea = new Area
         {
             GravityPoint = true,
             GravityDistanceScale = Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR,
@@ -150,7 +152,7 @@ public class CiliaComponent : ExternallyPositionedComponent
 
         attractorShape ??= new SphereShape();
         attractorArea.ShapeOwnerAddShape(attractorArea.CreateShapeOwner(attractorShape), attractorShape);
-        microbe.AddChild(attractorArea);
+        microbe.AddChild(attractorArea);*/
     }
 
     protected override void CustomDetach()

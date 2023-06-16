@@ -23,10 +23,7 @@ public class SpawnSystem : ISpawnSystem
     [JsonProperty]
     private float despawnElapsed;
 
-    /// <summary>
-    ///   Root node to parent all spawned things to
-    /// </summary>
-    private Node worldRoot;
+    private IWorldSimulation world;
 
     private ShuffleBag<Spawner> spawnTypes;
 
@@ -58,9 +55,9 @@ public class SpawnSystem : ISpawnSystem
     [JsonProperty]
     private HashSet<Int2> coordinatesSpawned = new();
 
-    public SpawnSystem(Node root)
+    public SpawnSystem(IWorldSimulation world)
     {
-        worldRoot = root;
+        this.world = world;
         spawnTypes = new ShuffleBag<Spawner>(random);
     }
 
@@ -112,12 +109,15 @@ public class SpawnSystem : ISpawnSystem
         ClearSpawnQueue();
         float despawned = 0.0f;
 
-        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
+        foreach (var spawned in world.Entities.OfType<ISpawned>())
         {
-            if (!spawned.EntityNode.IsQueuedForDeletion())
+            if (spawned.DisallowDespawning)
+                continue;
+
+            if (world.IsEntityInWorld(spawned))
             {
                 despawned += spawned.EntityWeight;
-                spawned.DestroyDetachAndQueueFree();
+                world.DestroyEntity(spawned);
             }
         }
 
@@ -187,10 +187,20 @@ public class SpawnSystem : ISpawnSystem
         }
     }
 
-    public void AddEntityToTrack(ISpawned entity)
+    /// <summary>
+    ///   Notifies this that an externally created entity is now in the world. Used to setup the despawn radius for it
+    ///   and make sure entity count is up to date.
+    /// </summary>
+    /// <param name="entity">The entity that needs proper despawning support</param>
+    public void NotifyExternalEntitySpawned(ISpawned entity)
     {
         entity.DespawnRadiusSquared = Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
-        entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
+
+        if (entity.DisallowDespawning)
+        {
+            GD.Print("Added external entity that's not allowed to be despawned to the spawn system");
+            return;
+        }
 
         // Update entity count estimate to keep this about up to date, this will be corrected within a few seconds
         // with the next spawn cycle to be exactly correct
@@ -227,9 +237,9 @@ public class SpawnSystem : ISpawnSystem
 
         var playerReproducedEntities = new List<ISpawned>();
 
-        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.PLAYER_REPRODUCED_GROUP))
+        foreach (var spawned in world.EntitiesWithGroup(Constants.PLAYER_REPRODUCED_GROUP).OfType<ISpawned>())
         {
-            if (spawned.EntityNode.IsQueuedForDeletion())
+            if (world.IsQueuedForDeletion(spawned) || spawned.DisallowDespawning)
                 continue;
 
             playerReproductionWeight += spawned.EntityWeight;
@@ -245,12 +255,13 @@ public class SpawnSystem : ISpawnSystem
             playerReproducedEntities.Count > 0)
         {
             var despawn = playerReproducedEntities
-                .OrderByDescending(s => s.EntityNode.GlobalTranslation.DistanceSquaredTo(playerPosition)).First();
+                .OrderByDescending(s => s.Position.DistanceSquaredTo(playerPosition)).First();
 
             var weight = despawn.EntityWeight;
             estimateEntityCount -= weight;
             limitExcess -= weight;
-            despawn.DestroyDetachAndQueueFree();
+
+            world.DestroyEntity(despawn);
         }
 
         if (limitExcess <= 1)
@@ -258,9 +269,10 @@ public class SpawnSystem : ISpawnSystem
 
         // We take weight as well as distance into account here to not just despawn a ton of really far away objects
         // with weight of 1
-        using var deSpawnableEntities = worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP)
+        using var deSpawnableEntities = world.Entities.OfType<ISpawned>()
+            .Where(d => !d.DisallowDespawning)
             .OrderByDescending(s =>
-                Math.Log(s.EntityNode.GlobalTranslation.DistanceSquaredTo(playerPosition)) + Math.Log(s.EntityWeight))
+                Math.Log(s.Position.DistanceSquaredTo(playerPosition)) + Math.Log(s.EntityWeight))
             .GetEnumerator();
 
         // Then try to despawn enough stuff for us to get under the limit
@@ -271,7 +283,10 @@ public class SpawnSystem : ISpawnSystem
             if (deSpawnableEntities.MoveNext() && deSpawnableEntities.Current != null)
                 bestCandidate = deSpawnableEntities.Current;
 
-            if (bestCandidate == doNotDespawn || bestCandidate?.EntityNode.IsQueuedForDeletion() == true)
+            if (bestCandidate == doNotDespawn)
+                continue;
+
+            if (bestCandidate != null && world.IsQueuedForDeletion(bestCandidate))
                 continue;
 
             if (bestCandidate != null)
@@ -279,7 +294,7 @@ public class SpawnSystem : ISpawnSystem
                 var weight = bestCandidate.EntityWeight;
                 estimateEntityCount -= weight;
                 limitExcess -= weight;
-                bestCandidate.DestroyDetachAndQueueFree();
+                world.DestroyEntity(bestCandidate);
 
                 continue;
             }
@@ -318,13 +333,19 @@ public class SpawnSystem : ISpawnSystem
                 var entityPosition = ((Spatial)enumerator.Current).GlobalTransform.origin;
                 if ((playerPosition - entityPosition).Length() < Constants.SPAWN_SECTOR_SIZE)
                 {
-                    enumerator.Current.DestroyDetachAndQueueFree();
+                    if (enumerator.Current.DisallowDespawning)
+                    {
+                        GD.PrintErr(
+                            "We need to abandon a spawn that had a thing in it that isn't allowed to be despawned");
+                    }
+
+                    world.DestroyEntity(enumerator.Current);
                     finished = true;
                     break;
                 }
 
                 // Next was spawned
-                ProcessSpawnedEntity(enumerator.Current, spawn.SpawnType);
+                SetDespawnRadius(enumerator.Current, spawn.SpawnType);
 
                 var weight = enumerator.Current.EntityWeight;
                 estimateEntityCount += weight;
@@ -474,7 +495,10 @@ public class SpawnSystem : ISpawnSystem
             return spawns;
         }
 
-        var enumerable = spawnType.Spawn(worldRoot, location, this);
+        throw new NotImplementedException();
+
+        // TODO: spawning
+        /*var enumerable = spawnType.Spawn(world, location, this);
 
         if (enumerable == null)
             return spawns;
@@ -494,7 +518,7 @@ public class SpawnSystem : ISpawnSystem
             if (spawner.Current == null)
                 throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
-            ProcessSpawnedEntity(spawner.Current, spawnType);
+            SetDespawnRadius(spawner.Current, spawnType);
             var weight = spawner.Current.EntityWeight;
             spawns += weight;
             estimateEntityCount += weight;
@@ -509,7 +533,7 @@ public class SpawnSystem : ISpawnSystem
         else
         {
             spawner.Dispose();
-        }
+        }*/
 
         return spawns;
     }
@@ -525,8 +549,11 @@ public class SpawnSystem : ISpawnSystem
 
         int despawnedCount = 0;
 
-        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
+        foreach (var spawned in world.Entities.OfType<ISpawned>())
         {
+            if (spawned.DisallowDespawning)
+                continue;
+
             var entityWeight = spawned.EntityWeight;
             spawnedEntityWeight += entityWeight;
 
@@ -545,7 +572,7 @@ public class SpawnSystem : ISpawnSystem
             if (squaredDistance > spawned.DespawnRadiusSquared)
             {
                 entitiesDeleted += entityWeight;
-                spawned.DestroyDetachAndQueueFree();
+                world.DestroyEntity(spawned);
 
                 ++despawnedCount;
             }
@@ -559,15 +586,10 @@ public class SpawnSystem : ISpawnSystem
         return spawnedEntityWeight - entitiesDeleted;
     }
 
-    /// <summary>
-    ///   Add the entity to the spawned group and add the despawn radius
-    /// </summary>
-    private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
+    private void SetDespawnRadius(ISpawned entity, Spawner spawnType)
     {
         float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
         entity.DespawnRadiusSquared = (int)(radius * radius);
-
-        entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
     // TODO Could use to be moved to mathUtils?

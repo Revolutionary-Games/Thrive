@@ -451,7 +451,7 @@ public partial class Microbe
         copyEntity.Transform = new Transform(daughterBasis, copyEntity.Translation);
 
         // Make it despawn like normal
-        spawnSystem!.AddEntityToTrack(copyEntity);
+        spawnSystem!.NotifyExternalEntitySpawned(copyEntity);
 
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();

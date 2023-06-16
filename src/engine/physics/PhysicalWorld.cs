@@ -133,6 +133,11 @@ public class PhysicalWorld : IDisposable
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
     }
 
+    public void SetBodyVelocity(PhysicsBody body, Vector3 velocity, Vector3 rotation)
+    {
+        throw new NotImplementedException();
+    }
+
     public bool FixBodyYCoordinateToZero(PhysicsBody body)
     {
         return NativeMethods.FixBodyYCoordinateToZero(AccessWorldInternal(), body.AccessBodyInternal());
@@ -151,6 +156,26 @@ public class PhysicalWorld : IDisposable
     {
         NativeMethods.PhysicsBodyAddAxisLock(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(axis),
             lockRotation);
+    }
+
+    public void SetBodyCollisionsEnabledState(PhysicsBody body, bool collisionsEnabled)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BodyIgnoreCollisionsWithBody(PhysicsBody body, PhysicsBody otherBody)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BodyRemoveCollisionIgnoreWith(PhysicsBody body, PhysicsBody otherBody)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BodyClearCollisionsIgnores(PhysicsBody body)
+    {
+        throw new NotImplementedException();
     }
 
     public void SetGravity(JVecF3? gravity = null)

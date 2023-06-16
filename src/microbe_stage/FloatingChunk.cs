@@ -7,11 +7,10 @@ using Newtonsoft.Json;
 ///   Script for the floating chunks (cell parts, rocks, hazards)
 /// </summary>
 [JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntity
+public class FloatingChunk : SimulatedPhysicsEntity, ISimulatedEntityWithDirectVisuals, ISpawned,
+    IEngulfable /*, IInspectableEntity*/
 {
 #pragma warning disable CA2213 // a shared resource from the chunk definition
-    [Export]
     [JsonProperty]
     public PackedScene GraphicsScene = null!;
 #pragma warning restore CA2213
@@ -67,10 +66,10 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public float EntityWeight => 1.0f;
+    public bool DisallowDespawning => false;
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
+    public float EntityWeight => 1000.0f;
 
     [JsonIgnore]
     public GeometryInstance EntityGraphics
@@ -86,6 +85,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
             throw new InstanceNotLoadedYetException();
         }
     }
+
+    [JsonIgnore]
+    public Spatial VisualNode { get; private set; } = new();
 
     [JsonIgnore]
     public int RenderPriority
@@ -155,16 +157,13 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     public float ChunkScale { get; set; }
 
     /// <summary>
-    ///   The name of kind of damage type this chunk inflicts. Default is "chunk".
+    ///   The name of the kind of damage type this chunk inflicts. Default is "chunk".
     /// </summary>
     public string DamageType { get; set; } = "chunk";
 
     public string ChunkName { get; set; } = string.Empty;
 
     public bool EasterEgg { get; set; }
-
-    [JsonIgnore]
-    public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
     public PhagocytosisPhase PhagocytosisStep { get; set; }
@@ -192,8 +191,10 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     [JsonIgnore]
     public string ReadableName => TranslationServer.Translate(ChunkName);
 
-    public override void _Ready()
+    public override void OnAddedToSimulation(IWorldSimulation simulation)
     {
+        base.OnAddedToSimulation(simulation);
+
         InitGraphics();
 
         if (chunkMesh == null && particles == null)
@@ -222,7 +223,8 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
         EasterEgg = chunkType.EasterEgg;
 
-        Mass = chunkType.Mass;
+        // TODO: proper density values from the JSON
+        Density = chunkType.Mass * 1000;
 
         // These are stored for saves to work
         Radius = chunkType.Radius;
@@ -258,7 +260,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         config.Size = EngulfSize;
         config.Damages = Damages;
         config.DeleteOnTouch = DeleteOnTouch;
-        config.Mass = Mass;
+        config.Mass = Density / 1000;
         config.DamageType = DamageType;
 
         config.Radius = Radius;
@@ -292,13 +294,22 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         return config;
     }
 
-    public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
+    /// <summary>
+    ///   Processes this chunk
+    /// </summary>
+    /// <returns>True if this wants to be destroyed</returns>
+    public bool ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
         if (PhagocytosisStep != PhagocytosisPhase.None)
-            return;
+            return false;
 
         if (isDissolving)
-            HandleDissolving(delta);
+        {
+            if (HandleDissolving(delta))
+            {
+                return true;
+            }
+        }
 
         if (isFadingParticles)
         {
@@ -306,7 +317,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
 
             if (particleFadeTimer <= 0)
             {
-                this.DestroyDetachAndQueueFree();
+                return true;
             }
         }
 
@@ -316,7 +327,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         // This doesn't actually seem to have that much effect with reasonable chunk counts... but doesn't seem
         // to hurt either, so for the future I think we should keep this -hhyyrylainen
         if (elapsedSinceProcess < Constants.FLOATING_CHUNK_PROCESS_INTERVAL)
-            return;
+            return false;
 
         VentCompounds(elapsedSinceProcess, compoundClouds);
 
@@ -345,7 +356,11 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
 
             if (DeleteOnTouch)
             {
-                DissolveOrRemove();
+                if (DissolveOrRemove())
+                {
+                    return true;
+                }
+
                 break;
             }
         }
@@ -353,16 +368,19 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
         {
             VentAllCompounds(compoundClouds);
-            DissolveOrRemove();
+            if (DissolveOrRemove())
+            {
+                return true;
+            }
         }
 
         elapsedSinceProcess = 0;
+        return false;
     }
 
     public void PopImmediately(CompoundCloudSystem compoundClouds)
     {
         VentAllCompounds(compoundClouds);
-        this.DestroyDetachAndQueueFree();
     }
 
     public void VentAllCompounds(CompoundCloudSystem compoundClouds)
@@ -370,7 +388,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         // Vent all remaining compounds immediately
         if (Compounds.Compounds.Count > 0)
         {
-            var pos = Translation;
+            var pos = Position;
 
             var keys = new List<Compound>(Compounds.Compounds.Keys);
 
@@ -385,11 +403,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
                 VentCompound(pos, compound, amount, compoundClouds);
             }
         }
-    }
-
-    public void OnDestroyed()
-    {
-        AliveMarker.Alive = false;
     }
 
     public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds()
@@ -425,7 +438,11 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     private void InitGraphics()
     {
         var graphicsNode = GraphicsScene.Instance();
-        GetNode("NodeToScale").AddChild(graphicsNode);
+
+        VisualNode.AddChild(graphicsNode);
+
+        // Scale is now applied here as this doesn't conflict with the random rotation set by the spawner
+        VisualNode.Scale = new Vector3(ChunkScale, ChunkScale, ChunkScale);
 
         if (!string.IsNullOrEmpty(ModelNodePath))
         {
@@ -443,16 +460,16 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         }
         else
         {
-            throw new Exception("Invalid class");
+            throw new Exception("Invalid class for chunk graphics scene node");
         }
     }
 
     private void InitPhysics()
     {
         // Apply physics shape
-        var shape = GetNode<CollisionShape>("CollisionShape");
+        throw new NotImplementedException();
 
-        if (ConvexPhysicsMesh == null)
+        /*if (ConvexPhysicsMesh == null)
         {
             var sphereShape = new SphereShape { Radius = Radius };
             shape.Shape = sphereShape;
@@ -462,16 +479,19 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
             if (chunkMesh == null)
                 throw new InvalidOperationException("Can't use convex physics shape without mesh for chunk");
 
+            // TODO: scale?
+
             shape.Shape = ConvexPhysicsMesh;
             shape.Transform = chunkMesh.Transform;
-        }
+        }*/
 
         // Needs physics callback when this is engulfable or damaging
         if (Damages > 0 || DeleteOnTouch || EngulfSize > 0)
         {
-            ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-            Connect("body_shape_entered", this, nameof(OnContactBegin));
-            Connect("body_shape_exited", this, nameof(OnContactEnd));
+            RegisterCollisionCallback(OnContactBegin);
+
+            // TODO: contact end callback / modify the begin callback to continuously trigger for active physics
+            // Connect("body_shape_exited", this, nameof(OnContactEnd));
         }
     }
 
@@ -483,7 +503,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         if (Compounds.Compounds.Count <= 0)
             return;
 
-        var pos = Translation;
+        var pos = Position;
 
         var keys = new List<Compound>(Compounds.Compounds.Keys);
 
@@ -521,24 +541,25 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     /// <summary>
     ///   Handles the dissolving effect for the chunks when they run out of compounds.
     /// </summary>
-    private void HandleDissolving(float delta)
+    private bool HandleDissolving(float delta)
     {
         if (chunkMesh == null)
             throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
         if (PhagocytosisStep != PhagocytosisPhase.None)
-            return;
+            return false;
 
         // Disable collisions
-        CollisionLayer = 0;
-        CollisionMask = 0;
+        DisableAllCollisions();
 
         DigestedAmount += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
 
         if (DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
         {
-            this.DestroyDetachAndQueueFree();
+            return true;
         }
+
+        return false;
     }
 
     private void UpdateDissolveEffect()
@@ -558,9 +579,11 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         chunkMesh.MaterialOverride.RenderPriority = RenderPriority;
     }
 
-    private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
+    private void OnContactBegin(PhysicsBody physicsBody, int collidedSubShapeDataOurs, int bodyShape)
     {
-        _ = bodyID;
+        throw new NotImplementedException();
+
+        /*_ = bodyID;
         _ = localShape;
 
         if (body is Microbe microbe)
@@ -572,12 +595,13 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
             var target = microbe.GetMicrobeFromShape(bodyShape);
             if (target != null)
                 touchingMicrobes.Add(target);
-        }
+        }*/
     }
 
     private void OnContactEnd(int bodyID, Node body, int bodyShape, int localShape)
     {
-        _ = bodyID;
+        throw new NotImplementedException();
+        /*_ = bodyID;
         _ = localShape;
 
         if (body is Microbe microbe)
@@ -600,10 +624,10 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
 
             if (target != null)
                 touchingMicrobes.Remove(target);
-        }
+        }*/
     }
 
-    private void DissolveOrRemove()
+    private bool DissolveOrRemove()
     {
         if (Dissolves)
         {
@@ -613,16 +637,21 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         {
             isFadingParticles = true;
 
-            // Disable collisions
-            CollisionLayer = 0;
-            CollisionMask = 0;
+            DisableAllCollisions();
 
             particles.Emitting = false;
             particleFadeTimer = particles.Lifetime;
         }
         else if (particles == null)
         {
-            this.DestroyDetachAndQueueFree();
+            return true;
         }
+
+        return false;
     }
+
+    // TODO: do something with these
+    public Vector3 RelativePosition { get; set; }
+    public Quat RelativeRotation { get; set; }
+    public bool AttachedToAnEntity { get; set; }
 }

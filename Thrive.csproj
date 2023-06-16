@@ -121,6 +121,16 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
+    <Compile Include="src\engine\common_components\CollisionManagement.cs" />
+    <Compile Include="src\engine\common_components\Physics.cs" />
+    <Compile Include="src\engine\common_components\SpatialInstance.cs" />
+    <Compile Include="src\engine\common_components\Spawned.cs" />
+    <Compile Include="src\engine\common_components\TimedLife.cs" />
+    <Compile Include="src\engine\common_components\WorldPosition.cs" />
+    <Compile Include="src\engine\common_systems\PhysicsCollisionManagementSystem.cs" />
+    <Compile Include="src\engine\common_systems\SpatialPositionSystem.cs" />
+    <Compile Include="src\engine\common_systems\TimedLifeSystem.cs" />
     <Compile Include="src\engine\DebugDrawer.cs" />
     <Compile Include="src\engine\DebugOverlays.Inspector.cs" />
     <Compile Include="src\engine\DebugOverlays.SceneTreeDumper.cs" />
@@ -212,6 +222,7 @@
     <Compile Include="src\general\AssetType.cs" />
     <Compile Include="src\general\base_stage\CreatureStageBase.cs" />
     <Compile Include="src\general\base_stage\CreatureStageHUDBase.cs" />
+    <Compile Include="src\general\base_stage\DummyWorldSimulation.cs" />
     <Compile Include="src\general\base_stage\EditorBase.cs" />
     <Compile Include="src\general\base_stage\EditorComponentBase.cs" />
     <Compile Include="src\general\base_stage\EditorComponentWithActionsBase.cs" />
@@ -228,16 +239,22 @@
     <Compile Include="src\general\base_stage\IEditorComponent.cs" />
     <Compile Include="src\general\base_stage\IEditorWithActions.cs" />
     <Compile Include="src\general\base_stage\IEditorWithPatches.cs" />
+    <Compile Include="src\general\base_stage\IEntityContainer.cs" />
     <Compile Include="src\general\base_stage\IHexEditor.cs" />
     <Compile Include="src\general\base_stage\IReturnableGameState.cs" />
     <Compile Include="src\general\base_stage\IStageBase.cs" />
     <Compile Include="src\general\base_stage\IStageHUD.cs" />
     <Compile Include="src\general\base_stage\IStrategyStage.cs" />
     <Compile Include="src\general\base_stage\IStrategyStageHUD.cs" />
+    <Compile Include="src\general\base_stage\IWorldSimulation.cs" />
+    <Compile Include="src\general\base_stage\IWorldSimulationWithPhysics.cs" />
+    <Compile Include="src\general\base_stage\WorldSimulation.cs" />
     <Compile Include="src\general\base_stage\StageBase.cs" />
     <Compile Include="src\general\base_stage\StrategyStageBase.cs" />
     <Compile Include="src\general\base_stage\StrategyStageHUDBase.cs" />
+    <Compile Include="src\general\base_stage\WorldSimulationWithPhysics.cs" />
     <Compile Include="src\general\CustomDifficulty.cs" />
+    <Compile Include="src\general\IAliveTracked.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\general\IInspectableEntity.cs" />
     <Compile Include="src\general\IPlayerReadableName.cs" />
@@ -308,6 +325,7 @@
     <Compile Include="src\late_multicellular_stage\ProgressBarSystem.cs" />
     <Compile Include="src\late_multicellular_stage\ReproductionLocation.cs" />
     <Compile Include="src\microbe_stage\AvailableUpgrade.cs" />
+    <Compile Include="src\microbe_stage\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\general\CombinableActionData.cs" />
@@ -372,6 +390,8 @@
     <Compile Include="src\late_multicellular_stage\MulticellularCamera.cs" />
     <Compile Include="src\late_multicellular_stage\PlayerMulticellularInput.cs" />
     <Compile Include="src\microbe_stage\BiomeType.cs" />
+    <Compile Include="src\microbe_stage\components\BioProcesses.cs" />
+    <Compile Include="src\microbe_stage\components\CompoundStorage.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\OrganelleUpgradeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\ColourActionData.cs" />
@@ -489,6 +509,7 @@
     <Compile Include="src\microbe_stage\MicrobeInspectInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeState.cs" />
     <Compile Include="src\microbe_stage\MicrobeSystem.cs" />
+    <Compile Include="src\microbe_stage\MicrobeWorldSimulation.cs" />
     <Compile Include="src\microbe_stage\organelle_components\AxonComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\MyofibrilComponent.cs" />
@@ -520,7 +541,6 @@
     <Compile Include="src\microbe_stage\organelle_components\ChemoreceptorComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SignalingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\LysosomeComponent.cs" />
-    <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PatchNameOverlay.cs" />
     <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
@@ -548,6 +568,7 @@
     <Compile Include="src\microbe_stage\organelle_components\MovementComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\PilusComponent.cs" />
     <Compile Include="src\microbe_stage\StrictProcessDisplayInfoEquality.cs" />
+    <Compile Include="src\microbe_stage\systems\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\TweakedProcess.cs" />
     <Compile Include="src\microbe_stage\CompoundBag.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudSystem.cs" />
@@ -560,7 +581,6 @@
     <Compile Include="src\general\Int3.cs" />
     <Compile Include="src\general\GameProperties.cs" />
     <Compile Include="src\microbe_stage\AgentProperties.cs" />
-    <Compile Include="src\general\TimedLifeSystem.cs" />
     <Compile Include="src\general\ITimedLife.cs" />
     <Compile Include="src\general\IWorldEffect.cs" />
     <Compile Include="src\general\TimedWorldOperations.cs" />
@@ -571,8 +591,6 @@
     <Compile Include="src\general\DifficultyPreset.cs" />
     <Compile Include="src\engine\ScreenEffect.cs" />
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
-    <Compile Include="src\microbe_stage\ProcessSystem.cs" />
-    <Compile Include="src\microbe_stage\IProcessable.cs" />
     <Compile Include="src\microbe_stage\MicrobeAISystem.cs" />
     <Compile Include="src\microbe_stage\IMicrobeAI.cs" />
     <Compile Include="src\microbe_stage\Patch.cs" />
@@ -797,6 +815,9 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp">
       <Version>1.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="DefaultEcs">
+      <Version>0.17.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>

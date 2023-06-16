@@ -8,14 +8,19 @@ using Newtonsoft.Json;
 ///   Base stage for the stages where the player controls a single creature
 /// </summary>
 /// <typeparam name="TPlayer">The type of the player object</typeparam>
+/// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
+public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
     where TPlayer : class
+    where TSimulation : class, IWorldSimulation, new()
 {
 #pragma warning disable CA2213
     protected DirectionalLight worldLight = null!;
 #pragma warning restore CA2213
+
+    [AssignOnlyChildItemsOnDeserialize]
+    protected TSimulation worldSimulation = new();
 
     /// <summary>
     ///   Used to differentiate between spawning the player the first time and respawning
@@ -172,12 +177,13 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
 
         var debugOverlay = DebugOverlays.Instance;
 
-        if (debugOverlay.PerformanceMetricsVisible)
+        throw new NotImplementedException();
+        /*if (debugOverlay.PerformanceMetricsVisible)
         {
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
+            foreach (var entity in worldSimulation.Entities.OfType<ISpawned>())
             {
                 totalEntityWeight += entity.EntityWeight;
                 ++totalEntityCount;
@@ -185,7 +191,7 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
 
             var childCount = rootOfDynamicallySpawned.GetChildCount();
             debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
-        }
+        }*/
 
         if (CheatManager.ManuallySetTime)
         {

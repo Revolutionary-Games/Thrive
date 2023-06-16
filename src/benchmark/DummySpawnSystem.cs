@@ -31,7 +31,7 @@ public class DummySpawnSystem : ISpawnSystem
     {
     }
 
-    public void AddEntityToTrack(ISpawned entity)
+    public void NotifyExternalEntitySpawned(ISpawned entity)
     {
         addTrackedCallback?.Invoke(entity);
     }

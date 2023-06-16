@@ -9,6 +9,7 @@ public static class MathUtils
 {
     public const float EPSILON = 0.00000001f;
     public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
+    public const float RADIANS_TO_DEGREES = 180 / Mathf.Pi;
     public const double FULL_CIRCLE = Math.PI * 2;
     public const float RIGHT_ANGLE = Mathf.Pi / 2;
 

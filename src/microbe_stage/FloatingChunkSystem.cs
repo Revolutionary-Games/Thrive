@@ -10,15 +10,15 @@ using Godot;
 /// </summary>
 public class FloatingChunkSystem
 {
-    private readonly Node worldRoot;
+    private readonly IWorldSimulation worldSimulation;
 
     private readonly CompoundCloudSystem clouds;
 
     private Vector3 latestPlayerPosition = Vector3.Zero;
 
-    public FloatingChunkSystem(Node worldRoot, CompoundCloudSystem cloudSystem)
+    public FloatingChunkSystem(IWorldSimulation worldSimulation, CompoundCloudSystem cloudSystem)
     {
-        this.worldRoot = worldRoot;
+        this.worldSimulation = worldSimulation;
         clouds = cloudSystem;
     }
 
@@ -27,7 +27,9 @@ public class FloatingChunkSystem
         if (playerPosition != null)
             latestPlayerPosition = playerPosition.Value;
 
-        var chunks = worldRoot.GetChildrenToProcess<FloatingChunk>(Constants.AI_TAG_CHUNK).ToList();
+        var comparePosition = latestPlayerPosition;
+
+        var chunks = worldSimulation.Entities.OfType<FloatingChunk>().ToList();
 
         var findTooManyChunksTask = new Task<IEnumerable<FloatingChunk>>(() =>
         {
@@ -37,9 +39,7 @@ public class FloatingChunkSystem
             if (tooManyChunks < 1)
                 return Array.Empty<FloatingChunk>();
 
-            var comparePosition = latestPlayerPosition;
-
-            return chunks.OrderByDescending(c => c.Translation.DistanceSquaredTo(comparePosition))
+            return chunks.OrderByDescending(c => c.Position.DistanceSquaredTo(comparePosition))
                 .Take(tooManyChunks);
         });
 
@@ -47,13 +47,15 @@ public class FloatingChunkSystem
 
         foreach (var chunk in chunks)
         {
-            chunk.ProcessChunk(delta, clouds);
+            if (chunk.ProcessChunk(delta, clouds))
+                worldSimulation.DestroyEntity(chunk);
         }
 
         findTooManyChunksTask.Wait();
         foreach (var toDespawn in findTooManyChunksTask.Result)
         {
             toDespawn.PopImmediately(clouds);
+            worldSimulation.DestroyEntity(toDespawn);
         }
     }
 }

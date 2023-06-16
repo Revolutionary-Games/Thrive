@@ -21,7 +21,7 @@ public class MicrobeEventArgs : TutorialEventArgs
 
 public class RotationEventArgs : TutorialEventArgs
 {
-    public RotationEventArgs(Basis rotation, Vector3 rotationInDegrees)
+    public RotationEventArgs(Quat rotation, Vector3 rotationInDegrees)
     {
         Rotation = rotation;
         RotationInDegrees = rotationInDegrees;
@@ -30,7 +30,7 @@ public class RotationEventArgs : TutorialEventArgs
     /// <summary>
     ///   Quaternion of the rotation
     /// </summary>
-    public Basis Rotation { get; }
+    public Quat Rotation { get; }
 
     /// <summary>
     ///   Axis-wise degree rotations

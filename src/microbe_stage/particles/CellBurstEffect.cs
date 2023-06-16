@@ -1,22 +1,30 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/microbe_stage/particles/CellBurstEffect.tscn", UsesEarlyResolve = false)]
-public class CellBurstEffect : Spatial, ITimedLife
+public class CellBurstEffect : SimulatedEntity, ISimulatedEntityWithDirectVisuals, ITimedLife
 {
+    private static readonly Lazy<PackedScene> VisualsScene =
+        new(() => GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn"));
+
     [JsonProperty]
-    public float Radius;
+    public float Radius { get; set; }
 
-#pragma warning disable CA2213
-    private Particles particles = null!;
-#pragma warning restore CA2213
-
+    [JsonProperty]
     public float TimeToLiveRemaining { get; set; }
 
-    public override void _Ready()
+    [JsonProperty]
+    public float? FadeTimeRemaining { get; set; }
+
+    [JsonIgnore]
+    public Spatial VisualNode { get; private set; } = null!;
+
+    public override void OnAddedToSimulation(IWorldSimulation simulation)
     {
-        particles = GetNode<Particles>("Particles");
+        base.OnAddedToSimulation(simulation);
+
+        var particles = VisualsScene.Value.Instance<Particles>();
 
         TimeToLiveRemaining = particles.Lifetime;
 
@@ -25,10 +33,15 @@ public class CellBurstEffect : Spatial, ITimedLife
         material.EmissionSphereRadius = Radius / 2;
         material.LinearAccel = Radius / 2;
         particles.OneShot = true;
+
+        VisualNode = particles;
+    }
+
+    public override void Process(float delta)
+    {
     }
 
     public void OnTimeOver()
     {
-        this.DetachAndQueueFree();
     }
 }

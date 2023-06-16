@@ -11,6 +11,8 @@ public class EntityReference<T>
 {
     // TODO: should this be somehow set to null when we detect that the alive marker is no longer alive
     // Currently set to clear on fetch
+    // TODO: should this be a weak reference to allow garbage collection to happen faster? This is probably good enough
+    // for most current use as when trying to retrieve a dead entity this gets set to null
     private T? currentInstance;
     private AliveMarker? currentAliveMarker;
 

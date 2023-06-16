@@ -200,7 +200,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     public override void ShowFossilisationButtons()
     {
-        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+        throw new NotImplementedException();
+
+        /*var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
         foreach (var microbe in microbes)
         {
@@ -221,7 +223,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 TranslationServer.Translate("FOSSILISATION_HINT");
 
             fossilisationButtonLayer.AddChild(button);
-        }
+        }*/
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -389,6 +391,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         // Show the entity's name and count of hovered entities
         hoveredEntities.Clear();
+
+        throw new NotImplementedException();
 
         foreach (var entity in stage.HoverInfo.InspectableEntities)
         {

@@ -166,8 +166,6 @@ public static class Constants
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 15;
-
     public const int MICROBE_SPAWN_RADIUS = 350;
     public const int CLOUD_SPAWN_RADIUS = 350;
 
@@ -225,7 +223,7 @@ public static class Constants
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 5.25f;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
@@ -318,6 +316,7 @@ public static class Constants
 
     public const float COMPOUND_RELEASE_FRACTION = 0.9f;
 
+    // TODO: delete after the conversion to custom physics
     /// <summary>
     ///   Base mass all microbes have on top of their organelle masses
     /// </summary>
@@ -977,20 +976,11 @@ public static class Constants
     public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
 
-    /// <summary>
-    ///   All Nodes tagged with this are handled by the spawn system for despawning
-    /// </summary>
-    public const string SPAWNED_GROUP = "spawned";
-
+    // TODO: delete once old microbe code is gone
     /// <summary>
     ///   All Nodes tagged with this are handled by the timed life system for despawning
     /// </summary>
     public const string TIMED_GROUP = "timed";
-
-    /// <summary>
-    ///   All RigidBody nodes tagged with this are affected by currents by the fluid system
-    /// </summary>
-    public const string FLUID_EFFECT_GROUP = "fluid_effect";
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the process system. Can't be just "process" as that conflicts with
@@ -1025,14 +1015,9 @@ public static class Constants
     /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
+    // TODO: delete up to here after microbe code is gone
+
     public const string ENTITY_TAG_CREATURE = "creature";
-
-    /// <summary>
-    ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to
-    /// </summary>
-    public const string AI_TAG_CHUNK = "chunk";
-
-    public const string PLAYER_GROUP = "player";
 
     public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
 

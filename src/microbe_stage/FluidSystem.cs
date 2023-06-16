@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
+/// <summary>
+///   Gives a push from currents in a fluid to physics entities
+/// </summary>
 public class FluidSystem
 {
-    // private const float MaxForceApplied = 0.525f;
-
     private const float DISTURBANCE_TIMESCALE = 0.001f;
     private const float CURRENTS_TIMESCALE = 0.001f / 500.0f;
     private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
@@ -19,12 +22,12 @@ public class FluidSystem
 
     // private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
 
-    private readonly Node worldRoot;
+    private readonly IWorldSimulationWithPhysics worldSimulation;
 
-    // TODO: this should be probably saved in the future to make currents consistent after loading a save
+    [JsonProperty]
     private float millisecondsPassed;
 
-    public FluidSystem(Node worldRoot)
+    public FluidSystem(IWorldSimulationWithPhysics worldSimulation)
     {
         noiseDisturbancesX = new FastNoiseLite(69);
         noiseDisturbancesX.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
@@ -37,7 +40,8 @@ public class FluidSystem
 
         noiseCurrentsY = new FastNoiseLite(1337);
         noiseCurrentsY.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-        this.worldRoot = worldRoot;
+
+        this.worldSimulation = worldSimulation;
     }
 
     public void Process(float delta)
@@ -45,14 +49,27 @@ public class FluidSystem
         millisecondsPassed += delta / 1000.0f;
     }
 
+    // TODO: rename this
     public void PhysicsProcess(float delta)
     {
         _ = delta;
-        foreach (var body in worldRoot.GetChildrenToProcess<RigidBody>(Constants.FLUID_EFFECT_GROUP))
+        var physics = worldSimulation.PhysicalWorld;
+
+        foreach (var entity in worldSimulation.Entities.OfType<SimulatedPhysicsEntity>())
         {
-            var pos = new Vector2(body.Translation.x, body.Translation.z);
+            // Skip microbes for now as we don't have visualizations for the currents
+            if (entity is Microbe)
+                continue;
+
+            if (entity.Body == null)
+                continue;
+
+            var entityPosition = entity.Position;
+
+            var pos = new Vector2(entityPosition.x, entityPosition.z);
             var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
-            body.ApplyCentralImpulse(new Vector3(vel.x, 0, vel.y));
+
+            physics.GiveImpulse(entity.Body, new Vector3(vel.x, 0, vel.y) * delta);
         }
     }
 

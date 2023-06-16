@@ -39,6 +39,7 @@ public static class Spawners
 /// </summary>
 public static class SpawnHelpers
 {
+    // TODO: remove this old variant
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
         CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
@@ -71,6 +72,42 @@ public static class SpawnHelpers
 
         microbe.SetInitialCompounds();
         return microbe;
+    }
+
+    public static Microbe SpawnMicrobe(MicrobeWorldSimulation simulation, Species species, Vector3 location,
+        bool aiControlled, ISpawnSystem spawnSystem, GameProperties currentGame,
+        CellType? multicellularCellType = null)
+    {
+        throw new NotImplementedException();
+        /*var microbe = new Microbe();
+
+        // The second parameter is (isPlayer), and we assume that if the
+        // cell is not AI controlled it is the player's cell
+        microbe.Init(simulation.CloudSystem, spawnSystem, currentGame, !aiControlled);
+
+        microbe.Position = location;
+
+        // TODO: this will be needed to be changed we switch to an ECS system (or could have an off/on flag in the
+        // ai component then)
+        if (aiControlled)
+        {
+            microbe.EntityGroups.Add(Constants.AI_GROUP);
+        }
+
+        if (multicellularCellType != null)
+        {
+            microbe.ApplyMulticellularNonFirstCellSpecies((EarlyMulticellularSpecies)species, multicellularCellType);
+        }
+        else
+        {
+            microbe.ApplySpecies(species);
+        }
+
+        microbe.SetInitialCompounds();
+
+        simulation.CreateEmptyEntity(microbe);
+
+        return microbe;*/
     }
 
     /// <summary>
@@ -130,7 +167,8 @@ public static class SpawnHelpers
     public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
         Vector3 location, Node worldNode, PackedScene chunkScene, Random random)
     {
-        var chunk = (FloatingChunk)chunkScene.Instance();
+        throw new NotImplementedException();
+        /*var chunk = (FloatingChunk)chunkScene.Instance();
 
         // Settings need to be applied before adding it to the scene
         var selectedMesh = chunkType.Meshes.Random(random);
@@ -157,7 +195,7 @@ public static class SpawnHelpers
 
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
         chunk.AddToGroup(Constants.AI_TAG_CHUNK);
-        return chunk;
+        return chunk;*/
     }
 
     public static PackedScene LoadChunkScene()
@@ -190,7 +228,9 @@ public static class SpawnHelpers
     {
         var normalizedDirection = direction.Normalized();
 
-        var agent = (AgentProjectile)agentScene.Instance();
+        throw new NotImplementedException();
+
+        /*var agent = (AgentProjectile)agentScene.Instance();
         agent.Properties = properties;
         agent.Amount = amount;
         agent.TimeToLiveRemaining = lifetime;
@@ -205,7 +245,7 @@ public static class SpawnHelpers
             Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
 
         agent.AddToGroup(Constants.TIMED_GROUP);
-        return agent;
+        return agent;*/
     }
 
     public static PackedScene LoadAgentScene()

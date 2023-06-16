@@ -35,7 +35,7 @@ public interface ISpawnSystem
     /// <summary>
     ///   Adds an externally spawned entity to be despawned and tracked by the system
     /// </summary>
-    public void AddEntityToTrack(ISpawned entity);
+    public void NotifyExternalEntitySpawned(ISpawned entity);
 
     /// <summary>
     ///   Checks if the approximate entity count is not too much over the entity limit

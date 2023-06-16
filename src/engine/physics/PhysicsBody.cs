@@ -2,8 +2,18 @@
 using System.Runtime.InteropServices;
 using Godot;
 
-public class PhysicsBody : IDisposable
+public class PhysicsBody : IDisposable, IEquatable<PhysicsBody>
 {
+    public static bool operator ==(PhysicsBody? left, PhysicsBody? right)
+    {
+        return Equals(left, right);
+    }
+
+    public static bool operator !=(PhysicsBody? left, PhysicsBody? right)
+    {
+        return !Equals(left, right);
+    }
+
     private bool disposed;
     private IntPtr nativeInstance;
 
@@ -22,6 +32,31 @@ public class PhysicsBody : IDisposable
     ~PhysicsBody()
     {
         Dispose(false);
+    }
+
+    public bool Equals(PhysicsBody? other)
+    {
+        if (other == null)
+            return false;
+
+        return nativeInstance.ToInt64() != 0 && nativeInstance == other.nativeInstance;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj))
+            return false;
+        if (ReferenceEquals(this, obj))
+            return true;
+        if (obj.GetType() != this.GetType())
+            return false;
+
+        return Equals((PhysicsBody)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return nativeInstance.GetHashCode();
     }
 
     public void Dispose()

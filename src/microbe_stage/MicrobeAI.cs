@@ -249,7 +249,9 @@ public class MicrobeAI
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
             if (targetChunk != null && targetChunk.PhagocytosisStep == PhagocytosisPhase.None)
             {
-                PursueAndConsumeChunks(targetChunk.Translation, random);
+                throw new NotImplementedException();
+
+                // PursueAndConsumeChunks(targetChunk.Translation, random);
                 return;
             }
         }
@@ -299,7 +301,9 @@ public class MicrobeAI
             if (chunk.Compounds.Compounds.Count <= 0)
                 continue;
 
-            if (microbe.EngulfSize > chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ
+            throw new NotImplementedException();
+
+            /*if (microbe.EngulfSize > chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0
                 && chunk.PhagocytosisStep == PhagocytosisPhase.None)
@@ -313,13 +317,15 @@ public class MicrobeAI
                         chosenChunk = chunk;
                     }
                 }
-            }
+            }*/
         }
 
         // Don't bother with chunks when there's a lot of microbes to compete with
         if (chosenChunk != null)
         {
-            var rivals = 0;
+            throw new NotImplementedException();
+
+            /*var rivals = 0;
             var distanceToChunk = (microbe.Translation - chosenChunk.Translation).LengthSquared();
             foreach (var rival in allMicrobes)
             {
@@ -332,7 +338,7 @@ public class MicrobeAI
                         rivals++;
                     }
                 }
-            }
+            }*/
 
             int rivalThreshold;
             if (SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3)
@@ -354,10 +360,12 @@ public class MicrobeAI
                 rivalThreshold *= 2;
             }
 
-            if (rivals > rivalThreshold)
-            {
-                chosenChunk = null;
-            }
+            throw new NotImplementedException();
+
+            // if (rivals > rivalThreshold)
+            // {
+            //     chosenChunk = null;
+            // }
         }
 
         return chosenChunk;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -113,7 +114,10 @@ public static class MicrobeInternalCalculations
     public static float CalculateSpeed(ICollection<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity)
     {
-        float microbeMass = Constants.MICROBE_BASE_MASS;
+        // TODO: reimplement, this is now really complicated with the physics engine change and not using a mass...
+        throw new NotImplementedException();
+
+        /*float microbeMass = Constants.MICROBE_BASE_MASS;
 
         float organelleMovementForce = 0;
 
@@ -177,7 +181,7 @@ public static class MicrobeInternalCalculations
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
-        return finalSpeed;
+        return finalSpeed;*/
     }
 
     /// <summary>

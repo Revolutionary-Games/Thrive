@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : CreatureStageBase<Microbe>
+public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -23,11 +23,6 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem spawner = null!;
 
-    private MicrobeAISystem microbeAISystem = null!;
-    private MicrobeSystem microbeSystem = null!;
-
-    private FloatingChunkSystem floatingChunkSystem = null!;
-
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
@@ -36,6 +31,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
+
     private Vector3? guidancePosition;
 
     /// <summary>
@@ -59,15 +55,6 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; } = null!;
-
-    [JsonIgnore]
-    public FluidSystem FluidSystem { get; private set; } = null!;
-
-    [JsonIgnore]
-    public TimedLifeSystem TimedLifeSystem { get; private set; } = null!;
-
-    [JsonIgnore]
-    public ProcessSystem ProcessSystem { get; private set; } = null!;
 
     /// <summary>
     ///   The main camera, needs to be after anything with AssignOnlyChildItemsOnDeserialize due to load order
@@ -131,14 +118,11 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
 
         // These need to be created here as well for child property save load to work
-        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
-        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
-        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
-        microbeSystem = new MicrobeSystem(rootOfDynamicallySpawned);
-        floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
-        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
-        spawner = new SpawnSystem(rootOfDynamicallySpawned);
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem, worldLight, CurrentGame);
+        worldSimulation.Init(rootOfDynamicallySpawned, Clouds);
+        throw new NotImplementedException();
+
+        // patchManager = new PatchManager(spawner, worldSimulation.ProcessSystem, Clouds, worldSimulation.TimedLifeSystem,
+        //     worldLight, CurrentGame);
     }
 
     public override void _EnterTree()
@@ -159,12 +143,11 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     {
         base._Process(delta);
 
-        FluidSystem.Process(delta);
-        TimedLifeSystem.Process(delta);
-        ProcessSystem.Process(delta);
-        floatingChunkSystem.Process(delta, Player?.Translation);
-        microbeAISystem.Process(delta);
-        microbeSystem.Process(delta);
+        if (Player != null)
+            worldSimulation.PlayerPosition = Player.GlobalTranslation;
+
+        worldSimulation.ProcessFrameLogic(delta);
+        worldSimulation.ProcessLogic(delta);
 
         if (gameOver)
             return;
@@ -174,16 +157,15 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
         if (Player != null)
         {
-            var playerTransform = Player.GlobalTransform;
-
-            DebugOverlays.Instance.ReportPositionCoordinates(playerTransform.origin);
+            DebugOverlays.Instance.ReportPositionCoordinates(Player.GlobalTranslation);
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
 
-            spawner.Process(delta, playerTransform.origin);
-            Clouds.ReportPlayerPosition(playerTransform.origin);
+            spawner.Process(delta, Player.GlobalTranslation);
+            Clouds.ReportPlayerPosition(Player.GlobalTranslation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(playerTransform.basis, Player.RotationDegrees), this);
+                new RotationEventArgs(Player.Transform.basis.Quat(), Player.Rotation * MathUtils.RADIANS_TO_DEGREES),
+                this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
                 new CompoundBagEventArgs(Player.Compounds), this);
@@ -206,18 +188,22 @@ public class MicrobeStage : CreatureStageBase<Microbe>
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerTransform.origin,
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTranslation,
                             glucose)),
                         this);
                 }
 
                 if (TutorialState.WantsNearbyEngulfableInfo())
                 {
-                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
-                    var engulfables = entities.OfType<IEngulfable>().ToList();
+                    // Filter to spawned engulfables that can be despawned (this likely just filters out the player
+                    // themselves
+                    throw new NotImplementedException();
 
-                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                        new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
+                    // var engulfables = worldSimulation.Entities.OfType<ISpawned>().Where(s => !s.DisallowDespawning)
+                    //     .OfType<IEngulfable>().ToList();
+
+                    // TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
+                    //     new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -226,7 +212,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = playerTransform.origin;
+                guidanceLine.LineStart = Player.GlobalTranslation;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
@@ -240,11 +226,6 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         }
 
         UpdateLinePlayerPosition();
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        FluidSystem.PhysicsProcess(delta);
     }
 
     public override void OnFinishTransitioning()
@@ -576,7 +557,10 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     protected override void SetupStage()
     {
         // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
-        Clouds.Init(FluidSystem);
+
+        throw new NotImplementedException();
+
+        // Clouds.Init(worldSimulation.FluidSystem);
 
         // Initialise spawners next, since this removes existing spawners if present
         if (!IsLoadedFromSave)
@@ -615,9 +599,10 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         if (HasPlayer)
             return;
 
-        Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, spawner, CurrentGame!);
-        Player.AddToGroup(Constants.PLAYER_GROUP);
+        throw new NotImplementedException();
+
+        // Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
+        //     rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, spawner, CurrentGame!);
 
         Player.OnDeath = OnPlayerDied;
 
@@ -637,16 +622,21 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
         Player.OnNoticeMessage = OnPlayerNoticeMessage;
 
-        Camera.ObjectToFollow = Player;
+        throw new NotImplementedException();
+
+        // Camera.ObjectToFollow = Player;
 
         spawner.DespawnAll();
 
         if (spawnedPlayer)
         {
             // Random location on respawn
-            Player.Translation = new Vector3(
-                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
-                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+            // TODO: physics teleport
+            throw new NotImplementedException();
+
+            // Player.Translation = new Vector3(
+            //     random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+            //     random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
             spawner.ClearSpawnCoordinates();
         }
@@ -774,7 +764,9 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
     private void OnFinishLoading()
     {
-        Camera.ObjectToFollow = Player;
+        throw new NotImplementedException();
+
+        // Camera.ObjectToFollow = Player;
     }
 
     /// <summary>
@@ -808,12 +800,14 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
         var randomSpecies = species.Random(random);
 
-        var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds, spawner,
-            CurrentGame!);
+        throw new NotImplementedException();
+
+        // var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Position + Vector3.Forward * 20,
+        //     rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds, spawner,
+        //     CurrentGame!);
 
         // Make the cell despawn like normal
-        spawner.AddEntityToTrack(copyEntity);
+        // spawner.NotifyExternalEntitySpawned(copyEntity);
     }
 
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
@@ -923,7 +917,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
             return;
         }
 
-        var position = Player!.GlobalTranslation;
+        var position = Player!.GlobalTransform.origin;
 
         foreach (var chemoreception in chemoreceptionLines)
         {

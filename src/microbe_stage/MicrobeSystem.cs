@@ -11,31 +11,29 @@ public class MicrobeSystem
 {
     private readonly List<Task> tasks = new();
 
-    private readonly Node worldRoot;
+    private readonly MicrobeWorldSimulation worldSimulation;
 
-    private Microbe[]? microbes;
-
-    public MicrobeSystem(Node worldRoot)
+    public MicrobeSystem(MicrobeWorldSimulation worldSimulation)
     {
-        this.worldRoot = worldRoot;
+        this.worldSimulation = worldSimulation;
     }
 
     public void Process(float delta)
     {
-        microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
-            .ToArray();
+        var microbes = worldSimulation.Entities.OfType<Microbe>().ToList();
+        var microbeCount = microbes.Count;
 
         // Start of async early processing
         var executor = TaskExecutor.Instance;
 
-        for (int i = 0; i < microbes.Length; i += Constants.MICROBE_AI_OBJECTS_PER_TASK)
+        for (int i = 0; i < microbeCount; i += Constants.MICROBE_AI_OBJECTS_PER_TASK)
         {
             int start = i;
 
             var task = new Task(() =>
             {
                 for (int a = start;
-                     a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < microbes.Length;
+                     a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < microbeCount;
                      ++a)
                 {
                     var microbe = microbes[a];

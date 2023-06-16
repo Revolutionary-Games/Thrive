@@ -566,14 +566,15 @@ public partial class Microbe
 
             foreach (var chunk in droppedChunks)
             {
-                var direction = hostile.Transform.origin.DirectionTo(chunk.Transform.origin);
-                chunk.Translation += direction *
-                    Constants.EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET;
-
-                var impulse = direction * chunk.Mass * Constants.ENGULF_EJECTION_FORCE;
-
-                // Apply outwards ejection force
-                chunk.ApplyCentralImpulse(impulse + LinearVelocity);
+                throw new NotImplementedException();
+                // var direction = hostile.Transform.origin.DirectionTo(chunk.Transform.origin);
+                // chunk.Translation += direction *
+                //     Constants.EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET;
+                //
+                // var impulse = direction * chunk.Mass * Constants.ENGULF_EJECTION_FORCE;
+                //
+                // // Apply outwards ejection force
+                // chunk.ApplyCentralImpulse(impulse + LinearVelocity);
             }
         }
         else
@@ -972,7 +973,7 @@ public partial class Microbe
             droppedCorpseChunks.Add(chunk);
 
             // Add to the spawn system to make these chunks limit possible number of entities
-            spawnSystem!.AddEntityToTrack(chunk);
+            spawnSystem!.NotifyExternalEntitySpawned(chunk);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
@@ -1344,12 +1345,14 @@ public partial class Microbe
         {
             deathParticlesSpawned = true;
 
-            var cellBurstEffectParticles = (CellBurstEffect)cellBurstEffectScene.Instance();
-            cellBurstEffectParticles.Translation = Translation;
-            cellBurstEffectParticles.Radius = Radius;
-            cellBurstEffectParticles.AddToGroup(Constants.TIMED_GROUP);
+            throw new NotImplementedException();
 
-            GetParent().AddChild(cellBurstEffectParticles);
+            // var cellBurstEffectParticles = (CellBurstEffect)cellBurstEffectScene.Instance();
+            // cellBurstEffectParticles.Translation = Translation;
+            // cellBurstEffectParticles.Radius = Radius;
+            // cellBurstEffectParticles.AddToGroup(Constants.TIMED_GROUP);
+            //
+            // GetParent().AddChild(cellBurstEffectParticles);
 
             // This loop is placed here (which isn't related to the particles but for convenience)
             // so this loop is run only once
