@@ -39,7 +39,7 @@
 
             // Auto-evo uses the average values of compound during the course of a simulated day
             cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
-                species.PlayerSpecies, !species.IsBacteria, worldSettings, CompoundAmountType.Average);
+                species.PlayerSpecies, species.IsBacteria, worldSettings, CompoundAmountType.Average);
 
             cachedEnergyBalances.Add(key, cached);
             return cached;

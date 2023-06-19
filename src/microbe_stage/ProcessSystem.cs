@@ -149,7 +149,7 @@ public class ProcessSystem
             result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
 
-        if (isBacteria == false)
+        if (!isBacteria)
         {
             result.Osmoregulation *= Constants.NUCLEUS_OSMOREGULATION_MULTIPLIER;
         }
