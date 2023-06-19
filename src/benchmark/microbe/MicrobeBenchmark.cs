@@ -517,7 +517,7 @@ public class MicrobeBenchmark : Node
         cloudSystem!.AddCloud(glucose, GLUCOSE_CLOUD_AMOUNT, position);
 
         // And a bit of phosphate or ammonia
-        cloudSystem!.AddCloud(random.Next(0, 1) == 1 ? phosphates : ammonia, AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
+        cloudSystem!.AddCloud(random.Next(0, 2) == 1 ? phosphates : ammonia, AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
     }
 
     private void PruneDeadMicrobes()
