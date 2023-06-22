@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-29 14:37+0300\n"
-"PO-Revision-Date: 2023-04-25 19:02+0000\n"
-"Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
+"PO-Revision-Date: 2023-06-22 05:54+0000\n"
+"Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -69,9 +69,8 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "当另一个行动在进行时无法进行行动"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "确认删除"
+msgstr "删除"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
 #, fuzzy
@@ -79,9 +78,8 @@ msgid "ACTION_DOUBLE_POPULATION"
 msgstr "该物种的种群数量"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "确认删除"
+msgstr "复制单位"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
 #, fuzzy
@@ -89,9 +87,8 @@ msgid "ACTION_HALF_POPULATION"
 msgstr "{0} 种群数量： {1}"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "确认删除"
+msgstr "传送"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -198,7 +195,7 @@ msgstr ""
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "你已经飞升了"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -269,14 +266,20 @@ msgid "ART_GALLERY"
 msgstr "艺术画廊"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "该物种的种群数量"
+msgstr "恭喜！"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"您已经飞升并且通关了游戏，恭喜！\n"
+"\n"
+"您可以继续在太空阶段游玩，并使用新解锁的上帝工具来把宇宙当作沙盒来玩。\n"
+"\n"
+"您也可以下凡并在本存档中回到微生物阶段并在额外的加成下再次玩一遍游戏。\n"
+"\n"
+"您一共在本存档中飞升了{0}次。"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -419,9 +422,8 @@ msgid "AWAKENING_STAGE"
 msgstr "启蒙阶段"
 
 #: ../simulation_parameters/common/gallery.json:419
-#, fuzzy
 msgid "AWARE_STAGE"
-msgstr "微生物阶段"
+msgstr "知觉阶段"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
@@ -914,28 +916,8 @@ msgstr "增加大体型细胞的转向速度。"
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
 #: ../src/space_stage/gui/PlanetScreen.cs:118
 #: ../src/space_stage/gui/PlanetScreen.tscn:115
-#, fuzzy
 msgid "CITY_SHORT_STATISTICS"
-msgstr ""
-"[b]当前代：[/b]\n"
-"  {0}\n"
-"[b]区域数：[/b]\n"
-"  {1}\n"
-"[b]自动进化运行时间：[/b]\n"
-"  {2}\n"
-"[b]总物种数：[/b]\n"
-"  {3}\n"
-"[b]现存物种数：[/b]\n"
-"  {4}\n"
-"[b]区域物种数：[/b]\n"
-"  平均值 {5}，标准差 {6}\n"
-"[b]总种群数量：[/b]\n"
-"  {7}\n"
-"[b]优势种：[/b]\n"
-"  {8}\n"
-"[b]单细胞生物基本信息：[/b]\n"
-"  平均大小：{9}\n"
-"[b]基本细胞器信息：[/b]"
+msgstr "人口：{0} 食物：{1} 科学：{2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1139,19 +1121,17 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "确认覆盖"
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "进入太空阶段？"
+msgstr "进入飞升阶段？"
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
-"你现在可以发射宇宙飞船以突破到太空阶段。\n"
+"你现在可以通过启动飞升之门来飞升并进入飞升阶段。\n"
 "\n"
-"但是你无法观察行星地表，不过你可以在太空中放大或缩小你的视角。\n"
+"这将解锁无尽的能力，它们会以一些新的上帝工具的形式出现，并能在这个存档中使用。\n"
 "\n"
-"如果取消发射会摧毁这个宇宙飞船。确认发射火箭吗？"
+"飞升也同样意味着你通关了游戏，但你可以继续玩。确定飞升？"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
@@ -1184,9 +1164,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分设置无效"
 
 #: ../src/industrial_stage/UnitType.cs:79
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "蓝黄色盲"
+msgstr "单位：{0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -1507,9 +1486,8 @@ msgstr ""
 "- {2} 个备份存档"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "删除此存档将无法撤消，确定要永久删除吗？"
+msgstr "删除此化石将无法撤消，确定要永久删除吗？"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -1540,19 +1518,21 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "删除这个存档？"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "删除此存档将无法撤消，确定要永久删除吗？"
+msgstr "下凡"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "删除此存档将无法撤消，确定要永久删除吗？"
+msgstr "您确定要下凡吗？"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "将该物种保存至化石中并存放到博物馆里。你可以通过Thrive百科进入博物馆，或在自由编辑器中加载这些化石中的物种。"
+msgstr ""
+"下凡会结束您已飞升的状态并让您回到微生物阶段。从那里你就可以在这个存档里再次从头开始玩一遍游戏。\n"
+"\n"
+"您在新的游玩过程中会获得一项下凡的加成。在未来版本中您将可以自己选择一项加成，但现在它将固定为渗透调节消耗-20％\n"
+"\n"
+"一旦您确定要下凡，您就可以编辑游戏设定，比如说选择一个新的世界种子来在一张新的地图上游玩或者禁用“仅限已知生命形式”选项等等。"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -1752,7 +1732,6 @@ msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "不再警告"
 
 #: ../src/general/OptionsMenu.tscn:481
-#, fuzzy
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "显示3D菜单背景"
 
@@ -2102,9 +2081,8 @@ msgstr "加载存档数据时发生异常"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
 #: ../src/space_stage/gui/PlanetScreen.tscn:65
-#, fuzzy
 msgid "EXISTING_BUILDINGS"
-msgstr "输入已有的编号"
+msgstr "建筑"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2262,14 +2240,12 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
 
 #: ../src/space_stage/SpaceFleet.cs:86
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "从这个星球上灭绝了"
+msgstr "{0} 舰队"
 
 #: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "舰队单位"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -2337,9 +2313,8 @@ msgid "FOSSILISATION_EXPLANATION"
 msgstr "将该物种保存至化石中并存放到博物馆里。你可以通过Thrive百科进入博物馆，或在自由编辑器中加载这些化石中的物种。"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "保存该物种到化石中"
+msgstr "未能保存到化石中"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
 #, fuzzy
@@ -2363,9 +2338,8 @@ msgid "FOSSILISE"
 msgstr "保存至化石中"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Mod创建失败"
+msgstr "未能删除保存的化石"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
@@ -2481,9 +2455,8 @@ msgid "GODMODE"
 msgstr "上帝模式"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
-#, fuzzy
 msgid "GOD_TOOLS_TITLE"
-msgstr "加入我们社区的Discord服务器"
+msgstr "上帝工具"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2696,14 +2669,12 @@ msgid "INSPECTOR"
 msgstr "检查"
 
 #: ../src/awakening_stage/InteractionType.cs:32
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "收割"
+msgstr "启动飞升之门"
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "收割"
+msgstr "启动飞升之门（缺少能量）"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -2726,9 +2697,8 @@ msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "投放材料（没有合适的携带物品）"
 
 #: ../src/awakening_stage/InteractionType.cs:20
-#, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "收割"
+msgstr "摧毁"
 
 #: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
@@ -3640,6 +3610,10 @@ msgstr ""
 "\n"
 "叶绿体：用阳光和大气中的二氧化碳生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
 "\n"
+"热能体：利用温度梯度来产生[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"\n"
+"溶酶体：含有消化酶。酶可以增加消化的速度和效率。\n"
+"\n"
 "化学质体：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
 "\n"
 "固氮质体：用大气中的氧气，氮和[thrive:compound type=\"atp\"][/thrive:compound]生产[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
@@ -4156,9 +4130,8 @@ msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "成为陆地生物？"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:584
-#, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
-msgstr "成为陆地生物中......"
+msgstr "成为社会性生物中......"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
@@ -4246,9 +4219,8 @@ msgid "NAME"
 msgstr "名称："
 
 #: ../src/industrial_stage/gui/CityNameLabel.cs:56
-#, fuzzy
 msgid "NAME_LABEL_CITY"
-msgstr "生物群系：{0}"
+msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
@@ -4541,9 +4513,8 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
 #: ../src/space_stage/gui/PlanetScreen.tscn:108
-#, fuzzy
 msgid "OPEN_GOD_TOOLS"
-msgstr "打开Mod网址"
+msgstr "上帝工具"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -4566,9 +4537,8 @@ msgid "OPEN_ORGANELLE_MENU"
 msgstr "打开细胞器菜单"
 
 #: ../src/society_stage/gui/SocietyHUD.tscn:139
-#, fuzzy
 msgid "OPEN_RESEARCH_SCREEN"
-msgstr "打开帮助页面"
+msgstr "打开研究页面"
 
 #: ../src/saving/SaveManagerGUI.tscn:95
 msgid "OPEN_SAVE_DIRECTORY"
@@ -4977,9 +4947,8 @@ msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:403
-#, fuzzy
 msgid "PLAYER"
-msgstr "玩家细胞"
+msgstr "玩家"
 
 #: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
@@ -5225,7 +5194,7 @@ msgstr "繁殖"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:689
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "无性别"
+msgstr "无性繁殖"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
@@ -5242,9 +5211,8 @@ msgid "REQUIRES_NUCLEUS"
 msgstr "需要细胞核"
 
 #: ../src/society_stage/gui/ResearchScreen.tscn:16
-#, fuzzy
 msgid "RESEARCH"
-msgstr "搜索"
+msgstr "研究"
 
 #: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
@@ -5298,9 +5266,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:18
-#, fuzzy
 msgid "RESOURCE_ENERGY"
-msgstr "石头"
+msgstr "能量"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5670,9 +5637,8 @@ msgstr "选择一个物种"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:134
 #: ../src/society_stage/gui/TechWebGUI.tscn:56
-#, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
-msgstr "选择一个地区以显示详细"
+msgstr "从科技网上选择一项科技"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5691,9 +5657,8 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "选择预览图"
 
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
-#, fuzzy
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr "选择要放置的结构"
+msgstr "选择要建造的结构"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
@@ -5846,9 +5811,8 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "小铁块"
 
 #: ../simulation_parameters/common/gallery.json:441
-#, fuzzy
 msgid "SOCIETY_STAGE"
-msgstr "微生物阶段"
+msgstr "社会阶段"
 
 #: ../src/general/OptionsMenu.tscn:188
 msgid "SOUND"
@@ -5871,24 +5835,20 @@ msgid "SPACE"
 msgstr "空格"
 
 #: ../simulation_parameters/common/gallery.json:469
-#, fuzzy
 msgid "SPACE_STAGE"
-msgstr "微生物阶段"
+msgstr "太空阶段"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
-#, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr "已具有用于建造的材料"
+msgstr "该结构正在等待建筑船队"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:65
-#, fuzzy
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr "正在建造：{0}"
+msgstr "没有更多信息"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
-#, fuzzy
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr "正在建造：{0}"
+msgstr "该结构正在等待建筑船队，并且缺少所需资源：{0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -6007,9 +5967,8 @@ msgid "START_GAME"
 msgstr "开始游戏"
 
 #: ../src/society_stage/gui/TechWebGUI.tscn:80
-#, fuzzy
 msgid "START_RESEARCH"
-msgstr "需要重新启动"
+msgstr "开始研究"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -6132,9 +6091,8 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
 #: ../simulation_parameters/common/input_options.json:246
-#, fuzzy
 msgid "STRATEGY_STAGES"
-msgstr "微生物阶段"
+msgstr "策略游戏阶段"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
@@ -6151,14 +6109,12 @@ msgid "STRUCTURE"
 msgstr "结构"
 
 #: ../simulation_parameters/space_stage/space_structures.json:26
-#, fuzzy
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "社会中心"
+msgstr "飞升之门"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
-#, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "社会中心"
+msgstr "戴森云"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
@@ -6179,27 +6135,21 @@ msgstr "完成该建筑所需要的材料: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
 #: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
-#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr ""
-"total means how many I total have or It total cost? \n"
-"if is how many I total have , \"total\" traslate to \"目前共有{2}单位\", \n"
-"if is It total cost ,\"total\" traslate to \"总共需要{2}单位\""
+msgstr "{0} (起始消耗: {1}, 总消耗: {2})"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
 #: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
-#, fuzzy
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr "{0}（当前缺少{1}单位，总共需要：{2}单位）"
+msgstr "{0}（起始消耗不足：{1}，总消耗：{2}）"
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr "社会中心"
 
 #: ../simulation_parameters/awakening_stage/structures.json:92
-#, fuzzy
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr "Steam创意工坊启用的模组"
+msgstr "蒸汽动力工厂"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
@@ -6278,33 +6228,28 @@ msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
-#, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "社会中心建设"
+msgstr "飞升"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "渔猎采集"
 
 #: ../src/awakening_stage/ResearchLevel.cs:36
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr "解锁的科技：{0}"
+msgstr "太空时代"
 
 #: ../src/awakening_stage/ResearchLevel.cs:24
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr "解锁的科技：{0}"
+msgstr "工业时代"
 
 #: ../src/awakening_stage/ResearchLevel.cs:12
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr "社会中心建设"
+msgstr "前社会阶段"
 
 #: ../src/awakening_stage/ResearchLevel.cs:18
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr "解锁的科技：{0}"
+msgstr "远古时代"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
 #, fuzzy
@@ -6312,19 +6257,16 @@ msgid "TECHNOLOGY_LEVEL_SCIFI"
 msgstr "简单石质工具"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr "社会中心建设"
+msgstr "太空时代早期"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:148
-#, fuzzy
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr "社会中心建设"
+msgstr "需要科技等级：{0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
-#, fuzzy
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr "社会中心建设"
+msgstr "火箭科学"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6335,9 +6277,8 @@ msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "社会中心建设"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:30
-#, fuzzy
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr "Steam模组"
+msgstr "蒸汽动力"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:828
@@ -6578,9 +6519,8 @@ msgid "TOGGLE_HUD_HIDE"
 msgstr "切换HUD"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1931
-#, fuzzy
 msgid "TOGGLE_INVENTORY"
-msgstr "切换连接模式"
+msgstr "打开物品栏"
 
 #: ../simulation_parameters/common/input_options.json:334
 msgid "TOGGLE_METRICS"
@@ -6868,19 +6808,16 @@ msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤销上一个动作"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
-#, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "完成建造"
+msgstr "建造"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
-#, fuzzy
 msgid "UNIT_ACTION_MOVE"
-msgstr "收割"
+msgstr "移动"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
-#, fuzzy
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr "简易火箭"
+msgstr "简单火箭"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
