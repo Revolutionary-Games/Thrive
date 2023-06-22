@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-29 14:37+0300\n"
-"PO-Revision-Date: 2023-06-04 00:02+0000\n"
+"PO-Revision-Date: 2023-06-19 06:24+0000\n"
 "Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -316,7 +316,7 @@ msgstr "АТФ Производство"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "СЛИШКОМ МАЛО ПРОИЗВОДСТВА АТФ!"
+msgstr "СЛИШКОМ НИЗКОЕ ПРОИЗВОДСТВО АТФ!"
 
 #: ../src/saving/NewSaveMenu.tscn:146
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
@@ -1400,7 +1400,7 @@ msgstr "Цитоплазма"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Липкие внутренности клетки. Цитоплазма представляет собой основную смесь растворенных в воде ионов, белков и других веществ, заполняющих внутреннюю часть клетки. Одной из функций, которые он выполняет, является [b]гликолиз[/b], превращение [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Для клеток, которым не хватает органелл, чтобы иметь более продвинутый метаболизм, это то, на что они полагаются для получения энергии. Он также используется для хранения молекул в клетке и для увеличения размера клетки."
+msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она (цитоплазма) выполняет, это [b]гликолиз[/b], преобразование  [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
