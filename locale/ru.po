@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-29 14:37+0300\n"
-"PO-Revision-Date: 2023-06-19 06:24+0000\n"
-"Last-Translator: Ilja Mendeleev <sentryprime92@gmail.com>\n"
+"PO-Revision-Date: 2023-06-24 20:02+0000\n"
+"Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "2D стиль движения:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
-msgstr "3D-Редактор"
+msgstr "3D Редактор"
 
 #: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
@@ -73,15 +73,15 @@ msgstr "Удалить"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Помножить Популяцию на двое"
+msgstr "Удвоить Популяцию"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Повторить единицы"
+msgstr "Дублировать юнитов"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
 msgid "ACTION_HALF_POPULATION"
-msgstr "Поделить Популяцию на двое"
+msgstr "Сократить популяцию вдвое"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
 msgid "ACTION_TELEPORT"
@@ -98,8 +98,8 @@ msgstr "Число потоков:"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"Энергичные микробы будут в движении, пока поблизости ничего не происходит.\n"
-"Оседлые микробы будут стоять и ждать, пока не изменится окружающая их среда."
+"Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+"Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -115,7 +115,7 @@ msgstr "Продвинутый вид"
 
 #: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Открыть меню продвинутой настройки"
+msgstr "Открыть продвинутый вид настроек"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:90
 msgid "AEROBIC_NITROGEN_FIXING"
@@ -137,10 +137,10 @@ msgstr "{0} Агент"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
-"Агрессивные микроорганизмы будут преследовать свою добычу на большем расстоянии\n"
-"и более склонны бороться с нападавшим, когда атакованы.\n"
-"Мирные микроорганизмы не будут нападать на других на больших дистанциях\n"
-"и менее склонны использовать токсины против хищников."
+"Агрессивные микробы будут преследовать добычу на больших расстояниях\n"
+"и с большей вероятностью будут сражаться с хищниками при нападении.\n"
+"Мирные микробы не будут нападать на больших расстояниях\n"
+"и с меньшей вероятностью будут использовать токсины против хищников."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
@@ -272,7 +272,7 @@ msgstr ""
 "\n"
 "Вы можете продолжить играть в Стадии Космоса с открытыми Божественными Инструментами в песочнице.\n"
 "\n"
-"Так же возможно опуститься и вернуться к микробной стадии в этом сохранении и вновь проходить все стадии, но с доступом к облегчающим модификаторам.\n"
+"Так же возможно опуститься и вернуться к Стадии Микроба в этом сохранении и вновь пройти все стадии, но с доступом к модификаторам.\n"
 "\n"
 "Количество вознесений в данном сохранении:{0}"
 
@@ -307,12 +307,12 @@ msgstr "АТФ"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
-msgstr "АТФ баланс"
+msgstr "Баланс АТФ"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
-msgstr "АТФ Производство"
+msgstr "Производство АТФ"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
@@ -341,7 +341,7 @@ msgstr "Авто"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "На данной панели показаны числа, на основе которых работает предсказание авто-эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его физическая форма по сравнению с общей пригодностью. Пригодность - это показатель того, насколько хорошо вид может использовать этот источник пищи."
+msgstr "На данной панели показаны числа, на основе которых работает предсказание Авто-Эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-Эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его адаптация по сравнению с общей адаптацией. Адаптация - это показатель того, насколько хорошо вид может использовать этот источник пищи."
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
@@ -350,13 +350,13 @@ msgstr "Популяция {0} изменена на {1} к {2}, по причи
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
 msgid "AUTO-EVO_PREDICTION"
-msgstr "Предсказание Авто-Эволюции"
+msgstr "Предсказание Авто-Эво"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Эта панель показывает ожидаемую численность авто-эво для редактируемых видов.\n"
-"Авто-эво запускает моделирование популяции, что является частью (помимо вашей собственной эффективности), влияющей на вашу популяцию."
+"Эта панель показывает ожидаемую численность Авто-Эво для редактируемых видов.\n"
+"Авто-Эво запускает моделирование популяции, что является частью (помимо вашей собственной эффективности), влияющей на вашу популяцию."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
@@ -368,22 +368,22 @@ msgstr "Автосохранение во время игры"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:222
 msgid "AUTO_EVO"
-msgstr "Авто-Эволюция"
+msgstr "Авто-Эво"
 
 #: ../src/general/MainMenu.tscn:417
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "Инструмент изучения авто-эво"
+msgstr "Инструмент изучения Авто-Эво"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_FAILED"
-msgstr "Авто-эво не удалось запустить"
+msgstr "Не удалось запустить Авто-Эво"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:909
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
-msgstr "Результаты авто-эво:"
+msgstr "Результаты Авто-Эво:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:232
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
@@ -393,7 +393,7 @@ msgstr "статус запуска:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "статус Авто-Эволюции:"
+msgstr "Статус Авто-Эво:"
 
 #: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
@@ -433,7 +433,7 @@ msgstr "Назад"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Задний Слэш"
+msgstr "Обратный Слэш"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
@@ -467,11 +467,11 @@ msgstr "BassBoost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr "BassDown"
+msgstr "Bass Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr "BassUp"
+msgstr "Bass Up"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:583
 msgid "BATHYPELAGIC"
@@ -539,7 +539,7 @@ msgstr "Результаты:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
-msgstr "Лучший Путь:"
+msgstr "Лучший биом:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
 #: ../simulation_parameters/microbe_stage/biomes.json:326
@@ -1178,7 +1178,7 @@ msgstr ""
 "\n"
 "Вы не сможете сохраниться, в большинстве прототипов, если вы продолжите или вернуться если вы продолжите. Если вы хотите вернуться на эту стадию, пожалуйста, сделайте сохранение перед этим моментом.\n"
 "\n"
-"Помимо этого поддержка контроллера так же недоступна во многих прототипах.!!!!!Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость!!!!!"
+"Помимо этого поддержка контроллера так же недоступна во многих прототипах. Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость."
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
@@ -1373,7 +1373,7 @@ msgstr ""
 "  {0}\n"
 "[b]Всего биомов:[/b]\n"
 "  {1}\n"
-"[b]Общая длительность авто-эволюции:[/b]\n"
+"[b]Общая длительность Авто-Эво:[/b]\n"
 "  {2}\n"
 "[b]Всего видов:[/b]\n"
 "  {3}\n"
@@ -1400,7 +1400,7 @@ msgstr "Цитоплазма"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она (цитоплазма) выполняет, это [b]гликолиз[/b], преобразование  [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
+msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она (цитоплазма) выполняет, это [b]гликолиз[/b], преобразование [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
@@ -3698,7 +3698,7 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Для размножения вам необходимо поделить каждую органеллу надвое. Для этого понадобится большее количество аммиака и фосфата .Органеллам требуются [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound] и время чтобы разделиться надвое"
+msgstr "Для размножения вам необходимо поделить каждую органеллу надвое. Для этого понадобится большее количество аммиака и фосфата. Органеллам требуются [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound] и время чтобы разделиться надвое."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -4909,10 +4909,10 @@ msgstr "Планета"
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
-"Только LAWK: {0} \n"
-"Происхождение жизни: {1}  \n"
-"Цикл дня и ночи: {2}  \n"
-"Продолжительность дня(в секундах): {3}  \n"
+"Только LAWK: {0}\n"
+"Происхождение жизни: {1}\n"
+"Цикл дня и ночи: {2}\n"
+"Продолжительность дня(в секундах): {3}\n"
 "Случайное начальное число планеты: {4}"
 
 #: ../src/general/NewGameSettings.tscn:1067
@@ -5330,7 +5330,7 @@ msgstr "Популяция:"
 
 #: ../src/general/OptionsMenu.tscn:1070
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "Запускать авто-эво во время игры"
+msgstr "Запускать Авто-Эво во время игры"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "RUN_ONE_STEP"
@@ -6602,7 +6602,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"На этой панели отображается прогноз вашей будущей численности населения. Эти цифры взяты из моделирования популяции авто-эво.\n"
+"На этой панели отображается прогноз вашей будущей численности населения. Эти цифры взяты из моделирования популяции Авто-Эво.\n"
 "\n"
 "Они не учитывают вашу индивидуальную эффективность. Таким образом, в вашем текущем биоме вы будете действовать лучше, когда войдете в редактор.\n"
 "\n"
@@ -6985,7 +6985,7 @@ msgstr "Вертикальная синхронизация"
 
 #: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr "Ожидание авто-эво:"
+msgstr "Ожидание Авто-Эво:"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
@@ -7092,7 +7092,7 @@ msgstr "Относительно мира"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
-msgstr "Худший Путь:"
+msgstr "Худший биом:"
 
 #: ../src/general/OptionsMenu.tscn:611
 msgid "XBOX360"
