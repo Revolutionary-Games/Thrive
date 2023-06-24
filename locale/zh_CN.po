@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-29 14:37+0300\n"
-"PO-Revision-Date: 2023-06-22 05:54+0000\n"
+"PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -53,9 +53,8 @@ msgstr "深海带"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
-#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "唤醒({0:F1} / {1:F1})"
+msgstr "觉醒 ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 msgid "ACTION_AWAKEN_TOOLTIP"
@@ -73,18 +72,16 @@ msgid "ACTION_DELETE"
 msgstr "删除"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "该物种的种群数量"
+msgstr "使人口加倍"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
 msgid "ACTION_DUPLICATE_UNITS"
 msgstr "复制单位"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} 种群数量： {1}"
+msgstr "使人口减半"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
 msgid "ACTION_TELEPORT"
@@ -2317,11 +2314,8 @@ msgid "FOSSILISATION_FAILED"
 msgstr "未能保存到化石中"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam 客户端库初始化失败，Steam 功能将不可用。\n"
-"请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
+msgstr "未能保存化石文件"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2342,11 +2336,8 @@ msgid "FOSSIL_DELETION_FAILED"
 msgstr "未能删除保存的化石"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam 客户端库初始化失败，Steam 功能将不可用。\n"
-"请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
+msgstr "未能删除化石文件"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2555,9 +2546,8 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "按住[thrive:input]g_free_cursor[/thrive:input]以显示鼠标指针"
 
 #: ../src/ascension_stage/AscensionCeremony.tscn:231
-#, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
-msgstr "按住以显示鼠标指针"
+msgstr "长按以跳过"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:270
 msgid "HOME"
@@ -4102,19 +4092,17 @@ msgid "MOVE_UP_OR_JUMP"
 msgstr "向上走或跳起"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
-"你即将登陆并成为陆地生物。这允许你在游戏中进展到后续阶段中。一旦你登上陆地你便再也无法回到海洋里生存。\n"
+"您将要进入觉醒阶段。这么做之后您将无法回到先前阶段。\n"
 "\n"
-"目前游戏中由海洋到陆地的转变比计划中要加入的内容唐突许多。\n"
+"如果您仍是海洋生物，您将永远被困在那里并无法完成游戏。\n"
 "\n"
-"我们计划将生物生存环境向陆地的转变做成循序渐进的，而非突然的。"
+"所以如果您尚未成为陆地生物，请谨慎选择。"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr "成为陆地生物？"
+msgstr "进入觉醒阶段？"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 msgid "MOVING_TO_LAND_PROTOTYPE"
@@ -4545,9 +4533,8 @@ msgid "OPEN_SAVE_DIRECTORY"
 msgstr "打开存档文件夹"
 
 #: ../simulation_parameters/common/input_options.json:250
-#, fuzzy
 msgid "OPEN_SCIENCE_MENU"
-msgstr "打开主菜单"
+msgstr "打开科研菜单"
 
 #: ../src/general/OptionsMenu.tscn:1820
 msgid "OPEN_SCREENSHOT_FOLDER"
@@ -6252,9 +6239,8 @@ msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr "远古时代"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr "简单石质工具"
+msgstr "远未来"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
