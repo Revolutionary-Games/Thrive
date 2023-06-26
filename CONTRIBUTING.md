@@ -23,8 +23,8 @@ first issue. You can also check the issues tagged as easy to find
 something to start with. If you don't know how some issue should be
 implemented feel free to ask on the issue.
 
-Then follow the the standard fork workflow:
-https://gist.github.com/Chaser324/ce0505fbed06b947d962 to do the
+Then follow the standard fork workflow:
+https://gist.github.com/Chaser324/ce0505fbed06b947d962 to make the
 required changes to fix the issue. You should check the documentation
 in the "doc" folder as well as check Godot's
 [documentation](https://docs.godotengine.org/en/stable/). Note that
