@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-29 14:37+0300\n"
-"PO-Revision-Date: 2023-03-09 06:58+0000\n"
-"Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
+"PO-Revision-Date: 2023-06-26 06:04+0000\n"
+"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1472
@@ -68,29 +68,24 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Ação bloqueada enquanto há outra em curso"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Confirmar Saída"
+msgstr "Remover"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "População da espécie"
+msgstr "Dobrar População"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Confirmar Saída"
+msgstr "Duplicar Unidades"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} com a população: {1}"
+msgstr "Reduzir População Pela Metade"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Confirmar Saída"
+msgstr "Teletransportar"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -195,7 +190,7 @@ msgstr ""
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Você já está ascendido"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -266,14 +261,20 @@ msgid "ART_GALLERY"
 msgstr "Galeria de Arte"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "População da espécie"
+msgstr "Parabéns!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Você ascendeu e terminou o jogo. Parabéns por ter chegado ao fim.\n"
+"\n"
+"Você pode continuar jogando no Estágio Espacial com as Ferramentas Divinas desbloqueadas para se divertir.\n"
+"\n"
+"Também é possível descender e voltar ao Estágio Microbial para jogar por todos os estágios novamente com funcionalidades extras.\n"
+"\n"
+"Total de vezes que ascendeu neste salvamento: {0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -406,7 +407,7 @@ msgstr "Auto ({0}x{1})"
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
 #: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Projetos de Construção Disponíveis"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -619,9 +620,8 @@ msgid "BROWSE_WORKSHOP"
 msgstr "Navegar na Oficina Steam"
 
 #: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "Construir uma Estrutura"
+msgstr "Construir uma Cidade"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
 #: ../src/space_stage/gui/PlanetScreen.tscn:88
@@ -914,28 +914,8 @@ msgstr "Aumenta a velocidade de rotação das células maiores."
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
 #: ../src/space_stage/gui/PlanetScreen.cs:118
 #: ../src/space_stage/gui/PlanetScreen.tscn:115
-#, fuzzy
 msgid "CITY_SHORT_STATISTICS"
-msgstr ""
-"[b]Gerações:[/b]\n"
-"  {0}\n"
-"[b]Quantidade de Regiões:[/b]\n"
-"  {1}\n"
-"[b]Quantidade de Tempo Utilizado pela Auto-Evo:[/b]\n"
-"  {2}\n"
-"[b]Quantidade de Espécies:[/b]\n"
-"  {3}\n"
-"[b]Quantidade de Espécies Vivas:[/b]\n"
-"  {4}\n"
-"[b]Contagem de Espécies por Região:[/b]\n"
-"  Média {5}; Desvio Padrão {6}\n"
-"[b]População Total:[/b]\n"
-"  {7}\n"
-"[b]Espécie Mais Populosa:[/b]\n"
-"  {8}\n"
-"[b]Dados Básicos das Espécies de Micróbios:[/b]\n"
-"  Tamanho Médio das Células: {9}\n"
-"[b]Dados Gerais de Organelas:[/b]"
+msgstr "População: {0} Alimento: {1} Ciência: {2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1126,9 +1106,8 @@ msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRMAR"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "Confirmar Saída"
+msgstr "Confirmar Remoção"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
@@ -1141,33 +1120,38 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Sobrescrever"
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "(velocidade que a IA se muta)"
+msgstr "Prosseguir para o Estágio Ascenso?"
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
+msgstr ""
+"Você poderá ascender ao ativar o Portal da Ascensão.\n"
+"\n"
+"Isso desbloqueará poder ilimitado na forma de novas Ferramentas Divinas que poderá usar neste salvamento.\n"
+"\n"
+"Ao ascender, você também completará o jogo, mas poderá continuar jogando. Deseja prosseguir para o Estágio Ascenso?"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Prosseguir para o Estágio Industrial?"
 
 #: ../src/society_stage/SocietyStage.tscn:86
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
+msgstr "Ao construir uma fábrica, você prosseguirá para o Estágio Industrial. Deseja ir para o próximo estágio?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "(velocidade que a IA se muta)"
+msgstr "Prosseguir para o Estágio Espacial?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
+msgstr ""
+"Você poderá prosseguir para o Estágio Espacial ao lançar sua primeira nave espacial.\n"
+"\n"
+"Atualmente, nos protótipos, você não conseguirá retornar ao seu planeta, mas o plano é permitir que entre e saia de planetas da maneira fluida no estágio.\n"
+"\n"
+"Cancelar a decolagem resultará na destruição de sua nave espacial. Deseja lançá-la?"
 
 #: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
@@ -1179,9 +1163,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Algumas configurações são inválidas"
 
 #: ../src/industrial_stage/UnitType.cs:79
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Tritanopia (Azul-Amarelo)"
+msgstr "Unidade: {0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
