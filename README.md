@@ -89,6 +89,10 @@ LFS][lfs].
 Extra note for modellers:
 There are extra instructions for how to import models here: [import tool][importtutorial]
 
+### Miscellaneous
+
+The history for this repository has been slightly cleaned up to remove
+large old binary files that were added before we used Git LFS. The original history can be found here: [original_master][originalmaster]
 
 [releasespage]: https://revolutionarygamesstudio.com/releases/
 [styleguide]: doc/style_guide.md "Styleguide"
@@ -97,3 +101,4 @@ There are extra instructions for how to import models here: [import tool][import
 [importtutorial]: https://wiki.revolutionarygamesstudio.com/wiki/How_to_Import_Assets "How to import assets"
 [lfs]: https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS
 [learninggodot]: doc/learning_godot.md
+[originalmaster]: https://github.com/Revolutionary-Games/Thrive/tree/original_master
