@@ -1,12 +1,20 @@
 ﻿using System;
 using DefaultEcs;
+using DefaultEcs.Command;
 
 /// <summary>
 ///   For use in the prototypes not yet converted to using world simulations
 /// </summary>
 public class DummyWorldSimulation : IWorldSimulation
 {
+    public World EntitySystem { get; } = new();
+
     public Entity CreateEmptyEntity()
+    {
+        throw new NotSupportedException("Dummy simulation doesn't support adding entities");
+    }
+
+    public EntityRecord CreateEntityDeferred(WorldRecord activeRecording)
     {
         throw new NotSupportedException("Dummy simulation doesn't support adding entities");
     }
@@ -18,7 +26,7 @@ public class DummyWorldSimulation : IWorldSimulation
 
     public void DestroyAllEntities(Entity? skip = null)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool IsEntityInWorld(Entity entity)
@@ -29,6 +37,21 @@ public class DummyWorldSimulation : IWorldSimulation
     public bool IsQueuedForDeletion(Entity entity)
     {
         return false;
+    }
+
+    public EntityCommandRecorder StartRecordingEntityCommands()
+    {
+        // Technically we could support this but we'd need actually some logic in the process method of ours
+        throw new NotSupportedException("Dummy simulation doesn't support deferred commands");
+    }
+
+    public WorldRecord GetRecorderWorld(EntityCommandRecorder recorder)
+    {
+        throw new NotSupportedException("Dummy simulation doesn't support deferred commands");
+    }
+
+    public void FinishRecordingEntityCommands(EntityCommandRecorder recorder)
+    {
     }
 
     public void Dispose()

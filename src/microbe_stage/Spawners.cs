@@ -3,6 +3,8 @@
 
 using System;
 using System.Collections.Generic;
+using Components;
+using DefaultEcs.Command;
 using Godot;
 
 /// <summary>
@@ -39,6 +41,28 @@ public static class Spawners
 /// </summary>
 public static class SpawnHelpers
 {
+    public static EntityRecord SpawnCellBurstEffect(IWorldSimulation worldSimulation, Vector3 location)
+    {
+        // Support spawning this at any time during an update cycle
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
+
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
+
+        entity.Set(new WorldPosition(location));
+
+        entity.Set(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.CellBurstEffect,
+        });
+
+        entity.Set<SpatialInstance>();
+        entity.Set<TimedLife>();
+        entity.Set<CellBurstEffect>();
+
+        return entity;
+    }
+
     // TODO: remove this old variant
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using DefaultEcs;
+using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
+using World = DefaultEcs.World;
 
 /// <summary>
 ///   Any type of game world simulation where everything needed to run that simulation is collected under. Note that
@@ -10,8 +12,10 @@ using Newtonsoft.Json;
 ///   types implementing this interface are in charge of running the gameplay simulation side of things. For example
 ///   microbe moving around, processing compounds, colliding, rendering etc.
 /// </summary>
-public abstract class WorldSimulation : IDisposable
+public abstract class WorldSimulation : IWorldSimulation
 {
+    protected readonly World entities = new();
+
     // TODO: did these protected property loading work? Loading / saving for the entities
     protected readonly List<Entity> queuedForDelete = new();
 
@@ -19,6 +23,18 @@ public abstract class WorldSimulation : IDisposable
     protected float minimumTimeBetweenLogicUpdates = 1 / 60.0f;
 
     protected float accumulatedLogicTime;
+
+    /// <summary>
+    ///   True when multithreaded system updates are running
+    /// </summary>
+    protected bool runningMultithreaded;
+
+    private readonly Queue<EntityCommandRecorder> availableRecorders = new();
+    private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
+    private int totalCreatedRecorders;
+
+    [JsonIgnore]
+    public World EntitySystem => entities;
 
     /// <summary>
     ///   Count of entities (with simulation heaviness weight) in the simulation.
@@ -66,7 +82,12 @@ public abstract class WorldSimulation : IDisposable
 
         OnCheckPhysicsBeforeProcessStart();
 
+        // Make sure all commands are flushed if someone added some in the time between updates
+        ApplyRecordedCommands();
+
         OnProcessFixedLogic(accumulatedLogicTime);
+
+        ApplyRecordedCommands();
 
         ProcessDestroyQueue();
 
@@ -77,7 +98,19 @@ public abstract class WorldSimulation : IDisposable
 
     public Entity CreateEmptyEntity()
     {
-        throw new NotImplementedException();
+        // Ensure thread unsafe operation doesn't happen
+        if (runningMultithreaded)
+        {
+            throw new InvalidOperationException(
+                "Can't use thread unsafe create entity at this time, use deferred create");
+        }
+
+        return entities.CreateEntity();
+    }
+
+    public EntityRecord CreateEntityDeferred(WorldRecord activeRecording)
+    {
+        return activeRecording.CreateEntity();
     }
 
     public bool DestroyEntity(Entity entity)
@@ -96,17 +129,16 @@ public abstract class WorldSimulation : IDisposable
     {
         ProcessDestroyQueue();
 
-        throw new NotImplementedException();
+        foreach (var entity in entities)
+        {
+            if (entity == skip)
+                continue;
 
-        // foreach (var entity in entities)
-        // {
-        //     if (entity == skip)
-        //         continue;
-        //
-        //     entity.OnDestroyed();
-        // }
-        //
-        // entities.RemoveAll(e => e != skip);
+            // TODO: check that this destroy while looping entities doesn't cause an issue
+
+            PerformEntityDestroy(entity);
+        }
+
         queuedForDelete.Clear();
     }
 
@@ -118,6 +150,37 @@ public abstract class WorldSimulation : IDisposable
         return queuedForDelete.Contains(entity);
     }
 
+    public EntityCommandRecorder StartRecordingEntityCommands()
+    {
+        lock (availableRecorders)
+        {
+            if (availableRecorders.Count > 0)
+                return availableRecorders.Dequeue();
+
+            ++totalCreatedRecorders;
+            return new EntityCommandRecorder();
+        }
+    }
+
+    public WorldRecord GetRecorderWorld(EntityCommandRecorder recorder)
+    {
+        return recorder.Record(entities);
+    }
+
+    public void FinishRecordingEntityCommands(EntityCommandRecorder recorder)
+    {
+        lock (availableRecorders)
+        {
+#if DEBUG
+            if (availableRecorders.Contains(recorder))
+                throw new ArgumentException("Entity command recorder already returned");
+#endif
+
+            availableRecorders.Enqueue(recorder);
+            nonEmptyRecorders.Add(recorder);
+        }
+    }
+
     /// <summary>
     ///   Checks that the entity is in this world and is not being deleted
     /// </summary>
@@ -125,9 +188,7 @@ public abstract class WorldSimulation : IDisposable
     /// <returns>True when the entity is in this world and is not queued for deletion</returns>
     public bool IsEntityInWorld(Entity entity)
     {
-        throw new NotImplementedException();
-
-        return /*entities.Contains(castedEntity) &&*/ !queuedForDelete.Contains(entity);
+        return entity.IsAlive && !queuedForDelete.Contains(entity);
     }
 
     /// <summary>
@@ -189,14 +250,9 @@ public abstract class WorldSimulation : IDisposable
 
     protected abstract void OnProcessFixedLogic(float delta);
 
-    protected void ProcessDestroyQueue()
+    protected void PerformEntityDestroy(Entity entity)
     {
-        foreach (var entity in queuedForDelete)
-        {
-            throw new NotImplementedException();
-        }
-
-        queuedForDelete.Clear();
+        entity.Dispose();
     }
 
     protected void ThrowIfNotInitialized()
@@ -211,6 +267,46 @@ public abstract class WorldSimulation : IDisposable
 
         if (disposing)
         {
+            entities.Dispose();
         }
+    }
+
+    private void ProcessDestroyQueue()
+    {
+        foreach (var entity in queuedForDelete)
+        {
+            PerformEntityDestroy(entity);
+        }
+
+        queuedForDelete.Clear();
+    }
+
+    private void ApplyRecordedCommands()
+    {
+        // availableRecorders is not locked here as things are going very wrong already if some system update thread is
+        // still running at this time
+        if (nonEmptyRecorders.Count < 1)
+            return;
+
+        if (availableRecorders.Count != totalCreatedRecorders)
+        {
+            GD.PrintErr("Not all world entity command recorders were returned, some has leaked a recorder (",
+                availableRecorders.Count, " != ", totalCreatedRecorders, " expected)");
+        }
+
+        foreach (var recorder in nonEmptyRecorders)
+        {
+            try
+            {
+                recorder.Execute();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Deferred entity command applying caused an exception: ", e);
+                recorder.Clear();
+            }
+        }
+
+        nonEmptyRecorders.Clear();
     }
 }

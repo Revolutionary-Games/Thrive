@@ -73,13 +73,13 @@ public class PhysicsTest : Node
 
     private const float MicrobeCameraDefaultHeight = 50;
 
-    private readonly List<PhysicsBody> allCreatedBodies = new();
-    private readonly List<PhysicsBody> sphereBodies = new();
+    private readonly List<NativePhysicsBody> allCreatedBodies = new();
+    private readonly List<NativePhysicsBody> sphereBodies = new();
 
     private readonly List<Spatial> testVisuals = new();
     private readonly List<Node> otherCreatedNodes = new();
 
-    private readonly List<PhysicsBody> microbeAnalogueBodies = new();
+    private readonly List<NativePhysicsBody> microbeAnalogueBodies = new();
     private readonly List<TestMicrobeAnalogue> testMicrobesToProcess = new();
 
 #pragma warning disable CA2213
@@ -830,7 +830,7 @@ public class PhysicsTest : Node
 
         private const float ReachTargetRotationSpeed = 1.2f;
 
-        private readonly PhysicsBody? body;
+        private readonly NativePhysicsBody? body;
         private readonly RigidBody? godotBody;
         private readonly Random random;
 
@@ -842,7 +842,7 @@ public class PhysicsTest : Node
         private Quat lookDirection;
         private Vector3 movementDirection;
 
-        public TestMicrobeAnalogue(PhysicsBody body, int randomSeed)
+        public TestMicrobeAnalogue(NativePhysicsBody body, int randomSeed)
         {
             this.body = body;
             random = new Random(randomSeed);

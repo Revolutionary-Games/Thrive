@@ -11,7 +11,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     /// <summary>
     ///   All created physics bodies. Must be tracked to correctly destroy them all
     /// </summary>
-    protected readonly List<PhysicsBody> createdBodies = new();
+    protected readonly List<NativePhysicsBody> createdBodies = new();
 
     protected WorldSimulationWithPhysics()
     {
@@ -25,14 +25,14 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     public PhysicalWorld PhysicalWorld => physics;
 
-    public PhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation)
+    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation)
     {
         var body = physics.CreateMovingBody(shape, position, rotation);
         createdBodies.Add(body);
         return body;
     }
 
-    public void DestroyBody(PhysicsBody body)
+    public void DestroyBody(NativePhysicsBody body)
     {
         if (!createdBodies.Remove(body))
         {

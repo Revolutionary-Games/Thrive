@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using Godot;
 
@@ -61,31 +63,31 @@ public class PhysicalWorld : IDisposable
     ///   If false then the body won't be automatically added to the world and <see cref="AddBody"/> needs to be called
     /// </param>
     /// <returns>The created physics body instance</returns>
-    public PhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation, bool addToWorld = true)
+    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation, bool addToWorld = true)
     {
-        return new PhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
+        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), addToWorld));
     }
 
-    public PhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation, bool addToWorld = true)
+    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation, bool addToWorld = true)
     {
-        return new PhysicsBody(NativeMethods.PhysicalWorldCreateStaticBody(AccessWorldInternal(),
+        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateStaticBody(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), addToWorld));
     }
 
-    public void AddBody(PhysicsBody body, bool activate = true)
+    public void AddBody(NativePhysicsBody body, bool activate = true)
     {
         NativeMethods.PhysicalWorldAddBody(AccessWorldInternal(), body.AccessBodyInternal(), activate);
     }
 
-    public void DestroyBody(PhysicsBody body)
+    public void DestroyBody(NativePhysicsBody body)
     {
         NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
-    public void SetDamping(PhysicsBody body, float linearDamping, float? angularDamping = null)
+    public void SetDamping(NativePhysicsBody body, float linearDamping, float? angularDamping = null)
     {
         if (angularDamping != null)
         {
@@ -98,7 +100,7 @@ public class PhysicalWorld : IDisposable
         }
     }
 
-    public Transform ReadBodyTransform(PhysicsBody body)
+    public Transform ReadBodyTransform(NativePhysicsBody body)
     {
         // TODO: could probably make things a bit more efficient if the C# body stored the body ID to avoid one level
         // of indirection here
@@ -108,12 +110,12 @@ public class PhysicalWorld : IDisposable
         return new Transform(new Basis(orientation), position);
     }
 
-    public void GiveImpulse(PhysicsBody body, Vector3 impulse)
+    public void GiveImpulse(NativePhysicsBody body, Vector3 impulse)
     {
         NativeMethods.GiveImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(impulse));
     }
 
-    public void ApplyBodyMicrobeControl(PhysicsBody body, Vector3 movementImpulse, Quat lookDirection,
+    public void ApplyBodyMicrobeControl(NativePhysicsBody body, Vector3 movementImpulse, Quat lookDirection,
         float rotationSpeedDivisor)
     {
         if (rotationSpeedDivisor < 1)
@@ -123,22 +125,22 @@ public class PhysicalWorld : IDisposable
             new JVecF3(movementImpulse), new JQuat(lookDirection), rotationSpeedDivisor);
     }
 
-    public void DisableMicrobeBodyControl(PhysicsBody body)
+    public void DisableMicrobeBodyControl(NativePhysicsBody body)
     {
         NativeMethods.DisableBodyControl(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
-    public void SetBodyPosition(PhysicsBody body, Vector3 position)
+    public void SetBodyPosition(NativePhysicsBody body, Vector3 position)
     {
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
     }
 
-    public void SetBodyVelocity(PhysicsBody body, Vector3 velocity, Vector3 rotation)
+    public void SetBodyVelocity(NativePhysicsBody body, Vector3 velocity, Vector3 rotation)
     {
         throw new NotImplementedException();
     }
 
-    public bool FixBodyYCoordinateToZero(PhysicsBody body)
+    public bool FixBodyYCoordinateToZero(NativePhysicsBody body)
     {
         return NativeMethods.FixBodyYCoordinateToZero(AccessWorldInternal(), body.AccessBodyInternal());
     }
@@ -152,29 +154,43 @@ public class PhysicalWorld : IDisposable
     ///   The axis to lock this body to, for example <see cref="Vector3.Up"/> for microbe stage objects
     /// </param>
     /// <param name="lockRotation">When true also locks rotation to only happen around the given axis</param>
-    public void AddAxisLockConstraint(PhysicsBody body, Vector3 axis, bool lockRotation)
+    public void AddAxisLockConstraint(NativePhysicsBody body, Vector3 axis, bool lockRotation)
     {
         NativeMethods.PhysicsBodyAddAxisLock(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(axis),
             lockRotation);
     }
 
-    public void SetBodyCollisionsEnabledState(PhysicsBody body, bool collisionsEnabled)
+    public void SetBodyCollisionsEnabledState(NativePhysicsBody body, bool collisionsEnabled)
     {
         throw new NotImplementedException();
     }
 
-    public void BodyIgnoreCollisionsWithBody(PhysicsBody body, PhysicsBody otherBody)
+    public void BodyIgnoreCollisionsWithBody(NativePhysicsBody body, NativePhysicsBody otherBody)
     {
         throw new NotImplementedException();
     }
 
-    public void BodyRemoveCollisionIgnoreWith(PhysicsBody body, PhysicsBody otherBody)
+    public void BodyRemoveCollisionIgnoreWith(NativePhysicsBody body, NativePhysicsBody otherBody)
     {
         throw new NotImplementedException();
     }
 
-    public void BodyClearCollisionsIgnores(PhysicsBody body)
+    public void BodyClearCollisionsIgnores(NativePhysicsBody body)
     {
+        throw new NotImplementedException();
+    }
+
+    public void BodySetCollisionIgnores(NativePhysicsBody body, IReadOnlyCollection<NativePhysicsBody> ignoredBodies)
+    {
+        // Optimization if the list is empty
+        if (ignoredBodies.Count < 1)
+        {
+            BodyClearCollisionsIgnores(body);
+            return;
+        }
+
+        var ignored = ignoredBodies.ToArray();
+
         throw new NotImplementedException();
     }
 

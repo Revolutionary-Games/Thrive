@@ -2,22 +2,15 @@
 using System.Runtime.InteropServices;
 using Godot;
 
-public class PhysicsBody : IDisposable, IEquatable<PhysicsBody>
+/// <summary>
+///   Physics body implemented by the Thrive native code library (this is a wrapper around that native handle)
+/// </summary>
+public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 {
-    public static bool operator ==(PhysicsBody? left, PhysicsBody? right)
-    {
-        return Equals(left, right);
-    }
-
-    public static bool operator !=(PhysicsBody? left, PhysicsBody? right)
-    {
-        return !Equals(left, right);
-    }
-
     private bool disposed;
     private IntPtr nativeInstance;
 
-    internal PhysicsBody(IntPtr nativeInstance)
+    internal NativePhysicsBody(IntPtr nativeInstance)
     {
         this.nativeInstance = nativeInstance;
 
@@ -29,12 +22,22 @@ public class PhysicsBody : IDisposable, IEquatable<PhysicsBody>
         }
     }
 
-    ~PhysicsBody()
+    ~NativePhysicsBody()
     {
         Dispose(false);
     }
 
-    public bool Equals(PhysicsBody? other)
+    public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
+    {
+        return Equals(left, right);
+    }
+
+    public static bool operator !=(NativePhysicsBody? left, NativePhysicsBody? right)
+    {
+        return !Equals(left, right);
+    }
+
+    public bool Equals(NativePhysicsBody? other)
     {
         if (other == null)
             return false;
@@ -51,7 +54,7 @@ public class PhysicsBody : IDisposable, IEquatable<PhysicsBody>
         if (obj.GetType() != this.GetType())
             return false;
 
-        return Equals((PhysicsBody)obj);
+        return Equals((NativePhysicsBody)obj);
     }
 
     public override int GetHashCode()
@@ -68,7 +71,7 @@ public class PhysicsBody : IDisposable, IEquatable<PhysicsBody>
     internal IntPtr AccessBodyInternal()
     {
         if (disposed)
-            throw new ObjectDisposedException(nameof(PhysicsBody));
+            throw new ObjectDisposedException(nameof(NativePhysicsBody));
 
         return nativeInstance;
     }

@@ -150,11 +150,11 @@ public class MovementComponent : ExternallyPositionedComponent
         // Rotate the 'thrust' based on our orientation
         if (microbe.Colony?.Master == null)
         {
-            direction = microbe.Rotation.Xform(direction);
+            direction = microbe.Transform.basis.Quat().Xform(direction);
         }
         else
         {
-            direction = microbe.Colony.Master.Rotation.Xform(direction);
+            direction = microbe.Colony.Master.Transform.basis.Quat().Xform(direction);
         }
 
         SetSpeedFactor(animationSpeed);

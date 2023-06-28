@@ -29,6 +29,8 @@
     <Compile Include="simulation_parameters\IRegistryAssignable.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="simulation_parameters\VersionPatchNotes.cs" />
+    <Compile Include="simulation_parameters\VisualResourceData.cs" />
+    <Compile Include="simulation_parameters\VisualResourceIdentifier.cs" />
     <Compile Include="src\ascension_stage\AscensionCeremony.cs" />
     <Compile Include="src\ascension_stage\gui\AscensionCongratulationsPopup.cs" />
     <Compile Include="src\ascension_stage\gui\DescendConfirmationDialog.cs" />
@@ -124,11 +126,14 @@
     <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
     <Compile Include="src\engine\common_components\CollisionManagement.cs" />
     <Compile Include="src\engine\common_components\Physics.cs" />
+    <Compile Include="src\engine\common_components\PredefinedVisuals.cs" />
     <Compile Include="src\engine\common_components\SpatialInstance.cs" />
     <Compile Include="src\engine\common_components\Spawned.cs" />
     <Compile Include="src\engine\common_components\TimedLife.cs" />
     <Compile Include="src\engine\common_components\WorldPosition.cs" />
     <Compile Include="src\engine\common_systems\PhysicsCollisionManagementSystem.cs" />
+    <Compile Include="src\engine\common_systems\PredefinedVisualLoaderSystem.cs" />
+    <Compile Include="src\engine\common_systems\SpatialAttachSystem.cs" />
     <Compile Include="src\engine\common_systems\SpatialPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\TimedLifeSystem.cs" />
     <Compile Include="src\engine\DebugDrawer.cs" />
@@ -153,7 +158,7 @@
     <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
     <Compile Include="src\engine\physics\PhysicalWorld.cs" />
-    <Compile Include="src\engine\physics\PhysicsBody.cs" />
+    <Compile Include="src\engine\physics\NativePhysicsBody.cs" />
     <Compile Include="src\engine\physics\PhysicsShape.cs" />
     <Compile Include="src\engine\PostShutdownActions.cs" />
     <Compile Include="src\engine\RaycastResult.cs" />
@@ -325,7 +330,6 @@
     <Compile Include="src\late_multicellular_stage\ProgressBarSystem.cs" />
     <Compile Include="src\late_multicellular_stage\ReproductionLocation.cs" />
     <Compile Include="src\microbe_stage\AvailableUpgrade.cs" />
-    <Compile Include="src\microbe_stage\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\general\CombinableActionData.cs" />
@@ -391,6 +395,7 @@
     <Compile Include="src\late_multicellular_stage\PlayerMulticellularInput.cs" />
     <Compile Include="src\microbe_stage\BiomeType.cs" />
     <Compile Include="src\microbe_stage\components\BioProcesses.cs" />
+    <Compile Include="src\microbe_stage\components\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\components\CompoundStorage.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\OrganelleUpgradeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
@@ -568,6 +573,7 @@
     <Compile Include="src\microbe_stage\organelle_components\MovementComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\PilusComponent.cs" />
     <Compile Include="src\microbe_stage\StrictProcessDisplayInfoEquality.cs" />
+    <Compile Include="src\microbe_stage\systems\CellBurstEffectSystem.cs" />
     <Compile Include="src\microbe_stage\systems\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\TweakedProcess.cs" />
     <Compile Include="src\microbe_stage\CompoundBag.cs" />
@@ -864,6 +870,7 @@
     <Content Include="simulation_parameters\common\patch_notes.yml" />
     <Content Include="simulation_parameters\common\screen_effects.json" />
     <Content Include="simulation_parameters\common\translations_info.json" />
+    <Content Include="simulation_parameters\common\visual_resources.json" />
     <Content Include="simulation_parameters\industrial_stage\units.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />

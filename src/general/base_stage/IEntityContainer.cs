@@ -6,7 +6,7 @@
 public interface IEntityContainer
 {
     /// <summary>
-    ///   Adds an entity to this simulation / container that is empty
+    ///   Adds an entity to this simulation / container that is empty. Note not thread safe!
     /// </summary>
     public Entity CreateEmptyEntity();
 

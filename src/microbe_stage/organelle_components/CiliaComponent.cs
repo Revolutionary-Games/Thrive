@@ -34,7 +34,7 @@ public class CiliaComponent : ExternallyPositionedComponent
             return;
         }
 
-        var currentCellRotation = microbe.Rotation;
+        var currentCellRotation = microbe.Transform.basis.Quat();
 
         if (previousCellRotation == null)
         {

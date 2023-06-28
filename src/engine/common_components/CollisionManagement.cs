@@ -1,6 +1,9 @@
 ﻿namespace Components
 {
     using System;
+    using System.Collections.Generic;
+    using DefaultEcs;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///   Allows modifying <see cref="Physics"/> collisions of this entity
@@ -9,11 +12,20 @@
     {
         // TODO: some kind of physics callback registration
 
+        public List<Entity>? IgnoredCollisionsWith;
+
         public bool AllCollisionsDisabled;
 
-        public bool Dirty;
+        /// <summary>
+        ///   Must be set to false after changing any properties to have them apply (after the initial creation)
+        /// </summary>
+        public bool StateApplied;
 
-        public delegate void OnCollidedWith(PhysicsBody body, int collidedSubShapeDataOurs,
+        // The following variables are internal for the collision management system and should not be modified
+        [JsonIgnore]
+        public bool CurrentCollisionState;
+
+        public delegate void OnCollidedWith(NativePhysicsBody body, int collidedSubShapeDataOurs,
             int collidedSubShapeDataTheirs);
     }
 

@@ -2,7 +2,6 @@
 {
     using Godot;
     using Newtonsoft.Json;
-    using PhysicsBody = PhysicsBody;
 
     /// <summary>
     ///   Physics body for an entity
@@ -10,7 +9,7 @@
     public struct Physics
     {
         [JsonIgnore]
-        public PhysicsBody? Body;
+        public NativePhysicsBody? Body;
 
         [JsonIgnore]
         public PhysicalWorld? BodyCreatedInWorld;

@@ -80,7 +80,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
 
         // TODO: take colony into account (calculate rotations up to the root of the colony)
         throw new NotImplementedException();
-        var currentCellRotation = microbe.Rotation.Normalized();
+        var currentCellRotation = microbe.Transform.basis.Quat().Normalized();
         var direction = GetDirection();
 
         // Preview the amount of mucilage we'll eject to calculate force here
