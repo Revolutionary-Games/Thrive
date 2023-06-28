@@ -15,4 +15,6 @@ public enum VisualResourceIdentifier
     Error,
 
     CellBurstEffect,
+
+    AgentProjectile,
 }

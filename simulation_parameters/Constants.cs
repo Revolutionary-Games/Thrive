@@ -297,10 +297,15 @@ public static class Constants
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
 
     /// <summary>
+    ///   How long a toxin projectile can fly for before despawning if it doesn't hit anything before that
+    /// </summary>
+    public const float TOXIN_PROJECTILE_TIME_TO_LIVE = 3;
+
+    /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually
     /// </summary>
-    public const float PROJECTILE_DESPAWN_DELAY = 3;
+    public const float EMITTER_DESPAWN_DELAY = 3;
 
     public const float AGENT_EMISSION_DISTANCE_OFFSET = 0.5f;
 

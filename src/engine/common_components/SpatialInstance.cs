@@ -8,5 +8,10 @@
     public struct SpatialInstance
     {
         public Spatial? GraphicalInstance;
+
+        /// <summary>
+        ///   If not null applies visual scale to <see cref="GraphicalInstance"/>
+        /// </summary>
+        public Vector3? VisualScale;
     }
 }

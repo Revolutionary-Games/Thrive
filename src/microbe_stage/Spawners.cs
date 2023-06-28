@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using Components;
+using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
 
@@ -59,6 +60,99 @@ public static class SpawnHelpers
         entity.Set<SpatialInstance>();
         entity.Set<TimedLife>();
         entity.Set<CellBurstEffect>();
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+
+        return entity;
+    }
+
+    /// <summary>
+    ///   Spawns an agent projectile
+    /// </summary>
+    public static EntityRecord SpawnAgentProjectile(IWorldSimulation worldSimulation, AgentProperties properties,
+        float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
+    {
+        var normalizedDirection = direction.Normalized();
+
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
+
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
+
+        entity.Set(new WorldPosition(location + direction * 1.5f));
+
+        entity.Set(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
+        });
+        entity.Set(new SpatialInstance
+        {
+            VisualScale = Math.Abs(scale - 1) > MathUtils.EPSILON ? new Vector3(scale, scale, scale) : null,
+        });
+
+        entity.Set(new TimedLife
+        {
+            TimeToLiveRemaining = lifetime,
+        });
+        entity.Set(new FadeOutActions
+        {
+            FadeTime = Constants.EMITTER_DESPAWN_DELAY,
+            DisableCollisions = true,
+            RemoveVelocity = true,
+            DisableParticles = true,
+        });
+
+        entity.Set(new ToxinDamageSource
+        {
+            ToxinAmount = amount,
+            ToxinProperties = properties,
+        });
+
+        entity.Set<Physics>();
+        entity.Set(new CollisionManagement
+        {
+            IgnoredCollisionsWith = new List<Entity> { emitter },
+
+            // TODO: collision callback
+
+            // TODO: somehow disable collisions with microbes this can't damage
+        });
+        entity.Set(new ManualPhysicsControl
+        {
+            ImpulseToGive = normalizedDirection * Constants.AGENT_EMISSION_IMPULSE_STRENGTH,
+        });
+
+        throw new NotImplementedException();
+        /*_ = bodyID;
+        _ = localShape;
+
+        if (body is not Microbe microbe)
+            return;
+
+        if (microbe.Species == Properties!.Species)
+            return;
+
+        // If more stuff needs to be damaged we could make an IAgentDamageable interface.
+        var target = microbe.GetMicrobeFromShape(bodyShape);
+
+        if (target == null)
+            return;
+
+        Invoke.Instance.Perform(
+            () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
+
+        if (FadeTimeRemaining == null)
+        {
+            // We should probably get some *POP* effect here.
+            BeginDestroy();
+        }*/
+
+        entity.Set(new ReadableName
+        {
+            Name = properties.Name,
+        });
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
 
         return entity;
     }
@@ -241,40 +335,6 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
-    }
-
-    /// <summary>
-    ///   Spawns an agent projectile
-    /// </summary>
-    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
-        float lifetime, Vector3 location, Vector3 direction,
-        Node worldRoot, PackedScene agentScene, IEntity emitter)
-    {
-        var normalizedDirection = direction.Normalized();
-
-        throw new NotImplementedException();
-
-        /*var agent = (AgentProjectile)agentScene.Instance();
-        agent.Properties = properties;
-        agent.Amount = amount;
-        agent.TimeToLiveRemaining = lifetime;
-        agent.Emitter = new EntityReference<IEntity>(emitter);
-
-        worldRoot.AddChild(agent);
-        agent.Translation = location + (direction * 1.5f);
-        var scaleValue = amount / Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
-        agent.Scale = new Vector3(scaleValue, scaleValue, scaleValue);
-
-        agent.ApplyCentralImpulse(normalizedDirection *
-            Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
-
-        agent.AddToGroup(Constants.TIMED_GROUP);
-        return agent;*/
-    }
-
-    public static PackedScene LoadAgentScene()
-    {
-        return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
     }
 
     public static MulticellularCreature SpawnCreature(Species species, Vector3 location,

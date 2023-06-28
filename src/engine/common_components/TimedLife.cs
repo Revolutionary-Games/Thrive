@@ -1,6 +1,7 @@
 ﻿namespace Components
 {
     using DefaultEcs;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///   Entities that despawn after a certain amount of time
@@ -12,6 +13,13 @@
         ///   be automatically destroyed. If this callback sets <see cref="FadeTimeRemaining"/> then this also won't
         ///   be automatically destroyed.
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This is save ignored with the intention that any systems that will use the time over callback will
+        ///     re-apply it after the save is loaded.
+        ///   </para>
+        /// </remarks>
+        [JsonIgnore]
         public OnTimeOver? CustomTimeOverCallback;
 
         public float TimeToLiveRemaining;
@@ -24,6 +32,6 @@
 
         public bool OnTimeOverTriggered;
 
-        public delegate bool OnTimeOver(Entity entity, TimedLife timedLife);
+        public delegate bool OnTimeOver(Entity entity, ref TimedLife timedLife);
     }
 }

@@ -21,10 +21,20 @@
             ref var position = ref entity.Get<WorldPosition>();
             ref var spatial = ref entity.Get<SpatialInstance>();
 
-            if (spatial.GraphicalInstance != null)
+            if (spatial.GraphicalInstance == null)
+                return;
+
+            if (spatial.VisualScale != null)
             {
-                // TODO: scale
-                spatial.GraphicalInstance.Transform = new Transform(new Basis(position.Rotation), position.Position);
+                var scale = spatial.VisualScale.Value;
+
+                spatial.GraphicalInstance.Transform =
+                    new Transform(new Basis(position.Rotation).Scaled(scale), position.Position);
+            }
+            else
+            {
+                spatial.GraphicalInstance.Transform =
+                    new Transform(new Basis(position.Rotation), position.Position);
             }
         }
     }

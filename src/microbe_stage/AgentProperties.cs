@@ -1,4 +1,4 @@
-﻿using Godot;
+﻿using Newtonsoft.Json;
 
 /// <summary>
 ///   Properties of an agent. Mainly used currently to block friendly fire
@@ -15,8 +15,12 @@ public class AgentProperties
     public string AgentType { get; set; } = "oxytoxy";
     public Compound Compound { get; set; }
 
+    [JsonIgnore]
+    public LocalizedString Name =>
+        new("AGENT_NAME", new LocalizedString(Compound.GetUntranslatedName()));
+
     public override string ToString()
     {
-        return TranslationServer.Translate("AGENT_NAME").FormatSafe(Compound.Name);
+        return Name.ToString();
     }
 }

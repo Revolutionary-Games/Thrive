@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -56,17 +57,25 @@
                 var callback = timed.CustomTimeOverCallback;
 
                 // If there is a custom callback call it first as it can set the fade time
-                bool wantsToLive = callback != null && !callback.Invoke(entity, timed);
+                bool wantsToLive = callback != null && !callback.Invoke(entity, ref timed);
 
                 if (timed.FadeTimeRemaining != null && timed.FadeTimeRemaining.Value > 0)
                 {
-                    // Entity doesn't want to fade
+                    // Entity doesn't want to die just yet
                     wantsToLive = true;
                 }
 
                 if (!wantsToLive)
                 {
                     entityContainer.DestroyEntity(entity);
+                }
+                else
+                {
+                    // Disable saving for this entity as fade out states are not programmed to resume well after loading
+                    // a save
+                    throw new NotImplementedException();
+
+                    // entityContainer.ReportEntityDyingSoon(entity);
                 }
             }
         }

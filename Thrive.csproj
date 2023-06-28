@@ -125,12 +125,17 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
     <Compile Include="src\engine\common_components\CollisionManagement.cs" />
+    <Compile Include="src\engine\common_components\FadeOutActions.cs" />
+    <Compile Include="src\engine\common_components\ManualphysicsControl.cs" />
     <Compile Include="src\engine\common_components\Physics.cs" />
     <Compile Include="src\engine\common_components\PredefinedVisuals.cs" />
+    <Compile Include="src\engine\common_components\ReadableName.cs" />
     <Compile Include="src\engine\common_components\SpatialInstance.cs" />
     <Compile Include="src\engine\common_components\Spawned.cs" />
     <Compile Include="src\engine\common_components\TimedLife.cs" />
+    <Compile Include="src\engine\common_components\ToxinDamageSource.cs" />
     <Compile Include="src\engine\common_components\WorldPosition.cs" />
+    <Compile Include="src\engine\common_systems\FadeOutActionSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsCollisionManagementSystem.cs" />
     <Compile Include="src\engine\common_systems\PredefinedVisualLoaderSystem.cs" />
     <Compile Include="src\engine\common_systems\SpatialAttachSystem.cs" />
@@ -447,7 +452,6 @@
     <Compile Include="src\late_multicellular_stage\MulticellularMetaballDisplayer.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularMetaballLayout.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularStage.cs" />
-    <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\HexMoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\BehaviourActionData.cs" />
