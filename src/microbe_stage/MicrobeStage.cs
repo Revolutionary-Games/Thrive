@@ -21,10 +21,6 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private SpawnSystem spawner = null!;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
 #pragma warning disable CA2213
@@ -160,7 +156,10 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             DebugOverlays.Instance.ReportPositionCoordinates(Player.GlobalTranslation);
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
 
-            spawner.Process(delta, Player.GlobalTranslation);
+            // TODO: move this player dependent stuff to the world simulation
+            throw new NotImplementedException();
+
+            // spawner.Process(delta, Player.GlobalTranslation);
             Clouds.ReportPlayerPosition(Player.GlobalTranslation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
@@ -397,7 +396,10 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         GameWorld.NotifySpeciesChangedStages();
 
         // Make sure no queued player species can spawn with the old species
-        spawner.ClearSpawnQueue();
+        // TODO: expose operation from world simulation
+        throw new NotImplementedException();
+
+        // spawner.ClearSpawnQueue();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
@@ -502,7 +504,10 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
         var daughter = Player.Divide();
 
-        daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
+        // TODO: switch to adding the player reproduced component
+        throw new NotImplementedException();
+
+        // daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
 
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
@@ -526,8 +531,11 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // This is queued to run to reduce the massive lag spike that anyway happens on this frame
         // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
         // frame and won't be available on the next one
-        Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
-            rootOfDynamicallySpawned);
+        // TODO: switch to calling to the simulation / exposing the spawn system from there
+        throw new NotImplementedException();
+
+        // Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
+        //     rootOfDynamicallySpawned);
 
         if (!CurrentGame.TutorialState.Enabled)
         {
@@ -563,8 +571,11 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // Clouds.Init(worldSimulation.FluidSystem);
 
         // Initialise spawners next, since this removes existing spawners if present
-        if (!IsLoadedFromSave)
-            spawner.Init();
+        // Init the world simulation here
+        throw new NotImplementedException();
+
+        // if (!IsLoadedFromSave)
+        //     spawner.Init();
 
         base.SetupStage();
 
@@ -626,7 +637,8 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
         // Camera.ObjectToFollow = Player;
 
-        spawner.DespawnAll();
+        // TODO: move to world simulation
+        /*spawner.DespawnAll();
 
         if (spawnedPlayer)
         {
@@ -639,14 +651,17 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             //     random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
             spawner.ClearSpawnCoordinates();
-        }
+        }*/
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
 
-        ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
+        // TODO: redo this mod interface
+        throw new NotImplementedException();
+
+        // ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
     protected override void OnCanEditStatusChanged(bool canEdit)
@@ -812,7 +827,10 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
     {
-        spawner.DespawnAll();
+        // TODO: reimplement
+        throw new NotImplementedException();
+
+        // spawner.DespawnAll();
     }
 
     [DeserializedCallbackAllowed]

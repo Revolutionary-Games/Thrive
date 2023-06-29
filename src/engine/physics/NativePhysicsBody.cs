@@ -7,6 +7,12 @@ using Godot;
 /// </summary>
 public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 {
+    /// <summary>
+    ///   This is only used by external code, not this class at all to know which bodies are in use without having to
+    ///   allocate extra memory
+    /// </summary>
+    public bool Marked = true;
+
     private bool disposed;
     private IntPtr nativeInstance;
 

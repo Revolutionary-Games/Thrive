@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -47,5 +48,5 @@ public abstract class Spawner
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
     /// <param name="spawnSystem">The spawn system that is requesting the spawn to happen</param>
     /// <returns>An enumerator that on each next call spawns one thing</returns>
-    public abstract IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem);
+    public abstract IEnumerable<Entity>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem);
 }

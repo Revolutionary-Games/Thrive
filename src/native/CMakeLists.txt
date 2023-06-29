@@ -7,7 +7,7 @@ add_library(thrive_native SHARED
   core/Mutex.hpp
   core/NonCopyable.hpp core/Reference.hpp
   core/RefCounted.hpp
-  core/TaskSystem.cpp core/TaskSystem.hpp
+  # core/TaskSystem.cpp core/TaskSystem.hpp
   core/Time.hpp
   physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp
   physics/BodyControlState.hpp

@@ -168,4 +168,20 @@ public static class MathUtils
 
         return distance;
     }
+
+    public static float NormalToWithNegativesRadians(float radian)
+    {
+        return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
+    }
+
+    public static float WithNegativesToNormalRadians(float radian)
+    {
+        return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
+    }
+
+    public static float DistanceBetweenRadians(float p1, float p2)
+    {
+        float distance = Math.Abs(p1 - p2);
+        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
+    }
 }

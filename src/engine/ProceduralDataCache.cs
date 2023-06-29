@@ -11,6 +11,8 @@ public class ProceduralDataCache : Node
 
     private readonly Dictionary<long, CacheEntry<ComputedMembraneData>> membraneCache = new();
 
+    private readonly Dictionary<(string Path, float Density), CacheEntry<PhysicsShape>> loadedShapes = new();
+
     private MainGameState previousState = MainGameState.Invalid;
 
     private float currentTime;
@@ -33,6 +35,11 @@ public class ProceduralDataCache : Node
             timeSinceClean = 0;
 
             CleanOldCacheEntriesIn(membraneCache, Constants.PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME);
+
+            lock (loadedShapes)
+            {
+                CleanOldCacheEntriesIn(loadedShapes, Constants.PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME);
+            }
         }
     }
 
@@ -76,6 +83,26 @@ public class ProceduralDataCache : Node
     public void WriteMembraneData(ComputedMembraneData data)
     {
         membraneCache[data.ComputeCacheHash()] = new CacheEntry<ComputedMembraneData>(data, currentTime);
+    }
+
+    public PhysicsShape? ReadLoadedShape(string filePath, float density)
+    {
+        lock (loadedShapes)
+        {
+            if (!loadedShapes.TryGetValue((filePath, density), out var entry))
+                return null;
+
+            entry.LastUsed = currentTime;
+            return entry.Value;
+        }
+    }
+
+    public void WriteLoadedShape(string filePath, float density, PhysicsShape shape)
+    {
+        lock (loadedShapes)
+        {
+            loadedShapes[(filePath, density)] = new CacheEntry<PhysicsShape>(shape, currentTime);
+        }
     }
 
     private void CleanOldCacheEntriesIn<TKey, T>(Dictionary<TKey, CacheEntry<T>> entries, float keepTime)

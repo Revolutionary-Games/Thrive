@@ -6,10 +6,9 @@
     public struct Spawned
     {
         /// <summary>
-        ///   If the squared distance to the player of this object is
-        ///   greater than this, it is despawned.
+        ///   If the squared distance to the player of this object is greater than this, it is despawned.
         /// </summary>
-        public int DespawnRadiusSquared;
+        public float DespawnRadiusSquared;
 
         /// <summary>
         ///   How much this entity contributes to the entity limit relative to a single node

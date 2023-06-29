@@ -14,8 +14,8 @@
     {
         private readonly IEntityContainer entityContainer;
 
-        public TimedLifeSystem(IEntityContainer entityContainer, World world, IParallelRunner runner)
-            : base(world, runner)
+        public TimedLifeSystem(IEntityContainer entityContainer, World world, IParallelRunner runner) :
+            base(world, runner)
         {
             this.entityContainer = entityContainer;
         }

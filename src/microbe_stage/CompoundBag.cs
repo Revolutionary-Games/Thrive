@@ -77,7 +77,7 @@ public class CompoundBag : ICompoundStorage
 
     public float TakeCompound(Compound compound, float amount)
     {
-        if (!Compounds.TryGetValue(compound, out var existingAmount) || amount <= 0.0f)
+        if (amount <= 0.0f || !Compounds.TryGetValue(compound, out var existingAmount))
             return 0.0f;
 
         amount = Math.Min(existingAmount, amount);

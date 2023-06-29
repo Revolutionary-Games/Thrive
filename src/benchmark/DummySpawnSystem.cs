@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -6,9 +7,9 @@ using Godot;
 /// </summary>
 public class DummySpawnSystem : ISpawnSystem
 {
-    private readonly Action<ISpawned>? addTrackedCallback;
+    private readonly Action<Entity>? addTrackedCallback;
 
-    public DummySpawnSystem(Action<ISpawned>? addTrackedCallback = null)
+    public DummySpawnSystem(Action<Entity>? addTrackedCallback = null)
     {
         this.addTrackedCallback = addTrackedCallback;
     }
@@ -27,11 +28,15 @@ public class DummySpawnSystem : ISpawnSystem
     {
     }
 
-    public void Process(float delta, Vector3 playerPosition)
+    public void ReportPlayerPosition(Vector3 position)
     {
     }
 
-    public void NotifyExternalEntitySpawned(ISpawned entity)
+    public void Update(float delta)
+    {
+    }
+
+    public void NotifyExternalEntitySpawned(Entity entity, float despawnRadiusSquared, float entityWeight)
     {
         addTrackedCallback?.Invoke(entity);
     }

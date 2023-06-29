@@ -32,6 +32,13 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         return body;
     }
 
+    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation)
+    {
+        var body = physics.CreateStaticBody(shape, position, rotation);
+        createdBodies.Add(body);
+        return body;
+    }
+
     public void DestroyBody(NativePhysicsBody body)
     {
         if (!createdBodies.Remove(body))

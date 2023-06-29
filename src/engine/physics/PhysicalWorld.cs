@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Components;
 using Godot;
 
 /// <summary>
@@ -36,6 +37,9 @@ public class PhysicalWorld : IDisposable
         Dispose(false);
     }
 
+    public delegate bool OnCollisionFilterCallback(IntPtr body1, int subShapeData1, IntPtr body2, int subShapeData2,
+        float penetration);
+
     public float LatestPhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsLatestTime(AccessWorldInternal());
 
     /// <summary>
@@ -63,23 +67,42 @@ public class PhysicalWorld : IDisposable
     ///   If false then the body won't be automatically added to the world and <see cref="AddBody"/> needs to be called
     /// </param>
     /// <returns>The created physics body instance</returns>
-    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation, bool addToWorld = true)
+    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation,
+        bool addToWorld = true)
     {
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), addToWorld));
     }
 
-    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation, bool addToWorld = true)
+    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation,
+        bool addToWorld = true)
     {
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateStaticBody(AccessWorldInternal(),
             shape.AccessShapeInternal(),
             new JVec3(position), new JQuat(rotation), addToWorld));
     }
 
+    /// <summary>
+    ///   Adds an existing body back to this world
+    /// </summary>
+    /// <param name="body">The body to add</param>
+    /// <param name="activate">When true the body is activated (wakes from sleep etc.)</param>
     public void AddBody(NativePhysicsBody body, bool activate = true)
     {
         NativeMethods.PhysicalWorldAddBody(AccessWorldInternal(), body.AccessBodyInternal(), activate);
+    }
+
+    /// <summary>
+    ///   Detaches a body from the world for adding back later with <see cref="AddBody"/>. Very different from
+    ///   destroying the body.
+    /// </summary>
+    /// <param name="body">The body to detach</param>
+    public void DetachBody(NativePhysicsBody body)
+    {
+        throw new NotImplementedException();
+
+        // NativeMethods.PhysicalWorldDetachBody(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
     public void DestroyBody(NativePhysicsBody body)
@@ -102,17 +125,35 @@ public class PhysicalWorld : IDisposable
 
     public Transform ReadBodyTransform(NativePhysicsBody body)
     {
+        var data = ReadBodyPosition(body);
+
+        return new Transform(new Basis(data.Rotation), data.Position);
+    }
+
+    public (Vector3 Position, Quat Rotation) ReadBodyPosition(NativePhysicsBody body)
+    {
         // TODO: could probably make things a bit more efficient if the C# body stored the body ID to avoid one level
         // of indirection here
         NativeMethods.ReadPhysicsBodyTransform(AccessWorldInternal(), body.AccessBodyInternal(),
-            out JVec3 position, out JQuat orientation);
+            out var position, out var orientation);
 
-        return new Transform(new Basis(orientation), position);
+        return (position, orientation);
+    }
+
+    public (Vector3 Velocity, Vector3 AngularVelocity) ReadBodyVelocity(NativePhysicsBody physicsBody)
+    {
+        // TODO: implement
+        throw new NotImplementedException();
     }
 
     public void GiveImpulse(NativePhysicsBody body, Vector3 impulse)
     {
         NativeMethods.GiveImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(impulse));
+    }
+
+    public void GiveAngularImpulse(NativePhysicsBody body, Vector3 angularImpulse)
+    {
+        throw new NotImplementedException();
     }
 
     public void ApplyBodyMicrobeControl(NativePhysicsBody body, Vector3 movementImpulse, Quat lookDirection,
@@ -135,7 +176,17 @@ public class PhysicalWorld : IDisposable
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
     }
 
-    public void SetBodyVelocity(NativePhysicsBody body, Vector3 velocity, Vector3 rotation)
+    public void SetBodyVelocity(NativePhysicsBody body, Vector3 velocity, Vector3 angularVelocity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetOnlyBodyVelocity(NativePhysicsBody body, Vector3 velocity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetOnlyBodyAngularVelocity(NativePhysicsBody body, Vector3 angularVelocity)
     {
         throw new NotImplementedException();
     }
@@ -191,6 +242,27 @@ public class PhysicalWorld : IDisposable
 
         var ignored = ignoredBodies.ToArray();
 
+        throw new NotImplementedException();
+    }
+
+    public PhysicsCollision[] BodyStartEntityCollisionRecording(NativePhysicsBody body,
+        int maxRecordedCollisions)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BodyStopCollisionRecording(NativePhysicsBody body)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BodyDisableCollisionFilter(NativePhysicsBody body)
+    {
         throw new NotImplementedException();
     }
 

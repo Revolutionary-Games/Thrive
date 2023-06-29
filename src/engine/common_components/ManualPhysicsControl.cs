@@ -7,12 +7,13 @@
     /// </summary>
     public struct ManualPhysicsControl
     {
+        // Note: to allow multiple places in the code to use this this should have values added with += instead of
+        // assigning to not remove the previous value.
         public Vector3 ImpulseToGive;
         public Vector3 AngularImpulseToGive;
 
-        public Vector3? SetVelocity;
-        public Vector3? SetAngularVelocity;
-
+        // TODO: check if it would make sense to split this into two booleans to avoid the reference and boxing of
+        // the value here
         public bool? DisableCollisions;
 
         public bool RemoveVelocity;

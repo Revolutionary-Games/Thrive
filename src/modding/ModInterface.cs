@@ -11,12 +11,14 @@ public class ModInterface : IModInterface
     }
 
     public event IModInterface.OnSceneChangedHandler? OnSceneChanged;
-    public event IModInterface.OnDamageReceivedHandler? OnDamageReceived;
-    public event IModInterface.OnPlayerMicrobeSpawnedHandler? OnPlayerMicrobeSpawned;
-    public event IModInterface.OnMicrobeSpawnedHandler? OnMicrobeSpawned;
-    public event IModInterface.OnChunkSpawnedHandler? OnChunkSpawned;
-    public event IModInterface.OnToxinEmittedHandler? OnToxinEmitted;
-    public event IModInterface.OnMicrobeDiedHandler? OnMicrobeDied;
+
+    // TODO: redo these
+    // public event IModInterface.OnDamageReceivedHandler? OnDamageReceived;
+    // public event IModInterface.OnPlayerMicrobeSpawnedHandler? OnPlayerMicrobeSpawned;
+    // public event IModInterface.OnMicrobeSpawnedHandler? OnMicrobeSpawned;
+    // public event IModInterface.OnChunkSpawnedHandler? OnChunkSpawned;
+    // public event IModInterface.OnToxinEmittedHandler? OnToxinEmitted;
+    // public event IModInterface.OnMicrobeDiedHandler? OnMicrobeDied;
 
     public SceneTree SceneTree { get; }
 
@@ -27,7 +29,7 @@ public class ModInterface : IModInterface
         OnSceneChanged?.Invoke(newScene);
     }
 
-    public void TriggerOnDamageReceived(Node damageReceiver, float amount, bool isPlayer)
+    /*public void TriggerOnDamageReceived(Node damageReceiver, float amount, bool isPlayer)
     {
         OnDamageReceived?.Invoke(damageReceiver, amount, isPlayer);
     }
@@ -55,5 +57,5 @@ public class ModInterface : IModInterface
     public void TriggerOnMicrobeDied(Microbe microbe, bool isPlayer)
     {
         OnMicrobeDied?.Invoke(microbe, isPlayer);
-    }
+    }*/
 }

@@ -27,8 +27,12 @@ public class PhysicsShape : IDisposable
         return new PhysicsShape(NativeMethods.CreateBoxShapeWithDimensions(new JVecF3(halfDimensions)));
     }
 
-    public static PhysicsShape CreateSphere(float radius)
+    public static PhysicsShape CreateSphere(float radius, float density = 1000)
     {
+        // TODO: density passing to native side
+        throw new NotImplementedException();
+
+
         return new PhysicsShape(NativeMethods.CreateSphereShape(radius));
     }
 
@@ -58,6 +62,44 @@ public class PhysicsShape : IDisposable
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Loads a physics shape from a Godot resource
+    /// </summary>
+    /// <param name="path">Path to the Godot resource</param>
+    /// <param name="density">
+    ///   The density of the created body. Note that this avoid caching if the same shape has different density so
+    ///   avoid slight density changes if they wouldn't have any concrete impact anyway
+    /// </param>
+    /// <returns>The loaded shape or null if there is an error processing</returns>
+    public static PhysicsShape? CreateShapeFromGodotResource(string path, float density)
+    {
+        var cache = ProceduralDataCache.Instance;
+
+        var cached = cache.ReadLoadedShape(path, density);
+
+        if (cached != null)
+            return cached;
+
+        // TODO: pre-bake collision shapes for game export (the fallback conversion below should only need to be used
+        // when debugging to make the release version perform better)
+
+        var godotData = GD.Load<ConvexPolygonShape>(path);
+
+        if (godotData == null)
+        {
+            GD.PrintErr("Failed to load Godot physics shape for converting: ", path);
+            return null;
+        }
+
+        // TODO: converting Godot data to Jolt
+
+        throw new NotImplementedException();
+
+        cache.WriteLoadedShape(path, density, cached);
+
+        return cached;
     }
 
     public void Dispose()

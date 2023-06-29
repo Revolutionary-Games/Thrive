@@ -278,6 +278,8 @@ public abstract class WorldSimulation : IWorldSimulation
             PerformEntityDestroy(entity);
         }
 
+        // TODO: would it make sense to switch entity count reporting to this class?
+
         queuedForDelete.Clear();
     }
 

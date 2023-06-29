@@ -10,14 +10,19 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
     private Random aiRandom = new();
 
-    // TODO: investigate using an ECS to make these systems easier to run concurrently with more clearly separated
-    // components
+    // TODO: allow saving / loading some system state somehow (hopefully without needing to add really hacky dummy
+    // constructors)
     private FluidSystem fluidSystem = null!;
     private MicrobeSystem microbeSystem = null!;
     private ProcessSystem processSystem = null!;
     private MicrobeAISystem microbeAI = null!;
     private FloatingChunkSystem chunkSystem = null!;
     private TimedLifeSystem timedLifeSystem = null!;
+
+    // TODO: re-add the spawn system
+    // [JsonProperty]
+    // [AssignOnlyChildItemsOnDeserialize]
+    // private SpawnSystem spawner = null!;
 
     private Node visualsParent = null!;
 

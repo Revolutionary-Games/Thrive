@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 
@@ -39,7 +40,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     private Image image = null!;
     private ImageTexture texture = null!;
-    private FluidSystem? fluidSystem;
+    private FluidCurrentsSystem? fluidSystem;
 
     private Vector4 decayRates;
 
@@ -82,10 +83,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
-    public void Init(FluidSystem fluidSystem, int renderPriority, Compound cloud1, Compound? cloud2,
+    public void Init(FluidCurrentsSystem turbulenceSource, int renderPriority, Compound cloud1, Compound? cloud2,
         Compound? cloud3, Compound? cloud4)
     {
-        this.fluidSystem = fluidSystem;
+        fluidSystem = turbulenceSource;
         Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
 
         decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,

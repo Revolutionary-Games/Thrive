@@ -297,7 +297,9 @@ public partial class Microbe
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame, cellType);
 
         // Make it despawn like normal (if our colony is accidentally somehow disbanded)
-        spawnSystem!.NotifyExternalEntitySpawned(newCell);
+        throw new NotImplementedException();
+
+        // spawnSystem!.NotifyExternalEntitySpawned(newCell);
 
         if (!keepCompounds)
         {

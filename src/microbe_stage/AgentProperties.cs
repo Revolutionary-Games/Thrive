@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using Components;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Properties of an agent. Mainly used currently to block friendly fire
@@ -18,6 +21,13 @@ public class AgentProperties
     [JsonIgnore]
     public LocalizedString Name =>
         new("AGENT_NAME", new LocalizedString(Compound.GetUntranslatedName()));
+
+    public void DealDamage(ref Health health, float toxinAmount)
+    {
+        var damage = Constants.OXYTOXY_DAMAGE * toxinAmount;
+
+        health.DealDamage(damage, AgentType);
+    }
 
     public override string ToString()
     {

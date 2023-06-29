@@ -145,16 +145,19 @@ public partial class DebugOverlays
         labelsLayer.AddChild(label);
         entityLabels.Add(entity, label);
 
-        switch (entity)
-        {
-            case FloatingChunk:
-            case AgentProjectile:
-            {
-                // To reduce the labels overlapping each other
-                label.AddFontOverride("font", smallerFont);
-                break;
-            }
-        }
+        // TODO: reimplement
+        throw new NotImplementedException();
+
+        // switch (entity)
+        // {
+        //     case FloatingChunk:
+        //     case AgentProjectile:
+        //     {
+        //         // To reduce the labels overlapping each other
+        //         label.AddFontOverride("font", smallerFont);
+        //         break;
+        //     }
+        // }
     }
 
     private void OnNodeRemoved(Node node)

@@ -10,7 +10,8 @@ public interface IWorldSimulationWithPhysics : IWorldSimulation
     [JsonIgnore]
     public PhysicalWorld PhysicalWorld { get; }
 
-    public PhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation);
+    public NativePhysicsBody CreateMovingBody(PhysicsShape shape, Vector3 position, Quat rotation);
+    public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation);
 
-    public void DestroyBody(PhysicsBody body);
+    public void DestroyBody(NativePhysicsBody body);
 }

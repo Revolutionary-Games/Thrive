@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISpawned, ISaveLoadedTracked, ICharacterInventory,
+public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterInventory,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
@@ -141,14 +141,6 @@ public class MulticellularCreature : RigidBody, ISpawned, ISaveLoadedTracked, IC
 
     [JsonIgnore]
     public Spatial EntityNode => this;
-
-    public int DespawnRadiusSquared { get; set; }
-
-    /// <summary>
-    ///   TODO: adjust entity weight once fleshed out
-    /// </summary>
-    [JsonIgnore]
-    public float EntityWeight => 1.0f;
 
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
@@ -293,7 +285,9 @@ public class MulticellularCreature : RigidBody, ISpawned, ISaveLoadedTracked, IC
             GetParent(), SpawnHelpers.LoadMulticellularScene(), true, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        spawnSystem!.NotifyExternalEntitySpawned(copyEntity);
+        throw new NotImplementedException();
+
+        // spawnSystem!.NotifyExternalEntitySpawned(copyEntity);
 
         // TODO: some kind of resource splitting for the offspring?
 

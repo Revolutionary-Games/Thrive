@@ -15,7 +15,7 @@
     /// </summary>
     [With(typeof(CompoundStorage))]
     [With(typeof(BioProcesses))]
-    public class ProcessSystem : AEntitySetSystem<float>
+    public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
         private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
@@ -28,8 +28,7 @@
         /// </summary>
         private float inverseDelta;
 
-        public ProcessSystem(World world, IParallelRunner runner)
-            : base(world, runner)
+        public ProcessSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
 
@@ -402,14 +401,10 @@
 
         protected override void Update(float delta, in Entity entity)
         {
-            ref var position = ref entity.Get<WorldPosition>();
-            ref var spatial = ref entity.Get<SpatialInstance>();
+            ref var storage = ref entity.Get<CompoundStorage>();
+            ref var processes = ref entity.Get<BioProcesses>();
 
-            if (spatial.GraphicalInstance != null)
-            {
-                // TODO: scale
-                spatial.GraphicalInstance.Transform = new Transform(new Basis(position.Rotation), position.Position);
-            }
+            ProcessNode(ref processes, ref storage, delta);
         }
 
         private static float GetAmbientInBiome(Compound compound, BiomeConditions biome, CompoundAmountType amountType)
@@ -431,7 +426,7 @@
             return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
         }
 
-        private void ProcessNode(BioProcesses processor, CompoundStorage storage, float delta)
+        private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float delta)
         {
             var bag = storage.Compounds;
 

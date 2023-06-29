@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using DefaultEcs;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -28,14 +29,27 @@ public interface ISpawnSystem
     public void DespawnAll();
 
     /// <summary>
-    ///   Processes spawning and despawning things
+    ///   Reports the current player position around which spawning happens. Needs to be called before
+    ///   <see cref="Update"/>
     /// </summary>
-    public void Process(float delta, Vector3 playerPosition);
+    public void ReportPlayerPosition(Vector3 position);
 
     /// <summary>
-    ///   Adds an externally spawned entity to be despawned and tracked by the system
+    ///   Processes spawning and despawning things
     /// </summary>
-    public void NotifyExternalEntitySpawned(ISpawned entity);
+    public void Update(float delta);
+
+    /// <summary>
+    ///   Notifies this that an externally created entity is now in the world. And needs to be despawned by this.
+    ///   Used to setup the despawn radius for it and make sure entity count is up to date.
+    /// </summary>
+    /// <param name="entity">The entity that needs proper despawning support</param>
+    /// <param name="despawnRadiusSquared">
+    ///   How far the entity can be from the player before being despawned, this value needs to be squared (this is
+    ///   done to speed up distance checks).
+    /// </param>
+    /// <param name="entityWeight">How much "space" the entity takes up in the spawn system</param>
+    public void NotifyExternalEntitySpawned(Entity entity, float despawnRadiusSquared, float entityWeight);
 
     /// <summary>
     ///   Checks if the approximate entity count is not too much over the entity limit

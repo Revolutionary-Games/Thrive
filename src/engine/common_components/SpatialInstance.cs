@@ -10,8 +10,14 @@
         public Spatial? GraphicalInstance;
 
         /// <summary>
-        ///   If not null applies visual scale to <see cref="GraphicalInstance"/>
+        ///   Visual scale to set. Only applies when <see cref="ApplyVisualScale"/> is set to true to only require
+        ///   entities that want to scale to set this field
         /// </summary>
-        public Vector3? VisualScale;
+        public Vector3 VisualScale;
+
+        /// <summary>
+        ///   If true applies visual scale to <see cref="GraphicalInstance"/>
+        /// </summary>
+        public bool ApplyVisualScale;
     }
 }

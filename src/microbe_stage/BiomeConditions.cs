@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
 /// </summary>
 [UseThriveSerializer]
-public class BiomeConditions : ICloneable, ISaveLoadable
+public class BiomeConditions : ICloneable
 {
     // TODO: make this also a property / private
     public Dictionary<string, ChunkConfiguration> Chunks = null!;
@@ -187,16 +187,6 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         }
     }
 
-    public void Resolve(SimulationParameters parameters)
-    {
-        LoadChunkScenes();
-    }
-
-    public void FinishLoading(ISaveContext? context)
-    {
-        LoadChunkScenes();
-    }
-
     public object Clone()
     {
         // Shallow cloning is enough here thanks to us using value types (structs) as the dictionary values
@@ -208,16 +198,5 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         };
 
         return result;
-    }
-
-    private void LoadChunkScenes()
-    {
-        foreach (var entry in Chunks)
-        {
-            foreach (var meshEntry in entry.Value.Meshes)
-            {
-                meshEntry.LoadScene();
-            }
-        }
     }
 }

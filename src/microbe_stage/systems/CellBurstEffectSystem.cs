@@ -7,13 +7,15 @@
     using Godot;
     using World = DefaultEcs.World;
 
+    /// <summary>
+    ///   Updates cell burst effects as time elapses
+    /// </summary>
     [With(typeof(CellBurstEffect))]
     [With(typeof(TimedLife))]
     [With(typeof(SpatialInstance))]
     public sealed class CellBurstEffectSystem : AEntitySetSystem<float>
     {
-        public CellBurstEffectSystem(World world, IParallelRunner runner)
-            : base(world, runner)
+        public CellBurstEffectSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
 

@@ -125,19 +125,35 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
     <Compile Include="src\engine\common_components\CollisionManagement.cs" />
+    <Compile Include="src\engine\common_components\CountLimited.cs" />
+    <Compile Include="src\engine\common_components\DamageOnTouch.cs" />
+    <Compile Include="src\engine\common_components\EntityMaterial.cs" />
     <Compile Include="src\engine\common_components\FadeOutActions.cs" />
-    <Compile Include="src\engine\common_components\ManualphysicsControl.cs" />
+    <Compile Include="src\engine\common_components\Health.cs" />
+    <Compile Include="src\engine\common_components\LimitGroup.cs" />
+    <Compile Include="src\engine\common_components\ManualPhysicsControl.cs" />
+    <Compile Include="src\engine\common_components\PathLoadedSceneVisuals.cs" />
     <Compile Include="src\engine\common_components\Physics.cs" />
+    <Compile Include="src\engine\common_components\PhysicsShapeHolder.cs" />
     <Compile Include="src\engine\common_components\PredefinedVisuals.cs" />
     <Compile Include="src\engine\common_components\ReadableName.cs" />
+    <Compile Include="src\engine\common_components\RenderOrderOverride.cs" />
     <Compile Include="src\engine\common_components\SpatialInstance.cs" />
     <Compile Include="src\engine\common_components\Spawned.cs" />
     <Compile Include="src\engine\common_components\TimedLife.cs" />
-    <Compile Include="src\engine\common_components\ToxinDamageSource.cs" />
     <Compile Include="src\engine\common_components\WorldPosition.cs" />
+    <Compile Include="src\engine\common_systems\CountLimitedDespawnSystem.cs" />
+    <Compile Include="src\engine\common_systems\DamageOnTouchSystem.cs" />
+    <Compile Include="src\engine\common_systems\EntityMaterialFetchSystem.cs" />
     <Compile Include="src\engine\common_systems\FadeOutActionSystem.cs" />
+    <Compile Include="src\engine\common_systems\PathBasedSceneLoader.cs" />
+    <Compile Include="src\engine\common_systems\PhysicsBodyControlSystem.cs" />
+    <Compile Include="src\engine\common_systems\PhysicsBodyCreationSystem.cs" />
+    <Compile Include="src\engine\common_systems\PhysicsBodyDisablingSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsCollisionManagementSystem.cs" />
+    <Compile Include="src\engine\common_systems\PhysicsUpdateAndPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\PredefinedVisualLoaderSystem.cs" />
+    <Compile Include="src\engine\common_systems\RenderOrderSystem.cs" />
     <Compile Include="src\engine\common_systems\SpatialAttachSystem.cs" />
     <Compile Include="src\engine\common_systems\SpatialPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\TimedLifeSystem.cs" />
@@ -164,6 +180,7 @@
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
     <Compile Include="src\engine\physics\PhysicalWorld.cs" />
     <Compile Include="src\engine\physics\NativePhysicsBody.cs" />
+    <Compile Include="src\engine\physics\PhysicsCollision.cs" />
     <Compile Include="src\engine\physics\PhysicsShape.cs" />
     <Compile Include="src\engine\PostShutdownActions.cs" />
     <Compile Include="src\engine\RaycastResult.cs" />
@@ -402,6 +419,14 @@
     <Compile Include="src\microbe_stage\components\BioProcesses.cs" />
     <Compile Include="src\microbe_stage\components\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\components\CompoundStorage.cs" />
+    <Compile Include="src\microbe_stage\components\CompoundVenter.cs" />
+    <Compile Include="src\microbe_stage\components\CurrentAffected.cs" />
+    <Compile Include="src\microbe_stage\components\Engulfable.cs" />
+    <Compile Include="src\microbe_stage\components\MicrobeColony.cs" />
+    <Compile Include="src\microbe_stage\components\MicrobeShaderParameters.cs" />
+    <Compile Include="src\microbe_stage\components\PlayerOffspring.cs" />
+    <Compile Include="src\microbe_stage\components\SpeciesMember.cs" />
+    <Compile Include="src\microbe_stage\components\ToxinDamageSource.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\OrganelleUpgradeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\ColourActionData.cs" />
@@ -484,7 +509,6 @@
     <Compile Include="src\microbe_stage\editor\upgrades\LysosomeUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\Endosome.cs" />
     <Compile Include="src\microbe_stage\Enzyme.cs" />
-    <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
     <Compile Include="src\microbe_stage\gui\DisplayDuration.cs" />
     <Compile Include="src\microbe_stage\gui\HUDMessages.cs" />
     <Compile Include="src\microbe_stage\gui\IHUDMessage.cs" />
@@ -517,7 +541,6 @@
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\MicrobeInspectInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeState.cs" />
-    <Compile Include="src\microbe_stage\MicrobeSystem.cs" />
     <Compile Include="src\microbe_stage\MicrobeWorldSimulation.cs" />
     <Compile Include="src\microbe_stage\organelle_components\AxonComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
@@ -534,7 +557,6 @@
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapNode.cs" />
     <Compile Include="src\microbe_stage\BiomeCompoundProperties.cs" />
-    <Compile Include="src\microbe_stage\FloatingChunk.cs" />
     <Compile Include="src\microbe_stage\IProcessDisplayInfo.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
     <Compile Include="src\microbe_stage\Microbe.cs" />
@@ -557,7 +579,6 @@
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
-    <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="src\microbe_stage\MembraneType.cs" />
     <Compile Include="simulation_parameters\SimulationParameters.cs" />
     <Compile Include="src\microbe_stage\Background.cs" />
@@ -577,15 +598,18 @@
     <Compile Include="src\microbe_stage\organelle_components\MovementComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\PilusComponent.cs" />
     <Compile Include="src\microbe_stage\StrictProcessDisplayInfoEquality.cs" />
+    <Compile Include="src\microbe_stage\systems\AllCompoundsVentingSystem.cs" />
     <Compile Include="src\microbe_stage\systems\CellBurstEffectSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\FluidCurrentsSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\MicrobeShaderSystem.cs" />
     <Compile Include="src\microbe_stage\systems\ProcessSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\SpawnSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\ToxinCollisionSystem.cs" />
     <Compile Include="src\microbe_stage\TweakedProcess.cs" />
     <Compile Include="src\microbe_stage\CompoundBag.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudSystem.cs" />
     <Compile Include="src\engine\TaskExecutor.cs" />
-    <Compile Include="src\microbe_stage\FluidSystem.cs" />
     <Compile Include="src\microbe_stage\Spawner.cs" />
-    <Compile Include="src\microbe_stage\ISpawned.cs" />
     <Compile Include="src\microbe_stage\Spawners.cs" />
     <Compile Include="src\engine\Settings.cs" />
     <Compile Include="src\general\Int3.cs" />
@@ -818,7 +842,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
-    <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>

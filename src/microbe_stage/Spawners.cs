@@ -21,12 +21,6 @@ public static class Spawners
 
     public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType)
     {
-        foreach (var mesh in chunkType.Meshes)
-        {
-            if (mesh.LoadedScene == null)
-                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
-        }
-
         return new ChunkSpawner(chunkType);
     }
 
@@ -85,9 +79,11 @@ public static class SpawnHelpers
         {
             VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
         });
+
         entity.Set(new SpatialInstance
         {
-            VisualScale = Math.Abs(scale - 1) > MathUtils.EPSILON ? new Vector3(scale, scale, scale) : null,
+            VisualScale = new Vector3(scale, scale, scale),
+            ApplyVisualScale = Math.Abs(scale - 1) > MathUtils.EPSILON,
         });
 
         entity.Set(new TimedLife
@@ -108,48 +104,173 @@ public static class SpawnHelpers
             ToxinProperties = properties,
         });
 
-        entity.Set<Physics>();
+        entity.Set(new Physics
+        {
+            Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
+            LockToYAxis = true,
+        });
+        entity.Set(new PhysicsShapeHolder
+        {
+            Shape = PhysicsShape.CreateSphere(Constants.TOXIN_PROJECTILE_PHYSICS_SIZE),
+        });
         entity.Set(new CollisionManagement
         {
             IgnoredCollisionsWith = new List<Entity> { emitter },
 
-            // TODO: collision callback
-
-            // TODO: somehow disable collisions with microbes this can't damage
+            // Callbacks are initialized by ToxinCollisionSystem
         });
-        entity.Set(new ManualPhysicsControl
-        {
-            ImpulseToGive = normalizedDirection * Constants.AGENT_EMISSION_IMPULSE_STRENGTH,
-        });
-
-        throw new NotImplementedException();
-        /*_ = bodyID;
-        _ = localShape;
-
-        if (body is not Microbe microbe)
-            return;
-
-        if (microbe.Species == Properties!.Species)
-            return;
-
-        // If more stuff needs to be damaged we could make an IAgentDamageable interface.
-        var target = microbe.GetMicrobeFromShape(bodyShape);
-
-        if (target == null)
-            return;
-
-        Invoke.Instance.Perform(
-            () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
-
-        if (FadeTimeRemaining == null)
-        {
-            // We should probably get some *POP* effect here.
-            BeginDestroy();
-        }*/
 
         entity.Set(new ReadableName
         {
             Name = properties.Name,
+        });
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+
+        return entity;
+    }
+
+    /// <summary>
+    ///   Spawn a floating chunk (cell parts floating around, rocks, hazards)
+    /// </summary>
+    public static EntityRecord SpawnChunk(IWorldSimulation worldSimulation, ChunkConfiguration chunkType,
+        Vector3 location, Random random, bool microbeDrop)
+    {
+        // Resolve the final chunk settings as the chunk configuration is a group of potential things
+        var selectedMesh = chunkType.Meshes.Random(random);
+
+        // TODO: do something with these properties:
+        // selectedMesh.SceneModelPath, selectedMesh.SceneAnimationPath
+
+        // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
+        var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
+
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
+
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
+
+        entity.Set(new WorldPosition(location, new Quat(
+            rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
+
+        // TODO: redo chunk visuals with the loadable visual definitions
+        // entity.Set(new PredefinedVisuals
+        // {
+        //     VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
+        // });
+        entity.Set(new PathLoadedSceneVisuals
+        {
+            ScenePath = selectedMesh.ScenePath,
+        });
+
+        entity.Set(new SpatialInstance
+        {
+            VisualScale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale, chunkType.ChunkScale),
+        });
+
+        // Setup compounds to vent
+        bool hasCompounds = false;
+        if (chunkType.Compounds?.Count > 0)
+        {
+            hasCompounds = true;
+
+            // Capacity is 0 to disallow adding any more compounds to the compound bag
+            var compounds = new CompoundBag(0);
+
+            foreach (var entry in chunkType.Compounds)
+            {
+                // Directly write compounds to avoid the capacity limit
+                compounds.Compounds.Add(entry.Key, entry.Value.Amount);
+            }
+
+            entity.Set(new CompoundStorage
+            {
+                Compounds = compounds,
+            });
+
+            entity.Set(new CompoundVenter
+            {
+                VentEachCompoundPerSecond = chunkType.VentAmount,
+                DestroyOnEmpty = chunkType.Dissolves,
+                UsesMicrobialDissolveEffect = true,
+            });
+        }
+
+        // Chunks that don't dissolve naturally when running out of compounds, are despawned with a timer
+        if (!chunkType.Dissolves)
+        {
+            entity.Set(new TimedLife
+            {
+                TimeToLiveRemaining = Constants.DESPAWNING_CHUNK_LIFETIME,
+            });
+            entity.Set(new FadeOutActions
+            {
+                FadeTime = Constants.EMITTER_DESPAWN_DELAY,
+                DisableCollisions = true,
+                RemoveVelocity = true,
+                DisableParticles = true,
+                UsesMicrobialDissolveEffect = true,
+                VentCompounds = true,
+            });
+        }
+
+        entity.Set(new Physics
+        {
+            LockToYAxis = true,
+        });
+        entity.Set(new PhysicsShapeHolder
+        {
+            Shape = selectedMesh.ConvexShapePath != null ?
+                PhysicsShape.CreateShapeFromGodotResource(selectedMesh.ConvexShapePath, chunkType.Density) :
+                PhysicsShape.CreateSphere(chunkType.Radius, chunkType.Density),
+        });
+
+        if (chunkType.Damages > 0)
+        {
+            entity.Set<CollisionManagement>();
+            entity.Set(new DamageOnTouch
+            {
+                DamageAmount = chunkType.Damages,
+                DestroyOnTouch = chunkType.DeleteOnTouch,
+                DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType,
+            });
+        }
+        else if (chunkType.DeleteOnTouch)
+        {
+            // No damage but deletes on touch
+            entity.Set<CollisionManagement>();
+            entity.Set(new DamageOnTouch
+            {
+                DamageAmount = 0,
+                DestroyOnTouch = chunkType.DeleteOnTouch,
+            });
+        }
+
+        // TODO: rename Size to EngulfSize after making sure it isn't used for other purposes
+        if (chunkType.Size > 0)
+        {
+            entity.Set(new Engulfable
+            {
+                BaseEngulfSize = chunkType.Size,
+                RequisiteEnzymeToDigest = !string.IsNullOrEmpty(chunkType.DissolverEnzyme) ?
+                    SimulationParameters.Instance.GetEnzyme(chunkType.DissolverEnzyme) :
+                    null,
+                DestroyIfPartiallyDigested = true,
+            });
+        }
+
+        entity.Set<CurrentAffected>();
+        entity.Set<ManualPhysicsControl>();
+
+        // Despawn chunks when there are too many
+        entity.Set(new CountLimited
+        {
+            Group = microbeDrop ? LimitGroup.Chunk : LimitGroup.ChunkSpawned,
+        });
+
+        entity.Set(new ReadableName
+        {
+            Name = new LocalizedString(chunkType.Name),
         });
 
         worldSimulation.FinishRecordingEntityCommands(recorder);
@@ -282,47 +403,8 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
-    public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
-        Vector3 location, Node worldNode, PackedScene chunkScene, Random random)
-    {
-        throw new NotImplementedException();
-        /*var chunk = (FloatingChunk)chunkScene.Instance();
-
-        // Settings need to be applied before adding it to the scene
-        var selectedMesh = chunkType.Meshes.Random(random);
-        chunk.GraphicsScene = selectedMesh.LoadedScene ??
-            throw new Exception("Chunk scene has not been loaded even though it should be loaded here");
-        chunk.ConvexPhysicsMesh = selectedMesh.LoadedConvexShape;
-
-        if (chunk.GraphicsScene == null)
-            throw new ArgumentException("couldn't find a graphics scene for a chunk");
-
-        // Pass on the chunk data
-        chunk.Init(chunkType, selectedMesh.SceneModelPath, selectedMesh.SceneAnimationPath);
-        chunk.UsesDespawnTimer = !chunkType.Dissolves;
-
-        worldNode.AddChild(chunk);
-
-        // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
-        var rotationAxis = chunk.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
-        chunk.Transform = new Transform(new Quat(
-            rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()), location);
-
-        chunk.GetNode<Spatial>("NodeToScale").Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
-            chunkType.ChunkScale);
-
-        chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
-        chunk.AddToGroup(Constants.AI_TAG_CHUNK);
-        return chunk;*/
-    }
-
-    public static PackedScene LoadChunkScene()
-    {
-        return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
-    }
-
-    public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location,
-        Compound compound, float amount, Random random)
+    public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location, Compound compound, float amount,
+        Random random)
     {
         int resolution = Settings.Instance.CloudResolution;
 
@@ -585,7 +667,7 @@ public class MicrobeSpawner : Spawner
 
     public Species Species { get; }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
+    public override IEnumerable<Entity>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
         // This should no longer happen, but let's keep this print here to keep track of the situation
         if (Species.Obsolete)
@@ -600,9 +682,14 @@ public class MicrobeSpawner : Spawner
             SpawnHelpers.GiveFullyGrownChanceForMulticellular(first, random);
         }
 
-        yield return first;
+        throw new NotImplementedException();
 
-        ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
+        // yield return first;
+
+        // TODO: redo
+        throw new NotImplementedException();
+
+        // ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
 
         // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
         if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
@@ -610,9 +697,11 @@ public class MicrobeSpawner : Spawner
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, worldNode,
                          microbeScene, cloudSystem, spawnSystem, currentGame, random))
             {
-                yield return colonyMember;
+                throw new NotImplementedException();
 
-                ModLoader.ModInterface.TriggerOnMicrobeSpawned(colonyMember);
+                // yield return colonyMember;
+
+                // ModLoader.ModInterface.TriggerOnMicrobeSpawned(colonyMember);
             }
         }
     }
@@ -642,7 +731,7 @@ public class CompoundCloudSpawner : Spawner
 
     public override bool SpawnsEntities => false;
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
+    public override IEnumerable<Entity>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
@@ -661,26 +750,26 @@ public class CompoundCloudSpawner : Spawner
 /// </summary>
 public class ChunkSpawner : Spawner
 {
-    private readonly PackedScene chunkScene;
     private readonly ChunkConfiguration chunkType;
     private readonly Random random = new();
 
     public ChunkSpawner(ChunkConfiguration chunkType)
     {
         this.chunkType = chunkType;
-        chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
     public override bool SpawnsEntities => true;
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
+    public override IEnumerable<Entity>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
-        var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
-            random);
+        throw new NotImplementedException();
 
-        yield return chunk;
-
-        ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, true);
+        // var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
+        //     random);
+        //
+        // yield return chunk;
+        //
+        // ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, true);
     }
 
     public override string ToString()

@@ -8,12 +8,14 @@
     using Godot;
     using World = DefaultEcs.World;
 
+    /// <summary>
+    ///   Handles fading out animations on entities
+    /// </summary>
     [With(typeof(FadeOutActions))]
     [With(typeof(TimedLife))]
     public sealed class FadeOutActionSystem : AEntitySetSystem<float>
     {
-        public FadeOutActionSystem(World world, IParallelRunner runner)
-            : base(world, runner)
+        public FadeOutActionSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
 
@@ -48,11 +50,26 @@
 
                 timedLife.FadeTimeRemaining = actions.FadeTime;
 
-                if (actions.DisableCollisions || actions.RemoveVelocity)
-                    PerformPhysicsOperations(entity, actions.RemoveVelocity, actions.DisableCollisions);
+                if (actions.DisableCollisions || actions.RemoveVelocity || actions.RemoveAngularVelocity)
+                {
+                    PerformPhysicsOperations(entity, actions.RemoveVelocity, actions.RemoveAngularVelocity,
+                        actions.DisableCollisions);
+                }
 
                 if (actions.DisableParticles)
                     DisableParticleEmission(entity);
+
+                if (actions.UsesMicrobialDissolveEffect)
+                {
+                    entity.StartDissolveAnimation(true);
+                }
+
+                if (actions.VentCompounds)
+                {
+                    // TODO: implement this
+                    GD.PrintErr("TODO: implement vent compounds on fade");
+                    throw new NotImplementedException();
+                }
 
                 // Fade started, don't destroy yet
                 return false;
@@ -64,14 +81,15 @@
             }
         }
 
-        private void PerformPhysicsOperations(Entity entity, bool removeVelocity, bool disableCollisions)
+        private void PerformPhysicsOperations(Entity entity, bool removeVelocity, bool removeAngularVelocity,
+            bool disableCollisions)
         {
             try
             {
                 ref var physicsControl = ref entity.Get<ManualPhysicsControl>();
 
                 physicsControl.RemoveVelocity = removeVelocity;
-                physicsControl.RemoveAngularVelocity = removeVelocity;
+                physicsControl.RemoveAngularVelocity = removeAngularVelocity;
 
                 if (disableCollisions)
                     physicsControl.DisableCollisions = disableCollisions;
@@ -98,6 +116,10 @@
                     throw new NullReferenceException("Graphical instance casted as particles is null");
 
                 particles.Emitting = false;
+
+                // TODO: do we need a feature to automatically read the particle lifetime here and then adjust the
+                // fade out time accordingly?
+                // particleFadeTimer = particles.Lifetime;
             }
             catch (Exception e)
             {

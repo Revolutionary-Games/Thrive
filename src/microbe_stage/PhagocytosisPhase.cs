@@ -6,7 +6,7 @@ public enum PhagocytosisPhase
     /// <summary>
     ///   Not being phagocytized in any way.
     /// </summary>
-    None,
+    None = 0,
 
     /// <summary>
     ///   Engulfable is in the process of being moved into the cytoplasm to be stored.

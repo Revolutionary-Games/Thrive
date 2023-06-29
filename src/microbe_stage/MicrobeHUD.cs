@@ -392,9 +392,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Show the entity's name and count of hovered entities
         hoveredEntities.Clear();
 
+        // TODO: reimplement this with entities
         throw new NotImplementedException();
 
-        foreach (var entity in stage.HoverInfo.InspectableEntities)
+        /*foreach (var entity in stage.HoverInfo.InspectableEntities)
         {
             var category = string.Empty;
 
@@ -422,7 +423,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var key = (category, entity.ReadableName);
             hoveredEntities.TryGetValue(key, out int count);
             hoveredEntities[key] = count + 1;
-        }
+        }*/
 
         foreach (var hoveredEntity in hoveredEntities)
         {

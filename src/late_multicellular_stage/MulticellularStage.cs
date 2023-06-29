@@ -652,14 +652,16 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 // TODO: change the view
             }
 
-            // TODO: remove
+            // TODO: reimplement this
+            throw new NotImplementedException();
+
+            /*// TODO: remove
             // Spawn a chunk to give the player some navigation reference
             var mesh = new ChunkConfiguration.ChunkScene
             {
                 ScenePath = "res://assets/models/Iron5.tscn",
                 ConvexShapePath = "res://assets/models/Iron5.shape",
             };
-            mesh.LoadScene();
             SpawnHelpers.SpawnChunk(new ChunkConfiguration
                 {
                     Name = "test",
@@ -669,7 +671,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                     ChunkScale = 1,
                     Meshes = new List<ChunkConfiguration.ChunkScene> { mesh },
                 }, new Vector3(3, 0, -15), rootOfDynamicallySpawned, SpawnHelpers.LoadChunkScene(),
-                random);
+                random);*/
         }
 
         // patchManager.CurrentGame = CurrentGame;

@@ -270,9 +270,9 @@ public static class Constants
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
     /// <summary>
-    ///   Controls with how much force agents are fired
+    ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
+    public const float AGENT_EMISSION_VELOCITY = 10.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -301,6 +301,8 @@ public static class Constants
     /// </summary>
     public const float TOXIN_PROJECTILE_TIME_TO_LIVE = 3;
 
+    public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
+
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually
@@ -326,6 +328,13 @@ public static class Constants
     ///   Base mass all microbes have on top of their organelle masses
     /// </summary>
     public const float MICROBE_BASE_MASS = 0.7f;
+
+    public const float PHYSICS_ALLOWED_Y_AXIS_DRIFT = 0.1f;
+
+    /// <summary>
+    ///   How many collisions each damage dealing entity can record at once
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_DAMAGE_COLLISIONS = 5;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -363,14 +372,9 @@ public static class Constants
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
     /// <summary>
-    ///   Limits how often floating chunks are processed to save on some performance
+    ///   If more chunks exist at once than this, then some are forced to despawn immediately
     /// </summary>
-    public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
-
-    /// <summary>
-    ///   If more chunks exist at once than this, then some are forced to dissolve immediately
-    /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+    public const int FLOATING_CHUNK_MAX_COUNT = 50;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
@@ -548,7 +552,8 @@ public static class Constants
     public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
 
     /// <summary>
-    ///   The maximum digestion progress in which an engulfable is considered fully digested.
+    ///   The maximum digestion progress in which an engulfable is considered fully digested. Do not change this.
+    ///   It is assumed elsewhere that 1 means fully digested so this will break a bunch of stuff if you change this.
     /// </summary>
     public const float FULLY_DIGESTED_LIMIT = 1.0f;
 
@@ -980,6 +985,7 @@ public static class Constants
 
     public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
+    public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
 
     // TODO: delete once old microbe code is gone
     /// <summary>
@@ -1023,8 +1029,6 @@ public static class Constants
     // TODO: delete up to here after microbe code is gone
 
     public const string ENTITY_TAG_CREATURE = "creature";
-
-    public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
 
     public const string INTERACTABLE_GROUP = "interactable";
 

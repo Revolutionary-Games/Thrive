@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Manages spawning and processing compound clouds
@@ -50,7 +51,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Resets the cloud contents and positions as well as the compound types they store
     /// </summary>
-    public void Init(FluidSystem fluidSystem)
+    public void Init(FluidCurrentsSystem fluidSystem)
     {
         var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 

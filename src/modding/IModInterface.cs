@@ -20,17 +20,18 @@ public interface IModInterface
 {
     public delegate void OnSceneChangedHandler(Node newScene);
 
-    public delegate void OnDamageReceivedHandler(Node damageReceiver, float amount, bool isPlayer);
-
-    public delegate void OnPlayerMicrobeSpawnedHandler(Microbe player);
-
-    public delegate void OnMicrobeSpawnedHandler(Microbe microbe);
-
-    public delegate void OnChunkSpawnedHandler(FloatingChunk chunk, bool environmental);
-
-    public delegate void OnToxinEmittedHandler(AgentProjectile toxin);
-
-    public delegate void OnMicrobeDiedHandler(Microbe microbe, bool isPlayer);
+    // TODO: redo these with the new ECS approach:
+    // public delegate void OnDamageReceivedHandler(Node damageReceiver, float amount, bool isPlayer);
+    //
+    // public delegate void OnPlayerMicrobeSpawnedHandler(Microbe player);
+    //
+    // public delegate void OnMicrobeSpawnedHandler(Microbe microbe);
+    //
+    // public delegate void OnChunkSpawnedHandler(FloatingChunk chunk, bool environmental);
+    //
+    // public delegate void OnToxinEmittedHandler(AgentProjectile toxin);
+    //
+    // public delegate void OnMicrobeDiedHandler(Microbe microbe, bool isPlayer);
 
     // Game events mods can listen to
     // If something you'd want to use is missing, please request it:
@@ -38,13 +39,13 @@ public interface IModInterface
 
     public event OnSceneChangedHandler OnSceneChanged;
 
-    public event OnDamageReceivedHandler OnDamageReceived;
-
-    public event OnPlayerMicrobeSpawnedHandler OnPlayerMicrobeSpawned;
-    public event OnMicrobeSpawnedHandler OnMicrobeSpawned;
-    public event OnChunkSpawnedHandler OnChunkSpawned;
-    public event OnToxinEmittedHandler OnToxinEmitted;
-    public event OnMicrobeDiedHandler OnMicrobeDied;
+    // public event OnDamageReceivedHandler OnDamageReceived;
+    //
+    // public event OnPlayerMicrobeSpawnedHandler OnPlayerMicrobeSpawned;
+    // public event OnMicrobeSpawnedHandler OnMicrobeSpawned;
+    // public event OnChunkSpawnedHandler OnChunkSpawned;
+    // public event OnToxinEmittedHandler OnToxinEmitted;
+    // public event OnMicrobeDiedHandler OnMicrobeDied;
 
     /// <summary>
     ///   Godot's main SceneTree
