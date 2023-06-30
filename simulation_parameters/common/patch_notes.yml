@@ -131,3 +131,37 @@
     - Updated some check tool package dependencies
     - Updated our code checking tools version
     - Updated translations
+
+0.6.3:
+  IntroductionText: |
+    This release adds all of the remaining prototypes for game stages that weren't ready in time for the previous release. Besides those there are a bunch of small fixes and feature improvements for the microbe stage and general GUI parts. This is a bit of a smaller release due to not many active volunteers and a lot of time has been spent in preparation for a game performance rework which will hopefully be in the release after this one.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.3
+  PatchNotes:
+    - "Added the remaining prototype stages: industrial, space, and ascension. It is now possible to play through the skeleton of the game all the way from microbe to ascension, though the later prototypes have bare minimum content to show off the ideas of the stages."
+    - Downgraded our compression library (SharpZipLib) to 1.3.3 which should resolve the intermittent save errors that have been happening the past few months
+    - Added a new toxin damage sound (instead of reusing the emit sound)
+    - Improved the placeholder tree and rocket graphics for the prototypes
+    - Save error dialog now explicitly tells to give us the JSON debug log as without it debugging a save failure is basically impossible in most cases
+    - Added a system for window panels to reorder this makes draggable windows go on top of other such windows when they are moved around or opened
+    - Added a new feature to the museum screen to delete fossils
+    - Fossil saving failure will now show an error popup
+    - Added miscellaneous fun screen filter shaders
+    - Added an unknown key icon
+    - Fixed game not fading out before playing the microbe intro video
+    - Fixed 3 microbe backgrounds having non-repeating edges
+    - Fixed current patch biodiversity fill always checking potential species to split from in a specified order (the order is now random)
+    - Fixed some usages of random number generation having their upper limits be off by one
+    - Fixed player accidentally becoming awakened if entering macroscopic while already having placed neurons
+    - Fixed the ESC key icon not being used (instead the unknown key fallback was used before)
+    - Fixed sometimes the close X being invisible on our custom windows
+    - Fixed the Thrive logo being blurry in the main menu and the credits
+    - Options menu now lazily loads available language list
+    - Switched a BOM check around to make dependabot tool updates work
+    - Automatic checks now disallow gltf files as they are always worse than .glb files
+    - Updated the style_guide on how to add words to dictionary to avoid typo warnings
+    - Cleaned up some remaining references to ruby in the repo
+    - Fixed a typo in CONTRIBUTING.md file
+    - Updated AngleSharp library to 1.0.4
+    - Updated a code checking library we use
+    - Added support for Godot GUI tab names to be translated
+    - Updated translations
