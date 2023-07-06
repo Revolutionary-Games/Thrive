@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public interface IComputedMembraneData : ICacheableData
 {
-    public List<Vector2> OrganellePositions { get; }
+    public IReadOnlyList<Vector2> OrganellePositions { get; }
     public MembraneType Type { get; }
 }
 
@@ -63,7 +63,7 @@ public class ComputedMembraneData : IComputedMembraneData
         SurfaceIndex = surfaceIndex;
     }
 
-    public List<Vector2> OrganellePositions { get; }
+    public IReadOnlyList<Vector2> OrganellePositions { get; }
     public MembraneType Type { get; }
     public List<Vector2> Vertices2D { get; }
 

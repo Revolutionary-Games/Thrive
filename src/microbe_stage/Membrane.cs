@@ -80,10 +80,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// <remarks>
     ///   <para>
     ///     The contents in this list should not be modified, a new list should be assigned.
-    ///     TODO: change the type here to be a readonly list https://github.com/Revolutionary-Games/Thrive/issues/4332
     ///   </para>
     /// </remarks>
-    public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
+    public IReadOnlyList<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
 
     /// <summary>
     ///   Returns a convex shaped 3-Dimensional array of vertices from the generated <see cref="vertices2D"/>.
