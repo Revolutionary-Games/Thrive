@@ -53,7 +53,7 @@ public static class MembraneComputationHelpers
 /// </remarks>
 public class ComputedMembraneData : IComputedMembraneData
 {
-    public ComputedMembraneData(List<Vector2> organellePositions, MembraneType type, List<Vector2> vertices2D,
+    public ComputedMembraneData(IReadOnlyList<Vector2> organellePositions, MembraneType type, List<Vector2> vertices2D,
         ArrayMesh mesh, int surfaceIndex)
     {
         OrganellePositions = organellePositions;
