@@ -186,6 +186,9 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
             SafeModeStartupHandler.AreVideosAllowed())
         {
+            // Hide menu buttons to prevent them grabbing focus during intro video
+            GetCurrentMenu()?.Hide();
+
             SafeModeStartupHandler.ReportBeforeVideoPlaying();
             TransitionManager.Instance.AddSequence(
                 TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
@@ -521,6 +524,22 @@ public class MainMenu : NodeWithInput
         });
     }
 
+    private Control? GetCurrentMenu()
+    {
+        if (menuArray == null)
+            throw new InvalidOperationException("Main menu has not been initialized");
+        if (menuArray.Count <= 0)
+            throw new InvalidOperationException("Main menu has no menus");
+
+        foreach (Control menu in menuArray)
+        {
+            if (menu.GetIndex() == CurrentMenuIndex)
+                return menu;
+        }
+
+        return null;
+    }
+
     private void OnMenuBackgroundTypeChanged(bool value)
     {
         RandomizeBackground();
@@ -651,6 +670,9 @@ public class MainMenu : NodeWithInput
         StartMusic();
 
         introVideoPassed = true;
+
+        // Display menu buttons that were hidden to prevent them grabbing focus during intro video
+        GetCurrentMenu()?.Show();
 
         // Load the menu background only here as the 3D ones are performance intensive so they aren't very nice to
         // consume power unnecessarily while showing the video
