@@ -538,7 +538,7 @@ public class MainMenu : NodeWithInput
         if (menuArray.Count <= 0)
             throw new InvalidOperationException("Main menu has no menus");
 
-        return menus.GetChild<Control>((int)CurrentMenuIndex);
+        return CurrentMenuIndex == uint.MaxValue ? null : menus.GetChild<Control>((int)CurrentMenuIndex);
     }
 
     private void OnMenuBackgroundTypeChanged(bool value)
