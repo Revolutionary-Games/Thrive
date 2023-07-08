@@ -100,6 +100,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath ThanksDialogPath = null!;
 
+    [Export]
+    public NodePath MenusPath = null!;
+
 #pragma warning disable CA2213
     private TextureRect background = null!;
     private Spatial? created3DBackground;
@@ -147,6 +150,8 @@ public class MainMenu : NodeWithInput
 
     private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
     private PermanentlyDismissibleDialog thanksDialog = null!;
+
+    private CenterContainer menus = null!;
 #pragma warning restore CA2213
 
     private Array? menuArray;
@@ -381,6 +386,7 @@ public class MainMenu : NodeWithInput
                 PatchNotesDisablerPath.Dispose();
                 FeedPositionerPath.Dispose();
                 ThanksDialogPath.Dispose();
+                MenusPath.Dispose();
             }
 
             menuArray?.Dispose();
@@ -441,6 +447,7 @@ public class MainMenu : NodeWithInput
         modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(
             ModsInstalledButNotEnabledWarningPath);
         thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
+        menus = GetNode<CenterContainer>(MenusPath);
 
         // Set initial menu
         SwitchMenu();
@@ -531,13 +538,7 @@ public class MainMenu : NodeWithInput
         if (menuArray.Count <= 0)
             throw new InvalidOperationException("Main menu has no menus");
 
-        foreach (Control menu in menuArray)
-        {
-            if (menu.GetIndex() == CurrentMenuIndex)
-                return menu;
-        }
-
-        return null;
+        return menus.GetChild<Control>((int)CurrentMenuIndex);
     }
 
     private void OnMenuBackgroundTypeChanged(bool value)
