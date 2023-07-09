@@ -277,6 +277,14 @@ public class MainMenu : NodeWithInput
             GD.Print("Main window close signal detected");
             Invoke.Instance.Queue(QuitPressed);
         }
+        else if (notification == NotificationTranslationChanged)
+        {
+            if (SteamHandler.Instance.IsLoaded)
+            {
+                storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+                    .FormatSafe(SteamHandler.Instance.DisplayName);
+            }
+        }
     }
 
     public void StartMusic()
