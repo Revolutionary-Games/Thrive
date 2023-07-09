@@ -378,6 +378,32 @@ public partial class Microbe
         {
             Compounds.AddCompound(entry.Key, entry.Value);
         }
+
+        var setting = GameWorld.WorldSettings;
+
+        // Fraction of day that is night
+        var nightTimeFraction = 1 - setting.DaytimeFraction;
+
+        // Shifts fraction so day ends exactly 1.
+        // (Day actually ends 10% after 1. This provides some leeway for microbes that spawn right before night.)
+        var shiftedDay = (GameWorld.LightCycle.FractionOfDayElapsed + nightTimeFraction / 2 + 0.1) % 1;
+
+        if (shiftedDay < nightTimeFraction)
+        {
+            // This should never trigger, but we need to assue the linter that
+            // organells is never null here.
+            if (organelles == null)
+                throw new ArgumentNullException();
+
+            var remainingNight = nightTimeFraction - shiftedDay;
+            double remaningNightTime = remainingNight * setting.DayLength;
+
+            var biomeConditions = GameWorld.Map.CurrentPatch!.Biome;
+            var compoundBalances = ProcessSystem.ComputeCompoundBalance(organelles.Select(o => o.Definition),
+                biomeConditions, CompoundAmountType.Current);
+
+            Compounds.AddCompound(glucose, (float)(-compoundBalances[glucose].Balance * remaningNightTime));
+        }
     }
 
     /// <summary>

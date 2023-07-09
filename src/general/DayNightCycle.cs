@@ -19,12 +19,6 @@ public class DayNightCycle
     private int realTimePerDay;
 
     /// <summary>
-    ///   Current position in the day/night cycle, expressed as a fraction of the day elapsed so far.
-    /// </summary>
-    [JsonProperty]
-    private float fractionOfDayElapsed;
-
-    /// <summary>
     ///   Multiplier used for calculating DayLightFraction.
     /// </summary>
     /// <remarks>
@@ -44,11 +38,17 @@ public class DayNightCycle
         AverageSunlight = 1.0f;
 
         // Start the game at noon
-        fractionOfDayElapsed = 0.5f;
+        FractionOfDayElapsed = 0.5f;
     }
 
     [JsonIgnore]
     public float AverageSunlight { get; private set; }
+
+    /// <summary>
+    ///   Current position in the day/night cycle, expressed as a fraction of the day elapsed so far.
+    /// </summary>
+    [JsonProperty]
+    public float FractionOfDayElapsed { get; private set; }
 
     /// <summary>
     ///   The fraction of daylight you should get.
@@ -56,7 +56,7 @@ public class DayNightCycle
     ///   desmos: https://www.desmos.com/calculator/vrrk1bkac2
     /// </summary>
     [JsonIgnore]
-    public float DayLightFraction => isEnabled ? CalculatePointwiseSunlight(fractionOfDayElapsed) : 1.0f;
+    public float DayLightFraction => isEnabled ? CalculatePointwiseSunlight(FractionOfDayElapsed) : 1.0f;
 
     /// <summary>
     ///   Applies the world settings. This needs to be called when this object is created (and not loaded from JSON)
@@ -88,7 +88,7 @@ public class DayNightCycle
     {
         if (isEnabled)
         {
-            fractionOfDayElapsed = (fractionOfDayElapsed + delta / realTimePerDay) % 1;
+            FractionOfDayElapsed = (FractionOfDayElapsed + delta / realTimePerDay) % 1;
         }
     }
 

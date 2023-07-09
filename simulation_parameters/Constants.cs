@@ -25,7 +25,7 @@ public static class Constants
     /// <summary>
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
-    public const float INITIAL_COMPOUND_TIME = 40.0f;
+    public const float INITIAL_COMPOUND_TIME = 30.0f;
 
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
