@@ -384,9 +384,9 @@ public partial class Microbe
         // Fraction of day that is night
         var nightTimeFraction = 1 - setting.DaytimeFraction;
 
-        // Shifts fraction so day ends exactly 1.
-        // (Day actually ends 10% after 1. This provides some leeway for microbes that spawn right before night.)
-        var shiftedDay = (GameWorld.LightCycle.FractionOfDayElapsed + nightTimeFraction / 2 + 0.1) % 1;
+        // Shifts fraction so day ends exactly 1 (ignoring padding).
+        var shiftedDay = (GameWorld.LightCycle.FractionOfDayElapsed + nightTimeFraction / 3 +
+            Constants.INITIAL_COMPOUND_EVENING_PADDING_FRACTION) % 1;
 
         if (shiftedDay < nightTimeFraction)
         {
@@ -396,13 +396,15 @@ public partial class Microbe
                 throw new ArgumentNullException();
 
             var remainingNight = nightTimeFraction - shiftedDay;
-            double remaningNightTime = remainingNight * setting.DayLength;
+            double remaningNightTime =
+                (remainingNight + Constants.INITIAL_COMPOUND_MORNING_PADDING_FRACTION) * setting.DayLength;
 
             var biomeConditions = GameWorld.Map.CurrentPatch!.Biome;
             var compoundBalances = ProcessSystem.ComputeCompoundBalance(organelles.Select(o => o.Definition),
                 biomeConditions, CompoundAmountType.Current);
 
-            Compounds.AddCompound(glucose, (float)(-compoundBalances[glucose].Balance * remaningNightTime));
+            Compounds.AddCompound(glucose, Constants.INITIAL_COMPOUND_NIGHT_MULTIPLIER *
+                (float)(-compoundBalances[glucose].Balance * remaningNightTime));
         }
     }
 

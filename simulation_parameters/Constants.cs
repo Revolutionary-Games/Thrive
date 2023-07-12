@@ -32,6 +32,22 @@ public static class Constants
     public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
 
     /// <summary>
+    ///   Controls how early "Night" starts for inital compound reasons.
+    ///   If this was 0 "Night" would start as soon as light level reaches 0%.
+    ///   This is a fraction percentage of the day.
+    /// </summary>
+    public const float INITIAL_COMPOUND_EVENING_PADDING_FRACTION = 0.1f;
+
+    /// <summary>
+    ///   Controls how late "Night" ends for inital compound reasons.
+    ///   If this was 0 "Night" would end as soon as light level is above 0%.
+    ///   This is a fraction percentage of the day.
+    /// </summary>
+    public const float INITIAL_COMPOUND_MORNING_PADDING_FRACTION = 0.1f;
+
+    public const float INITIAL_COMPOUND_NIGHT_MULTIPLIER = 1.0f;
+
+    /// <summary>
     ///   The maximum duration the player is shown being ingested before they are auto respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
