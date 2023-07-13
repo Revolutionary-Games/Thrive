@@ -384,14 +384,14 @@ public partial class Microbe
         // Fraction of day that is night
         var nightTimeFraction = 1 - setting.DaytimeFraction;
 
-        // Shifts fraction so day ends exactly 1 (ignoring padding).
-        var shiftedDay = (GameWorld.LightCycle.FractionOfDayElapsed + nightTimeFraction / 3 +
+        // Shifts fraction so the day ends exactly 1 (ignoring padding).
+        var shiftedDay = (GameWorld.LightCycle.FractionOfDayElapsed + nightTimeFraction / 2 +
             Constants.INITIAL_COMPOUND_EVENING_PADDING_FRACTION) % 1;
 
         if (shiftedDay < nightTimeFraction)
         {
-            // This should never trigger, but we need to assue the linter that
-            // organells is never null here.
+            // This should never trigger, but we need to assure the linter that
+            // organelles is never null here.
             if (organelles == null)
                 throw new ArgumentNullException();
 
