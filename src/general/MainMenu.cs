@@ -535,7 +535,7 @@ public class MainMenu : NodeWithInput
     ///   Returns the container for the current menu.
     /// </summary>
     /// <returns>Null if we aren't in any available menu.</returns>
-    /// <exception cref="InvalidOperationException">The main menu hasn't been initialized.</exception>
+    /// <exception cref="System.InvalidOperationException">The main menu hasn't been initialized.</exception>
     private Control? GetCurrentMenu()
     {
         if (menuArray == null)
