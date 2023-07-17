@@ -281,8 +281,7 @@ public class MainMenu : NodeWithInput
         {
             if (SteamHandler.Instance.IsLoaded)
             {
-                storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
-                    .FormatSafe(SteamHandler.Instance.DisplayName);
+                UpdateSteamLoginText();
             }
         }
     }
@@ -575,9 +574,7 @@ public class MainMenu : NodeWithInput
         else
         {
             storeLoggedInDisplay.Visible = true;
-            storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
-                .FormatSafe(SteamHandler.Instance.DisplayName);
-
+            UpdateSteamLoginText();
             // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
             itchButton.Visible = false;
             patreonButton.Visible = false;
@@ -590,6 +587,12 @@ public class MainMenu : NodeWithInput
     private bool SteamFailed()
     {
         return SteamHandler.IsTaggedSteamRelease() && !SteamHandler.Instance.IsLoaded;
+    }
+
+    private void UpdateSteamLoginText()
+    {
+        storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+            .FormatSafe(SteamHandler.Instance.DisplayName);
     }
 
     private void UpdateLauncherState()
