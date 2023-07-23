@@ -277,7 +277,7 @@ public class SaveManagerGUI : Control
         catch (SaveHelper.FailedToDeleteSaveException e)
         {
             errorSaveDeletionFailed.ShowError(
-                "Failed to delete save.".ToString(CultureInfo.CurrentCulture), e.Message, e.StackTrace);
+                "Failed to delete save.", e.Message, e.StackTrace);
         }
 
         deleteSelectedButton.Disabled = true;
