@@ -70,7 +70,7 @@ public class SaveList : ScrollContainer
     private CustomConfirmationDialog upgradeSaveDialog = null!;
     private CustomConfirmationDialog loadIncompatiblePrototypeDialog = null!;
     private ErrorDialog upgradeFailedDialog = null!;
-    private ErrorDialog errorSaveDeletionFailed = null!;
+    private CustomConfirmationDialog  errorSaveDeletionFailed = null!;
 
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
@@ -112,7 +112,7 @@ public class SaveList : ScrollContainer
         upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
         upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
         loadIncompatiblePrototypeDialog = GetNode<CustomConfirmationDialog>(LoadIncompatiblePrototypeDialogPath);
-        errorSaveDeletionFailed = GetNode<ErrorDialog>(ErrorSaveDeletionFailedPath);
+        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(ErrorSaveDeletionFailedPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -267,8 +267,8 @@ public class SaveList : ScrollContainer
         }
         catch (IOException e)
         {
-            errorSaveDeletionFailed.ShowError(
-                "Failed to delete save.", e.Message, e.StackTrace);
+            errorSaveDeletionFailed.PopupCenteredShrink();
+            GD.Print("Failed to delete save: ", e.Message);
         }
 
         saveToBeDeleted = null;
