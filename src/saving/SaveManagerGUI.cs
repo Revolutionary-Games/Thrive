@@ -270,7 +270,6 @@ public class SaveManagerGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
-
         try
         {
             Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));

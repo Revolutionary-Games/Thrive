@@ -266,7 +266,8 @@ public class SaveList : ScrollContainer
         }
         catch (SaveHelper.FailedToDeleteSaveException e)
         {
-            errorSaveDeletionFailed.ShowError(TranslationServer.Translate("Failed to delete save."), e.Message, e.StackTrace);
+            errorSaveDeletionFailed.ShowError(TranslationServer.Translate(
+                "Failed to delete save."), e.Message, e.StackTrace);
         }
 
         saveToBeDeleted = null;
