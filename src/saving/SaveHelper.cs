@@ -591,7 +591,7 @@ public static class SaveHelper
     [Serializable]
     public class FailedToDeleteSaveException : Exception
     {
-        public FailedToDeleteSaveException() : base()
+        public FailedToDeleteSaveException()    
         {
         }
 
