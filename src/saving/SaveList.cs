@@ -54,6 +54,9 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadIncompatiblePrototypeDialogPath = null!;
 
+    [Export]
+    public NodePath ErrorSaveDeletionFailedPath = null!;
+
 #pragma warning disable CA2213
     private Control loadingItem = null!;
     private Control noSavesItem = null!;
@@ -66,6 +69,7 @@ public class SaveList : ScrollContainer
     private CustomConfirmationDialog upgradeSaveDialog = null!;
     private CustomConfirmationDialog loadIncompatiblePrototypeDialog = null!;
     private ErrorDialog upgradeFailedDialog = null!;
+    private ErrorDialog errorSaveDeletionFailed = null!;
 
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
@@ -107,6 +111,7 @@ public class SaveList : ScrollContainer
         upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
         upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
         loadIncompatiblePrototypeDialog = GetNode<CustomConfirmationDialog>(LoadIncompatiblePrototypeDialogPath);
+        errorSaveDeletionFailed = GetNode<ErrorDialog>(ErrorSaveDeletionFailedPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -221,6 +226,7 @@ public class SaveList : ScrollContainer
                 UpgradeSaveDialogPath.Dispose();
                 UpgradeFailedDialogPath.Dispose();
                 LoadIncompatiblePrototypeDialogPath.Dispose();
+                ErrorSaveDeletionFailedPath.Dispose();
             }
         }
 
@@ -260,7 +266,7 @@ public class SaveList : ScrollContainer
         }
         catch (SaveHelper.FailedToDeleteSaveException e)
         {
-            GD.PrintErr(e.Message);
+            errorSaveDeletionFailed.ShowError(TranslationServer.Translate("Failed to delete save."), e.Message, e.StackTrace);
         }
 
         saveToBeDeleted = null;
