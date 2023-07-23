@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.IO;
 using Godot;
-using Path = System.IO.Path;
 using Directory = Godot.Directory;
 using File = Godot.File;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
