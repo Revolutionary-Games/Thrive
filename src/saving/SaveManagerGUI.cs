@@ -265,7 +265,15 @@ public class SaveManagerGUI : Control
 
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
 
-        Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+        try
+        {
+            Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+        }
+        catch (SaveHelper.FailedToDeleteSaveException e)
+        {
+            errorSaveDeletionFailed.ShowError(TranslationServer.Translate("Failed to delete save."), e.Message, e.StackTrace);
+        }
+
         deleteSelectedButton.Disabled = true;
         selected = null;
 

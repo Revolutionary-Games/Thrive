@@ -331,7 +331,15 @@ public static class SaveHelper
             {
                 GD.Print("Found more ", nameStartsWith, " files than specified in settings; ",
                     "deleting current oldest ", nameStartsWith, " file: ", currentSaveNames[0]);
-                DeleteSave(currentSaveNames[0]);
+                try
+                {
+                    DeleteSave(currentSaveNames[0]);
+                }
+                catch (FailedToDeleteSaveException e)
+                {
+                    GD.PrintErr(e.Message);
+                }
+
                 currentSaveNames.RemoveAt(0);
             }
         }
@@ -356,7 +364,14 @@ public static class SaveHelper
                 else
                 {
                     savesDeleted.Add(save);
-                    DeleteSave(save);
+                    try
+                    {
+                        DeleteSave(save);
+                    }
+                    catch (FailedToDeleteSaveException e)
+                    {
+                        GD.PrintErr(e.Message);
+                    }
                 }
             }
         }

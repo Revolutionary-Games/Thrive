@@ -254,7 +254,15 @@ public class SaveList : ScrollContainer
         }
 
         GD.Print("Deleting save: ", saveToBeDeleted);
-        SaveHelper.DeleteSave(saveToBeDeleted);
+        try
+        {
+            SaveHelper.DeleteSave(saveToBeDeleted);
+        }
+        catch (SaveHelper.FailedToDeleteSaveException e)
+        {
+            GD.PrintErr(e.Message);
+        }
+
         saveToBeDeleted = null;
 
         Refresh();
