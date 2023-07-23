@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -264,7 +265,7 @@ public class SaveList : ScrollContainer
         {
             SaveHelper.DeleteSave(saveToBeDeleted);
         }
-        catch (SaveHelper.FailedToDeleteSaveException e)
+        catch (IOException e)
         {
             errorSaveDeletionFailed.ShowError(
                 "Failed to delete save.", e.Message, e.StackTrace);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
@@ -312,7 +311,7 @@ public static class SaveHelper
         directory.Remove(finalPath);
 
         if (directory.FileExists(finalPath))
-            throw new FailedToDeleteSaveException(finalPath);
+            throw new System.IO.IOException(finalPath);
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -335,7 +334,7 @@ public static class SaveHelper
                 {
                     DeleteSave(currentSaveNames[0]);
                 }
-                catch (FailedToDeleteSaveException e)
+                catch (System.IO.IOException e)
                 {
                     GD.PrintErr(e.Message);
                 }
@@ -368,7 +367,7 @@ public static class SaveHelper
                     {
                         DeleteSave(save);
                     }
-                    catch (FailedToDeleteSaveException e)
+                    catch (System.IO.IOException e)
                     {
                         GD.PrintErr(e.Message);
                     }
@@ -583,24 +582,5 @@ public static class SaveHelper
     {
         TaskExecutor.Instance.AddTask(new Task(() =>
             DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
-    }
-
-    /// <summary>
-    ///   Thrown when a save file was not deleted
-    /// </summary>
-    [Serializable]
-    public class FailedToDeleteSaveException : Exception
-    {
-        public FailedToDeleteSaveException()
-        {
-        }
-
-        public FailedToDeleteSaveException(string filePath) : base(filePath)
-        {
-        }
-
-        protected FailedToDeleteSaveException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

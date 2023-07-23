@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -274,7 +275,7 @@ public class SaveManagerGUI : Control
         {
             Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
         }
-        catch (SaveHelper.FailedToDeleteSaveException e)
+        catch (IOException e)
         {
             errorSaveDeletionFailed.ShowError(
                 "Failed to delete save.", e.Message, e.StackTrace);
