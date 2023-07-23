@@ -145,6 +145,7 @@ PatchNotesPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNote
 PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler")
 FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
+MenusPath = NodePath("MenuContainers/Menus")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
