@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -40,6 +40,9 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath SaveDirectoryWarningDialogPath = null!;
 
+    [Export]
+    public NodePath ErrorSaveDeletionFailedPath = null!;
+
 #pragma warning disable CA2213
     private SaveList saveList = null!;
     private Label selectedItemCount = null!;
@@ -51,6 +54,7 @@ public class SaveManagerGUI : Control
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
+    private ErrorDialog errorSaveDeletionFailed = null!;
 #pragma warning restore CA2213
 
     private List<SaveListItem>? selected;
@@ -97,6 +101,7 @@ public class SaveManagerGUI : Control
         deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
         deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
         saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
+        errorSaveDeletionFailed = GetNode<ErrorDialog>(ErrorSaveDeletionFailedPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
@@ -155,6 +160,7 @@ public class SaveManagerGUI : Control
                 DeleteSelectedConfirmDialogPath.Dispose();
                 DeleteOldConfirmDialogPath.Dispose();
                 SaveDirectoryWarningDialogPath.Dispose();
+                ErrorSaveDeletionFailedPath.Dispose();
             }
         }
 
