@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-29 14:37+0300\n"
+"POT-Creation-Date: 2023-07-23 18:41+0200\n"
 "PO-Revision-Date: 2023-06-22 05:54+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -156,7 +156,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(snelheid waarmee AI-soorten muteren)"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:407
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:402
 msgid "ALL"
 msgstr "Alles"
 
@@ -257,7 +257,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Kunst van {0}"
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:520
 msgid "ART_GALLERY"
 msgstr "Kunstgalerie"
 
@@ -371,7 +371,7 @@ msgstr "Sla automatisch op tijdens het spelen"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:417
+#: ../src/general/MainMenu.tscn:418
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Onderzoeksgereedschap"
 
@@ -400,7 +400,7 @@ msgstr "Auto-Evo Status:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Beweeg automatisch naar voren"
 
-#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1045 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
@@ -422,13 +422,13 @@ msgid "AWARE_STAGE"
 msgstr "Bewustzijnsfase"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
-#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
+#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
 msgstr "Terug"
 
@@ -522,7 +522,7 @@ msgstr "Opportunisme"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m onder zeeniveau"
 
-#: ../src/general/MainMenu.tscn:431
+#: ../src/general/MainMenu.tscn:432
 msgid "BENCHMARKS"
 msgstr "Prestatietests"
 
@@ -915,7 +915,7 @@ msgstr "Verhoogt de draaisnelheid van grote cellen."
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Bevolking: {0} Voedsel: {1} Wetenschap: {2}"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Oude Opslagbestanden Opschonen"
 
@@ -1025,19 +1025,19 @@ msgstr "Gedeelde Mogelijkheden"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
-#: ../src/general/MainMenu.tscn:674
+#: ../src/general/MainMenu.tscn:675
 msgid "COMMUNITY_FORUM"
 msgstr "Gemeenschapsforum"
 
-#: ../src/general/MainMenu.tscn:669
+#: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Doe mee met de Thrivegemeenschap op ons gemeenschapsforum"
 
-#: ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:717
 msgid "COMMUNITY_WIKI"
 msgstr "Gemeenschapswiki"
 
-#: ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:712
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Bezoek onze gemeenschapswiki"
 
@@ -1335,7 +1335,7 @@ msgstr "Creëeren..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objecten uit opslagbestand worden gemaakt"
 
-#: ../src/general/MainMenu.tscn:355
+#: ../src/general/MainMenu.tscn:356
 msgid "CREDITS"
 msgstr "Credits"
 
@@ -1459,7 +1459,7 @@ msgstr "Debugpaneel"
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1491
+#: ../src/general/OptionsMenu.cs:1511
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standaard uitvoer apparaat"
 
@@ -1469,7 +1469,7 @@ msgstr "Standaard uitvoer apparaat"
 msgid "DELETE"
 msgstr "Verwijder"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Verwijderen van alle oude Auto en Snelle opslagbestanden kan niet ongedaan worden gemaakt. Weet je zeker dat je het volgende wil verwijderen?\n"
@@ -1482,7 +1482,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Oude opslagbestanden verwijderen?"
 
@@ -1494,19 +1494,19 @@ msgstr "Verwijder organellen"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Verwijder Geselecteerde"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:183
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Verwijder geselecteerde opslagbestand(en)?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Het verwijderen van geselecteerde opslagbestand(en) kan niet ongedaan worden gemaakt, weet je zeker dat je {0} opslagbestand(en) wil verwijderen?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Dit opgeslagen bestand verwijderen?"
 
@@ -1556,11 +1556,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Ontwikkelaars"
 
-#: ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:689
 msgid "DEVELOPMENT_FORUM"
 msgstr "Ontwikkelforum"
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:684
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Bekijk ontwikkelingsnieuws op ons ontwikkelforum"
 
@@ -1568,11 +1568,11 @@ msgstr "Bekijk ontwikkelingsnieuws op ons ontwikkelforum"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Ontwikkeling Ondersteund Door Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:703
 msgid "DEVELOPMENT_WIKI"
 msgstr "Ontwikkelwiki"
 
-#: ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:698
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Bezoek onze ontwikkelwiki"
 
@@ -1700,7 +1700,7 @@ msgstr ""
 "Er zijn geplaatste organellen die niet aan de rest zijn verbonden.\n"
 "Gelieve alle geplaatste organellen met elkaar te verbinden of je wijzigingen ongedaan te maken."
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:861
 msgid "DISCORD_TOOLTIP"
 msgstr "Word lid van onze gemeenschapsdiscordserver"
 
@@ -2080,7 +2080,7 @@ msgstr "Vul Bestaande ID In"
 msgid "EXIT"
 msgstr "Sluit"
 
-#: ../src/general/MainMenu.tscn:364
+#: ../src/general/MainMenu.tscn:365
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sluit af naar opstartprogramma"
 
@@ -2130,7 +2130,7 @@ msgstr "uitgestorven in gebied"
 msgid "EXTINCT_SPECIES"
 msgstr "Uitgestorven Soorten"
 
-#: ../src/general/MainMenu.tscn:347
+#: ../src/general/MainMenu.tscn:348
 msgid "EXTRAS"
 msgstr "Extra's"
 
@@ -2138,13 +2138,25 @@ msgstr "Extra's"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra Opties"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:873
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Bezoek onze Facebookpagina"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Mislukt"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
+
+#: ../src/saving/SaveList.tscn:139 ../src/saving/SaveManagerGUI.tscn:209
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr ""
+"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
+"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2403,23 +2415,23 @@ msgstr "Generatie"
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:825
 msgid "GITHUB_TOOLTIP"
 msgstr "Bezoek onze Github opslagplek"
 
-#: ../src/general/OptionsMenu.cs:1039
+#: ../src/general/OptionsMenu.cs:1059
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:957
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:959
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
 
-#: ../src/general/OptionsMenu.cs:1044
+#: ../src/general/OptionsMenu.cs:1064
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2786,7 +2798,7 @@ msgstr "Grond"
 msgid "INVERTED"
 msgstr "Omgekeerd"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Je speelt de latere faseprototypen die met het spel zijn meegeleverd.\n"
@@ -2805,7 +2817,7 @@ msgstr "Ijzer"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Ijzer-chemolithoautotrofie"
 
-#: ../src/general/MainMenu.tscn:800
+#: ../src/general/MainMenu.tscn:801
 msgid "ITCH_TOOLTIP"
 msgstr "Bezoek onze Itch.io pagina"
 
@@ -3011,15 +3023,15 @@ msgstr "Num -"
 msgid "LANGUAGE"
 msgstr "Taal:"
 
-#: ../src/general/OptionsMenu.cs:1542
+#: ../src/general/OptionsMenu.cs:1562
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Deze taal is {0}% compleet"
 
-#: ../src/general/OptionsMenu.cs:1538
+#: ../src/general/OptionsMenu.cs:1558
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "De vertaling van deze taal is nog niet compleet ({0}% compleet)"
 
-#: ../src/general/OptionsMenu.cs:1534
+#: ../src/general/OptionsMenu.cs:1554
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft mee!"
 
@@ -3181,7 +3193,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Linkermuisknop"
 
-#: ../src/general/MainMenu.tscn:529
+#: ../src/general/MainMenu.tscn:530
 msgid "LICENSES"
 msgstr "Licenties"
 
@@ -3305,7 +3317,7 @@ msgstr "Lipase"
 msgid "LIPASE_DESCRIPTION"
 msgstr "Lipase maakt het mogelijk voor de cel om de meeste membranen af te breken. Je cel produceert al een beetje van dit enzym zonder lysosoom. Het selecteren van dit type zal de effectiviteit verhogen."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Laden"
 
@@ -3313,7 +3325,7 @@ msgstr "Laden"
 msgid "LOADING"
 msgstr "Laden"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laden..."
@@ -3344,38 +3356,38 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "LOAD_FINISHED"
 msgstr "Laden afgerond"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Laad spel"
 
-#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Laad eerder opgeslagen spellen"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Het opslagbestand wat is geselecteerd om te worden geladen is een opslagbestand gemaakt in een prototype met een andere Thrive versie.\n"
 "Dit opslagbestand kan niet worden geladen omdat opslagbestanden van prototypen niet bijgewerkt kunnen worden.\n"
 "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen bijwerkmethoden voor alle versies."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Het opslagbestand wat is geselecteerd om te worden geladen werkt niet goed met deze versie van Thrive.\n"
 "Er is geen opslagbestandbijwerker beschikbaar om dit opslagbestand bij te werken.\n"
 "Aangezien Thrive nog zeer vroeg in ontwikkeling is, is het bijhouden van compatibiliteit van opslagbestenden geen hoge prioriteit. Daartoe zijn er geen opslagbestandbijwerkers beschikbaar voor alle versies."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Ongeldig opgeslagen bestand laden?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Opgeslagen informatie kon niet worden geladen van dit bestand.\n"
@@ -3535,7 +3547,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3548,7 +3560,7 @@ msgid "MICROBES_COUNT"
 msgstr "Hoeveelheid microben:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:588
+#: ../src/general/MainMenu.tscn:589
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbe Prestatietest"
 
@@ -3631,7 +3643,7 @@ msgstr "Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke v
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Elke keer dat je jezelf voortplant zal de Microbenbewerker worden geopend. Hier kun je aanpassingen aan je soort maken (door organellen toe te voegen, te verwijderen, of aan te passen) waarmee je je soort succesvol kan maken. Elk bezoek aan de bewerker in de Microbenfase komt neer op [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoen jaar evolutie."
 
-#: ../src/general/MainMenu.tscn:406
+#: ../src/general/MainMenu.tscn:407
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen bewerker"
 
@@ -3883,11 +3895,11 @@ msgstr "Pas Organel Aan"
 msgid "MODIFY_TYPE"
 msgstr "Pas het type aan"
 
-#: ../src/general/MainMenu.tscn:506
+#: ../src/general/MainMenu.tscn:507
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:971
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Geinstalleerde mods zijn gevonden, maar er zijn geen mods aangezet.\n"
@@ -3976,11 +3988,11 @@ msgstr "Interne (Map) Naam:"
 msgid "MOD_LICENSE"
 msgstr "Licentie van de Mod:"
 
-#: ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS"
 msgstr "Foutmeldingen bij het laden van de mod"
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er is een fout opgetreden bij het laden van een of meerdere mods. Logs kunnen bijkomende informatie bevatten."
 
@@ -4246,7 +4258,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Nieuw"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dit opgeslagen bestand is van een nieuwere versie van Thrive en is waarschijnlijk niet-compatibel.\n"
@@ -4260,11 +4272,11 @@ msgstr "NIEUWS"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Start populatie voor biodiversiteit vergrotende soorten"
 
-#: ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:303
 msgid "NEW_GAME"
 msgstr "Nieuw spel"
 
-#: ../src/general/MainMenu.tscn:297
+#: ../src/general/MainMenu.tscn:298
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start een nieuw spel"
 
@@ -4403,7 +4415,7 @@ msgstr "Geen gebeurtenissen opgenomen"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Geen fossielenmap gevonden"
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:969
 msgid "NO_MODS_ENABLED"
 msgstr "Geen Mods Aangezet"
 
@@ -4412,11 +4424,11 @@ msgstr "Geen Mods Aangezet"
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Geen processen"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Geen Opslagen Bestanden Gevonden"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:197
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Geen map voor opslagbestanden gevonden"
 
@@ -4474,11 +4486,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Oktober"
 
-#: ../src/general/MainMenu.tscn:660
+#: ../src/general/MainMenu.tscn:661
 msgid "OFFICIAL_WEBSITE"
 msgstr "Officiële Website"
 
-#: ../src/general/MainMenu.tscn:651
+#: ../src/general/MainMenu.tscn:652
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Bezoek de officiële Revolutionary Games website"
 
@@ -4489,7 +4501,7 @@ msgstr "Bezoek de officiële Revolutionary Games website"
 msgid "OK"
 msgstr "OK"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-compatibel zijn.\n"
@@ -4541,7 +4553,7 @@ msgstr "Open organel menu"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Open Onderzoeksvenster"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Open Map voor Opslagbestanden"
 
@@ -4576,11 +4588,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistisch"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pas je instellingen aan"
 
@@ -4827,7 +4839,7 @@ msgstr "Veranderingen:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Zie de volledige details van deze uitgave op [color=#3796e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:813
 msgid "PATREON_TOOLTIP"
 msgstr "Bezoek onze Patreonpagina"
 
@@ -4962,7 +4974,7 @@ msgstr "speler stierf"
 msgid "PLAYER_DUPLICATE"
 msgstr "Dupliceer Speler"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
 
@@ -5103,11 +5115,11 @@ msgstr "Snel laden"
 msgid "QUICK_SAVE"
 msgstr "Snel opslaan"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:377
 msgid "QUIT"
 msgstr "Stop"
 
-#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
+#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Verlaat het spel"
@@ -5149,7 +5161,7 @@ msgstr "Klaar"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Aangeraden Thrive:"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:849
 msgid "REDDIT_TOOLTIP"
 msgstr "Bezoek onze subreddit"
 
@@ -5161,7 +5173,7 @@ msgstr "Opnieuw Doen"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "De laatste actie opnieuw doen"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Ververs"
 
@@ -5174,7 +5186,7 @@ msgstr "Terugkeer migratie in geval van uitsterven in het doel gebied"
 msgid "REPORT"
 msgstr "Rapport"
 
-#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Rapporteer een Bug"
 
@@ -5315,7 +5327,7 @@ msgstr ""
 "Weet je zeker dat je terug wilt gaan naar het hoofmenu?\n"
 "Je verlies al je niet opgeslagen vooruitgang."
 
-#: ../src/general/MainMenu.tscn:775
+#: ../src/general/MainMenu.tscn:776
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Bezoek officiële Revolutionary Games sites"
 
@@ -5401,7 +5413,7 @@ msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. Snelheid schaalt met contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:981
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive is in veilige modus gestart omdat een eerdere poging om op te starten is mislukt.\n"
@@ -5412,7 +5424,7 @@ msgstr ""
 "\n"
 "Als je het probleem met het opstarten niet oplost zul je Thrive meerdere malen moeten starten en crashen om weer terug naar de veilige modus te gaan."
 
-#: ../src/general/MainMenu.tscn:978
+#: ../src/general/MainMenu.tscn:979
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive is in Veilige Modus Gestart"
 
@@ -5428,16 +5440,16 @@ msgstr "Opslaan en doorgaan"
 msgid "SAVE_AUTOSAVE"
 msgstr "Automatisch opslaan"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:248
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
 
-#: ../src/saving/SaveStatusOverlay.cs:166
-#: ../src/saving/SaveStatusOverlay.tscn:113
+#: ../src/saving/SaveStatusOverlay.cs:175
+#: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.cs:173
+#: ../src/saving/SaveStatusOverlay.cs:182
 #, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr "JSON debug modus:"
@@ -5476,7 +5488,7 @@ msgstr "Ongeldig"
 msgid "SAVE_IS_INVALID"
 msgstr "Opslagbestand is incorrect"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "De geselecteerde save is van een oudere versie van Thrive maar kan worden geüpgraded.\n"
@@ -5484,7 +5496,7 @@ msgstr ""
 "Als je upgraden skipt, wordt geprobeerd de save normaal te laden.\n"
 "Probeer deze save te upgraden?"
 
-#: ../src/saving/InProgressLoad.cs:245
+#: ../src/saving/InProgressLoad.cs:244
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Het vrijmaken van al geladen bronnen is niet gelukt: {0}"
 
@@ -5496,15 +5508,15 @@ msgstr "Handmatig"
 msgid "SAVE_QUICKSAVE"
 msgstr "Snel opslaan"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:142
 msgid "SAVE_SPACE_USED"
 msgstr "Ruimte gebruikt:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Het upgraden van de save is mislukt"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
@@ -5516,15 +5528,15 @@ msgstr "Het opslaan van informatie is mislukt door uitzondering: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Opslaan..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Opslaan mislukt! Er heeft zich een uitzondering voorgedaan"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Opslaan is op dit moment niet mogelijk door:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Opslaan is gelukt"
 
@@ -5598,7 +5610,7 @@ msgstr "Slijm vrijlaten"
 msgid "SEED_LABEL"
 msgstr "Kiem van Planeet: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:162
 msgid "SELECTED_COLON"
 msgstr "Geselecteerd:"
 
@@ -5606,15 +5618,15 @@ msgstr "Geselecteerd:"
 msgid "SELECTED_MOD"
 msgstr "Geselecteerde Mod:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Geselecteerd opgeslagen bestand is niet-compatibel"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Geselecteerd opgeslagen bestand is een niet-compatibel prototype"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Geselecteerd opgeslagen bestand is upgradebaar"
 
@@ -6035,17 +6047,17 @@ msgstr "Steam is op dit moment niet beschikbaar, graag opnieuw proberen"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Er heeft zich een onbekende Steamfout voorgedaan"
 
-#: ../src/general/MainMenu.tscn:1001
+#: ../src/general/MainMenu.tscn:1002
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam Initializatie Mislukt"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1004
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
 "Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
 
-#: ../src/general/MainMenu.tscn:788
+#: ../src/general/MainMenu.tscn:789
 msgid "STEAM_TOOLTIP"
 msgstr "Bezoek onze Steampagina"
 
@@ -6085,7 +6097,7 @@ msgstr "Opslag"
 msgid "STORAGE_COLON"
 msgstr "Opslag:"
 
-#: ../src/general/MainMenu.cs:570
+#: ../src/general/MainMenu.cs:595
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als: {0}"
 
@@ -6311,7 +6323,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Testteam"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Bedankt voor het steunen van het ontwikeklen van Thrive door deze kopie van Thrive te kopen.\n"
@@ -6327,7 +6339,7 @@ msgstr ""
 "\n"
 "Als je het spel leuk vond, vertel dan je vrienden over ons."
 
-#: ../src/general/MainMenu.tscn:991
+#: ../src/general/MainMenu.tscn:992
 msgid "THANK_YOU_TITLE"
 msgstr "Bedankt"
 
@@ -6386,7 +6398,7 @@ msgstr "Deze mod is gedownload van de Steam Workshop"
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
@@ -6547,7 +6559,7 @@ msgstr "Pauzeren"
 msgid "TOGGLE_UNBINDING"
 msgstr "Ontbinden aan/uit"
 
-#: ../src/general/MainMenu.tscn:331
+#: ../src/general/MainMenu.tscn:332
 msgid "TOOLS"
 msgstr "Tools"
 
@@ -6559,7 +6571,7 @@ msgstr "Handbijl"
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Totale Bevolking:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "TOTAL_SAVES"
 msgstr "Totale hoeveelheid opslagbestanden:"
 
@@ -6608,7 +6620,7 @@ msgstr "Hoge tonen Harder"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Probeer enkele soorten te fossilizeren!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:199
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Probeer een opslagbestand te maken!"
 
@@ -6773,7 +6785,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Bekijk Nu"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:885
 msgid "TWITTER_TOOLTIP"
 msgstr "Bezoek onze Twitter feed"
 
@@ -6802,7 +6814,7 @@ msgstr "Ontbind al"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Loskoppelmodus"
 
-#: ../src/general/OptionsMenu.cs:1603
+#: ../src/general/OptionsMenu.cs:1623
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Dit is een debugbuild waar de informatie hieronder waarschijnlijk niet actueel is"
 
@@ -6836,7 +6848,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Onbekende knop"
 
-#: ../src/general/OptionsMenu.cs:1049
+#: ../src/general/OptionsMenu.cs:1069
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Onbekend"
 
@@ -6848,7 +6860,7 @@ msgstr "Onbekende muisknop"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Onbekend op Windows"
 
-#: ../src/general/OptionsMenu.cs:1610
+#: ../src/general/OptionsMenu.cs:1630
 msgid "UNKNOWN_VERSION"
 msgstr "Onbekende versie"
 
@@ -6966,7 +6978,7 @@ msgstr "Verticaal (As: {0})"
 msgid "VIDEO_MEMORY"
 msgstr "Videogeheugen nu in gebruik:"
 
-#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1078 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -6987,7 +6999,7 @@ msgstr "Zie Patchnotities"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Zie nu meest recente of alle Thrive patchnotities"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:340
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ga naar broncode"
 
@@ -6999,7 +7011,7 @@ msgstr "VIP Ondersteuners"
 msgid "VISIBLE"
 msgstr "Zichtbaar"
 
-#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
+#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Stel een Functio Voor"
 
@@ -7154,7 +7166,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "jaren"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:837
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Bezoek ons YouTube kanaal"
 
