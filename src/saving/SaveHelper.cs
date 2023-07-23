@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.IO;
 using Godot;
 using Path = System.IO.Path;
+using Directory = Godot.Directory;
+using File = Godot.File;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
@@ -311,7 +314,7 @@ public static class SaveHelper
         directory.Remove(finalPath);
 
         if (directory.FileExists(finalPath))
-            throw new System.IO.IOException(finalPath);
+            throw new IOException(finalPath);
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -334,7 +337,7 @@ public static class SaveHelper
                 {
                     DeleteSave(currentSaveNames[0]);
                 }
-                catch (System.IO.IOException e)
+                catch (IOException e)
                 {
                     GD.PrintErr(e.Message);
                 }
@@ -367,7 +370,7 @@ public static class SaveHelper
                     {
                         DeleteSave(save);
                     }
-                    catch (System.IO.IOException e)
+                    catch (IOException e)
                     {
                         GD.PrintErr(e.Message);
                     }
