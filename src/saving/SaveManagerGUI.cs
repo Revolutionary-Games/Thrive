@@ -55,7 +55,7 @@ public class SaveManagerGUI : Control
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
-    private CustomConfirmationDialog  errorSaveDeletionFailed = null!;
+    private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 #pragma warning restore CA2213
 
     private List<SaveListItem>? selected;

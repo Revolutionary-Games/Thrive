@@ -70,7 +70,7 @@ public class SaveList : ScrollContainer
     private CustomConfirmationDialog upgradeSaveDialog = null!;
     private CustomConfirmationDialog loadIncompatiblePrototypeDialog = null!;
     private ErrorDialog upgradeFailedDialog = null!;
-    private CustomConfirmationDialog  errorSaveDeletionFailed = null!;
+    private CustomConfirmationDialog errorSaveDeletionFailed = null!;
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
 
