@@ -55,7 +55,7 @@ public class SaveManagerGUI : Control
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
-    private ErrorDialog errorSaveDeletionFailed = null!;
+    private CustomConfirmationDialog  errorSaveDeletionFailed = null!;
 #pragma warning restore CA2213
 
     private List<SaveListItem>? selected;
@@ -102,7 +102,7 @@ public class SaveManagerGUI : Control
         deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
         deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
         saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
-        errorSaveDeletionFailed = GetNode<ErrorDialog>(ErrorSaveDeletionFailedPath);
+        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(ErrorSaveDeletionFailedPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
@@ -277,8 +277,8 @@ public class SaveManagerGUI : Control
         }
         catch (IOException e)
         {
-            errorSaveDeletionFailed.ShowError(
-                "Failed to delete save.", e.Message, e.StackTrace);
+            errorSaveDeletionFailed.PopupCenteredShrink();
+            GD.Print("Failed to delete save: ", e.Message);
         }
 
         deleteSelectedButton.Disabled = true;

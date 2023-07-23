@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/saving/SaveManagerGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=7]
 
 [node name="SaveManagerGUI" type="Control"]
 anchor_right = 1.0
@@ -22,7 +21,7 @@ DeleteOldButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
 DeleteSelectedConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
 DeleteOldConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
 SaveDirectoryWarningDialogPath = NodePath("CenterContainer/VBoxContainer/SaveDirectoryWarning")
-ErrorSaveDeletionFailedPath = NodePath("CenterContainer/ErrorDialog")
+ErrorSaveDeletionFailedPath = NodePath("CenterContainer/ErrorSaveDeletionFailedDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -199,11 +198,15 @@ WindowTitle = "NO_SAVE_DIRECTORY"
 HideCancelButton = true
 DialogText = "TRY_MAKING_A_SAVE"
 
-[node name="ErrorDialog" parent="CenterContainer" instance=ExtResource( 7 )]
-margin_left = 640.0
+[node name="ErrorSaveDeletionFailedDialog" parent="CenterContainer" instance=ExtResource( 4 )]
+margin_left = 440.0
 margin_top = 360.0
-margin_right = 640.0
+margin_right = 840.0
 margin_bottom = 360.0
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "FAILED_SAVE_DELETION"
+HideCancelButton = true
+DialogText = "FAILED_SAVE_DELETION_DESCRIPTION"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshButtonPressed"]
