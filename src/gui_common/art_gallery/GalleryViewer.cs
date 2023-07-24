@@ -392,12 +392,7 @@ public class GalleryViewer : CustomWindow
     {
         var selected = button.Name;
 
-        if (selected == currentGallery)
-            return;
-
         var gallery = SimulationParameters.Instance.GetGallery(selected);
-
-        currentGallery = selected;
         assetsCategoryDropdown.Clear();
 
         foreach (var entry in galleries[selected])
@@ -411,6 +406,11 @@ public class GalleryViewer : CustomWindow
             if (gallery.AssetCategories.TryGetValue(entry.Value, out AssetCategory category))
                 assetsCategoryDropdown.AddItem(category.Name, entry.Key);
         }
+
+        if (selected == currentGallery)
+            return;
+
+        currentGallery = selected;
 
         UpdateGalleryTile();
     }
