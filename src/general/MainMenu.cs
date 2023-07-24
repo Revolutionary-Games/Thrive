@@ -575,6 +575,7 @@ public class MainMenu : NodeWithInput
         {
             storeLoggedInDisplay.Visible = true;
             UpdateSteamLoginText();
+
             // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
             itchButton.Visible = false;
             patreonButton.Visible = false;
