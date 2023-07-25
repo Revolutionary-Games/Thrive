@@ -300,7 +300,7 @@ public partial class Microbe
 
         // Find the direction the microbe is facing
         // (actual rotation, not LookAtPoint, also takes colony membership into account)
-        Vector3 direction = FacingDirection();        
+        Vector3 direction = FacingDirection();
 
         var position = GlobalTransform.origin + (direction * ejectionDistance);
 
@@ -320,6 +320,10 @@ public partial class Microbe
         }
     }
 
+    /// <summary>
+    ///   Handles colony logic to determine the actual facing vector of this microbe
+    /// </summary>
+    /// <returns>A Vector3 of this microbe's real facing</returns>
     public Vector3 FacingDirection()
     {
         if (Colony != null)
