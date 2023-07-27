@@ -9,17 +9,27 @@ using Newtonsoft.Json;
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
 [JsonObject(IsReference = true)]
-public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex
+public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, INetworkSerializable
 {
-    [JsonProperty]
-    public readonly OrganelleDefinition Definition;
-
+    [JsonConstructor]
     public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation)
     {
         Definition = definition;
         Position = location;
         Orientation = rotation;
     }
+
+    /// <summary>
+    ///   A plain constructor for network serialization/deserialization purposes.
+    /// </summary>
+    public OrganelleTemplate()
+    {
+        // Dummy organelle
+        Definition = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+    }
+
+    [JsonProperty]
+    public OrganelleDefinition Definition { get; private set; }
 
     public Hex Position { get; set; }
 
@@ -60,5 +70,20 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex
     {
         return (Position.GetHashCode() * 131) ^ (Orientation * 2909) ^ (Definition.GetHashCode() * 947) ^
             ((Upgrades != null ? Upgrades.GetHashCode() : 1) * 1063);
+    }
+
+    public void NetworkSerialize(BytesBuffer buffer)
+    {
+        buffer.Write(Definition.InternalName);
+        buffer.Write((short)Position.Q);
+        buffer.Write((short)Position.R);
+        buffer.Write((byte)Orientation);
+    }
+
+    public void NetworkDeserialize(BytesBuffer buffer)
+    {
+        Definition = SimulationParameters.Instance.GetOrganelleType(buffer.ReadString());
+        Position = new Hex(buffer.ReadInt16(), buffer.ReadInt16());
+        Orientation = buffer.ReadByte();
     }
 }

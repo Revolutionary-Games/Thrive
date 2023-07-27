@@ -78,6 +78,22 @@ public static class StringUtils
     }
 
     /// <summary>
+    ///   Formats minutes and seconds as "MM:SS".
+    /// </summary>
+    public static string FormatShortMinutesSeconds(float minutes, float seconds)
+    {
+        return $"{minutes:00}:{seconds:00}";
+    }
+
+    /// <summary>
+    ///   Formats minutes and seconds as "MM minutes SS seconds".
+    /// </summary>
+    public static string FormatLongMinutesSeconds(float minutes, float seconds)
+    {
+        return TranslationServer.Translate("MINUTES_SECONDS").FormatSafe(minutes, seconds);
+    }
+
+    /// <summary>
     ///   Splits string into different chunks by whitespace.
     /// </summary>
     /// <remarks>
@@ -582,5 +598,35 @@ public static class StringUtils
             throw new Exception();
 
         // ReSharper restore StringLiteralTypo
+    }
+
+    /// <summary>
+    /// Returns a hexadecimal representation of this byte as a string.
+    /// </summary>
+    /// <param name="b">The byte to encode.</param>
+    /// <returns>The hexadecimal representation of this byte.</returns>
+    public static string HexEncode(this byte b)
+    {
+        string ret = string.Empty;
+
+        for (int i = 0; i < 2; i++)
+        {
+            char c;
+            int lv = b & 0xF;
+
+            if (lv < 10)
+            {
+                c = (char)('0' + lv);
+            }
+            else
+            {
+                c = (char)('a' + lv - 10);
+            }
+
+            b >>= 4;
+            ret = c + ret;
+        }
+
+        return ret;
     }
 }

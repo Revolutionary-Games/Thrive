@@ -94,7 +94,7 @@ public class SceneManager : Node
     /// <summary>
     ///   Switches a scene to the main menu
     /// </summary>
-    public void ReturnToMenu()
+    public MainMenu ReturnToMenu()
     {
         var scene = LoadScene("res://src/general/MainMenu.tscn");
 
@@ -103,6 +103,8 @@ public class SceneManager : Node
         mainMenu.IsReturningToMenu = true;
 
         SwitchToScene(mainMenu);
+
+        return mainMenu;
     }
 
     /// <summary>

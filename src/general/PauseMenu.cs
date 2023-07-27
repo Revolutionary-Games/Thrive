@@ -44,7 +44,14 @@ public class PauseMenu : TopLevelContainer
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
 
+    private Button? resumeButton;
+    private Button? saveGameButton;
+    private Button? loadGameButton;
+    private Button? returnToMenuButton;
+
     private bool paused;
+
+    private bool multiplayerMode;
 
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
@@ -125,6 +132,17 @@ public class PauseMenu : TopLevelContainer
         }
     }
 
+    [Export]
+    public bool MultiplayerMode
+    {
+        get => multiplayerMode;
+        set
+        {
+            multiplayerMode = value;
+            UpdateState();
+        }
+    }
+
     private ActiveMenuType ActiveMenu
     {
         get
@@ -178,7 +196,7 @@ public class PauseMenu : TopLevelContainer
     {
         set
         {
-            if (paused == value)
+            if (paused == value || MultiplayerMode)
                 return;
 
             if (paused)
@@ -377,6 +395,29 @@ public class PauseMenu : TopLevelContainer
         };
     }
 
+    private void UpdateState()
+    {
+        if (resumeButton != null)
+        {
+            resumeButton.Text = MultiplayerMode ?
+                TranslationServer.Translate("BACK_TO_GAME") :
+                TranslationServer.Translate("RESUME");
+        }
+
+        if (saveGameButton != null)
+            saveGameButton.Visible = !MultiplayerMode;
+
+        if (loadGameButton != null)
+            loadGameButton.Visible = !MultiplayerMode;
+
+        if (returnToMenuButton != null)
+        {
+            returnToMenuButton.Text = MultiplayerMode ?
+                TranslationServer.Translate("LEAVE") :
+                TranslationServer.Translate("RETURN_TO_MENU");
+        }
+    }
+
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -390,7 +431,7 @@ public class PauseMenu : TopLevelContainer
 
         exitType = ExitType.ReturnToMenu;
 
-        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning || MultiplayerMode)
         {
             ConfirmExit();
         }
@@ -408,7 +449,7 @@ public class PauseMenu : TopLevelContainer
         ++exitTries;
 
         if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning
-            || exitTries >= Constants.FORCE_CLOSE_AFTER_TRIES)
+            || exitTries >= Constants.FORCE_CLOSE_AFTER_TRIES || MultiplayerMode)
         {
             ConfirmExit();
         }
@@ -455,7 +496,14 @@ public class PauseMenu : TopLevelContainer
     {
         Paused = false;
 
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, OnSwitchToMenu, false);
+        if (MultiplayerMode)
+        {
+            NetworkManager.Instance.Exit();
+        }
+        else
+        {
+            TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, OnSwitchToMenu, false);
+        }
     }
 
     private void Quit()

@@ -156,13 +156,15 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
         PerformQuickSave();
     }
 
-    public void GameOver()
+    public virtual void GameOver()
     {
         // Player is extinct and has lost the game
         gameOver = true;
 
         OnGameOver();
     }
+
+    public abstract bool IsGameOver();
 
     public virtual void OnFinishTransitioning()
     {
@@ -226,8 +228,6 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     protected abstract void OnGameStarted();
 
     protected abstract void StartGUIStageTransition(bool longDuration, bool returnFromEditor);
-
-    protected abstract bool IsGameOver();
 
     protected abstract void OnGameOver();
 

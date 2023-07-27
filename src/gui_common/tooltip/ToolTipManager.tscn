@@ -4138,6 +4138,17 @@ Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
 DisplayDelay = 2.5
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
+[node name="serverSetup" type="Control" parent="GroupHolder"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="upnp" parent="GroupHolder/serverSetup" instance=ExtResource( 1 )]
+visible = false
+Description = "SERVER_SETUP_UPNP_HINT"
+DisplayDelay = 0.0
+Positioning = 2
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
 [editable path="GroupHolder/editor/rigiditySlider"]
 [editable path="GroupHolder/organelleSelection/cytoplasm"]
 [editable path="GroupHolder/organelleSelection/metabolosome"]

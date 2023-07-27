@@ -81,6 +81,9 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     public MicrobeInspectInfo HoverInfo { get; private set; } = null!;
 
     [JsonIgnore]
+    public PlayerMicrobeInput PlayerInput { get; private set; } = null!;
+
+    [JsonIgnore]
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
@@ -108,6 +111,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         tutorialGUI.Visible = true;
         HUD.Init(this);
         HoverInfo.Init(Clouds, Camera);
+        PlayerInput.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
@@ -123,6 +127,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
         HoverInfo = GetNode<MicrobeInspectInfo>("PlayerHoverInfo");
+        PlayerInput = GetNode<PlayerMicrobeInput>("PlayerMicrobeInput");
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
@@ -603,6 +608,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, spawner, CurrentGame!);
+
         Player.AddToGroup(Constants.PLAYER_GROUP);
 
         Player.OnDeath = OnPlayerDied;

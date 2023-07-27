@@ -28,4 +28,10 @@ public static class ColorUtils
     {
         return colour.r > 1 || colour.g > 1 || colour.b > 1;
     }
+
+    public static string ToHex32(float value)
+    {
+        byte b = (byte)Mathf.RoundToInt(Mathf.Clamp(value * 255, 0, 255));
+        return b.HexEncode();
+    }
 }

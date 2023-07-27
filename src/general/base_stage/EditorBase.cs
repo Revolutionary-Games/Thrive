@@ -796,6 +796,20 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         stage.OnReturnFromEditor();
     }
 
+    /// <summary>
+    ///   Starts a fade in transition
+    /// </summary>
+    protected void FadeIn()
+    {
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, 0.5f, () => TransitionFinished = true, false);
+    }
+
+    protected void StartMusic()
+    {
+        Jukebox.Instance.PlayCategory(MusicCategory);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -869,19 +883,5 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             editorComponent.OnLightLevelChanged(dayLightFraction);
         }
-    }
-
-    /// <summary>
-    ///   Starts a fade in transition
-    /// </summary>
-    private void FadeIn()
-    {
-        TransitionManager.Instance.AddSequence(
-            ScreenFade.FadeType.FadeIn, 0.5f, () => TransitionFinished = true, false);
-    }
-
-    private void StartMusic()
-    {
-        Jukebox.Instance.PlayCategory(MusicCategory);
     }
 }

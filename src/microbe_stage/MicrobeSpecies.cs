@@ -43,6 +43,11 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         IsBacteria = withCellProperties.IsBacteria;
     }
 
+    public MicrobeSpecies()
+    {
+        Organelles = new OrganelleLayout<OrganelleTemplate>();
+    }
+
     public bool IsBacteria { get; set; }
 
     /// <summary>
@@ -219,6 +224,44 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         }
 
         return hash;
+    }
+
+    public override void NetworkSerialize(BytesBuffer buffer)
+    {
+        base.NetworkSerialize(buffer);
+
+        buffer.Write(IsBacteria);
+        buffer.Write(MembraneType.InternalName);
+        buffer.Write(MembraneRigidity);
+        buffer.Write(BaseRotationSpeed);
+
+        // Sending 2-byte unsigned int... means the max organelle count is 65535
+        buffer.Write((ushort)Organelles.Count);
+        foreach (var organelle in Organelles)
+        {
+            var organelleMsg = new BytesBuffer();
+            organelle.NetworkSerialize(organelleMsg);
+            buffer.Write(organelleMsg);
+        }
+    }
+
+    public override void NetworkDeserialize(BytesBuffer buffer)
+    {
+        base.NetworkDeserialize(buffer);
+
+        IsBacteria = buffer.ReadBoolean();
+        MembraneType = SimulationParameters.Instance.GetMembrane(buffer.ReadString());
+        MembraneRigidity = buffer.ReadSingle();
+        BaseRotationSpeed = buffer.ReadSingle();
+
+        var organellesCount = buffer.ReadUInt16();
+        for (int i = 0; i < organellesCount; ++i)
+        {
+            var packed = buffer.ReadBuffer();
+            var organelle = new OrganelleTemplate();
+            organelle.NetworkDeserialize(packed);
+            Organelles.Add(organelle);
+        }
     }
 
     public override string GetDetailString()

@@ -9,6 +9,12 @@ public class HUDBottomBar : HBoxContainer
     public bool ShowCompoundPanelToggles = true;
 
     /// <summary>
+    ///   When false the environment toggle is hidden
+    /// </summary>
+    [Export]
+    public bool ShowEnvironmentButton = true;
+
+    /// <summary>
     ///   When false the suicide button is hidden
     /// </summary>
     [Export]
@@ -19,6 +25,18 @@ public class HUDBottomBar : HBoxContainer
     /// </summary>
     [Export]
     public bool ShowProcessesButton = true;
+
+    /// <summary>
+    ///   When false the pause button is hidden
+    /// </summary>
+    [Export]
+    public bool ShowPauseButton = true;
+
+    /// <summary>
+    ///   When false the chat button is hidden
+    /// </summary>
+    [Export]
+    public bool ShowChatButton;
 
     [Export]
     public NodePath? PauseButtonPath;
@@ -35,6 +53,9 @@ public class HUDBottomBar : HBoxContainer
     [Export]
     public NodePath SuicideButtonPath = null!;
 
+    [Export]
+    public NodePath ChatButtonPath = null!;
+
 #pragma warning disable CA2213
     private PlayButton pauseButton = null!;
 
@@ -42,11 +63,15 @@ public class HUDBottomBar : HBoxContainer
     private TextureButton? environmentButton;
     private TextureButton? processPanelButton;
     private TextureButton? suicideButton;
+    private TextureButton? chatButton;
 #pragma warning restore CA2213
 
     private bool compoundsPressed = true;
     private bool environmentPressed = true;
     private bool processPanelPressed;
+    private bool chatPressed;
+
+    private bool paused;
 
     [Signal]
     public delegate void OnMenuPressed();
@@ -72,10 +97,17 @@ public class HUDBottomBar : HBoxContainer
     [Signal]
     public delegate void OnStatisticsPressed();
 
+    [Signal]
+    public delegate void OnChatPressed(bool opened);
+
     public bool Paused
     {
-        get => pauseButton.Paused;
-        set => pauseButton.Paused = value;
+        get => paused;
+        set
+        {
+            paused = value;
+            UpdatePauseButton();
+        }
     }
 
     public bool CompoundsPressed
@@ -88,6 +120,7 @@ public class HUDBottomBar : HBoxContainer
         }
     }
 
+    [Export]
     public bool EnvironmentPressed
     {
         get => environmentPressed;
@@ -108,6 +141,17 @@ public class HUDBottomBar : HBoxContainer
         }
     }
 
+    [Export]
+    public bool ChatPressed
+    {
+        get => chatPressed;
+        set
+        {
+            chatPressed = value;
+            UpdateChatButton();
+        }
+    }
+
     public override void _Ready()
     {
         pauseButton = GetNode<PlayButton>(PauseButtonPath);
@@ -116,10 +160,13 @@ public class HUDBottomBar : HBoxContainer
         environmentButton = GetNode<TextureButton>(EnvironmentButtonPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
         suicideButton = GetNode<TextureButton>(SuicideButtonPath);
+        chatButton = GetNode<TextureButton>(ChatButtonPath);
 
         UpdateCompoundButton();
         UpdateEnvironmentButton();
         UpdateProcessPanelButton();
+        UpdatePauseButton();
+        UpdateChatButton();
 
         UpdateButtonVisibility();
     }
@@ -197,6 +244,13 @@ public class HUDBottomBar : HBoxContainer
         EmitSignal(nameof(OnPausePressed), paused);
     }
 
+    private void ChatButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        ChatPressed = !ChatPressed;
+        EmitSignal(nameof(OnChatPressed), ChatPressed);
+    }
+
     private void UpdateCompoundButton()
     {
         if (compoundsButton == null)
@@ -221,18 +275,40 @@ public class HUDBottomBar : HBoxContainer
         processPanelButton.Pressed = ProcessesPressed;
     }
 
+    private void UpdatePauseButton()
+    {
+        if (pauseButton == null)
+            return;
+
+        pauseButton.Paused = Paused;
+    }
+
+    private void UpdateChatButton()
+    {
+        if (chatButton == null)
+            return;
+
+        chatButton.Pressed = ChatPressed;
+    }
+
     private void UpdateButtonVisibility()
     {
         if (compoundsButton != null)
             compoundsButton.Visible = ShowCompoundPanelToggles;
 
         if (environmentButton != null)
-            environmentButton.Visible = ShowCompoundPanelToggles;
+            environmentButton.Visible = ShowCompoundPanelToggles || ShowEnvironmentButton;
 
         if (suicideButton != null)
             suicideButton.Visible = ShowSuicideButton;
 
         if (processPanelButton != null)
             processPanelButton.Visible = ShowProcessesButton;
+
+        if (pauseButton != null)
+            pauseButton.GetParent<Control>().Visible = ShowPauseButton;
+
+        if (chatButton != null)
+            chatButton.Visible = ShowChatButton;
     }
 }

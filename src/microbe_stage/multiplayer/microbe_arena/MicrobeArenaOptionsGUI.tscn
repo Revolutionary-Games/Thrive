@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/microbe_stage/multiplayer/microbe_arena/MicrobeArenaOptionsGUI.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+
+[node name="MicrobeArenaOptionsGUI" type="MarginContainer"]
+margin_right = 349.0
+margin_bottom = 55.0
+theme = ExtResource( 3 )
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+script = ExtResource( 1 )
+BiomesPath = NodePath("VBoxContainer/HBoxContainer2/OptionButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 385.0
+margin_bottom = 65.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 375.0
+margin_bottom = 31.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+margin_top = 5.0
+margin_right = 117.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
+text = "ARENA_RADIUS"
+
+[node name="Separator" type="Control" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 121.0
+margin_right = 171.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 175.0
+margin_right = 375.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+min_value = 500.0
+max_value = 5000.0
+value = 1000.0
+editable = false
+suffix = "μm"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 35.0
+margin_right = 375.0
+margin_bottom = 55.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 52.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 2 )
+text = "BIOME"
+
+[node name="Separator" type="Control" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 56.0
+margin_right = 171.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 175.0
+margin_right = 375.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 200, 0 )

@@ -451,6 +451,12 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.OnAscended();
     }
 
+    public override bool IsGameOver()
+    {
+        // TODO: lose condition
+        return false;
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -468,12 +474,6 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.HUDMessages.ShowMessage(
             "Research and build the Ascension Gate and energy structures to power it, then activate it",
             DisplayDuration.ExtraLong);
-    }
-
-    protected override bool IsGameOver()
-    {
-        // TODO: lose condition
-        return false;
     }
 
     protected override void OnGameOver()

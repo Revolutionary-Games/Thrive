@@ -70,6 +70,7 @@ CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
 CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
 [node name="PauseMenu" parent="." instance=ExtResource( 52 )]
+MultiplayerMode = false
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]

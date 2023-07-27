@@ -143,8 +143,7 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
             return;
         }
 
-        // Handle player respawning
-        if (!HasPlayer && !MovingToEditor)
+        if (!HasPlayer  && !MovingToEditor)
         {
             if (!spawnedPlayer)
             {
@@ -251,6 +250,12 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
 
     public abstract void OnSuicide();
 
+    public override bool IsGameOver()
+    {
+        return GameWorld.Map.GetSpeciesGlobalGameplayPopulation(CurrentGame!.GameWorld.PlayerSpecies) <= 0 &&
+            !CurrentGame.FreeBuild;
+    }
+
     /// <summary>
     ///   Called when the player died out in a patch and selected a new one
     /// </summary>
@@ -317,12 +322,6 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
 
         // Player is not extinct, so can respawn
         SpawnPlayer();
-    }
-
-    protected override bool IsGameOver()
-    {
-        return GameWorld.Map.GetSpeciesGlobalGameplayPopulation(CurrentGame!.GameWorld.PlayerSpecies) <= 0 &&
-            !CurrentGame.FreeBuild;
     }
 
     /// <summary>

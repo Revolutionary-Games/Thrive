@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
-public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
+public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked, INetworkSerializable
 {
     [JsonIgnore]
     private readonly List<uint> shapes = new();
@@ -49,6 +49,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         Definition = definition;
         Position = position;
         Orientation = orientation;
+    }
+
+    /// <summary>
+    ///   A plain constructor for network serialization/deserialization purposes.
+    /// </summary>
+    public PlacedOrganelle()
+    {
+        // Dummy organelle
+        Definition = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
     }
 
     public OrganelleDefinition Definition { get; set; }
@@ -546,6 +555,35 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         currentShapesParent = to;
+    }
+
+    public void NetworkSerialize(BytesBuffer buffer)
+    {
+        buffer.Write(Definition.InternalName);
+        buffer.Write((short)Position.Q);
+        buffer.Write((short)Position.R);
+        buffer.Write((byte)Orientation);
+
+        var ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        var phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        compoundsLeft.TryGetValue(ammonia, out float ammoniaValue);
+        compoundsLeft.TryGetValue(phosphates, out float phosphatesValue);
+        buffer.Write(ammoniaValue);
+        buffer.Write(phosphatesValue);
+    }
+
+    public void NetworkDeserialize(BytesBuffer buffer)
+    {
+        Definition = SimulationParameters.Instance.GetOrganelleType(buffer.ReadString());
+        Position = new Hex(buffer.ReadInt16(), buffer.ReadInt16());
+        Orientation = buffer.ReadByte();
+
+        compoundsLeft.Clear();
+
+        var ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        var phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        compoundsLeft[ammonia] = buffer.ReadSingle();
+        compoundsLeft[phosphates] = buffer.ReadSingle();
     }
 
     private static Color CalculateHSVForOrganelle(Color rawColour)

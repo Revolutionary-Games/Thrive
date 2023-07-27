@@ -6,7 +6,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   All data regarding the game world of a thrive playthrough
+///   All data regarding the game world of a thrive playthrough.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -25,13 +25,13 @@ public class GameWorld : ISaveLoadable
     public Dictionary<int, GenerationRecord> GenerationHistory = new();
 
     [JsonProperty]
+    protected Dictionary<uint, Species> worldSpecies = new();
+
+    [JsonProperty]
     private uint speciesIdCounter;
 
     [JsonProperty]
     private Mutations mutator = new();
-
-    [JsonProperty]
-    private Dictionary<uint, Species> worldSpecies = new();
 
     [JsonProperty]
     private Dictionary<double, List<GameEventDescription>> eventsLog = new();
@@ -117,13 +117,13 @@ public class GameWorld : ISaveLoadable
     }
 
     [JsonProperty]
-    public Species PlayerSpecies { get; private set; } = null!;
+    public Species PlayerSpecies { get; protected set; } = null!;
 
     [JsonIgnore]
     public IReadOnlyDictionary<uint, Species> Species => worldSpecies;
 
     [JsonProperty]
-    public PatchMap Map { get; private set; } = null!;
+    public PatchMap Map { get; protected set; } = null!;
 
     /// <summary>
     ///   This probably needs to be changed to a huge precision number

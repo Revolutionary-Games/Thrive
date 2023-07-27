@@ -1,0 +1,437 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/networking/gui/MultiplayerGUI.cs" type="Script" id=2]
+[ext_resource path="res://src/networking/gui/ChatBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/networking/gui/NetworkPlayerList.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/networking/gui/NetworkPlayerLog.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/networking/gui/ServerSetup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=12]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=14]
+
+[sub_resource type="ButtonGroup" id=1]
+
+[node name="MultiplayerGUI" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+NameBoxPath = NodePath("PrimaryMenu/VBoxContainer/HBoxContainer/NameBox")
+AddressBoxPath = NodePath("PrimaryMenu/VBoxContainer/HBoxContainer2/Address")
+PortBoxPath = NodePath("PrimaryMenu/VBoxContainer/HBoxContainer3/Port")
+ConnectButtonPath = NodePath("PrimaryMenu/HBoxContainer2/Connect")
+LobbyPlayerListPath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/NetPlayerList")
+ServerNamePath = NodePath("Lobby/PanelContainer/MarginContainer/HBoxContainer/ServerName")
+ServerAttributesPath = NodePath("Lobby/PanelContainer/MarginContainer/HBoxContainer/ServerAttributes")
+StartButtonPath = NodePath("Lobby/HBoxContainer/Start")
+KickedDialogPath = NodePath("KickedDialog")
+GameModeTitlePath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/Context/MarginContainer/VBoxContainer/GameModeTitle")
+GameModeDescriptionPath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/Context/MarginContainer/VBoxContainer/GameModeDescription")
+PlayerListTabPath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/NetPlayerList")
+GameInfoTabPath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/Context")
+PlayerListTabButtonPath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox/PlayerList")
+GameInfoTabButtonPath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox/GameInfo")
+LatencyLabelPath = NodePath("Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox/Latency")
+NetworkedPlayerLabelScene = ExtResource( 6 )
+
+[node name="PrimaryMenu" type="VBoxContainer" parent="."]
+margin_left = 491.0
+margin_top = 282.0
+margin_right = 788.0
+margin_bottom = 437.0
+custom_constants/separation = 9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PrimaryMenu"]
+margin_right = 297.0
+margin_bottom = 101.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PrimaryMenu/VBoxContainer"]
+margin_right = 297.0
+margin_bottom = 31.0
+
+[node name="Label3" type="Label" parent="PrimaryMenu/VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 93.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "NAME"
+
+[node name="NameBox" type="LineEdit" parent="PrimaryMenu/VBoxContainer/HBoxContainer"]
+margin_left = 97.0
+margin_right = 297.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+max_length = 32
+caret_blink = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PrimaryMenu/VBoxContainer"]
+margin_top = 35.0
+margin_right = 297.0
+margin_bottom = 66.0
+
+[node name="Label3" type="Label" parent="PrimaryMenu/VBoxContainer/HBoxContainer2"]
+margin_top = 3.0
+margin_right = 93.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "ADDRESS"
+
+[node name="Address" type="LineEdit" parent="PrimaryMenu/VBoxContainer/HBoxContainer2"]
+margin_left = 97.0
+margin_right = 297.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+text = "auto"
+placeholder_text = "Use default"
+caret_blink = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PrimaryMenu/VBoxContainer"]
+margin_top = 70.0
+margin_right = 297.0
+margin_bottom = 101.0
+
+[node name="Label3" type="Label" parent="PrimaryMenu/VBoxContainer/HBoxContainer3"]
+margin_top = 3.0
+margin_right = 93.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "PORT"
+
+[node name="Port" type="LineEdit" parent="PrimaryMenu/VBoxContainer/HBoxContainer3"]
+margin_left = 97.0
+margin_right = 297.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+text = "6000"
+placeholder_text = "Use default"
+caret_blink = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HSeparator" type="HSeparator" parent="PrimaryMenu"]
+margin_top = 110.0
+margin_right = 297.0
+margin_bottom = 114.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PrimaryMenu"]
+margin_top = 123.0
+margin_right = 297.0
+margin_bottom = 155.0
+alignment = 1
+
+[node name="Back" type="Button" parent="PrimaryMenu/HBoxContainer2"]
+margin_left = 22.0
+margin_right = 97.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "BACK"
+
+[node name="Host" type="Button" parent="PrimaryMenu/HBoxContainer2"]
+margin_left = 101.0
+margin_right = 176.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "HOST"
+
+[node name="Connect" type="Button" parent="PrimaryMenu/HBoxContainer2"]
+margin_left = 180.0
+margin_right = 275.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 75, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "CONNECT"
+
+[node name="Lobby" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 223.0
+margin_top = 115.0
+margin_right = 1057.0
+margin_bottom = 605.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Lobby"]
+margin_right = 834.0
+margin_bottom = 37.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Lobby/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 833.0
+margin_bottom = 36.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Lobby/PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 827.0
+margin_bottom = 30.0
+
+[node name="ServerName" type="Label" parent="Lobby/PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 25.0
+text = "SERVER_NAME"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="ServerAttributes" type="Label" parent="Lobby/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 144.0
+margin_top = 2.0
+margin_right = 253.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 10 )
+text = "- ATTRIBUTES"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Lobby"]
+margin_top = 41.0
+margin_right = 834.0
+margin_bottom = 491.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Lobby/HBoxContainer2"]
+margin_right = 550.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 550, 450 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Lobby/HBoxContainer2/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 549.0
+margin_bottom = 449.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 543.0
+margin_bottom = 443.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 538.0
+margin_bottom = 28.0
+custom_constants/margin_right = 5
+
+[node name="Toolbox" type="HBoxContainer" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+margin_right = 533.0
+margin_bottom = 28.0
+
+[node name="PlayerList" type="Button" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox"]
+margin_right = 91.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 12 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+group = SubResource( 1 )
+text = "PLAYER_LIST"
+
+[node name="GameInfo" type="Button" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox"]
+margin_left = 95.0
+margin_right = 178.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 12 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 1 )
+text = "GAME_INFO"
+
+[node name="Spacer" type="Control" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox"]
+margin_left = 182.0
+margin_right = 467.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+
+[node name="Latency" type="Label" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox"]
+margin_left = 471.0
+margin_top = 5.0
+margin_right = 533.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 14 )
+text = "PING_N/A"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="NetPlayerList" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 32.0
+margin_right = 538.0
+margin_bottom = 438.0
+size_flags_vertical = 3
+
+[node name="Context" type="PanelContainer" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 237.0
+margin_right = 538.0
+margin_bottom = 438.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/Context"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 537.0
+margin_bottom = 200.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/Context/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 531.0
+margin_bottom = 194.0
+
+[node name="GameModeTitle" type="Label" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/Context/MarginContainer/VBoxContainer"]
+margin_right = 526.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 4 )
+text = "GAME_MODE_TITLE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="GameModeDescription" parent="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/Context/MarginContainer/VBoxContainer" instance=ExtResource( 13 )]
+margin_top = 21.0
+margin_right = 526.0
+margin_bottom = 189.0
+size_flags_vertical = 3
+fit_content_height = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lobby/HBoxContainer2"]
+margin_left = 554.0
+margin_right = 834.0
+margin_bottom = 450.0
+
+[node name="ChatPanel" type="PanelContainer" parent="Lobby/HBoxContainer2/VBoxContainer"]
+margin_right = 280.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 280, 0 )
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Lobby/HBoxContainer2/VBoxContainer/ChatPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 279.0
+margin_bottom = 449.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lobby/HBoxContainer2/VBoxContainer/ChatPanel/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 273.0
+margin_bottom = 443.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Lobby/HBoxContainer2/VBoxContainer/ChatPanel/MarginContainer/VBoxContainer"]
+margin_right = 268.0
+margin_bottom = 17.0
+custom_constants/margin_right = 5
+custom_constants/margin_left = 5
+
+[node name="Label" type="Label" parent="Lobby/HBoxContainer2/VBoxContainer/ChatPanel/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 5.0
+margin_right = 263.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 4 )
+text = "CHAT_ROOM"
+align = 1
+
+[node name="ChatBox" parent="Lobby/HBoxContainer2/VBoxContainer/ChatPanel/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 21.0
+margin_right = 268.0
+margin_bottom = 438.0
+size_flags_vertical = 3
+ReleaseLineEditFocusAfterMessageSent = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Lobby"]
+margin_top = 495.0
+margin_right = 834.0
+margin_bottom = 525.0
+
+[node name="Disconnect" type="Button" parent="Lobby/HBoxContainer"]
+margin_right = 114.0
+margin_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 11 )
+text = "DISCONNECT"
+
+[node name="Control" type="Control" parent="Lobby/HBoxContainer"]
+margin_left = 118.0
+margin_right = 730.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+
+[node name="Start" type="Button" parent="Lobby/HBoxContainer"]
+margin_left = 734.0
+margin_right = 834.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = ExtResource( 11 )
+text = "START"
+
+[node name="GeneralDialog" parent="." instance=ExtResource( 9 )]
+margin_left = 440.0
+margin_top = 360.0
+margin_right = 840.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 400, 0 )
+HideCancelButton = true
+
+[node name="KickedDialog" parent="." instance=ExtResource( 9 )]
+margin_left = 440.0
+margin_top = 360.0
+margin_right = 840.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "KICKED"
+HideCancelButton = true
+
+[node name="LoadingDialog" parent="." instance=ExtResource( 9 )]
+margin_left = 440.0
+margin_top = 360.0
+margin_right = 840.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 400, 0 )
+HideCancelButton = true
+
+[node name="ServerSetup" parent="." instance=ExtResource( 7 )]
+margin_left = 640.0
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 360.0
+
+[connection signal="pressed" from="PrimaryMenu/HBoxContainer2/Back" to="." method="OnBackPressed"]
+[connection signal="pressed" from="PrimaryMenu/HBoxContainer2/Host" to="." method="OnCreatePressed"]
+[connection signal="pressed" from="PrimaryMenu/HBoxContainer2/Connect" to="." method="OnConnectPressed"]
+[connection signal="pressed" from="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox/PlayerList" to="." method="OnLobbyTabPressed" binds= [ "PlayerList" ]]
+[connection signal="pressed" from="Lobby/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Toolbox/GameInfo" to="." method="OnLobbyTabPressed" binds= [ "GameInfo" ]]
+[connection signal="pressed" from="Lobby/HBoxContainer/Disconnect" to="." method="OnDisconnectPressed"]
+[connection signal="pressed" from="Lobby/HBoxContainer/Start" to="." method="OnStartPressed"]
+[connection signal="toggled" from="Lobby/HBoxContainer/Start" to="." method="OnReadyToggled"]
+[connection signal="Cancelled" from="LoadingDialog" to="." method="OnLoadingCancelled"]

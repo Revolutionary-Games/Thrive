@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/microbe_stage/multiplayer/microbe_arena/editor/MicrobeArenaEditor.cs" type="Script" id=1]
+[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/networking/gui/ChatBox.tscn" type="PackedScene" id=7]
+
+[node name="MicrobeArenaEditor" type="Node"]
+script = ExtResource( 1 )
+PauseMenuPath = NodePath("PauseMenu")
+EditorGUIBaseNodePath = NodePath("MicrobeArenaEditorGUI")
+EditorTabSelectorPath = NodePath("MicrobeArenaEditorGUI/MicrobeEditorTabButtons")
+CellEditorTabPath = NodePath("MicrobeArenaEditorGUI/CellEditorComponent")
+
+[node name="EditorWorld" parent="." instance=ExtResource( 3 )]
+
+[node name="MicrobeArenaEditorGUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CellEditorComponent" parent="MicrobeArenaEditorGUI" instance=ExtResource( 4 )]
+CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
+EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
+EditorGridPath = NodePath("../../EditorWorld/Grid")
+CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+IsMicrobialArenaEditor = true
+
+[node name="MicrobeEditorTabButtons" parent="MicrobeArenaEditorGUI" instance=ExtResource( 5 )]
+CellEditorOnly = true
+
+[node name="EditorCommonBottomLeftButtons" parent="MicrobeArenaEditorGUI" instance=ExtResource( 6 )]
+
+[node name="ChatBox" parent="MicrobeArenaEditorGUI" instance=ExtResource( 7 )]
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -285.0
+margin_top = 402.0
+margin_right = -10.0
+margin_bottom = 561.0
+
+[node name="PauseMenu" parent="." instance=ExtResource( 2 )]
+MultiplayerMode = true
+HelpCategory = "MicrobeEditor"
+
+[connection signal="OnOpenHelp" from="MicrobeArenaEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
+[connection signal="OnOpenMenu" from="MicrobeArenaEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
+
+[editable path="EditorWorld"]

@@ -577,7 +577,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private void ConfirmExit()
     {
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
-            SceneManager.Instance.ReturnToMenu, false);
+            () => SceneManager.Instance.ReturnToMenu(), false);
     }
 
     private void ChangeTab(string tab)

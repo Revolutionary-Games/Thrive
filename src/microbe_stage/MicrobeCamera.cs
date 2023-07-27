@@ -12,6 +12,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// </summary>
     public Spatial? ObjectToFollow;
 
+    [Export]
+    [JsonProperty]
+    public bool BackgroundVisible = true;
+
     /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
@@ -353,7 +357,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     private void UpdateBackgroundVisibility()
     {
         if (backgroundPlane != null)
-            backgroundPlane.Visible = Current;
+            backgroundPlane.Visible = Current && BackgroundVisible;
 
         if (backgroundParticles != null)
             OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);

@@ -10,6 +10,7 @@ axis_lock_linear_y = true
 linear_damp = 2.46
 angular_damp = 0.11
 script = ExtResource( 1 )
+SyncLinearYAxis = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 

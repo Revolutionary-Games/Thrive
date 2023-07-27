@@ -19,6 +19,9 @@ public partial class DebugOverlays : Control
     public NodePath InspectorCheckboxPath = null!;
 
     [Export]
+    public NodePath NetworkCheckboxPath = null!;
+
+    [Export]
     public NodePath DebugPanelDialogPath = null!;
 
     [Export]
@@ -26,6 +29,9 @@ public partial class DebugOverlays : Control
 
     [Export]
     public NodePath PerformanceMetricsPath = null!;
+
+    [Export]
+    public NodePath NetworkDebugPath = null!;
 
     [Export]
     public NodePath EntityLabelsPath = null!;
@@ -42,8 +48,10 @@ public partial class DebugOverlays : Control
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
     private CustomCheckBox inspectorCheckbox = null!;
+    private CustomCheckBox networkCheckbox = null!;
     private Control fpsCounter = null!;
     private CustomWindow performanceMetrics = null!;
+    private CustomWindow networkDebug = null!;
     private Control labelsLayer = null!;
 #pragma warning restore CA2213
 
@@ -68,12 +76,17 @@ public partial class DebugOverlays : Control
         debugPanelDialog = GetNode<CustomWindow>(DebugPanelDialogPath);
         fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);
+        networkDebug = GetNode<CustomWindow>(NetworkDebugPath);
+        networkCheckbox = GetNode<CustomCheckBox>(NetworkCheckboxPath);
         labelsLayer = GetNode<Control>(EntityLabelsPath);
         smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
         fpsLabel = GetNode<Label>(FPSLabelPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
+        networkMetricsText = GetNode<Label>(NetworkMetricsTextPath);
         fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
+
+        networkCheckbox.Pressed = true;
     }
 
     public override void _EnterTree()
@@ -106,6 +119,10 @@ public partial class DebugOverlays : Control
         if (performanceMetrics.Visible)
             UpdateMetrics(delta);
 
+        // Network metrics
+        if (networkDebug.Visible)
+            UpdateNetworkDebug(delta);
+
         // FPS counter
         if (fpsCounter.Visible)
             UpdateFPS();
@@ -126,6 +143,11 @@ public partial class DebugOverlays : Control
     public void OnPerformanceMetricsToggled()
     {
         performanceMetricsCheckBox.Pressed = !performanceMetricsCheckBox.Pressed;
+    }
+
+    public void OnNetworkDebugToggled()
+    {
+        networkCheckbox.Pressed = !networkCheckbox.Pressed;
     }
 
     [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false)]
@@ -162,9 +184,11 @@ public partial class DebugOverlays : Control
 
                 PerformanceMetricsCheckBoxPath.Dispose();
                 InspectorCheckboxPath.Dispose();
+                NetworkCheckboxPath.Dispose();
                 DebugPanelDialogPath.Dispose();
                 FPSCounterPath.Dispose();
                 PerformanceMetricsPath.Dispose();
+                NetworkDebugPath.Dispose();
                 EntityLabelsPath.Dispose();
                 FPSDisplayLabelPath.Dispose();
             }
@@ -185,6 +209,23 @@ public partial class DebugOverlays : Control
         else
         {
             performanceMetrics.Hide();
+        }
+    }
+
+    private void OnNetworkDebugCheckBoxToggled(bool state)
+    {
+        if (networkDebug.Visible == state)
+            return;
+
+        if (state)
+        {
+            networkDebug.Show();
+            NetworkManager.Instance.InitProfiling();
+        }
+        else
+        {
+            networkDebug.Hide();
+            NetworkManager.Instance.ClearProfiling();
         }
     }
 

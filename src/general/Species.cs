@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]
-public abstract class Species : ICloneable
+public abstract class Species : ICloneable, INetworkSerializable
 {
     /// <summary>
     ///   This is not an auto property to make save compatibility easier
@@ -28,6 +28,15 @@ public abstract class Species : ICloneable
         ID = id;
         Genus = genus;
         Epithet = epithet;
+    }
+
+    /// <summary>
+    ///   A plain constructor for network serialization/deserialization purposes.
+    /// </summary>
+    protected Species()
+    {
+        Genus = string.Empty;
+        Epithet = string.Empty;
     }
 
     /// <summary>
@@ -300,6 +309,40 @@ public abstract class Species : ICloneable
     public override string ToString()
     {
         return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
+    }
+
+    public virtual void NetworkSerialize(BytesBuffer buffer)
+    {
+        buffer.Write((byte)InitialCompounds.Count);
+        foreach (var entry in InitialCompounds)
+        {
+            buffer.Write((byte)SimulationParameters.Instance.CompoundToIndex(entry.Key));
+            buffer.Write(entry.Value);
+        }
+
+        buffer.Write(Genus);
+        buffer.Write(Epithet);
+        buffer.Write(Colour.ToRgba32());
+        buffer.Write(Population);
+        buffer.Write(Generation);
+        buffer.Write(ID);
+    }
+
+    public virtual void NetworkDeserialize(BytesBuffer buffer)
+    {
+        var count = buffer.ReadByte();
+        for (int i = 0; i < count; ++i)
+        {
+            var compound = SimulationParameters.Instance.IndexToCompound(buffer.ReadByte());
+            InitialCompounds[compound] = buffer.ReadSingle();
+        }
+
+        Genus = buffer.ReadString();
+        Epithet = buffer.ReadString();
+        Colour = new Color(buffer.ReadInt32());
+        Population = buffer.ReadInt64();
+        Generation = buffer.ReadInt32();
+        ID = buffer.ReadUInt32();
     }
 
     internal virtual void CopyDataToConvertedSpecies(Species species)

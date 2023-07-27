@@ -12,14 +12,17 @@ using Newtonsoft.Json;
 public partial class Microbe
 {
     [JsonProperty]
-    private readonly CompoundBag compounds = new(0.0f);
+    private readonly Dictionary<Compound, float> requiredCompoundsForBaseReproduction = new();
 
     [JsonProperty]
-    private readonly Dictionary<Compound, float> requiredCompoundsForBaseReproduction = new();
+    private CompoundBag compounds = new(0.0f);
 
     private Compound atp = null!;
     private Compound glucose = null!;
     private Compound mucilage = null!;
+    private Compound ammonia = null!;
+    private Compound phosphates = null!;
+    private Compound oxytoxy = null!;
 
     private Enzyme lipase = null!;
 
@@ -174,6 +177,9 @@ public partial class Microbe
         get => dissolveEffectValue;
         set
         {
+            if (dissolveEffectValue == value)
+                return;
+
             dissolveEffectValue = Mathf.Clamp(value, 0.0f, 1.0f);
             UpdateDissolveEffect();
         }
@@ -678,6 +684,9 @@ public partial class Microbe
 
     private void HandleCompoundAbsorbing(float delta)
     {
+        if (NetworkManager.Instance.IsClient && cloudSystem == null)
+            return;
+
         if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
@@ -1031,7 +1040,8 @@ public partial class Microbe
                 left = 0;
             }
 
-            requiredCompoundsForBaseReproduction[key] = left;
+            if (!NetworkManager.Instance.IsClient)
+                requiredCompoundsForBaseReproduction[key] = left;
 
             // As we don't make duplicate lists, we can only process a single type per call
             // So we can't know here if we are fully ready
@@ -1130,6 +1140,9 @@ public partial class Microbe
         }
         else
         {
+            if (NetworkManager.Instance.IsClient)
+                return;
+
             // Skip reproducing if we would go too much over the entity limit
             if (!spawnSystem!.IsUnderEntityLimitForReproducing())
             {
@@ -1170,6 +1183,9 @@ public partial class Microbe
     /// </summary>
     private void UnreadyToReproduce()
     {
+        if (NetworkManager.Instance.IsClient)
+            return;
+
         // Sets this flag to false to make full recomputation on next reproduction readiness check
         // This notably allows to reactivate editor button upon colony unbinding.
         allOrganellesDivided = false;
@@ -1178,7 +1194,7 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
-        if (PhagocytosisStep != PhagocytosisPhase.None)
+        if (PhagocytosisStep != PhagocytosisPhase.None || NetworkManager.Instance.IsClient)
             return;
 
         var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
@@ -1198,7 +1214,7 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
-        if (PhagocytosisStep != PhagocytosisPhase.None)
+        if (PhagocytosisStep != PhagocytosisPhase.None || Dead)
         {
             // Reset movement
             MovementDirection = Vector3.Zero;
@@ -1350,6 +1366,9 @@ public partial class Microbe
     /// </remarks>
     private void SpawnEjectedCompound(Compound compound, float amount, Vector3 direction, float displacement = 0)
     {
+        if (NetworkManager.Instance.IsClient)
+            return;
+
         var amountToEject = amount * Constants.MICROBE_VENT_COMPOUND_MULTIPLIER;
 
         if (amountToEject <= MathUtils.EPSILON)
@@ -1440,13 +1459,12 @@ public partial class Microbe
     {
         timeUntilDigestionUpdate -= delta;
 
-        if (timeUntilDigestionUpdate > 0 || Dead)
+        if (timeUntilDigestionUpdate > 0 || Dead || NetworkManager.Instance.IsClient)
             return;
 
         timeUntilDigestionUpdate = Constants.MICROBE_DIGESTION_UPDATE_INTERVAL;
 
         var compoundTypes = SimulationParameters.Instance.GetAllCompounds();
-        var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
         float usedCapacity = 0.0f;
 
@@ -1599,6 +1617,9 @@ public partial class Microbe
                 // Microbe is beyond repair, might as well consider it as dead
                 Kill();
 
+                if (NetworkManager.Instance.IsMultiplayer)
+                    OnNetworkDeathFinished?.Invoke(PeerId);
+
                 if (IsPlayerMicrobe)
                 {
                     // Playing from a positional audio player won't have any effect since the listener is
@@ -1609,6 +1630,9 @@ public partial class Microbe
                 var hostile = HostileEngulfer.Value;
                 if (hostile == null)
                     return;
+
+                if (NetworkManager.Instance.IsMultiplayer)
+                    OnKilledByAnotherPlayer?.Invoke(hostile.PeerId, PeerId, "engulf");
 
                 // Transfer ownership of all the objects we engulfed to our engulfer
                 foreach (var other in engulfedObjects.ToList())

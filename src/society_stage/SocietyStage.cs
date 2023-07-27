@@ -230,6 +230,12 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
         rootOfDynamicallySpawned.AddChild(buildingToPlaceGhost);
     }
 
+    public override bool IsGameOver()
+    {
+        // TODO: lose condition
+        return false;
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -253,12 +259,6 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
             "You are now in the Society Stage prototype. Build a few basic structures to gain resources, " +
             "then research factories and build one to advance to the next stage.",
             DisplayDuration.ExtraLong);
-    }
-
-    protected override bool IsGameOver()
-    {
-        // TODO: lose condition
-        return false;
     }
 
     protected override void OnGameOver()

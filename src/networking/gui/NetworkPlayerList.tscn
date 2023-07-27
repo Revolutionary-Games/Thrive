@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/networking/gui/NetworkPlayerList.cs" type="Script" id=2]
+[ext_resource path="res://src/networking/gui/NetworkPlayerLog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/networking/gui/KickPlayerDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/extinctionLocal.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/SuicideIcon.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/popUp.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0666667, 1, 0.835294, 0.588235 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 10.0
+content_margin_right = 5.0
+bg_color = Color( 0, 0, 0, 0.588235 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[node name="NetworkPlayerList" type="VBoxContainer"]
+margin_right = 333.0
+margin_bottom = 32.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+ListPath = NodePath("Body/MarginContainer/VBoxContainer/PlayerList")
+PlayerCountPath = NodePath("Body/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/PlayerCount")
+KickPlayerDialogPath = NodePath("Body/KickPlayerDialog")
+NetPlayerLogScene = ExtResource( 3 )
+
+[node name="Body" type="PanelContainer" parent="."]
+margin_right = 333.0
+margin_bottom = 32.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Body"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 331.0
+margin_bottom = 30.0
+mouse_filter = 2
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Body/MarginContainer"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 326.0
+margin_bottom = 25.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Body/MarginContainer/VBoxContainer"]
+margin_right = 323.0
+margin_bottom = 18.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Body/MarginContainer/VBoxContainer/PanelContainer"]
+margin_left = 10.0
+margin_right = 318.0
+margin_bottom = 18.0
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Body/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+margin_right = 93.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "PLAYER_NAME"
+
+[node name="Indicators" type="HBoxContainer" parent="Body/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 97.0
+margin_right = 229.0
+margin_bottom = 18.0
+custom_constants/separation = 36
+
+[node name="Score" type="TextureRect" parent="Body/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Indicators"]
+margin_right = 20.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+hint_tooltip = "SCORE"
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+
+[node name="Kills" type="TextureRect" parent="Body/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Indicators"]
+margin_left = 56.0
+margin_right = 76.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+hint_tooltip = "KILLS"
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Death" type="TextureRect" parent="Body/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Indicators"]
+margin_left = 112.0
+margin_right = 132.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+hint_tooltip = "DEATHS"
+size_flags_vertical = 3
+texture = ExtResource( 7 )
+expand = true
+
+[node name="PlayerCount" type="Label" parent="Body/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 233.0
+margin_right = 308.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 75, 0 )
+custom_fonts/font = ExtResource( 4 )
+text = "32/32"
+align = 2
+clip_text = true
+
+[node name="PlayerList" type="VBoxContainer" parent="Body/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 323.0
+margin_bottom = 22.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="KickPlayerDialog" parent="Body" instance=ExtResource( 5 )]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 2.0
+margin_bottom = 2.0
+size_flags_horizontal = 0
+size_flags_vertical = 0

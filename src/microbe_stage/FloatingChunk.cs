@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntity
+public class FloatingChunk : NetworkRigidBody, ISpawned, IEngulfable, IInspectableEntity
 {
 #pragma warning disable CA2213 // a shared resource from the chunk definition
     [Export]
@@ -43,6 +43,8 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     private Particles? particles;
 #pragma warning restore CA2213
 
+    private bool tryingToDespawn;
+
     [JsonProperty]
     private bool isDissolving;
 
@@ -64,13 +66,13 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     [JsonProperty]
     private float engulfSize;
 
+    [JsonIgnore]
+    public override string ResourcePath => "res://src/microbe_stage/FloatingChunk.tscn";
+
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
     public float EntityWeight => 1.0f;
-
-    [JsonIgnore]
-    public Spatial EntityNode => this;
 
     [JsonIgnore]
     public GeometryInstance EntityGraphics
@@ -163,9 +165,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
 
     public bool EasterEgg { get; set; }
 
-    [JsonIgnore]
-    public AliveMarker AliveMarker { get; } = new();
-
     [JsonProperty]
     public PhagocytosisPhase PhagocytosisStep { get; set; }
 
@@ -210,7 +209,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(ChunkConfiguration chunkType, string? modelPath, string? animationPath)
+    public void Init(ChunkConfiguration chunkType, int selectedMeshIndex)
     {
         // Grab data
         ChunkName = chunkType.Name;
@@ -228,8 +227,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         Radius = chunkType.Radius;
         ChunkScale = chunkType.ChunkScale;
 
-        ModelNodePath = modelPath;
-        AnimationPath = animationPath;
+        ModelNodePath = chunkType.Meshes[selectedMeshIndex].SceneModelPath;
+        AnimationPath = chunkType.Meshes[selectedMeshIndex].SceneAnimationPath;
+        ConvexPhysicsMesh = chunkType.Meshes[selectedMeshIndex].LoadedConvexShape;
 
         // Copy compounds to vent
         if (chunkType.Compounds?.Count > 0)
@@ -387,14 +387,93 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
         }
     }
 
-    public void OnDestroyed()
-    {
-        AliveMarker.Alive = false;
-    }
-
     public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds()
     {
         return null;
+    }
+
+    public override void NetworkSerialize(BytesBuffer buffer)
+    {
+        base.NetworkSerialize(buffer);
+
+        buffer.Write((byte)PhagocytosisStep);
+        buffer.Write(tryingToDespawn.ToByte());
+    }
+
+    public override void NetworkDeserialize(BytesBuffer buffer)
+    {
+        base.NetworkDeserialize(buffer);
+
+        PhagocytosisStep = (PhagocytosisPhase)buffer.ReadByte();
+        tryingToDespawn = buffer.ReadByte().ToBoolean();
+
+        if (tryingToDespawn)
+            DissolveOrRemove();
+    }
+
+    public override void PackSpawnState(BytesBuffer buffer)
+    {
+        base.PackSpawnState(buffer);
+
+        buffer.Write(GraphicsScene.ResourcePath);
+
+        var bools = new bool[4]
+        {
+            !string.IsNullOrEmpty(Name),
+            !string.IsNullOrEmpty(ModelNodePath),
+            !string.IsNullOrEmpty(AnimationPath),
+            ConvexPhysicsMesh != null,
+        };
+        buffer.Write(bools.ToByte());
+
+        if (bools[0])
+            buffer.Write(Name);
+
+        if (bools[1])
+            buffer.Write(ModelNodePath!);
+
+        if (bools[2])
+            buffer.Write(AnimationPath!);
+
+        if (bools[3])
+            buffer.Write(ConvexPhysicsMesh!.ResourcePath);
+
+        buffer.Write((byte)Compounds.Compounds.Count);
+        foreach (var compound in Compounds)
+        {
+            buffer.Write((byte)SimulationParameters.Instance.CompoundToIndex(compound.Key));
+            buffer.Write(compound.Value);
+        }
+    }
+
+    public override void OnRemoteSpawn(BytesBuffer buffer, GameProperties currentGame)
+    {
+        base.OnRemoteSpawn(buffer, currentGame);
+
+        GraphicsScene = GD.Load<PackedScene>(buffer.ReadString());
+
+        var bools = buffer.ReadByte();
+
+        if (bools.ToBoolean(0))
+            Name = buffer.ReadString();
+
+        if (bools.ToBoolean(1))
+            ModelNodePath = buffer.ReadString();
+
+        if (bools.ToBoolean(2))
+            AnimationPath = buffer.ReadString();
+
+        if (bools.ToBoolean(3))
+            ConvexPhysicsMesh = GD.Load<ConvexPolygonShape>(buffer.ReadString());
+
+        var compoundsCount = buffer.ReadByte();
+        for (int i = 0; i < compoundsCount; ++i)
+        {
+            var compound = SimulationParameters.Instance.IndexToCompound(buffer.ReadByte());
+            Compounds.Compounds[compound] = buffer.ReadSingle();
+        }
+
+        AddToGroup(Constants.AI_TAG_CHUNK);
     }
 
     public void OnAttemptedToBeEngulfed()
@@ -605,6 +684,8 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
 
     private void DissolveOrRemove()
     {
+        tryingToDespawn = true;
+
         if (Dissolves)
         {
             isDissolving = true;
@@ -617,7 +698,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
             CollisionLayer = 0;
             CollisionMask = 0;
 
-            particles.Emitting = false;
+            particles!.Emitting = false;
             particleFadeTimer = particles.Lifetime;
         }
         else if (particles == null)

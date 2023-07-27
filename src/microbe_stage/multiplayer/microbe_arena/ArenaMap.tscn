@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/microbe_stage/multiplayer/microbe_arena/ArenaMap.cs" type="Script" id=1]
+
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
+corner_radius_top_left = 300
+corner_radius_top_right = 300
+corner_radius_bottom_right = 300
+corner_radius_bottom_left = 300
+
+[sub_resource type="StyleBoxFlat" id=43]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0.435294, 0.52549, 1 )
+corner_radius_top_left = 300
+corner_radius_top_right = 300
+corner_radius_bottom_right = 300
+corner_radius_bottom_left = 300
+corner_detail = 20
+
+[node name="ArenaMap" type="Panel"]
+margin_right = 110.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 500, 500 )
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_styles/panel = SubResource( 42 )
+script = ExtResource( 1 )
+
+[node name="Border" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/panel = SubResource( 43 )

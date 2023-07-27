@@ -43,6 +43,10 @@ contacts_reported = 1
 contact_monitor = true
 axis_lock_linear_y = true
 script = ExtResource( 1 )
+SyncLinearYAxis = false
+SyncAngularXAxis = false
+SyncAngularYAxis = false
+SyncAngularZAxis = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00369835, 0, -0.0593928 )

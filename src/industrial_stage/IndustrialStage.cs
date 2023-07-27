@@ -160,6 +160,12 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         SocietyResources.TransferFrom(resources);
     }
 
+    public override bool IsGameOver()
+    {
+        // TODO: lose condition
+        return false;
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -175,12 +181,6 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
         HUD.HUDMessages.ShowMessage(
             "To advance: research rocketry and then select your city to build it to be able to go to space",
             DisplayDuration.ExtraLong);
-    }
-
-    protected override bool IsGameOver()
-    {
-        // TODO: lose condition
-        return false;
     }
 
     protected override void OnGameOver()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -49,10 +49,11 @@
 [ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" type="Texture" id=48]
 [ext_resource path="res://src/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=49]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=50]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=56]
-[ext_resource path="res://src/gui_common/ThriveFeedDisplayer.tscn" type="PackedScene" id=57]
-[ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=58]
-[ext_resource path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" type="PackedScene" id=59]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=51]
+[ext_resource path="res://src/gui_common/ThriveFeedDisplayer.tscn" type="PackedScene" id=52]
+[ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=53]
+[ext_resource path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" type="PackedScene" id=54]
+[ext_resource path="res://src/networking/gui/MultiplayerGUI.tscn" type="PackedScene" id=55]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -146,6 +147,7 @@ PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/P
 FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 MenusPath = NodePath("MenuContainers/Menus")
+MultiplayerMenuPath = NodePath("MultiplayerMenu")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -248,7 +250,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
+[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 52 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 440.0
@@ -264,7 +266,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
+[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 53 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 440.0
@@ -376,7 +378,7 @@ focus_next = NodePath("../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
 text = "QUIT"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/MainMenu" instance=ExtResource( 56 )]
+[node name="FocusGrabber" parent="MenuContainers/Menus/MainMenu" instance=ExtResource( 51 )]
 margin_top = 460.0
 margin_right = 250.0
 margin_bottom = 460.0
@@ -394,11 +396,12 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="MenuContainers/Menus/Tools"]
-margin_right = 250.0
+margin_right = 288.0
 
 [node name="FreebuildEditor" type="Button" parent="MenuContainers/Menus/Tools"]
+margin_top = 10.0
 margin_right = 288.0
-margin_bottom = 40.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
@@ -407,9 +410,9 @@ size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
 [node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 50.0
+margin_top = 60.0
 margin_right = 288.0
-margin_bottom = 90.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
@@ -421,10 +424,9 @@ __meta__ = {
 }
 
 [node name="Benchmarks" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_left = 19.0
-margin_top = 100.0
-margin_right = 269.0
-margin_bottom = 140.0
+margin_top = 110.0
+margin_right = 288.0
+margin_bottom = 150.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -435,10 +437,9 @@ __meta__ = {
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_left = 19.0
-margin_top = 150.0
-margin_right = 269.0
-margin_bottom = 190.0
+margin_top = 160.0
+margin_right = 288.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -450,10 +451,9 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_left = 19.0
-margin_top = 200.0
-margin_right = 269.0
-margin_bottom = 240.0
+margin_top = 210.0
+margin_right = 288.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_top = NodePath("../AutoEvoExploring")
@@ -462,30 +462,30 @@ mouse_filter = 1
 size_flags_vertical = 0
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/Tools" instance=ExtResource( 56 )]
-margin_top = 460.0
-margin_right = 250.0
-margin_bottom = 460.0
+[node name="FocusGrabber" parent="MenuContainers/Menus/Tools" instance=ExtResource( 51 )]
+margin_top = 260.0
+margin_right = 288.0
+margin_bottom = 260.0
 NodeToGiveFocusTo = NodePath("../FreebuildEditor")
 
 [node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
 margin_left = 508.0
-margin_top = 88.0
+margin_top = 63.0
 margin_right = 771.0
-margin_bottom = 398.0
+margin_bottom = 423.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer" type="Control" parent="MenuContainers/Menus/Extras"]
-margin_right = 250.0
+margin_right = 263.0
 
 [node name="Thriveopedia" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_right = 765.0
-margin_bottom = 40.0
+margin_top = 10.0
+margin_right = 263.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
@@ -496,11 +496,24 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Multiplayer" type="Button" parent="MenuContainers/Menus/Extras"]
+margin_top = 60.0
+margin_right = 263.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 250, 40 )
+focus_neighbour_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+size_flags_vertical = 0
+text = "MULTIPLAYER"
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="Mods" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 50.0
-margin_right = 765.0
-margin_bottom = 90.0
+margin_top = 110.0
+margin_right = 263.0
+margin_bottom = 150.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
@@ -510,20 +523,18 @@ __meta__ = {
 }
 
 [node name="ArtGallery" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 100.0
-margin_right = 765.0
-margin_bottom = 140.0
+margin_top = 160.0
+margin_right = 263.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
 text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 150.0
-margin_right = 765.0
-margin_bottom = 190.0
+margin_top = 210.0
+margin_right = 263.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
@@ -533,10 +544,9 @@ __meta__ = {
 }
 
 [node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 508.0
-margin_top = 200.0
-margin_right = 771.0
-margin_bottom = 240.0
+margin_top = 260.0
+margin_right = 263.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_vertical = 0
@@ -546,10 +556,9 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/Extras"]
-margin_left = 515.0
-margin_top = 250.0
-margin_right = 765.0
-margin_bottom = 290.0
+margin_top = 310.0
+margin_right = 263.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
 focus_neighbour_bottom = NodePath(".")
@@ -558,10 +567,10 @@ mouse_filter = 1
 size_flags_vertical = 0
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/Extras" instance=ExtResource( 56 )]
-margin_top = 460.0
-margin_right = 250.0
-margin_bottom = 460.0
+[node name="FocusGrabber" parent="MenuContainers/Menus/Extras" instance=ExtResource( 51 )]
+margin_top = 360.0
+margin_right = 263.0
+margin_bottom = 360.0
 NodeToGiveFocusTo = NodePath("../Thriveopedia")
 
 [node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
@@ -597,8 +606,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_vertical = 0
-disabled = true
-text = "???"
+text = "MULTIPLAYER"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -614,7 +622,7 @@ mouse_filter = 1
 size_flags_vertical = 0
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/Benchmarks" instance=ExtResource( 56 )]
+[node name="FocusGrabber" parent="MenuContainers/Menus/Benchmarks" instance=ExtResource( 51 )]
 margin_top = 460.0
 margin_right = 250.0
 margin_bottom = 460.0
@@ -750,7 +758,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer" instance=ExtResource( 56 )]
+[node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer" instance=ExtResource( 51 )]
 margin_top = 255.0
 margin_right = 158.0
 margin_bottom = 255.0
@@ -940,10 +948,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FocusGrabber" parent="CreditsView" instance=ExtResource( 56 )]
+[node name="FocusGrabber" parent="CreditsView" instance=ExtResource( 51 )]
 NodeToGiveFocusTo = NodePath("../Back")
 
 [node name="ModManager" parent="." instance=ExtResource( 14 )]
+visible = false
+
+[node name="MultiplayerMenu" parent="." instance=ExtResource( 55 )]
 visible = false
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
@@ -956,9 +967,10 @@ margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
+HideConfirmButton = false
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
-[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 59 )]
+[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 54 )]
 margin_right = 163.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 550, 0 )
@@ -968,6 +980,7 @@ __meta__ = {
 Exclusive = false
 WindowTitle = "NO_MODS_ENABLED"
 HideCancelButton = true
+HideConfirmButton = false
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
 CenterText = false
 DialogType = 1
@@ -978,6 +991,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 550, 370 )
 WindowTitle = "SAFE_MODE_TITLE"
 HideCancelButton = true
+HideConfirmButton = false
 DialogText = "SAFE_MODE_EXPLANATION"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
@@ -985,12 +999,13 @@ rect_min_size = Vector2( 400, 350 )
 WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
-[node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 59 )]
+[node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 54 )]
 margin_right = 163.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "THANK_YOU_TITLE"
 HideCancelButton = true
+HideConfirmButton = false
 DialogText = "THANKS_FOR_BUYING_THRIVE"
 CenterText = false
 NoticeType = 1
@@ -1001,6 +1016,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
+HideConfirmButton = false
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/NewGame" to="." method="NewGamePressed"]
@@ -1017,6 +1033,7 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="pressed" from="MenuContainers/Menus/Tools/Benchmarks" to="." method="BenchmarksPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/Extras/Multiplayer" to="." method="MultiplayerPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/Licenses" to="." method="LicensesPressed"]
@@ -1052,3 +1069,4 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
+[connection signal="OnClosed" from="MultiplayerMenu" to="." method="OnReturnFromMultiplayerMenu"]

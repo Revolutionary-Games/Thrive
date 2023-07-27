@@ -1,0 +1,209 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=3]
+[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/networking/gui/ServerSetup.cs" type="Script" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[node name="ServerSetup" instance=ExtResource( 5 )]
+script = ExtResource( 6 )
+Exclusive = true
+WindowTitle = "SERVER_SETUP"
+NamePath = NodePath("VBoxContainer/HBoxContainer/LineEdit")
+MaxPlayerPath = NodePath("VBoxContainer/HBoxContainer2/SpinBox")
+SessionLengthPath = NodePath("VBoxContainer/HBoxContainer6/SpinBox")
+GameModePath = NodePath("VBoxContainer/HBoxContainer3/OptionButton")
+UseUpnpPath = NodePath("VBoxContainer/HBoxContainer4/CheckBox")
+UseUpnpHintPath = NodePath("VBoxContainer/HBoxContainer4/Hint")
+GameModeSpecificSettingsPath = NodePath("VBoxContainer/GameModeSpecificOptions")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 383.0
+margin_bottom = 265.0
+custom_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="0"]
+margin_right = 368.0
+margin_bottom = 31.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_top = 5.0
+margin_right = 110.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+text = "SERVER_NAME"
+
+[node name="Separator" type="Control" parent="VBoxContainer/HBoxContainer" index="1"]
+margin_left = 114.0
+margin_right = 164.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer" index="2"]
+margin_left = 168.0
+margin_right = 368.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 0
+caret_blink = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" index="1"]
+margin_top = 41.0
+margin_right = 368.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" index="0"]
+margin_top = 5.0
+margin_right = 107.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+text = "MAX_PLAYERS"
+
+[node name="Separator" type="Control" parent="VBoxContainer/HBoxContainer2" index="1"]
+margin_left = 111.0
+margin_right = 164.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer2" index="2"]
+margin_left = 168.0
+margin_right = 368.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+min_value = 1.0
+max_value = 60.0
+value = 20.0
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer" index="2"]
+margin_top = 82.0
+margin_right = 368.0
+margin_bottom = 113.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer6" index="0"]
+margin_top = 5.0
+margin_right = 86.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+text = "TIME_LIMIT"
+
+[node name="Separator" type="Control" parent="VBoxContainer/HBoxContainer6" index="1"]
+margin_left = 90.0
+margin_right = 164.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer6" index="2"]
+margin_left = 168.0
+margin_right = 368.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+min_value = 30.0
+max_value = 240.0
+value = 60.0
+suffix = "MINUTES_LOWERCASE"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer" index="3"]
+margin_top = 123.0
+margin_right = 368.0
+margin_bottom = 143.0
+
+[node name="CheckBox" parent="VBoxContainer/HBoxContainer4" index="0" instance=ExtResource( 4 )]
+margin_right = 99.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 9 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "USE_UPNP"
+
+[node name="Hint" type="TextureButton" parent="VBoxContainer/HBoxContainer4" index="1"]
+margin_left = 103.0
+margin_right = 121.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 18, 18 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 1 )
+expand = true
+
+[node name="Spacer" type="Control" parent="VBoxContainer" index="4"]
+margin_top = 153.0
+margin_right = 368.0
+margin_bottom = 153.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" index="5"]
+margin_top = 163.0
+margin_right = 368.0
+margin_bottom = 183.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 102.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 9 )
+text = "GAME_MODE"
+
+[node name="Separator" type="Control" parent="VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 106.0
+margin_right = 164.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer3" index="2"]
+margin_left = 168.0
+margin_right = 368.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+
+[node name="GameModeSpecificOptions" type="PanelContainer" parent="VBoxContainer" index="6"]
+margin_top = 193.0
+margin_right = 368.0
+margin_bottom = 195.0
+
+[node name="Spacer2" type="Control" parent="VBoxContainer" index="7"]
+margin_top = 205.0
+margin_right = 368.0
+margin_bottom = 205.0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer" index="8"]
+margin_top = 215.0
+margin_right = 368.0
+margin_bottom = 250.0
+alignment = 1
+
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer5" index="0"]
+margin_left = 89.0
+margin_right = 186.0
+margin_bottom = 35.0
+text = "CONFIRM"
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer5" index="1"]
+margin_left = 190.0
+margin_right = 279.0
+margin_bottom = 35.0
+text = "CANCEL"
+
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer3/OptionButton" to="." method="OnGameModeSelected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/Confirm" to="." method="Confirm"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/Cancel" to="." method="Cancel"]

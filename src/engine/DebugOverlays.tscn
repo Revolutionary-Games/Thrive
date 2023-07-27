@@ -10,13 +10,16 @@
 
 [node name="DebugOverlay" type="Control"]
 script = ExtResource( 3 )
+NetworkMetricsTextPath = NodePath("NetworkDebug/VBoxContainer/Label")
 DebugCoordinatesPath = NodePath("Inspector/ScrollContainer/DebugCoordinates")
 FPSCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox")
 PerformanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox")
 InspectorCheckboxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox")
+NetworkCheckboxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/NetworkDebugCheckBox")
 DebugPanelDialogPath = NodePath("DebugPanel")
 FPSCounterPath = NodePath("FPSCounter")
 PerformanceMetricsPath = NodePath("PerformanceMetrics")
+NetworkDebugPath = NodePath("NetworkDebug")
 EntityLabelsPath = NodePath("EntityLabels")
 InspectorDialogPath = NodePath("Inspector")
 FPSDisplayLabelPath = NodePath("FPSCounter/FPSDisplayLabel")
@@ -109,10 +112,17 @@ margin_bottom = 38.0
 custom_fonts/font = ExtResource( 4 )
 text = "METRICS"
 
+[node name="NetworkDebugCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource( 2 )]
+margin_top = 42.0
+margin_right = 156.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 4 )
+text = "NETWORK_METRICS"
+
 [node name="CollisionShapeCheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" instance=ExtResource( 2 )]
 margin_top = 42.0
 margin_right = 200.0
-margin_bottom = 59.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
 text = "COLLISION_SHAPE"
 
@@ -181,6 +191,30 @@ custom_fonts/font = ExtResource( 4 )
 text = "DEBUG_COORDINATES"
 clip_text = true
 
+[node name="NetworkDebug" parent="." instance=ExtResource( 1 )]
+margin_right = 260.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 260, 0 )
+WindowTitle = "NETWORK"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NetworkDebug"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="NetworkDebug/VBoxContainer"]
+margin_right = 224.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "NETWORK_METRICS_CONTENT"
+
+[node name="ActualStateView" parent="NetworkDebug/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 23.0
+margin_right = 224.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "ACTUAL_STATE_VIEW"
+
 [node name="FPSCounter" type="Control" parent="."]
 visible = false
 margin_left = 30.0
@@ -212,9 +246,12 @@ __meta__ = {
 [connection signal="Cancelled" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
+[connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/NetworkDebugCheckBox" to="." method="OnNetworkDebugCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/EntityLabelCheckBox" to="." method="OnEntityLabelCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox" to="." method="OnInspectorCheckBoxToggled"]
 [connection signal="pressed" from="DebugPanel/VBoxContainer/Button" to="." method="OnDumpSceneTreeButtonPressed"]
 [connection signal="value_changed" from="DebugPanel/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnTransparencySliderValueChanged"]
 [connection signal="Cancelled" from="Inspector" to="." method="OnInspectorToggled"]
+[connection signal="Closed" from="NetworkDebug" to="." method="OnNetworkDebugToggled"]
+[connection signal="toggled" from="NetworkDebug/VBoxContainer/ActualStateView" to="." method="OnActualStateViewToggled"]

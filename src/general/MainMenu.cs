@@ -7,6 +7,11 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
+/// <remarks>
+///   <para>
+///     This needs a major refactoring.
+///   </para>
+/// </remarks>
 public class MainMenu : NodeWithInput
 {
     /// <summary>
@@ -103,6 +108,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath MenusPath = null!;
 
+    [Export]
+    public NodePath MultiplayerMenuPath = null!;
+
 #pragma warning disable CA2213
     private TextureRect background = null!;
     private Spatial? created3DBackground;
@@ -115,6 +123,7 @@ public class MainMenu : NodeWithInput
     private Thriveopedia thriveopedia = null!;
     private ModManager modManager = null!;
     private GalleryViewer galleryViewer = null!;
+    private MultiplayerGUI multiplayerMenu = null!;
 
     private ThriveFeedDisplayer newsFeed = null!;
     private Control newsFeedDisabler = null!;
@@ -171,6 +180,8 @@ public class MainMenu : NodeWithInput
     private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
 
     public bool IsReturningToMenu { get; set; }
+
+    public bool IsReturningToLobby { get; set; }
 
     public static void OnEnteringGame()
     {
@@ -335,6 +346,23 @@ public class MainMenu : NodeWithInput
         }
     }
 
+    public void OpenMultiplayerMenu(MultiplayerGUI.SubMenu submenu)
+    {
+        SetCurrentMenu(uint.MaxValue, false);
+        multiplayerMenu.Show();
+        multiplayerMenu.SetSubMenu(submenu);
+    }
+
+    public void ShowKickedDialog(string reason)
+    {
+        multiplayerMenu.ShowKickedDialog(reason);
+    }
+
+    public void ShowDisconnectedDialog()
+    {
+        multiplayerMenu.ShowDisconnectedDialog();
+    }
+
     /// <summary>
     ///   This is when ESC is pressed. Main menu priority is lower than Options Menu
     ///   to avoid capturing ESC presses in the Options Menu.
@@ -455,6 +483,8 @@ public class MainMenu : NodeWithInput
             ModsInstalledButNotEnabledWarningPath);
         thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
         menus = GetNode<CenterContainer>(MenusPath);
+
+        multiplayerMenu = GetNode<MultiplayerGUI>(MultiplayerMenuPath);
 
         // Set initial menu
         SwitchMenu();
@@ -1040,5 +1070,18 @@ public class MainMenu : NodeWithInput
             // Hide the background again when playing a video as the 3D backgrounds are performance intensive
             created3DBackground.Visible = false;
         }
+    }
+
+    private void MultiplayerPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetCurrentMenu(uint.MaxValue, false);
+        multiplayerMenu.Show();
+    }
+
+    private void OnReturnFromMultiplayerMenu()
+    {
+        multiplayerMenu.Hide();
+        SetCurrentMenu(2, false);
     }
 }

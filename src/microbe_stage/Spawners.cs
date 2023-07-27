@@ -32,6 +32,12 @@ public static class Spawners
     {
         return new CompoundCloudSpawner(compound, clouds, amount);
     }
+
+    public static CompoundCloudBlobSpawner MakeCompoundBlobSpawner(Compound compound,
+        CompoundCloudSystem clouds, float amount, float radius)
+    {
+        return new CompoundCloudBlobSpawner(compound, clouds, amount, radius);
+    }
 }
 
 /// <summary>
@@ -39,12 +45,21 @@ public static class Spawners
 /// </summary>
 public static class SpawnHelpers
 {
+    public static Action<INetworkEntity>? OnNetEntitySpawned;
+    public static Action<uint>? OnNetEntityDespawned;
+
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
         CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
-        CellType? multicellularCellType = null)
+        CellType? multicellularCellType = null, int? peerId = null)
     {
         var microbe = (Microbe)microbeScene.Instance();
+
+        if (peerId.HasValue)
+        {
+            microbe.PeerId = peerId.Value;
+            microbe.AddToGroup(Constants.NETWORKED_PLAYER_GROUP);
+        }
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
@@ -70,6 +85,9 @@ public static class SpawnHelpers
         }
 
         microbe.SetInitialCompounds();
+
+        OnNetEntitySpawned?.Invoke(microbe);
+
         return microbe;
     }
 
@@ -142,7 +160,7 @@ public static class SpawnHelpers
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
-        chunk.Init(chunkType, selectedMesh.SceneModelPath, selectedMesh.SceneAnimationPath);
+        chunk.Init(chunkType, chunkType.Meshes.IndexOf(selectedMesh));
         chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
@@ -157,6 +175,9 @@ public static class SpawnHelpers
 
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
         chunk.AddToGroup(Constants.AI_TAG_CHUNK);
+
+        OnNetEntitySpawned?.Invoke(chunk);
+
         return chunk;
     }
 
@@ -179,6 +200,31 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
+    }
+
+    public static CloudBlob SpawnCloudBlob(CompoundCloudSystem clouds, Vector3 location,
+        float radius, Compound compound, float amount, Node worldNode, PackedScene cloudBlobScene, Random random)
+    {
+        // Randomise the cloud radius a bit
+        radius *= random.Next(0.5f, 1);
+
+        // Randomise amount of compound in the cloud a bit
+        amount *= random.Next(0.5f, 1);
+
+        var blob = cloudBlobScene.Instance<CloudBlob>();
+        blob.TimeToLiveRemaining = 30;
+        blob.Init(clouds, compound, location, radius, amount);
+
+        worldNode.AddChild(blob);
+
+        OnNetEntitySpawned?.Invoke(blob);
+
+        return blob;
+    }
+
+    public static PackedScene LoadCloudBlobScene()
+    {
+        return GD.Load<PackedScene>("res://src/microbe_stage/multiplayer/microbial_arena/CloudBlob.tscn");
     }
 
     /// <summary>
@@ -205,6 +251,7 @@ public static class SpawnHelpers
             Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
 
         agent.AddToGroup(Constants.TIMED_GROUP);
+
         return agent;
     }
 
@@ -504,10 +551,10 @@ public class MicrobeSpawner : Spawner
 /// </summary>
 public class CompoundCloudSpawner : Spawner
 {
-    private readonly Compound compound;
-    private readonly CompoundCloudSystem clouds;
-    private readonly float amount;
-    private readonly Random random = new();
+    protected readonly Compound compound;
+    protected readonly CompoundCloudSystem clouds;
+    protected readonly float amount;
+    protected readonly Random random = new();
 
     public CompoundCloudSpawner(Compound compound, CompoundCloudSystem clouds, float amount)
     {
@@ -529,6 +576,30 @@ public class CompoundCloudSpawner : Spawner
     public override string ToString()
     {
         return $"CloudSpawner for {compound}";
+    }
+}
+
+public class CompoundCloudBlobSpawner : CompoundCloudSpawner
+{
+    private readonly float radius;
+
+    public CompoundCloudBlobSpawner(Compound compound, CompoundCloudSystem clouds, float amount, float radius) :
+        base(compound, clouds, amount)
+    {
+        this.radius = radius;
+    }
+
+    public override bool SpawnsEntities => true;
+
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
+    {
+        yield return SpawnHelpers.SpawnCloudBlob(
+            clouds, location, radius, compound, amount, worldNode, SpawnHelpers.LoadCloudBlobScene(), random);
+    }
+
+    public override string ToString()
+    {
+        return $"CloudBlobSpawner for {compound}";
     }
 }
 

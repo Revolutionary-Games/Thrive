@@ -1,0 +1,181 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/networking/gui/NetworkPlayerLog.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=3]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/networking/gui/PingBar.tscn" type="PackedScene" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 7.0
+content_margin_right = 7.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color( 1, 1, 1, 0.196078 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 7.0
+content_margin_right = 7.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color( 1, 1, 1, 0.392157 )
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+
+[node name="NetworkPlayerLog" type="PanelContainer"]
+margin_right = 388.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 29 )
+mouse_filter = 2
+theme = ExtResource( 2 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+AvatarPath = NodePath("HBoxContainer/Avatar")
+NamePath = NodePath("HBoxContainer/MarginContainer/Name")
+ScorePath = NodePath("HBoxContainer/Score")
+KillsPath = NodePath("HBoxContainer/Kills")
+DeathsPath = NodePath("HBoxContainer/Deaths")
+KickButtonPath = NodePath("HBoxContainer/KickButton")
+CrossPath = NodePath("HBoxContainer/KickButton/Cross")
+SpacerPath = NodePath("HBoxContainer/Spacer")
+PingBarPath = NodePath("HBoxContainer/MarginContainer2/PingBar")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 388.0
+margin_bottom = 29.0
+mouse_filter = 2
+
+[node name="Avatar" type="TextureRect" parent="HBoxContainer"]
+margin_right = 29.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 29, 29 )
+expand = true
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 33.0
+margin_right = 145.0
+margin_bottom = 29.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = -5
+
+[node name="Name" parent="HBoxContainer/MarginContainer" instance=ExtResource( 4 )]
+margin_left = 10.0
+margin_top = 6.0
+margin_right = 112.0
+margin_bottom = 28.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "PLAYER_NAME"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Score" type="Label" parent="HBoxContainer"]
+margin_left = 149.0
+margin_right = 204.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 55, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+text = "N_A"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Kills" type="Label" parent="HBoxContainer"]
+margin_left = 208.0
+margin_right = 263.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 55, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+text = "N_A"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Deaths" type="Label" parent="HBoxContainer"]
+margin_left = 267.0
+margin_right = 322.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 55, 0 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+text = "N_A"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="KickButton" type="Button" parent="HBoxContainer"]
+margin_left = 326.0
+margin_right = 359.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 33, 0 )
+hint_tooltip = "KICK"
+focus_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="Cross" type="TextureRect" parent="HBoxContainer/KickButton"]
+modulate = Color( 1, 0, 0.12549, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 9.0
+margin_top = 7.0
+margin_right = -9.0
+margin_bottom = -7.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Spacer" type="Control" parent="HBoxContainer"]
+visible = false
+margin_left = 355.0
+margin_right = 388.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 33, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 363.0
+margin_right = 388.0
+margin_bottom = 29.0
+custom_constants/margin_right = 5
+
+[node name="PingBar" parent="HBoxContainer/MarginContainer2" instance=ExtResource( 7 )]
+margin_top = 7.0
+margin_right = 20.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 20, 15 )
+size_flags_vertical = 4
+
+[connection signal="pressed" from="HBoxContainer/KickButton" to="." method="OnKickPressed"]

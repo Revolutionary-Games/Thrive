@@ -101,6 +101,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "placeholder_text",
         "text",
         "window_title",
+        "suffix",
     };
 
     /// <summary>

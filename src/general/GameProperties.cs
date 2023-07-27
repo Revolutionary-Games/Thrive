@@ -24,6 +24,12 @@ public class GameProperties
         TutorialState = new TutorialState();
     }
 
+    private GameProperties(MultiplayerGameWorld multiplayerGame)
+    {
+        GameWorld = multiplayerGame;
+        TutorialState = new TutorialState();
+    }
+
     [JsonConstructor]
     private GameProperties(GameWorld gameWorld, TutorialState tutorialState)
     {
@@ -88,6 +94,21 @@ public class GameProperties
         }
 
         return game;
+    }
+
+    public static GameProperties StartNewMicrobeArenaGame(Biome biome)
+    {
+        var map = new PatchMap();
+        var region = new PatchRegion(0, string.Empty, PatchRegion.RegionType.Predefined, Vector2.Zero);
+
+        var patch = new Patch(new LocalizedString("MICROBE_ARENA"), 0, biome, BiomeType.Tidepool, region);
+
+        map.AddRegion(region);
+        map.AddPatch(patch);
+
+        map.CurrentPatch = patch;
+
+        return new GameProperties(new MultiplayerGameWorld(map));
     }
 
     /// <summary>

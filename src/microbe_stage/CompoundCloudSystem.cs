@@ -34,11 +34,26 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonIgnore]
     private float currentBrightness = 1.0f;
 
+    [JsonIgnore]
+    public Int2 CloudSize { get; set; } = new(Constants.CLOUD_WIDTH, Constants.CLOUD_HEIGHT);
+
+    [JsonIgnore]
+    public int CloudExtentX => CloudSize.x * 2;
+
+    /// <summary>
+    ///   This is cloud local Y not world Y
+    /// </summary>
+    [JsonIgnore]
+    public int CloudExtentY => CloudSize.y * 2;
+
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
     [JsonIgnore]
     public int Resolution => clouds[0].Resolution;
+
+    [JsonIgnore]
+    public bool RunSimulation { get; set; } = true;
 
     public bool IsLoadedFromSave { get; set; }
 
@@ -50,8 +65,11 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Resets the cloud contents and positions as well as the compound types they store
     /// </summary>
-    public void Init(FluidSystem fluidSystem)
+    public void Init(FluidSystem fluidSystem, int cloudSize = Constants.CLOUD_WIDTH, int planeSize = 200)
     {
+        // Assume clouds will always be symmetrical
+        CloudSize = new Int2(cloudSize, cloudSize);
+
         var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
         if (!IsLoadedFromSave)
@@ -83,6 +101,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         // CompoundCloudPlanes have a negative render priority, so they are drawn beneath organelles
         int renderPriority = -1;
 
+        int simulationSize = CloudExtentX / Settings.Instance.CloudResolution;
+
         // TODO: if the compound types have changed since we saved, that needs to be handled
         if (IsLoadedFromSave)
         {
@@ -90,8 +110,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             {
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
-                    cloud.Compounds[3]);
+                cloud.Init(fluidSystem, renderPriority, simulationSize, planeSize, cloud.Compounds[0]!,
+                    cloud.Compounds[1], cloud.Compounds[2], cloud.Compounds[3]);
 
                 --renderPriority;
 
@@ -122,7 +142,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             if (startOffset + 3 < allCloudCompounds.Count)
                 cloud4 = allCloudCompounds[startOffset + 3];
 
-            clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
+            clouds[i].Init(fluidSystem, renderPriority, simulationSize, planeSize, cloud1, cloud2, cloud3, cloud4);
             --renderPriority;
             clouds[i].Translation = new Vector3(0, 0, 0);
         }
@@ -382,7 +402,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     public void ReportPlayerPosition(Vector3 position)
     {
         // Calculate what our center should be
-        var targetCenter = CalculateGridCenterForPlayerPos(position);
+        var targetCenter = CalculateGridCenterForPlayerPos(position, CloudExtentX, CloudExtentY);
 
         // TODO: because we no longer check if the player has moved at least a bit
         // it is possible that this gets triggered very often if the player spins
@@ -410,14 +430,14 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
     [SuppressMessage("ReSharper", "PossibleLossOfFraction",
         Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
-    private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
+    private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos, int extentX, int extentY)
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
         return new Vector3(
-            (int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
+            (int)Math.Round(pos.x / (extentX / 3)),
             0,
-            (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)));
+            (int)Math.Round(pos.z / (extentY / 3)));
     }
 
     /// <summary>
@@ -428,35 +448,44 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         foreach (var cloud in clouds)
         {
             // TODO: make sure the cloud knows where we moved.
-            cloud.Translation = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
+            cloud.Translation = cloudGridCenter * CloudExtentY / 3;
             cloud.UpdatePosition(new Int2((int)cloudGridCenter.x, (int)cloudGridCenter.z));
         }
     }
 
     private void UpdateCloudContents(float delta)
     {
-        // Do moving compounds on the edges of the clouds serially
-        foreach (var cloud in clouds)
+        if (RunSimulation)
         {
-            cloud.UpdateEdgesBeforeCenter(delta);
+            // Do moving compounds on the edges of the clouds serially
+            foreach (var cloud in clouds)
+            {
+                cloud.UpdateEdgesBeforeCenter(delta);
+            }
         }
 
         var executor = TaskExecutor.Instance;
         var tasks = new List<Task>(9 * neededCloudsAtOnePosition);
 
-        foreach (var cloud in clouds)
+        if (RunSimulation)
         {
-            cloud.QueueUpdateCloud(delta, tasks);
+            foreach (var cloud in clouds)
+            {
+                cloud.QueueUpdateCloud(delta, tasks);
+            }
         }
 
         // Start and wait for tasks to finish
         executor.RunTasks(tasks);
         tasks.Clear();
 
-        // Do moving compounds on the edges of the clouds serially
-        foreach (var cloud in clouds)
+        if (RunSimulation)
         {
-            cloud.UpdateEdgesAfterCenter(delta);
+            // Do moving compounds on the edges of the clouds serially
+            foreach (var cloud in clouds)
+            {
+                cloud.UpdateEdgesAfterCenter(delta);
+            }
         }
 
         // Update the cloud textures in parallel

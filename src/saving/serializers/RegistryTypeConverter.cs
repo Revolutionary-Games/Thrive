@@ -99,6 +99,9 @@ public class RegistryTypeConverter : BaseThriveConverter
             return Context.Simulation.AutoEvoConfiguration;
         }
 
+        if (typeof(MultiplayerGameMode).IsAssignableFrom(objectType))
+            return Context.Simulation.GetMultiplayerGameMode(name);
+
         throw new Exception(
             $"a registry type is missing from the RegistryTypeConverter's {nameof(ReadJson)} function.");
     }

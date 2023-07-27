@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Main script on each cell in the game.
@@ -13,16 +14,16 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/Microbe.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked, IEngulfable,
+public partial class Microbe : NetworkCharacter, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked, IEngulfable,
     IInspectableEntity
 {
     /// <summary>
-    ///   The point towards which the microbe will move to point to
+    ///   The point towards which the character will move to point to
     /// </summary>
     public Vector3 LookAtPoint = new(0, 0, -1);
 
     /// <summary>
-    ///   The direction the microbe wants to move. Doesn't need to be normalized
+    ///   The direction the character wants to move. Doesn't need to be normalized
     /// </summary>
     public Vector3 MovementDirection = new(0, 0, 0);
 
@@ -76,7 +77,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     [JsonProperty]
     private int renderPriority = 18;
 
-    private Random random = new();
+    private int randomSeed = Environment.TickCount;
+    private Random random = null!;
 
     private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
 
@@ -249,9 +251,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public bool IsForPreviewOnly { get; set; }
 
     [JsonIgnore]
-    public Spatial EntityNode => this;
-
-    [JsonIgnore]
     public GeometryInstance EntityGraphics => Membrane;
 
     [JsonIgnore]
@@ -338,26 +337,30 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public override void _Ready()
     {
-        if (cloudSystem == null && !IsForPreviewOnly)
+        base._Ready();
+
+        if (cloudSystem == null && !IsForPreviewOnly && !NetworkManager.Instance.IsMultiplayer)
+        {
             throw new InvalidOperationException("Microbe not initialized");
+        }
 
         if (onReadyCalled)
             return;
 
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
+        tagBox = GetNode<MeshInstance>("TagBox");
 
         if (IsForPreviewOnly)
-        {
-            // Disable our physics to not cause issues with multiple preview cells bumping into each other
-            Mode = ModeEnum.Kinematic;
             return;
-        }
 
         atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
         mucilage = SimulationParameters.Instance.GetCompound("mucilage");
         lipase = SimulationParameters.Instance.GetEnzyme("lipase");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<HybridAudioPlayer>("BindingAudio");
@@ -366,7 +369,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
         endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
 
-        engulfAudio.Positional = movementAudio.Positional = bindingAudio.Positional = !IsPlayerMicrobe;
+        engulfAudio.Positional = movementAudio.Positional = bindingAudio.Positional = !IsPlayerMicrobe && IsLocal;
 
         // You may notice that there are two separate ways that an audio is played in this class:
         // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
@@ -374,7 +377,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // to the audio player while the latter is more convenient for dynamic and various short one-time sound effects
         // in expense of lesser audio player control.
 
-        if (IsPlayerMicrobe)
+        if (IsPlayerMicrobe && IsLocal)
         {
             // Creates and activates the audio listener for the player microbe. Positional sound will be
             // received by it instead of the main camera.
@@ -395,12 +398,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // pseudopodRange.Connect("body_entered", this, nameof(OnBodyEnteredPseudopodRange));
         // pseudopodRange.Connect("body_exited", this, nameof(OnBodyExitedPseudopodRange));
 
-        // Setup physics callback stuff
-        ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-        Connect("body_shape_entered", this, nameof(OnContactBegin));
-        Connect("body_shape_exited", this, nameof(OnContactEnd));
-
         Mass = Constants.MICROBE_BASE_MASS;
+        LinearDamp = Constants.CELL_LINEAR_DAMP;
 
         if (IsLoadedFromSave)
         {
@@ -434,7 +433,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
                 Colony.Master.AddCollisionExceptionWith(this);
                 AddCollisionExceptionWith(Colony.Master);
-                Mode = ModeEnum.Static;
                 Colony.Master.Mass += Mass;
             }
 
@@ -504,6 +502,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (!isPlayer)
             ai = new MicrobeAI(this);
 
+        random = new Random(randomSeed);
+
         // Needed for immediately applying the species
         _Ready();
     }
@@ -522,42 +522,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public override void _PhysicsProcess(float delta)
     {
-        linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
-
-        // Movement
-        if (ColonyParent == null && !IsForPreviewOnly)
-        {
-            HandleMovement(delta);
-        }
-        else
-        {
-            Colony?.Master.AddMovementForce(queuedMovementForce);
-        }
-
-        lastLinearVelocity = LinearVelocity;
-        lastLinearAcceleration = linearAcceleration;
-    }
-
-    public override void _IntegrateForces(PhysicsDirectBodyState physicsState)
-    {
-        if (ColonyParent != null)
-            return;
-
-        // TODO: should movement also be applied here?
-
-        physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
-
-        // Reset total sum from previous collisions
-        collisionForce = 0.0f;
-
-        // Sum impulses from all contact points
-        for (var i = 0; i < physicsState.GetContactCount(); ++i)
-        {
-            // TODO: Godot currently does not provide a convenient way to access a collision impulse, this
-            // for example is luckily available only in Bullet which makes things a bit easier. Would need
-            // proper handling for this in the future.
-            collisionForce += physicsState.GetContactImpulse(i);
-        }
+        if (!NetworkManager.Instance.IsMultiplayer)
+            NetworkTick(delta);
     }
 
     /// <summary>
@@ -848,6 +814,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         HandleChemoreceptorLines(delta);
 
+        UpdateNametag();
+
         if (Colony != null && Colony.Master == this)
             Colony.Process(delta);
 
@@ -995,6 +963,47 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new InvalidOperationException("Scale can only be overridden for preview microbes");
 
         ApplyScale(new Vector3(scale, scale, scale));
+    }
+
+    public override void ApplyNetworkedInput(NetworkInputVars input)
+    {
+        LookAtPoint = input.WorldLookAtPoint;
+        MovementDirection = input.DecodeMovementDirection();
+
+        if ((input.Bools & (byte)InputFlag.EmitToxin) != 0)
+            QueueEmitToxin(SimulationParameters.Instance.GetCompound("oxytoxy"));
+
+        if ((input.Bools & (byte)InputFlag.SecreteSlime) != 0)
+            QueueSecreteSlime(GetPhysicsProcessDeltaTime());
+
+        var engulf = (input.Bools & (byte)InputFlag.Engulf) != 0;
+
+        if (engulf && !Membrane.Type.CellWall)
+        {
+            State = MicrobeState.Engulf;
+        }
+        else if (!engulf && State == MicrobeState.Engulf)
+        {
+            State = MicrobeState.Normal;
+        }
+    }
+
+    protected override void IntegrateForces(float delta)
+    {
+        if (ColonyParent != null || Dead)
+            return;
+
+        // Movement
+        if (ColonyParent == null && !IsForPreviewOnly)
+        {
+            HandleMovement(delta);
+        }
+        else
+        {
+            Colony?.Master.AddMovementForce(queuedMovementForce);
+        }
+
+        Transform = GetNewPhysicsRotation(Transform);
     }
 
     /// <summary>
@@ -1161,7 +1170,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         // Scale movement by delta time (not by framerate). We aren't Fallout 4
         // TODO: it seems that at low framerate (below 20 or so) cells get a speed boost for some reason
-        ApplyCentralImpulse(movement * delta);
+        var impulse = movement * delta;
+
+        LinearVelocity += impulse / Mass;
     }
 
     /// <summary>

@@ -53,15 +53,15 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
             this.DestroyDetachAndQueueFree();
     }
 
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
+    }
+
     public void OnTimeOver()
     {
         if (FadeTimeRemaining == null)
             BeginDestroy();
-    }
-
-    public void OnDestroyed()
-    {
-        AliveMarker.Alive = false;
     }
 
     public void OnMouseEnter(RaycastResult raycastResult)
@@ -89,8 +89,12 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
         if (target == null)
             return;
 
+        int? peerId = null;
+        if (Emitter.Value is NetworkCharacter netPlayer)
+            peerId = netPlayer.PeerId;
+
         Invoke.Instance.Perform(
-            () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
+            () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType, peerId));
 
         if (FadeTimeRemaining == null)
         {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/suicideButton.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButton.png" type="Texture" id=2]
@@ -19,12 +19,15 @@
 [ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/compoundsButtonActive.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/chatButtonActive.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=22]
 [ext_resource path="res://assets/textures/gui/bevel/suicideButtonHover.png" type="Texture" id=23]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButtonActive.png" type="Texture" id=24]
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButtonActive.png" type="Texture" id=25]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.cs" type="Script" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/chatButtonHover.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/chatButton.png" type="Texture" id=28]
 
 [sub_resource type="StyleBoxEmpty" id=27]
 
@@ -41,6 +44,7 @@ CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
 ProcessPanelButtonPath = NodePath("ChemicalButton")
 SuicideButtonPath = NodePath("SuicideButton")
+ChatButtonPath = NodePath("ChatButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]
 margin_right = 50.0
@@ -94,9 +98,24 @@ texture_pressed = ExtResource( 19 )
 texture_hover = ExtResource( 13 )
 expand = true
 
-[node name="ChemicalButton" type="TextureButton" parent="."]
+[node name="ChatButton" type="TextureButton" parent="."]
 margin_left = 161.0
 margin_right = 196.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+hint_tooltip = "CHAT_BUTTON_TOOLTIP"
+toggle_mode = true
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 27 )
+expand = true
+__meta__ = {
+"_editor_description_": "CHAT_BUTTON_TOOLTIP"
+}
+
+[node name="ChemicalButton" type="TextureButton" parent="."]
+margin_left = 200.0
+margin_right = 235.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -121,8 +140,8 @@ expand = true
 
 [node name="SearchButton" type="TextureButton" parent="."]
 modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
-margin_left = 239.0
-margin_right = 274.0
+margin_left = 278.0
+margin_right = 313.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 focus_mode = 0
@@ -133,8 +152,8 @@ texture_hover = ExtResource( 22 )
 expand = true
 
 [node name="QuestionMarkButton" type="TextureButton" parent="."]
-margin_left = 278.0
-margin_right = 313.0
+margin_left = 317.0
+margin_right = 352.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "HELP_BUTTON_TOOLTIP"
@@ -145,8 +164,8 @@ texture_hover = ExtResource( 16 )
 expand = true
 
 [node name="SuicideButton" type="TextureButton" parent="."]
-margin_left = 317.0
-margin_right = 352.0
+margin_left = 356.0
+margin_right = 391.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "SUICIDE_BUTTON_TOOLTIP"
@@ -157,8 +176,8 @@ texture_hover = ExtResource( 23 )
 expand = true
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_left = 356.0
-margin_right = 371.0
+margin_left = 395.0
+margin_right = 410.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 15, 0 )
 custom_styles/separator = SubResource( 27 )
@@ -167,6 +186,7 @@ custom_styles/separator = SubResource( 27 )
 [connection signal="OnPressed" from="PauseButtonMargin/PlayButton" to="." method="PausePressed"]
 [connection signal="pressed" from="EnvironmentButton" to="." method="EnvironmentButtonPressed"]
 [connection signal="pressed" from="CompoundsButton" to="." method="CompoundsButtonPressed"]
+[connection signal="pressed" from="ChatButton" to="." method="ChatButtonPressed"]
 [connection signal="pressed" from="ChemicalButton" to="." method="ProcessButtonPressed"]
 [connection signal="pressed" from="StatisticsButton" to="." method="StatisticsButtonPressed"]
 [connection signal="pressed" from="QuestionMarkButton" to="." method="HelpButtonPressed"]

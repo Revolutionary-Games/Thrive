@@ -46,6 +46,7 @@ public class SimulationParameters : Node
     private Dictionary<string, UnitType> unitTypes = null!;
     private Dictionary<string, SpaceStructureDefinition> spaceStructures = null!;
     private Dictionary<string, Technology> technologies = null!;
+    private Dictionary<string, MultiplayerGameMode> multiplayerGameModes = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -130,6 +131,9 @@ public class SimulationParameters : Node
 
         screenEffects =
             LoadRegistry<ScreenEffect>("res://simulation_parameters/common/screen_effects.json");
+
+        multiplayerGameModes =
+            LoadRegistry<MultiplayerGameMode>("res://simulation_parameters/common/multiplayer_gamemodes.json");
 
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
@@ -243,6 +247,11 @@ public class SimulationParameters : Node
         return biomes[name];
     }
 
+    public IEnumerable<Biome> GetAllBiomes()
+    {
+        return biomes.Values;
+    }
+
     public BioProcess GetBioProcess(string name)
     {
         return bioProcesses[name];
@@ -261,6 +270,88 @@ public class SimulationParameters : Node
     public bool DoesCompoundExist(string name)
     {
         return compounds.ContainsKey(name);
+    }
+
+    // TODO: Make this generalizable
+    public int CompoundToIndex(Compound compound)
+    {
+        int index = -1;
+
+        if (compound == GetCompound("phosphates"))
+        {
+            index = 0;
+        }
+        else if (compound == GetCompound("ammonia"))
+        {
+            index = 1;
+        }
+        else if (compound == GetCompound("atp"))
+        {
+            index = 2;
+        }
+        else if (compound == GetCompound("glucose"))
+        {
+            index = 3;
+        }
+        else if (compound == GetCompound("iron"))
+        {
+            index = 4;
+        }
+        else if (compound == GetCompound("hydrogensulfide"))
+        {
+            index = 5;
+        }
+        else if (compound == GetCompound("mucilage"))
+        {
+            index = 6;
+        }
+        else if (compound == GetCompound("oxytoxy"))
+        {
+            index = 7;
+        }
+
+        return index;
+    }
+
+    // TODO: Make this generalizable
+    public Compound IndexToCompound(int code)
+    {
+        var compound = GetCompound("glucose");
+
+        if (code == 0)
+        {
+            compound = GetCompound("phosphates");
+        }
+        else if (code == 1)
+        {
+            compound = GetCompound("ammonia");
+        }
+        else if (code == 2)
+        {
+            compound = GetCompound("atp");
+        }
+        else if (code == 3)
+        {
+            compound = GetCompound("glucose");
+        }
+        else if (code == 4)
+        {
+            compound = GetCompound("iron");
+        }
+        else if (code == 5)
+        {
+            compound = GetCompound("hydrogensulfide");
+        }
+        else if (code == 6)
+        {
+            compound = GetCompound("mucilage");
+        }
+        else if (code == 7)
+        {
+            compound = GetCompound("oxytoxy");
+        }
+
+        return compound;
     }
 
     public Enzyme GetEnzyme(string name)
@@ -416,6 +507,21 @@ public class SimulationParameters : Node
         return PatchMapNameGenerator;
     }
 
+    public MultiplayerGameMode GetMultiplayerGameMode(string name)
+    {
+        return multiplayerGameModes[name];
+    }
+
+    public MultiplayerGameMode GetMultiplayerGameModeByIndex(int index)
+    {
+        return multiplayerGameModes.Values.First(p => p.Index == index);
+    }
+
+    public IEnumerable<MultiplayerGameMode> GetAllMultiplayerGameMode()
+    {
+        return multiplayerGameModes.Values;
+    }
+
     public BuildInfo? GetBuildInfoIfExists()
     {
         return buildInfo;
@@ -506,6 +612,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(unitTypes);
         ApplyRegistryObjectTranslations(spaceStructures);
         ApplyRegistryObjectTranslations(technologies);
+        ApplyRegistryObjectTranslations(multiplayerGameModes);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -650,6 +757,7 @@ public class SimulationParameters : Node
         CheckRegistryType(unitTypes);
         CheckRegistryType(spaceStructures);
         CheckRegistryType(technologies);
+        CheckRegistryType(multiplayerGameModes);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);

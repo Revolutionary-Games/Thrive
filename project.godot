@@ -19,7 +19,7 @@ config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
-run/main_scene="res://src/general/MainMenu.tscn"
+run/main_scene="res://src/engine/EntryPoint.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Thrive"
 boot_splash/image="res://assets/misc/thrive_logo_big.png"
@@ -49,6 +49,7 @@ TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
 FileDropHandler="*res://src/engine/FileDropHandler.cs"
 ProceduralDataCache="*res://src/engine/ProceduralDataCache.cs"
 PhotoStudio="*res://src/engine/PhotoStudio.tscn"
+NetworkManager="*res://src/networking/NetworkManager.cs"
 PauseManager="*res://src/engine/PauseManager.cs"
 GUIFocusSetter="*res://src/engine/GUIFocusSetter.cs"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
@@ -463,6 +464,26 @@ g_build_structure={
 g_science={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_toggle_scoreboard={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_focus_chat={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":89,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_toggle_map={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_chat_command={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":47,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

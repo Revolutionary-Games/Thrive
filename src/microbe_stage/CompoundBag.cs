@@ -35,6 +35,15 @@ public class CompoundBag : ICompoundStorage
     [JsonProperty]
     public Dictionary<Compound, float> Compounds { get; private set; } = new();
 
+    [JsonIgnore]
+    public IEnumerable<Compound> UsefulCompounds => usefulCompounds;
+
+    /// <summary>
+    ///   Prevents normal addition and removal of compounds from and into this bag.
+    /// </summary>
+    [JsonIgnore]
+    public bool LockInputAndOutput { get; set; }
+
     /// <summary>
     ///   Gets the capacity for a given compound
     /// </summary>
@@ -72,7 +81,9 @@ public class CompoundBag : ICompoundStorage
 
         amount = Math.Min(existingAmount, amount);
 
-        Compounds[compound] = existingAmount - amount;
+        if (!LockInputAndOutput)
+            Compounds[compound] = existingAmount - amount;
+
         return amount;
     }
 
@@ -85,7 +96,8 @@ public class CompoundBag : ICompoundStorage
 
         float newAmount = Math.Min(existingAmount + amount, Capacity);
 
-        Compounds[compound] = newAmount;
+        if (!LockInputAndOutput)
+            Compounds[compound] = newAmount;
 
         return newAmount - existingAmount;
     }

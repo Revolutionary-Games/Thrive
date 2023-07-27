@@ -142,6 +142,10 @@ OptionsMenuPath = NodePath("OptionsMenu")
 SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
 LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
 UnsavedProgressWarningPath = NodePath("UnsavedProgressWarning")
+ResumeButtonPath = NodePath("CenterContainer/PrimaryMenu/Resume")
+SaveGameButtonPath = NodePath("CenterContainer/PrimaryMenu/SaveGame")
+LoadGameButtonPath = NodePath("CenterContainer/PrimaryMenu/LoadGame")
+ReturnToMenuButtonPath = NodePath("CenterContainer/PrimaryMenu/ReturnToMenu")
 
 [node name="Overlay" type="ColorRect" parent="." index="0"]
 anchor_right = 1.0

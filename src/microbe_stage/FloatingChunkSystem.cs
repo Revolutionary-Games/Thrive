@@ -29,31 +29,34 @@ public class FloatingChunkSystem
 
         var chunks = worldRoot.GetChildrenToProcess<FloatingChunk>(Constants.AI_TAG_CHUNK).ToList();
 
-        var findTooManyChunksTask = new Task<IEnumerable<FloatingChunk>>(() =>
-        {
-            int tooManyChunks =
-                Math.Min(Constants.MAX_DESPAWNS_PER_FRAME, chunks.Count - Constants.FLOATING_CHUNK_MAX_COUNT);
-
-            if (tooManyChunks < 1)
-                return Array.Empty<FloatingChunk>();
-
-            var comparePosition = latestPlayerPosition;
-
-            return chunks.OrderByDescending(c => c.Translation.DistanceSquaredTo(comparePosition))
-                .Take(tooManyChunks);
-        });
-
-        TaskExecutor.Instance.AddTask(findTooManyChunksTask);
-
         foreach (var chunk in chunks)
         {
             chunk.ProcessChunk(delta, clouds);
         }
 
-        findTooManyChunksTask.Wait();
-        foreach (var toDespawn in findTooManyChunksTask.Result)
+        if (!NetworkManager.Instance.IsClient)
         {
-            toDespawn.PopImmediately(clouds);
+            var findTooManyChunksTask = new Task<IEnumerable<FloatingChunk>>(() =>
+            {
+                int tooManyChunks =
+                    Math.Min(Constants.MAX_DESPAWNS_PER_FRAME, chunks.Count - Constants.FLOATING_CHUNK_MAX_COUNT);
+
+                if (tooManyChunks < 1)
+                    return Array.Empty<FloatingChunk>();
+
+                var comparePosition = latestPlayerPosition;
+
+                return chunks.OrderByDescending(c => c.Translation.DistanceSquaredTo(comparePosition))
+                    .Take(tooManyChunks);
+            });
+
+            TaskExecutor.Instance.AddTask(findTooManyChunksTask);
+
+            findTooManyChunksTask.Wait();
+            foreach (var toDespawn in findTooManyChunksTask.Result)
+            {
+                toDespawn.PopImmediately(clouds);
+            }
         }
     }
 }

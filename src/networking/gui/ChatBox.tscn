@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/networking/gui/ChatBox.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostTiny.tres" type="DynamicFont" id=7]
+
+
+[node name="ChatBox" type="VBoxContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -720.0
+margin_right = 100.0
+margin_bottom = -678.0
+theme = ExtResource( 2 )
+custom_constants/separation = 0
+script = ExtResource( 1 )
+MessagesPath = NodePath("PanelContainer/MarginContainer/Messages")
+LineEditPath = NodePath("HBoxContainer/HBoxContainer/LineEdit")
+SendButtonPath = NodePath("HBoxContainer/Send")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 100.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 99.0
+margin_bottom = 11.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Messages" parent="PanelContainer/MarginContainer" instance=ExtResource( 3 )]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 5.0
+custom_fonts/bold_font = ExtResource( 7 )
+custom_fonts/normal_font = ExtResource( 5 )
+fit_content_height = false
+scroll_following = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 12.0
+margin_right = 100.0
+margin_bottom = 42.0
+custom_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 58.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+
+[node name="ChatInputPrefix" type="Label" parent="HBoxContainer/HBoxContainer"]
+visible = false
+margin_top = 7.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 5 )
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/HBoxContainer"]
+margin_right = 58.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+placeholder_text = "TYPE_MESSAGE"
+caret_blink = true
+
+[node name="Send" type="Button" parent="HBoxContainer"]
+margin_left = 58.0
+margin_right = 100.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 6 )
+text = "SEND"
+expand_icon = true
+
+[connection signal="focus_entered" from="HBoxContainer/HBoxContainer/LineEdit" to="." method="OnFocusEntered"]
+[connection signal="mouse_entered" from="HBoxContainer/HBoxContainer/LineEdit" to="." method="OnControlMouseEntered"]
+[connection signal="mouse_exited" from="HBoxContainer/HBoxContainer/LineEdit" to="." method="OnControlMouseExited"]
+[connection signal="text_changed" from="HBoxContainer/HBoxContainer/LineEdit" to="." method="OnMessageChanged"]
+[connection signal="text_entered" from="HBoxContainer/HBoxContainer/LineEdit" to="." method="OnMessageEntered"]
+[connection signal="pressed" from="HBoxContainer/Send" to="." method="OnSendPressed"]

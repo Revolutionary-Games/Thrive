@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=2]
+[gd_scene load_steps=114 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -74,6 +74,7 @@
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=95]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=96]
 [ext_resource path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" type="PackedScene" id=97]
+[ext_resource path="res://src/networking/gui/ChatBox.tscn" type="PackedScene" id=98]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
@@ -340,6 +341,161 @@ tracks/2/keys = {
 "values": [ -350, 0 ]
 }
 
+[sub_resource type="Animation" id=48]
+resource_name = "Close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BottomLeft/LeftPanels/ChatBox:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -330.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottomLeft/LeftPanels/ChatBox:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLeft/LeftPanels/ChatBox:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "Open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BottomLeft/LeftPanels/ChatBox:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -330.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottomLeft/LeftPanels/ChatBox:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLeft/LeftPanels/ChatBox:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=47]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BottomLeft/LeftPanels/ChatBox:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottomLeft/LeftPanels/ChatBox:rect_min_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 313, 150 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLeft/LeftPanels/ChatBox:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 417 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BottomLeft/LeftPanels/ChatBox:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 313, 150 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BottomLeft/LeftPanels/ChatBox:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("BottomLeft/LeftPanels/ChatBox:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
 border_width_left = 2
@@ -540,22 +696,21 @@ margin_right = 455.0
 mouse_filter = 2
 
 [node name="LeftPanels" type="VBoxContainer" parent="MicrobeHUD/BottomLeft"]
+anchor_top = 1.0
+anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 14.0
-margin_right = 264.0
-margin_bottom = 581.0
+margin_top = -638.0
+margin_right = 323.0
+margin_bottom = -51.0
 grow_vertical = 0
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EnvironmentGroup" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels"]
-margin_right = 254.0
+margin_right = 313.0
 margin_bottom = 234.0
 
 [node name="EnvironmentPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup"]
@@ -1004,7 +1159,7 @@ __meta__ = {
 
 [node name="CompoundsGroup" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels"]
 margin_top = 244.0
-margin_right = 254.0
+margin_right = 313.0
 margin_bottom = 587.0
 
 [node name="CompoundsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup"]
@@ -1586,11 +1741,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ChatBox" parent="MicrobeHUD/BottomLeft/LeftPanels" instance=ExtResource( 98 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 417.0
+margin_right = 313.0
+margin_bottom = 567.0
+rect_min_size = Vector2( 313, 150 )
+rect_pivot_offset = Vector2( 0, 170 )
+size_flags_horizontal = 0
+
 [node name="PanelsTween" type="Tween" parent="MicrobeHUD/BottomLeft/LeftPanels"]
 
 [node name="HUDBottomBar" parent="MicrobeHUD/BottomLeft" instance=ExtResource( 16 )]
 margin_top = -43.0
 margin_bottom = -8.0
+ChatButtonPath = null
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideCompoundsPanels = SubResource( 39 )
@@ -1599,6 +1765,12 @@ anims/ShowCompoundsPanels = SubResource( 45 )
 [node name="EnvironmentPanelAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideEnvironmentPanel = SubResource( 41 )
 anims/ShowEnvironmentPanel = SubResource( 42 )
+
+[node name="ChatBoxAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
+autoplay = "Close"
+anims/Close = SubResource( 48 )
+anims/Open = SubResource( 46 )
+anims/RESET = SubResource( 47 )
 
 [node name="BottomRight" type="Control" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -1965,6 +2137,7 @@ theme = ExtResource( 72 )
 scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
+margin_right = 550.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -2058,6 +2231,7 @@ rect_min_size = Vector2( 450, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+HideConfirmButton = false
 
 [node name="FossilisationDialog" parent="MicrobeHUD" instance=ExtResource( 96 )]
 margin_left = 458.0
@@ -2088,6 +2262,7 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+MultiplayerMode = false
 
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]

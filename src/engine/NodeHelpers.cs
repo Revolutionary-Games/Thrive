@@ -13,6 +13,9 @@ public static class NodeHelpers
     {
         entity.OnDestroyed();
         entity.EntityNode.DetachAndQueueFree();
+
+        if (entity is INetworkEntity netEntity)
+            SpawnHelpers.OnNetEntityDespawned?.Invoke(netEntity.NetworkEntityId);
     }
 
     /// <summary>
@@ -24,6 +27,9 @@ public static class NodeHelpers
     {
         entity.OnDestroyed();
         entity.EntityNode.QueueFree();
+
+        if (entity is INetworkEntity netEntity)
+            SpawnHelpers.OnNetEntityDespawned?.Invoke(netEntity.NetworkEntityId);
     }
 
     /// <summary>

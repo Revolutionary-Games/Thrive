@@ -93,13 +93,9 @@ public static class Constants
     public const int CLOUD_SQUARES_PER_SIDE = 3;
     public const int CLOUD_EDGE_WIDTH = 2;
 
-    // NOTE: these 4 constants need to match what is setup in CompoundCloudPlane.tscn
+    // These 2 constants are the default size for compound clouds
     public const int CLOUD_WIDTH = 300;
-    public const int CLOUD_X_EXTENT = CLOUD_WIDTH * 2;
     public const int CLOUD_HEIGHT = 300;
-
-    // This is cloud local Y not world Y
-    public const int CLOUD_Y_EXTENT = CLOUD_HEIGHT * 2;
 
     public const float CLOUD_Y_COORDINATE = 0;
 
@@ -133,6 +129,8 @@ public static class Constants
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
     public const float CELL_BASE_THRUST = 50.6f;
+
+    public const float CELL_LINEAR_DAMP = 2.46f;
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
@@ -1033,6 +1031,8 @@ public static class Constants
 
     public const string CITIZEN_GROUP = "citizen";
 
+    public const string NETWORKED_PLAYER_GROUP = "networked_player";
+
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
@@ -1061,6 +1061,8 @@ public static class Constants
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
 
     public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
+
+    public const string SERVER_CONFIGURATION_FILE = "user://server_config.yml";
 
     public const string LICENSE_FILE = "res://LICENSE.txt";
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
@@ -1314,6 +1316,28 @@ public static class Constants
     public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN_CONSTANT = 0.007f;
 
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
+
+    public const string MULTIPLAYER_DEFAULT_HOST_ADDRESS = "127.0.0.1";
+    public const int MULTIPLAYER_DEFAULT_PORT = 4242;
+    public const int MULTIPLAYER_DEFAULT_MAX_PLAYERS = 20;
+    public const uint MULTIPLAYER_DEFAULT_SESSION_LENGTH = 60;
+
+    public const int NETWORK_DEFAULT_TIMEOUT_LIMIT_SECONDS = 32;
+
+    /// <summary>
+    ///   As a host, supports connected players up to this number.
+    /// </summary>
+    public const int NETWORK_DEFAULT_MAX_CLIENTS = 300;
+
+    public const int NETWORK_DEFAULT_TICK_RATE = 60;
+    public const int NETWORK_DEFAULT_SEND_RATE = 50;
+
+    public const long NETWORK_PING_INTERVAL_MILLISECONDS = 3000;
+    public const long NETWORK_PING_TIMEOUT_MILLISECONDS = 5000;
+
+    public const int BUFFER_MAX_TICKS = 1024;
+
+    public const float MICROBE_ARENA_CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.003f;
 
     /// <summary>
     ///   Controls whether benchmarks start off showing the hardware info, or only after some results are generated

@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostTiny.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/networking/gui/ChatBoxUndecorated.cs" type="Script" id=4]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=5]
+
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="ChatBoxUndecorated" type="VBoxContainer"]
+margin_right = 44.0
+margin_bottom = 37.0
+grow_vertical = 0
+rect_pivot_offset = Vector2( -150, -81 )
+custom_constants/separation = 0
+alignment = 2
+script = ExtResource( 4 )
+MessagesPath = NodePath("Messages")
+LineEditPath = NodePath("HBoxContainer/ChatInput/LineEdit")
+SendButtonPath = NodePath("HBoxContainer/Send")
+
+[node name="Messages" parent="." instance=ExtResource( 1 )]
+margin_right = 44.0
+margin_bottom = 21.0
+size_flags_vertical = 8
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 3 )
+scroll_following = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 21.0
+margin_right = 44.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( -316, -145 )
+
+[node name="ChatInput" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="NamePrefix" type="Label" parent="HBoxContainer/ChatInput"]
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 3 )
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/ChatInput"]
+margin_left = 4.0
+margin_right = 40.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+caret_blink = true
+
+[node name="Spacer" type="Control" parent="HBoxContainer/ChatInput"]
+margin_left = 44.0
+margin_right = 44.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+
+[node name="Send" type="Button" parent="HBoxContainer"]
+visible = false
+margin_left = 44.0
+margin_right = 88.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 5 )
+text = "SEND"
+expand_icon = true
+
+[connection signal="focus_entered" from="HBoxContainer/ChatInput/LineEdit" to="." method="OnFocusEntered"]
+[connection signal="focus_exited" from="HBoxContainer/ChatInput/LineEdit" to="." method="OnFocusExited"]
+[connection signal="mouse_entered" from="HBoxContainer/ChatInput/LineEdit" to="." method="OnControlMouseEntered"]
+[connection signal="mouse_exited" from="HBoxContainer/ChatInput/LineEdit" to="." method="OnControlMouseExited"]
+[connection signal="text_changed" from="HBoxContainer/ChatInput/LineEdit" to="." method="OnMessageChanged"]
+[connection signal="text_entered" from="HBoxContainer/ChatInput/LineEdit" to="." method="OnMessageEntered"]
+[connection signal="pressed" from="HBoxContainer/Send" to="." method="OnSendPressed"]

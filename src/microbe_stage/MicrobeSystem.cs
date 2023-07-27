@@ -20,6 +20,7 @@ public class MicrobeSystem
     public void Process(float delta)
     {
         var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
+            .Where(m => m.Visible)
             .ToArray();
 
         // Start of async early processing

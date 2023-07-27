@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
+[ext_resource path="res://src/networking/gui/KickPlayerDialog.cs" type="Script" id=5]
+
+
+
+[node name="KickPlayerDialog" type="Control"]
+theme = ExtResource( 4 )
+script = ExtResource( 5 )
+ReasonEditPath = NodePath("CustomConfirmationDialog/VBoxContainer2/LineEdit")
+
+[node name="CustomConfirmationDialog" parent="." instance=ExtResource( 2 )]
+margin_right = 300.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 340, 130 )
+WindowTitle = "KICK_PLAYER"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CustomConfirmationDialog"]
+margin_right = 200.0
+margin_bottom = 52.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CustomConfirmationDialog/VBoxContainer2"]
+margin_right = 200.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "REASON_FOR_KICK"
+
+[node name="LineEdit" type="LineEdit" parent="CustomConfirmationDialog/VBoxContainer2"]
+margin_top = 21.0
+margin_right = 200.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 200, 0 )
+caret_blink = true
+caret_blink_speed = 0.5
+
+[connection signal="Cancelled" from="CustomConfirmationDialog" to="." method="OnKickCancelled"]
+[connection signal="Confirmed" from="CustomConfirmationDialog" to="." method="OnKickConfirmed"]
+[connection signal="text_entered" from="CustomConfirmationDialog/VBoxContainer2/LineEdit" to="." method="OnKickConfirmed"]

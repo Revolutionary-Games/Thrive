@@ -20,6 +20,7 @@ public class CustomConfirmationDialog : CustomWindow
     public NodePath? NodeToGiveFocusOnOpen;
 
     private bool hideCancelButton;
+    private bool hideConfirmButton;
 
     private string dialogText = string.Empty;
     private string confirmText = "OK";
@@ -52,6 +53,22 @@ public class CustomConfirmationDialog : CustomWindow
             hideCancelButton = value;
 
             if (cancelButton != null)
+                UpdateButtons();
+        }
+    }
+
+    /// <summary>
+    ///   If true, hides this dialog's confirm (Ok) button.
+    /// </summary>
+    [Export]
+    public bool HideConfirmButton
+    {
+        get => hideConfirmButton;
+        set
+        {
+            hideConfirmButton = value;
+
+            if (confirmButton != null)
                 UpdateButtons();
         }
     }
@@ -171,6 +188,7 @@ public class CustomConfirmationDialog : CustomWindow
 
         cancelButton.Visible = !hideCancelButton;
         cancelEndSpacer.Visible = !hideCancelButton;
+        confirmButton.Visible = !hideConfirmButton;
 
         if (string.IsNullOrEmpty(NodeToGiveFocusOnOpen))
         {

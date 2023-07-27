@@ -20,6 +20,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     public NodePath EnvironmentGroupAnimationPlayerPath = null!;
 
     [Export]
+    public NodePath ChatBoxAnimationPlayerPath = null!;
+
+    [Export]
     public NodePath PanelsTweenPath = null!;
 
     [Export]
@@ -224,6 +227,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     // ReSharper disable once NotAccessedField.Local
     protected ProgressBar pressure = null!;
 
+    protected VBoxContainer leftPanels = null!;
     protected GridContainer? compoundsPanelBarContainer;
     protected ProgressBar glucoseBar = null!;
     protected ProgressBar ammoniaBar = null!;
@@ -307,6 +311,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     [Signal]
     public delegate void OnOpenMenuToHelp();
 
+    [Signal]
+    public delegate void Clicked();
+
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
     /// </summary>
@@ -351,6 +358,8 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
 
         winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
+
+        leftPanels = GetNode<VBoxContainer>(LeftPanelsPath);
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MouseHoverPanel>(MouseHoverPanelPath);
@@ -437,7 +446,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         UpdateCompoundsPanelState();
     }
 
-    public void Init(TStage containedInStage)
+    public virtual void Init(TStage containedInStage)
     {
         stage = containedInStage;
     }
@@ -470,6 +479,24 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         UpdatePanelSizing(delta);
 
         UpdateFossilisationButtons();
+    }
+
+    /// <summary>
+    ///   Detects presses anywhere to notify the name input to unfocus
+    /// </summary>
+    /// <param name="event">The input event</param>
+    /// <remarks>
+    ///   <para>
+    ///     This doesn't use <see cref="Control._GuiInput"/> as this needs to always see events, even ones that are
+    ///     handled elsewhere
+    ///   </para>
+    /// </remarks>
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton { Pressed: true })
+        {
+            EmitSignal(nameof(Clicked));
+        }
     }
 
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
@@ -527,7 +554,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (stage.IsLoadedFromSave && !returningFromEditor)
         {
             // TODO: make it so that the below sequence can be added anyway to not have to have this special logic here
-            stage.OnFinishTransitioning();
+            OnFinishTransitioning();
             return;
         }
 
@@ -681,6 +708,14 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         {
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
+    }
+
+    protected virtual void OnFinishTransitioning()
+    {
+        if (stage == null)
+            throw new InvalidOperationException("Stage not setup for HUD");
+
+        stage.OnFinishTransitioning();
     }
 
     protected void UpdateEnvironmentPanelState()
