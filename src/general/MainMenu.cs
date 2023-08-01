@@ -285,6 +285,13 @@ public class MainMenu : NodeWithInput
             GD.Print("Main window close signal detected");
             Invoke.Instance.Queue(QuitPressed);
         }
+        else if (notification == NotificationTranslationChanged)
+        {
+            if (SteamHandler.Instance.IsLoaded)
+            {
+                UpdateSteamLoginText();
+            }
+        }
     }
 
     public void StartMusic()
@@ -534,7 +541,7 @@ public class MainMenu : NodeWithInput
     /// <summary>
     ///   Returns the container for the current menu.
     /// </summary>
-    /// <returns>Null if we aren't in any available menu.</returns>
+    /// <returns>Null if we aren't in any available menu or the menu container if there is one.</returns>
     /// <exception cref="System.InvalidOperationException">The main menu hasn't been initialized.</exception>
     private Control? GetCurrentMenu()
     {
@@ -592,8 +599,7 @@ public class MainMenu : NodeWithInput
         else
         {
             storeLoggedInDisplay.Visible = true;
-            storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
-                .FormatSafe(SteamHandler.Instance.DisplayName);
+            UpdateSteamLoginText();
 
             // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
             itchButton.Visible = false;
@@ -607,6 +613,12 @@ public class MainMenu : NodeWithInput
     private bool SteamFailed()
     {
         return SteamHandler.IsTaggedSteamRelease() && !SteamHandler.Instance.IsLoaded;
+    }
+
+    private void UpdateSteamLoginText()
+    {
+        storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+            .FormatSafe(SteamHandler.Instance.DisplayName);
     }
 
     private void UpdateLauncherState()
