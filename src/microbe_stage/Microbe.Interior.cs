@@ -331,10 +331,8 @@ public partial class Microbe
             return Colony.Master.GlobalTransform
                 .basis.Quat().Normalized().Xform(Vector3.Forward);
         }
-        else
-        {
-            return GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
-        }
+
+        return GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
     }
 
     /// <summary>
