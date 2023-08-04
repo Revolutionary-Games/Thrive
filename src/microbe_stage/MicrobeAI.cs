@@ -741,10 +741,12 @@ public class MicrobeAI
             {
                 microbe.LookAtPoint = target;
 
-                // hold fire until the target is lined up.
+                // Hold fire until the target is lined up.
                 if (microbe.FacingDirection().Normalized().AngleTo(microbe.LookAtPoint.Normalized()) <
                     0.1f + SpeciesActivity / (Constants.AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION * SpeciesFocus))
+                 {
                     microbe.QueueEmitToxin(oxytoxy);
+                 }
             }
         }
     }
