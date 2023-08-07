@@ -300,16 +300,7 @@ public partial class Microbe
 
         // Find the direction the microbe is facing
         // (actual rotation, not LookAtPoint, also takes colony membership into account)
-        Vector3 direction;
-        if (Colony != null)
-        {
-            direction = Colony.Master.GlobalTransform
-                .basis.Quat().Normalized().Xform(Vector3.Forward);
-        }
-        else
-        {
-            direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
-        }
+        Vector3 direction = FacingDirection();
 
         var position = GlobalTransform.origin + (direction * ejectionDistance);
 
@@ -327,6 +318,21 @@ public partial class Microbe
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
+    }
+
+    /// <summary>
+    ///   Handles colony logic to determine the actual facing vector of this microbe
+    /// </summary>
+    /// <returns>A Vector3 of this microbe's real facing</returns>
+    public Vector3 FacingDirection()
+    {
+        if (Colony != null)
+        {
+            return Colony.Master.GlobalTransform
+                .basis.Quat().Normalized().Xform(Vector3.Forward);
+        }
+
+        return GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
     }
 
     /// <summary>

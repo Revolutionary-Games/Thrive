@@ -758,6 +758,8 @@ public static class Constants
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
     public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
 
+    public const float AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION = 5;
+
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;
