@@ -24,7 +24,11 @@
 
 #cmakedefine USE_OBJECT_POOLS
 
+#ifdef WIN32
+#define FORCE_INLINE __forceinline
+#else
 #define FORCE_INLINE __attribute__((always_inline))
+#endif
 
 #define UNUSED(x) (void)x
 
