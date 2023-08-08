@@ -171,7 +171,6 @@ private:
     // Simulation configuration
     float physicsFrameRate = 60;
     int collisionStepsPerUpdate = 1;
-    int integrationSubSteps = 1;
 
     int simulationsBetweenBroadPhaseOptimization = 67;
 

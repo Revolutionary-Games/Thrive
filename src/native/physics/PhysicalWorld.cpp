@@ -694,7 +694,7 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
     // TODO: apply per physics frame forces
 
     const auto result =
-        physicsSystem->Update(time, collisionStepsPerUpdate, integrationSubSteps, tempAllocator.get(), &jobs);
+        physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobs);
 
     const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 

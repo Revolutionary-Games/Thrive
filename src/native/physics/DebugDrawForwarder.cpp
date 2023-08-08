@@ -164,8 +164,12 @@ void DebugDrawForwarder::DrawLine(JPH::RVec3Arg inFrom, JPH::RVec3Arg inTo, JPH:
     lineBuffer.emplace_back(inFrom, inTo, ColorToFloat4(inColor));
 }
 
-void DebugDrawForwarder::DrawTriangle(JPH::RVec3Arg inV1, JPH::RVec3Arg inV2, JPH::RVec3Arg inV3, JPH::ColorArg inColor)
+void DebugDrawForwarder::DrawTriangle(
+    JPH::RVec3Arg inV1, JPH::RVec3Arg inV2, JPH::RVec3Arg inV3, JPH::ColorArg inColor, ECastShadow inCastShadow)
 {
+    // TODO: shadow support?
+    UNUSED(inCastShadow);
+
     Lock lock(mutex);
     triangleBuffer.emplace_back(inV1, inV2, inV3, ColorToFloat4(inColor));
 }
