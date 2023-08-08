@@ -422,6 +422,7 @@
     <Compile Include="src\microbe_stage\components\CompoundVenter.cs" />
     <Compile Include="src\microbe_stage\components\CurrentAffected.cs" />
     <Compile Include="src\microbe_stage\components\Engulfable.cs" />
+    <Compile Include="src\microbe_stage\components\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\components\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\components\MicrobeShaderParameters.cs" />
     <Compile Include="src\microbe_stage\components\PlayerOffspring.cs" />
@@ -529,6 +530,7 @@
     <Compile Include="src\microbe_stage\gui\PatchExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
     <Compile Include="src\microbe_stage\IEngulfable.cs" />
+    <Compile Include="src\microbe_stage\IReadonlyCompoundClouds.cs" />
     <Compile Include="src\microbe_stage\ISpawnSystem.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
@@ -601,6 +603,7 @@
     <Compile Include="src\microbe_stage\systems\AllCompoundsVentingSystem.cs" />
     <Compile Include="src\microbe_stage\systems\CellBurstEffectSystem.cs" />
     <Compile Include="src\microbe_stage\systems\FluidCurrentsSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\MicrobeAISystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeShaderSystem.cs" />
     <Compile Include="src\microbe_stage\systems\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\systems\SpawnSystem.cs" />
@@ -625,8 +628,6 @@
     <Compile Include="src\general\DifficultyPreset.cs" />
     <Compile Include="src\engine\ScreenEffect.cs" />
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
-    <Compile Include="src\microbe_stage\MicrobeAISystem.cs" />
-    <Compile Include="src\microbe_stage\IMicrobeAI.cs" />
     <Compile Include="src\microbe_stage\Patch.cs" />
     <Compile Include="src\microbe_stage\PatchMap.cs" />
     <Compile Include="src\microbe_stage\PatchMapGenerator.cs" />
@@ -663,8 +664,6 @@
     <Compile Include="src\auto-evo\ExternalEffect.cs" />
     <Compile Include="src\general\Jukebox.cs" />
     <Compile Include="src\general\MusicCategory.cs" />
-    <Compile Include="src\microbe_stage\MicrobeAI.cs" />
-    <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
     <Compile Include="src\modding\FullModDetails.cs" />
     <Compile Include="src\modding\IMod.cs" />
     <Compile Include="src\modding\ModInfo.cs" />

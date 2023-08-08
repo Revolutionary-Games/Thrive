@@ -13,8 +13,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/Microbe.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public partial class Microbe : RigidBody, ISpawned, IMicrobeAI, ISaveLoadedTracked, IEngulfable,
-    IInspectableEntity
+public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable, IInspectableEntity
 {
     /// <summary>
     ///   The point towards which the microbe will move to point to
@@ -88,9 +87,6 @@ public partial class Microbe : RigidBody, ISpawned, IMicrobeAI, ISaveLoadedTrack
 
     [JsonProperty]
     private MicrobeSignalCommand command = MicrobeSignalCommand.None;
-
-    [JsonProperty]
-    private MicrobeAI? ai;
 
 #pragma warning disable CA2213
 
@@ -506,7 +502,10 @@ public partial class Microbe : RigidBody, ISpawned, IMicrobeAI, ISaveLoadedTrack
         IsPlayerMicrobe = isPlayer;
 
         if (!isPlayer)
-            ai = new MicrobeAI(this);
+        {
+            // TODO: the spawner should set the AI component
+            throw new NotImplementedException();
+        }
 
         // Needed for immediately applying the species
         _Ready();
@@ -879,26 +878,6 @@ public partial class Microbe : RigidBody, ISpawned, IMicrobeAI, ISaveLoadedTrack
             {
                 OnReproductionStatus(this, true);
             }
-        }
-    }
-
-    public void AIThink(float delta, Random random, MicrobeAICommonData data)
-    {
-        if (IsPlayerMicrobe)
-            throw new InvalidOperationException("AI can't run on the player microbe");
-
-        if (Dead || IsForPreviewOnly || PhagocytosisStep != PhagocytosisPhase.None)
-            return;
-
-        try
-        {
-            ai!.Think(delta, random, data);
-        }
-#pragma warning disable CA1031 // AI needs to be boxed good
-        catch (Exception e)
-#pragma warning restore CA1031
-        {
-            GD.PrintErr("Microbe AI failure! ", e);
         }
     }
 

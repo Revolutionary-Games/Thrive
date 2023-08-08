@@ -78,6 +78,8 @@
 
         protected override void PreUpdate(float delta)
         {
+            base.PreUpdate(delta);
+
             millisecondsPassed += delta / 1000.0f;
         }
 

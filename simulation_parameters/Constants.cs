@@ -241,8 +241,6 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
 
-    public const int MICROBE_AI_OBJECTS_PER_TASK = 12;
-
     public const int INITIAL_SPECIES_POPULATION = 100;
 
     public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN = 0;

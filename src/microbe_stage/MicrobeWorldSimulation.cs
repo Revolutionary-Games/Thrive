@@ -1,6 +1,8 @@
 ﻿using System;
+using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Contains all the parts needed to simulate a microbial world. Separate from (but used by) the
@@ -12,19 +14,21 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     // TODO: allow saving / loading some system state somehow (hopefully without needing to add really hacky dummy
     // constructors)
-    private FluidSystem fluidSystem = null!;
-    private MicrobeSystem microbeSystem = null!;
+    private FluidCurrentsSystem fluidCurrentsSystem = null!;
     private ProcessSystem processSystem = null!;
     private MicrobeAISystem microbeAI = null!;
-    private FloatingChunkSystem chunkSystem = null!;
     private TimedLifeSystem timedLifeSystem = null!;
+
+    // need to merge  Keep AI from shooting while facing the wrong direction #4435  and update from master before continuing
 
     // TODO: re-add the spawn system
     // [JsonProperty]
     // [AssignOnlyChildItemsOnDeserialize]
-    // private SpawnSystem spawner = null!;
+    private SpawnSystem spawner = null!;
 
+#pragma warning disable CA2213
     private Node visualsParent = null!;
+#pragma warning restore CA2213
 
     [JsonIgnore]
     public CompoundCloudSystem CloudSystem { get; private set; } = null!;
@@ -33,19 +37,23 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         visualsParent = visualDisplayRoot;
 
-        fluidSystem = new FluidSystem(this);
+        // TODO: add threading
+        var parallelRunner = new DefaultParallelRunner(1);
+        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
 
         CloudSystem = cloudSystem;
-        cloudSystem.Init(fluidSystem);
+        cloudSystem.Init(fluidCurrentsSystem);
 
-        microbeSystem = new MicrobeSystem(this);
-        microbeAI = new MicrobeAISystem(this, cloudSystem);
+        // microbeSystem = new MicrobeSystem(this);
 
-        processSystem = new ProcessSystem(this);
+        // TODO: this definitely needs to be (along with the process system) the first systems to be multithreaded
+        microbeAI = new MicrobeAISystem(this, cloudSystem, EntitySystem, parallelRunner);
 
-        chunkSystem = new FloatingChunkSystem(this, cloudSystem);
+        processSystem = new ProcessSystem(EntitySystem, parallelRunner);
 
-        timedLifeSystem = new TimedLifeSystem(this);
+        timedLifeSystem = new TimedLifeSystem(this, EntitySystem, parallelRunner);
+
+        spawner = new SpawnSystem(this);
 
         OnInitialized();
     }
@@ -62,25 +70,36 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     internal void OverrideMicrobeAIRandomSeed(int seed)
     {
-        aiRandom = new Random(seed);
+        microbeAI.OverrideAIRandomSeed(seed);
     }
 
     protected override void OnProcessFixedLogic(float delta)
     {
-        fluidSystem.Process(delta);
-        fluidSystem.PhysicsProcess(delta);
+        fluidCurrentsSystem.Update(delta);
 
-        processSystem.Process(delta);
+        processSystem.Update(delta);
 
-        microbeSystem.Process(delta);
-
-        chunkSystem.Process(delta, PlayerPosition);
-        timedLifeSystem.Process(delta);
+        timedLifeSystem.Update(delta);
 
         if (RunAI)
         {
-            // Update AI for the cells
-            microbeAI.Process(delta, aiRandom);
+            // Update AI for the cells (note that the AI system itself can also be disabled, due to cheats)
+            microbeAI.Update(delta);
         }
+
+        spawner.Update(delta);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            fluidCurrentsSystem.Dispose();
+            processSystem.Dispose();
+            timedLifeSystem.Dispose();
+            spawner.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }

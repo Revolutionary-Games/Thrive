@@ -310,11 +310,13 @@ public partial class Microbe
 
         var position = GlobalTransform.origin + (direction * ejectionDistance);
 
-        var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
-            position, direction, GetStageAsParent(),
-            SpawnHelpers.LoadAgentScene(), this);
+        throw new NotImplementedException();
 
-        ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
+        // var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
+        //     position, direction, GetStageAsParent(),
+        //     SpawnHelpers.LoadAgentScene(), this);
+        //
+        // ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
         if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
         {
@@ -451,7 +453,9 @@ public partial class Microbe
         copyEntity.Transform = new Transform(daughterBasis, copyEntity.Translation);
 
         // Make it despawn like normal
-        spawnSystem!.NotifyExternalEntitySpawned(copyEntity);
+        throw new NotImplementedException();
+
+        // spawnSystem!.NotifyExternalEntitySpawned(copyEntity);
 
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();

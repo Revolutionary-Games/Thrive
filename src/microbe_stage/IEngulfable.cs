@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 /// <summary>
-///   Objects that can be engulfed by a microbe.
+///   Objects that can be engulfed by a microbe. TODO: convert to a component
 /// </summary>
 [UseThriveSerializer]
 public interface IEngulfable : IGraphicalEntity
