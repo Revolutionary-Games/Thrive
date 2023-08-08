@@ -12,6 +12,9 @@ add_library(Boost::core ALIAS boost_core)
 
 target_include_directories(boost_core INTERFACE include)
 
+# Custom modification to include the top level headers for Boost
+target_include_directories(boost_core INTERFACE ../../include)
+
 target_link_libraries(boost_core
   INTERFACE
     Boost::assert

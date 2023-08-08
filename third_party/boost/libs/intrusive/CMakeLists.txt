@@ -19,4 +19,8 @@ target_link_libraries( boost_intrusive
         Boost::container_hash
         Boost::move
         Boost::static_assert
+
+        # Custom added dependency as this depends on this but isn't listed here
+        # for some reason
+        Boost::smart_ptr
 )
