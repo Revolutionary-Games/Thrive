@@ -51,7 +51,8 @@
             {
                 bool collided = false;
 
-                for (int i = 0; i < collisions.Length; ++i)
+                int count = collisions.Length;
+                for (int i = 0; i < count; ++i)
                 {
                     ref var collision = ref collisions[i];
 

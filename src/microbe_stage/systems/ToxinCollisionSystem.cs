@@ -48,7 +48,8 @@
                 return;
 
             // Check for active collisions that count as a hit and use up this projectile
-            for (int i = 0; i < activeCollisions.Length; ++i)
+            int count = activeCollisions.Length;
+            for (int i = 0; i < count; ++i)
             {
                 ref var collision = ref activeCollisions[i];
 
