@@ -73,20 +73,22 @@
             }
             else
             {
-                body = worldSimulationWithPhysics.CreateMovingBody(shapeHolder.Shape, position.Position,
-                    position.Rotation);
+                if (physics.LockToYAxis)
+                {
+                    body = worldSimulationWithPhysics.CreateMovingBodyWithAxisLock(shapeHolder.Shape, position.Position,
+                        position.Rotation, Vector3.Up, physics.LockRotationWithAxisLock);
+                }
+                else
+                {
+                    body = worldSimulationWithPhysics.CreateMovingBody(shapeHolder.Shape, position.Position,
+                        position.Rotation);
+                }
 
                 var physicalWorld = worldSimulationWithPhysics.PhysicalWorld;
 
                 // Apply initial velocity
                 physicalWorld.SetBodyVelocity(body, physics.Velocity,
                     physics.AngularVelocity);
-
-                if (physics.LockToYAxis)
-                {
-                    physicalWorld.AddAxisLockConstraint(body, Vector3.Up,
-                        physics.LockRotationWithAxisLock);
-                }
 
                 if (physics.LinearDamping != null)
                 {

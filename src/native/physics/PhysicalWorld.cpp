@@ -31,6 +31,9 @@
 
 JPH_SUPPRESS_WARNINGS
 
+// Enables slower turning in ApplyBodyControl when close to the target rotation
+// #define USE_SLOW_TURN_NEAR_TARGET
+
 // ------------------------------------ //
 namespace Thrive::Physics
 {
@@ -191,18 +194,54 @@ Ref<PhysicsBody> PhysicalWorld::CreateMovingBody(const JPH::RefConst<JPH::Shape>
     }
 
     // TODO: multithreaded body adding?
-    auto body = CreateBody(*shape, JPH::EMotionType::Dynamic, Layers::MOVING, position, rotation);
+    return OnBodyCreated(CreateBody(*shape, JPH::EMotionType::Dynamic, Layers::MOVING, position, rotation), addToWorld);
+}
 
-    if (body == nullptr)
-        return nullptr;
-
-    if (addToWorld)
+Ref<PhysicsBody> PhysicalWorld::CreateMovingBodyWithAxisLock(const JPH::RefConst<JPH::Shape>& shape,
+    JPH::RVec3Arg position, JPH::Quat rotation, JPH::Vec3 lockedAxes, bool lockRotation, bool addToWorld /*= true*/)
+{
+    if (shape == nullptr)
     {
-        physicsSystem->GetBodyInterface().AddBody(body->GetId(), JPH::EActivation::Activate);
-        OnPostBodyAdded(*body);
+        LOG_ERROR("No shape given to body create");
+        return nullptr;
     }
 
-    return body;
+    JPH::EAllowedDOFs degreesOfFreedom = JPH::EAllowedDOFs::All;
+
+    if (lockedAxes.GetX() != 0)
+        degreesOfFreedom &= ~JPH::EAllowedDOFs::TranslationX;
+
+    if (lockedAxes.GetY() != 0)
+        degreesOfFreedom &= ~JPH::EAllowedDOFs::TranslationY;
+
+    if (lockedAxes.GetZ() != 0)
+        degreesOfFreedom &= ~JPH::EAllowedDOFs::TranslationZ;
+
+    if (lockRotation)
+    {
+        if (lockedAxes.GetX() != 0)
+        {
+            degreesOfFreedom &= ~JPH::EAllowedDOFs::RotationY;
+            degreesOfFreedom &= ~JPH::EAllowedDOFs::RotationZ;
+        }
+
+        if (lockedAxes.GetY() != 0)
+        {
+            degreesOfFreedom &= ~JPH::EAllowedDOFs::RotationX;
+            degreesOfFreedom &= ~JPH::EAllowedDOFs::RotationZ;
+        }
+
+        if (lockedAxes.GetZ() != 0)
+        {
+            degreesOfFreedom &= ~JPH::EAllowedDOFs::RotationX;
+            degreesOfFreedom &= ~JPH::EAllowedDOFs::RotationY;
+        }
+    }
+
+    // TODO: multithreaded body adding?
+    return OnBodyCreated(
+        CreateBody(*shape, JPH::EMotionType::Dynamic, Layers::MOVING, position, rotation, degreesOfFreedom),
+        addToWorld);
 }
 
 Ref<PhysicsBody> PhysicalWorld::CreateStaticBody(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
@@ -522,44 +561,6 @@ Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(PhysicsBody& body
         }
     }
 
-    // Non-working inertia based approach. See:
-    // https://github.com/jrouwe/JoltPhysics/discussions/180#discussioncomment-6182600
-    // Locking approach by inertia from:
-    // JoltPhysics/Samples/Tests/General/TwoDFunnelTest.cpp
-    // This disallows changing the object mass properties (likely shape) after doing this
-    /*JPH::MassProperties mass_properties = lock.GetBody().GetShape()->GetMassProperties();
-    JPH::MotionProperties* mp = lock.GetBody().GetMotionProperties();
-    mp->SetInverseMass(1.0f / mass_properties.mMass);
-
-    // Start off with allowing all rotation
-    JPH::Vec3 inverseInertiaVector = JPH::Vec3(1.0f / mass_properties.mInertia.GetAxisX().Length(),
-        1.0f / mass_properties.mInertia.GetAxisY().Length(), 1.0f / mass_properties.mInertia.GetAxisZ().Length());
-
-    // And then remove the axes that are not allowed
-    if (axis.GetX() != 0)
-    {
-        inverseInertiaVector.SetY(0);
-        inverseInertiaVector.SetZ(0);
-    }
-
-    if (axis.GetY() != 0)
-    {
-        inverseInertiaVector.SetX(0);
-        inverseInertiaVector.SetZ(0);
-    }
-
-    if (axis.GetZ() != 0)
-    {
-        inverseInertiaVector.SetX(0);
-        inverseInertiaVector.SetY(0);
-    }
-
-    // For some reason overriding this like the following results in slightly more stable physics (but still very
-    // wobly)
-    // inverseInertiaVector = JPH::Vec3(0, 1.0f / mass_properties.mInertia.GetAxisY().Length(), 0);
-
-    mp->SetInverseInertia(inverseInertiaVector, JPH::Quat::sIdentity());*/
-
     // Needed for precision on the axis lock to actually stay relatively close to the target value
     constraintSettings.mPosition1 = constraintSettings.mPosition2 = lock.GetBody().GetCenterOfMassPosition();
 
@@ -691,10 +692,9 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
     // second)
     const auto start = TimingClock::now();
 
-    // TODO: apply per physics frame forces
+    // Per physics step forces are applied in PerformPhysicsStepOperations triggered by the step listener
 
-    const auto result =
-        physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobs);
+    const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobs);
 
     const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 
@@ -729,12 +729,13 @@ void PhysicalWorld::PerformPhysicsStepOperations(float delta)
         auto& body = *bodyPtr;
 
         if (body.GetBodyControlState() != nullptr)
-            ApplyBodyControl(body);
+            ApplyBodyControl(body, delta);
     }
 }
 
 Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
-    JPH::RVec3Arg position, JPH::Quat rotation /*= JPH::Quat::sIdentity()*/)
+    JPH::RVec3Arg position, JPH::Quat rotation /*= JPH::Quat::sIdentity()*/,
+    JPH::EAllowedDOFs allowedDegreesOfFreedom /*= JPH::EAllowedDOFs::All*/)
 {
 #ifndef NDEBUG
     // Sanity check some layer stuff
@@ -745,8 +746,10 @@ Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotion
     }
 #endif
 
-    const auto body = physicsSystem->GetBodyInterface().CreateBody(
-        JPH::BodyCreationSettings(&shape, position, rotation, motionType, layer));
+    auto creationSettings = JPH::BodyCreationSettings(&shape, position, rotation, motionType, layer);
+    creationSettings.mAllowedDOFs = allowedDegreesOfFreedom;
+
+    const auto body = physicsSystem->GetBodyInterface().CreateBody(creationSettings);
 
     if (body == nullptr)
     {
@@ -759,6 +762,20 @@ Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotion
     return {new PhysicsBody(body, body->GetID())};
 }
 
+Ref<PhysicsBody> PhysicalWorld::OnBodyCreated(Ref<PhysicsBody>&& body, bool addToWorld)
+{
+    if (body == nullptr)
+        return nullptr;
+
+    if (addToWorld)
+    {
+        physicsSystem->GetBodyInterface().AddBody(body->GetId(), JPH::EActivation::Activate);
+        OnPostBodyAdded(*body);
+    }
+
+    return std::move(body);
+}
+
 void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
 {
     body.MarkUsedInWorld();
@@ -769,11 +786,17 @@ void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
 }
 
 // ------------------------------------ //
-void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper)
+void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 {
     constexpr auto allowedRotationDifference = 0.0001f;
-    constexpr auto closeToTargetThreshold = 0.23f;
     constexpr auto overshootDetectWhenAllAnglesLessThan = PI * 0.025f;
+
+#ifdef USE_SLOW_TURN_NEAR_TARGET
+    constexpr auto closeToTargetThreshold = 0.20f;
+#endif
+
+    // Normalize delta to 60Hz update rate to make gameplay logic not depend on the physics framerate
+    float normalizedDelta = delta / (1 / 60.0f);
 
     BodyControlState* controlState = bodyWrapper.GetBodyControlState();
     const auto bodyId = bodyWrapper.GetId();
@@ -788,8 +811,9 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper)
     }
 
     JPH::Body& body = lock.GetBody();
+    const auto degreesOfFreedom = body.GetMotionProperties()->GetAllowedDOFs();
 
-    body.AddImpulse(controlState->movement);
+    body.AddImpulse(controlState->movement * normalizedDelta);
 
     const auto& currentRotation = body.GetRotation();
 
@@ -806,7 +830,26 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper)
     else
     {
         // Not currently at the rotation target
-        const auto differenceAngles = difference.GetEulerAngles();
+        auto differenceAngles = difference.GetEulerAngles();
+
+        // Things break a lot if we add rotation on an axis where rotation is not allowed due to DOF
+        if ((degreesOfFreedom & JPH::AllRotationAllowed) != JPH::AllRotationAllowed)
+        {
+            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationX)) == 0)
+            {
+                differenceAngles.SetX(0);
+            }
+
+            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationY)) == 0)
+            {
+                differenceAngles.SetY(0);
+            }
+
+            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationZ)) == 0)
+            {
+                differenceAngles.SetZ(0);
+            }
+        }
 
         bool setNormalVelocity = true;
 
@@ -839,9 +882,12 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper)
 
         if (setNormalVelocity)
         {
+#ifdef USE_SLOW_TURN_NEAR_TARGET
             // When near the target slow down rotation
             const bool nearTarget = difference.IsClose(JPH::Quat::sIdentity(), closeToTargetThreshold);
 
+            // It seems as these angles are the distance left, these are hopefully fine to be as-is without any kind
+            // of delta adjustment
             if (nearTarget)
             {
                 body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate * 0.5f);
@@ -850,6 +896,9 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper)
             {
                 body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
             }
+#else
+            body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
+#endif //USE_SLOW_TURN_NEAR_TARGET
         }
     }
 

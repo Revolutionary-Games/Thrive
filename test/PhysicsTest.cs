@@ -28,9 +28,6 @@ public class PhysicsTest : Node
     public bool CreateMicrobeAsSpheres;
 
     [Export]
-    public bool EnforceNoYDrift = true;
-
-    [Export]
     public float MicrobeDamping = 0.3f;
 
     [Export]
@@ -72,6 +69,8 @@ public class PhysicsTest : Node
     private const float InitialVisibilityRangeIncrease = 100;
 
     private const float MicrobeCameraDefaultHeight = 50;
+
+    private const float YDriftThreshold = 0.05f;
 
     private readonly List<NativePhysicsBody> allCreatedBodies = new();
     private readonly List<NativePhysicsBody> sphereBodies = new();
@@ -156,7 +155,7 @@ public class PhysicsTest : Node
             var count = testMicrobesToProcess.Count;
             for (int i = 0; i < count; ++i)
             {
-                if (Math.Abs(testMicrobesToProcess[i].GodotPhysicsPosition.y) > 0.1f)
+                if (Math.Abs(testMicrobesToProcess[i].GodotPhysicsPosition.y) > YDriftThreshold)
                 {
                     if (driftingCheckTimer < 0)
                         GD.Print($"Drifting body Y in Godot physics (body index: {i})");
@@ -311,12 +310,7 @@ public class PhysicsTest : Node
                     if (!testVisuals[usedVisualIndex].Visible)
                         testVisuals[usedVisualIndex].Visible = true;
 
-                    if (EnforceNoYDrift && Math.Abs(transform.origin.y) > 0.05f)
-                    {
-                        // Fix drifting body
-                        physicalWorld.FixBodyYCoordinateToZero(microbeAnalogueBodies[i]);
-                    }
-                    else if (!EnforceNoYDrift && Math.Abs(transform.origin.y) > 0.1f)
+                    if (Math.Abs(transform.origin.y) > YDriftThreshold)
                     {
                         if (driftingCheckTimer < 0)
                             GD.Print($"Still drifting (body index: {i})");
@@ -700,9 +694,8 @@ public class PhysicsTest : Node
             var shape = PhysicsShape.CreateMicrobeShape(testMicrobeOrganellePositions!, 1000, false,
                 CreateMicrobeAsSpheres);
 
-            var body = physicalWorld.CreateMovingBody(shape, location, Quat.Identity);
+            var body = physicalWorld.CreateMovingBodyWithAxisLock(shape, location, Quat.Identity, Vector3.Up, true);
 
-            physicalWorld.AddAxisLockConstraint(body, Vector3.Up, true);
             physicalWorld.SetDamping(body, MicrobeDamping);
 
             // Add an initial impulse

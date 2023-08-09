@@ -71,8 +71,23 @@ public class PhysicalWorld : IDisposable
         bool addToWorld = true)
     {
         return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBody(AccessWorldInternal(),
-            shape.AccessShapeInternal(),
-            new JVec3(position), new JQuat(rotation), addToWorld));
+            shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), addToWorld));
+    }
+
+    /// <summary>
+    ///   Creates a moving body with axis locks. When <see cref="lockRotation"/> is on, the locked axis is the only
+    ///   one around which rotation is allowed.
+    /// </summary>
+    /// <returns>The created physics body</returns>
+    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quat rotation,
+        Vector3 lockedAxes, bool lockRotation, bool addToWorld = true)
+    {
+        if (lockedAxes.LengthSquared() < MathUtils.EPSILON)
+            throw new ArgumentException("Locked axes needs to specify at least one locked axis", nameof(lockedAxes));
+
+        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateMovingBodyWithAxisLock(AccessWorldInternal(),
+            shape.AccessShapeInternal(), new JVec3(position), new JQuat(rotation), new JVecF3(lockedAxes), lockRotation,
+            addToWorld));
     }
 
     public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation,
@@ -351,6 +366,10 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern IntPtr PhysicalWorldCreateMovingBody(IntPtr physicalWorld, IntPtr shape,
         JVec3 position, JQuat rotation, bool addToWorld);
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr PhysicalWorldCreateMovingBodyWithAxisLock(IntPtr physicalWorld, IntPtr shape,
+        JVec3 position, JQuat rotation, JVecF3 lockedAxes, bool lockRotation, bool addToWorld);
 
     [DllImport("thrive_native")]
     internal static extern IntPtr PhysicalWorldCreateStaticBody(IntPtr physicalWorld, IntPtr shape,

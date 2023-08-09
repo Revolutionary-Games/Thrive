@@ -32,6 +32,14 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         return body;
     }
 
+    public NativePhysicsBody CreateMovingBodyWithAxisLock(PhysicsShape shape, Vector3 position, Quat rotation,
+        Vector3 lockedAxis, bool lockRotation)
+    {
+        var body = physics.CreateMovingBodyWithAxisLock(shape, position, rotation, lockedAxis, lockRotation);
+        createdBodies.Add(body);
+        return body;
+    }
+
     public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation)
     {
         var body = physics.CreateStaticBody(shape, position, rotation);

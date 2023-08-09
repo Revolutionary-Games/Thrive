@@ -44,6 +44,10 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBody(PhysicalWorld* physicalWorld,
         PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBodyWithAxisLock(
+        PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation, JVecF3 lockedAxes,
+        bool lockRotation, bool addToWorld = true);
+
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateStaticBody(PhysicalWorld* physicalWorld,
         PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
 

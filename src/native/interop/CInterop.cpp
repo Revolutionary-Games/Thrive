@@ -114,6 +114,21 @@ PhysicsBody* PhysicalWorldCreateMovingBody(
     return reinterpret_cast<PhysicsBody*>(body.get());
 }
 
+PhysicsBody* PhysicalWorldCreateMovingBodyWithAxisLock(PhysicalWorld* physicalWorld, PhysicsShape* shape,
+    JVec3 position, JQuat rotation, JVecF3 lockedAxes, bool lockRotation, bool addToWorld)
+{
+    const auto body =
+        reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+            ->CreateMovingBodyWithAxisLock(reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(),
+                Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), Thrive::Vec3FromCAPI(lockedAxes),
+                lockRotation, addToWorld);
+
+    if (body)
+        body->AddRef();
+
+    return reinterpret_cast<PhysicsBody*>(body.get());
+}
+
 PhysicsBody* PhysicalWorldCreateStaticBody(
     PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation, bool addToWorld)
 {
