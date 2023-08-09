@@ -221,8 +221,8 @@ public static class SpawnHelpers
         entity.Set(new PhysicsShapeHolder
         {
             Shape = selectedMesh.ConvexShapePath != null ?
-                PhysicsShape.CreateShapeFromGodotResource(selectedMesh.ConvexShapePath, chunkType.Density) :
-                PhysicsShape.CreateSphere(chunkType.Radius, chunkType.Density),
+                PhysicsShape.CreateShapeFromGodotResource(selectedMesh.ConvexShapePath, chunkType.PhysicsDensity) :
+                PhysicsShape.CreateSphere(chunkType.Radius, chunkType.PhysicsDensity),
         });
 
         if (chunkType.Damages > 0)

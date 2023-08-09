@@ -15,6 +15,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public List<ChunkScene> Meshes;
 
+    /// <summary>
+    ///   This is the spawn density of the chunk
+    /// </summary>
+    public float Density;
+
     public bool Dissolves;
     public float Radius;
     public float ChunkScale;
@@ -50,9 +55,9 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public string DissolverEnzyme;
 
-    // TODO: convert the JSON data to directly specify the density
+    // TODO: convert the JSON data to directly specify the physics density
     [JsonIgnore]
-    public float Density => Mass * 1000;
+    public float PhysicsDensity => Mass * 1000;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
