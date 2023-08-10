@@ -13,6 +13,8 @@ public class MicrobeSystem
 
     private readonly Node worldRoot;
 
+    private Microbe[]? microbes;
+
     public MicrobeSystem(Node worldRoot)
     {
         this.worldRoot = worldRoot;
@@ -20,7 +22,7 @@ public class MicrobeSystem
 
     public void Process(float delta)
     {
-        var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
+        microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
             .ToArray();
 
         // Start of async early processing
@@ -72,8 +74,11 @@ public class MicrobeSystem
         (Microbe Microbe, Vector3 Position)? closestMicrobe = null;
         float nearestDistanceSquared = float.MaxValue;
         var searchRadiusSquared = searchRadius * searchRadius;
-        var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
-            .ToArray();
+        if (microbes == null)
+        {
+            microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
+                .ToArray();
+        }
 
         foreach (var microbe in microbes)
         {
