@@ -107,7 +107,7 @@ public class MicrobeSystem
             var distanceSquared = (microbeGlobalPosition - position).LengthSquared();
 
             // Check search range and prevent cell detecting itself
-            if (distanceSquared > searchRadiusSquared || distanceSquared < 100)
+            if (distanceSquared > searchRadiusSquared || distanceSquared <= 1)
                 continue;
 
             if (distanceSquared < nearestDistanceSquared)
