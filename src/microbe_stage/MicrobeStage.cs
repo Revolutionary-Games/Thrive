@@ -905,7 +905,7 @@ public class MicrobeStage : StageBase<Microbe>
             return;
         }
 
-        var position = Player!.Translation;
+        var position = Player!.GlobalTranslation;
 
         foreach (var chemoreception in chemoreceptionLines)
         {
