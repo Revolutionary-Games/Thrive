@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.Remoting.Messaging;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -437,22 +438,25 @@
 
             processStatistics?.MarkAllUnused();
 
-            foreach (var process in processor.ActiveProcesses)
+            if (processor.ActiveProcesses != null)
             {
-                // If rate is 0 dont do it
-                // The rate specifies how fast fraction of the specified process numbers this cell can do
-                // TODO: would be nice still to report these to process statistics
-                if (process.Rate <= 0.0f)
-                    continue;
+                foreach (var process in processor.ActiveProcesses)
+                {
+                    // If rate is 0 dont do it
+                    // The rate specifies how fast fraction of the specified process numbers this cell can do
+                    // TODO: would be nice still to report these to process statistics
+                    if (process.Rate <= 0.0f)
+                        continue;
 
-                // TODO: reporting duplicate process types would be nice in debug mode here
+                    // TODO: reporting duplicate process types would be nice in debug mode here
 
-                var processData = process.Process;
+                    var processData = process.Process;
 
-                var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process.Process);
-                currentProcessStatistics?.BeginFrame(delta);
+                    var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process.Process);
+                    currentProcessStatistics?.BeginFrame(delta);
 
-                RunProcess(delta, processData, bag, process, currentProcessStatistics);
+                    RunProcess(delta, processData, bag, process, currentProcessStatistics);
+                }
             }
 
             bag.ClampNegativeCompoundAmounts();

@@ -35,7 +35,15 @@
                     if (spatial.GraphicalInstance == null)
                         return;
 
-                    materialComponent.Material = spatial.GraphicalInstance.GetMaterial();
+                    if (string.IsNullOrEmpty(materialComponent.AutoRetrieveModelPath))
+                    {
+                        materialComponent.Material = spatial.GraphicalInstance.GetMaterial();
+                    }
+                    else
+                    {
+                        using var nodePath = new NodePath(materialComponent.AutoRetrieveModelPath);
+                        materialComponent.Material = spatial.GraphicalInstance.GetMaterial(nodePath);
+                    }
 
                     if (materialComponent.Material == null)
                     {

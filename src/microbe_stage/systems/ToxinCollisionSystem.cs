@@ -94,13 +94,13 @@
                 damageTarget = collision.FirstEntity;
             }
 
-            if (!damageTarget.Has<SpeciesMember>())
+            if (!damageTarget.Has<MicrobeSpeciesMember>())
             {
                 // Hit something other than a microbe
                 return true;
             }
 
-            ref var speciesComponent = ref damageTarget.Get<SpeciesMember>();
+            ref var speciesComponent = ref damageTarget.Get<MicrobeSpeciesMember>();
 
             try
             {
@@ -136,10 +136,10 @@
             }
 
             // Skip if hit something that's not a microbe (we don't know how to damage other things currently)
-            if (!damageTarget.Has<SpeciesMember>())
+            if (!damageTarget.Has<MicrobeSpeciesMember>())
                 return false;
 
-            ref var speciesComponent = ref damageTarget.Get<SpeciesMember>();
+            ref var speciesComponent = ref damageTarget.Get<MicrobeSpeciesMember>();
 
             try
             {

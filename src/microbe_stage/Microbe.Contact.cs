@@ -100,18 +100,6 @@ public partial class Microbe
     [JsonProperty]
     private MicrobeState state;
 
-    public enum EngulfCheckResult
-    {
-        Ok,
-        NotInEngulfMode,
-        RecentlyExpelled,
-        TargetDead,
-        TargetTooBig,
-        IngestedMatterFull,
-        CannotCannibalize,
-        TargetInvulnerable,
-    }
-
     /// <summary>
     ///   The colony this microbe is currently in
     /// </summary>
@@ -1639,8 +1627,10 @@ public partial class Microbe
 
         foreach (string group in engulfedObject.OriginalGroups)
         {
-            if (group != Constants.RUNNABLE_MICROBE_GROUP)
-                target.EntityNode.RemoveFromGroup(group);
+            throw new NotImplementedException();
+
+            // if (group != Constants.RUNNABLE_MICROBE_GROUP)
+            //     target.EntityNode.RemoveFromGroup(group);
         }
 
         StartBulkTransport(engulfedObject, animationSpeed);
@@ -1944,8 +1934,10 @@ public partial class Microbe
 
         foreach (string group in engulfed.OriginalGroups)
         {
-            if (group != Constants.RUNNABLE_MICROBE_GROUP)
-                engulfable.EntityNode.AddToGroup(group);
+            throw new NotImplementedException();
+
+            // if (group != Constants.RUNNABLE_MICROBE_GROUP)
+            //     engulfable.EntityNode.AddToGroup(group);
         }
 
         // Reset render priority

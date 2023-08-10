@@ -162,7 +162,7 @@ public static class NodeHelpers
         GeometryInstance geometry;
 
         // Fetch the actual model from the scene
-        if (string.IsNullOrEmpty(modelPath))
+        if (modelPath == null || modelPath.IsEmpty())
         {
             geometry = (GeometryInstance)node;
         }

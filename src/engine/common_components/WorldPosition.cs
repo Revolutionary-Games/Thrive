@@ -23,4 +23,12 @@
             Rotation = rotation;
         }
     }
+
+    public static class WorldPositionHelpers
+    {
+        public static Transform ToTransform(ref this WorldPosition position)
+        {
+            return new Transform(new Basis(position.Rotation), position.Position);
+        }
+    }
 }

@@ -793,9 +793,11 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         if (Player == null)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
-        var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+        throw new NotImplementedException();
 
-        return microbes.Where(m => m.Species == Player.Species);
+        // var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+
+        // return microbes.Where(m => m.Species == Player.Species);
     }
 
     private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
@@ -872,7 +874,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
     {
-        if (hostile.CanDigestObject(player) == Microbe.DigestCheckResult.Ok)
+        if (hostile.CanDigestObject(player) == DigestCheckResult.Ok)
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
     }
 

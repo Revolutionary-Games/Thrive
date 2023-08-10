@@ -12,6 +12,12 @@
         public ShaderMaterial? Material;
 
         /// <summary>
+        ///   If not null then <see cref="AutoRetrieveFromSpatial"/> uses this as the relative path from the
+        ///   <see cref="Spatial"/> node to where the material is retrieved from
+        /// </summary>
+        public string? AutoRetrieveModelPath;
+
+        /// <summary>
         ///   When true and this entity has a <see cref="SpatialInstance"/> component the material is automatically
         ///   fetched
         /// </summary>

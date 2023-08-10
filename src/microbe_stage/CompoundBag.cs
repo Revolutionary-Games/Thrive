@@ -160,6 +160,23 @@ public class CompoundBag : ICompoundStorage
         return compounds.Any(usefulCompounds.Contains);
     }
 
+    public void AddInitialCompounds(IReadOnlyDictionary<Compound, float> compounds)
+    {
+        foreach (var entry in compounds)
+        {
+            if (!Compounds.TryGetValue(entry.Key, out var existingAmount))
+            {
+                Compounds[entry.Key] = entry.Value;
+                continue;
+            }
+
+            float toAdd = entry.Value - existingAmount;
+
+            if (toAdd > 0)
+                Compounds[entry.Key] = existingAmount + toAdd;
+        }
+    }
+
     public void ClampNegativeCompoundAmounts()
     {
         var negative = Compounds.Where(c => c.Value < 0.0f).ToList();

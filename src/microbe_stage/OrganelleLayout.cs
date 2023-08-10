@@ -23,6 +23,9 @@ public class OrganelleLayout<T> : HexLayout<T>
     [JsonIgnore]
     public IReadOnlyList<T> Organelles => existingHexes;
 
+    [JsonIgnore]
+    public int HexCount => existingHexes.Sum(h => h.Definition.HexCount);
+
     /// <summary>
     ///   The center of mass of the contained organelles.
     /// </summary>

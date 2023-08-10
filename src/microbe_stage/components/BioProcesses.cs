@@ -17,7 +17,7 @@
         ///     property is meant to be structured)
         ///   </para>
         /// </remarks>
-        public List<TweakedProcess> ActiveProcesses;
+        public List<TweakedProcess>? ActiveProcesses;
 
         /// <summary>
         ///   If set to not-null process statistics are gathered here

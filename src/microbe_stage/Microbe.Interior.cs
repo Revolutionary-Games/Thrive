@@ -101,12 +101,6 @@ public partial class Microbe
     private bool organelleMaxRenderPriorityDirty = true;
     private int cachedOrganelleMaxRenderPriority;
 
-    public enum DigestCheckResult
-    {
-        Ok,
-        MissingEnzyme,
-    }
-
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>

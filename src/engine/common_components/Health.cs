@@ -13,7 +13,33 @@
         public float CurrentHealth;
         public float MaxHealth;
 
+        // TODO: an invulnerability duration to automatically turn of invulnerability? (needed to reimplement pilus
+        // damage cooldown)
+
         public bool Invulnerable;
+
+        /// <summary>
+        ///   Simple flag to check if this entity has died. A stage specific death system will set this flag when
+        ///   an entity runs out of health (or some other condition is fulfilled for death)
+        /// </summary>
+        public bool Dead;
+
+        /// <summary>
+        ///   This health class is stage agnostic, so each stage needs its own entity death system to handle dying.
+        ///   To at least make that easier this flag exists for such a system to store the info on if it has already
+        ///   handled a dead entity or not.
+        /// </summary>
+        public bool DeathProcessed;
+
+        public Health(float defaultHealth)
+        {
+            CurrentHealth = defaultHealth;
+            MaxHealth = defaultHealth;
+            Invulnerable = false;
+            Dead = false;
+            DeathProcessed = false;
+            RecentDamageReceived = null;
+        }
     }
 
     public static class HealthHelpers

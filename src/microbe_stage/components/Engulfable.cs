@@ -1,6 +1,7 @@
 ﻿namespace Components
 {
     using DefaultEcs;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///   Something that can be engulfed by a microbe
@@ -25,7 +26,14 @@
 
         public float DigestedAmount;
 
+        /// <summary>
+        ///   The current step of phagocytosis process this engulfable is currently in. If not phagocytized,
+        ///   state is None.
+        /// </summary>
         public PhagocytosisPhase PhagocytosisStep;
+
+        // This might not need a reference to the hostile engulfer as this should have AttachedToEntity to mark what
+        // this is attached to
 
         // TODO: implement this for when ejected
         /// <summary>
@@ -33,6 +41,9 @@
         ///   if detected to be possible)
         /// </summary>
         public bool DestroyIfPartiallyDigested;
+
+        [JsonIgnore]
+        public float AdjustedEngulfSize => BaseEngulfSize * (1 - DigestedAmount);
     }
 
     public static class EngulfableExtensions

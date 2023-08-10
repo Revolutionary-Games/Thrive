@@ -140,7 +140,7 @@ public static class SpawnHelpers
         var selectedMesh = chunkType.Meshes.Random(random);
 
         // TODO: do something with these properties:
-        // selectedMesh.SceneModelPath, selectedMesh.SceneAnimationPath
+        // selectedMesh.SceneModelPath,
 
         // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
         var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
@@ -166,9 +166,29 @@ public static class SpawnHelpers
         entity.Set(new SpatialInstance
         {
             VisualScale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale, chunkType.ChunkScale),
+            ApplyVisualScale = Math.Abs(chunkType.ChunkScale - 1) > MathUtils.EPSILON,
         });
 
+        // TODO: this probably needs to be skipped for particle type chunks
+        if (true)
+        {
+            entity.Set(new EntityMaterial
+            {
+                AutoRetrieveFromSpatial = true,
+                AutoRetrieveModelPath = selectedMesh.SceneModelPath,
+            });
+
+            entity.Set<MicrobeShaderParameters>();
+        }
+
+        if (!string.IsNullOrEmpty(selectedMesh.SceneAnimationPath))
+        {
+            // TODO: stop the animation somehow for a dropped chunk (as that's the old behaviour if I remember right)
+            throw new NotImplementedException();
+        }
+
         // Setup compounds to vent
+        // TODO: do something about this variable (I can't remember anymore why I added this -hhyyrylainen)
         bool hasCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
@@ -225,9 +245,10 @@ public static class SpawnHelpers
                 PhysicsShape.CreateSphere(chunkType.Radius, chunkType.PhysicsDensity),
         });
 
+        entity.Set<CollisionManagement>();
+
         if (chunkType.Damages > 0)
         {
-            entity.Set<CollisionManagement>();
             entity.Set(new DamageOnTouch
             {
                 DamageAmount = chunkType.Damages,
@@ -238,7 +259,6 @@ public static class SpawnHelpers
         else if (chunkType.DeleteOnTouch)
         {
             // No damage but deletes on touch
-            entity.Set<CollisionManagement>();
             entity.Set(new DamageOnTouch
             {
                 DamageAmount = 0,
@@ -293,13 +313,6 @@ public static class SpawnHelpers
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
 
-        microbe.AddToGroup(Constants.AI_TAG_MICROBE);
-        microbe.AddToGroup(Constants.PROCESS_GROUP);
-        microbe.AddToGroup(Constants.RUNNABLE_MICROBE_GROUP);
-
-        if (aiControlled)
-            microbe.AddToGroup(Constants.AI_GROUP);
-
         if (multicellularCellType != null)
         {
             microbe.ApplyMulticellularNonFirstCellSpecies((EarlyMulticellularSpecies)species, multicellularCellType);
@@ -313,40 +326,212 @@ public static class SpawnHelpers
         return microbe;
     }
 
-    public static Microbe SpawnMicrobe(MicrobeWorldSimulation simulation, Species species, Vector3 location,
-        bool aiControlled, ISpawnSystem spawnSystem, GameProperties currentGame,
-        CellType? multicellularCellType = null)
+    public static EntityRecord SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
+        bool aiControlled, CellType? multicellularCellType = null)
     {
-        throw new NotImplementedException();
-        /*var microbe = new Microbe();
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
 
-        // The second parameter is (isPlayer), and we assume that if the
-        // cell is not AI controlled it is the player's cell
-        microbe.Init(simulation.CloudSystem, spawnSystem, currentGame, !aiControlled);
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
-        microbe.Position = location;
+        // Position
+        entity.Set(new WorldPosition(location, Quat.Identity));
 
-        // TODO: this will be needed to be changed we switch to an ECS system (or could have an off/on flag in the
-        // ai component then)
+        // Player vs. AI controlled microbe components
         if (aiControlled)
         {
-            microbe.EntityGroups.Add(Constants.AI_GROUP);
-        }
+            entity.Set<MicrobeAI>();
 
-        if (multicellularCellType != null)
-        {
-            microbe.ApplyMulticellularNonFirstCellSpecies((EarlyMulticellularSpecies)species, multicellularCellType);
+            // Darwinian evolution statistic tracking (these are the external effects that are passed to auto-evo)
+            entity.Set<SurvivalStatistics>();
         }
         else
         {
-            microbe.ApplySpecies(species);
+            // We assume that if the cell is not AI controlled it is the player's cell
+            entity.Set<PlayerMarker>();
+
+            // The player's "ears" are placed at the player microbe
+            entity.Set<SoundListener>();
         }
 
-        microbe.SetInitialCompounds();
+        // Base species-based data initialization
+        ICellProperties usedCellProperties;
+        float engulfSize;
+        MembraneType membraneType;
 
-        simulation.CreateEmptyEntity(microbe);
+        if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+        {
+            entity.Set(new EarlyMulticellularSpeciesMember
+            {
+                Species = earlyMulticellularSpecies,
+            });
 
-        return microbe;*/
+            if (multicellularCellType != null)
+            {
+                // Non-first cell in an early multicellular colony
+
+                usedCellProperties = multicellularCellType;
+                var properties = new CellProperties(multicellularCellType);
+                engulfSize = properties.EngulfSize;
+                membraneType = properties.MembraneType;
+                entity.Set(properties);
+
+                entity.Set(new ColourAnimation
+                {
+                    DefaultColour = multicellularCellType.Colour,
+                });
+            }
+            else
+            {
+                // TODO: should other cells also get this component to allow them to start regrowing after a colony
+                // is split apart?
+                entity.Set<MulticellularGrowth>();
+
+                usedCellProperties = earlyMulticellularSpecies.Cells[0];
+                var properties = new CellProperties(usedCellProperties);
+                engulfSize = properties.EngulfSize;
+                membraneType = properties.MembraneType;
+                entity.Set(properties);
+
+                entity.Set(new ColourAnimation
+                {
+                    DefaultColour = usedCellProperties.Colour,
+                });
+            }
+        }
+        else if (species is MicrobeSpecies microbeSpecies)
+        {
+            entity.Set(new MicrobeSpeciesMember
+            {
+                Species = microbeSpecies,
+            });
+
+            usedCellProperties = microbeSpecies;
+            var properties = new CellProperties(microbeSpecies);
+            engulfSize = properties.EngulfSize;
+            membraneType = properties.MembraneType;
+            entity.Set(properties);
+
+            entity.Set(new ColourAnimation
+            {
+                DefaultColour = microbeSpecies.Colour,
+            });
+
+            if (multicellularCellType != null)
+                GD.PrintErr("Multicellular cell type may not be set when spawning a MicrobeSpecies instance");
+        }
+        else
+        {
+            throw new NotImplementedException("Unknown species type to spawn a microbe from");
+        }
+
+        float storageCapacity;
+
+        // Initialize organelles for the cell type
+        {
+            var container = default(OrganelleContainer);
+
+            container.CreateOrganelleLayout(usedCellProperties);
+
+            storageCapacity = container.OrganellesCapacity;
+
+            entity.Set(container);
+        }
+
+        // Visuals
+        var scale = usedCellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+
+        entity.Set(new SpatialInstance
+        {
+            VisualScale = scale,
+            ApplyVisualScale = true,
+        });
+
+        entity.Set(new EntityMaterial
+        {
+            AutoRetrieveFromSpatial = true,
+        });
+
+        entity.Set<MicrobeShaderParameters>();
+
+        // Compounds
+        var compounds = new CompoundBag(storageCapacity);
+        compounds.AddInitialCompounds(species.InitialCompounds);
+
+        entity.Set(new CompoundStorage
+        {
+            Compounds = compounds,
+        });
+
+        entity.Set(new CompoundAbsorber
+        {
+            // This gets set properly later once the membrane is ready
+            AbsorbRadius = 0.5f,
+        });
+
+        entity.Set(new UnneededCompoundVenter
+        {
+            VentThreshold = 2,
+        });
+
+        // Physics
+        entity.Set(new Physics
+        {
+            LockToYAxis = true,
+        });
+
+        entity.Set(new CollisionManagement
+        {
+            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_DAMAGE_COLLISIONS,
+        });
+
+        // The shape is created in the background to reduce lag when something spawns
+        entity.Set(new PhysicsShapeHolder
+        {
+            Shape = null,
+        });
+
+        // Movement
+        entity.Set(new MicrobeControl(location));
+        entity.Set<ManualPhysicsControl>();
+
+        // Other cell features
+        entity.Set(new MicrobeStatus
+        {
+            TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL,
+            TimeUntilDigestionUpdate = Constants.MICROBE_DIGESTION_UPDATE_INTERVAL,
+        });
+
+        entity.Set(new Health(Constants.DEFAULT_HEALTH));
+
+        entity.Set<CommandSignaler>();
+
+        entity.Set(new Engulfable
+        {
+            BaseEngulfSize = engulfSize,
+            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
+        });
+
+        entity.Set(new Engulfer
+        {
+            EngulfingSize = engulfSize,
+            EngulfStorageSize = engulfSize,
+        });
+
+        // Microbes are not affected by currents before they are visualized
+        // entity.Set<CurrentAffected>();
+
+        // Selecting is used to throw out specific colony members
+        entity.Set<Selectable>();
+
+        entity.Set(new ReadableName
+        {
+            Name = new LocalizedString(species.FormattedName),
+        });
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+
+        return entity;
     }
 
     /// <summary>
@@ -377,8 +562,6 @@ public static class SpawnHelpers
         }
     }
 
-    // TODO: this is likely a huge cause of lag. Would be nice to be able
-    // to spawn these so that only one per tick is spawned.
     public static IEnumerable<Microbe> SpawnBacteriaColony(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem,
         GameProperties currentGame, Random random)
@@ -433,11 +616,12 @@ public static class SpawnHelpers
         creature.Translation = location;
 
         creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
-        creature.AddToGroup(Constants.PROCESS_GROUP);
         creature.AddToGroup(Constants.PROGRESS_ENTITY_GROUP);
 
         if (aiControlled)
-            creature.AddToGroup(Constants.AI_GROUP);
+        {
+            // TODO: AI
+        }
 
         creature.ApplySpecies(species);
         creature.ApplyMovementModeFromSpecies();
