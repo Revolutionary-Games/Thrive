@@ -26,6 +26,9 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public NodePath MinimumAmountPath = null!;
 
     [Export]
+    public NodePath MinimumAmountLabelPath = null!;
+
+    [Export]
     public NodePath ColourPath = null!;
 
 #pragma warning disable CA2213
@@ -36,6 +39,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private Label speciesLabel = null!;
     private Slider maximumDistance = null!;
     private Slider minimumAmount = null!;
+    private Label minimumAmountLabel = null!;
     private TweakedColourPicker colour = null!;
 #pragma warning restore CA2213
 
@@ -51,6 +55,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         speciesLabel = GetNode<Label>(SpeciesLabelPath);
         maximumDistance = GetNode<Slider>(MaximumDistancePath);
         minimumAmount = GetNode<Slider>(MinimumAmountPath);
+        minimumAmountLabel = GetNode<Label>(MinimumAmountLabelPath);
         colour = GetNode<TweakedColourPicker>(ColourPath);
 
         compounds.Clear();
@@ -144,12 +149,16 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         speciesLabel.Visible = false;
         compounds.Visible = false;
         compoundLabel.Visible = false;
+        minimumAmount.Visible = false;
+        minimumAmountLabel.Visible = false;
 
         switch (index)
         {
             case 0:
                 compounds.Visible = true;
                 compoundLabel.Visible = true;
+                minimumAmount.Visible = true;
+                minimumAmountLabel.Visible = true;
                 break;
             case 1:
                 species.Visible = true;
@@ -178,6 +187,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 SpeciesLabelPath.Dispose();
                 MaximumDistancePath.Dispose();
                 MinimumAmountPath.Dispose();
+                MinimumAmountLabelPath.Dispose();
                 ColourPath.Dispose();
             }
         }
