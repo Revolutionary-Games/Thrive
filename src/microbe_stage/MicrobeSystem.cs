@@ -13,7 +13,7 @@ public class MicrobeSystem
 
     private readonly Node worldRoot;
 
-    private Microbe[]? microbes = null;
+    private Microbe[]? microbes;
 
     public MicrobeSystem(Node worldRoot)
     {
@@ -74,11 +74,8 @@ public class MicrobeSystem
         (Microbe Microbe, Vector3 Position)? closestMicrobe = null;
         float nearestDistanceSquared = float.MaxValue;
         var searchRadiusSquared = searchRadius * searchRadius;
-        if (microbes == null)
-        {
-            microbes = worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
-                .ToArray();
-        }
+        microbes ??= worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
+            .ToArray();
 
         foreach (var microbe in microbes)
         {
