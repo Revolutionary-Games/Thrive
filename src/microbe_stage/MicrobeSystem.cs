@@ -13,7 +13,7 @@ public class MicrobeSystem
 
     private readonly Node worldRoot;
 
-    private Microbe[]? microbes;
+    private Microbe[]? microbes = null;
 
     public MicrobeSystem(Node worldRoot)
     {
