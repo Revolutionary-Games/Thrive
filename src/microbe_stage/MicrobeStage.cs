@@ -909,7 +909,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         foreach (var chemoreception in chemoreceptionLines)
         {
-            if (chemoreception.Line.Visible == false)
+            if (!chemoreception.Line.Visible)
                 continue;
 
             chemoreception.Line.LineStart = position;
