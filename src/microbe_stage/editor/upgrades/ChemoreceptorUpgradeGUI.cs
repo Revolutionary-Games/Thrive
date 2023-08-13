@@ -8,16 +8,16 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public NodePath? TargetTypesPath;
 
     [Export]
-    public NodePath? CompoundsPath;
+    public NodePath CompoundsPath = null!;
 
     [Export]
-    public NodePath? CompoundsLabelPath;
+    public NodePath CompoundsLabelPath = null!;
 
     [Export]
-    public NodePath? SpeciesPath;
+    public NodePath SpeciesPath = null!;
 
     [Export]
-    public NodePath? SpeciesLabelPath;
+    public NodePath SpeciesLabelPath = null!;
 
     [Export]
     public NodePath MaximumDistancePath = null!;
@@ -173,12 +173,13 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
-            TargetTypesPath?.Dispose();
-            CompoundsPath?.Dispose();
-            SpeciesPath?.Dispose();
-
-            if (CompoundsPath != null || SpeciesPath != null || TargetTypesPath != null)
+            if (TargetTypesPath != null)
             {
+                TargetTypesPath.Dispose();
+                CompoundsPath.Dispose();
+                CompoundsLabelPath.Dispose();
+                SpeciesPath.Dispose();
+                SpeciesLabelPath.Dispose();
                 MaximumDistancePath.Dispose();
                 MinimumAmountPath.Dispose();
                 ColourPath.Dispose();
