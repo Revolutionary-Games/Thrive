@@ -46,6 +46,12 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private List<Compound>? shownCompoundChoices;
     private List<Species>? shownSpeciesChoices;
 
+    private enum TargetType
+    {
+        Compound,
+        Species,
+    }
+
     public override void _Ready()
     {
         targetTypes = GetNode<OptionButton>(TargetTypesPath);
@@ -66,7 +72,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         minimumAmount.MinValue = Constants.CHEMORECEPTOR_AMOUNT_MIN;
         minimumAmount.MaxValue = Constants.CHEMORECEPTOR_AMOUNT_MAX;
 
-        TypeChanged(0);
+        TypeChanged((int)TargetType.Compound);
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
@@ -113,7 +119,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         // Force some type/compound/species to be selected
         if (targetTypes.Selected == -1)
-            targetTypes.Selected = 0;
+            targetTypes.Selected = (int)TargetType.Compound;
         if (compounds.Selected == -1)
             compounds.Selected = 0;
         if (species.Selected == -1)
@@ -123,11 +129,11 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         Compound? choiceCompound = null;
         Species? choiceSpecies = null;
 
-        if (targetTypes.Selected == 0)
+        if (targetTypes.Selected == (int)TargetType.Compound)
         {
             choiceCompound = shownCompoundChoices[compounds.Selected];
         }
-        else if (targetTypes.Selected == 1)
+        else if (targetTypes.Selected == (int)TargetType.Species)
         {
             choiceSpecies = shownSpeciesChoices[species.Selected];
         }
@@ -153,15 +159,15 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         minimumAmount.Visible = false;
         minimumAmountLabel.Visible = false;
 
-        switch (index)
+        switch ((TargetType)index)
         {
-            case 0:
+            case TargetType.Compound:
                 compounds.Visible = true;
                 compoundLabel.Visible = true;
                 minimumAmount.Visible = true;
                 minimumAmountLabel.Visible = true;
                 break;
-            case 1:
+            case TargetType.Species:
                 species.Visible = true;
                 speciesLabel.Visible = true;
                 break;
@@ -204,14 +210,14 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (configuration.TargetCompound != null)
         {
-            TypeChanged(0);
-            targetTypes.Selected = 0;
+            TypeChanged((int)TargetType.Compound);
+            targetTypes.Selected = (int)TargetType.Compound;
             compounds.Selected = shownCompoundChoices.FindIndex(c => c == configuration.TargetCompound);
         }
         else if (configuration.TargetSpecies != null)
         {
-            TypeChanged(1);
-            targetTypes.Selected = 1;
+            TypeChanged((int)TargetType.Species);
+            targetTypes.Selected = (int)TargetType.Species;
             species.Selected = shownSpeciesChoices.FindIndex(c => c == configuration.TargetSpecies);
         }
 
@@ -225,9 +231,11 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     /// </summary>
     private void ApplySelectionColour()
     {
-        if (targetTypes.Selected == 0 && shownCompoundChoices != null && compounds.Selected >= 0)
+        if (targetTypes.Selected == (int)TargetType.Compound && shownCompoundChoices != null
+            && compounds.Selected >= 0)
             colour.Color = shownCompoundChoices[compounds.Selected].Colour;
-        if (targetTypes.Selected == 1 && shownSpeciesChoices != null && species.Selected >= 0)
+        if (targetTypes.Selected == (int)TargetType.Species && shownSpeciesChoices != null
+            && species.Selected >= 0)
             colour.Color = shownSpeciesChoices[species.Selected].Colour;
     }
 }
