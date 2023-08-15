@@ -89,7 +89,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
 
         var defaultCompound = SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
-        ChemoreceptorUpgrades defaultConfiguration = new ChemoreceptorUpgrades(defaultCompound, null,
+        var defaultConfiguration = new ChemoreceptorUpgrades(defaultCompound, null,
             Constants.CHEMORECEPTOR_RANGE_DEFAULT, Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, defaultCompound.Colour);
 
         // Apply current upgrade values or defaults
