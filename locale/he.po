@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-22 11:45+0200\n"
+"POT-Creation-Date: 2023-08-15 15:10+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -959,7 +959,8 @@ msgstr "נבנה ב:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:70
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -997,7 +998,7 @@ msgstr "ריכוזי ה{0} ירדו ב{1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} צריכה"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:35
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "תרכובת לחפש:"
 
@@ -3086,7 +3087,7 @@ msgstr "מאוד גדול"
 msgid "LIMIT_VERY_SMALL"
 msgstr "מאוד קטן"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:106
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 msgid "LINE_COLOUR"
 msgstr "צבע הקו:"
 
@@ -3596,7 +3597,7 @@ msgstr "גלגלת העכבר"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} מיליון"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:84
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "כמות מינימלית למצוא:"
 
@@ -4120,11 +4121,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1512
+#: ../src/microbe_stage/Microbe.Interior.cs:1510
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1457
+#: ../src/microbe_stage/Microbe.Interior.cs:1455
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4940,7 +4941,7 @@ msgstr "תסקיר"
 msgid "REPORT_BUG"
 msgstr "תסקיר"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1119
+#: ../src/microbe_stage/Microbe.Interior.cs:1117
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -5294,7 +5295,7 @@ msgstr "מקש Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "מחפש..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:62
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "רדיוס חיפוש:"
 
@@ -5564,7 +5565,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "מקש עכבר ייחודי 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:71
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 msgid "SPECIES"
 msgstr "מינים"
 
@@ -5620,7 +5621,7 @@ msgstr "אוכלוסיה המינימלית למינים להתפצל על יד�
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "חלק מאוכלוסייה המינימלי של מין שמאפשר פיצול על ידי מוטציות"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:45
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
 #, fuzzy
 msgid "SPECIES_TO_FIND"
 msgstr "מינים:"
@@ -5894,7 +5895,7 @@ msgstr "תגיות מכילים רק רווחים"
 msgid "TAKE_SCREENSHOT"
 msgstr "צלם מסך"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:25
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "סוג:"

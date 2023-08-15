@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-22 11:45+0200\n"
+"POT-Creation-Date: 2023-08-15 15:10+0200\n"
 "PO-Revision-Date: 2022-12-02 16:07+0000\n"
 "Last-Translator: cesco <lothindir@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -975,7 +975,8 @@ msgstr "Compilé à :"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:70
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1013,7 +1014,7 @@ msgstr "La concentration de {0} a diminué de {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consommation de {0}"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:35
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "Composé à trouver :"
 
@@ -3150,7 +3151,7 @@ msgstr "Très grand"
 msgid "LIMIT_VERY_SMALL"
 msgstr "Très petit"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:106
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 msgid "LINE_COLOUR"
 msgstr "Couleur de la ligne :"
 
@@ -3668,7 +3669,7 @@ msgstr "Clic molette"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:84
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Quantité minimale à détecter :"
 
@@ -4215,11 +4216,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1512
+#: ../src/microbe_stage/Microbe.Interior.cs:1510
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1457
+#: ../src/microbe_stage/Microbe.Interior.cs:1455
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -5053,7 +5054,7 @@ msgstr "Rapport"
 msgid "REPORT_BUG"
 msgstr "Rapport"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1119
+#: ../src/microbe_stage/Microbe.Interior.cs:1117
 msgid "REPRODUCED"
 msgstr "reproduit"
 
@@ -5419,7 +5420,7 @@ msgstr "Verrouillage de défilement"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Rechercher..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:62
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Rayon de recherche :"
 
@@ -5705,7 +5706,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Bouton souris 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs:71
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 msgid "SPECIES"
 msgstr "Espèces présentes"
 
@@ -5761,7 +5762,7 @@ msgstr "Population minimale pour que les espèces divergent si plusieurs mutatio
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Proportion minimale de la population nécessaire à une divergence par mutation"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:45
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
 msgid "SPECIES_TO_FIND"
 msgstr "Espèce à trouver :"
 
@@ -6043,7 +6044,7 @@ msgstr "Les tags ne contiennent que des espaces vides"
 msgid "TAKE_SCREENSHOT"
 msgstr "Prendre une capture d'écran"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:25
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Type de Cible :"
