@@ -9,21 +9,6 @@ using Newtonsoft.Json;
 public interface ISpawnSystem
 {
     /// <summary>
-    ///   Prepares the spawn system for a new game
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: if later spawn systems than microbe don't need this either, this should probably be refactored out
-    ///   </para>
-    /// </remarks>
-    public void Init();
-
-    /// <summary>
-    ///   Clears the registered spawners
-    /// </summary>
-    public void Clear();
-
-    /// <summary>
     ///   Despawns all spawned entities
     /// </summary>
     public void DespawnAll();

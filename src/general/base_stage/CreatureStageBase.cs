@@ -37,13 +37,14 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
 
+    // TODO: eventually convert this just to a Entity without having any generic type configurability here
     /// <summary>
     ///   The current player or null.
-    ///   TODO: check: Due to references on save load this needs to be after the systems
     /// </summary>
     [JsonProperty]
     public TPlayer? Player { get; protected set; }
 
+    // TODO: make abstract
     [JsonIgnore]
     public bool HasPlayer => Player != null;
 

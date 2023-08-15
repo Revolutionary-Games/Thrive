@@ -22,6 +22,7 @@
     [With(typeof(MicrobeAI))]
     [With(typeof(ManualPhysicsControl))]
     [With(typeof(WorldPosition))]
+    [With(typeof(Health))]
     [Without(typeof(AttachedToEntity))]
     public sealed class MicrobeAISystem : AEntitySetSystem<float>
     {
@@ -34,6 +35,7 @@
 
         private readonly MicrobeWorldSimulation worldSimulation;
 
+        // TODO: save these for more consistency after loading a save?
         /// <summary>
         ///   Stored random instances for use by the individual AI methods which may run in multiple threads
         /// </summary>
@@ -113,19 +115,25 @@
             // TODO: would be nice to add a tiny bit of randomness to the times here so that not all cells think at once
             ai.TimeUntilNextThink = Constants.MICROBE_AI_THINK_INTERVAL;
 
-            throw new NotImplementedException();
+            // This is probably pretty useless for most situations, but hopefully this doesn't eat too much
+            // performance
+            if (entity.Has<PlayerMarker>())
+            {
+                if (!printedPlayerControlMessage)
+                {
+                    GD.Print("AI is controlling the player microbe");
+                    printedPlayerControlMessage = true;
+                }
+            }
 
-            // TODO: reimplement the following conditions
-            // if (IsPlayerMicrobe)
-            // {
-            //     if (!printedPlayerControlMessage)
-            //     {
-            //         GD.Print("AI is controlling the player microbe");
-            //         printedPlayerControlMessage = true;
-            //     }
-            // }
-            //
-            // if (Dead || IsForPreviewOnly || PhagocytosisStep != PhagocytosisPhase.None)
+            ref var health = ref entity.Get<Health>();
+
+            if (health.Dead)
+                return;
+
+            // This shouldn't be needed thanks to the check that this doesn't run on attached entities
+            // ref var engulfable = ref entity.Get<Engulfable>();
+            // if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
             //     return;
 
             ref var position = ref entity.Get<WorldPosition>();

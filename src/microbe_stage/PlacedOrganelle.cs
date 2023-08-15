@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 
+// TODO: this needs to be refactored to no longer be a Godot Node, and maybe rename to OrganelleInstance
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
@@ -49,6 +51,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         Definition = definition;
         Position = position;
         Orientation = orientation;
+
+        InitializeComponents();
+
+        ResetGrowth();
     }
 
     public OrganelleDefinition Definition { get; set; }
@@ -57,6 +63,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public int Orientation { get; set; }
 
+    // TODO: remove this
     [JsonProperty]
     public Microbe? ParentMicrobe { get; private set; }
 
@@ -230,6 +237,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// </summary>
     public void OnAddedToMicrobe(Microbe microbe)
     {
+        throw new NotSupportedException("This is no longer the way to do this");
+
         if (Definition == null)
             throw new InvalidOperationException("PlacedOrganelle has no definition set");
 
@@ -590,6 +599,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         // Components
+        InitializeComponents();
+
+        growthValueDirty = true;
+    }
+
+    private void InitializeComponents()
+    {
         components = new List<IOrganelleComponent>();
 
         foreach (var factory in Definition.ComponentFactories)
@@ -603,8 +619,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             components.Add(component);
         }
-
-        growthValueDirty = true;
     }
 
     private Vector3 ShapeTruePosition(Hex parentOffset)
@@ -719,7 +733,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         // Position the intermediate node relative to origin of cell
         var transform = new Transform(Quat.Identity,
-            Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
+            Hex.AxialToCartesian(Position) + Definition.ModelOffset);
 
         OrganelleGraphics.Transform = transform;
 

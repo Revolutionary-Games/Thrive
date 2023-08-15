@@ -1,5 +1,7 @@
 ﻿namespace Components
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///   Holds a physics shape once one is ready and then allows creating a physics body from it
     /// </summary>

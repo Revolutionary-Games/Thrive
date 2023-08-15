@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstring>
 #include <memory>
 
 #include "Jolt/Core/Reference.h"
@@ -69,6 +70,33 @@ public:
         return bodyControlStateIfActive.get();
     }
 
+    [[nodiscard]] inline bool HasUserData() const noexcept
+    {
+        return userDataLength > 0;
+    }
+
+    inline bool SetUserData(const char* data, int length) noexcept
+    {
+        // Fail if too much data given
+        if (length > userData.size())
+        {
+            userDataLength = 0;
+            return false;
+        }
+
+        // Data clearing
+        if (data == nullptr)
+        {
+            userDataLength = 0;
+            return true;
+        }
+
+        // New data is set
+        std::memcpy(userData.data(), data, length);
+        userDataLength = length;
+        return true;
+    }
+
 protected:
     bool EnableBodyControlIfNotAlready() noexcept;
     bool DisableBodyControl() noexcept;
@@ -85,16 +113,18 @@ protected:
     }
 
 private:
-    const JPH::BodyID id;
+    std::array<char, PHYSICS_USER_DATA_SIZE> userData;
 
-    bool inWorld = false;
-    bool active = true;
+    const JPH::BodyID id;
 
     std::vector<Ref<TrackedConstraint>> constraintsThisIsPartOf;
 
     std::unique_ptr<BodyControlState> bodyControlStateIfActive;
 
-    // PhysicalWorld* owningWorld;
+    int userDataLength = 0;
+
+    bool inWorld = false;
+    bool active = true;
 };
 
 } // namespace Thrive::Physics

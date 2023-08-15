@@ -100,15 +100,15 @@
                     collisionManagement.RecordActiveCollisions)
                 {
                     // Start recording collisions
-                    collisionManagement.ActiveCollisions =
-                        physicalWorld.BodyStartEntityCollisionRecording(physicsBody,
-                            collisionManagement.RecordActiveCollisions);
+                    collisionManagement.ActiveCollisions = physicalWorld.BodyStartCollisionRecording(physicsBody,
+                        collisionManagement.RecordActiveCollisions, out collisionManagement.ActiveCollisionCountPtr);
                 }
             }
             else if (collisionManagement.ActiveCollisions != null)
             {
                 // Stop recording collisions
                 collisionManagement.ActiveCollisions = null;
+                collisionManagement.ActiveCollisionCountPtr = IntPtr.Zero;
 
                 physicalWorld.BodyStopCollisionRecording(physicsBody);
             }

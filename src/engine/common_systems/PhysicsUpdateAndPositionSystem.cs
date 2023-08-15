@@ -22,6 +22,12 @@
             this.physicalWorld = physicalWorld;
         }
 
+        /// <summary>
+        ///   If true Y-axis fixed bodies are ensured they don't get too far away from Y=0. Should be unnecessary now
+        ///   with
+        /// </summary>
+        public bool EnforceYPosition { get; set; }
+
         protected override void Update(float delta, in Entity entity)
         {
             ref var physics = ref entity.Get<Physics>();
@@ -51,7 +57,7 @@
                 (physics.Velocity, physics.AngularVelocity) = physicalWorld.ReadBodyVelocity(body);
             }
 
-            if (physics.LockToYAxis)
+            if (physics.LockToYAxis && EnforceYPosition)
             {
                 // Apply fixing to Y-position if drifted too far
                 var driftAmount = Mathf.Abs(position.Position.y);

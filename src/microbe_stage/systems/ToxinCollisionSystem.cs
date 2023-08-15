@@ -43,18 +43,11 @@
                 collisions.StateApplied = false;
             }
 
-            var activeCollisions = collisions.ActiveCollisions;
-            if (activeCollisions == null || activeCollisions.Length < 1)
-                return;
-
             // Check for active collisions that count as a hit and use up this projectile
-            int count = activeCollisions.Length;
+            var count = collisions.GetActiveCollisions(out var activeCollisions);
             for (int i = 0; i < count; ++i)
             {
-                ref var collision = ref activeCollisions[i];
-
-                if (!collision.Active)
-                    continue;
+                ref var collision = ref activeCollisions![i];
 
                 if (!HandlePotentiallyDamagingCollision(ref collision))
                     continue;

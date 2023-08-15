@@ -46,67 +46,60 @@
             }
 
             // Handle any current collisions
-            var collisions = collisionManagement.ActiveCollisions;
-            if (collisions is { Length: > 0 })
+            bool collided = false;
+
+            var count = collisionManagement.GetActiveCollisions(out var collisions);
+            for (int i = 0; i < count; ++i)
             {
-                bool collided = false;
+                ref var collision = ref collisions![i];
 
-                int count = collisions.Length;
-                for (int i = 0; i < count; ++i)
+                bool reverseOrder = collision.FirstEntity != entity;
+
+                if (reverseOrder)
                 {
-                    ref var collision = ref collisions[i];
-
-                    if (!collision.Active)
+                    // Skip collisions with things that can't be damaged
+                    if (!collision.FirstEntity.Has<Health>())
                         continue;
 
-                    bool reverseOrder = collision.FirstEntity != entity;
+                    ref var health = ref collision.FirstEntity.Get<Health>();
 
-                    if (reverseOrder)
-                    {
-                        // Skip collisions with things that can't be damaged
-                        if (!collision.FirstEntity.Has<Health>())
-                            continue;
+                    // TODO: disable dealing damage to a pilus
+                    throw new NotImplementedException();
 
-                        ref var health = ref collision.FirstEntity.Get<Health>();
-
-                        // TODO: disable dealing damage to a pilus
-                        throw new NotImplementedException();
-
-                        DealDamage(ref health, ref damageTouch, delta);
-                        collided = true;
-                    }
-                    else
-                    {
-                        // This is just the above true conditions of the if flipped to deal with the other body
-                        if (!collision.SecondEntity.Has<Health>())
-                            continue;
-
-                        ref var health = ref collision.SecondEntity.Get<Health>();
-
-                        // TODO: pilus
-
-                        DealDamage(ref health, ref damageTouch, delta);
-                        collided = true;
-                    }
+                    DealDamage(ref health, ref damageTouch, delta);
+                    collided = true;
                 }
-
-                if (collided && damageTouch.DestroyOnTouch)
+                else
                 {
-                    // Destroy this entity
-                    damageTouch.StartedDestroy = true;
+                    // This is just the above true conditions of the if flipped to deal with the other body
+                    if (!collision.SecondEntity.Has<Health>())
+                        continue;
 
-                    collisionManagement.AllCollisionsDisabled = true;
-                    collisionManagement.StateApplied = false;
+                    ref var health = ref collision.SecondEntity.Get<Health>();
 
-                    if (damageTouch.UsesMicrobialDissolveEffect)
-                    {
-                        // We assume that damage on touch is always done by chunks
-                        entity.StartDissolveAnimation(true);
-                    }
-                    else
-                    {
-                        worldSimulation.DestroyEntity(entity);
-                    }
+                    // TODO: pilus
+
+                    DealDamage(ref health, ref damageTouch, delta);
+                    collided = true;
+                }
+            }
+
+            if (collided && damageTouch.DestroyOnTouch)
+            {
+                // Destroy this entity
+                damageTouch.StartedDestroy = true;
+
+                collisionManagement.AllCollisionsDisabled = true;
+                collisionManagement.StateApplied = false;
+
+                if (damageTouch.UsesMicrobialDissolveEffect)
+                {
+                    // We assume that damage on touch is always done by chunks
+                    entity.StartDissolveAnimation(true);
+                }
+                else
+                {
+                    worldSimulation.DestroyEntity(entity);
                 }
             }
         }

@@ -68,6 +68,9 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void GiveImpulse(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void GiveAngularImpulse(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse);
+
     [[maybe_unused]] THRIVE_NATIVE_API void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body,
         JVecF3 movementImpulse, JQuat targetRotation, float rotationRate);
 
@@ -77,6 +80,15 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPosition(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocity(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyAngularVelocity(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocityAndAngularVelocity(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity);
 
     [[maybe_unused]] THRIVE_NATIVE_API bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
@@ -100,6 +112,10 @@ extern "C"
     // ------------------------------------ //
     // Body functions
     [[maybe_unused]] THRIVE_NATIVE_API void ReleasePhysicsBodyReference(PhysicsBody* body);
+
+    /// Set user data for a physics body, note that currently all data needs to be the same size to fully work,
+    /// which is specified by Thrive::PHYSICS_USER_DATA_SIZE
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLength);
 
     // ------------------------------------ //
     // Physics shapes

@@ -1,6 +1,8 @@
 ﻿namespace Components
 {
+    using System;
     using System.Collections.Generic;
+    using System.Runtime.InteropServices;
     using DefaultEcs;
     using Newtonsoft.Json;
 
@@ -16,6 +18,13 @@
         /// </summary>
         [JsonIgnore]
         public PhysicsCollision[]? ActiveCollisions;
+
+        /// <summary>
+        ///   Pointer to the field that stores the size of valid collisions inside <see cref="ActiveCollisions"/>.
+        ///   Use
+        /// </summary>
+        [JsonIgnore]
+        public IntPtr ActiveCollisionCountPtr;
 
         public List<Entity>? IgnoredCollisionsWith;
 
@@ -60,5 +69,21 @@
         public bool CollisionFilterCallbackRegistered;
 
         public delegate bool OnCollided(ref PhysicsCollision collision);
+    }
+
+    public static class CollisionManagementHelpers
+    {
+        public static int GetActiveCollisions(
+            ref this CollisionManagement collisionManagement, out PhysicsCollision[]? collisions)
+        {
+            // If state is not correct for reading
+            collisions = collisionManagement.ActiveCollisions;
+            if (collisions == null || collisionManagement.ActiveCollisionCountPtr.ToInt64() == 0)
+            {
+                return 0;
+            }
+
+            return Marshal.ReadInt32(collisionManagement.ActiveCollisionCountPtr);
+        }
     }
 }

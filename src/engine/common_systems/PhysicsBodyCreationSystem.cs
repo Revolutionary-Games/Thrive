@@ -87,14 +87,17 @@
                 var physicalWorld = worldSimulationWithPhysics.PhysicalWorld;
 
                 // Apply initial velocity
-                physicalWorld.SetBodyVelocity(body, physics.Velocity,
-                    physics.AngularVelocity);
+                physicalWorld.SetBodyVelocity(body, physics.Velocity, physics.AngularVelocity);
 
                 if (physics.LinearDamping != null)
                 {
                     physicalWorld.SetDamping(body, physics.LinearDamping.Value, physics.AngularDamping);
                 }
             }
+
+            // Store the entity in the body to make physics callbacks reported back from the physics system tell us
+            // the entities involved in them
+            body.SetEntityReference(entity);
 
             body.Marked = true;
             createdBodies.Add(body);
@@ -103,15 +106,16 @@
             physics.DampingApplied = true;
 
             physics.Body = body;
+            shapeHolder.RecreateBody = false;
         }
 
         protected override void PostUpdate(float delta)
         {
-            createdBodies.RemoveAll(DestroyBodeIfNotMarked);
+            createdBodies.RemoveAll(DestroyBodyIfNotMarked);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool DestroyBodeIfNotMarked(NativePhysicsBody body)
+        private bool DestroyBodyIfNotMarked(NativePhysicsBody body)
         {
             if (body.Marked)
                 return false;

@@ -29,14 +29,11 @@ public class Membrane : MeshInstance, IComputedMembraneData
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
-    private Color tint = Colors.White;
-    private float dissolveEffectValue;
 
     private MembraneType? type;
 
 #pragma warning disable CA2213
     private Texture? albedoTexture;
-    private Texture noiseTexture = null!;
 #pragma warning restore CA2213
 
     private string? currentlyLoadedAlbedoTexture;
@@ -84,6 +81,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// </remarks>
     public IReadOnlyList<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
 
+    // TODO: delete this property if this doesn't get used soon
     /// <summary>
     ///   Returns a convex shaped 3-Dimensional array of vertices from the generated <see cref="vertices2D"/>.
     /// </summary>
@@ -119,6 +117,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
             return cachedConvexShape;
         }
     }
+
+    [JsonIgnore]
+    public IReadOnlyList<Vector2> Computed2DVertices => vertices2D;
 
     /// <summary>
     ///   The type of the membrane.
@@ -181,28 +182,26 @@ public class Membrane : MeshInstance, IComputedMembraneData
         }
     }
 
+    // TODO: remove this
     public Color Tint
     {
-        get => tint;
+        get => throw new NotSupportedException();
         set
         {
-            // Desaturate it here so it looks nicer (could implement as method that
-            // could be called i suppose)
-
-            // According to stack overflow HSV and HSB are the same thing
-            value.ToHsv(out var hue, out var saturation, out var brightness);
-
-            value = Color.FromHsv(hue, saturation * 0.75f, brightness,
-                Mathf.Clamp(value.a, 0.4f - brightness * 0.3f, 1.0f));
-
-            if (tint == value)
-                return;
-
-            tint = value;
-
-            // If we already have created a material we need to re-apply it
-            ApplyTint();
+            throw new NotSupportedException("no longer used like this");
         }
+    }
+
+    public static Color MembraneTintFromSpeciesColour(Color color)
+    {
+        // Desaturate it here so it looks nicer (could implement as method that
+        // could be called i suppose)
+
+        // According to stack overflow HSV and HSB are the same thing
+        color.ToHsv(out var hue, out var saturation, out var brightness);
+
+        return Color.FromHsv(hue, saturation * 0.75f, brightness,
+            Mathf.Clamp(color.a, 0.4f - brightness * 0.3f, 1.0f));
     }
 
     /// <summary>
@@ -222,24 +221,12 @@ public class Membrane : MeshInstance, IComputedMembraneData
         }
     }
 
-    public float DissolveEffectValue
-    {
-        get => dissolveEffectValue;
-        set
-        {
-            dissolveEffectValue = value;
-            ApplyDissolveEffect();
-        }
-    }
-
     public override void _Ready()
     {
         type ??= SimulationParameters.Instance.GetMembrane("single");
 
         if (MaterialToEdit == null)
             GD.PrintErr("MaterialToEdit on Membrane is not set");
-
-        noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
         Dirty = true;
     }
@@ -507,9 +494,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
         ApplyWiggly();
         ApplyMovementWiggly();
         ApplyHealth();
-        ApplyTint();
         ApplyTextures();
-        ApplyDissolveEffect();
     }
 
     private void ApplyWiggly()
@@ -548,11 +533,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
         MaterialToEdit?.SetShaderParam("healthFraction", HealthFraction);
     }
 
-    private void ApplyTint()
-    {
-        MaterialToEdit?.SetShaderParam("tint", Tint);
-    }
-
     private void ApplyTextures()
     {
         // We must update the texture on already-existing membranes, due to the membrane texture changing
@@ -565,14 +545,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
         MaterialToEdit!.SetShaderParam("albedoTexture", albedoTexture);
         MaterialToEdit.SetShaderParam("normalTexture", Type.LoadedNormalTexture);
         MaterialToEdit.SetShaderParam("damagedTexture", Type.LoadedDamagedTexture);
-        MaterialToEdit.SetShaderParam("dissolveTexture", noiseTexture);
 
         currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
-    }
-
-    private void ApplyDissolveEffect()
-    {
-        MaterialToEdit?.SetShaderParam("dissolveValue", DissolveEffectValue);
     }
 
     private void CopyMeshFromCache(ComputedMembraneData cached)

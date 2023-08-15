@@ -1582,7 +1582,7 @@ public partial class CellEditorComponent :
 
             organelleModel.Transform = new Transform(
                 MathUtils.CreateRotationForOrganelle(rotation),
-                cartesianPosition + shownOrganelle.CalculateModelOffset());
+                cartesianPosition + shownOrganelle.ModelOffset);
 
             organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
                 Constants.DEFAULT_HEX_SIZE);

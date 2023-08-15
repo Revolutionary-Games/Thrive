@@ -133,7 +133,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawn a floating chunk (cell parts floating around, rocks, hazards)
     /// </summary>
-    public static EntityRecord SpawnChunk(IWorldSimulation worldSimulation, ChunkConfiguration chunkType,
+    public static void SpawnChunk(IWorldSimulation worldSimulation, ChunkConfiguration chunkType,
         Vector3 location, Random random, bool microbeDrop)
     {
         // Resolve the final chunk settings as the chunk configuration is a group of potential things
@@ -295,7 +295,7 @@ public static class SpawnHelpers
 
         worldSimulation.FinishRecordingEntityCommands(recorder);
 
-        return entity;
+        // return entity;
     }
 
     // TODO: remove this old variant
@@ -326,13 +326,22 @@ public static class SpawnHelpers
         return microbe;
     }
 
-    public static EntityRecord SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
+    public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
         bool aiControlled, CellType? multicellularCellType = null)
+    {
+        var recorder = SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
+            multicellularCellType, out _);
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+    }
+
+    public static EntityCommandRecorder SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation, Species species,
+        Vector3 location, bool aiControlled, CellType? multicellularCellType, out EntityRecord entity)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
         var entityCreator = worldSimulation.GetRecorderWorld(recorder);
 
-        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
+        entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         // Position
         entity.Set(new WorldPosition(location, Quat.Identity));
@@ -376,10 +385,7 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
-                entity.Set(new ColourAnimation
-                {
-                    DefaultColour = multicellularCellType.Colour,
-                });
+                entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(multicellularCellType.Colour)));
             }
             else
             {
@@ -393,10 +399,7 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
-                entity.Set(new ColourAnimation
-                {
-                    DefaultColour = usedCellProperties.Colour,
-                });
+                entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour)));
             }
         }
         else if (species is MicrobeSpecies microbeSpecies)
@@ -412,10 +415,7 @@ public static class SpawnHelpers
             membraneType = properties.MembraneType;
             entity.Set(properties);
 
-            entity.Set(new ColourAnimation
-            {
-                DefaultColour = microbeSpecies.Colour,
-            });
+            entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour)));
 
             if (multicellularCellType != null)
                 GD.PrintErr("Multicellular cell type may not be set when spawning a MicrobeSpecies instance");
@@ -478,6 +478,7 @@ public static class SpawnHelpers
         entity.Set(new Physics
         {
             LockToYAxis = true,
+            LinearDamping = 0.2f,
         });
 
         entity.Set(new CollisionManagement
@@ -529,9 +530,7 @@ public static class SpawnHelpers
             Name = new LocalizedString(species.FormattedName),
         });
 
-        worldSimulation.FinishRecordingEntityCommands(recorder);
-
-        return entity;
+        return recorder;
     }
 
     /// <summary>

@@ -76,6 +76,8 @@ public:
     void SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity);
     void GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse);
 
+    void SetVelocityAndAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity);
+
     void SetBodyControl(
         PhysicsBody& bodyWrapper, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float rotationRate);
     void DisableBodyControl(PhysicsBody& bodyWrapper);

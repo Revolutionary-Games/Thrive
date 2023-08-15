@@ -412,6 +412,21 @@ void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
     body.AddAngularImpulse(impulse);
 }
 
+void PhysicalWorld::SetVelocityAndAngularVelocity(
+    JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity)
+{
+    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
+    if (!lock.Succeeded())
+    {
+        LOG_ERROR("Couldn't lock body for setting velocity and angular velocity");
+        return;
+    }
+
+    JPH::Body& body = lock.GetBody();
+    body.SetLinearVelocityClamped(velocity);
+    body.SetAngularVelocityClamped(angularVelocity);
+}
+
 void PhysicalWorld::SetBodyControl(
     PhysicsBody& bodyWrapper, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float rotationRate)
 {
@@ -898,7 +913,7 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
             }
 #else
             body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
-#endif //USE_SLOW_TURN_NEAR_TARGET
+#endif // USE_SLOW_TURN_NEAR_TARGET
         }
     }
 

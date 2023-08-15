@@ -1,7 +1,9 @@
 ﻿namespace Components
 {
+    using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
+    using Systems;
 
     /// <summary>
     ///   Entity that contains <see cref="PlacedOrganelle"/>
@@ -66,9 +68,51 @@
     {
         public static void CreateOrganelleLayout(ref this OrganelleContainer container, ICellProperties cellProperties)
         {
+            container.Organelles?.Clear();
+            container.AllOrganellesDivided = false;
 
+            container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
+
+            foreach (var organelleTemplate in cellProperties.Organelles)
+            {
+                container.Organelles.Add(new PlacedOrganelle(organelleTemplate.Definition, organelleTemplate.Position,
+                    organelleTemplate.Orientation));
+            }
+
+            container.CalculateOrganelleLayoutStatistics();
 
             container.OrganelleVisualsCreated = false;
+        }
+
+        public static void CalculateOrganelleLayoutStatistics(ref this OrganelleContainer container)
+        {
+            container.AvailableEnzymes?.Clear();
+            container.AvailableEnzymes ??= new Dictionary<Enzyme, int>();
+
+            container.AgentVacuoleCount = 0;
+            container.OrganellesCapacity = 0;
+
+            if (container.Organelles == null)
+                throw new InvalidOperationException("Organelle list needs to be initialized first");
+
+            foreach (var organelle in container.Organelles)
+            {
+                if (organelle.HasComponent<AgentVacuoleComponent>())
+                    ++container.AgentVacuoleCount;
+
+                container.OrganellesCapacity = organelle.StorageCapacity;
+
+                if (organelle.StoredEnzymes.Count > 0)
+                {
+                    foreach (var enzyme in organelle.StoredEnzymes)
+                    {
+                        container.AvailableEnzymes.TryGetValue(enzyme.Key, out var existing);
+                        container.AvailableEnzymes[enzyme.Key] = existing + enzyme.Value;
+                    }
+                }
+            }
+
+            // TODO: slime jets implementation
         }
     }
 }

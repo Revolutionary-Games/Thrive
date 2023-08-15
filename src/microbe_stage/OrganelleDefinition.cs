@@ -196,6 +196,8 @@ public class OrganelleDefinition : IRegistryType
     private string? untranslatedName;
 #pragma warning restore 169,649
 
+    private Vector3 modelOffset;
+
     public enum OrganelleGroup
     {
         /// <summary>
@@ -234,6 +236,9 @@ public class OrganelleDefinition : IRegistryType
 
     [JsonIgnore]
     public int HexCount => Hexes.Count;
+
+    [JsonIgnore]
+    public Vector3 ModelOffset => modelOffset;
 
     public string InternalName { get; set; } = null!;
 
@@ -280,25 +285,9 @@ public class OrganelleDefinition : IRegistryType
         return rotated;
     }
 
-    public Vector3 CalculateCenterOffset()
-    {
-        var offset = new Vector3(0, 0, 0);
 
-        foreach (var hex in Hexes)
-        {
-            offset += Hex.AxialToCartesian(hex);
-        }
 
-        offset /= Hexes.Count;
-        return offset;
-    }
 
-    public Vector3 CalculateModelOffset()
-    {
-        var temp = CalculateCenterOffset();
-        temp /= HexCount;
-        return temp * Constants.DEFAULT_HEX_SIZE;
-    }
 
     /// <summary>
     ///   Returns true when this has the specified component factory.
@@ -423,6 +412,8 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
+        CalculateModelOffset();
+
         RunnableProcesses = new List<TweakedProcess>();
 
         // Preload the scene for instantiating in microbes
@@ -496,6 +487,26 @@ public class OrganelleDefinition : IRegistryType
         HasPilusComponent = HasComponentFactory<PilusComponentFactory>();
         HasMovementComponent = HasComponentFactory<MovementComponentFactory>();
         HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
+    }
+
+    private void CalculateModelOffset()
+    {
+        var temp = CalculateCenterOffset();
+        temp /= HexCount;
+        modelOffset = temp * Constants.DEFAULT_HEX_SIZE;
+    }
+
+    private Vector3 CalculateCenterOffset()
+    {
+        var offset = new Vector3(0, 0, 0);
+
+        foreach (var hex in Hexes)
+        {
+            offset += Hex.AxialToCartesian(hex);
+        }
+
+        offset /= Hexes.Count;
+        return offset;
     }
 
     public class OrganelleComponentFactoryInfo

@@ -151,6 +151,7 @@
     <Compile Include="src\engine\common_components\Spawned.cs" />
     <Compile Include="src\engine\common_components\TimedLife.cs" />
     <Compile Include="src\engine\common_components\WorldPosition.cs" />
+    <Compile Include="src\engine\common_systems\ColourAnimationSystem.cs" />
     <Compile Include="src\engine\common_systems\CountLimitedDespawnSystem.cs" />
     <Compile Include="src\engine\common_systems\DamageOnTouchSystem.cs" />
     <Compile Include="src\engine\common_systems\EntityMaterialFetchSystem.cs" />
@@ -628,10 +629,12 @@
     <Compile Include="src\microbe_stage\systems\CellBurstEffectSystem.cs" />
     <Compile Include="src\microbe_stage\systems\FluidCurrentsSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeAISystem.cs" />
+    <Compile Include="src\microbe_stage\systems\MicrobePhysicsCreationSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeShaderSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeVisualsSystem.cs" />
     <Compile Include="src\microbe_stage\systems\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\systems\SpawnSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\TintColourAnimationSystem.cs" />
     <Compile Include="src\microbe_stage\systems\ToxinCollisionSystem.cs" />
     <Compile Include="src\microbe_stage\TweakedProcess.cs" />
     <Compile Include="src\microbe_stage\CompoundBag.cs" />

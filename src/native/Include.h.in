@@ -36,4 +36,7 @@ namespace Thrive
 {
 constexpr float PI = 3.14159265;
 constexpr double PI_DOUBLE = 3.1415926535897932;
+
+/// Size in bytes that physics body user data is (used for collision callbacks)
+constexpr size_t PHYSICS_USER_DATA_SIZE = 8;
 } // namespace Thrive

@@ -205,6 +205,13 @@ void GiveImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse
         ->GiveImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(impulse));
 }
 
+void GiveAngularImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->GiveAngularImpulse(
+            reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(angularImpulse));
+}
+
 void SetBodyControl(
     PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 movementImpulse, JQuat targetRotation, float rotationRate)
 {
@@ -235,6 +242,27 @@ void SetBodyPosition(PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 posi
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
         ->SetPosition(
             reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::DVec3FromCAPI(position), activate);
+}
+
+void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(velocity));
+}
+
+void SetBodyAngularVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetAngularVelocity(
+            reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(angularVelocity));
+}
+
+void SetBodyVelocityAndAngularVelocity(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetVelocityAndAngularVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+            Thrive::Vec3FromCAPI(velocity), Thrive::Vec3FromCAPI(angularVelocity));
 }
 
 bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
@@ -293,6 +321,14 @@ void ReleasePhysicsBodyReference(PhysicsBody* body)
         return;
 
     reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->Release();
+}
+
+void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLength)
+{
+    if (!reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->SetUserData(data, dataLength))
+    {
+        LOG_ERROR("PhysicsBodySetUserData: called with wrong data length, cannot store the data");
+    }
 }
 
 // ------------------------------------ //

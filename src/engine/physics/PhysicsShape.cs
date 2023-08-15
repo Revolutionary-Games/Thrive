@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Godot;
 
@@ -32,36 +33,23 @@ public class PhysicsShape : IDisposable
         // TODO: density passing to native side
         throw new NotImplementedException();
 
-
         return new PhysicsShape(NativeMethods.CreateSphereShape(radius));
     }
 
     // TODO: hashing and caching based on the parameters to avoid needing to constantly create new shapes
-    public static PhysicsShape CreateMicrobeShape(JVecF3[] organellePositions, float overallDensity,
+    public static PhysicsShape CreateMicrobeShape(ReadOnlySpan<JVecF3> organellePositions, float overallDensity,
         bool scaleAsBacteria, bool createAsSpheres = false)
     {
-        var gch = GCHandle.Alloc(organellePositions, GCHandleType.Pinned);
-
-        PhysicsShape result;
-        try
+        if (createAsSpheres)
         {
-            if (createAsSpheres)
-            {
-                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeSpheres(gch.AddrOfPinnedObject(),
-                    (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
-            }
-            else
-            {
-                result = new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(gch.AddrOfPinnedObject(),
-                    (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
-            }
-        }
-        finally
-        {
-            gch.Free();
+            return new PhysicsShape(NativeMethods.CreateMicrobeShapeSpheres(
+                MemoryMarshal.GetReference(organellePositions),
+                (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
         }
 
-        return result;
+        return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(
+            MemoryMarshal.GetReference(organellePositions),
+            (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
     }
 
     /// <summary>
@@ -108,6 +96,7 @@ public class PhysicsShape : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal IntPtr AccessShapeInternal()
     {
         if (disposed)
@@ -150,11 +139,11 @@ internal static partial class NativeMethods
     internal static extern IntPtr CreateSphereShape(float radius);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateMicrobeShapeConvex(IntPtr microbePoints, uint pointCount, float density,
+    internal static extern IntPtr CreateMicrobeShapeConvex(in JVecF3 microbePoints, uint pointCount, float density,
         float scale);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateMicrobeShapeSpheres(IntPtr microbePoints, uint pointCount, float density,
+    internal static extern IntPtr CreateMicrobeShapeSpheres(in JVecF3 microbePoints, uint pointCount, float density,
         float scale);
 
     [DllImport("thrive_native")]

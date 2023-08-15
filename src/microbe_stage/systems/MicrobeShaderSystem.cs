@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -16,6 +15,8 @@
     [With(typeof(EntityMaterial))]
     public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
     {
+        // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
+
         public MicrobeShaderSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
@@ -59,6 +60,10 @@
                 return;
 
             entityMaterial.Material.SetShaderParam("dissolveValue", shaderParameters.DissolveValue);
+
+            // TODO: remove this and the lazy value if unnecessary (if necessary this should be applied just once and
+            // not each frame)
+            // entityMaterial.Material.SetShaderParam("dissolveTexture", noiseTexture);
 
             shaderParameters.ParametersApplied = true;
         }

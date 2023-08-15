@@ -114,11 +114,13 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
 
         // These need to be created here as well for child property save load to work
-        worldSimulation.Init(rootOfDynamicallySpawned, Clouds);
-        throw new NotImplementedException();
 
-        // patchManager = new PatchManager(spawner, worldSimulation.ProcessSystem, Clouds, worldSimulation.TimedLifeSystem,
-        //     worldLight, CurrentGame);
+        // Initialise the simulation on a basic level first to make sure right system objects are available. This used
+        // to be in SetupStage before base init, but this is now required here
+        worldSimulation.Init(rootOfDynamicallySpawned, Clouds);
+
+        patchManager = new PatchManager(worldSimulation.SpawnSystem, worldSimulation.ProcessSystem, Clouds,
+            worldSimulation.TimedLifeSystem, worldLight);
     }
 
     public override void _EnterTree()
@@ -142,8 +144,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         if (Player != null)
             worldSimulation.PlayerPosition = Player.GlobalTranslation;
 
-        worldSimulation.ProcessFrameLogic(delta);
-        worldSimulation.ProcessLogic(delta);
+        worldSimulation.ProcessAll(delta);
 
         if (gameOver)
             return;
@@ -564,20 +565,9 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
     protected override void SetupStage()
     {
-        // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
-
-        throw new NotImplementedException();
-
-        // Clouds.Init(worldSimulation.FluidSystem);
-
-        // Initialise spawners next, since this removes existing spawners if present
-        // Init the world simulation here
-        throw new NotImplementedException();
-
-        // if (!IsLoadedFromSave)
-        //     spawner.Init();
-
         base.SetupStage();
+
+        worldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendEditorButtonToTutorial(TutorialState);

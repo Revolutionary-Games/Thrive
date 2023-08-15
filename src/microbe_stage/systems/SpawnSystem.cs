@@ -75,11 +75,6 @@
 
         public bool IsEnabled { get; set; } = true;
 
-        public void Init()
-        {
-            Clear();
-        }
-
         /// <summary>
         ///   Adds a new spawner. Sets up the spawn radius, this radius squared,
         ///   and frequency fields based on the parameters of this
@@ -103,19 +98,6 @@
         public void RemoveSpawnType(Spawner spawner)
         {
             spawnTypes.Remove(spawner);
-        }
-
-        public void Clear()
-        {
-            spawnTypes.Clear();
-
-            foreach (var queuedSpawn in queuedSpawns)
-                queuedSpawn.Dispose();
-
-            queuedSpawns.Clear();
-
-            elapsed = 0;
-            despawnElapsed = 0;
         }
 
         public void DespawnAll()
