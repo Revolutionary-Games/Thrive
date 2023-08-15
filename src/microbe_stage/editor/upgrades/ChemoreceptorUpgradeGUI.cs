@@ -80,11 +80,12 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
 
         shownSpeciesChoices = currentGame.GameWorld.Map.FindAllSpeciesWithPopulation();
-        shownSpeciesChoices.Sort((x, y) => string.Compare(x.Genus, y.Genus, StringComparison.OrdinalIgnoreCase));
+        shownSpeciesChoices.Sort((x, y) => string.Compare(x.FormattedName, y.FormattedName,
+            StringComparison.OrdinalIgnoreCase));
 
         foreach (var choice in shownSpeciesChoices)
         {
-            species.AddItem(choice.Genus + " " + choice.Epithet);
+            species.AddItem(choice.FormattedName);
         }
 
         var defaultCompound = SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
