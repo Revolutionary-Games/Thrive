@@ -52,10 +52,9 @@
 
                     // In case the body was recreated, then we need to skip this (as the body instance was not removed
                     // from the world by us)
-                    if (disabledBodies.Contains(body))
+                    if (disabledBodies.Remove(body))
                     {
                         physicalWorld.AddBody(body);
-                        disabledBodies.Remove(body);
                     }
                 }
                 else

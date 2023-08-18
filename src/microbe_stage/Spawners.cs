@@ -107,7 +107,7 @@ public static class SpawnHelpers
         entity.Set(new Physics
         {
             Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
-            LockToYAxis = true,
+            AxisLock = Physics.AxisLockType.YAxis,
         });
         entity.Set(new PhysicsShapeHolder
         {
@@ -236,7 +236,7 @@ public static class SpawnHelpers
 
         entity.Set(new Physics
         {
-            LockToYAxis = true,
+            AxisLock = Physics.AxisLockType.YAxis,
         });
         entity.Set(new PhysicsShapeHolder
         {
@@ -477,7 +477,7 @@ public static class SpawnHelpers
         // Physics
         entity.Set(new Physics
         {
-            LockToYAxis = true,
+            AxisLock = Physics.AxisLockType.YAxisWithRotation,
             LinearDamping = 0.2f,
         });
 

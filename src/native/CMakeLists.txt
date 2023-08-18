@@ -21,7 +21,8 @@ add_library(thrive_native SHARED
   physics/SimpleShapes.cpp physics/SimpleShapes.hpp
   physics/TrackedConstraint.cpp physics/TrackedConstraint.hpp
   physics/StepListener.cpp physics/StepListener.hpp
-  physics/DebugDrawForwarder.cpp physics/DebugDrawForwarder.hpp)
+  physics/DebugDrawForwarder.cpp physics/DebugDrawForwarder.hpp
+  physics/PhysicsCollision.hpp)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_native PRIVATE /W4 /wd4068)

@@ -330,9 +330,27 @@ public static class Constants
     public const float PHYSICS_ALLOWED_Y_AXIS_DRIFT = 0.1f;
 
     /// <summary>
+    ///   Buffers bigger than this number of elements will never be cached so if many entities track more than this
+    ///   many collisions that's going to be bad in terms of memory allocations
+    /// </summary>
+    public const int MAX_COLLISION_CACHE_BUFFER_RETURN_SIZE = 50;
+
+    /// <summary>
+    ///   How many buffers of similar length can be in the collision cache. This is quite high to ensure that basically
+    ///   all entities' buffers can go to the cache for example when loading a save while in game. That is required
+    ///   because most entities have the exact same buffer length.
+    /// </summary>
+    public const int MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGHT = 500;
+
+    /// <summary>
     ///   How many collisions each damage dealing entity can record at once
     /// </summary>
     public const int MAX_SIMULTANEOUS_DAMAGE_COLLISIONS = 5;
+
+    /// <summary>
+    ///   How many collisions each projectile can record
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_PROJECTILE_COLLISIONS = 4;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -1095,6 +1113,11 @@ public static class Constants
 
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
+
+    /// <summary>
+    ///   Max bytes to allocate on the stack, any bigger data needs to allocate heap memory
+    /// </summary>
+    public const int MAX_STACKALLOC = 1024;
 
     /// <summary>
     ///   Delay for the compound row to hide when standing still and compound amount is 0.

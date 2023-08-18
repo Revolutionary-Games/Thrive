@@ -1,6 +1,7 @@
 ﻿namespace Systems
 {
     using System;
+    using System.Threading;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -13,6 +14,7 @@
     /// </summary>
     [With(typeof(ToxinDamageSource))]
     [With(typeof(CollisionManagement))]
+    [With(typeof(Physics))]
     [With(typeof(TimedLife))]
     public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
     {
@@ -22,13 +24,14 @@
 
         protected override void Update(float delta, in Entity entity)
         {
-            ref var collisions = ref entity.Get<CollisionManagement>();
+            ref var damageSource = ref entity.Get<ToxinDamageSource>();
 
             // Quickly detect already hit projectiles
-            if (collisions.AllCollisionsDisabled)
+            if (damageSource.ProjectileUsed)
                 return;
 
-            ref var damageSource = ref entity.Get<ToxinDamageSource>();
+            ref var collisions = ref entity.Get<CollisionManagement>();
+
             if (!damageSource.ProjectileInitialized)
             {
                 damageSource.ProjectileInitialized = true;
@@ -39,7 +42,9 @@
                 // happens
 
                 collisions.CollisionFilter = FilterCollisions;
-                collisions.RecordActiveCollisions = 4;
+
+                collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_PROJECTILE_COLLISIONS);
+
                 collisions.StateApplied = false;
             }
 
@@ -59,10 +64,16 @@
                 ref var timedLife = ref entity.Get<TimedLife>();
                 timedLife.TimeToLiveRemaining = -1;
 
+                ref var physics = ref entity.Get<Physics>();
+
+                // TODO: should this instead of disabling the further collisions be removed from the world immediately
+                // to cause less of a physics impact?
+                // physics.BodyDisabled = true;
+                physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
+
                 // And make sure the flag we check for is set immediately to not process this projectile again
                 // (this is just extra safety against the time over callback configuration not working correctly)
-                collisions.AllCollisionsDisabled = true;
-                collisions.StateApplied = false;
+                damageSource.ProjectileUsed = true;
             }
         }
 
@@ -75,8 +86,6 @@
             // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
             // periodically)
 
-            // TODO: consider if dumping extra data like 64 bytes in the physics body would be enough to make this
-            // check not need to look up multiple entities
             var toxin = collision.FirstEntity;
             var damageTarget = collision.SecondEntity;
 

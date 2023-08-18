@@ -57,7 +57,7 @@
                 (physics.Velocity, physics.AngularVelocity) = physicalWorld.ReadBodyVelocity(body);
             }
 
-            if (physics.LockToYAxis && EnforceYPosition)
+            if (EnforceYPosition && (physics.AxisLock & Physics.AxisLockType.YAxis) != 0)
             {
                 // Apply fixing to Y-position if drifted too far
                 var driftAmount = Mathf.Abs(position.Position.y);
@@ -75,6 +75,20 @@
                 if (physics.LinearDamping != null)
                 {
                     physicalWorld.SetDamping(body, physics.LinearDamping.Value, physics.AngularDamping);
+                }
+            }
+
+            if (physics.DisableCollisionState != Physics.CollisionState.DoNotChange)
+            {
+                // Because the struct default data is 0 (false) we need to use a reversed value for the flag here
+                bool wantedState = physics.DisableCollisionState == Physics.CollisionState.DisableCollisions;
+
+                if (wantedState != physics.InternalDisableCollisionState)
+                {
+                    physics.InternalDisableCollisionState = wantedState;
+
+                    // And then flip it again in this call
+                    physicalWorld.SetBodyCollisionsEnabledState(body, !wantedState);
                 }
             }
         }

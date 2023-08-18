@@ -15,7 +15,7 @@ namespace Thrive::Physics
 
 /// \brief Apparently Jolt requires us to handle geometry references
 class BatchImpl : public JPH::RefTargetVirtual,
-                  public RefCounted
+                  public RefCountedBasic
 {
 public:
     explicit BatchImpl(uint32_t inID) : id(inID)
@@ -24,12 +24,12 @@ public:
 
     void AddRef() override
     {
-        RefCounted::AddRef();
+        RefCountedBasic::AddRef();
     }
 
     void Release() override
     {
-        RefCounted::Release();
+        RefCountedBasic::Release();
     }
 
     /// Vertices if this is specified like that, if empty then vertices are used

@@ -11,7 +11,13 @@ option(USE_OBJECT_POOLS
   "Use object pools instead of direct memory allocation (can be turned off for memory debugging)"
   ON)
 
+option(USE_SMALL_VECTOR_POOLS
+  "If on uses also pools for small list allocations in physics" OFF)
+
 option(WARNINGS_AS_ERRORS "When on treat compiler warnings as errors" ON)
+
+option(NULL_HAS_UNUSUAL_REPRESENTATION
+  "When on it is not assumed that null equals numeric 0" OFF)
 
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMake")
 

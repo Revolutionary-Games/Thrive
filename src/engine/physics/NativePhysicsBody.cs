@@ -17,29 +17,29 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This being the first field makes the memory layout non-optimal but <see cref="activeCollisionCount"/> is
-    ///     put as the next field to maybe help reduce the amount of padding a bit
+    ///     This being the first field makes the memory layout non-optimal but some of the private fields have been
+    ///     juggled around a bit for better layout.
     ///   </para>
     /// </remarks>
     public bool Marked = true;
 
-    private static readonly ArrayPool<PhysicsCollision> CollisionDataBufferPool = ArrayPool<PhysicsCollision>.Create();
+    private static readonly ArrayPool<PhysicsCollision> CollisionDataBufferPool =
+        ArrayPool<PhysicsCollision>.Create(Constants.MAX_COLLISION_CACHE_BUFFER_RETURN_SIZE,
+            Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGHT);
 
     private static readonly int EntityDataSize = Marshal.SizeOf<Entity>();
 
-    private static readonly int OffsetToCollisionCount =
-        Marshal.OffsetOf<NativePhysicsBody>(nameof(activeCollisionCount)).ToInt32();
+    private bool disposed;
 
-    // Storage variables for collision recording, when these are active the pin handles are used to pin down these
-    // pieces of memory to ensure the native code size can directly write here with pointers
-    private int activeCollisionCount;
+    /// <summary>
+    ///   Storage variable for collision recording, when this is active the pin handle is used to pin down this
+    ///    piece of memory to ensure the native code size can directly write here with pointers
+    /// </summary>
     private PhysicsCollision[]? activeCollisions;
 
     private GCHandle activeCollisionsPinHandle;
-    private GCHandle activeCollisionCountPinHandle;
 
     private IntPtr nativeInstance;
-    private bool disposed;
 
     internal NativePhysicsBody(IntPtr nativeInstance)
     {
@@ -114,23 +114,17 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
         GC.SuppressFinalize(this);
     }
 
-    internal (IntPtr CollisionCountAddress, PhysicsCollision[] CollisionsArray, IntPtr ArrayAddress)
+    internal (PhysicsCollision[] CollisionsArray, IntPtr ArrayAddress)
         SetupCollisionRecording(int maxCollisions)
     {
         // Ensure no previous state. This is safe as each physics body can only be recording one set of collisions
-        // at once, so all of our very briefly dangling pointers will be fixed very soon after this method returns
+        // at once, so all of our very briefly dangling pointers will be fixed very soon.
         NotifyCollisionRecordingStopped();
-
-        // Pin us so that the native code can write to our collision count field
-        activeCollisionCountPinHandle = GCHandle.Alloc(this, GCHandleType.Pinned);
-
-        activeCollisionCount = 0;
 
         activeCollisions = CollisionDataBufferPool.Rent(maxCollisions);
         activeCollisionsPinHandle = GCHandle.Alloc(activeCollisions, GCHandleType.Pinned);
 
-        return (activeCollisionCountPinHandle.AddrOfPinnedObject() + OffsetToCollisionCount, activeCollisions,
-            activeCollisionsPinHandle.AddrOfPinnedObject());
+        return (activeCollisions, activeCollisionsPinHandle.AddrOfPinnedObject());
     }
 
     internal void NotifyCollisionRecordingStopped()
@@ -142,9 +136,6 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 
             activeCollisionsPinHandle.Free();
         }
-
-        if (activeCollisionCountPinHandle.IsAllocated)
-            activeCollisionCountPinHandle.Free();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

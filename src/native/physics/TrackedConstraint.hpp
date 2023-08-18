@@ -14,19 +14,29 @@ namespace Thrive::Physics
 
 /// \brief Tracks an existing constraint. This is needed as the physics engine doesn't track the existing constraints
 /// itself
-class TrackedConstraint : public RefCounted
+class TrackedConstraint : public RefCounted<TrackedConstraint>
 {
     friend class PhysicalWorld;
 
 public:
+#ifdef USE_OBJECT_POOLS
+    /// \brief Constraint between a single body and the world
+    TrackedConstraint(
+        const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1, ReleaseCallback deleteCallback);
+
+    /// \brief Constraint between two bodies
+    TrackedConstraint(const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1,
+        const Ref<PhysicsBody>& body2, ReleaseCallback deleteCallback);
+#else
     /// \brief Constraint between a single body and the world
     TrackedConstraint(const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1);
 
     /// \brief Constraint between two bodies
     TrackedConstraint(
         const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1, const Ref<PhysicsBody>& body2);
+#endif
 
-    ~TrackedConstraint();
+    ~TrackedConstraint() override;
 
     [[nodiscard]] bool IsCreatedInWorld() const noexcept
     {
@@ -91,9 +101,9 @@ private:
     const Ref<PhysicsBody> optionalSecondBody;
     const JPH::Ref<JPH::Constraint> constraintInstance;
 
-    bool attachedToBodies = true;
-
     PhysicalWorld* createdInWorld = nullptr;
+
+    bool attachedToBodies = true;
 };
 
 } // namespace Thrive::Physics

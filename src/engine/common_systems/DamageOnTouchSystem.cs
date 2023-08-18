@@ -34,13 +34,7 @@
             // Entity setup
             if (!damageTouch.RegisteredWithCollisions)
             {
-                if (collisionManagement.RecordActiveCollisions < Constants.MAX_SIMULTANEOUS_DAMAGE_COLLISIONS)
-                {
-                    Interlocked.Add(ref collisionManagement.RecordActiveCollisions,
-                        Constants.MAX_SIMULTANEOUS_DAMAGE_COLLISIONS);
-
-                    collisionManagement.StateApplied = false;
-                }
+                collisionManagement.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_DAMAGE_COLLISIONS);
 
                 damageTouch.RegisteredWithCollisions = true;
             }
@@ -89,8 +83,10 @@
                 // Destroy this entity
                 damageTouch.StartedDestroy = true;
 
-                collisionManagement.AllCollisionsDisabled = true;
-                collisionManagement.StateApplied = false;
+                ref var physics = ref entity.Get<Physics>();
+
+                // Disable *further* collisions (any active collisions will stay)
+                physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
 
                 if (damageTouch.UsesMicrobialDissolveEffect)
                 {

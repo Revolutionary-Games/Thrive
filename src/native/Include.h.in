@@ -4,6 +4,11 @@
 // File configured by CMake do not edit Include.h (you can edit Include.h.in)
 //
 
+#ifdef __cplusplus
+#include <cstddef>
+#include <cstdint>
+#endif
+
 // clang-format off
 #define THRIVE_LIBRARY_VERSION @NATIVE_LIBRARY_VERSION@
 // clang-format on
@@ -24,19 +29,44 @@
 
 #cmakedefine USE_OBJECT_POOLS
 
+#cmakedefine NULL_HAS_UNUSUAL_REPRESENTATION
+
+#cmakedefine USE_SMALL_VECTOR_POOLS
+
 #ifdef WIN32
 #define FORCE_INLINE __forceinline
 #else
 #define FORCE_INLINE __attribute__((always_inline))
 #endif
 
+// 64-bit pointers. TODO: support for 32-bit compiling?
+#define POINTER_SIZE 8
+
 #define UNUSED(x) (void)x
+
+// Size in bytes that physics body user data is (used for collision callbacks). Has to be a macro to work in C.
+#define PHYSICS_USER_DATA_SIZE 8
+
+// Note this only works in 64-bit mode right now. The extra +4 at the end is to account for padding
+#define PHYSICS_COLLISION_DATA_SIZE (PHYSICS_USER_DATA_SIZE * 2 + POINTER_SIZE * 2 + 12 + 4)
+
+// This is needed to allow including this in the C interop header
+#ifdef __cplusplus
 
 namespace Thrive
 {
 constexpr float PI = 3.14159265;
 constexpr double PI_DOUBLE = 3.1415926535897932;
 
-/// Size in bytes that physics body user data is (used for collision callbacks)
-constexpr size_t PHYSICS_USER_DATA_SIZE = 8;
+/// Always zero bytes in pointers that stuff extra info in them thanks to alignment requirements
+constexpr size_t UNUSED_POINTER_BITS = 3;
+
+constexpr size_t STUFFED_POINTER_ALIGNMENT = 8;
+
+constexpr uint64_t STUFFED_POINTER_DATA_MASK = 0x7;
+
+constexpr uint64_t STUFFED_POINTER_POINTER_MASK = ~STUFFED_POINTER_DATA_MASK;
+
 } // namespace Thrive
+
+#endif

@@ -60,11 +60,6 @@
                     physicalWorld.SetOnlyBodyAngularVelocity(body, Vector3.Zero);
                 }
 
-                if (control.DisableCollisions != null)
-                {
-                    physicalWorld.SetBodyCollisionsEnabledState(body, !control.DisableCollisions.Value);
-                }
-
                 if (control.ImpulseToGive != Vector3.Zero)
                 {
                     control.ImpulseToGive = Vector3.Zero;

@@ -73,10 +73,10 @@
             }
             else
             {
-                if (physics.LockToYAxis)
+                if (physics.AxisLock != Physics.AxisLockType.None)
                 {
                     body = worldSimulationWithPhysics.CreateMovingBodyWithAxisLock(shapeHolder.Shape, position.Position,
-                        position.Rotation, Vector3.Up, physics.LockRotationWithAxisLock);
+                        position.Rotation, Vector3.Up, (physics.AxisLock & Physics.AxisLockType.AlsoLockRotation) != 0);
                 }
                 else
                 {

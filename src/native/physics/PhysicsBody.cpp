@@ -11,10 +11,15 @@
 // ------------------------------------ //
 namespace Thrive::Physics
 {
-
-PhysicsBody::PhysicsBody(JPH::Body* body, JPH::BodyID bodyId) noexcept : id(bodyId)
+#ifdef USE_OBJECT_POOLS
+PhysicsBody::PhysicsBody(JPH::Body* body, JPH::BodyID bodyId, ReleaseCallback deleteCallback) noexcept :
+    RefCounted<PhysicsBody>(deleteCallback),
+#else
+PhysicsBody::PhysicsBody(JPH::Body* body, JPH::BodyID bodyId) noexcept :
+#endif
+    id(bodyId)
 {
-    body->SetUserData(reinterpret_cast<uint64_t>(this));
+    body->SetUserData(CalculateUserPointer());
 }
 
 PhysicsBody::~PhysicsBody() noexcept
@@ -24,22 +29,76 @@ PhysicsBody::~PhysicsBody() noexcept
 }
 
 // ------------------------------------ //
-PhysicsBody* PhysicsBody::FromJoltBody(const JPH::Body* body) noexcept
+void PhysicsBody::SetCollisionRecordingTarget(CollisionRecordListType target, int maxCount) noexcept
 {
-    const auto rawValue = body->GetUserData();
-
-    if (rawValue == 0)
-        return nullptr;
-
-    return reinterpret_cast<PhysicsBody*>(rawValue);
+    collisionRecordingTarget = target;
+    maxCollisionsToRecord = maxCount;
+    activeRecordedCollisionCount = 0;
 }
 
-PhysicsBody* PhysicsBody::FromJoltBody(uint64_t bodyUserData) noexcept
+void PhysicsBody::ClearCollisionRecordingTarget() noexcept
 {
-    if (bodyUserData == 0)
-        return nullptr;
+    collisionRecordingTarget = nullptr;
+    maxCollisionsToRecord = 0;
+    activeRecordedCollisionCount = 0;
+}
 
-    return reinterpret_cast<PhysicsBody*>(bodyUserData);
+// ------------------------------------ //
+bool PhysicsBody::AddCollisionIgnore(const PhysicsBody& ignoredBody, bool skipDuplicates) noexcept
+{
+    const auto idToAdd = ignoredBody.GetId();
+
+    if (skipDuplicates)
+    {
+        const auto end = ignoredCollisions.end();
+        for (auto iter = ignoredCollisions.begin(); iter != end; ++iter)
+        {
+            if (*iter == idToAdd)
+            {
+                return false;
+            }
+        }
+    }
+
+    ignoredCollisions.emplace_back(idToAdd);
+    return false;
+}
+
+bool PhysicsBody::RemoveCollisionIgnore(const PhysicsBody& noLongerIgnored) noexcept
+{
+    const auto idToRemove = noLongerIgnored.GetId();
+
+    const auto end = ignoredCollisions.end();
+    for (auto iter = ignoredCollisions.begin(); iter != end; ++iter)
+    {
+        if (*iter == idToRemove){
+            ignoredCollisions.erase(iter);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void PhysicsBody::SetCollisionIgnores(PhysicsBody* const& ignoredBodies, int ignoreCount) noexcept
+{
+    ignoredCollisions.clear();
+
+    for (int i = 0; i < ignoreCount; ++i)
+    {
+        ignoredCollisions.emplace_back(ignoredBodies[i].GetId());
+    }
+}
+
+void PhysicsBody::SetSingleCollisionIgnore(const PhysicsBody& ignoredBody) noexcept
+{
+    ignoredCollisions.clear();
+    ignoredCollisions.emplace_back(ignoredBody.GetId());
+}
+
+void PhysicsBody::ClearCollisionIgnores() noexcept
+{
+    ignoredCollisions.clear();
 }
 
 // ------------------------------------ //
@@ -65,20 +124,23 @@ bool PhysicsBody::DisableBodyControl() noexcept
 }
 
 // ------------------------------------ //
-void PhysicsBody::MarkUsedInWorld() noexcept
+void PhysicsBody::MarkUsedInWorld(const PhysicalWorld* world) noexcept
 {
-    if (inWorld)
+    if (containedInWorld)
         LOG_ERROR("PhysicsBody marked used when already in use");
 
-    inWorld = true;
+    containedInWorld = world;
+
+    // Calling this method is the way that bodies become attached again (if detached previously)
+    detached = false;
 }
 
 void PhysicsBody::MarkRemovedFromWorld() noexcept
 {
-    if (!inWorld)
+    if (!containedInWorld)
         LOG_ERROR("PhysicsBody marked removed from world when it wasn't used in the first place");
 
-    inWorld = false;
+    containedInWorld = nullptr;
 }
 
 void PhysicsBody::NotifyConstraintAdded(TrackedConstraint& constraint) noexcept

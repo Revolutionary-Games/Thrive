@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Threading;
     using DefaultEcs;
     using Newtonsoft.Json;
 
@@ -33,7 +35,16 @@
         ///   false will prevent that collision. Note that no state should be modified (that is not completely
         ///   thread-safe and entity order safe) by this. Also this will increase the physics processing expensiveness
         ///   of an entity so if at all possible other approaches should be used to filter out unwanted collisions.
+        ///   Or only react to detected collisions of wanted type. The filter works by calling from the native side
+        ///   back to the C# side inside the physics simulation.
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     When clearing this, it is extremely important to set <see cref="StateApplied"/> as otherwise the C++
+        ///     side will hold onto an invalid callback and cause very weird method call bugs. The only case where that
+        ///     is fine if this delegate refers to a static method.
+        ///   </para>
+        /// </remarks>
         /// <remarks>
         ///   <para>
         ///     TODO: plan if this should be saved (in which case some objects don't want their callbacks to save,
@@ -41,7 +52,7 @@
         ///   </para>
         /// </remarks>
         [JsonIgnore]
-        public OnCollided? CollisionFilter;
+        public PhysicalWorld.OnCollisionFilterCallback? CollisionFilter;
 
         /// <summary>
         ///   When set above 0 up to this many collisions are recorded in <see cref="ActiveCollisions"/>
@@ -54,11 +65,16 @@
         /// </remarks>
         public int RecordActiveCollisions;
 
-        public bool AllCollisionsDisabled;
+        /// <summary>
+        ///   If this is not true then the <see cref="CollisionFilter"/> when used doesn't calculate how hard the
+        ///   collision being checked is going to be
+        /// </summary>
+        public bool CollisionFilterCalculatesPenetrationAmount;
 
         /// <summary>
         ///   Must be set to false after changing any properties to have them apply (after the initial creation)
         /// </summary>
+        [JsonIgnore]
         public bool StateApplied;
 
         // The following variables are internal for the collision management system and should not be modified
@@ -68,13 +84,27 @@
         [JsonIgnore]
         public bool CollisionFilterCallbackRegistered;
 
-        public delegate bool OnCollided(ref PhysicsCollision collision);
+        /// <summary>
+        ///   Internal flag don't touch. Used as an optimization to not always have to call to the native side library.
+        /// </summary>
+        [JsonIgnore]
+        public bool CollisionIgnoresUsed;
     }
 
     public static class CollisionManagementHelpers
     {
-        public static int GetActiveCollisions(
-            ref this CollisionManagement collisionManagement, out PhysicsCollision[]? collisions)
+        public static void StartCollisionRecording(ref this CollisionManagement collisionManagement, int maxCollisions)
+        {
+            if (collisionManagement.RecordActiveCollisions >= maxCollisions)
+                return;
+
+            Interlocked.Add(ref collisionManagement.RecordActiveCollisions, maxCollisions);
+            collisionManagement.StateApplied = false;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int GetActiveCollisions(ref this CollisionManagement collisionManagement,
+            out PhysicsCollision[]? collisions)
         {
             // If state is not correct for reading
             collisions = collisionManagement.ActiveCollisions;

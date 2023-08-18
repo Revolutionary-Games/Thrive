@@ -19,11 +19,19 @@
 
 #include "JoltTypeConversions.hpp"
 
+#ifdef USE_OBJECT_POOLS
+#include "boost/pool/singleton_pool.hpp"
+#endif
+
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-reinterpret-cast"
 
 // ------------------------------------ //
 void PhysicsTrace(const char* fmt, ...);
+
+#ifdef USE_OBJECT_POOLS
+using ShapePool = boost::singleton_pool<Thrive::Physics::ShapeWrapper, sizeof(Thrive::Physics::ShapeWrapper)>;
+#endif
 
 #ifdef JPH_ENABLE_ASSERTS
 bool PhysicsAssert(const char* expression, const char* message, const char* file, uint line);
@@ -151,6 +159,15 @@ void PhysicalWorldAddBody(PhysicalWorld* physicalWorld, PhysicsBody* body, bool 
         ->AddBody(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), activate);
 }
 
+void PhysicalWorldDetachBody(PhysicalWorld* physicalWorld, PhysicsBody* body)
+{
+    if (body == nullptr)
+        return;
+
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->DetachBody(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body));
+}
+
 void DestroyPhysicalWorldBody(PhysicalWorld* physicalWorld, PhysicsBody* body)
 {
     if (physicalWorld == nullptr || body == nullptr)
@@ -195,6 +212,28 @@ void ReadPhysicsBodyTransform(
 
     *positionReceiver = Thrive::DVec3ToCAPI(readPosition);
     *rotationReceiver = Thrive::QuatToCAPI(readQuat);
+}
+
+void ReadPhysicsBodyVelocity(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3* velocityReceiver, JVecF3* angularVelocityReceiver)
+{
+#ifndef NDEBUG
+    if (physicalWorld == nullptr || body == nullptr || velocityReceiver == nullptr ||
+        angularVelocityReceiver == nullptr)
+    {
+        LOG_ERROR("Physics body read velocity call with invalid parameters");
+        return;
+    }
+#endif
+
+    JPH::Vec3 readVelocity;
+    JPH::Vec3 readAngular;
+
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->ReadBodyVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), readVelocity, readAngular);
+
+    *velocityReceiver = Thrive::Vec3ToCAPI(readVelocity);
+    *angularVelocityReceiver = Thrive::Vec3ToCAPI(readAngular);
 }
 
 #pragma clang diagnostic pop
@@ -278,6 +317,83 @@ void PhysicsBodyAddAxisLock(PhysicalWorld* physicalWorld, PhysicsBody* body, JVe
             *reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), Thrive::Vec3FromCAPI(axis), lockRotation);
 }
 
+// ------------------------------------ //
+void PhysicsBodySetCollisionEnabledState(PhysicalWorld* physicalWorld, PhysicsBody* body, bool collisionsEnabled)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetCollisionDisabledState(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), !collisionsEnabled);
+}
+
+// ------------------------------------ //
+void PhysicsBodyAddCollisionIgnore(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* addIgnore)
+{
+    bool handleDuplicates = true;
+
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->AddCollisionIgnore(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
+            *reinterpret_cast<Thrive::Physics::PhysicsBody*>(addIgnore), handleDuplicates);
+}
+
+void PhysicsBodyRemoveCollisionIgnore(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* removeIgnore)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->RemoveCollisionIgnore(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
+            *reinterpret_cast<Thrive::Physics::PhysicsBody*>(removeIgnore));
+}
+
+void PhysicsBodyClearCollisionIgnores(PhysicalWorld* physicalWorld, PhysicsBody* body)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->ClearCollisionIgnores(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body));
+}
+
+void PhysicsBodySetCollisionIgnores(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* ignoredBodies[], int32_t count)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetCollisionIgnores(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
+            reinterpret_cast<Thrive::Physics::PhysicsBody*&>(ignoredBodies), count);
+}
+
+void PhysicsBodyClearAndSetSingleIgnore(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* onlyIgnoredBody)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetSingleCollisionIgnore(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
+            *reinterpret_cast<Thrive::Physics::PhysicsBody*>(onlyIgnoredBody));
+}
+
+// ------------------------------------ //
+int32_t* PhysicsBodyEnableCollisionRecording(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, char* collisionRecordingTarget, int32_t maxRecordedCollisions)
+{
+    return const_cast<int32_t*>(
+        reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+            ->EnableCollisionRecording(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
+                reinterpret_cast<Thrive::Physics::CollisionRecordListType>(collisionRecordingTarget),
+                maxRecordedCollisions));
+}
+
+void PhysicsBodyDisableCollisionRecording(PhysicalWorld* physicalWorld, PhysicsBody* body)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->DisableCollisionRecording(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body));
+}
+
+void PhysicsBodyAddCollisionFilter(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, OnFilterPhysicsCollision callback, bool calculateCollisionResponse)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->AddCollisionFilter(
+            *reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), callback, calculateCollisionResponse);
+}
+
+void PhysicsBodyDisableCollisionFilter(PhysicalWorld* physicalWorld, PhysicsBody* body)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->DisableCollisionFilter(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body));
+}
+
+// ------------------------------------ //
 void PhysicalWorldSetGravity(PhysicalWorld* physicalWorld, JVecF3 gravity)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->SetGravity(Thrive::Vec3FromCAPI(gravity));
@@ -332,29 +448,40 @@ void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLen
 }
 
 // ------------------------------------ //
+template<class... ArgsT>
+inline Thrive::Physics::ShapeWrapper* CreateShapeWrapper(ArgsT&&... args)
+{
+    Thrive::Physics::ShapeWrapper* result;
+
+#ifdef USE_OBJECT_POOLS
+    result = Thrive::ConstructFromGlobalPoolRaw<Thrive::Physics::ShapeWrapper>(std::forward<ArgsT>(args)...);
+#else
+    result = new Thrive::Physics::ShapeWrapper(std::forward<ArgsT>(args)...);
+#endif
+
+    if (!result)
+        LOG_ERROR("Failed to allocate ShapeWrapper");
+
+    result->AddRef();
+    return result;
+}
+
 PhysicsShape* CreateBoxShape(float halfSideLength, float density)
 {
-    auto result = new Thrive::Physics::ShapeWrapper(Thrive::Physics::SimpleShapes::CreateBox(halfSideLength, density));
-    result->AddRef();
-
-    return reinterpret_cast<PhysicsShape*>(result);
+    return reinterpret_cast<PhysicsShape*>(
+        CreateShapeWrapper(Thrive::Physics::SimpleShapes::CreateBox(halfSideLength, density)));
 }
 
 PhysicsShape* CreateBoxShapeWithDimensions(JVecF3 halfDimensions, float density)
 {
-    auto result = new Thrive::Physics::ShapeWrapper(
-        Thrive::Physics::SimpleShapes::CreateBox(Thrive::Vec3FromCAPI(halfDimensions), density));
-    result->AddRef();
-
-    return reinterpret_cast<PhysicsShape*>(result);
+    return reinterpret_cast<PhysicsShape*>(
+        CreateShapeWrapper(Thrive::Physics::SimpleShapes::CreateBox(Thrive::Vec3FromCAPI(halfDimensions), density)));
 }
 
 PhysicsShape* CreateSphereShape(float radius, float density)
 {
-    auto result = new Thrive::Physics::ShapeWrapper(Thrive::Physics::SimpleShapes::CreateSphere(radius, density));
-    result->AddRef();
-
-    return reinterpret_cast<PhysicsShape*>(result);
+    return reinterpret_cast<PhysicsShape*>(
+        CreateShapeWrapper(Thrive::Physics::SimpleShapes::CreateSphere(radius, density)));
 }
 
 PhysicsShape* CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density, float scale)
@@ -362,11 +489,8 @@ PhysicsShape* CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, floa
     // We don't want to do any extra data copies here (as the C# marshalling already copies stuff) so this API takes
     // in the JVecF3 pointer
 
-    auto result = new Thrive::Physics::ShapeWrapper(
-        Thrive::Physics::ShapeCreator::CreateMicrobeShapeConvex(points, pointCount, density, scale));
-    result->AddRef();
-
-    return reinterpret_cast<PhysicsShape*>(result);
+    return reinterpret_cast<PhysicsShape*>(CreateShapeWrapper(
+        Thrive::Physics::ShapeCreator::CreateMicrobeShapeConvex(points, pointCount, density, scale)));
 }
 
 PhysicsShape* CreateMicrobeShapeSpheres(JVecF3* points, uint32_t pointCount, float density, float scale)
@@ -374,11 +498,8 @@ PhysicsShape* CreateMicrobeShapeSpheres(JVecF3* points, uint32_t pointCount, flo
     // We don't want to do any extra data copies here (as the C# marshalling already copies stuff) so this API takes
     // in the JVecF3 pointer
 
-    auto result = new Thrive::Physics::ShapeWrapper(
-        Thrive::Physics::ShapeCreator::CreateMicrobeShapeSpheres(points, pointCount, density, scale));
-    result->AddRef();
-
-    return reinterpret_cast<PhysicsShape*>(result);
+    return reinterpret_cast<PhysicsShape*>(CreateShapeWrapper(
+        Thrive::Physics::ShapeCreator::CreateMicrobeShapeSpheres(points, pointCount, density, scale)));
 }
 
 void ReleaseShape(PhysicsShape* shape)

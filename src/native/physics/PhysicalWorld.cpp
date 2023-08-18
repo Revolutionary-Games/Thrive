@@ -24,10 +24,13 @@
 #include "BodyActivationListener.hpp"
 #include "BodyControlState.hpp"
 #include "ContactListener.hpp"
-#include "DebugDrawForwarder.hpp"
 #include "PhysicsBody.hpp"
 #include "StepListener.hpp"
 #include "TrackedConstraint.hpp"
+
+#ifdef JPH_DEBUG_RENDERER
+#include "DebugDrawForwarder.hpp"
+#endif
 
 JPH_SUPPRESS_WARNINGS
 
@@ -270,9 +273,15 @@ Ref<PhysicsBody> PhysicalWorld::CreateStaticBody(const JPH::RefConst<JPH::Shape>
 
 void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
 {
-    if (body.IsInWorld())
+    if (body.IsInWorld() && !body.IsDetached())
     {
         LOG_ERROR("Physics body is already in some world, not adding it to this world");
+        return;
+    }
+
+    if (body.IsInSpecificWorld(this))
+    {
+        LOG_ERROR("Physics body can only be added back to the world it was created for");
         return;
     }
 
@@ -291,32 +300,55 @@ void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
     OnPostBodyAdded(body);
 }
 
+void PhysicalWorld::DetachBody(const Ref<PhysicsBody>& body)
+{
+    if (!body->IsInWorld() || body->IsDetached())
+    {
+        LOG_ERROR("Can't detach physics body not in world or detached already");
+        return;
+    }
+
+    auto& bodyInterface = physicsSystem->GetBodyInterface();
+
+    OnBodyPreLeaveWorld(*body);
+
+    bodyInterface.RemoveBody(body->GetId());
+
+    OnPostBodyLeaveWorld(*body);
+
+    body->MarkDetached();
+}
+
 void PhysicalWorld::DestroyBody(const Ref<PhysicsBody>& body)
 {
     if (body == nullptr)
         return;
 
-    auto& bodyInterface = physicsSystem->GetBodyInterface();
-
-    // Destroy constraints
-    while (!body->GetConstraints().empty())
+    if (!body->IsInWorld())
     {
-        DestroyConstraint(*body->GetConstraints().back());
+        LOG_ERROR("Cannot destroy a physics body not in the world");
+        return;
     }
 
-    if (body->GetBodyControlState() != nullptr)
-        DisableBodyControl(*body);
+    auto& bodyInterface = physicsSystem->GetBodyInterface();
+
+    if (!body->IsDetached())
+    {
+        bodyInterface.DestroyBody(body->GetId());
+        body->MarkRemovedFromWorld();
+
+        return;
+    }
+
+    OnBodyPreLeaveWorld(*body);
 
     bodyInterface.RemoveBody(body->GetId());
-    body->MarkRemovedFromWorld();
 
     // Permanently destroy the body
-    // TODO: we'll probably want to allow some way to re-add bodies at some point
     bodyInterface.DestroyBody(body->GetId());
+    body->MarkRemovedFromWorld();
 
-    // Remove the extra body reference that we added for the physics system keeping a pointer to the body
-    body->Release();
-    --bodyCount;
+    OnPostBodyLeaveWorld(*body);
 
     changesToBodies = true;
 }
@@ -357,6 +389,25 @@ void PhysicalWorld::ReadBodyTransform(
         LOG_ERROR("Couldn't lock body for reading transform");
         std::memset(&positionReceiver, 0, sizeof(positionReceiver));
         std::memset(&rotationReceiver, 0, sizeof(rotationReceiver));
+    }
+}
+
+void PhysicalWorld::ReadBodyVelocity(
+    JPH::BodyID bodyId, JPH::Vec3& velocityReceiver, JPH::Vec3& angularVelocityReceiver) const
+{
+    JPH::BodyLockRead lock(physicsSystem->GetBodyLockInterface(), bodyId);
+    if (lock.Succeeded())
+    {
+        const JPH::Body& body = lock.GetBody();
+
+        velocityReceiver = body.GetLinearVelocity();
+        angularVelocityReceiver = body.GetAngularVelocity();
+    }
+    else
+    {
+        LOG_ERROR("Couldn't lock body for reading velocity");
+        std::memset(&velocityReceiver, 0, sizeof(velocityReceiver));
+        std::memset(&angularVelocityReceiver, 0, sizeof(angularVelocityReceiver));
     }
 }
 
@@ -531,6 +582,123 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
 }
 
 // ------------------------------------ //
+const int32_t* PhysicalWorld::EnableCollisionRecording(
+    PhysicsBody& body, CollisionRecordListType collisionRecordingTarget, int maxRecordedCollisions)
+{
+    body.SetCollisionRecordingTarget(collisionRecordingTarget, maxRecordedCollisions);
+
+    if (body.MarkCollisionRecordingEnabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+
+    return body.GetRecordedCollisionTargetAddress();
+}
+
+void PhysicalWorld::DisableCollisionRecording(PhysicsBody& body)
+{
+    body.ClearCollisionRecordingTarget();
+
+    if (body.MarkCollisionRecordingDisabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+}
+
+void PhysicalWorld::AddCollisionIgnore(PhysicsBody& body, const PhysicsBody& ignoredBody, bool skipDuplicates)
+{
+    body.AddCollisionIgnore(ignoredBody, skipDuplicates);
+
+    if (body.MarkCollisionFilterEnabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+}
+
+bool PhysicalWorld::RemoveCollisionIgnore(PhysicsBody& body, const PhysicsBody& noLongerIgnoredBody)
+{
+    const auto changes = body.RemoveCollisionIgnore(noLongerIgnoredBody);
+
+    if (body.MarkCollisionFilterEnabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+
+    return changes;
+}
+
+void PhysicalWorld::SetCollisionIgnores(PhysicsBody& body, PhysicsBody* const& ignoredBodies, int ignoreCount)
+{
+    body.SetCollisionIgnores(ignoredBodies, ignoreCount);
+
+    if (body.MarkCollisionFilterEnabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+}
+
+void PhysicalWorld::SetSingleCollisionIgnore(PhysicsBody& body, const PhysicsBody& onlyIgnoredBody)
+{
+    body.SetSingleCollisionIgnore(onlyIgnoredBody);
+
+    if (body.MarkCollisionFilterEnabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+}
+
+void PhysicalWorld::ClearCollisionIgnores(PhysicsBody& body)
+{
+    body.ClearCollisionIgnores();
+
+    if (body.MarkCollisionFilterDisabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+}
+
+void PhysicalWorld::SetCollisionDisabledState(PhysicsBody& body, bool disableAllCollisions)
+{
+    if (!body.SetDisableAllCollisions(disableAllCollisions))
+    {
+        // No changes
+        return;
+    }
+
+    if (disableAllCollisions)
+    {
+        body.MarkCollisionDisableFlagEnabled();
+    }
+    else
+    {
+        body.MarkCollisionDisableFlagDisabled();
+    }
+
+    UpdateBodyUserPointer(body);
+}
+
+void PhysicalWorld::AddCollisionFilter(
+    PhysicsBody& body, CollisionFilterCallback callback, bool calculateCollisionResponse)
+{
+    body.SetCollisionFilter(callback, calculateCollisionResponse);
+
+    if (body.MarkCollisionFilterCallbackUsed())
+    {
+        UpdateBodyUserPointer(body);
+    }
+}
+
+void PhysicalWorld::DisableCollisionFilter(PhysicsBody& body)
+{
+    body.RemoveCollisionFilter();
+
+    if (body.MarkCollisionFilterCallbackDisabled())
+    {
+        UpdateBodyUserPointer(body);
+    }
+}
+
+// ------------------------------------ //
 Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(PhysicsBody& body, JPH::Vec3 axis, bool lockRotation)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), body.GetId());
@@ -581,8 +749,13 @@ Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(PhysicsBody& body
 
     auto constraintPtr = (JPH::SixDOFConstraint*)constraintSettings.Create(JPH::Body::sFixedToWorld, lock.GetBody());
 
+#ifdef USE_OBJECT_POOLS
+    auto trackedConstraint =
+        ConstructFromGlobalPool<TrackedConstraint>(JPH::Ref<JPH::Constraint>(constraintPtr), Ref<PhysicsBody>(&body));
+#else
     auto trackedConstraint = Ref<TrackedConstraint>(
         new TrackedConstraint(JPH::Ref<JPH::Constraint>(constraintPtr), Ref<PhysicsBody>(&body)));
+#endif
 
     if (body.IsInWorld())
     {
@@ -774,13 +947,24 @@ Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotion
 
     changesToBodies = true;
 
+#ifdef USE_OBJECT_POOLS
+    return ConstructFromGlobalPool<PhysicsBody>(body, body->GetID());
+#else
     return {new PhysicsBody(body, body->GetID())};
+#endif
 }
 
 Ref<PhysicsBody> PhysicalWorld::OnBodyCreated(Ref<PhysicsBody>&& body, bool addToWorld)
 {
     if (body == nullptr)
         return nullptr;
+
+    // Safety check for pointer data alignment
+    if (reinterpret_cast<decltype(STUFFED_POINTER_DATA_MASK)>(body.get()) & STUFFED_POINTER_DATA_MASK)
+    {
+        LOG_ERROR("Allocated PhysicsBody doesn't follow alignment requirements! It uses low bits in the pointer.");
+        std::abort();
+    }
 
     if (addToWorld)
     {
@@ -796,8 +980,42 @@ void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
     body.MarkUsedInWorld();
 
     // Add an extra reference to the body to keep it from being deleted while in this world
+    // TODO: does detached body also need to keep an extra reference?
     body.AddRef();
     ++bodyCount;
+}
+
+void PhysicalWorld::OnBodyPreLeaveWorld(PhysicsBody& body)
+{
+    // Destroy constraints
+    while (!body.GetConstraints().empty())
+    {
+        DestroyConstraint(*body.GetConstraints().back());
+    }
+
+    if (body.GetBodyControlState() != nullptr)
+        DisableBodyControl(body);
+}
+
+void PhysicalWorld::OnPostBodyLeaveWorld(PhysicsBody& body)
+{
+    // Remove the extra body reference that we added for the physics system keeping a pointer to the body
+    body.Release();
+    --bodyCount;
+}
+
+void PhysicalWorld::UpdateBodyUserPointer(const PhysicsBody& body)
+{
+    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), body.GetId());
+    if (!lock.Succeeded())
+    {
+        LOG_ERROR("Can't lock body for updating user pointer bits, the enabled / disabled feature won't apply on it");
+    }
+    else
+    {
+        JPH::Body& joltBody = lock.GetBody();
+        joltBody.SetUserData(body.CalculateUserPointer());
+    }
 }
 
 // ------------------------------------ //

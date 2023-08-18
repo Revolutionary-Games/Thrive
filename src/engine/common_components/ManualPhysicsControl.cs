@@ -12,10 +12,6 @@
         public Vector3 ImpulseToGive;
         public Vector3 AngularImpulseToGive;
 
-        // TODO: check if it would make sense to split this into two booleans to avoid the reference and boxing of
-        // the value here
-        public bool? DisableCollisions;
-
         public bool RemoveVelocity;
         public bool RemoveAngularVelocity;
 

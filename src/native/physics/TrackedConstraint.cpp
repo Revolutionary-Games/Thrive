@@ -9,7 +9,13 @@
 namespace Thrive::Physics
 {
 
+#ifdef USE_OBJECT_POOLS
+TrackedConstraint::TrackedConstraint(
+    const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1, ReleaseCallback deleteCallback) :
+    RefCounted<TrackedConstraint>(deleteCallback),
+#else
 TrackedConstraint::TrackedConstraint(const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1) :
+#endif
     firstBody(body1), constraintInstance(constraint)
 {
     if (constraint == nullptr || body1 == nullptr)
@@ -18,10 +24,14 @@ TrackedConstraint::TrackedConstraint(const JPH::Ref<JPH::Constraint>& constraint
     firstBody->NotifyConstraintAdded(*this);
 }
 
-TrackedConstraint::TrackedConstraint(
-    const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1, const Ref<PhysicsBody>& body2) :
-    firstBody(body1),
-    optionalSecondBody(body2), constraintInstance(constraint)
+#ifdef USE_OBJECT_POOLS
+TrackedConstraint::TrackedConstraint(const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1,
+    const Ref<PhysicsBody>& body2, ReleaseCallback deleteCallback) :
+    RefCounted<TrackedConstraint>(deleteCallback),
+#else
+TrackedConstraint::TrackedConstraint(const JPH::Ref<JPH::Constraint>& constraint, const Ref<PhysicsBody>& body1, const Ref<PhysicsBody>& body2) :
+#endif
+    firstBody(body1), optionalSecondBody(body2), constraintInstance(constraint)
 {
     if (constraint == nullptr || body1 == nullptr || body2 == nullptr)
         throw std::runtime_error("missing constraint or body for tracked constraint");

@@ -31,6 +31,11 @@ extern "C"
         float R, G, B, A;
     } JColour;
 
+    // See the C++ side for the layout of the contained members
+    typedef struct PhysicsCollision{
+        char CollisionData[PHYSICS_COLLISION_DATA_SIZE];
+    } PhysicsCollision;
+
     static const inline JQuat QuatIdentity = JQuat{0, 0, 0, 1};
 }
 

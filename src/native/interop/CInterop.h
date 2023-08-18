@@ -14,6 +14,8 @@ extern "C"
     typedef void (*OnLineDraw)(JVec3 from, JVec3 to, JColour colour);
     typedef void (*OnTriangleDraw)(JVec3 vertex1, JVec3 vertex2, JVec3 vertex3, JColour colour);
 
+    typedef bool (*OnFilterPhysicsCollision)(PhysicsCollision* potentialCollision);
+
     // ------------------------------------ //
     // General
 
@@ -54,6 +56,8 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldAddBody(
         PhysicalWorld* physicalWorld, PhysicsBody* body, bool activate);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldDetachBody(PhysicalWorld* physicalWorld, PhysicsBody* body);
+
     [[maybe_unused]] THRIVE_NATIVE_API void DestroyPhysicalWorldBody(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetPhysicsBodyLinearDamping(
@@ -64,6 +68,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyTransform(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3* positionReceiver, JQuat* rotationReceiver);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void ReadPhysicsBodyVelocity(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3* velocityReceiver, JVecF3* angularVelocityReceiver);
 
     [[maybe_unused]] THRIVE_NATIVE_API void GiveImpulse(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse);
@@ -95,6 +102,38 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddAxisLock(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodySetCollisionEnabledState(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, bool collisionsEnabled);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddCollisionIgnore(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* addIgnore);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyRemoveCollisionIgnore(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* removeIgnore);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyClearCollisionIgnores(
+        PhysicalWorld* physicalWorld, PhysicsBody* body);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodySetCollisionIgnores(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* ignoredBodies[], int32_t count);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyClearAndSetSingleIgnore(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsBody* onlyIgnoredBody);
+
+    /// Sets up collision recording for a body. The returned value is a pointer to read the currently active collisions
+    /// that have been written to collisionRecordingTarget
+    [[maybe_unused]] THRIVE_NATIVE_API int32_t* PhysicsBodyEnableCollisionRecording(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, char* collisionRecordingTarget, int32_t maxRecordedCollisions);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyDisableCollisionRecording(
+        PhysicalWorld* physicalWorld, PhysicsBody* body);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddCollisionFilter(PhysicalWorld* physicalWorld,
+        PhysicsBody* body, OnFilterPhysicsCollision callback, bool calculateCollisionResponse);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyDisableCollisionFilter(
+        PhysicalWorld* physicalWorld, PhysicsBody* body);
+
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldSetGravity(PhysicalWorld* physicalWorld, JVecF3 gravity);
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldRemoveGravity(PhysicalWorld* physicalWorld);
 
@@ -115,7 +154,10 @@ extern "C"
 
     /// Set user data for a physics body, note that currently all data needs to be the same size to fully work,
     /// which is specified by Thrive::PHYSICS_USER_DATA_SIZE
-    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLength);
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodySetUserData(
+        PhysicsBody* body, const char* data, int32_t dataLength);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyForceClearRecordingTargets(PhysicsBody* body);
 
     // ------------------------------------ //
     // Physics shapes

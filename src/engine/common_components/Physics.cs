@@ -1,5 +1,6 @@
 ﻿namespace Components
 {
+    using System;
     using Godot;
     using Newtonsoft.Json;
 
@@ -45,15 +46,18 @@
         public bool TrackVelocity;
 
         /// <summary>
-        ///   If true when the body is created, this body is constrained to the Y-axis. This limitation exists because
-        ///   there's currently no need to allow physics bodies to add / remove the axis lock dynamically
+        ///   Sets the axis lock type applied when the body is created (for example constraining to the the Y-axis).
+        ///   This limitation exists because there's currently no need to allow physics bodies to add / remove the
+        ///   axis lock dynamically, so if this value is changed then the body needs to be forcefully recreated.
         /// </summary>
-        public bool LockToYAxis;
+        public AxisLockType AxisLock;
 
         /// <summary>
-        ///   When <see cref="LockToYAxis"/> is true and this is true then rotation is also locked to the axis
+        ///   When set to <see cref="CollisionState.DisableCollisions"/>, this disables all *further*
+        ///   collisions for the object. This doesn't stop any existing collisions. To do that the physics body needs
+        ///   to be removed entirely from the world with <see cref="Physics.BodyDisabled"/>.
         /// </summary>
-        public bool LockRotationWithAxisLock;
+        public CollisionState DisableCollisionState;
 
         // TODO: flags for teleporting the physics body to current WorldPosition and also overriding velocity + angular
 
@@ -68,5 +72,34 @@
         /// </summary>
         [JsonIgnore]
         public bool InternalDisableState;
+
+        [JsonIgnore]
+        public bool InternalDisableCollisionState;
+
+        [Flags]
+        public enum AxisLockType : byte
+        {
+            None = 0,
+            YAxis = 1,
+            AlsoLockRotation = 2,
+            YAxisWithRotation = 3,
+        }
+
+        public enum CollisionState : byte
+        {
+            DoNotChange = 0,
+            EnableCollisions = 1,
+            DisableCollisions = 2,
+        }
+    }
+
+    public static class PhysicsHelpers
+    {
+        public static void SetCollisionDisableState(ref this Physics physics, bool disableCollisions)
+        {
+            physics.DisableCollisionState = disableCollisions ?
+                Physics.CollisionState.DisableCollisions :
+                Physics.CollisionState.EnableCollisions;
+        }
     }
 }

@@ -45,13 +45,7 @@
 
             collisionManagement.StateApplied = true;
 
-            // All collision disable
-            if (collisionManagement.AllCollisionsDisabled != collisionManagement.CurrentCollisionState)
-            {
-                collisionManagement.CurrentCollisionState = collisionManagement.AllCollisionsDisabled;
-
-                physicalWorld.SetBodyCollisionsEnabledState(physicsBody, !collisionManagement.CurrentCollisionState);
-            }
+            // All collision disable is now in Physics directly and applied by PhysicsUpdateAndPositionSystem
 
             // Collision disable against specific bodies
             try
@@ -59,19 +53,23 @@
                 ref var ignoreCollisions = ref collisionManagement.IgnoredCollisionsWith;
                 if (ignoreCollisions == null)
                 {
-                    physicalWorld.BodyClearCollisionsIgnores(physicsBody);
+                    if (collisionManagement.CollisionIgnoresUsed)
+                    {
+                        collisionManagement.CollisionIgnoresUsed = false;
+                        physicalWorld.BodyClearCollisionsIgnores(physicsBody);
+                    }
                 }
                 else if (ignoreCollisions.Count > 0)
                 {
+                    collisionManagement.CollisionIgnoresUsed = true;
+
                     if (ignoreCollisions.Count < 2)
                     {
                         // When ignoring just one collision use the single body API as that doesn't need to allocate
                         // any lists
-                        physicalWorld.BodyClearCollisionsIgnores(physicsBody);
-
                         var ignoreWith = GetPhysicsForEntity(ignoreCollisions[0], ref collisionManagement);
                         if (ignoreWith != null)
-                            physicalWorld.BodyIgnoreCollisionsWithBody(physicsBody, ignoreWith);
+                            physicalWorld.BodySetCollisionIgnores(physicsBody, ignoreWith);
                     }
                     else
                     {
@@ -119,20 +117,11 @@
             {
                 if (wantedFilterState)
                 {
-                    var filter = collisionManagement.CollisionFilter!;
+                    // TODO: can we somehow ensure that if the filter is set to null then StateApplied is set to false?
+                    // Because otherwise we might get delegate data corruption when called from the native side?
 
-                    // Register the filter callback where we need to convert the data between the world and the entity
-                    // system
-                    physicalWorld.BodyAddCollisionFilter(physicsBody, (body1, data1, body2, data2, penetration) =>
-                    {
-                        // We need to get the entity IDs from the bodies
-                        // TODO: determine if it is better for us to query stuff here or if it is better to add extra
-                        // data to the body objects the native code side of things can already return to us
-                        throw new NotImplementedException();
-
-                        // var collisionInfo = new PhysicsCollision(body1, data1, body2, data2, penetration);
-                        // return filter.Invoke(ref collisionInfo);
-                    });
+                    physicalWorld.BodyAddCollisionFilter(physicsBody, collisionManagement.CollisionFilter!,
+                        collisionManagement.CollisionFilterCalculatesPenetrationAmount);
 
                     collisionManagement.CollisionFilterCallbackRegistered = true;
                 }

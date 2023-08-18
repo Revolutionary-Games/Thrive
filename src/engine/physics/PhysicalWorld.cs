@@ -11,6 +11,7 @@ using Godot;
 public class PhysicalWorld : IDisposable
 {
     private bool disposed;
+    private bool stackAllocWarned;
     private IntPtr nativeInstance;
 
     private PhysicalWorld(IntPtr nativeInstance)
@@ -37,8 +38,12 @@ public class PhysicalWorld : IDisposable
         Dispose(false);
     }
 
-    public delegate bool OnCollisionFilterCallback(IntPtr body1, int subShapeData1, IntPtr body2, int subShapeData2,
-        float penetration);
+    /// <summary>
+    ///   Callback to determine if a collision is allowed to happen. Note that the penetration amount is not
+    ///   necessarily initialized if the callback is registered so that it doesn't want to calculate that info (as it
+    ///   is not available without extra calculation when a collision begins)
+    /// </summary>
+    public delegate bool OnCollisionFilterCallback(ref PhysicsCollision collision);
 
     public float LatestPhysicsDuration => NativeMethods.PhysicalWorldGetPhysicsLatestTime(AccessWorldInternal());
 
@@ -124,9 +129,7 @@ public class PhysicalWorld : IDisposable
     /// <param name="body">The body to detach</param>
     public void DetachBody(NativePhysicsBody body)
     {
-        throw new NotImplementedException();
-
-        // NativeMethods.PhysicalWorldDetachBody(AccessWorldInternal(), body.AccessBodyInternal());
+        NativeMethods.PhysicalWorldDetachBody(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
     /// <summary>
@@ -134,8 +137,8 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     /// <param name="body">Body to be destroyed immediately. No longer valid for any physics calls after this</param>
     /// <param name="dispose">
-    ///   When true the body is disposed automatically. If false then the calling code is must eventually call Dispose
-    ///   on the body.
+    ///   When true the body is disposed automatically. If false the caller can call dispose when it wants to or
+    ///   not call it at all, which should be fine but then the body wrapper object may exist for a long time.
     /// </param>
     public void DestroyBody(NativePhysicsBody body, bool dispose = true)
     {
@@ -144,7 +147,6 @@ public class PhysicalWorld : IDisposable
 
         NativeMethods.DestroyPhysicalWorldBody(AccessWorldInternal(), body.AccessBodyInternal());
 
-        // Body must be disposed to make sure it gets garbage collected
         if (dispose)
             body.Dispose();
     }
@@ -179,10 +181,12 @@ public class PhysicalWorld : IDisposable
         return (position, orientation);
     }
 
-    public (Vector3 Velocity, Vector3 AngularVelocity) ReadBodyVelocity(NativePhysicsBody physicsBody)
+    public (Vector3 Velocity, Vector3 AngularVelocity) ReadBodyVelocity(NativePhysicsBody body)
     {
-        // TODO: implement
-        throw new NotImplementedException();
+        NativeMethods.ReadPhysicsBodyVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
+            out var velocity, out var angularVelocity);
+
+        return (velocity, angularVelocity);
     }
 
     public void GiveImpulse(NativePhysicsBody body, Vector3 impulse)
@@ -263,25 +267,28 @@ public class PhysicalWorld : IDisposable
 
     public void SetBodyCollisionsEnabledState(NativePhysicsBody body, bool collisionsEnabled)
     {
-        throw new NotImplementedException();
+        NativeMethods.PhysicsBodySetCollisionEnabledState(AccessWorldInternal(), body.AccessBodyInternal(),
+            collisionsEnabled);
     }
 
     public void BodyIgnoreCollisionsWithBody(NativePhysicsBody body, NativePhysicsBody otherBody)
     {
-        throw new NotImplementedException();
+        NativeMethods.PhysicsBodyAddCollisionIgnore(AccessWorldInternal(), body.AccessBodyInternal(),
+            otherBody.AccessBodyInternal());
     }
 
     public void BodyRemoveCollisionIgnoreWith(NativePhysicsBody body, NativePhysicsBody otherBody)
     {
-        throw new NotImplementedException();
+        NativeMethods.PhysicsBodyRemoveCollisionIgnore(AccessWorldInternal(), body.AccessBodyInternal(),
+            otherBody.AccessBodyInternal());
     }
 
     public void BodyClearCollisionsIgnores(NativePhysicsBody body)
     {
-        throw new NotImplementedException();
+        NativeMethods.PhysicsBodyClearCollisionIgnores(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
-    public void BodySetCollisionIgnores(NativePhysicsBody body, IReadOnlyCollection<NativePhysicsBody> ignoredBodies)
+    public void BodySetCollisionIgnores(NativePhysicsBody body, IReadOnlyList<NativePhysicsBody> ignoredBodies)
     {
         // Optimization if the list is empty
         if (ignoredBodies.Count < 1)
@@ -290,9 +297,49 @@ public class PhysicalWorld : IDisposable
             return;
         }
 
-        var ignored = ignoredBodies.ToArray();
+        var size = ignoredBodies.Count;
 
-        throw new NotImplementedException();
+        if (size * 8 > Constants.MAX_STACKALLOC)
+        {
+            if (!stackAllocWarned)
+            {
+                GD.PrintErr("Stackalloc not usable due to size of collision ignore list, performance problem");
+                stackAllocWarned = true;
+            }
+
+            // Less efficient, simpler approach here as this is not meant to be triggered in any sensible use
+            var array = ignoredBodies.Select(b => b.AccessBodyInternal()).ToArray();
+
+            var pinHandle = GCHandle.Alloc(array, GCHandleType.Pinned);
+
+            try
+            {
+                NativeMethods.PhysicsBodySetCollisionIgnores(AccessWorldInternal(), body.AccessBodyInternal(),
+                    pinHandle.AddrOfPinnedObject(), size);
+            }
+            finally
+            {
+                pinHandle.Free();
+            }
+        }
+        else
+        {
+            Span<IntPtr> nativePointers = stackalloc IntPtr[ignoredBodies.Count];
+
+            for (int i = 0; i < size; ++i)
+            {
+                nativePointers[i] = ignoredBodies[i].AccessBodyInternal();
+            }
+
+            NativeMethods.PhysicsBodySetCollisionIgnores(AccessWorldInternal(), body.AccessBodyInternal(),
+                MemoryMarshal.GetReference(nativePointers), size);
+        }
+    }
+
+    public void BodySetCollisionIgnores(NativePhysicsBody body, NativePhysicsBody singleIgnoredBody)
+    {
+        NativeMethods.PhysicsBodyClearAndSetSingleIgnore(AccessWorldInternal(), body.AccessBodyInternal(),
+            singleIgnoredBody.AccessBodyInternal());
     }
 
     public PhysicsCollision[] BodyStartCollisionRecording(NativePhysicsBody body, int maxRecordedCollisions,
@@ -301,13 +348,11 @@ public class PhysicalWorld : IDisposable
         if (maxRecordedCollisions < 1)
             throw new ArgumentException("Need to record at least one collision", nameof(maxRecordedCollisions));
 
-        var (collisionCountAddress, collisionsArray, arrayAddress) =
+        var (collisionsArray, arrayAddress) =
             body.SetupCollisionRecording(maxRecordedCollisions);
 
-        receiverOfAddressOfCollisionCount = collisionCountAddress;
-
-        NativeMethods.PhysicsBodyEnableCollisionRecording(AccessWorldInternal(), body.AccessBodyInternal(),
-            arrayAddress, maxRecordedCollisions, collisionCountAddress);
+        receiverOfAddressOfCollisionCount = NativeMethods.PhysicsBodyEnableCollisionRecording(AccessWorldInternal(),
+            body.AccessBodyInternal(), arrayAddress, maxRecordedCollisions);
 
         return collisionsArray;
     }
@@ -318,14 +363,16 @@ public class PhysicalWorld : IDisposable
         NativeMethods.PhysicsBodyDisableCollisionRecording(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
-    public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback)
+    public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback,
+        bool calculatePenetrationAmount)
     {
-        throw new NotImplementedException();
+        NativeMethods.PhysicsBodyAddCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal(), filterCallback,
+            calculatePenetrationAmount);
     }
 
     public void BodyDisableCollisionFilter(NativePhysicsBody body)
     {
-        throw new NotImplementedException();
+        NativeMethods.PhysicsBodyDisableCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
     public void SetGravity(JVecF3? gravity = null)
@@ -427,6 +474,9 @@ internal static partial class NativeMethods
     internal static extern void PhysicalWorldAddBody(IntPtr physicalWorld, IntPtr body, bool activate);
 
     [DllImport("thrive_native")]
+    internal static extern void PhysicalWorldDetachBody(IntPtr physicalWorld, IntPtr body);
+
+    [DllImport("thrive_native")]
     internal static extern void DestroyPhysicalWorldBody(IntPtr physicalWorld, IntPtr body);
 
     [DllImport("thrive_native")]
@@ -439,6 +489,10 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern void ReadPhysicsBodyTransform(IntPtr world, IntPtr body, [Out] out JVec3 position,
         [Out] out JQuat orientation);
+
+    [DllImport("thrive_native")]
+    internal static extern void ReadPhysicsBodyVelocity(IntPtr world, IntPtr body, [Out] out JVecF3 velocity,
+        [Out] out JVecF3 angularVelocity);
 
     [DllImport("thrive_native")]
     internal static extern void GiveImpulse(IntPtr world, IntPtr body, JVecF3 impulse);
@@ -474,11 +528,41 @@ internal static partial class NativeMethods
         bool lockRotation);
 
     [DllImport("thrive_native")]
-    internal static extern void PhysicsBodyEnableCollisionRecording(IntPtr physicalWorld, IntPtr body,
-        IntPtr collisionRecordingTarget, int maxRecordedCollisions, IntPtr recordedCollisionCountReceiver);
+    internal static extern void PhysicsBodySetCollisionEnabledState(IntPtr physicalWorld,
+        IntPtr body, bool collisionsEnabled);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicsBodyAddCollisionIgnore(IntPtr physicalWorld, IntPtr body,
+        IntPtr addIgnore);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicsBodyRemoveCollisionIgnore(IntPtr physicalWorld, IntPtr body,
+        IntPtr removeIgnore);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicsBodyClearCollisionIgnores(IntPtr physicalWorld, IntPtr body);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicsBodySetCollisionIgnores(IntPtr physicalWorld, IntPtr body,
+        in IntPtr ignoredBodies, int count);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicsBodyClearAndSetSingleIgnore(IntPtr physicalWorld,
+        IntPtr body, IntPtr onlyIgnoredBody);
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr PhysicsBodyEnableCollisionRecording(IntPtr physicalWorld, IntPtr body,
+        IntPtr collisionRecordingTarget, int maxRecordedCollisions);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicsBodyDisableCollisionRecording(IntPtr physicalWorld, IntPtr body);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicsBodyAddCollisionFilter(IntPtr physicalWorld, IntPtr body,
+        PhysicalWorld.OnCollisionFilterCallback callback, bool calculateCollisionResponse);
+
+    [DllImport("thrive_native")]
+    internal static extern void PhysicsBodyDisableCollisionFilter(IntPtr physicalWorld, IntPtr body);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicalWorldSetGravity(IntPtr physicalWorld, JVecF3 gravity);

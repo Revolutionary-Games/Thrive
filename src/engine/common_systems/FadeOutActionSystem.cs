@@ -50,10 +50,13 @@
 
                 timedLife.FadeTimeRemaining = actions.FadeTime;
 
-                if (actions.DisableCollisions || actions.RemoveVelocity || actions.RemoveAngularVelocity)
+                if (actions.DisableCollisions)
+                    PerformPhysicsOperations(entity, actions.DisableCollisions);
+
+                if (actions.RemoveVelocity || actions.RemoveAngularVelocity)
                 {
-                    PerformPhysicsOperations(entity, actions.RemoveVelocity, actions.RemoveAngularVelocity,
-                        actions.DisableCollisions);
+                    PerformManualPhysicsControlOperations(entity, actions.RemoveVelocity,
+                        actions.RemoveAngularVelocity);
                 }
 
                 if (actions.DisableParticles)
@@ -81,8 +84,24 @@
             }
         }
 
-        private void PerformPhysicsOperations(Entity entity, bool removeVelocity, bool removeAngularVelocity,
-            bool disableCollisions)
+        private void PerformPhysicsOperations(Entity entity, bool disableCollisions)
+        {
+            try
+            {
+                ref var physics = ref entity.Get<Physics>();
+
+                physics.SetCollisionDisableState(disableCollisions);
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr(
+                    $"Cannot apply all fade out actions due to missing {nameof(Physics)} " +
+                    "component on entity: ", e);
+            }
+        }
+
+        private void PerformManualPhysicsControlOperations(Entity entity, bool removeVelocity,
+            bool removeAngularVelocity)
         {
             try
             {
@@ -90,9 +109,6 @@
 
                 physicsControl.RemoveVelocity = removeVelocity;
                 physicsControl.RemoveAngularVelocity = removeAngularVelocity;
-
-                if (disableCollisions)
-                    physicsControl.DisableCollisions = disableCollisions;
 
                 physicsControl.PhysicsApplied = false;
             }
