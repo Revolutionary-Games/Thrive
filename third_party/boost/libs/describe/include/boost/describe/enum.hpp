@@ -32,9 +32,11 @@ template<class D> struct enum_descriptor
     static constexpr decltype(D::name()) name = D::name();
 };
 
+#ifndef __cpp_inline_variables
 // GCC requires these definitions
 template<class D> constexpr decltype(D::value()) enum_descriptor<D>::value;
 template<class D> constexpr decltype(D::name()) enum_descriptor<D>::name;
+#endif
 
 template<class... T> auto enum_descriptor_fn_impl( int, T... )
 {

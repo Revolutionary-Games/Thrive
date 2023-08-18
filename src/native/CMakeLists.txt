@@ -43,7 +43,7 @@ target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 
 target_link_libraries(thrive_native PRIVATE Jolt)
 target_link_libraries(thrive_native PUBLIC Boost::intrusive
-  Boost::circular_buffer)
+  Boost::circular_buffer Boost::pool)
 
 target_include_directories(thrive_native PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 

@@ -102,9 +102,21 @@ inline std::string fix_typeid_name( char const* n )
     return r;
 }
 
-template<class T> std::string typeid_name()
+// class types can be incomplete
+template<class T> std::string typeid_name_impl( int T::* )
+{
+    std::string r = fix_typeid_name( typeid(T[1]).name() );
+    return r.substr( 0, r.size() - 4 ); // remove ' [1]' suffix
+}
+
+template<class T> std::string typeid_name_impl( ... )
 {
     return fix_typeid_name( typeid(T).name() );
+}
+
+template<class T> std::string typeid_name()
+{
+    return typeid_name_impl<T>( 0 );
 }
 
 // template names
@@ -862,6 +874,8 @@ template<class T, std::size_t N> struct tn_holder<T const volatile[N]>
 
 // pointers to members
 
+#if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
+
 template<class R, class T> struct tn_holder<R T::*>
 {
     static std::string type_name( std::string const& suffix )
@@ -870,7 +884,7 @@ template<class R, class T> struct tn_holder<R T::*>
     }
 };
 
-#if defined(BOOST_MSVC) && BOOST_MSVC < 1900 && !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
+#if defined(BOOST_MSVC) && BOOST_MSVC < 1900
 
 template<class R, class T, class... A> struct tn_holder<R(T::*)(A...)>
 {
@@ -904,7 +918,9 @@ template<class R, class T, class... A> struct tn_holder<R(T::*)(A...) const vola
     }
 };
 
-#endif
+#endif // #if defined(BOOST_MSVC) && BOOST_MSVC < 1900
+
+#endif // #if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
 
 // strings
 

@@ -26,7 +26,9 @@ template<class C, class B> struct base_descriptor
     static constexpr unsigned modifiers = compute_base_modifiers<C, B>();
 };
 
+#ifndef __cpp_inline_variables
 template<class C, class B> constexpr unsigned base_descriptor<C, B>::modifiers;
+#endif
 
 template<class... T> auto base_descriptor_fn_impl( int, T... )
 {

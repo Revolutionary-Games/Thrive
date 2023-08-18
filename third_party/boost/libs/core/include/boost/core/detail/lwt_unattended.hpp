@@ -35,8 +35,12 @@ inline void lwt_unattended()
 #  pragma clang diagnostic ignored "-Wdeprecated-declarations"
 # endif
 
+#if !defined(WINAPI_FAMILY) || WINAPI_FAMILY == 100 /*WINAPI_FAMILY_DESKTOP_APP*/
+
     // disable message box on crash
     ::_seterrormode( /*SEM_NOGPFAULTERRORBOX*/ 0x0002 );
+
+#endif
 
 # if defined(__clang__)
 #  pragma clang diagnostic pop
