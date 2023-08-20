@@ -840,9 +840,11 @@ public class MicrobeAI
 
         // sometimes the AI will randomly decide to try in vain to eat something
         var choosingToEngulf = microbe.CanDigestObject(targetMicrobe) == Microbe.DigestCheckResult.Ok ||
-            random.NextDouble() < Constants.AI_BAD_ENGULF_CHANCE * SpeciesOpportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            random.NextDouble() < 
+            Constants.AI_BAD_ENGULF_CHANCE * SpeciesOpportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
-        var choosingToAttackWithToxin = SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin();
+        var choosingToAttackWithToxin = SpeciesOpportunism 
+            > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin();
 
         return choosingToEngulf &&
             targetMicrobe.Species != microbe.Species && (
