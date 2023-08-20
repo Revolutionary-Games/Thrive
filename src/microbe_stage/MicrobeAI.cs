@@ -255,7 +255,7 @@ public class MicrobeAI
         }
 
         // If there are no chunks, look for living prey to hunt
-        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+        var possiblePrey = GetNearestPreyItem(data.AllMicrobes, random);
         if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
             var prey = possiblePrey.GlobalTransform.origin;
@@ -368,7 +368,7 @@ public class MicrobeAI
     /// </summary>
     /// <returns>The nearest prey item.</returns>
     /// <param name="allMicrobes">All microbes.</param>
-    private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes)
+    private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes, Random random)
     {
         var focused = focusedPrey.Value;
         if (focused != null)
@@ -400,7 +400,7 @@ public class MicrobeAI
             {
                 if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
-                    && CanTryToEatMicrobe(otherMicrobe))
+                    && CanTryToEatMicrobe(otherMicrobe, random))
                 {
                     if (chosenPrey == null ||
                         (chosenPrey.GlobalTransform.origin - microbe.Translation).LengthSquared() >
@@ -834,12 +834,19 @@ public class MicrobeAI
         pursuitThreshold *= 0.95f;
     }
 
-    private bool CanTryToEatMicrobe(Microbe targetMicrobe)
+    private bool CanTryToEatMicrobe(Microbe targetMicrobe, Random random)
     {
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
-        return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
+        // sometimes the AI will randomly decide to try in vain to eat something
+        var choosingToEngulf = microbe.CanDigestObject(targetMicrobe) == Microbe.DigestCheckResult.Ok ||
+            random.NextDouble() < Constants.AI_BAD_ENGULF_CHANCE * SpeciesOpportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+
+        var choosingToAttackWithToxin = SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin();
+
+        return choosingToEngulf &&
+            targetMicrobe.Species != microbe.Species && (
+            choosingToAttackWithToxin
             || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
