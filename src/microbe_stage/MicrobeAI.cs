@@ -368,6 +368,7 @@ public class MicrobeAI
     /// </summary>
     /// <returns>The nearest prey item.</returns>
     /// <param name="allMicrobes">All microbes.</param>
+    /// <param name="random">Provided (possible seeded) Random.</param>
     private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes, Random random)
     {
         var focused = focusedPrey.Value;
@@ -848,8 +849,8 @@ public class MicrobeAI
 
         return choosingToEngulf &&
             targetMicrobe.Species != microbe.Species && (
-            choosingToAttackWithToxin
-            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+                choosingToAttackWithToxin
+                || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
     private bool CanShootToxin()
