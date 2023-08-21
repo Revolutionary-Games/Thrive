@@ -368,7 +368,7 @@ public class MicrobeAI
     /// </summary>
     /// <returns>The nearest prey item.</returns>
     /// <param name="allMicrobes">All microbes.</param>
-    /// <param name="random">Provided (possible seeded) Random.</param>
+    /// <param name="random">Randomness source</param>
     private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes, Random random)
     {
         var focused = focusedPrey.Value;
