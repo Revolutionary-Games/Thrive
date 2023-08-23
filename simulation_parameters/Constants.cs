@@ -740,6 +740,12 @@ public static class Constants
     // Cooldown for AI for toggling engulfing
     public const float AI_ENGULF_INTERVAL = 300;
 
+    /// <summary>
+    ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something
+    ///   it can't eat
+    /// </summary>
+    public const float AI_BAD_ENGULF_CHANCE = 0.15f;
+
     // Average number of calls to think method before doing expensive cloud-finding calculations
     public const int AI_STEPS_PER_SMELL = 20;
 
