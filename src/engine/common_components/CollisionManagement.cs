@@ -66,12 +66,6 @@
         public int RecordActiveCollisions;
 
         /// <summary>
-        ///   If this is not true then the <see cref="CollisionFilter"/> when used doesn't calculate how hard the
-        ///   collision being checked is going to be
-        /// </summary>
-        public bool CollisionFilterCalculatesPenetrationAmount;
-
-        /// <summary>
         ///   Must be set to false after changing any properties to have them apply (after the initial creation)
         /// </summary>
         [JsonIgnore]

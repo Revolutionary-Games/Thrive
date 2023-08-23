@@ -70,7 +70,7 @@ public:
     /// Note that currently all constraints this body is part of will be deleted permanently (i.e. they won't be
     /// restored even if this body is added back to the world). Also bodies are world specific so the body cannot be
     /// added back to a different physics world.
-    void DetachBody(const Ref<PhysicsBody>& body);
+    void DetachBody(PhysicsBody& body);
 
     void DestroyBody(const Ref<PhysicsBody>& body);
 
@@ -133,7 +133,7 @@ public:
     /// method again with false parameter)
     void SetCollisionDisabledState(PhysicsBody& body, bool disableAllCollisions);
 
-    void AddCollisionFilter(PhysicsBody& body, CollisionFilterCallback callback, bool calculateCollisionResponse);
+    void AddCollisionFilter(PhysicsBody& body, CollisionFilterCallback callback);
 
     void DisableCollisionFilter(PhysicsBody& body);
 
@@ -176,6 +176,10 @@ public:
     }
 
     void SetDebugCameraLocation(JPH::Vec3Arg position) noexcept;
+
+    /// \brief Called by PhysicsBody when it has a recorded collision. This is done to reset bodies that haven't
+    /// received new collisions on the next physics update
+    void ReportBodyWithActiveCollisions(PhysicsBody& body);
 
 protected:
     void PerformPhysicsStepOperations(float delta);

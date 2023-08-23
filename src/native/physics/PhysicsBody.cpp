@@ -24,7 +24,7 @@ PhysicsBody::PhysicsBody(JPH::Body* body, JPH::BodyID bodyId) noexcept :
 
 PhysicsBody::~PhysicsBody() noexcept
 {
-    if (inWorld)
+    if (containedInWorld != nullptr)
         LOG_ERROR("PhysicsBody deleted while it is still in the world, this is going to cause memory corruption!");
 }
 
@@ -61,7 +61,7 @@ bool PhysicsBody::AddCollisionIgnore(const PhysicsBody& ignoredBody, bool skipDu
     }
 
     ignoredCollisions.emplace_back(idToAdd);
-    return false;
+    return true;
 }
 
 bool PhysicsBody::RemoveCollisionIgnore(const PhysicsBody& noLongerIgnored) noexcept
@@ -124,7 +124,7 @@ bool PhysicsBody::DisableBodyControl() noexcept
 }
 
 // ------------------------------------ //
-void PhysicsBody::MarkUsedInWorld(const PhysicalWorld* world) noexcept
+void PhysicsBody::MarkUsedInWorld(PhysicalWorld* world) noexcept
 {
     if (containedInWorld)
         LOG_ERROR("PhysicsBody marked used when already in use");

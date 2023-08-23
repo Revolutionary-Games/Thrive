@@ -128,8 +128,8 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyDisableCollisionRecording(
         PhysicalWorld* physicalWorld, PhysicsBody* body);
 
-    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddCollisionFilter(PhysicalWorld* physicalWorld,
-        PhysicsBody* body, OnFilterPhysicsCollision callback, bool calculateCollisionResponse);
+    [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddCollisionFilter(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, OnFilterPhysicsCollision callback);
 
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyDisableCollisionFilter(
         PhysicalWorld* physicalWorld, PhysicsBody* body);

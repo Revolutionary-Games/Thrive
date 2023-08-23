@@ -379,12 +379,11 @@ void PhysicsBodyDisableCollisionRecording(PhysicalWorld* physicalWorld, PhysicsB
         ->DisableCollisionRecording(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body));
 }
 
-void PhysicsBodyAddCollisionFilter(
-    PhysicalWorld* physicalWorld, PhysicsBody* body, OnFilterPhysicsCollision callback, bool calculateCollisionResponse)
+void PhysicsBodyAddCollisionFilter(PhysicalWorld* physicalWorld, PhysicsBody* body, OnFilterPhysicsCollision callback)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->AddCollisionFilter(
-            *reinterpret_cast<Thrive::Physics::PhysicsBody*>(body), callback, calculateCollisionResponse);
+        ->AddCollisionFilter(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
+            reinterpret_cast<Thrive::Physics::CollisionFilterCallback>(callback));
 }
 
 void PhysicsBodyDisableCollisionFilter(PhysicalWorld* physicalWorld, PhysicsBody* body)

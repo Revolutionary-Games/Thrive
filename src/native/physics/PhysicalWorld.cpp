@@ -19,6 +19,7 @@
 
 // #include "core/TaskSystem.hpp"
 
+#include "core/Mutex.hpp"
 #include "core/Time.hpp"
 
 #include "BodyActivationListener.hpp"
@@ -44,7 +45,9 @@ namespace Thrive::Physics
 class PhysicalWorld::Pimpl
 {
 public:
-    Pimpl() : durationBuffer(30)
+    Pimpl() :
+        durationBuffer(30), activeBodiesWithCollisions(std::make_unique<std::vector<PhysicsBody*>>()),
+        previousBodiesWithCollisions(std::make_unique<std::vector<PhysicsBody*>>())
     {
 #ifdef JPH_DEBUG_RENDERER
         // Convex shapes
@@ -82,6 +85,69 @@ public:
         return durations / static_cast<float>(size);
     }
 
+    inline void PushBodyWithActiveCollisions(PhysicsBody& body)
+    {
+        // TODO: switch to a spin lock or a lock free queue
+        Lock lock(activeBodyWriteMutex);
+
+        activeBodiesWithCollisions->emplace_back(&body);
+    }
+
+    /// \brief Ensures a body is no longer referenced by any step data
+    void NotifyBodyRemove(PhysicsBody* body) noexcept
+    {
+        // Only active bodies can store the body reference across frames so only that needs to be checked
+        auto& listToLookAt = *activeBodiesWithCollisions;
+        const size_t size = listToLookAt.size();
+
+        for (size_t i = 0; i < size; ++i)
+        {
+            if (listToLookAt[i] != body)
+                continue;
+
+            // Need to remove this, as we don't have to ensure order we can swap this to be last in the vector
+            // and pop the last
+            if (i + 1 < size)
+            {
+                std::swap(listToLookAt[i], listToLookAt[size - 1]);
+            }
+            else
+            {
+                // Already last
+            }
+
+            listToLookAt.pop_back();
+
+            return;
+        }
+    }
+
+    void HandleExpiringBodyCollisions()
+    {
+        // Handle expiring previous collisions
+
+        // Active bodies of previous run becomes the previous bodies with this swap (and the last frame handled
+        // previous data which should be empty becomes the active bodies)
+
+        std::swap(activeBodiesWithCollisions, previousBodiesWithCollisions);
+
+        auto& listToClear = *previousBodiesWithCollisions;
+
+        size_t previousCount = listToClear.size();
+        for (size_t i = 0; i < previousCount; ++i)
+        {
+            listToClear[i]->ClearRecordedDataIfStepIsOld(stepCounter);
+        }
+
+        listToClear.clear();
+
+        // This should be cleared already by the previous physics step
+        if (!activeBodiesWithCollisions->empty())
+        {
+            LOG_ERROR("Logic error in active body record list keeping");
+        }
+    }
+
 public:
     BroadPhaseLayerInterface broadPhaseLayer;
     ObjectToBroadPhaseLayerFilter objectToBroadPhaseLayer;
@@ -94,6 +160,13 @@ public:
     std::vector<Ref<PhysicsBody>> bodiesWithPerStepControl;
 
     JPH::Vec3 gravity = JPH::Vec3(0, -9.81f, 0);
+
+    std::unique_ptr<std::vector<PhysicsBody*>> activeBodiesWithCollisions;
+    std::unique_ptr<std::vector<PhysicsBody*>> previousBodiesWithCollisions;
+
+    Mutex activeBodyWriteMutex;
+
+    uint32_t stepCounter = 0;
 
 #ifdef JPH_DEBUG_RENDERER
     JPH::BodyManager::DrawSettings bodyDrawSettings;
@@ -290,6 +363,9 @@ void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
     {
         if (!constraint->IsCreatedInWorld())
         {
+            // TODO: constraint creation has to be skipped if the other body the constraint is on is currently
+            //  detached
+
             physicsSystem->AddConstraint(constraint->GetConstraint().GetPtr());
             constraint->OnRegisteredToWorld(*this);
         }
@@ -300,9 +376,9 @@ void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
     OnPostBodyAdded(body);
 }
 
-void PhysicalWorld::DetachBody(const Ref<PhysicsBody>& body)
+void PhysicalWorld::DetachBody(PhysicsBody& body)
 {
-    if (!body->IsInWorld() || body->IsDetached())
+    if (!body.IsInWorld() || body.IsDetached())
     {
         LOG_ERROR("Can't detach physics body not in world or detached already");
         return;
@@ -310,13 +386,13 @@ void PhysicalWorld::DetachBody(const Ref<PhysicsBody>& body)
 
     auto& bodyInterface = physicsSystem->GetBodyInterface();
 
-    OnBodyPreLeaveWorld(*body);
+    OnBodyPreLeaveWorld(body);
 
-    bodyInterface.RemoveBody(body->GetId());
+    bodyInterface.RemoveBody(body.GetId());
 
-    OnPostBodyLeaveWorld(*body);
+    OnPostBodyLeaveWorld(body);
 
-    body->MarkDetached();
+    body.MarkDetached();
 }
 
 void PhysicalWorld::DestroyBody(const Ref<PhysicsBody>& body)
@@ -357,7 +433,7 @@ void PhysicalWorld::DestroyBody(const Ref<PhysicsBody>& body)
 void PhysicalWorld::SetDamping(JPH::BodyID bodyId, float damping, const float* angularDamping /*= nullptr*/)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Couldn't lock body for setting damping");
         return;
@@ -377,7 +453,7 @@ void PhysicalWorld::ReadBodyTransform(
     JPH::BodyID bodyId, JPH::RVec3& positionReceiver, JPH::Quat& rotationReceiver) const
 {
     JPH::BodyLockRead lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (lock.Succeeded())
+    if (lock.Succeeded()) [[likely]]
     {
         const JPH::Body& body = lock.GetBody();
 
@@ -396,7 +472,7 @@ void PhysicalWorld::ReadBodyVelocity(
     JPH::BodyID bodyId, JPH::Vec3& velocityReceiver, JPH::Vec3& angularVelocityReceiver) const
 {
     JPH::BodyLockRead lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (lock.Succeeded())
+    if (lock.Succeeded()) [[likely]]
     {
         const JPH::Body& body = lock.GetBody();
 
@@ -414,7 +490,7 @@ void PhysicalWorld::ReadBodyVelocity(
 void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Couldn't lock body for giving impulse");
         return;
@@ -427,7 +503,7 @@ void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
 void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Couldn't lock body for setting velocity");
         return;
@@ -440,7 +516,7 @@ void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity)
 void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Couldn't lock body for setting angular velocity");
         return;
@@ -453,7 +529,7 @@ void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity
 void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Couldn't lock body for giving angular impulse");
         return;
@@ -467,7 +543,7 @@ void PhysicalWorld::SetVelocityAndAngularVelocity(
     JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Couldn't lock body for setting velocity and angular velocity");
         return;
@@ -485,7 +561,7 @@ void PhysicalWorld::SetBodyControl(
     // to be relatively large to avoid oscillation
     constexpr auto newRotationTargetAfter = 0.01f;
 
-    if (rotationRate <= 0)
+    if (rotationRate <= 0) [[unlikely]]
     {
         LOG_ERROR("Invalid rotationRate variable for controlling a body, needs to be positive");
         return;
@@ -497,13 +573,13 @@ void PhysicalWorld::SetBodyControl(
 
     state = bodyWrapper.GetBodyControlState();
 
-    if (state == nullptr)
+    if (state == nullptr) [[unlikely]]
     {
         LOG_ERROR("Logic error in body control state creation (state should have been created)");
         return;
     }
 
-    if (justEnabled)
+    if (justEnabled) [[unlikely]]
     {
         // TODO: avoid duplicates if someone else will also add items to this list
         pimpl->bodiesWithPerStepControl.emplace_back(&bodyWrapper);
@@ -513,7 +589,7 @@ void PhysicalWorld::SetBodyControl(
         state->targetChanged = true;
         state->justStarted = true;
     }
-    else
+    else [[likely]]
     {
         state->targetRotation = targetRotation;
 
@@ -561,7 +637,7 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
     {
         // TODO: maybe there's a way to avoid the double lock here? (setting position takes a lock as well)
         JPH::BodyLockRead lock(physicsSystem->GetBodyLockInterface(), bodyId);
-        if (!lock.Succeeded())
+        if (!lock.Succeeded()) [[unlikely]]
         {
             LOG_ERROR("Can't lock body for y-position fix");
             return false;
@@ -572,7 +648,7 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
         position = body.GetPosition();
     }
 
-    if (std::abs(position.GetY()) > 0.001f)
+    if (std::abs(position.GetY()) > 0.001f) [[unlikely]]
     {
         SetPosition(bodyId, {position.GetX(), 0, position.GetZ()}, false);
         return true;
@@ -677,10 +753,9 @@ void PhysicalWorld::SetCollisionDisabledState(PhysicsBody& body, bool disableAll
     UpdateBodyUserPointer(body);
 }
 
-void PhysicalWorld::AddCollisionFilter(
-    PhysicsBody& body, CollisionFilterCallback callback, bool calculateCollisionResponse)
+void PhysicalWorld::AddCollisionFilter(PhysicsBody& body, CollisionFilterCallback callback)
 {
-    body.SetCollisionFilter(callback, calculateCollisionResponse);
+    body.SetCollisionFilter(callback);
 
     if (body.MarkCollisionFilterCallbackUsed())
     {
@@ -702,7 +777,7 @@ void PhysicalWorld::DisableCollisionFilter(PhysicsBody& body)
 Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(PhysicsBody& body, JPH::Vec3 axis, bool lockRotation)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), body.GetId());
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Locking body for adding a constraint failed");
         return nullptr;
@@ -757,7 +832,7 @@ Ref<TrackedConstraint> PhysicalWorld::CreateAxisLockConstraint(PhysicsBody& body
         new TrackedConstraint(JPH::Ref<JPH::Constraint>(constraintPtr), Ref<PhysicsBody>(&body)));
 #endif
 
-    if (body.IsInWorld())
+    if (body.IsInWorld() && !body.IsDetached())
     {
         // Immediately register the constraint if the body is in the world currently
 
@@ -837,7 +912,7 @@ bool PhysicalWorld::DumpSystemState(std::string_view path)
     std::ofstream stream(path.data(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
     JPH::StreamOutWrapper wrapper(stream);
 
-    if (stream.is_open())
+    if (stream.is_open()) [[likely]]
     {
         scene->SaveBinaryState(wrapper, true, true);
     }
@@ -853,7 +928,7 @@ bool PhysicalWorld::DumpSystemState(std::string_view path)
 // ------------------------------------ //
 void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
 {
-    if (changesToBodies)
+    if (changesToBodies) [[unlikely]]
     {
         if (simulationsToNextOptimization <= 0)
         {
@@ -865,7 +940,7 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
     }
 
     // Optimize broadphase (but at most quite rarely)
-    if (simulationsToNextOptimization > 0)
+    if (simulationsToNextOptimization > 0) [[unlikely]]
     {
         if (--simulationsToNextOptimization <= 0)
         {
@@ -888,7 +963,7 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
 
     switch (result)
     {
-        case JPH::EPhysicsUpdateError::None:
+        [[likely]] case JPH::EPhysicsUpdateError::None:
             break;
         case JPH::EPhysicsUpdateError::ManifoldCacheFull:
             LOG_ERROR("Physics update error: manifold cache full");
@@ -908,15 +983,27 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
     averagePhysicsTime = pimpl->AddAndCalculateAverageTime(elapsed);
 }
 
+void PhysicalWorld::ReportBodyWithActiveCollisions(PhysicsBody& body)
+{
+    pimpl->PushBodyWithActiveCollisions(body);
+}
+
 void PhysicalWorld::PerformPhysicsStepOperations(float delta)
 {
+    ++pimpl->stepCounter;
+
+    // Collision setup
+    contactListener->ReportStepNumber(pimpl->stepCounter);
+
+    pimpl->HandleExpiringBodyCollisions();
+
     // Apply per-step physics body state
     // TODO: multithreading if there's a ton of bodies using this
     for (const auto& bodyPtr : pimpl->bodiesWithPerStepControl)
     {
         auto& body = *bodyPtr;
 
-        if (body.GetBodyControlState() != nullptr)
+        if (body.GetBodyControlState() != nullptr) [[likely]]
             ApplyBodyControl(body, delta);
     }
 }
@@ -939,7 +1026,7 @@ Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotion
 
     const auto body = physicsSystem->GetBodyInterface().CreateBody(creationSettings);
 
-    if (body == nullptr)
+    if (body == nullptr) [[unlikely]]
     {
         LOG_ERROR("Ran out of physics bodies");
         return nullptr;
@@ -956,11 +1043,11 @@ Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotion
 
 Ref<PhysicsBody> PhysicalWorld::OnBodyCreated(Ref<PhysicsBody>&& body, bool addToWorld)
 {
-    if (body == nullptr)
+    if (body == nullptr) [[unlikely]]
         return nullptr;
 
     // Safety check for pointer data alignment
-    if (reinterpret_cast<decltype(STUFFED_POINTER_DATA_MASK)>(body.get()) & STUFFED_POINTER_DATA_MASK)
+    if (reinterpret_cast<decltype(STUFFED_POINTER_DATA_MASK)>(body.get()) & STUFFED_POINTER_DATA_MASK) [[unlikely]]
     {
         LOG_ERROR("Allocated PhysicsBody doesn't follow alignment requirements! It uses low bits in the pointer.");
         std::abort();
@@ -977,7 +1064,7 @@ Ref<PhysicsBody> PhysicalWorld::OnBodyCreated(Ref<PhysicsBody>&& body, bool addT
 
 void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
 {
-    body.MarkUsedInWorld();
+    body.MarkUsedInWorld(this);
 
     // Add an extra reference to the body to keep it from being deleted while in this world
     // TODO: does detached body also need to keep an extra reference?
@@ -987,6 +1074,8 @@ void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
 
 void PhysicalWorld::OnBodyPreLeaveWorld(PhysicsBody& body)
 {
+    // TODO: allow detaching bodies to keep the constraint data intact for re-creating constraints when adding them
+    // back
     // Destroy constraints
     while (!body.GetConstraints().empty())
     {
@@ -999,6 +1088,8 @@ void PhysicalWorld::OnBodyPreLeaveWorld(PhysicsBody& body)
 
 void PhysicalWorld::OnPostBodyLeaveWorld(PhysicsBody& body)
 {
+    pimpl->NotifyBodyRemove(&body);
+
     // Remove the extra body reference that we added for the physics system keeping a pointer to the body
     body.Release();
     --bodyCount;
@@ -1007,11 +1098,11 @@ void PhysicalWorld::OnPostBodyLeaveWorld(PhysicsBody& body)
 void PhysicalWorld::UpdateBodyUserPointer(const PhysicsBody& body)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), body.GetId());
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Can't lock body for updating user pointer bits, the enabled / disabled feature won't apply on it");
     }
-    else
+    else [[likely]]
     {
         JPH::Body& joltBody = lock.GetBody();
         joltBody.SetUserData(body.CalculateUserPointer());
@@ -1037,7 +1128,7 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     // This method is called by the step listener meaning that all bodies are already locked so this needs to be used
     // like this
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterfaceNoLock(), bodyId);
-    if (!lock.Succeeded())
+    if (!lock.Succeeded()) [[unlikely]]
     {
         LOG_ERROR("Couldn't lock body for applying body control");
         return;
@@ -1146,7 +1237,7 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 
 void PhysicalWorld::DrawPhysics(float delta)
 {
-    if (debugDrawLevel < 1)
+    if (debugDrawLevel < 1) [[likely]]
     {
 #ifdef JPH_DEBUG_RENDERER
         contactListener->SetDebugDraw(nullptr);

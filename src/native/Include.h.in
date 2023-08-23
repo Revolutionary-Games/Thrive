@@ -7,6 +7,7 @@
 #ifdef __cplusplus
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 #endif
 
 // clang-format off
@@ -33,6 +34,8 @@
 
 #cmakedefine USE_SMALL_VECTOR_POOLS
 
+#cmakedefine LOCK_FREE_COLLISION_RECORDING
+
 #ifdef WIN32
 #define FORCE_INLINE __forceinline
 #else
@@ -47,8 +50,8 @@
 // Size in bytes that physics body user data is (used for collision callbacks). Has to be a macro to work in C.
 #define PHYSICS_USER_DATA_SIZE 8
 
-// Note this only works in 64-bit mode right now. The extra +4 at the end is to account for padding
-#define PHYSICS_COLLISION_DATA_SIZE (PHYSICS_USER_DATA_SIZE * 2 + POINTER_SIZE * 2 + 12 + 4)
+// Note this only works in 64-bit mode right now. The extra +3 at the end is to account for padding
+#define PHYSICS_COLLISION_DATA_SIZE (PHYSICS_USER_DATA_SIZE * 2 + POINTER_SIZE * 2 + 13 + 3)
 
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus
@@ -66,6 +69,8 @@ constexpr size_t STUFFED_POINTER_ALIGNMENT = 8;
 constexpr uint64_t STUFFED_POINTER_DATA_MASK = 0x7;
 
 constexpr uint64_t STUFFED_POINTER_POINTER_MASK = ~STUFFED_POINTER_DATA_MASK;
+
+constexpr uint32_t COLLISION_UNKNOWN_SUB_SHAPE = std::numeric_limits<uint32_t>::max();
 
 } // namespace Thrive
 

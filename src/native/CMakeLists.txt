@@ -57,11 +57,11 @@ target_precompile_headers(thrive_native PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
   PRIVATE "../../third_party/JoltPhysics/Jolt/Jolt.h")
 
 set_target_properties(thrive_native PROPERTIES
-  CXX_STANDARD 17
+  CXX_STANDARD 20
   CXX_EXTENSIONS OFF
   INTERPROCEDURAL_OPTIMIZATION ON)
 
-message(STATUS "TODO: static standard lib for easier distributing")
+message(STATUS "TODO: static standard lib for easier distributing (make sure it is the clang one)")
 # # Static standard lib
 # target_link_libraries(thrive_native PRIVATE -static-libgcc -static-libstdc++)
 

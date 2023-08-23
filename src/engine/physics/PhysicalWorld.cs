@@ -363,11 +363,9 @@ public class PhysicalWorld : IDisposable
         NativeMethods.PhysicsBodyDisableCollisionRecording(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
-    public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback,
-        bool calculatePenetrationAmount)
+    public void BodyAddCollisionFilter(NativePhysicsBody body, OnCollisionFilterCallback filterCallback)
     {
-        NativeMethods.PhysicsBodyAddCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal(), filterCallback,
-            calculatePenetrationAmount);
+        NativeMethods.PhysicsBodyAddCollisionFilter(AccessWorldInternal(), body.AccessBodyInternal(), filterCallback);
     }
 
     public void BodyDisableCollisionFilter(NativePhysicsBody body)
@@ -559,7 +557,7 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void PhysicsBodyAddCollisionFilter(IntPtr physicalWorld, IntPtr body,
-        PhysicalWorld.OnCollisionFilterCallback callback, bool calculateCollisionResponse);
+        PhysicalWorld.OnCollisionFilterCallback callback);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicsBodyDisableCollisionFilter(IntPtr physicalWorld, IntPtr body);

@@ -19,17 +19,28 @@ public struct PhysicsCollision
 
     /// <summary>
     ///   First colliding body, this is not wrapped in a <see cref="NativePhysicsBody"/> to avoid extra reference
-    ///   counting and object allocations
+    ///   counting and object allocations, rather this is directly the pointer to the native side body
     /// </summary>
     public readonly IntPtr FirstBody;
 
     public readonly IntPtr SecondBody;
 
-    public readonly int FirstSubShapeData;
+    /// <summary>
+    ///   Physics sub-shape data for this collision. Unknown (uint.Max) when used in a collision filter.
+    /// </summary>
+    public readonly uint FirstSubShapeData;
 
-    public readonly int SecondSubShapeData;
+    public readonly uint SecondSubShapeData;
 
+    /// <summary>
+    ///   How hard the collision is. This is not calculated in the collision filter
+    /// </summary>
     public readonly float PenetrationAmount;
+
+    /// <summary>
+    ///   True on the first physics update this collision appeared (always true in the collision filter)
+    /// </summary>
+    public readonly bool JustStarted;
 
     // ReSharper restore UnassignedReadonlyField
 }

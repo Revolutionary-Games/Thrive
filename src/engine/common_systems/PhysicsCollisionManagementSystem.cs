@@ -120,8 +120,7 @@
                     // TODO: can we somehow ensure that if the filter is set to null then StateApplied is set to false?
                     // Because otherwise we might get delegate data corruption when called from the native side?
 
-                    physicalWorld.BodyAddCollisionFilter(physicsBody, collisionManagement.CollisionFilter!,
-                        collisionManagement.CollisionFilterCalculatesPenetrationAmount);
+                    physicalWorld.BodyAddCollisionFilter(physicsBody, collisionManagement.CollisionFilter!);
 
                     collisionManagement.CollisionFilterCallbackRegistered = true;
                 }

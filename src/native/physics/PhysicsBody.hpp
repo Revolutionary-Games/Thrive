@@ -12,6 +12,13 @@
 
 #include "PhysicsCollision.hpp"
 
+// This needs to be included to allow one collision recording method to be inline
+#include "PhysicalWorld.hpp"
+
+#ifndef LOCK_FREE_COLLISION_RECORDING
+#include "core/Mutex.hpp"
+#endif
+
 #ifdef USE_SMALL_VECTOR_POOLS
 #include "boost/pool/pool_alloc.hpp"
 #endif
@@ -28,9 +35,13 @@ class PhysicalWorld;
 class BodyControlState;
 
 // Flags to put in the physics user data field as a stuffed pointer, max count is UNUSED_POINTER_BITS
-constexpr uint64_t PHYSICS_BODY_COLLISION_FLAG = 0x1;
+constexpr uint64_t PHYSICS_BODY_COLLISION_FILTER_FLAG = 0x1;
 constexpr uint64_t PHYSICS_BODY_RECORDING_FLAG = 0x2;
 constexpr uint64_t PHYSICS_BODY_DISABLE_COLLISION_FLAG = 0x4;
+
+// Combined flag values
+constexpr uint64_t PHYSICS_BODY_SPECIAL_COLLISION_FLAG =
+    PHYSICS_BODY_COLLISION_FILTER_FLAG | PHYSICS_BODY_DISABLE_COLLISION_FLAG;
 
 #ifdef USE_SMALL_VECTOR_POOLS
 using IgnoredCollisionList = std::vector<JPH::BodyID, boost::pool_allocator<JPH::BodyID>>;
@@ -44,6 +55,7 @@ class alignas(STUFFED_POINTER_ALIGNMENT) PhysicsBody : public RefCounted<Physics
     friend PhysicalWorld;
     friend BodyActivationListener;
     friend TrackedConstraint;
+    friend ContactListener;
 
     // Flags used only internally to track some extra state
     static constexpr uint64_t EXTRA_FLAG_FILTER_LIST = 0x8;
@@ -92,10 +104,20 @@ public:
     void SetCollisionRecordingTarget(CollisionRecordListType target, int maxCount) noexcept;
     void ClearCollisionRecordingTarget() noexcept;
 
-    const inline int32_t* GetRecordedCollisionTargetAddress() const noexcept
+#ifdef LOCK_FREE_COLLISION_RECORDING
+    inline const int32_t* GetRecordedCollisionTargetAddress() const noexcept
+    {
+        static_assert(
+            sizeof(int32_t) == sizeof(activeRecordedCollisionCount), "atomic assumed same size as underlying type");
+
+        return reinterpret_cast<const int32_t*>(&(this->activeRecordedCollisionCount));
+    }
+#else
+    inline const int32_t* GetRecordedCollisionTargetAddress() const noexcept
     {
         return &(this->activeRecordedCollisionCount);
     }
+#endif
 
     // ------------------------------------ //
     // Collision ignores
@@ -119,20 +141,18 @@ public:
         return false;
     }
 
-    inline void SetCollisionFilter(CollisionFilterCallback callback, bool calculateCollisionParameters) noexcept
-    {
-        callbackBasedFilter = callback;
-        filterGetsCollisionCalculations = calculateCollisionParameters;
-    }
-
-    inline void RemoveCollisionFilter(CollisionFilterCallback callback) noexcept
+    inline void SetCollisionFilter(CollisionFilterCallback callback) noexcept
     {
         callbackBasedFilter = callback;
     }
 
-    FORCE_INLINE inline CollisionFilterCallback GetCollisionFilter(bool& calculateCollisionParameters) const noexcept
+    inline void RemoveCollisionFilter() noexcept
     {
-        calculateCollisionParameters = filterGetsCollisionCalculations;
+        callbackBasedFilter = nullptr;
+    }
+
+    FORCE_INLINE inline CollisionFilterCallback GetCollisionFilter() const noexcept
+    {
         return callbackBasedFilter;
     }
 
@@ -178,7 +198,7 @@ public:
         if (old == activeUserPointerFlags)
             return false;
 
-        activeUserPointerFlags |= PHYSICS_BODY_COLLISION_FLAG;
+        activeUserPointerFlags |= PHYSICS_BODY_COLLISION_FILTER_FLAG;
         return true;
     }
 
@@ -195,7 +215,7 @@ public:
         if (activeUserPointerFlags & EXTRA_FLAG_FILTER_CALLBACK)
             return true;
 
-        activeUserPointerFlags &= ~PHYSICS_BODY_COLLISION_FLAG;
+        activeUserPointerFlags &= ~PHYSICS_BODY_COLLISION_FILTER_FLAG;
 
         return true;
     }
@@ -209,7 +229,7 @@ public:
         if (old == activeUserPointerFlags)
             return false;
 
-        activeUserPointerFlags |= PHYSICS_BODY_COLLISION_FLAG;
+        activeUserPointerFlags |= PHYSICS_BODY_COLLISION_FILTER_FLAG;
         return true;
     }
 
@@ -226,7 +246,7 @@ public:
         if (activeUserPointerFlags & EXTRA_FLAG_FILTER_LIST)
             return true;
 
-        activeUserPointerFlags &= ~PHYSICS_BODY_COLLISION_FLAG;
+        activeUserPointerFlags &= ~PHYSICS_BODY_COLLISION_FILTER_FLAG;
 
         return true;
     }
@@ -291,6 +311,11 @@ public:
         return userDataLength > 0;
     }
 
+    [[nodiscard]] inline const std::array<char, PHYSICS_USER_DATA_SIZE>& GetUserData() const noexcept
+    {
+        return userData;
+    }
+
     inline bool SetUserData(const char* data, int length) noexcept
     {
         static_assert(PHYSICS_USER_DATA_SIZE < std::numeric_limits<int>::max());
@@ -324,12 +349,15 @@ protected:
     bool EnableBodyControlIfNotAlready() noexcept;
     bool DisableBodyControl() noexcept;
 
-    void MarkUsedInWorld(const PhysicalWorld* containedInWorld) noexcept;
+    void MarkUsedInWorld(PhysicalWorld* containedInWorld) noexcept;
     void MarkRemovedFromWorld() noexcept;
 
     inline void MarkDetached() noexcept
     {
         detached = true;
+
+        // Clear out any currently active collisions if any were recorded
+        activeRecordedCollisionCount = 0;
     }
 
     inline bool IsInSpecificWorld(const PhysicalWorld* world) const noexcept
@@ -345,6 +373,100 @@ protected:
         active = newActiveValue;
     }
 
+#ifdef LOCK_FREE_COLLISION_RECORDING
+    /// \brief Records a new collision on this body for this physics update
+    /// \returns True when recorded, false if there was an overflow on the number of recorded collisions this frame
+    inline bool RecordCollision(const PhysicsCollision& collision, uint32_t stepIdentifier) noexcept
+    {
+        auto originalStepValue = lastRecordedPhysicsStep.load(std::memory_order_acquire);
+        if (stepIdentifier != originalStepValue)
+        {
+            auto originalRecordedCount = activeRecordedCollisionCount.load(std::memory_order_acquire);
+
+            // Reset this first to make sure we don't get race conditions if we first reset the lastRecordedPhysicsStep
+            // guard variable.
+            // This is not checked as it is enough for one thread to succeed to set the value to 0
+            activeRecordedCollisionCount.compare_exchange_strong(
+                originalRecordedCount, 0, std::memory_order_release, std::memory_order_relaxed);
+
+            // Atomic exchange here to ensure only one thread gets here
+            if (lastRecordedPhysicsStep.compare_exchange_strong(
+                    originalStepValue, stepIdentifier, std::memory_order_release, std::memory_order_acquire))
+            {
+                // New step started, report that we have active collisions. Write index for collision data was already
+                // updated above to ensure no thread could see lastRecordedPhysicsStep change before the change to
+                // activeRecordedCollisionCount
+                containedInWorld->ReportBodyWithActiveCollisions(*this);
+            }
+            else
+            {
+                // Some other thread managed to change it, hopefully this consistency is enough here to ensure we won't
+                // be able to lose data. This *might* be safe to remove with the change to modifying
+                // activeRecordedCollisionCount first
+                std::atomic_thread_fence(std::memory_order_seq_cst);
+            }
+        }
+
+        int indexToWriteTo;
+        int readCollisionIndexValue;
+
+        // Atomically acquire the array index to write to
+        do
+        {
+            readCollisionIndexValue = activeRecordedCollisionCount.load(std::memory_order_acquire);
+
+            // Skip if too many collisions
+            if (readCollisionIndexValue >= maxCollisionsToRecord)
+                return false;
+
+            indexToWriteTo = readCollisionIndexValue;
+
+        } while (!activeRecordedCollisionCount.compare_exchange_weak(readCollisionIndexValue,
+            readCollisionIndexValue + 1, std::memory_order_release, std::memory_order_relaxed));
+
+        std::memcpy(&collisionRecordingTarget[indexToWriteTo], &collision, sizeof(PhysicsCollision));
+
+        return true;
+    }
+#else
+    /// \brief Records a new collision on this body for this physics update
+    /// \returns True when recorded, false if there was an overflow on the number of recorded collisions this frame
+    inline bool RecordCollision(const PhysicsCollision& collision, uint32_t stepIdentifier) noexcept
+    {
+        Lock lock(collisionRecordMutex);
+
+        if (stepIdentifier != lastRecordedPhysicsStep)
+        {
+            lastRecordedPhysicsStep = stepIdentifier;
+
+            // And clear our data for the step
+            activeRecordedCollisionCount = 0;
+
+            // New step started, report that we have active collisions
+            containedInWorld->ReportBodyWithActiveCollisions(*this);
+        }
+
+        // Skip if too many collisions
+        if (activeRecordedCollisionCount >= maxCollisionsToRecord)
+            return false;
+
+        std::memcpy(&collisionRecordingTarget[activeRecordedCollisionCount++], &collision, sizeof(PhysicsCollision));
+
+        return true;
+    }
+#endif
+
+    /// \brief Clears recorded data if this doesn't have latestStep as the last seen recorded step
+    ///
+    /// This is used by the PhysicalWorld to clear out bodies of collisions that didn't get updates during a step
+    inline void ClearRecordedDataIfStepIsOld(uint32_t latestStep)
+    {
+        if (latestStep == lastRecordedPhysicsStep) [[likely]]
+            return;
+
+        activeRecordedCollisionCount = 0;
+    }
+
 private:
     std::array<char, PHYSICS_USER_DATA_SIZE> userData;
 
@@ -355,13 +477,18 @@ private:
 
     std::vector<Ref<TrackedConstraint>> constraintsThisIsPartOf;
 
+#ifndef LOCK_FREE_COLLISION_RECORDING
+    Mutex collisionRecordMutex;
+#endif
+
     const JPH::BodyID id;
 
     std::unique_ptr<BodyControlState> bodyControlStateIfActive;
 
     /// This is purely used to compare against world pointers to check that this is in a specific world. Do not call
-    /// anything through this pointer as it is not guaranteed safe.
-    const PhysicalWorld* containedInWorld = nullptr;
+    /// anything through this pointer as it is not guaranteed safe. The only exception is using this during a physics
+    /// step in RecordCollision
+    PhysicalWorld* containedInWorld = nullptr;
 
     CollisionFilterCallback callbackBasedFilter = nullptr;
 
@@ -369,18 +496,25 @@ private:
 
     int maxCollisionsToRecord = 0;
 
+#ifdef LOCK_FREE_COLLISION_RECORDING
+    /// A pointer to this is passed out for users of the collision recording array
+    std::atomic<int32_t> activeRecordedCollisionCount{0};
+
+    /// Used to detect when a new batch of collisions begins and old ones should be cleared
+    std::atomic<uint32_t> lastRecordedPhysicsStep = -1;
+#else
     /// A pointer to this is passed out for users of the collision recording array
     int32_t activeRecordedCollisionCount = 0;
 
     /// Used to detect when a new batch of collisions begins and old ones should be cleared
     uint32_t lastRecordedPhysicsStep = -1;
+#endif
 
     uint8_t activeUserPointerFlags = 0;
 
     bool detached = false;
     bool active = true;
     bool allCollisionsDisabled = false;
-    bool filterGetsCollisionCalculations;
 };
 
 } // namespace Thrive::Physics
