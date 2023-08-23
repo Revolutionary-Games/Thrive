@@ -741,7 +741,7 @@ public static class Constants
     public const float AI_ENGULF_INTERVAL = 300;
 
     /// <summary>
-    ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something 
+    ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something
     ///   it can't eat
     /// </summary>
     public const float AI_BAD_ENGULF_CHANCE = 0.15f;
