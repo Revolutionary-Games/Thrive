@@ -1,0 +1,43 @@
+name: Close stale PRs
+on:
+  schedule:
+    - cron: '52 1 * * *'
+
+permissions:
+  # contents: write # only for delete-branch option
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8.0.0
+        with:
+          days-before-stale: 90
+          # We don't want to mark issues as stale and close them
+          days-before-issue-stale: 9999
+          days-before-close: 30
+
+          stale-issue-message: |
+            Stale action thinks that this is inactive, this shouldn't happen
+            for issues...
+
+          stale-pr-message: |
+            This PR has been inactive for a while and as such is being marked
+            stale. This PR will be automatically closed if this stays stale
+            for a while.
+
+            If this is still being worked on / will probably resume work at
+            some point please feel free to continue working on this and reopen
+            this in case this was already automatically closed.
+
+          close-pr-message: |
+            This PR is being automatically closed due to being stale. Please
+            only reopen this if work is actually resuming on this PR. We have
+            automatic PR closing to make sure that PRs that never get finished
+            aren't forever hanging out in the list of open PRs.
+  
+          delete-branch: false
+          exempt-all-issue-milestones: true
