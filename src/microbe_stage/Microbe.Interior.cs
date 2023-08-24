@@ -385,7 +385,7 @@ public partial class Microbe
             Compounds.AddCompound(entry.Key, entry.Value);
         }
 
-        var setting = GameWorld.WorldSettings;
+        var worldSettings = GameWorld.WorldSettings;
 
         // Fraction of day that is night
         var nightTimeFraction = 1 - setting.DaytimeFraction;
