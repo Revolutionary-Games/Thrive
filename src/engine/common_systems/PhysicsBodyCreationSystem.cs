@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using Components;
@@ -57,12 +58,19 @@
             ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
 
             // Don't need to do anything if body is already created and it is not requested to be recreated
-            if (body != null && !shapeHolder.RecreateBody)
+            if (body != null && !shapeHolder.UpdateBodyShapeIfCreated)
                 return;
 
             // Skip if not ready to create the body yet
             if (shapeHolder.Shape == null)
                 return;
+
+            if (body != null && shapeHolder.UpdateBodyShapeIfCreated)
+            {
+                // TODO: we should actually just change the shape of the body, not recreate it entirely, to preserve
+                // things like velocity etc.
+                throw new NotImplementedException();
+            }
 
             ref var position = ref entity.Get<WorldPosition>();
 
@@ -106,7 +114,7 @@
             physics.DampingApplied = true;
 
             physics.Body = body;
-            shapeHolder.RecreateBody = false;
+            shapeHolder.UpdateBodyShapeIfCreated = false;
         }
 
         protected override void PostUpdate(float delta)

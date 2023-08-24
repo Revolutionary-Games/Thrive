@@ -41,11 +41,11 @@
         /// </summary>
         private readonly List<Random> thinkRandoms = new();
 
-        private readonly IReadonlyCompoundClouds clouds;
+        // New access to the world stuff for AI to see
+        private readonly EntitySet microbesSet;
+        private readonly EntitySet chunksSet;
 
-        // Cached data about the world given to the AI entities when they are thinking
-        private readonly List<Microbe> allMicrobes = new();
-        private readonly List<Entity> allChunks = new();
+        private readonly IReadonlyCompoundClouds clouds;
 
         private Random aiThinkRandomSource = new();
 
@@ -60,6 +60,17 @@
         {
             this.worldSimulation = worldSimulation;
             clouds = cloudSystem;
+
+            // Microbes that aren't colony non-leaders (and also not eaten)
+            // The WorldPosition require is here to just ensure that the AI won't accidentally throw an exception if
+            // it sees an entity with no position
+            microbesSet = world.GetEntities().With<CellType>().With<WorldPosition>().Without<AttachedToEntity>()
+                .AsSet();
+
+            // Engulfables, which are basically all chunks when they aren't cells, and aren't attached so that they
+            // also aren't eaten already
+            chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().Without<CellType>()
+                .Without<AttachedToEntity>().AsSet();
 
             atp = SimulationParameters.Instance.GetCompound("atp");
             glucose = SimulationParameters.Instance.GetCompound("glucose");
@@ -86,18 +97,6 @@
 
             skipAI = CheatManager.NoAI;
             usedAIThinkRandomIndex = 0;
-
-            // TODO: it would be nice to only rebuild these lists if some AI think interval has elapsed and these are
-            // actually needed (could maybe use Lazy here?)
-            allMicrobes.Clear();
-            allChunks.Clear();
-
-            // TODO: fetch all microbes and chunks
-
-            throw new NotImplementedException();
-
-            // For chunks we filter out chunks already eaten by someone else
-            // var allChunks = worldSimulation.Entities.OfType<FloatingChunk>().Where(c => !c.AttachedToAnEntity).ToList();
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -151,7 +150,20 @@
                 // TODO: the AI doesn't seem as bad of a crash source as it used to be so the catch above is probably
                 // fine to remove
                 GD.PrintErr("Microbe AI failure! ", e);
+
+                // Throw AI exceptions in debug mode to make an attached IDE stop on this exception
+#if DEBUG
+                throw;
+#endif
             }
+        }
+
+        protected override void PostUpdate(float state)
+        {
+            base.PostUpdate(state);
+
+            microbesSet.Complete();
+            chunksSet.Complete();
         }
 
         /// <summary>

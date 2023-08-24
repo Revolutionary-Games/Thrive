@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.Remoting.Messaging;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -31,6 +30,16 @@
 
         public ProcessSystem(World world, IParallelRunner runner) : base(world, runner)
         {
+        }
+
+        /// <summary>
+        ///   Creates a process list to send to <see cref="BioProcesses"/> from a given list of existing organelles
+        /// </summary>
+        public static List<TweakedProcess> ComputeActiveProcessList(IEnumerable<IPositionedOrganelle> organelles)
+        {
+            // TODO: switch to a manual approach if the performance characteristics of this LINQ query is not good
+            return organelles.Select(o => o.Definition).SelectMany(o => o.RunnableProcesses).GroupBy(p => p.Process)
+                .Select(g => new TweakedProcess(g.Key, g.Sum(p => p.Rate))).ToList();
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
+using Systems;
 
 /// <summary>
 ///   Helpers for making different types of spawners
@@ -463,9 +464,14 @@ public static class SpawnHelpers
             Compounds = compounds,
         });
 
+        entity.Set(new BioProcesses
+        {
+            ActiveProcesses = ProcessSystem.ComputeActiveProcessList(usedCellProperties.Organelles),
+        });
+
         entity.Set(new CompoundAbsorber
         {
-            // This gets set properly later once the membrane is ready
+            // This gets set properly later once the membrane is ready by MicrobePhysicsCreationAndSizeSystem
             AbsorbRadius = 0.5f,
         });
 

@@ -15,9 +15,9 @@
         public bool BodyIsStatic;
 
         /// <summary>
-        ///   When true the related physics body will be recreated from <see cref="Shape"/> when the shape is ready.
+        ///   When true the related physics body will be updated from <see cref="Shape"/> when the shape is ready.
         ///   Will be automatically reset to false afterwards.
         /// </summary>
-        public bool RecreateBody;
+        public bool UpdateBodyShapeIfCreated;
     }
 }

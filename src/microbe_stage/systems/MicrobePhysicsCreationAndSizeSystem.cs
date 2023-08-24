@@ -8,15 +8,16 @@
     using World = DefaultEcs.World;
 
     /// <summary>
-    ///   Handles creating microbe physics
+    ///   Handles creating microbe physics and handling a few house keeping tasks based on the final cell size data
+    ///   from the membrane
     /// </summary>
     [With(typeof(CellProperties))]
     [With(typeof(PhysicsShapeHolder))]
-    public sealed class MicrobePhysicsCreationSystem : AEntitySetSystem<float>
+    public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
     {
-        private JVecF3[] temporaryBuffer = new JVecF3[20];
+        private JVecF3[] temporaryBuffer = new JVecF3[50];
 
-        public MicrobePhysicsCreationSystem(World world) : base(world, null)
+        public MicrobePhysicsCreationAndSizeSystem(World world) : base(world, null)
         {
         }
 
@@ -50,6 +51,8 @@
                 if (rawData.Count < 1)
                     return;
 
+                UpdateNonPhysicsSizeData(entity, membrane.EncompassingCircleRadius, ref cellProperties);
+
                 // TODO: caching for the shape based on a hash of the vertices2D points
 
                 // TODO: background thread shape creation to not take up main thread time
@@ -65,13 +68,28 @@
                     buffer[i] = new JVecF3(rawData[i].x, 0, rawData[i].y);
                 }
 
+                // TODO: pilus collisions
+
                 // TODO: overall density
                 shapeHolder.Shape = PhysicsShape.CreateMicrobeShape(new ReadOnlySpan<JVecF3>(buffer, 0, rawData.Count),
                     1000, cellProperties.IsBacteria);
+
+                // Ensure physics body is recreated if the shape changed
+                shapeHolder.UpdateBodyShapeIfCreated = true;
             }
             catch (Exception e)
             {
                 GD.PrintErr("Failed to create physics body for a microbe: " + e);
+            }
+        }
+
+        private void UpdateNonPhysicsSizeData(in Entity entity, float membraneRadius, ref CellProperties cellProperties)
+        {
+            cellProperties.UnadjustedRadius = membraneRadius;
+
+            if (entity.Has<CompoundAbsorber>())
+            {
+                entity.Get<CompoundAbsorber>().AbsorbRadius = cellProperties.Radius;
             }
         }
     }
