@@ -42,6 +42,12 @@
 #define FORCE_INLINE __attribute__((always_inline))
 #endif
 
+#if _MSC_VER
+#define HYPER_THREAD_YIELD _mm_pause()
+#else
+#define HYPER_THREAD_YIELD __builtin_ia32_pause()
+#endif
+
 // 64-bit pointers. TODO: support for 32-bit compiling?
 #define POINTER_SIZE 8
 
