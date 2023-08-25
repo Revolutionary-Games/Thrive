@@ -648,7 +648,8 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
         position = body.GetPosition();
     }
 
-    if (std::abs(position.GetY()) > 0.001f) [[unlikely]]
+    // Likely is used here as this is only called from C# when drifting has actually been detected
+    if (std::abs(position.GetY()) > 0.0005f) [[likely]]
     {
         SetPosition(bodyId, {position.GetX(), 0, position.GetZ()}, false);
         return true;
