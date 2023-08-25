@@ -38,6 +38,8 @@
         public static List<TweakedProcess> ComputeActiveProcessList(IEnumerable<IPositionedOrganelle> organelles)
         {
             // TODO: switch to a manual approach if the performance characteristics of this LINQ query is not good
+            // The old approach just uses a linear scan of the already handled process types and adds to their existing
+            // rate
             return organelles.Select(o => o.Definition).SelectMany(o => o.RunnableProcesses).GroupBy(p => p.Process)
                 .Select(g => new TweakedProcess(g.Key, g.Sum(p => p.Rate))).ToList();
         }

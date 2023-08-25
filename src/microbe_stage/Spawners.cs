@@ -473,6 +473,15 @@ public static class SpawnHelpers
         {
             // This gets set properly later once the membrane is ready by MicrobePhysicsCreationAndSizeSystem
             AbsorbRadius = 0.5f,
+
+            // Microbes only want to grab stuff they want
+            OnlyAbsorbUseful = true,
+
+            AbsorptionRatio = usedCellProperties.MembraneType.ResourceAbsorptionFactor,
+
+            // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen)
+            // but it isn't too big a problem to also specify this for the player
+            TotalAbsorbedCompounds = new Dictionary<Compound, float>(),
         });
 
         entity.Set(new UnneededCompoundVenter

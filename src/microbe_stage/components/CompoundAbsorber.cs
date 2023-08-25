@@ -14,17 +14,12 @@
         public Dictionary<Compound, float>? TotalAbsorbedCompounds;
 
         /// <summary>
-        ///   Compounds this absorber considers useful and will absorb
-        /// </summary>
-        public HashSet<Compound>? UsefulCompounds;
-
-        /// <summary>
         ///   How big the radius for absorption is
         /// </summary>
         public float AbsorbRadius;
 
         /// <summary>
-        ///   How fast this can absorb things
+        ///   How fast this can absorb things. If 0 then the absorption speed is not limited.
         /// </summary>
         public float AbsorbSpeed;
 
@@ -34,7 +29,8 @@
         public float AbsorptionRatio;
 
         /// <summary>
-        ///   When true, then <see cref="UsefulCompounds"/> must be set for any absorption to take place
+        ///   When true, then the <see cref="CompoundBag"/> that we put things in must have useful compounds set and
+        ///   only those will be absorbed
         /// </summary>
         public bool OnlyAbsorbUseful;
     }

@@ -229,7 +229,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     ///   Absorbs compounds from clouds into a bag
     /// </summary>
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
-        Dictionary<Compound, float> totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
         // It might be fine to remove this check but this was in the old code
         if (radius < 1.0f)

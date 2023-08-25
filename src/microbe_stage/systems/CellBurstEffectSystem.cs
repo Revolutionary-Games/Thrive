@@ -8,7 +8,8 @@
     using World = DefaultEcs.World;
 
     /// <summary>
-    ///   Updates cell burst effects as time elapses
+    ///   Updates cell burst effects as time elapses. As this just setups the effect this doesn't need to run per frame
+    ///   normal update frequency is fine.
     /// </summary>
     [With(typeof(CellBurstEffect))]
     [With(typeof(TimedLife))]

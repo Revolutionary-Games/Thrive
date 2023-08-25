@@ -89,7 +89,8 @@
 
             if (entity.Has<CompoundAbsorber>())
             {
-                entity.Get<CompoundAbsorber>().AbsorbRadius = cellProperties.Radius;
+                entity.Get<CompoundAbsorber>().AbsorbRadius =
+                    Math.Max(cellProperties.Radius, Constants.MICROBE_MIN_ABSORB_RADIUS);
             }
         }
     }

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 ///   Object that stores compound amounts and capacities
 /// </summary>
 [UseThriveSerializer]
+[JsonObject(IsReference = true)]
 public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
@@ -131,9 +132,8 @@ public class CompoundBag : ICompoundStorage
     }
 
     /// <summary>
-    ///   Returns true if at least one compound type has been marked
-    ///   useful. This is used to detect that process system has ran
-    ///   before venting.
+    ///   Returns true if at least one compound type has been marked useful.
+    ///   This is used to detect that process system has ran before venting.
     /// </summary>
     public bool HasAnyBeenSetUseful()
     {

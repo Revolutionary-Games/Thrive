@@ -507,7 +507,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   Absorbs compounds from this cloud
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
-        Dictionary<Compound, float> totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
         if (rate < 0)
             throw new ArgumentException("Rate can't be negative");
@@ -550,9 +550,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
             storage.AddCompound(compound, taken);
 
-            // Keep track of total compounds absorbed for the cell
-            totals.TryGetValue(compound, out var existingValue);
-            totals[compound] = existingValue + taken;
+            if (totals != null)
+            {
+                // Keep track of total compounds absorbed for the cell
+                totals.TryGetValue(compound, out var existingValue);
+                totals[compound] = existingValue + taken;
+            }
         }
     }
 
