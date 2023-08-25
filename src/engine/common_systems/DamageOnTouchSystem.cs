@@ -34,7 +34,7 @@
             // Entity setup
             if (!damageTouch.RegisteredWithCollisions)
             {
-                collisionManagement.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_DAMAGE_COLLISIONS);
+                collisionManagement.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL);
 
                 damageTouch.RegisteredWithCollisions = true;
             }
@@ -47,35 +47,17 @@
             {
                 ref var collision = ref collisions![i];
 
-                bool reverseOrder = collision.FirstEntity != entity;
+                // Skip collisions with things that can't be damaged
+                if (!collision.SecondEntity.Has<Health>())
+                    continue;
 
-                if (reverseOrder)
-                {
-                    // Skip collisions with things that can't be damaged
-                    if (!collision.FirstEntity.Has<Health>())
-                        continue;
+                ref var health = ref collision.SecondEntity.Get<Health>();
 
-                    ref var health = ref collision.FirstEntity.Get<Health>();
+                // TODO: disable dealing damage to a pilus
+                throw new NotImplementedException();
 
-                    // TODO: disable dealing damage to a pilus
-                    throw new NotImplementedException();
-
-                    DealDamage(ref health, ref damageTouch, delta);
-                    collided = true;
-                }
-                else
-                {
-                    // This is just the above true conditions of the if flipped to deal with the other body
-                    if (!collision.SecondEntity.Has<Health>())
-                        continue;
-
-                    ref var health = ref collision.SecondEntity.Get<Health>();
-
-                    // TODO: pilus
-
-                    DealDamage(ref health, ref damageTouch, delta);
-                    collided = true;
-                }
+                DealDamage(ref health, ref damageTouch, delta);
+                collided = true;
             }
 
             if (collided && damageTouch.DestroyOnTouch)

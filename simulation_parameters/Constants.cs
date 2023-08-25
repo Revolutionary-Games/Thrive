@@ -343,14 +343,17 @@ public static class Constants
     public const int MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGHT = 500;
 
     /// <summary>
-    ///   How many collisions each damage dealing entity can record at once
+    ///   How many collisions each normal entity can detect at once (if more collisions happen during an update the
+    ///   rest are lost and can't be detected by the game logic)
     /// </summary>
-    public const int MAX_SIMULTANEOUS_DAMAGE_COLLISIONS = 5;
+    public const int MAX_SIMULTANEOUS_COLLISIONS_SMALL = 8;
 
     /// <summary>
-    ///   How many collisions each projectile can record
+    ///   A very small limit of collisions for entities that don't need to be able to detect many collisions. Note
+    ///   that this is specifically picked to be lower by a power of two than the small limit to make collision
+    ///   recording buffer cache work better (as it should hopefully put these two categories to separate buckets)
     /// </summary>
-    public const int MAX_SIMULTANEOUS_PROJECTILE_COLLISIONS = 4;
+    public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.

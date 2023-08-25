@@ -489,7 +489,7 @@ public static class SpawnHelpers
 
         entity.Set(new CollisionManagement
         {
-            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_DAMAGE_COLLISIONS,
+            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
         });
 
         // The shape is created in the background to reduce lag when something spawns

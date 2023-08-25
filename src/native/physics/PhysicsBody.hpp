@@ -374,64 +374,44 @@ protected:
     }
 
 #ifdef LOCK_FREE_COLLISION_RECORDING
-    /// \brief Records a new collision on this body for this physics update
-    /// \returns True when recorded, false if there was an overflow on the number of recorded collisions this frame
-    inline bool RecordCollision(const PhysicsCollision& collision, uint32_t stepIdentifier) noexcept
+    /// \brief Prepares a location to record a new collision on this body for this physics update
+    /// \returns Pointer to write the data to, null if there was an overflow on the number of recorded collisions
+    /// this frame and the data can't be recorded
+    inline PhysicsCollision* GetNextCollisionRecordLocation(uint32_t stepIdentifier) noexcept
     {
         auto originalStepValue = lastRecordedPhysicsStep.load(std::memory_order_acquire);
         if (stepIdentifier != originalStepValue)
         {
-            auto originalRecordedCount = activeRecordedCollisionCount.load(std::memory_order_acquire);
-
-            // Reset this first to make sure we don't get race conditions if we first reset the lastRecordedPhysicsStep
-            // guard variable.
-            // This is not checked as it is enough for one thread to succeed to set the value to 0
-            activeRecordedCollisionCount.compare_exchange_strong(
-                originalRecordedCount, 0, std::memory_order_release, std::memory_order_relaxed);
-
             // Atomic exchange here to ensure only one thread gets here
             if (lastRecordedPhysicsStep.compare_exchange_strong(
-                    originalStepValue, stepIdentifier, std::memory_order_release, std::memory_order_acquire))
+                    originalStepValue, stepIdentifier, std::memory_order_release, std::memory_order_relaxed))
             {
-                // New step started, report that we have active collisions. Write index for collision data was already
-                // updated above to ensure no thread could see lastRecordedPhysicsStep change before the change to
-                // activeRecordedCollisionCount
+                // New step started, report that we have active collisions so that the world will clear our
+                // activeRecordedCollisionCount before next physics step
                 containedInWorld->ReportBodyWithActiveCollisions(*this);
-            }
-            else
-            {
-                // Some other thread managed to change it, hopefully this consistency is enough here to ensure we won't
-                // be able to lose data. This *might* be safe to remove with the change to modifying
-                // activeRecordedCollisionCount first
-                std::atomic_thread_fence(std::memory_order_seq_cst);
             }
         }
 
-        int indexToWriteTo;
-        int readCollisionIndexValue;
-
         // Atomically acquire the array index to write to
-        do
+        const auto indexToWriteTo = activeRecordedCollisionCount.fetch_add(1, std::memory_order::acq_rel);
+
+        // Skip if too many collisions
+        if (indexToWriteTo >= maxCollisionsToRecord) [[unlikely]]
         {
-            readCollisionIndexValue = activeRecordedCollisionCount.load(std::memory_order_acquire);
+            // If we go over the number of allowed recorded collisions, we need to reset the memory back
+            if (indexToWriteTo > maxCollisionsToRecord)
+                activeRecordedCollisionCount.store(maxCollisionsToRecord, std::memory_order_release);
 
-            // Skip if too many collisions
-            if (readCollisionIndexValue >= maxCollisionsToRecord)
-                return false;
+            return nullptr;
+        }
 
-            indexToWriteTo = readCollisionIndexValue;
-
-        } while (!activeRecordedCollisionCount.compare_exchange_weak(readCollisionIndexValue,
-            readCollisionIndexValue + 1, std::memory_order_release, std::memory_order_relaxed));
-
-        std::memcpy(&collisionRecordingTarget[indexToWriteTo], &collision, sizeof(PhysicsCollision));
-
-        return true;
+        return &collisionRecordingTarget[indexToWriteTo];
     }
 #else
-    /// \brief Records a new collision on this body for this physics update
-    /// \returns True when recorded, false if there was an overflow on the number of recorded collisions this frame
-    inline bool RecordCollision(const PhysicsCollision& collision, uint32_t stepIdentifier) noexcept
+    /// \brief Prepares a location to record a new collision on this body for this physics update
+    /// \returns Pointer to write the data to, null if there was an overflow on the number of recorded collisions
+    /// this frame and the data can't be recorded
+    inline PhysicsCollision* GetNextCollisionRecordLocation(uint32_t stepIdentifier) noexcept
     {
         Lock lock(collisionRecordMutex);
 
@@ -439,10 +419,8 @@ protected:
         {
             lastRecordedPhysicsStep = stepIdentifier;
 
-            // And clear our data for the step
-            activeRecordedCollisionCount = 0;
-
-            // New step started, report that we have active collisions
+            // New step started, report that we have active collisions so that the world will clear our
+            // activeRecordedCollisionCount before next physics step
             containedInWorld->ReportBodyWithActiveCollisions(*this);
         }
 
@@ -450,21 +428,19 @@ protected:
         if (activeRecordedCollisionCount >= maxCollisionsToRecord)
             return false;
 
-        std::memcpy(&collisionRecordingTarget[activeRecordedCollisionCount++], &collision, sizeof(PhysicsCollision));
-
-        return true;
+        return &collisionRecordingTarget[activeRecordedCollisionCount++];
     }
 #endif
 
-    /// \brief Clears recorded data if this doesn't have latestStep as the last seen recorded step
+    /// \brief Clears recorded collision data
     ///
-    /// This is used by the PhysicalWorld to clear out bodies of collisions that didn't get updates during a step
-    inline void ClearRecordedDataIfStepIsOld(uint32_t latestStep)
+    /// This is used by the PhysicalWorld to prepare collision recording for the next frame
+    FORCE_INLINE inline void ClearRecordedData()
     {
-        if (latestStep == lastRecordedPhysicsStep) [[likely]]
-            return;
-
         activeRecordedCollisionCount = 0;
+
+        // TODO: could maybe switch the last step number to a simple bool flag to determine if we have registered our
+        // selves already or not to be cleared of collisions on next update
     }
 
 private:
@@ -487,7 +463,7 @@ private:
 
     /// This is purely used to compare against world pointers to check that this is in a specific world. Do not call
     /// anything through this pointer as it is not guaranteed safe. The only exception is using this during a physics
-    /// step in RecordCollision
+    /// step in GetNextCollisionRecordLocation
     PhysicalWorld* containedInWorld = nullptr;
 
     CollisionFilterCallback callbackBasedFilter = nullptr;

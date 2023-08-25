@@ -11,7 +11,6 @@ option(USE_OBJECT_POOLS
   "Use object pools instead of direct memory allocation (can be turned off for memory debugging)"
   ON)
 
-# Note that PhysicsBody::RecordCollision is not fully certain that it is actually thead safe in this mode
 option(LOCK_FREE_COLLISION_RECORDING
   "If on uses lock free collision data recording which is hopefully faster than with locks" ON)
 

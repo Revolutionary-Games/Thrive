@@ -43,7 +43,7 @@
 
                 collisions.CollisionFilter = FilterCollisions;
 
-                collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_PROJECTILE_COLLISIONS);
+                collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
 
                 collisions.StateApplied = false;
             }
@@ -86,27 +86,18 @@
             // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
             // periodically)
 
-            var toxin = collision.FirstEntity;
-            var damageTarget = collision.SecondEntity;
-
-            // Detect which is the toxin based on what has the damage component
-            if (!collision.FirstEntity.Has<ToxinDamageSource>())
-            {
-                toxin = collision.SecondEntity;
-                damageTarget = collision.FirstEntity;
-            }
-
-            if (!damageTarget.Has<MicrobeSpeciesMember>())
+            // Toxin is always the first entity as it is what registers this collision callback
+            if (!collision.SecondEntity.Has<MicrobeSpeciesMember>())
             {
                 // Hit something other than a microbe
                 return true;
             }
 
-            ref var speciesComponent = ref damageTarget.Get<MicrobeSpeciesMember>();
+            ref var speciesComponent = ref collision.SecondEntity.Get<MicrobeSpeciesMember>();
 
             try
             {
-                ref var damageSource = ref toxin.Get<ToxinDamageSource>();
+                ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
 
                 // Don't hit microbes of the same species as the toxin shooter
                 if (speciesComponent.Species == damageSource.ToxinProperties.Species)
@@ -128,14 +119,7 @@
 
             // TODO: see the TODOs about combining code with FilterCollisions
 
-            var toxin = collision.FirstEntity;
             var damageTarget = collision.SecondEntity;
-
-            if (!collision.FirstEntity.Has<ToxinDamageSource>())
-            {
-                toxin = collision.SecondEntity;
-                damageTarget = collision.FirstEntity;
-            }
 
             // Skip if hit something that's not a microbe (we don't know how to damage other things currently)
             if (!damageTarget.Has<MicrobeSpeciesMember>())
@@ -145,7 +129,7 @@
 
             try
             {
-                ref var damageSource = ref toxin.Get<ToxinDamageSource>();
+                ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
 
                 // Disallow friendly fire
                 if (speciesComponent.Species == damageSource.ToxinProperties.Species)

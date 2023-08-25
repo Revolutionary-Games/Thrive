@@ -21,8 +21,12 @@ public:
 
     std::array<char, PHYSICS_USER_DATA_SIZE> SecondUserData;
 
+    /// The first colliding body. Note that these are always sorted so that the recording body or the body running the
+    /// collision callback is the first body and the second body is the something else
     const PhysicsBody* FirstBody;
 
+    /// Note that even though this is a pointer, this should never be null as each physics body always gets a
+    /// PhysicsBody wrapper instance
     const PhysicsBody* SecondBody;
 
     // Sub shape data for detecting which specific parts of the objects collided. Note that in CollisionFilterCallback
@@ -45,7 +49,7 @@ static_assert(sizeof (PhysicsCollision) == PHYSICS_COLLISION_DATA_SIZE);
 using CollisionRecordListType = PhysicsCollision*;
 
 /// Callback that returns false when a collision should not be allowed. Note that sub shapes and penetration amounts
-/// are not calculated yet when this is called
+/// are not calculated yet when this is called. The first body is always the body that has this callback attached.
 using CollisionFilterCallback = bool (*)(const PhysicsCollision& potentialCollision);
 
 } // namespace Thrive::Physics

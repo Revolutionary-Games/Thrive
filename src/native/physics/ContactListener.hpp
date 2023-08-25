@@ -19,6 +19,8 @@ class ContactListener : public JPH::ContactListener
     using CollisionPair = std::pair<JPH::RVec3, JPH::ContactPoints>;
 
 public:
+    ContactListener();
+
     JPH::ValidateResult OnContactValidate(const JPH::Body& body1, const JPH::Body& body2, JPH::RVec3Arg baseOffset,
         const JPH::CollideShapeResult& collisionResult) override;
 

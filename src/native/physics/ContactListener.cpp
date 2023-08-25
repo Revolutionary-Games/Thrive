@@ -10,7 +10,16 @@
 // ------------------------------------ //
 namespace Thrive::Physics
 {
+ContactListener::ContactListener()
+{
+    if (COLLISION_UNKNOWN_SUB_SHAPE != JPH::SubShapeID().GetValue())
+    {
+        LOG_ERROR("Incorrectly configured unknown collision value compared to what Jolt has");
+        abort();
+    }
+}
 
+// ------------------------------------ //
 inline void PrepareBasicCollisionInfo(PhysicsCollision& collision, const PhysicsBody* body1, const PhysicsBody* body2)
 {
     collision.FirstBody = body1;
@@ -45,12 +54,27 @@ inline void ClearUnknownDataForCollisionFilter(PhysicsCollision& collision)
 }
 
 inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const PhysicsBody* body1,
-    const PhysicsBody* body2, const JPH::ContactManifold& manifold, bool justStarted)
+    const PhysicsBody* body2, const JPH::ContactManifold& manifold, bool justStarted, bool swapOrder)
 {
-    PrepareBasicCollisionInfo(collision, body1, body2);
+    if (swapOrder)
+    {
+        PrepareBasicCollisionInfo(collision, body2, body1);
+    }
+    else
+    {
+        PrepareBasicCollisionInfo(collision, body1, body2);
+    }
 
-    collision.FirstSubShapeData = manifold.mSubShapeID1.GetValue();
-    collision.SecondSubShapeData = manifold.mSubShapeID2.GetValue();
+    if (swapOrder)
+    {
+        collision.SecondSubShapeData = manifold.mSubShapeID1.GetValue();
+        collision.FirstSubShapeData = manifold.mSubShapeID2.GetValue();
+    }
+    else
+    {
+        collision.FirstSubShapeData = manifold.mSubShapeID1.GetValue();
+        collision.SecondSubShapeData = manifold.mSubShapeID2.GetValue();
+    }
 
     collision.PenetrationAmount = manifold.mPenetrationDepth;
 
@@ -137,10 +161,13 @@ JPH::ValidateResult ContactListener::OnContactValidate(const JPH::Body& body1, c
 
                     if (filter2)
                     {
-                        // Prepare collision data for the callback if not already
+                        // The filter always has the current object as the first body so this data needs to be always
+                        // written
+                        PrepareBasicCollisionInfo(collisionData, body2Object, body1Object);
+
+                        // Prepare the common collision data for the callback if not already
                         if (!collisionDataFilled)
                         {
-                            PrepareBasicCollisionInfo(collisionData, body2Object, body2Object);
                             ClearUnknownDataForCollisionFilter(collisionData);
                             collisionData.JustStarted = true;
                         }
@@ -150,7 +177,7 @@ JPH::ValidateResult ContactListener::OnContactValidate(const JPH::Body& body1, c
 
                     // And then based on ignore list
                     if (!disallow)
-                        disallow = body2Object->IsBodyIgnored(body2.GetID());
+                        disallow = body2Object->IsBodyIgnored(body1.GetID());
                 }
             }
 
@@ -198,21 +225,11 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
     if (chainedListener != nullptr)
         chainedListener->OnContactAdded(body1, body2, manifold, settings);
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
-
-    // PhysicsCollision struct not initialized to only initialize it when required
-    // TODO: could we make a further optimization here by asking the PhysicsBody to provide a pointer directly to where
-    // to write the collision data? This could save one memory copy per collision
-    PhysicsCollision collisionData;
-    bool collisionDataFilled = false;
-
-#pragma clang diagnostic pop
-
     // TODO: should relative velocities be stored somehow here? The Jolt documentation mentions that can be used to
     // determine how hard the collision is
 
-    // Recording collisions (we record the start as only on the next update does the persisted connection trigger)
+    // Recording collisions (we record the start as only on the next update does the persisted connection trigger,
+    // and well there are some potential gameplay uses for the initial collision flag)
     const auto userData1 = body1.GetUserData();
     const auto userData2 = body2.GetUserData();
 
@@ -220,24 +237,30 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
     {
         const auto body1Object = PhysicsBody::FromJoltBody(userData1);
 
-        PrepareCollisionInfoFromManifold(
-            collisionData, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, true);
-        collisionDataFilled = true;
+        // Get target location to directly write the collision info to, this saves one memory copy per recorded
+        // collision
+        auto* writeTarget = body1Object->GetNextCollisionRecordLocation(physicsStep);
 
-        body1Object->RecordCollision(collisionData, physicsStep);
+        // Likely is used here as we are optimistic the collision counts are in control in terms of how many recording
+        // slots there are
+        if (writeTarget) [[likely]]
+        {
+            PrepareCollisionInfoFromManifold(
+                *writeTarget, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, true, false);
+        }
     }
 
     if (userData2 & PHYSICS_BODY_RECORDING_FLAG)
     {
         const auto body2Object = PhysicsBody::FromJoltBody(userData2);
 
-        if (!collisionDataFilled)
+        auto* writeTarget = body2Object->GetNextCollisionRecordLocation(physicsStep);
+
+        if (writeTarget) [[likely]]
         {
             PrepareCollisionInfoFromManifold(
-                collisionData, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, true);
+                *writeTarget, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, true, true);
         }
-
-        body2Object->RecordCollision(collisionData, physicsStep);
     }
 
 #ifdef JPH_DEBUG_RENDERER
@@ -272,15 +295,6 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
     if (chainedListener != nullptr)
         chainedListener->OnContactPersisted(body1, body2, manifold, settings);
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
-
-    // PhysicsCollision struct not initialized to only initialize it when required
-    PhysicsCollision collisionData;
-    bool collisionDataFilled = false;
-
-#pragma clang diagnostic pop
-
     // Contact recording
     const auto userData1 = body1.GetUserData();
     const auto userData2 = body2.GetUserData();
@@ -289,24 +303,28 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
     {
         const auto body1Object = PhysicsBody::FromJoltBody(userData1);
 
-        PrepareCollisionInfoFromManifold(
-            collisionData, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, false);
-        collisionDataFilled = true;
+        // TODO: if we ever move to an approach where multiple physics steps can happen and collisions need to be
+        // recorded persistently over a few physics updates we might need to somehow implement filtering here
+        auto* writeTarget = body1Object->GetNextCollisionRecordLocation(physicsStep);
 
-        body1Object->RecordCollision(collisionData, physicsStep);
+        if (writeTarget) [[likely]]
+        {
+            PrepareCollisionInfoFromManifold(
+                *writeTarget, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, false, false);
+        }
     }
 
     if (userData2 & PHYSICS_BODY_RECORDING_FLAG)
     {
         const auto body2Object = PhysicsBody::FromJoltBody(userData2);
 
-        if (!collisionDataFilled)
+        auto* writeTarget = body2Object->GetNextCollisionRecordLocation(physicsStep);
+
+        if (writeTarget) [[likely]]
         {
             PrepareCollisionInfoFromManifold(
-                collisionData, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, false);
+                *writeTarget, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, false, true);
         }
-
-        body2Object->RecordCollision(collisionData, physicsStep);
     }
 
 #ifdef JPH_DEBUG_RENDERER
