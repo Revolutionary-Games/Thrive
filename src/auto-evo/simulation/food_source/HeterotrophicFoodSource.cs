@@ -4,6 +4,9 @@
 
     public class HeterotrophicFoodSource : RandomEncounterFoodSource
     {
+        private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+
         private readonly MicrobeSpecies prey;
         private readonly Patch patch;
         private readonly float preyHexSize;
@@ -65,9 +68,12 @@
                 engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
             }
 
-            var pilusScore = simulationCache.GetPilusScore(microbeSpecies);
-            var oxytoxyScore = simulationCache.GetOxytoxyScore(microbeSpecies);
-            var mucilageScore = simulationCache.GetMucilageScore(microbeSpecies);
+            // The array was used to have a time & memory efficient structure,
+            // but this could be turned into a class for more readable and less error-prone code.
+            var predationToolsRawScores = simulationCache.GetPredationToolsRawScores(microbeSpecies);
+            var pilusScore = predationToolsRawScores[0];
+            var oxytoxyScore = predationToolsRawScores[1];
+            var mucilageScore = predationToolsRawScores[2];
 
             // Pili are much more useful if the microbe can close to melee
             pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;

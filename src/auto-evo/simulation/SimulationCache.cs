@@ -27,9 +27,7 @@
         private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
             new();
 
-        private readonly Dictionary<MicrobeSpecies, float> cachedPilusScores = new();
-        private readonly Dictionary<MicrobeSpecies, float> cachedSpeciesOxytoxyScores = new();
-        private readonly Dictionary<MicrobeSpecies, float> cachedSpeciesMucilageScores = new();
+        private readonly Dictionary<MicrobeSpecies, float[]> cachedPredationToolsRawScores = new();
 
         public SimulationCache(WorldGenerationSettings worldSettings)
         {
@@ -148,62 +146,38 @@
             return worldSettings.Equals(checkAgainst);
         }
 
-        public float GetPilusScore(MicrobeSpecies microbeSpecies)
+        public float[] GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
         {
-            if (cachedPilusScores.TryGetValue(microbeSpecies, out var cached))
-                return cached;
-
             var pilusScore = 0.0f;
+            var oxytoxyScore = 0.0f;
+            var mucilageScore = 0.0f;
+
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 if (organelle.Definition.HasPilusComponent)
+                {
                     pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-            }
+                    continue;
+                }
 
-            cachedPilusScores.Add(microbeSpecies, pilusScore);
-            return cached;
-        }
-
-        public float GetOxytoxyScore(MicrobeSpecies microbeSpecies)
-        {
-            if (cachedSpeciesOxytoxyScores.TryGetValue(microbeSpecies, out var cached))
-                return cached;
-
-            var score = 0.0f;
-            foreach (var organelle in microbeSpecies.Organelles)
-            {
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
                     if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
                     {
-                        score += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                        oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                     }
-                }
-            }
 
-            cachedSpeciesOxytoxyScores.Add(microbeSpecies, score);
-            return cached;
-        }
-
-        public float GetMucilageScore(MicrobeSpecies microbeSpecies)
-        {
-            if (cachedSpeciesMucilageScores.TryGetValue(microbeSpecies, out var cached))
-                return cached;
-
-            var score = 0.0f;
-            foreach (var organelle in microbeSpecies.Organelles)
-            {
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
                     if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
                     {
-                        score += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
+                        mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
                     }
                 }
             }
 
-            cachedSpeciesMucilageScores.Add(microbeSpecies, score);
-            return cached;
+            var predationToolsRawScores = new float[3] { pilusScore, oxytoxyScore, mucilageScore };
+
+            cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
+            return predationToolsRawScores;
         }
     }
 }
