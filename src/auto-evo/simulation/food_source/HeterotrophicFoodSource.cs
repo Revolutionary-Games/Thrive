@@ -4,9 +4,6 @@
 
     public class HeterotrophicFoodSource : RandomEncounterFoodSource
     {
-        private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
-
         private readonly MicrobeSpecies prey;
         private readonly Patch patch;
         private readonly float preyHexSize;
@@ -68,30 +65,9 @@
                 engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
             }
 
-            var pilusScore = 0.0f;
-            var oxytoxyScore = 0.0f;
-            var mucilageScore = 0.0f;
-            foreach (var organelle in microbeSpecies.Organelles)
-            {
-                if (organelle.Definition.HasPilusComponent)
-                {
-                    pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-                    continue;
-                }
-
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
-                    {
-                        oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
-                    }
-
-                    if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
-                    {
-                        mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
-                    }
-                }
-            }
+            var pilusScore = simulationCache.GetPilusScore(microbeSpecies);
+            var oxytoxyScore = simulationCache.GetOxytoxyScore(microbeSpecies);
+            var mucilageScore = simulationCache.GetMucilageScore(microbeSpecies);
 
             // Pili are much more useful if the microbe can close to melee
             pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
