@@ -232,6 +232,10 @@
 
         public float[] GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
         {
+
+            if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
+                return cached;
+
             var pilusScore = 0.0f;
             var oxytoxyScore = 0.0f;
             var mucilageScore = 0.0f;
