@@ -53,7 +53,8 @@
         protected float CompoundUseScore(MicrobeSpecies species, Compound compound, Patch patch,
             SimulationCache simulationCache, WorldGenerationSettings worldSettings)
         {
-            var energyGenerationScore = simulationCache.GetEnergyGenerationScoreForSpecies(species, patch.Biome, compound);
+            var energyGenerationScore = simulationCache.GetEnergyGenerationScoreForSpecies(
+                species, patch.Biome, compound);
 
             if (energyGenerationScore <= MathUtils.EPSILON)
                 return 0.0f;
