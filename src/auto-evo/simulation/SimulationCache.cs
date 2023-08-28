@@ -1,7 +1,9 @@
 ﻿namespace AutoEvo
 {
+    using HarmonyLib;
     using System;
     using System.Collections.Generic;
+    using static System.Net.WebRequestMethods;
 
     /// <summary>
     ///   Caches some information in auto-evo runs to speed them up
@@ -16,6 +18,8 @@
     {
         private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+        private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+        private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
         private readonly WorldGenerationSettings worldSettings;
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
@@ -28,6 +32,8 @@
             new();
 
         private readonly Dictionary<MicrobeSpecies, float[]> cachedPredationToolsRawScores = new();
+        private readonly Dictionary<(OrganelleTemplate, BiomeConditions, Compound), float> cachedEnergyCreationScoreForOrganelle;
+        private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float> cachedEnergyCreationScoreForSpecies;
 
         public SimulationCache(WorldGenerationSettings worldSettings)
         {
@@ -117,6 +123,84 @@
 
             cachedCompoundScores.Add(key, cached);
             return cached;
+        }
+
+        public float GetEnergyCreationScoreForOrganelle(OrganelleTemplate organelle, BiomeConditions biomeConditions, Compound compound)
+        {
+            var key = (organelle, biomeConditions, compound);
+            if (cachedEnergyCreationScoreForOrganelle.TryGetValue(key, out var cached))
+                return cached;
+
+            var energyCreationScore = 0.0f;
+
+            // We check generation from all processes of the cell
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                // ... that uses the given compound...
+                if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
+                {
+                    var processEfficiency = GetProcessMaximumSpeed(process, biomeConditions).Efficiency;
+
+                    // ... and that produce glucose
+                    if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
+                    {
+                        // Better ratio means that we transform stuff more efficiently and need less input
+                        var compoundRatio = glucoseAmount / inputAmount;
+
+                        // Better output is a proxy for more time dedicated to reproduction than energy production
+                        var absoluteOutput = glucoseAmount * processEfficiency;
+
+                        energyCreationScore += (float)(
+                            Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                            * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                            * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
+                    }
+
+                    // ... and that produce ATP
+                    if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
+                    {
+                        // Better ratio means that we transform stuff more efficiently and need less input
+                        var compoundRatio = atpAmount / inputAmount;
+
+                        // Better output is a proxy for more time dedicated to reproduction than energy production
+                        var absoluteOutput = atpAmount * processEfficiency;
+
+                        energyCreationScore += (float)(
+                            Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                            * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                            * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
+                    }
+                }
+            }
+
+            cachedEnergyCreationScoreForOrganelle.Add(key, energyCreationScore);
+            return energyCreationScore;
+        }
+
+        /// <summary>
+        ///   A measure of how good the species is for generating energy from a given compound.
+        /// </summary>
+        /// <returns>
+        ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
+        ///   so different implementations do not need to worry about scale.
+        /// </returns>
+        public float GetEnergyGenerationScoreForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)
+        {
+            var key = (species, biomeConditions, compound);
+
+            if (cachedEnergyCreationScoreForSpecies.TryGetValue(key, out var cached))
+                return cached;
+
+            var energyCreationScore = 0.0f;
+
+            // We check generation from all the processes of the cell.
+            foreach (var organelle in species.Organelles)
+            {
+                energyCreationScore += GetEnergyCreationScoreForOrganelle(organelle, biomeConditions, compound);
+            }
+
+            cachedEnergyCreationScoreForSpecies.Add(key, energyCreationScore);
+            return energyCreationScore;
         }
 
         /// <summary>
