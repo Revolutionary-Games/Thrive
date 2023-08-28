@@ -1,9 +1,7 @@
 ﻿namespace AutoEvo
 {
-    using HarmonyLib;
     using System;
     using System.Collections.Generic;
-    using static System.Net.WebRequestMethods;
 
     /// <summary>
     ///   Caches some information in auto-evo runs to speed them up
@@ -232,7 +230,6 @@
 
         public float[] GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
         {
-
             if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
                 return cached;
 
