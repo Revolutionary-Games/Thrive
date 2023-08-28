@@ -32,8 +32,8 @@
             new();
 
         private readonly Dictionary<MicrobeSpecies, float[]> cachedPredationToolsRawScores = new();
-        private readonly Dictionary<(OrganelleTemplate, BiomeConditions, Compound), float> cachedEnergyCreationScoreForOrganelle;
-        private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float> cachedEnergyCreationScoreForSpecies;
+        private readonly Dictionary<(OrganelleTemplate, BiomeConditions, Compound), float> cachedEnergyCreationScoreForOrganelle = new();
+        private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float> cachedEnergyCreationScoreForSpecies = new();
 
         public SimulationCache(WorldGenerationSettings worldSettings)
         {
