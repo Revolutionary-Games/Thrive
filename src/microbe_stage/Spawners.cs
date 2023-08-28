@@ -520,7 +520,10 @@ public static class SpawnHelpers
 
         entity.Set(new Health(Constants.DEFAULT_HEALTH));
 
-        entity.Set<CommandSignaler>();
+        entity.Set(new CommandSignaler
+        {
+            SignalingChannel = species.ID,
+        });
 
         entity.Set(new Engulfable
         {

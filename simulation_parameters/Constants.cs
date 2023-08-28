@@ -236,10 +236,11 @@ public static class Constants
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   This is how often the AI microbes look for emitted signaling agent signals from members of their species.
-    ///   This is set pretty high to reduce the performance impact.
+    ///   This is how often entities for emitted signals from other entities.
+    ///   This is set relatively high to reduce the performance impact. This is used for example for AI microbes to
+    ///   detect signaling agents.
     /// </summary>
-    public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
+    public const float ENTITY_SIGNAL_UPDATE_INTERVAL = 0.15f;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 

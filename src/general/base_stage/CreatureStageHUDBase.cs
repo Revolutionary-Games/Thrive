@@ -130,6 +130,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     [Export]
     public NodePath SecreteSlimeHotkeyPath = null!;
 
+    // TODO: rename to SignalingAgentsHotkeyPath
     [Export]
     public NodePath SignallingAgentsHotkeyPath = null!;
 
@@ -212,7 +213,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected GridContainer? environmentPanelBarContainer;
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
-    protected ActionButton signallingAgentsHotkey = null!;
+    protected ActionButton signalingAgentsHotkey = null!;
 
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;
@@ -403,7 +404,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         secreteSlimeHotkey = GetNode<ActionButton>(SecreteSlimeHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
-        signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
+        signalingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
 
@@ -1025,12 +1026,12 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
-        signallingAgentsHotkey.Visible = showingSignaling;
+        signalingAgentsHotkey.Visible = showingSignaling;
 
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         secreteSlimeHotkey.Pressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
-        signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
+        signalingAgentsHotkey.Pressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);
     }
 
     protected void OpenMenu()

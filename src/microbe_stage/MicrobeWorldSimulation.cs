@@ -38,6 +38,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private AllCompoundsVentingSystem allCompoundsVentingSystem = null!;
     private CellBurstEffectSystem cellBurstEffectSystem = null!;
     private CompoundAbsorptionSystem compoundAbsorptionSystem = null!;
+    private EntitySignalingSystem entitySignalingSystem = null!;
     private FluidCurrentsSystem fluidCurrentsSystem = null!;
     private MicrobeAISystem microbeAI = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
@@ -107,6 +108,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // TODO: clouds currently only allow 2 thread to absorb at once
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
+
+        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
 
         fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
 
@@ -184,6 +187,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         allCompoundsVentingSystem.Update(delta);
         cellBurstEffectSystem.Update(delta);
         compoundAbsorptionSystem.Update(delta);
+        entitySignalingSystem.Update(delta);
 
         spatialAttachSystem.Update(delta);
         spatialPositionSystem.Update(delta);
@@ -235,6 +239,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             allCompoundsVentingSystem.Dispose();
             cellBurstEffectSystem.Dispose();
             compoundAbsorptionSystem.Dispose();
+            entitySignalingSystem.Dispose();
             fluidCurrentsSystem.Dispose();
             microbeAI.Dispose();
             microbeShaderSystem.Dispose();
