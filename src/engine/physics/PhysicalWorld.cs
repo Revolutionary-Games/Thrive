@@ -66,8 +66,6 @@ public class PhysicalWorld : IDisposable
     {
         bool processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
 
-        // TODO: collision callbacks
-
         return processed;
     }
 

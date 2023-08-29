@@ -14,29 +14,22 @@
     /// </summary>
     public struct MicrobeAI
     {
-        [JsonProperty]
         public float TimeUntilNextThink;
 
-        [JsonProperty]
         public float PreviousAngle;
 
-        [JsonProperty]
         public Vector3 TargetPosition;
 
-        [JsonIgnore]
         public Entity FocusedPrey;
 
-        [JsonIgnore]
         public Vector3? LastSmelledCompoundPosition;
 
-        [JsonProperty]
         public float PursuitThreshold;
 
         /// <summary>
         ///   A value between 0.0f and 1.0f, this is the portion of the microbe's atp bar that needs to refill
         ///   before resuming motion.
         /// </summary>
-        [JsonProperty]
         public float ATPThreshold;
 
         /// <summary>
@@ -49,20 +42,10 @@
         ///     Values dictionary rather than single value as they will be combined with variable weights.
         ///   </para>
         /// </remarks>
-        [JsonProperty]
         public Dictionary<Compound, float>? PreviouslyAbsorbedCompounds;
 
         [JsonIgnore]
         public Dictionary<Compound, float>? CompoundsSearchWeights;
-
-        [JsonIgnore]
-        public float TimeSinceSignalSniffing;
-
-        [JsonIgnore]
-        public Entity LastFoundSignalEmitter;
-
-        [JsonIgnore]
-        public MicrobeSignalCommand ReceivedCommand;
 
         [JsonProperty]
         public bool HasBeenNearPlayer;
@@ -73,7 +56,7 @@
         /// <summary>
         ///   Resets AI status when this AI controlled microbe is removed from a colony
         /// </summary>
-        public static void ResetAI(this MicrobeAI ai)
+        public static void ResetAI(ref this MicrobeAI ai)
         {
             ai.PreviousAngle = 0;
             ai.TargetPosition = Vector3.Zero;
@@ -84,6 +67,38 @@
 
             // microbe.MovementDirection = Vector3.Zero;
             // microbe.TotalAbsorbedCompounds.Clear();
+        }
+
+        public static void MoveToLocation(ref this MicrobeAI ai, Vector3 targetPosition, ref MicrobeControl control)
+        {
+            control.State = MicrobeState.Normal;
+            ai.TargetPosition = targetPosition;
+            control.LookAtPoint = ai.TargetPosition;
+            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+        }
+
+        public static void MoveWithRandomTurn(ref this MicrobeAI ai, float minTurn, float maxTurn,
+            Vector3 currentPosition, ref MicrobeControl control, float speciesActivity, Random random)
+        {
+            var turn = random.Next(minTurn, maxTurn);
+            if (random.Next(2) == 1)
+            {
+                turn = -turn;
+            }
+
+            var randDist = random.Next(speciesActivity, Constants.MAX_SPECIES_ACTIVITY);
+            ai.TargetPosition = currentPosition
+                + new Vector3(Mathf.Cos(ai.PreviousAngle + turn) * randDist,
+                    0,
+                    Mathf.Sin(ai.PreviousAngle + turn) * randDist);
+            ai.PreviousAngle += turn;
+            control.LookAtPoint = ai.TargetPosition;
+            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+        }
+
+        public static void LowerPursuitThreshold(ref this MicrobeAI ai)
+        {
+            ai.PursuitThreshold *= 0.95f;
         }
     }
 }

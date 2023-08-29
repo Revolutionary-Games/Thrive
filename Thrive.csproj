@@ -149,6 +149,7 @@
     <Compile Include="src\engine\common_components\SoundListener.cs" />
     <Compile Include="src\engine\common_components\SpatialInstance.cs" />
     <Compile Include="src\engine\common_components\Spawned.cs" />
+    <Compile Include="src\engine\common_components\SpeciesMember.cs" />
     <Compile Include="src\engine\common_components\TimedLife.cs" />
     <Compile Include="src\engine\common_components\WorldPosition.cs" />
     <Compile Include="src\engine\common_systems\ColourAnimationSystem.cs" />
@@ -631,6 +632,7 @@
     <Compile Include="src\microbe_stage\systems\EntitySignalingSystem.cs" />
     <Compile Include="src\microbe_stage\systems\FluidCurrentsSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeAISystem.cs" />
+    <Compile Include="src\microbe_stage\systems\MicrobeMovementSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobePhysicsCreationAndSizeSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeShaderSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeVisualsSystem.cs" />

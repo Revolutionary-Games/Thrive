@@ -161,6 +161,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             throw new NotImplementedException();
 
             // spawner.Process(delta, Player.GlobalTranslation);
+            worldSimulation.ReportPlayerPosition(Player.GlobalTranslation);
             Clouds.ReportPlayerPosition(Player.GlobalTranslation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,

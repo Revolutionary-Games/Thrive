@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -20,9 +19,16 @@
     ///   </para>
     /// </remarks>
     [With(typeof(MicrobeAI))]
-    [With(typeof(ManualPhysicsControl))]
+    [With(typeof(SpeciesMember))]
+    [With(typeof(MicrobeControl))]
     [With(typeof(WorldPosition))]
     [With(typeof(Health))]
+    [With(typeof(CompoundAbsorber))]
+    [With(typeof(CompoundStorage))]
+    [With(typeof(OrganelleContainer))]
+    [With(typeof(CommandSignaler))]
+    [With(typeof(CellProperties))]
+    [With(typeof(Engulfer))]
     [Without(typeof(AttachedToEntity))]
     public sealed class MicrobeAISystem : AEntitySetSystem<float>
     {
@@ -33,8 +39,11 @@
         private readonly Compound ammonia;
         private readonly Compound phosphates;
 
-        private readonly MicrobeWorldSimulation worldSimulation;
+        private readonly IReadonlyCompoundClouds clouds;
 
+        // TODO: for actual consistency these should probably be in the MicrobeAI component so that each AI entity
+        // consistently uses its own random instance, instead of just a few being used per update for whatever set of
+        // microbes want to update right this second
         // TODO: save these for more consistency after loading a save?
         /// <summary>
         ///   Stored random instances for use by the individual AI methods which may run in multiple threads
@@ -45,7 +54,18 @@
         private readonly EntitySet microbesSet;
         private readonly EntitySet chunksSet;
 
-        private readonly IReadonlyCompoundClouds clouds;
+        private readonly List<uint> speciesCachesToDrop = new();
+
+        private readonly Dictionary<uint, List<(Entity Entity, Vector3 Position, float EngulfSize)>> microbesBySpecies =
+            new();
+
+        private readonly List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)>
+            chunkDataCache = new();
+
+        private bool microbeCacheBuilt;
+        private bool chunkCacheBuilt;
+
+        private Vector3? potentiallyKnownPlayerPosition;
 
         private Random aiThinkRandomSource = new();
 
@@ -55,29 +75,29 @@
 
         private bool skipAI;
 
-        public MicrobeAISystem(MicrobeWorldSimulation worldSimulation, IReadonlyCompoundClouds cloudSystem, World world,
-            IParallelRunner runner) : base(world, runner)
+        public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, World world, IParallelRunner runner) :
+            base(world, runner)
         {
-            this.worldSimulation = worldSimulation;
             clouds = cloudSystem;
 
             // Microbes that aren't colony non-leaders (and also not eaten)
             // The WorldPosition require is here to just ensure that the AI won't accidentally throw an exception if
             // it sees an entity with no position
-            microbesSet = world.GetEntities().With<CellType>().With<WorldPosition>().Without<AttachedToEntity>()
-                .AsSet();
+            microbesSet = world.GetEntities().With<WorldPosition>().With<SpeciesMember>()
+                .With<Health>().With<Engulfer>().With<Engulfable>().Without<AttachedToEntity>().AsSet();
 
             // Engulfables, which are basically all chunks when they aren't cells, and aren't attached so that they
             // also aren't eaten already
-            chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().Without<CellType>()
-                .Without<AttachedToEntity>().AsSet();
+            chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundBag>()
+                .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
 
-            atp = SimulationParameters.Instance.GetCompound("atp");
-            glucose = SimulationParameters.Instance.GetCompound("glucose");
-            iron = SimulationParameters.Instance.GetCompound("iron");
-            oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-            ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-            phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+            var simulationParameters = SimulationParameters.Instance;
+            atp = simulationParameters.GetCompound("atp");
+            glucose = simulationParameters.GetCompound("glucose");
+            iron = simulationParameters.GetCompound("iron");
+            oxytoxy = simulationParameters.GetCompound("oxytoxy");
+            ammonia = simulationParameters.GetCompound("ammonia");
+            phosphates = simulationParameters.GetCompound("phosphates");
         }
 
         public void OverrideAIRandomSeed(int seed)
@@ -91,12 +111,30 @@
             }
         }
 
+        public void ReportPotentialPlayerPosition(Vector3? playerPosition)
+        {
+            potentiallyKnownPlayerPosition = playerPosition;
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
+        }
+
         protected override void PreUpdate(float delta)
         {
             base.PreUpdate(delta);
 
             skipAI = CheatManager.NoAI;
             usedAIThinkRandomIndex = 0;
+
+            if (!skipAI)
+            {
+                // Clean up old cached microbes
+                CleanMicrobeCache();
+                CleanChunkCache();
+            }
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -135,27 +173,7 @@
             // if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
             //     return;
 
-            ref var position = ref entity.Get<WorldPosition>();
-            ref var physicsControl = ref entity.Get<ManualPhysicsControl>();
-
-            try
-            {
-                AIThink(Constants.MICROBE_AI_THINK_INTERVAL, GetNextAIRandom(), ref ai, ref position,
-                    ref physicsControl);
-            }
-#pragma warning disable CA1031 // AI needs to be boxed good
-            catch (Exception e)
-#pragma warning restore CA1031
-            {
-                // TODO: the AI doesn't seem as bad of a crash source as it used to be so the catch above is probably
-                // fine to remove
-                GD.PrintErr("Microbe AI failure! ", e);
-
-                // Throw AI exceptions in debug mode to make an attached IDE stop on this exception
-#if DEBUG
-                throw;
-#endif
-            }
+            AIThink(GetNextAIRandom(), in entity, ref ai, ref health);
         }
 
         protected override void PostUpdate(float state)
@@ -166,293 +184,324 @@
             chunksSet.Complete();
         }
 
+        private static bool RollCheck(float ourStat, float dc, Random random)
+        {
+            return random.Next(0.0f, dc) <= ourStat;
+        }
+
+        private static bool RollReverseCheck(float ourStat, float dc, Random random)
+        {
+            return ourStat <= random.Next(0.0f, dc);
+        }
+
         /// <summary>
         ///   Main AI think function for cells
         /// </summary>
-        private void AIThink(float delta, Random random, ref MicrobeAI ai, ref WorldPosition selfPosition,
-            ref ManualPhysicsControl control)
+        private void AIThink(Random random, in Entity entity, ref MicrobeAI ai, ref Health health)
         {
-            // TODO: reimplement microbe total absorption tracking
-            throw new NotImplementedException();
+            ref var absorber = ref entity.Get<CompoundAbsorber>();
 
-            // ai.PreviouslyAbsorbedCompounds ??= new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
+            if (absorber.TotalAbsorbedCompounds == null)
+                throw new InvalidOperationException("AI microbe doesn't have compound absorb tracking on");
 
-            ai.CompoundsSearchWeights ??= new Dictionary<Compound, float>();
+            ai.PreviouslyAbsorbedCompounds ??= new Dictionary<Compound, float>(absorber.TotalAbsorbedCompounds);
 
-            ai.TimeSinceSignalSniffing += delta;
-
-            if (ai.TimeSinceSignalSniffing > Constants.MICROBE_AI_SIGNAL_REACT_INTERVAL)
-            {
-                ai.TimeSinceSignalSniffing = 0;
-
-                throw new NotImplementedException();
-
-                // if (microbe.HasSignalingAgent)
-                //     DetectSignalingAgents(data.AllMicrobes.Where(m => m.Species == microbe.Species));
-            }
-
-            var signaler = ai.LastFoundSignalEmitter;
-
-            if (signaler != default)
-            {
-                throw new NotImplementedException();
-
-                // ai.ReceivedCommand = signaler.SignalCommand;
-            }
-
-            throw new NotImplementedException();
-
-            // ChooseActions(random, data, signaler);
+            ChooseActions(in entity, ref ai, ref absorber, ref health, random);
 
             // Store the absorbed compounds for run and rumble
+            ai.PreviouslyAbsorbedCompounds!.Clear();
 
-            throw new NotImplementedException();
-
-            // PreviouslyAbsorbedCompounds.Clear();
-
-            throw new NotImplementedException();
-
-            // foreach (var compound in microbe.TotalAbsorbedCompounds)
-            // {
-            //     ai.PreviouslyAbsorbedCompounds[compound.Key] = compound.Value;
-            // }
+            foreach (var compound in absorber.TotalAbsorbedCompounds!)
+            {
+                ai.PreviouslyAbsorbedCompounds[compound.Key] = compound.Value;
+            }
 
             // We clear here for update, this is why we stored above!
-
-            throw new NotImplementedException();
-
-            // microbe.TotalAbsorbedCompounds.Clear();
+            absorber.TotalAbsorbedCompounds.Clear();
         }
 
-        //
-        // TODO: make the following code moved from MicrobeAI work again
-        //
-        /*private float SpeciesAggression => microbe.Species.Behaviour.Aggression *
-            (ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.5f : 1.0f);
-
-        private float SpeciesFear => microbe.Species.Behaviour.Fear *
-            (ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 0.75f : 1.0f);
-
-        private float SpeciesActivity => microbe.Species.Behaviour.Activity *
-            (ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.25f : 1.0f);
-
-        private float SpeciesFocus => microbe.Species.Behaviour.Focus;
-        private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
-
-        private bool IsSessile => SpeciesActivity < Constants.MAX_SPECIES_ACTIVITY / 10;*/
-
-        /*private void ChooseActions(Random random, MicrobeAICommonData data, Microbe? signaler)
+        private void ChooseActions(in Entity entity, ref MicrobeAI ai, ref CompoundAbsorber absorber,
+            ref Health health, Random random)
         {
+            // Fetch all the components that are usually needed
+            ref var position = ref entity.Get<WorldPosition>();
+
+            ref var ourSpecies = ref entity.Get<SpeciesMember>();
+
+            ref var organelles = ref entity.Get<OrganelleContainer>();
+
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            ref var signaling = ref entity.Get<CommandSignaler>();
+
+            ref var engulfer = ref entity.Get<Engulfer>();
+
+            ref var control = ref entity.Get<MicrobeControl>();
+
+            var compounds = entity.Get<CompoundStorage>().Compounds;
+
+            // Adjusted behaviour values (calculated here as these are needed by various methods)
+            float speciesAggression = ourSpecies.Species.Behaviour.Aggression *
+                (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.5f : 1.0f);
+
+            float speciesFear = ourSpecies.Species.Behaviour.Fear *
+                (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 0.75f : 1.0f);
+
+            float speciesActivity = ourSpecies.Species.Behaviour.Activity *
+                (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.25f : 1.0f);
+
+            float speciesFocus = ourSpecies.Species.Behaviour.Focus;
+            float speciesOpportunism = ourSpecies.Species.Behaviour.Opportunism;
+
             // If nothing is engulfing me right now, see if there's something that might want to hunt me
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2323
-            Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin;
-            if (predator.HasValue &&
-                DistanceFromMe(predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+            Vector3? predator =
+                GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear)?.Position;
+            if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value) <
+                (1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR))
             {
-                FleeFromPredators(random, predator.Value);
+                FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, predator.Value,
+                    speciesFocus, speciesActivity, speciesAggression, speciesFear, random);
                 return;
             }
 
             // If this microbe is out of ATP, pick an amount of time to rest
-            if (microbe.Compounds.GetCompoundAmount(atp) < 1.0f)
+            if (compounds.GetCompoundAmount(atp) < 1.0f)
             {
                 // Keep the maximum at 95% full, as there is flickering when near full
-                ATPThreshold = 0.95f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
+                ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
             }
 
-            if (ATPThreshold > 0.0f)
+            if (ai.ATPThreshold > 0.0f)
             {
-                if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * ATPThreshold
-                    && microbe.Compounds.Any(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f))
+                if (compounds.GetCompoundAmount(atp) < compounds.Capacity * ai.ATPThreshold
+                    && compounds.Any(compound => IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f))
                 {
-                    SetMoveSpeed(0.0f);
+                    control.SetMoveSpeed(0.0f);
                     return;
                 }
 
-                ATPThreshold = 0.0f;
+                ai.ATPThreshold = 0.0f;
             }
 
             // Follow received commands if we have them
-            // TODO: tweak the balance between following commands and doing normal behaviours
-            // TODO: and also probably we want to add some randomness to the positions and speeds based on distance
-            switch (ReceivedCommand)
+            if (organelles.HasSignalingAgent && signaling.ReceivedCommand != MicrobeSignalCommand.None)
             {
-                case MicrobeSignalCommand.MoveToMe:
-                    if (signaler != null)
+                // TODO: tweak the balance between following commands and doing normal behaviours
+                // TODO: and also probably we want to add some randomness to the positions and speeds based on distance
+                switch (signaling.ReceivedCommand)
+                {
+                    case MicrobeSignalCommand.MoveToMe:
                     {
-                        MoveToLocation(signaler.Translation);
-                        return;
+                        if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
+                        {
+                            ai.MoveToLocation(signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position,
+                                ref control);
+                            return;
+                        }
+
+                        break;
                     }
 
-                    break;
-                case MicrobeSignalCommand.FollowMe:
-                    if (signaler != null && DistanceFromMe(signaler.Translation) > Constants.AI_FOLLOW_DISTANCE_SQUARED)
+                    case MicrobeSignalCommand.FollowMe:
                     {
-                        MoveToLocation(signaler.Translation);
-                        return;
+                        if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
+                        {
+                            var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+                            if (position.Position.DistanceSquaredTo(signalerPosition) >
+                                Constants.AI_FOLLOW_DISTANCE_SQUARED)
+                            {
+                                ai.MoveToLocation(signalerPosition, ref control);
+                                return;
+                            }
+
+                            return;
+                        }
+
+                        break;
                     }
 
-                    break;
-                case MicrobeSignalCommand.FleeFromMe:
-                    if (signaler != null && DistanceFromMe(signaler.Translation) < Constants.AI_FLEE_DISTANCE_SQUARED)
+                    case MicrobeSignalCommand.FleeFromMe:
                     {
-                        microbe.State = MicrobeState.Normal;
-                        SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                        if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
+                        {
+                            var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+                            if (position.Position.DistanceSquaredTo(signalerPosition) <
+                                Constants.AI_FLEE_DISTANCE_SQUARED)
+                            {
+                                control.State = MicrobeState.Normal;
+                                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 
-                        // Direction is calculated to be the opposite from where we should flee
-                        TargetPosition = microbe.Translation + (microbe.Translation - signaler.Translation);
-                        microbe.LookAtPoint = TargetPosition;
-                        SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-                        return;
+                                // Direction is calculated to be the opposite from where we should flee
+                                ai.TargetPosition = position.Position + (position.Position - signalerPosition);
+                                control.LookAtPoint = ai.TargetPosition;
+                                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                                return;
+                            }
+                        }
+
+                        break;
                     }
-
-                    break;
+                }
             }
 
+            bool isSessile = speciesActivity < Constants.MAX_SPECIES_ACTIVITY / 10;
+
             // If I'm very far from the player, and I have not been near the player yet, get on stage
-            if (!HasBeenNearPlayer)
+            if (!ai.HasBeenNearPlayer)
             {
-                var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
-                if (player != null)
+                if (potentiallyKnownPlayerPosition != null)
                 {
                     // Only move if we aren't sessile
-                    if (DistanceFromMe(player.GlobalTransform.origin) >
+                    if (position.Position.DistanceSquaredTo(potentiallyKnownPlayerPosition.Value) >
                         Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f &&
-                        !IsSessile)
+                        !isSessile)
                     {
-                        MoveToLocation(player.GlobalTransform.origin);
+                        ai.MoveToLocation(potentiallyKnownPlayerPosition.Value, ref control);
                         return;
                     }
 
-                    HasBeenNearPlayer = true;
+                    ai.HasBeenNearPlayer = true;
                 }
             }
 
             // If there are no threats, look for a chunk to eat
             // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
-            if (microbe.CanEngulf)
+            if (cellProperties.MembraneType.CanEngulf)
             {
-                var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
-                if (targetChunk != null && targetChunk.PhagocytosisStep == PhagocytosisPhase.None)
+                var targetChunk = GetNearestChunkItem(in entity, ref engulfer, ref position, compounds,
+                    speciesFocus, speciesOpportunism, random);
+                if (targetChunk != null)
                 {
-                    throw new NotImplementedException();
-
-                    // PursueAndConsumeChunks(targetChunk.Translation, random);
+                    PursueAndConsumeChunks(ref position, ref ai, ref control, ref engulfer, targetChunk.Value.Position,
+                        speciesActivity, random);
                     return;
                 }
             }
 
             // If there are no chunks, look for living prey to hunt
-            var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-            if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
+            var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref ourSpecies, ref engulfer, compounds,
+                speciesFocus, speciesAggression, speciesOpportunism);
+            if (possiblePrey != default && possiblePrey.IsAlive)
             {
-                var prey = possiblePrey.GlobalTransform.origin;
+                Vector3 prey;
 
-                bool engulfPrey = microbe.CanEngulfObject(possiblePrey) == Microbe.EngulfCheckResult.Ok &&
-                    DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+                try
+                {
+                    prey = possiblePrey.Get<WorldPosition>().Position;
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("Microbe AI tried to engage prey with no position: " + e);
+                    ai.FocusedPrey = default;
+                    return;
+                }
 
-                EngagePrey(prey, random, engulfPrey);
+                bool engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
+                    EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
+                    10.0f * engulfer.EngulfingSize;
+
+                EngagePrey(ref ai, ref control, ref organelles, ref position, compounds, prey, engulfPrey,
+                    speciesAggression, speciesFocus, speciesActivity, random);
                 return;
             }
 
             // There is no reason to be engulfing at this stage
-            microbe.State = MicrobeState.Normal;
+            control.State = MicrobeState.Normal;
 
             // Otherwise just wander around and look for compounds
-            if (!IsSessile)
+            if (!isSessile)
             {
-                SeekCompounds(random, data);
+                SeekCompounds(in entity, ref ai, ref position, ref control, ref organelles, ref absorber, compounds,
+                    speciesActivity, speciesFocus, random);
             }
             else
             {
                 // This organism is sessile, and will not act until the environment changes
-                SetMoveSpeed(0.0f);
+                control.SetMoveSpeed(0.0f);
             }
         }
 
-        private FloatingChunk? GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes,
-            Random random)
+        private (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? GetNearestChunkItem(
+            in Entity entity, ref Engulfer engulfer, ref WorldPosition position,
+            CompoundBag ourCompounds, float speciesFocus, float speciesOpportunism, Random random)
         {
-            FloatingChunk? chosenChunk = null;
+            (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? chosenChunk = null;
+            float bestFoundChunkDistance = float.MaxValue;
 
-            // If the microbe cannot absorb, no need for this
-            // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
-            if (!microbe.CanEngulf)
-            {
-                return null;
-            }
+            BuildChunksCache();
 
             // Retrieve nearest potential chunk
-            foreach (var chunk in allChunks)
+            foreach (var chunk in chunkDataCache)
             {
-                if (chunk.Compounds.Compounds.Count <= 0)
+                // Skip too big things
+                if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
                     continue;
 
-                throw new NotImplementedException();
+                // And too distant things
+                var distance = (chunk.Position - position.Position).LengthSquared();
 
-                /*if (microbe.EngulfSize > chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ
-                    && (chunk.Translation - microbe.Translation).LengthSquared()
-                    <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0
-                    && chunk.PhagocytosisStep == PhagocytosisPhase.None)
+                if (distance > bestFoundChunkDistance)
+                    continue;
+
+                if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+                    continue;
+
+                if (chunk.Compounds.Compounds.Any(p => ourCompounds.IsUseful(p.Key) && p.Key.Digestible))
                 {
-                    if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key) && x.Key.Digestible))
+                    if (chosenChunk == null)
                     {
-                        if (chosenChunk == null ||
-                            (chosenChunk.Translation - microbe.Translation).LengthSquared() >
-                            (chunk.Translation - microbe.Translation).LengthSquared())
-                        {
-                            chosenChunk = chunk;
-                        }
+                        chosenChunk = chunk;
+                        bestFoundChunkDistance = distance;
                     }
-                }#1#
+                }
             }
 
             // Don't bother with chunks when there's a lot of microbes to compete with
             if (chosenChunk != null)
             {
-                throw new NotImplementedException();
+                BuildMicrobesCache();
 
-                /*var rivals = 0;
-                var distanceToChunk = (microbe.Translation - chosenChunk.Translation).LengthSquared();
-                foreach (var rival in allMicrobes)
+                var rivals = 0;
+                foreach (var entry in microbesBySpecies)
                 {
-                    if (rival != microbe)
+                    // Take own species members also into account when considering rivals
+
+                    foreach (var rival in entry.Value)
                     {
-                        var rivalDistance = (rival.GlobalTransform.origin - chosenChunk.Translation).LengthSquared();
-                        if (rivalDistance < 500.0f &&
-                            rivalDistance < distanceToChunk)
+                        // Don't compete against yourself
+                        if (rival.Entity == entity)
+                            continue;
+
+                        var rivalDistance = (rival.Position - chosenChunk.Value.Position).LengthSquared();
+                        if (rivalDistance < 500.0f && rivalDistance < bestFoundChunkDistance)
                         {
                             rivals++;
                         }
                     }
-                }#1#
+                }
 
-                int rivalThreshold;
-                if (SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3)
+                int rivalThreshold = 5;
+
+                // Less opportunistic species will avoid chunks even when there are just a few rivals
+                if (speciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3)
                 {
                     rivalThreshold = 1;
                 }
-                else if (SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM * 2 / 3)
+                else if (speciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM * 2 / 3)
                 {
                     rivalThreshold = 3;
                 }
-                else
-                {
-                    rivalThreshold = 5;
-                }
 
                 // In rare instances, microbes will choose to be much more ambitious
-                if (RollCheck(SpeciesFocus, Constants.MAX_SPECIES_FOCUS, random))
+                if (RollCheck(speciesFocus, Constants.MAX_SPECIES_FOCUS, random))
                 {
                     rivalThreshold *= 2;
                 }
 
-                throw new NotImplementedException();
-
-                // if (rivals > rivalThreshold)
-                // {
-                //     chosenChunk = null;
-                // }
+                if (rivals > rivalThreshold)
+                {
+                    chosenChunk = null;
+                }
             }
 
             return chosenChunk;
@@ -462,85 +511,121 @@
         ///   Gets the nearest prey item. And builds the prey list
         /// </summary>
         /// <returns>The nearest prey item.</returns>
-        /// <param name="allMicrobes">All microbes.</param>
-        private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes)
+        private Entity GetNearestPreyItem(ref MicrobeAI ai, ref WorldPosition position, ref SpeciesMember ourSpecies,
+            ref Engulfer engulfer, CompoundBag ourCompounds, float speciesFocus, float speciesAggression,
+            float speciesOpportunism)
         {
-            var focused = FocusedPrey.Value;
-            if (focused != null)
+            if (ai.FocusedPrey != default && ai.FocusedPrey.IsAlive)
             {
-                var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
-                if (!focused.Dead && focused.PhagocytosisStep == PhagocytosisPhase.None && distanceToFocusedPrey <
-                    (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
+                var focused = ai.FocusedPrey;
+                try
                 {
-                    if (distanceToFocusedPrey < PursuitThreshold)
+                    var distanceToFocusedPrey =
+                        position.Position.DistanceSquaredTo(focused.Get<WorldPosition>().Position);
+                    if (!focused.Get<Health>().Dead &&
+                        focused.Get<Engulfable>().PhagocytosisStep == PhagocytosisPhase.None && distanceToFocusedPrey <
+                        (3500.0f * speciesFocus / Constants.MAX_SPECIES_FOCUS))
                     {
-                        // Keep chasing, but expect to keep getting closer
-                        LowerPursuitThreshold();
-                        return focused;
-                    }
+                        if (distanceToFocusedPrey < ai.PursuitThreshold)
+                        {
+                            // Keep chasing, but expect to keep getting closer
+                            ai.LowerPursuitThreshold();
+                            return focused;
+                        }
 
-                    // If prey hasn't gotten closer by now, it's probably too fast, or juking you
-                    // Remember who focused prey is, so that you don't fall for this again
-                    return null;
+                        // If prey hasn't gotten closer by now, it's probably too fast, or juking you
+                        // Remember who focused prey is, so that you don't fall for this again
+                        return default;
+                    }
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("Invalid focused prey, resetting, error: " + e);
                 }
 
-                FocusedPrey.Value = null;
+                ai.FocusedPrey = default;
             }
 
-            Microbe? chosenPrey = null;
+            (Entity Entity, Vector3 Position, float EngulfSize)? chosenPrey = null;
+            float minDistance = float.MaxValue;
 
-            foreach (var otherMicrobe in allMicrobes)
+            BuildMicrobesCache();
+
+            foreach (var entry in microbesBySpecies)
             {
-                if (!otherMicrobe.Dead && otherMicrobe.PhagocytosisStep == PhagocytosisPhase.None)
+                // Don't try to eat members of the same species
+                if (entry.Key == ourSpecies.ID)
+                    continue;
+
+                foreach (var otherMicrobeInfo in entry.Value)
                 {
-                    if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
-                        (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
-                        && CanTryToEatMicrobe(otherMicrobe))
+                    var distance = position.Position.DistanceSquaredTo(otherMicrobeInfo.Position);
+
+                    // Early skip farther away entities than already found, or too far away entities to consider eating
+                    if (distance > minDistance ||
+                        distance > 2500.0f * speciesAggression / Constants.MAX_SPECIES_AGGRESSION)
                     {
-                        if (chosenPrey == null ||
-                            (chosenPrey.GlobalTransform.origin - microbe.Translation).LengthSquared() >
-                            (otherMicrobe.GlobalTransform.origin - microbe.Translation).LengthSquared())
+                        continue;
+                    }
+
+                    if (CanTryToEatMicrobe(ref ourSpecies, ref engulfer, ourCompounds,
+                            ref otherMicrobeInfo.Entity.Get<Engulfable>(),
+                            ref otherMicrobeInfo.Entity.Get<SpeciesMember>(), speciesOpportunism, speciesFocus))
+                    {
+                        if (chosenPrey == null)
                         {
-                            chosenPrey = otherMicrobe;
+                            chosenPrey = otherMicrobeInfo;
+                            minDistance = distance;
                         }
                     }
                 }
             }
 
-            FocusedPrey.Value = chosenPrey;
-
             if (chosenPrey != null)
             {
-                PursuitThreshold = DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f;
+                ai.FocusedPrey = chosenPrey.Value.Entity;
+                ai.PursuitThreshold = position.Position.DistanceSquaredTo(chosenPrey.Value.Position) * 3.0f;
+            }
+            else
+            {
+                ai.FocusedPrey = default;
             }
 
-            return chosenPrey;
+            return ai.FocusedPrey;
         }
 
         /// <summary>
         ///   Building the predator list and setting the scariest one to be predator
         /// </summary>
-        /// <param name="allMicrobes">All microbes.</param>
-        private Microbe? GetNearestPredatorItem(List<Microbe> allMicrobes)
+        private (Entity Entity, Vector3 Position, float EngulfSize)? GetNearestPredatorItem(ref Health health,
+            ref SpeciesMember ourSpecies, ref Engulfer engulfer, ref WorldPosition position, float speciesFear)
         {
             var fleeThreshold = 3.0f - (2 *
-                (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
-                (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
-            Microbe? predator = null;
-            foreach (var otherMicrobe in allMicrobes)
+                (speciesFear / Constants.MAX_SPECIES_FEAR) *
+                (10 - (9 * health.CurrentHealth / health.MaxHealth)));
+
+            (Entity Entity, Vector3 Position, float EngulfSize)? predator = null;
+            float minDistance = float.MaxValue;
+
+            BuildMicrobesCache();
+
+            foreach (var entry in microbesBySpecies)
             {
-                if (otherMicrobe == microbe)
+                // Don't be scared of the same species
+                if (entry.Key == ourSpecies.ID)
                     continue;
 
-                // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
-                if (otherMicrobe.Species != microbe.Species
-                    && !otherMicrobe.Dead && otherMicrobe.PhagocytosisStep == PhagocytosisPhase.None
-                    && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
+                foreach (var otherMicrobeInfo in entry.Value)
                 {
-                    if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
-                        DistanceFromMe(otherMicrobe.GlobalTransform.origin))
+                    // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
+                    if (otherMicrobeInfo.EngulfSize > engulfer.EngulfingSize * fleeThreshold)
                     {
-                        predator = otherMicrobe;
+                        var distance = position.Position.DistanceSquaredTo(otherMicrobeInfo.Position);
+                        if (predator == null || minDistance > distance)
+                        {
+                            predator = otherMicrobeInfo;
+                            minDistance = distance;
+                        }
                     }
                 }
             }
@@ -548,171 +633,183 @@
             return predator;
         }
 
-        private void PursueAndConsumeChunks(Vector3 chunk, Random random)
+        private void PursueAndConsumeChunks(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
+            ref Engulfer engulfer, Vector3 chunk, float speciesActivity, Random random)
         {
             // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
-            TargetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
-            microbe.LookAtPoint = TargetPosition;
-            SetEngulfIfClose();
+            ai.TargetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
+            control.LookAtPoint = ai.TargetPosition;
+            SetEngulfIfClose(ref control, ref engulfer, ref position, chunk);
 
             // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
             if (random.NextDouble() < 0.05)
             {
-                MoveWithRandomTurn(0.1f, 0.2f, random);
+                ai.MoveWithRandomTurn(0.1f, 0.2f, position.Position, ref control, speciesActivity, random);
             }
 
             // If this Microbe is right on top of the chunk, stop instead of spinning
-            if (DistanceFromMe(chunk) < Constants.AI_ENGULF_STOP_DISTANCE)
+            if (position.Position.DistanceSquaredTo(chunk) < Constants.AI_ENGULF_STOP_DISTANCE)
             {
-                SetMoveSpeed(0.0f);
+                control.SetMoveSpeed(0.0f);
             }
             else
             {
-                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             }
         }
 
-        private void FleeFromPredators(Random random, Vector3 predatorLocation)
+        private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
+            ref OrganelleContainer organelles, CompoundBag ourCompounds, Vector3 predatorLocation, float speciesFocus,
+            float speciesActivity, float speciesAggression, float speciesFear, Random random)
         {
-            microbe.State = MicrobeState.Normal;
+            control.State = MicrobeState.Normal;
 
-            TargetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
+            ai.TargetPosition = (2 * (position.Position - predatorLocation)) + position.Position;
 
-            microbe.LookAtPoint = TargetPosition;
+            control.LookAtPoint = ai.TargetPosition;
 
-            if (DistanceFromMe(predatorLocation) < 100.0f)
+            if (position.Position.DistanceSquaredTo(predatorLocation) < 100.0f)
             {
-                if (microbe.SlimeJets.Count > 0 && RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random))
+                if ((organelles.SlimeJets?.Count ?? 0) > 0 &&
+                    RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random))
                 {
                     // There's a chance to jet away if we can
-                    SecreteSlime(random);
+                    control.SecreteSlimeForSomeTime(ref organelles, random);
                 }
-                else if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+                else if (RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
                 {
                     // If the predator is right on top of us there's a chance to try and swing with a pilus
-                    MoveWithRandomTurn(2.5f, 3.0f, random);
+                    ai.MoveWithRandomTurn(2.5f, 3.0f, position.Position, ref control, speciesActivity, random);
                 }
             }
 
             // If prey is confident enough, it will try and launch toxin at the predator
-            if (SpeciesAggression > SpeciesFear &&
-                DistanceFromMe(predatorLocation) >
-                300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
-                RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+            if (speciesAggression > speciesFear &&
+                position.Position.DistanceSquaredTo(predatorLocation) >
+                300.0f - (5.0f * speciesAggression) + (6.0f * speciesFear) &&
+                RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
             {
-                LaunchToxin(predatorLocation);
+                LaunchToxin(ref control, ref organelles, ref position, predatorLocation, ourCompounds, speciesFocus,
+                    speciesActivity);
             }
 
             // No matter what, I want to make sure I'm moving
-            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
 
-        private void EngagePrey(Vector3 target, Random random, bool engulf)
+        private void EngagePrey(ref MicrobeAI ai, ref MicrobeControl control, ref OrganelleContainer organelles,
+            ref WorldPosition position, CompoundBag ourCompounds, Vector3 target, bool engulf, float speciesAggression,
+            float speciesFocus, float speciesActivity, Random random)
         {
-            microbe.State = engulf ? MicrobeState.Engulf : MicrobeState.Normal;
-            TargetPosition = target;
-            microbe.LookAtPoint = TargetPosition;
-            if (CanShootToxin())
+            control.State = engulf ? MicrobeState.Engulf : MicrobeState.Normal;
+            ai.TargetPosition = target;
+            control.LookAtPoint = ai.TargetPosition;
+            if (CanShootToxin(ourCompounds, speciesFocus))
             {
-                LaunchToxin(target);
+                LaunchToxin(ref control, ref organelles, ref position, target, ourCompounds, speciesFocus,
+                    speciesActivity);
 
-                if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
+                if (RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
                 {
-                    SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                    control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
                 }
             }
             else
             {
-                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             }
 
             // Predators can use slime jets as an ambush mechanism
-            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+            if (RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
             {
-                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-                SecreteSlime(random);
+                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                control.SecreteSlimeForSomeTime(ref organelles, random);
             }
         }
 
-        private void SeekCompounds(Random random, MicrobeAICommonData data)
+        private void SeekCompounds(in Entity entity, ref MicrobeAI ai, ref WorldPosition position,
+            ref MicrobeControl control, ref OrganelleContainer organelles, ref CompoundAbsorber absorber,
+            CompoundBag compounds, float speciesActivity, float speciesFocus, Random random)
         {
             // More active species just try to get distance to avoid over-clustering
-            if (RollCheck(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY + (Constants.MAX_SPECIES_ACTIVITY / 2),
+            if (RollCheck(speciesActivity, Constants.MAX_SPECIES_ACTIVITY + (Constants.MAX_SPECIES_ACTIVITY / 2),
                     random))
             {
-                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
                 return;
             }
 
             if (random.Next(Constants.AI_STEPS_PER_SMELL) == 0)
             {
-                SmellForCompounds(data);
+                SmellForCompounds(in entity, ref ai, ref position, ref organelles, compounds, speciesFocus);
             }
 
             // If the AI has smelled a compound (currently only possible with a chemoreceptor), go towards it.
-            if (LastSmelledCompoundPosition != null)
+            if (ai.LastSmelledCompoundPosition != null)
             {
-                var distance = DistanceFromMe(LastSmelledCompoundPosition.Value);
+                var distance = position.Position.DistanceSquaredTo(ai.LastSmelledCompoundPosition.Value);
 
                 // If the compound isn't getting closer, either something else has taken it, or we're stuck
-                LowerPursuitThreshold();
-                if (distance > PursuitThreshold)
+                ai.LowerPursuitThreshold();
+                if (distance > ai.PursuitThreshold)
                 {
-                    LastSmelledCompoundPosition = null;
-                    RunAndTumble(random);
+                    ai.LastSmelledCompoundPosition = null;
+                    RunAndTumble(ref ai, ref control, ref position, ref absorber, compounds, speciesActivity, random);
                     return;
                 }
 
                 if (distance > 3.0f)
                 {
-                    TargetPosition = LastSmelledCompoundPosition.Value;
-                    microbe.LookAtPoint = TargetPosition;
+                    ai.TargetPosition = ai.LastSmelledCompoundPosition!.Value;
+                    control.LookAtPoint = ai.TargetPosition;
                 }
                 else
                 {
-                    SetMoveSpeed(0.0f);
-                    SmellForCompounds(data);
+                    control.SetMoveSpeed(0.0f);
+                    SmellForCompounds(in entity, ref ai, ref position, ref organelles, compounds, speciesFocus);
                 }
             }
             else
             {
-                RunAndTumble(random);
+                RunAndTumble(ref ai, ref control, ref position, ref absorber, compounds, speciesActivity, random);
             }
         }
 
-        private void SmellForCompounds(MicrobeAICommonData data)
+        private void SmellForCompounds(in Entity entity, ref MicrobeAI ai, ref WorldPosition position,
+            ref OrganelleContainer organelles, CompoundBag compounds, float speciesFocus)
         {
-            ComputeCompoundsSearchWeights();
+            ComputeCompoundsSearchWeights(ref ai, compounds);
 
-            var detections = microbe.GetDetectedCompounds(data.Clouds)
-                .OrderBy(detection => CompoundsSearchWeights.TryGetValue(detection.Compound, out var weight) ?
+            var weights = ai.CompoundsSearchWeights!;
+
+            var detections = organelles.PerformCompoundDetection(in entity, position.Position, clouds)
+                .OrderBy(detection => weights.TryGetValue(detection.Compound, out var weight) ?
                     weight :
                     0).ToList();
 
             if (detections.Count > 0)
             {
-                LastSmelledCompoundPosition = detections[0].Target;
-                PursuitThreshold = DistanceFromMe(LastSmelledCompoundPosition.Value)
-                    * (1 + (SpeciesFocus / Constants.MAX_SPECIES_FOCUS));
+                ai.LastSmelledCompoundPosition = detections[0].Target;
+                ai.PursuitThreshold = position.Position.DistanceSquaredTo(ai.LastSmelledCompoundPosition.Value)
+                    * (1 + (speciesFocus / Constants.MAX_SPECIES_FOCUS));
             }
             else
             {
-                LastSmelledCompoundPosition = null;
+                ai.LastSmelledCompoundPosition = null;
             }
         }
 
-        // For doing run and tumble
         /// <summary>
         ///   For doing run and tumble
         /// </summary>
-        /// <param name="random">Random values to use</param>
-        private void RunAndTumble(Random random)
+        private void RunAndTumble(ref MicrobeAI ai, ref MicrobeControl control, ref WorldPosition position,
+            ref CompoundAbsorber absorber, CompoundBag compounds, float speciesActivity, Random random)
         {
             // If this microbe is currently stationary, just initialize by moving in a random direction.
             // Used to get newly spawned microbes to move.
-            if (microbe.MovementDirection.Length() == 0)
+            if (control.MovementDirection.Length() == 0)
             {
-                MoveWithRandomTurn(0, Mathf.Pi, random);
+                ai.MoveWithRandomTurn(0, Mathf.Pi, position.Position, ref control, speciesActivity, random);
                 return;
             }
 
@@ -722,17 +819,17 @@
             // deposits being a lot smaller compared to the microbes
             // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
-            ComputeCompoundsSearchWeights();
+            ComputeCompoundsSearchWeights(ref ai, compounds);
 
             float gradientValue = 0.0f;
-            foreach (var compoundWeight in CompoundsSearchWeights)
+            foreach (var compoundWeight in ai.CompoundsSearchWeights!)
             {
                 // Note this is about absorbed quantities (which is all microbe has access to) not the ones in the clouds.
                 // Gradient computation is therefore cell-centered, and might be different for different cells.
                 float compoundDifference = 0.0f;
 
-                microbe.TotalAbsorbedCompounds.TryGetValue(compoundWeight.Key, out float quantityAbsorbedThisStep);
-                PreviouslyAbsorbedCompounds.TryGetValue(compoundWeight.Key, out float quantityAbsorbedPreviousStep);
+                absorber.TotalAbsorbedCompounds!.TryGetValue(compoundWeight.Key, out float quantityAbsorbedThisStep);
+                ai.PreviouslyAbsorbedCompounds!.TryGetValue(compoundWeight.Key, out float quantityAbsorbedPreviousStep);
 
                 compoundDifference += quantityAbsorbedThisStep - quantityAbsorbedPreviousStep;
 
@@ -747,13 +844,13 @@
             // If food density is going down, back up and see if there's some more
             if (gradientValue < -differenceDetectionThreshold && random.Next(0, 10) < 9)
             {
-                MoveWithRandomTurn(2.5f, 3.0f, random);
+                ai.MoveWithRandomTurn(2.5f, 3.0f, position.Position, ref control, speciesActivity, random);
             }
 
             // If there isn't any food here, it's a good idea to keep moving
             if (Math.Abs(gradientValue) <= differenceDetectionThreshold && random.Next(0, 10) < 5)
             {
-                MoveWithRandomTurn(0.0f, 0.4f, random);
+                ai.MoveWithRandomTurn(0.0f, 0.4f, position.Position, ref control, speciesActivity, random);
             }
 
             // If positive last step you gained compounds, so let's move toward the source
@@ -763,7 +860,7 @@
                 // 180° is useless since previous position let you absorb less compounds already
                 if (random.Next(0, 10) < 4)
                 {
-                    MoveWithRandomTurn(0.0f, 1.5f, random);
+                    ai.MoveWithRandomTurn(0.0f, 1.5f, position.Position, ref control, speciesActivity, random);
                 }
             }
         }
@@ -774,26 +871,35 @@
         ///   non ATP-related compounds are discarded.
         ///   Updates compoundsSearchWeights instance dictionary.
         /// </summary>
-        private void ComputeCompoundsSearchWeights()
+        private void ComputeCompoundsSearchWeights(ref MicrobeAI ai, CompoundBag storedCompounds)
         {
-            IEnumerable<Compound> usefulCompounds = microbe.Compounds.Compounds.Keys;
+            // TODO: should this really assume that all stored compounds are immediately useful
+            IEnumerable<Compound> usefulCompounds = storedCompounds.Compounds.Keys;
 
             // If this microbe lacks vital compounds don't bother with ammonia and phosphate
             if (usefulCompounds.Any(
-                    compound => IsVitalCompound(compound) &&
-                        microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
+                    compound => IsVitalCompound(compound, storedCompounds) &&
+                        storedCompounds.GetCompoundAmount(compound) < 0.5f * storedCompounds.Capacity))
             {
                 usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
             }
 
-            CompoundsSearchWeights.Clear();
+            if (ai.CompoundsSearchWeights == null)
+            {
+                ai.CompoundsSearchWeights = new Dictionary<Compound, float>();
+            }
+            else
+            {
+                ai.CompoundsSearchWeights.Clear();
+            }
+
             foreach (var compound in usefulCompounds)
             {
                 // The priority of a compound is inversely proportional to its availability
                 // Should be tweaked with consumption
-                var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound) / microbe.Compounds.Capacity;
+                var compoundPriority = 1 - storedCompounds.GetCompoundAmount(compound) / storedCompounds.Capacity;
 
-                CompoundsSearchWeights.Add(compound, compoundPriority);
+                ai.CompoundsSearchWeights.Add(compound, compoundPriority);
             }
         }
 
@@ -807,158 +913,181 @@
         ///     other processes in future versions
         ///   </para>
         /// </remarks>
-        private bool IsVitalCompound(Compound compound)
+        private bool IsVitalCompound(Compound compound, CompoundBag compounds)
         {
             // TODO: looking for mucilage should be prevented
-            return microbe.Compounds.IsUseful(compound) &&
+            return compounds.IsUseful(compound) &&
                 (compound == glucose || compound == iron);
         }
 
-        private void SetEngulfIfClose()
+        private void SetEngulfIfClose(ref MicrobeControl control, ref Engulfer engulfer, ref WorldPosition position,
+            Vector3 targetPosition)
         {
             // Turn on engulf mode if close
             // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
-            if ((microbe.Translation - TargetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
+            if ((position.Position - targetPosition).LengthSquared() <= engulfer.EngulfingSize * 2.0f)
             {
-                microbe.State = MicrobeState.Engulf;
+                control.State = MicrobeState.Engulf;
             }
             else
             {
-                microbe.State = MicrobeState.Normal;
+                control.State = MicrobeState.Normal;
             }
         }
 
-        private void LaunchToxin(Vector3 target)
+        private void LaunchToxin(ref MicrobeControl control, ref OrganelleContainer organelles,
+            ref WorldPosition position, Vector3 target, CompoundBag compounds, float speciesFocus,
+            float speciesActivity)
         {
-            if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-                (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
+            if (organelles.AgentVacuoleCount > 0 &&
+                (position.Position - target).LengthSquared() <= speciesFocus * 10.0f)
             {
-                if (CanShootToxin())
+                if (CanShootToxin(compounds, speciesFocus))
                 {
-                    microbe.LookAtPoint = target;
+                    control.LookAtPoint = target;
 
                     // Hold fire until the target is lined up.
-                    if (microbe.FacingDirection().Normalized().AngleTo(microbe.LookAtPoint.Normalized()) <
-                        0.1f + SpeciesActivity / (Constants.AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION * SpeciesFocus))
+                    // TODO: verify that this calculation is now correct, this used to use just the angle to the world
+                    // look at point which certainly wasn't correct when the microbe was not positioned at world origin
+                    var currentLookDirection = position.Rotation.Xform(Vector3.Forward);
+
+                    if (currentLookDirection.Normalized()
+                            .AngleTo((control.LookAtPoint - position.Position).Normalized()) <
+                        0.1f + speciesActivity / (Constants.AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION * speciesFocus))
                     {
-                        microbe.QueueEmitToxin(oxytoxy);
+                        control.QueuedToxinToEmit = oxytoxy;
                     }
                 }
             }
         }
 
-        private void SecreteSlime(Random random)
+        private bool CanTryToEatMicrobe(ref SpeciesMember ourSpecies, ref Engulfer engulfer, CompoundBag ourCompounds,
+            ref Engulfable targetMicrobe, ref SpeciesMember targetSpecies, float speciesOpportunism, float speciesFocus)
         {
-            if (microbe.Hitpoints > 0 && microbe.SlimeJets.Count > 0)
-            {
-                // Randomise the time spent ejecting slime, from 0 to 3 seconds
-                microbe.QueueSecreteSlime(3 * random.NextFloat());
-            }
-        }
+            var sizeRatio = engulfer.EngulfingSize / targetMicrobe.EffectiveEngulfSize();
 
-        private void MoveWithRandomTurn(float minTurn, float maxTurn, Random random)
-        {
-            var turn = random.Next(minTurn, maxTurn);
-            if (random.Next(2) == 1)
-            {
-                turn = -turn;
-            }
-
-            var randDist = random.Next(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY);
-            TargetPosition = microbe.Translation
-                + new Vector3(Mathf.Cos(PreviousAngle + turn) * randDist,
-                    0,
-                    Mathf.Sin(PreviousAngle + turn) * randDist);
-            PreviousAngle += turn;
-            microbe.LookAtPoint = TargetPosition;
-            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-        }
-
-        private void MoveToLocation(Vector3 location)
-        {
-            microbe.State = MicrobeState.Normal;
-            TargetPosition = location;
-            microbe.LookAtPoint = TargetPosition;
-            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-        }
-
-        private void DetectSignalingAgents(IEnumerable<Microbe> ownSpeciesMicrobes)
-        {
-            // We kind of simulate how strong the "smell" of a signal is by finding the closest active signal
-            float? closestSignalSquared = null;
-            Microbe? selectedMicrobe = null;
-
-            var previous = LastFoundSignalEmitter.Value;
-
-            if (previous != null && previous.SignalCommand != MicrobeSignalCommand.None)
-            {
-                selectedMicrobe = previous;
-                closestSignalSquared = DistanceFromMe(previous.Translation);
-            }
-
-            foreach (var speciesMicrobe in ownSpeciesMicrobes)
-            {
-                if (speciesMicrobe.SignalCommand == MicrobeSignalCommand.None)
-                    continue;
-
-                // Don't detect your own signals
-                if (speciesMicrobe == microbe)
-                    continue;
-
-                var distance = DistanceFromMe(speciesMicrobe.Translation);
-
-                if (closestSignalSquared == null || distance < closestSignalSquared.Value)
-                {
-                    selectedMicrobe = speciesMicrobe;
-                    closestSignalSquared = distance;
-                }
-            }
-
-            // TODO: should there be a max distance after which the signaling agent is considered to be so weak that it
-            // is not detected?
-
-            LastFoundSignalEmitter.Value = selectedMicrobe;
-        }
-
-        private void SetMoveSpeed(float speed)
-        {
-            microbe.MovementDirection = new Vector3(0, 0, -speed);
-        }
-
-        private void LowerPursuitThreshold()
-        {
-            PursuitThreshold *= 0.95f;
-        }
-
-        private bool CanTryToEatMicrobe(Microbe targetMicrobe)
-        {
-            var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
-
-            return targetMicrobe.Species != microbe.Species && (
-                (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
+            return targetSpecies.ID != ourSpecies.ID && (
+                (speciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f &&
+                    CanShootToxin(ourCompounds, speciesFocus))
                 || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
         }
 
-        private bool CanShootToxin()
+        private bool CanShootToxin(CompoundBag compounds, float speciesFocus)
         {
-            return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
-                Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
+            return compounds.GetCompoundAmount(oxytoxy) >=
+                Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * speciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
-        private float DistanceFromMe(Vector3 target)
+        private void CleanMicrobeCache()
         {
-            return (target - microbe.Translation).LengthSquared();
+            foreach (var entry in microbesBySpecies)
+            {
+                if (entry.Value.Count < 1)
+                {
+                    speciesCachesToDrop.Add(entry.Key);
+                }
+                else
+                {
+                    // Empty out the cache lists as BuildMicrobesCache rebuilds them always from scratch
+                    entry.Value.Clear();
+                }
+            }
+
+            // Remove unused species lists from the species cache
+            foreach (var toClear in speciesCachesToDrop)
+            {
+                microbesBySpecies.Remove(toClear);
+            }
+
+            speciesCachesToDrop.Clear();
+
+            microbeCacheBuilt = false;
         }
 
-        private bool RollCheck(float ourStat, float dc, Random random)
+        /// <summary>
+        ///   Builds a full cache of all alive, non-engulfed and non-colony member cells (colony lead cells are
+        ///   included)
+        /// </summary>
+        private void BuildMicrobesCache()
         {
-            return random.Next(0.0f, dc) <= ourStat;
+            // To allow multithreaded AI access safely
+            lock (microbesBySpecies)
+            {
+                if (microbeCacheBuilt)
+                    return;
+
+                foreach (ref readonly var microbe in microbesSet.GetEntities())
+                {
+                    // Skip considering dead microbes
+                    ref var health = ref microbe.Get<Health>();
+
+                    if (health.Dead)
+                        continue;
+
+                    ref var microbeSpecies = ref microbe.Get<SpeciesMember>();
+
+                    // TODO: determine if it is a good idea to resolve this data here immediately
+                    ref var position = ref microbe.Get<WorldPosition>();
+                    ref var engulfer = ref microbe.Get<Engulfer>();
+
+                    // We assume here that the engulfable size is the same as the engulfing size so we don't fetch
+                    // Engulfable here
+
+                    if (!microbesBySpecies.TryGetValue(microbeSpecies.ID, out var targetList))
+                    {
+                        targetList = new List<(Entity Entity, Vector3 Position, float EngulfSize)>();
+
+                        microbesBySpecies[microbeSpecies.ID] = targetList;
+                    }
+
+                    targetList.Add((microbe, position.Position, engulfer.EngulfingSize));
+                }
+
+                microbeCacheBuilt = true;
+            }
         }
 
-        private bool RollReverseCheck(float ourStat, float dc, Random random)
+        private void CleanChunkCache()
         {
-            return ourStat <= random.Next(0.0f, dc);
-        }*/
+            chunkDataCache.Clear();
+            chunkCacheBuilt = false;
+        }
+
+        /// <summary>
+        ///   Builds a full cache of all non-engulfed chunks that aren't dissolving currently
+        /// </summary>
+        private void BuildChunksCache()
+        {
+            // To allow multithreaded AI access safely
+            lock (chunkDataCache)
+            {
+                if (chunkCacheBuilt)
+                    return;
+
+                foreach (ref readonly var chunk in chunksSet.GetEntities())
+                {
+                    // Ignore already despawning chunks
+                    ref var timed = ref chunk.Get<TimedLife>();
+
+                    if (timed.TimeToLiveRemaining <= 0)
+                        continue;
+
+                    // Ignore chunks that wouldn't yield any useful compounds when absorbing
+                    ref var compounds = ref chunk.Get<CompoundStorage>();
+
+                    if (!compounds.Compounds.HasAnyCompounds())
+                        continue;
+
+                    // TODO: determine if it is a good idea to resolve this data here immediately
+                    ref var position = ref chunk.Get<WorldPosition>();
+                    ref var engulfable = ref chunk.Get<Engulfable>();
+
+                    chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize, compounds.Compounds));
+                }
+
+                chunkCacheBuilt = true;
+            }
+        }
 
         private Random GetNextAIRandom()
         {
@@ -970,6 +1099,15 @@
                 }
 
                 return thinkRandoms[usedAIThinkRandomIndex++];
+            }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                microbesSet.Dispose();
+                chunksSet.Dispose();
             }
         }
     }

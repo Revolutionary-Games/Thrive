@@ -1,5 +1,6 @@
 ﻿namespace Components
 {
+    using DefaultEcs;
     using Godot;
     using Newtonsoft.Json;
 
@@ -61,6 +62,24 @@
         public void CalculateEngulfSize()
         {
             EngulfSize = IsBacteria ? HexCount * 0.5f : HexCount;
+        }
+    }
+
+    public static class CellPropertiesHelpers
+    {
+        /// <summary>
+        ///   Checks can a cell engulf a target entity. This is the preferred way to check instead of directly using
+        ///   just the <see cref="Engulfer"/> check as this also validates the cell has the right properties to be able
+        ///   to engulf.
+        /// </summary>
+        public static EngulfCheckResult CanEngulfObject(ref this CellProperties cellProperties,
+            ref SpeciesMember cellSpecies, ref Engulfer engulfer, in Entity target)
+        {
+            // Membranes with Cell Wall cannot engulf
+            if (!cellProperties.MembraneType.CanEngulf)
+                return EngulfCheckResult.NotInEngulfMode;
+
+            return engulfer.CanEngulfObject(cellSpecies.ID, in target);
         }
     }
 }

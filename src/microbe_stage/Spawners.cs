@@ -347,6 +347,8 @@ public static class SpawnHelpers
         // Position
         entity.Set(new WorldPosition(location, Quat.Identity));
 
+        entity.Set(new SpeciesMember(species));
+
         // Player vs. AI controlled microbe components
         if (aiControlled)
         {
@@ -472,7 +474,7 @@ public static class SpawnHelpers
         entity.Set(new CompoundAbsorber
         {
             // This gets set properly later once the membrane is ready by MicrobePhysicsCreationAndSizeSystem
-            AbsorbRadius = 0.5f,
+            AbsorbRadius = Constants.MICROBE_MIN_ABSORB_RADIUS,
 
             // Microbes only want to grab stuff they want
             OnlyAbsorbUseful = true,
@@ -493,7 +495,7 @@ public static class SpawnHelpers
         entity.Set(new Physics
         {
             AxisLock = Physics.AxisLockType.YAxisWithRotation,
-            LinearDamping = 0.2f,
+            LinearDamping = 0.8f,
         });
 
         entity.Set(new CollisionManagement

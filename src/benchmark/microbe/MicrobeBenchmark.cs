@@ -466,7 +466,7 @@ public class MicrobeBenchmark : Node
         microbeSimulation.Init(dynamicRoot, cloudSystem);
         microbeSimulation.InitForCurrentGame(gameProperties ?? throw new Exception("game properties not set"));
 
-        microbeEntities = microbeSimulation.EntitySystem.GetEntities().With<MicrobeStatus>().With<Health>().AsSet();
+        microbeEntities = microbeSimulation.EntitySystem.GetEntities().With<MicrobeSpeciesMember>().With<Health>().AsSet();
 
         // ReSharper disable once StringLiteralTypo
         microbeSimulation.SetSimulationBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);

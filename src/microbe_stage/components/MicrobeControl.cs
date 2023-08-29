@@ -1,5 +1,6 @@
 ﻿namespace Components
 {
+    using System;
     using Godot;
 
     /// <summary>
@@ -63,6 +64,24 @@
             AgentEmissionCooldown = 0;
             State = MicrobeState.Normal;
             SlowedBySlime = false;
+        }
+    }
+
+    public static class MicrobeControlHelpers
+    {
+        public static void SetMoveSpeed(ref this MicrobeControl control, float speed)
+        {
+            control.MovementDirection = new Vector3(0, 0, -speed);
+        }
+
+        public static void SecreteSlimeForSomeTime(ref this MicrobeControl control,
+            ref OrganelleContainer organelleInfo, Random random)
+        {
+            if ((organelleInfo.SlimeJets?.Count ?? 0) > 0)
+            {
+                // Randomise the time spent ejecting slime, from 0 to 3 seconds
+                control.QueuedSlimeSecretionTime = 3 * random.NextFloat();
+            }
         }
     }
 }

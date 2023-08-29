@@ -115,14 +115,23 @@
             {
                 ref var position = ref entity.Get<WorldPosition>();
 
+                // We kind of simulate how strong the "smell" of a signal is by finding the closest active signal
                 (Entity Entity, Vector3 Position)? bestSignaler = null;
                 float minDistanceFound = float.MaxValue;
+
+                // In the old microbe AI implementation this actually used the last smelled position to calculate a new
+                // min distance, which could result in different kind of "pinning" behaviour of previous commands. That
+                // is now gone as this does a fresh look each time.
 
                 foreach (var signaler in signalers)
                 {
                     var distance = position.Position.DistanceSquaredTo(signaler.Position);
                     if (distance < minDistanceFound)
                     {
+                        // Ignore our own signals
+                        if (signaler.Entity == entity)
+                            continue;
+
                         minDistanceFound = distance;
 
                         bestSignaler = signaler;
@@ -131,6 +140,9 @@
 
                 if (bestSignaler != null)
                 {
+                    // TODO: should there be a max distance after which the signaling agent is considered to be so
+                    // weak that it is not detected?
+
                     signaling.ReceivedCommandSource = bestSignaler.Value.Position;
                     signaling.ReceivedCommandFromEntity = bestSignaler.Value.Entity;
 

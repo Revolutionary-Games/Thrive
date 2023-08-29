@@ -22,6 +22,12 @@
         ///   Base, unadjusted engulfable size of this. That is the number an engulfer compares their ability to engulf
         ///   against to see if something is too big.
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///      Note that the AI assumes this is the same as the same entity's engulfing size (in
+        ///      <see cref="Engulfer"/>) is the same as this to save a bit of memory when storing things.
+        ///   </para>
+        /// </remarks>
         public float BaseEngulfSize;
 
         public float DigestedAmount;

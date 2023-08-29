@@ -68,6 +68,7 @@
                 }
             }
 
+            // Apply updated damping values (physics body creation applies the initial value)
             if (!physics.DampingApplied)
             {
                 physics.DampingApplied = true;

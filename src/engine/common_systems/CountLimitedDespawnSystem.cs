@@ -30,9 +30,9 @@
             this.entityContainer = entityContainer;
         }
 
-        public void ReportPlayerPosition(ref WorldPosition position)
+        public void ReportPlayerPosition(Vector3 position)
         {
-            playerPosition = position.Position;
+            playerPosition = position;
         }
 
         protected override void Update(float delta, in Entity entity)

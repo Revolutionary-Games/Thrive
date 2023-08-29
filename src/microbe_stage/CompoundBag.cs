@@ -160,6 +160,21 @@ public class CompoundBag : ICompoundStorage
         return compounds.Any(usefulCompounds.Contains);
     }
 
+    /// <summary>
+    ///   Returns true only if this compound bag contains any compounds whatsoever
+    /// </summary>
+    /// <returns>True if not empty</returns>
+    public bool HasAnyCompounds()
+    {
+        foreach (var compoundsValue in Compounds.Values)
+        {
+            if (compoundsValue > 0)
+                return true;
+        }
+
+        return false;
+    }
+
     public void AddInitialCompounds(IReadOnlyDictionary<Compound, float> compounds)
     {
         foreach (var entry in compounds)
