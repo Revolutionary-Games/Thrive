@@ -58,7 +58,7 @@
             var column1 = reverseLookVector.Cross(column0);
             var wantedRotation = new Basis(column0.Normalized(), column1.Normalized(), reverseLookVector).Quat();
 
-            float rotationSpeed = 1;
+            float rotationSpeed = 2;
 
             // TODO: rotation penalty from size
 

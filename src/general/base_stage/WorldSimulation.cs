@@ -101,7 +101,7 @@ public abstract class WorldSimulation : IWorldSimulation
 
         ProcessDestroyQueue();
 
-        OnProcessPhysics(delta);
+        OnProcessPhysics(accumulatedLogicTime);
 
         accumulatedLogicTime = 0;
     }

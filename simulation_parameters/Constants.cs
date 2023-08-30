@@ -132,7 +132,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
-    public const float BASE_MOVEMENT_FORCE = 4000.0f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     public const float CELL_BASE_THRUST = 50.6f;
 
