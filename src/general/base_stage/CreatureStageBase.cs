@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Components;
 using Godot;
 using Newtonsoft.Json;
 
@@ -12,7 +13,6 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
 public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
-    where TPlayer : class
     where TSimulation : class, IWorldSimulation, new()
 {
 #pragma warning disable CA2213
@@ -44,9 +44,8 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     [JsonProperty]
     public TPlayer? Player { get; protected set; }
 
-    // TODO: make abstract
     [JsonIgnore]
-    public bool HasPlayer => Player != null;
+    public abstract bool HasPlayer { get; }
 
     /// <summary>
     ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
@@ -178,21 +177,23 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
         var debugOverlay = DebugOverlays.Instance;
 
-        throw new NotImplementedException();
-        /*if (debugOverlay.PerformanceMetricsVisible)
+        if (debugOverlay.PerformanceMetricsVisible)
         {
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in worldSimulation.Entities.OfType<ISpawned>())
+            foreach (var entity in worldSimulation.EntitySystem)
             {
-                totalEntityWeight += entity.EntityWeight;
+                if (!entity.Has<Spawned>())
+                    continue;
+
+                totalEntityWeight += entity.Get<Spawned>().EntityWeight;
                 ++totalEntityCount;
             }
 
             var childCount = rootOfDynamicallySpawned.GetChildCount();
             debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
-        }*/
+        }
 
         if (CheatManager.ManuallySetTime)
         {

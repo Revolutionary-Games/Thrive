@@ -403,6 +403,16 @@ void PhysicalWorldRemoveGravity(PhysicalWorld* physicalWorld)
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->RemoveGravity();
 }
 
+// ------------------------------------ //
+int32_t PhysicalWorldCastRayGetAll(
+    PhysicalWorld* physicalWorld, JVec3 start, JVecF3 endOffset, PhysicsRayWithUserData* dataReceiver, int32_t maxHits)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->CastRayGetAllUserData(Thrive::DVec3FromCAPI(start), Thrive::Vec3FromCAPI(endOffset),
+            reinterpret_cast<Thrive::Physics::PhysicsRayWithUserData*>(dataReceiver), maxHits);
+}
+
+// ------------------------------------ //
 float PhysicalWorldGetPhysicsLatestTime(PhysicalWorld* physicalWorld)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->GetLatestPhysicsTime();

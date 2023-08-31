@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -11,12 +12,12 @@ public class TutorialEventArgs : EventArgs
 
 public class MicrobeEventArgs : TutorialEventArgs
 {
-    public MicrobeEventArgs(Microbe microbe)
+    public MicrobeEventArgs(Entity microbe)
     {
         Microbe = microbe;
     }
 
-    public Microbe Microbe { get; }
+    public Entity Microbe { get; }
 }
 
 public class RotationEventArgs : TutorialEventArgs

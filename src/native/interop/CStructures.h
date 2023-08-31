@@ -36,6 +36,10 @@ extern "C"
         char CollisionData[PHYSICS_COLLISION_DATA_SIZE];
     } PhysicsCollision;
 
+    typedef struct PhysicsRayWithUserData{
+        char RayData[PHYSICS_RAY_DATA_SIZE];
+    } PhysicsRayWithUserData;
+
     static const inline JQuat QuatIdentity = JQuat{0, 0, 0, 1};
 }
 

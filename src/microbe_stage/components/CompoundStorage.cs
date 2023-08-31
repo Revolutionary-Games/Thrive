@@ -16,7 +16,7 @@
         /// <summary>
         ///   Vent all remaining compounds immediately
         /// </summary>
-        public static void VentAllCompounds(ref this CompoundStorage storage, Vector3 position,
+        public static void VentAllCompounds(this ref CompoundStorage storage, Vector3 position,
             CompoundCloudSystem compoundClouds)
         {
             if (storage.Compounds.Compounds.Count > 0)
@@ -36,7 +36,7 @@
             }
         }
 
-        public static bool VentChunkCompound(ref this CompoundStorage storage, Compound compound, float amount,
+        public static bool VentChunkCompound(this ref CompoundStorage storage, Compound compound, float amount,
             Vector3 position, CompoundCloudSystem compoundClouds)
         {
             amount = storage.Compounds.TakeCompound(compound, amount);

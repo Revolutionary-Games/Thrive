@@ -5,13 +5,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
+public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked, IGameCamera
 {
-    /// <summary>
-    ///   Object the camera positions itself over
-    /// </summary>
-    public Spatial? ObjectToFollow;
-
     /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
@@ -190,19 +185,16 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         }
     }
 
-    /// <summary>
-    ///   Updates camera position to follow the object
-    /// </summary>
-    public override void _PhysicsProcess(float delta)
+    public void UpdateCameraPosition(float delta, Vector3? followedObject)
     {
         var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
         var currentCameraHeight = new Vector3(0, Translation.y, 0);
         var newCameraHeight = new Vector3(0, CameraHeight, 0);
 
-        if (ObjectToFollow != null)
+        if (followedObject != null)
         {
             var newFloorPosition = new Vector3(
-                ObjectToFollow.GlobalTransform.origin.x, 0, ObjectToFollow.GlobalTransform.origin.z);
+                followedObject.Value.x, 0, followedObject.Value.z);
 
             var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
                 + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);

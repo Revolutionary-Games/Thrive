@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using DefaultEcs;
     using Godot;
     using Newtonsoft.Json;
@@ -12,9 +13,6 @@
     /// </summary>
     public struct OrganelleContainer
     {
-        // probably can do with just having the CommandSignaler component (so this property is not required)
-        // public bool HasSignalingAgent;
-
         /// <summary>
         ///   Instances of all the organelles in this entity
         /// </summary>
@@ -51,7 +49,10 @@
         // private bool organelleMaxRenderPriorityDirty = true;
         // private int cachedOrganelleMaxRenderPriority;
 
+        // TODO: could maybe redo these "feature flags" by having separate tagging components?
         public bool HasSignalingAgent;
+
+        public bool HasBindingAgent;
 
         /// <summary>
         ///   True once all organelles are divided to not continuously run code that is triggered when a cell is ready
@@ -80,6 +81,42 @@
     public static class OrganelleContainerExtensions
     {
         /// <summary>
+        ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This is different from <see cref="CellPropertiesHelpers.CanEngulfObject"/> because ingestibility and
+        ///     digestibility are separate, you can engulf a walled cell but not digest it if you're missing the enzyme
+        ///     required to do so.
+        ///   </para>
+        /// </remarks>
+        public static DigestCheckResult CanDigestObject(this OrganelleContainer organelleContainer,
+            ref Engulfable engulfable)
+        {
+            var enzyme = engulfable.RequisiteEnzymeToDigest;
+
+            if (enzyme != null && organelleContainer.AvailableEnzymes?.ContainsKey(enzyme) != true)
+                return DigestCheckResult.MissingEnzyme;
+
+            return DigestCheckResult.Ok;
+        }
+
+        /// <summary>
+        ///   Returns true if the given organelles can enter binding mode. Multicellular species can't attach random
+        ///   cells to themselves anymore.
+        /// </summary>
+        public static bool CanBind(this ref OrganelleContainer organelleContainer, ref SpeciesMember species)
+        {
+            return species.Species is MicrobeSpecies && organelleContainer.HasBindingAgent;
+        }
+
+        public static bool CanUnbind(this ref OrganelleContainer organelleContainer, ref SpeciesMember species,
+            in Entity entity)
+        {
+            return species.Species is MicrobeSpecies && entity.Has<MicrobeColony>();
+        }
+
+        /// <summary>
         ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the
         ///   microbe can smell using the instanced organelles that add chemoreception capability;
         ///   only the best candidate of each compound type.
@@ -96,7 +133,7 @@
         ///   and the location where the compound is located.
         /// </returns>
         public static List<(Compound Compound, Color Colour, Vector3 Target)> PerformCompoundDetection(
-            ref this OrganelleContainer container, in Entity entity, Vector3 position,
+            this ref OrganelleContainer container, in Entity entity, Vector3 position,
             IReadonlyCompoundClouds clouds)
         {
             HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> collectedUniqueCompoundDetections;
@@ -130,7 +167,153 @@
             return detections;
         }
 
-        public static void CreateOrganelleLayout(ref this OrganelleContainer container, ICellProperties cellProperties)
+        /// <summary>
+        ///   Calculates the reproduction progress for a cell, used to show how close the player is getting to the editor.
+        /// </summary>
+        /// <returns>The total reproduction progress</returns>
+        public static float CalculateReproductionProgress(this ref OrganelleContainer organelleContainer,
+            ref SpeciesMember speciesMember, in Entity entity, CompoundBag storedCompounds,
+            WorldGenerationSettings worldSettings,
+            out Dictionary<Compound, float> gatheredCompounds, out Dictionary<Compound, float> totalCompounds)
+        {
+            // Calculate total compounds needed to split all organelles
+            totalCompounds = organelleContainer.CalculateTotalReproductionCompounds(entity, speciesMember.Species);
+
+            // Calculate how many compounds the cell already has absorbed to grow
+            gatheredCompounds = organelleContainer.CalculateAlreadyAbsorbedCompounds(
+                ref entity.Get<ReproductionStatus>(),
+                entity, speciesMember.Species);
+
+            // Add the currently held compounds, but only if configured as this can be pretty confusing for players
+            // to have the bars in ready to reproduce state for a while before the time limited reproduction actually
+            // catches up
+            if (Constants.ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS ||
+                !worldSettings.LimitReproductionCompoundUseSpeed)
+            {
+                foreach (var key in gatheredCompounds.Keys.ToList())
+                {
+                    float value = Math.Max(0.0f, storedCompounds.GetCompoundAmount(key) -
+                        Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
+
+                    if (value > 0)
+                    {
+                        float existing = gatheredCompounds[key];
+
+                        // Only up to the total needed
+                        float total = totalCompounds[key];
+
+                        gatheredCompounds[key] = Math.Min(total, existing + value);
+                    }
+                }
+            }
+
+            float totalFraction = 0;
+
+            foreach (var entry in totalCompounds)
+            {
+                if (gatheredCompounds.TryGetValue(entry.Key, out var gathered) && entry.Value != 0)
+                    totalFraction += gathered / entry.Value;
+            }
+
+            return totalFraction / totalCompounds.Count;
+        }
+
+        /// <summary>
+        ///   Calculates total compounds needed for a cell to reproduce, used by calculateReproductionProgress to
+        ///   calculate the fraction done.
+        /// </summary>
+        public static Dictionary<Compound, float> CalculateTotalReproductionCompounds(
+            this ref OrganelleContainer organelleContainer, in Entity entity, Species species)
+        {
+            if (entity.Has<MicrobeColony>())
+            {
+                throw new NotImplementedException();
+
+                // return CalculateTotalBodyPlanCompounds();
+            }
+
+            var result = organelleContainer.CalculateNonDuplicateOrganelleInitialCompositionTotals();
+
+            result.Merge(species.BaseReproductionCost);
+
+            return result;
+        }
+
+        public static Dictionary<Compound, float> CalculateNonDuplicateOrganelleInitialCompositionTotals(
+            this ref OrganelleContainer organelleContainer)
+        {
+            if (organelleContainer.Organelles == null)
+                throw new InvalidOperationException("OrganelleContainer must be initialized first");
+
+            var result = new Dictionary<Compound, float>();
+
+            foreach (var organelle in organelleContainer.Organelles)
+            {
+                if (organelle.IsDuplicate)
+                    continue;
+
+                result.Merge(organelle.Definition.InitialComposition);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        ///   Calculates how much compounds organelles have already absorbed
+        /// </summary>
+        public static Dictionary<Compound, float> CalculateAlreadyAbsorbedCompounds(
+            this ref OrganelleContainer organelleContainer, ref ReproductionStatus baseReproductionInfo,
+            in Entity entity, Species species)
+        {
+            if (organelleContainer.Organelles == null)
+                throw new InvalidOperationException("OrganelleContainer must be initialized first");
+
+            var result = new Dictionary<Compound, float>();
+
+            foreach (var organelle in organelleContainer.Organelles)
+            {
+                if (organelle.IsDuplicate)
+                    continue;
+
+                if (organelle.WasSplit)
+                {
+                    // Organelles are reset on split, so we use the full
+                    // cost as the gathered amount
+                    result.Merge(organelle.Definition.InitialComposition);
+                    continue;
+                }
+
+                organelle.CalculateAbsorbedCompounds(result);
+            }
+
+            if (entity.Has<MicrobeColony>())
+            {
+                throw new NotImplementedException();
+
+                // result.Merge(compoundsUsedForMulticellularGrowth);
+            }
+            else
+            {
+                // For single microbes the base reproduction cost needs to be calculated here
+                // TODO: can we make this more efficient somehow
+                foreach (var entry in species.BaseReproductionCost)
+                {
+                    float remaining = 0;
+
+                    baseReproductionInfo.MissingCompoundsForBaseReproduction?.TryGetValue(entry.Key, out remaining);
+
+                    var used = entry.Value - remaining;
+
+                    result.TryGetValue(entry.Key, out var alreadyUsed);
+
+                    result[entry.Key] = alreadyUsed + used;
+                }
+            }
+
+            return result;
+        }
+
+        public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellProperties cellProperties)
         {
             container.Organelles?.Clear();
             container.AllOrganellesDivided = false;
@@ -148,7 +331,7 @@
             container.OrganelleVisualsCreated = false;
         }
 
-        public static void CalculateOrganelleLayoutStatistics(ref this OrganelleContainer container)
+        public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container)
         {
             container.AvailableEnzymes?.Clear();
             container.AvailableEnzymes ??= new Dictionary<Enzyme, int>();
@@ -156,6 +339,7 @@
             container.AgentVacuoleCount = 0;
             container.OrganellesCapacity = 0;
             container.HasSignalingAgent = false;
+            container.HasBindingAgent = false;
 
             if (container.Organelles == null)
                 throw new InvalidOperationException("Organelle list needs to be initialized first");
@@ -167,6 +351,9 @@
 
                 if (organelle.HasComponent<SignalingAgentComponent>())
                     container.HasSignalingAgent = true;
+
+                if (organelle.HasComponent<BindingAgentComponent>())
+                    container.HasBindingAgent = true;
 
                 container.OrganellesCapacity = organelle.StorageCapacity;
 

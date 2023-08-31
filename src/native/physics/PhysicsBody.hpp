@@ -2,13 +2,17 @@
 
 #include <cstring>
 #include <memory>
+#include <vector>
 
 #include "Jolt/Core/Reference.h"
+#include "Jolt/Jolt.h"
 #include "Jolt/Physics/Body/Body.h"
 #include "Jolt/Physics/Body/BodyID.h"
 
 #include "Include.h"
 #include "core/ForwardDefinitions.hpp"
+
+#include "core/RefCounted.hpp"
 
 #include "PhysicsCollision.hpp"
 

@@ -26,7 +26,7 @@
 
     public static class WorldPositionHelpers
     {
-        public static Transform ToTransform(ref this WorldPosition position)
+        public static Transform ToTransform(this ref WorldPosition position)
         {
             return new Transform(new Basis(position.Rotation), position.Position);
         }

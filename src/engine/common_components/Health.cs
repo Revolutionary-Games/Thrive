@@ -44,7 +44,7 @@
 
     public static class HealthHelpers
     {
-        public static void DealDamage(ref this Health health, float damage, string damageSource)
+        public static void DealDamage(this ref Health health, float damage, string damageSource)
         {
             if (health.Invulnerable)
             {

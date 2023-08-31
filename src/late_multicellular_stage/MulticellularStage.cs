@@ -85,6 +85,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     public PlayerInspectInfo HoverInfo { get; private set; } = null!;
 
     [JsonIgnore]
+    public override bool HasPlayer => Player != null;
+
+    [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
@@ -315,6 +318,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
             }
         }
     }
+
+
 
     public override void OnSuicide()
     {

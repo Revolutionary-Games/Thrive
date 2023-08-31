@@ -5,6 +5,7 @@
     using System.Linq;
     using Components;
     using DefaultEcs;
+    using DefaultEcs.Command;
     using DefaultEcs.System;
     using Godot;
     using Newtonsoft.Json;
@@ -48,10 +49,11 @@
         ///   <para>
         ///     This isn't saved but the likelihood that losing out on spawning some things is not super critical.
         ///     Also it is probably the case that this isn't even used on most frames so it is perhaps uncommon
-        ///     that there are queued things when saving.
+        ///     that there are queued things when saving. In addition it would be very hard to make sure all the
+        ///     possible queued spawn type data (as it is mostly based on temporary lambdas) is saved.
         ///   </para>
         /// </remarks>
-        private Deque<QueuedSpawn> queuedSpawns = new();
+        private Deque<SpawnQueue> queuedSpawns = new();
 
         /// <summary>
         ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
@@ -343,57 +345,30 @@
             while (spawnsLeftThisFrame > 0 && queuedSpawns.Count > 0)
             {
                 var spawn = queuedSpawns.First();
-                var enumerator = spawn.Spawns;
 
                 bool finished = false;
 
                 while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities.Value &&
                        spawnsLeftThisFrame > 0)
                 {
-                    if (!enumerator.MoveNext())
+                    // Disallow spawning too close to the player
+                    spawn.CheckIsSpawningStillPossible(playerPosition);
+
+                    if (spawn.Ended)
                     {
                         finished = true;
                         break;
                     }
 
-                    if (enumerator.Current.IsAlive)
-                    {
-                        GD.PrintErr("Queued spawn enumerator returned non-alive entity");
-                        continue;
-                    }
+                    // Next can be spawned
+                    var (recorder, weight) = spawn.SpawnNext(out var current);
 
-                    ref var spawned = ref enumerator.Current.Get<Spawned>();
+                    AddSpawnedComponent(current, weight, spawn.RelatedSpawnType);
+                    SpawnHelpers.FinalizeEntitySpawn(recorder, world);
 
-                    // Discard the whole spawn if we're too close to the player
-                    if (enumerator.Current.Has<WorldPosition>())
-                    {
-                        var entityPosition = enumerator.Current.Get<WorldPosition>().Position;
-                        if ((playerPosition - entityPosition).Length() < Constants.SPAWN_SECTOR_SIZE)
-                        {
-                            if (spawned.DisallowDespawning)
-                            {
-                                GD.PrintErr(
-                                    "We need to abandon a spawn that had a thing in it that isn't allowed " +
-                                    "to be despawned");
-                            }
-
-                            world.DestroyEntity(enumerator.Current);
-                            finished = true;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        GD.PrintErr("Queued spawn spawned an entity with no position");
-                    }
-
-                    // Next was spawned
-
-                    SetDespawnRadius(ref spawned, spawn.SpawnType);
-
-                    estimateEntityCount += spawned.EntityWeight;
-                    spawnsLeftThisFrame -= spawned.EntityWeight;
-                    spawnedCount += spawned.EntityWeight;
+                    estimateEntityCount += weight;
+                    spawnsLeftThisFrame -= weight;
+                    spawnedCount += weight;
                 }
 
                 if (finished)
@@ -538,31 +513,29 @@
                 return spawns;
             }
 
-            throw new NotImplementedException();
+            var spawnQueue = spawnType.Spawn(world, location, this);
 
-            // TODO: spawning
-            /*var enumerable = spawnType.Spawn(world, location, this);
-
-            if (enumerable == null)
+            // Non-entity type spawn
+            if (spawnQueue == null)
                 return spawns;
 
             bool finished = false;
 
-            var spawner = enumerable.GetEnumerator();
-
             while (spawnsLeftThisFrame > 0)
             {
-                if (!spawner.MoveNext())
+                spawnQueue.CheckIsSpawningStillPossible(playerPosition);
+
+                if (spawnQueue.Ended)
                 {
                     finished = true;
                     break;
                 }
 
-                if (spawner.Current == null)
-                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
+                var (recorder, weight) = spawnQueue.SpawnNext(out var current);
 
-                SetDespawnRadius(spawner.Current, spawnType);
-                var weight = spawner.Current.EntityWeight;
+                AddSpawnedComponent(current, weight, spawnType);
+                SpawnHelpers.FinalizeEntitySpawn(recorder, world);
+
                 spawns += weight;
                 estimateEntityCount += weight;
                 spawnsLeftThisFrame -= weight;
@@ -571,12 +544,12 @@
             if (!finished)
             {
                 // Store the remaining items in the enumerator for later
-                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
+                queuedSpawns.AddToBack(spawnQueue);
             }
             else
             {
-                spawner.Dispose();
-            }*/
+                spawnQueue.Dispose();
+            }
 
             return spawns;
         }
@@ -631,28 +604,15 @@
             return spawnedEntityWeight - entitiesDeleted;
         }
 
-        private void SetDespawnRadius(ref Spawned entity, Spawner spawnType)
+        private void AddSpawnedComponent(in EntityRecord entity, float weight, Spawner spawnType)
         {
             float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
-            entity.DespawnRadiusSquared = radius * radius;
-        }
 
-        private class QueuedSpawn : IDisposable
-        {
-            public QueuedSpawn(Spawner spawnType, IEnumerator<Entity> spawns)
+            entity.Set(new Spawned
             {
-                SpawnType = spawnType;
-                Spawns = spawns;
-            }
-
-            public Spawner SpawnType { get; }
-
-            public IEnumerator<Entity> Spawns { get; }
-
-            public void Dispose()
-            {
-                Spawns.Dispose();
-            }
+                DespawnRadiusSquared = radius * radius,
+                EntityWeight = weight,
+            });
         }
     }
 }

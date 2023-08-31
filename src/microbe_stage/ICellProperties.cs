@@ -30,6 +30,7 @@ public interface ICellProperties
 
 public static class CellPropertiesHelpers
 {
+    // TODO: this can probably be deleted entirely as unused old code
     /// <summary>
     ///   The total compounds in the composition of all organelles
     /// </summary>

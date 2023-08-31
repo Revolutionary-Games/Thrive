@@ -702,22 +702,6 @@ public partial class Microbe
         Colony!.RemoveFromColony(this);
     }
 
-    public void OnMouseEnter(RaycastResult result)
-    {
-        var microbe = GetMicrobeFromShape(result.Shape);
-
-        if (microbe != null)
-            microbe.IsHoveredOver = true;
-    }
-
-    public void OnMouseExit(RaycastResult result)
-    {
-        var microbe = GetMicrobeFromShape(result.Shape);
-
-        if (microbe != null)
-            microbe.IsHoveredOver = false;
-    }
-
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         cachedColonyRotationMultiplier = null;

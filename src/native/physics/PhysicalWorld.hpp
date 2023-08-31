@@ -11,6 +11,7 @@
 
 #include "Layers.hpp"
 #include "PhysicsCollision.hpp"
+#include "PhysicsRayWithUserData.hpp"
 
 namespace JPH
 {
@@ -157,6 +158,12 @@ public:
     // body
     [[nodiscard]] std::optional<std::tuple<float, JPH::Vec3, JPH::BodyID>> CastRay(
         JPH::RVec3 start, JPH::Vec3 endOffset);
+
+    /// \brief Cast a ray from start point to start + endOffset like CastRay but find all hits (up to a limit) and
+    /// return the bodies' user data with the collision info
+    /// \returns The number of hits or 0 if nothing is hit. This only writes to dataReceiver up to the number of hits
+    /// received everything else is untouched
+    int CastRayGetAllUserData(JPH::RVec3 start, JPH::Vec3 endOffset, PhysicsRayWithUserData dataReceiver[], int maxHits);
 
     [[nodiscard]] inline float GetLatestPhysicsTime() const
     {

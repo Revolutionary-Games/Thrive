@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -383,6 +384,39 @@ public class PhysicalWorld : IDisposable
         NativeMethods.PhysicalWorldRemoveGravity(AccessWorldInternal());
     }
 
+    /// <summary>
+    ///   Casts a ray from start to (start + directionAndLength) collecting all hit objects in results
+    /// </summary>
+    /// <param name="start">Start world point</param>
+    /// <param name="directionAndLength">Vector to add to start to get to the end point</param>
+    /// <param name="results">Will be filled with the hit objects. Needs to have size greater than 0</param>
+    /// <returns>The number of hits in results, all other array indexes are left untouched</returns>
+    public int CastRayGetAllHits(Vector3 start, Vector3 directionAndLength, PhysicsRayWithUserData[] results)
+    {
+        return NativeMethods.PhysicalWorldCastRayGetAll(AccessWorldInternal(), new JVec3(start),
+            new JVecF3(directionAndLength), ref results[0], results.Length);
+    }
+
+    /// <summary>
+    ///   Variant of raycast that automatically rents an array from the buffer pool, which must be returned with
+    ///   <see cref="ReturnRayCastBuffer"/> after use.
+    /// </summary>
+    public int CastRayGetAllHits(Vector3 start, Vector3 directionAndLength, int maxHits,
+        out PhysicsRayWithUserData[] results)
+    {
+        results = ArrayPool<PhysicsRayWithUserData>.Shared.Rent(maxHits);
+
+        return CastRayGetAllHits(start, directionAndLength, results);
+    }
+
+    /// <summary>
+    ///   Return a buffer from raycasting
+    /// </summary>
+    public void ReturnRayCastBuffer(PhysicsRayWithUserData[] buffer)
+    {
+        ArrayPool<PhysicsRayWithUserData>.Shared.Return(buffer);
+    }
+
     public bool DumpPhysicsState(string path)
     {
         return NativeMethods.PhysicalWorldDumpPhysicsState(AccessWorldInternal(), path);
@@ -565,6 +599,10 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void PhysicalWorldRemoveGravity(IntPtr physicalWorld);
+
+    [DllImport("thrive_native")]
+    internal static extern int PhysicalWorldCastRayGetAll(IntPtr physicalWorld, JVec3 start,
+        JVecF3 endOffset, ref PhysicsRayWithUserData dataReceiver, int maxHits);
 
     [DllImport("thrive_native")]
     internal static extern float PhysicalWorldGetPhysicsLatestTime(IntPtr physicalWorld);

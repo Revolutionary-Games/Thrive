@@ -23,6 +23,7 @@
 #include "core/Spinlock.hpp"
 #include "core/Time.hpp"
 
+#include "ArrayRayCollector.hpp"
 #include "BodyActivationListener.hpp"
 #include "BodyControlState.hpp"
 #include "ContactListener.hpp"
@@ -884,6 +885,30 @@ std::optional<std::tuple<float, JPH::Vec3, JPH::BodyID>> PhysicalWorld::CastRay(
     // }
 
     return std::tuple<float, JPH::Vec3, JPH::BodyID>(resultFraction, resultPosition, resultID);
+}
+
+int PhysicalWorld::CastRayGetAllUserData(
+    JPH::RVec3 start, JPH::Vec3 endOffset, PhysicsRayWithUserData* dataReceiver, int maxHits)
+{
+    if (maxHits < 1 || dataReceiver == nullptr)
+    {
+        LOG_ERROR("Physics ray collection given no storage space for results");
+        return 0;
+    }
+
+    JPH::RRayCast ray{start, endOffset};
+
+    ArrayRayCollector rayCollector{dataReceiver, maxHits, physicsSystem->GetBodyLockInterface()};
+
+    JPH::RayCastSettings settings;
+
+    // TODO: should the option to treat convex as solid be set to false?
+    // settings.mTreatConvexAsSolid = false;
+
+    // TODO: could ignore certain groups
+    physicsSystem->GetNarrowPhaseQuery().CastRay(ray, settings, rayCollector);
+
+    return rayCollector.GetHitCount();
 }
 
 // ------------------------------------ //

@@ -59,6 +59,9 @@
 // Note this only works in 64-bit mode right now. The extra +3 at the end is to account for padding
 #define PHYSICS_COLLISION_DATA_SIZE (PHYSICS_USER_DATA_SIZE * 2 + POINTER_SIZE * 2 + 13 + 3)
 
+// The second + 4 is padding here
+#define PHYSICS_RAY_DATA_SIZE (PHYSICS_USER_DATA_SIZE + POINTER_SIZE + 4 + 4)
+
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus
 

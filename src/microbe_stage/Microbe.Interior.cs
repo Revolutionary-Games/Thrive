@@ -285,6 +285,8 @@ public partial class Microbe
         if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             return;
 
+        // TODO: the above part is already implemented as extension for PlayerMicrobeInput
+
         Compounds.TakeCompound(agentType, amountEmitted);
 
         // The cooldown time is inversely proportional to the amount of agent vacuoles.
@@ -455,7 +457,10 @@ public partial class Microbe
         copyEntity.Compounds.ClearCompounds();
 
         var keys = new List<Compound>(Compounds.Compounds.Keys);
-        var reproductionCompounds = copyEntity.CalculateTotalCompounds();
+
+        throw new NotImplementedException();
+
+        // var reproductionCompounds = copyEntity.CalculateTotalCompounds();
 
         // Split the compounds between the two cells.
         foreach (var compound in keys)
@@ -465,7 +470,8 @@ public partial class Microbe
             if (amount <= 0)
                 continue;
 
-            // If the compound is for reproduction we give player and NPC microbes different amounts.
+            throw new NotImplementedException();
+            /*// If the compound is for reproduction we give player and NPC microbes different amounts.
             if (reproductionCompounds.TryGetValue(compound, out float divideAmount))
             {
                 // The amount taken away from the parent cell depends on if it is a player or NPC. Player
@@ -502,7 +508,7 @@ public partial class Microbe
                 {
                     // TODO: handle the excess compound that didn't fit in the other cell
                 }
-            }
+            }*/
         }
 
         // Play the split sound
@@ -524,121 +530,6 @@ public partial class Microbe
 
         SpawnEjectedCompound(compound, amount, direction, displacement);
         return amount;
-    }
-
-    /// <summary>
-    ///   Calculates the reproduction progress for a cell, used to
-    ///   show how close the player is getting to the editor.
-    /// </summary>
-    public float CalculateReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out Dictionary<Compound, float> totalCompounds)
-    {
-        // Calculate total compounds needed to split all organelles
-        totalCompounds = CalculateTotalCompounds();
-
-        // Calculate how many compounds the cell already has absorbed to grow
-        gatheredCompounds = CalculateAlreadyAbsorbedCompounds();
-
-        // Add the currently held compounds, but only if configured as this can be pretty confusing for players
-        // to have the bars in ready to reproduce state for a while before the time limited reproduction actually
-        // catches up
-        if (Constants.ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS ||
-            !GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
-        {
-            foreach (var key in gatheredCompounds.Keys.ToList())
-            {
-                float value = Math.Max(0.0f, Compounds.GetCompoundAmount(key) -
-                    Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
-
-                if (value > 0)
-                {
-                    float existing = gatheredCompounds[key];
-
-                    // Only up to the total needed
-                    float total = totalCompounds[key];
-
-                    gatheredCompounds[key] = Math.Min(total, existing + value);
-                }
-            }
-        }
-
-        float totalFraction = 0;
-
-        foreach (var entry in totalCompounds)
-        {
-            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered) && entry.Value != 0)
-                totalFraction += gathered / entry.Value;
-        }
-
-        return totalFraction / totalCompounds.Count;
-    }
-
-    /// <summary>
-    ///   Calculates total compounds needed for a cell to reproduce, used by calculateReproductionProgress to calculate
-    ///   the fraction done.
-    /// </summary>
-    public Dictionary<Compound, float> CalculateTotalCompounds()
-    {
-        if (organelles == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
-        if (IsMulticellular)
-            return CalculateTotalBodyPlanCompounds();
-
-        var result = CellTypeProperties.CalculateTotalComposition();
-
-        result.Merge(Species.BaseReproductionCost);
-
-        return result;
-    }
-
-    /// <summary>
-    ///   Calculates how much compounds organelles have already absorbed
-    /// </summary>
-    public Dictionary<Compound, float> CalculateAlreadyAbsorbedCompounds()
-    {
-        if (organelles == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
-        var result = new Dictionary<Compound, float>();
-
-        foreach (var organelle in organelles)
-        {
-            if (organelle.IsDuplicate)
-                continue;
-
-            if (organelle.WasSplit)
-            {
-                // Organelles are reset on split, so we use the full
-                // cost as the gathered amount
-                result.Merge(organelle.Definition.InitialComposition);
-                continue;
-            }
-
-            organelle.CalculateAbsorbedCompounds(result);
-        }
-
-        if (compoundsUsedForMulticellularGrowth != null)
-        {
-            result.Merge(compoundsUsedForMulticellularGrowth);
-        }
-        else
-        {
-            // For single microbes the base reproduction cost needs to be calculated here
-            // TODO: can we make this more efficient somehow
-            foreach (var entry in Species.BaseReproductionCost)
-            {
-                requiredCompoundsForBaseReproduction.TryGetValue(entry.Key, out var remaining);
-
-                var used = entry.Value - remaining;
-
-                result.TryGetValue(entry.Key, out var alreadyUsed);
-
-                result[entry.Key] = alreadyUsed + used;
-            }
-        }
-
-        return result;
     }
 
     public Dictionary<Compound, float> CalculateAdditionalDigestibleCompounds()

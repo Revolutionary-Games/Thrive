@@ -13,13 +13,16 @@ namespace Thrive::Physics
 {
 #ifdef USE_OBJECT_POOLS
 PhysicsBody::PhysicsBody(JPH::Body* body, JPH::BodyID bodyId, ReleaseCallback deleteCallback) noexcept :
-    RefCounted<PhysicsBody>(deleteCallback),
+    RefCounted<PhysicsBody>(deleteCallback), userData(),
 #else
 PhysicsBody::PhysicsBody(JPH::Body* body, JPH::BodyID bodyId) noexcept :
 #endif
     id(bodyId)
 {
     body->SetUserData(CalculateUserPointer());
+
+    // Zero out the user data to ensure it has a consistent value when not initialized later
+    userData.fill(0);
 }
 
 PhysicsBody::~PhysicsBody() noexcept

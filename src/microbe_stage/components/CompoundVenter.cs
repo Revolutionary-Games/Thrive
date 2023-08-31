@@ -28,7 +28,7 @@
 
     public static class CompoundVenterHelpers
     {
-        public static void PopImmediately(ref this CompoundVenter venter, ref CompoundStorage compoundStorage,
+        public static void PopImmediately(this ref CompoundVenter venter, ref CompoundStorage compoundStorage,
             ref WorldPosition position, CompoundCloudSystem compoundClouds)
         {
             compoundStorage.VentAllCompounds(position.Position, compoundClouds);

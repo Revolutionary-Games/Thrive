@@ -11,11 +11,6 @@
     /// </summary>
     public struct MicrobeEventCallbacks
     {
-        /// <summary>
-        ///   Called when this Microbe dies
-        /// </summary>
-        public Action<Entity>? OnDeath;
-
         public Action<Entity>? OnUnbindEnabled;
 
         public Action<Entity>? OnUnbound;

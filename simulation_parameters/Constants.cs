@@ -45,6 +45,8 @@ public static class Constants
     /// </summary>
     public const float SPAWN_SECTOR_SIZE = 120.0f;
 
+    public const float MIN_DISTANCE_FROM_PLAYER_FOR_SPAWN = SPAWN_SECTOR_SIZE - 10;
+
     /// <summary>
     ///   Scale factor for density of compound cloud spawns
     /// </summary>
@@ -891,7 +893,11 @@ public static class Constants
     /// <summary>
     ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
     /// </summary>
-    public const float ORGANELLE_ENTITY_WEIGHT = 0.5f;
+    public const float ORGANELLE_ENTITY_WEIGHT = 0.1f;
+
+    public const float MICROBE_BASE_ENTITY_WEIGHT = 2;
+
+    public const float FLOATING_CHUNK_ENTITY_WEIGHT = 1;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
@@ -924,6 +930,8 @@ public static class Constants
     ///   updated. Default value is every 0.1 seconds.
     /// </summary>
     public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
+
+    public const int MAX_RAY_HITS_FOR_INSPECT = 20;
 
     public const float TOOLTIP_OFFSET = 20;
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;

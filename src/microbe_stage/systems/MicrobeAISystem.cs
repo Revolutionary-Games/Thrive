@@ -939,6 +939,8 @@
             ref WorldPosition position, Vector3 target, CompoundBag compounds, float speciesFocus,
             float speciesActivity)
         {
+            // TODO: AI should be able to use all toxin vacuoles in cell colonies
+
             if (organelles.AgentVacuoleCount > 0 &&
                 (position.Position - target).LengthSquared() <= speciesFocus * 10.0f)
             {

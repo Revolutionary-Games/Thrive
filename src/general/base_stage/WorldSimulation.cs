@@ -19,6 +19,12 @@ public abstract class WorldSimulation : IWorldSimulation
     // TODO: did these protected property loading work? Loading / saving for the entities
     protected readonly List<Entity> queuedForDelete = new();
 
+    /// <summary>
+    ///   Used to tell a few systems the approximate player position which might not always exist
+    /// </summary>
+    [JsonIgnore]
+    protected Vector3? reportedPlayerPosition;
+
     [JsonProperty]
     protected float minimumTimeBetweenLogicUpdates = 1 / 60.0f;
 
@@ -32,6 +38,8 @@ public abstract class WorldSimulation : IWorldSimulation
     private readonly Queue<EntityCommandRecorder> availableRecorders = new();
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
+
+    private bool processing;
 
     [JsonIgnore]
     public World EntitySystem => entities;
@@ -53,7 +61,7 @@ public abstract class WorldSimulation : IWorldSimulation
     ///   Player position used to control the simulation accuracy around the player (and despawn things too far away)
     /// </summary>
     [JsonProperty]
-    public Vector3 PlayerPosition { get; set; }
+    public Vector3 PlayerPosition { get; private set; }
 
     [JsonIgnore]
     public bool Initialized { get; private set; }
@@ -90,6 +98,8 @@ public abstract class WorldSimulation : IWorldSimulation
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
             return;
 
+        processing = true;
+
         OnCheckPhysicsBeforeProcessStart();
 
         // Make sure all commands are flushed if someone added some in the time between updates
@@ -104,11 +114,16 @@ public abstract class WorldSimulation : IWorldSimulation
         OnProcessPhysics(accumulatedLogicTime);
 
         accumulatedLogicTime = 0;
+        processing = false;
+
+        // TODO: periodically run
+        // EntitySystem.Optimize() and maybe TrimExcess
     }
 
     /// <summary>
     ///   Perform per-frame logic. Should be only used for things where the additional precision matters for example
     ///   for GUI animation quality. Needs to be called after <see cref="ProcessLogic"/> for a frame when this occurs
+    ///   (if a logic update was also performed this frame).
     /// </summary>
     public abstract void ProcessFrameLogic(float delta);
 
@@ -207,6 +222,43 @@ public abstract class WorldSimulation : IWorldSimulation
     public bool IsEntityInWorld(Entity entity)
     {
         return entity.IsAlive && !queuedForDelete.Contains(entity);
+    }
+
+    public virtual void ReportPlayerPosition(Vector3 position)
+    {
+        PlayerPosition = position;
+        reportedPlayerPosition = position;
+    }
+
+    /// <summary>
+    ///   Immediately perform any delayed / queued entity spawns. This can only be used outside the normal update cycle
+    ///   to get immediate access to a created entity. For example used when spawning the player.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">If an update is currently running</exception>
+    public void ProcessDelaySpawnedEntitiesImmediately()
+    {
+        if (processing)
+            throw new InvalidOperationException("Do not call this while world is being processed");
+
+        ApplyRecordedCommands();
+    }
+
+    /// <summary>
+    ///   Used in conjunction with <see cref="ProcessDelaySpawnedEntitiesImmediately"/> to find the player after spawn
+    /// </summary>
+    /// <typeparam name="T">Type of component to look for</typeparam>
+    /// <returns>The first found entity or an invalid entity</returns>
+    public Entity FindFirstEntityWithComponent<T>()
+    {
+        var predicate = EntitySystem.GetEntities().With<T>().AsPredicate();
+
+        foreach (var entity in EntitySystem)
+        {
+            if (entity.Has<T>())
+                return entity;
+        }
+
+        return default;
     }
 
     /// <summary>

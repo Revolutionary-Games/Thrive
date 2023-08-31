@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Components;
+using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 
@@ -11,7 +13,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
+public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -70,6 +72,9 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
+    [JsonIgnore]
+    public override bool HasPlayer => Player.IsAlive;
+
     protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
@@ -119,6 +124,10 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // to be in SetupStage before base init, but this is now required here
         worldSimulation.Init(rootOfDynamicallySpawned, Clouds);
 
+        // Hook up the simulation to some of the other systems
+        worldSimulation.CameraFollowSystem.Camera = Camera;
+        HoverInfo.PhysicalWorld = worldSimulation.PhysicalWorld;
+
         patchManager = new PatchManager(worldSimulation.SpawnSystem, worldSimulation.ProcessSystem, Clouds,
             worldSimulation.TimedLifeSystem, worldLight);
     }
@@ -141,44 +150,61 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
     {
         base._Process(delta);
 
-        if (Player != null)
-            worldSimulation.PlayerPosition = Player.GlobalTranslation;
+        WorldPosition playerPosition = default;
+
+        if (HasPlayer)
+        {
+            try
+            {
+                // Intentional copy here to simplify the later block that also wants to use the player position
+                playerPosition = Player.Get<WorldPosition>();
+                worldSimulation.ReportPlayerPosition(playerPosition.Position);
+                DebugOverlays.Instance.ReportPositionCoordinates(playerPosition.Position);
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Can't read player position: " + e);
+            }
+        }
+
+        bool playerAlive = IsPlayerAlive();
 
         worldSimulation.ProcessAll(delta);
 
-        if (gameOver)
+        if (gameOver || playerExtinctInCurrentPatch)
             return;
 
-        if (playerExtinctInCurrentPatch)
-            return;
-
-        if (Player != null)
+        if (playerAlive != IsPlayerAlive())
         {
-            DebugOverlays.Instance.ReportPositionCoordinates(Player.GlobalTranslation);
+            // Player just became dead
+            GD.Print("Detected player is no longer alive after last simulation update");
+            OnPlayerDied(Player);
+        }
+
+        if (HasPlayer)
+        {
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
 
-            // TODO: move this player dependent stuff to the world simulation
-            throw new NotImplementedException();
-
-            // spawner.Process(delta, Player.GlobalTranslation);
-            worldSimulation.ReportPlayerPosition(Player.GlobalTranslation);
-            Clouds.ReportPlayerPosition(Player.GlobalTranslation);
-
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
-                new RotationEventArgs(Player.Transform.basis.Quat(), Player.Rotation * MathUtils.RADIANS_TO_DEGREES),
-                this);
+                new RotationEventArgs(playerPosition.Rotation,
+                    playerPosition.Rotation.GetEuler() * MathUtils.RADIANS_TO_DEGREES), this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
-                new CompoundBagEventArgs(Player.Compounds), this);
+                new CompoundBagEventArgs(Player.Get<CompoundStorage>().Compounds), this);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
-                new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
+                new CompoundEventArgs(Player.Get<CompoundAbsorber>().TotalAbsorbedCompounds ??
+                    throw new Exception("Player is missing absorbed compounds")), this);
 
             // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
             // relevant, for example only when in a colony or just leaving a colony should the player colony
             // info be sent
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                new MicrobeColonyEventArgs(Player.Colony), this);
+            if (Player.Has<Components.MicrobeColony>())
+            {
+                throw new NotImplementedException();
+                /*TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
+                    new MicrobeColonyEventArgs(Player.Colony), this);*/
+            }
 
             elapsedSinceEntityPositionCheck += delta;
 
@@ -189,8 +215,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTranslation,
-                            glucose)),
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position, glucose)),
                         this);
                 }
 
@@ -213,7 +238,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.GlobalTranslation;
+                guidanceLine.LineStart = playerPosition.Position;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
@@ -283,7 +308,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
     /// </summary>
     public override void MoveToEditor()
     {
-        if (Player?.Dead != false)
+        if (!HasPlayer || Player.Get<Health>().Dead)
         {
             GD.PrintErr("Player object disappeared or died while transitioning to the editor");
             return;
@@ -294,7 +319,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
         Node sceneInstance;
 
-        if (Player.IsMulticellular)
+        if (Player.Has<EarlyMulticellularSpeciesMember>())
         {
             // Player is a multicellular species, go to multicellular editor
 
@@ -314,7 +339,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button
             // becoming disabled properly
             // https://github.com/Revolutionary-Games/Thrive/issues/2504
-            if (Player.Colony != null)
+            if (Player.Has<Components.MicrobeColony>())
             {
                 GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
                 return;
@@ -345,7 +370,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
     /// </summary>
     public void MoveToMulticellular()
     {
-        if (Player?.Dead != false || Player.Colony == null)
+        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<Components.MicrobeColony>())
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
             return;
@@ -364,7 +389,11 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
         // Move to multicellular always happens when the player is in a colony, so we force disband that here before
         // proceeding
-        Player.UnbindAll();
+        ref var colony = ref Player.Get<Components.MicrobeColony>();
+
+        throw new NotImplementedException();
+
+        // Player.UnbindAll();
 
         GiveReproductionPopulationBonus();
 
@@ -377,19 +406,23 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
 
-        var previousSpecies = Player.Species;
+        ref var entitySpecies = ref Player.Get<SpeciesMember>();
+
+        var previousSpecies = entitySpecies.Species;
         previousSpecies.Obsolete = true;
 
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
         foreach (var microbe in playerSpeciesMicrobes)
         {
-            microbe.ApplySpecies(multicellularSpecies);
+            throw new NotImplementedException();
 
-            if (microbe == Player)
-                playerHandled = true;
+            // microbe.ApplySpecies(multicellularSpecies);
 
-            if (microbe.Species != multicellularSpecies)
-                throw new Exception("Failed to apply multicellular species");
+            // if (microbe == Player)
+            //     playerHandled = true;
+
+            // if (microbe.Species != multicellularSpecies)
+            //     throw new Exception("Failed to apply multicellular species");
         }
 
         if (!playerHandled)
@@ -426,7 +459,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
     /// </summary>
     public void MoveToMacroscopic()
     {
-        if (Player?.Dead != false || Player.Colony == null)
+        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<Components.MicrobeColony>())
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become macroscopic");
             return;
@@ -440,13 +473,17 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
         // Move to multicellular always happens when the player is in a colony, so we force disband that here before
         // proceeding
-        Player.UnbindAll();
+        ref var colony = ref Player.Get<Components.MicrobeColony>();
+
+        throw new NotImplementedException();
+
+        // Player.UnbindAll();
 
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
 
-        var modifiedSpecies = GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
+        var modifiedSpecies = GameWorld.ChangeSpeciesToLateMulticellular(Player.Get<SpeciesMember>().Species);
 
         // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
         // underwater in the awakening stage
@@ -483,28 +520,31 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // Add a cloud of glucose if difficulty settings call for it
         if (GameWorld.WorldSettings.FreeGlucoseCloud)
         {
-            Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
+            Clouds.AddCloud(glucose, 200000.0f, Player.Get<WorldPosition>().Position + new Vector3(0.0f, 0.0f, -25.0f));
         }
 
         // Check win conditions
-        if (!CurrentGame!.FreeBuild && Player!.Species.Generation >= 20 &&
-            Player.Species.Population >= 300 && !wonOnce)
+
+        if (!CurrentGame!.FreeBuild && GameWorld.PlayerSpecies.Generation >= 20 &&
+            GameWorld.PlayerSpecies.Population >= 300 && !wonOnce)
         {
             HUD.ToggleWinBox();
             wonOnce = true;
         }
 
         // Update the player's cell
-        Player!.ApplySpecies(Player.Species);
+        throw new NotImplementedException();
 
-        // Reset all the duplicates organelles of the player
-        Player.ResetOrganelleLayout();
-
-        var playerPosition = Player.GlobalTransform.origin;
-
-        // Spawn another cell from the player species
-        // This needs to be done after updating the player so that multicellular organisms are accurately separated
-        var daughter = Player.Divide();
+        // Player!.ApplySpecies(Player.Species);
+        //
+        // // Reset all the duplicates organelles of the player
+        // Player.ResetOrganelleLayout();
+        //
+        // var playerPosition = Player.GlobalTransform.origin;
+        //
+        // // Spawn another cell from the player species
+        // // This needs to be done after updating the player so that multicellular organisms are accurately separated
+        // var daughter = Player.Divide();
 
         // TODO: switch to adding the player reproduced component
         throw new NotImplementedException();
@@ -512,9 +552,11 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
 
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
-        if (Player.IsMulticellular)
+        if (Player.Has<EarlyMulticellularSpeciesMember>())
         {
-            daughter.BecomeFullyGrownMulticellularColony();
+            throw new NotImplementedException();
+
+            /*daughter.BecomeFullyGrownMulticellularColony();
 
             if (daughter.Colony != null)
             {
@@ -527,7 +569,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
                 float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
 
                 daughter.Translation += -direction * distance;
-            }
+            }*/
         }
 
         // This is queued to run to reduce the massive lag spike that anyway happens on this frame
@@ -561,7 +603,10 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
     public override void OnSuicide()
     {
-        Player?.Damage(9999.0f, "suicide");
+        if (HasPlayer)
+        {
+            Player.Get<Health>().DealDamage(9999.0f, "suicide");
+        }
     }
 
     protected override void SetupStage()
@@ -601,58 +646,54 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         if (HasPlayer)
             return;
 
-        throw new NotImplementedException();
-
-        // Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-        //     rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, spawner, CurrentGame!);
-
-        Player.OnDeath = OnPlayerDied;
-
-        Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
-
-        Player.OnUnbound = OnPlayerUnbound;
-
-        Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
-
-        Player.OnChemoreceptionInfo = HandlePlayerChemoreception;
-
-        Player.OnIngestedByHostile = OnPlayerEngulfedByHostile;
-
-        Player.OnSuccessfulEngulfment = OnPlayerIngesting;
-
-        Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
-
-        Player.OnNoticeMessage = OnPlayerNoticeMessage;
-
-        throw new NotImplementedException();
-
-        // Camera.ObjectToFollow = Player;
-
-        // TODO: move to world simulation
-        /*spawner.DespawnAll();
+        var spawnLocation = Vector3.Zero;
 
         if (spawnedPlayer)
         {
             // Random location on respawn
-            // TODO: physics teleport
-            throw new NotImplementedException();
+            spawnLocation = new Vector3(
+                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
-            // Player.Translation = new Vector3(
-            //     random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
-            //     random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+            worldSimulation.ClearPlayerLocationDependentCaches();
+        }
 
-            spawner.ClearSpawnCoordinates();
-        }*/
+        var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, GameWorld.PlayerSpecies,
+            spawnLocation, false, null, out var entityRecord);
+
+        entityRecord.Set(new MicrobeEventCallbacks
+        {
+            OnReproductionStatus = OnPlayerReproductionStatusChanged,
+
+            OnUnbound = OnPlayerUnbound,
+            OnUnbindEnabled = OnPlayerUnbindEnabled,
+
+            OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection,
+
+            OnIngestedByHostile = OnPlayerEngulfedByHostile,
+            OnSuccessfulEngulfment = OnPlayerIngesting,
+            OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached,
+
+            OnNoticeMessage = OnPlayerNoticeMessage,
+        });
+
+        entityRecord.Set<CameraFollowTarget>();
+
+        // Spawn and grab the player
+        SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
+        worldSimulation.ProcessDelaySpawnedEntitiesImmediately();
+
+        Player = worldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
+
+        // We despawn everything here as either the player just spawned for the first time or
+        worldSimulation.SpawnSystem.DespawnAll();
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
 
-        // TODO: redo this mod interface
-        throw new NotImplementedException();
-
-        // ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
+        ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
     protected override void OnCanEditStatusChanged(bool canEdit)
@@ -662,7 +703,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         if (!canEdit)
             return;
 
-        if (Player is { IsMulticellular: false })
+        if (!Player.Has<EarlyMulticellularSpeciesMember>())
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
@@ -699,7 +740,12 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
 
-            Player?.ClearEngulfedObjects();
+            if (HasPlayer)
+            {
+                throw new NotImplementedException();
+
+                // Player.ClearEngulfedObjects();
+            }
         }
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
@@ -768,18 +814,16 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         SaveHelper.Save(name, this);
     }
 
+    // TODO: remove if no new use is found for this
     private void OnFinishLoading()
     {
-        throw new NotImplementedException();
-
-        // Camera.ObjectToFollow = Player;
     }
 
     /// <summary>
     ///   Helper function for transition to multicellular
     /// </summary>
     /// <returns>Array of all microbes of Player's species</returns>
-    private IEnumerable<Microbe> GetAllPlayerSpeciesMicrobes()
+    private IEnumerable<Entity> GetAllPlayerSpeciesMicrobes()
     {
         if (Player == null)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
@@ -793,7 +837,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
     private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
     {
-        if (Player == null)
+        if (!HasPlayer)
             return;
 
         var species = GameWorld.Map.CurrentPatch!.SpeciesInPatch.Keys.Where(s => !s.PlayerSpecies).ToList();
@@ -826,57 +870,79 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         // spawner.DespawnAll();
     }
 
-    [DeserializedCallbackAllowed]
-    private void OnPlayerDied(Microbe player)
+    /// <summary>
+    ///   This is now handled by this class instead of adding extra functionality to the microbe simulation for only
+    ///   thing that is needed for the player.
+    /// </summary>
+    private void OnPlayerDied(Entity player)
     {
         HandlePlayerDeath();
 
-        if (player.PhagocytosisStep == PhagocytosisPhase.None)
+        bool engulfed = false;
+
+        if (player.IsAlive && player.Has<Engulfable>())
+        {
+            engulfed = player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
+        }
+
+        // Engulfing death has a different tutorial
+        if (!engulfed)
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
-        Player = null;
-        Camera.ObjectToFollow = null;
+        Player = default;
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerReproductionStatusChanged(Microbe player, bool ready)
+    private void OnPlayerReproductionStatusChanged(Entity player, bool ready)
     {
-        OnCanEditStatusChanged(ready && (player.Colony == null || player.IsMulticellular));
+        OnCanEditStatusChanged(ready &&
+            (!player.Has<Components.MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies));
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerUnbindEnabled(Microbe player)
+    private void OnPlayerUnbindEnabled(Entity player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerUnbound(Microbe player)
+    private void OnPlayerUnbound(Entity player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerIngesting(Microbe player, IEngulfable ingested)
+    private void OnPlayerIngesting(Entity player, IEngulfable ingested)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
+    private void OnPlayerEngulfedByHostile(Entity player, Entity hostile)
     {
-        if (hostile.CanDigestObject(player) == DigestCheckResult.Ok)
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+        try
+        {
+            ref var hostileCell = ref hostile.Get<OrganelleContainer>();
+
+            ref var engulfable = ref player.Get<Engulfable>();
+
+            if (hostileCell.CanDigestObject(ref engulfable) == DigestCheckResult.Ok)
+                TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Couldn't process player engulfed by hostile event: " + e);
+        }
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerEngulfmentLimitReached(Microbe player)
+    private void OnPlayerEngulfmentLimitReached(Entity player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerNoticeMessage(Microbe player, IHUDMessage message)
+    private void OnPlayerNoticeMessage(Entity player, IHUDMessage message)
     {
         HUD.HUDMessages.ShowMessage(message);
     }
@@ -885,7 +951,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
     ///   Updates the chemoreception lines
     /// </summary>
     [DeserializedCallbackAllowed]
-    private void HandlePlayerChemoreception(Microbe microbe,
+    private void HandlePlayerChemoreception(Entity microbe,
         IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections,
         IEnumerable<(Species Species, float Range, Color Colour)> activeSpeciesDetections)
     {
@@ -893,9 +959,11 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             GD.PrintErr("Chemoreception data reported for non-player cell");
 
         int currentLineIndex = 0;
-        var position = microbe.GlobalTransform.origin;
+        var position = microbe.Get<WorldPosition>().Position;
 
-        foreach (var detectedCompound in microbe.GetDetectedCompounds(Clouds))
+        ref var organelles = ref microbe.Get<OrganelleContainer>();
+
+        foreach (var detectedCompound in organelles.PerformCompoundDetection(microbe, position, Clouds))
         {
             UpdateOrCreateGuidanceLine(currentLineIndex++,
                 null, detectedCompound.Colour, position, detectedCompound.Target, true);
@@ -920,7 +988,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
 
     private void UpdateLinePlayerPosition()
     {
-        if (Player == null || Player?.Dead == true)
+        if (!HasPlayer || Player.Get<Health>().Dead)
         {
             foreach (var chemoreception in chemoreceptionLines)
                 chemoreception.Line.Visible = false;
@@ -928,7 +996,7 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
             return;
         }
 
-        var position = Player!.GlobalTransform.origin;
+        var position = Player.Get<WorldPosition>().Position;
 
         foreach (var chemoreception in chemoreceptionLines)
         {
@@ -981,5 +1049,21 @@ public class MicrobeStage : CreatureStageBase<Microbe, MicrobeWorldSimulation>
         chemoreceptionLines[index].Line.LineStart = lineStart;
         chemoreceptionLines[index].Line.LineEnd = lineEnd;
         chemoreceptionLines[index].Line.Visible = visible;
+    }
+
+    private bool IsPlayerAlive()
+    {
+        if (!HasPlayer)
+            return false;
+
+        try
+        {
+            return !Player.Get<Health>().Dead;
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Couldn't read player health: " + e);
+            return false;
+        }
     }
 }

@@ -55,7 +55,7 @@
         /// </summary>
         /// <param name="soundEffectPlayer">The player component to use</param>
         /// <returns>True if the sound was started, false if all playing slots were full already</returns>
-        public static bool PlaySound(ref this SoundEffectPlayer soundEffectPlayer)
+        public static bool PlaySound(this ref SoundEffectPlayer soundEffectPlayer)
         {
             SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
 

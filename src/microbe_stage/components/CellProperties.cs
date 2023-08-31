@@ -1,5 +1,6 @@
 ﻿namespace Components
 {
+    using System;
     using DefaultEcs;
     using Godot;
     using Newtonsoft.Json;
@@ -68,11 +69,26 @@
     public static class CellPropertiesHelpers
     {
         /// <summary>
+        ///   Checks this cell and also the entire colony if something can enter engulf mode in it
+        /// </summary>
+        public static bool CanEngulfInColony(this ref CellProperties cellProperties, in Entity entity)
+        {
+            if (entity.Has<MicrobeColony>())
+            {
+                throw new NotImplementedException();
+
+                // TODO: implement checking other colony members
+            }
+
+            return cellProperties.MembraneType.CanEngulf;
+        }
+
+        /// <summary>
         ///   Checks can a cell engulf a target entity. This is the preferred way to check instead of directly using
         ///   just the <see cref="Engulfer"/> check as this also validates the cell has the right properties to be able
         ///   to engulf.
         /// </summary>
-        public static EngulfCheckResult CanEngulfObject(ref this CellProperties cellProperties,
+        public static EngulfCheckResult CanEngulfObject(this ref CellProperties cellProperties,
             ref SpeciesMember cellSpecies, ref Engulfer engulfer, in Entity target)
         {
             // Membranes with Cell Wall cannot engulf

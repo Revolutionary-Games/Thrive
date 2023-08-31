@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using DefaultEcs;
     using Godot;
 
@@ -63,7 +62,7 @@
         /// <summary>
         ///   Direct engulfing check. Microbe should use <see cref="CellPropertiesHelpers.CanEngulfObject"/>
         /// </summary>
-        public static EngulfCheckResult CanEngulfObject(ref this Engulfer engulfer, uint engulferSpeciesID,
+        public static EngulfCheckResult CanEngulfObject(this ref Engulfer engulfer, uint engulferSpeciesID,
             in Entity target)
         {
             if (!target.IsAlive)

@@ -1,6 +1,7 @@
 ﻿namespace Components
 {
     using System;
+    using DefaultEcs;
     using Godot;
 
     /// <summary>
@@ -69,14 +70,69 @@
 
     public static class MicrobeControlHelpers
     {
-        public static void SetMoveSpeed(ref this MicrobeControl control, float speed)
+        /// <summary>
+        ///   Queues a toxin emit if possible
+        /// </summary>
+        public static bool EmitToxin(this ref MicrobeControl control, ref OrganelleContainer organelles,
+            CompoundBag availableCompounds, in Entity entity, Compound? agentType = null)
+        {
+            // Disallow toxins when engulfed
+            if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+                return false;
+
+            agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
+
+            if (entity.Has<MicrobeColony>())
+            {
+                throw new NotImplementedException();
+
+                // PerformForOtherColonyMembersIfWeAreLeader(m => m.EmitToxin(agentType));
+            }
+
+            if (control.AgentEmissionCooldown > 0)
+                return false;
+
+            // Only shoot if you have an agent vacuole.
+            if (organelles.AgentVacuoleCount < 1)
+                return false;
+
+            float amountAvailable = availableCompounds.GetCompoundAmount(agentType);
+
+            // Skip if too little agent available
+            if (amountAvailable < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+                return false;
+
+            control.QueuedToxinToEmit = agentType;
+
+            return true;
+        }
+
+        public static void SetMoveSpeed(this ref MicrobeControl control, float speed)
         {
             control.MovementDirection = new Vector3(0, 0, -speed);
         }
 
-        public static void SecreteSlimeForSomeTime(ref this MicrobeControl control,
+        public static void QueueSecreteSlime(this ref MicrobeControl control,
+            ref OrganelleContainer organelleInfo, in Entity entity, float duration)
+        {
+            if (entity.Has<MicrobeColony>())
+            {
+                throw new NotImplementedException();
+
+                // PerformForOtherColonyMembersIfWeAreLeader(m => m.QueueSecreteSlime(duration));
+            }
+
+            if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)
+                return;
+
+            control.QueuedSlimeSecretionTime += duration;
+        }
+
+        public static void SecreteSlimeForSomeTime(this ref MicrobeControl control,
             ref OrganelleContainer organelleInfo, Random random)
         {
+            // TODO: AI might want in the future to use all slime jets in a colony
+
             if ((organelleInfo.SlimeJets?.Count ?? 0) > 0)
             {
                 // Randomise the time spent ejecting slime, from 0 to 3 seconds

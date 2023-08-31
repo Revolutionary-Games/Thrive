@@ -87,7 +87,7 @@
 
     public static class CollisionManagementHelpers
     {
-        public static void StartCollisionRecording(ref this CollisionManagement collisionManagement, int maxCollisions)
+        public static void StartCollisionRecording(this ref CollisionManagement collisionManagement, int maxCollisions)
         {
             if (collisionManagement.RecordActiveCollisions >= maxCollisions)
                 return;
@@ -97,7 +97,7 @@
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int GetActiveCollisions(ref this CollisionManagement collisionManagement,
+        public static int GetActiveCollisions(this ref CollisionManagement collisionManagement,
             out PhysicsCollision[]? collisions)
         {
             // If state is not correct for reading

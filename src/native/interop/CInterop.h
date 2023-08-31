@@ -137,6 +137,9 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldSetGravity(PhysicalWorld* physicalWorld, JVecF3 gravity);
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldRemoveGravity(PhysicalWorld* physicalWorld);
 
+    [[maybe_unused]] THRIVE_NATIVE_API int32_t PhysicalWorldCastRayGetAll(PhysicalWorld* physicalWorld, JVec3 start,
+        JVecF3 endOffset, PhysicsRayWithUserData* dataReceiver, int32_t maxHits);
+
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsLatestTime(PhysicalWorld* physicalWorld);
     [[maybe_unused]] THRIVE_NATIVE_API float PhysicalWorldGetPhysicsAverageTime(PhysicalWorld* physicalWorld);
 

@@ -11,13 +11,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
     private readonly IParallelRunner nonParallelRunner = new DefaultParallelRunner(1);
 
+    // TODO: remove if this doesn't turn out to be useful
     private GameProperties gameProperties = null!;
-
-    /// <summary>
-    ///   Used to tell a few systems the approximate player position which might not always exist
-    /// </summary>
-    [JsonIgnore]
-    private Vector3? reportedPlayerPosition;
 
     // Base systems
     private ColourAnimationSystem colourAnimationSystem = null!;
@@ -63,6 +58,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [JsonIgnore]
     public CompoundCloudSystem CloudSystem { get; private set; } = null!;
 
+    // Systems accessible to the outside as these have some very specific methods to be called on them
+    [JsonIgnore]
+    public CameraFollowSystem CameraFollowSystem { get; private set; } = null!;
+
     // TODO: check that
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -71,6 +70,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; } = null!;
 
+    // TODO: could replace this reference in PatchManager by it just calling ClearPlayerLocationDependentCaches
     [JsonIgnore]
     public TimedLifeSystem TimedLifeSystem { get; private set; } = null!;
 
@@ -137,6 +137,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, parallelRunner);
 
         // Systems stored in properties
+        CameraFollowSystem = new CameraFollowSystem(EntitySystem);
+
         ProcessSystem = new ProcessSystem(EntitySystem, parallelRunner);
 
         TimedLifeSystem = new TimedLifeSystem(this, EntitySystem, parallelRunner);
@@ -164,6 +166,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         tintColourAnimationSystem.Update(delta);
 
         soundListenerSystem.Update(delta);
+        CameraFollowSystem.Update(delta);
     }
 
     public void SetSimulationBiome(BiomeConditions biomeConditions)
@@ -171,14 +174,26 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         ProcessSystem.SetBiome(biomeConditions);
     }
 
-    public void ReportPlayerPosition(Vector3 position)
+    public override void ReportPlayerPosition(Vector3 position)
     {
-        reportedPlayerPosition = position;
+        base.ReportPlayerPosition(position);
 
         // Immediately report to some systems
         countLimitedDespawnSystem.ReportPlayerPosition(position);
         soundEffectSystem.ReportPlayerPosition(position);
         SpawnSystem.ReportPlayerPosition(position);
+
+        // Report to the kind of external clouds system as this simplifies code using the simulation
+        CloudSystem.ReportPlayerPosition(position);
+    }
+
+    /// <summary>
+    ///   Clears system data that has been stored based on the player location. Call this when the player changes
+    ///   locations a lot by respawning or by moving patches
+    /// </summary>
+    public void ClearPlayerLocationDependentCaches()
+    {
+        SpawnSystem.ClearSpawnCoordinates();
     }
 
     internal void OverrideMicrobeAIRandomSeed(int seed)
@@ -273,6 +288,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             tintColourAnimationSystem.Dispose();
             toxinCollisionSystem.Dispose();
 
+            CameraFollowSystem.Dispose();
             ProcessSystem.Dispose();
             TimedLifeSystem.Dispose();
             SpawnSystem.Dispose();

@@ -93,7 +93,7 @@
         ///   <see cref="ColourAnimation.AnimationUserInfo"/> then this replaces the current animation. Otherwise this
         ///   is silently ignored
         /// </param>
-        public static void Flash(ref this ColourAnimation animation, Color targetColour, float duration,
+        public static void Flash(this ref ColourAnimation animation, Color targetColour, float duration,
             int priority = 1)
         {
             if (animation.Animating && animation.AnimationUserInfo >= priority)
@@ -113,7 +113,7 @@
         /// <summary>
         ///   Stops animations and resets to default colour
         /// </summary>
-        public static void ResetColour(ref this ColourAnimation animation)
+        public static void ResetColour(this ref ColourAnimation animation)
         {
             animation.Animating = false;
             animation.AnimationTargetColour = animation.DefaultColour;

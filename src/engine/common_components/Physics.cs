@@ -95,7 +95,7 @@
 
     public static class PhysicsHelpers
     {
-        public static void SetCollisionDisableState(ref this Physics physics, bool disableCollisions)
+        public static void SetCollisionDisableState(this ref Physics physics, bool disableCollisions)
         {
             physics.DisableCollisionState = disableCollisions ?
                 Physics.CollisionState.DisableCollisions :

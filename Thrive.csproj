@@ -127,6 +127,7 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\common_components\AttachedChildren.cs" />
     <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
+    <Compile Include="src\engine\common_components\CameraFollowTarget.cs" />
     <Compile Include="src\engine\common_components\CollisionManagement.cs" />
     <Compile Include="src\engine\common_components\ColourAnimation.cs" />
     <Compile Include="src\engine\common_components\CountLimited.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="src\engine\common_components\SpeciesMember.cs" />
     <Compile Include="src\engine\common_components\TimedLife.cs" />
     <Compile Include="src\engine\common_components\WorldPosition.cs" />
+    <Compile Include="src\engine\common_systems\CameraFollowSystem.cs" />
     <Compile Include="src\engine\common_systems\ColourAnimationSystem.cs" />
     <Compile Include="src\engine\common_systems\CountLimitedDespawnSystem.cs" />
     <Compile Include="src\engine\common_systems\DamageOnTouchSystem.cs" />
@@ -174,6 +176,7 @@
     <Compile Include="src\engine\DebugOverlays.Inspector.cs" />
     <Compile Include="src\engine\DebugOverlays.SceneTreeDumper.cs" />
     <Compile Include="src\engine\GUIFocusSetter.cs" />
+    <Compile Include="src\engine\IGameCamera.cs" />
     <Compile Include="src\engine\input\ActiveInputMethod.cs" />
     <Compile Include="src\engine\input\ControllerAxisVisualizer.cs" />
     <Compile Include="src\engine\input\ControllerDeadzoneConfiguration.cs" />
@@ -194,9 +197,9 @@
     <Compile Include="src\engine\physics\PhysicalWorld.cs" />
     <Compile Include="src\engine\physics\NativePhysicsBody.cs" />
     <Compile Include="src\engine\physics\PhysicsCollision.cs" />
+    <Compile Include="src\engine\physics\PhysicsRayWithUserData.cs" />
     <Compile Include="src\engine\physics\PhysicsShape.cs" />
     <Compile Include="src\engine\PostShutdownActions.cs" />
-    <Compile Include="src\engine\RaycastResult.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
     <Compile Include="src\engine\SafeModeStartupHandler.cs" />
     <Compile Include="src\engine\StartupAttemptInfo.cs" />
@@ -296,10 +299,10 @@
     <Compile Include="src\general\CustomDifficulty.cs" />
     <Compile Include="src\general\IAliveTracked.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
-    <Compile Include="src\general\IInspectableEntity.cs" />
     <Compile Include="src\general\IPlayerReadableName.cs" />
     <Compile Include="src\general\MusicContext.cs" />
     <Compile Include="src\general\PlayerInspectInfo.cs" />
+    <Compile Include="src\general\SpawnQueue.cs" />
     <Compile Include="src\general\ThriveNewsFeed.cs" />
     <Compile Include="src\general\utils\ColorUtils.cs" />
     <Compile Include="src\general\utils\DictionaryUtils.cs" />

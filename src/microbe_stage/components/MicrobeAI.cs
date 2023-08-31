@@ -56,7 +56,7 @@
         /// <summary>
         ///   Resets AI status when this AI controlled microbe is removed from a colony
         /// </summary>
-        public static void ResetAI(ref this MicrobeAI ai)
+        public static void ResetAI(this ref MicrobeAI ai)
         {
             ai.PreviousAngle = 0;
             ai.TargetPosition = Vector3.Zero;
@@ -69,7 +69,7 @@
             // microbe.TotalAbsorbedCompounds.Clear();
         }
 
-        public static void MoveToLocation(ref this MicrobeAI ai, Vector3 targetPosition, ref MicrobeControl control)
+        public static void MoveToLocation(this ref MicrobeAI ai, Vector3 targetPosition, ref MicrobeControl control)
         {
             control.State = MicrobeState.Normal;
             ai.TargetPosition = targetPosition;
@@ -77,7 +77,7 @@
             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
 
-        public static void MoveWithRandomTurn(ref this MicrobeAI ai, float minTurn, float maxTurn,
+        public static void MoveWithRandomTurn(this ref MicrobeAI ai, float minTurn, float maxTurn,
             Vector3 currentPosition, ref MicrobeControl control, float speciesActivity, Random random)
         {
             var turn = random.Next(minTurn, maxTurn);
@@ -96,7 +96,7 @@
             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
 
-        public static void LowerPursuitThreshold(ref this MicrobeAI ai)
+        public static void LowerPursuitThreshold(this ref MicrobeAI ai)
         {
             ai.PursuitThreshold *= 0.95f;
         }
