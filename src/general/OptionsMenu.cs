@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -2033,6 +2033,7 @@ public class OptionsMenu : ControlWithInput
     private void OnMouseAxesBoundToggled(bool pressed)
     {
         mouseVerticalSensitivity.Editable = !pressed;
+        mouseVerticalSensitivity.FocusMode = pressed ? FocusModeEnum.Click : FocusModeEnum.All;
 
         if (pressed)
         {
