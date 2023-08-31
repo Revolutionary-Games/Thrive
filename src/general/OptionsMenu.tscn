@@ -1542,8 +1542,6 @@ margin_left = 598.0
 margin_top = 29.0
 margin_right = 929.0
 margin_bottom = 54.0
-focus_neighbour_bottom = NodePath("../HBoxContainer/EdgePanSpeed")
-focus_next = NodePath("../HBoxContainer/EdgePanSpeed")
 text = "MOUSE_EDGE_PANNING_OPTION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -1560,10 +1558,6 @@ text = "EDGE_PAN_SPEED"
 margin_left = 178.0
 margin_right = 594.0
 margin_bottom = 15.0
-focus_neighbour_top = NodePath("../../EdgePan")
-focus_neighbour_bottom = NodePath("../../EdgePan")
-focus_next = NodePath("../../../InputGroupList")
-focus_previous = NodePath("../../EdgePan")
 size_flags_horizontal = 3
 min_value = 5.0
 max_value = 140.0
