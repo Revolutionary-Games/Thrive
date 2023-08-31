@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -2197,6 +2197,7 @@ public class OptionsMenu : ControlWithInput
     {
         Settings.Instance.PanStrategyViewWithMouse.Value = pressed;
         mouseEdgePanSensitivity.Editable = pressed;
+        mouseEdgePanSensitivity.FocusMode = pressed ? FocusModeEnum.All : FocusModeEnum.Click;
 
         UpdateResetSaveButtonState();
     }
