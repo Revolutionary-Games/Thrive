@@ -1309,7 +1309,6 @@ margin_left = 205.0
 margin_right = 589.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1330,7 +1329,6 @@ margin_right = 589.0
 margin_bottom = 44.0
 focus_neighbour_top = NodePath("../Horizontal")
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1419,7 +1417,6 @@ margin_left = 205.0
 margin_right = 589.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1440,7 +1437,6 @@ margin_right = 589.0
 margin_bottom = 44.0
 focus_neighbour_top = NodePath("../Horizontal")
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1561,7 +1557,6 @@ margin_bottom = 15.0
 size_flags_horizontal = 3
 min_value = 5.0
 max_value = 140.0
-step = 0.0
 value = 5.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
