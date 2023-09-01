@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-29 14:37+0300\n"
-"PO-Revision-Date: 2023-02-02 14:27+0200\n"
+"PO-Revision-Date: 2023-08-29 08:18+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Weblate 5.0\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1472
@@ -68,7 +68,7 @@ msgstr "Herää"
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Toiminto estetty sillä toinen toiminto on kesken"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
 #, fuzzy
@@ -278,11 +278,11 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Modin assembly-luokka on vaadittu kun assembly on määritelty"
 
 #: ../src/modding/ModManager.cs:336
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "Modin assembly on vaadittu kun automattinen Harmony on aktiivinen"
 
 #: ../src/general/OptionsMenu.tscn:1121
 msgid "ASSUME_HYPERTHREADING"
@@ -410,7 +410,7 @@ msgstr "Automaattinen ({0}x{1})"
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
 #: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Saatavilla olevat rakennusprojektit"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -540,7 +540,7 @@ msgstr "{0}-{1}m merenpinnan alapuolella"
 
 #: ../src/general/MainMenu.tscn:431
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Suorituskykytestit"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 #, fuzzy
@@ -549,11 +549,11 @@ msgstr "Lataus on valmistunut"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Suorituskykytestin vaihe:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Tulokset:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 #, fuzzy
@@ -594,7 +594,7 @@ msgstr "Vaihda liittymismoodia painamall [thrive:input]g_toggle_binding[/thrive:
 
 #: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1403
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Liitä akselit yhteen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:512
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
@@ -623,7 +623,7 @@ msgstr "Biomi: {0}"
 
 #: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Neuroni"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
@@ -733,7 +733,7 @@ msgstr "Ei voi niellä"
 
 #: ../src/modding/ModLoader.cs:302 ../src/modding/ModLoader.cs:350
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "Tietoja ei voida ladata modista {0}"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
