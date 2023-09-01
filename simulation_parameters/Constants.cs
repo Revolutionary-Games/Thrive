@@ -306,6 +306,8 @@ public static class Constants
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
+    public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
+
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually

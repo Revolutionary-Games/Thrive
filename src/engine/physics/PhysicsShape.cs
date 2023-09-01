@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Godot;
 
+/// <summary>
+///   Wrapper for native side physics shape. And also contains factories for making various shapes.
+/// </summary>
 public class PhysicsShape : IDisposable
 {
     private bool disposed;
@@ -18,22 +22,19 @@ public class PhysicsShape : IDisposable
         Dispose(false);
     }
 
-    public static PhysicsShape CreateBox(float halfSideLength)
+    public static PhysicsShape CreateBox(float halfSideLength, float density = 1000)
     {
-        return new PhysicsShape(NativeMethods.CreateBoxShape(halfSideLength));
+        return new PhysicsShape(NativeMethods.CreateBoxShape(halfSideLength, density));
     }
 
-    public static PhysicsShape CreateBox(Vector3 halfDimensions)
+    public static PhysicsShape CreateBox(Vector3 halfDimensions, float density = 1000)
     {
-        return new PhysicsShape(NativeMethods.CreateBoxShapeWithDimensions(new JVecF3(halfDimensions)));
+        return new PhysicsShape(NativeMethods.CreateBoxShapeWithDimensions(new JVecF3(halfDimensions), density));
     }
 
     public static PhysicsShape CreateSphere(float radius, float density = 1000)
     {
-        // TODO: density passing to native side
-        throw new NotImplementedException();
-
-        return new PhysicsShape(NativeMethods.CreateSphereShape(radius));
+        return new PhysicsShape(NativeMethods.CreateSphereShape(radius, density));
     }
 
     // TODO: hashing and caching based on the parameters to avoid needing to constantly create new shapes
@@ -77,15 +78,31 @@ public class PhysicsShape : IDisposable
 
         if (godotData == null)
         {
+            // TODO: support for other shapes if we need them
             GD.PrintErr("Failed to load Godot physics shape for converting: ", path);
             return null;
         }
 
-        // TODO: converting Godot data to Jolt
+        var dataSource = godotData.Points;
+        int points = dataSource.Length;
 
-        throw new NotImplementedException();
+        if (points < 1)
+            throw new NotSupportedException("Can't convert convex polygon with no points");
+
+        // We need a temporary buffer in case the data byte format is not exactly right
+        var pool = ArrayPool<JVecF3>.Shared;
+        var buffer = pool.Rent(points);
+
+        for (int i = 0; i < points; ++i)
+        {
+            buffer[i] = new JVecF3(dataSource[i]);
+        }
+
+        cached = new PhysicsShape(NativeMethods.CreateConvexShape(buffer[0], (uint)points, density));
 
         cache.WriteLoadedShape(path, density, cached);
+
+        pool.Return(buffer);
 
         return cached;
     }
@@ -130,13 +147,13 @@ public class PhysicsShape : IDisposable
 internal static partial class NativeMethods
 {
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateBoxShape(float halfSideLength);
+    internal static extern IntPtr CreateBoxShape(float halfSideLength, float density);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateBoxShapeWithDimensions(JVecF3 halfDimensions);
+    internal static extern IntPtr CreateBoxShapeWithDimensions(JVecF3 halfDimensions, float density);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateSphereShape(float radius);
+    internal static extern IntPtr CreateSphereShape(float radius, float density);
 
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateMicrobeShapeConvex(in JVecF3 microbePoints, uint pointCount, float density,
@@ -145,6 +162,9 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateMicrobeShapeSpheres(in JVecF3 microbePoints, uint pointCount, float density,
         float scale);
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr CreateConvexShape(in JVecF3 convexPoints, uint pointCount, float density);
 
     [DllImport("thrive_native")]
     internal static extern void ReleaseShape(IntPtr shape);

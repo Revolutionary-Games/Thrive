@@ -24,6 +24,10 @@ public:
     static JPH::RefConst<JPH::Shape> CreateConvex(const JPH::Array<JPH::Vec3>& points, float density = 1000,
         float convexRadius = 0.01f, const JPH::PhysicsMaterial* material = nullptr);
 
+    /// \brief Variant for avoiding extra data copy from C-API
+    static JPH::RefConst<JPH::Shape> CreateConvex(const JVecF3* points, size_t pointCount, float density = 1000,
+        float convexRadius = 0.01f, const JPH::PhysicsMaterial* material = nullptr);
+
     /// \brief Creates a shape composed of multiple other shapes that cannot change after creation
     /// \todo Figure out how to use physics materials here
     static JPH::RefConst<JPH::Shape> CreateStaticCompound(

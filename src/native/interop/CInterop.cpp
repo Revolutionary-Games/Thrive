@@ -511,6 +511,12 @@ PhysicsShape* CreateMicrobeShapeSpheres(JVecF3* points, uint32_t pointCount, flo
         Thrive::Physics::ShapeCreator::CreateMicrobeShapeSpheres(points, pointCount, density, scale)));
 }
 
+PhysicsShape* CreateConvexShape(JVecF3* points, uint32_t pointCount, float density)
+{
+    return reinterpret_cast<PhysicsShape*>(
+        CreateShapeWrapper(Thrive::Physics::ShapeCreator::CreateConvex(points, pointCount, density)));
+}
+
 void ReleaseShape(PhysicsShape* shape)
 {
     if (shape == nullptr)

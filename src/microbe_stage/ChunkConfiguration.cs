@@ -159,5 +159,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         ///   Path to the AnimationPlayer inside the ScenePath scene, null if no animation
         /// </summary>
         public string? SceneAnimationPath;
+
+        /// <summary>
+        ///   Need to be set to true on particle type visuals as those need special handling
+        /// </summary>
+        public bool IsParticles;
     }
 }

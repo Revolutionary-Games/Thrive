@@ -174,6 +174,9 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateMicrobeShapeSpheres(
         JVecF3* points, uint32_t pointCount, float density, float scale);
 
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateConvexShape(
+        JVecF3* points, uint32_t pointCount, float density);
+
     [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
 
     // ------------------------------------ //

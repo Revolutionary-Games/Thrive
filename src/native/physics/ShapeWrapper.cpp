@@ -1,6 +1,8 @@
 // ------------------------------------ //
 #include "ShapeWrapper.hpp"
 
+#include "core/Logger.hpp"
+
 // ------------------------------------ //
 namespace Thrive::Physics
 {
@@ -13,6 +15,11 @@ ShapeWrapper::ShapeWrapper(const JPH::RefConst<JPH::Shape>& wrappedShape) :
 #endif
     shape(wrappedShape)
 {
+    if (shape == nullptr)
+    {
+        LOG_ERROR("Cannot create a shape where the Jolt shape failed to be created");
+        abort();
+    }
 }
 
 #ifdef USE_OBJECT_POOLS

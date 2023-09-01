@@ -131,7 +131,8 @@ public static class SpawnHelpers
         });
         entity.Set(new PhysicsShapeHolder
         {
-            Shape = PhysicsShape.CreateSphere(Constants.TOXIN_PROJECTILE_PHYSICS_SIZE),
+            Shape = PhysicsShape.CreateSphere(Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
+                Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY),
         });
         entity.Set(new CollisionManagement
         {
@@ -194,8 +195,8 @@ public static class SpawnHelpers
             ApplyVisualScale = Math.Abs(chunkType.ChunkScale - 1) > MathUtils.EPSILON,
         });
 
-        // TODO: this probably needs to be skipped for particle type chunks
-        if (true)
+        // This needs to be skipped for particle type chunks (as they don't have materials)
+        if (!selectedMesh.IsParticles)
         {
             entity.Set(new EntityMaterial
             {
