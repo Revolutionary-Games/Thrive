@@ -77,6 +77,11 @@ public class GlucoseReductionEffect : IWorldEffect
         }
 
         var initialTotalGlucose = Math.Round(initialTotalDensity * totalAmount + totalChunkAmount, 3);
+
+        // Prevent a division by zero
+        if (initialTotalGlucose == 0)
+            return;
+
         var finalTotalGlucose = Math.Round(finalTotalDensity * totalAmount + totalChunkAmount, 3);
         var globalReduction = Math.Round((initialTotalGlucose - finalTotalGlucose) / initialTotalGlucose * 100, 1);
 
@@ -85,7 +90,7 @@ public class GlucoseReductionEffect : IWorldEffect
             targetWorld.LogEvent(new LocalizedString("GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"),
                 false, "glucoseDown.png");
         }
-        else
+        else if (globalReduction > 0)
         {
             targetWorld.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
                     glucose.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
