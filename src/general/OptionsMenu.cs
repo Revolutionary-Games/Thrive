@@ -803,7 +803,8 @@ public class OptionsMenu : ControlWithInput
         mouseHorizontalSensitivity.Value = MouseInputSensitivityToBarValue(settings.HorizontalMouseLookSensitivity);
         mouseHorizontalInverted.Pressed = settings.InvertHorizontalMouseLook;
         mouseVerticalSensitivity.Editable = !mouseAxisSensitivitiesBound.Pressed;
-        mouseVerticalSensitivity.FocusMode = mouseAxisSensitivitiesBound.Pressed ? FocusModeEnum.Click : FocusModeEnum.All;
+        mouseVerticalSensitivity.FocusMode =
+            mouseAxisSensitivitiesBound.Pressed ? FocusModeEnum.Click : FocusModeEnum.All;
         mouseVerticalSensitivity.Value = MouseInputSensitivityToBarValue(settings.VerticalMouseLookSensitivity);
         mouseVerticalInverted.Pressed = settings.InvertVerticalMouseLook;
         mouseWindowSizeScaling.Selected = MouseInputScalingToIndex(settings.ScaleMouseInputByWindowSize);
