@@ -218,7 +218,6 @@ public class FocusFlowDynamicChildrenHelper
                 }
 
                 previousChild.FocusNext = currentPath;
-                currentChild.FocusPrevious = previousChildPath;
             }
 
             previousChild = currentChild;
