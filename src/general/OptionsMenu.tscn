@@ -1529,16 +1529,15 @@ margin_right = 708.0
 margin_bottom = 338.0
 
 [node name="EdgePan" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_left = 598.0
-margin_top = 29.0
-margin_right = 929.0
-margin_bottom = 54.0
+margin_top = 342.0
+margin_right = 708.0
+margin_bottom = 367.0
 text = "MOUSE_EDGE_PANNING_OPTION"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 29.0
+margin_top = 371.0
 margin_right = 708.0
-margin_bottom = 54.0
+margin_bottom = 396.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_right = 174.0
@@ -1547,14 +1546,15 @@ text = "EDGE_PAN_SPEED"
 
 [node name="EdgePanSpeed" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_left = 178.0
-margin_right = 594.0
-margin_bottom = 15.0
+margin_right = 708.0
+margin_bottom = 16.0
+focus_neighbour_bottom = NodePath("../../InputGroupList")
 size_flags_horizontal = 3
 min_value = 5.0
 max_value = 140.0
 value = 5.0
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="InputGroupListTop" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 400.0
 margin_right = 708.0
 margin_bottom = 404.0
@@ -1564,6 +1564,7 @@ margin_top = 408.0
 margin_right = 708.0
 margin_bottom = 408.0
 focus_neighbour_left = NodePath("../../../../../../../../../HBoxContainer/Back")
+focus_neighbour_top = NodePath("../InputGroupListTop")
 focus_neighbour_right = NodePath("../../../../../HBoxContainer/ResetInputsButton")
 focus_neighbour_bottom = NodePath("../../../../../HBoxContainer/ResetInputsButton")
 focus_next = NodePath("../../../../../HBoxContainer/ResetInputsButton")
@@ -1574,6 +1575,12 @@ __meta__ = {
 }
 ConflictDialogPath = NodePath("../../../../../../../../../../../ConflictDialog")
 ResetInputsDialog = NodePath("../../../../../../../../../../../DefaultsInputsConfirm")
+
+[node name="InputGroupListBottom" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 412.0
+margin_right = 708.0
+margin_bottom = 412.0
+custom_constants/separation = 0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer"]
 margin_top = 519.0
@@ -1590,10 +1597,10 @@ alignment = 2
 margin_left = 506.0
 margin_right = 718.0
 margin_bottom = 35.0
-focus_neighbour_top = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
+focus_neighbour_top = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupListBottom")
 focus_neighbour_bottom = NodePath("../../../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../../../HBoxContainer/Back")
-focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
+focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupListBottom")
 text = "RESET_KEYBINDINGS"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
