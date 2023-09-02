@@ -23,7 +23,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private TweakedColourPicker colour = null!;
 #pragma warning restore CA2213
 
-    private List<Compound>? shownChoices;
+    private IReadOnlyList<Compound>? shownChoices;
 
     public override void _Ready()
     {

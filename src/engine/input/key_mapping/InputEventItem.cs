@@ -306,7 +306,7 @@ public class InputEventItem : MarginContainer
         GroupList?.ControlsChanged();
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (!(obj is InputEventItem input))
             return false;
