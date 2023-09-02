@@ -918,9 +918,9 @@ public class MicrobeStage : StageBase<Microbe>
             if (chemoreception.TargetMicrobe != null)
             {
                 // Use colony parent position to avoid calling GlobalTranslation
-                if (chemoreception.TargetMicrobe.ColonyParent != null)
+                if (chemoreception.TargetMicrobe.Colony != null)
                 {
-                    chemoreception.Line.LineEnd = chemoreception.TargetMicrobe.ColonyParent.Translation;
+                    chemoreception.Line.LineEnd = chemoreception.TargetMicrobe.Colony.Master.Translation;
                 }
                 else
                 {

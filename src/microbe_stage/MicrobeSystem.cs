@@ -85,9 +85,9 @@ public class MicrobeSystem
             Vector3 microbeGlobalPosition;
 
             // Use colony parent position to avoid calling GlobalTranslation
-            if (microbe.ColonyParent != null)
+            if (microbe.Colony != null)
             {
-                microbeGlobalPosition = microbe.ColonyParent.Translation;
+                microbeGlobalPosition = microbe.Colony.Master.Translation;
             }
             else
             {
