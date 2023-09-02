@@ -10,15 +10,15 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
-TargetTypesPath = NodePath("TargetType")
-CompoundsPath = NodePath("Compound")
+TargetTypeSelectorPath = NodePath("TargetType")
+CompoundsSelectorPath = NodePath("Compound")
 CompoundsLabelPath = NodePath("CompoundLabel")
-SpeciesPath = NodePath("Species")
+SpeciesSelectorPath = NodePath("Species")
 SpeciesLabelPath = NodePath("SpeciesLabel")
-MaximumDistancePath = NodePath("Distance")
-MinimumAmountPath = NodePath("MinimumAmount")
+MaximumDistanceSliderPath = NodePath("Distance")
+MinimumAmountSliderPath = NodePath("MinimumAmount")
 MinimumAmountLabelPath = NodePath("MinimumAmountLabel")
-ColourPath = NodePath("Colour")
+ColourSelectorPath = NodePath("Colour")
 
 [node name="Label" type="Label" parent="."]
 margin_right = 1280.0

@@ -5,31 +5,31 @@ using Godot;
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
-    public NodePath? TargetTypesPath;
+    public NodePath? TargetTypeSelectorPath;
 
     [Export]
-    public NodePath CompoundsPath = null!;
+    public NodePath CompoundsSelectorPath = null!;
 
     [Export]
     public NodePath CompoundsLabelPath = null!;
 
     [Export]
-    public NodePath SpeciesPath = null!;
+    public NodePath SpeciesSelectorPath = null!;
 
     [Export]
     public NodePath SpeciesLabelPath = null!;
 
     [Export]
-    public NodePath MaximumDistancePath = null!;
+    public NodePath MaximumDistanceSliderPath = null!;
 
     [Export]
-    public NodePath MinimumAmountPath = null!;
+    public NodePath MinimumAmountSliderPath = null!;
 
     [Export]
     public NodePath MinimumAmountLabelPath = null!;
 
     [Export]
-    public NodePath ColourPath = null!;
+    public NodePath ColourSelectorPath = null!;
 
 #pragma warning disable CA2213
     private OptionButton targetTypes = null!;
@@ -54,15 +54,15 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
-        targetTypes = GetNode<OptionButton>(TargetTypesPath);
-        compounds = GetNode<OptionButton>(CompoundsPath);
+        targetTypes = GetNode<OptionButton>(TargetTypeSelectorPath);
+        compounds = GetNode<OptionButton>(CompoundsSelectorPath);
         compoundLabel = GetNode<Label>(CompoundsLabelPath);
-        species = GetNode<OptionButton>(SpeciesPath);
+        species = GetNode<OptionButton>(SpeciesSelectorPath);
         speciesLabel = GetNode<Label>(SpeciesLabelPath);
-        maximumDistance = GetNode<Slider>(MaximumDistancePath);
-        minimumAmount = GetNode<Slider>(MinimumAmountPath);
+        maximumDistance = GetNode<Slider>(MaximumDistanceSliderPath);
+        minimumAmount = GetNode<Slider>(MinimumAmountSliderPath);
         minimumAmountLabel = GetNode<Label>(MinimumAmountLabelPath);
-        colour = GetNode<TweakedColourPicker>(ColourPath);
+        colour = GetNode<TweakedColourPicker>(ColourSelectorPath);
 
         compounds.Clear();
         species.Clear();
@@ -93,7 +93,6 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         {
             species.AddItem(choice.FormattedName);
         }
-
 
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is ChemoreceptorUpgrades configuration)
@@ -126,20 +125,20 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             species.Selected = 0;
 
         // Only one type of object can be detected
-        Compound? choiceCompound = null;
-        Species? choiceSpecies = null;
+        Compound? compoundChoice = null;
+        Species? speciesChoice = null;
 
         if (targetTypes.Selected == (int)TargetType.Compound)
         {
-            choiceCompound = shownCompoundChoices[compounds.Selected];
+            compoundChoice = shownCompoundChoices[compounds.Selected];
         }
         else if (targetTypes.Selected == (int)TargetType.Species)
         {
-            choiceSpecies = shownSpeciesChoices[species.Selected];
+            speciesChoice = shownSpeciesChoices[species.Selected];
         }
 
         organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(
-            choiceCompound, choiceSpecies,
+            compoundChoice, speciesChoice,
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color);
         return true;
     }
@@ -185,17 +184,17 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
-            if (TargetTypesPath != null)
+            if (TargetTypeSelectorPath != null)
             {
-                TargetTypesPath.Dispose();
-                CompoundsPath.Dispose();
+                TargetTypeSelectorPath.Dispose();
+                CompoundsSelectorPath.Dispose();
                 CompoundsLabelPath.Dispose();
-                SpeciesPath.Dispose();
+                SpeciesSelectorPath.Dispose();
                 SpeciesLabelPath.Dispose();
-                MaximumDistancePath.Dispose();
-                MinimumAmountPath.Dispose();
+                MaximumDistanceSliderPath.Dispose();
+                MinimumAmountSliderPath.Dispose();
                 MinimumAmountLabelPath.Dispose();
-                ColourPath.Dispose();
+                ColourSelectorPath.Dispose();
             }
         }
 
