@@ -232,9 +232,14 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (targetTypes.Selected == (int)TargetType.Compound && shownCompoundChoices != null
             && compounds.Selected >= 0)
+        {
             colour.Color = shownCompoundChoices[compounds.Selected].Colour;
+        }
+
         if (targetTypes.Selected == (int)TargetType.Species && shownSpeciesChoices != null
             && species.Selected >= 0)
+        {
             colour.Color = shownSpeciesChoices[species.Selected].Colour;
+        }
     }
 }
