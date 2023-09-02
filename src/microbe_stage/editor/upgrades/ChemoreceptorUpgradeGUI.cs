@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Godot;
 
@@ -77,17 +78,16 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
-        shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds();
-        shownCompoundChoices.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
+        var shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds()
+            .OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase).ToList();
 
         foreach (var choice in shownCompoundChoices)
         {
             compounds.AddItem(choice.Name);
         }
 
-        shownSpeciesChoices = currentGame.GameWorld.Map.FindAllSpeciesWithPopulation();
-        shownSpeciesChoices.Sort((x, y) => string.Compare(x.FormattedName, y.FormattedName,
-            StringComparison.OrdinalIgnoreCase));
+        var shownSpeciesChoices = currentGame.GameWorld.Map.FindAllSpeciesWithPopulation()
+            .OrderBy(c => c.FormattedName, StringComparer.OrdinalIgnoreCase).ToList();
 
         foreach (var choice in shownSpeciesChoices)
         {
