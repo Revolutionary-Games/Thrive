@@ -11,6 +11,8 @@ public class PilusComponent : ExternallyPositionedComponent
 
     private Microbe? currentShapesParent;
 
+    private bool isInjectisome;
+
     public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
         if (currentShapesParent == null)
@@ -61,6 +63,17 @@ public class PilusComponent : ExternallyPositionedComponent
             throw new InvalidOperationException("Pilus needs parent organelle to have graphics");
 
         currentShapesParent = organelle!.ParentMicrobe;
+
+        var configuration = organelle.Upgrades?.CustomUpgradeData;
+
+        // Use default values if not configured
+        if (configuration == null)
+        {
+            isInjectisome = false;
+            return;
+        }
+
+        isInjectisome = ((PilusUpgrades)configuration).IsInjectisome;
     }
 
     protected override void CustomDetach()
@@ -154,5 +167,21 @@ public class PilusComponentFactory : IOrganelleComponentFactory
 
     public void Check(string name)
     {
+    }
+}
+
+[JSONDynamicTypeAllowed]
+public class PilusUpgrades : IComponentSpecificUpgrades
+{
+    public PilusUpgrades(bool isInjectisome) 
+    { 
+        IsInjectisome = isInjectisome;
+    }
+
+    public bool IsInjectisome { get; set; }
+
+    public object Clone()
+    {
+        return new PilusUpgrades(IsInjectisome);
     }
 }
