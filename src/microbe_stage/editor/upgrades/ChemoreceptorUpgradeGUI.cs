@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
@@ -33,15 +33,15 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public NodePath ColourSelectorPath = null!;
 
 #pragma warning disable CA2213
-    private OptionButton targetTypes = null!;
-    private OptionButton compounds = null!;
+    private OptionButton targetTypeSelector = null!;
+    private OptionButton compoundsSelector = null!;
     private Label compoundLabel = null!;
-    private OptionButton species = null!;
+    private OptionButton speciesSelector = null!;
     private Label speciesLabel = null!;
-    private Slider maximumDistance = null!;
-    private Slider minimumAmount = null!;
+    private Slider maximumDistanceSlider = null!;
+    private Slider minimumAmountSlider = null!;
     private Label minimumAmountLabel = null!;
-    private TweakedColourPicker colour = null!;
+    private TweakedColourPicker colourSelector = null!;
 #pragma warning restore CA2213
 
     private List<Compound>? shownCompoundChoices;
@@ -55,43 +55,43 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
-        targetTypes = GetNode<OptionButton>(TargetTypeSelectorPath);
-        compounds = GetNode<OptionButton>(CompoundsSelectorPath);
+        targetTypeSelector = GetNode<OptionButton>(TargetTypeSelectorPath);
+        compoundsSelector = GetNode<OptionButton>(CompoundsSelectorPath);
         compoundLabel = GetNode<Label>(CompoundsLabelPath);
-        species = GetNode<OptionButton>(SpeciesSelectorPath);
+        speciesSelector = GetNode<OptionButton>(SpeciesSelectorPath);
         speciesLabel = GetNode<Label>(SpeciesLabelPath);
-        maximumDistance = GetNode<Slider>(MaximumDistanceSliderPath);
-        minimumAmount = GetNode<Slider>(MinimumAmountSliderPath);
+        maximumDistanceSlider = GetNode<Slider>(MaximumDistanceSliderPath);
+        minimumAmountSlider = GetNode<Slider>(MinimumAmountSliderPath);
         minimumAmountLabel = GetNode<Label>(MinimumAmountLabelPath);
-        colour = GetNode<TweakedColourPicker>(ColourSelectorPath);
+        colourSelector = GetNode<TweakedColourPicker>(ColourSelectorPath);
 
-        compounds.Clear();
-        species.Clear();
+        compoundsSelector.Clear();
+        speciesSelector.Clear();
 
-        maximumDistance.MinValue = Constants.CHEMORECEPTOR_RANGE_MIN;
-        maximumDistance.MaxValue = Constants.CHEMORECEPTOR_RANGE_MAX;
-        minimumAmount.MinValue = Constants.CHEMORECEPTOR_AMOUNT_MIN;
-        minimumAmount.MaxValue = Constants.CHEMORECEPTOR_AMOUNT_MAX;
+        maximumDistanceSlider.MinValue = Constants.CHEMORECEPTOR_RANGE_MIN;
+        maximumDistanceSlider.MaxValue = Constants.CHEMORECEPTOR_RANGE_MAX;
+        minimumAmountSlider.MinValue = Constants.CHEMORECEPTOR_AMOUNT_MIN;
+        minimumAmountSlider.MaxValue = Constants.CHEMORECEPTOR_AMOUNT_MAX;
 
         TypeChanged((int)TargetType.Compound);
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
-        var shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds()
+        shownCompoundChoices = SimulationParameters.Instance.GetCloudCompounds()
             .OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase).ToList();
 
         foreach (var choice in shownCompoundChoices)
         {
-            compounds.AddItem(choice.Name);
+            compoundsSelector.AddItem(choice.Name);
         }
 
-        var shownSpeciesChoices = currentGame.GameWorld.Map.FindAllSpeciesWithPopulation()
+        shownSpeciesChoices = currentGame.GameWorld.Map.FindAllSpeciesWithPopulation()
             .OrderBy(c => c.FormattedName, StringComparer.OrdinalIgnoreCase).ToList();
 
         foreach (var choice in shownSpeciesChoices)
         {
-            species.AddItem(choice.FormattedName);
+            speciesSelector.AddItem(choice.FormattedName);
         }
 
         // Apply current upgrade values or defaults
@@ -118,29 +118,29 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
 
         // Force some type/compound/species to be selected
-        if (targetTypes.Selected == -1)
-            targetTypes.Selected = (int)TargetType.Compound;
-        if (compounds.Selected == -1)
-            compounds.Selected = 0;
-        if (species.Selected == -1)
-            species.Selected = 0;
+        if (targetTypeSelector.Selected == -1)
+            targetTypeSelector.Selected = (int)TargetType.Compound;
+        if (compoundsSelector.Selected == -1)
+            compoundsSelector.Selected = 0;
+        if (speciesSelector.Selected == -1)
+            speciesSelector.Selected = 0;
 
         // Only one type of object can be detected
         Compound? compoundChoice = null;
         Species? speciesChoice = null;
 
-        if (targetTypes.Selected == (int)TargetType.Compound)
+        if (targetTypeSelector.Selected == (int)TargetType.Compound)
         {
-            compoundChoice = shownCompoundChoices[compounds.Selected];
+            compoundChoice = shownCompoundChoices[compoundsSelector.Selected];
         }
-        else if (targetTypes.Selected == (int)TargetType.Species)
+        else if (targetTypeSelector.Selected == (int)TargetType.Species)
         {
-            speciesChoice = shownSpeciesChoices[species.Selected];
+            speciesChoice = shownSpeciesChoices[speciesSelector.Selected];
         }
 
         organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(
             compoundChoice, speciesChoice,
-            (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color);
+            (float)maximumDistanceSlider.Value, (float)minimumAmountSlider.Value, colourSelector.Color);
         return true;
     }
 
@@ -152,23 +152,23 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public void TypeChanged(int index)
     {
         // Make either species or compound menu visible
-        species.Visible = false;
+        speciesSelector.Visible = false;
         speciesLabel.Visible = false;
-        compounds.Visible = false;
+        compoundsSelector.Visible = false;
         compoundLabel.Visible = false;
-        minimumAmount.Visible = false;
+        minimumAmountSlider.Visible = false;
         minimumAmountLabel.Visible = false;
 
         switch ((TargetType)index)
         {
             case TargetType.Compound:
-                compounds.Visible = true;
+                compoundsSelector.Visible = true;
                 compoundLabel.Visible = true;
-                minimumAmount.Visible = true;
+                minimumAmountSlider.Visible = true;
                 minimumAmountLabel.Visible = true;
                 break;
             case TargetType.Species:
-                species.Visible = true;
+                speciesSelector.Visible = true;
                 speciesLabel.Visible = true;
                 break;
         }
@@ -211,19 +211,19 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (configuration.TargetCompound != null)
         {
             TypeChanged((int)TargetType.Compound);
-            targetTypes.Selected = (int)TargetType.Compound;
-            compounds.Selected = shownCompoundChoices.FindIndex(c => c == configuration.TargetCompound);
+            targetTypeSelector.Selected = (int)TargetType.Compound;
+            compoundsSelector.Selected = shownCompoundChoices.FindIndex(c => c == configuration.TargetCompound);
         }
         else if (configuration.TargetSpecies != null)
         {
             TypeChanged((int)TargetType.Species);
-            targetTypes.Selected = (int)TargetType.Species;
-            species.Selected = shownSpeciesChoices.FindIndex(c => c == configuration.TargetSpecies);
+            targetTypeSelector.Selected = (int)TargetType.Species;
+            speciesSelector.Selected = shownSpeciesChoices.FindIndex(c => c == configuration.TargetSpecies);
         }
 
-        maximumDistance.Value = configuration.SearchRange;
-        minimumAmount.Value = configuration.SearchAmount;
-        colour.Color = configuration.LineColour;
+        maximumDistanceSlider.Value = configuration.SearchRange;
+        minimumAmountSlider.Value = configuration.SearchAmount;
+        colourSelector.Color = configuration.LineColour;
     }
 
     /// <summary>
@@ -231,16 +231,16 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     /// </summary>
     private void ApplySelectionColour()
     {
-        if (targetTypes.Selected == (int)TargetType.Compound && shownCompoundChoices != null
-            && compounds.Selected >= 0)
+        if (targetTypeSelector.Selected == (int)TargetType.Compound && shownCompoundChoices != null
+            && compoundsSelector.Selected >= 0)
         {
-            colour.Color = shownCompoundChoices[compounds.Selected].Colour;
+            colourSelector.Color = shownCompoundChoices[compoundsSelector.Selected].Colour;
         }
 
-        if (targetTypes.Selected == (int)TargetType.Species && shownSpeciesChoices != null
-            && species.Selected >= 0)
+        if (targetTypeSelector.Selected == (int)TargetType.Species && shownSpeciesChoices != null
+            && speciesSelector.Selected >= 0)
         {
-            colour.Color = shownSpeciesChoices[species.Selected].Colour;
+            colourSelector.Color = shownSpeciesChoices[speciesSelector.Selected].Colour;
         }
     }
 }
