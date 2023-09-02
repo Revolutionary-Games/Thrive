@@ -74,6 +74,7 @@ public class MicrobeSystem
         (Microbe Microbe, Vector3 Position)? closestMicrobe = null;
         float nearestDistanceSquared = float.MaxValue;
         var searchRadiusSquared = searchRadius * searchRadius;
+
         microbes ??= worldRoot.GetTree().GetNodesInGroup(Constants.RUNNABLE_MICROBE_GROUP).Cast<Microbe>()
             .ToArray();
 
