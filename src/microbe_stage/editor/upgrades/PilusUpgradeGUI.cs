@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 
 public class PilusUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
@@ -43,10 +42,7 @@ public class PilusUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
-            if (IsInjectisomeCheckboxPath != null)
-            {
-                IsInjectisomeCheckboxPath.Dispose();
-            }
+            IsInjectisomeCheckboxPath?.Dispose();
         }
 
         base.Dispose(disposing);
