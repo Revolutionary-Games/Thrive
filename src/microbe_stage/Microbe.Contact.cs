@@ -24,6 +24,7 @@ public partial class Microbe
     ///   Contains the pili this microbe has for collision checking
     /// </summary>
     private HashSet<uint> pilusPhysicsShapes = new();
+
     private HashSet<uint> injectisomePhysicsShapes = new();
 
     private bool membraneOrganellePositionsAreDirty = true;
