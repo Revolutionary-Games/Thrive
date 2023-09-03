@@ -70,10 +70,10 @@ public partial class Microbe
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
     ///   current organelles. This is here to prevent anyone from
-    ///   messing with this value if we used the Capacity from the
+    ///   messing with this value if we used the CompoundCapacities from the
     ///   CompoundBag for the calculations that use this.
     /// </summary>
-    private float organellesCapacity;
+    private Dictionary<Compound, float> organellesCapacity = new();
 
     /// <summary>
     ///   True once all organelles are divided to not continuously run code that is triggered
@@ -1295,14 +1295,14 @@ public partial class Microbe
 
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
-        organellesCapacity += organelle.StorageCapacity;
-        Compounds.SetCapacityForAllCompounds(organellesCapacity);
+        CalculateOrganelleCapacity(organelle, false);
+        Compounds.SetCapacityForCompoundDict(organellesCapacity);
     }
 
     [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
-        organellesCapacity -= organelle.StorageCapacity;
+        CalculateOrganelleCapacity(organelle, true);
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
@@ -1323,7 +1323,7 @@ public partial class Microbe
         cachedRotationSpeed = null;
         organelleMaxRenderPriorityDirty = true;
 
-        Compounds.SetCapacityForAllCompounds(organellesCapacity);
+        Compounds.SetCapacityForCompoundDict(organellesCapacity);
     }
 
     /// <summary>
@@ -1331,8 +1331,42 @@ public partial class Microbe
     /// </summary>
     private void RecomputeOrganelleCapacity()
     {
-        organellesCapacity = organelles!.Sum(o => o.StorageCapacity);
-        Compounds.SetCapacityForAllCompounds(organellesCapacity);
+        foreach (PlacedOrganelle organelle in organelles!)
+        {
+            CalculateOrganelleCapacity(organelle, false);
+        }
+
+        Compounds.SetCapacityForCompoundDict(organellesCapacity);
+    }
+
+    /// <summary>
+    ///   Modifies <see cref="organellesCapacity"/> to take into account the capacity of the organelle
+    /// </summary>
+    /// <param name="organelle"> The organelle we want to calculate the capacity of</param>
+    /// <param name="negative">This should be true if the method is supposed to remove capacity and not increase it</param>
+    private void CalculateOrganelleCapacity(PlacedOrganelle organelle, bool negative)
+    {
+        int sign = negative ? -1 : 1;
+
+        if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades upgrades && upgrades.IsSpecialized)
+        {
+            organellesCapacity[upgrades.Specialization] += organelle.StorageCapacity * 2 * sign;
+        }
+        else
+        {
+            foreach (Compound compound in SimulationParameters.Instance.GetAllCompounds().Values)
+            {
+                if (compound.IsEnvironmental || compound.IsAgent)
+                    continue;
+
+                if (!organellesCapacity.ContainsKey(compound))
+                {
+                    organellesCapacity.Add(compound, 0);
+                }
+
+                organellesCapacity[compound] += organelle.StorageCapacity * sign;
+            }
+        }
     }
 
     private bool CheckHasSignalingAgent()

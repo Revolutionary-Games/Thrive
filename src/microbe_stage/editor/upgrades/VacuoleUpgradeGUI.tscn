@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+
+[node name="VacuoleUpgradeGUI" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -880.0
+margin_bottom = -650.0
+rect_min_size = Vector2( 400, 0 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+CompoundsPath = NodePath("OptionButton")
+IsSpecializedCheckboxPath = NodePath("CheckBox")
+CompoundDescriptionPath = NodePath("Label2")
+SelectCompoundTextPath = NodePath("Label")
+
+[node name="Label3" type="Label" parent="."]
+margin_right = 400.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "VACUOLE_IS_SPECIALIZED"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_top = 21.0
+margin_right = 400.0
+margin_bottom = 46.0
+
+[node name="Spacer2" type="Control" parent="."]
+margin_top = 50.0
+margin_right = 400.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 59.0
+margin_right = 400.0
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 3 )
+text = "SELECT_VACUOLE_COMPOUND"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+margin_top = 80.0
+margin_right = 400.0
+margin_bottom = 99.0
+
+[node name="Spacer" type="Control" parent="."]
+margin_top = 103.0
+margin_right = 400.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label2" type="Label" parent="."]
+margin_top = 112.0
+margin_right = 400.0
+margin_bottom = 129.0
+custom_fonts/font = ExtResource( 3 )
+autowrap = true
+
+[connection signal="toggled" from="CheckBox" to="." method="OnIsSpecializedToggled"]

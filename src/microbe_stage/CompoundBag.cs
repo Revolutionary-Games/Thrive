@@ -44,11 +44,14 @@ public class CompoundBag : ICompoundStorage
     }
 
     /// <summary>
-    ///   Sets the capacity for a given compound
+    ///   Sets the capacity for a dictionary of compounds and their respecive capcities
     /// </summary>
-    public void SetCapacityForCompound(Compound compound, float capacity)
+    public void SetCapacityForCompoundDict(Dictionary<Compound, float> capacityDictionary)
     {
-        CompoundCapacities[compound] = capacity;
+        foreach (var entry in capacityDictionary)
+        {
+            CompoundCapacities[entry.Key] = entry.Value;
+        }
     }
 
     public void SetCapacityForAllCompounds(float capacity)
