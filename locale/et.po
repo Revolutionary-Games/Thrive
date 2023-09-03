@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-02 15:31+0200\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1086,6 +1086,8 @@ msgstr "Ühendid:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1129,7 +1131,7 @@ msgstr "{0} kontsentratsioon on vähenenud {1} võrra"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tarbimine"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "Leitav ühend:"
 
@@ -2925,10 +2927,6 @@ msgstr "Raud"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Raua kemolitoautotroofia"
 
-#: ../src/microbe_stage/editor/upgrades/PilusUpgradeGUI.tscn:22
-msgid "IS_INJECTISOME"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:801
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3437,7 +3435,7 @@ msgstr ""
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 msgid "LINE_COLOUR"
 msgstr "Joone värv:"
 
@@ -3964,7 +3962,7 @@ msgstr "Keskmine hiir"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Minimaalne tuvastatav summa:"
 
@@ -4554,11 +4552,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1547
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1493
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -5822,7 +5820,7 @@ msgstr "Kerimislukk"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Otsing..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Otsingu raadius:"
 
@@ -6128,7 +6126,7 @@ msgstr "Kudema ammoniaaki"
 msgid "SPAWN_ENEMY"
 msgstr "Kudema vaenlane"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ei saa kasutada vaenlase pettust, kuna see plaaster ei sisalda ühtegi vaenlase liiki"
 
@@ -6149,6 +6147,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Hiire eriversioon 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #, fuzzy
 msgid "SPECIES"
 msgstr "Liikide nimekiri"
@@ -6196,6 +6195,11 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Liigid:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -6507,6 +6511,11 @@ msgstr "Sildid sisaldavad ainult tühikuid"
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Tehke ekraanipilt"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "Tüüp:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-02 15:31+0200\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1043,6 +1043,8 @@ msgstr "Postaveno v:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1080,7 +1082,7 @@ msgstr "{0} koncentrace se snížily o {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "Sloučenina k nalezení:"
 
@@ -2868,10 +2870,6 @@ msgstr "Železo"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Chemolithoautotrofie železa"
 
-#: ../src/microbe_stage/editor/upgrades/PilusUpgradeGUI.tscn:22
-msgid "IS_INJECTISOME"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:801
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3365,7 +3363,7 @@ msgstr "Obrovský"
 msgid "LIMIT_VERY_SMALL"
 msgstr "Maličký"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 msgid "LINE_COLOUR"
 msgstr "Barva čáry:"
 
@@ -3863,7 +3861,7 @@ msgstr "Tlačítko kolečka myši"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Minimální množství k detekci:"
 
@@ -4436,11 +4434,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1547
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1493
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -5685,7 +5683,7 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Vyhledat..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Vyhledávací rádius:"
 
@@ -5971,7 +5969,7 @@ msgstr "Spawnout Amoniak"
 msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nelze využít cheat ke spawnutí nepřítele, jelikož v tomto prostředí se nenachází žádné nepřátelské druhy"
 
@@ -5992,6 +5990,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Myš Speciál 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 msgid "SPECIES"
 msgstr "Druhy"
 
@@ -6047,6 +6046,11 @@ msgstr "Minimální populace druhu pro rozdělení skrze nalezení několika dob
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Minimální podíl populace druhu pro dovolení rozdělení skrze mutace"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Druh:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -6347,6 +6351,11 @@ msgstr "Štítky pouze obsahují whitespace"
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Udělat screenshot"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "Typ:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"

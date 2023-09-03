@@ -89,7 +89,7 @@ public partial class Microbe
     /// </remarks>
     private bool allOrganellesDivided;
 
-    private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+    private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL;
     private float timeUntilDigestionUpdate = Constants.MICROBE_DIGESTION_UPDATE_INTERVAL;
 
     private bool organelleMaxRenderPriorityDirty = true;
@@ -189,8 +189,8 @@ public partial class Microbe
     ///   Called periodically to report the chemoreception settings of the microbe
     /// </summary>
     [JsonProperty]
-    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
-        OnCompoundChemoreceptionInfo { get; set; }
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>,
+        IEnumerable<(Species Species, float Range, Color Colour)>>? OnChemoreceptionInfo { get; set; }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
@@ -1442,12 +1442,11 @@ public partial class Microbe
         if (timeUntilChemoreceptionUpdate > 0 || Dead)
             return;
 
-        timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
-
-        OnCompoundChemoreceptionInfo?.Invoke(this, activeCompoundDetections);
+        OnChemoreceptionInfo?.Invoke(this, activeCompoundDetections, activeSpeciesDetections);
 
         // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
         activeCompoundDetections.Clear();
+        activeSpeciesDetections.Clear();
     }
 
     /// <summary>

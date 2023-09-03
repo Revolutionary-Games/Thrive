@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-02 15:31+0200\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1081,6 +1081,8 @@ msgstr "Föreningar:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1121,7 +1123,7 @@ msgstr "{0} koncentrationer har minskat med {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} konsumtion"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
 msgstr "Molekylmoln"
@@ -2894,10 +2896,6 @@ msgstr "Järn"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Järnkemolitoautotrofi"
 
-#: ../src/microbe_stage/editor/upgrades/PilusUpgradeGUI.tscn:22
-msgid "IS_INJECTISOME"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:801
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3408,7 +3406,7 @@ msgstr ""
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Färg"
@@ -3872,7 +3870,7 @@ msgstr "Skroll klick"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
@@ -4434,11 +4432,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1547
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1493
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -5709,7 +5707,7 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Sök..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr ""
 
@@ -6015,7 +6013,7 @@ msgstr "Spawna ammoniak"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6036,6 +6034,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Mus Special 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #, fuzzy
 msgid "SPECIES"
 msgstr "Artlista"
@@ -6092,6 +6091,11 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Arter:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 #, fuzzy
@@ -6395,6 +6399,11 @@ msgstr ""
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Ta ett screenshot"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "Typ:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
