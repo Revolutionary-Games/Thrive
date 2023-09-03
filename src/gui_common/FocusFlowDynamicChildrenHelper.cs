@@ -218,7 +218,9 @@ public class FocusFlowDynamicChildrenHelper
                 }
 
                 previousChild.FocusNext = currentPath;
-                currentChild.FocusPrevious = previousChildPath;
+
+                // The default Godot behaviour for the previous focus works
+                // currentChild.FocusPrevious = previousChildPath;
             }
 
             previousChild = currentChild;
