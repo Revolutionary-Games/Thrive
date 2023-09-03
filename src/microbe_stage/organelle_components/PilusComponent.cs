@@ -47,7 +47,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
             // New ownerId
             var ownerId = currentShapesParent.CreateNewOwnerId(newShapeParent, transform, addedChildShapes[0]);
-            newShapeParent.AddPilus(ownerId);
+            newShapeParent.AddPilus(ownerId, isInjectisome);
 
             // Destroy the old shape owner
             DestroyShape();
@@ -139,7 +139,8 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var ownerId = parent.CreateShapeOwner(shape);
         parent.ShapeOwnerAddShape(ownerId, shape);
-        parent.AddPilus(ownerId);
+        parent.AddPilus(ownerId, isInjectisome);
+
         addedChildShapes.Add(ownerId);
     }
 
@@ -173,8 +174,8 @@ public class PilusComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class PilusUpgrades : IComponentSpecificUpgrades
 {
-    public PilusUpgrades(bool isInjectisome) 
-    { 
+    public PilusUpgrades(bool isInjectisome)
+    {
         IsInjectisome = isInjectisome;
     }
 

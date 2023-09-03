@@ -12,6 +12,7 @@ margin_bottom = -650.0
 rect_min_size = Vector2( 400, 0 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+IsInjectisomeCheckboxPath = NodePath("CheckBox")
 
 [node name="Label" type="Label" parent="."]
 margin_right = 400.0

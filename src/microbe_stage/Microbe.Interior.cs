@@ -358,19 +358,30 @@ public partial class Microbe
     /// <summary>
     ///   Report that a pilus shape was added to this microbe. Called by PilusComponent
     /// </summary>
-    public bool AddPilus(uint shapeOwner)
+    public bool AddPilus(uint shapeOwner, bool isInjectisome)
     {
+        if (isInjectisome)
+            injectisomePhysicsShapes.Add(shapeOwner);
+
         return pilusPhysicsShapes.Add(shapeOwner);
     }
 
     public bool RemovePilus(uint shapeOwner)
     {
+        if (injectisomePhysicsShapes.Contains(shapeOwner))
+            injectisomePhysicsShapes.Remove(shapeOwner);
+
         return pilusPhysicsShapes.Remove(shapeOwner);
     }
 
     public bool IsPilus(uint shape)
     {
         return pilusPhysicsShapes.Contains(shape);
+    }
+
+    public bool IsInjectisome(uint shape)
+    {
+        return injectisomePhysicsShapes.Contains(shape);
     }
 
     /// <summary>
