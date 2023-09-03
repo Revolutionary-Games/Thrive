@@ -14,7 +14,7 @@ public class PilusUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         isInjectisomeCheckbox = GetNode<CheckBox>(IsInjectisomeCheckboxPath);
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is PilusUpgrades configuration)
