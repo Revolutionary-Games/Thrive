@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-29 14:37+0300\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -166,7 +166,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:407
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:402
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -260,7 +260,7 @@ msgstr "VI PROSPERIS!"
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:520
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -369,7 +369,7 @@ msgstr "Aŭtomata konservado dum la ludo"
 msgid "AUTO_EVO"
 msgstr "Aŭto-Evo"
 
-#: ../src/general/MainMenu.tscn:417
+#: ../src/general/MainMenu.tscn:418
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Lanĉa stato:"
@@ -400,7 +400,7 @@ msgstr "Lanĉa stato:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Antaŭeniĝu aŭtomate"
 
-#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1045 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Distingivo:"
@@ -431,8 +431,8 @@ msgstr ""
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
-#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
+#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -541,7 +541,7 @@ msgstr "Konduto"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sub marnivelo"
 
-#: ../src/general/MainMenu.tscn:431
+#: ../src/general/MainMenu.tscn:432
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -1081,20 +1081,20 @@ msgstr "Kapabloj"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:674
+#: ../src/general/MainMenu.tscn:675
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:669
+#: ../src/general/MainMenu.tscn:670
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:717
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:712
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -1108,6 +1108,8 @@ msgstr "Kunmetaĵoj:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1408,7 +1410,7 @@ msgstr "Serĉado..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kreante objektojn el konservado"
 
-#: ../src/general/MainMenu.tscn:355
+#: ../src/general/MainMenu.tscn:356
 msgid "CREDITS"
 msgstr "Kreditoj"
 
@@ -1519,7 +1521,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1491
+#: ../src/general/OptionsMenu.cs:1511
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1620,11 +1622,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:689
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:684
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -1633,11 +1635,11 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:703
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:698
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -1766,7 +1768,7 @@ msgstr ""
 "Inter metitaj organetoj, estas organetoj kiu ne estas ligitaj al la aliaj.\n"
 "Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn ŝanĝojn."
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:861
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -2169,7 +2171,7 @@ msgstr "Anstataŭigi ekzistantan konservadon:"
 msgid "EXIT"
 msgstr "Eliri"
 
-#: ../src/general/MainMenu.tscn:364
+#: ../src/general/MainMenu.tscn:365
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2224,7 +2226,7 @@ msgstr "formortis de la planedo"
 msgid "EXTINCT_SPECIES"
 msgstr "FORMORTADO"
 
-#: ../src/general/MainMenu.tscn:347
+#: ../src/general/MainMenu.tscn:348
 msgid "EXTRAS"
 msgstr "Ekstraĵoj"
 
@@ -2232,7 +2234,7 @@ msgstr "Ekstraĵoj"
 msgid "EXTRA_OPTIONS"
 msgstr "Ekstraj Agordoj"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:873
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -2502,24 +2504,24 @@ msgstr "Generacio:"
 msgid "GENERATION_COLON"
 msgstr "Generacio:"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:825
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/OptionsMenu.cs:1039
+#: ../src/general/OptionsMenu.cs:1059
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:957
 msgid "GLES2_MODE_WARNING"
 msgstr "Averto Modo GLES2"
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:959
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
 
-#: ../src/general/OptionsMenu.cs:1044
+#: ../src/general/OptionsMenu.cs:1064
 msgid "GLES3"
 msgstr ""
 
@@ -2574,7 +2576,7 @@ msgstr "Ĉelo de la ludanto"
 msgid "GOT_IT"
 msgstr "Komprenita"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:64
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:67
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
@@ -2918,7 +2920,7 @@ msgstr "Fero"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Fera Kemolitoaŭtotrofio"
 
-#: ../src/general/MainMenu.tscn:800
+#: ../src/general/MainMenu.tscn:801
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -3133,16 +3135,16 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr "Lingvo:"
 
-#: ../src/general/OptionsMenu.cs:1542
+#: ../src/general/OptionsMenu.cs:1562
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Helpu Traduki La Ludon"
 
-#: ../src/general/OptionsMenu.cs:1538
+#: ../src/general/OptionsMenu.cs:1558
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1534
+#: ../src/general/OptionsMenu.cs:1554
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3307,7 +3309,7 @@ msgstr "Maldekstra musbutono"
 msgid "LEFT_MOUSE"
 msgstr "Maldekstra musbutono"
 
-#: ../src/general/MainMenu.tscn:529
+#: ../src/general/MainMenu.tscn:530
 msgid "LICENSES"
 msgstr ""
 
@@ -3483,12 +3485,12 @@ msgstr "Premu la malfaran butonon en la redaktilo por korekti eraron"
 msgid "LOAD_FINISHED"
 msgstr "Ŝarĝo estas finita"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Ŝarĝu"
 
-#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -3698,7 +3700,7 @@ msgstr ""
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:588
+#: ../src/general/MainMenu.tscn:589
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Ŝarĝante Mikrobredaktilon"
@@ -3779,7 +3781,7 @@ msgstr "Ĉiu generacio, vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj ĉ
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Ĉiufoje, kiam vi reproduktiĝas, vi eniros la Mikroban Redaktilon, kie vi povas ŝanĝi vian specion (aldonante, movante aŭ forigante organetojn) por pliigi la sukceson de via specio. Ĉiu vizito al la redaktoro en la Mikroba Scenejo reprezentas 100 milionojn da jaroj da evoluo."
 
-#: ../src/general/MainMenu.tscn:406
+#: ../src/general/MainMenu.tscn:407
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Libra Redaktilo de"
 
@@ -4042,11 +4044,11 @@ msgstr "Forigu organeton"
 msgid "MODIFY_TYPE"
 msgstr "Modifi"
 
-#: ../src/general/MainMenu.tscn:506
+#: ../src/general/MainMenu.tscn:507
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:971
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4137,11 +4139,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4423,11 +4425,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:303
 msgid "NEW_GAME"
 msgstr "Nova ludo"
 
-#: ../src/general/MainMenu.tscn:297
+#: ../src/general/MainMenu.tscn:298
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -4524,11 +4526,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1541
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1487
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4577,7 +4579,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Malfermu Konservadan Adresaron"
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:969
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Trompaĵoj estas ebligitaj"
@@ -4657,11 +4659,11 @@ msgstr "Dekstra musbutono"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:660
+#: ../src/general/MainMenu.tscn:661
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:651
+#: ../src/general/MainMenu.tscn:652
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -4762,11 +4764,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Agordoj"
 
-#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -5034,7 +5036,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos forgesita, malsukcesa eksperimento de evolucio."
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:813
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -5321,11 +5323,11 @@ msgstr "Rapida ŝarĝo"
 msgid "QUICK_SAVE"
 msgstr "Rapida konservado"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:377
 msgid "QUIT"
 msgstr "Forlasu"
 
-#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
+#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
 #: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -5369,7 +5371,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:849
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Rekomenci"
@@ -5395,12 +5397,12 @@ msgstr ""
 msgid "REPORT"
 msgstr "Ra"
 
-#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Ra"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1144
+#: ../src/microbe_stage/Microbe.Interior.cs:1150
 msgid "REPRODUCED"
 msgstr "reproduktis"
 
@@ -5550,7 +5552,7 @@ msgstr "Revenu al Menuo"
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Revenu al Menuo"
 
-#: ../src/general/MainMenu.tscn:775
+#: ../src/general/MainMenu.tscn:776
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -5645,12 +5647,12 @@ msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oks
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:981
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/MainMenu.tscn:978
+#: ../src/general/MainMenu.tscn:979
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5670,12 +5672,12 @@ msgstr "Aŭtomata konservado"
 msgid "SAVE_DELETE_WARNING"
 msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas por ĉiam forigi {0}?"
 
-#: ../src/saving/SaveStatusOverlay.cs:166
-#: ../src/saving/SaveStatusOverlay.tscn:113
+#: ../src/saving/SaveStatusOverlay.cs:175
+#: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.cs:173
+#: ../src/saving/SaveStatusOverlay.cs:182
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
@@ -5719,7 +5721,7 @@ msgstr "Konservado ne validas"
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/saving/InProgressLoad.cs:245
+#: ../src/saving/InProgressLoad.cs:244
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -6152,7 +6154,7 @@ msgstr "Generu amoniakon"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6337,17 +6339,17 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1001
+#: ../src/general/MainMenu.tscn:1002
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Konservado malsukcesis! Escepto okazis"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1004
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/general/MainMenu.tscn:788
+#: ../src/general/MainMenu.tscn:789
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Rekomenci"
@@ -6390,7 +6392,7 @@ msgstr "Stokado"
 msgid "STORAGE_COLON"
 msgstr "Stokado"
 
-#: ../src/general/MainMenu.cs:570
+#: ../src/general/MainMenu.cs:620
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -6543,6 +6545,11 @@ msgstr ""
 msgid "TAKE_SCREENSHOT"
 msgstr "Prenu ekrankopion"
 
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "SP:"
+
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6617,7 +6624,7 @@ msgstr "Tеmp."
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6625,7 +6632,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:991
+#: ../src/general/MainMenu.tscn:992
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "VI PROSPERIS!"
@@ -6690,7 +6697,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6853,7 +6860,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Ŝaltu engluton"
 
-#: ../src/general/MainMenu.tscn:331
+#: ../src/general/MainMenu.tscn:332
 msgid "TOOLS"
 msgstr "Iloj"
 
@@ -7093,7 +7100,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Lernilo"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:885
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -7125,7 +7132,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1603
+#: ../src/general/OptionsMenu.cs:1623
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -7163,7 +7170,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Nekonata musbutono"
 
-#: ../src/general/OptionsMenu.cs:1049
+#: ../src/general/OptionsMenu.cs:1069
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Kapabloj"
@@ -7177,7 +7184,7 @@ msgstr "Nekonata musbutono"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Nekonata musbutono"
 
-#: ../src/general/OptionsMenu.cs:1610
+#: ../src/general/OptionsMenu.cs:1630
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
@@ -7309,7 +7316,7 @@ msgstr "Rapideco:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1078 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -7332,7 +7339,7 @@ msgstr "Kaverno"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:340
 msgid "VIEW_SOURCE_CODE"
 msgstr "Rigardi Fontkodon"
 
@@ -7344,7 +7351,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
+#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7508,7 +7515,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "jaroj"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:837
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Rekomenci"
