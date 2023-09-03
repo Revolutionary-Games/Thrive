@@ -12,21 +12,17 @@ public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
 
-    /// <summary>
-    ///   Creates a new bag
-    /// </summary>
-    /// <param name="capacity">Specifies the initial capacity of the compound bag</param>
     public CompoundBag(float capacity)
     {
-        Capacity = capacity;
+        SetCapacityForAllCompounds(capacity);
     }
+
 
     /// <summary>
     ///   How much of each compound this bag can store.
-    ///   Currently a CompoundBag can hold the same amount of each compound.
     /// </summary>
     [JsonProperty]
-    public float Capacity { get; set; }
+    public Dictionary<Compound, float> CompoundCapacities { get; private set; } = new();
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
@@ -38,13 +34,29 @@ public class CompoundBag : ICompoundStorage
     /// <summary>
     ///   Gets the capacity for a given compound
     /// </summary>
-    /// <returns>Returns <see cref="Capacity"/> if the compound is useful, otherwise 0</returns>
+    /// <returns>Returns CompoundCapacities[compound] if the compound is useful, otherwise 0</returns>
     public float GetCapacityForCompound(Compound compound)
     {
         if (IsUseful(compound))
-            return Capacity;
+            return CompoundCapacities[compound];
 
         return 0;
+    }
+
+    /// <summary>
+    ///   Sets the capacity for a given compound
+    /// </summary>
+    public void SetCapacityForCompound(Compound compound, float capacity)
+    {
+        CompoundCapacities[compound] = capacity;
+    }
+
+    public void SetCapacityForAllCompounds(float capacity)
+    {
+        foreach (Compound compound in SimulationParameters.Instance.GetAllCompounds().Values)
+        {
+            CompoundCapacities[compound] = capacity;
+        }
     }
 
     public float GetCompoundAmount(Compound compound)
@@ -83,7 +95,7 @@ public class CompoundBag : ICompoundStorage
 
         float existingAmount = GetCompoundAmount(compound);
 
-        float newAmount = Math.Min(existingAmount + amount, Capacity);
+        float newAmount = Math.Min(existingAmount + amount, CompoundCapacities[compound]);
 
         Compounds[compound] = newAmount;
 

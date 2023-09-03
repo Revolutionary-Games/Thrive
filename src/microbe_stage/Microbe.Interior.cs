@@ -729,10 +729,10 @@ public partial class Microbe
             {
                 amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
             }
-            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
+            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.CompoundCapacities[type])
             {
                 // Vent the part that went over
-                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
+                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.CompoundCapacities[type]);
 
                 amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent), Vector3.Back);
             }
@@ -1296,7 +1296,7 @@ public partial class Microbe
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
-        Compounds.Capacity = organellesCapacity;
+        Compounds.SetCapacityForAllCompounds(organellesCapacity);
     }
 
     [DeserializedCallbackAllowed]
@@ -1323,7 +1323,7 @@ public partial class Microbe
         cachedRotationSpeed = null;
         organelleMaxRenderPriorityDirty = true;
 
-        Compounds.Capacity = organellesCapacity;
+        Compounds.SetCapacityForAllCompounds(organellesCapacity);
     }
 
     /// <summary>
@@ -1332,7 +1332,7 @@ public partial class Microbe
     private void RecomputeOrganelleCapacity()
     {
         organellesCapacity = organelles!.Sum(o => o.StorageCapacity);
-        Compounds.Capacity = organellesCapacity;
+        Compounds.SetCapacityForAllCompounds(organellesCapacity);
     }
 
     private bool CheckHasSignalingAgent()
@@ -1634,7 +1634,7 @@ public partial class Microbe
     private void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result)
     {
         result.TryGetValue(glucose, out float existingGlucose);
-        result[glucose] = existingGlucose + Compounds.Capacity *
+        result[glucose] = existingGlucose + Compounds.CompoundCapacities[glucose] *
             Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 
