@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-29 14:37+0300\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -160,7 +160,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(швидкість з якою ШІ мутує вид)"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:407
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:402
 msgid "ALL"
 msgstr "Все"
 
@@ -261,7 +261,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Малюнок від {0}"
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:520
 msgid "ART_GALLERY"
 msgstr "Галерея"
 
@@ -369,7 +369,7 @@ msgstr "Автозбереження під час гри"
 msgid "AUTO_EVO"
 msgstr "Авто-ево"
 
-#: ../src/general/MainMenu.tscn:417
+#: ../src/general/MainMenu.tscn:418
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Інструменти дослідження Авто-ево"
 
@@ -398,7 +398,7 @@ msgstr "Статус Авто-ево:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "автоматичн рухайтесь вперед"
 
-#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1045 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
 msgstr "Автоматично ({0}x{1})"
 
@@ -420,8 +420,8 @@ msgid "AWARE_STAGE"
 msgstr "Стадія свідомості"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
-#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
+#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -520,7 +520,7 @@ msgstr "Опортунізм"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м. нижче рівня моря"
 
-#: ../src/general/MainMenu.tscn:431
+#: ../src/general/MainMenu.tscn:432
 msgid "BENCHMARKS"
 msgstr "Бенчмарки"
 
@@ -1044,19 +1044,19 @@ msgstr "Загальні здібності"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "Загальний редактор та стратегічні стадії"
 
-#: ../src/general/MainMenu.tscn:674
+#: ../src/general/MainMenu.tscn:675
 msgid "COMMUNITY_FORUM"
 msgstr "Форум спільноти"
 
-#: ../src/general/MainMenu.tscn:669
+#: ../src/general/MainMenu.tscn:670
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Приєднуйтеся до спільноти Thrive на нашому форумі спільноти"
 
-#: ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:717
 msgid "COMMUNITY_WIKI"
 msgstr "Wiki спільноти"
 
-#: ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:712
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Відвідайте наше wiki спільноти"
 
@@ -1068,6 +1068,8 @@ msgstr "Збірка в:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1105,7 +1107,7 @@ msgstr "{0} концентрація зменшилась на {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} поглинуто"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "Знайдені сполуки:"
 
@@ -1355,7 +1357,7 @@ msgstr "Створення..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Створюємо об'єкти зі збереження"
 
-#: ../src/general/MainMenu.tscn:355
+#: ../src/general/MainMenu.tscn:356
 msgid "CREDITS"
 msgstr "Титри"
 
@@ -1481,7 +1483,7 @@ msgstr "панель налагоджування"
 msgid "DECEMBER"
 msgstr "Грудень"
 
-#: ../src/general/OptionsMenu.cs:1491
+#: ../src/general/OptionsMenu.cs:1511
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення за замовчуванням"
 
@@ -1578,11 +1580,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Розробники"
 
-#: ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:689
 msgid "DEVELOPMENT_FORUM"
 msgstr "Форум розробки"
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:684
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Поглянути оновлення розробки на нашому форумі"
 
@@ -1590,11 +1592,11 @@ msgstr "Поглянути оновлення розробки на нашому
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Розробницька підтримка від Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:703
 msgid "DEVELOPMENT_WIKI"
 msgstr "Розробницьке wiki"
 
-#: ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:698
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Відвідайте наше розробницьке wiki"
 
@@ -1722,7 +1724,7 @@ msgstr ""
 "Тут розміщені органели, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені органели, або скасуйте зміни."
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:861
 msgid "DISCORD_TOOLTIP"
 msgstr "Приєднуйтесь до спільноти Discord серверу"
 
@@ -2102,7 +2104,7 @@ msgstr "Введіть існуючий ID"
 msgid "EXIT"
 msgstr "Вихід"
 
-#: ../src/general/MainMenu.tscn:364
+#: ../src/general/MainMenu.tscn:365
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Вийти до лаунчера"
 
@@ -2152,7 +2154,7 @@ msgstr "вимерли в ділянці"
 msgid "EXTINCT_SPECIES"
 msgstr "Вимерлі види"
 
-#: ../src/general/MainMenu.tscn:347
+#: ../src/general/MainMenu.tscn:348
 msgid "EXTRAS"
 msgstr "Додаткове"
 
@@ -2160,7 +2162,7 @@ msgstr "Додаткове"
 msgid "EXTRA_OPTIONS"
 msgstr "Додаткові налаштування"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:873
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Відвідайте на сторінку Facebook"
 
@@ -2425,23 +2427,23 @@ msgstr "Генерації"
 msgid "GENERATION_COLON"
 msgstr "Генерація:"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:825
 msgid "GITHUB_TOOLTIP"
 msgstr "Відвідайте наше сховище у GitHub"
 
-#: ../src/general/OptionsMenu.cs:1039
+#: ../src/general/OptionsMenu.cs:1059
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:957
 msgid "GLES2_MODE_WARNING"
 msgstr "Режим попереджень GLES2"
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:959
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є перевіреним та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Thrive."
 
-#: ../src/general/OptionsMenu.cs:1044
+#: ../src/general/OptionsMenu.cs:1064
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2495,7 +2497,7 @@ msgstr "Бігаючі оченята клітин"
 msgid "GOT_IT"
 msgstr "Зрозуміло"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:64
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:67
 msgid "GPL_LICENSE_HEADING"
 msgstr "Відслідкований Текст ліцензії GPL:"
 
@@ -2827,7 +2829,7 @@ msgstr "Залізо"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Хемолітоавтотрофія заліза"
 
-#: ../src/general/MainMenu.tscn:800
+#: ../src/general/MainMenu.tscn:801
 msgid "ITCH_TOOLTIP"
 msgstr "Відвідайте"
 
@@ -3033,15 +3035,15 @@ msgstr "Ввести-"
 msgid "LANGUAGE"
 msgstr "Мова:"
 
-#: ../src/general/OptionsMenu.cs:1542
+#: ../src/general/OptionsMenu.cs:1562
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ця мова на {0}% готова"
 
-#: ../src/general/OptionsMenu.cs:1538
+#: ../src/general/OptionsMenu.cs:1558
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Прогрес перекладу на цю мову зараз солов'їну ({0}% готово)"
 
-#: ../src/general/OptionsMenu.cs:1534
+#: ../src/general/OptionsMenu.cs:1554
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Цей переклад дуже неповний ({0}% готово), буь-ласка допоможіть виправити ця ситуацію!!!"
 
@@ -3203,7 +3205,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "ЛКМ"
 
-#: ../src/general/MainMenu.tscn:529
+#: ../src/general/MainMenu.tscn:530
 msgid "LICENSES"
 msgstr "Ліцензія"
 
@@ -3315,7 +3317,7 @@ msgstr "Дуже великий"
 msgid "LIMIT_VERY_SMALL"
 msgstr "Дуже малий"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 msgid "LINE_COLOUR"
 msgstr "Колір лінії:"
 
@@ -3366,12 +3368,12 @@ msgstr "Натисніть на кнопку скасувати, аби випр
 msgid "LOAD_FINISHED"
 msgstr "Завантаження завершено"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Завантажити гру"
 
-#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Завантажити раніше збережену гру"
 
@@ -3570,7 +3572,7 @@ msgid "MICROBES_COUNT"
 msgstr "Кількість бактерій:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:588
+#: ../src/general/MainMenu.tscn:589
 msgid "MICROBE_BENCHMARK"
 msgstr "Мікробний бенчмарк"
 
@@ -3654,7 +3656,7 @@ msgstr "Кожного покоління ви отримуєте 100 очок �
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Ви розмножуєтесь щоразу, як заходите до Мікробного Редактора, де модна змінити свій вид (перміщати, додавати, видаляти органели) для підвищення успішності виду. Кожен візит до мікробного редактору представляє собою [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] міліон років еволюції."
 
-#: ../src/general/MainMenu.tscn:406
+#: ../src/general/MainMenu.tscn:407
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
@@ -3825,7 +3827,7 @@ msgstr "Колесик миші (середина миші)"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Млн"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Мінімальна кількість для виявлення:"
 
@@ -3906,11 +3908,11 @@ msgstr "Модифікувати органелу"
 msgid "MODIFY_TYPE"
 msgstr "Змінити тип"
 
-#: ../src/general/MainMenu.tscn:506
+#: ../src/general/MainMenu.tscn:507
 msgid "MODS"
 msgstr "Моди"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:971
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Встановлений мод виявлено, але увімкнених модів нема.\n"
@@ -3999,11 +4001,11 @@ msgstr "Внутрішня (папкова) назва:"
 msgid "MOD_LICENSE"
 msgstr "Ліцензія на моду:"
 
-#: ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS"
 msgstr "Помилки завантаження модифікації"
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникли помилки під час завантаження декількох модифікацій. Додаткова інформація міститься у журналах."
 
@@ -4283,11 +4285,11 @@ msgstr "НОВИНИ"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Нове біорізноманіття збільшує видові популяції"
 
-#: ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:303
 msgid "NEW_GAME"
 msgstr "Нова гра"
 
-#: ../src/general/MainMenu.tscn:297
+#: ../src/general/MainMenu.tscn:298
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "почати нову гру"
 
@@ -4377,11 +4379,11 @@ msgstr "Немає з чим взаємодіяти"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Пошкодження через нестачу АТФ"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1541
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Пошкодження через токсини у поглинутій матерії"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1487
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Немає {0} для поглинання цілі"
 
@@ -4426,7 +4428,7 @@ msgstr "Нема зафіксованих сполук"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Каталог викопувань не знайдено"
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:969
 msgid "NO_MODS_ENABLED"
 msgstr "Жоден мод не ввімкнений"
 
@@ -4497,11 +4499,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Жовтень"
 
-#: ../src/general/MainMenu.tscn:660
+#: ../src/general/MainMenu.tscn:661
 msgid "OFFICIAL_WEBSITE"
 msgstr "Офіційний сайт"
 
-#: ../src/general/MainMenu.tscn:651
+#: ../src/general/MainMenu.tscn:652
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
@@ -4599,11 +4601,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Упереджені"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Налаштування"
 
-#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Зміна ваших налаштувань"
 
@@ -4850,7 +4852,7 @@ msgstr "Зміни:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Оглянути повний лист змін цього релізу на [color=#3796e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:813
 msgid "PATREON_TOOLTIP"
 msgstr "Відвідайте"
 
@@ -5126,11 +5128,11 @@ msgstr "Швидке завантаження"
 msgid "QUICK_SAVE"
 msgstr "Швидке збереження"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:377
 msgid "QUIT"
 msgstr "Вихід"
 
-#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
+#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Вихід з гри"
@@ -5172,7 +5174,7 @@ msgstr "Готово"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Рекомендовані Thrive:"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:849
 msgid "REDDIT_TOOLTIP"
 msgstr "Відвідайте наш subreddit"
 
@@ -5197,11 +5199,11 @@ msgstr "Повернення міграцій у вимираннях"
 msgid "REPORT"
 msgstr "Звіт"
 
-#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Зробити баг-репорт"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1144
+#: ../src/microbe_stage/Microbe.Interior.cs:1150
 msgid "REPRODUCED"
 msgstr "розмножено"
 
@@ -5339,7 +5341,7 @@ msgstr ""
 "Ви впевнені, що хочете вийти до головного меню?\n"
 "Увесь незбережений прогрес буде втрачено."
 
-#: ../src/general/MainMenu.tscn:775
+#: ../src/general/MainMenu.tscn:776
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
@@ -5425,7 +5427,7 @@ msgstr "Рустіціанін — це білок, що використову�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"iron\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:981
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive запущена у безпечному режимі, бо попередній запуск не вдався.\n"
@@ -5437,7 +5439,7 @@ msgstr ""
 "\n"
 "Якщо вам невдасться вирішити проблему, котра запуску, вам доведеться перезавантажити та вимкнути Thrive кілька разів, для повернення у безпечний режим."
 
-#: ../src/general/MainMenu.tscn:978
+#: ../src/general/MainMenu.tscn:979
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive запущено в безпечному режимі"
 
@@ -5457,12 +5459,12 @@ msgstr "Автозбереження"
 msgid "SAVE_DELETE_WARNING"
 msgstr "Видалення цього збереження неможливо буде скасувати. Чи впевнені Ви, що хочете назавжди видалити {0}?"
 
-#: ../src/saving/SaveStatusOverlay.cs:166
-#: ../src/saving/SaveStatusOverlay.tscn:113
+#: ../src/saving/SaveStatusOverlay.cs:175
+#: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.cs:173
+#: ../src/saving/SaveStatusOverlay.cs:182
 #, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr "Режим направення JSON:"
@@ -5509,7 +5511,7 @@ msgstr ""
 "Якщо Ви пропустите оновлення, то ми спробуємо завантажити збереження в нормальному режимі.\n"
 "Спробувати оновити це збереження?"
 
-#: ../src/saving/InProgressLoad.cs:245
+#: ../src/saving/InProgressLoad.cs:244
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Невдача при звільнені вже завантажені ресурсів: {0}"
 
@@ -5602,7 +5604,7 @@ msgstr "Пересування екрану (Scroll Lock)"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Пошук..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Радіус пошуку:"
 
@@ -5883,7 +5885,7 @@ msgstr "Спавн амоніаку"
 msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
@@ -5904,6 +5906,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Спеціальна миша 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 msgid "SPECIES"
 msgstr "Види"
 
@@ -5958,6 +5961,11 @@ msgstr "Види розділенні за мутаційним поргом р�
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Види розділенні за мутаційним поргом частки популяції"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Види:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -6062,17 +6070,17 @@ msgstr "Steam наразі недоступний, будь-ласка повт�
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Сталася невідома помилка Steam"
 
-#: ../src/general/MainMenu.tscn:1001
+#: ../src/general/MainMenu.tscn:1002
 msgid "STEAM_INIT_FAILED"
 msgstr "Ініціалізація Steam не вдалася"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1004
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
 "Будь ласка, переконайтесь, що Ви запустили клієнт Steam та увійшли до правильного акаунту. Будь ласка, запустіть гру через клієнт Steam, якщо ця помилка не зникає."
 
-#: ../src/general/MainMenu.tscn:788
+#: ../src/general/MainMenu.tscn:789
 msgid "STEAM_TOOLTIP"
 msgstr "Відвідайте нашу сторінку у Steam"
 
@@ -6112,7 +6120,7 @@ msgstr "Збереження"
 msgid "STORAGE_COLON"
 msgstr "Збереження:"
 
-#: ../src/general/MainMenu.cs:570
+#: ../src/general/MainMenu.cs:620
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ви увійшли як:{0}"
 
@@ -6256,6 +6264,11 @@ msgstr "Теги містять лише пробіли"
 msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
 
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "Тип:"
+
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 #, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
@@ -6340,7 +6353,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Команда тестувальників"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Дякуємо за підтримку розробки Thrive, придбавши цю копію Thrive!\n"
@@ -6356,7 +6369,7 @@ msgstr ""
 "\n"
 "Якщо сподобалась гра будь-ласка роскажи друзям про нас (та про українське озвучення та переклади)."
 
-#: ../src/general/MainMenu.tscn:991
+#: ../src/general/MainMenu.tscn:992
 msgid "THANK_YOU_TITLE"
 msgstr "Дякуємо"
 
@@ -6415,7 +6428,7 @@ msgstr "Цей мод завантажений з майстерні Steam"
 msgid "THREADS"
 msgstr "Обрахунки:"
 
-#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Трайвопедія"
 
@@ -6576,7 +6589,7 @@ msgstr "Пауза"
 msgid "TOGGLE_UNBINDING"
 msgstr "Перемкнути роз'єднання"
 
-#: ../src/general/MainMenu.tscn:331
+#: ../src/general/MainMenu.tscn:332
 msgid "TOOLS"
 msgstr "Інструменти"
 
@@ -6802,7 +6815,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:885
 msgid "TWITTER_TOOLTIP"
 msgstr "Відвідайте"
 
@@ -6831,7 +6844,7 @@ msgstr "Роз'єднати всіх"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим зв'язування"
 
-#: ../src/general/OptionsMenu.cs:1603
+#: ../src/general/OptionsMenu.cs:1623
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Це збірка налагоджувань, де інформація нижче, ймовірно, застаріла"
 
@@ -6865,7 +6878,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Невідомо"
 
-#: ../src/general/OptionsMenu.cs:1049
+#: ../src/general/OptionsMenu.cs:1069
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Невідомо"
 
@@ -6877,7 +6890,7 @@ msgstr "Невідома миша"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Невідомо на Windows"
 
-#: ../src/general/OptionsMenu.cs:1610
+#: ../src/general/OptionsMenu.cs:1630
 msgid "UNKNOWN_VERSION"
 msgstr "Невідома версія"
 
@@ -6995,7 +7008,7 @@ msgstr "Вертикаль (Вісь: {0})"
 msgid "VIDEO_MEMORY"
 msgstr "Поточна використовувана відеопам'ять:"
 
-#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1078 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -7016,7 +7029,7 @@ msgstr "Показати інформацію про зміни"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Показати останні з усіх новин про зміни Thrive зараз"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:340
 msgid "VIEW_SOURCE_CODE"
 msgstr "Перегляд вихідного коду"
 
@@ -7028,7 +7041,7 @@ msgstr "VIP підтримка"
 msgid "VISIBLE"
 msgstr "Видимий"
 
-#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
+#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Запропунувати функцію"
 
@@ -7183,7 +7196,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "роки"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:837
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Відвідайте наш YouTube канал"
 
