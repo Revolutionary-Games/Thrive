@@ -22,7 +22,7 @@ public class InteractablePopup : Control
     [Export]
     public Font InteractionButtonFont = null!;
 
-    private CustomDialog popup = null!;
+    private CustomWindow popup = null!;
     private Container buttonsContainer = null!;
     private Button cancelButton = null!;
 
@@ -40,7 +40,7 @@ public class InteractablePopup : Control
 
     public override void _Ready()
     {
-        popup = GetNode<CustomDialog>(PopupPath);
+        popup = GetNode<CustomWindow>(PopupPath);
         buttonsContainer = GetNode<Container>(ButtonsContainerPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
         extraInfoLabel = GetNode<Label>(ExtraInfoLabelPath);
@@ -102,18 +102,44 @@ public class InteractablePopup : Control
         popup.WindowTitle = entity.ReadableName;
         popup.PopupCenteredShrink();
 
-        // Focus needs to be adjusted after opening
         if (firstButton == null)
         {
             GD.Print("No actions available for an interactable in the popup");
-            cancelButton.GrabFocus();
-            cancelButton.GrabClickFocus();
+            cancelButton.GrabFocusInOpeningPopup();
         }
         else
         {
-            firstButton.GrabFocus();
-            firstButton.GrabClickFocus();
+            firstButton.GrabFocusInOpeningPopup();
         }
+    }
+
+    /// <summary>
+    ///   Selects the currently selected option for interaction (or the close button) if any are currently selected
+    /// </summary>
+    /// <returns>True when something could be selected, false if this is not open or focus is somewhere else</returns>
+    public bool SelectCurrentOptionIfOpen()
+    {
+        if (!popup.Visible)
+            return false;
+
+        var focused = GetFocusOwner();
+
+        if (focused == null)
+            return false;
+
+        // Because we don't really store our buttons in the popup, we need to do a check to confirm that something
+        // in our popup is focused. And if something is focused there, we can click that.
+        using var popupPath = popup.GetPath();
+        using var focusedPath = focused.GetPath();
+
+        if (focusedPath.ToString().StartsWith(popupPath.ToString()))
+        {
+            focused.EmitSignal("pressed");
+            return true;
+        }
+
+        // Something else than our popup is focused, so don't do anything to not mess with unexpected parts of the game
+        return false;
     }
 
     protected override void Dispose(bool disposing)

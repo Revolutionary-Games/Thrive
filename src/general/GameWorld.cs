@@ -55,6 +55,7 @@ public class GameWorld : ISaveLoadable
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this()
     {
         WorldSettings = settings;
+        LightCycle.ApplyWorldSettings(settings);
 
         if (startingSpecies == null)
         {
@@ -92,6 +93,12 @@ public class GameWorld : ISaveLoadable
         GenerationHistory.Add(0, new GenerationRecord(
             0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
+
+        if (WorldSettings.DayNightCycleEnabled)
+        {
+            // Make sure average light levels are computed already
+            UpdateGlobalAverageSunlight();
+        }
     }
 
     /// <summary>
@@ -127,6 +134,9 @@ public class GameWorld : ISaveLoadable
 
     [JsonProperty]
     public TimedWorldOperations TimedEffects { get; private set; }
+
+    [JsonProperty]
+    public DayNightCycle LightCycle { get; private set; } = new();
 
     /// <summary>
     ///   The current external effects for the current auto-evo run. This is here to allow saving to work for them.
@@ -179,6 +189,14 @@ public class GameWorld : ISaveLoadable
             SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
 
         species.OnEdited();
+    }
+
+    /// <summary>
+    ///   Takes care of processing everything in the world.
+    /// </summary>
+    public void Process(float delta)
+    {
+        LightCycle.Process(delta);
     }
 
     /// <summary>
@@ -597,10 +615,34 @@ public class GameWorld : ISaveLoadable
         eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight));
     }
 
+    /// <summary>
+    ///   Updates the light level in all patches according to <see cref="LightCycle"/> data.
+    /// </summary>
+    public void UpdateGlobalLightLevels()
+    {
+        foreach (var patch in Map.Patches.Values)
+        {
+            patch.UpdateCurrentSunlight(LightCycle.DayLightFraction);
+        }
+    }
+
+    /// <summary>
+    ///   Updates/sets the average light level of all patches according to <see cref="LightCycle"/> data.
+    /// </summary>
+    public void UpdateGlobalAverageSunlight()
+    {
+        foreach (var patch in Map.Patches.Values)
+        {
+            patch.UpdateAverageSunlight(LightCycle.AverageSunlight);
+        }
+    }
+
     public void FinishLoading(ISaveContext? context)
     {
         if (Map == null || PlayerSpecies == null)
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
+
+        LightCycle.CalculateDependentLightData(WorldSettings);
     }
 
     public void BuildEvolutionaryTree(EvolutionaryTree tree)

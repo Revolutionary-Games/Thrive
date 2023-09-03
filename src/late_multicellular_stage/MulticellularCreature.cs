@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
 public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory,
-    IStructureSelectionReceiver, IActionProgressSource
+    IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
 
@@ -812,6 +812,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         }
 
         return false;
+    }
+
+    public Dictionary<WorldResource, int> CalculateWholeAvailableResources()
+    {
+        return this.CalculateAvailableResources();
     }
 
     private bool PickupToSlot(IInteractableEntity item, InventorySlotData slot)

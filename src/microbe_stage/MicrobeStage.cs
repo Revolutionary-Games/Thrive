@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : StageBase<Microbe>
+public class MicrobeStage : CreatureStageBase<Microbe>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -48,12 +48,6 @@ public class MicrobeStage : StageBase<Microbe>
     /// </summary>
     [JsonProperty]
     private float elapsedSinceEntityPositionCheck;
-
-    /// <summary>
-    ///   Used to control how often light level is updated by the day/night cycle.
-    /// </summary>
-    [JsonProperty]
-    private float elapsedSinceLightLevelUpdate;
 
     [JsonProperty]
     private bool wonOnce;
@@ -93,7 +87,7 @@ public class MicrobeStage : StageBase<Microbe>
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    protected override IStageHUD BaseHUD => HUD;
+    protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
@@ -144,8 +138,7 @@ public class MicrobeStage : StageBase<Microbe>
         floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame, lightCycle);
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem, worldLight, CurrentGame);
     }
 
     public override void _EnterTree()
@@ -172,20 +165,6 @@ public class MicrobeStage : StageBase<Microbe>
         floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
-
-        elapsedSinceLightLevelUpdate += delta;
-        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
-        {
-            elapsedSinceLightLevelUpdate = 0;
-
-            if (GameWorld.Map.CurrentPatch != null)
-            {
-                patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-                patchManager.UpdateAllPatchLightLevels();
-                HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
-                UpdateDayLightEffects();
-            }
-        }
 
         if (gameOver)
             return;
@@ -471,7 +450,16 @@ public class MicrobeStage : StageBase<Microbe>
 
         CurrentGame!.EnterPrototypes();
 
-        GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
+        var modifiedSpecies = GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
+
+        // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
+        // underwater in the awakening stage
+        if (modifiedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        {
+            GD.Print("Preventing player from becoming awakened too soon");
+            modifiedSpecies.KeepPlayerInAwareStage();
+        }
+
         GameWorld.NotifySpeciesChangedStages();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
@@ -510,9 +498,17 @@ public class MicrobeStage : StageBase<Microbe>
             wonOnce = true;
         }
 
+        // Update the player's cell
+        Player!.ApplySpecies(Player.Species);
+
+        // Reset all the duplicates organelles of the player
+        Player.ResetOrganelleLayout();
+
+        var playerPosition = Player.GlobalTransform.origin;
+
         // Spawn another cell from the player species
-        // This is done first to ensure that the player colony is still intact for spawn separation calculation
-        var daughter = Player!.Divide();
+        // This needs to be done after updating the player so that multicellular organisms are accurately separated
+        var daughter = Player.Divide();
 
         daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
 
@@ -521,17 +517,19 @@ public class MicrobeStage : StageBase<Microbe>
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
-            // TODO: add more extra offset between the player and the divided cell
-            // See: https://github.com/Revolutionary-Games/Thrive/issues/3653
+            if (daughter.Colony != null)
+            {
+                // Add more extra offset between the player and the divided cell
+                var daughterPosition = daughter.GlobalTransform.origin;
+                var direction = (playerPosition - daughterPosition).Normalized();
+
+                var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
+
+                float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
+
+                daughter.Translation += -direction * distance;
+            }
         }
-
-        // Update the player's cell
-        Player.ApplySpecies(Player.Species);
-
-        // Reset all the duplicates organelles of the player
-        Player.ResetOrganelleLayout();
-
-        var playerPosition = Player.GlobalTranslation;
 
         // This is queued to run to reduce the massive lag spike that anyway happens on this frame
         // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
@@ -596,7 +594,6 @@ public class MicrobeStage : StageBase<Microbe>
     {
         patchManager.CurrentGame = CurrentGame;
 
-        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
@@ -662,9 +659,9 @@ public class MicrobeStage : StageBase<Microbe>
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
-    protected override void GameOver()
+    protected override void OnGameOver()
     {
-        base.GameOver();
+        base.OnGameOver();
 
         guidanceLine.Visible = false;
     }
@@ -705,6 +702,35 @@ public class MicrobeStage : StageBase<Microbe>
         UpdatePatchLightLevelSettings();
     }
 
+    protected override void OnLightLevelUpdate()
+    {
+        if (GameWorld.Map.CurrentPatch == null)
+            return;
+
+        // TODO: it would make more sense for the GameWorld to update its patch map data based on the
+        // light cycle in it.
+        patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+        GameWorld.UpdateGlobalLightLevels();
+
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+
+        // Updates the background lighting and does various post-effects
+        if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
+        {
+            // This might need to be refactored for efficiency but, it works for now
+            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") *
+                GameWorld.LightCycle.DayLightFraction;
+
+            // Normalise by maximum light level in the patch
+            Camera.LightLevel = lightLevel / maxLightLevel;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            Camera.LightLevel = 1.0f;
+        }
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -719,26 +745,6 @@ public class MicrobeStage : StageBase<Microbe>
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
             GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
-    }
-
-    /// <summary>
-    ///   Updates the background lighting and does various post-effects
-    /// </summary>
-    private void UpdateDayLightEffects()
-    {
-        if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
-        {
-            // This might need to be refactored for efficiency but, it works for now
-            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle.DayLightFraction;
-
-            // Normalise by maximum light level in the patch
-            Camera.LightLevel = lightLevel / maxLightLevel;
-        }
-        else
-        {
-            // Don't change lighting for patches without day/night effects
-            Camera.LightLevel = 1.0f;
-        }
     }
 
     private void UpdatePatchLightLevelSettings()
@@ -843,7 +849,8 @@ public class MicrobeStage : StageBase<Microbe>
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+        if (hostile.CanDigestObject(player) == Microbe.DigestCheckResult.Ok)
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]

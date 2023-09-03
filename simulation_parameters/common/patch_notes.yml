@@ -57,3 +57,111 @@
     - Added code style check for incorrect whitespace in English text
     - Updated translations
     - "Steam: added a warning popup when Steam initialization fails"
+
+0.6.2:
+  IntroductionText: |
+    A new Thrive release is here with some new graphical treats, further prototypes and a whole ton of small improvements and bug fixes.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.2
+  PatchNotes:
+    - "New further prototypes: going on land is now implemented, becoming aware and awakened has been added, added basic crafting, inventory and resource gathering, placing buildings and founding a settlement is now possible, accumulating resources and placing buildings is now possible in the society stage, and finally researching a new technology and placing a factory allows moving to the industrial stage. The industrial stage prototype is where the current prototype work ended up at. That stage has just a placeholder graphic for a city."
+    - Added entirely new 3D scenes to be backgrounds for the main menu, some of these are a bit performance intensive and can be disabled in the options
+    - The membrane generation algorithm is now massively faster, and only results in slightly visually different membranes
+    - Tweaked membrane generation to be tighter around organelles to more closely match the physics, and made multihex organelles send all of their positions to the membrane to fix large organelles in certain cases poking outside the membrane
+    - The editor compound balance now shows the situation at ATP equilibrium, instead of assuming all processes run at maximum speed always
+    - Compound cloud visuals have been slightly improved with a higher resolution noise layer
+    - Separation between divided cells and colonies is now much better
+    - Tweaked the visuals of button focus highlights, along with a few other element types
+    - Microbes now spawn with initial compounds that are proportional to their compound usage (instead of fixed values)
+    - Added late multicellular stage underwater panoramic background
+    - When the player now reproduces the game will try to keep the entity count under control by despawning existing entities if there are too many (player daughter cells are prioritized if they make up a large fraction of the total entity limit)
+    - Cells in colonies are now counted in entity limit (except the player colony as the player is not part of the entity limit)
+    - Added HUD messages that show to report various things to the player, for example if the player can't engulf something the reason is now shown with this kind of message
+    - Colony members that can engulf can now enter engulf mode even if the player cell cannot engulf
+    - All chemoreceptors in a cell colony now function instead of only the lead cell's chemoreceptors working
+    - The spawn algorithm for filling the area around the player now only spawns up to 80% of the entity limit to allow the sector spawning logic more chances to work
+    - There's now a warning icon on the editor finish button if ATP is negative or there's an inprogress action that needs to be finished before exiting the editor
+    - Chunks and projectiles are now shown in the mouse hover panel (inspector)
+    - Added music tracks for the existing prototypes and upcoming ones, they can already be listened to in the art gallery
+    - The day/night cycle light level in the editor now defaults to current value to match the gameplay time of day
+    - Light levels now smoothly change in the editor when switching the time of day
+    - Organelle upgrade GUI now shows adjusted MP costs correctly, instead of just always showing the absolute costs
+    - Added a proper icon for the cilia pull upgrade to replace the placeholder one
+    - Iron is now shown in the patch compounds graphs
+    - "Added 2 new multicellular prototype organelles: axon and myofibril (for future use)"
+    - Auto-evo prediction being calculated now shows a waiting icon
+    - Entering the prototypes is now prevented with a controller as the prototypes don't have any focus on controller usability
+    - Preview cells in the editor now don't create collision shapes which makes game performance better in the editor
+    - Patch map display now starts off centered on the current patch instead of always panning to it when opening
+    - Patch map tooltip, for how to move it, now takes a few more seconds to appear in order to be less annoying
+    - New game setup menu is now more clear what the buttons do (back is no longer visible while in advanced view)
+    - Improved the process speed indicator icon in the process panel
+    - Microbe movement tutorial now has extra smoothing in how the movement direction prompts rotate
+    - Added a new debug panel showing player current coordinates and mouse cursor world position
+    - More elements in the Thriveopedia now react to language change
+    - Fixed seafloor patch background image artifact (this had been a problem for years)
+    - Fixed a visible seam in cell wall textures that was caused by the membrane generation code
+    - Fixed a bug introduced in previous release where organelle tooltip process numbers did not react to patch change (photosynthetic organelles were the visible place where the issue was visible)
+    - Fixed new game menu not wrapping text which could cause long translations to push settings sliders offscreen
+    - Fixed the current resolution display in the options menu not always updating when toggling fullscreen mode
+    - Fixed popup window close buttons not having a visual style for the focused state, which caused it to appear like no GUI element was focused in a popup when the close button was focused
+    - Fixed the membrane disappearing for really thin and long cells
+    - Fixed engulfed tutorial appearing even when the player could not be ingested
+    - Fixed crashing when changing language after having visited the art gallery screen
+    - Fixed editor tab buttons being too wide and overlapping the light level bar
+    - Fixed temperature "compound" being incorrectly shown in the patch compound statistics graph
+    - Fixed uneven main menu buttons with long translation texts, all buttons now stretch to the same width when one translation doesn't fit
+    - Switched world settings text to use safe string format to ensure it can't crash the game due to translation mistakes
+    - Removed classic patch map option as it had bugs specific to it and it was not going to get anyone to maintain that code to be compatible with new features
+    - Reworked our custom popup window handling, organelle popup menu now has animations for opening and closing
+    - Microbe digestion code now only runs 30 times per second to use a bit less performance
+    - Removed saving of usefulCompounds in a compound bag as that data can be regenerated very easily and it increased save sizes unnecessarily
+    - Our input system now throws an exception when registering a duplicate listener object, this will help in developing the game by catching that mistake much sooner
+    - Improved the features of our GUI focus grab system
+    - Improved the usage and internal features of our custom tooltip system
+    - Refactored the species details panel and fossilization dialog internally to be more reusable
+    - Simplified our game entering code to call the same function from more places
+    - Improved our code settings class to prevent some potential mistakes
+    - Added a safety check against an unimplemented feature in our save data loader
+    - Wrote a document describing our saving system
+    - Removed some old files and fixed a broken link in the repo docs
+    - "Updated our used compression library SharpZipLib to 1.4.2, this required switching our GZip handling to use the C# standard version to avoid a bug that broke saves with the new library version. Warning: there's still an intermittent save loading and creation bug (see: [#4156](https://github.com/Revolutionary-Games/Thrive/issues/4156))"
+    - Updated Netanalyzers library version to 7.0.1
+    - Updated our used JSON library to version 13.0.3
+    - Updated YamlDotNet to 13.1.0
+    - Updated some check tool package dependencies
+    - Updated our code checking tools version
+    - Updated translations
+
+0.6.3:
+  IntroductionText: |
+    This release adds all of the remaining prototypes for game stages that weren't ready in time for the previous release. Besides those there are a bunch of small fixes and feature improvements for the microbe stage and general GUI parts. This is a bit of a smaller release due to not many active volunteers and a lot of time has been spent in preparation for a game performance rework which will hopefully be in the release after this one.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.3
+  PatchNotes:
+    - "Added the remaining prototype stages: industrial, space, and ascension. It is now possible to play through the skeleton of the game all the way from microbe to ascension, though the later prototypes have bare minimum content to show off the ideas of the stages."
+    - Downgraded our compression library (SharpZipLib) to 1.3.3 which should resolve the intermittent save errors that have been happening the past few months
+    - Added a new toxin damage sound (instead of reusing the emit sound)
+    - Improved the placeholder tree and rocket graphics for the prototypes
+    - Save error dialog now explicitly tells to give us the JSON debug log as without it debugging a save failure is basically impossible in most cases
+    - Added a system for window panels to reorder this makes draggable windows go on top of other such windows when they are moved around or opened
+    - Added a new feature to the museum screen to delete fossils
+    - Fossil saving failure will now show an error popup
+    - Added miscellaneous fun screen filter shaders
+    - Added an unknown key icon
+    - Fixed game not fading out before playing the microbe intro video
+    - Fixed 3 microbe backgrounds having non-repeating edges
+    - Fixed current patch biodiversity fill always checking potential species to split from in a specified order (the order is now random)
+    - Fixed some usages of random number generation having their upper limits be off by one
+    - Fixed player accidentally becoming awakened if entering macroscopic while already having placed neurons
+    - Fixed the ESC key icon not being used (instead the unknown key fallback was used before)
+    - Fixed sometimes the close X being invisible on our custom windows
+    - Fixed the Thrive logo being blurry in the main menu and the credits
+    - Options menu now lazily loads available language list
+    - Switched a BOM check around to make dependabot tool updates work
+    - Automatic checks now disallow gltf files as they are always worse than .glb files
+    - Updated the style_guide on how to add words to dictionary to avoid typo warnings
+    - Cleaned up some remaining references to ruby in the repo
+    - Fixed a typo in CONTRIBUTING.md file
+    - Updated AngleSharp library to 1.0.4
+    - Updated a code checking library we use
+    - Added support for Godot GUI tab names to be translated
+    - Updated translations

@@ -95,6 +95,12 @@ public partial class Microbe
     private bool organelleMaxRenderPriorityDirty = true;
     private int cachedOrganelleMaxRenderPriority;
 
+    public enum DigestCheckResult
+    {
+        Ok,
+        MissingEnzyme,
+    }
+
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
@@ -294,16 +300,7 @@ public partial class Microbe
 
         // Find the direction the microbe is facing
         // (actual rotation, not LookAtPoint, also takes colony membership into account)
-        Vector3 direction;
-        if (Colony != null)
-        {
-            direction = Colony.Master.GlobalTransform
-                .basis.Quat().Normalized().Xform(Vector3.Forward);
-        }
-        else
-        {
-            direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
-        }
+        Vector3 direction = FacingDirection();
 
         var position = GlobalTransform.origin + (direction * ejectionDistance);
 
@@ -321,6 +318,21 @@ public partial class Microbe
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
+    }
+
+    /// <summary>
+    ///   Handles colony logic to determine the actual facing vector of this microbe
+    /// </summary>
+    /// <returns>A Vector3 of this microbe's real facing</returns>
+    public Vector3 FacingDirection()
+    {
+        if (Colony != null)
+        {
+            return Colony.Master.GlobalTransform
+                .basis.Quat().Normalized().Xform(Vector3.Forward);
+        }
+
+        return GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
     }
 
     /// <summary>
@@ -389,37 +401,38 @@ public partial class Microbe
 
         var currentPosition = GlobalTransform.origin;
 
-        // Separate the two cells.
-        var separation = new Vector3(Radius, 0, 0);
+        // Find the direction to the right from where the cell is facing
+        var direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Right);
+
+        // Start calculating separation distance
+        var organellePositions = organelles!.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
+
+        float distanceRight = MathUtils.GetMaximumDistanceInDirection(Vector3.Right, Vector3.Zero, organellePositions);
+        float distanceLeft = MathUtils.GetMaximumDistanceInDirection(Vector3.Left, Vector3.Zero, organellePositions);
 
         if (Colony != null)
         {
-            // When in a colony we approximate a much higher separation distance
-            var colonyRadius = separation.x;
+            var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
 
-            foreach (var colonyMember in Colony.ColonyMembers)
-            {
-                if (colonyMember == this)
-                    continue;
-
-                var radius = colonyMember.Radius + Constants.COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET;
-
-                // TODO: switch this to something else if this is too slow for large colonies
-                var positionInColony = colonyMember.GlobalTransform.origin - currentPosition;
-
-                var outerRadius = Math.Max(Math.Abs(positionInColony.x) + radius,
-                    Math.Abs(positionInColony.z) + radius);
-
-                if (outerRadius > colonyRadius)
-                    colonyRadius = outerRadius;
-            }
-
-            separation = new Vector3(colonyRadius + Constants.COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET, 0, 0);
+            distanceRight += MathUtils.GetMaximumDistanceInDirection(direction, currentPosition, colonyMembers);
         }
 
+        float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
+
+        if (CellTypeProperties.IsBacteria)
+            width *= 0.5f;
+
         // Create the one daughter cell.
-        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + separation,
+        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + direction * width,
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame);
+
+        // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
+        var daughterBasis = new Basis(Transform.basis.Quat())
+        {
+            Scale = copyEntity.Transform.basis.Scale,
+        };
+
+        copyEntity.Transform = new Transform(daughterBasis, copyEntity.Translation);
 
         // Make it despawn like normal
         spawnSystem!.AddEntityToTrack(copyEntity);
@@ -630,6 +643,26 @@ public partial class Microbe
 
         CalculateBonusDigestibleGlucose(result);
         return result;
+    }
+
+    /// <summary>
+    ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is different from <see cref="CanEngulfObject(IEngulfable)"/> because ingestibility and digestibility
+    ///     are separate, you can engulf a walled cell but not digest it if you're missing the enzyme required to do
+    ///     so.
+    ///   </para>
+    /// </remarks>
+    public DigestCheckResult CanDigestObject(IEngulfable engulfable)
+    {
+        var enzyme = engulfable.RequisiteEnzymeToDigest;
+
+        if (enzyme != null && !Enzymes.ContainsKey(enzyme))
+            return DigestCheckResult.MissingEnzyme;
+
+        return DigestCheckResult.Ok;
     }
 
     /// <summary>
@@ -1444,20 +1477,23 @@ public partial class Microbe
             if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
                 continue;
 
-            var usedEnzyme = lipase;
+            Enzyme usedEnzyme;
 
-            if (engulfable.RequisiteEnzymeToDigest != null)
+            var digestibility = CanDigestObject(engulfable);
+
+            switch (digestibility)
             {
-                if (!Enzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
-                {
+                case DigestCheckResult.Ok:
+                    usedEnzyme = engulfable.RequisiteEnzymeToDigest ?? lipase;
+                    break;
+                case DigestCheckResult.MissingEnzyme:
                     EjectEngulfable(engulfable);
                     OnNoticeMessage?.Invoke(this,
                         new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_MISSING_ENZYME")
-                            .FormatSafe(engulfable.RequisiteEnzymeToDigest.Name)));
+                            .FormatSafe(engulfable.RequisiteEnzymeToDigest!.Name)));
                     continue;
-                }
-
-                usedEnzyme = engulfable.RequisiteEnzymeToDigest;
+                default:
+                    throw new InvalidOperationException("Unhandled digestibility check result, won't digest");
             }
 
             var containedCompounds = engulfable.Compounds;

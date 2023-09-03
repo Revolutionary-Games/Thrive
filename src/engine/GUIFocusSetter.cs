@@ -76,13 +76,17 @@ public class GUIFocusSetter : Control
         if (currentlyFocused != null && currentlyFocused.IsVisibleInTree())
         {
             // We may not want to override the current focus
-            if (!grabber.CheckWantsToStealFocusAndReset())
+            if (!grabber.CheckWantsToStealFocus())
                 return;
 
             var currentPath = currentlyFocused.GetPath().ToString();
 
-            if (grabber.SkipOverridingFocusForElementStrings.Any(p => currentPath.StartsWith(p)))
-                return;
+            // The rules for where not to steal focus only applies when the full override option is not used
+            if (!grabber.CheckAlwaysOverrideFocusAndReset())
+            {
+                if (grabber.SkipOverridingFocusForElementStrings.Any(p => currentPath.StartsWith(p)))
+                    return;
+            }
 
             // We want to override focus anyway
         }
@@ -91,7 +95,14 @@ public class GUIFocusSetter : Control
 
         if (targetNode != null)
         {
-            targetNode.GrabFocus();
+            if (targetNode != currentlyFocused)
+            {
+                // Only try to grab focus when the target is actually visible
+                if (targetNode.IsVisibleInTree())
+                {
+                    targetNode.GrabFocus();
+                }
+            }
         }
         else
         {

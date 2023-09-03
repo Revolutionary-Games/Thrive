@@ -91,7 +91,7 @@ public class ModUploader : Control
     private Label toBeUploadedContentLocation = null!;
     private TextEdit changeNotes = null!;
 
-    private CustomDialog uploadSucceededDialog = null!;
+    private CustomWindow uploadSucceededDialog = null!;
     private CustomRichTextLabel uploadSucceededText = null!;
 
     private FileDialog fileSelectDialog = null!;
@@ -137,7 +137,7 @@ public class ModUploader : Control
         workshopNotice = GetNode<CustomRichTextLabel>(WorkshopNoticePath);
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
 
-        uploadSucceededDialog = GetNode<CustomDialog>(UploadSucceededDialogPath);
+        uploadSucceededDialog = GetNode<CustomWindow>(UploadSucceededDialogPath);
         uploadSucceededText = GetNode<CustomRichTextLabel>(UploadSucceededTextPath);
 
         fileSelectDialog = GetNode<FileDialog>(FileSelectDialogPath);

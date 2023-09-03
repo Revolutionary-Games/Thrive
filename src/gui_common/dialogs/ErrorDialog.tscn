@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=5]
 
@@ -17,18 +17,14 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="ErrorDialog" type="Popup"]
-margin_right = 54.0
-margin_bottom = 75.0
-theme = ExtResource( 2 )
-popup_exclusive = true
+[node name="ErrorDialog" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+Exclusive = true
 Resizable = true
+ErrorMessage = ""
+ExceptionInfo = null
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 49.0
@@ -40,8 +36,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExtraErrorDescription" type="Label" parent="VBoxContainer"]
-margin_right = 34.0
+[node name="ExtraErrorDescription" type="Label" parent="VBoxContainer" index="0"]
+margin_right = 37.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,7 +48,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="ExceptionBox" type="VBoxContainer" parent="VBoxContainer"]
+[node name="ExceptionBox" type="VBoxContainer" parent="VBoxContainer" index="1"]
 visible = false
 margin_top = 25.0
 margin_right = 983.0
@@ -62,14 +58,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ExceptionBox"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ExceptionBox" index="0"]
 margin_right = 983.0
 margin_bottom = 503.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 1 )
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ExceptionBox/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ExceptionBox/PanelContainer" index="0"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 982.0
@@ -79,7 +75,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/ExceptionBox/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/ExceptionBox/PanelContainer/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 971.0
@@ -91,14 +87,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Exception" type="Label" parent="VBoxContainer/ExceptionBox/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="Exception" type="Label" parent="VBoxContainer/ExceptionBox/PanelContainer/MarginContainer/ScrollContainer" index="0"]
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="CopyErrorButton" type="Button" parent="VBoxContainer/ExceptionBox"]
+[node name="CopyErrorButton" type="Button" parent="VBoxContainer/ExceptionBox" index="1"]
 margin_left = 373.0
 margin_top = 513.0
 margin_right = 610.0
@@ -108,15 +104,14 @@ size_flags_vertical = 9
 custom_fonts/font = ExtResource( 5 )
 text = "COPY_ERROR_TO_CLIPBOARD"
 
-[node name="OkButton" type="Button" parent="VBoxContainer"]
+[node name="OkButton" type="Button" parent="VBoxContainer" index="2"]
 margin_top = 25.0
-margin_right = 34.0
-margin_bottom = 55.0
+margin_right = 37.0
+margin_bottom = 57.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 5 )
 text = "OK"
 
-[connection signal="popup_hide" from="." to="." method="OnErrorDialogDismissed"]
 [connection signal="pressed" from="VBoxContainer/ExceptionBox/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]
 [connection signal="pressed" from="VBoxContainer/OkButton" to="." method="OnClosePressed"]

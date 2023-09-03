@@ -46,7 +46,7 @@ public class NameGenerator : IRegistryType
 
         string newName;
 
-        if (random.Next(0, 101) >= 10)
+        if (random.Next(0, 100) >= 10)
         {
             switch (random.Next(0, 4))
             {

@@ -34,6 +34,11 @@ public class TechWeb : IAvailableRecipes
         return false;
     }
 
+    public bool HasTechnology(Technology technology)
+    {
+        return unlockedTechnologies.Contains(technology);
+    }
+
     public IEnumerable<CraftingRecipe> GetAvailableRecipes(
         IReadOnlyCollection<(WorldResource Resource, int Count)>? filter)
     {
@@ -55,5 +60,15 @@ public class TechWeb : IAvailableRecipes
     public IEnumerable<StructureDefinition> GetAvailableStructures()
     {
         return unlockedTechnologies.SelectMany(t => t.GrantsStructures);
+    }
+
+    public IEnumerable<UnitType> GetAvailableUnits()
+    {
+        return unlockedTechnologies.SelectMany(t => t.GrantsUnits);
+    }
+
+    public IEnumerable<SpaceStructureDefinition> GetAvailableSpaceStructures()
+    {
+        return unlockedTechnologies.SelectMany(t => t.GrantsSpaceStructures);
     }
 }

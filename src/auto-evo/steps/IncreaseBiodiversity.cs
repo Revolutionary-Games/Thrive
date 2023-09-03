@@ -57,7 +57,7 @@
 
         private void CheckCurrentPatchSpecies(RunResults results)
         {
-            foreach (var candidateSpecies in patch.SpeciesInPatch)
+            foreach (var candidateSpecies in patch.SpeciesInPatch.OrderBy(_ => random.Next()))
             {
                 if (candidateSpecies.Value < configuration.NewBiodiversityIncreasingSpeciesPopulation)
                     continue;

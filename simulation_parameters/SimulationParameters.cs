@@ -35,6 +35,7 @@ public class SimulationParameters : Node
     private GameCredits gameCredits = null!;
     private DayNightConfiguration lightCycle = null!;
     private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
+    private Dictionary<string, ScreenEffect> screenEffects = null!;
     private BuildInfo? buildInfo;
     private Dictionary<string, VersionPatchNotes> oldVersionNotes = null!;
     private Dictionary<string, VersionPatchNotes> newerVersionNotes = null!;
@@ -42,6 +43,8 @@ public class SimulationParameters : Node
     private Dictionary<string, EquipmentDefinition> equipment = null!;
     private Dictionary<string, CraftingRecipe> craftingRecipes = null!;
     private Dictionary<string, StructureDefinition> structures = null!;
+    private Dictionary<string, UnitType> unitTypes = null!;
+    private Dictionary<string, SpaceStructureDefinition> spaceStructures = null!;
     private Dictionary<string, Technology> technologies = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
@@ -125,6 +128,9 @@ public class SimulationParameters : Node
         difficultyPresets =
             LoadRegistry<DifficultyPreset>("res://simulation_parameters/common/difficulty_presets.json");
 
+        screenEffects =
+            LoadRegistry<ScreenEffect>("res://simulation_parameters/common/screen_effects.json");
+
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
 
@@ -148,6 +154,14 @@ public class SimulationParameters : Node
         structures =
             LoadRegistry<StructureDefinition>("res://simulation_parameters/awakening_stage/structures.json",
                 new JsonConverter[] { new DirectTypeLoadOverride(typeof(StructureDefinition), null) });
+
+        unitTypes =
+            LoadRegistry<UnitType>("res://simulation_parameters/industrial_stage/units.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(UnitType), null) });
+
+        spaceStructures =
+            LoadRegistry<SpaceStructureDefinition>("res://simulation_parameters/space_stage/space_structures.json",
+                new JsonConverter[] { new DirectTypeLoadOverride(typeof(SpaceStructureDefinition), null) });
 
         technologies =
             LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
@@ -332,6 +346,21 @@ public class SimulationParameters : Node
         return difficultyPresets.Values;
     }
 
+    public ScreenEffect GetScreenEffect(string name)
+    {
+        return screenEffects[name];
+    }
+
+    public ScreenEffect GetScreenEffectByIndex(int index)
+    {
+        return screenEffects.Values.First(p => p.Index == index);
+    }
+
+    public IEnumerable<ScreenEffect> GetAllScreenEffects()
+    {
+        return screenEffects.Values;
+    }
+
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
@@ -430,9 +459,24 @@ public class SimulationParameters : Node
         return structures[name];
     }
 
+    public UnitType GetUnitType(string name)
+    {
+        return unitTypes[name];
+    }
+
+    public SpaceStructureDefinition GetSpaceStructure(string name)
+    {
+        return spaceStructures[name];
+    }
+
     public Technology GetTechnology(string name)
     {
         return technologies[name];
+    }
+
+    public IEnumerable<Technology> GetTechnologies()
+    {
+        return technologies.Values;
     }
 
     /// <summary>
@@ -452,12 +496,15 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(inputGroups);
         ApplyRegistryObjectTranslations(gallery);
         ApplyRegistryObjectTranslations(difficultyPresets);
+        ApplyRegistryObjectTranslations(screenEffects);
         ApplyRegistryObjectTranslations(oldVersionNotes);
         ApplyRegistryObjectTranslations(newerVersionNotes);
         ApplyRegistryObjectTranslations(worldResources);
         ApplyRegistryObjectTranslations(equipment);
         ApplyRegistryObjectTranslations(craftingRecipes);
         ApplyRegistryObjectTranslations(structures);
+        ApplyRegistryObjectTranslations(unitTypes);
+        ApplyRegistryObjectTranslations(spaceStructures);
         ApplyRegistryObjectTranslations(technologies);
     }
 
@@ -593,12 +640,15 @@ public class SimulationParameters : Node
         CheckRegistryType(inputGroups);
         CheckRegistryType(gallery);
         CheckRegistryType(difficultyPresets);
+        CheckRegistryType(screenEffects);
         CheckRegistryType(oldVersionNotes);
         CheckRegistryType(newerVersionNotes);
         CheckRegistryType(worldResources);
         CheckRegistryType(equipment);
         CheckRegistryType(craftingRecipes);
         CheckRegistryType(structures);
+        CheckRegistryType(unitTypes);
+        CheckRegistryType(spaceStructures);
         CheckRegistryType(technologies);
 
         NameGenerator.Check(string.Empty);
@@ -651,6 +701,16 @@ public class SimulationParameters : Node
         }
 
         foreach (var entry in structures)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in unitTypes)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in spaceStructures)
         {
             entry.Value.Resolve();
         }

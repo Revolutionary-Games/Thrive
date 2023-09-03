@@ -40,6 +40,7 @@ PauseButtonPath = NodePath("PauseButtonMargin/PlayButton")
 CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
 ProcessPanelButtonPath = NodePath("ChemicalButton")
+SuicideButtonPath = NodePath("SuicideButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]
 margin_right = 50.0

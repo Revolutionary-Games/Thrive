@@ -58,10 +58,10 @@ script = ExtResource( 6 )
 [node name="PlayerMulticellularInput" type="Node" parent="."]
 script = ExtResource( 4 )
 
-[node name="ProgressBarSystem" parent="." instance=ExtResource( 12 )]
-
 [node name="InteractableSystem" parent="." instance=ExtResource( 7 )]
 pause_mode = 1
+
+[node name="ProgressBarSystem" parent="." instance=ExtResource( 12 )]
 
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
 MenuPath = NodePath("../PauseMenu")

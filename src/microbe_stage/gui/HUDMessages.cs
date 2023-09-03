@@ -24,6 +24,9 @@ public class HUDMessages : VBoxContainer
     public Color BaseMessageColour = new(1, 1, 1);
 
     [Export]
+    public Color MessageShadowColour = new(0, 0, 0, 0.7f);
+
+    [Export]
     public int MaxShownMessages = 4;
 
     [Export]
@@ -77,8 +80,11 @@ public class HUDMessages : VBoxContainer
 
             // Update fade
             // TODO: should different types of messages (more urgent?) have different colours
-            displayer.SelfModulate = new Color(BaseMessageColour,
-                CalculateMessageAlpha(message.TimeRemaining, message.OriginalTimeRemaining));
+            var alpha = CalculateMessageAlpha(message.TimeRemaining, message.OriginalTimeRemaining);
+            displayer.SelfModulate = new Color(BaseMessageColour, alpha);
+
+            displayer.AddColorOverride("font_color_shadow",
+                new Color(MessageShadowColour, MessageShadowColour.a * alpha));
         }
 
         if (clean)
@@ -118,6 +124,9 @@ public class HUDMessages : VBoxContainer
         };
 
         label.AddFontOverride("font", MessageFont);
+        label.AddColorOverride("font_color_shadow", MessageShadowColour);
+        label.AddConstantOverride("shadow_offset_x", 1);
+        label.AddConstantOverride("shadow_offset_y", 1);
 
         AddChild(label);
 

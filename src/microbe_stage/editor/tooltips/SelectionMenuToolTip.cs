@@ -256,14 +256,15 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             // Apply the value to the text labels as percentage (except for Health)
             if (modifier.Name == "health")
             {
-                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
-                    + deltaValue.ToString("F0", CultureInfo.CurrentCulture);
+                modifier.ModifierValue =
+                    StringUtils.FormatPositiveWithLeadingPlus(deltaValue.ToString("F0", CultureInfo.CurrentCulture),
+                        deltaValue);
             }
             else
             {
-                modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
-                    + TranslationServer.Translate("PERCENTAGE_VALUE")
-                        .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
+                modifier.ModifierValue = StringUtils.FormatPositiveWithLeadingPlus(TranslationServer
+                    .Translate("PERCENTAGE_VALUE")
+                    .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture)), deltaValue);
             }
 
             if (modifier.Name == "osmoregulationCost")
@@ -334,7 +335,20 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = mpCost.ToString(CultureInfo.CurrentCulture);
+        string cost;
+
+        if (mpCost < 0)
+        {
+            // Negative MP cost means it actually gives MP, to convey that to the player we need to explicitly
+            // prefix the cost with a positive sign
+            cost = "+" + Mathf.Abs(mpCost).ToString(CultureInfo.CurrentCulture);
+        }
+        else
+        {
+            cost = mpCost.ToString(CultureInfo.CurrentCulture);
+        }
+
+        mpLabel.Text = cost;
     }
 
     private void UpdateRequiresNucleus()

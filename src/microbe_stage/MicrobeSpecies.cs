@@ -106,11 +106,15 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     {
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
         // So, the compound balance calculation uses the default biome.
+        // Also we should not overtly punish photosynthesizers so we just use the consumption here (instead of
+        // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
+        // which could basically make them die instantly in certain situations)
         var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
             biomeConditions, CompoundAmountType.Biome);
 
         var glucose = SimulationParameters.Instance.GetCompound("glucose");
+        var atp = SimulationParameters.Instance.GetCompound("atp");
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacity = StorageCapacity;
@@ -119,17 +123,26 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
         foreach (var compoundBalance in compoundBalances)
         {
+            // Skip ATP as it we don't want to give any initial ATP
+            if (compoundBalance.Key == atp)
+                continue;
+
             if (compoundBalance.Key == glucose && giveBonusGlucose)
             {
                 InitialCompounds.Add(compoundBalance.Key, cachedCapacity);
                 continue;
             }
 
-            if (compoundBalance.Value.Balance >= 0)
+            var balanceValue = compoundBalance.Value;
+
+            // Skip compounds there's no consumption for (from processes)
+            if (balanceValue.Consumption.Count < 1)
                 continue;
 
-            // Initial compounds should suffice for a fixed amount of time.
-            var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) * Constants.INITIAL_COMPOUND_TIME;
+            // Initial compounds should suffice for a fixed amount of time of consumption.
+            var compoundInitialAmount =
+                Math.Abs(balanceValue.Consumption.SumValues()) * Constants.INITIAL_COMPOUND_TIME;
+
             if (compoundInitialAmount > cachedCapacity)
                 compoundInitialAmount = cachedCapacity;
 

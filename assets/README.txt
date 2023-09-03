@@ -9,6 +9,8 @@ The following are the assets not covered by that license
 
 - all fonts in the font folder except for thrive.tff
 - all social media icons in the textures/gui/social_media/ folder
+- key prompt icons in textures/gui/xelu_prompts are CC0 licensed and mostly
+  made by Xelu with some extra icons made by Revolutionary Games to fill gaps
 
 The following fonts are licensed under the SIL Open Font License
 
@@ -17,6 +19,9 @@ The following fonts are licensed under the SIL Open Font License
 - Noto (Copyright (c) Google)
 
 SIL license text is included in "OFL.txt" file.
+
+In a packaged version of the game the assets may be included inside an
+archive file format instead of as separate plain files.
 
 
 Social License Info

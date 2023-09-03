@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
+using ScriptsBase.Checks.FileTypes;
 using ScriptsBase.Translation;
 using ScriptsBase.Utilities;
 
@@ -31,9 +32,6 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
     private const string TooltipPropertyName = "hint_tooltip";
 
     private const int ItemListStride = 5;
-
-    private static readonly Regex GodotNode = new(@"^\[node\sname=""([^""]+)""\s(?:type=""([^""]+)"")?",
-        RegexOptions.Compiled);
 
     private static readonly Regex GodotPropertyStr = new(@"^([A-Za-z0-9_]+)\s*=\s*""(.+)""$", RegexOptions.Compiled);
 
@@ -85,7 +83,7 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
             if (line == null)
                 break;
 
-            var match = GodotNode.Match(line);
+            var match = TscnCheck.GodotNodeRegex.Match(line);
 
             if (match.Success)
             {
@@ -95,7 +93,16 @@ public class GodotSceneTranslationExtractor : TranslationExtractorBase
                     yield return result;
                 }
 
-                StartNode(match.Groups[1].Value, match.Groups.Count > 2 ? match.Groups[2].Value : null);
+                var type = match.Groups.Count > 2 ? match.Groups[2].Value : null;
+                StartNode(match.Groups[1].Value, type);
+
+                // Tab controls have a translatable key in their name
+                if (type == TscnCheck.TAB_CONTROL_TYPE)
+                {
+                    translationsForCurrentNode.Add((match.Groups[1].Value,
+                        new ExtractedTranslation(match.Groups[1].Value, path, lineNumber)));
+                }
+
                 continue;
             }
 

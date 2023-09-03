@@ -2,6 +2,24 @@
 
 public class HUDBottomBar : HBoxContainer
 {
+    /// <summary>
+    ///   When false the compound and environment toggles are hidden
+    /// </summary>
+    [Export]
+    public bool ShowCompoundPanelToggles = true;
+
+    /// <summary>
+    ///   When false the suicide button is hidden
+    /// </summary>
+    [Export]
+    public bool ShowSuicideButton = true;
+
+    /// <summary>
+    ///   When false the microbe processes button is hidden
+    /// </summary>
+    [Export]
+    public bool ShowProcessesButton = true;
+
     [Export]
     public NodePath? PauseButtonPath;
 
@@ -14,12 +32,16 @@ public class HUDBottomBar : HBoxContainer
     [Export]
     public NodePath ProcessPanelButtonPath = null!;
 
+    [Export]
+    public NodePath SuicideButtonPath = null!;
+
 #pragma warning disable CA2213
     private PlayButton pauseButton = null!;
 
     private TextureButton? compoundsButton;
     private TextureButton? environmentButton;
     private TextureButton? processPanelButton;
+    private TextureButton? suicideButton;
 #pragma warning restore CA2213
 
     private bool compoundsPressed = true;
@@ -93,10 +115,13 @@ public class HUDBottomBar : HBoxContainer
         compoundsButton = GetNode<TextureButton>(CompoundsButtonPath);
         environmentButton = GetNode<TextureButton>(EnvironmentButtonPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
+        suicideButton = GetNode<TextureButton>(SuicideButtonPath);
 
         UpdateCompoundButton();
         UpdateEnvironmentButton();
         UpdateProcessPanelButton();
+
+        UpdateButtonVisibility();
     }
 
     protected override void Dispose(bool disposing)
@@ -109,6 +134,7 @@ public class HUDBottomBar : HBoxContainer
                 CompoundsButtonPath.Dispose();
                 EnvironmentButtonPath.Dispose();
                 ProcessPanelButtonPath.Dispose();
+                SuicideButtonPath.Dispose();
             }
         }
 
@@ -193,5 +219,20 @@ public class HUDBottomBar : HBoxContainer
             return;
 
         processPanelButton.Pressed = ProcessesPressed;
+    }
+
+    private void UpdateButtonVisibility()
+    {
+        if (compoundsButton != null)
+            compoundsButton.Visible = ShowCompoundPanelToggles;
+
+        if (environmentButton != null)
+            environmentButton.Visible = ShowCompoundPanelToggles;
+
+        if (suicideButton != null)
+            suicideButton.Visible = ShowSuicideButton;
+
+        if (processPanelButton != null)
+            processPanelButton.Visible = ShowProcessesButton;
     }
 }

@@ -72,14 +72,14 @@ public class InventoryScreen : ControlWithInput
     private readonly List<InventorySlot> craftingResultSlots = new();
 
 #pragma warning disable CA2213
-    private CustomDialog inventoryPopup = null!;
+    private CustomWindow inventoryPopup = null!;
     private Container inventorySlotContainer = null!;
     private Control equipmentSlotParent = null!;
     private TextureRect equipmentBackgroundImage = null!;
     private Button craftingPanelButton = null!;
     private Button groundPanelButton = null!;
 
-    private CustomDialog craftingPanelPopup = null!;
+    private CustomWindow craftingPanelPopup = null!;
     private Container craftingRecipesContainer = null!;
     private Container craftingSlotsContainer = null!;
     private Container craftingResultSlotsContainer = null!;
@@ -88,7 +88,7 @@ public class InventoryScreen : ControlWithInput
     private Button takeAllCraftingResults = null!;
     private TextureButton clearCraftingInputs = null!;
 
-    private CustomDialog groundPanelPopup = null!;
+    private CustomWindow groundPanelPopup = null!;
     private Container groundSlotContainer = null!;
 
     private PackedScene inventorySlotScene = null!;
@@ -129,14 +129,14 @@ public class InventoryScreen : ControlWithInput
 
     public override void _Ready()
     {
-        inventoryPopup = GetNode<CustomDialog>(InventoryPopupPath);
+        inventoryPopup = GetNode<CustomWindow>(InventoryPopupPath);
         inventorySlotContainer = GetNode<Container>(InventorySlotContainerPath);
         equipmentSlotParent = GetNode<Control>(EquipmentSlotParentPath);
         equipmentBackgroundImage = GetNode<TextureRect>(EquipmentBackgroundImagePath);
         craftingPanelButton = GetNode<Button>(CraftingPanelButtonPath);
         groundPanelButton = GetNode<Button>(GroundPanelButtonPath);
 
-        craftingPanelPopup = GetNode<CustomDialog>(CraftingPanelPopupPath);
+        craftingPanelPopup = GetNode<CustomWindow>(CraftingPanelPopupPath);
         craftingRecipesContainer = GetNode<Container>(CraftingRecipesContainerPath);
         craftingSlotsContainer = GetNode<Container>(CraftingSlotsContainerPath);
         craftingResultSlotsContainer = GetNode<Container>(CraftingResultSlotsContainerPath);
@@ -145,7 +145,7 @@ public class InventoryScreen : ControlWithInput
         takeAllCraftingResults = GetNode<Button>(TakeAllCraftingResultsPath);
         clearCraftingInputs = GetNode<TextureButton>(ClearCraftingInputsPath);
 
-        groundPanelPopup = GetNode<CustomDialog>(GroundPanelPopupPath);
+        groundPanelPopup = GetNode<CustomWindow>(GroundPanelPopupPath);
         groundSlotContainer = GetNode<Container>(GroundSlotContainerPath);
 
         inventorySlotScene = GD.Load<PackedScene>("res://src/awakening_stage/gui/InventorySlot.tscn");
@@ -571,9 +571,8 @@ public class InventoryScreen : ControlWithInput
 
         if (craftingPanelPopup.Visible)
         {
-            craftingPanelPopup.CustomHide();
-            craftingPanelManuallyHidden = true;
-            OnCraftingPanelClosed();
+            craftingPanelPopup.Close();
+            OnCraftingPanelCancelled();
         }
         else
         {
@@ -588,8 +587,8 @@ public class InventoryScreen : ControlWithInput
 
         if (groundPanelPopup.Visible)
         {
-            groundPanelPopup.CustomHide();
-            groundPanelManuallyHidden = true;
+            groundPanelPopup.Close();
+            OnGroundPanelCancelled();
         }
         else
         {
@@ -613,16 +612,23 @@ public class InventoryScreen : ControlWithInput
         UpdateToggleButtonStatus();
     }
 
-    private void OnGroundPanelClosed()
+    private void OnGroundPanelCancelled()
     {
         groundPanelManuallyHidden = true;
+    }
+
+    private void OnGroundPanelBecameHidden()
+    {
         UpdateToggleButtonStatus();
     }
 
-    private void OnCraftingPanelClosed()
+    private void OnCraftingPanelCancelled()
     {
         craftingPanelManuallyHidden = true;
+    }
 
+    private void OnCraftingPanelBecameHidden()
+    {
         PerformCraftingCloseActions();
     }
 

@@ -12,6 +12,8 @@ using ScriptsBase.Utilities;
 
 public class CodeChecks : CodeChecksBase<Program.CheckOptions>
 {
+    private static readonly string[] FilesNotAllowedToHaveBom = { "global.json", "dotnet-tools.json" };
+
     public CodeChecks(Program.CheckOptions opts,
         Func<LocalizationOptionsBase, CancellationToken, Task<bool>> runLocalizationTool) :
         base(opts)
@@ -23,11 +25,17 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                 new FileChecks(true,
                     new BomChecker(BomChecker.Mode.Required, ".cs", ".json")
                     {
-                        IgnoredFiles = new List<string> { "global.json" },
+                        IgnoredFiles = new List<string>(FilesNotAllowedToHaveBom),
                     },
-                    new BomChecker(BomChecker.Mode.Disallowed, "global.json"),
+                    new BomChecker(BomChecker.Mode.Disallowed, FilesNotAllowedToHaveBom),
                     new CfgCheck(AssemblyInfoReader.ReadVersionFromAssemblyInfo()),
-                    new DisallowedFileType(".gd", ".mo"))
+                    new DisallowedFileType(".gd", ".mo", ".gltf")
+                    {
+                        ExtraErrorMessages =
+                        {
+                            { ".gltf", "glTF files should be compressed into .glb files to save space" },
+                        },
+                    })
             },
             { "compile", new CompileCheck() },
             { "inspectcode", new InspectCode() },

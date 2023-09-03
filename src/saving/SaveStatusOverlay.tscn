@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SavingStatusFadeOut"
@@ -69,6 +70,8 @@ script = ExtResource( 2 )
 StatusLabelPath = NodePath("CenterContainer/StatusLabel")
 AnimationPlayerPath = NodePath("CenterContainer/AnimationPlayer")
 ErrorDialogPath = NodePath("CenterContainer2/ErrorDialog")
+ErrorJsonDebugAdvicePath = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
+ErrorJsonDebugLabelPath = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -105,3 +108,15 @@ margin_left = 640.0
 margin_top = 360.0
 margin_right = 640.0
 margin_bottom = 360.0
+
+[node name="JsonDebugInfo" parent="CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox" index="2" instance=ExtResource( 4 )]
+margin_left = -15.0
+margin_top = -40.0
+margin_right = 7.0
+margin_bottom = -18.0
+size_flags_horizontal = 3
+ExtendedBbcode = "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+
+[connection signal="meta_clicked" from="CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo" to="." method="DebugAdviceMetaClicked"]
+
+[editable path="CenterContainer2/ErrorDialog"]

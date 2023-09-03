@@ -82,7 +82,7 @@ public class MicrobeBenchmark : Node
     private readonly List<float> fpsValues = new();
 
 #pragma warning disable CA2213
-    private CustomDialog guiContainer = null!;
+    private CustomWindow guiContainer = null!;
     private Label fpsLabel = null!;
     private Label phaseLabel = null!;
     private Label microbesCountLabel = null!;
@@ -145,7 +145,7 @@ public class MicrobeBenchmark : Node
 
     public override void _Ready()
     {
-        guiContainer = GetNode<CustomDialog>(GUIContainerPath);
+        guiContainer = GetNode<CustomWindow>(GUIContainerPath);
         fpsLabel = GetNode<Label>(FPSLabelPath);
         phaseLabel = GetNode<Label>(PhaseLabelPath);
         microbesCountLabel = GetNode<Label>(MicrobesCountLabelPath);
@@ -517,7 +517,7 @@ public class MicrobeBenchmark : Node
         cloudSystem!.AddCloud(glucose, GLUCOSE_CLOUD_AMOUNT, position);
 
         // And a bit of phosphate or ammonia
-        cloudSystem!.AddCloud(random.Next(0, 1) == 1 ? phosphates : ammonia, AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
+        cloudSystem!.AddCloud(random.Next(0, 2) == 1 ? phosphates : ammonia, AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
     }
 
     private void PruneDeadMicrobes()

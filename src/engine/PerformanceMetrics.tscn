@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/engine/PerformanceMetrics.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=4]
 
 
@@ -15,12 +15,12 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-DialogPath = NodePath("CustomDialog")
-FPSLabelPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer/FPS")
-DeltaLabelPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer/Delta")
-MetricsTextPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/MetricsText")
+DialogPath = NodePath("CustomWindow")
+FPSLabelPath = NodePath("CustomWindow/ScrollContainer/VBoxContainer/HBoxContainer/FPS")
+DeltaLabelPath = NodePath("CustomWindow/ScrollContainer/VBoxContainer/HBoxContainer/Delta")
+MetricsTextPath = NodePath("CustomWindow/ScrollContainer/VBoxContainer/MetricsText")
 
-[node name="CustomDialog" parent="." instance=ExtResource( 3 )]
+[node name="CustomWindow" parent="." instance=ExtResource( 3 )]
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 54.0
@@ -30,7 +30,7 @@ margin_bottom = -630.0
 WindowTitle = "METRICS"
 Resizable = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CustomDialog"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CustomWindow"]
 margin_left = 4.0
 margin_top = 3.0
 margin_right = 224.0
@@ -42,23 +42,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomWindow/ScrollContainer"]
 margin_right = 220.0
 margin_bottom = 220.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CustomDialog/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CustomWindow/ScrollContainer/VBoxContainer"]
 margin_right = 220.0
 margin_bottom = 19.0
 
-[node name="FPS" type="Label" parent="CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="FPS" type="Label" parent="CustomWindow/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_right = 25.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
 text = "FPS"
 
-[node name="Delta" type="Label" parent="CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Delta" type="Label" parent="CustomWindow/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_left = 29.0
 margin_right = 131.0
 margin_bottom = 19.0
@@ -68,11 +68,11 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="MetricsText" type="Label" parent="CustomDialog/ScrollContainer/VBoxContainer"]
+[node name="MetricsText" type="Label" parent="CustomWindow/ScrollContainer/VBoxContainer"]
 margin_top = 23.0
 margin_right = 220.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 4 )
 text = "METRICS_CONTENT"
 
-[connection signal="hide" from="CustomDialog" to="." method="DialogHidden"]
+[connection signal="hide" from="CustomWindow" to="." method="DialogHidden"]

@@ -110,11 +110,13 @@ public partial class CellEditorComponent
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
-        healthModifier.ModifierValue = ((healthChange >= 0) ? "+" : string.Empty)
-            + healthChange.ToString("F0", CultureInfo.CurrentCulture);
+        healthModifier.ModifierValue =
+            StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0", CultureInfo.CurrentCulture),
+                healthChange);
 
-        baseMobilityModifier.ModifierValue = ((baseMobilityChange >= 0) ? "+" : string.Empty)
-            + baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture);
+        baseMobilityModifier.ModifierValue =
+            StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture),
+                baseMobilityChange);
 
         healthModifier.AdjustValueColor(healthChange);
         baseMobilityModifier.AdjustValueColor(baseMobilityChange);
@@ -338,7 +340,7 @@ public partial class CellEditorComponent
             if (tooltip == null)
                 throw new InvalidOperationException("Could not find process production tooltip");
 
-            subBar.RegisterToolTipForControl(tooltip);
+            subBar.RegisterToolTipForControl(tooltip, true);
 
             tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
                 SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
@@ -352,7 +354,7 @@ public partial class CellEditorComponent
             if (tooltip == null)
                 throw new InvalidOperationException("Could not find process consumption tooltip");
 
-            subBar.RegisterToolTipForControl(tooltip);
+            subBar.RegisterToolTipForControl(tooltip, true);
 
             string displayName;
 
@@ -476,9 +478,7 @@ public partial class CellEditorComponent
         UpdateHitpoints(CalculateHitpoints());
         UpdateStorage(CalculateStorage());
 
-        // Set the editor light level and associated GUI elements to daytime
-        // TODO: don't reset this in loaded games
-        SetLightLevelOption(LightLevelOption.Day);
+        ApplyLightLevelOption();
     }
 
     private class ATPComparer : IComparer<string>

@@ -137,6 +137,26 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
     private string SteamLicenseFile => Path.Join(options.OutputFolder, "LICENSE_steam.txt");
 
+    public static async Task EnsureGodotIgnoreFileExistsInFolder(string folder)
+    {
+        var ignoreFile = Path.Join(folder, ".gdignore");
+
+        if (!File.Exists(ignoreFile))
+        {
+            await using var writer = File.Create(ignoreFile);
+        }
+    }
+
+    public static void RemoveGodotIgnoreFileIfExistsInFolder(string folder)
+    {
+        var ignoreFile = Path.Join(folder, ".gdignore");
+
+        if (File.Exists(ignoreFile))
+        {
+            File.Delete(ignoreFile);
+        }
+    }
+
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
         // For now, by default disable Steam mode to make the script easier to use
@@ -178,12 +198,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         await CreateDynamicallyGeneratedFiles(cancellationToken);
 
         // Make sure godot ignores the builds folder in terms of imports
-        var ignoreFile = Path.Join(options.OutputFolder, ".gdignore");
-
-        if (!File.Exists(ignoreFile))
-        {
-            await using var writer = File.Create(ignoreFile);
-        }
+        await EnsureGodotIgnoreFileExistsInFolder(options.OutputFolder);
 
         if (!await CheckGodotIsAvailable(cancellationToken))
             return false;

@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
-[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
+[ext_resource path="res://assets/misc/thrive_logo_big.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/textures/gui/social_media/discord.png" type="Texture" id=13]
@@ -119,6 +119,7 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
+Menu3DBackgroundScenes = [ "res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn" ]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")
@@ -144,6 +145,7 @@ PatchNotesPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNote
 PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler")
 FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
+MenusPath = NodePath("MenuContainers/Menus")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -210,11 +212,14 @@ __meta__ = {
 }
 
 [node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
-margin_left = 556.0
-margin_top = 26.0
-margin_right = 723.0
-margin_bottom = 194.0
+margin_left = 539.0
+margin_top = 10.0
+margin_right = 739.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 200, 200 )
 texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -949,14 +954,18 @@ margin_top = 28.0
 margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
-popup_exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 59 )]
 margin_right = 163.0
+margin_bottom = 97.0
 rect_min_size = Vector2( 550, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Exclusive = false
 WindowTitle = "NO_MODS_ENABLED"
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -964,6 +973,8 @@ CenterText = false
 DialogType = 1
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
+margin_right = 40.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 550, 370 )
 WindowTitle = "SAFE_MODE_TITLE"
 HideCancelButton = true
@@ -976,6 +987,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
 [node name="ThanksForBuyingDialog" parent="." instance=ExtResource( 59 )]
 margin_right = 163.0
+margin_bottom = 97.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "THANK_YOU_TITLE"
 HideCancelButton = true
@@ -984,6 +996,8 @@ CenterText = false
 NoticeType = 1
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
+margin_right = 40.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
@@ -1030,10 +1044,11 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
+[connection signal="OnNewGameVideoStarted" from="NewGameSettings" to="." method="OnNewGameIntroVideoStarted"]
 [connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
 [connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnReturnFromThriveopedia"]
-[connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
-[connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
+[connection signal="hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
+[connection signal="hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]

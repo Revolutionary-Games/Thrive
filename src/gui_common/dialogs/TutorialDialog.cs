@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class TutorialDialog : CustomDialog
+public class TutorialDialog : CustomWindow
 {
     [Export]
     public NodePath? LabelPath;
@@ -81,9 +81,9 @@ public class TutorialDialog : CustomDialog
         KeyPromptHelper.IconsChanged -= OnInputTypeChanged;
     }
 
-    protected override void OnShown()
+    protected override void OnOpen()
     {
-        base.OnShown();
+        base.OnOpen();
 
         // Don't animate if currently running inside the editor
         if (Engine.EditorHint)

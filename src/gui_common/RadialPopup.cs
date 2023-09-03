@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class RadialPopup : CustomDialog
+public class RadialPopup : CustomWindow
 {
     [Export]
     public NodePath? RadialPath;
 
     [Signal]
     public delegate void OnItemSelected(int itemId);
-
-    [Signal]
-    public delegate void OnCanceled(int itemId);
 
     public RadialMenu Radial { get; private set; } = null!;
 
@@ -41,7 +38,7 @@ public class RadialPopup : CustomDialog
 
     public void ShowWithItems(IEnumerable<(string Text, int Id)> items)
     {
-        Popup_();
+        Open();
         Radial.ShowWithItems(items);
     }
 
@@ -53,6 +50,13 @@ public class RadialPopup : CustomDialog
 
         Hide();
         return true;
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        EmitSignal(nameof(Cancelled));
+        Radial.Visible = false;
     }
 
     protected override void Dispose(bool disposing)
@@ -69,11 +73,5 @@ public class RadialPopup : CustomDialog
     {
         EmitSignal(nameof(OnItemSelected), itemId);
         Hide();
-    }
-
-    private void OnClosed()
-    {
-        EmitSignal(nameof(OnCanceled));
-        Radial.Visible = false;
     }
 }

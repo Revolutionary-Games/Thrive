@@ -92,9 +92,9 @@ public partial class MetaballBodyEditorComponent :
 
     private Button duplicateTypeButton = null!;
 
-    private CustomDialog cannotDeleteInUseTypeDialog = null!;
+    private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
-    private CustomDialog duplicateCellTypeDialog = null!;
+    private CustomWindow duplicateCellTypeDialog = null!;
 
     private LineEdit duplicateCellTypeName = null!;
 
@@ -193,9 +193,9 @@ public partial class MetaballBodyEditorComponent :
 
         duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
 
-        cannotDeleteInUseTypeDialog = GetNode<CustomDialog>(CannotDeleteInUseTypeDialogPath);
+        cannotDeleteInUseTypeDialog = GetNode<CustomWindow>(CannotDeleteInUseTypeDialogPath);
 
-        duplicateCellTypeDialog = GetNode<CustomDialog>(DuplicateCellTypeDialogPath);
+        duplicateCellTypeDialog = GetNode<CustomWindow>(DuplicateCellTypeDialogPath);
 
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
 
@@ -983,7 +983,7 @@ public partial class MetaballBodyEditorComponent :
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
-        duplicateCellTypeName.GrabFocus();
+        duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
         duplicateCellTypeName.CaretPosition = type.TypeName.Length;
     }

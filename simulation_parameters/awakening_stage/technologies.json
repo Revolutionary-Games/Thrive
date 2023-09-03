@@ -16,5 +16,48 @@
       "societyCenter"
     ],
     "RequiresEarlierTechnology": []
+  },
+  "hunterGathering": {
+    "Name": "TECHNOLOGY_HUNTER_GATHERING",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsStructures": [
+      "hunterGathererLodge"
+    ],
+    "RequiresEarlierTechnology": []
+  },
+  "steamPower": {
+    "Name": "TECHNOLOGY_STEAM_POWER",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsStructures": [
+      "steamFactory"
+    ],
+    "RequiresEarlierTechnology": [],
+    "RequiresResearchLevel": "Primitive",
+    "ResearchPoints": 25
+  },
+  "rocketry": {
+    "Name": "TECHNOLOGY_ROCKETRY",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsUnits": [
+      "simpleSpaceRocket"
+    ],
+    "RequiresEarlierTechnology": [],
+    "RequiresResearchLevel": "SpaceAge",
+    "ResearchPoints": 30
+  },
+  "ascension": {
+    "Name": "TECHNOLOGY_ASCENSION",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsSpaceStructures": [
+      "dysonSwarm",
+      "ascensionGate"
+    ],
+    "RequiresEarlierTechnology": [],
+    "RequiresResearchLevel": "Scifi",
+    "ResearchPoints": 30
   }
 }

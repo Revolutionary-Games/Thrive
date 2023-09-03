@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -20,13 +20,14 @@
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=18]
 [ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/autoEvoPending.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/warningBadge.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=23]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=25]
 [ext_resource path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=34]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=35]
-[ext_resource path="res://src/gui_common/dialogs/CustomDialog.tscn" type="PackedScene" id=39]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" type="PackedScene" id=42]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=43]
 [ext_resource path="res://src/gui_common/SegmentedBar.tscn" type="PackedScene" id=44]
@@ -34,7 +35,6 @@
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=47]
 [ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=48]
 [ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=49]
-
 
 [sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 5.0
@@ -202,12 +202,12 @@ content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.00784314, 0.607843, 0.329412, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.666667, 1, 0.941176, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -229,6 +229,125 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="Animation" id=42]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 21, 21 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 134, -8.58575 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:custom_constants/margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:custom_constants/margin_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:custom_constants/margin_left")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("..:custom_constants/margin_bottom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "hide"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+
 [node name="CellEditorComponent" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -241,11 +360,13 @@ FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
+FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 IslandErrorPath = NodePath("IslandError")
 TopPanelPath = NodePath("TopPanel")
 DayButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
 NightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton")
 AverageLightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton")
+CurrentLightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton")
 TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
 StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
 AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane")
@@ -293,13 +414,13 @@ margin_right = 170.0
 margin_bottom = 57.0
 
 [node name="PanelContainer" type="PanelContainer" parent="TopPanel"]
-margin_right = 499.0
+margin_right = 662.0
 margin_bottom = 50.0
 
 [node name="MarginContainer" type="MarginContainer" parent="TopPanel/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 498.0
+margin_right = 661.0
 margin_bottom = 49.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -309,7 +430,7 @@ custom_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="TopPanel/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 487.0
+margin_right = 650.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -330,9 +451,30 @@ margin_right = 44.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="DayButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="CurrentLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
 margin_left = 48.0
-margin_right = 173.0
+margin_right = 207.0
+margin_bottom = 28.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 38 )
+text = "LIGHT_LEVEL_CURRENT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DayButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 211.0
+margin_right = 336.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -352,8 +494,8 @@ __meta__ = {
 }
 
 [node name="NightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 177.0
-margin_right = 315.0
+margin_left = 340.0
+margin_right = 478.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -373,8 +515,8 @@ __meta__ = {
 }
 
 [node name="AverageLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 319.0
-margin_right = 477.0
+margin_left = 482.0
+margin_right = 640.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -772,10 +914,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 316.0
-margin_top = 341.0
-margin_right = 632.0
-margin_bottom = 931.0
+margin_left = 344.0
+margin_top = 369.0
+margin_right = 660.0
+margin_bottom = 959.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1264,7 +1406,8 @@ NodeToGiveFocusTo = NodePath("../ConfirmButton")
 
 [node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
 visible = false
-margin_right = 237.0
+margin_left = 4.0
+margin_right = 264.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 focus_neighbour_right = NodePath("../ConfirmButton")
@@ -1288,14 +1431,43 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 rect_pivot_offset = Vector2( 671, 71.4142 )
 mouse_filter = 1
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 27 )
 text = "NEXT_CAPITAL"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -21.0
+margin_top = -10.0
+margin_bottom = 11.0
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
+visible = false
+margin_left = 134.0
+margin_top = -8.58575
+margin_right = 155.0
+margin_bottom = 12.4143
+rect_min_size = Vector2( 21, 21 )
+rect_pivot_offset = Vector2( 0, 10 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
+anims/RESET = SubResource( 42 )
+anims/hide = SubResource( 43 )
+anims/show = SubResource( 44 )
 
 [node name="NegativeAtpWarning" parent="." instance=ExtResource( 9 )]
 margin_right = 500.0
@@ -1320,12 +1492,11 @@ margin_bottom = -1.41425
 [node name="OrganellePopupMenu" parent="." instance=ExtResource( 47 )]
 anchor_right = 0.15625
 anchor_bottom = 0.183333
-margin_right = 0.0
-margin_bottom = 0.0
+margin_right = 420.0
+margin_bottom = 267.0
 
 [node name="PredictionExplanation" parent="." instance=ExtResource( 39 )]
 rect_min_size = Vector2( 550, 500 )
-popup_exclusive = true
 WindowTitle = "AUTO-EVO_PREDICTION"
 Resizable = true
 
@@ -1357,17 +1528,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ExplanationText" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
+margin_right = 48.0
 
 [node name="Spacer" type="Control" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 21.0
+margin_top = 26.0
 margin_right = 48.0
-margin_bottom = 26.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Help" type="Label" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 30.0
+margin_top = 35.0
 margin_right = 48.0
-margin_bottom = 167.0
+margin_bottom = 172.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "AUTO-EVO_EXPLANATION_EXPLANATION"
@@ -1385,6 +1557,7 @@ text = "CLOSE"
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Current" ]]
 [connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="OnLightLevelButtonPressed" binds= [ "Day" ]]
 [connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Night" ]]
 [connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Average" ]]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/general/PauseMenu.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/TopLevelContainer.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Close"
@@ -54,36 +55,24 @@ tracks/2/keys = {
 resource_name = "Open"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("Overlay:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Overlay:self_modulate")
+tracks/1/path = NodePath("CenterContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 0.5, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0.145098 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CenterContainer:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -129,18 +118,21 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[node name="PauseMenu" type="Popup"]
+[node name="PauseMenu" instance=ExtResource( 10 )]
 pause_mode = 2
 visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 mouse_filter = 2
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
-FullRect = true
-Movable = false
+__meta__ = {
+"_editor_description_": ""
+}
 ExclusiveAllowCloseOnEscape = false
-ShowCloseButton = false
-Decorate = false
+FullRect = true
 HelpCategory = "MicrobeStage"
 PrimaryMenuPath = NodePath("CenterContainer/PrimaryMenu")
 ThriveopediaPath = NodePath("Thriveopedia")
@@ -151,17 +143,17 @@ SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
 LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
 UnsavedProgressWarningPath = NodePath("UnsavedProgressWarning")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="ColorRect" parent="." index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." index="1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer"]
+[node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer" index="0"]
 margin_left = 515.0
 margin_top = 130.0
 margin_right = 765.0
@@ -172,10 +164,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="CenterContainer/PrimaryMenu"]
+[node name="Control" type="Control" parent="CenterContainer/PrimaryMenu" index="0"]
 margin_right = 250.0
 
-[node name="Resume" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="Resume" type="Button" parent="CenterContainer/PrimaryMenu" index="1"]
 margin_top = 10.0
 margin_right = 250.0
 margin_bottom = 50.0
@@ -183,7 +175,7 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "PAUSE_MENU_RESUME_TOOLTIP"
 text = "RESUME"
 
-[node name="SaveGame" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="SaveGame" type="Button" parent="CenterContainer/PrimaryMenu" index="2"]
 margin_top = 60.0
 margin_right = 250.0
 margin_bottom = 100.0
@@ -191,7 +183,7 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "SAVE_GAME_BUTTON_TOOLTIP"
 text = "SAVE_GAME"
 
-[node name="LoadGame" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="LoadGame" type="Button" parent="CenterContainer/PrimaryMenu" index="3"]
 margin_top = 110.0
 margin_right = 250.0
 margin_bottom = 150.0
@@ -199,7 +191,7 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
 text = "LOAD_GAME"
 
-[node name="Thriveopedia" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="Thriveopedia" type="Button" parent="CenterContainer/PrimaryMenu" index="4"]
 margin_top = 160.0
 margin_right = 250.0
 margin_bottom = 200.0
@@ -207,7 +199,7 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "THRIVEOPEDIA_HINT_IN_GAME"
 text = "THRIVEOPEDIA"
 
-[node name="Help" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="Help" type="Button" parent="CenterContainer/PrimaryMenu" index="5"]
 margin_top = 210.0
 margin_right = 250.0
 margin_bottom = 250.0
@@ -215,14 +207,14 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "HELP_BUTTON_TOOLTIP"
 text = "HELP"
 
-[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu" index="6"]
 margin_top = 260.0
 margin_right = 250.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 250, 40 )
 text = "REPORT_BUG"
 
-[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu" index="7"]
 margin_top = 310.0
 margin_right = 250.0
 margin_bottom = 350.0
@@ -230,7 +222,7 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "OPTIONS_BUTTON_TOOLTIP"
 text = "OPTIONS"
 
-[node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu" index="8"]
 margin_top = 360.0
 margin_right = 250.0
 margin_bottom = 400.0
@@ -238,7 +230,7 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "RETURN_TO_MENU_TOOLTIP"
 text = "RETURN_TO_MENU"
 
-[node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu" index="9"]
 margin_top = 410.0
 margin_right = 250.0
 margin_bottom = 450.0
@@ -246,7 +238,7 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "QUIT_BUTTON_TOOLTIP"
 text = "EXIT"
 
-[node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" instance=ExtResource( 9 )]
+[node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" index="10" instance=ExtResource( 9 )]
 margin_top = 460.0
 margin_right = 250.0
 margin_bottom = 460.0
@@ -255,7 +247,7 @@ Priority = 1
 NodeToGiveFocusTo = NodePath("../Resume")
 AlwaysOverrideFocus = true
 
-[node name="LoadMenu" type="VBoxContainer" parent="CenterContainer"]
+[node name="LoadMenu" type="VBoxContainer" parent="CenterContainer" index="1"]
 visible = false
 margin_left = 140.0
 margin_top = 60.0
@@ -263,7 +255,7 @@ margin_right = 1140.0
 margin_bottom = 660.0
 rect_min_size = Vector2( 1000, 600 )
 
-[node name="SaveList" parent="CenterContainer/LoadMenu" instance=ExtResource( 3 )]
+[node name="SaveList" parent="CenterContainer/LoadMenu" index="0" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1000.0
@@ -271,7 +263,7 @@ margin_bottom = 555.0
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 
-[node name="Back" type="Button" parent="CenterContainer/LoadMenu"]
+[node name="Back" type="Button" parent="CenterContainer/LoadMenu" index="1"]
 margin_left = 450.0
 margin_top = 559.0
 margin_right = 550.0
@@ -284,7 +276,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FocusGrabber" parent="CenterContainer/LoadMenu" instance=ExtResource( 9 )]
+[node name="FocusGrabber" parent="CenterContainer/LoadMenu" index="2" instance=ExtResource( 9 )]
 margin_top = 600.0
 margin_right = 1000.0
 margin_bottom = 600.0
@@ -293,7 +285,7 @@ Priority = 2
 NodeToGiveFocusTo = NodePath("../Back")
 AlwaysOverrideFocus = true
 
-[node name="NewSaveMenu" parent="CenterContainer" instance=ExtResource( 5 )]
+[node name="NewSaveMenu" parent="CenterContainer" index="2" instance=ExtResource( 5 )]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -303,22 +295,22 @@ margin_right = 1140.0
 margin_bottom = 660.0
 rect_min_size = Vector2( 1000, 600 )
 
-[node name="HelpScreen" parent="." instance=ExtResource( 4 )]
+[node name="HelpScreen" parent="." index="2" instance=ExtResource( 4 )]
 visible = false
 Category = "MicrobeStage"
 
-[node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
+[node name="OptionsMenu" parent="." index="3" instance=ExtResource( 6 )]
 visible = false
 
-[node name="Thriveopedia" parent="." instance=ExtResource( 8 )]
+[node name="Thriveopedia" parent="." index="4" instance=ExtResource( 8 )]
 visible = false
 
-[node name="UnsavedProgressWarning" parent="." instance=ExtResource( 7 )]
+[node name="UnsavedProgressWarning" parent="." index="5" instance=ExtResource( 7 )]
 margin_right = 391.0
 rect_min_size = Vector2( 391, 0 )
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 anims/Close = SubResource( 1 )
 anims/Open = SubResource( 2 )
 anims/RESET = SubResource( 3 )

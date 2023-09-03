@@ -312,6 +312,7 @@ public static class SpawnHelpers
         structureEntity.Init(structureDefinition);
 
         structureEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        structureEntity.AddToGroup(Constants.STRUCTURE_ENTITY_GROUP);
 
         structureEntity.Transform = location;
 
@@ -321,6 +322,113 @@ public static class SpawnHelpers
     public static PackedScene LoadStructureScene()
     {
         return GD.Load<PackedScene>("res://src/awakening_stage/PlacedStructure.tscn");
+    }
+
+    public static SocietyCreature SpawnCitizen(Species species, Vector3 location, Node worldRoot,
+        PackedScene citizenScene)
+    {
+        var creature = (SocietyCreature)citizenScene.Instance();
+
+        creature.Init();
+
+        worldRoot.AddChild(creature);
+        creature.Translation = location;
+
+        creature.AddToGroup(Constants.CITIZEN_GROUP);
+
+        creature.ApplySpecies(species);
+
+        return creature;
+    }
+
+    public static PackedScene LoadCitizenScene()
+    {
+        return GD.Load<PackedScene>("res://src/society_stage/SocietyCreature.tscn");
+    }
+
+    public static PlacedCity SpawnCity(Transform location, Node worldRoot, PackedScene cityScene, bool playerCity,
+        TechWeb availableTechnology)
+    {
+        var city = (PlacedCity)cityScene.Instance();
+
+        city.Init(playerCity, availableTechnology);
+
+        worldRoot.AddChild(city);
+        city.Transform = location;
+
+        city.AddToGroup(Constants.CITY_ENTITY_GROUP);
+        city.AddToGroup(Constants.NAME_LABEL_GROUP);
+
+        return city;
+    }
+
+    public static PackedScene LoadCityScene()
+    {
+        return GD.Load<PackedScene>("res://src/industrial_stage/PlacedCity.tscn");
+    }
+
+    public static PlacedPlanet SpawnPlanet(Transform location, Node worldRoot, PackedScene planetScene,
+        bool playerPlanet,
+        TechWeb availableTechnology)
+    {
+        var planet = (PlacedPlanet)planetScene.Instance();
+
+        planet.Init(playerPlanet, availableTechnology);
+
+        worldRoot.AddChild(planet);
+        planet.Transform = location;
+
+        planet.AddToGroup(Constants.PLANET_ENTITY_GROUP);
+        planet.AddToGroup(Constants.NAME_LABEL_GROUP);
+
+        return planet;
+    }
+
+    public static PackedScene LoadPlanetScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/PlacedPlanet.tscn");
+    }
+
+    public static SpaceFleet SpawnFleet(Transform location, Node worldRoot, PackedScene fleetScene,
+        bool playerFleet, UnitType initialShip)
+    {
+        var fleet = (SpaceFleet)fleetScene.Instance();
+
+        fleet.Init(initialShip, playerFleet);
+
+        worldRoot.AddChild(fleet);
+        fleet.Transform = location;
+
+        fleet.AddToGroup(Constants.SPACE_FLEET_ENTITY_GROUP);
+        fleet.AddToGroup(Constants.NAME_LABEL_GROUP);
+
+        return fleet;
+    }
+
+    public static PlacedSpaceStructure SpawnSpaceStructure(SpaceStructureDefinition structureDefinition,
+        Transform location, Node worldNode, PackedScene structureScene, bool playerOwned)
+    {
+        var structureEntity = structureScene.Instance<PlacedSpaceStructure>();
+
+        worldNode.AddChild(structureEntity);
+        structureEntity.Init(structureDefinition, playerOwned);
+
+        structureEntity.AddToGroup(Constants.NAME_LABEL_GROUP);
+        structureEntity.AddToGroup(Constants.SPACE_STRUCTURE_ENTITY_GROUP);
+
+        structureEntity.Transform = location;
+
+        return structureEntity;
+    }
+
+    public static PackedScene LoadSpaceStructureScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/PlacedSpaceStructure.tscn");
+    }
+
+    public static PackedScene LoadFleetScene()
+    {
+        return GD.Load<PackedScene>("res://src/space_stage/SpaceFleet.tscn");
     }
 
     private static Quat RandomRotationForResourceEntity(Random random)

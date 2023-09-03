@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 /// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 /// [Tool]
-public class ErrorDialog : CustomDialog
+public class ErrorDialog : CustomWindow
 {
     private string errorMessage = string.Empty;
     private string? exceptionInfo;
@@ -87,12 +87,18 @@ public class ErrorDialog : CustomDialog
         ErrorMessage = message;
         ExceptionInfo = exception;
         copyException.Visible = allowExceptionCopy;
-        this.PopupCenteredShrink();
+        PopupCenteredShrink();
 
         onDismissReturnToMenu = returnToMenu;
         onCloseCallback = onClosed;
 
         PauseManager.Instance.AddPause(PauseLock);
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        OnErrorDialogDismissed();
     }
 
     private void UpdateMessage()

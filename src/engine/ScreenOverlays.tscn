@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://src/engine/ScreenFilter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/engine/LoadingScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/engine/ColourblindScreenFilter.tscn" type="PackedScene" id=4]
@@ -12,26 +13,39 @@
 pause_mode = 2
 process_priority = 2000
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 128
+[node name="NormalOverlays" type="CanvasLayer" parent="."]
+layer = 125
 
-[node name="LoadingScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
+[node name="LoadingScreen" parent="NormalOverlays" instance=ExtResource( 3 )]
 visible = false
 
-[node name="TransitionManager" type="Control" parent="CanvasLayer"]
+[node name="TransitionManager" type="Control" parent="NormalOverlays"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 8 )
 
-[node name="SaveStatusOverlay" parent="CanvasLayer" instance=ExtResource( 2 )]
+[node name="SaveStatusOverlay" parent="NormalOverlays" instance=ExtResource( 2 )]
 visible = false
 
-[node name="QuickLoad" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="QuickLoad" parent="NormalOverlays" instance=ExtResource( 5 )]
 theme = ExtResource( 6 )
 
-[node name="ColourblindScreenFilter" parent="CanvasLayer" instance=ExtResource( 4 )]
-visible = false
+[node name="OverlaysOnTopOfModals" type="CanvasLayer" parent="."]
+layer = 127
 
-[node name="DebugOverlay" parent="CanvasLayer" instance=ExtResource( 7 )]
+[node name="DebugOverlay" parent="OverlaysOnTopOfModals" instance=ExtResource( 7 )]
+
+[node name="Effects" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ScreenFilter" parent="Effects" instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="ColourblindScreenFilter" parent="Effects" instance=ExtResource( 4 )]
+visible = false

@@ -322,10 +322,8 @@ public partial class Microbe
 
         if (source is "toxin" or "oxytoxy")
         {
-            // TODO: Replace this take damage sound with a more appropriate one.
-
             // Play the toxin sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
             // TODO: fix this, currently "toxin" is used both by microbes and chunks, as well as damage from ingested
             // toxins
@@ -410,7 +408,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true when this microbe can engulf the target
+    ///   Returns the check result whether this microbe can engulf the target
     /// </summary>
     public EngulfCheckResult CanEngulfObject(IEngulfable target)
     {
@@ -613,8 +611,12 @@ public partial class Microbe
 
         foreach (var entry in organelles.Organelles)
         {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+            // The membrane needs hex positions to handle cells with multihex organelles
+            foreach (var hex in entry.Definition.GetRotatedHexes(entry.Orientation))
+            {
+                var hexCartesian = Hex.AxialToCartesian(entry.Position + hex);
+                organellePositions.Add(new Vector2(hexCartesian.x, hexCartesian.z));
+            }
         }
 
         Membrane.OrganellePositions = organellePositions;

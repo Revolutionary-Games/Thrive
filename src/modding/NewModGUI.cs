@@ -61,7 +61,7 @@ public class NewModGUI : Control
     public NodePath ErrorDisplayPath = null!;
 
 #pragma warning disable CA2213
-    private CustomDialog dialog = null!;
+    private CustomWindow dialog = null!;
 
     private LineEdit internalName = null!;
     private LineEdit name = null!;
@@ -86,7 +86,7 @@ public class NewModGUI : Control
     private ModInfo? editedInfo;
 
     [Signal]
-    public delegate void OnCanceled();
+    public delegate void OnCancelled();
 
     /// <summary>
     ///   Emitted when creation is accepted. Contains the full JSON serialized <see cref="FullModDetails"/> object.
@@ -96,7 +96,7 @@ public class NewModGUI : Control
 
     public override void _Ready()
     {
-        dialog = GetNode<CustomDialog>(DialogPath);
+        dialog = GetNode<CustomWindow>(DialogPath);
 
         internalName = GetNode<LineEdit>(InternalNamePath);
         name = GetNode<LineEdit>(NamePath);
@@ -158,7 +158,7 @@ public class NewModGUI : Control
     private void Closed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnCanceled));
+        EmitSignal(nameof(OnCancelled));
     }
 
     private void Cancel()

@@ -48,6 +48,12 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
+    /// <summary>
+    ///   How many units of light level can change per second
+    /// </summary>
+    [Export]
+    public float LightLevelInterpolateSpeed = 4;
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -58,9 +64,14 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     [JsonIgnore]
     private Particles? backgroundParticles;
+
+    private ShaderMaterial materialToUpdate = null!;
 #pragma warning restore CA2213
 
-    private ShaderMaterial? materialToUpdate;
+    /// <summary>
+    ///   Used to manually tween the light level to the target value
+    /// </summary>
+    private float lastSetLightLevel = 1;
 
     private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
@@ -99,8 +110,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
                 return;
 
             lightLevel = value;
-
-            UpdateLightLevel();
         }
     }
 
@@ -140,7 +149,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             ResetHeight();
 
         UpdateBackgroundVisibility();
-        UpdateLightLevel();
     }
 
     public void ResolveNodeReferences()
@@ -168,6 +176,18 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         InputManager.UnregisterReceiver(this);
 
         Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // Once target is reached the value is set exactly the same
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (lastSetLightLevel != lightLevel)
+        {
+            UpdateLightLevel(delta);
+        }
     }
 
     /// <summary>
@@ -339,8 +359,27 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 
-    private void UpdateLightLevel()
+    private void UpdateLightLevel(float delta)
     {
-        materialToUpdate?.SetShaderParam("lightLevel", LightLevel);
+        if (lastSetLightLevel < lightLevel)
+        {
+            lastSetLightLevel += LightLevelInterpolateSpeed * delta;
+
+            if (lastSetLightLevel > lightLevel)
+                lastSetLightLevel = lightLevel;
+        }
+        else if (lastSetLightLevel > lightLevel)
+        {
+            lastSetLightLevel -= LightLevelInterpolateSpeed * delta;
+
+            if (lastSetLightLevel < lightLevel)
+                lastSetLightLevel = lightLevel;
+        }
+        else
+        {
+            lastSetLightLevel = lightLevel;
+        }
+
+        materialToUpdate.SetShaderParam("lightLevel", lastSetLightLevel);
     }
 }

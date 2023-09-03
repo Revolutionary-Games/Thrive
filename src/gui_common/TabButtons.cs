@@ -174,7 +174,7 @@ public class TabButtons : HBoxContainer
     {
         foreach (var tabButton in tabButtons)
         {
-            tabButton.QueueFree();
+            tabButton.DetachAndQueueFree();
         }
 
         tabButtons.Clear();

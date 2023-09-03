@@ -1,25 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/RadialPopup.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/RadialMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=3]
 
-[node name="RadialPopup" type="Popup"]
+[node name="RadialPopup" instance=ExtResource( 3 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-popup_exclusive = true
+margin_right = 0.0
+margin_bottom = 0.0
 script = ExtResource( 1 )
+Exclusive = true
+FullRect = true
+Movable = false
+ShowCloseButton = false
+Decorate = false
 RadialPath = NodePath("RadialMenu")
 
-[node name="BackgroundDarkener" type="ColorRect" parent="."]
+[node name="BackgroundDarkener" type="ColorRect" parent="." index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 40.0
-margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.254902 )
 
-[node name="RadialMenu" parent="." instance=ExtResource( 2 )]
+[node name="RadialMenu" parent="." index="1" instance=ExtResource( 2 )]
 AutoShowTestData = false
-
-[connection signal="popup_hide" from="." to="." method="OnClosed"]

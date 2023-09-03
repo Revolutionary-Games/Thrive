@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" type="PackedScene" id=14]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -41,7 +43,9 @@ EngulfedExplanationPath = NodePath("EngulfedTutorial")
 EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
 EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
-[node name="MicrobeWelcome" type="Popup" parent="."]
+[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 14 )]
+
+[node name="MicrobeWelcome" parent="." instance=ExtResource( 13 )]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -51,15 +55,15 @@ margin_top = -360.0
 margin_right = -830.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 450, 400 )
-theme = ExtResource( 2 )
-popup_exclusive = true
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
-WindowTitle = "TUTORIAL"
+Exclusive = true
 ExclusiveAllowCloseOnEscape = false
+WindowTitle = "TUTORIAL"
 Description = "MICROBE_STAGE_INITIAL"
+DescriptionForController = ""
 ShowDelay = 0.0
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
@@ -269,22 +273,24 @@ margin_bottom = 61.0
 PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 
-[node name="CheckHelpMenu" type="Popup" parent="."]
+[node name="CheckHelpMenu" parent="." instance=ExtResource( 13 )]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -260.0
 margin_top = -189.0
+margin_right = 0.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 260, 240 )
-theme = ExtResource( 2 )
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
 WindowTitle = "TUTORIAL"
 Description = "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+DescriptionForController = ""
+ShowDelay = 0.5
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CheckHelpMenu"]
@@ -367,82 +373,56 @@ margin_bottom = 96.0
 rect_min_size = Vector2( 260, 275 )
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
-[node name="EarlyMulticellularWelcome" type="Popup" parent="."]
+[node name="EarlyMulticellularWelcome" parent="." instance=ExtResource( 10 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -830.0
-margin_bottom = -320.0
+margin_bottom = -260.0
 rect_min_size = Vector2( 450, 460 )
-theme = ExtResource( 2 )
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": ""
-}
-WindowTitle = "TUTORIAL"
+Exclusive = true
+PreventsMouseCaptureWhileOpen = true
 Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="EarlyMulticellularWelcome"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 230, 230 )
-scroll_horizontal_enabled = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer"]
+[node name="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer" index="0"]
 margin_right = 450.0
 margin_bottom = 460.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="CustomRichTextLabel" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="0"]
 margin_right = 450.0
 margin_bottom = 24.0
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
 
-[node name="Control" type="Control" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="1"]
 margin_top = 28.0
 margin_right = 450.0
-margin_bottom = 364.0
+margin_bottom = 424.0
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer"]
-margin_left = 193.0
-margin_top = 368.0
-margin_right = 257.0
-margin_bottom = 400.0
+[node name="Button" type="Button" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" index="2"]
+margin_left = 125.0
+margin_top = 428.0
+margin_right = 325.0
+margin_bottom = 460.0
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 6 )
 text = "CONTINUE_THRIVING"
 
-[connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
+[connection signal="hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
 [connection signal="hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
-[connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
-[connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
 [connection signal="hide" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
-[connection signal="popup_hide" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
 [connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
-[connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
-[connection signal="popup_hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
 [connection signal="hide" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorPress" ]]
-[connection signal="popup_hide" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorPress" ]]
 [connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
-[connection signal="popup_hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
 [connection signal="hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
-[connection signal="popup_hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]
 [connection signal="hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
-[connection signal="popup_hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
 [connection signal="hide" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
-[connection signal="popup_hide" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
 [connection signal="hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
-[connection signal="popup_hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
 [connection signal="hide" from="LeaveColonyTutorial" to="." method="OnSpecificCloseClicked" binds= [ "LeaveColonyTutorial" ]]
-[connection signal="popup_hide" from="LeaveColonyTutorial" to="." method="OnSpecificCloseClicked" binds= [ "LeaveColonyTutorial" ]]
 [connection signal="hide" from="EarlyMulticellularWelcome" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
-[connection signal="popup_hide" from="EarlyMulticellularWelcome" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
 [connection signal="pressed" from="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
+
+[editable path="EarlyMulticellularWelcome"]

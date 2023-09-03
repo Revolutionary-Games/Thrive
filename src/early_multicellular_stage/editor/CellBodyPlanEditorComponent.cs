@@ -83,9 +83,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private Button duplicateTypeButton = null!;
 
-    private CustomDialog cannotDeleteInUseTypeDialog = null!;
+    private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
-    private CustomDialog duplicateCellTypeDialog = null!;
+    private CustomWindow duplicateCellTypeDialog = null!;
 
     private LineEdit duplicateCellTypeName = null!;
 
@@ -183,9 +183,9 @@ public partial class CellBodyPlanEditorComponent :
 
         duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
 
-        cannotDeleteInUseTypeDialog = GetNode<CustomDialog>(CannotDeleteInUseTypeDialogPath);
+        cannotDeleteInUseTypeDialog = GetNode<CustomWindow>(CannotDeleteInUseTypeDialogPath);
 
-        duplicateCellTypeDialog = GetNode<CustomDialog>(DuplicateCellTypeDialogPath);
+        duplicateCellTypeDialog = GetNode<CustomWindow>(DuplicateCellTypeDialogPath);
 
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
 
@@ -1073,7 +1073,9 @@ public partial class CellBodyPlanEditorComponent :
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
-        duplicateCellTypeName.GrabFocus();
+        // This isn't absolutely necessary but makes the dialog open a bit nicer in that the same thing stays focused
+        // the entire time and doesn't change due to the focus grabber a tiny bit later
+        duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
         duplicateCellTypeName.CaretPosition = type.TypeName.Length;
     }

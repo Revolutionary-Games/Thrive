@@ -90,6 +90,34 @@ public class BiomeConditions : ICloneable, ISaveLoadable
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
 
+    /// <summary>
+    ///   Returns a new dictionary where <see cref="Compounds"/> is combined with compounds contained in
+    ///   <see cref="Chunks"/>.
+    /// </summary>
+    [JsonIgnore]
+    public IReadOnlyDictionary<Compound, BiomeCompoundProperties> CombinedCompounds
+    {
+        get
+        {
+            var result = new Dictionary<Compound, BiomeCompoundProperties>(compounds);
+
+            foreach (var chunk in Chunks.Values)
+            {
+                if (chunk.Compounds == null)
+                    continue;
+
+                foreach (var compound in chunk.Compounds)
+                {
+                    compounds.TryGetValue(compound.Key, out BiomeCompoundProperties properties);
+                    properties.Amount += compound.Value.Amount;
+                    result[compound.Key] = properties;
+                }
+            }
+
+            return result;
+        }
+    }
+
     public BiomeCompoundProperties GetCompound(Compound compound, CompoundAmountType amountType)
     {
         if (TryGetCompound(compound, amountType, out var result))

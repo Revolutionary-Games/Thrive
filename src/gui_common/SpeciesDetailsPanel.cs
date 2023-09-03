@@ -46,6 +46,14 @@ public class SpeciesDetailsPanel : MarginContainer
             UpdateSpeciesPreview();
     }
 
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationTranslationChanged && previewSpecies != null)
+            UpdateSpeciesPreview();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

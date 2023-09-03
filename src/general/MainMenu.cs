@@ -22,6 +22,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public List<Texture> MenuBackgrounds = null!;
 
+    [Export(PropertyHint.File, "*.tscn")]
+    public List<string> Menu3DBackgroundScenes = null!;
+
     [Export]
     public NodePath FreebuildButtonPath = null!;
 
@@ -97,8 +100,12 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath ThanksDialogPath = null!;
 
+    [Export]
+    public NodePath MenusPath = null!;
+
 #pragma warning disable CA2213
     private TextureRect background = null!;
+    private Spatial? created3DBackground;
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -139,10 +146,12 @@ public class MainMenu : NodeWithInput
 
     private CustomConfirmationDialog steamFailedPopup = null!;
 
-    private CustomDialog safeModeWarning = null!;
+    private CustomWindow safeModeWarning = null!;
 
     private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
     private PermanentlyDismissibleDialog thanksDialog = null!;
+
+    private CenterContainer menus = null!;
 #pragma warning restore CA2213
 
     private Array? menuArray;
@@ -182,6 +191,9 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
             SafeModeStartupHandler.AreVideosAllowed())
         {
+            // Hide menu buttons to prevent them grabbing focus during intro video
+            GetCurrentMenu()?.Hide();
+
             SafeModeStartupHandler.ReportBeforeVideoPlaying();
             TransitionManager.Instance.AddSequence(
                 TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
@@ -203,6 +215,20 @@ public class MainMenu : NodeWithInput
         {
             ThriveNewsFeed.GetFeedContents();
         }
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        Settings.Instance.Menu3DBackgroundEnabled.OnChanged += OnMenuBackgroundTypeChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.Menu3DBackgroundEnabled.OnChanged -= OnMenuBackgroundTypeChanged;
     }
 
     public override void _Process(float delta)
@@ -258,6 +284,13 @@ public class MainMenu : NodeWithInput
         {
             GD.Print("Main window close signal detected");
             Invoke.Instance.Queue(QuitPressed);
+        }
+        else if (notification == NotificationTranslationChanged)
+        {
+            if (SteamHandler.Instance.IsLoaded)
+            {
+                UpdateSteamLoginText();
+            }
         }
     }
 
@@ -360,6 +393,7 @@ public class MainMenu : NodeWithInput
                 PatchNotesDisablerPath.Dispose();
                 FeedPositionerPath.Dispose();
                 ThanksDialogPath.Dispose();
+                MenusPath.Dispose();
             }
 
             menuArray?.Dispose();
@@ -408,20 +442,19 @@ public class MainMenu : NodeWithInput
             return;
         }
 
-        RandomizeBackground();
-
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
-        safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
+        safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
         modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(
             ModsInstalledButNotEnabledWarningPath);
         thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
+        menus = GetNode<CenterContainer>(MenusPath);
 
         // Set initial menu
         SwitchMenu();
@@ -453,14 +486,76 @@ public class MainMenu : NodeWithInput
     {
         var random = new Random();
 
-        var chosenBackground = MenuBackgrounds.Random(random);
+        // Some of the 3D backgrounds render very incorrectly in GLES2 so they are disabled
+        if (Settings.Instance.Menu3DBackgroundEnabled && OS.GetCurrentVideoDriver() != OS.VideoDriver.Gles2)
+        {
+            SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
+        }
+        else
+        {
+            var chosenBackground = MenuBackgrounds.Random(random);
 
-        SetBackground(chosenBackground);
+            SetBackground(chosenBackground);
+        }
     }
 
     private void SetBackground(Texture backgroundImage)
     {
+        background.Visible = true;
         background.Texture = backgroundImage;
+
+        if (created3DBackground != null)
+        {
+            created3DBackground.DetachAndQueueFree();
+            created3DBackground = null;
+        }
+    }
+
+    private void SetBackgroundScene(string path)
+    {
+        var backgroundScene = GD.Load<PackedScene>(path);
+
+        if (backgroundScene == null)
+        {
+            GD.PrintErr("Failed to load menu background: ", path);
+            return;
+        }
+
+        // We can get by waiting one frame before the missing background is visible, this slightly reduces the lag
+        // lag spike when loading the main menu
+        Invoke.Instance.Queue(() =>
+        {
+            // These are done here to ensure there isn't a weird single frame with a grey menu background
+            background.Visible = false;
+            if (created3DBackground != null)
+            {
+                created3DBackground.DetachAndQueueFree();
+                created3DBackground = null;
+            }
+
+            created3DBackground = backgroundScene.Instance<Spatial>();
+            AddChild(created3DBackground);
+        });
+    }
+
+    /// <summary>
+    ///   Returns the container for the current menu.
+    /// </summary>
+    /// <returns>Null if we aren't in any available menu or the menu container if there is one.</returns>
+    /// <exception cref="System.InvalidOperationException">The main menu hasn't been initialized.</exception>
+    private Control? GetCurrentMenu()
+    {
+        if (menuArray == null)
+            throw new InvalidOperationException("Main menu has not been initialized");
+        if (menuArray.Count <= 0)
+            throw new InvalidOperationException("Main menu has no menus");
+
+        return CurrentMenuIndex == uint.MaxValue ? null : menus.GetChild<Control>((int)CurrentMenuIndex);
+    }
+
+    private void OnMenuBackgroundTypeChanged(bool value)
+    {
+        RandomizeBackground();
     }
 
     private void UpdateStoreVersionStatus()
@@ -504,8 +599,7 @@ public class MainMenu : NodeWithInput
         else
         {
             storeLoggedInDisplay.Visible = true;
-            storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
-                .FormatSafe(SteamHandler.Instance.DisplayName);
+            UpdateSteamLoginText();
 
             // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
             itchButton.Visible = false;
@@ -519,6 +613,12 @@ public class MainMenu : NodeWithInput
     private bool SteamFailed()
     {
         return SteamHandler.IsTaggedSteamRelease() && !SteamHandler.Instance.IsLoaded;
+    }
+
+    private void UpdateSteamLoginText()
+    {
+        storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+            .FormatSafe(SteamHandler.Instance.DisplayName);
     }
 
     private void UpdateLauncherState()
@@ -588,6 +688,13 @@ public class MainMenu : NodeWithInput
         StartMusic();
 
         introVideoPassed = true;
+
+        // Display menu buttons that were hidden to prevent them grabbing focus during intro video
+        GetCurrentMenu()?.Show();
+
+        // Load the menu background only here as the 3D ones are performance intensive so they aren't very nice to
+        // consume power unnecessarily while showing the video
+        RandomizeBackground();
     }
 
     private void CheckStartupSuccess()
@@ -865,14 +972,26 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(uint.MaxValue, false);
-        galleryViewer.PopupFullRect();
+        galleryViewer.OpenFullRect();
         Jukebox.Instance.PlayCategory("ArtGallery");
+
+        if (created3DBackground != null)
+        {
+            // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
+            // scene underneath it is not the best
+            created3DBackground.Visible = false;
+        }
     }
 
     private void OnReturnFromArtGallery()
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
+
+        if (created3DBackground != null)
+        {
+            created3DBackground.Visible = true;
+        }
     }
 
     private void OnWebsitesButtonPressed()
@@ -912,5 +1031,14 @@ public class MainMenu : NodeWithInput
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             () => { SceneManager.Instance.SwitchToScene("res://src/benchmark/microbe/MicrobeBenchmark.tscn"); }, false);
+    }
+
+    private void OnNewGameIntroVideoStarted()
+    {
+        if (created3DBackground != null)
+        {
+            // Hide the background again when playing a video as the 3D backgrounds are performance intensive
+            created3DBackground.Visible = false;
+        }
     }
 }

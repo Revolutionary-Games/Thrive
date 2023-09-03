@@ -75,6 +75,7 @@ GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/P
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
+CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -82,9 +83,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 365.0
-margin_top = 208.0
+margin_top = 214.0
 margin_right = 915.0
-margin_bottom = 512.0
+margin_bottom = 506.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
@@ -92,14 +93,14 @@ __meta__ = {
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 550.0
-margin_bottom = 264.0
+margin_bottom = 252.0
 rect_min_size = Vector2( 550, 200 )
 
 [node name="Main" type="MarginContainer" parent="CenterContainer/VBoxContainer/BasicOptions"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 549.0
-margin_bottom = 263.0
+margin_bottom = 251.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -109,7 +110,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 533.0
-margin_bottom = 247.0
+margin_bottom = 235.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -159,6 +160,7 @@ margin_right = 518.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
 text = "LAWK_ONLY_EXPLANATION"
+autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 90.0
@@ -167,24 +169,29 @@ margin_bottom = 135.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-margin_right = 173.0
+margin_right = 200.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 173.0
+margin_right = 200.0
 margin_bottom = 25.0
 mouse_filter = 0
+size_flags_horizontal = 3
 text = "LIFE_ORIGIN"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 29.0
-margin_right = 173.0
+margin_right = 200.0
 margin_bottom = 45.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "LIFE_ORIGIN_EXPLANATION"
+autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-margin_left = 177.0
+margin_left = 204.0
 margin_right = 314.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
@@ -257,20 +264,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+[node name="CheckPerformanceSettingsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 186.0
 margin_right = 518.0
-margin_bottom = 186.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
-margin_top = 196.0
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer"]
 margin_right = 518.0
-margin_bottom = 200.0
 
-[node name="CustomRichTextLabel" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 210.0
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer"]
+margin_top = 4.0
 margin_right = 518.0
-margin_bottom = 232.0
+margin_bottom = 8.0
+
+[node name="CustomRichTextLabel" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer" instance=ExtResource( 11 )]
+margin_top = 12.0
+margin_right = 518.0
+margin_bottom = 34.0
 ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 
 [node name="TabButtons" parent="CenterContainer/VBoxContainer" instance=ExtResource( 13 )]
@@ -360,7 +371,9 @@ margin_bottom = 25.0
 margin_right = 250.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 3
 text = "DIFFICULTY_PRESET"
+autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
 margin_left = 254.0
@@ -396,17 +409,12 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_top = 3.0
-margin_right = 285.0
+margin_right = 437.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "MUTATION_COST_MULTIPLIER"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 289.0
-margin_right = 437.0
-margin_bottom = 31.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+text = "MUTATION_COST_MULTIPLIER"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 441.0
@@ -443,8 +451,10 @@ editable = false
 margin_top = 35.0
 margin_right = 648.0
 margin_bottom = 51.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "MUTATION_COST_MULTIPLIER_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 116.0
@@ -458,17 +468,12 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 margin_top = 3.0
-margin_right = 250.0
+margin_right = 437.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "AI_MUTATION_RATE"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
-margin_left = 254.0
-margin_right = 437.0
-margin_bottom = 31.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+text = "AI_MUTATION_RATE"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 margin_left = 441.0
@@ -505,8 +510,10 @@ editable = false
 margin_top = 35.0
 margin_right = 648.0
 margin_bottom = 51.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "AI_MUTATION_RATE_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 177.0
@@ -520,17 +527,12 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_top = 3.0
-margin_right = 284.0
+margin_right = 437.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "COMPOUND_CLOUD_DENSITY"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 288.0
-margin_right = 437.0
-margin_bottom = 31.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+text = "COMPOUND_CLOUD_DENSITY"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 441.0
@@ -567,8 +569,10 @@ editable = false
 margin_top = 35.0
 margin_right = 648.0
 margin_bottom = 51.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "COMPOUND_CLOUD_DENSITY_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 238.0
@@ -582,17 +586,12 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_top = 3.0
-margin_right = 375.0
+margin_right = 437.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "PLAYER_DEATH_POPULATION_PENALTY"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
-margin_left = 379.0
-margin_right = 437.0
-margin_bottom = 31.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+text = "PLAYER_DEATH_POPULATION_PENALTY"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_left = 441.0
@@ -629,8 +628,10 @@ editable = false
 margin_top = 35.0
 margin_right = 648.0
 margin_bottom = 51.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 299.0
@@ -644,17 +645,12 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_top = 3.0
-margin_right = 386.0
+margin_right = 437.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "ENVIRONMENTAL_GLUCOSE_RETENTION"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-margin_left = 390.0
-margin_right = 437.0
-margin_bottom = 31.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+text = "ENVIRONMENTAL_GLUCOSE_RETENTION"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_left = 441.0
@@ -690,8 +686,10 @@ editable = false
 margin_top = 35.0
 margin_right = 648.0
 margin_bottom = 51.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 360.0
@@ -705,17 +703,12 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
 margin_top = 3.0
-margin_right = 364.0
+margin_right = 437.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "OSMOREGULATION_COST_MULTIPLIER"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
-margin_left = 368.0
-margin_right = 437.0
-margin_bottom = 31.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+text = "OSMOREGULATION_COST_MULTIPLIER"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
 margin_left = 441.0
@@ -752,8 +745,10 @@ editable = false
 margin_top = 35.0
 margin_right = 648.0
 margin_bottom = 51.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 421.0
@@ -771,8 +766,10 @@ text = "FREE_GLUCOSE_CLOUD"
 margin_top = 29.0
 margin_right = 648.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "FREE_GLUCOSE_CLOUD_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 476.0
@@ -790,8 +787,10 @@ text = "PASSIVE_REPRODUCTION_PROGRESS"
 margin_top = 29.0
 margin_right = 648.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 531.0
@@ -809,8 +808,10 @@ text = "LIMIT_GROWTH_RATE"
 margin_top = 29.0
 margin_right = 648.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "LIMIT_GROWTH_RATE_EXPLANATION"
+autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer"]
 margin_left = 652.0
@@ -856,8 +857,10 @@ text = "LAWK_ONLY"
 margin_top = 29.0
 margin_right = 668.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "LAWK_ONLY_EXPLANATION"
+autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 margin_top = 55.0
@@ -866,28 +869,26 @@ margin_bottom = 100.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
-margin_right = 173.0
-margin_bottom = 45.0
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 173.0
-margin_bottom = 25.0
-mouse_filter = 0
-text = "LIFE_ORIGIN"
-
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 29.0
-margin_right = 173.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 3 )
-text = "LIFE_ORIGIN_EXPLANATION"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
-margin_left = 177.0
 margin_right = 464.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 3 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_right = 464.0
+margin_bottom = 25.0
+mouse_filter = 0
+size_flags_horizontal = 3
+text = "LIFE_ORIGIN"
+autowrap = true
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 29.0
+margin_right = 464.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "LIFE_ORIGIN_EXPLANATION"
+autowrap = true
 
 [node name="LifeOriginAdvanced" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
 margin_left = 468.0
@@ -918,9 +919,11 @@ text = "DAY_NIGHT_CYCLE_ENABLED"
 margin_top = 29.0
 margin_right = 668.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -935,17 +938,12 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_top = 3.0
-margin_right = 250.0
+margin_right = 457.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "DAY_LENGTH"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer"]
-margin_left = 254.0
-margin_right = 457.0
-margin_bottom = 31.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+text = "DAY_LENGTH"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_left = 461.0
@@ -985,8 +983,10 @@ editable = false
 margin_top = 35.0
 margin_right = 668.0
 margin_bottom = 51.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "DAY_LENGTH_EXPLANATION"
+autowrap = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 margin_top = 226.0
@@ -995,16 +995,11 @@ margin_bottom = 257.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
-margin_right = 229.0
-margin_bottom = 28.0
-text = "PLANET_RANDOM_SEED"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3"]
-margin_left = 233.0
 margin_right = 464.0
-margin_bottom = 31.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 4 )
+text = "PLANET_RANDOM_SEED"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3"]
 margin_left = 468.0
@@ -1061,13 +1056,17 @@ expand = true
 stretch_mode = 6
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/CenterContainer"]
-margin_left = 88.0
+margin_left = 9.0
 margin_top = 130.0
-margin_right = 580.0
+margin_right = 659.0
 margin_bottom = 171.0
+rect_min_size = Vector2( 650, 0 )
+size_flags_horizontal = 3
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 9 )
 text = "PLANET_GENERATION_TEASER"
+align = 1
+autowrap = true
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
@@ -1105,8 +1104,10 @@ text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
 margin_top = 29.0
 margin_right = 668.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+autowrap = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
 margin_top = 55.0
@@ -1124,13 +1125,15 @@ text = "EASTER_EGGS"
 margin_top = 29.0
 margin_right = 668.0
 margin_bottom = 45.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "EASTER_EGGS_EXPLANATION"
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 269.0
+margin_top = 257.0
 margin_right = 550.0
-margin_bottom = 304.0
+margin_bottom = 292.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -1205,7 +1208,7 @@ __meta__ = {
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
-[connection signal="meta_clicked" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CustomRichTextLabel" to="." method="PerformanceNoteLinkClicked"]
+[connection signal="meta_clicked" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer/CustomRichTextLabel" to="." method="PerformanceNoteLinkClicked"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= [ "Difficulty" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= [ "Planet" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= [ "Miscellaneous" ]]

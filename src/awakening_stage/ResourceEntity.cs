@@ -18,7 +18,7 @@ public class ResourceEntity : RigidBody, IInteractableEntity
     public float InteractDistanceOffset => 0;
 
     [JsonIgnore]
-    public Vector3? ExtraInteractOverlayOffset => null;
+    public Vector3? ExtraInteractionCenterOffset => null;
 
     [JsonIgnore]
     public string? ExtraInteractionPopupDescription => null;
