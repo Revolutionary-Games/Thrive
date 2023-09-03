@@ -803,6 +803,8 @@ public class OptionsMenu : ControlWithInput
         mouseHorizontalSensitivity.Value = MouseInputSensitivityToBarValue(settings.HorizontalMouseLookSensitivity);
         mouseHorizontalInverted.Pressed = settings.InvertHorizontalMouseLook;
         mouseVerticalSensitivity.Editable = !mouseAxisSensitivitiesBound.Pressed;
+        mouseVerticalSensitivity.FocusMode =
+            mouseAxisSensitivitiesBound.Pressed ? FocusModeEnum.Click : FocusModeEnum.All;
         mouseVerticalSensitivity.Value = MouseInputSensitivityToBarValue(settings.VerticalMouseLookSensitivity);
         mouseVerticalInverted.Pressed = settings.InvertVerticalMouseLook;
         mouseWindowSizeScaling.Selected = MouseInputScalingToIndex(settings.ScaleMouseInputByWindowSize);
@@ -824,6 +826,7 @@ public class OptionsMenu : ControlWithInput
         mouseEdgePanEnabled.Pressed = settings.PanStrategyViewWithMouse;
         mouseEdgePanSensitivity.Value = settings.PanStrategyViewMouseSpeed;
         mouseEdgePanSensitivity.Editable = mouseEdgePanEnabled.Pressed;
+        mouseEdgePanSensitivity.FocusMode = mouseEdgePanEnabled.Pressed ? FocusModeEnum.All : FocusModeEnum.Click;
 
         BuildInputRebindControls();
 
@@ -2033,6 +2036,7 @@ public class OptionsMenu : ControlWithInput
     private void OnMouseAxesBoundToggled(bool pressed)
     {
         mouseVerticalSensitivity.Editable = !pressed;
+        mouseVerticalSensitivity.FocusMode = pressed ? FocusModeEnum.Click : FocusModeEnum.All;
 
         if (pressed)
         {
@@ -2197,6 +2201,7 @@ public class OptionsMenu : ControlWithInput
     {
         Settings.Instance.PanStrategyViewWithMouse.Value = pressed;
         mouseEdgePanSensitivity.Editable = pressed;
+        mouseEdgePanSensitivity.FocusMode = pressed ? FocusModeEnum.All : FocusModeEnum.Click;
 
         UpdateResetSaveButtonState();
     }
