@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-03 15:59+0200\n"
-"PO-Revision-Date: 2023-02-17 07:30+0000\n"
-"Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
+"POT-Creation-Date: 2023-05-29 14:37+0300\n"
+"PO-Revision-Date: 2023-08-30 08:51+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.0\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1472
@@ -134,14 +134,12 @@ msgid "AGENTS"
 msgstr "Химични агенти"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Състояние:"
+msgstr "Химични агенти:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "{0} — {1}"
+msgstr "Химичен агент {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -270,9 +268,8 @@ msgid "ART_GALLERY"
 msgstr "Галерия"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Популация на създанията"
+msgstr "Поздравления!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
@@ -1132,9 +1129,8 @@ msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "Потвърждение за изход"
+msgstr "Потвърждение за изтриване"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
@@ -1244,9 +1240,8 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копиране на грешката в клипборда"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Резултати от автоматичната еволюция:"
+msgstr "Копиране на резултатите"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "CORRECTION_PROTANOPE"
@@ -1514,9 +1509,8 @@ msgstr ""
 " - резервни записи: {2}"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
+msgstr "Изтриването на фосила не може да бъде отменено, сигурни ли сте, че искате да го изтриете?"
 
 #: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -1843,7 +1837,7 @@ msgstr "Ето един съвет — биомите са нещо повече
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Ето един съвет — с повече камшичета ще се движите по-бързо, бръм, бръм, но това ще Ви струва повече АТФ"
+msgstr "Ето един съвет — с повече камшичета ще се движите по-бързо, но това ще Ви струва повече АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"

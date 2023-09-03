@@ -113,8 +113,8 @@ ControllerVerticalSensitivityPath = NodePath("CenterContainer/VBoxContainer/VBox
 ControllerVerticalInvertedPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/VerticalInverted")
 TwoDimensionalMovementPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Movement2DType")
 ThreeDimensionalMovementPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/Movement3DType")
-MouseEdgePanEnabledPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/EdgePan")
-MouseEdgePanSensitivityPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/EdgePanSpeed")
+MouseEdgePanEnabledPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EdgePan")
+MouseEdgePanSensitivityPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/EdgePanSpeed")
 InputGroupListPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
 DeadzoneConfigurationPopupPath = NodePath("ControllerDeadzoneConfiguration")
 MiscTabPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc")
@@ -1309,7 +1309,6 @@ margin_left = 205.0
 margin_right = 589.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1330,7 +1329,6 @@ margin_right = 589.0
 margin_bottom = 44.0
 focus_neighbour_top = NodePath("../Horizontal")
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1419,7 +1417,6 @@ margin_left = 205.0
 margin_right = 589.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1440,7 +1437,6 @@ margin_right = 589.0
 margin_bottom = 44.0
 focus_neighbour_top = NodePath("../Horizontal")
 size_flags_horizontal = 3
-step = 0.0
 
 [node name="VerticalInverted" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource( 10 )]
 margin_left = 593.0
@@ -1517,8 +1513,8 @@ rect_min_size = Vector2( 200, 25 )
 focus_neighbour_left = NodePath("../../DeadzonesButton")
 focus_neighbour_top = NodePath("../../HBoxContainer2/Movement2DType")
 focus_neighbour_right = NodePath("../../../../../../HBoxContainer/ResetInputsButton")
-focus_neighbour_bottom = NodePath("../../VBoxContainer/EdgePan")
-focus_next = NodePath("../../VBoxContainer/EdgePan")
+focus_neighbour_bottom = NodePath("../../EdgePan")
+focus_next = NodePath("../../EdgePan")
 size_flags_vertical = 0
 text = "SCREEN_RELATIVE_MOVEMENT"
 items = [ "SCREEN_RELATIVE_MOVEMENT", null, false, 0, null, "WORLD_RELATIVE_MOVEMENT", null, false, 1, null ]
@@ -1532,45 +1528,33 @@ margin_top = 338.0
 margin_right = 708.0
 margin_bottom = 338.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="EdgePan" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 342.0
+margin_right = 708.0
+margin_bottom = 367.0
+text = "MOUSE_EDGE_PANNING_OPTION"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 371.0
 margin_right = 708.0
 margin_bottom = 396.0
 
-[node name="EdgePan" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_left = 598.0
-margin_top = 29.0
-margin_right = 929.0
-margin_bottom = 54.0
-focus_neighbour_bottom = NodePath("../HBoxContainer/EdgePanSpeed")
-focus_next = NodePath("../HBoxContainer/EdgePanSpeed")
-text = "MOUSE_EDGE_PANNING_OPTION"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 708.0
-margin_bottom = 54.0
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_right = 174.0
 margin_bottom = 25.0
 text = "EDGE_PAN_SPEED"
 
-[node name="EdgePanSpeed" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="EdgePanSpeed" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_left = 178.0
-margin_right = 594.0
-margin_bottom = 15.0
-focus_neighbour_top = NodePath("../../EdgePan")
-focus_neighbour_bottom = NodePath("../../EdgePan")
-focus_next = NodePath("../../../InputGroupList")
-focus_previous = NodePath("../../EdgePan")
+margin_right = 708.0
+margin_bottom = 16.0
+focus_neighbour_bottom = NodePath("../../InputGroupList")
 size_flags_horizontal = 3
 min_value = 5.0
 max_value = 140.0
-step = 0.0
 value = 5.0
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="InputGroupListTop" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 400.0
 margin_right = 708.0
 margin_bottom = 404.0
@@ -1580,12 +1564,10 @@ margin_top = 408.0
 margin_right = 708.0
 margin_bottom = 408.0
 focus_neighbour_left = NodePath("../../../../../../../../../HBoxContainer/Back")
-focus_neighbour_top = NodePath("../VBoxContainer/HBoxContainer/EdgePanSpeed")
+focus_neighbour_top = NodePath("../InputGroupListTop")
 focus_neighbour_right = NodePath("../../../../../HBoxContainer/ResetInputsButton")
 focus_neighbour_bottom = NodePath("../../../../../HBoxContainer/ResetInputsButton")
 focus_next = NodePath("../../../../../HBoxContainer/ResetInputsButton")
-focus_previous = NodePath("../VBoxContainer/HBoxContainer/EdgePanSpeed")
-focus_mode = 2
 custom_constants/separation = 30
 script = ExtResource( 3 )
 __meta__ = {
@@ -1593,6 +1575,12 @@ __meta__ = {
 }
 ConflictDialogPath = NodePath("../../../../../../../../../../../ConflictDialog")
 ResetInputsDialog = NodePath("../../../../../../../../../../../DefaultsInputsConfirm")
+
+[node name="InputGroupListBottom" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 412.0
+margin_right = 708.0
+margin_bottom = 412.0
+custom_constants/separation = 0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer"]
 margin_top = 519.0
@@ -1609,10 +1597,10 @@ alignment = 2
 margin_left = 506.0
 margin_right = 718.0
 margin_bottom = 35.0
-focus_neighbour_top = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
+focus_neighbour_top = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupListBottom")
 focus_neighbour_bottom = NodePath("../../../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../../../HBoxContainer/Back")
-focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
+focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupListBottom")
 text = "RESET_KEYBINDINGS"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
@@ -2319,8 +2307,8 @@ __meta__ = {
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DeadzonesButton" to="." method="OnOpenDeadzoneConfigurationPressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Movement2DType" to="." method="OnMovement2DTypeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/Movement3DType" to="." method="OnMovement3DTypeSelected"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/EdgePan" to="." method="OnMouseEdgePanToggled"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/EdgePanSpeed" to="." method="OnMouseEdgePanSensitivityChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EdgePan" to="." method="OnMouseEdgePanToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/EdgePanSpeed" to="." method="OnMouseEdgePanSensitivityChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnResetInputs"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
