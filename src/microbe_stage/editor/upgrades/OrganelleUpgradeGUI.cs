@@ -61,7 +61,8 @@ public class OrganelleUpgradeGUI : Control
     }
 
     public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene,
-        ICellEditorComponent editorComponent, ICellEditorData editorData, float costMultiplier, GameProperties currentGame)
+        ICellEditorComponent editorComponent, ICellEditorData editorData,
+        float costMultiplier, GameProperties currentGame)
     {
         openedForOrganelle = organelle;
 
