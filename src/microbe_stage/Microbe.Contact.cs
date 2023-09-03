@@ -339,8 +339,6 @@ public partial class Microbe
             if (invulnerabilityDuration > 0)
                 return;
 
-            GD.Print("pilus");
-
             // Play the pilus sound
             PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg", 4.0f);
 
@@ -357,8 +355,6 @@ public partial class Microbe
         {
             if (invulnerabilityDuration > 0)
                 return;
-
-            GD.Print("injectisome");
 
             // Play the injectisome sound
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
