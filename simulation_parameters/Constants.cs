@@ -134,7 +134,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
-    public const float BASE_MOVEMENT_FORCE = 900.0f;
+    public const float BASE_MOVEMENT_FORCE = 910.0f;
 
     public const float CELL_BASE_THRUST = 50.6f;
 
@@ -307,6 +307,9 @@ public static class Constants
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
+
+    public const float CHUNK_PHYSICS_DAMPING = 0.1f;
+    public const float MICROBE_PHYSICS_DAMPING = 0.95f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
@@ -654,11 +657,6 @@ public static class Constants
     ///   Osmoregulation ATP cost per second per hex
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
-
-    /// <summary>
-    ///   The default contact store count for objects using contact reporting
-    /// </summary>
-    public const int DEFAULT_STORE_CONTACTS_COUNT = 4;
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;

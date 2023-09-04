@@ -94,6 +94,8 @@ public:
 
     void SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool activate = true);
 
+    void SetBodyAllowSleep(JPH::BodyID bodyId, bool allowSleeping);
+
     /// \brief Ensures body's Y coordinate is 0, if not moves it so that it is 0
     /// \returns True if the body's position changed, false if no fix was needed
     bool FixBodyYCoordinateToZero(JPH::BodyID bodyId);

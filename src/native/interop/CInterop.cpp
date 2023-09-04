@@ -304,6 +304,12 @@ void SetBodyVelocityAndAngularVelocity(
             Thrive::Vec3FromCAPI(velocity), Thrive::Vec3FromCAPI(angularVelocity));
 }
 
+void SetBodyAllowSleep(PhysicalWorld* physicalWorld, PhysicsBody* body, bool allowSleep)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetBodyAllowSleep(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), allowSleep);
+}
+
 bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
@@ -454,6 +460,11 @@ void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLen
     {
         LOG_ERROR("PhysicsBodySetUserData: called with wrong data length, cannot store the data");
     }
+}
+
+void PhysicsBodyForceClearRecordingTargets(PhysicsBody* body)
+{
+    reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->ClearCollisionRecordingTarget();
 }
 
 // ------------------------------------ //

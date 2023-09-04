@@ -44,6 +44,13 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
     public float InterpolateZoomSpeed = 0.3f;
 
     /// <summary>
+    ///   Now required with native physics to ensure that there's no occasional hitching with the camera
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float SnapWithDistanceLessThan = 6.0f;
+
+    /// <summary>
     ///   How many units of light level can change per second
     /// </summary>
     [Export]
@@ -196,8 +203,20 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
             var newFloorPosition = new Vector3(
                 followedObject.Value.x, 0, followedObject.Value.z);
 
-            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
-                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+            Vector3 target;
+
+            if (currentFloorPosition.DistanceTo(newFloorPosition) < SnapWithDistanceLessThan)
+            {
+                // Don't interpolate floor position, this stops every few seconds slight hitching happening visually
+                // with the player movement using the new physics (even when multiplying InterpolateSpeed with delta)
+                target = newFloorPosition +
+                    currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+            }
+            else
+            {
+                target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
+                    + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+            }
 
             Translation = target;
         }

@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -35,30 +36,42 @@
             // Position is used to calculate the look direction
             ref var position = ref entity.Get<WorldPosition>();
 
-            var reverseLookVector = position.Position - control.LookAtPoint;
-            reverseLookVector.y = 0;
-            var up = Vector3.Up;
+            var lookVector = control.LookAtPoint - position.Position;
+            lookVector.y = 0;
 
-            var length = reverseLookVector.Length();
+            var length = lookVector.Length();
 
             if (length > MathUtils.EPSILON)
             {
                 // Normalize vector when it has a length
-                reverseLookVector /= length;
+                lookVector /= length;
             }
             else
             {
                 // Without any difference with the look at point compared to the current position, default to looking
                 // forward
-                reverseLookVector = -Vector3.Forward;
+                lookVector = Vector3.Forward;
             }
 
-            // Math loaned from Godot.Transform.SetLookAt adapted to fit here and removed one extra
-            var column0 = up.Cross(reverseLookVector);
-            var column1 = reverseLookVector.Cross(column0);
-            var wantedRotation = new Basis(column0.Normalized(), column1.Normalized(), reverseLookVector).Quat();
+#if DEBUG
+            if (!lookVector.IsNormalized())
+                throw new Exception("Look vector not normalized");
+#endif
 
-            float rotationSpeed = 2;
+            var up = Vector3.Up;
+
+            // Math loaned from Godot.Transform.SetLookAt adapted to fit here and removed one extra
+            var column0 = up.Cross(lookVector);
+            var column1 = lookVector.Cross(column0);
+            var wantedRotation = new Basis(column0.Normalized(), column1.Normalized(), lookVector).Quat();
+
+#if DEBUG
+            if (!wantedRotation.IsNormalized())
+                throw new Exception("Created target microbe rotation is not normalized");
+#endif
+
+            // Lower value is faster rotation
+            float rotationSpeed = 0.2f;
 
             // TODO: rotation penalty from size
 
@@ -77,7 +90,6 @@
                 }
 
                 // Base movement force
-                // TODO: make this force make sense
                 movementImpulse = control.MovementDirection * Constants.BASE_MOVEMENT_FORCE;
 
                 // TODO: speed from flagella

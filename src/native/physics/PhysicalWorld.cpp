@@ -586,7 +586,7 @@ void PhysicalWorld::SetBodyControl(
         state->targetChanged = true;
         state->justStarted = true;
     }
-    else [[likely]]
+    else
     {
         state->targetRotation = targetRotation;
 
@@ -625,6 +625,19 @@ void PhysicalWorld::SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool
 {
     physicsSystem->GetBodyInterface().SetPosition(
         bodyId, position, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
+}
+
+void PhysicalWorld::SetBodyAllowSleep(JPH::BodyID bodyId, bool allowSleeping)
+{
+    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
+    if (!lock.Succeeded()) [[unlikely]]
+    {
+        LOG_ERROR("Couldn't lock body for setting allow sleep");
+        return;
+    }
+
+    JPH::Body& body = lock.GetBody();
+    body.SetAllowSleeping(allowSleeping);
 }
 
 bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
@@ -1159,7 +1172,8 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     JPH::Body& body = lock.GetBody();
     const auto degreesOfFreedom = body.GetMotionProperties()->GetAllowedDOFs();
 
-    body.AddImpulse(controlState->movement * normalizedDelta);
+    if (controlState->movement.LengthSq() > 0.000001f)
+        body.AddImpulse(controlState->movement * normalizedDelta);
 
     const auto& currentRotation = body.GetRotation();
 

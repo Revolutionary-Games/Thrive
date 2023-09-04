@@ -11,6 +11,7 @@ class StepListener : public JPH::PhysicsStepListener
 public:
     explicit StepListener(PhysicalWorld& world);
 
+    /// \summary Called each physics step, but only if there is at least one non-sleeping physics body
     void OnStep(float inDeltaTime, JPH::PhysicsSystem& inPhysicsSystem) override;
 
 private:

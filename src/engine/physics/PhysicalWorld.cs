@@ -198,11 +198,22 @@ public class PhysicalWorld : IDisposable
         NativeMethods.GiveAngularImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(angularImpulse));
     }
 
+    /// <summary>
+    ///   Applies microbe movement control on a physics body. Note that there has to be at least one active physics
+    ///   body (not sleeping) to have this apply. If there are no active physics bodies this has no effect.
+    /// </summary>
+    /// <param name="body">The physics body to control</param>
+    /// <param name="movementImpulse">World-space movement vector</param>
+    /// <param name="lookDirection">Target look rotation</param>
+    /// <param name="rotationSpeedDivisor">
+    ///   How fast the body rotates to face <see cref="lookDirection"/>, higher values are slower
+    /// </param>
     public void ApplyBodyMicrobeControl(NativePhysicsBody body, Vector3 movementImpulse, Quat lookDirection,
         float rotationSpeedDivisor)
     {
-        if (rotationSpeedDivisor < 1)
-            throw new ArgumentException("Rotation rate divisor needs to be 1 or above");
+        // Too low speed divisor causes too fast rotation and instability that way
+        if (rotationSpeedDivisor < 0.01f)
+            rotationSpeedDivisor = 0.01f;
 
         NativeMethods.SetBodyControl(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(movementImpulse), new JQuat(lookDirection), rotationSpeedDivisor);
@@ -242,6 +253,11 @@ public class PhysicalWorld : IDisposable
     {
         NativeMethods.SetBodyAngularVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(angularVelocity));
+    }
+
+    public void SetBodyAllowSleep(NativePhysicsBody body, bool allowSleep)
+    {
+        NativeMethods.SetBodyAllowSleep(AccessWorldInternal(), body.AccessBodyInternal(), allowSleep);
     }
 
     public bool FixBodyYCoordinateToZero(NativePhysicsBody body)
@@ -549,6 +565,9 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern void SetBodyVelocityAndAngularVelocity(IntPtr world, IntPtr body, JVecF3 velocity,
         JVecF3 angularVelocity);
+
+    [DllImport("thrive_native")]
+    internal static extern void SetBodyAllowSleep(IntPtr world, IntPtr body, bool allowSleep);
 
     [DllImport("thrive_native")]
     internal static extern bool FixBodyYCoordinateToZero(IntPtr world, IntPtr body);

@@ -97,6 +97,9 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocityAndAngularVelocity(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyAllowSleep(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, bool allowSleep);
+
     [[maybe_unused]] THRIVE_NATIVE_API bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddAxisLock(

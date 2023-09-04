@@ -18,6 +18,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private ColourAnimationSystem colourAnimationSystem = null!;
     private CountLimitedDespawnSystem countLimitedDespawnSystem = null!;
     private DamageOnTouchSystem damageOnTouchSystem = null!;
+    private DisallowPlayerBodySleepSystem disallowPlayerBodySleepSystem = null!;
     private EntityMaterialFetchSystem entityMaterialFetchSystem = null!;
     private FadeOutActionSystem fadeOutActionSystem = null!;
     private PathBasedSceneLoader pathBasedSceneLoader = null!;
@@ -94,6 +95,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, parallelRunner);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem, parallelRunner);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, parallelRunner);
+        disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem, nonParallelRunner);
         fadeOutActionSystem = new FadeOutActionSystem(EntitySystem, parallelRunner);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
@@ -164,9 +166,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         colourAnimationSystem.Update(delta);
         microbeShaderSystem.Update(delta);
         tintColourAnimationSystem.Update(delta);
-
-        soundListenerSystem.Update(delta);
-        CameraFollowSystem.Update(delta);
     }
 
     public void SetSimulationBiome(BiomeConditions biomeConditions)
@@ -247,7 +246,14 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         SpawnSystem.Update(delta);
 
+        disallowPlayerBodySleepSystem.Update(delta);
+
         microbeMovementSystem.Update(delta);
+
+        soundListenerSystem.Update(delta);
+
+        // This needs to be here to not visually jitter the player position
+        CameraFollowSystem.Update(delta);
 
         reportedPlayerPosition = null;
     }
@@ -261,6 +267,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             colourAnimationSystem.Dispose();
             countLimitedDespawnSystem.Dispose();
             damageOnTouchSystem.Dispose();
+            disallowPlayerBodySleepSystem.Dispose();
             entityMaterialFetchSystem.Dispose();
             fadeOutActionSystem.Dispose();
             pathBasedSceneLoader.Dispose();

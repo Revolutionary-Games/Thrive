@@ -263,6 +263,7 @@ public static class SpawnHelpers
         entity.Set(new Physics
         {
             AxisLock = Physics.AxisLockType.YAxis,
+            LinearDamping = Constants.CHUNK_PHYSICS_DAMPING,
         });
         entity.Set(new PhysicsShapeHolder
         {
@@ -523,7 +524,7 @@ public static class SpawnHelpers
         entity.Set(new Physics
         {
             AxisLock = Physics.AxisLockType.YAxisWithRotation,
-            LinearDamping = 0.8f,
+            LinearDamping = Constants.MICROBE_PHYSICS_DAMPING,
         });
 
         entity.Set(new CollisionManagement
@@ -538,6 +539,7 @@ public static class SpawnHelpers
         });
 
         // Movement
+        // TODO: calculate rotation rate
         entity.Set(new MicrobeControl(location));
         entity.Set<ManualPhysicsControl>();
 
