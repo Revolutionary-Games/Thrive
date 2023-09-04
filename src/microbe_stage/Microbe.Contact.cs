@@ -243,6 +243,9 @@ public partial class Microbe
     [JsonProperty]
     public Action<Microbe, IHUDMessage>? OnNoticeMessage { get; set; }
 
+    public IEnumerable<OrganelleDefinition> UnlocksOrganelles =>
+        organelles.Select(placedOrganelle => placedOrganelle.Definition);
+
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
     ///   membrane rigidity into account.
@@ -563,10 +566,6 @@ public partial class Microbe
             playerEngulfedDeathTimer = 0;
         }
     }
-
-    public IEnumerable<OrganelleDefinition> UnlocksOrganelles => 
-        organelles.Select(placedOrganelle => placedOrganelle.Definition);
-    
 
     public void ClearEngulfedObjects()
     {
@@ -925,8 +924,11 @@ public partial class Microbe
             // Will only loop if there are still organelles available
             while (organellesAvailableEnumerator.MoveNext() && organellesAvailableEnumerator.Current != null)
             {
-                chunkType.UnlocksOrganelles = new List<OrganelleDefinition>{organellesAvailableEnumerator.Current.Definition};
-                
+                chunkType.UnlocksOrganelles = new List<OrganelleDefinition>
+                {
+                    organellesAvailableEnumerator.Current.Definition,
+                };
+
                 if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                 {
                     sceneToUse.LoadedScene =
@@ -1880,7 +1882,8 @@ public partial class Microbe
     /// <summary>
     ///   Add the organelles from the engulfable object to the player's unlocked organelles
     /// </summary>
-    private void UnlockEnglufedOrganelles(IEngulfable engulfable) {
+    private void UnlockEnglufedOrganelles(IEngulfable engulfable)
+    {
         if (!IsPlayerMicrobe)
             return;
 
@@ -1890,7 +1893,8 @@ public partial class Microbe
         if (engulfable.UnlocksOrganelles == null)
             return;
 
-        foreach (var organelle in engulfable.UnlocksOrganelles) {
+        foreach (var organelle in engulfable.UnlocksOrganelles)
+        {
             var isNew = microbeSpecies.UnlockedOrganelles.Add(organelle);
             if (!isNew)
                 continue;
@@ -1899,7 +1903,6 @@ public partial class Microbe
             OnNoticeMessage?.Invoke(this,
                 new SimpleHUDMessage(organelle.Name + " now available in the editor",
                     DisplayDuration.Normal));
-            
         }
     }
 

@@ -247,7 +247,8 @@ public partial class CellEditorComponent
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
-            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !entry.Key.LAWK) {
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !entry.Key.LAWK)
+            {
                 entry.Value.Hide();
             }
         }
@@ -261,24 +262,25 @@ public partial class CellEditorComponent
         // Hide organelles that are not yet unlocked
         foreach (var entry in allPartSelectionElements)
         {
-            if (entry.Value.Visible && microbeSpecies.UnlockedOrganelles.Contains(entry.Key)) {
+            if (entry.Value.Visible && microbeSpecies.UnlockedOrganelles.Contains(entry.Key))
+            {
                 usedCateogries.Add(entry.Key.EditorButtonGroup.ToString());
-            } else {
+            }
+            else
+            {
                 entry.Value.Hide();
             }
-
         }
 
         // Add some text to the now empty sections
-        var allCateogries = SimulationParameters.Instance.GetAllOrganelles().Select(organelle => organelle.EditorButtonGroup.ToString());
+        var allOrganelles = SimulationParameters.Instance.GetAllOrganelles();
+        var allCateogries = allOrganelles.Select(organelle => organelle.EditorButtonGroup.ToString());
         foreach (var organelleCategory in allCateogries.Except(usedCateogries))
         {
             var group = partsSelectionContainer.GetNode<CollapsibleList>(organelleCategory);
-            var label = new Label
-            {
-                // TODO: Translate
-                Text = "Unlock by engulfing more prokaryotes"
-            };
+
+            // TODO: Translate
+            var label = new Label { Text = "Unlock by engulfing more prokaryotes" };
             group?.AddItem(label);
         }
     }
