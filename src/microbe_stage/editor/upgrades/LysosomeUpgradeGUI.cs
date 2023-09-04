@@ -14,7 +14,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private Label description = null!;
 #pragma warning restore CA2213
 
-    private List<Enzyme>? shownChoices;
+    private IReadOnlyList<Enzyme>? shownChoices;
 
     public override void _Ready()
     {

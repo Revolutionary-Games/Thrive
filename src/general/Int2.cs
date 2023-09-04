@@ -96,7 +96,7 @@ public struct Int2 : IEquatable<Int2>
         return !(left == right);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is Int2 converted)
         {

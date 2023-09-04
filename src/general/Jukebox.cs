@@ -21,7 +21,7 @@ public class Jukebox : Node
     /// <summary>
     ///   Lists of music
     /// </summary>
-    private Dictionary<string, MusicCategory> categories = null!;
+    private IReadOnlyDictionary<string, MusicCategory> categories = null!;
 
     /// <summary>
     ///   The current jukebox volume level in linear volume range 0-1.0f

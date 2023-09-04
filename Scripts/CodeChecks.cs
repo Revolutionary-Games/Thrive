@@ -45,9 +45,9 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
             { "rewrite", new RewriteTool() },
         };
 
-        FilePathsToAlwaysIgnore.Add(new Regex(@"/?third_party/", RegexOptions.IgnoreCase));
+        FilePathsToAlwaysIgnore.Add(new Regex("/?third_party/", RegexOptions.IgnoreCase));
         FilePathsToAlwaysIgnore.Add(new Regex(@"mono_crash\..+"));
-        FilePathsToAlwaysIgnore.Add(new Regex(@"RevolutionaryGamesCommon/"));
+        FilePathsToAlwaysIgnore.Add(new Regex("RevolutionaryGamesCommon/"));
 
         // Downloaded json files
         FilePathsToAlwaysIgnore.Add(new Regex(@"patrons\.json"));

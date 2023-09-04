@@ -44,8 +44,8 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private TweakedColourPicker colourSelector = null!;
 #pragma warning restore CA2213
 
-    private List<Compound>? shownCompoundChoices;
-    private List<Species>? shownSpeciesChoices;
+    private IReadOnlyList<Compound>? shownCompoundChoices;
+    private IReadOnlyList<Species>? shownSpeciesChoices;
 
     private enum TargetType
     {
@@ -206,7 +206,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     ///   Sets the GUI up to reflect an existing configuration
     /// </summary>
     private void LoadConfiguration(ChemoreceptorUpgrades configuration,
-        List<Compound> shownCompoundChoices, List<Species> shownSpeciesChoices)
+        IReadOnlyList<Compound> shownCompoundChoices, IReadOnlyList<Species> shownSpeciesChoices)
     {
         if (configuration.TargetCompound != null)
         {
