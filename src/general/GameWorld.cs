@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
-    public UnlockProgress UnlockProgress;
+    public UnlockProgress UnlockProgress = new();
 
     [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
