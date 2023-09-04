@@ -222,5 +222,11 @@ public class CombinedSpawnQueue : SpawnQueue
     {
         if (Ended)
             return;
+
+        spawnQueues[usedSpawnIndex].CheckIsSpawningStillPossible(playerPosition);
+
+        // Automatically end the queue if CheckIsSpawningStillPossible set it to ended
+        if (spawnQueues[usedSpawnIndex].Ended)
+            ++usedSpawnIndex;
     }
 }
