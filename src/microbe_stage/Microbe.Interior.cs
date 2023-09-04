@@ -1344,8 +1344,8 @@ public partial class Microbe
     /// </summary>
     /// <param name="organelle"> The organelle we want to calculate the capacity of</param>
     /// <param name="negative">
-    ///     This should be true if the method is
-    ///     supposed to remove capacity and not increase it
+    ///   This should be true if the method is
+    ///   supposed to remove capacity and not increase it
     /// </param>
     private void CalculateOrganelleCapacity(PlacedOrganelle organelle, bool negative)
     {
