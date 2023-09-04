@@ -253,7 +253,7 @@ public partial class CellEditorComponent
             {
                 entry.Value.Hide();
             }
-            else if (!Editor.CurrentGame.GameWorld.UnlockedOrganelles.Contains(entry.Key))
+            else if (!Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(entry.Key))
             {
                 entry.Value.Hide();
             }

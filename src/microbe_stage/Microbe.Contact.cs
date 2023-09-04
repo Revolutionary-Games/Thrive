@@ -1892,14 +1892,10 @@ public partial class Microbe
 
         foreach (var organelle in engulfable.UnlocksOrganelles)
         {
-            var isNew = CurrentGame.GameWorld.UnlockedOrganelles.Add(organelle);
-            if (!isNew)
-                continue;
-
-            // TODO: translate
-            OnNoticeMessage?.Invoke(this,
-                new SimpleHUDMessage(organelle.Name + " now available in the editor",
-                    DisplayDuration.Normal));
+            if (CurrentGame.GameWorld.UnlockProgress.UnlockOrganelle(organelle))
+                OnNoticeMessage?.Invoke(this,
+                    new SimpleHUDMessage(organelle.Name + " now available in the editor",
+                        DisplayDuration.Normal));
         }
     }
 
