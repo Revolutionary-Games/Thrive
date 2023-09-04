@@ -61,7 +61,8 @@ public class OrganelleUpgradeGUI : Control
     }
 
     public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene,
-        ICellEditorComponent editorComponent, ICellEditorData editorData, float costMultiplier)
+        ICellEditorComponent editorComponent, ICellEditorData editorData,
+        float costMultiplier, GameProperties currentGame)
     {
         openedForOrganelle = organelle;
 
@@ -172,7 +173,7 @@ public class OrganelleUpgradeGUI : Control
         popup.PopupCenteredShrink();
 
         scrollContainer.ScrollVertical = 0;
-        upgrader?.OnStartFor(organelle);
+        upgrader?.OnStartFor(organelle, currentGame);
         storedEditor = editorComponent;
     }
 

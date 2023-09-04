@@ -10,17 +10,44 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
-CompoundsPath = NodePath("Compound")
-MaximumDistancePath = NodePath("Distance")
-MinimumAmountPath = NodePath("Amount")
-ColourPath = NodePath("Colour")
+TargetTypeSelectorPath = NodePath("TargetType")
+CompoundsSelectorPath = NodePath("Compound")
+CompoundsLabelPath = NodePath("CompoundLabel")
+SpeciesSelectorPath = NodePath("Species")
+SpeciesLabelPath = NodePath("SpeciesLabel")
+MaximumDistanceSliderPath = NodePath("Distance")
+MinimumAmountSliderPath = NodePath("MinimumAmount")
+MinimumAmountLabelPath = NodePath("MinimumAmountLabel")
+ColourSelectorPath = NodePath("Colour")
 
 [node name="Label" type="Label" parent="."]
+margin_right = 1280.0
+margin_bottom = 25.0
+text = "TARGET_TYPE_COLON"
+
+[node name="TargetType" type="OptionButton" parent="."]
+margin_top = 29.0
+margin_right = 1280.0
+margin_bottom = 48.0
+text = "COMPOUNDS"
+items = [ "COMPOUNDS", null, false, 0, null, "SPECIES", null, false, 1, null ]
+
+[node name="CompoundLabel" type="Label" parent="."]
 margin_right = 1280.0
 margin_bottom = 25.0
 text = "COMPOUND_TO_FIND"
 
 [node name="Compound" type="OptionButton" parent="."]
+margin_top = 29.0
+margin_right = 1280.0
+margin_bottom = 48.0
+
+[node name="SpeciesLabel" type="Label" parent="."]
+margin_right = 1280.0
+margin_bottom = 25.0
+text = "SPECIES_TO_FIND"
+
+[node name="Species" type="OptionButton" parent="."]
 margin_top = 29.0
 margin_right = 1280.0
 margin_bottom = 48.0
@@ -53,13 +80,13 @@ margin_right = 1280.0
 margin_bottom = 112.0
 rect_min_size = Vector2( 0, 3 )
 
-[node name="Label4" type="Label" parent="."]
+[node name="MinimumAmountLabel" type="Label" parent="."]
 margin_top = 116.0
 margin_right = 1280.0
 margin_bottom = 141.0
 text = "MINIMUM_AMOUNT_TO_FIND"
 
-[node name="Amount" type="HSlider" parent="."]
+[node name="MinimumAmount" type="HSlider" parent="."]
 margin_top = 145.0
 margin_right = 1280.0
 margin_bottom = 160.0
@@ -75,7 +102,7 @@ margin_right = 1280.0
 margin_bottom = 167.0
 rect_min_size = Vector2( 0, 3 )
 
-[node name="Label2" type="Label" parent="."]
+[node name="ColourLabel" type="Label" parent="."]
 margin_top = 171.0
 margin_right = 1280.0
 margin_bottom = 196.0
@@ -88,4 +115,6 @@ margin_right = 1280.0
 margin_bottom = 759.0
 edit_alpha = false
 
-[connection signal="item_selected" from="Compound" to="." method="CompoundChanged"]
+[connection signal="item_selected" from="TargetType" to="." method="TypeChanged"]
+[connection signal="item_selected" from="Compound" to="." method="SelectionChanged"]
+[connection signal="item_selected" from="Species" to="." method="SelectionChanged"]

@@ -24,7 +24,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         enzymes.Clear();
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         shownChoices = SimulationParameters.Instance.GetHydrolyticEnzymes();
 
