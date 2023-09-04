@@ -1343,7 +1343,10 @@ public partial class Microbe
     ///   Modifies <see cref="organellesCapacity"/> to take into account the capacity of the organelle
     /// </summary>
     /// <param name="organelle"> The organelle we want to calculate the capacity of</param>
-    /// <param name="negative">This should be true if the method is supposed to remove capacity and not increase it</param>
+    /// <param name="negative">
+    ///     This should be true if the method is
+    ///     supposed to remove capacity and not increase it
+    /// </param>
     private void CalculateOrganelleCapacity(PlacedOrganelle organelle, bool negative)
     {
         int sign = negative ? -1 : 1;

@@ -81,7 +81,8 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (compounds.Selected == -1)
             compounds.Selected = 0;
 
-        organelleUpgrades.CustomUpgradeData = new StorageComponentUpgrades(isSpecializedCheckbox.Pressed, shownChoices[compounds.Selected]);
+        organelleUpgrades.CustomUpgradeData =
+            new StorageComponentUpgrades(isSpecializedCheckbox.Pressed, shownChoices[compounds.Selected]);
 
         return true;
     }
@@ -100,7 +101,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 CompoundsPath.Dispose();
                 CompoundDescriptionPath.Dispose();
                 IsSpecializedCheckboxPath.Dispose();
-                CompoundDescriptionPath.Dispose();
+                CompoundSelectionPath.Dispose();
             }
         }
 

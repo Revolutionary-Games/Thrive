@@ -62,9 +62,8 @@ public class CompoundBag : ICompoundStorage
     }
 
     /// <summary>
-    /// Sets the capacity for all compounds currently contained
+    ///   Sets the capacity for all compounds currently contained
     /// </summary>
-
     public void SetCapacityForAllCompounds(float capacity)
     {
         foreach (Compound compound in Compounds.Keys)
