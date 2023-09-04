@@ -243,7 +243,7 @@ public partial class Microbe
     [JsonProperty]
     public Action<Microbe, IHUDMessage>? OnNoticeMessage { get; set; }
 
-    public IEnumerable<OrganelleDefinition> UnlocksOrganelles =>
+    public IEnumerable<OrganelleDefinition>? UnlocksOrganelles =>
         organelles.Select(placedOrganelle => placedOrganelle.Definition);
 
     /// <summary>
@@ -1892,10 +1892,12 @@ public partial class Microbe
 
         foreach (var organelle in engulfable.UnlocksOrganelles)
         {
-            if (CurrentGame.GameWorld.UnlockProgress.UnlockOrganelle(organelle))
-                OnNoticeMessage?.Invoke(this,
-                    new SimpleHUDMessage(organelle.Name + " now available in the editor",
-                        DisplayDuration.Normal));
+            if (!CurrentGame.GameWorld.UnlockProgress.UnlockOrganelle(organelle))
+                continue;
+
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(organelle.Name + " now available in the editor",
+                    DisplayDuration.Normal));
         }
     }
 

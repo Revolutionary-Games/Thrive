@@ -740,14 +740,16 @@ public class UnlockProgress
     /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle) {
+    public bool IsUnlocked(OrganelleDefinition organelle)
+    {
         return unlockedOrganelles.Contains(organelle);
     }
 
     /// <summary>
     ///   Unlock an organelle, returning if this is the first time it has been unlocked.
     /// </summary>
-    public bool UnlockOrganelle(OrganelleDefinition organelle) {
+    public bool UnlockOrganelle(OrganelleDefinition organelle)
+    {
         return unlockedOrganelles.Add(organelle);
     }
 }

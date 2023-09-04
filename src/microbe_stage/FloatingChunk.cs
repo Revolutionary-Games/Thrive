@@ -38,7 +38,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new();
 
-        /// <summary>
+    /// <summary>
     ///   The organelles this unlocks when the player ingests it.
     /// </summary>
     [JsonProperty]
