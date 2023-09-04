@@ -233,6 +233,9 @@ public partial class CellEditorComponent :
 
     private PackedScene organelleSelectionButtonScene = null!;
 
+    private PackedScene undiscoveredOrganellesScene = null!;
+    private PackedScene undiscoveredOrganellesTooltipScene = null!;
+
     private Spatial? cellPreviewVisualsRoot;
 #pragma warning restore CA2213
 
@@ -544,6 +547,11 @@ public partial class CellEditorComponent :
         organelleSelectionButtonScene =
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
 
+        undiscoveredOrganellesScene =
+            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganelles.tscn");
+        undiscoveredOrganellesTooltipScene =
+            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
+
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
         SetupMicrobePartSelections();
@@ -695,6 +703,7 @@ public partial class CellEditorComponent :
 
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
+        CreateUndiscoveredOrganellesButtons(FindGroupsWithUndiscoveredOrganelles());
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
@@ -2046,20 +2055,26 @@ public partial class CellEditorComponent :
         OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
+        var game = Editor.CurrentGame;
 
         if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
         {
             item.Locked = true;
         }
-        else if (organelle.RequiresNucleus)
+        else if (organelle.RequiresNucleus && !placedUniqueOrganelleNames.Contains(nucleus))
         {
-            var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus);
-            item.Locked = !hasNucleus;
+            item.Locked = true;
+        }
+        else if (!game.GameWorld.UnlockProgress.IsUnlocked(organelle, game))
+        {
+            item.Locked = true;
         }
         else
         {
             item.Locked = false;
         }
+
+        item.RecentlyUnlocked = game.GameWorld.UnlockProgress.RecentlyUnlocked(organelle);
     }
 
     /// <summary>
@@ -2073,6 +2088,7 @@ public partial class CellEditorComponent :
     /// </remarks>
     private void SetupMicrobePartSelections()
     {
+        GD.Print("Setup selection");
         var simulationParameters = SimulationParameters.Instance;
 
         var organelleButtonGroup = new ButtonGroup();

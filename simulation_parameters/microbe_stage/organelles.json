@@ -37,8 +37,16 @@
         "Description": "UPGRADE_PILUS_INJECTISOME_DESCRIPTION",
         "MPCost": 25,
         "IconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png"
+      },
+    },
+    "UnlockConditions": [
+      {
+        "engulfedMicrobesAbove": 5
+      },
+      {
+        "playerDeathsAbove": 3
       }
-    }
+    ]
   },
   "rusticyanin": {
     "MPCost": 45,
@@ -104,7 +112,15 @@
     "ConsumptionColour": "#ff8425",
     "IconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 5
+    "EditorButtonOrder": 5,
+    "UnlockConditions": [
+      {
+        "biomeCompound": {
+          "compound": "ammonia",
+          "max": 13
+        }
+      }
+    ]
   },
   "protoplasm": {
     "MPCost": 55,
@@ -204,7 +220,15 @@
     "ConsumptionColour": "#c4303d",
     "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 6
+    "EditorButtonOrder": 6,
+    "UnlockConditions": [
+      {
+        "engulfedMicrobesAbove": 5
+      },
+      {
+        "playerDeathsAbove": 3
+      }
+    ]
   },
   "chromatophore": {
     "MPCost": 50,
@@ -236,7 +260,15 @@
     "ConsumptionColour": "#fbae3a",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 2
+    "EditorButtonOrder": 2,
+    "UnlockConditions": [
+      {
+        "biomeCompound": {
+          "compound": "sunlight",
+          "min": 20
+        }
+      }
+    ]
   },
   "metabolosome": {
     "MPCost": 45,
@@ -335,7 +367,15 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 8,
-    "LAWK": false
+    "LAWK": false,
+    "UnlockConditions": [
+      {
+        "biomeCompound": {
+          "compound": "temperature",
+          "min": 90
+        }
+      }
+    ]
   },
   "chemoplast": {
     "MPCost": 45,
@@ -405,7 +445,15 @@
     "ConsumptionColour": "#ff9721",
     "IconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
     "EditorButtonGroup": "External",
-    "EditorButtonOrder": 1
+    "EditorButtonOrder": 1,
+    "UnlockConditions": [
+      {
+        "excessAptAbove": 30
+      },
+      {
+        "baseSpeedBelow": 30
+      }
+    ]
   },
   "vacuole": {
     "MPCost": 50,
@@ -471,7 +519,16 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 3
+    "EditorButtonOrder": 3,
+    "UnlockConditions": [
+      {
+        "aptAbove": 20,
+        "reproducedWith": {
+          "organelle": "metabolosome",
+          "generations": 7
+        }
+      }
+    ]
   },
   "oxytoxy": {
     "MPCost": 55,
@@ -577,7 +634,15 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 4
+    "EditorButtonOrder": 4,
+    "UnlockConditions": [
+      {
+        "reproducedWith": {
+          "organelle": "chromatophore",
+          "generations": 5
+        }
+      }
+    ]
   },
   "cytoplasm": {
     "MPCost": 22,
@@ -789,7 +854,15 @@
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 11,
-    "Unimplemented": true
+    "Unimplemented": true,
+    "UnlockConditions": [
+      {
+        "reproduceInBiome": "underwater_cave"
+      },
+      {
+        "reproduceInBiome": "abyssopelagic"
+      }
+    ]
   },
   "thermoplast": {
     "MPCost": 55,

@@ -19,6 +19,15 @@ using Newtonsoft.Json;
 public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
+    public UnlockProgress UnlockProgress = new();
+
+    [JsonProperty]
+    public int TotalPlayerDeaths;
+
+    [JsonProperty]
+    public int TotalMicrobesEngulfedByPlayer;
+
+    [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
 
     [JsonProperty]

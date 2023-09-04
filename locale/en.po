@@ -236,6 +236,10 @@ msgstr "Apply Changes"
 msgid "APRIL"
 msgstr "April"
 
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:61
+msgid "APT_ABOVE"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})"
+
 #: ../src/general/OptionsMenu.tscn:2136
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Are you sure you want to reset ALL settings to default values?"
@@ -452,6 +456,10 @@ msgstr "Base Mobility"
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:439
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
+
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:101
+msgid "BASE_SPEED_BELOW"
+msgstr "speed falls below {0} (currently {1})"
 
 #: ../src/general/NewGameSettings.tscn:1204
 msgid "BASIC_VIEW"
@@ -1093,6 +1101,18 @@ msgstr "{0} concentrations have decreased by {1}"
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:45
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
+
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:188
+msgid "COMPOUND_IS_ABOVE"
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] is more than {1} (currently {2})"
+
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:190
+msgid "COMPOUND_IS_BELOW"
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] is less than {1} (currently {2})"
+
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:186
+msgid "COMPOUND_IS_BETWEEN"
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] is between {1} and {2} (currently {3})"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
@@ -1978,6 +1998,10 @@ msgstr "Energy Sources:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:25
+msgid "ENGULFED_MICROBES_ABOVE"
+msgstr "{0} microbes are engulfed (currently at {1})"
+
 #: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
 msgstr "Enter Existing ID"
@@ -2085,6 +2109,10 @@ msgstr "An exception happened while processing loaded objects"
 #: ../src/saving/InProgressLoad.cs:116
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
+
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:80
+msgid "EXCESS_APT_ABOVE"
+msgstr "excess [thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
 #: ../src/space_stage/gui/PlanetScreen.tscn:65
@@ -4324,6 +4352,10 @@ msgstr "Music"
 msgid "MUSIC_VOLUME"
 msgstr "Music volume"
 
+#: ../src/microbe_stage/organelle_unlocks/OrganelleUnlockConstraints.cs:71
+msgid "MUST_BE_A_MICROBE"
+msgstr "in the microbe stage"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:620
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutation attempts per species"
@@ -5092,6 +5124,10 @@ msgstr "Planet random seed"
 msgid "PLAYER"
 msgstr "Player"
 
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:43
+msgid "PLAYER_DEATH_COUNT_ABOVE"
+msgstr "death count reaches {0} (currently at {1})"
+
 #: ../src/general/NewGameSettings.tscn:595
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Player death population penalty"
@@ -5241,6 +5277,10 @@ msgstr "Protoplasm"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programming"
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganelles.tscn:92
+msgid "QUESTION"
+msgstr "?"
+
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
 msgstr "Quick load"
@@ -5328,6 +5368,14 @@ msgstr "Report a Bug"
 #: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:508
 msgid "REPRODUCED"
 msgstr "reproduced"
+
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:125
+msgid "REPRODUCED_WITH"
+msgstr "organism contains {0} for {1} generations (currently at {2})"
+
+#: ../src/microbe_stage/organelle_unlocks/IUnlockConstraint.cs:163
+msgid "REPRODUCE_IN_BIOME"
+msgstr "entering the {0} biome (currently in {1})"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
@@ -7106,6 +7154,22 @@ msgstr "Unknown version"
 #: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Unknown Workshop ID For This Mod"
+
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:115
+msgid "UNLOCKED_NEW_ORGANELLE"
+msgstr "NEW"
+
+#: ../src/microbe_stage/organelle_unlocks/OrganelleUnlockConstraints.cs:82
+msgid "UNLOCK_AND"
+msgstr " and "
+
+#: ../src/microbe_stage/OrganelleDefinition.cs:496
+msgid "UNLOCK_OR"
+msgstr " or "
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
+msgid "UNLOCK_WHEN"
+msgstr "Unlock [b]{0}[/b] when {1}"
 
 #: ../src/general/OptionsMenu.tscn:2174
 msgid "UNSAVED_CHANGE_WARNING"
@@ -9201,9 +9265,6 @@ msgstr "Zoom out"
 
 #~ msgid "EQUAL"
 #~ msgstr "="
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
 
 #~ msgid "AT"
 #~ msgstr "@"

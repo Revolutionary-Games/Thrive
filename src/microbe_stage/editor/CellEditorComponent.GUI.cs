@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using GroupsWithUndiscoveredOrganelles = System.Collections.Generic.Dictionary<
+    OrganelleDefinition.OrganelleGroup,
+    (LocalizedStringBuilder UnlockText, int Count)>;
 
 /// <summary>
 ///   Partial class to mostly separate the GUI interacting parts from the cell editor
@@ -309,7 +312,69 @@ public partial class CellEditorComponent
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
-            entry.Value.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !entry.Key.LAWK)
+                entry.Value.Hide();
+        }
+    }
+
+    private GroupsWithUndiscoveredOrganelles FindGroupsWithUndiscoveredOrganelles()
+    {
+        GroupsWithUndiscoveredOrganelles groupsWithUndiscoveredOrganelles = new();
+
+        foreach (var entry in allPartSelectionElements)
+        {
+            var organelle = entry.Key;
+            var control = entry.Value;
+
+            // Skip already unlocked organelles
+            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, Editor.CurrentGame))
+                continue;
+
+            // Skip hidden organelles
+            if (!control.Visible)
+                continue;
+
+            placeablePartSelectionElements.Remove(organelle);
+            control.Hide();
+
+            var buttonGroup = organelle.EditorButtonGroup;
+            var unlockRequirements = organelle.UnlockRequirements(Editor.CurrentGame);
+            var unlockTextString = new LocalizedString("UNLOCK_WHEN", organelle.Name, unlockRequirements);
+
+            (LocalizedStringBuilder UnlockText, int Count) group;
+            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out group))
+            {
+                group.Count += 1;
+                group.UnlockText.Append("\n\n");
+                group.UnlockText.Append(unlockTextString);
+                groupsWithUndiscoveredOrganelles[buttonGroup] = group;
+            }
+            else
+            {
+                LocalizedStringBuilder unlockText = new();
+                unlockText.Append(unlockTextString);
+                groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
+            }
+        }
+
+        return groupsWithUndiscoveredOrganelles;
+    }
+
+    private void CreateUndiscoveredOrganellesButtons(GroupsWithUndiscoveredOrganelles groupsWithUndiscoveredOrganelles)
+    {
+        foreach (var groupWithUndiscovered in groupsWithUndiscoveredOrganelles)
+        {
+            var group = partsSelectionContainer.GetNode<CollapsibleList>(groupWithUndiscovered.Key.ToString());
+            var (unlockText, count) = groupWithUndiscovered.Value;
+
+            var button = (UndiscoveredOrganelles)undiscoveredOrganellesScene.Instance();
+            button.Count = count;
+            group.AddItem(button);
+
+            var toolTip = (UndiscoveredOrganellesTooltip)undiscoveredOrganellesTooltipScene.Instance();
+            toolTip.UnlockText = unlockText;
+            ToolTipManager.Instance.AddToolTip(toolTip, "lockedOrganelles");
+            button.RegisterToolTipForControl(toolTip, true);
         }
     }
 

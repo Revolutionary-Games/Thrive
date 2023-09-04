@@ -184,6 +184,11 @@ public class OrganelleDefinition : IRegistryType
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
 
     /// <summary>
+    ///   The possible conditions where a player can unlock this organelle.
+    /// </summary>
+    public List<OrganelleUnlockConstraints>? UnlockConditions;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -494,6 +499,28 @@ public class OrganelleDefinition : IRegistryType
         {
             availableUpgrade.Resolve();
         }
+    }
+
+    /// <summary>
+    ///   A bbcode string containing all the unlock conditions for this organelle.
+    /// </summary>
+    public LocalizedStringBuilder UnlockRequirements(GameProperties game)
+    {
+        LocalizedStringBuilder unlockRequirements = new();
+        if (UnlockConditions != null)
+        {
+            bool first = true;
+            foreach (var unlockCondition in UnlockConditions)
+            {
+                if (!first)
+                    unlockRequirements.Append(new LocalizedString("UNLOCK_OR"));
+                first = false;
+
+                unlockCondition.Tooltip(game.GameWorld, unlockRequirements);
+            }
+        }
+
+        return unlockRequirements;
     }
 
     public void ApplyTranslations()
