@@ -17,12 +17,11 @@ public class CompoundBag : ICompoundStorage
     {
         CompoundCapacities = compoundCapacities;
     }
-    
+
     public CompoundBag(float capacity)
     {
         SetCapacityForAllCompounds(capacity);
     }
-
 
     /// <summary>
     ///   How much of each compound this bag can store.
@@ -62,7 +61,7 @@ public class CompoundBag : ICompoundStorage
 
     public void SetCapacityForAllCompounds(float capacity)
     {
-        foreach (Compound compound in SimulationParameters.Instance.GetAllCompounds().Values)
+        foreach (Compound compound in Compounds.Keys)
         {
             CompoundCapacities[compound] = capacity;
         }
