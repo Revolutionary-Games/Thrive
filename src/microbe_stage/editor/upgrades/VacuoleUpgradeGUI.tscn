@@ -12,12 +12,12 @@ margin_bottom = -650.0
 rect_min_size = Vector2( 400, 0 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-CompoundsPath = NodePath("OptionButton")
+CompoundsPath = NodePath("CompoundSelection/OptionButton")
 IsSpecializedCheckboxPath = NodePath("CheckBox")
-CompoundDescriptionPath = NodePath("Label2")
-SelectCompoundTextPath = NodePath("Label")
+CompoundDescriptionPath = NodePath("Description")
+CompoundSelectionPath = NodePath("CompoundSelection")
 
-[node name="Label3" type="Label" parent="."]
+[node name="Label2" type="Label" parent="."]
 margin_right = 400.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
@@ -34,25 +34,29 @@ margin_right = 400.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label" type="Label" parent="."]
+[node name="CompoundSelection" type="VBoxContainer" parent="."]
 margin_top = 59.0
 margin_right = 400.0
-margin_bottom = 76.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="CompoundSelection"]
+margin_right = 400.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "SELECT_VACUOLE_COMPOUND"
 
-[node name="OptionButton" type="OptionButton" parent="."]
-margin_top = 80.0
+[node name="OptionButton" type="OptionButton" parent="CompoundSelection"]
+margin_top = 21.0
 margin_right = 400.0
-margin_bottom = 99.0
+margin_bottom = 40.0
 
-[node name="Spacer" type="Control" parent="."]
-margin_top = 103.0
+[node name="Spacer" type="Control" parent="CompoundSelection"]
+margin_top = 44.0
 margin_right = 400.0
-margin_bottom = 108.0
+margin_bottom = 49.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label2" type="Label" parent="."]
+[node name="Description" type="Label" parent="."]
 margin_top = 112.0
 margin_right = 400.0
 margin_bottom = 129.0

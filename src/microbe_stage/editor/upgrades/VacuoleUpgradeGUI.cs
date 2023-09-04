@@ -14,13 +14,13 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public NodePath CompoundDescriptionPath = null!;
 
     [Export]
-    public NodePath SelectCompoundTextPath = null!;
+    public NodePath CompoundSelectionPath = null!;
 
 #pragma warning disable CA2213
     private OptionButton compounds = null!;
     private Label description = null!;
     private CheckBox isSpecializedCheckbox = null!;
-    private Label selectCompoundText = null!;
+    private VBoxContainer compoundSelection = null!;
 #pragma warning restore CA2213
 
     private List<Compound>? shownChoices;
@@ -30,7 +30,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         compounds = GetNode<OptionButton>(CompoundsPath);
         description = GetNode<Label>(CompoundDescriptionPath);
         isSpecializedCheckbox = GetNode<CheckBox>(IsSpecializedCheckboxPath);
-        selectCompoundText = GetNode<Label>(SelectCompoundTextPath);
+        compoundSelection = GetNode<VBoxContainer>(CompoundSelectionPath);
 
         compounds.Clear();
     }
@@ -100,7 +100,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 CompoundsPath.Dispose();
                 CompoundDescriptionPath.Dispose();
                 IsSpecializedCheckboxPath.Dispose();
-                SelectCompoundTextPath.Dispose();
+                CompoundDescriptionPath.Dispose();
             }
         }
 
@@ -116,8 +116,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private void UpdateGUI()
     {
         // Update visibility of the compound slection
-        compounds.Visible = isSpecializedCheckbox.Pressed;
-        selectCompoundText.Visible = isSpecializedCheckbox.Pressed;
+        compoundSelection.Visible = isSpecializedCheckbox.Pressed;
 
         if (shownChoices == null)
             return;

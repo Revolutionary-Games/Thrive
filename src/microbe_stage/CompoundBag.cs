@@ -12,7 +12,9 @@ public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
 
-    // This costructor is used for loading saves
+    /// <summary>
+    ///   This costructor is used for loading saves
+    /// </summary>
     public CompoundBag(Dictionary<Compound, float> compoundCapacities)
     {
         CompoundCapacities = compoundCapacities;
@@ -58,6 +60,10 @@ public class CompoundBag : ICompoundStorage
             CompoundCapacities[entry.Key] = entry.Value;
         }
     }
+
+    /// <summary>
+    /// Sets the capacity for all compounds currently contained
+    /// </summary>
 
     public void SetCapacityForAllCompounds(float capacity)
     {
