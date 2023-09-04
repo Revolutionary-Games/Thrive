@@ -1887,15 +1887,12 @@ public partial class Microbe
         if (!IsPlayerMicrobe)
             return;
 
-        if (Species is not MicrobeSpecies microbeSpecies)
-            return;
-
         if (engulfable.UnlocksOrganelles == null)
             return;
 
         foreach (var organelle in engulfable.UnlocksOrganelles)
         {
-            var isNew = microbeSpecies.UnlockedOrganelles.Add(organelle);
+            var isNew = CurrentGame.GameWorld.UnlockedOrganelles.Add(organelle);
             if (!isNew)
                 continue;
 

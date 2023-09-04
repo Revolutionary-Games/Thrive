@@ -672,7 +672,7 @@ public partial class CellEditorComponent :
         UpdateOrganelleUnlockTooltips();
 
         // Do this here as we know the editor and hence world settings have been initialised by now
-        UpdateOrganelleVisibility(null);
+        UpdateOrganelleVisibility();
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;

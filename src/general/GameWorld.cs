@@ -18,6 +18,19 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class GameWorld : ISaveLoadable
 {
+    /// <summary>
+    ///   Resets the organelles in this microbe to match the species definition
+    /// </summary>
+    [JsonProperty]
+    public HashSet<OrganelleDefinition> UnlockedOrganelles = new()
+    {
+        SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+        SimulationParameters.Instance.GetOrganelleType("metabolosome"),
+        SimulationParameters.Instance.GetOrganelleType("chromatophore"),
+        SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"),
+        SimulationParameters.Instance.GetOrganelleType("rusticyanin"),
+    };
+
     [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
 

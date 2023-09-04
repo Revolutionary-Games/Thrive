@@ -242,8 +242,10 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateOrganelleVisibility(Species? species)
+    private void UpdateOrganelleVisibility()
     {
+        var usedCateogries = new HashSet<string>();
+
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
@@ -251,24 +253,13 @@ public partial class CellEditorComponent
             {
                 entry.Value.Hide();
             }
-        }
-
-        // Unlock all organelles in higher stages
-        if (species is not MicrobeSpecies microbeSpecies)
-            return;
-
-        var usedCateogries = new HashSet<string>();
-
-        // Hide organelles that are not yet unlocked
-        foreach (var entry in allPartSelectionElements)
-        {
-            if (entry.Value.Visible && microbeSpecies.UnlockedOrganelles.Contains(entry.Key))
+            else if (!Editor.CurrentGame.GameWorld.UnlockedOrganelles.Contains(entry.Key))
             {
-                usedCateogries.Add(entry.Key.EditorButtonGroup.ToString());
+                entry.Value.Hide();
             }
             else
             {
-                entry.Value.Hide();
+                usedCateogries.Add(entry.Key.EditorButtonGroup.ToString());
             }
         }
 
@@ -513,8 +504,6 @@ public partial class CellEditorComponent
         UpdateStorage(CalculateStorage());
 
         ApplyLightLevelOption();
-
-        UpdateOrganelleVisibility(species);
     }
 
     private class ATPComparer : IComparer<string>
