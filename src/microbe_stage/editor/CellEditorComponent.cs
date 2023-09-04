@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using AngleSharp.Common;
 using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
@@ -671,7 +672,7 @@ public partial class CellEditorComponent :
         UpdateOrganelleUnlockTooltips();
 
         // Do this here as we know the editor and hence world settings have been initialised by now
-        UpdateOrganelleLAWKSettings();
+        UpdateOrganelleVisibility(null);
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
@@ -1996,6 +1997,7 @@ public partial class CellEditorComponent :
     /// </remarks>
     private void SetupMicrobePartSelections()
     {
+        GD.Print("Setup selection");
         var simulationParameters = SimulationParameters.Instance;
 
         var organelleButtonGroup = new ButtonGroup();

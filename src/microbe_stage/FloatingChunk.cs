@@ -119,6 +119,16 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     [JsonProperty]
     public CompoundBag Compounds { get; private set; } = new(0.0f);
 
+
+    /// <summary>
+    ///   The organelles this unlocks when the player ingests it.
+    /// </summary>
+    [JsonProperty]
+    private IEnumerable<OrganelleDefinition>? unlocksOrganelles;
+
+    
+    public IEnumerable<OrganelleDefinition>? UnlocksOrganelles => unlocksOrganelles;
+
     /// <summary>
     ///   How much of each compound is vented per second
     /// </summary>
@@ -239,6 +249,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
                 Compounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
         }
+        unlocksOrganelles = chunkType.UnlocksOrganelles;
 
         if (!string.IsNullOrEmpty(chunkType.DissolverEnzyme))
             RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(chunkType.DissolverEnzyme);

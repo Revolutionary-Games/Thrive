@@ -70,4 +70,9 @@ public interface IEngulfable : IGraphicalEntity
     ///   Called once when this engulfable has been expelled by a microbe.
     /// </summary>
     public void OnExpelledFromEngulfment();
+
+    /// <summary>
+    ///   The organelles the player can unlock when ingesting.
+    /// </summary>
+    public IEnumerable<OrganelleDefinition>? UnlocksOrganelles { get; }
 }

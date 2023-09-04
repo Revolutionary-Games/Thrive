@@ -564,6 +564,10 @@ public partial class Microbe
         }
     }
 
+    public IEnumerable<OrganelleDefinition> UnlocksOrganelles => 
+        organelles.Select(placedOrganelle => placedOrganelle.Definition);
+    
+
     public void ClearEngulfedObjects()
     {
         foreach (var engulfed in engulfedObjects.ToList())
@@ -921,6 +925,8 @@ public partial class Microbe
             // Will only loop if there are still organelles available
             while (organellesAvailableEnumerator.MoveNext() && organellesAvailableEnumerator.Current != null)
             {
+                chunkType.UnlocksOrganelles = new List<OrganelleDefinition>{organellesAvailableEnumerator.Current.Definition};
+                
                 if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                 {
                     sceneToUse.LoadedScene =
@@ -1871,6 +1877,32 @@ public partial class Microbe
         engulfedObject.Interpolate = false;
     }
 
+    /// <summary>
+    ///   Add the organelles from the engulfable object to the player's unlocked organelles
+    /// </summary>
+    private void UnlockEnglufedOrganelles(IEngulfable engulfable) {
+        if (!IsPlayerMicrobe)
+            return;
+
+        if (Species is not MicrobeSpecies microbeSpecies)
+            return;
+
+        if (engulfable.UnlocksOrganelles == null)
+            return;
+
+        foreach (var organelle in engulfable.UnlocksOrganelles) {
+            var isNew = microbeSpecies.UnlockedOrganelles.Add(organelle);
+            if (!isNew)
+                continue;
+
+            // TODO: translate
+            OnNoticeMessage?.Invoke(this,
+                new SimpleHUDMessage(organelle.Name + " now available in the editor",
+                    DisplayDuration.Normal));
+            
+        }
+    }
+
     private void CompleteIngestion(EngulfedObject engulfed)
     {
         var engulfable = engulfed.Object.Value;
@@ -1878,6 +1910,8 @@ public partial class Microbe
             return;
 
         engulfable.PhagocytosisStep = PhagocytosisPhase.Ingested;
+
+        UnlockEnglufedOrganelles(engulfable);
 
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);

@@ -242,12 +242,44 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateOrganelleLAWKSettings()
+    private void UpdateOrganelleVisibility(Species? species)
     {
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
-            entry.Value.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !entry.Key.LAWK) {
+                entry.Value.Hide();
+            }
+        }
+
+        // Unlock all organelles in higher stages
+        if (species is not MicrobeSpecies microbeSpecies)
+            return;
+
+        var usedCateogries = new HashSet<string>();
+
+        // Hide organelles that are not yet unlocked
+        foreach (var entry in allPartSelectionElements)
+        {
+            if (entry.Value.Visible && microbeSpecies.UnlockedOrganelles.Contains(entry.Key)) {
+                usedCateogries.Add(entry.Key.EditorButtonGroup.ToString());
+            } else {
+                entry.Value.Hide();
+            }
+
+        }
+
+        // Add some text to the now empty sections
+        var allCateogries = SimulationParameters.Instance.GetAllOrganelles().Select(organelle => organelle.EditorButtonGroup.ToString());
+        foreach (var organelleCategory in allCateogries.Except(usedCateogries))
+        {
+            var group = partsSelectionContainer.GetNode<CollapsibleList>(organelleCategory);
+            var label = new Label
+            {
+                // TODO: Translate
+                Text = "Unlock by engulfing more prokaryotes"
+            };
+            group?.AddItem(label);
         }
     }
 
@@ -479,6 +511,8 @@ public partial class CellEditorComponent
         UpdateStorage(CalculateStorage());
 
         ApplyLightLevelOption();
+
+        UpdateOrganelleVisibility(species);
     }
 
     private class ATPComparer : IComparer<string>

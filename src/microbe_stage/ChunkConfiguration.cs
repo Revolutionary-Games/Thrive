@@ -42,6 +42,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public Dictionary<Compound, ChunkCompound>? Compounds;
 
     /// <summary>
+    ///   The organelles this unlocks when the player ingests it.
+    /// </summary>
+    public IEnumerable<OrganelleDefinition>? UnlocksOrganelles;
+
+    /// <summary>
     ///   Whether this chunk type is an Easter egg.
     /// </summary>
     public bool EasterEgg;
