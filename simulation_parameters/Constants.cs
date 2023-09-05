@@ -260,10 +260,18 @@ public static class Constants
     /// </summary>
     public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
 
+    public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
+    public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
+
     /// <summary>
     ///   Max number of concurrent audio players that may be used per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    public const float MICROBE_SOUND_MAX_DISTANCE = 100;
+    public const float MICROBE_SOUND_MAX_DISTANCE_SQUARED = MICROBE_SOUND_MAX_DISTANCE * MICROBE_SOUND_MAX_DISTANCE;
+
+    public const int MAX_CONCURRENT_SOUNDS = 100;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be spawned for UI sounds.
@@ -271,6 +279,13 @@ public static class Constants
     public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
 
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
+
+    public const float INTERVAL_BETWEEN_SOUND_CACHE_CLEAR = 0.321f;
+
+    /// <summary>
+    ///   How long to keep a played sound in memory in case it will be shortly played again
+    /// </summary>
+    public const float DEFAULT_SOUND_CACHE_TIME = 30;
 
     /// <summary>
     ///   Controls with how much speed agents are fired

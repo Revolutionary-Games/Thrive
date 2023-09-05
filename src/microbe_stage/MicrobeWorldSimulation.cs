@@ -107,7 +107,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem, nonParallelRunner);
 
         // TODO: different root for sounds?
-        soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem, parallelRunner);
+        soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem);
         soundListenerSystem = new SoundListenerSystem(visualsParent, EntitySystem, parallelRunner);
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
         spatialPositionSystem = new SpatialPositionSystem(EntitySystem, parallelRunner);
@@ -175,6 +175,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     public override void ReportPlayerPosition(Vector3 position)
     {
+        // TODO: reporting the player position to all systems on game load
+
         base.ReportPlayerPosition(position);
 
         // Immediately report to some systems
