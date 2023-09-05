@@ -45,7 +45,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private Label? nameLabel;
     private Label? mpLabel;
     private Label? requiresNucleusLabel;
-    private Label? requiresUnlockingLabel;
+    private CustomRichTextLabel? requiresUnlockingLabel;
     private CustomRichTextLabel? descriptionLabel;
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
@@ -159,7 +159,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
         requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
-        requiresUnlockingLabel = GetNode<Label>(RequiresUnlockingPath);
+        requiresUnlockingLabel = GetNode<CustomRichTextLabel>(RequiresUnlockingPath);
         descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
@@ -384,7 +384,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
         requiresUnlockingLabel.Visible = requiresUnlocking != null;
         if (requiresUnlocking != null)
-            requiresUnlockingLabel.Text = RequiresUnlocking;
+            requiresUnlockingLabel.ExtendedBbcode = RequiresUnlocking;
     }
 
     private void UpdateLists()

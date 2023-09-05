@@ -50,7 +50,7 @@ ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 364.0
-margin_bottom = 253.0
+margin_bottom = 256.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -61,7 +61,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 348.0
-margin_bottom = 237.0
+margin_bottom = 240.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -119,41 +119,40 @@ custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 10 )
 text = "REQUIRES_NUCLEUS"
 
-[node name="RequiresUnlocking" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="RequiresUnlocking" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
 margin_top = 80.0
 margin_right = 333.0
-margin_bottom = 99.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 10 )
+margin_bottom = 102.0
+mouse_filter = 2
 
 [node name="ProcessesDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 114.0
+margin_top = 117.0
 margin_right = 333.0
-margin_bottom = 136.0
+margin_bottom = 139.0
 mouse_filter = 2
 
 [node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 151.0
+margin_top = 154.0
 margin_right = 333.0
-margin_bottom = 151.0
+margin_bottom = 154.0
 mouse_filter = 2
 
 [node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 166.0
+margin_top = 169.0
 margin_right = 333.0
-margin_bottom = 166.0
+margin_bottom = 169.0
 mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 181.0
+margin_top = 184.0
 margin_right = 333.0
-margin_bottom = 185.0
+margin_bottom = 188.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 2 )
 
 [node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 200.0
+margin_top = 203.0
 margin_right = 333.0
-margin_bottom = 222.0
+margin_bottom = 225.0

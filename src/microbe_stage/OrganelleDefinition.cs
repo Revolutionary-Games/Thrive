@@ -487,6 +487,7 @@ public class OrganelleDefinition : IRegistryType
         if (world.UnlockProgress.IsUnlocked(this, world))
             return null;
 
+        // TODO: translate
         string unlockRequirements = "Unlocked when:";
         if (UnlockConditions != null)
         {

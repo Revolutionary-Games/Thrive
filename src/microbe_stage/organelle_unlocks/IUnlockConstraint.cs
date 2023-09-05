@@ -34,7 +34,7 @@ namespace UnlockConstraints
         public int Deaths;
 
         public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Dying {0} times (currently at {1} deaths)", Deaths, world.TotalPlayerDeaths);
+            string.Format("Death count reaches {0} (currently at {1})", Deaths, world.TotalPlayerDeaths);
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) => world.TotalPlayerDeaths >= Deaths;
     }
@@ -47,7 +47,7 @@ namespace UnlockConstraints
         public float Atp;
 
         public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("ATP reaches {0} (currently at {1})", Atp, energyBalance.TotalProduction);
+            string.Format("[thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})", Atp, energyBalance.TotalProduction);
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) => energyBalance.TotalProduction >= Atp;
     }
@@ -60,7 +60,7 @@ namespace UnlockConstraints
         public float Excess;
 
         public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Excess ATP reaches {0} (currently at {1})", Excess, energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary);
+            string.Format("Excess [thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})", Excess, energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary);
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
             energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary >= Excess;
@@ -150,12 +150,13 @@ namespace UnlockConstraints
         public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
         {
             var current = CompoundValue(world);
+            var formattedCompound = string.Format("[thrive:compound type=\"{0}\"][/thrive:compound]", Compound.InternalName);
             if (Min.HasValue && Max.HasValue)
-                return string.Format("{0} is between {1} and {2} (currently {3})", Compound.Name, Min, Max, current);
+                return string.Format("{0} is between {1} and {2} (currently {3})", formattedCompound, Min, Max, current);
             if (Min.HasValue)
-                return string.Format("{0} is more than {1} (currently {2})", Compound.Name, Min, current);
+                return string.Format("{0} is more than {1} (currently {2})", formattedCompound, Min, current);
             if (Max.HasValue)
-                return string.Format("{0} is less than {1} (currently {2})", Compound.Name, Max, current);
+                return string.Format("{0} is less than {1} (currently {2})", formattedCompound, Max, current);
             return string.Empty;
         }
 
