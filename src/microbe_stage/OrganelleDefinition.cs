@@ -481,20 +481,20 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
-    public string? UnlockRequirements(GameWorld world) {
-        if (UnlockConditions == null)
-            return null;
+    public string? UnlockRequirements(GameWorld world)
+    {
 
-        if (UnlockConditions.Any(unlockCondition => unlockCondition.Satisfied(world)))
+        if (world.UnlockProgress.IsUnlocked(this, world))
             return null;
 
         string unlockRequirements = "Unlocked when:";
-        foreach (var unlockCondition in UnlockConditions)
+        if (UnlockConditions != null)
         {
-            unlockRequirements += "\n- " + unlockCondition.Tooltip(world);
+            foreach (var unlockCondition in UnlockConditions)
+                unlockRequirements += "\n- " + unlockCondition.Tooltip(world);
         }
 
-        unlockRequirements += string.Format("\n- Engulfing an organism containing {0}", Name);
+        unlockRequirements += string.Format("\n- Engulfing an organism containing a {0}", Name);
 
         return unlockRequirements;
     }
