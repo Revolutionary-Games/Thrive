@@ -1,4 +1,4 @@
-namespace UnlockConstraints
+﻿namespace UnlockConstraints
 {
     using System.Linq;
 
@@ -8,8 +8,8 @@ namespace UnlockConstraints
     /// </summary>
     public interface IUnlockConstraint
     {
-        string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance);
-        bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance);
+        public string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance);
+        public bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance);
     }
 
     /// <summary>
@@ -19,11 +19,16 @@ namespace UnlockConstraints
     {
         public int Microbes;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("{0} microbes are engulfed (currently at {1})", Microbes, world.TotalMicrobesEngulfedByPlayer);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return string.Format("{0} microbes are engulfed (currently at {1})",
+                Microbes, world.TotalMicrobesEngulfedByPlayer);
+        }
 
-        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            world.TotalMicrobesEngulfedByPlayer >= Microbes;
+        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return world.TotalMicrobesEngulfedByPlayer >= Microbes;
+        }
     }
 
     /// <summary>
@@ -33,10 +38,15 @@ namespace UnlockConstraints
     {
         public int Deaths;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Death count reaches {0} (currently at {1})", Deaths, world.TotalPlayerDeaths);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return string.Format("Death count reaches {0} (currently at {1})", Deaths, world.TotalPlayerDeaths);
+        }
 
-        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) => world.TotalPlayerDeaths >= Deaths;
+        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return world.TotalPlayerDeaths >= Deaths;
+        }
     }
 
     /// <summary>
@@ -46,10 +56,16 @@ namespace UnlockConstraints
     {
         public float Atp;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("[thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})", Atp, energyBalance.TotalProduction);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return string.Format("[thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})",
+                Atp, energyBalance.TotalProduction);
+        }
 
-        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) => energyBalance.TotalProduction >= Atp;
+        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return energyBalance.TotalProduction >= Atp;
+        }
     }
 
     /// <summary>
@@ -59,11 +75,17 @@ namespace UnlockConstraints
     {
         public float Excess;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Excess [thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})", Excess, energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return string.Format(
+                "Excess [thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})",
+                Excess, energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary);
+        }
 
-        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary >= Excess;
+        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary >= Excess;
+        }
     }
 
     /// <summary>
@@ -77,6 +99,7 @@ namespace UnlockConstraints
         {
             if (world.PlayerSpecies is not MicrobeSpecies microbeSpecies)
                 return string.Empty;
+
             return string.Format("Speed falls below {0} (currently {1})", Speed, microbeSpecies.BaseSpeed);
         }
 
@@ -84,6 +107,7 @@ namespace UnlockConstraints
         {
             if (world.PlayerSpecies is not MicrobeSpecies microbeSpecies)
                 return false;
+
             return microbeSpecies.BaseSpeed <= Speed;
         }
     }
@@ -97,11 +121,16 @@ namespace UnlockConstraints
         public string Organelle { get; set; }
         public int Generations { get; set; }
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Organism contains {0} for {1} generations (currently at {2})", SimulationParameters.Instance.GetOrganelleType(Organelle).Name, Generations, CountGenerations(world));
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return string.Format("Organism contains {0} for {1} generations (currently at {2})",
+                SimulationParameters.Instance.GetOrganelleType(Organelle).Name, Generations, CountGenerations(world));
+        }
 
-        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            CountGenerations(world) >= Generations;
+        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return CountGenerations(world) >= Generations;
+        }
 
         private readonly int CountGenerations(GameWorld world)
         {
@@ -131,11 +160,16 @@ namespace UnlockConstraints
     {
         public Biome Biome;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Entering the {0} biome (currently in {1})", Biome.Name, world.Map.CurrentPatch!.BiomeTemplate);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return string.Format("Entering the {0} biome (currently in {1})",
+                Biome.Name, world.Map.CurrentPatch!.BiomeTemplate);
+        }
 
-        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            Biome == null || world.Map.CurrentPatch!.BiomeTemplate == Biome;
+        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
+        {
+            return Biome == null || world.Map.CurrentPatch!.BiomeTemplate == Biome;
+        }
     }
 
     /// <summary>
@@ -150,13 +184,14 @@ namespace UnlockConstraints
         public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
         {
             var current = CompoundValue(world);
-            var formattedCompound = string.Format("[thrive:compound type=\"{0}\"][/thrive:compound]", Compound.InternalName);
+            var compound = string.Format("[thrive:compound type=\"{0}\"][/thrive:compound]", Compound.InternalName);
             if (Min.HasValue && Max.HasValue)
-                return string.Format("{0} is between {1} and {2} (currently {3})", formattedCompound, Min, Max, current);
+                return string.Format("{0} is between {1} and {2} (currently {3})", compound, Min, Max, current);
             if (Min.HasValue)
-                return string.Format("{0} is more than {1} (currently {2})", formattedCompound, Min, current);
+                return string.Format("{0} is more than {1} (currently {2})", compound, Min, current);
             if (Max.HasValue)
-                return string.Format("{0} is less than {1} (currently {2})", formattedCompound, Max, current);
+                return string.Format("{0} is less than {1} (currently {2})", compound, Max, current);
+
             return string.Empty;
         }
 
@@ -168,7 +203,9 @@ namespace UnlockConstraints
             return minSatisfied && maxSatisfied;
         }
 
-        private readonly float CompoundValue(GameWorld world) =>
-            world.Map.CurrentPatch!.GetCompoundAmount(Compound);
+        private readonly float CompoundValue(GameWorld world)
+        {
+            return world.Map.CurrentPatch!.GetCompoundAmount(Compound);
+        }
     }
 }

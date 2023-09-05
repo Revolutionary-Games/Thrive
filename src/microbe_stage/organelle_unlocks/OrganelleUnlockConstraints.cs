@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using UnlockConstraints;
@@ -55,8 +55,9 @@ public class OrganelleUnlockConstraints
     {
         if (world.PlayerSpecies is not MicrobeSpecies playerSpecies)
             return false;
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(playerSpecies.Organelles, world.Map.CurrentPatch!.Biome, playerSpecies.MembraneType, true,
-            world.WorldSettings, CompoundAmountType.Current);
+
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(playerSpecies.Organelles, world.Map.CurrentPatch!.Biome,
+            playerSpecies.MembraneType, true, world.WorldSettings, CompoundAmountType.Current);
 
         return UnlockConstraints().All(constraint => constraint.Satisfied(world, energyBalance));
     }
@@ -68,8 +69,9 @@ public class OrganelleUnlockConstraints
     {
         if (world.PlayerSpecies is not MicrobeSpecies playerSpecies)
             return "In the microbe stage";
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(playerSpecies.Organelles, world.Map.CurrentPatch!.Biome, playerSpecies.MembraneType, true,
-            world.WorldSettings, CompoundAmountType.Current);
+
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(playerSpecies.Organelles, world.Map.CurrentPatch!.Biome,
+            playerSpecies.MembraneType, true, world.WorldSettings, CompoundAmountType.Current);
 
         return UnlockConstraints().Select(constraint => constraint.Tooltip(world, energyBalance)).Join();
     }

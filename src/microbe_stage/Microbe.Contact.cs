@@ -244,7 +244,7 @@ public partial class Microbe
     public Action<Microbe, IHUDMessage>? OnNoticeMessage { get; set; }
 
     public IEnumerable<OrganelleDefinition>? UnlocksOrganelles =>
-        organelles.Select(placedOrganelle => placedOrganelle.Definition);
+        organelles?.Select(placedOrganelle => placedOrganelle.Definition);
 
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking

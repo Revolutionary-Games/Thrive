@@ -483,7 +483,6 @@ public class OrganelleDefinition : IRegistryType
 
     public string? UnlockRequirements(GameWorld world)
     {
-
         if (world.UnlockProgress.IsUnlocked(this, world))
             return null;
 

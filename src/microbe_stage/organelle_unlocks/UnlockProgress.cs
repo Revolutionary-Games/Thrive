@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -14,7 +14,11 @@ public class UnlockProgress
     /// </summary>
     [JsonProperty]
     private readonly HashSet<OrganelleDefinition> unlockedOrganelles =
-        SimulationParameters.Instance.GetAllOrganelles().Where(organelle => organelle.UnlockConditions == null).ToHashSet();
+        SimulationParameters
+            .Instance
+            .GetAllOrganelles()
+            .Where(organelle => organelle.UnlockConditions == null)
+            .ToHashSet();
 
     /// <summary>
     ///   Organelles unlocked singe the last time in the editor.
