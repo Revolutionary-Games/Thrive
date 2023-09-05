@@ -238,41 +238,17 @@ public partial class CellEditorComponent
             if (tooltip != null)
             {
                 tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
+                tooltip.RequiresUnlocking = organelle.UnlockRequirements(Editor.CurrentGame.GameWorld);
             }
         }
     }
 
-    private void UpdateOrganelleVisibility()
+    private void UpdateOrganelleLAWKSettings()
     {
-        var usedCateogries = new HashSet<string>();
-
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
-            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !entry.Key.LAWK)
-            {
-                entry.Value.Hide();
-            }
-            else if (!Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(entry.Key, Editor.CurrentGame.GameWorld))
-            {
-                entry.Value.Hide();
-            }
-            else
-            {
-                usedCateogries.Add(entry.Key.EditorButtonGroup.ToString());
-            }
-        }
-
-        // Add some text to the now empty sections
-        var allOrganelles = SimulationParameters.Instance.GetAllOrganelles();
-        var allCateogries = allOrganelles.Select(organelle => organelle.EditorButtonGroup.ToString());
-        foreach (var organelleCategory in allCateogries.Except(usedCateogries))
-        {
-            var group = partsSelectionContainer.GetNode<CollapsibleList>(organelleCategory);
-
-            // TODO: Translate
-            var label = new Label { Text = "Unlock by engulfing more prokaryotes" };
-            group?.AddItem(label);
+            entry.Value.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
         }
     }
 

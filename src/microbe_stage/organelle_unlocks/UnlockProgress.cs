@@ -37,7 +37,7 @@ public class UnlockProgress
             GD.Print(organelle.Name, " unlocked = ", unlockedOrganelles.Contains(organelle));
             foreach (var unlock in organelle.UnlockConditions)
             {
-                GD.Print("- ", unlock.Requirements(world), "\" = ", unlock.Satisfied(world));
+                GD.Print("- ", unlock.Tooltip(world), "\" = ", unlock.Satisfied(world));
             }
         }
 

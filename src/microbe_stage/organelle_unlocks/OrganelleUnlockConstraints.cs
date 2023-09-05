@@ -64,14 +64,14 @@ public class OrganelleUnlockConstraints
     /// <summary>
     ///   Display the requirements as a string.
     /// </summary>
-    public string Requirements(GameWorld world)
+    public string Tooltip(GameWorld world)
     {
         if (world.PlayerSpecies is not MicrobeSpecies playerSpecies)
-            return "Be a microbe";
+            return "In the microbe stage";
         var energyBalance = ProcessSystem.ComputeEnergyBalance(playerSpecies.Organelles, world.Map.CurrentPatch!.Biome, playerSpecies.MembraneType, true,
             world.WorldSettings, CompoundAmountType.Current);
 
-        return UnlockConstraints().Select(constraint => constraint.Display(world, energyBalance)).Join();
+        return UnlockConstraints().Select(constraint => constraint.Tooltip(world, energyBalance)).Join();
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public class OrganelleUnlockConstraints
             yield return new PlayerDeathsAbove { Deaths = PlayerDeathsAbove.Value };
 
         if (AptAbove is not null)
-            yield return new AptAbove { Min = AptAbove.Value };
+            yield return new AptAbove { Atp = AptAbove.Value };
 
         if (ExcessAptAbove is not null)
             yield return new ExcessAptAbove { Excess = ExcessAptAbove.Value };

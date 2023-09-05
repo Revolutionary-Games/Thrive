@@ -8,7 +8,7 @@ namespace UnlockConstraints
     /// </summary>
     public interface IUnlockConstraint
     {
-        string Display(GameWorld world, EnergyBalanceInfo energyBalance);
+        string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance);
         bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance);
     }
 
@@ -19,8 +19,8 @@ namespace UnlockConstraints
     {
         public int Microbes;
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Elgulfed {0}/{1} cells", world.TotalMicrobesEngulfedByPlayer, Microbes);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
+            string.Format("{0} microbes are engulfed (currently at {1})", Microbes, world.TotalMicrobesEngulfedByPlayer);
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
             world.TotalMicrobesEngulfedByPlayer >= Microbes;
@@ -33,8 +33,8 @@ namespace UnlockConstraints
     {
         public int Deaths;
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Died {0}/{1} times", world.TotalPlayerDeaths, Deaths);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
+            string.Format("Dying {0} times (currently at {1} deaths)", Deaths, world.TotalPlayerDeaths);
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) => world.TotalPlayerDeaths >= Deaths;
     }
@@ -44,12 +44,12 @@ namespace UnlockConstraints
     /// </summary>
     public struct AptAbove : IUnlockConstraint
     {
-        public float Min;
+        public float Atp;
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("ATP {0}/{1}", energyBalance.TotalProduction, Min);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
+            string.Format("ATP reaches {0} (currently at {1})", Atp, energyBalance.TotalProduction);
 
-        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) => energyBalance.TotalProduction >= Min;
+        public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) => energyBalance.TotalProduction >= Atp;
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ namespace UnlockConstraints
     {
         public float Excess;
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Excess ATP {0}/{1}", energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary, Excess);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
+            string.Format("Excess ATP reaches {0} (currently at {1})", Excess, energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary);
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
             energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary >= Excess;
@@ -73,11 +73,11 @@ namespace UnlockConstraints
     {
         public float Speed;
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
         {
             if (world.PlayerSpecies is not MicrobeSpecies microbeSpecies)
                 return string.Empty;
-            return string.Format("Speed below {0} (currently {1})", Speed, microbeSpecies.BaseSpeed);
+            return string.Format("Speed falls below {0} (currently {1})", Speed, microbeSpecies.BaseSpeed);
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -97,8 +97,8 @@ namespace UnlockConstraints
         public string Organelle { get; set; }
         public int Generations { get; set; }
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("{0} for {1}/{2} generations", SimulationParameters.Instance.GetOrganelleType(Organelle).Name, CountGenerations(world), Generations);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
+            string.Format("Organism contains {0} for {1} generations (currently at {2})", SimulationParameters.Instance.GetOrganelleType(Organelle).Name, Generations, CountGenerations(world));
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
             CountGenerations(world) >= Generations;
@@ -131,8 +131,8 @@ namespace UnlockConstraints
     {
         public Biome Biome;
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance) =>
-            string.Format("Reproduce in the {0} biome (currently in {1})", Biome.Name, world.Map.CurrentPatch!.BiomeTemplate);
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance) =>
+            string.Format("Entering the {0} biome (currently in {1})", Biome.Name, world.Map.CurrentPatch!.BiomeTemplate);
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance) =>
             Biome == null || world.Map.CurrentPatch!.BiomeTemplate == Biome;
@@ -147,15 +147,15 @@ namespace UnlockConstraints
         public float? Min;
         public float? Max;
 
-        public readonly string Display(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
         {
             var current = CompoundValue(world);
             if (Min.HasValue && Max.HasValue)
-                return string.Format("{0} between {1} and {2} (current {3})", Compound.Name, Min, Max, current);
+                return string.Format("{0} is between {1} and {2} (currently {3})", Compound.Name, Min, Max, current);
             if (Min.HasValue)
-                return string.Format("{0} more than {1} (current {2})", Compound.Name, Min, current);
+                return string.Format("{0} is more than {1} (currently {2})", Compound.Name, Min, current);
             if (Max.HasValue)
-                return string.Format("{0} less than {1} (current {2})", Compound.Name, Max, current);
+                return string.Format("{0} is less than {1} (currently {2})", Compound.Name, Max, current);
             return string.Empty;
         }
 

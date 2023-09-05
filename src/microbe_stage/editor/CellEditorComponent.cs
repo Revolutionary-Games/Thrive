@@ -671,7 +671,7 @@ public partial class CellEditorComponent :
         UpdateOrganelleUnlockTooltips();
 
         // Do this here as we know the editor and hence world settings have been initialised by now
-        UpdateOrganelleVisibility();
+        UpdateOrganelleLAWKSettings();
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
@@ -1974,10 +1974,13 @@ public partial class CellEditorComponent :
         {
             item.Locked = true;
         }
-        else if (organelle.RequiresNucleus)
+        else if (organelle.RequiresNucleus && !placedUniqueOrganelleNames.Contains(nucleus))
         {
-            var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus);
-            item.Locked = !hasNucleus;
+            item.Locked = true;
+        }
+        else if (!Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, Editor.CurrentGame.GameWorld))
+        {
+            item.Locked = true;
         }
         else
         {

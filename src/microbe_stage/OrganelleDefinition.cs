@@ -481,6 +481,24 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
+    public string? UnlockRequirements(GameWorld world) {
+        if (UnlockConditions == null)
+            return null;
+
+        if (UnlockConditions.Any(unlockCondition => unlockCondition.Satisfied(world)))
+            return null;
+
+        string unlockRequirements = "Unlocked when:";
+        foreach (var unlockCondition in UnlockConditions)
+        {
+            unlockRequirements += "\n- " + unlockCondition.Tooltip(world);
+        }
+
+        unlockRequirements += string.Format("\n- Engulfing an organism containing {0}", Name);
+
+        return unlockRequirements;
+    }
+
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
