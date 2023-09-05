@@ -22,6 +22,14 @@
     "displayScene": "res://assets/models/organelles/Pilus.tscn",
     "name": "ORGANELLE_PILUS",
     "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
+    "unlockConditions": [
+      {
+        "EngulfedMicrobesAbove": 5
+      },
+      {
+        "PlayerDeathsAbove": 3
+      }
+    ],
     "editorButtonGroup": "External",
     "editorButtonOrder": 2
   },
@@ -88,6 +96,14 @@
     "productionColour": "#3feb67",
     "consumptionColour": "#ff8425",
     "iconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
+    "unlockConditions": [
+      {
+        "BiomeCompound": {
+          "Compound": "ammonia",
+          "Max": 5
+        }
+      }
+    ],
     "editorButtonGroup": "Protein",
     "editorButtonOrder": 5
   },
@@ -188,6 +204,14 @@
     "productionColour": "#834acb",
     "consumptionColour": "#c4303d",
     "iconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+    "unlockConditions": [
+      {
+        "EngulfedMicrobesAbove": 5
+      },
+      {
+        "PlayerDeathsAbove": 3
+      }
+    ],
     "editorButtonGroup": "Protein",
     "editorButtonOrder": 6
   },
@@ -220,6 +244,14 @@
     "productionColour": "#40f0ac",
     "consumptionColour": "#fbae3a",
     "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
+    "unlockConditions": [
+      {
+        "BiomeCompound": {
+          "Compound": "sunlight",
+          "Min": 20
+        }
+      }
+    ],
     "editorButtonGroup": "Protein",
     "editorButtonOrder": 2
   },
@@ -318,6 +350,14 @@
     "productionColour": "#6a5cc6",
     "consumptionColour": "#ad5161",
     "iconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
+    "unlockConditions": [
+      {
+        "BiomeCompound": {
+          "Compound": "temperature",
+          "Min": 90
+        }
+      }
+    ],
     "editorButtonGroup": "Protein",
     "editorButtonOrder": 8,
     "lawk": false
@@ -388,6 +428,14 @@
     "productionColour": "#ff9721",
     "consumptionColour": "#ff9721",
     "iconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
+    "unlockConditions": [
+      {
+        "ExcessAptAbove": 30
+      },
+      {
+        "BaseSpeedBelow": 30
+      }
+    ],
     "editorButtonGroup": "External",
     "editorButtonOrder": 1
   },
@@ -452,6 +500,15 @@
     "consumptionColour": "#ff2653",
     "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
     "requiresNucleus": true,
+    "unlockConditions": [
+      {
+        "AptAbove": 20,
+        "ReproducedWith": {
+          "Organelle": "metabolosome",
+          "Generations": 7
+        }
+      }
+    ],
     "editorButtonGroup": "Organelle",
     "editorButtonOrder": 3
   },
@@ -556,6 +613,14 @@
     "name": "CHLOROPLAST",
     "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
     "requiresNucleus": true,
+    "unlockConditions": [
+      {
+        "ReproducedWith": {
+          "Organelle":"chromatophore",
+          "Generations": 5
+        }
+      }
+    ],
     "editorButtonGroup": "Organelle",
     "editorButtonOrder": 4
   },
@@ -762,6 +827,14 @@
     "name": "BIOLUMINESCENT_VACUOLE",
     "iconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
     "requiresNucleus": true,
+    "unlockConditions": [
+      {
+        "ReproduceInBiome": "underwater_cave"
+      },
+      {
+        "ReproduceInBiome": "abyssopelagic"
+      }
+    ],
     "editorButtonGroup": "Organelle",
     "editorButtonOrder": 11,
     "unimplemented": true

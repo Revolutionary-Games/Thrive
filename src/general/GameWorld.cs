@@ -22,6 +22,12 @@ public class GameWorld : ISaveLoadable
     public UnlockProgress UnlockProgress = new();
 
     [JsonProperty]
+    public int TotalPlayerDeaths;
+
+    [JsonProperty]
+    public int TotalMicrobesEngulfedByPlayer;
+
+    [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
 
     [JsonProperty]
@@ -715,41 +721,5 @@ public class GameWorld : ISaveLoadable
         }
 
         list.Add(metaball);
-    }
-}
-
-/// <summary>
-///   Stores which organelles have been unlocked by the player.
-/// </summary>
-[UseThriveSerializer]
-public class UnlockProgress
-{
-    /// <summary>
-    ///   The organelles that the player can use.
-    /// </summary>
-    [JsonProperty]
-    private readonly HashSet<OrganelleDefinition> unlockedOrganelles = new()
-    {
-        SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
-        SimulationParameters.Instance.GetOrganelleType("metabolosome"),
-        SimulationParameters.Instance.GetOrganelleType("chromatophore"),
-        SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"),
-        SimulationParameters.Instance.GetOrganelleType("rusticyanin"),
-    };
-
-    /// <summary>
-    ///   Is the organelle unlocked?
-    /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle)
-    {
-        return unlockedOrganelles.Contains(organelle);
-    }
-
-    /// <summary>
-    ///   Unlock an organelle, returning if this is the first time it has been unlocked.
-    /// </summary>
-    public bool UnlockOrganelle(OrganelleDefinition organelle)
-    {
-        return unlockedOrganelles.Add(organelle);
     }
 }

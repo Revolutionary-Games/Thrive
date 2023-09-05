@@ -253,7 +253,7 @@ public partial class CellEditorComponent
             {
                 entry.Value.Hide();
             }
-            else if (!Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(entry.Key))
+            else if (!Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(entry.Key, Editor.CurrentGame.GameWorld))
             {
                 entry.Value.Hide();
             }

@@ -188,6 +188,11 @@ public class OrganelleDefinition : IRegistryType
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
 
     /// <summary>
+    ///   The possible conditions where a player can unlock this organelle.
+    /// </summary>
+    public List<OrganelleUnlockConstraints>? UnlockConditions;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();

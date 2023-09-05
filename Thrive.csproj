@@ -488,6 +488,7 @@
     <Compile Include="src\microbe_stage\organelle_components\MyofibrilComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SlimeJetComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\EmptyOrganelleComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\UnlockProgress.cs" />
     <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
     <Compile Include="src\microbe_stage\editor\CompoundBalanceDisplay.cs" />
@@ -617,6 +618,8 @@
     <Compile Include="src\modding\ModUploader.cs" />
     <Compile Include="src\modding\NewModGUI.cs" />
     <Compile Include="src\modding\WorkshopData.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\OrganelleUnlockConstraints.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockConstraint.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
     <Compile Include="src\saving\IChildPropertiesLoadCallback.cs" />
     <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />

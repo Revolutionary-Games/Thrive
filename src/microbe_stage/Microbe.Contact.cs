@@ -983,6 +983,7 @@ public partial class Microbe
             // Playing from a positional audio player won't have any effect since the listener is
             // directly on it.
             PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+            GameWorld.TotalPlayerDeaths += 1;
         }
         else
         {
@@ -1892,13 +1893,16 @@ public partial class Microbe
 
         foreach (var organelle in engulfable.UnlocksOrganelles)
         {
-            if (!CurrentGame.GameWorld.UnlockProgress.UnlockOrganelle(organelle))
+            if (!GameWorld.UnlockProgress.UnlockOrganelle(organelle))
                 continue;
 
             OnNoticeMessage?.Invoke(this,
                 new SimpleHUDMessage(organelle.Name + " now available in the editor",
                     DisplayDuration.Normal));
         }
+
+        if (engulfable is not FloatingChunk)
+            GameWorld.TotalMicrobesEngulfedByPlayer += 1;
     }
 
     private void CompleteIngestion(EngulfedObject engulfed)
