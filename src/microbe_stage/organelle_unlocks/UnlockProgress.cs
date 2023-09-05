@@ -17,11 +17,22 @@ public class UnlockProgress
         SimulationParameters.Instance.GetAllOrganelles().Where(organelle => organelle.UnlockConditions == null).ToHashSet();
 
     /// <summary>
+    ///   Organelles unlocked singe the last time in the editor.
+    /// </summary>
+    [JsonProperty]
+    private readonly HashSet<OrganelleDefinition> recentlyUnlocked = new();
+
+    /// <summary>
     ///   Unlock an organelle, returning if this is the first time it has been unlocked.
     /// </summary>
     public bool UnlockOrganelle(OrganelleDefinition organelle)
     {
-        return unlockedOrganelles.Add(organelle);
+        var firstTimeUnlocking = unlockedOrganelles.Add(organelle);
+
+        if (firstTimeUnlocking)
+            recentlyUnlocked.Add(organelle);
+
+        return firstTimeUnlocking;
     }
 
     /// <summary>
@@ -42,5 +53,21 @@ public class UnlockProgress
         }
 
         return unlockedOrganelles.Contains(organelle);
+    }
+
+    /// <summary>
+    ///   Has the organelle been recently unlocked?
+    /// </summary>
+    public bool RecentlyUnlocked(OrganelleDefinition organelle)
+    {
+        return recentlyUnlocked.Contains(organelle);
+    }
+
+    /// <summary>
+    ///   Clear recently unlocked organelles
+    /// </summary>
+    public void ClearRecentlyUnlocked()
+    {
+        recentlyUnlocked.Clear();
     }
 }

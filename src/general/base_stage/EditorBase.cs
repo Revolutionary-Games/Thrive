@@ -786,6 +786,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             editorComponent.OnFinishEditing();
         }
 
+        CurrentGame.GameWorld.UnlockProgress.ClearRecentlyUnlocked();
+
         var stage = ReturnToStage!;
 
         // This needs to be reset here to not free this when we exit the tree

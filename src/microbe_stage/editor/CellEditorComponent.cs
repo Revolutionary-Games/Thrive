@@ -1969,6 +1969,7 @@ public partial class CellEditorComponent :
         OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
+        var world = Editor.CurrentGame.GameWorld;
 
         if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
         {
@@ -1978,7 +1979,7 @@ public partial class CellEditorComponent :
         {
             item.Locked = true;
         }
-        else if (!Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, Editor.CurrentGame.GameWorld))
+        else if (!world.UnlockProgress.IsUnlocked(organelle, world))
         {
             item.Locked = true;
         }
@@ -1986,6 +1987,8 @@ public partial class CellEditorComponent :
         {
             item.Locked = false;
         }
+
+        item.RecentlyUnlocked = world.UnlockProgress.RecentlyUnlocked(organelle);
     }
 
     /// <summary>
