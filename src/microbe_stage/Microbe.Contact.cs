@@ -1880,31 +1880,6 @@ public partial class Microbe
         engulfedObject.Interpolate = false;
     }
 
-    /// <summary>
-    ///   Add the organelles from the engulfable object to the player's unlocked organelles
-    /// </summary>
-    private void UnlockEnglufedOrganelles(IEngulfable engulfable)
-    {
-        if (!IsPlayerMicrobe)
-            return;
-
-        if (engulfable.UnlocksOrganelles == null)
-            return;
-
-        foreach (var organelle in engulfable.UnlocksOrganelles)
-        {
-            if (!GameWorld.UnlockProgress.UnlockOrganelle(organelle))
-                continue;
-
-            OnNoticeMessage?.Invoke(this,
-                new SimpleHUDMessage(organelle.Name + " now available in the editor",
-                    DisplayDuration.Normal));
-        }
-
-        if (engulfable is not FloatingChunk)
-            GameWorld.TotalMicrobesEngulfedByPlayer += 1;
-    }
-
     private void CompleteIngestion(EngulfedObject engulfed)
     {
         var engulfable = engulfed.Object.Value;
@@ -1913,7 +1888,8 @@ public partial class Microbe
 
         engulfable.PhagocytosisStep = PhagocytosisPhase.Ingested;
 
-        UnlockEnglufedOrganelles(engulfable);
+        if (IsPlayerMicrobe && engulfable is Microbe)
+            GameWorld.TotalMicrobesEngulfedByPlayer += 1;
 
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);

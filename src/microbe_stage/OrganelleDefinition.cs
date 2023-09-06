@@ -494,8 +494,6 @@ public class OrganelleDefinition : IRegistryType
                 unlockRequirements += "\n- " + unlockCondition.Tooltip(world);
         }
 
-        unlockRequirements += string.Format("\n- Engulfing an organism containing a {0}", Name);
-
         return unlockRequirements;
     }
 
