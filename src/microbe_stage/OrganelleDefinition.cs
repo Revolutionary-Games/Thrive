@@ -481,9 +481,9 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
-    public string? UnlockRequirements(GameWorld world)
+    public string? UnlockRequirements(GameProperties game)
     {
-        if (world.UnlockProgress.IsUnlocked(this, world))
+        if (game.GameWorld.UnlockProgress.IsUnlocked(this, game))
             return null;
 
         // TODO: translate
@@ -491,7 +491,7 @@ public class OrganelleDefinition : IRegistryType
         if (UnlockConditions != null)
         {
             foreach (var unlockCondition in UnlockConditions)
-                unlockRequirements += "\n- " + unlockCondition.Tooltip(world);
+                unlockRequirements += "\n- " + unlockCondition.Tooltip(game.GameWorld);
         }
 
         return unlockRequirements;

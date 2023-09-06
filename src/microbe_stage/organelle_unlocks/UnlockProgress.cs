@@ -27,10 +27,13 @@ public class UnlockProgress
     private readonly HashSet<OrganelleDefinition> recentlyUnlocked = new();
 
     /// <summary>
-    ///   Unlock an organelle, returning if this is the first time it has been unlocked.
+    ///   Unlock an organelle, returning true if this is the first time it has been unlocked.
     /// </summary>
-    public bool UnlockOrganelle(OrganelleDefinition organelle)
+    public bool UnlockOrganelle(OrganelleDefinition organelle, GameProperties game)
     {
+        if (organelle.UnlockConditions == null || game.FreeBuild)
+            return false;
+
         var firstTimeUnlocking = unlockedOrganelles.Add(organelle);
 
         if (firstTimeUnlocking)
@@ -42,18 +45,18 @@ public class UnlockProgress
     /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle, GameWorld world)
+    public bool IsUnlocked(OrganelleDefinition organelle, GameProperties game)
     {
-        if (organelle.UnlockConditions != null)
-        {
-            if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied(world)))
-                UnlockOrganelle(organelle);
+        if (organelle.UnlockConditions == null || game.FreeBuild)
+            return true;
 
-            GD.Print(organelle.Name, " unlocked = ", unlockedOrganelles.Contains(organelle));
-            foreach (var unlock in organelle.UnlockConditions)
-            {
-                GD.Print("- ", unlock.Tooltip(world), "\" = ", unlock.Satisfied(world));
-            }
+        if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied(game.GameWorld)))
+            UnlockOrganelle(organelle, game);
+
+        GD.Print(organelle.Name, " unlocked = ", unlockedOrganelles.Contains(organelle));
+        foreach (var unlock in organelle.UnlockConditions)
+        {
+            GD.Print("- ", unlock.Tooltip(game.GameWorld), "\" = ", unlock.Satisfied(game.GameWorld));
         }
 
         return unlockedOrganelles.Contains(organelle);
