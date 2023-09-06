@@ -1,6 +1,7 @@
 ﻿namespace Components
 {
     using System;
+    using Godot;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -108,6 +109,16 @@
         }
 
         /// <summary>
+        ///   Plays a sound effect if it isn't already playing
+        /// </summary>
+        /// <returns>True if now playing or was playing already</returns>
+        public static bool PlaySoundEffectIfNotPlayingAlready(this ref SoundEffectPlayer soundEffectPlayer,
+            string sound, float volume = 1)
+        {
+            return soundEffectPlayer.EnsureSoundIsPlaying(sound, false, volume);
+        }
+
+        /// <summary>
         ///   Plays a looping sound. If the sound is already playing only adjusts the volume, doesn't start another
         ///   sound.
         /// </summary>
@@ -123,63 +134,7 @@
             // TODO: should looping sounds steal slots from non-looping sounds to ensure looping sounds play?
             // When there aren't enough slots
 
-            // See the comments in PlaySoundEffect
-            SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
-
-            if (slots == null)
-            {
-                slots ??= new SoundEffectSlot[Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY];
-                soundEffectPlayer.SoundEffectSlots = slots;
-            }
-
-            lock (slots)
-            {
-                int slotCount = slots.Length;
-
-                int emptySlot = -1;
-
-                for (int i = 0; i < slotCount; ++i)
-                {
-                    ref var slot = ref slots[i];
-
-                    // Detect already playing sound
-                    if (slot.SoundFile == sound)
-                    {
-                        // These are explicitly set by calling code so exact values should be fine
-                        // ReSharper disable once CompareOfFloatsByEqualityOperator
-                        if (slot.Volume != volume || slot.Loop != true)
-                        {
-                            slot.Volume = volume;
-                            slot.Loop = true;
-                            slot.InternalAppliedState = false;
-                            soundEffectPlayer.SoundsApplied = false;
-                        }
-
-                        return true;
-                    }
-
-                    if (!slot.Play && emptySlot == -1)
-                    {
-                        emptySlot = i;
-                    }
-                }
-
-                // Need a new slot
-                if (emptySlot != -1)
-                {
-                    ref var slot = ref slots[emptySlot];
-
-                    slot.SoundFile = sound;
-                    slot.Volume = volume;
-                    slot.Loop = true;
-                    slot.Play = true;
-
-                    slot.InternalAppliedState = false;
-                    soundEffectPlayer.SoundsApplied = false;
-                }
-            }
-
-            return false;
+            return soundEffectPlayer.EnsureSoundIsPlaying(sound, true, volume);
         }
 
         /// <summary>
@@ -194,7 +149,8 @@
         ///   If false and the sound is looping, then it will only stop playing after the current loop ends
         /// </param>
         /// <returns>True if found a sound to stop</returns>
-        public static bool StopSound(this ref SoundEffectPlayer soundEffectPlayer, string sound, bool immediately = true)
+        public static bool StopSound(this ref SoundEffectPlayer soundEffectPlayer, string sound,
+            bool immediately = true)
         {
             SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
 
@@ -223,6 +179,185 @@
                     }
 
                     slot.InternalAppliedState = false;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///   Handles starting and turning up a looping sound effect. Used for microbe movement sound handling.
+        /// </summary>
+        /// <returns>True when the sound is now playing, false if out of slots</returns>
+        public static bool PlayGraduallyTurningUpLoopingSound(this ref SoundEffectPlayer soundEffectPlayer,
+            string sound, float maxVolume, float initialVolume, float changeSpeed)
+        {
+            // See the comments in PlaySoundEffect
+            SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+
+            if (slots == null)
+            {
+                slots ??= new SoundEffectSlot[Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY];
+                soundEffectPlayer.SoundEffectSlots = slots;
+            }
+
+            lock (slots)
+            {
+                int slotCount = slots.Length;
+
+                int emptySlot = -1;
+
+                for (int i = 0; i < slotCount; ++i)
+                {
+                    ref var slot = ref slots[i];
+
+                    // Detect already playing sound
+                    if (slot.SoundFile == sound)
+                    {
+                        var targetVolume = Mathf.Clamp(slot.Volume + changeSpeed, 0, maxVolume);
+
+                        // The volume mostly changes until it reaches the max volume which is always the exact same
+                        // ReSharper disable once CompareOfFloatsByEqualityOperator
+                        if (slot.Volume != targetVolume || !slot.Loop || !slot.Play)
+                        {
+                            slot.Volume = targetVolume;
+                            slot.Play = true;
+                            slot.Loop = true;
+
+                            slot.InternalAppliedState = false;
+                            soundEffectPlayer.SoundsApplied = false;
+                        }
+
+                        return true;
+                    }
+
+                    if (!slot.Play && emptySlot == -1)
+                    {
+                        emptySlot = i;
+                    }
+                }
+
+                // Need a new slot
+                if (emptySlot != -1)
+                {
+                    ref var slot = ref slots[emptySlot];
+
+                    slot.SoundFile = sound;
+                    slot.Volume = initialVolume;
+                    slot.Loop = true;
+                    slot.Play = true;
+
+                    slot.InternalAppliedState = false;
+                    soundEffectPlayer.SoundsApplied = false;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///   The opposite of <see cref="PlayGraduallyTurningUpLoopingSound"/> for handling stopping sounds started
+        ///   like that
+        /// </summary>
+        /// <returns>True if there was a sound to lower volume of or stop</returns>
+        public static bool PlayGraduallyTurningDownSound(this ref SoundEffectPlayer soundEffectPlayer, string sound,
+            float changeSpeed)
+        {
+            SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+
+            if (slots == null)
+                return false;
+
+            lock (slots)
+            {
+                int slotCount = slots.Length;
+
+                for (int i = 0; i < slotCount; ++i)
+                {
+                    ref var slot = ref slots[i];
+
+                    if (!slot.Play || slot.SoundFile != sound)
+                        continue;
+
+                    slot.Loop = false;
+
+                    var targetVolume = slot.Volume - changeSpeed;
+
+                    if (targetVolume <= 0)
+                    {
+                        // Immediately stop when volume reaches zero
+                        slot.Play = false;
+                        return true;
+                    }
+
+                    slot.Volume = targetVolume;
+
+                    slot.InternalAppliedState = false;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool EnsureSoundIsPlaying(this ref SoundEffectPlayer soundEffectPlayer, string sound, bool loop,
+            float volume)
+        {
+            // See the comments in PlaySoundEffect
+            SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+
+            if (slots == null)
+            {
+                slots ??= new SoundEffectSlot[Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY];
+                soundEffectPlayer.SoundEffectSlots = slots;
+            }
+
+            lock (slots)
+            {
+                int slotCount = slots.Length;
+
+                int emptySlot = -1;
+
+                for (int i = 0; i < slotCount; ++i)
+                {
+                    ref var slot = ref slots[i];
+
+                    // Detect already playing sound
+                    if (slot.Play && slot.SoundFile == sound)
+                    {
+                        // These are explicitly set by calling code so exact values should be fine
+                        // ReSharper disable once CompareOfFloatsByEqualityOperator
+                        if (slot.Volume != volume || slot.Loop != loop)
+                        {
+                            slot.Volume = volume;
+                            slot.Loop = loop;
+                            slot.InternalAppliedState = false;
+                            soundEffectPlayer.SoundsApplied = false;
+                        }
+
+                        return true;
+                    }
+
+                    if (!slot.Play && emptySlot == -1)
+                    {
+                        emptySlot = i;
+                    }
+                }
+
+                // Need a new slot
+                if (emptySlot != -1)
+                {
+                    ref var slot = ref slots[emptySlot];
+
+                    slot.SoundFile = sound;
+                    slot.Volume = volume;
+                    slot.Loop = loop;
+                    slot.Play = true;
+
+                    slot.InternalAppliedState = false;
+                    soundEffectPlayer.SoundsApplied = false;
                     return true;
                 }
             }

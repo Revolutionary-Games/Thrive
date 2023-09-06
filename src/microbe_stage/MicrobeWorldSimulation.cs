@@ -15,6 +15,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private GameProperties gameProperties = null!;
 
     // Base systems
+    private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
     private ColourAnimationSystem colourAnimationSystem = null!;
     private CountLimitedDespawnSystem countLimitedDespawnSystem = null!;
     private DamageOnTouchSystem damageOnTouchSystem = null!;
@@ -40,13 +41,25 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private AllCompoundsVentingSystem allCompoundsVentingSystem = null!;
     private CellBurstEffectSystem cellBurstEffectSystem = null!;
     private CompoundAbsorptionSystem compoundAbsorptionSystem = null!;
+    private DamageSoundSystem damageSoundSystem = null!;
+    private EngulfedDigestionSystem engulfedDigestionSystem = null!;
+    private EngulfedHandlingSystem engulfedHandlingSystem = null!;
+    private EngulfingSystem engulfingSystem = null!;
     private EntitySignalingSystem entitySignalingSystem = null!;
     private FluidCurrentsSystem fluidCurrentsSystem = null!;
-    private MicrobeMovementSystem microbeMovementSystem = null!;
     private MicrobeAISystem microbeAI = null!;
+    private MicrobeDeathSystem microbeDeathSystem = null!;
+    private MicrobeEventCallbackSystem microbeEventCallbackSystem = null!;
+    private MicrobeFlashingSystem microbeFlashingSystem = null!;
+    private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
+    private MicrobeMovementSystem microbeMovementSystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
+    private OsmoregulationAndHealingSystem osmoregulationAndHealingSystem = null!;
+    private PilusDamageSystem pilusDamageSystem = null!;
+    private SlimeSlowdownSystem slimeSlowdownSystem = null!;
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
+    private MicrobeReproductionSystem microbeReproductionSystem = null!;
     private TintColourAnimationSystem tintColourAnimationSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
 
@@ -92,6 +105,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         var parallelRunner = new DefaultParallelRunner(1);
 
         // Systems stored in fields
+        attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, parallelRunner);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, parallelRunner);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem, parallelRunner);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, parallelRunner);
@@ -112,12 +126,16 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
         spatialPositionSystem = new SpatialPositionSystem(EntitySystem, parallelRunner);
 
-        allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem, nonParallelRunner);
-        cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem, nonParallelRunner);
+        allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem, parallelRunner);
+        cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
 
         // TODO: clouds currently only allow 2 thread to absorb at once
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
 
+        damageSoundSystem = new DamageSoundSystem(EntitySystem, parallelRunner);
+        engulfedDigestionSystem = new EngulfedDigestionSystem(EntitySystem, parallelRunner);
+        engulfedHandlingSystem = new EngulfedHandlingSystem(EntitySystem, parallelRunner);
+        engulfingSystem = new EngulfingSystem(EntitySystem);
         entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
 
         fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
@@ -129,12 +147,18 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // TODO: this definitely needs to be (along with the process system) the first systems to be multithreaded
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
+        microbeDeathSystem = new MicrobeDeathSystem(EntitySystem, parallelRunner);
+        microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, EntitySystem, parallelRunner);
+        microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, parallelRunner);
+        microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, parallelRunner);
+        microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
 
-        microbeShaderSystem = new MicrobeShaderSystem(EntitySystem, nonParallelRunner);
-
-        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem, nonParallelRunner);
+        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
+        osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, parallelRunner);
+        pilusDamageSystem = new PilusDamageSystem(EntitySystem, parallelRunner);
+        slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, parallelRunner);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
-        tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem, nonParallelRunner);
+        tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, parallelRunner);
 
@@ -147,6 +171,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         SpawnSystem = new SpawnSystem(this);
 
+        microbeReproductionSystem = new MicrobeReproductionSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+
         OnInitialized();
     }
 
@@ -157,6 +183,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public void InitForCurrentGame(GameProperties currentGame)
     {
         gameProperties = currentGame;
+
+        osmoregulationAndHealingSystem.SetWorld(gameProperties.GameWorld);
+        microbeReproductionSystem.SetWorld(gameProperties.GameWorld);
     }
 
     public override void ProcessFrameLogic(float delta)
@@ -204,38 +233,44 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void OnProcessFixedLogic(float delta)
     {
-        damageOnTouchSystem.Update(delta);
-        entityMaterialFetchSystem.Update(delta);
-        fadeOutActionSystem.Update(delta);
+        TimedLifeSystem.Update(delta);
+
+        microbeVisualsSystem.Update(delta);
         pathBasedSceneLoader.Update(delta);
-        physicsBodyControlSystem.Update(delta);
+        predefinedVisualLoaderSystem.Update(delta);
+        entityMaterialFetchSystem.Update(delta);
+
+        microbePhysicsCreationAndSizeSystem.Update(delta);
         physicsBodyCreationSystem.Update(delta);
         physicsBodyDisablingSystem.Update(delta);
+
         physicsCollisionManagementSystem.Update(delta);
+
         physicsUpdateAndPositionSystem.Update(delta);
-        predefinedVisualLoaderSystem.Update(delta);
+        attachedEntityPositionSystem.Update(delta);
 
-        // renderOrderSystem.Update(delta);
+        fluidCurrentsSystem.Update(delta);
 
-        soundEffectSystem.Update(delta);
-
-        allCompoundsVentingSystem.Update(delta);
-        cellBurstEffectSystem.Update(delta);
-        compoundAbsorptionSystem.Update(delta);
-        entitySignalingSystem.Update(delta);
+        engulfingSystem.Update(delta);
+        engulfedDigestionSystem.Update(delta);
+        engulfedHandlingSystem.Update(delta);
 
         spatialAttachSystem.Update(delta);
         spatialPositionSystem.Update(delta);
 
-        fluidCurrentsSystem.Update(delta);
+        allCompoundsVentingSystem.Update(delta);
+        compoundAbsorptionSystem.Update(delta);
+        entitySignalingSystem.Update(delta);
+
+        toxinCollisionSystem.Update(delta);
+        damageOnTouchSystem.Update(delta);
+        pilusDamageSystem.Update(delta);
 
         ProcessSystem.Update(delta);
 
-        TimedLifeSystem.Update(delta);
+        osmoregulationAndHealingSystem.Update(delta);
 
-        microbeVisualsSystem.Update(delta);
-        microbePhysicsCreationAndSizeSystem.Update(delta);
-        toxinCollisionSystem.Update(delta);
+        microbeReproductionSystem.Update(delta);
 
         if (RunAI)
         {
@@ -248,9 +283,27 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         SpawnSystem.Update(delta);
 
+        microbeEventCallbackSystem.Update(delta);
+
+        microbeDeathSystem.Update(delta);
+
         disallowPlayerBodySleepSystem.Update(delta);
 
+        slimeSlowdownSystem.Update(delta);
         microbeMovementSystem.Update(delta);
+        microbeMovementSoundSystem.Update(delta);
+
+        fadeOutActionSystem.Update(delta);
+        physicsBodyControlSystem.Update(delta);
+
+        // renderOrderSystem.Update(delta);
+
+        cellBurstEffectSystem.Update(delta);
+
+        microbeFlashingSystem.Update(delta);
+
+        damageSoundSystem.Update(delta);
+        soundEffectSystem.Update(delta);
 
         soundListenerSystem.Update(delta);
 
@@ -266,6 +319,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         {
             nonParallelRunner.Dispose();
 
+            attachedEntityPositionSystem.Dispose();
             colourAnimationSystem.Dispose();
             countLimitedDespawnSystem.Dispose();
             damageOnTouchSystem.Dispose();
@@ -287,13 +341,25 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             allCompoundsVentingSystem.Dispose();
             cellBurstEffectSystem.Dispose();
             compoundAbsorptionSystem.Dispose();
+            damageSoundSystem.Dispose();
+            engulfedDigestionSystem.Dispose();
+            engulfedHandlingSystem.Dispose();
+            engulfingSystem.Dispose();
             entitySignalingSystem.Dispose();
             fluidCurrentsSystem.Dispose();
             microbeAI.Dispose();
+            microbeDeathSystem.Dispose();
+            microbeEventCallbackSystem.Dispose();
+            microbeFlashingSystem.Dispose();
+            microbeMovementSoundSystem.Dispose();
             microbeMovementSystem.Dispose();
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
+            osmoregulationAndHealingSystem.Dispose();
+            pilusDamageSystem.Dispose();
+            slimeSlowdownSystem.Dispose();
             microbePhysicsCreationAndSizeSystem.Dispose();
+            microbeReproductionSystem.Dispose();
             tintColourAnimationSystem.Dispose();
             toxinCollisionSystem.Dispose();
 

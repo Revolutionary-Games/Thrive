@@ -70,13 +70,15 @@ public static class SpawnHelpers
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
-    public static void SpawnAgentProjectile(IWorldSimulation worldSimulation, AgentProperties properties,
+    public static EntityRecord SpawnAgentProjectile(IWorldSimulation worldSimulation, AgentProperties properties,
         float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
     {
         var recorder = SpawnAgentProjectileWithoutFinalizing(worldSimulation, properties,
-            amount, lifetime, location, direction, scale, emitter, out _);
+            amount, lifetime, location, direction, scale, emitter, out var entity);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
+
+        return entity;
     }
 
     /// <summary>
@@ -326,11 +328,13 @@ public static class SpawnHelpers
         CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
         CellType? multicellularCellType = null)
     {
+        throw new NotImplementedException();
+
         var microbe = (Microbe)microbeScene.Instance();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
-        microbe.Init(cloudSystem, spawnSystem, currentGame, !aiControlled);
+        // microbe.Init(cloudSystem, spawnSystem, currentGame, !aiControlled);
 
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
@@ -344,7 +348,7 @@ public static class SpawnHelpers
             microbe.ApplySpecies(species);
         }
 
-        microbe.SetInitialCompounds();
+        // microbe.SetInitialCompounds();
         return microbe;
     }
 
@@ -378,6 +382,11 @@ public static class SpawnHelpers
 
             // Darwinian evolution statistic tracking (these are the external effects that are passed to auto-evo)
             entity.Set<SurvivalStatistics>();
+
+            entity.Set(new SoundEffectPlayer
+            {
+                AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
+            });
         }
         else
         {
@@ -385,12 +394,22 @@ public static class SpawnHelpers
             entity.Set<PlayerMarker>();
 
             // The player's "ears" are placed at the player microbe
-            entity.Set<SoundListener>();
+            entity.Set(new SoundListener
+            {
+                UseTopDownRotation = true,
+            });
+
+            entity.Set(new SoundEffectPlayer
+            {
+                AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
+
+                // As this takes a bit of extra performance this is just set for the player
+                AutoDetectPlayer = true,
+            });
         }
 
         // Base species-based data initialization
         ICellProperties usedCellProperties;
-        float engulfSize;
         MembraneType membraneType;
 
         if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
@@ -406,11 +425,8 @@ public static class SpawnHelpers
 
                 usedCellProperties = multicellularCellType;
                 var properties = new CellProperties(multicellularCellType);
-                engulfSize = properties.EngulfSize;
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
-
-                entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(multicellularCellType.Colour)));
             }
             else
             {
@@ -420,11 +436,8 @@ public static class SpawnHelpers
 
                 usedCellProperties = earlyMulticellularSpecies.Cells[0];
                 var properties = new CellProperties(usedCellProperties);
-                engulfSize = properties.EngulfSize;
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
-
-                entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour)));
             }
         }
         else if (species is MicrobeSpecies microbeSpecies)
@@ -436,11 +449,8 @@ public static class SpawnHelpers
 
             usedCellProperties = microbeSpecies;
             var properties = new CellProperties(microbeSpecies);
-            engulfSize = properties.EngulfSize;
             membraneType = properties.MembraneType;
             entity.Set(properties);
-
-            entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour)));
 
             if (multicellularCellType != null)
                 GD.PrintErr("Multicellular cell type may not be set when spawning a MicrobeSpecies instance");
@@ -452,6 +462,7 @@ public static class SpawnHelpers
 
         float storageCapacity;
         int organelleCount;
+        float engulfSize;
 
         // Initialize organelles for the cell type
         {
@@ -461,6 +472,7 @@ public static class SpawnHelpers
 
             organelleCount = container.Organelles!.Count;
             storageCapacity = container.OrganellesCapacity;
+            engulfSize = container.HexCount;
 
             entity.Set(container);
         }
@@ -479,9 +491,11 @@ public static class SpawnHelpers
             ApplyVisualScale = true,
         });
 
-        entity.Set(new EntityMaterial
+        entity.Set<EntityMaterial>();
+
+        entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour))
         {
-            AutoRetrieveFromSpatial = true,
+            AnimateOnlyFirstMaterial = true,
         });
 
         entity.Set<MicrobeShaderParameters>();
@@ -498,6 +512,7 @@ public static class SpawnHelpers
         entity.Set(new BioProcesses
         {
             ActiveProcesses = ProcessSystem.ComputeActiveProcessList(usedCellProperties.Organelles),
+            ProcessStatistics = aiControlled ? null : new ProcessStatistics(),
         });
 
         entity.Set(new CompoundAbsorber
@@ -517,7 +532,7 @@ public static class SpawnHelpers
 
         entity.Set(new UnneededCompoundVenter
         {
-            VentThreshold = 2,
+            VentThreshold = Constants.DEFAULT_MICROBE_VENT_THRESHOLD,
         });
 
         // Physics
@@ -525,6 +540,7 @@ public static class SpawnHelpers
         {
             AxisLock = Physics.AxisLockType.YAxisWithRotation,
             LinearDamping = Constants.MICROBE_PHYSICS_DAMPING,
+            TrackVelocity = true,
         });
 
         entity.Set(new CollisionManagement
@@ -547,10 +563,10 @@ public static class SpawnHelpers
         entity.Set(new MicrobeStatus
         {
             TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL,
-            TimeUntilDigestionUpdate = Constants.MICROBE_DIGESTION_UPDATE_INTERVAL,
         });
 
-        entity.Set(new Health(Constants.DEFAULT_HEALTH));
+        entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellProperties.MembraneType,
+            usedCellProperties.MembraneRigidity)));
 
         entity.Set(new CommandSignaler
         {
@@ -931,6 +947,7 @@ public class MicrobeSpawner : Spawner
                 throw new NotImplementedException();
 
                 // SpawnHelpers.GiveFullyGrownChanceForMulticellular(first, random);
+                // TODO: weight needs to be adjusted for the created colony
             }
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity);

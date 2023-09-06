@@ -13,6 +13,7 @@
     /// </summary>
     [With(typeof(CellProperties))]
     [With(typeof(PhysicsShapeHolder))]
+    [RunsAfter(typeof(MicrobeVisualsSystem))]
     public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
     {
         private JVecF3[] temporaryBuffer = new JVecF3[50];
@@ -23,6 +24,11 @@
 
         protected override void Update(float delta, in Entity entity)
         {
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            if (cellProperties.ShapeCreated)
+                return;
+
             ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
 
             if (shapeHolder.Shape != null)
@@ -30,23 +36,17 @@
 
             // Create a shape for an entity missing it
 
-            ref var cellProperties = ref entity.Get<CellProperties>();
-
             var membrane = cellProperties.CreatedMembrane;
 
             // Wait until membrane is created
-            if (membrane == null)
+            if (!cellProperties.IsMembraneReady())
                 return;
 
             // This catch is here in the very unlikely case that the membrane would throw an exception (due to being
             // disposed if a microbe was deleted before it got a physics body initialized for it)
             try
             {
-                // And wait until the membrane is fully initialized
-                if (membrane.Dirty)
-                    return;
-
-                var rawData = membrane.Computed2DVertices;
+                var rawData = membrane!.Computed2DVertices;
 
                 if (rawData.Count < 1)
                     return;
@@ -76,6 +76,7 @@
 
                 // Ensure physics body is recreated if the shape changed
                 shapeHolder.UpdateBodyShapeIfCreated = true;
+                cellProperties.ShapeCreated = true;
             }
             catch (Exception e)
             {
@@ -89,6 +90,7 @@
 
             if (entity.Has<CompoundAbsorber>())
             {
+                // Max here buffs compound absorbing for the smallest cells
                 entity.Get<CompoundAbsorber>().AbsorbRadius =
                     Math.Max(cellProperties.Radius, Constants.MICROBE_MIN_ABSORB_RADIUS);
             }

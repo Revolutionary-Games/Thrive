@@ -45,6 +45,10 @@
         /// </summary>
         public float OrganellesCapacity;
 
+        public int HexCount;
+
+        public float RotationSpeed;
+
         // TODO: add the following variables only if really needed
         // private bool organelleMaxRenderPriorityDirty = true;
         // private int cachedOrganelleMaxRenderPriority;
@@ -74,12 +78,21 @@
         [JsonIgnore]
         public bool OrganelleVisualsCreated;
 
+        /// <summary>
+        ///   Internal variable used by the <see cref="MicrobeVisualsSystem"/> to only create visuals for missing /
+        ///   removed organelles
+        /// </summary>
+        [JsonIgnore]
+        public Dictionary<PlacedOrganelle, Spatial>? CreatedOrganelleVisuals;
+
         // TODO: maybe put the process list refresh variable here and a some new system to regenerate the process list?
         // instead of just doing it when changing the organelles?
     }
 
-    public static class OrganelleContainerExtensions
+    public static class OrganelleContainerHelpers
     {
+        private static readonly Lazy<Enzyme> Lipase = new(() => SimulationParameters.Instance.GetEnzyme("lipase"));
+
         /// <summary>
         ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).
         /// </summary>
@@ -114,6 +127,75 @@
             in Entity entity)
         {
             return species.Species is MicrobeSpecies && entity.Has<MicrobeColony>();
+        }
+
+        public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellProperties cellProperties)
+        {
+            container.Organelles?.Clear();
+
+            container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
+
+            foreach (var organelleTemplate in cellProperties.Organelles)
+            {
+                container.Organelles.Add(new PlacedOrganelle(organelleTemplate.Definition, organelleTemplate.Position,
+                    organelleTemplate.Orientation)
+                {
+                    Upgrades = organelleTemplate.Upgrades,
+                });
+            }
+
+            container.CalculateOrganelleLayoutStatistics();
+
+            container.AllOrganellesDivided = false;
+        }
+
+        /// <summary>
+        ///   Resets a created layout of organelles on an existing microbe. This variant exists as this can perform
+        ///   some extra operations not yet valid when initially creating a layout.
+        /// </summary>
+        public static void ResetOrganelleLayout(this ref OrganelleContainer container, in Entity entity,
+            ICellProperties cellProperties, Species baseReproductionCostFrom)
+        {
+            container.CreateOrganelleLayout(cellProperties);
+
+            // Reproduction progress is lost
+            container.AllOrganellesDivided = false;
+
+            ref var reproduction = ref entity.Get<ReproductionStatus>();
+            reproduction.SetupRequiredBaseReproductionCompounds(baseReproductionCostFrom);
+
+            // Unbind if a colony's master cell removed its binding agent.
+            if (!container.HasBindingAgent && entity.Has<MicrobeColony>())
+            {
+                throw new NotImplementedException();
+
+                // Colony.RemoveFromColony(this);
+            }
+
+            ref var status = ref entity.Get<MicrobeStatus>();
+
+            // Make chemoreception update happen immediately in case the settings changed so that new information is
+            // used earlier
+            status.TimeUntilChemoreceptionUpdate = 0;
+
+            if (entity.Has<EarlyMulticellularSpeciesMember>())
+            {
+                throw new NotImplementedException();
+
+                // ResetMulticellularProgress();
+            }
+        }
+
+        /// <summary>
+        ///   Marks that the organelles have changed. Has to be called for things to be refreshed.
+        /// </summary>
+        public static void OnOrganellesChanged(this ref OrganelleContainer container)
+        {
+            container.OrganelleVisualsCreated = false;
+
+            // TODO: should there be a specific system that refreshes this data?
+            // CreateOrganelleLayout might need changes in that case to call this method immediately
+            container.CalculateOrganelleLayoutStatistics();
         }
 
         /// <summary>
@@ -165,6 +247,60 @@
             }
 
             return detections;
+        }
+
+        public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container)
+        {
+            container.AvailableEnzymes?.Clear();
+            container.AvailableEnzymes ??= new Dictionary<Enzyme, int>();
+
+            // Cells have a minimum of at least one unit of lipase enzyme
+            container.AvailableEnzymes[Lipase.Value] = 1;
+
+            container.AgentVacuoleCount = 0;
+            container.OrganellesCapacity = 0;
+            container.HasSignalingAgent = false;
+            container.HasBindingAgent = false;
+
+            // TODO: rotation speed calculation
+            // TODO: rotation penalty from size
+            // TODO: rotation speed from cilia
+            // Lower value is faster rotation
+            container.RotationSpeed = 0.2f;
+
+            if (container.Organelles == null)
+                throw new InvalidOperationException("Organelle list needs to be initialized first");
+
+            container.HexCount = container.Organelles.HexCount;
+
+            foreach (var organelle in container.Organelles)
+            {
+                if (organelle.HasComponent<AgentVacuoleComponent>())
+                    ++container.AgentVacuoleCount;
+
+                if (organelle.HasComponent<SignalingAgentComponent>())
+                    container.HasSignalingAgent = true;
+
+                if (organelle.HasComponent<BindingAgentComponent>())
+                    container.HasBindingAgent = true;
+
+                container.OrganellesCapacity = organelle.StorageCapacity;
+
+                if (organelle.StoredEnzymes.Count > 0)
+                {
+                    foreach (var enzyme in organelle.StoredEnzymes)
+                    {
+                        // Filter out invalid enzyme values
+                        if (enzyme.Value <= 0)
+                            continue;
+
+                        container.AvailableEnzymes.TryGetValue(enzyme.Key, out var existing);
+                        container.AvailableEnzymes[enzyme.Key] = existing + enzyme.Value;
+                    }
+                }
+            }
+
+            // TODO: slime jets implementation
         }
 
         /// <summary>
@@ -311,63 +447,6 @@
             }
 
             return result;
-        }
-
-        public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellProperties cellProperties)
-        {
-            container.Organelles?.Clear();
-            container.AllOrganellesDivided = false;
-
-            container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
-
-            foreach (var organelleTemplate in cellProperties.Organelles)
-            {
-                container.Organelles.Add(new PlacedOrganelle(organelleTemplate.Definition, organelleTemplate.Position,
-                    organelleTemplate.Orientation));
-            }
-
-            container.CalculateOrganelleLayoutStatistics();
-
-            container.OrganelleVisualsCreated = false;
-        }
-
-        public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container)
-        {
-            container.AvailableEnzymes?.Clear();
-            container.AvailableEnzymes ??= new Dictionary<Enzyme, int>();
-
-            container.AgentVacuoleCount = 0;
-            container.OrganellesCapacity = 0;
-            container.HasSignalingAgent = false;
-            container.HasBindingAgent = false;
-
-            if (container.Organelles == null)
-                throw new InvalidOperationException("Organelle list needs to be initialized first");
-
-            foreach (var organelle in container.Organelles)
-            {
-                if (organelle.HasComponent<AgentVacuoleComponent>())
-                    ++container.AgentVacuoleCount;
-
-                if (organelle.HasComponent<SignalingAgentComponent>())
-                    container.HasSignalingAgent = true;
-
-                if (organelle.HasComponent<BindingAgentComponent>())
-                    container.HasBindingAgent = true;
-
-                container.OrganellesCapacity = organelle.StorageCapacity;
-
-                if (organelle.StoredEnzymes.Count > 0)
-                {
-                    foreach (var enzyme in organelle.StoredEnzymes)
-                    {
-                        container.AvailableEnzymes.TryGetValue(enzyme.Key, out var existing);
-                        container.AvailableEnzymes[enzyme.Key] = existing + enzyme.Value;
-                    }
-                }
-            }
-
-            // TODO: slime jets implementation
         }
     }
 }

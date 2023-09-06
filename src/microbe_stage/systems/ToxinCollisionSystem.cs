@@ -100,7 +100,7 @@
                 ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
 
                 // Don't hit microbes of the same species as the toxin shooter
-                if (speciesComponent.Species == damageSource.ToxinProperties.Species)
+                if (speciesComponent.Species.ID == damageSource.ToxinProperties.Species.ID)
                     return false;
             }
             catch (Exception e)
@@ -150,7 +150,16 @@
                     throw new NotImplementedException();
                 }
 
-                damageSource.ToxinProperties.DealDamage(ref health, damageSource.ToxinAmount);
+                if (damageTarget.Has<CellProperties>())
+                {
+                    damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
+                        damageSource.ToxinAmount);
+                }
+                else
+                {
+                    damageSource.ToxinProperties.DealDamage(ref health, damageSource.ToxinAmount);
+                }
+
                 return true;
             }
             catch (Exception e)

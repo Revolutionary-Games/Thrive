@@ -18,6 +18,8 @@
 
         private Transform? wantedListenerPosition;
 
+        private bool useTopDownOrientation;
+
         private bool printedError;
 
         public SoundListenerSystem(Node listenerParentNode, World world, IParallelRunner runner) : base(world, runner)
@@ -61,6 +63,7 @@
                 }
             }
 
+            useTopDownOrientation = soundListener.UseTopDownRotation;
             wantedListenerPosition = position.ToTransform();
         }
 
@@ -75,7 +78,18 @@
             }
             else
             {
-                listener.GlobalTransform = wantedListenerPosition.Value;
+                if (useTopDownOrientation)
+                {
+                    // Listener is directional, so in this case we want to separate the rotation out from the entity
+                    // transform to not use it
+                    Transform transform = wantedListenerPosition.Value;
+                    transform.basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
+                    listener.GlobalTransform = transform;
+                }
+                else
+                {
+                    listener.GlobalTransform = wantedListenerPosition.Value;
+                }
 
                 if (!listener.IsCurrent())
                     listener.MakeCurrent();

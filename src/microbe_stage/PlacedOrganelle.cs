@@ -1,50 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
-// TODO: this needs to be refactored to no longer be a Godot Node, and maybe rename to OrganelleInstance
 /// <summary>
-///   An organelle that has been placed in a microbe.
+///   An organelle that has been placed in a simulated microbe. Very different from <see cref="OrganelleTemplate"/> and
+///   <see cref="OrganelleDefinition"/>.
 /// </summary>
-public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
+public class PlacedOrganelle : IPositionedOrganelle
 {
-    [JsonIgnore]
-    private readonly List<uint> shapes = new();
-
-    private bool needsColourUpdate = true;
-    private bool needsDissolveEffectUpdate = true;
-
-    [JsonProperty]
-    private Color colour = Colors.White;
-
-    [JsonProperty]
-    private float dissolveEffectValue;
-
     private bool growthValueDirty = true;
     private float growthValue;
-
-    private Microbe? currentShapesParent;
-
-#pragma warning disable CA2213
-
-    /// <summary>
-    ///   Used to update the tint
-    /// </summary>
-    private ShaderMaterial? organelleMaterial;
-
-    private Spatial? organelleSceneInstance;
-#pragma warning restore CA2213
 
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
     /// </summary>
     [JsonProperty]
-    private Dictionary<Compound, float> compoundsLeft = new();
-
-    private List<IOrganelleComponent>? components;
+    private Dictionary<Compound, float> compoundsLeft;
 
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
     {
@@ -52,8 +26,19 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         Position = position;
         Orientation = orientation;
 
+        if (Definition.Enzymes != null)
+        {
+            foreach (var entry in Definition.Enzymes)
+            {
+                var enzyme = SimulationParameters.Instance.GetEnzyme(entry.Key);
+
+                StoredEnzymes[enzyme] = entry.Value;
+            }
+        }
+
         InitializeComponents();
 
+        compoundsLeft ??= new Dictionary<Compound, float>();
         ResetGrowth();
     }
 
@@ -62,10 +47,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public Hex Position { get; set; }
 
     public int Orientation { get; set; }
-
-    // TODO: remove this
-    [JsonProperty]
-    public Microbe? ParentMicrobe { get; private set; }
 
     /// <summary>
     ///   The graphics child node of this organelle
@@ -80,19 +61,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public AnimationPlayer? OrganelleAnimation { get; private set; }
 
     /// <summary>
-    ///   The tint colour of this organelle.
-    /// </summary>
-    public Color Colour
-    {
-        get => colour;
-        set
-        {
-            colour = value;
-            needsColourUpdate = true;
-        }
-    }
-
-    /// <summary>
     ///   Value between 0 and 1 on how far along to splitting this organelle is
     /// </summary>
     [JsonIgnore]
@@ -102,18 +70,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         {
             if (growthValueDirty)
                 RecalculateGrowthValue();
-            return growthValue;
-        }
-    }
 
-    [JsonIgnore]
-    public float DissolveEffectValue
-    {
-        get => dissolveEffectValue;
-        set
-        {
-            dissolveEffectValue = value;
-            needsDissolveEffectUpdate = true;
+            return growthValue;
         }
     }
 
@@ -140,8 +98,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     ///   The components instantiated for this placed organelle. Throws if not currently in a microbe
     /// </summary>
     [JsonIgnore]
-    public List<IOrganelleComponent> Components => components ??
-        throw new InvalidOperationException("This must be placed in a microbe before accessing components");
+    public List<IOrganelleComponent> Components { get; } = new();
 
     /// <summary>
     ///   The upgrades that this organelle has which affect how the components function
@@ -150,9 +107,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public OrganelleUpgrades? Upgrades { get; set; }
 
     /// <summary>
-    ///   Computes the total storage capacity of this organelle. Works
-    ///   only after being added to a microbe and before being
-    ///   removed.
+    ///   Computes the total storage capacity of this organelle
     /// </summary>
     [JsonIgnore]
     public float StorageCapacity
@@ -189,31 +144,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonIgnore]
     public bool IsBindingAgent => HasComponent<BindingAgentComponent>();
 
-    public bool IsLoadedFromSave { get; set; }
-
-    /// <summary>
-    ///   Guards against adding this to the scene not through OnAddedToMicrobe
-    /// </summary>
-    public override void _Ready()
+    public static Color CalculateHSVForOrganelle(Color rawColour)
     {
-        if (Definition == null)
-            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
+        // Get hue saturation and brightness for the colour
 
-        if (ParentMicrobe == null)
-        {
-            throw new InvalidOperationException(
-                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
-        }
+        // According to stack overflow HSV and HSB are the same thing
+        rawColour.ToHsv(out var hue, out var saturation, out var brightness);
 
-        if (IsLoadedFromSave)
-            FinishAttachToMicrobe();
-
-        ApplyScale();
-    }
-
-    public bool HasShape(uint searchShape)
-    {
-        return shapes.Contains(searchShape);
+        return Color.FromHsv(hue, saturation * 2, brightness);
     }
 
     /// <summary>
@@ -232,67 +170,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         return false;
     }
 
+    // TODO: actually call this if still needed
     /// <summary>
-    ///   Called by a microbe when this organelle has been added to it
-    /// </summary>
-    public void OnAddedToMicrobe(Microbe microbe)
-    {
-        throw new NotSupportedException("This is no longer the way to do this");
-
-        if (Definition == null)
-            throw new InvalidOperationException("PlacedOrganelle has no definition set");
-
-        if (ParentMicrobe != null)
-            throw new InvalidOperationException("PlacedOrganelle is already in a microbe");
-
-        // Store parameters
-        ParentMicrobe = microbe;
-
-        // Grab the species colour for us
-        Colour = microbe.CellTypeProperties.Colour;
-
-        ParentMicrobe.OrganelleParent.AddChild(this);
-
-        FinishAttachToMicrobe();
-
-        ResetGrowth();
-    }
-
-    /// <summary>
-    ///   Called by a microbe when this organelle has been removed from it
-    /// </summary>
-    public void OnRemovedFromMicrobe()
-    {
-        if (ParentMicrobe == null)
-            throw new InvalidOperationException("This organelle is not in a microbe");
-
-        ParentMicrobe.OrganelleParent.RemoveChild(this);
-
-        // Remove physics
-        ParentMicrobe.Mass -= Definition.Mass;
-
-        // Remove our sub collisions
-        foreach (var shape in shapes)
-        {
-            currentShapesParent!.RemoveShapeOwner(shape);
-        }
-
-        currentShapesParent = null;
-        shapes.Clear();
-
-        // Remove components
-        foreach (var component in Components)
-        {
-            component.OnDetachFromCell(this);
-        }
-
-        components = null;
-
-        ParentMicrobe = null;
-    }
-
-    /// <summary>
-    ///   Called by Microbe.Update
+    ///   Called by microbe organelle update system
     /// </summary>
     /// <param name="delta">Time since last call</param>
     public void UpdateAsync(float delta)
@@ -313,22 +193,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         {
             component.UpdateSync();
         }
-
-        // If the organelle is supposed to be another color.
-        if (needsColourUpdate)
-        {
-            UpdateColour();
-        }
-
-        if (needsDissolveEffectUpdate)
-            UpdateDissolveEffect();
     }
 
     /// <summary>
     ///   Gives organelles more compounds to grow (or takes free compounds).
     ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
     /// </summary>
-    public void GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft,
+    /// <returns>True when this has grown a bit and visuals transform needs to be re-applied</returns>
+    public bool GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft,
         bool reverseCompoundsLeftOrder)
     {
         float totalTaken = 0;
@@ -392,7 +264,27 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         {
             growthValueDirty = true;
 
-            ApplyScale();
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Called by <see cref="MicrobeVisualsSystem"/> when graphics have been created for this organelle
+    /// </summary>
+    /// <param name="visualsInstance">The graphics initialized from this organelle's type's specified scene</param>
+    public void ReportCreatedGraphics(Spatial visualsInstance)
+    {
+        if (OrganelleGraphics != null)
+            throw new InvalidOperationException("Can't set organelle graphics multiple times");
+
+        OrganelleGraphics = visualsInstance;
+
+        // Store animation player for later use
+        if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
+        {
+            OrganelleAnimation = visualsInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
         }
     }
 
@@ -437,7 +329,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Resets the state. Used after dividing
+    ///   Resets the state. Used after dividing. Note that the organelle container visuals need to be marked dirty for
+    ///   the sizing to apply
     /// </summary>
     public void ResetGrowth()
     {
@@ -453,15 +346,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             compoundsLeft.Add(entry.Key, entry.Value);
         }
 
-        ApplyScale();
-
-        // If it was split from a primary organelle, destroy it.
         if (IsDuplicate)
         {
-            GD.PrintErr("ResetGrowth called on a duplicate organelle, " +
-                "this is currently unsupported");
-
-            // parentMicrobe.RemoveOrganelle(this);
+            GD.PrintErr("ResetGrowth called on a duplicate organelle, this is not allowed");
         }
         else
         {
@@ -470,144 +357,33 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
-    public void UpdateRenderPriority(int priority)
+    public Transform CalculateVisualsTransform()
     {
-        if (organelleMaterial == null)
-            return;
-
-        organelleMaterial.RenderPriority = priority;
-    }
-
-    /// <summary>
-    ///   Returns the rotated position, as it should be in the colony.
-    ///   Used for re-parenting shapes to other microbes
-    /// </summary>
-    public Vector3 RotatedPositionInsideColony(Vector3 shapePosition)
-    {
-        var rotation = Quat.Identity;
-        if (ParentMicrobe?.Colony != null)
+        float growth;
+        if (Definition.ShouldScale)
         {
-            var parent = ParentMicrobe;
-
-            // Get the rotation of all colony ancestors up to master
-            while (parent != ParentMicrobe.Colony.Master)
-            {
-                if (parent == null)
-                    throw new Exception("Reached a null parent microbe without finding the colony leader");
-
-                rotation *= new Quat(parent.Transform.basis);
-                parent = parent.ColonyParent;
-            }
+            growth = GrowthValue;
         }
         else
         {
-            return shapePosition;
+            growth = 0;
         }
 
-        rotation = rotation.Normalized();
+        // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
+        // intended way, but might be worse looking than before
+        return new Transform(new Basis(
+                MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(
+                Constants.DEFAULT_HEX_SIZE + growth, Constants.DEFAULT_HEX_SIZE + growth,
+                Constants.DEFAULT_HEX_SIZE + growth)),
+            Hex.AxialToCartesian(Position) + Definition.ModelOffset);
 
-        // Transform the vector with the rotation quaternion
-        shapePosition = rotation.Xform(shapePosition);
-        return shapePosition;
-    }
-
-    /// <summary>
-    ///   Re-parents the organelle shape to the "to" microbe.
-    /// </summary>
-    public void ReParentShapes(Microbe to, Vector3 offset)
-    {
-        if (to == currentShapesParent)
-            return;
-
-        if (ParentMicrobe == null || currentShapesParent == null)
-            throw new InvalidOperationException("This organelle needs to be placed in a microbe first");
-
-        // TODO: we are in trouble if ever the hex count mismatches with the shapes. It's fine if this can never happen
-        // but a more bulletproof way would be to add code to at least detect and try to recover if there is no
-        // matching hex for a shape
-        // https://github.com/Revolutionary-Games/Thrive/issues/2504
-        var hexes = Definition.GetRotatedHexes(Orientation).ToArray();
-
-        for (int i = 0; i < shapes.Count; i++)
-        {
-            Vector3 shapePosition = ShapeTruePosition(hexes[i]);
-
-            // Rotate the position of the organelle to its true position relative to the master
-            shapePosition = RotatedPositionInsideColony(shapePosition);
-
-            // Scale for bacteria physics.
-            if (ParentMicrobe.CellTypeProperties.IsBacteria)
-                shapePosition *= 0.5f;
-
-            shapePosition += offset;
-
-            var ownerId = shapes[i];
-            var transform = new Transform(Quat.Identity, shapePosition);
-
-            // Create a new owner id and apply the new position to it
-            shapes[i] = currentShapesParent.CreateNewOwnerId(to, transform, ownerId);
-            currentShapesParent.RemoveShapeOwner(ownerId);
-        }
-
-        foreach (var component in Components)
-        {
-            component.OnShapeParentChanged(to, offset);
-        }
-
-        currentShapesParent = to;
-    }
-
-    private static Color CalculateHSVForOrganelle(Color rawColour)
-    {
-        // Get hue saturation and brightness for the colour
-
-        // According to stack overflow HSV and HSB are the same thing
-        rawColour.ToHsv(out var hue, out var saturation, out var brightness);
-
-        return Color.FromHsv(hue, saturation * 2, brightness);
-    }
-
-    private void FinishAttachToMicrobe()
-    {
-        // Graphical display
-        if (Definition.LoadedScene != null)
-        {
-            SetupOrganelleGraphics();
-        }
-
-        // Physics
-        ParentMicrobe!.Mass += Definition.Mass;
-
-        // TODO: if organelles can grow while cells are in a colony this will be needed
-        // Add the mass of the organelles to the colony master
-        // if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master &&
-        //     !IsLoadedFromSave)
-        //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
-
-        // We don't need preview cells to be collidable (as it can lag the editor if the cell is massive).
-        if (!ParentMicrobe.IsForPreviewOnly)
-            MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
-
-        if (Definition.Enzymes != null)
-        {
-            foreach (var entry in Definition.Enzymes)
-            {
-                var enzyme = SimulationParameters.Instance.GetEnzyme(entry.Key);
-
-                StoredEnzymes[enzyme] = entry.Value;
-            }
-        }
-
-        // Components
-        InitializeComponents();
-
-        growthValueDirty = true;
+        // TODO: check is this still needed
+        // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
+        // OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
     }
 
     private void InitializeComponents()
     {
-        components = new List<IOrganelleComponent>();
-
         foreach (var factory in Definition.ComponentFactories)
         {
             var component = factory.Create();
@@ -617,53 +393,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             component.OnAttachToCell(this);
 
-            components.Add(component);
-        }
-    }
-
-    private Vector3 ShapeTruePosition(Hex parentOffset)
-    {
-        return Hex.AxialToCartesian(parentOffset) + Hex.AxialToCartesian(Position);
-    }
-
-    /// <summary>
-    ///   Creates the collision shape(s) necessary for this organelle
-    /// </summary>
-    /// <param name="to">The microbe to add the shapes to</param>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: make this take into initial colony membership into account so that calling ReParentShapes twice
-    ///     when loading a game is not necessary
-    ///   </para>
-    /// </remarks>
-    private void MakeCollisionShapes(Microbe to)
-    {
-        currentShapesParent = to;
-
-        float hexSize = Constants.DEFAULT_HEX_SIZE;
-
-        // Scale the physics hex size down for bacteria
-        if (ParentMicrobe!.CellTypeProperties.IsBacteria)
-            hexSize *= 0.5f;
-
-        // Add hex collision shapes
-        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
-        {
-            var shape = new SphereShape();
-            shape.Radius = hexSize * 2.0f;
-
-            // The shape is in our parent so the final position is our
-            // offset plus the hex offset
-            Vector3 shapePosition = ShapeTruePosition(hex);
-
-            // Scale for bacteria physics.
-            if (ParentMicrobe.CellTypeProperties.IsBacteria)
-                shapePosition *= 0.5f;
-
-            // Create a transform for a shape position
-            var transform = new Transform(Quat.Identity, shapePosition);
-            var ownerId = to.CreateShapeOwnerWithTransform(transform, shape);
-            shapes.Add(ownerId);
+            Components.Add(component);
         }
     }
 
@@ -672,72 +402,5 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         growthValueDirty = false;
 
         growthValue = 1.0f - CalculateCompoundsLeft() / Definition.OrganelleCost;
-    }
-
-    private void ApplyScale()
-    {
-        if (!Definition.ShouldScale)
-            return;
-
-        if (OrganelleGraphics != null)
-            OrganelleGraphics.Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
-    }
-
-    private void UpdateColour()
-    {
-        var color = CalculateHSVForOrganelle(Colour);
-        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
-        {
-            organelleMeshWithChildren.SetTintOfChildren(color);
-        }
-
-        organelleMaterial?.SetShaderParam("tint", color);
-
-        needsColourUpdate = false;
-    }
-
-    private void UpdateDissolveEffect()
-    {
-        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
-        {
-            organelleMeshWithChildren.SetDissolveEffectOfChildren(dissolveEffectValue);
-        }
-
-        organelleMaterial?.SetShaderParam("dissolveValue", dissolveEffectValue);
-
-        needsDissolveEffectUpdate = false;
-    }
-
-    private void SetupOrganelleGraphics()
-    {
-        organelleSceneInstance = (Spatial)Definition.LoadedScene!.Instance();
-
-        // Store animation player for later use
-        if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
-        {
-            OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
-        }
-
-        // Store the material of the organelle to be updated
-        organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneModelPath);
-        UpdateRenderPriority(Hex.GetRenderPriority(Position));
-
-        // There is an intermediate node so that the organelle scene root rotation and scale work
-        OrganelleGraphics = new Spatial();
-        OrganelleGraphics.AddChild(organelleSceneInstance);
-
-        AddChild(OrganelleGraphics);
-
-        OrganelleGraphics.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-            Constants.DEFAULT_HEX_SIZE);
-
-        // Position the intermediate node relative to origin of cell
-        var transform = new Transform(Quat.Identity,
-            Hex.AxialToCartesian(Position) + Definition.ModelOffset);
-
-        OrganelleGraphics.Transform = transform;
-
-        // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
-        OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
     }
 }

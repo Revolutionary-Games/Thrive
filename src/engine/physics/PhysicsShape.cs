@@ -107,6 +107,16 @@ public class PhysicsShape : IDisposable
         return cached;
     }
 
+    /// <summary>
+    ///   Gets the mass of this shape, unit size of normal density has mass of 1000 so in most cases the mass should be
+    ///   divided by 1000 for processing purposes (though physics forces will work correctly with unadjusted values)
+    /// </summary>
+    /// <returns>The mass</returns>
+    public float GetMass()
+    {
+        return NativeMethods.ShapeGetMass(AccessShapeInternal());
+    }
+
     public void Dispose()
     {
         Dispose(true);
@@ -168,4 +178,7 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void ReleaseShape(IntPtr shape);
+
+    [DllImport("thrive_native")]
+    internal static extern float ShapeGetMass(IntPtr shape);
 }

@@ -26,7 +26,7 @@
         public Compound? QueuedToxinToEmit;
 
         /// <summary>
-        ///   This is here as this is very closely related to
+        ///   This is here as this is very closely related to <see cref="QueuedSlimeSecretionTime"/>
         /// </summary>
         public float SlimeSecretionCooldown;
 
@@ -71,7 +71,7 @@
     public static class MicrobeControlHelpers
     {
         /// <summary>
-        ///   Queues a toxin emit if possible
+        ///   Queues a toxin emit if possible. Only one can be queued at a time.
         /// </summary>
         public static bool EmitToxin(this ref MicrobeControl control, ref OrganelleContainer organelles,
             CompoundBag availableCompounds, in Entity entity, Compound? agentType = null)

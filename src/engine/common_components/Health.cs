@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Godot;
 
     /// <summary>
     ///   Things that have a health and can be damaged
@@ -33,8 +34,9 @@
 
         public Health(float defaultHealth)
         {
-            CurrentHealth = defaultHealth;
             MaxHealth = defaultHealth;
+            CurrentHealth = MaxHealth;
+
             Invulnerable = false;
             Dead = false;
             DeathProcessed = false;
@@ -44,13 +46,36 @@
 
     public static class HealthHelpers
     {
+        public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity)
+        {
+            return membraneType.Hitpoints +
+                (membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+        }
+
+        /// <summary>
+        ///   A general damage dealing method that doesn't apply any damage reductions or anything like that
+        /// </summary>
         public static void DealDamage(this ref Health health, float damage, string damageSource)
         {
             if (health.Invulnerable)
             {
-                // Consume this damage event if the target is not taking damage
+                // Just consume this damage event if the target is not taking damage
                 return;
             }
+
+            if (string.IsNullOrEmpty(damageSource))
+                throw new ArgumentException("damage source is empty");
+
+            // This is probably no longer needed, but just for safety this makes sure no negative damage is applied
+            if (damage < 0)
+            {
+                GD.PrintErr("Trying to deal negative damage");
+                return;
+            }
+
+            // Can't damage dead things (or deal no damage)
+            if (health.Dead || damage == 0)
+                return;
 
             // This should result in at least reasonable health even if thread race conditions hit here
             health.CurrentHealth = Math.Max(0, health.CurrentHealth - damage);
@@ -70,9 +95,104 @@
             {
                 lock (damageList)
                 {
+                    // Skip tracking damage after max number of events
+                    if (damageList.Count >= Constants.MAX_DAMAGE_EVENTS)
+                        return;
+
                     damageList.Add(damageEvent);
+
+                    if (damageList.Count == Constants.MAX_DAMAGE_EVENTS)
+                    {
+                        // Print an error once per entity
+                        GD.PrintErr("Damage event overflow for an entity, all entities should always have " +
+                            "a system clearing their damage events");
+                    }
                 }
             }
+
+            // TODO: probably need a separate system to trigger this
+            // ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
+        }
+
+        /// <summary>
+        ///   Applies damage but takes microbe damage resistances into account. This should be (almost always) be used
+        ///   for microbes to calculate the right damage rather than <see cref="DealDamage"/>
+        /// </summary>
+        public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, float damage,
+            string damageSource)
+        {
+            // TODO: reimplement this (probably better to use the invulnerable health property and also make engulf
+            // check that to prevent engulfing of the player)
+            // if (IsPlayerMicrobe && CheatManager.GodMode)
+            //    return;
+
+            // Damage reduction is only wanted for non-starving damage
+            bool canApplyDamageReduction = true;
+
+            if (damageSource is "toxin" or "oxytoxy")
+            {
+                // Divide damage by toxin resistance
+                damage /= cellProperties.MembraneType.ToxinResistance;
+            }
+            else if (damageSource == "pilus")
+            {
+                // Divide damage by physical resistance
+                damage /= cellProperties.MembraneType.PhysicalResistance;
+            }
+            else if (damageSource == "chunk")
+            {
+                // Divide damage by physical resistance
+                damage /= cellProperties.MembraneType.PhysicalResistance;
+            }
+            else if (damageSource == "atpDamage")
+            {
+                canApplyDamageReduction = false;
+            }
+            else if (damageSource == "ice")
+            {
+                // Divide damage by physical resistance
+                damage /= cellProperties.MembraneType.PhysicalResistance;
+            }
+
+            if (!cellProperties.IsBacteria && canApplyDamageReduction)
+            {
+                damage /= 2;
+            }
+
+            health.DealDamage(damage, damageSource);
+        }
+
+        /// <summary>
+        ///   Immediately kills this entity
+        /// </summary>
+        /// <param name="health">The health to mark dead</param>
+        /// <param name="goesThroughInvulnerability">If true also kills invulnerable entities</param>
+        public static void Kill(this ref Health health, bool goesThroughInvulnerability = true)
+        {
+            if (health.Invulnerable && !goesThroughInvulnerability)
+                return;
+
+            health.CurrentHealth = 0;
+            health.Invulnerable = false;
+        }
+
+        /// <summary>
+        ///   Modifies the max health and rescales remaining health percentage to be the same with the new value than
+        ///   it currently is
+        /// </summary>
+        /// <param name="health">Health to update max health for</param>
+        /// <param name="newMaxHealth">New max health value to set</param>
+        public static void RescaleMaxHealth(this ref Health health, float newMaxHealth)
+        {
+            // Safety check against bad data
+            if (newMaxHealth <= 0)
+                newMaxHealth = 1;
+
+            float currentFraction = health.CurrentHealth / health.MaxHealth;
+
+            health.MaxHealth = health.CurrentHealth;
+
+            health.CurrentHealth = health.MaxHealth * currentFraction;
         }
     }
 

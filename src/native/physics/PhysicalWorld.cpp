@@ -65,6 +65,36 @@ public:
         activeBodiesWithCollisions.reserve(50);
     }
 
+    void AddPerStepControlBody(PhysicsBody& body)
+    {
+        bodiesStepControlLock.Lock();
+
+        // TODO: avoid duplicates if someone else will also add items to this list
+        bodiesWithPerStepControl.emplace_back(&body);
+
+        bodiesStepControlLock.Unlock();
+    }
+
+    void RemovePerStepControlBody(PhysicsBody& body)
+    {
+        bodiesStepControlLock.Lock();
+
+        for (auto iter = bodiesWithPerStepControl.begin(); iter != bodiesWithPerStepControl.end(); ++iter)
+        {
+            if ((*iter).get() == &body)
+            {
+                // TODO: if items can be in this vector for multiple reasons this will need to check that
+                bodiesWithPerStepControl.erase(iter);
+                bodiesStepControlLock.Unlock();
+                return;
+            }
+        }
+
+        bodiesStepControlLock.Unlock();
+
+        LOG_ERROR("Didn't find body in internal vector of bodies needing operations each step");
+    }
+
     float AddAndCalculateAverageTime(float duration)
     {
         durationBuffer.push_back(duration);
@@ -155,6 +185,8 @@ public:
     boost::circular_buffer<float> durationBuffer;
 
     std::vector<Ref<PhysicsBody>> bodiesWithPerStepControl;
+
+    Spinlock bodiesStepControlLock;
 
     JPH::Vec3 gravity = JPH::Vec3(0, -9.81f, 0);
 
@@ -578,8 +610,7 @@ void PhysicalWorld::SetBodyControl(
 
     if (justEnabled) [[unlikely]]
     {
-        // TODO: avoid duplicates if someone else will also add items to this list
-        pimpl->bodiesWithPerStepControl.emplace_back(&bodyWrapper);
+        pimpl->AddPerStepControlBody(bodyWrapper);
 
         state->previousTarget = targetRotation;
         state->targetRotation = targetRotation;
@@ -605,19 +636,7 @@ void PhysicalWorld::DisableBodyControl(PhysicsBody& bodyWrapper)
 {
     if (bodyWrapper.DisableBodyControl())
     {
-        auto& registeredIn = pimpl->bodiesWithPerStepControl;
-
-        for (auto iter = registeredIn.begin(); iter != registeredIn.end(); ++iter)
-        {
-            if ((*iter).get() == &bodyWrapper)
-            {
-                // TODO: if items can be in this vector for multiple reasons this will need to check that
-                registeredIn.erase(iter);
-                return;
-            }
-        }
-
-        LOG_ERROR("Didn't find body in internal vector of bodies needing operations for control disable");
+        pimpl->RemovePerStepControlBody(bodyWrapper);
     }
 }
 
@@ -1033,6 +1052,11 @@ void PhysicalWorld::PerformPhysicsStepOperations(float delta)
     pimpl->HandleExpiringBodyCollisions();
 
     // Apply per-step physics body state
+
+    // This is locked just for safety, but it should be the case that no physics modify operations should be allowed
+    // once physics runs have started
+    pimpl->bodiesStepControlLock.Lock();
+
     // TODO: multithreading if there's a ton of bodies using this
     for (const auto& bodyPtr : pimpl->bodiesWithPerStepControl)
     {
@@ -1041,6 +1065,8 @@ void PhysicalWorld::PerformPhysicsStepOperations(float delta)
         if (body.GetBodyControlState() != nullptr) [[likely]]
             ApplyBodyControl(body, delta);
     }
+
+    pimpl->bodiesStepControlLock.Unlock();
 }
 
 Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,

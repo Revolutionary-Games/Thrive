@@ -22,20 +22,23 @@
         private readonly Lazy<PackedScene> membraneScene =
             new(() => GD.Load<PackedScene>("res://src/microbe_stage/Membrane.tscn"));
 
+        private readonly List<ShaderMaterial> tempMaterialsList = new();
+        private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
+
+        /// <summary>
+        ///   Used to detect which organelle graphics are no longer used and should be deleted
+        /// </summary>
+        private readonly HashSet<PlacedOrganelle> inUseOrganelles = new();
+
         // TODO: implement membrane background generation
         private Dictionary<Entity, Membrane> generatedMembranes;
 
+        // TODO: implement a mode to purely create visuals without any physics
+
         private uint membraneGenerationRequestNumber;
 
-        public MicrobeVisualsSystem(World world, IParallelRunner runner) : base(world, runner)
+        public MicrobeVisualsSystem(World world) : base(world, null)
         {
-        }
-
-        protected override void PreUpdate(float state)
-        {
-            base.PreUpdate(state);
-
-            ;
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -64,28 +67,40 @@
 
             ref var materialStorage = ref entity.Get<EntityMaterial>();
 
-            // TODO: remove if this approach isn't used
-            // var createdMaterials = new ShaderMaterial[1];
+            if (cellProperties.CreatedMembrane == null)
+            {
+                var membrane = membraneScene.Value.Instance<Membrane>() ??
+                    throw new Exception("Invalid membrane scene");
 
-            // TODO: only recreate membrane entirely if missing
-            var membrane = membraneScene.Value.Instance<Membrane>();
-            ++membraneGenerationRequestNumber;
+                SetMembraneDisplayData(membrane, ref organelleContainer, ref cellProperties);
 
-            SetMembraneDisplayData(membrane, ref organelleContainer, ref cellProperties);
+                spatialInstance.GraphicalInstance.AddChild(membrane);
 
-            cellProperties.CreatedMembrane = membrane;
-            spatialInstance.GraphicalInstance.AddChild(membrane);
+                cellProperties.CreatedMembrane = membrane;
+            }
+            else
+            {
+                // Existing membrane should have its properties updated to make sure they are up to date
+                // For example an engulfed cell has its membrane wigglyness removed
+                SetMembraneDisplayData(cellProperties.CreatedMembrane, ref organelleContainer, ref cellProperties);
+            }
 
             // Material is initialized in _Ready so this is after AddChild
-            materialStorage.Material =
-                membrane.MaterialToEdit ?? throw new Exception("Membrane didn't set material to edit");
+            tempMaterialsList.Add(
+                cellProperties.CreatedMembrane!.MaterialToEdit ??
+                throw new Exception("Membrane didn't set material to edit"));
 
             // TODO: health value applying
 
-            // TODO: only recreate organelle visuals that are really needed (instead of all every time)
             CreateOrganelleVisuals(spatialInstance.GraphicalInstance, ref organelleContainer, ref cellProperties);
 
+            materialStorage.Materials = tempMaterialsList.ToArray();
+            tempMaterialsList.Clear();
+
             organelleContainer.OrganelleVisualsCreated = true;
+
+            // Force recreation of physics body in case organelles changed to make sure the shape matches growth status
+            cellProperties.ShapeCreated = false;
         }
 
         protected override void PostUpdate(float state)
@@ -95,55 +110,119 @@
             // Clear any ready resources that weren't required to not keep them forever
         }
 
-        private static void SetMembraneDisplayData(Membrane membrane, ref OrganelleContainer organelleContainer,
+        private void SetMembraneDisplayData(Membrane membrane, ref OrganelleContainer organelleContainer,
             ref CellProperties cellProperties)
         {
-            membrane.OrganellePositions = organelleContainer.Organelles!.Select(o =>
+            ++membraneGenerationRequestNumber;
+
+            var organellePositions = new List<Vector2>
             {
-                var pos = Hex.AxialToCartesian(o.Position);
-                return new Vector2(pos.x, pos.z);
-            }).ToList();
+                Capacity = organelleContainer.Organelles!.Count * 2,
+            };
+
+            foreach (var entry in organelleContainer.Organelles)
+            {
+                // The membrane needs hex positions (rather than organelle positions) to handle cells with multihex
+                // organelles
+                foreach (var hex in entry.Definition.GetRotatedHexes(entry.Orientation))
+                {
+                    var hexCartesian = Hex.AxialToCartesian(entry.Position + hex);
+                    organellePositions.Add(new Vector2(hexCartesian.x, hexCartesian.z));
+                }
+            }
+
+            membrane.OrganellePositions = organellePositions;
 
             membrane.Type = cellProperties.MembraneType;
-            membrane.WigglyNess = cellProperties.MembraneType.BaseWigglyness;
-            membrane.MovementWigglyNess = cellProperties.MembraneType.MovementWigglyness;
+
+            cellProperties.ApplyMembraneWigglyness(membrane);
+
+            membrane.Dirty = true;
         }
 
-        private static void CreateOrganelleVisuals(Spatial parentNode, ref OrganelleContainer organelleContainer,
+        private void CreateOrganelleVisuals(Spatial parentNode, ref OrganelleContainer organelleContainer,
             ref CellProperties cellProperties)
         {
+            organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Spatial>();
+
+            var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
+
             foreach (var placedOrganelle in organelleContainer.Organelles!)
             {
                 // Only handle organelles that have graphics
                 if (placedOrganelle.Definition.LoadedScene == null)
                     continue;
 
+                inUseOrganelles.Add(placedOrganelle);
+
                 // TODO: external organelle positioning
 
-                // TODO: only overwrite scale when needed (otherwise organelle growth animation won't work)
-                var transform = new Transform(new Basis(
-                        MathUtils.CreateRotationForOrganelle(1 * placedOrganelle.Orientation)).Scaled(new Vector3(
-                        Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                        Constants.DEFAULT_HEX_SIZE)),
-                    Hex.AxialToCartesian(placedOrganelle.Position) + placedOrganelle.Definition.ModelOffset);
+                // Get the transform with right scale (growth) and position
+                var transform = placedOrganelle.CalculateVisualsTransform();
 
-                // For organelle visuals to work, they need to be wrapped in an extra layer of Spatial to not
-                // mess with the normal scale that is used by many organelle scenes
-                var extraLayer = new Spatial
+                if (!organelleContainer.CreatedOrganelleVisuals.ContainsKey(placedOrganelle))
                 {
-                    Transform = transform,
-                };
+                    // New visuals needed
 
-                var visualsInstance = placedOrganelle.Definition.LoadedScene.Instance<Spatial>();
+                    // TODO: slime jet handling (and other animation controlled organelles handling)
 
-                var material = visualsInstance.GetMaterial(placedOrganelle.Definition.DisplaySceneModelPath);
-                material.SetShaderParam("tint", cellProperties.Colour);
+                    // For organelle visuals to work, they need to be wrapped in an extra layer of Spatial to not
+                    // mess with the normal scale that is used by many organelle scenes
+                    var extraLayer = new Spatial
+                    {
+                        Transform = transform,
+                    };
 
-                // TODO: render order
+                    var visualsInstance = placedOrganelle.Definition.LoadedScene.Instance<Spatial>();
+                    placedOrganelle.ReportCreatedGraphics(visualsInstance);
 
-                extraLayer.AddChild(visualsInstance);
-                parentNode.AddChild(extraLayer);
+                    extraLayer.AddChild(visualsInstance);
+                    parentNode.AddChild(extraLayer);
+                }
+
+                // Visuals already exist
+                var graphics = placedOrganelle.OrganelleGraphics;
+
+                if (graphics == null)
+                    throw new Exception("Organelle graphics should not get reset to null");
+
+                // Materials need to be always fully fetched again to make sure we don't forget any active ones
+                int start = tempMaterialsList.Count;
+                if (graphics is OrganelleMeshWithChildren organelleMeshWithChildren)
+                {
+                    organelleMeshWithChildren.GetChildrenMaterials(tempMaterialsList);
+                }
+
+                var material = graphics.GetMaterial(placedOrganelle.Definition.DisplaySceneModelPath);
+                tempMaterialsList.Add(material);
+
+                // Apply tint (again) to make sure it is up to date
+                int count = tempMaterialsList.Count;
+                for (int i = start; i < count; ++i)
+                {
+                    tempMaterialsList[i].SetShaderParam("tint", organelleColour);
+                }
+
+                // TODO: render order?
             }
+
+            // Delete unused visuals
+            foreach (var entry in organelleContainer.CreatedOrganelleVisuals)
+            {
+                if (!inUseOrganelles.Contains(entry.Key))
+                {
+                    entry.Value.QueueFree();
+                    tempVisualsToDelete.Add(entry.Key);
+                }
+            }
+
+            foreach (var toDelete in tempVisualsToDelete)
+            {
+                organelleContainer.CreatedOrganelleVisuals.Remove(toDelete);
+            }
+
+            inUseOrganelles.Clear();
+            tempVisualsToDelete.Clear();
         }
     }
 }

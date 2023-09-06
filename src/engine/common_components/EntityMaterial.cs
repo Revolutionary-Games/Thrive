@@ -8,13 +8,8 @@
     /// </summary>
     public struct EntityMaterial
     {
-        // TODO: as some entity types have multiple materials, it is probably more error-proof to have just a list
-        // so each place handling the materials has to handle all of them
         [JsonIgnore]
-        public ShaderMaterial? Material;
-
-        // [JsonIgnore]
-        // public ShaderMaterial[]? Materials;
+        public ShaderMaterial[]? Materials;
 
         /// <summary>
         ///   If not null then <see cref="AutoRetrieveFromSpatial"/> uses this as the relative path from the

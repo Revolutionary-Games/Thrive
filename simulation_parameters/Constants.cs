@@ -136,11 +136,7 @@ public static class Constants
 
     public const float BASE_MOVEMENT_FORCE = 910.0f;
 
-    public const float CELL_BASE_THRUST = 50.6f;
-
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
-
-    public const float MICROBE_DIGESTION_UPDATE_INTERVAL = 0.0333f;
 
     public const float CELL_BASE_ROTATION = 0.2f;
     public const float CELL_MAX_ROTATION = 0.40f;
@@ -262,6 +258,12 @@ public static class Constants
 
     public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
+    public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
+
+    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
+
+    // TODO: should this volume be actually 0?
+    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 1;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be used per entity.
@@ -415,6 +417,8 @@ public static class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
+    public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
+
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately
     /// </summary>
@@ -462,22 +466,26 @@ public static class Constants
     public const float NAME_LABEL_VISIBILITY_DISTANCE = 300.0f;
 
     /// <summary>
-    ///   This is used just as the default value for health and max
-    ///   health of a microbe. The default membrane actually
-    ///   determines the default health.
+    ///   Maximum number of damage events allowed for an entity. Any more are not recorded and is an error.
     /// </summary>
-    public const float DEFAULT_HEALTH = 100.0f;
+    public const int MAX_DAMAGE_EVENTS = 1000;
 
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.5f;
+    public const float HEALTH_REGENERATION_RATE = 1.5f;
+
+    /// <summary>
+    ///   Cells need at least this much ATP to regenerate health passively
+    /// </summary>
+    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 1;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
 
+    // TODO: remove if unused with ECS
     public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
 
     /// <summary>
@@ -658,6 +666,7 @@ public static class Constants
     /// </summary>
     public const float PILUS_BASE_DAMAGE = 20.0f;
 
+    // TODO: remove
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
@@ -672,6 +681,8 @@ public static class Constants
     ///   Osmoregulation ATP cost per second per hex
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
+
+    public const float MICROBE_FLASH_DURATION = 0.6f;
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;
@@ -1029,9 +1040,9 @@ public static class Constants
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
 
     /// <summary>
-    ///   Bugs small bacteria
+    ///   Buffs small bacteria
     /// </summary>
-    public const float MICROBE_MIN_ABSORB_RADIUS = 1;
+    public const float MICROBE_MIN_ABSORB_RADIUS = 3;
 
     public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;

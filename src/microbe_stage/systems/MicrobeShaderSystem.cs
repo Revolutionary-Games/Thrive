@@ -13,11 +13,12 @@
     /// </summary>
     [With(typeof(MicrobeShaderParameters))]
     [With(typeof(EntityMaterial))]
+    [RunsOnFrame]
     public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
     {
         // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
-        public MicrobeShaderSystem(World world, IParallelRunner runner) : base(world, runner)
+        public MicrobeShaderSystem(World world) : base(world, null)
         {
         }
 
@@ -56,10 +57,13 @@
             ref var entityMaterial = ref entity.Get<EntityMaterial>();
 
             // Wait for the material to be defined
-            if (entityMaterial.Material == null)
+            if (entityMaterial.Materials == null)
                 return;
 
-            entityMaterial.Material.SetShaderParam("dissolveValue", shaderParameters.DissolveValue);
+            foreach (var material in entityMaterial.Materials)
+            {
+                material.SetShaderParam("dissolveValue", shaderParameters.DissolveValue);
+            }
 
             // TODO: remove this and the lazy value if unnecessary (if necessary this should be applied just once and
             // not each frame)

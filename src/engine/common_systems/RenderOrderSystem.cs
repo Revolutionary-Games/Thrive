@@ -26,10 +26,13 @@
             ref var material = ref entity.Get<EntityMaterial>();
 
             // Wait until material becomes available
-            if (material.Material == null)
+            if (material.Materials == null)
                 return;
 
-            material.Material.RenderPriority = renderOrder.RenderPriority;
+            foreach (var shaderMaterial in material.Materials)
+            {
+                shaderMaterial.RenderPriority = renderOrder.RenderPriority;
+            }
 
             renderOrder.RenderPriorityApplied = true;
         }

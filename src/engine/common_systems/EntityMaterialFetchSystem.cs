@@ -22,7 +22,7 @@
         {
             ref var materialComponent = ref entity.Get<EntityMaterial>();
 
-            if (materialComponent.MaterialFetchPerformed || materialComponent.Material != null)
+            if (materialComponent.MaterialFetchPerformed || materialComponent.Materials != null)
                 return;
 
             if (materialComponent.AutoRetrieveFromSpatial)
@@ -37,15 +37,15 @@
 
                     if (string.IsNullOrEmpty(materialComponent.AutoRetrieveModelPath))
                     {
-                        materialComponent.Material = spatial.GraphicalInstance.GetMaterial();
+                        materialComponent.Materials = new[] { spatial.GraphicalInstance.GetMaterial() };
                     }
                     else
                     {
                         using var nodePath = new NodePath(materialComponent.AutoRetrieveModelPath);
-                        materialComponent.Material = spatial.GraphicalInstance.GetMaterial(nodePath);
+                        materialComponent.Materials = new[] { spatial.GraphicalInstance.GetMaterial(nodePath) };
                     }
 
-                    if (materialComponent.Material == null)
+                    if (materialComponent.Materials is not { Length: > 0 } || materialComponent.Materials[0] == null)
                     {
                         throw new NullReferenceException(
                             "Expected material not set, this component doesn't wait for material to be set later");

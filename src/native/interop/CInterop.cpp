@@ -537,6 +537,12 @@ void ReleaseShape(PhysicsShape* shape)
 }
 
 // ------------------------------------ //
+float ShapeGetMass(PhysicsShape* shape)
+{
+    return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mMass;
+}
+
+// ------------------------------------ //
 bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
 {
 #ifdef JPH_DEBUG_RENDERER

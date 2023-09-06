@@ -1,7 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
-    using System.Threading;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -53,11 +51,10 @@
 
                 ref var health = ref collision.SecondEntity.Get<Health>();
 
-                // TODO: disable dealing damage to a pilus
-                throw new NotImplementedException();
-
-                DealDamage(ref health, ref damageTouch, delta);
-                collided = true;
+                if (DealDamage(collision.SecondEntity, ref health, ref damageTouch, delta))
+                {
+                    collided = true;
+                }
             }
 
             if (collided && damageTouch.DestroyOnTouch)
@@ -82,16 +79,34 @@
             }
         }
 
-        private void DealDamage(ref Health health, ref DamageOnTouch damageTouch, float delta)
+        private bool DealDamage(in Entity entity, ref Health health, ref DamageOnTouch damageTouch, float delta)
         {
             if (damageTouch.DestroyOnTouch)
             {
-                health.DealDamage(damageTouch.DamageAmount, damageTouch.DamageType);
+                return HandlePotentialMicrobeDamage(ref health, entity, damageTouch.DamageAmount,
+                    damageTouch.DamageType);
+            }
+
+            return HandlePotentialMicrobeDamage(ref health, entity, damageTouch.DamageAmount * delta,
+                damageTouch.DamageType);
+        }
+
+        private bool HandlePotentialMicrobeDamage(ref Health health, in Entity entity, float damageValue,
+            string damageType)
+        {
+            if (entity.Has<CellProperties>())
+            {
+                // TODO: disable dealing damage to a pilus
+                // return false
+
+                health.DealMicrobeDamage(ref entity.Get<CellProperties>(), damageValue, damageType);
             }
             else
             {
-                health.DealDamage(damageTouch.DamageAmount * delta, damageTouch.DamageType);
+                health.DealDamage(damageValue, damageType);
             }
+
+            return true;
         }
     }
 }

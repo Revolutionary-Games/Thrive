@@ -48,7 +48,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
     /// </summary>
     [Export]
     [JsonProperty]
-    public float SnapWithDistanceLessThan = 6.0f;
+    public float SnapWithDistanceLessThan = 7.0f;
 
     /// <summary>
     ///   How many units of light level can change per second

@@ -8,8 +8,13 @@
         public EarlyMulticellularSpecies Species;
 
         /// <summary>
-        ///   Set to false if the species is changed
+        ///  For each part of a multicellular species, the cell type they are must be known
         /// </summary>
-        public bool SpeciesApplied;
+        public CellType MulticellularCellType;
+
+        // /// <summary>
+        // ///   Set to false if the species is changed
+        // /// </summary>
+        // public bool SpeciesApplied;
     }
 }

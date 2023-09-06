@@ -182,6 +182,8 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
 
+    [[maybe_unused]] THRIVE_NATIVE_API float ShapeGetMass(PhysicsShape* shape);
+
     // ------------------------------------ //
     // Misc
     [[maybe_unused]] THRIVE_NATIVE_API bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);

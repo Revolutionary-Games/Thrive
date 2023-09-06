@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using DefaultEcs;
     using Godot;
 
@@ -59,6 +60,8 @@
 
     public static class EngulferHelpers
     {
+        private static readonly object EngulfRelationshipModifyLock = new();
+
         /// <summary>
         ///   Direct engulfing check. Microbe should use <see cref="CellPropertiesHelpers.CanEngulfObject"/>
         /// </summary>
@@ -129,6 +132,141 @@
                 return EngulfCheckResult.TargetInvulnerable;
 
             return EngulfCheckResult.Ok;
+        }
+
+        /// <summary>
+        ///   Tries to find an engulfable entity as close to this engulfer as possible. Note that this is *slow* and
+        ///   not meant for normal gameplay code (just using this for the player infrequently is fine as there's only
+        ///   ever one player at once)
+        /// </summary>
+        /// <param name="engulfer">The engulfer that wants to engulf something</param>
+        /// <param name="cellProperties">
+        ///     Cell properties to determine if this engulfer can even engulf things in the first place
+        /// </param>
+        /// <param name="organelles">Organelles the engulfer has, used to determine what it can eat or digest</param>
+        /// <param name="position">Location of the engulfer to search nearby positions for</param>
+        /// <param name="usefulCompoundSource">
+        ///     Used to filter engulfables to only ones this bag considers useful
+        /// </param>
+        /// <param name="engulferEntity">Entity of the engulfer, used to skip self engulfment check</param>
+        /// <param name="engulferSpeciesID">Engulfer species ID to use in engulfability checks</param>
+        /// <param name="world">Where to fetch potential entities</param>
+        /// <param name="searchRadius">How wide to search around the position</param>
+        /// <returns>The nearest found point for the engulfable entity or null</returns>
+        public static Vector3? FindNearestEngulfableSlow(this ref Engulfer engulfer,
+            ref CellProperties cellProperties, ref OrganelleContainer organelles, ref WorldPosition position,
+            CompoundBag usefulCompoundSource, in Entity engulferEntity, uint engulferSpeciesID, IWorldSimulation world,
+            float searchRadius = 200)
+        {
+            if (searchRadius < 1)
+                throw new ArgumentException("searchRadius must be >= 1");
+
+            // If the microbe cannot engulf, no need for this
+            if (!cellProperties.MembraneType.CanEngulf)
+                return null;
+
+            Vector3? nearestPoint = null;
+            float nearestDistanceSquared = float.MaxValue;
+            var searchRadiusSquared = searchRadius * searchRadius;
+
+            // Retrieve nearest potential entities
+            foreach (var entity in world.EntitySystem)
+            {
+                if (!entity.Has<Engulfable>() || !entity.Has<CompoundStorage>())
+                    continue;
+
+                ref var engulfable = ref entity.Get<Engulfable>();
+                var compounds = entity.Get<CompoundStorage>().Compounds;
+
+                if (compounds.Compounds.Count <= 0 || engulfable.PhagocytosisStep != PhagocytosisPhase.None)
+                    continue;
+
+                if (!entity.Has<WorldPosition>())
+                    continue;
+
+                ref var entityPosition = ref entity.Get<WorldPosition>();
+
+                // Skip entities that are out of range
+                var distance = (entityPosition.Position - position.Position).LengthSquared();
+                if (distance > searchRadiusSquared)
+                    continue;
+
+                // Skip non-engulfable or digestible entities
+                if (organelles.CanDigestObject(ref engulfable) != DigestCheckResult.Ok ||
+                    engulfer.CanEngulfObject(engulferSpeciesID, entity) != EngulfCheckResult.Ok)
+                {
+                    continue;
+                }
+
+                // Skip entities that have no useful compounds
+                if (!compounds.Compounds.Any(x => usefulCompoundSource.IsUseful(x.Key)))
+                    continue;
+
+                if (nearestPoint == null || distance < nearestDistanceSquared)
+                {
+                    nearestPoint = entityPosition.Position;
+                    nearestDistanceSquared = distance;
+                }
+            }
+
+            return nearestPoint;
+        }
+
+        public static bool EjectEngulfable(this ref Engulfer engulfer, in Entity engulfedEntity)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        ///   Moves all engulfables from <see cref="engulfer"/> to <see cref="targetEngulfer"/>
+        /// </summary>
+        public static void TransferEngulferObjectsToAnotherEngulfer(this ref Engulfer engulfer,
+            in Entity engulferEntity, ref Engulfer targetEngulfer, in Entity targetEngulferEntity)
+        {
+            lock (EngulfRelationshipModifyLock)
+            {
+                if (engulfer.EngulfedObjects is not { Count: > 0 })
+                    return;
+
+                // Can't move to a dead engulfer
+                if (targetEngulferEntity.Get<Health>().Dead)
+                    return;
+
+                foreach (var ourEngulfedEntity in engulfer.EngulfedObjects.ToList())
+                {
+                    if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) || !ourEngulfedEntity.IsAlive ||
+                        !ourEngulfedEntity.Has<Engulfable>())
+                    {
+                        continue;
+                    }
+
+                    ref var engulfed = ref ourEngulfedEntity.Get<Engulfable>();
+
+                    targetEngulfer.TakeOwnershipOfEngulfed(targetEngulferEntity, ref engulfed, ourEngulfedEntity);
+                }
+            }
+        }
+
+        /// <summary>
+        ///   Moves an already engulfed object to be engulfed by this engulfer
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This has to be called with <see cref="EngulfRelationshipModifyLock"/> already locked
+        ///   </para>
+        /// </remarks>
+        private static void TakeOwnershipOfEngulfed(this ref Engulfer engulfer, in Entity engulferEntity,
+            ref Engulfable engulfable, in Entity engulfableEntity)
+        {
+            engulfable.HostileEngulfer = engulfableEntity;
+
+            engulfer.EngulfedObjects ??= new List<Entity>();
+
+            engulfer.EngulfedObjects.Add(engulfableEntity);
+
+            // TODO: modify the attached to component to point to the new parent
+            // TODO: adjust position relative position
+            throw new NotImplementedException();
         }
     }
 }

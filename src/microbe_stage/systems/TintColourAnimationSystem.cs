@@ -13,7 +13,7 @@
     [With(typeof(EntityMaterial))]
     public sealed class TintColourAnimationSystem : AEntitySetSystem<float>
     {
-        public TintColourAnimationSystem(World world, IParallelRunner runner) : base(world, runner)
+        public TintColourAnimationSystem(World world) : base(world, null)
         {
         }
 
@@ -26,10 +26,25 @@
 
             ref var entityMaterial = ref entity.Get<EntityMaterial>();
 
-            if (entityMaterial.Material == null)
+            if (entityMaterial.Materials == null)
                 return;
 
-            entityMaterial.Material.SetShaderParam("tint", animation.CurrentColour);
+            var materials = entityMaterial.Materials;
+
+            if (animation.AnimateOnlyFirstMaterial)
+            {
+                if (materials.Length > 0)
+                {
+                    materials[0].SetShaderParam("tint", animation.CurrentColour);
+                }
+            }
+            else
+            {
+                foreach (var material in materials)
+                {
+                    material.SetShaderParam("tint", animation.CurrentColour);
+                }
+            }
 
             animation.ColourApplied = true;
         }

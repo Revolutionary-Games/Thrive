@@ -88,8 +88,12 @@ public:
 
     void SetVelocityAndAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity);
 
+    /// \brief Enables (or updates settings) for a body to have per step movement control
+    ///
+    /// This is thread safe as long as no two same bodies get this called at the same time
     void SetBodyControl(
         PhysicsBody& bodyWrapper, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float rotationRate);
+
     void DisableBodyControl(PhysicsBody& bodyWrapper);
 
     void SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool activate = true);
@@ -165,7 +169,8 @@ public:
     /// return the bodies' user data with the collision info
     /// \returns The number of hits or 0 if nothing is hit. This only writes to dataReceiver up to the number of hits
     /// received everything else is untouched
-    int CastRayGetAllUserData(JPH::RVec3 start, JPH::Vec3 endOffset, PhysicsRayWithUserData dataReceiver[], int maxHits);
+    int CastRayGetAllUserData(
+        JPH::RVec3 start, JPH::Vec3 endOffset, PhysicsRayWithUserData dataReceiver[], int maxHits);
 
     [[nodiscard]] inline float GetLatestPhysicsTime() const
     {

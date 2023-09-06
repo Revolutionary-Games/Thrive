@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Collections.Generic;
     using Components;
     using DefaultEcs;
@@ -100,12 +101,16 @@
             }
         }
 
-        protected override void Update(float delta, in Entity entity)
+        protected override void Update(float delta, ReadOnlySpan<Entity> entities)
         {
-            // TODO: preventing this entire update method from being called on all entities would be better
             if (!timeToUpdate)
                 return;
 
+            base.Update(delta, entities);
+        }
+
+        protected override void Update(float delta, in Entity entity)
+        {
             ref var signaling = ref entity.Get<CommandSignaler>();
 
             // Find closest signaler on the channel this entity is on

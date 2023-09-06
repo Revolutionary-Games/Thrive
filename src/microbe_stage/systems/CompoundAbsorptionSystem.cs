@@ -1,6 +1,7 @@
 ﻿namespace Systems
 {
     using System;
+    using System.Linq;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -56,6 +57,19 @@
 
             compoundCloudSystem.AbsorbCompounds(position.Position, absorber.AbsorbRadius, storage.Compounds,
                 absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio);
+
+            // Player infinite compounds cheat, doesn't *really* belong here but this is probably the best place to put
+            // this instead of creating a dedicated cheats handling system
+            if (CheatManager.InfiniteCompounds && entity.Has<PlayerMarker>())
+            {
+                var usefulCompounds =
+                    SimulationParameters.Instance.GetCloudCompounds().Where(storage.Compounds.IsUseful);
+                foreach (var usefulCompound in usefulCompounds)
+                {
+                    storage.Compounds.AddCompound(usefulCompound,
+                        storage.Compounds.GetFreeSpaceForCompound(usefulCompound));
+                }
+            }
         }
     }
 }

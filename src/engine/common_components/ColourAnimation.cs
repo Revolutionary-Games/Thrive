@@ -41,6 +41,11 @@
         public bool Animating;
 
         /// <summary>
+        ///   if true only the first material is animated on an entity and the other ones are left untouched
+        /// </summary>
+        public bool AnimateOnlyFirstMaterial;
+
+        /// <summary>
         ///   True when whatever entity / stage specific system that handles applying the colour is
         /// </summary>
         [JsonIgnore]
@@ -58,6 +63,7 @@
 
             AutoReverseAnimation = false;
             Animating = false;
+            AnimateOnlyFirstMaterial = false;
 
             ColourApplied = false;
         }
@@ -91,7 +97,7 @@
         /// <param name="priority">
         ///   Used to skip previous animations, if this is higher than current
         ///   <see cref="ColourAnimation.AnimationUserInfo"/> then this replaces the current animation. Otherwise this
-        ///   is silently ignored
+        ///   is silently ignored.
         /// </param>
         public static void Flash(this ref ColourAnimation animation, Color targetColour, float duration,
             int priority = 1)

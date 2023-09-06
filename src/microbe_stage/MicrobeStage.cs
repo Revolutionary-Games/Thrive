@@ -229,7 +229,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     //     .OfType<IEngulfable>().ToList();
 
                     // TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                    //     new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
+                    //     new EntityPositionEventArgs(Player.FindNearestEngulfableSlow(engulfables)), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -605,6 +605,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         if (HasPlayer)
         {
+            // This doesn't use the microbe damage calculation as this damage can't be resisted
             Player.Get<Health>().DealDamage(9999.0f, "suicide");
         }
     }

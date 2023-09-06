@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public class SlimeJetComponent : ExternallyPositionedComponent
 {
-    private bool active;
+    private bool animationActive;
 
     private AnimationPlayer? animation;
 
@@ -20,17 +20,17 @@ public class SlimeJetComponent : ExternallyPositionedComponent
     /// <summary>
     ///   Whether this jet is currently secreting slime and animating
     /// </summary>
-    public bool Active
+    public bool AnimationActive
     {
-        get => active;
+        get => animationActive;
         set
         {
-            active = value;
+            animationActive = value;
 
             if (animation != null)
             {
                 // Play the animation if active, and vice versa
-                animation.PlaybackSpeed = active ? 1.0f : 0.0f;
+                animation.PlaybackSpeed = animationActive ? 1.0f : 0.0f;
             }
         }
     }
@@ -75,7 +75,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
     /// </summary>
     public Vector3 CalculateMovementForce(Microbe microbe, float delta)
     {
-        if (!Active)
+        if (!AnimationActive)
             return Vector3.Zero;
 
         // TODO: take colony into account (calculate rotations up to the root of the colony)
