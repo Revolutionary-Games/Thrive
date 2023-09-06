@@ -30,8 +30,10 @@
             new();
 
         private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
+
         private readonly Dictionary<(OrganelleTemplate, BiomeConditions, Compound), float>
             cachedEnergyCreationScoreForOrganelle = new();
+
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float>
             cachedEnergyCreationScoreForSpecies = new();
 
@@ -125,8 +127,8 @@
             return cached;
         }
 
-        public float GetEnergyCreationScoreForOrganelle(
-            OrganelleTemplate organelle, BiomeConditions biomeConditions, Compound compound)
+        public float GetEnergyCreationScoreForOrganelle(OrganelleTemplate organelle, BiomeConditions biomeConditions, 
+            Compound compound)
         {
             var key = (organelle, biomeConditions, compound);
             if (cachedEnergyCreationScoreForOrganelle.TryGetValue(key, out var cached))
@@ -185,8 +187,8 @@
         ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
         ///   so different implementations do not need to worry about scale.
         /// </returns>
-        public float GetEnergyGenerationScoreForSpecies(
-            MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)
+        public float GetEnergyGenerationScoreForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions, 
+            Compound compound)
         {
             var key = (species, biomeConditions, compound);
 
