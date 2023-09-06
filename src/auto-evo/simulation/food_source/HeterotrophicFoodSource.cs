@@ -68,12 +68,10 @@
                 engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
             }
 
-            // The array was used to have a time & memory efficient structure,
-            // but this could be turned into a class for more readable and less error-prone code.
             var predationToolsRawScores = simulationCache.GetPredationToolsRawScores(microbeSpecies);
-            var pilusScore = predationToolsRawScores[0];
-            var oxytoxyScore = predationToolsRawScores[1];
-            var mucilageScore = predationToolsRawScores[2];
+            var pilusScore = predationToolsRawScores.PilusScore;
+            var oxytoxyScore = predationToolsRawScores.OxytoxyScore;
+            var mucilageScore = predationToolsRawScores.MucilageScore;
 
             // Pili are much more useful if the microbe can close to melee
             pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;

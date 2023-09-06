@@ -29,7 +29,7 @@
         private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
             new();
 
-        private readonly Dictionary<MicrobeSpecies, float[]> cachedPredationToolsRawScores = new();
+        private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
         private readonly Dictionary<(OrganelleTemplate, BiomeConditions, Compound), float>
             cachedEnergyCreationScoreForOrganelle = new();
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float>
@@ -232,7 +232,7 @@
             return worldSettings.Equals(checkAgainst);
         }
 
-        public float[] GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
+        public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
         {
             if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
                 return cached;
@@ -263,7 +263,7 @@
                 }
             }
 
-            var predationToolsRawScores = new float[3] { pilusScore, oxytoxyScore, mucilageScore };
+            var predationToolsRawScores = (pilusScore, oxytoxyScore, mucilageScore);
 
             cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
             return predationToolsRawScores;
