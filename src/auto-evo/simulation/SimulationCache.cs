@@ -127,7 +127,7 @@
             return cached;
         }
 
-        public float GetEnergyCreationScoreForOrganelle(OrganelleTemplate organelle, BiomeConditions biomeConditions, 
+        public float GetEnergyCreationScoreForOrganelle(OrganelleTemplate organelle, BiomeConditions biomeConditions,
             Compound compound)
         {
             var key = (organelle, biomeConditions, compound);
@@ -187,7 +187,7 @@
         ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
         ///   so different implementations do not need to worry about scale.
         /// </returns>
-        public float GetEnergyGenerationScoreForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions, 
+        public float GetEnergyGenerationScoreForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions,
             Compound compound)
         {
             var key = (species, biomeConditions, compound);
