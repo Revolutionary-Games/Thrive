@@ -31,6 +31,7 @@
 
         private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
 
+        // TODO : investigate using the hashcode of the organelle template as well, but possibly without orientation and position)
         private readonly Dictionary<(OrganelleTemplate, BiomeConditions, Compound), float>
             cachedEnergyCreationScoreForOrganelle = new();
 
@@ -234,7 +235,8 @@
             return worldSettings.Equals(checkAgainst);
         }
 
-        public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
+        public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(
+            MicrobeSpecies microbeSpecies)
         {
             if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
                 return cached;
