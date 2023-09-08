@@ -1346,7 +1346,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Updates <see cref="organellesCapacity"/> 
+    ///   Updates <see cref="organellesCapacity"/>
     ///   and <see cref="additionalCompoundCapacities"/>
     ///   to take into account the addition or removal of an organelle
     /// </summary>
