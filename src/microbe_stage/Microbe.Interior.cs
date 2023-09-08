@@ -389,6 +389,7 @@ public partial class Microbe
 
         foreach (var entry in Species.InitialCompounds)
         {
+            Compounds.SetUseful(entry.Key);
             Compounds.AddCompound(entry.Key, entry.Value);
         }
     }
