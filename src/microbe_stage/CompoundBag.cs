@@ -12,24 +12,16 @@ public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
 
-    /// <summary>
-    ///   This costructor is used for loading saves
-    /// </summary>
-    public CompoundBag(Dictionary<Compound, float> compoundCapacities)
-    {
-        CompoundCapacities = compoundCapacities;
-    }
-
-    public CompoundBag(float capacity)
-    {
-        SetCapacityForAllCompounds(capacity);
-    }
-
-    /// <summary>
-    ///   How much of each compound this bag can store.
-    /// </summary>
     [JsonProperty]
-    public Dictionary<Compound, float> CompoundCapacities { get; private set; } = new();
+    private float nominalCapacity;
+
+    [JsonProperty]
+    private Dictionary<Compound, float>? compoundCapacities;
+
+    public CompoundBag(float nominalCapacity)
+    {
+        SetNominalCapacity(nominalCapacity);
+    }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
@@ -44,32 +36,27 @@ public class CompoundBag : ICompoundStorage
     /// <returns>Returns CompoundCapacities[compound] if the compound is useful, otherwise 0</returns>
     public float GetCapacityForCompound(Compound compound)
     {
-        if (IsUseful(compound))
-            return CompoundCapacities[compound];
+        if (!IsUseful(compound))
+            return 0;
 
-        return 0;
+        if (compoundCapacities != null && compoundCapacities.TryGetValue(compound, out var capacity))
+            return capacity;
+
+        return nominalCapacity;
     }
 
     /// <summary>
-    ///   Sets the capacity for a dictionary of compounds and their respecive capcities
+    ///   Sets the capacity for all compounds
     /// </summary>
-    public void SetCapacityForCompoundDict(Dictionary<Compound, float> capacityDictionary)
+    public void SetNominalCapacity(float capacity)
     {
-        foreach (var entry in capacityDictionary)
-        {
-            CompoundCapacities[entry.Key] = entry.Value;
-        }
+        nominalCapacity = capacity;
     }
 
-    /// <summary>
-    ///   Sets the capacity for all compounds currently contained
-    /// </summary>
-    public void SetCapacityForAllCompounds(float capacity)
+    public void SetCapacityForCompound(Compound compound, float capacity)
     {
-        foreach (Compound compound in Compounds.Keys)
-        {
-            CompoundCapacities[compound] = capacity;
-        }
+        compoundCapacities ??= new();
+        compoundCapacities[compound] = capacity;
     }
 
     public float GetCompoundAmount(Compound compound)
@@ -108,7 +95,7 @@ public class CompoundBag : ICompoundStorage
 
         float existingAmount = GetCompoundAmount(compound);
 
-        float newAmount = Math.Min(existingAmount + amount, CompoundCapacities[compound]);
+        float newAmount = Math.Min(existingAmount + amount, GetCapacityForCompound(compound));
 
         Compounds[compound] = newAmount;
 

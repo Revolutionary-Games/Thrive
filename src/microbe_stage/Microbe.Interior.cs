@@ -70,10 +70,17 @@ public partial class Microbe
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
     ///   current organelles. This is here to prevent anyone from
-    ///   messing with this value if we used the CompoundCapacities from the
+    ///   messing with this value if we used the the
     ///   CompoundBag for the calculations that use this.
     /// </summary>
-    private Dictionary<Compound, float> organellesCapacity = new();
+    private float organellesCapacity;
+
+    /// <summary>
+    ///   Stores additional capacity for compounds outside of
+    ///   organellesCapacity. Currently, this only stores
+    ///   additional capacity granted form specialized vacuoles
+    /// </summary>
+    private Dictionary<Compound, float> additionalCompoundCapacities = new();
 
     /// <summary>
     ///   True once all organelles are divided to not continuously run code that is triggered
@@ -729,10 +736,10 @@ public partial class Microbe
             {
                 amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
             }
-            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.CompoundCapacities[type])
+            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.GetCapacityForCompound(type))
             {
                 // Vent the part that went over
-                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.CompoundCapacities[type]);
+                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.GetCapacityForCompound(type));
 
                 amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent), Vector3.Back);
             }
@@ -1295,14 +1302,14 @@ public partial class Microbe
 
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
-        CalculateOrganelleCapacity(organelle, false);
-        Compounds.SetCapacityForCompoundDict(organellesCapacity);
+        UpdateCapacity(organelle, false);
+        UpdateCompoundBagCapacities();
     }
 
     [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
-        CalculateOrganelleCapacity(organelle, true);
+        UpdateCapacity(organelle, true);
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
@@ -1323,7 +1330,7 @@ public partial class Microbe
         cachedRotationSpeed = null;
         organelleMaxRenderPriorityDirty = true;
 
-        Compounds.SetCapacityForCompoundDict(organellesCapacity);
+        UpdateCompoundBagCapacities();
     }
 
     /// <summary>
@@ -1332,44 +1339,56 @@ public partial class Microbe
     private void RecomputeOrganelleCapacity()
     {
         foreach (PlacedOrganelle organelle in organelles!)
-        {
-            CalculateOrganelleCapacity(organelle, false);
-        }
+            UpdateCapacity(organelle, false);
 
-        Compounds.SetCapacityForCompoundDict(organellesCapacity);
+        UpdateCompoundBagCapacities();
     }
 
     /// <summary>
-    ///   Modifies <see cref="organellesCapacity"/> to take into account the capacity of the organelle
+    ///   Updates <see cref="organellesCapacity"/> 
+    ///   and <see cref="additionalCompoundCapacities"/>
+    ///   to take into account the addition or removal of an organelle
     /// </summary>
-    /// <param name="organelle"> The organelle we want to calculate the capacity of</param>
+    /// <param name="organelle">The organelle being placed or removed</param>
     /// <param name="negative">
-    ///   This should be true if the method is
-    ///   supposed to remove capacity and not increase it
+    ///   Should be true if the organelle is being removed,
+    ///   otherwise false
     /// </param>
-    private void CalculateOrganelleCapacity(PlacedOrganelle organelle, bool negative)
+    private void UpdateCapacity(PlacedOrganelle organelle, bool negative)
     {
         int sign = negative ? -1 : 1;
 
-        if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades upgrades && upgrades.IsSpecialized)
+        if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
+            storage.IsSpecialized)
         {
-            organellesCapacity[upgrades.Specialization] += organelle.StorageCapacity * 2 * sign;
+            Compound specialization = storage.Specialization;
+
+            if (additionalCompoundCapacities.ContainsKey(specialization))
+            {
+                additionalCompoundCapacities[specialization] += organelle.StorageCapacity * 2 * sign;
+            }
+            else
+            {
+                additionalCompoundCapacities[specialization] = organelle.StorageCapacity * 2;
+            }
         }
         else
         {
-            foreach (Compound compound in SimulationParameters.Instance.GetAllCompounds().Values)
-            {
-                if (compound.IsEnvironmental || compound.IsAgent)
-                    continue;
-
-                if (!organellesCapacity.ContainsKey(compound))
-                {
-                    organellesCapacity.Add(compound, 0);
-                }
-
-                organellesCapacity[compound] += organelle.StorageCapacity * sign;
-            }
+            organellesCapacity += organelle.StorageCapacity * sign;
         }
+    }
+
+    /// <summary>
+    ///   Updates <see cref="Compounds"/> to adjust for changes in
+    ///   <see cref="organellesCapacity"/> and
+    ///   <see cref="additionalCompoundCapacities"/>
+    /// </summary>
+    private void UpdateCompoundBagCapacities()
+    {
+        Compounds.SetNominalCapacity(organellesCapacity);
+
+        foreach (var entry in additionalCompoundCapacities)
+            Compounds.SetCapacityForCompound(entry.Key, entry.Value + organellesCapacity);
     }
 
     private bool CheckHasSignalingAgent()
@@ -1671,7 +1690,7 @@ public partial class Microbe
     private void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result)
     {
         result.TryGetValue(glucose, out float existingGlucose);
-        result[glucose] = existingGlucose + Compounds.CompoundCapacities[glucose] *
+        result[glucose] = existingGlucose + Compounds.GetCapacityForCompound(glucose) *
             Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 

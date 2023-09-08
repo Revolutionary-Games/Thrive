@@ -249,7 +249,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         Species = lateSpecies;
 
         // TODO: set from species
-        compounds.SetCapacityForAllCompounds(100);
+        compounds.SetNominalCapacity(100);
 
         // TODO: better mass calculation
         Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
@@ -489,84 +489,84 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             case InteractionType.Harvest:
                 return this.HarvestEntity(target);
             case InteractionType.Craft:
-            {
-                if (RequestCraftingInterfaceFor == null)
                 {
-                    // AI should directly use the crafting methods to create the crafter products
-                    GD.PrintErr(
-                        $"Only player creature can open crafting ({nameof(RequestCraftingInterfaceFor)} is unset)");
-                    return false;
-                }
-
-                // Request the crafting interface to be opened with the target pre-selected
-                RequestCraftingInterfaceFor.Invoke(this, target);
-                return true;
-            }
-
-            case InteractionType.DepositResources:
-            {
-                // TODO: instead of closing, just update the interaction popup to allow finishing construction
-                // immediately
-                if (target is IAcceptsResourceDeposit deposit)
-                {
-                    if (!deposit.AutoTakesResources)
+                    if (RequestCraftingInterfaceFor == null)
                     {
-                        // TODO: allow selecting items
-                        GD.Print("TODO: selecting items to deposit interface is not done");
+                        // AI should directly use the crafting methods to create the crafter products
+                        GD.PrintErr(
+                            $"Only player creature can open crafting ({nameof(RequestCraftingInterfaceFor)} is unset)");
+                        return false;
                     }
 
-                    var itemsToDeposit = deposit.GetWantedItems(this);
-
-                    if (itemsToDeposit != null)
-                    {
-                        var slots = itemsToDeposit.ToList();
-                        deposit.DepositItems(slots.Select(i => i.ContainedItem).WhereNotNull());
-
-                        foreach (var slot in slots)
-                        {
-                            if (!DeleteItem(slot))
-                                GD.PrintErr("Failed to delete deposited item");
-                        }
-
-                        return true;
-                    }
-                }
-
-                GD.PrintErr("Deposit action failed due to bad target or currently held items");
-                return false;
-            }
-
-            case InteractionType.Construct:
-            {
-                if (target is IConstructable { Completed: false, HasRequiredResourcesToConstruct: true } constructable)
-                {
-                    // Start action for constructing, the action when finished will pick what it does based on the
-                    // target entity
-                    StartAction(target, constructable.TimedActionDuration);
+                    // Request the crafting interface to be opened with the target pre-selected
+                    RequestCraftingInterfaceFor.Invoke(this, target);
                     return true;
                 }
 
-                return false;
-            }
-
-            default:
-            {
-                // This might be an extra interaction
-                var extraInteractions = target.GetExtraAvailableActions();
-
-                if (extraInteractions != null)
+            case InteractionType.DepositResources:
                 {
-                    foreach (var (extraInteraction, _) in extraInteractions)
+                    // TODO: instead of closing, just update the interaction popup to allow finishing construction
+                    // immediately
+                    if (target is IAcceptsResourceDeposit deposit)
                     {
-                        if (extraInteraction == interactionType)
-                            return target.PerformExtraAction(extraInteraction);
+                        if (!deposit.AutoTakesResources)
+                        {
+                            // TODO: allow selecting items
+                            GD.Print("TODO: selecting items to deposit interface is not done");
+                        }
+
+                        var itemsToDeposit = deposit.GetWantedItems(this);
+
+                        if (itemsToDeposit != null)
+                        {
+                            var slots = itemsToDeposit.ToList();
+                            deposit.DepositItems(slots.Select(i => i.ContainedItem).WhereNotNull());
+
+                            foreach (var slot in slots)
+                            {
+                                if (!DeleteItem(slot))
+                                    GD.PrintErr("Failed to delete deposited item");
+                            }
+
+                            return true;
+                        }
                     }
+
+                    GD.PrintErr("Deposit action failed due to bad target or currently held items");
+                    return false;
                 }
 
-                // Unknown action type and not an extra action provided by the target
-                GD.PrintErr($"Unimplemented action handling for {interactionType}");
-                return false;
-            }
+            case InteractionType.Construct:
+                {
+                    if (target is IConstructable { Completed: false, HasRequiredResourcesToConstruct: true } constructable)
+                    {
+                        // Start action for constructing, the action when finished will pick what it does based on the
+                        // target entity
+                        StartAction(target, constructable.TimedActionDuration);
+                        return true;
+                    }
+
+                    return false;
+                }
+
+            default:
+                {
+                    // This might be an extra interaction
+                    var extraInteractions = target.GetExtraAvailableActions();
+
+                    if (extraInteractions != null)
+                    {
+                        foreach (var (extraInteraction, _) in extraInteractions)
+                        {
+                            if (extraInteraction == interactionType)
+                                return target.PerformExtraAction(extraInteraction);
+                        }
+                    }
+
+                    // Unknown action type and not an extra action provided by the target
+                    GD.PrintErr($"Unimplemented action handling for {interactionType}");
+                    return false;
+                }
         }
     }
 
