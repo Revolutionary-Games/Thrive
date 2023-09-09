@@ -8,6 +8,7 @@ public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
 #pragma warning disable CA2213
     [Export]
     public NodePath NameLabelPath = null!;
+
     [Export]
     public NodePath DescriptionPath = null!;
 
