@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AngleSharp.Dom;
 using Godot;
 using Newtonsoft.Json;
 
@@ -389,8 +390,9 @@ public partial class Microbe
 
         foreach (var entry in Species.InitialCompounds)
         {
-            Compounds.SetUseful(entry.Key);
-            Compounds.AddCompound(entry.Key, entry.Value);
+            // Temporary code before proper initial compounds set method is added to CompoundBag
+            Compounds.Compounds.TryGetValue(entry.Key, out var existing);
+            Compounds.Compounds[entry.Key] = existing + entry.Value;
         }
     }
 
@@ -1363,15 +1365,8 @@ public partial class Microbe
             storage.IsSpecialized)
         {
             Compound specialization = storage.Specialization;
-
-            if (additionalCompoundCapacities.ContainsKey(specialization))
-            {
-                additionalCompoundCapacities[specialization] += organelle.StorageCapacity * 2 * sign;
-            }
-            else
-            {
-                additionalCompoundCapacities[specialization] = organelle.StorageCapacity * 2;
-            }
+            additionalCompoundCapacities.TryGetValue(specialization, out var existing);
+            additionalCompoundCapacities[specialization] = existing + organelle.StorageCapacity * 2 * sign;
         }
         else
         {
