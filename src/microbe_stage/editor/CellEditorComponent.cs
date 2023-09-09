@@ -227,6 +227,9 @@ public partial class CellEditorComponent :
 
     private PackedScene organelleSelectionButtonScene = null!;
 
+    private PackedScene undiscoveredOrganellesScene = null!;
+    private PackedScene undiscoveredOrganellesTooltipScene = null!;
+
     private PackedScene microbeScene = null!;
 #pragma warning restore CA2213
 
@@ -534,6 +537,11 @@ public partial class CellEditorComponent :
         organelleSelectionButtonScene =
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
 
+        undiscoveredOrganellesScene =
+            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganelles.tscn");
+        undiscoveredOrganellesTooltipScene =
+            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
+
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
         SetupMicrobePartSelections();
@@ -672,6 +680,7 @@ public partial class CellEditorComponent :
 
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
+        CreateUndiscoveredOrganellesButtons(FindGroupsWithUndiscoveredOrganelles());
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;

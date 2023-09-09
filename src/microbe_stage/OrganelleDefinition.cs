@@ -481,17 +481,19 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
-    public string? UnlockRequirements(GameProperties game)
+    public string UnlockRequirements(GameProperties game)
     {
-        if (game.GameWorld.UnlockProgress.IsUnlocked(this, game))
-            return null;
-
         // TODO: translate
-        string unlockRequirements = "Unlocked when:";
+        string unlockRequirements = string.Empty;
         if (UnlockConditions != null)
         {
             foreach (var unlockCondition in UnlockConditions)
-                unlockRequirements += "\n- " + unlockCondition.Tooltip(game.GameWorld);
+            {
+                if (!string.IsNullOrEmpty(unlockRequirements))
+                    unlockRequirements += "\n";
+
+                unlockRequirements += "- " + unlockCondition.Tooltip(game.GameWorld);
+            }
         }
 
         return unlockRequirements;
