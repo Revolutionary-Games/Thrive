@@ -41,11 +41,6 @@ public interface IEngulfable : IGraphicalEntity
     public float DigestedAmount { get; set; }
 
     /// <summary>
-    ///   The organelles the player can unlock when ingesting.
-    /// </summary>
-    public IEnumerable<OrganelleDefinition>? UnlocksOrganelles { get; }
-
-    /// <summary>
     ///   Additional means bonus compounds that can be acquired on top of <see cref="Compounds"/> from this engulfable
     ///   for predating microbes.
     /// </summary>

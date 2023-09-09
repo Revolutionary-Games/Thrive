@@ -38,12 +38,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new();
 
-    /// <summary>
-    ///   The organelles this unlocks when the player ingests it.
-    /// </summary>
-    [JsonProperty]
-    private IEnumerable<OrganelleDefinition>? unlocksOrganelles;
-
 #pragma warning disable CA2213
     private MeshInstance? chunkMesh;
     private Particles? particles;
@@ -124,8 +118,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
     /// </remarks>
     [JsonProperty]
     public CompoundBag Compounds { get; private set; } = new(0.0f);
-
-    public IEnumerable<OrganelleDefinition>? UnlocksOrganelles => unlocksOrganelles;
 
     /// <summary>
     ///   How much of each compound is vented per second
@@ -248,8 +240,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
             }
         }
 
-        unlocksOrganelles = chunkType.UnlocksOrganelles;
-
         if (!string.IsNullOrEmpty(chunkType.DissolverEnzyme))
             RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(chunkType.DissolverEnzyme);
     }
@@ -279,11 +269,8 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable, IInspectableEntit
 
         var item = new ChunkConfiguration.ChunkScene
         {
-            LoadedScene = GraphicsScene,
-            ScenePath = GraphicsScene.ResourcePath,
-            SceneModelPath = ModelNodePath,
-            LoadedConvexShape = ConvexPhysicsMesh,
-            ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
+            LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
+            LoadedConvexShape = ConvexPhysicsMesh, ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
             SceneAnimationPath = AnimationPath,
         };
 

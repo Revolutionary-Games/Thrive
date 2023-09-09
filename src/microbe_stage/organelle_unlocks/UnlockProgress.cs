@@ -71,7 +71,7 @@ public class UnlockProgress
     }
 
     /// <summary>
-    ///   Clear recently unlocked organelles
+    ///   Clear recently unlocked organelles.
     /// </summary>
     public void ClearRecentlyUnlocked()
     {

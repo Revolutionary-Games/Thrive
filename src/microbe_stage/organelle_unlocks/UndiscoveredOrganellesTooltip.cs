@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   The tooltip for undiscovered organelles

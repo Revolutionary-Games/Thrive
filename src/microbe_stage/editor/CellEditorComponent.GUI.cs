@@ -241,7 +241,6 @@ public partial class CellEditorComponent
             if (tooltip != null)
             {
                 tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
-                tooltip.RequiresUnlocking = organelle.UnlockRequirements(Editor.CurrentGame);
             }
         }
     }

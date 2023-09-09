@@ -481,6 +481,9 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
+    /// <summary>
+    ///   A bbcode string containing all the unlock conditions for this organelle.
+    /// </summary>
     public string UnlockRequirements(GameProperties game)
     {
         // TODO: translate

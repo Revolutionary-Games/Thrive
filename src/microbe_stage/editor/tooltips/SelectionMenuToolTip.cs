@@ -16,9 +16,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public NodePath MpLabelPath = null!;
 
     [Export]
-    public NodePath RequiresUnlockingPath = null!;
-
-    [Export]
     public NodePath RequiresNucleusPath = null!;
 
     [Export]
@@ -45,7 +42,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private Label? nameLabel;
     private Label? mpLabel;
     private Label? requiresNucleusLabel;
-    private CustomRichTextLabel? requiresUnlockingLabel;
     private CustomRichTextLabel? descriptionLabel;
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
@@ -57,7 +53,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string processesDescription = string.Empty;
     private int mpCost;
     private bool requiresNucleus;
-    private string? requiresUnlocking;
 
     [Export]
     public string DisplayName
@@ -133,17 +128,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public string? RequiresUnlocking
-    {
-        get => requiresUnlocking;
-        set
-        {
-            requiresUnlocking = value;
-            UpdateRequiresUnlocking();
-        }
-    }
-
-    [Export]
     public float DisplayDelay { get; set; }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
@@ -159,7 +143,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
         requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
-        requiresUnlockingLabel = GetNode<CustomRichTextLabel>(RequiresUnlockingPath);
         descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
@@ -304,7 +287,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 NameLabelPath.Dispose();
                 MpLabelPath.Dispose();
                 RequiresNucleusPath.Dispose();
-                RequiresUnlockingPath.Dispose();
                 DescriptionLabelPath.Dispose();
                 ProcessesDescriptionLabelPath.Dispose();
                 ModifierListPath.Dispose();
@@ -375,16 +357,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             return;
 
         requiresNucleusLabel.Visible = requiresNucleus;
-    }
-
-    private void UpdateRequiresUnlocking()
-    {
-        if (requiresUnlockingLabel == null)
-            return;
-
-        requiresUnlockingLabel.Visible = requiresUnlocking != null;
-        if (requiresUnlocking != null)
-            requiresUnlockingLabel.ExtendedBbcode = RequiresUnlocking;
     }
 
     private void UpdateLists()

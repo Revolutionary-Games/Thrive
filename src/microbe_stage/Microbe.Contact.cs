@@ -243,9 +243,6 @@ public partial class Microbe
     [JsonProperty]
     public Action<Microbe, IHUDMessage>? OnNoticeMessage { get; set; }
 
-    public IEnumerable<OrganelleDefinition>? UnlocksOrganelles =>
-        organelles?.Select(placedOrganelle => placedOrganelle.Definition);
-
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
     ///   membrane rigidity into account.
@@ -924,11 +921,6 @@ public partial class Microbe
             // Will only loop if there are still organelles available
             while (organellesAvailableEnumerator.MoveNext() && organellesAvailableEnumerator.Current != null)
             {
-                chunkType.UnlocksOrganelles = new List<OrganelleDefinition>
-                {
-                    organellesAvailableEnumerator.Current.Definition,
-                };
-
                 if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                 {
                     sceneToUse.LoadedScene =
