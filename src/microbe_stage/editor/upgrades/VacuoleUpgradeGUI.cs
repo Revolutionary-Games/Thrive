@@ -35,7 +35,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         compounds.Clear();
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         shownChoices = SimulationParameters.Instance.GetAllCompounds().Values.ToList();
 
