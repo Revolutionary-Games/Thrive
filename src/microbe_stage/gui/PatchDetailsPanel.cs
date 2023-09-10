@@ -242,18 +242,20 @@ public class PatchDetailsPanel : PanelContainer
             return;
         }
 
-        if (SelectedPatch.Known && !SelectedPatch.Discovered)
+        if (!SelectedPatch.Discovered)
         {
-            details.Visible = true;
+            details.Visible = false;
             nothingSelected.Visible = false;
             unknownPatch.Visible = true;
         }
+        else
+        {
+            details.Visible = true;
+            nothingSelected.Visible = false;
+            unknownPatch.Visible = false;
 
-        details.Visible = true;
-        nothingSelected.Visible = false;
-        unknownPatch.Visible = false;
-
-        UpdatePatchDetails();
+            UpdatePatchDetails();
+        }
 
         if (moveToPatchButton != null)
         {

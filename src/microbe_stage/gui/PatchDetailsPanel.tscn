@@ -75,6 +75,7 @@ GlucoseSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/V
 IronSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/Situation")
 AmmoniaSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia/Situation")
 PhosphateSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/Situation")
+UnknownPatchPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 1.0

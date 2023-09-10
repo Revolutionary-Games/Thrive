@@ -88,9 +88,16 @@ public class Patch
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
 
+    /// <summary>
+    ///   True if player has entered the patch
+    /// </summary>
     [JsonProperty]
     public bool Discovered { get; private set; }
 
+    /// <summary>
+    ///   True if the player knows the patch exists,
+    ///   this is the case if the patch is adjacent to a already discovered patch
+    /// </summary>
     [JsonProperty]
     public bool Known { get; set; }
 
