@@ -58,6 +58,9 @@ public class PatchRegion
     [JsonProperty]
     public float Width { get; set; }
 
+    [JsonProperty]
+    public bool Discovered { get; private set; }
+
     [JsonIgnore]
     public Vector2 Size
     {
@@ -103,5 +106,10 @@ public class PatchRegion
     public bool AddNeighbour(PatchRegion region)
     {
         return Adjacent.Add(region);
+    }
+
+    public void SetDiscovered()
+    {
+        Discovered = true;
     }
 }

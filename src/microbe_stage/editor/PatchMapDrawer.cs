@@ -353,6 +353,9 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in region.Adjacent)
             {
+                if (!region.Discovered)
+                    continue;
+
                 var connectionKey = new Int2(region.ID, adjacent.ID);
                 var reverseConnectionKey = new Int2(adjacent.ID, region.ID);
 
@@ -707,6 +710,9 @@ public class PatchMapDrawer : Control
 
         foreach (var region in map.Regions.Values)
         {
+            if (!region.Discovered)
+                continue;
+
             DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
                 Colors.DarkCyan, false, Constants.PATCH_REGION_BORDER_WIDTH);
         }
@@ -722,6 +728,12 @@ public class PatchMapDrawer : Control
                 // Only draw connections if patches belong to the same region
                 if (patch.Region.ID == adjacent.Region.ID)
                 {
+                    if (!patch.Region.Discovered)
+                        continue;
+
+                    if (!patch.Discovered || !adjacent.Discovered)
+                        continue;
+
                     var start = PatchCenter(patch.ScreenCoordinates);
                     var end = PatchCenter(adjacent.ScreenCoordinates);
 
@@ -766,6 +778,8 @@ public class PatchMapDrawer : Control
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? entry.Value.Discovered;
+
+            node.Discovered = entry.Value.Discovered;
 
             AddChild(node);
             nodes.Add(node.Patch, node);

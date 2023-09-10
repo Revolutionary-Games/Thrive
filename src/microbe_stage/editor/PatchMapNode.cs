@@ -60,6 +60,11 @@ public class PatchMapNode : MarginContainer
     private bool enabled = true;
 
     /// <summary>
+    ///   True if the patch is visible 
+    /// </summary>
+    private bool discovered;
+
+    /// <summary>
     ///   True if the patch is adjacent to the selected patch
     /// </summary>
     private bool adjacentToSelectedPatch;
@@ -98,6 +103,17 @@ public class PatchMapNode : MarginContainer
 
             UpdateSelectHighlightRing();
             UpdateGreyscale();
+        }
+    }
+
+    public bool Discovered
+    {
+        get => discovered;
+        set
+        {
+            discovered = value;
+
+            UpdateVisibility();
         }
     }
 
@@ -174,6 +190,7 @@ public class PatchMapNode : MarginContainer
         UpdateMarkRing();
         UpdateIcon();
         UpdateGreyscale();
+        UpdateVisibility();
     }
 
     public override void _Process(float delta)
@@ -278,5 +295,10 @@ public class PatchMapNode : MarginContainer
             return;
 
         iconRect.Material = Enabled ? null : MonochromeMaterial;
+    }
+
+    private void UpdateVisibility()
+    {
+        Visible = discovered;
     }
 }

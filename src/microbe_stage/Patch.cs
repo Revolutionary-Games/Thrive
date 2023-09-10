@@ -468,6 +468,7 @@ public class Patch
     public void SetDiscovered()
     {
         Discovered = true;
+        Region.SetDiscovered();
 
         foreach (Patch patch in Adjacent)
         {
