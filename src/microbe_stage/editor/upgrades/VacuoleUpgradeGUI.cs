@@ -60,7 +60,8 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             Compound? specialization = shownChoices.Find(c => c == configuration.SpecializationFor);
             isSpecializedCheckbox.Pressed = specialization != null;
 
-            compounds.Selected = specialization != null ? shownChoices.IndexOf(specialization) :
+            compounds.Selected = specialization != null ?
+                shownChoices.IndexOf(specialization) :
                 shownChoices.FindIndex(c => c.InternalName == "glucose");
         }
         else
