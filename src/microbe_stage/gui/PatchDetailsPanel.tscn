@@ -123,6 +123,21 @@ text = "SELECT_A_PATCH"
 align = 1
 autowrap = true
 
+[node name="UnknownPatch" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+margin_right = 324.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch"]
+margin_right = 324.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "UNKNOWN_PATCH"
+align = 1
+autowrap = true
+
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_right = 330.0
 margin_bottom = 536.0

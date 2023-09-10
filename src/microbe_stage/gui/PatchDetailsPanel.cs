@@ -90,10 +90,14 @@ public class PatchDetailsPanel : PanelContainer
     [Export]
     public NodePath PhosphateSituationPath = null!;
 
+    [Export]
+    public NodePath UnknownPatchPath = null!;
+
 #pragma warning disable CA2213
     private Control nothingSelected = null!;
     private Control details = null!;
     private Control playerHere = null!;
+    private Control unknownPatch = null!;
     private Label name = null!;
     private Label biome = null!;
     private Label depth = null!;
@@ -183,6 +187,7 @@ public class PatchDetailsPanel : PanelContainer
         nothingSelected = GetNode<Control>(NothingSelectedPath);
         details = GetNode<Control>(DetailsPath);
         playerHere = GetNode<Control>(PlayerHerePath);
+        unknownPatch = GetNode<Control>(UnknownPatchPath);
         name = GetNode<Label>(NamePath);
         biome = GetNode<Label>(BiomePath);
         depth = GetNode<Label>(DepthPath);
@@ -232,12 +237,21 @@ public class PatchDetailsPanel : PanelContainer
         {
             details.Visible = false;
             nothingSelected.Visible = true;
+            unknownPatch.Visible = false;
 
             return;
         }
 
+        if (SelectedPatch.Known && !SelectedPatch.Discovered)
+        {
+            details.Visible = true;
+            nothingSelected.Visible = false;
+            unknownPatch.Visible = true;
+        }
+
         details.Visible = true;
         nothingSelected.Visible = false;
+        unknownPatch.Visible = false;
 
         UpdatePatchDetails();
 
@@ -282,6 +296,7 @@ public class PatchDetailsPanel : PanelContainer
                 IronSituationPath.Dispose();
                 AmmoniaSituationPath.Dispose();
                 PhosphateSituationPath.Dispose();
+                UnknownPatchPath.Dispose();
             }
         }
 

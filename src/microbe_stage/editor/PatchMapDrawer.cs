@@ -734,7 +734,7 @@ public class PatchMapDrawer : Control
                     if (!patch.Region.Discovered)
                         continue;
 
-                    if (!patch.Discovered || !adjacent.Discovered)
+                    if (!patch.Known || !adjacent.Known)
                         continue;
 
                     var start = PatchCenter(patch.ScreenCoordinates);
