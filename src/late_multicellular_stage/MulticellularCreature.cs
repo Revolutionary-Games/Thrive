@@ -541,7 +541,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
                 if (target is IConstructable
                     {
                         Completed: false, HasRequiredResourcesToConstruct: true
-                    } constructable)
+                    }
+
+                    constructable)
                 {
                     // Start action for constructing, the action when finished will pick what it does based on the
                     // target entity
