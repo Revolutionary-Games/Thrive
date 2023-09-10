@@ -54,7 +54,7 @@ public class CompoundBag : ICompoundStorage
 
     public void SetCapacityForCompound(Compound compound, float capacity)
     {
-        compoundCapacities ??= new();
+        compoundCapacities ??= new Dictionary<Compound, float>();
         compoundCapacities[compound] = capacity;
     }
 
