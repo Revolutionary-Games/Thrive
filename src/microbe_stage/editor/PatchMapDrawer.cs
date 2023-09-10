@@ -51,6 +51,8 @@ public class PatchMapDrawer : Control
     [Signal]
     public delegate void OnCurrentPatchCentered(Vector2 coordinates, bool smoothed);
 
+    public bool Freebuild { get; set; }
+
     public PatchMap? Map
     {
         get => map;
@@ -356,7 +358,7 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in region.Adjacent)
             {
-                if (!region.Discovered)
+                if (!region.Discovered && !Freebuild)
                     continue;
 
                 var connectionKey = new Int2(region.ID, adjacent.ID);
@@ -713,7 +715,7 @@ public class PatchMapDrawer : Control
 
         foreach (var region in map.Regions.Values)
         {
-            if (!region.Discovered)
+            if (!region.Discovered && !Freebuild)
                 continue;
 
             DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
@@ -731,10 +733,10 @@ public class PatchMapDrawer : Control
                 // Only draw connections if patches belong to the same region
                 if (patch.Region.ID == adjacent.Region.ID)
                 {
-                    if (!patch.Region.Discovered)
+                    if (!patch.Region.Discovered && !Freebuild)
                         continue;
 
-                    if (!patch.Known || !adjacent.Known)
+                    if ((!patch.Known || !adjacent.Known) && !Freebuild)
                         continue;
 
                     var start = PatchCenter(patch.ScreenCoordinates);
@@ -768,6 +770,9 @@ public class PatchMapDrawer : Control
         foreach (var entry in Map.Patches)
         {
             var node = (PatchMapNode)nodeScene.Instance();
+
+            if (Freebuild)
+                entry.Value.SetDiscovered();
 
             // This renders the patch as a question mark if the patch is known to
             // exist but has not been entered by the player

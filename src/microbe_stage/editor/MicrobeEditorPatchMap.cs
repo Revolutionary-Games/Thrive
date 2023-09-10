@@ -8,6 +8,7 @@ public class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
     protected override void UpdateShownPatchDetails()
     {
         base.UpdateShownPatchDetails();
+        mapDrawer.Freebuild = Editor.FreeBuilding;
 
         var patch = mapDrawer.SelectedPatch;
 
