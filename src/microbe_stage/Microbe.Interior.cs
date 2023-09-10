@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AngleSharp.Dom;
 using Godot;
 using Newtonsoft.Json;
 
@@ -1362,9 +1361,9 @@ public partial class Microbe
         int sign = negative ? -1 : 1;
 
         if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
-            storage.IsSpecialized)
+            storage.SpecializationFor != null)
         {
-            Compound specialization = storage.Specialization;
+            Compound specialization = storage.SpecializationFor;
             additionalCompoundCapacities.TryGetValue(specialization, out var existing);
             additionalCompoundCapacities[specialization] = existing + organelle.StorageCapacity * 2 * sign;
         }
@@ -1381,7 +1380,7 @@ public partial class Microbe
     /// </summary>
     private void UpdateCompoundBagCapacities()
     {
-        Compounds.SetNominalCapacity(organellesCapacity);
+        Compounds.NominalCapacity = organellesCapacity;
 
         foreach (var entry in additionalCompoundCapacities)
             Compounds.SetCapacityForCompound(entry.Key, entry.Value + organellesCapacity);

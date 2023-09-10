@@ -13,15 +13,20 @@ public class CompoundBag : ICompoundStorage
     private readonly HashSet<Compound> usefulCompounds = new();
 
     [JsonProperty]
-    private float nominalCapacity;
-
-    [JsonProperty]
     private Dictionary<Compound, float>? compoundCapacities;
 
     public CompoundBag(float nominalCapacity)
     {
-        SetNominalCapacity(nominalCapacity);
+        NominalCapacity = nominalCapacity;
     }
+
+
+    /// <summary>
+    ///   Stores the default capacity for all compounds that do
+    ///   not have a specific capacity set in <see cref="compoundCapacities"/>
+    /// </summary>
+    [JsonProperty]
+    public float NominalCapacity { get; set; }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
@@ -33,7 +38,10 @@ public class CompoundBag : ICompoundStorage
     /// <summary>
     ///   Gets the capacity for a given compound
     /// </summary>
-    /// <returns>Returns CompoundCapacities[compound] if the compound is useful, otherwise 0</returns>
+    /// <returns>
+    ///   Returns compoundCapacities[compound] if the compound has a specific capacity set,
+    ///   or nominalCapacity if the compound is useful, otherwise 0
+    /// </returns>
     public float GetCapacityForCompound(Compound compound)
     {
         if (!IsUseful(compound))
@@ -42,15 +50,7 @@ public class CompoundBag : ICompoundStorage
         if (compoundCapacities != null && compoundCapacities.TryGetValue(compound, out var capacity))
             return capacity;
 
-        return nominalCapacity;
-    }
-
-    /// <summary>
-    ///   Sets the capacity for all compounds
-    /// </summary>
-    public void SetNominalCapacity(float capacity)
-    {
-        nominalCapacity = capacity;
+        return NominalCapacity;
     }
 
     public void SetCapacityForCompound(Compound compound, float capacity)

@@ -33,18 +33,15 @@ public class StorageComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class StorageComponentUpgrades : IComponentSpecificUpgrades
 {
-    public StorageComponentUpgrades(bool isSpecialized, Compound specialization)
+    public StorageComponentUpgrades(Compound? specializationFor)
     {
-        Specialization = specialization;
-        IsSpecialized = isSpecialized;
+        SpecializationFor = specializationFor;
     }
 
-    public Compound Specialization { get; set; }
-
-    public bool IsSpecialized { get; set; }
+    public Compound? SpecializationFor { get; set; }
 
     public object Clone()
     {
-        return new StorageComponentUpgrades(IsSpecialized, Specialization);
+        return new StorageComponentUpgrades(SpecializationFor);
     }
 }

@@ -57,8 +57,11 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades configuration)
         {
-            compounds.Selected = shownChoices.FindIndex(c => c == configuration.Specialization);
-            isSpecializedCheckbox.Pressed = configuration.IsSpecialized;
+            Compound? specialization = shownChoices.Find(c => c == configuration.SpecializationFor);
+            isSpecializedCheckbox.Pressed = specialization != null;
+
+            compounds.Selected = specialization != null ? shownChoices.IndexOf(specialization) :
+                shownChoices.FindIndex(c => c.InternalName == "glucose");
         }
         else
         {
@@ -81,8 +84,8 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (compounds.Selected == -1)
             compounds.Selected = 0;
 
-        organelleUpgrades.CustomUpgradeData =
-            new StorageComponentUpgrades(isSpecializedCheckbox.Pressed, shownChoices[compounds.Selected]);
+        organelleUpgrades.CustomUpgradeData = new StorageComponentUpgrades(
+                isSpecializedCheckbox.Pressed ? shownChoices[compounds.Selected] : null);
 
         return true;
     }
