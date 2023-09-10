@@ -684,9 +684,8 @@ public class MicrobeAI
         IEnumerable<Compound> usefulCompounds = microbe.Compounds.Compounds.Keys;
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-        if (usefulCompounds.Any(
-            compound => IsVitalCompound(compound) && microbe.Compounds.GetCompoundAmount(compound) < 0.5f
-            * microbe.Compounds.GetCapacityForCompound(compound)))
+        if (usefulCompounds.Any(c => IsVitalCompound(c) && microbe.Compounds.GetCompoundAmount(c) < 0.5f
+                * microbe.Compounds.GetCapacityForCompound(c)))
         {
             usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
         }
