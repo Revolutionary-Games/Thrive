@@ -17,33 +17,28 @@ IsSpecializedCheckboxPath = NodePath("CheckBox")
 CompoundDescriptionPath = NodePath("Description")
 CompoundSelectionPath = NodePath("CompoundSelection")
 
-[node name="Label2" type="Label" parent="."]
+[node name="CheckBox" type="CheckBox" parent="."]
 margin_right = 400.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "VACUOLE_IS_SPECIALIZED"
 
-[node name="CheckBox" type="CheckBox" parent="."]
+[node name="Spacer2" type="Control" parent="."]
 margin_top = 21.0
 margin_right = 400.0
-margin_bottom = 46.0
-
-[node name="Spacer2" type="Control" parent="."]
-margin_top = 50.0
-margin_right = 400.0
-margin_bottom = 55.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="CompoundSelection" type="VBoxContainer" parent="."]
-margin_top = 59.0
+margin_top = 30.0
 margin_right = 400.0
-margin_bottom = 108.0
+margin_bottom = 79.0
 
 [node name="Label" type="Label" parent="CompoundSelection"]
 margin_right = 400.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
-text = "SELECT_VACUOLE_COMPOUND"
+text = "SELECT_VACUOLE_COMPOUND_COLON"
 
 [node name="OptionButton" type="OptionButton" parent="CompoundSelection"]
 margin_top = 21.0
@@ -57,10 +52,14 @@ margin_bottom = 49.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Description" type="Label" parent="."]
-margin_top = 112.0
+margin_top = 83.0
 margin_right = 400.0
-margin_bottom = 129.0
+margin_bottom = 100.0
 custom_fonts/font = ExtResource( 3 )
+text = "DESCRIPTION GOES HERE"
 autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [connection signal="toggled" from="CheckBox" to="." method="OnIsSpecializedToggled"]
