@@ -256,7 +256,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         return Equals((object)other);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj))
             return true;
@@ -351,7 +351,7 @@ public class AverageProcessStatistics : IProcessDisplayInfo
         return Equals((object)other);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj))
             return true;

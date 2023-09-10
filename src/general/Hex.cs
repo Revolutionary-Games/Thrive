@@ -247,7 +247,7 @@ public struct Hex : IEquatable<Hex>
         return Q == other.Q && R == other.R;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (!(obj is Hex hex))
             return false;

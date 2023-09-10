@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-03 19:34+0200\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1062,6 +1062,8 @@ msgstr "Compilado en:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1099,7 +1101,7 @@ msgstr "Las concentraciones de {0} han descendido por un {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo de: {0}"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "Compuestos a encontrar:"
 
@@ -3364,7 +3366,7 @@ msgstr "Muy grande"
 msgid "LIMIT_VERY_SMALL"
 msgstr "Muy pequeño"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 msgid "LINE_COLOUR"
 msgstr "Color de la línea:"
 
@@ -3873,7 +3875,7 @@ msgstr "Clic central"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Cantidad mínima para detectar:"
 
@@ -4430,12 +4432,12 @@ msgstr "No hay nada con lo que interactuar"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Dañado por no tener nada de ATP"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1547
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 #, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Dañado por toxinas en la materia ingerida"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1493
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 #, fuzzy
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Falta {0} para engullir al objetivo"
@@ -5689,7 +5691,7 @@ msgstr "Bloq Despl"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Buscar..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Buscan en el radio:"
 
@@ -5981,7 +5983,7 @@ msgstr "Crear amoníaco"
 msgid "SPAWN_ENEMY"
 msgstr "Enemigo aparecido"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No puedes usar el comando ya que el medio actual no contiene especies enemigas"
 
@@ -6002,6 +6004,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Botón especial de mouse 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 msgid "SPECIES"
 msgstr "Especies"
 
@@ -6056,6 +6059,11 @@ msgstr "Mínimo de población para que una especie se divida en multiples especi
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Mínimo de población para que una fracción de la especie pueda separarse por mutación"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Especies:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -6362,6 +6370,11 @@ msgstr "No se ha indicado ninguna etiqueta"
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Tomar una captura de pantalla"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "Tipo:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 #, fuzzy

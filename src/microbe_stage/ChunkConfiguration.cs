@@ -61,7 +61,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         return !(left == right);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is ChunkConfiguration other)
         {
@@ -109,7 +109,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             return !(left == right);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is ChunkCompound other)
             {

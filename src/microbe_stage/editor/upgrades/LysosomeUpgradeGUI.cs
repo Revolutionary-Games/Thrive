@@ -14,7 +14,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private Label description = null!;
 #pragma warning restore CA2213
 
-    private List<Enzyme>? shownChoices;
+    private IReadOnlyList<Enzyme>? shownChoices;
 
     public override void _Ready()
     {
@@ -24,7 +24,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         enzymes.Clear();
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         shownChoices = SimulationParameters.Instance.GetHydrolyticEnzymes();
 

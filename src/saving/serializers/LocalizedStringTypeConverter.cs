@@ -20,8 +20,11 @@ public class LocalizedStringTypeConverter : TypeConverter
         return destinationType == LocalizedType;
     }
 
-    public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
     {
+        if (value == null)
+            return null;
+
         return new LocalizedString((string)value);
     }
 

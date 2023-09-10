@@ -29,7 +29,9 @@ public class SystemVector4ArrayConverter : JsonConverter
         var elementSize = 4 * sizeof(float);
         var header = sizeof(int) * 2;
 
-        using var stream = new MemoryStream { Capacity = (elementSize * width * height) + header };
+        using var stream = new MemoryStream();
+        stream.Capacity = elementSize * width * height + header;
+
         using var dataWriter = new BinaryWriter(stream);
 
         dataWriter.Write(width);
