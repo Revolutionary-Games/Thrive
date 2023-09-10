@@ -88,6 +88,9 @@ public class Patch
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
 
+    [JsonProperty]
+    public bool Discovered { get; private set; }
+
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
@@ -460,6 +463,16 @@ public class Patch
     public override string ToString()
     {
         return $"Patch \"{Name}\"";
+    }
+
+    public void SetDiscovered()
+    {
+        Discovered = true;
+
+        foreach (Patch patch in Adjacent)
+        {
+            patch.Discovered = true;
+        }
     }
 
     private float GetAmbientCompound(Compound compound, CompoundAmountType option)

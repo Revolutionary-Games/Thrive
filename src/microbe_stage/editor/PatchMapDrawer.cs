@@ -758,13 +758,14 @@ public class PatchMapDrawer : Control
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
             node.Patch = entry.Value;
+
             node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
 
             node.MonochromeMaterial = MonochromeMaterial;
 
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 
-            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
+            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? entry.Value.Discovered;
 
             AddChild(node);
             nodes.Add(node.Patch, node);

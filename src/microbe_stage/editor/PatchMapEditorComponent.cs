@@ -260,8 +260,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void UpdatePlayerPatch(Patch? patch)
     {
+        patch?.SetDiscovered();
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
         detailsPanel.CurrentPatch = mapDrawer.PlayerPatch;
+
+        mapDrawer.MarkDirty();
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
