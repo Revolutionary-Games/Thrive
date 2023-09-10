@@ -20,7 +20,6 @@ public class CompoundBag : ICompoundStorage
         NominalCapacity = nominalCapacity;
     }
 
-
     /// <summary>
     ///   Stores the default capacity for all compounds that do
     ///   not have a specific capacity set in <see cref="compoundCapacities"/>
