@@ -17,6 +17,9 @@ public class PatchMapDrawer : Control
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
 
+    [Export]
+    public Texture? UnknownPatchTexture;
+
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -765,21 +768,30 @@ public class PatchMapDrawer : Control
         foreach (var entry in Map.Patches)
         {
             var node = (PatchMapNode)nodeScene.Instance();
+
+            // This renders the patch as a question mark if the patch is known to
+            // exist but has not been entered by the player
+            var setAsUnknown = !entry.Value.Discovered && entry.Value.Known;
+
             node.MarginLeft = entry.Value.ScreenCoordinates.x;
             node.MarginTop = entry.Value.ScreenCoordinates.y;
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
+            node.Discovered = entry.Value.Discovered || setAsUnknown;
+
             node.Patch = entry.Value;
 
-            node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
+            node.PatchIcon = setAsUnknown ?
+                UnknownPatchTexture :
+                entry.Value.BiomeTemplate.LoadedIcon;
 
             node.MonochromeMaterial = MonochromeMaterial;
 
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 
-            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? entry.Value.Discovered;
+            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
-            node.Discovered = entry.Value.Discovered;
+            node.RenderQuestionMark = setAsUnknown;
 
             AddChild(node);
             nodes.Add(node.Patch, node);

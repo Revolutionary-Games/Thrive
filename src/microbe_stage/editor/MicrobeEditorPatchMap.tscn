@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=1]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/abyss.png" type="Texture" id=5]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=14]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=18]
@@ -125,6 +126,7 @@ margin_right = 1500.0
 margin_bottom = 1500.0
 rect_min_size = Vector2( 1500, 1500 )
 DrawDefaultMapIfEmpty = false
+UnknownPatchTexture = ExtResource( 5 )
 MonochromeMaterial = SubResource( 28 )
 
 [node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]

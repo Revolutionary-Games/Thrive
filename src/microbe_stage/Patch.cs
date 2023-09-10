@@ -91,6 +91,9 @@ public class Patch
     [JsonProperty]
     public bool Discovered { get; private set; }
 
+    [JsonProperty]
+    public bool Known { get; set; }
+
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
@@ -468,11 +471,12 @@ public class Patch
     public void SetDiscovered()
     {
         Discovered = true;
+        Known = true;
         Region.SetDiscovered();
 
         foreach (Patch patch in Adjacent)
         {
-            patch.Discovered = true;
+            patch.Known = true;
         }
     }
 

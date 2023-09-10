@@ -27,6 +27,13 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath AdjacentPanelPath = null!;
 
+    /// <summary>
+    ///  For patches adjacent to a discovered patch that
+    ///  have not been entered by the player
+    /// </summary>
+    [Export]
+    public NodePath QuestionMarkLabelPath = null!;
+
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
 
@@ -35,6 +42,7 @@ public class PatchMapNode : MarginContainer
     private Panel? highlightPanel;
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
+    private Label? questionMarkLabel;
 #pragma warning restore CA2213
 
     private Texture? patchIcon;
@@ -60,9 +68,15 @@ public class PatchMapNode : MarginContainer
     private bool enabled = true;
 
     /// <summary>
-    ///   True if the patch is visible 
+    ///   True if the player has visited the patch
     /// </summary>
     private bool discovered;
+
+    /// <summary>
+    ///   True if the patch is adjasent to a discovered patch
+    ///   but has not been entered by the player
+    /// </summary>
+    private bool renderQuestionMark;
 
     /// <summary>
     ///   True if the patch is adjacent to the selected patch
@@ -112,8 +126,16 @@ public class PatchMapNode : MarginContainer
         set
         {
             discovered = value;
+            Visible = value;
+        }
+    }
 
-            UpdateVisibility();
+    public bool RenderQuestionMark
+    {
+        get => renderQuestionMark;
+        set
+        {
+            renderQuestionMark = value;
         }
     }
 
@@ -185,12 +207,15 @@ public class PatchMapNode : MarginContainer
         highlightPanel = GetNode<Panel>(HighlightPanelPath);
         markPanel = GetNode<Panel>(MarkPanelPath);
         adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
+        questionMarkLabel = GetNode<Label>(QuestionMarkLabelPath);
 
         UpdateSelectHighlightRing();
         UpdateMarkRing();
         UpdateIcon();
         UpdateGreyscale();
-        UpdateVisibility();
+
+        Visible = Discovered;
+        questionMarkLabel.Visible = RenderQuestionMark;
     }
 
     public override void _Process(float delta)
@@ -250,6 +275,7 @@ public class PatchMapNode : MarginContainer
                 HighlightPanelPath.Dispose();
                 MarkPanelPath.Dispose();
                 AdjacentPanelPath.Dispose();
+                QuestionMarkLabelPath.Dispose();
             }
         }
 
@@ -295,10 +321,5 @@ public class PatchMapNode : MarginContainer
             return;
 
         iconRect.Material = Enabled ? null : MonochromeMaterial;
-    }
-
-    private void UpdateVisibility()
-    {
-        Visible = discovered;
     }
 }
