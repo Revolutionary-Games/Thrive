@@ -359,9 +359,6 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in region.Adjacent)
             {
-                if (!region.Explored && !Freebuild)
-                    continue;
-
                 var connectionKey = new Int2(region.ID, adjacent.ID);
                 var reverseConnectionKey = new Int2(adjacent.ID, region.ID);
 
@@ -686,6 +683,9 @@ public class PatchMapDrawer : Control
         {
             var region1 = map.Regions[entry.Key.x];
             var region2 = map.Regions[entry.Key.y];
+
+            if (!region1.Explored && !Freebuild)
+                continue;
 
             var points = entry.Value;
             for (int i = 1; i < points.Length; i++)
