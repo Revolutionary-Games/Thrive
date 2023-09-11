@@ -24,10 +24,10 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
     "unlockConditions": [
       {
-        "EngulfedMicrobesAbove": 5
+        "engulfedMicrobesAbove": 5
       },
       {
-        "PlayerDeathsAbove": 3
+        "playerDeathsAbove": 3
       }
     ],
     "editorButtonGroup": "External",
@@ -98,9 +98,9 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
     "unlockConditions": [
       {
-        "BiomeCompound": {
-          "Compound": "ammonia",
-          "Max": 5
+        "biomeCompound": {
+          "compound": "ammonia",
+          "max": 5
         }
       }
     ],
@@ -206,10 +206,10 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
     "unlockConditions": [
       {
-        "EngulfedMicrobesAbove": 5
+        "engulfedMicrobesAbove": 5
       },
       {
-        "PlayerDeathsAbove": 3
+        "playerDeathsAbove": 3
       }
     ],
     "editorButtonGroup": "Protein",
@@ -246,9 +246,9 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
     "unlockConditions": [
       {
-        "BiomeCompound": {
-          "Compound": "sunlight",
-          "Min": 20
+        "biomeCompound": {
+          "compound": "sunlight",
+          "min": 20
         }
       }
     ],
@@ -352,9 +352,9 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
     "unlockConditions": [
       {
-        "BiomeCompound": {
-          "Compound": "temperature",
-          "Min": 90
+        "biomeCompound": {
+          "compound": "temperature",
+          "min": 90
         }
       }
     ],
@@ -430,10 +430,10 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
     "unlockConditions": [
       {
-        "ExcessAptAbove": 30
+        "excessAptAbove": 30
       },
       {
-        "BaseSpeedBelow": 30
+        "baseSpeedBelow": 30
       }
     ],
     "editorButtonGroup": "External",
@@ -502,10 +502,10 @@
     "requiresNucleus": true,
     "unlockConditions": [
       {
-        "AptAbove": 20,
-        "ReproducedWith": {
-          "Organelle": "metabolosome",
-          "Generations": 7
+        "aptAbove": 20,
+        "reproducedWith": {
+          "organelle": "metabolosome",
+          "generations": 7
         }
       }
     ],
@@ -615,9 +615,9 @@
     "requiresNucleus": true,
     "unlockConditions": [
       {
-        "ReproducedWith": {
-          "Organelle": "chromatophore",
-          "Generations": 5
+        "reproducedWith": {
+          "organelle": "chromatophore",
+          "generations": 5
         }
       }
     ],
@@ -829,10 +829,10 @@
     "requiresNucleus": true,
     "unlockConditions": [
       {
-        "ReproduceInBiome": "underwater_cave"
+        "reproduceInBiome": "underwater_cave"
       },
       {
-        "ReproduceInBiome": "abyssopelagic"
+        "reproduceInBiome": "abyssopelagic"
       }
     ],
     "editorButtonGroup": "Organelle",
