@@ -18,21 +18,6 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
     /// </summary>
     public IComponentSpecificUpgrades? CustomUpgradeData { get; set; }
 
-    public object Clone()
-    {
-        return new OrganelleUpgrades
-        {
-            UnlockedFeatures = new List<string>(UnlockedFeatures),
-            CustomUpgradeData = (IComponentSpecificUpgrades?)CustomUpgradeData?.Clone(),
-        };
-    }
-
-    public override int GetHashCode()
-    {
-        return (UnlockedFeatures.GetHashCode() * 3) ^
-            ((CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151);
-    }
-
     public bool Equals(OrganelleUpgrades other)
     {
         if (other == null)
@@ -48,5 +33,20 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
             return false;
 
         return CustomUpgradeData.Equals(other.CustomUpgradeData);
+    }
+
+    public object Clone()
+    {
+        return new OrganelleUpgrades
+        {
+            UnlockedFeatures = new List<string>(UnlockedFeatures),
+            CustomUpgradeData = (IComponentSpecificUpgrades?)CustomUpgradeData?.Clone(),
+        };
+    }
+
+    public override int GetHashCode()
+    {
+        return (UnlockedFeatures.GetHashCode() * 3) ^
+            ((CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151);
     }
 }

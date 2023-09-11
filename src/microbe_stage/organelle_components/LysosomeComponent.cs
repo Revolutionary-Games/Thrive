@@ -54,16 +54,16 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
 
     public Enzyme Enzyme { get; set; }
 
-    public object Clone()
-    {
-        return new LysosomeUpgrades(Enzyme);
-    }
-
     public bool Equals(IComponentSpecificUpgrades other)
     {
         if (other is not LysosomeUpgrades otherLysosome)
             return false;
 
         return Enzyme.InternalName.Equals(otherLysosome.Enzyme.InternalName);
+    }
+
+    public object Clone()
+    {
+        return new LysosomeUpgrades(Enzyme);
     }
 }

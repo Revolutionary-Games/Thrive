@@ -107,11 +107,6 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
     public float SearchAmount { get; set; }
     public Color LineColour { get; set; }
 
-    public object Clone()
-    {
-        return new ChemoreceptorUpgrades(TargetCompound, TargetSpecies, SearchRange, SearchAmount, LineColour);
-    }
-
     public bool Equals(IComponentSpecificUpgrades other)
     {
         if (other is not ChemoreceptorUpgrades otherChemoreceptor)
@@ -122,5 +117,10 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
             && SearchRange == otherChemoreceptor.SearchRange
             && SearchAmount == otherChemoreceptor.SearchAmount
             && LineColour == otherChemoreceptor.LineColour;
+    }
+
+    public object Clone()
+    {
+        return new ChemoreceptorUpgrades(TargetCompound, TargetSpecies, SearchRange, SearchAmount, LineColour);
     }
 }
