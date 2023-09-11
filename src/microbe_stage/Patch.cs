@@ -92,14 +92,14 @@ public class Patch
     ///   True if player has entered the patch
     /// </summary>
     [JsonProperty]
-    public bool Discovered { get; private set; }
+    public bool Explored { get; private set; }
 
     /// <summary>
-    ///   True if the player knows the patch exists,
-    ///   this is the case if the patch is adjacent to a already discovered patch
+    ///   True if the patch is discovered,
+    ///   this is the case if the patch is adjacent to a already explored patch
     /// </summary>
     [JsonProperty]
-    public bool Known { get; set; }
+    public bool Discovered { get; set; }
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
@@ -475,15 +475,15 @@ public class Patch
         return $"Patch \"{Name}\"";
     }
 
-    public void SetDiscovered()
+    public void SetExplored()
     {
+        Explored = true;
         Discovered = true;
-        Known = true;
-        Region.SetDiscovered();
+        Region.SetExplored();
 
         foreach (Patch patch in Adjacent)
         {
-            patch.Known = true;
+            patch.Discovered = true;
         }
     }
 

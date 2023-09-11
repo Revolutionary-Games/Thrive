@@ -260,7 +260,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void UpdatePlayerPatch(Patch? patch)
     {
-        patch?.SetDiscovered();
+        patch?.SetExplored();
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
         detailsPanel.CurrentPatch = mapDrawer.PlayerPatch;
 

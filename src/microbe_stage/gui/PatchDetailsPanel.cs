@@ -242,7 +242,7 @@ public class PatchDetailsPanel : PanelContainer
             return;
         }
 
-        if (!SelectedPatch.Discovered)
+        if (!SelectedPatch.Explored)
         {
             details.Visible = false;
             nothingSelected.Visible = false;

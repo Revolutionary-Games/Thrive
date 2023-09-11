@@ -315,9 +315,10 @@ public class PatchMapDrawer : Control
         return node;
     }
 
-    private bool ContainsSelectedPatch(PatchRegion region)
+    private bool ContainsSelectedExploredPatch(PatchRegion region)
     {
-        return region.Patches.Any(p => GetPatchNode(p)?.Selected == true);
+        return region.Patches.Any(p => GetPatchNode(p)?.Selected == true &&
+            GetPatchNode(p)?.IsUnknown == false);
     }
 
     private bool ContainsAdjacentToSelectedPatch(PatchRegion region)
@@ -327,8 +328,8 @@ public class PatchMapDrawer : Control
 
     private bool CheckHighlightedAdjacency(PatchRegion region1, PatchRegion region2)
     {
-        return (ContainsSelectedPatch(region1) && ContainsAdjacentToSelectedPatch(region2)) ||
-            (ContainsSelectedPatch(region2) && ContainsAdjacentToSelectedPatch(region1));
+        return (ContainsSelectedExploredPatch(region1) && ContainsAdjacentToSelectedPatch(region2)) ||
+            (ContainsSelectedExploredPatch(region2) && ContainsAdjacentToSelectedPatch(region1));
     }
 
     private Vector2 GetRightBottomCornerPointOnMap()
@@ -358,7 +359,7 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in region.Adjacent)
             {
-                if (!region.Discovered && !Freebuild)
+                if (!region.Explored && !Freebuild)
                     continue;
 
                 var connectionKey = new Int2(region.ID, adjacent.ID);
@@ -715,7 +716,7 @@ public class PatchMapDrawer : Control
 
         foreach (var region in map.Regions.Values)
         {
-            if (!region.Discovered && !Freebuild)
+            if (!region.Explored && !Freebuild)
                 continue;
 
             DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
@@ -733,10 +734,10 @@ public class PatchMapDrawer : Control
                 // Only draw connections if patches belong to the same region
                 if (patch.Region.ID == adjacent.Region.ID)
                 {
-                    if (!patch.Region.Discovered && !Freebuild)
+                    if (!patch.Region.Explored && !Freebuild)
                         continue;
 
-                    if ((!patch.Known || !adjacent.Known) && !Freebuild)
+                    if ((!patch.Discovered || !adjacent.Discovered) && !Freebuild)
                         continue;
 
                     var start = PatchCenter(patch.ScreenCoordinates);
@@ -772,17 +773,17 @@ public class PatchMapDrawer : Control
             var node = (PatchMapNode)nodeScene.Instance();
 
             if (Freebuild)
-                entry.Value.SetDiscovered();
+                entry.Value.SetExplored();
 
             // This renders the patch as a question mark if the patch is known to
             // exist but has not been entered by the player
-            var setAsUnknown = !entry.Value.Discovered && entry.Value.Known;
+            var setAsUnknown = !entry.Value.Explored && entry.Value.Discovered;
 
             node.MarginLeft = entry.Value.ScreenCoordinates.x;
             node.MarginTop = entry.Value.ScreenCoordinates.y;
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
-            node.Discovered = entry.Value.Discovered || setAsUnknown;
+            node.Explored = entry.Value.Explored || setAsUnknown;
 
             node.Patch = entry.Value;
 
@@ -796,7 +797,7 @@ public class PatchMapDrawer : Control
 
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
-            node.RenderQuestionMark = setAsUnknown;
+            node.IsUnknown = setAsUnknown;
 
             AddChild(node);
             nodes.Add(node.Patch, node);
@@ -839,7 +840,7 @@ public class PatchMapDrawer : Control
             node.Marked = node.Patch == playerPatch;
 
             if (SelectedPatch != null)
-                node.AdjacentToSelectedPatch = SelectedPatch.Adjacent.Contains(node.Patch);
+                node.AdjacentToSelectedPatch = SelectedPatch.Adjacent.Contains(node.Patch) && SelectedPatch.Explored;
         }
     }
 

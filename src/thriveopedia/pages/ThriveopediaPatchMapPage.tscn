@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/thriveopedia/pages/ThriveopediaPatchMapPage.cs" type="Script" id=1]
 [ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/abyss.png" type="Texture" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
@@ -62,6 +63,7 @@ margin_right = 1500.0
 margin_bottom = 1500.0
 rect_min_size = Vector2( 1500, 1500 )
 DrawDefaultMapIfEmpty = false
+UnknownPatchTexture = ExtResource( 9 )
 MonochromeMaterial = SubResource( 1 )
 
 [node name="VBoxContainer" type="HBoxContainer" parent="HSplitContainer/MapPanel/MarginContainer" index="1"]
