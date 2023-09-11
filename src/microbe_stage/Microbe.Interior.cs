@@ -1376,6 +1376,8 @@ public partial class Microbe
     {
         Compounds.NominalCapacity = organellesCapacity;
 
+        Compounds.ClearCapacities();
+
         foreach (var entry in additionalCompoundCapacities)
             Compounds.SetCapacityForCompound(entry.Key, entry.Value + organellesCapacity);
     }

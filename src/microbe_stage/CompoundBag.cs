@@ -120,6 +120,11 @@ public class CompoundBag : ICompoundStorage
         usefulCompounds.Clear();
     }
 
+    public void ClearCapacities()
+    {
+        compoundCapacities?.Clear();
+    }
+
     public void SetUseful(Compound compound)
     {
         usefulCompounds.Add(compound);
