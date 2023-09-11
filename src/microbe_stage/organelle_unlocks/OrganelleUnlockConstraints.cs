@@ -82,7 +82,14 @@ public class OrganelleUnlockConstraints
                 value.Append(new LocalizedString("UNLOCK_AND"));
             first = false;
 
+            if (constraint.Satisfied(world, energyBalance))
+                value.Append("[color=green]");
+            else
+                value.Append("[color=red]");
+
             constraint.Tooltip(world, energyBalance, value);
+
+            value.Append("[/color]");
         }
     }
 
