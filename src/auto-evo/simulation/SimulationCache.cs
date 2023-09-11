@@ -31,8 +31,7 @@
 
         private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
 
-        // TODO : investigate using the hashcode of the organelle template as well, but possibly without orientation and position)
-        private readonly Dictionary<(OrganelleTemplate, BiomeConditions, Compound), float>
+        private readonly Dictionary<(OrganelleDefinition, BiomeConditions, Compound), float>
             cachedEnergyCreationScoreForOrganelle = new();
 
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float>
@@ -128,7 +127,7 @@
             return cached;
         }
 
-        public float GetEnergyCreationScoreForOrganelle(OrganelleTemplate organelle, BiomeConditions biomeConditions,
+        public float GetEnergyCreationScoreForOrganelle(OrganelleDefinition organelle, BiomeConditions biomeConditions,
             Compound compound)
         {
             var key = (organelle, biomeConditions, compound);
@@ -138,7 +137,7 @@
             var energyCreationScore = 0.0f;
 
             // We check generation from all processes of the cell
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            foreach (var process in organelle.RunnableProcesses)
             {
                 // ... that uses the given compound...
                 if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
@@ -201,7 +200,7 @@
             // We check generation from all the processes of the cell.
             foreach (var organelle in species.Organelles)
             {
-                energyCreationScore += GetEnergyCreationScoreForOrganelle(organelle, biomeConditions, compound);
+                energyCreationScore += GetEnergyCreationScoreForOrganelle(organelle.Definition, biomeConditions, compound);
             }
 
             cachedEnergyCreationScoreForSpecies.Add(key, energyCreationScore);
