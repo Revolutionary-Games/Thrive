@@ -49,7 +49,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         // Select glucose by default
         var defaultCompoundIndex =
-            shownChoices.FindIndex(c => c.InternalName == "glucose");
+            shownChoices.FindIndex(c => c.InternalName == Constants.VACUOLE_DEFAULT_COMPOUND_NAME);
 
         if (defaultCompoundIndex < 0)
             defaultCompoundIndex = 0;
@@ -57,12 +57,12 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades configuration)
         {
-            Compound? specialization = shownChoices.Find(c => c == configuration.SpecializationFor);
+            Compound? specialization = shownChoices.Find(c => c == configuration.SpecializedFor);
             isSpecializedCheckbox.Pressed = specialization != null;
 
             compounds.Selected = specialization != null ?
                 shownChoices.IndexOf(specialization) :
-                shownChoices.FindIndex(c => c.InternalName == "glucose");
+                defaultCompoundIndex;
         }
         else
         {

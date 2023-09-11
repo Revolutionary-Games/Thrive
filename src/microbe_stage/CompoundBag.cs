@@ -21,7 +21,7 @@ public class CompoundBag : ICompoundStorage
     }
 
     /// <summary>
-    ///   Stores the default capacity for all compounds that do
+    ///   Specifies the default capacity for all compounds that do
     ///   not have a specific capacity set in <see cref="compoundCapacities"/>
     /// </summary>
     [JsonProperty]
@@ -38,8 +38,7 @@ public class CompoundBag : ICompoundStorage
     ///   Gets the capacity for a given compound
     /// </summary>
     /// <returns>
-    ///   Returns compoundCapacities[compound] if the compound has a specific capacity set,
-    ///   or nominalCapacity if the compound is useful, otherwise 0
+    ///   Returns the capacity this bag has for storing the compound if it is useful, otherwise 0
     /// </returns>
     public float GetCapacityForCompound(Compound compound)
     {

@@ -76,9 +76,8 @@ public partial class Microbe
     private float organellesCapacity;
 
     /// <summary>
-    ///   Stores additional capacity for compounds outside of
-    ///   organellesCapacity. Currently, this only stores
-    ///   additional capacity granted form specialized vacuoles
+    ///   Stores additional capacity for compounds outside of organellesCapacity. Currently, this only stores
+    ///   additional capacity granted from specialized vacuoles
     /// </summary>
     private Dictionary<Compound, float> additionalCompoundCapacities = new();
 
@@ -1347,23 +1346,19 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Updates <see cref="organellesCapacity"/>
-    ///   and <see cref="additionalCompoundCapacities"/>
+    ///   Updates <see cref="organellesCapacity"/> and <see cref="additionalCompoundCapacities"/>
     ///   to take into account the addition or removal of an organelle
     /// </summary>
     /// <param name="organelle">The organelle being placed or removed</param>
-    /// <param name="negative">
-    ///   Should be true if the organelle is being removed,
-    ///   otherwise false
-    /// </param>
+    /// <param name="negative"> Should be true if the organelle is being removed, otherwise false </param>
     private void UpdateCapacity(PlacedOrganelle organelle, bool negative)
     {
         int sign = negative ? -1 : 1;
 
         if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
-            storage.SpecializationFor != null)
+            storage.SpecializedFor != null)
         {
-            Compound specialization = storage.SpecializationFor;
+            Compound specialization = storage.SpecializedFor;
             additionalCompoundCapacities.TryGetValue(specialization, out var existing);
             additionalCompoundCapacities[specialization] = existing + organelle.StorageCapacity * 2 * sign;
         }
@@ -1374,8 +1369,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Updates <see cref="Compounds"/> to adjust for changes in
-    ///   <see cref="organellesCapacity"/> and
+    ///   Updates <see cref="Compounds"/> to adjust for changes in <see cref="organellesCapacity"/> and
     ///   <see cref="additionalCompoundCapacities"/>
     /// </summary>
     private void UpdateCompoundBagCapacities()
