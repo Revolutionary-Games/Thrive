@@ -112,7 +112,7 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
         if (other is not ChemoreceptorUpgrades otherChemoreceptor)
             return false;
 
-        return TargetCompound?.InternalName == otherChemoreceptor.TargetCompound?.InternalName
+        return TargetCompound == otherChemoreceptor.TargetCompound
             && TargetSpecies?.ID == otherChemoreceptor.TargetSpecies?.ID
             && SearchRange == otherChemoreceptor.SearchRange
             && SearchAmount == otherChemoreceptor.SearchAmount

@@ -48,11 +48,6 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         else
         {
             enzymes.Selected = defaultCompoundIndex;
-
-            // Assign the default LysosomeUpgrades to the OrganelleUpgrades
-            // so we can check if it's been changed at the end
-            organelle.Upgrades ??= new OrganelleUpgrades();
-            organelle.Upgrades.CustomUpgradeData = new LysosomeUpgrades(shownChoices[defaultCompoundIndex]);
         }
 
         UpdateDescription();
