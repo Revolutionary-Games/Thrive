@@ -58,4 +58,12 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
     {
         return new LysosomeUpgrades(Enzyme);
     }
+
+    public bool Equals(IComponentSpecificUpgrades other)
+    {
+        if (other is not LysosomeUpgrades otherLysosome)
+            return false;
+
+        return Enzyme.InternalName.Equals(otherLysosome.Enzyme.InternalName);
+    }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 ///   Upgrades for a placed or template organelle
 /// </summary>
-public class OrganelleUpgrades : ICloneable
+public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
 {
     /// <summary>
     ///   A list of "feature" names that have been unlocked for this organelle. Depends on the organelle components
@@ -30,5 +31,22 @@ public class OrganelleUpgrades : ICloneable
     {
         return (UnlockedFeatures.GetHashCode() * 3) ^
             ((CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151);
+    }
+
+    public bool Equals(OrganelleUpgrades other)
+    {
+        if (other == null)
+            return false;
+
+        if (!UnlockedFeatures.SequenceEqual(other.UnlockedFeatures))
+            return false;
+
+        if (CustomUpgradeData == null)
+            return other.CustomUpgradeData == null;
+
+        if (other.CustomUpgradeData == null)
+            return false;
+
+        return CustomUpgradeData.Equals(other.CustomUpgradeData);
     }
 }
