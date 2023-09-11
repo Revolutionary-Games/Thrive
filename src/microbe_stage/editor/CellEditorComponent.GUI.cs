@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using AngleSharp.Common;
 using Godot;
 using GroupsWithUndiscoveredOrganelles =
     System.Collections.Generic.Dictionary<OrganelleDefinition.OrganelleGroup, (string Description, int Count)>;
@@ -276,16 +275,18 @@ public partial class CellEditorComponent
             control.Hide();
 
             var buttonGroup = organelle.EditorButtonGroup;
-            var (description, count) = groupsWithUndiscoveredOrganelles.GetOrDefault(buttonGroup, (string.Empty, 0));
-
-            count += 1;
-
-            if (!string.IsNullOrEmpty(description))
-                description += "\n\n";
             var unlockRequirements = organelle.UnlockRequirements(Editor.CurrentGame);
-            description += string.Format("Unlock [b]{0}[/b] when:\n{1}", organelle.Name, unlockRequirements);
-
-            groupsWithUndiscoveredOrganelles[buttonGroup] = (description, count);
+            var unlockText = string.Format("Unlock [b]{0}[/b] when:\n{1}", organelle.Name, unlockRequirements);
+            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out (string Description, int Count) group))
+            {
+                group.Count += 1;
+                group.Description += "\n\n" + unlockText;
+                groupsWithUndiscoveredOrganelles[buttonGroup] = group;
+            }
+            else
+            {
+                groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
+            }
         }
 
         return groupsWithUndiscoveredOrganelles;
