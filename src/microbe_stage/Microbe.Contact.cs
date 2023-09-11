@@ -21,9 +21,10 @@ public partial class Microbe
     // private SphereShape pseudopodRangeSphereShape = null!;
 
     /// <summary>
-    ///   Contains the pili this microbe has for collision checking
+    ///   Contains the pili this microbe has for collision checking and weather or not
+    ///   they have the injectisome upgrade
     /// </summary>
-    private HashSet<uint> pilusPhysicsShapes = new();
+    private Dictionary<uint, bool> pilusPhysicsShapes = new();
 
     private bool membraneOrganellePositionsAreDirty = true;
     private bool membraneOrganellesWereUpdatedThisFrame;
@@ -349,6 +350,24 @@ public partial class Microbe
             // so this might need to be rate limited or something
             // Divide damage by physical resistance
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
+        }
+        else if (source == "injectisome")
+        {
+            if (invulnerabilityDuration > 0)
+                return;
+
+            // Play the pilus sound
+            // TODO: Use a different sound than the toxin damage sound
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
+
+            // Give immunity to prevent massive damage at some angles
+            // https://github.com/Revolutionary-Games/Thrive/issues/3267
+            MakeInvulnerable(Constants.PILUS_INVULNERABLE_TIME);
+
+            // TODO: this may get triggered a lot more than the toxin
+            // so this might need to be rate limited or something
+            // Divide damage by physical resistance
+            amount /= CellTypeProperties.MembraneType.ToxinResistance;
         }
         else if (source == "chunk")
         {
@@ -1439,8 +1458,18 @@ public partial class Microbe
                     return;
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
+                var attacker = otherIsPilus ? touchedMicrobe : thisMicrobe;
+                var attackingPilusID = otherIsPilus ? touchedOwnerId : thisOwnerId;
 
-                Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
+                if (attacker.IsInjectisome(attackingPilusID))
+                {
+                    Invoke.Instance.Perform(() => target.Damage(Constants.INJECTISOME_BASE_DAMAGE, "injectisome"));
+                }
+                else
+                {
+                    Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
+                }
+
                 return;
             }
 

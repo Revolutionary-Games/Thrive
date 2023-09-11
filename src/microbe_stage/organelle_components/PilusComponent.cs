@@ -7,6 +7,8 @@ using Godot;
 /// </summary>
 public class PilusComponent : ExternallyPositionedComponent
 {
+    private const string PILUS_INJECTISOME_UPGRADE_NAME = "injectisome";
+
     private List<uint> addedChildShapes = new();
 
     private Microbe? currentShapesParent;
@@ -45,7 +47,8 @@ public class PilusComponent : ExternallyPositionedComponent
 
             // New ownerId
             var ownerId = currentShapesParent.CreateNewOwnerId(newShapeParent, transform, addedChildShapes[0]);
-            newShapeParent.AddPilus(ownerId);
+            var isInjectisome = organelle.Upgrades?.UnlockedFeatures.Contains(PILUS_INJECTISOME_UPGRADE_NAME);
+            newShapeParent.AddPilus(ownerId, isInjectisome ?? false);
 
             // Destroy the old shape owner
             DestroyShape();
@@ -124,9 +127,11 @@ public class PilusComponent : ExternallyPositionedComponent
         shape.Radius = pilusSize / 10.0f;
         shape.Height = pilusSize;
 
+        var isInjectisome = organelle.Upgrades?.UnlockedFeatures.Contains(PILUS_INJECTISOME_UPGRADE_NAME);
+
         var ownerId = parent.CreateShapeOwner(shape);
         parent.ShapeOwnerAddShape(ownerId, shape);
-        parent.AddPilus(ownerId);
+        parent.AddPilus(ownerId, isInjectisome ?? false);
         addedChildShapes.Add(ownerId);
     }
 

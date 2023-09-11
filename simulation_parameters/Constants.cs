@@ -599,6 +599,11 @@ public static class Constants
     public const float PILUS_BASE_DAMAGE = 20.0f;
 
     /// <summary>
+    ///   Damage a single injectisome stab does
+    /// </summary>
+    public const float INJECTISOME_BASE_DAMAGE = 20.0f;
+
+    /// <summary>
     ///   How much time (in seconds) a pilus applies invulnerability upon damage.
     /// </summary>
     public const float PILUS_INVULNERABLE_TIME = 0.25f;
