@@ -120,7 +120,7 @@ public class CompoundBag : ICompoundStorage
         usefulCompounds.Clear();
     }
 
-    public void ClearCapacities()
+    public void ClearSpecificCapacities()
     {
         compoundCapacities?.Clear();
     }
