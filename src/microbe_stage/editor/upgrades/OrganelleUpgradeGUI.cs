@@ -239,13 +239,16 @@ public class OrganelleUpgradeGUI : Control
             }
         }
 
-        // TODO: when no changes are done the action creation should be skipped
-        var action = new OrganelleUpgradeActionData(oldUpgrades, newUpgrades, openedForOrganelle);
-
-        if (!storedEditor.ApplyOrganelleUpgrade(action))
+        // Only create an action and apply changes if changes were actually made
+        if (!newUpgrades.Equals(oldUpgrades))
         {
-            GD.Print("Can't apply organelle upgrade action");
-            return;
+            var action = new OrganelleUpgradeActionData(oldUpgrades, newUpgrades, openedForOrganelle);
+
+            if (!storedEditor.ApplyOrganelleUpgrade(action))
+            {
+                GD.Print("Can't apply organelle upgrade action");
+                return;
+            }
         }
 
         EmitSignal(nameof(Accepted));
