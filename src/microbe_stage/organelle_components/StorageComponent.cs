@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System;
+/// <summary>
 ///   Allows cell to store more stuff
 /// </summary>
 public class StorageComponent : EmptyOrganelleComponent
@@ -39,6 +40,14 @@ public class StorageComponentUpgrades : IComponentSpecificUpgrades
     }
 
     public Compound? SpecializedFor { get; set; }
+
+    public bool Equals(IComponentSpecificUpgrades other)
+    {
+        if (other is not StorageComponentUpgrades otherVacuole)
+            return false;
+
+        return SpecializedFor == otherVacuole.SpecializedFor;
+    }
 
     public object Clone()
     {
