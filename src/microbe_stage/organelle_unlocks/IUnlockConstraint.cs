@@ -8,7 +8,7 @@
     /// </summary>
     public interface IUnlockConstraint
     {
-        public string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance);
+        public void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value);
         public bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance);
     }
 
@@ -19,10 +19,10 @@
     {
         public int Microbes;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
-            return string.Format("{0} microbes are engulfed (currently at {1})",
-                Microbes, world.TotalMicrobesEngulfedByPlayer);
+            var currentlyEngulfed = world.TotalMicrobesEngulfedByPlayer;
+            value.Append(new LocalizedString("ENGULFED_MICROBES_ABOVE", Microbes, currentlyEngulfed));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -38,9 +38,9 @@
     {
         public int Deaths;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
-            return string.Format("Death count reaches {0} (currently at {1})", Deaths, world.TotalPlayerDeaths);
+            value.Append(new LocalizedString("PLAYER_DEATH_COUNT_ABOVE", Deaths, world.TotalPlayerDeaths));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -56,10 +56,9 @@
     {
         public float Atp;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
-            return string.Format("[thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})",
-                Atp, energyBalance.TotalProduction);
+           value.Append(new LocalizedString("APT_ABOVE", Atp, energyBalance.TotalProduction));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -75,11 +74,10 @@
     {
         public float Excess;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
-            return string.Format(
-                "Excess [thrive:compound type=\"atp\"][/thrive:compound] reaches {0} (currently at {1})",
-                Excess, energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary);
+            var currentExcess = energyBalance.TotalProduction - energyBalance.TotalConsumptionStationary;
+            value.Append(new LocalizedString("EXCESS_APT_ABOVE", Excess, currentExcess));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -95,12 +93,12 @@
     {
         public float Speed;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
             if (world.PlayerSpecies is not MicrobeSpecies microbeSpecies)
-                return string.Empty;
+                return;
 
-            return string.Format("Speed falls below {0} (currently {1})", Speed, microbeSpecies.BaseSpeed);
+            value.Append(new LocalizedString("BASE_SPEED_BELOW", Speed, microbeSpecies.BaseSpeed));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -121,10 +119,10 @@
         public string Organelle { get; set; }
         public int Generations { get; set; }
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
-            return string.Format("Organism contains {0} for {1} generations (currently at {2})",
-                SimulationParameters.Instance.GetOrganelleType(Organelle).Name, Generations, CountGenerations(world));
+            var organelle = SimulationParameters.Instance.GetOrganelleType(Organelle).Name;
+            value.Append(new LocalizedString("REPRODUCED_WITH", organelle, Generations, CountGenerations(world)));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -160,10 +158,9 @@
     {
         public Biome Biome;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
-            return string.Format("Entering the {0} biome (currently in {1})",
-                Biome.Name, world.Map.CurrentPatch!.BiomeTemplate);
+            value.Append(new LocalizedString("REPRODUCE_IN_BIOME", Biome.Name, world.Map.CurrentPatch!.BiomeTemplate));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)
@@ -181,18 +178,16 @@
         public float? Min;
         public float? Max;
 
-        public readonly string Tooltip(GameWorld world, EnergyBalanceInfo energyBalance)
+        public readonly void Tooltip(GameWorld world, EnergyBalanceInfo energyBalance, LocalizedStringBuilder value)
         {
             var current = CompoundValue(world);
-            var compound = string.Format("[thrive:compound type=\"{0}\"][/thrive:compound]", Compound.InternalName);
+            var compound = Compound.InternalName;
             if (Min.HasValue && Max.HasValue)
-                return string.Format("{0} is between {1} and {2} (currently {3})", compound, Min, Max, current);
-            if (Min.HasValue)
-                return string.Format("{0} is more than {1} (currently {2})", compound, Min, current);
-            if (Max.HasValue)
-                return string.Format("{0} is less than {1} (currently {2})", compound, Max, current);
-
-            return string.Empty;
+                value.Append(new LocalizedString("COMPOUND_IS_BETWEEN", compound, Min, Max, current));
+            else if (Min.HasValue)
+                value.Append(new LocalizedString("COMPOUND_IS_ABOVE", compound, Min, current));
+            else if (Max.HasValue)
+                value.Append(new LocalizedString("COMPOUND_IS_BELOW", compound, Max, current));
         }
 
         public readonly bool Satisfied(GameWorld world, EnergyBalanceInfo energyBalance)

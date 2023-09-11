@@ -484,18 +484,19 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   A bbcode string containing all the unlock conditions for this organelle.
     /// </summary>
-    public string UnlockRequirements(GameProperties game)
+    public LocalizedStringBuilder UnlockRequirements(GameProperties game)
     {
-        // TODO: translate
-        string unlockRequirements = string.Empty;
+        LocalizedStringBuilder unlockRequirements = new();
         if (UnlockConditions != null)
         {
+            bool first = true;
             foreach (var unlockCondition in UnlockConditions)
             {
-                if (!string.IsNullOrEmpty(unlockRequirements))
-                    unlockRequirements += "\n";
+                if (!first)
+                    unlockRequirements.Append(new LocalizedString("UNLOCK_OR"));
+                first = false;
 
-                unlockRequirements += "- " + unlockCondition.Tooltip(game.GameWorld);
+                unlockCondition.Tooltip(game.GameWorld, unlockRequirements);
             }
         }
 

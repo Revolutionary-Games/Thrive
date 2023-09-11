@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using UnlockConstraints;
 
 /// <summary>
@@ -65,15 +64,26 @@ public class OrganelleUnlockConstraints
     /// <summary>
     ///   Display the requirements as a string.
     /// </summary>
-    public string Tooltip(GameWorld world)
+    public void Tooltip(GameWorld world, LocalizedStringBuilder value)
     {
         if (world.PlayerSpecies is not MicrobeSpecies playerSpecies)
-            return "In the microbe stage";
+        {
+            value.Append(new LocalizedString("MUST_BE_A_MICROBE"));
+            return;
+        }
 
         var energyBalance = ProcessSystem.ComputeEnergyBalance(playerSpecies.Organelles, world.Map.CurrentPatch!.Biome,
             playerSpecies.MembraneType, true, world.WorldSettings, CompoundAmountType.Current);
 
-        return UnlockConstraints().Select(constraint => constraint.Tooltip(world, energyBalance)).Join();
+        var first = true;
+        foreach (var constraint in UnlockConstraints())
+        {
+            if (!first)
+                value.Append(new LocalizedString("UNLOCK_AND"));
+            first = false;
+
+            constraint.Tooltip(world, energyBalance, value);
+        }
     }
 
     /// <summary>

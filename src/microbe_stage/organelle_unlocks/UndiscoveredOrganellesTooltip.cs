@@ -10,14 +10,14 @@ public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
     public NodePath NameLabelPath = null!;
 
     [Export]
-    public NodePath DescriptionPath = null!;
+    public NodePath UnlockTextPath = null!;
 
     private Label? nameLabel;
-    private CustomRichTextLabel? descriptionLabel;
+    private CustomRichTextLabel? unlockTextLabel;
 #pragma warning restore CA2213
 
     private string? displayName;
-    private string? description;
+    private LocalizedStringBuilder? unlockText;
 
     [Export]
     public float DisplayDelay { get; set; }
@@ -40,23 +40,25 @@ public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
         }
     }
 
-    public string? Description
+    public string? Description { get; set; }
+
+    public LocalizedStringBuilder? UnlockText
     {
-        get => description;
+        get => unlockText;
         set
         {
-            description = value;
-            UpdateDescription();
+            unlockText = value;
+            UpdateUnlockText();
         }
     }
 
     public override void _Ready()
     {
-        descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionPath);
+        unlockTextLabel = GetNode<CustomRichTextLabel>(UnlockTextPath);
         nameLabel = GetNode<Label>(NameLabelPath);
 
         UpdateName();
-        UpdateDescription();
+        UpdateUnlockText();
     }
 
     public override void _Notification(int what)
@@ -64,7 +66,7 @@ public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
         if (what == NotificationTranslationChanged)
         {
             UpdateName();
-            UpdateDescription();
+            UpdateUnlockText();
         }
     }
 
@@ -83,13 +85,13 @@ public class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
         }
     }
 
-    private void UpdateDescription()
+    private void UpdateUnlockText()
     {
-        if (descriptionLabel == null)
+        if (unlockTextLabel == null)
             return;
 
-        descriptionLabel.Visible = description != null;
-        if (description != null)
-            descriptionLabel.ExtendedBbcode = description;
+        unlockTextLabel.Visible = unlockText != null;
+        if (unlockText != null)
+            unlockTextLabel.ExtendedBbcode = unlockText.ToString();
     }
 }

@@ -29,12 +29,12 @@ __meta__ = {
 "_editor_description_": "NOTE: processes description string should only be set here on the ProcessesDescription property and not directly on the rich text label node as it will be overidden otherwise."
 }
 NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
-DescriptionPath = NodePath("MarginContainer/VBoxContainer/Description")
+UnlockTextPath = NodePath("MarginContainer/VBoxContainer/UnlockText")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 349.0
+margin_right = 392.0
 margin_bottom = 154.0
 mouse_filter = 2
 custom_constants/margin_right = 15
@@ -45,29 +45,28 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 333.0
+margin_right = 376.0
 margin_bottom = 138.0
 mouse_filter = 2
 custom_constants/separation = 15
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 318.0
+margin_right = 361.0
 margin_bottom = 31.0
 mouse_filter = 2
 custom_constants/separation = 10
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
-margin_right = 318.0
+margin_right = 361.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 230, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
-text = "UNDISCOVERED"
+text = "UNDISCOVERED_ORGANELLES"
 align = 1
-autowrap = true
 
-[node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
+[node name="UnlockText" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
 margin_top = 46.0
-margin_right = 318.0
+margin_right = 361.0
 margin_bottom = 68.0
 mouse_filter = 2

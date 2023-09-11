@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using GroupsWithUndiscoveredOrganelles =
-    System.Collections.Generic.Dictionary<OrganelleDefinition.OrganelleGroup, (string Description, int Count)>;
+using GroupsWithUndiscoveredOrganelles = System.Collections.Generic.Dictionary<
+    OrganelleDefinition.OrganelleGroup,
+    (LocalizedStringBuilder UnlockText, int Count)>;
 
 /// <summary>
 ///   Partial class to mostly separate the GUI interacting parts from the cell editor
@@ -276,15 +277,20 @@ public partial class CellEditorComponent
 
             var buttonGroup = organelle.EditorButtonGroup;
             var unlockRequirements = organelle.UnlockRequirements(Editor.CurrentGame);
-            var unlockText = string.Format("Unlock [b]{0}[/b] when:\n{1}", organelle.Name, unlockRequirements);
-            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out (string Description, int Count) group))
+            var unlockTextString = new LocalizedString("UNLOCK_WHEN", organelle.Name, unlockRequirements);
+
+            (LocalizedStringBuilder UnlockText, int Count) group;
+            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out group))
             {
                 group.Count += 1;
-                group.Description += "\n\n" + unlockText;
+                group.UnlockText.Append("\n\n");
+                group.UnlockText.Append(unlockTextString);
                 groupsWithUndiscoveredOrganelles[buttonGroup] = group;
             }
             else
             {
+                LocalizedStringBuilder unlockText = new();
+                unlockText.Append(unlockTextString);
                 groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
             }
         }
@@ -297,14 +303,14 @@ public partial class CellEditorComponent
         foreach (var groupWithUndiscovered in groupsWithUndiscoveredOrganelles)
         {
             var group = partsSelectionContainer.GetNode<CollapsibleList>(groupWithUndiscovered.Key.ToString());
-            var (description, count) = groupWithUndiscovered.Value;
+            var (unlockText, count) = groupWithUndiscovered.Value;
 
             var button = (UndiscoveredOrganelles)undiscoveredOrganellesScene.Instance();
             button.Count = count;
             group.AddItem(button);
 
             var toolTip = (UndiscoveredOrganellesTooltip)undiscoveredOrganellesTooltipScene.Instance();
-            toolTip.Description = description;
+            toolTip.UnlockText = unlockText;
             ToolTipManager.Instance.AddToolTip(toolTip, "lockedOrganelles");
             button.RegisterToolTipForControl(toolTip, true);
         }

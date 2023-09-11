@@ -53,12 +53,6 @@ public class UnlockProgress
         if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied(game.GameWorld)))
             UnlockOrganelle(organelle, game);
 
-        GD.Print(organelle.Name, " unlocked = ", unlockedOrganelles.Contains(organelle));
-        foreach (var unlock in organelle.UnlockConditions)
-        {
-            GD.Print("- ", unlock.Tooltip(game.GameWorld), "\" = ", unlock.Satisfied(game.GameWorld));
-        }
-
         return unlockedOrganelles.Contains(organelle);
     }
 

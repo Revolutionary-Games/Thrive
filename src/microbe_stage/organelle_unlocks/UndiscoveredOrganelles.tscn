@@ -64,14 +64,14 @@ script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_top = 5.0
-margin_right = 85.0
+margin_right = 175.0
 margin_bottom = 98.0
 mouse_filter = 2
 custom_constants/separation = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 2.0
-margin_right = 82.0
+margin_left = 47.0
+margin_right = 127.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 80, 60 )
 focus_mode = 0
@@ -89,7 +89,7 @@ expand_icon = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 2 )
-text = "?"
+text = "QUESTION"
 align = 1
 valign = 1
 
@@ -101,19 +101,17 @@ margin_top = 2.0
 margin_right = -3.0
 margin_bottom = 16.0
 grow_horizontal = 0
-text = "x1"
 
 [node name="Name" type="Label" parent="VBoxContainer"]
 margin_top = 61.0
-margin_right = 85.0
+margin_right = 175.0
 margin_bottom = 76.0
 rect_min_size = Vector2( 85, 0 )
 size_flags_horizontal = 4
 custom_constants/line_spacing = -3
 custom_fonts/font = ExtResource( 1 )
-text = "Undiscovered"
+text = "UNDISCOVERED_ORGANELLES"
 align = 1
-autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
