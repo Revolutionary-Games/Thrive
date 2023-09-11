@@ -20,9 +20,6 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
 
     public bool Equals(OrganelleUpgrades other)
     {
-        if (other == null)
-            return false;
-
         if (!UnlockedFeatures.SequenceEqual(other.UnlockedFeatures))
             return false;
 
