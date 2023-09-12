@@ -15,6 +15,7 @@ __meta__ = {
 WindowTitle = "CHEATS"
 Resizable = true
 InfiniteMpPath = NodePath("VBoxContainer/InfiniteMP")
+RevealEntirePatchMapPath = NodePath("VBoxContainer/RevealEntirePatchMap")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 margin_right = 106.0
@@ -24,17 +25,27 @@ __meta__ = {
 }
 
 [node name="InfiniteMP" parent="VBoxContainer" index="0" instance=ExtResource( 4 )]
-margin_right = 175.0
+margin_right = 206.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "INFINITE_MP"
 
 [node name="MoveToAnyPatch" parent="VBoxContainer" index="1" instance=ExtResource( 4 )]
 margin_top = 21.0
-margin_right = 175.0
+margin_right = 206.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOVE_TO_ANY_PATCH"
+
+[node name="RevealEntirePatchMap" type="Button" parent="VBoxContainer" index="2"]
+margin_top = 42.0
+margin_right = 206.0
+margin_bottom = 69.0
+custom_fonts/font = ExtResource( 3 )
+text = "REVEAL_ENTIRE_PATCH_MAP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
 [connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]

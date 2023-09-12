@@ -28,6 +28,11 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnDespawnAllEntitiesCheatUsed;
 
     /// <summary>
+    ///   Fired whenerver the user uses the "Reveal Entire Patch Map" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnRevealEntirePatchMapCheatUsed;
+
+    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -77,6 +82,11 @@ public static class CheatManager
     public static void DespawnAllEntities()
     {
         OnDespawnAllEntitiesCheatUsed?.Invoke(null, EventArgs.Empty);
+    }
+
+    public static void RevealEntirePatchMap()
+    {
+        OnRevealEntirePatchMapCheatUsed?.Invoke(null, EventArgs.Empty);
     }
 
     public static void DisableAllCheats()
