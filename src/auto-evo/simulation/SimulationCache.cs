@@ -200,7 +200,8 @@
             // We check generation from all the processes of the cell.
             foreach (var organelle in species.Organelles)
             {
-                energyCreationScore += GetEnergyCreationScoreForOrganelle(organelle.Definition, biomeConditions, compound);
+                energyCreationScore += GetEnergyCreationScoreForOrganelle(organelle.Definition, biomeConditions,
+                    compound);
             }
 
             cachedEnergyCreationScoreForSpecies.Add(key, energyCreationScore);
