@@ -1598,13 +1598,13 @@ msgstr "Gece gündüz döngüsünü etkinleştir"
 
 #: ../src/general/NewGameSettings.tscn:925
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "(UYARI: fotosentez daha olanaksız hale gelir)"
+msgstr "(UYARI: fotosentez daha elverişsiz hale gelir)"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:217
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr ""
 "Ölü bölge kalibrasyon işlemi tamamlandı. Yeni ölü bölgeler, aşağıda bulunan "
-"eksen değeri görüntüleyicilerinde gösterilmekte."
+"eksen değeri görüntüleyicilerinde gösterilmektedir."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:182
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
@@ -1715,7 +1715,7 @@ msgstr ""
 "ayrıcalığı kendiniz seçebileceksiniz. Ancak şimdilik bu ayrıcalık, size her "
 "defasında ozmoregülasyonda %20'lik bir azalma sağlayacak.\n"
 "\n"
-"Evrene iniş yapmayı onayladığınızda, örneğin, farklı bir haritada oynamak "
+"Evrene iniş yapmayı onayladığınızda; örneğin, farklı bir haritada oynamak "
 "için yeni bir gezegen tohumu seçerek veya BH'yi devre dışı bırakarak oyun "
 "ayarlarını düzenleyebilirsiniz."
 
@@ -1796,7 +1796,7 @@ msgstr ""
 "Çevresel glukoz tutulma payı: {5}\n"
 "Ozmoregülasyon maliyet çarpanı: {6}\n"
 "Düzenleyiciden ayrıldığında bedava glukoz bulutu: {7}\n"
-"Üreme işlemini pasif olarak gerçekleştir: {8}\n"
+"Üreme gelişimini pasif olarak gerçekleştir: {8}\n"
 "Büyümeyi sağlayan bileşiklerin kullanımını sınırlandır: {9}"
 
 #: ../src/general/NewGameSettings.tscn:127
@@ -1909,11 +1909,10 @@ msgstr "Atlanan açılır pencereler:"
 #: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Bu kısım, kaç tane açılır pencerenin kullanıcı tarafından kalıcı olarak "
-"atlandığını gösterir.\n"
-"Eğer aslında görülmek istenen bazı açılır pencereler atlandıysa, bütün "
-"atlanan açılır pencerelerin tekrar görülmesi için yandaki buton "
-"kullanılabilir."
+"Bu kısım, kullanıcı tarafından kalıcı olarak atlanan kaç tane açılır pencere "
+"olduğunu gösterir.\n"
+"Eğer asıl görülmek istenen açılır pencereler atlandıysa, bütün atlanan "
+"açılır pencerelerin tekrar görülmesi için yandaki buton kullanılabilir."
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
 msgid "DISMISS_INFORMATION_PERMANENTLY"
@@ -1937,7 +1936,7 @@ msgstr "Arkaplan parçacıklarını göster"
 
 #: ../src/general/OptionsMenu.tscn:642
 msgid "DISPLAY_PART_NAMES"
-msgstr "Parça seçim butonu isimlerini göster"
+msgstr "Parça seçim butonunun altında parça isimlerini göster"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:41
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -1989,9 +1988,9 @@ msgstr "Çok Hücreli"
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı "
+"İlginç Gerçek: Didinyum ve Paramesyum on yıllardır araştırılan av-avcı "
 "ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa "
-"Didinyum mu? Av mı yoksa avcı mı?"
+"Didinyum mu? Av mısın yoksa avcı mı?"
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
@@ -2008,23 +2007,23 @@ msgstr "Ama şu mavi hücreler var ya."
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"İşte size bir ipucu, Biyomlar farklı arka planlardan çok daha fazlasıdır, "
+"İşte size bir ipucu: Biyomlar farklı arka planlardan çok daha fazlasıdır, "
 "farklı biyomlardaki bileşikler bazen farklı oranlarda ortaya çıkarlar."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"İşte size bir ipucu, ne kadar kamçıya sahipseniz, o kadar hızlı gidersiniz, "
+"İşte size bir ipucu: Ne kadar kamçıya sahipseniz, o kadar hızlı gidersiniz, "
 "vınn vınnn, ama bu ayrıca daha fazla ATP'ye mal olur"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "İşte size bir ipucu, demir veya başka parçaları yutabilirsiniz."
+msgstr "İşte size bir ipucu: Demir veya başka parçaları yutabilirsiniz."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"İşte size bir ipucu, çekirdeği eklemeden önce hazırlığınızı yapın. Bu tür "
+"İşte size bir ipucu: Çekirdeği eklemeden önce hazırlığınızı yapın. Bu tür "
 "şeyler pahalı olur! Bakım ve ön ödeme ücretiyle."
 
 #: ../simulation_parameters/common/help_texts.json:193
@@ -2047,21 +2046,21 @@ msgstr "İlginç Gerçek: Didinyum, paramesyumları avlayan bir silli türüdür
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"İşte size bir ipucu, yeterince hızlı davranıldığında toksinler diğer "
+"İşte size bir ipucu: Yeterince hızlı davranıldığında toksinler diğer "
 "toksinleri vurup uzaklaştırmak için kullanılabilir."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan yapılma "
-"'bacaklar' ile yakalar ve avlar. Bunları er ya da geç Thrive'a eklemek "
+"'bacaklar' ile yakalar ve avlar. Bu yapıları er ya da geç Thrive'a eklemek "
 "istiyoruz."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"İşte size bir ipucu, Daha büyük hücrelere ve büyük bakterilere dikkat edin, "
-"sindirilmesi eğlenceli değildir ve sizi yerler."
+"İşte size bir ipucu: Türünüzden büyük hücrelere ve büyük bakterilere dikkat "
+"edin, bu canlıların sindirilmesi eğlenceli değildir ve sizi yerler."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
@@ -2073,7 +2072,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"İşte size bir ipucu, eğer hücreniz 150 altıgen alan büyüklüğündeyse, büyük "
+"İşte size bir ipucu: Eğer hücreniz 150 altıgen alan büyüklüğündeyse, büyük "
 "demir parçalarını yutabilirsiniz."
 
 #: ../simulation_parameters/common/help_texts.json:214
@@ -2081,7 +2080,7 @@ msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
 "Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğunuz çoğu "
 "canlının, etrafınızda gerçekleşen evrimden dolayı, bir ya da iki farklı türe "
-"benzemesi mümkün. Onları tanıyabiliyor musunuz bir görün!"
+"benzemesi mümkün. Onları tanıyabiliyor musunuz bir inceleyin!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
@@ -2091,18 +2090,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "İlginç Gerçek: Thrive, açık kaynaklı Godot oyun motoru ile yapıldı!"
+msgstr ""
+"İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerden biri bizim müthiş "
+"İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerinden biri bizim müthiş "
 "programcımız untrustedlife tarafından yapıldı!"
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"İşte size bir ipucu, Ozmoregülasyon hücrenizin sahip olduğu her bir altıgen "
+"İşte size bir ipucu: Ozmoregülasyon, hücrenizin sahip olduğu her bir altıgen "
 "alan için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş "
 "altıgenlik alan da saniyede 5 ATP üretir. Bu da demek oluyor ki; eğer "
 "ozmoregülasyondan dolayı ATP kaybediyorsanız, sadece birkaç altıgen alanı "
@@ -2123,25 +2123,25 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
 msgstr ""
-"İşte size bir ipucu, bazen en iyisi yalnızca diğer hücrelerden kaçmaktır."
+"İşte size bir ipucu: Bazen en iyisi yalnızca diğer hücrelerden kaçmaktır."
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"İşte size bir ipucu, eğer bir hücre sizin büyüklüğünüzün yarısı kadarsa, bu "
+"İşte size bir ipucu: Eğer bir hücre sizin büyüklüğünüzün yarısı kadarsa, bu "
 "onu yutabileceğiniz anlamına gelir."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"İşte size bir ipucu, bakteriler göründüklerinden daha güçlü olabilirler; "
-"küçük görünebilirler ama bazıları arkanızdan çukur kazıp sizi bu şekilde "
+"İşte size bir ipucu. Bakteriler göründüklerinden daha güçlü olabilirler; "
+"küçük görünebilirler ama bazıları arkanızdan kuyu kazıp sizi bu şekilde "
 "öldürebilirler!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"İşte size bir ipucu, eğer yeterince dikkatli olmazsanız, diğer türleri "
+"İşte size bir ipucu: Eğer yeterince dikkatli olmazsanız, diğer türleri "
 "avlayarak soylarının tükenmesine neden olabilirsiniz. Bu duruma ayrıca başka "
 "türler de neden olabilir."
 
@@ -2151,7 +2151,7 @@ msgstr "Sürpriz yumurtaları dahil et"
 
 #: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr "(oyunda rastgele oluşan gizemler)"
+msgstr "(oyunda rastgele oluşan gizemli şeyler)"
 
 #: ../src/general/OptionsMenu.tscn:1545 ../src/general/OptionsMenu.tscn:1557
 msgid "EDGE_PAN_SPEED"
@@ -2245,7 +2245,7 @@ msgstr "Çevresel glukoz tutulma payı"
 
 #: ../src/general/NewGameSettings.tscn:691
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "(her kuşakta, ortamda tutulan glukoz oranı)"
+msgstr "(her kuşakta boyunca ortamda tutulan glukoz oranı)"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:73
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
@@ -2266,11 +2266,11 @@ msgstr "Hata"
 
 #: ../src/modding/ModManager.cs:1014
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Mod için klasör oluştururken hata oluştu"
+msgstr "Mod için klasör oluşturulurken hata oluştu"
 
 #: ../src/modding/ModManager.cs:1023
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr "Mod bilgi dosyası oluştururken hata oluştu"
+msgstr "Mod bilgi dosyası oluşturulurken hata oluştu"
 
 #: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
@@ -2314,8 +2314,8 @@ msgstr ""
 "0.6.0'dan önceki sürümlerde başlatılan kayıtlarda veya 0.6.1'den önceki "
 "sürümlerde başlatılan serbest derleme kayıtlarında henüz görüntülenemiyor.\n"
 "\n"
-"Bunlardan hiçbiri geçerli değilse, bir hata oluşmuştur. Lütfen geliştirici "
-"ekibi bilgilendirin ve oyun günlüklerini sağlayın."
+"Eğer bunların hiçbiri geçerli değilse, bir hata oluşmuştur. Lütfen "
+"geliştirici ekibi bilgilendirin ve oyun günlüklerini sağlayın."
 
 #: ../src/general/OptionsMenu.tscn:1964 ../src/general/OptionsMenu.tscn:1976
 msgid "EXACT_VERSION_COLON"
@@ -2424,8 +2424,8 @@ msgid "FEAR_EXPLANATION"
 msgstr ""
 "Kaygılı mikroplar, çok uzun mesafelerde akıp giderler\n"
 "ve genelde, yırtıcılardan kaçmaları muhtemeldir.\n"
-"Cesur mikroplar, yakında bulunan yırtıcılardan korkmaz\n"
-"ve onların saldırılarına karşılık verir."
+"Cesur mikroplar, yakında bulunan yırtıcılardan korkmazlar\n"
+"ve onların saldırılarına karşılık verirler."
 
 #: ../src/general/utils/TranslationHelper.cs:81
 msgid "FEATURE_DISABLED"
@@ -2481,7 +2481,7 @@ msgstr "Bir Kuşak Tamamla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:683
 msgid "FINISH_X_GENERATIONS"
-msgstr "{0} Kuşağı Tamamla"
+msgstr "{0} Kuşak Tamamla"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
@@ -2501,7 +2501,7 @@ msgstr ""
 "için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücre "
 "zarından uzanıp birbirine bağlanmış kamçı benzeri protein fiberleridir. "
 "Kamçının pozisyonu, hücre hareketi için itişi sağlayan yönü belirler. İtiş "
-"yönü, kamçının gösterdiği yönün tersidir. Örneğin, bir hücrenin sol tarafına "
+"yönü, kamçının baktığı yönün tersidir. Örneğin, bir hücrenin sol tarafına "
 "yerleştirilen kamçı, sağ tarafa giderken itişi sağlar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
@@ -2546,14 +2546,14 @@ msgstr "Akışkanlık / Sertlik"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
 msgid "FOCUSED"
-msgstr "Odaklanmış"
+msgstr "Odaklı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Odaklanmış mikroplar, büyük parçaları veya avları çok uzun mesafelerde arar\n"
-"ve büyük parçalara daha heveslidir.\n"
-"Duyarlı mikroplar, yeni hedeflere daha çabuk geçiş yapar."
+"Odaklı mikroplar, büyük parçaları veya avları çok uzun mesafelerde ararlar\n"
+"ve büyük parçalara daha heveslidirler.\n"
+"Duyarlı mikroplar, yeni hedeflere daha çabuk geçiş yaparlar."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
@@ -2572,8 +2572,9 @@ msgstr "Yerel Veriyi Kaldır"
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
-"Bu öğeye ilişkin yerel veriyi kaldır. Bu işlem eğer yanlış ID'yi girdiyseniz "
-"ya da farklı bir öğenin yeni sürümünü karşıya yüklemek isterseniz yararlıdır."
+"Bu öğeye ilişkin yerel veriyi kaldır. Bu işlem, eğer yanlış bir ID "
+"girdiyseniz ya da farklı bir öğenin yeni sürümünü karşıya yüklemek "
+"isterseniz yararlıdır."
 
 #: ../src/modding/ModUploader.cs:691 ../src/modding/NewModGUI.cs:336
 msgid "FORM_ERROR_MESSAGE"
@@ -2695,9 +2696,9 @@ msgstr "GLES2 Mod Uyarısı"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Thrive'ı GLES2 ile çalıştırmaktasınız. Bu mod ciddi derecede test "
-"edilmemiştir ve sorunlara neden olması muhtemeldir. Ekran kartlarını "
-"güncelleştirmeyi deneyin ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia "
-"grafiklerini kullanmaya zorlayın."
+"edilmemiştir ve bu modun sorunlara neden olması muhtemeldir. Ekran "
+"kartlarını güncelleştirmeyi deneyin ve/veya Thrive'ı çalıştırırken oyunu AMD "
+"ya da Nvidia grafiklerini kullanmaya zorlayın."
 
 #: ../src/general/OptionsMenu.cs:1067 ../src/general/OptionsMenu.cs:1064
 msgid "GLES3"
@@ -2756,7 +2757,7 @@ msgstr "Anladım"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:67
 msgid "GPL_LICENSE_HEADING"
-msgstr "GPL lisans metni aşağıdaki gibidir:"
+msgstr "GPL lisans metni aşağıdadır:"
 
 #: ../src/general/OptionsMenu.tscn:491
 msgid "GPU_NAME"
@@ -2782,7 +2783,7 @@ msgstr ""
 "\n"
 "Eğer düzenleyici butonundaki bazı parçaların kaybolması gibi hatalar "
 "deneyimlerseniz,\n"
-"bunu kapatarak problemin çözülüp çözülmediğine bakabilirsiniz."
+"bu ayarı kapatarak problemin çözülüp çözülmediğine bakabilirsiniz."
 
 #: ../simulation_parameters/common/input_options.json:261
 msgid "GUI_TAB_NAVIGATION"
@@ -2808,11 +2809,11 @@ msgstr "Yardım"
 
 #: ../src/general/PauseMenu.tscn:207 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Oyunun nasıl oynanacağını öğrenin"
+msgstr "Oyunun nasıl oynanacağını öğren"
 
 #: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(üst değerler performansı arttırır)"
+msgstr "(daha üst değerler performansı arttırır)"
 
 #: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
@@ -2955,7 +2956,7 @@ msgstr "Tırmanış Kapısını Etkinleştir"
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Tırmanış Kapısını Etkinleştir (EKSİK ENERJİ)"
+msgstr "Tırmanış Kapısını Etkinleştir (ENERJİ YOK)"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -2963,7 +2964,7 @@ msgstr "İnşaatı Bitir"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:463
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr "İnşaatı Bitir (eksik gerekli malzemeler)"
+msgstr "İnşaatı Bitir (gerekli malzemeler yok)"
 
 #: ../src/awakening_stage/InteractionType.cs:8
 msgid "INTERACTION_CRAFT"
@@ -2991,7 +2992,7 @@ msgstr "Hasat Et"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr "Hasat Et (EKSİK MALZEME: {0})"
+msgstr "Hasat Et (MALZEME EKSİK: {0})"
 
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
@@ -3077,7 +3078,7 @@ msgstr ""
 "olabilir, genel olarak çok kaba görünebilir\n"
 "ve her zaman oynanabilir halde olmayabilir. Bu bakımdan oyunu kaydetmek şu "
 "an için mümkün değil.\n"
-"Prototipin bazı kısımları kısıtlı olarak kaydetmeye izin verebilir."
+"Prototiplerin bazı kısımları kısıtlı olarak kaydetmeye izin verebilir."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
