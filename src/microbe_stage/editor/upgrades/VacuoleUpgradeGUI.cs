@@ -37,15 +37,11 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
-        shownChoices = SimulationParameters.Instance.GetAllCompounds().Values.ToList();
+        shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
+            .Where(c => !c.IsEnvironmental && !c.IsAgent).ToList();
 
         foreach (var compound in shownChoices)
-        {
-            if (compound.IsAgent || compound.IsEnvironmental)
-                continue;
-
             compounds.AddItem(compound.Name);
-        }
 
         // Select glucose by default
         var defaultCompoundIndex =

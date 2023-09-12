@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -42,6 +43,16 @@ public class CompoundBag : ICompoundStorage
     /// </returns>
     public float GetCapacityForCompound(Compound compound)
     {
+        if (compoundCapacities != null)
+        {
+            foreach (var ele in compoundCapacities!)
+            {
+                GD.Print($"{ele.Key.InternalName}:{ele.Value}");
+            }
+
+            GD.Print("---");
+        }
+
         if (!IsUseful(compound))
             return 0;
 
