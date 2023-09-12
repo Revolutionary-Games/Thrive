@@ -50,10 +50,7 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
         {
             foreach (var collisionException in CollisionExceptions)
             {
-                var exceptionNode = collisionException.EntityNode;
-
-                if (exceptionNode != null)
-                    AddCollisionExceptionWith(exceptionNode);
+                AddCollisionExceptionWith(collisionException.EntityNode);
             }
         }
 
