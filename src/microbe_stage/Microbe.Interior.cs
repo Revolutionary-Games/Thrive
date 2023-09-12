@@ -1350,7 +1350,7 @@ public partial class Microbe
     ///   to take into account the addition or removal of an organelle
     /// </summary>
     /// <param name="organelle">The organelle being placed or removed</param>
-    /// <param name="negative"> Should be true if the organelle is being removed, otherwise false </param>
+    /// <param name="negative">Should be true if the organelle is being removed, otherwise false</param>
     private void UpdateCapacity(PlacedOrganelle organelle, bool negative)
     {
         int sign = negative ? -1 : 1;
