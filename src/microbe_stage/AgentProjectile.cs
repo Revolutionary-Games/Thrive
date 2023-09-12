@@ -22,7 +22,7 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
     public Spatial EntityNode => this;
 
     /// <summary>
-    ///     <see cref="IEntity"/>s that this projectile should not collide with.
+    ///   <see cref="IEntity"/>s that this projectile should not collide with.
     /// </summary>
     public IEnumerable<IEntity>? CollisionExceptions { get; set; }
 
