@@ -70,7 +70,7 @@ public class PatchMapNode : MarginContainer
     /// <summary>
     ///   True if the player has visited the patch
     /// </summary>
-    private bool explored;
+    private bool discovered;
 
     /// <summary>
     ///   True if the patch is adjasent to a explored patch
@@ -120,12 +120,12 @@ public class PatchMapNode : MarginContainer
         }
     }
 
-    public bool Explored
+    public bool Discovered
     {
-        get => explored;
+        get => discovered;
         set
         {
-            explored = value;
+            discovered = value;
             Visible = value;
         }
     }
@@ -214,7 +214,7 @@ public class PatchMapNode : MarginContainer
         UpdateIcon();
         UpdateGreyscale();
 
-        Visible = Explored;
+        Visible = Discovered;
         questionMarkLabel.Visible = IsUnknown;
     }
 

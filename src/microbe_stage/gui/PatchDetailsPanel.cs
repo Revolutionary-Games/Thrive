@@ -93,6 +93,9 @@ public class PatchDetailsPanel : PanelContainer
     [Export]
     public NodePath UnknownPatchPath = null!;
 
+    [Export]
+    public bool IgnoreFogOfWar;
+
 #pragma warning disable CA2213
     private Control nothingSelected = null!;
     private Control details = null!;
@@ -242,7 +245,7 @@ public class PatchDetailsPanel : PanelContainer
             return;
         }
 
-        if (!SelectedPatch.Explored)
+        if (!SelectedPatch.Explored && !IgnoreFogOfWar)
         {
             details.Visible = false;
             nothingSelected.Visible = false;

@@ -20,6 +20,12 @@ public class PatchMapDrawer : Control
     [Export]
     public Texture? UnknownPatchTexture;
 
+    /// <summary>
+    ///   This is true when in the auto-evo exploration tool, when in freebuild
+    /// </summary>
+    [Export]
+    public bool IgnoreFogOfWar;
+
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -50,8 +56,6 @@ public class PatchMapDrawer : Control
 
     [Signal]
     public delegate void OnCurrentPatchCentered(Vector2 coordinates, bool smoothed);
-
-    public bool Freebuild { get; set; }
 
     public PatchMap? Map
     {
@@ -684,7 +688,7 @@ public class PatchMapDrawer : Control
             var region1 = map.Regions[entry.Key.x];
             var region2 = map.Regions[entry.Key.y];
 
-            if (!region1.Explored && !Freebuild)
+            if (!region1.Explored && !IgnoreFogOfWar)
                 continue;
 
             var points = entry.Value;
@@ -716,7 +720,7 @@ public class PatchMapDrawer : Control
 
         foreach (var region in map.Regions.Values)
         {
-            if (!region.Explored && !Freebuild)
+            if (!region.Explored && !IgnoreFogOfWar)
                 continue;
 
             DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
@@ -734,10 +738,10 @@ public class PatchMapDrawer : Control
                 // Only draw connections if patches belong to the same region
                 if (patch.Region.ID == adjacent.Region.ID)
                 {
-                    if (!patch.Region.Explored && !Freebuild)
+                    if (!patch.Region.Explored && !IgnoreFogOfWar)
                         continue;
 
-                    if ((!patch.Discovered || !adjacent.Discovered) && !Freebuild)
+                    if ((!patch.Discovered || !adjacent.Discovered) && !IgnoreFogOfWar)
                         continue;
 
                     var start = PatchCenter(patch.ScreenCoordinates);
@@ -772,18 +776,18 @@ public class PatchMapDrawer : Control
         {
             var node = (PatchMapNode)nodeScene.Instance();
 
-            if (Freebuild)
+            if (IgnoreFogOfWar)
                 entry.Value.SetExplored();
 
-            // This renders the patch as a question mark if the patch is known to
-            // exist but has not been entered by the player
+            // This renders the patch as a question mark if the patch is discovered
+            // but has not been entered by the player
             var setAsUnknown = !entry.Value.Explored && entry.Value.Discovered;
 
             node.MarginLeft = entry.Value.ScreenCoordinates.x;
             node.MarginTop = entry.Value.ScreenCoordinates.y;
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
-            node.Explored = entry.Value.Explored || setAsUnknown;
+            node.Discovered = entry.Value.Explored || setAsUnknown;
 
             node.Patch = entry.Value;
 

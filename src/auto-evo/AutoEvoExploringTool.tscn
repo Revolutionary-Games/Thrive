@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -857,12 +857,14 @@ anchor_bottom = 0.0
 margin_right = 792.0
 margin_bottom = 206.0
 DrawDefaultMapIfEmpty = false
+IgnoreFogOfWar = true
 
 [node name="PatchDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" instance=ExtResource( 17 )]
 margin_left = 834.0
 margin_right = 1180.0
 margin_bottom = 518.0
 MoveToPatchButtonVisible = false
+IgnoreFogOfWar = true
 
 [node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false
@@ -1025,8 +1027,8 @@ HideCancelButton = true
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton" to="." method="ExportWorlds"]
