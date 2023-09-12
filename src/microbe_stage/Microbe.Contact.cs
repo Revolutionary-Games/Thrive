@@ -817,10 +817,12 @@ public partial class Microbe
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
+                // If this microbe is in a colony, send each of its colony members as a collision exception
+                // so the projectile isn't blocked by the microbe's own colony
                 var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
                     Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
-                    agentScene, this);
+                    agentScene, this, Colony?.ColonyMembers);
 
                 ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 

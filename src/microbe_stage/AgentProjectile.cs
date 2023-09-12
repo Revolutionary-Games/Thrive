@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -20,6 +21,11 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
 
     public Spatial EntityNode => this;
 
+    /// <summary>
+    ///     <see cref="IEntity"/>s that this projectile should not collide with.
+    /// </summary>
+    public IEnumerable<IEntity>? CollisionExceptions { get; set; }
+
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
@@ -39,6 +45,17 @@ public class AgentProjectile : RigidBody, ITimedLife, IInspectableEntity
 
         if (emitterNode != null)
             AddCollisionExceptionWith(emitterNode);
+
+        if (CollisionExceptions != null)
+        {
+            foreach (var collisionException in CollisionExceptions)
+            {
+                var exceptionNode = collisionException.EntityNode;
+
+                if (exceptionNode != null)
+                    AddCollisionExceptionWith(exceptionNode);
+            }
+        }
 
         Connect("body_shape_entered", this, nameof(OnContactBegin));
     }

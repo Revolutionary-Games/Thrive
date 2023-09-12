@@ -304,9 +304,11 @@ public partial class Microbe
 
         var position = GlobalTransform.origin + (direction * ejectionDistance);
 
+        // If this microbe is in a colony, send each of its colony members as a collision exception
+        // so the projectile isn't blocked by the microbe's own colony
         var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
-            SpawnHelpers.LoadAgentScene(), this);
+            SpawnHelpers.LoadAgentScene(), this, Colony?.ColonyMembers);
 
         ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
