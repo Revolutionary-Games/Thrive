@@ -4,9 +4,6 @@
 
     public abstract class FoodSource
     {
-        private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-        private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
         public abstract float TotalEnergyAvailable();
 
         /// <summary>
@@ -56,71 +53,14 @@
         protected float CompoundUseScore(MicrobeSpecies species, Compound compound, Patch patch,
             SimulationCache simulationCache, WorldGenerationSettings worldSettings)
         {
-            var energyGenerationScore = EnergyGenerationScore(species, compound, patch, simulationCache);
+            var energyGenerationScore = simulationCache.GetEnergyGenerationScoreForSpecies(
+                species, patch.Biome, compound);
 
             if (energyGenerationScore <= MathUtils.EPSILON)
                 return 0.0f;
 
             return energyGenerationScore * StorageScore(
                 species, compound, patch, simulationCache, worldSettings);
-        }
-
-        /// <summary>
-        ///   A measure of how good the species is for generating energy from a given compound.
-        /// </summary>
-        /// <returns>
-        ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
-        ///   so different implementations do not need to worry about scale.
-        /// </returns>
-        private float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch,
-            SimulationCache simulationCache)
-        {
-            var energyCreationScore = 0.0f;
-
-            // We check generation from all the processes of the cell..
-            foreach (var organelle in species.Organelles)
-            {
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    // ... that uses the given compound...
-                    if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
-                    {
-                        var processEfficiency = simulationCache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
-
-                        // ... and that produce glucose
-                        if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
-                        {
-                            // Better ratio means that we transform stuff more efficiently and need less input
-                            var compoundRatio = glucoseAmount / inputAmount;
-
-                            // Better output is a proxy for more time dedicated to reproduction than energy production
-                            var absoluteOutput = glucoseAmount * processEfficiency;
-
-                            energyCreationScore += (float)(
-                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
-                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
-                                * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
-                        }
-
-                        // ... and that produce ATP
-                        if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
-                        {
-                            // Better ratio means that we transform stuff more efficiently and need less input
-                            var compoundRatio = atpAmount / inputAmount;
-
-                            // Better output is a proxy for more time dedicated to reproduction than energy production
-                            var absoluteOutput = atpAmount * processEfficiency;
-
-                            energyCreationScore += (float)(
-                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
-                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
-                                * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
-                        }
-                    }
-                }
-            }
-
-            return energyCreationScore;
         }
     }
 }
