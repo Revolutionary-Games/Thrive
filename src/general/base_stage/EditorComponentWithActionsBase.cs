@@ -110,6 +110,17 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     }
 
     /// <summary>
+    ///   Hides the finish button warning badge after the hide animation plays.
+    /// </summary>
+    /// <param name="animation">The name of the animation that just finished playing.</param>
+    public void HideFinishButtonWarningAfterAnimation(string animation)
+    {
+        // Before hiding the warning badge, make sure it's still supposed to be hidden
+        if (animation == "hide" && !ShowFinishButtonWarning)
+            finishButtonWarningBadge.Hide();
+    }
+
+    /// <summary>
     ///   Updates the visibility of the finish button's warning badge based on <see cref="ShowFinishButtonWarning"/>.
     /// </summary>
     protected void UpdateFinishButtonWarningVisibility()
@@ -135,11 +146,17 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     protected void Undo()
     {
         Editor.Undo();
+
+        // Update the finish badge warning visibility in case undoing an action caused or fixed the warning
+        UpdateFinishButtonWarningVisibility();
     }
 
     protected void Redo()
     {
         Editor.Redo();
+
+        // Update the finish badge warning visibility in case redoing an action caused or fixed the warning
+        UpdateFinishButtonWarningVisibility();
     }
 
     protected void SetUndoButtonStatus(bool enabled)
