@@ -688,7 +688,7 @@ public class PatchMapDrawer : Control
             var region1 = map.Regions[entry.Key.x];
             var region2 = map.Regions[entry.Key.y];
 
-            if (!region1.Explored && !IgnoreFogOfWar)
+            if ((!region1.Explored && !region2.Explored) && !IgnoreFogOfWar)
                 continue;
 
             var points = entry.Value;
