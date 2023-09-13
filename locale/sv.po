@@ -10,7 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2023-09-10 15:01+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
-"Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
+"Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1468
+#: ../src/general/OptionsMenu.tscn:1468 ../src/general/OptionsMenu.tscn:1472
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -31,7 +32,7 @@ msgstr "Tredimensionell redigerare"
 msgid "3D_MOVEMENT"
 msgstr "Tredimensionell rörelse"
 
-#: ../src/general/OptionsMenu.tscn:1500
+#: ../src/general/OptionsMenu.tscn:1500 ../src/general/OptionsMenu.tscn:1504
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -205,11 +206,11 @@ msgstr "Omgivningsvolym"
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
-#: ../src/general/OptionsMenu.tscn:1680
+#: ../src/general/OptionsMenu.tscn:1680 ../src/general/OptionsMenu.tscn:1692
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Mängd autosparningar ska behållas:"
 
-#: ../src/general/OptionsMenu.tscn:1708
+#: ../src/general/OptionsMenu.tscn:1708 ../src/general/OptionsMenu.tscn:1720
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Mängd snabbsparningar att behålla:"
 
@@ -234,13 +235,16 @@ msgstr ""
 msgid "APRIL"
 msgstr "April"
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2086 ../src/general/OptionsMenu.tscn:2098
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Är du säker på att du vill nollställa ALLA inställningar till default värden?"
+msgstr ""
+"Är du säker på att du vill nollställa ALLA inställningar till default värden?"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2095 ../src/general/OptionsMenu.tscn:2107
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Är du säker på att du vill nollställa kontrollinställningarna till default värden?"
+msgstr ""
+"Är du säker på att du vill nollställa kontrollinställningarna till default "
+"värden?"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 #, fuzzy
@@ -327,6 +331,7 @@ msgstr "Augusti"
 
 #: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
 #: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:1489 ../src/general/OptionsMenu.tscn:1490
 msgid "AUTO"
 msgstr "automatiskt"
 
@@ -349,13 +354,18 @@ msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
 
-#: ../src/general/OptionsMenu.tscn:1669
+#: ../src/general/OptionsMenu.tscn:1669 ../src/general/OptionsMenu.tscn:1681
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autospara i spelet"
 
@@ -396,6 +406,7 @@ msgid "AUTO_MOVE_FORWARDS"
 msgstr "Auto framåt"
 
 #: ../src/general/OptionsMenu.cs:1048 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1045
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Upplösning:"
@@ -425,7 +436,7 @@ msgstr "Mikrob Stadiet"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/OptionsMenu.tscn:2035
 msgid "BACK"
 msgstr "Backåt"
 
@@ -567,34 +578,51 @@ msgstr "{0} B"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../simulation_parameters/microbe_stage/organelles.json:517
 msgid "BINDING_AGENT"
 msgstr "Bindemedel"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1403
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:512
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Sannolikhet i varje område med få arter (låg biodiversitet) att skapa en ny art"
+msgstr ""
+"Sannolikhet i varje område med få arter (låg biodiversitet) att skapa en ny "
+"art"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Sannolikhet att en ny art skapas för att höja biodiversiteten från ett närliggande område"
+msgstr ""
+"Sannolikhet att en ny art skapas för att höja biodiversiteten från ett "
+"närliggande område"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
+"Biodviersitetsökande arter från närliggande område ges gratis population"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
@@ -602,6 +630,7 @@ msgstr "Biodiversitetsökande art muteras när den skapas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
+#: ../simulation_parameters/microbe_stage/organelles.json:762
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescerande vakuol"
 
@@ -671,6 +700,7 @@ msgstr "Kamera"
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
+#: ../src/general/OptionsMenu.tscn:2186
 msgid "CANCEL"
 msgstr "Avbryt"
 
@@ -777,7 +807,12 @@ msgstr "Cellulas"
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
@@ -807,7 +842,7 @@ msgstr "Ändra symmetrin"
 msgid "CHEATS"
 msgstr "Fusk"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1762 ../src/general/OptionsMenu.tscn:1774
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Fuskknappar på"
 
@@ -826,27 +861,44 @@ msgstr "Kemoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
+#: ../simulation_parameters/microbe_stage/organelles.json:680
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
@@ -855,12 +907,24 @@ msgstr "Kemosyntesiserande proteiner"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande "
+"proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan "
+"viss jäsning."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande "
+"proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan "
+"viss jäsning."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -879,7 +943,13 @@ msgstr "Kitinas"
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -887,6 +957,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
+#: ../simulation_parameters/microbe_stage/organelles.json:556
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
@@ -897,7 +968,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../src/saving/NewSaveMenu.cs:98
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -910,7 +985,13 @@ msgstr "Kromatisk Aberration:"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:486
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande "
+"proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan "
+"viss jäsning."
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
@@ -918,18 +999,31 @@ msgstr "{0} konsumtion"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
+#: ../simulation_parameters/microbe_stage/organelles.json:828
 msgid "CILIA"
 msgstr "Flimmerhår"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
@@ -953,10 +1047,11 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/general/OptionsMenu.tscn:2261
 msgid "CLOSE"
 msgstr "Stäng"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2104 ../src/general/OptionsMenu.tscn:2116
 msgid "CLOSE_OPTIONS"
 msgstr "Stäng inställningar?"
 
@@ -1072,7 +1167,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/OptionsMenu.tscn:1992
+#: ../src/general/OptionsMenu.tscn:1992 ../src/general/OptionsMenu.tscn:2004
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Föreningar:"
@@ -1116,6 +1211,7 @@ msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "Molekylmoln"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:95
+#: ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "{0} koncentrationer har minskat med {1}"
 
@@ -1223,7 +1319,7 @@ msgstr "Fortsätt till fasprototyper?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1458 ../src/general/OptionsMenu.tscn:1462
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1241,7 +1337,7 @@ msgstr ""
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1388 ../src/general/OptionsMenu.tscn:1390
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1353,7 +1449,11 @@ msgstr "Skapa Ny Sparfil"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../src/modding/NewModGUI.tscn:33
 #, fuzzy
@@ -1372,7 +1472,11 @@ msgstr "Skapa Ny Sparfil"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../src/modding/ModUploader.cs:493
 msgid "CREATING_DOT_DOT_DOT"
@@ -1419,18 +1523,25 @@ msgstr "Nuvarande utvecklare"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organismstatistik"
 
-#: ../src/general/OptionsMenu.tscn:1781
+#: ../src/general/OptionsMenu.tscn:1781 ../src/general/OptionsMenu.tscn:1793
 msgid "CUSTOM_USERNAME"
 msgstr "Anpassat Användarnamn:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
+#: ../simulation_parameters/microbe_stage/organelles.json:587
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
@@ -1439,7 +1550,13 @@ msgstr "Cytoplasm Glycolys"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
@@ -1496,7 +1613,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1514
+#: ../src/general/OptionsMenu.cs:1514 ../src/general/OptionsMenu.cs:1511
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standard utgångsenhet"
 
@@ -1696,7 +1813,7 @@ msgstr "Avstängt"
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2157 ../src/general/OptionsMenu.tscn:2169
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Radera och fortsätt"
 
@@ -1715,7 +1832,8 @@ msgstr "Bortkopplade Celler"
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Det finns placerade organeller, som inte är anslutna till resten.\n"
-"Vänligen anslut alla placerade organeller med varandra eller ångra dina ändringar."
+"Vänligen anslut alla placerade organeller med varandra eller ångra dina "
+"ändringar."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
 #, fuzzy
@@ -1727,7 +1845,8 @@ msgstr "Bortkopplade Celler"
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Det finns placerade organeller, som inte är anslutna till resten.\n"
-"Vänligen anslut alla placerade organeller med varandra eller ångra dina ändringar."
+"Vänligen anslut alla placerade organeller med varandra eller ångra dina "
+"ändringar."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
@@ -1737,19 +1856,21 @@ msgstr "Bortkopplade Organeller"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Det finns placerade organeller, som inte är anslutna till resten.\n"
-"Vänligen anslut alla placerade organeller med varandra eller ångra dina ändringar."
+"Vänligen anslut alla placerade organeller med varandra eller ångra dina "
+"ändringar."
 
 #: ../src/general/MainMenu.tscn:861
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/OptionsMenu.tscn:1856
+#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1868
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Hastighet:"
 
 #: ../src/general/OptionsMenu.tscn:1854 ../src/general/OptionsMenu.tscn:1863
+#: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1830,11 +1951,16 @@ msgstr "Placera organell"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett rovdjursförhållande som har studerats i årtionden, är du Didinium eller Paramecium? Rovdjur eller byte?"
+msgstr ""
+"Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett "
+"rovdjursförhållande som har studerats i årtionden, är du Didinium eller "
+"Paramecium? Rovdjur eller byte?"
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "På engelska stod det \"WIGGLY THINGS!!\" här, men jag, S1dos, vet inte riktigt hur man översätter det!!"
+msgstr ""
+"På engelska stod det \"WIGGLY THINGS!!\" här, men jag, S1dos, vet inte "
+"riktigt hur man översätter det!!"
 
 #: ../simulation_parameters/common/help_texts.json:175
 msgid "EASTEREGG_MESSAGE_11"
@@ -1846,11 +1972,15 @@ msgstr "Men de blå cellerna."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Här är ett tips, Omgivningar är mer än bara olika bakgrunder, föreningarna i olika omgivningar dyker ibland upp i olika hastigheter."
+msgstr ""
+"Här är ett tips, Omgivningar är mer än bara olika bakgrunder, föreningarna i "
+"olika omgivningar dyker ibland upp i olika hastigheter."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Här är ett tips, ju mer flagell du har, desto snabbare går du, vroom vroom, men det kostar också mer ATP"
+msgstr ""
+"Här är ett tips, ju mer flagell du har, desto snabbare går du, vroom vroom, "
+"men det kostar också mer ATP"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
@@ -1858,15 +1988,22 @@ msgstr "Här är ett tips, du kan svälja bitar järn och annat."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Här är ett tips, förbered dig innan du lägger till en kärna. Dessa saker är dyra! I underhåll och i byggkostnad."
+msgstr ""
+"Här är ett tips, förbered dig innan du lägger till en kärna. Dessa saker är "
+"dyra! I underhåll och i byggkostnad."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Rolig Fakta, visste du att det finns över 8000 ciliatarter på planeten jorden?"
+msgstr ""
+"Rolig Fakta, visste du att det finns över 8000 ciliatarter på planeten "
+"jorden?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Rolig fakta, The Stentor är ett ciliat som kan sträcka sig och fånga byten i en slags trumpet som mun som drar in byten genom att generera vattenströmmar med cilia."
+msgstr ""
+"Rolig fakta, The Stentor är ett ciliat som kan sträcka sig och fånga byten i "
+"en slags trumpet som mun som drar in byten genom att generera vattenströmmar "
+"med cilia."
 
 #: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
@@ -1874,27 +2011,42 @@ msgstr "Fun Fact, The Didinum är ett ciliate som jagar paramecia."
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Här är ett tips, gifter kan användas för att putta andra gifter ifrån dig om du är snabb nog."
+msgstr ""
+"Här är ett tips, gifter kan användas för att putta andra gifter ifrån dig om "
+"du är snabb nog."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Rolig fakta, Amöbor jagar och fångar byte med \"ben\" av cytoplasma som kallas pseudopoder, vi vill så småningom ha dem i Thrive."
+msgstr ""
+"Rolig fakta, Amöbor jagar och fångar byte med \"ben\" av cytoplasma som "
+"kallas pseudopoder, vi vill så småningom ha dem i Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Här är ett tips, se upp för större celler och stora bakterier, det är inte kul att bli spjälkad, och de kommer att äta dig."
+msgstr ""
+"Här är ett tips, se upp för större celler och stora bakterier, det är inte "
+"kul att bli spjälkad, och de kommer att äta dig."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrives ljudteam har gjort många låtar som ännu inte har lagts till i spelet. Du kan höra dem eller titta på strömmar av honom komponera på sin YouTube-kanal, Oliver Lugg."
+msgstr ""
+"Thrives ljudteam har gjort många låtar som ännu inte har lagts till i "
+"spelet. Du kan höra dem eller titta på strömmar av honom komponera på sin "
+"YouTube-kanal, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Här är ett tips, om din cell är minst 150 hexar kan du svälja stora järnbitar."
+msgstr ""
+"Här är ett tips, om din cell är minst 150 hexar kan du svälja stora "
+"järnbitar."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive menas som en simulering av en annan planet, därför är det vettigt att de flesta varelser du hittar kommer att vara relaterade till en eller två andra arter på grund av evolution som sker runtomkring dig, se om du kan identifiera dem!"
+msgstr ""
+"Thrive menas som en simulering av en annan planet, därför är det vettigt att "
+"de flesta varelser du hittar kommer att vara relaterade till en eller två "
+"andra arter på grund av evolution som sker runtomkring dig, se om du kan "
+"identifiera dem!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
@@ -1906,15 +2058,24 @@ msgstr "Fun Fact, Thrive är gjord med Godot-motorn med öppen källkod!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Fun Fact, en av de första spelbara prototyperna för spel, gjordes av vår fantastiska programmerare, untrustedlife!"
+msgstr ""
+"Fun Fact, en av de första spelbara prototyperna för spel, gjordes av vår "
+"fantastiska programmerare, untrustedlife!"
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Här är ett tips, Osmoregulering kostar 1 ATP per sekund per hex som din cell har, varje tom hex av cytoplasma genererar också 5 ATP per sekund, vilket innebär att om du tappar ATP på grund av osmoregulering, lägg bara till ett par tomma hexecytoplasmer eller ta bort några organeller ."
+msgstr ""
+"Här är ett tips, Osmoregulering kostar 1 ATP per sekund per hex som din cell "
+"har, varje tom hex av cytoplasma genererar också 5 ATP per sekund, vilket "
+"innebär att om du tappar ATP på grund av osmoregulering, lägg bara till ett "
+"par tomma hexecytoplasmer eller ta bort några organeller ."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Rolig fakta, i verkliga livet har prokaryoter något som heter Biocompartments som fungerar som organeller och kallas faktiskt Polyhedrala organeller."
+msgstr ""
+"Rolig fakta, i verkliga livet har prokaryoter något som heter "
+"Biocompartments som fungerar som organeller och kallas faktiskt Polyhedrala "
+"organeller."
 
 #: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
@@ -1926,20 +2087,29 @@ msgstr "Här är ett tips, ibland är det bäst att bara fly från andra celler.
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Här är ett tips, om en cell är ungefär hälften så stor som det är då du kan svälja dem."
+msgstr ""
+"Här är ett tips, om en cell är ungefär hälften så stor som det är då du kan "
+"svälja dem."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Här är ett tips, bakterier kan vara starkare än de ser ut, de kan se små ut, men vissa av dem kan gräva sig in i dig och döda dig på det sättet!"
+msgstr ""
+"Här är ett tips, bakterier kan vara starkare än de ser ut, de kan se små ut, "
+"men vissa av dem kan gräva sig in i dig och döda dig på det sättet!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Här är ett tips, du kan jaga andra arter till utrotning om du inte är försiktig nog. Andra arter kan göra det också."
+msgstr ""
+"Här är ett tips, du kan jaga andra arter till utrotning om du inte är "
+"försiktig nog. Andra arter kan göra det också."
 
 #: ../src/general/NewGameSettings.tscn:1122
 #, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett rovdjursförhållande som har studerats i årtionden, är du Didinium eller Paramecium? Rovdjur eller byte?"
+msgstr ""
+"Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett "
+"rovdjursförhållande som har studerats i årtionden, är du Didinium eller "
+"Paramecium? Rovdjur eller byte?"
 
 #: ../src/general/NewGameSettings.tscn:1130
 #, fuzzy
@@ -1950,7 +2120,7 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
-#: ../src/general/OptionsMenu.tscn:1545
+#: ../src/general/OptionsMenu.tscn:1545 ../src/general/OptionsMenu.tscn:1557
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "UTROTNING"
@@ -2052,6 +2222,7 @@ msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2185 ../src/general/OptionsMenu.tscn:2193
+#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr "ERROR"
 
@@ -2064,7 +2235,7 @@ msgstr "Öppna Skärmbildsmapp"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195
+#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2207
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Misslyckades att spara nya intällningar till konfigurationsfil."
 
@@ -2112,12 +2283,13 @@ msgstr "Av Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Av Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1964
+#: ../src/general/OptionsMenu.tscn:1964 ../src/general/OptionsMenu.tscn:1976
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Version:"
 
 #: ../src/general/OptionsMenu.tscn:1962 ../src/general/OptionsMenu.tscn:1973
+#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Självmord"
@@ -2171,7 +2343,11 @@ msgstr "Externa effekter:"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
-msgstr "Precis som 99% av alla arter som någonsin har existerat, har din art utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment i evolutionen."
+msgstr ""
+"Precis som 99% av alla arter som någonsin har existerat, har din art "
+"utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men "
+"det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment "
+"i evolutionen."
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
@@ -2300,7 +2476,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan "
+"omvandla glukos till ATP i mycket högre takt än vad som kan göras i "
+"cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre "
+"för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner "
+"hastigheten för dess ATP-produktion. Eftersom metabolosomerna är "
+"suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../src/space_stage/SpaceFleet.cs:86
 #, fuzzy
@@ -2389,7 +2571,12 @@ msgstr "befolkning:"
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
 #, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2413,7 +2600,12 @@ msgstr ""
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2488,7 +2680,7 @@ msgstr "generation:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/OptionsMenu.cs:1062
+#: ../src/general/OptionsMenu.cs:1062 ../src/general/OptionsMenu.cs:1059
 msgid "GLES2"
 msgstr ""
 
@@ -2498,9 +2690,12 @@ msgstr "GLES2 Läges Varning"
 
 #: ../src/general/MainMenu.tscn:959
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
+msgstr ""
+"Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer "
+"troligen att orsaka problem. Försök att updatera dina video drivers och/"
+"eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
-#: ../src/general/OptionsMenu.cs:1067
+#: ../src/general/OptionsMenu.cs:1067 ../src/general/OptionsMenu.cs:1064
 msgid "GLES3"
 msgstr ""
 
@@ -2519,7 +2714,7 @@ msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1} från {2}"
 msgid "GLUCOSE"
 msgstr "Glukos"
 
-#: ../src/general/IWorldEffect.cs:90
+#: ../src/general/IWorldEffect.cs:90 ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 
@@ -2641,6 +2836,7 @@ msgid "HOME"
 msgstr "Hem"
 
 #: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1413
+#: ../src/general/OptionsMenu.tscn:1415
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Version:"
@@ -2877,6 +3073,8 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1338
 #: ../src/general/OptionsMenu.tscn:1425 ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1318 ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1428 ../src/general/OptionsMenu.tscn:1451
 msgid "INVERTED"
 msgstr ""
 
@@ -2905,19 +3103,20 @@ msgstr "Självmord"
 msgid "JANUARY"
 msgstr "Januari"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1889 ../src/general/OptionsMenu.tscn:1901
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug läge:"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1905 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Alltid"
 
 #: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatiskt"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1905 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Aldrig"
 
@@ -3105,17 +3304,19 @@ msgstr "Numpad Minus"
 msgid "LANGUAGE"
 msgstr "Språk:"
 
-#: ../src/general/OptionsMenu.cs:1565
+#: ../src/general/OptionsMenu.cs:1565 ../src/general/OptionsMenu.cs:1562
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Detta språk är {0}% komplett"
 
-#: ../src/general/OptionsMenu.cs:1561
+#: ../src/general/OptionsMenu.cs:1561 ../src/general/OptionsMenu.cs:1558
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Det här språket jobbas fortfarande på ({0}% klart)"
 
-#: ../src/general/OptionsMenu.cs:1557
+#: ../src/general/OptionsMenu.cs:1557 ../src/general/OptionsMenu.cs:1554
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla hjälp oss med den!"
+msgstr ""
+"Den här översättningen är mycket ofullständig ({0}% klar) snälla hjälp oss "
+"med den!"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -3418,7 +3619,13 @@ msgstr "Lipas"
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
@@ -3497,22 +3704,37 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Betrakta områden med upp till såhär många arter som att de har låg biodiversitet"
+msgstr ""
+"Betrakta områden med upp till såhär många arter som att de har låg "
+"biodiversitet"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
+#: ../simulation_parameters/microbe_stage/organelles.json:877
 msgid "LYSOSOME"
 msgstr "Lysosom"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan "
+"omvandla glukos till ATP i mycket högre takt än vad som kan göras i "
+"cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre "
+"för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner "
+"hastigheten för dess ATP-produktion. Eftersom metabolosomerna är "
+"suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan "
+"omvandla glukos till ATP i mycket högre takt än vad som kan göras i "
+"cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre "
+"för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner "
+"hastigheten för dess ATP-produktion. Eftersom metabolosomerna är "
+"suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3614,12 +3836,24 @@ msgstr "Metabolosomer"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan "
+"omvandla glukos till ATP i mycket högre takt än vad som kan göras i "
+"cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre "
+"för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner "
+"hastigheten för dess ATP-produktion. Eftersom metabolosomerna är "
+"suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:385
 #, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan "
+"omvandla glukos till ATP i mycket högre takt än vad som kan göras i "
+"cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre "
+"för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner "
+"hastigheten för dess ATP-produktion. Eftersom metabolosomerna är "
+"suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -3664,19 +3898,27 @@ msgstr ""
 "\n"
 "Metabolosomer: Producerar ATP från glukos\n"
 "\n"
-"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som "
+"en kemoplast, men utför också glykolys, tar upp 1 hex\n"
 "\n"
-"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men "
+"utför också glykolys och tar upp 1 Hex\n"
 "\n"
 "Rusticyanin: Omvandlar järn till ATP\n"
 "\n"
 "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
 "\n"
-"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder "
+"ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "När uppslukning avslutats stannar alla objekt som uppslukats inuti membranet för att smältas. Osmältbara objekt kommer dock alltid utstötas, så se till att du har de nödvändiga mutationerna för att kunna bearbeta dem först. Enzymer hjälper till med matsmältningen och ges av lysosomen. Evolvera denna organell för att göra matsmältningen mycket mer effektiv."
+msgstr ""
+"När uppslukning avslutats stannar alla objekt som uppslukats inuti membranet "
+"för att smältas. Osmältbara objekt kommer dock alltid utstötas, så se till "
+"att du har de nödvändiga mutationerna för att kunna bearbeta dem först. "
+"Enzymer hjälper till med matsmältningen och ges av lysosomen. Evolvera denna "
+"organell för att göra matsmältningen mycket mer effektiv."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -3692,15 +3934,19 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membranbundna organeller\n"
 "\n"
-"Nucleus: Tar upp 11 plattor och möjliggör utveckling av membranbundna organeller. Och fördubblar också cellens storlek. (Kan bara utvecklas en gång)\n"
+"Nucleus: Tar upp 11 plattor och möjliggör utveckling av membranbundna "
+"organeller. Och fördubblar också cellens storlek. (Kan bara utvecklas en "
+"gång)\n"
 "\n"
-"Mitokondrion: Producerar ATP ur glukos och atmosfärisk O2. Mycket mer effektivt än cytoplasma\n"
+"Mitokondrion: Producerar ATP ur glukos och atmosfärisk O2. Mycket mer "
+"effektivt än cytoplasma\n"
 "\n"
 "Kloroplast: Gör glukos ur solljus och atmosfärisk CO2\n"
 "\n"
 "Chemoplast: Gör glukos ur vätesulfid\n"
 "\n"
-"Kvävefixerande plastid: Tillverkar ammoniak från ATP och atmosfäriskt kväve och syre\n"
+"Kvävefixerande plastid: Tillverkar ammoniak från ATP och atmosfäriskt kväve "
+"och syre\n"
 "\n"
 "Vacuole: Lagrar 15 samlade molekyler\n"
 "\n"
@@ -3708,11 +3954,22 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Varje generation får du 100 mutationspoäng (MP), och varje förändring (eller mutation) kostar en viss summa av den MP. Att lägga till och ta bort organeller kostar MP, men att ta bort organeller som placerades i den aktuella mutationssessionen återbetalar MP för den organellen. Du kan flytta eller ta bort en organell genom att högerklicka på den och välja lämplig åtgärd i popup-menyn. Du kan rotera dina organeller medan du placerar dem med A och D."
+msgstr ""
+"Varje generation får du 100 mutationspoäng (MP), och varje förändring (eller "
+"mutation) kostar en viss summa av den MP. Att lägga till och ta bort "
+"organeller kostar MP, men att ta bort organeller som placerades i den "
+"aktuella mutationssessionen återbetalar MP för den organellen. Du kan flytta "
+"eller ta bort en organell genom att högerklicka på den och välja lämplig "
+"åtgärd i popup-menyn. Du kan rotera dina organeller medan du placerar dem "
+"med A och D."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra ändringar i din art (genom att lägga till, flytta eller ta bort organeller) för att öka din arts framgång. Varje besök hos Cellredigeraren i mikrobstadiet representerar 100 miljoner år av utveckling."
+msgstr ""
+"Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra "
+"ändringar i din art (genom att lägga till, flytta eller ta bort organeller) "
+"för att öka din arts framgång. Varje besök hos Cellredigeraren i "
+"mikrobstadiet representerar 100 miljoner år av utveckling."
 
 #: ../src/general/MainMenu.tscn:407
 msgid "MICROBE_FREEBUILD_EDITOR"
@@ -3782,58 +4039,95 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+msgstr ""
+"W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en "
+"giftvakuol. G för att växla av och på upslukarläge."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "För att reproducera måste du dela alla dina organeller i två. Organeller behöver ammonium och fosfat för att dela på sig."
+msgstr ""
+"För att reproducera måste du dela alla dina organeller i två. Organeller "
+"behöver ammonium och fosfat för att dela på sig."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Men om du överlever i tjugo generationer med 300 av din art så anses du ha vunnit spelet, efter du vunnit får du en popup ruta och kan fortsätta spela så länge du vill."
+msgstr ""
+"Men om du överlever i tjugo generationer med 300 av din art så anses du ha "
+"vunnit spelet, efter du vunnit får du en popup ruta och kan fortsätta spela "
+"så länge du vill."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Var alltid försiktig, dina konkurrenter utvecklas vid sidan av dig. Varje gång du öppnar Cellredigeraren utvecklas de också."
+msgstr ""
+"Var alltid försiktig, dina konkurrenter utvecklas vid sidan av dig. Varje "
+"gång du öppnar Cellredigeraren utvecklas de också."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Genom att binda dig till andra celler, kan du bygga en cell koloni där cellerna delar de resurser dem absorberar och producerar med varandra. För att kunna binda dig till en annan cell, behöver du ha bindemedels organellen och flytta dig över dom efter att ha aktiverat bindnings-läge. Du kan bara binda med celler av din egen art. Medans du är i en koloni, kan du inte dela din cell och komma åt redigeraren (för nu). För att komma åt redigeraren, först lämna din koloni när du har samlat nog med resurser, och gå sen in i redigeraren. Stora cell kolonier är vägen mot multicellularitet (inte i spelet än)."
+msgstr ""
+"Genom att binda dig till andra celler, kan du bygga en cell koloni där "
+"cellerna delar de resurser dem absorberar och producerar med varandra. För "
+"att kunna binda dig till en annan cell, behöver du ha bindemedels organellen "
+"och flytta dig över dom efter att ha aktiverat bindnings-läge. Du kan bara "
+"binda med celler av din egen art. Medans du är i en koloni, kan du inte dela "
+"din cell och komma åt redigeraren (för nu). För att komma åt redigeraren, "
+"först lämna din koloni när du har samlat nog med resurser, och gå sen in i "
+"redigeraren. Stora cell kolonier är vägen mot multicellularitet (inte i "
+"spelet än)."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Specifikt cellulosa- och kitincellväggar kan inte smältas utan att ha det nödvändiga enzymet som kan bryta ned dem först."
+msgstr ""
+"Specifikt cellulosa- och kitincellväggar kan inte smältas utan att ha det "
+"nödvändiga enzymet som kan bryta ned dem först."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Dock är lysosomer exklusiva endast till eukaryoter. Prokaryoter har inte sådana organeller och smälter sin mat tämligen ineffektivt. För små celler är det här okej, men för större celler är det en stor nackdel att inte ha några lysosomer."
+msgstr ""
+"Dock är lysosomer exklusiva endast till eukaryoter. Prokaryoter har inte "
+"sådana organeller och smälter sin mat tämligen ineffektivt. För små celler "
+"är det här okej, men för större celler är det en stor nackdel att inte ha "
+"några lysosomer."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Din cell använder ATP som sin energikälla, om det tar slut börjar du ta skada."
+msgstr ""
+"Din cell använder ATP som sin energikälla, om det tar slut börjar du ta "
+"skada."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "För att låsa upp redigeraren och föröka dig måste du samla Ammoniak (Orange moln) och Fosfat (Lila Moln)."
+msgstr ""
+"För att låsa upp redigeraren och föröka dig måste du samla Ammoniak (Orange "
+"moln) och Fosfat (Lila Moln)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Du kan också uppsluka celler, bakterier och järnbitar som är mindre än dig genom att röra vid de medans du är i uppslukarläge (blinkar blå) genom att trycka på G. Detta kostar mer ATP och saktar ner dig. Glöm inte att trycka på G en andra gång för att stänga av uppslukarläge."
+msgstr ""
+"Du kan också uppsluka celler, bakterier och järnbitar som är mindre än dig "
+"genom att röra vid de medans du är i uppslukarläge (blinkar blå) genom att "
+"trycka på G. Detta kostar mer ATP och saktar ner dig. Glöm inte att trycka "
+"på G en andra gång för att stänga av uppslukarläge."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulering kostar ATP, vilket innebär att ju större din cell är, desto fler mitrokondrier, metabolosomer eller Rusticyanin (eller cytoplasmer som utför Glykolys) behövs för att undvika att förlora ATP när du inte rör dig."
+msgstr ""
+"Osmoregulering kostar ATP, vilket innebär att ju större din cell är, desto "
+"fler mitrokondrier, metabolosomer eller Rusticyanin (eller cytoplasmer som "
+"utför Glykolys) behövs för att undvika att förlora ATP när du inte rör dig."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Det finns många Organeller i redigeraren som du kan utveckla, vilket tillåter mycket variation av olika spelstilar."
+msgstr ""
+"Det finns många Organeller i redigeraren som du kan utveckla, vilket "
+"tillåter mycket variation av olika spelstilar."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3856,7 +4150,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Svavelväte kan omvandlas till glukos via kemoplaster och kemosyntetiserande proteiner. Järn kan omvandlas till ATP via rusticyanin."
+msgstr ""
+"Svavelväte kan omvandlas till glukos via kemoplaster och kemosyntetiserande "
+"proteiner. Järn kan omvandlas till ATP via rusticyanin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
@@ -3896,7 +4192,7 @@ msgstr "Blandat"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Diverse 3D-stadie"
 
-#: ../src/general/OptionsMenu.tscn:1917
+#: ../src/general/OptionsMenu.tscn:1917 ../src/general/OptionsMenu.tscn:1929
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "B.l.a"
@@ -3904,7 +4200,12 @@ msgstr "B.l.a"
 #: ../src/modding/ModUploader.cs:345
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../src/modding/NewModGUI.cs:312
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
@@ -3917,6 +4218,7 @@ msgstr "DU HAR FRODATS!"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
+#: ../simulation_parameters/microbe_stage/organelles.json:450
 msgid "MITOCHONDRION"
 msgstr "Mitochondria"
 
@@ -3927,7 +4229,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande "
+"proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan "
+"viss jäsning."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 #, fuzzy
@@ -4013,22 +4321,42 @@ msgstr ""
 #: ../src/modding/NewModGUI.tscn:186
 #, fuzzy
 msgid "MOD_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../src/modding/ModLoader.cs:498
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/modding/ModLoader.cs:519
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/modding/ModLoader.cs:339
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
@@ -4056,7 +4384,9 @@ msgstr "Mod Inladdningsfel"
 
 #: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Fel uppstod när en eller flera mod laddades. Loggen kan innehålla ytterligare information."
+msgstr ""
+"Fel uppstod när en eller flera mod laddades. Loggen kan innehålla "
+"ytterligare information."
 
 #: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
@@ -4108,7 +4438,7 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1535
+#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1547
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
@@ -4116,7 +4446,7 @@ msgstr ""
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1346
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4347,7 +4677,11 @@ msgstr ""
 #: ../src/modding/NewModGUI.cs:211
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
@@ -4386,12 +4720,22 @@ msgstr "Kvävegenas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:783
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
@@ -4400,12 +4744,20 @@ msgstr "Kväve-Fixande Plastid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
+msgstr ""
+"Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och "
+"syre och cellulär energi i form av ATP för att producera ammoniak, ett "
+"viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob "
+"kvävefixering."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
+msgstr ""
+"Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och "
+"syre och cellulär energi i form av ATP för att producera ammoniak, ett "
+"viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob "
+"kvävefixering."
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 msgid "NONE"
@@ -4433,10 +4785,12 @@ msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1597
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1543
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4502,7 +4856,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2203 ../src/general/OptionsMenu.tscn:2215
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Hittade ingen screenshots mapp"
 
@@ -4512,6 +4866,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
+#: ../simulation_parameters/microbe_stage/organelles.json:654
 msgid "NUCLEUS"
 msgstr "Kärna"
 
@@ -4525,7 +4880,9 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "Möjliggör utveckligen av komplexare membranbundna organeller. Kostar en stor mängd ATP att underhålla. Denna utveckling går inte att ångra."
+msgstr ""
+"Möjliggör utveckligen av komplexare membranbundna organeller. Kostar en stor "
+"mängd ATP att underhålla. Denna utveckling går inte att ångra."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
@@ -4604,7 +4961,7 @@ msgstr "Öppna hjälpmenyn"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Fri byggredigerare"
 
-#: ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1816 ../src/general/OptionsMenu.tscn:1828
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Öppna Logmapp"
 
@@ -4631,7 +4988,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Öppna menyn"
 
-#: ../src/general/OptionsMenu.tscn:1808
+#: ../src/general/OptionsMenu.tscn:1808 ../src/general/OptionsMenu.tscn:1820
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Öppna Skärmbildsmapp"
 
@@ -4671,6 +5028,7 @@ msgstr "Organeller"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#: ../simulation_parameters/microbe_stage/organelles.json:904
 #, fuzzy
 msgid "ORGANELLE_AXON"
 msgstr "Organeller"
@@ -4678,7 +5036,13 @@ msgstr "Organeller"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
@@ -4687,6 +5051,7 @@ msgstr "Placera organell"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#: ../simulation_parameters/microbe_stage/organelles.json:946
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Rov Tagg"
@@ -4694,7 +5059,13 @@ msgstr "Rov Tagg"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
@@ -4708,7 +5079,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
 #, fuzzy
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
@@ -4799,12 +5176,20 @@ msgstr "Oxytoxisom"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 msgid "OXYTOXISOME_DESC"
-msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv form av den giftiga agenten OxyToxy NT."
+msgstr ""
+"En modifieerad metabolosom ansvarig för produktionen of en primitiv form av "
+"den giftiga agenten OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan "
+"omvandla glukos till ATP i mycket högre takt än vad som kan göras i "
+"cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre "
+"för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner "
+"hastigheten för dess ATP-produktion. Eftersom metabolosomerna är "
+"suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
@@ -4877,7 +5262,11 @@ msgstr "Tidigare utvecklare"
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 #, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Precis som 99% av alla arter som någonsin har existerat, har din art utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment i evolutionen."
+msgstr ""
+"Precis som 99% av alla arter som någonsin har existerat, har din art "
+"utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men "
+"det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment "
+"i evolutionen."
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
@@ -4910,6 +5299,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2213
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
+#: ../src/general/OptionsMenu.tscn:2225
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Cellprocesser"
@@ -4925,7 +5315,11 @@ msgstr ""
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr "Precis som 99% av alla arter som någonsin har existerat, har din art utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment i evolutionen."
+msgstr ""
+"Precis som 99% av alla arter som någonsin har existerat, har din art "
+"utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men "
+"det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment "
+"i evolutionen."
 
 #: ../src/general/MainMenu.tscn:813
 #, fuzzy
@@ -4980,6 +5374,7 @@ msgstr "Fredlig"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
+#: ../src/general/IWorldEffect.cs:91
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -5070,7 +5465,7 @@ msgstr "Duplicera Spelare"
 msgid "PLAYER_EXTINCT"
 msgstr "Duplicera Spelare"
 
-#: ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1490
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Duplicera Spelare"
@@ -5095,11 +5490,11 @@ msgstr ""
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1645
+#: ../src/general/OptionsMenu.tscn:1645 ../src/general/OptionsMenu.tscn:1657
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Spela introvideo"
 
-#: ../src/general/OptionsMenu.tscn:1653
+#: ../src/general/OptionsMenu.tscn:1653 ../src/general/OptionsMenu.tscn:1665
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spela Mikrobintro i ett nytt spel"
 
@@ -5290,6 +5685,7 @@ msgid "REPORT_BUG"
 msgstr "Rapportera"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1159
+#: ../src/microbe_stage/Microbe.Interior.cs:1150
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"
@@ -5327,6 +5723,7 @@ msgid "RESEARCH"
 msgstr "Sök"
 
 #: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2034
+#: ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr "Nollställ"
 
@@ -5335,24 +5732,24 @@ msgstr "Nollställ"
 msgid "RESET_DEADZONES"
 msgstr "Nollställ till default?"
 
-#: ../src/general/OptionsMenu.tscn:1879
+#: ../src/general/OptionsMenu.tscn:1879 ../src/general/OptionsMenu.tscn:1891
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2094 ../src/general/OptionsMenu.tscn:2106
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Nollställ kontroller till default?"
 
-#: ../src/general/OptionsMenu.tscn:1604
+#: ../src/general/OptionsMenu.tscn:1604 ../src/general/OptionsMenu.tscn:1616
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Nollställ Inputs"
 
-#: ../src/general/OptionsMenu.tscn:2074
+#: ../src/general/OptionsMenu.tscn:2074 ../src/general/OptionsMenu.tscn:2086
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Default"
 
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2085 ../src/general/OptionsMenu.tscn:2097
 msgid "RESET_TO_DEFAULTS"
 msgstr "Nollställ till default?"
 
@@ -5458,7 +5855,9 @@ msgstr "Stel"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "Ett hårdare membran är mer resistant till skada, men kommer göre det svårare för cellen att röra sig omkring."
+msgstr ""
+"Ett hårdare membran är mer resistant till skada, men kommer göre det svårare "
+"för cellen att röra sig omkring."
 
 #: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
@@ -5522,12 +5921,18 @@ msgstr "Rosticyanin"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+msgstr ""
+"Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för "
+"att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, "
+"kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+msgstr ""
+"Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för "
+"att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, "
+"kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
 
 #: ../src/general/MainMenu.tscn:981
 #, fuzzy
@@ -5543,10 +5948,11 @@ msgid "SAFE_MODE_TITLE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2048 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2060
 msgid "SAVE"
 msgstr "Spara"
 
-#: ../src/general/OptionsMenu.tscn:2147
+#: ../src/general/OptionsMenu.tscn:2147 ../src/general/OptionsMenu.tscn:2159
 msgid "SAVE_AND_CONTINUE"
 msgstr "Spara och fortsätt"
 
@@ -5606,7 +6012,12 @@ msgstr "Sparfil är ogiltig"
 #: ../src/saving/SaveList.tscn:113
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/saving/InProgressLoad.cs:244
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
@@ -5627,17 +6038,32 @@ msgstr "Använt utrymme:"
 #: ../src/saving/SaveList.tscn:119
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/saving/SaveList.tscn:120
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/modding/ModUploader.cs:677
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/saving/InProgressSave.cs:207
 msgid "SAVING_DOT_DOT_DOT"
@@ -5646,7 +6072,12 @@ msgstr "Sparar..."
 #: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
 msgid "SAVING_NOT_POSSIBLE"
@@ -5657,19 +6088,20 @@ msgid "SAVING_SUCCEEDED"
 msgstr "Sparning lyckades"
 
 #: ../src/general/OptionsMenu.tscn:1356 ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1357 ../src/general/OptionsMenu.tscn:1359
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Signaleringsmedel"
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1357 ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1928 ../src/general/OptionsMenu.tscn:1940
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Externa effekter:"
@@ -5694,7 +6126,8 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr "Visa förmågor"
 
 #: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1520 ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1523 ../src/general/OptionsMenu.tscn:1524
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
@@ -5744,12 +6177,22 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:127
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/saving/SaveList.tscn:112
 #, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #, fuzzy
@@ -5831,12 +6274,12 @@ msgstr "SHIFT"
 msgid "SHOW_HELP"
 msgstr "Visa hjälp"
 
-#: ../src/general/OptionsMenu.tscn:1833
+#: ../src/general/OptionsMenu.tscn:1833 ../src/general/OptionsMenu.tscn:1845
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Grotta"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1831 ../src/general/OptionsMenu.tscn:1843
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grotta"
@@ -5845,17 +6288,17 @@ msgstr "Grotta"
 msgid "SHOW_TUTORIALS"
 msgstr "Visa handledningar"
 
-#: ../src/general/OptionsMenu.tscn:1743
+#: ../src/general/OptionsMenu.tscn:1743 ../src/general/OptionsMenu.tscn:1755
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Visa hjälp (i nuvarande spel)"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1735 ../src/general/OptionsMenu.tscn:1747
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Visa hjälp (i nya spel)"
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1750 ../src/general/OptionsMenu.tscn:1762
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Visa osparade framstegsvarning"
 
@@ -5866,24 +6309,35 @@ msgstr ""
 "Du har osparade ändringar som kommer bli raderade.\n"
 "Vill du fortsätta?"
 
-#: ../src/general/OptionsMenu.tscn:1824
+#: ../src/general/OptionsMenu.tscn:1824 ../src/general/OptionsMenu.tscn:1836
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
+#: ../simulation_parameters/microbe_stage/organelles.json:739
 msgid "SIGNALING_AGENT"
 msgstr "Signaleringsmedel"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär "
+"energi i form av ATP för att producera ammoniak, ett viktigt "
+"tillväxtnäringsämne för celler. Detta är en process som kallas anaerob "
+"kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför "
+"den omgivande vätskan viss jäsning."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:147
 #, fuzzy
@@ -5939,18 +6393,31 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
+#: ../simulation_parameters/microbe_stage/organelles.json:713
 msgid "SLIME_JET"
 msgstr "Slemmstråle"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -6215,7 +6682,12 @@ msgstr "Sparande misslyckades"
 #: ../src/general/MainMenu.tscn:1004
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/general/MainMenu.tscn:789
 #, fuzzy
@@ -6510,17 +6982,32 @@ msgstr "Teori"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
+#: ../simulation_parameters/microbe_stage/organelles.json:797
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+msgstr ""
+"Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga "
+"pigment staplade tillsammans i membransäckar. Det är en prokaryot som har "
+"assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten "
+"kan använda energin från värmeskillnader i omgivningen för att producera "
+"glukos från vatten och gasformig koldioxid i en process som kallas "
+"termosyntes. Hastigheten för dess glukosproduktion skalas med "
+"koncentrationen av koldioxid och temperatur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+msgstr ""
+"Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga "
+"pigment staplade tillsammans i membransäckar. Det är en prokaryot som har "
+"assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten "
+"kan använda energin från värmeskillnader i omgivningen för att producera "
+"glukos från vatten och gasformig koldioxid i en process som kallas "
+"termosyntes. Hastigheten för dess glukosproduktion skalas med "
+"koncentrationen av koldioxid och temperatur."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
@@ -6530,12 +7017,26 @@ msgstr "Termosyntes"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:979
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+msgstr ""
+"Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga "
+"pigment staplade tillsammans i membransäckar. Det är en prokaryot som har "
+"assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten "
+"kan använda energin från värmeskillnader i omgivningen för att producera "
+"glukos från vatten och gasformig koldioxid i en process som kallas "
+"termosyntes. Hastigheten för dess glukosproduktion skalas med "
+"koncentrationen av koldioxid och temperatur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+msgstr ""
+"Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga "
+"pigment staplade tillsammans i membransäckar. Det är en prokaryot som har "
+"assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten "
+"kan använda energin från värmeskillnader i omgivningen för att producera "
+"glukos från vatten och gasformig koldioxid i en process som kallas "
+"termosyntes. Hastigheten för dess glukosproduktion skalas med "
+"koncentrationen av koldioxid och temperatur."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
@@ -6608,7 +7109,13 @@ msgstr "Thylakoider"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr "Thylakoider är kluster av proteiner och ljuskänsliga pigment. Pigmenten kan använda ljusets energi för att producera glukos från vatten och gasformig koldioxid i en process som kallas fotosyntes. Dessa pigment är också det som ger dem en distinkt färg. Hastigheten för deras glukosproduktion skalas med koncentrationen av koldioxid och ljusintensiteten. Eftersom tylakoiderna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+msgstr ""
+"Thylakoider är kluster av proteiner och ljuskänsliga pigment. Pigmenten kan "
+"använda ljusets energi för att producera glukos från vatten och gasformig "
+"koldioxid i en process som kallas fotosyntes. Dessa pigment är också det som "
+"ger dem en distinkt färg. Hastigheten för deras glukosproduktion skalas med "
+"koncentrationen av koldioxid och ljusintensiteten. Eftersom tylakoiderna är "
+"suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
@@ -6632,7 +7139,8 @@ msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
+msgstr ""
+"[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -6644,7 +7152,8 @@ msgstr "[u]{0}[/u] har lämnat denna platsen"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "En del av [u]{0}[/u] befolkningen har migrerat till denna plats från {1}"
+msgstr ""
+"En del av [u]{0}[/u] befolkningen har migrerat till denna plats från {1}"
 
 #: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
@@ -6741,6 +7250,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
+#: ../simulation_parameters/microbe_stage/organelles.json:486
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Gift\n"
@@ -6748,12 +7258,20 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
+msgstr ""
+"Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och "
+"utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan "
+"avfyras med."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 msgid "TO_BE_IMPLEMENTED"
@@ -6785,7 +7303,7 @@ msgstr "Testa att ta några screenshots!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2205 ../src/general/OptionsMenu.tscn:2217
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Testa att ta några screenshots!"
 
@@ -6815,15 +7333,18 @@ msgstr ""
 "\n"
 "Metabolosomer: Producerar ATP från glukos\n"
 "\n"
-"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som "
+"en kemoplast, men utför också glykolys, tar upp 1 hex\n"
 "\n"
-"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men "
+"utför också glykolys och tar upp 1 Hex\n"
 "\n"
 "Rusticyanin: Omvandlar järn till ATP\n"
 "\n"
 "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
 "\n"
-"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder "
+"ATP)"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 #, fuzzy
@@ -6869,7 +7390,9 @@ msgstr "Mikrob Fri Byggredigerare"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+msgstr ""
+"W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en "
+"giftvakuol. G för att växla av och på upslukarläge."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 #, fuzzy
@@ -6880,7 +7403,8 @@ msgstr "Mikrob Fri Byggredigerare"
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"För att kunna utföra fortplantning behöver du duplicera alla dina organeller genom att insamla tillräckligt med ammoniak och fosfater.\n"
+"För att kunna utföra fortplantning behöver du duplicera alla dina organeller "
+"genom att insamla tillräckligt med ammoniak och fosfater.\n"
 "Se indikatorn längst ned i högra hörn för att visa mängden kvar som krävs."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
@@ -6912,7 +7436,12 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:587
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2018
@@ -6923,7 +7452,7 @@ msgstr "Lösgör alla"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Lösgöringsläge"
 
-#: ../src/general/OptionsMenu.cs:1626
+#: ../src/general/OptionsMenu.cs:1626 ../src/general/OptionsMenu.cs:1623
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6957,7 +7486,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Okänd"
 
-#: ../src/general/OptionsMenu.cs:1072
+#: ../src/general/OptionsMenu.cs:1072 ../src/general/OptionsMenu.cs:1069
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Visa förmågor"
@@ -6971,7 +7500,7 @@ msgstr "Okänd mus"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Okänd mus"
 
-#: ../src/general/OptionsMenu.cs:1633
+#: ../src/general/OptionsMenu.cs:1633 ../src/general/OptionsMenu.cs:1630
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Okänd mus"
@@ -6981,7 +7510,7 @@ msgstr "Okänd mus"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Okänd mus"
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2124 ../src/general/OptionsMenu.tscn:2136
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Du har osparade ändringar som kommer bli raderade.\n"
@@ -6993,20 +7522,36 @@ msgid "UNTITLED"
 msgstr "Omgivning: {0}"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:843
+#: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:844
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:840
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr ""
+"Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av "
+"joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En "
+"av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-"
+"energi. För celler som saknar organeller så den har mer avancerade "
+"ämnesomsättningar är det vad de använder för energi. Det används också för "
+"att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:839
+#: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -7044,7 +7589,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1770 ../src/general/OptionsMenu.tscn:1782
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Använd ett anpassat användarnamn"
 
@@ -7056,7 +7601,7 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Sätt antalet bakgrundstrådar manuellt"
 
-#: ../src/general/OptionsMenu.tscn:1371
+#: ../src/general/OptionsMenu.tscn:1371 ../src/general/OptionsMenu.tscn:1373
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7067,7 +7612,12 @@ msgstr "Vakuol"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
 msgid "VACUOLE_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
 msgid "VACUOLE_IS_SPECIALIZED"
@@ -7076,17 +7626,32 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:131
 #, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:136
 #, fuzzy
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+msgstr ""
+"Vakuolen är en inre membranorganell som används för lagring i cellen. De "
+"består av flera blåsor, mindre membranstrukturer som ofta används i celler "
+"för lagring, som har smält samman. Den är fylld med vatten som används för "
+"att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form "
+"är flytande och kan variera mellan celler."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617
 #: ../src/gui_common/CompoundAmount.cs:173
@@ -7099,6 +7664,7 @@ msgid "VERSION_COLON"
 msgstr "Version:"
 
 #: ../src/general/OptionsMenu.tscn:1323 ../src/general/OptionsMenu.tscn:1431
+#: ../src/general/OptionsMenu.tscn:1324 ../src/general/OptionsMenu.tscn:1434
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Version:"
@@ -7114,6 +7680,7 @@ msgid "VIDEO_MEMORY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.cs:1081 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1078
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -7127,12 +7694,12 @@ msgstr "Visare eller åskådare, beroende på situation"
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1842 ../src/general/OptionsMenu.tscn:1854
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "Grotta"
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1839 ../src/general/OptionsMenu.tscn:1851
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grotta"
@@ -7215,7 +7782,9 @@ msgstr "DU HAR FRODATS!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Grattis, du har vunnit denna version av Thrive! Du kan fortsätta spela efter denna skärm stängs ner om du vill, eller starta nytt spel i en annan värld."
+msgstr ""
+"Grattis, du har vunnit denna version av Thrive! Du kan fortsätta spela efter "
+"denna skärm stängs ner om du vill, eller starta nytt spel i en annan värld."
 
 #: ../src/modding/ModUploader.tscn:294
 #, fuzzy
@@ -7230,7 +7799,11 @@ msgstr "\"{0}\" - {1}"
 #: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+msgstr ""
+"Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan "
+"omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process "
+"som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion "
+"skalas med koncentrationen av vatten och koldioxid."
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
@@ -7279,7 +7852,7 @@ msgstr "Organismstatistik"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1520 ../src/general/OptionsMenu.tscn:1524
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
