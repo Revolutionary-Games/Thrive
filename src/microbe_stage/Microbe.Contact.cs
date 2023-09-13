@@ -366,7 +366,8 @@ public partial class Microbe
 
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
-            // Divide damage by physical resistance
+
+            // Divide damage by toxin resistance
             amount /= CellTypeProperties.MembraneType.ToxinResistance;
         }
         else if (source == "chunk")
