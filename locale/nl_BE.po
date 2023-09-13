@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-29 14:37+0300\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -170,7 +170,7 @@ msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:407
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:402
 msgid "ALL"
 msgstr "Alle"
 
@@ -262,7 +262,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Kunst door {0}"
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:520
 msgid "ART_GALLERY"
 msgstr "Kunst galerij"
 
@@ -374,7 +374,7 @@ msgstr "Autosave tijdens het spelen"
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
-#: ../src/general/MainMenu.tscn:417
+#: ../src/general/MainMenu.tscn:418
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "loopstatus:"
@@ -405,7 +405,7 @@ msgstr "loopstatus:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Beweeg automatisch naar voor"
 
-#: ../src/general/OptionsMenu.cs:1025 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1045 ../src/general/OptionsMenu.tscn:364
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolutie:"
@@ -429,8 +429,8 @@ msgid "AWARE_STAGE"
 msgstr "Microbestadium"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:462 ../src/general/MainMenu.tscn:558
-#: ../src/general/MainMenu.tscn:614 ../src/general/MainMenu.tscn:937
+#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
+#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2035 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -536,7 +536,7 @@ msgstr "Gedrag"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m onder zeeniveau"
 
-#: ../src/general/MainMenu.tscn:431
+#: ../src/general/MainMenu.tscn:432
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -1059,21 +1059,21 @@ msgstr "Vaardigheden"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:674
+#: ../src/general/MainMenu.tscn:675
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:669
+#: ../src/general/MainMenu.tscn:670
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
 
-#: ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:717
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "onze Wiki"
 
-#: ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:712
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Zelfmoord"
@@ -1087,6 +1087,8 @@ msgstr "Chemische verbindingen:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
@@ -1131,7 +1133,7 @@ msgstr ""
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Wolken met chemische stoffen"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
 msgstr "Wolken met chemische stoffen"
@@ -1387,7 +1389,7 @@ msgstr "aan het maken..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objecten creëren vanuit het opgeslagen bestand"
 
-#: ../src/general/MainMenu.tscn:355
+#: ../src/general/MainMenu.tscn:356
 msgid "CREDITS"
 msgstr "Dank"
 
@@ -1502,7 +1504,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1491
+#: ../src/general/OptionsMenu.cs:1511
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standaard uitvoer apparaat"
 
@@ -1606,12 +1608,12 @@ msgstr "Devbuilds Supporters"
 msgid "DEVELOPERS"
 msgstr "Ontwikkelaars"
 
-#: ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:689
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Ontwikkeling ondersteund door Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:684
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
@@ -1620,12 +1622,12 @@ msgstr "Voeg een nieuwe sneltoets toe"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Ontwikkeling ondersteund door Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:703
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Ontwikkelaars"
 
-#: ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:698
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Help"
@@ -1752,7 +1754,7 @@ msgstr ""
 "Er zijn geplaatste organellen die niet geconnecteerd zijn met de rest.\n"
 "Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen ongedaan."
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:861
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
@@ -2159,7 +2161,7 @@ msgstr "Geef bestaand ID in"
 msgid "EXIT"
 msgstr "Verlaten"
 
-#: ../src/general/MainMenu.tscn:364
+#: ../src/general/MainMenu.tscn:365
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E(toets)"
@@ -2215,7 +2217,7 @@ msgstr "stierf uit op de planeet"
 msgid "EXTINCT_SPECIES"
 msgstr "UITSTERVEN"
 
-#: ../src/general/MainMenu.tscn:347
+#: ../src/general/MainMenu.tscn:348
 msgid "EXTRAS"
 msgstr "Extra's"
 
@@ -2223,7 +2225,7 @@ msgstr "Extra's"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra opties"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:873
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -2507,24 +2509,24 @@ msgstr "Generatie:"
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:825
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Zelfmoord"
 
-#: ../src/general/OptionsMenu.cs:1039
+#: ../src/general/OptionsMenu.cs:1059
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:957
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:959
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
-#: ../src/general/OptionsMenu.cs:1044
+#: ../src/general/OptionsMenu.cs:1064
 msgid "GLES3"
 msgstr ""
 
@@ -2579,7 +2581,7 @@ msgstr "Spelerscel"
 msgid "GOT_IT"
 msgstr "Begrepen"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:64
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:67
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL licentie tekst volgt:"
 
@@ -2923,7 +2925,7 @@ msgstr "Ijzer"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Ijzer Chemolithoautotrofie"
 
-#: ../src/general/MainMenu.tscn:800
+#: ../src/general/MainMenu.tscn:801
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Zelfmoord"
@@ -3130,15 +3132,15 @@ msgstr "Num -(toets)"
 msgid "LANGUAGE"
 msgstr "Taal:"
 
-#: ../src/general/OptionsMenu.cs:1542
+#: ../src/general/OptionsMenu.cs:1562
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Deze taal is {0}% volledig"
 
-#: ../src/general/OptionsMenu.cs:1538
+#: ../src/general/OptionsMenu.cs:1558
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Aan deze taal wordt nog gewerkt ({0}% voltooid)"
 
-#: ../src/general/OptionsMenu.cs:1534
+#: ../src/general/OptionsMenu.cs:1554
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is erg onvolledig ({0}% klaar) help ons alstublieft!"
 
@@ -3306,7 +3308,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Linker muis"
 
-#: ../src/general/MainMenu.tscn:529
+#: ../src/general/MainMenu.tscn:530
 msgid "LICENSES"
 msgstr "Licenties"
 
@@ -3431,7 +3433,7 @@ msgstr ""
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Kleur"
@@ -3486,12 +3488,12 @@ msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corri
 msgid "LOAD_FINISHED"
 msgstr "Laden voltooid"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Spel Laden"
 
-#: ../src/general/MainMenu.tscn:312 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
@@ -3686,7 +3688,7 @@ msgid "MICROBES_COUNT"
 msgstr "Microbestadium"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:588
+#: ../src/general/MainMenu.tscn:589
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbebewerker"
@@ -3752,7 +3754,7 @@ msgstr "Elke generatie heb je 100 mutatie punten (MP) om uit te geven, en elke v
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Elke keer dat je reproduceert kom je in de microbe \"editor\" waar je aanpassingen aan je soort kan maken (door het toevoegen, verplaatsen en verwijderen van organellen) om je soort succesvoller te maken. Elk bezoek aan de \"editor\" in de microbe-fase weerspiegelt [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoen jaar van evolutie."
 
-#: ../src/general/MainMenu.tscn:406
+#: ../src/general/MainMenu.tscn:407
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
@@ -3915,7 +3917,7 @@ msgstr "Midden muis"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
@@ -4000,11 +4002,11 @@ msgstr "Organel verplaatsen"
 msgid "MODIFY_TYPE"
 msgstr "Pas aan"
 
-#: ../src/general/MainMenu.tscn:506
+#: ../src/general/MainMenu.tscn:507
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:971
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4093,11 +4095,11 @@ msgstr "Interne (folder) Naam:"
 msgid "MOD_LICENSE"
 msgstr "Mod Licentie:"
 
-#: ../src/general/MainMenu.tscn:984
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er zijn fouten opgetreden bij het laden van 1 of meer mods. Logs kunnen meer informatie bevatten."
 
@@ -4379,11 +4381,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:303
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
-#: ../src/general/MainMenu.tscn:297
+#: ../src/general/MainMenu.tscn:298
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
@@ -4477,11 +4479,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1541
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1487
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4529,7 +4531,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Geen save folder gevonden"
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:969
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Uitgeschakeld"
@@ -4600,11 +4602,11 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "Oktober"
 
-#: ../src/general/MainMenu.tscn:660
+#: ../src/general/MainMenu.tscn:661
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:651
+#: ../src/general/MainMenu.tscn:652
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Zelfmoord"
@@ -4706,11 +4708,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistisch"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
@@ -4976,7 +4978,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Net zoals 99% van alle soorten die hebben bestaan is je soort uitgestorven. Anderen zullen je niche vullen en overwinnen, maar dat zal jij niet zijn. Je zal vergeten worden, een gefaald experiment in de evolutie."
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:813
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -5258,11 +5260,11 @@ msgstr "Snel laden"
 msgid "QUICK_SAVE"
 msgstr "Snel opslaan"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:377
 msgid "QUIT"
 msgstr "Stoppen"
 
-#: ../src/general/MainMenu.tscn:362 ../src/general/MainMenu.tscn:371
+#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
 #: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -5308,7 +5310,7 @@ msgstr "Threads:"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Aangeraden Thrive:"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:849
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Hervat het spel"
@@ -5334,12 +5336,12 @@ msgstr ""
 msgid "REPORT"
 msgstr "Rapport"
 
-#: ../src/general/MainMenu.tscn:729 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Rapport"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1144
+#: ../src/microbe_stage/Microbe.Interior.cs:1150
 msgid "REPRODUCED"
 msgstr "gereproduceerd"
 
@@ -5489,7 +5491,7 @@ msgstr ""
 "Ben je zeker dat terug wilt naar het hoofd menu?\n"
 "Je verliest alle niet opgeslagen voortgang."
 
-#: ../src/general/MainMenu.tscn:775
+#: ../src/general/MainMenu.tscn:776
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Door Revolutionary Games Studio"
@@ -5578,7 +5580,7 @@ msgstr "Rusticyanine is een proteïne dat koolstofdioxide en zuurstof kan gebrui
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Verandert [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:981
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5587,7 +5589,7 @@ msgstr ""
 "Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
 "en zullen waarschijnlijk terug aanvallen."
 
-#: ../src/general/MainMenu.tscn:978
+#: ../src/general/MainMenu.tscn:979
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Verwijder lokale Data"
@@ -5608,12 +5610,12 @@ msgstr "Automatisch opslaan"
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
 
-#: ../src/saving/SaveStatusOverlay.cs:166
-#: ../src/saving/SaveStatusOverlay.tscn:113
+#: ../src/saving/SaveStatusOverlay.cs:175
+#: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.cs:173
+#: ../src/saving/SaveStatusOverlay.cs:182
 #, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr "JSON debug modus:"
@@ -5661,7 +5663,7 @@ msgstr ""
 "Als je upgraden skipt, wordt geprobeerd de save normaal te laden.\n"
 "Probeer deze save te upgraden?"
 
-#: ../src/saving/InProgressLoad.cs:245
+#: ../src/saving/InProgressLoad.cs:244
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Kan reeds geladen bronnen niet vrijmaken: {0}"
 
@@ -5760,7 +5762,7 @@ msgstr "Scroll Lock(toets)"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Zoeken..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr ""
 
@@ -6061,7 +6063,7 @@ msgstr "Ammoniak spawnen"
 msgid "SPAWN_ENEMY"
 msgstr "Vijand spawnen"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Kan geen cheat voor spawn-vijand gebruiken omdat deze patch geen vijandige soorten bevat"
 
@@ -6082,6 +6084,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Muis speciaal 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #, fuzzy
 msgid "SPECIES"
 msgstr "Soortenlijst"
@@ -6130,6 +6133,11 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Soorten:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 #, fuzzy
@@ -6237,17 +6245,17 @@ msgstr "Steam is momenteel niet beschikbaar, probeer het opnieuw"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Er is een onbekende Steam-fout opgetreden"
 
-#: ../src/general/MainMenu.tscn:1001
+#: ../src/general/MainMenu.tscn:1002
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Initialisatie van Steam-clientbibliotheek mislukt"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1004
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
-#: ../src/general/MainMenu.tscn:788
+#: ../src/general/MainMenu.tscn:789
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -6291,7 +6299,7 @@ msgstr "Opslag"
 msgid "STORAGE_COLON"
 msgstr "Opslag"
 
-#: ../src/general/MainMenu.cs:570
+#: ../src/general/MainMenu.cs:620
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"
 
@@ -6436,6 +6444,11 @@ msgstr "Tags bevatten enkel spaties"
 msgid "TAKE_SCREENSHOT"
 msgstr "Neem een schermopname"
 
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
+#, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "HP:"
+
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6510,7 +6523,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
-#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6525,7 +6538,7 @@ msgstr ""
 "\n"
 "Als je het spel leuk vond, vertel je vrienden dan over ons."
 
-#: ../src/general/MainMenu.tscn:991
+#: ../src/general/MainMenu.tscn:992
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "JE HEBT OVERWONNEN!"
@@ -6589,7 +6602,7 @@ msgstr "Deze mod is gedownload van de Steam Workshop"
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/MainMenu.tscn:493 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6749,7 +6762,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Schakel ontbinding"
 
-#: ../src/general/MainMenu.tscn:331
+#: ../src/general/MainMenu.tscn:332
 msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
@@ -6984,7 +6997,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:885
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Help"
@@ -7015,7 +7028,7 @@ msgstr "Ontbind alles"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Ontbind modus"
 
-#: ../src/general/OptionsMenu.cs:1603
+#: ../src/general/OptionsMenu.cs:1623
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -7052,7 +7065,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Onbekend"
 
-#: ../src/general/OptionsMenu.cs:1049
+#: ../src/general/OptionsMenu.cs:1069
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Toon vaardigheden balk"
@@ -7066,7 +7079,7 @@ msgstr "Onbekende muis"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Onbekende Workshop ID voor deze mod"
 
-#: ../src/general/OptionsMenu.cs:1610
+#: ../src/general/OptionsMenu.cs:1630
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Mod Versie:"
@@ -7193,7 +7206,7 @@ msgstr "Snelheid:"
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1058 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1078 ../src/general/OptionsMenu.tscn:561
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -7217,7 +7230,7 @@ msgstr "Grot"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grot"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:340
 msgid "VIEW_SOURCE_CODE"
 msgstr "Bekijk de broncode"
 
@@ -7229,7 +7242,7 @@ msgstr "VIP Supporters"
 msgid "VISIBLE"
 msgstr "Zichtbaar"
 
-#: ../src/general/MainMenu.tscn:542 ../src/general/MainMenu.tscn:747
+#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7385,7 +7398,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "jaren"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:837
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Pauzeer het spel"

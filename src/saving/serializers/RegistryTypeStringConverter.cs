@@ -67,8 +67,11 @@ public class RegistryTypeStringConverter : TypeConverter
         return typeof(string) == destinationType || GetRegistryByType(destinationType) != null;
     }
 
-    public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
     {
+        if (value == null)
+            return null;
+
         var str = (string)value;
 
         var split = str.Split(':');
@@ -135,8 +138,11 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
         return typeof(string) == destinationType || typeof(TType) == destinationType;
     }
 
-    public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
     {
+        if (value == null)
+            return null;
+
         return SupportedRegistryTypes[TypeName].RetrieveInstance((string)value);
     }
 

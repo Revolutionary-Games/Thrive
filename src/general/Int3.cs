@@ -29,7 +29,7 @@ public struct Int3 : IEquatable<Int3>
         return !(left == right);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is Int3 other)
         {

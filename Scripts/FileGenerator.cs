@@ -26,8 +26,8 @@ public class FileGenerator
 
     private static readonly IReadOnlyCollection<Regex> PatchNotesStartRegexes = new[]
     {
-        new Regex(@"# Patch Notes", RegexOptions.IgnoreCase),
-        new Regex(@"# New Features", RegexOptions.IgnoreCase),
+        new Regex("# Patch Notes", RegexOptions.IgnoreCase),
+        new Regex("# New Features", RegexOptions.IgnoreCase),
         new Regex(@"[\*#]+In this release:?[\*#\s]+", RegexOptions.IgnoreCase),
     };
 

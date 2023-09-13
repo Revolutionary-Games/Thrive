@@ -78,7 +78,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private Random random = new();
 
-    private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
+    private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>
+        activeCompoundDetections = new();
+
+    private HashSet<(Species Species, float Range, Color Colour)>
+        activeSpeciesDetections = new();
 
     private bool? hasSignalingAgent;
 
@@ -626,9 +630,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce += force;
     }
 
-    public void ReportActiveChemereception(Compound compound, float range, float minAmount, Color colour)
+    public void ReportActiveCompoundChemoreceptor(Compound compound, float range, float minAmount, Color colour)
     {
         activeCompoundDetections.Add((compound, range, minAmount, colour));
+    }
+
+    public void ReportActiveSpeciesChemoreceptor(Species species, float range, float minAmount, Color colour)
+    {
+        activeSpeciesDetections.Add((species, range, colour));
     }
 
     public void PlaySoundEffect(string effect, float volume = 1.0f)
@@ -932,6 +941,51 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             if (detectedCompound != null)
             {
                 detections.Add((compound, colour, detectedCompound.Value));
+            }
+        }
+
+        return detections;
+    }
+
+    /// <summary>
+    ///   Returns a list of tuples, representing all possible microbe targets. These are not all the
+    ///   other microbes that the microbe can smell; only the best candidate of each species.
+    /// </summary>
+    /// <param name="microbeSystem">MicrobeSystem to scan</param>
+    /// <returns>
+    ///   A list of tuples. Each tuple contains the type of species, the color of the line (if any needs to be drawn),
+    ///   and the location where the microbe is located.
+    /// </returns>
+    public List<(Microbe Microbe, Color Colour, Vector3 Target)> GetDetectedSpecies(MicrobeSystem microbeSystem)
+    {
+        HashSet<(Species Species, float Range, Color Colour)> collectedUniqueSpeciesDetections;
+
+        // Colony lead cell uses all the chemoreceptors in the colony to make them all work
+        if (Colony != null && Colony.Master == this)
+        {
+            collectedUniqueSpeciesDetections =
+                new HashSet<(Species Species, float Range, Color Colour)>();
+
+            foreach (var colonyMicrobe in Colony.ColonyMembers)
+            {
+                collectedUniqueSpeciesDetections.UnionWith(colonyMicrobe.activeSpeciesDetections);
+            }
+        }
+        else
+        {
+            collectedUniqueSpeciesDetections = activeSpeciesDetections;
+        }
+
+        var detections = new List<(Microbe Microbe, Color Colour, Vector3 Target)>();
+        var position = GlobalTranslation;
+
+        foreach (var (species, range, colour) in collectedUniqueSpeciesDetections)
+        {
+            var tuple = microbeSystem.FindSpeciesNearPoint(position, species, range);
+
+            if (tuple != null)
+            {
+                detections.Add((tuple.Value.Microbe, colour, tuple.Value.Position));
             }
         }
 
