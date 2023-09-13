@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1468 ../src/general/OptionsMenu.tscn:1472
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Tvådimensionell rörelsestil:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
@@ -32,9 +32,9 @@ msgstr "Tredimensionell redigerare"
 msgid "3D_MOVEMENT"
 msgstr "Tredimensionell rörelse"
 
-#: ../src/general/OptionsMenu.tscn:1500 ../src/general/OptionsMenu.tscn:1504
+#: ../src/general/OptionsMenu.tscn:1504
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Tredimensionell rörelsestil:"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
@@ -55,12 +55,13 @@ msgstr "Abyssopelagisk"
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "Uppvakna ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Självmord"
+msgstr ""
+"Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft "
+"(axonvävnad)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:681
@@ -70,50 +71,50 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Åtgärd blockerad medan en annan pågår"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Bekräfta Stängning"
+msgstr "Radera"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
 #, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Artbefolkning"
+msgstr "Befolkningsdubblering"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Bekräfta Stängning"
+msgstr "Duplicera Enheter"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} med befolkning: {1}"
+msgstr "Halvera Befolkning"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Bekräfta Stängning"
+msgstr "Teleportera"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "Aktiv"
 
 #: ../src/general/OptionsMenu.tscn:1107
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Använda trådar:"
+msgstr "Nuvarande trådar:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
+#, fuzzy
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Aktiva mikrober springer och rullar omkring är ingenting händer.\n"
+"Fastsittande mikrober är stationära och väntar för omgivningen att ändra "
+"innan de agerar."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr ""
+msgstr "Ytterligare valideringar upptäckte ett problem: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
+#, fuzzy
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Lägg till ny tangentbindning"
 
 #: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
@@ -135,12 +136,11 @@ msgstr "Medel"
 #: ../src/microbe_stage/MicrobeHUD.cs:90
 #, fuzzy
 msgid "AGENTS_COLON"
-msgstr "föregående:"
+msgstr "Medel:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "Grotta"
+msgstr "{0}medel"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -155,14 +155,12 @@ msgid "AGGRESSIVE"
 msgstr "Aggressiv"
 
 #: ../src/general/NewGameSettings.tscn:475
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutationspoäng"
+msgstr "AI mutationshastighet"
 
 #: ../src/general/NewGameSettings.tscn:515
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+msgstr "(farten som AI arter muterar)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
@@ -178,14 +176,26 @@ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Organismstatistik"
+msgstr "Generisk Statistik Av Alla Världar"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Organismstatistik"
+msgstr ""
+"[b]Generationer:[/b]\n"
+"  {0}\n"
+"[b]Totala arter:[/b]\n"
+"  Genomsnitt {1}; Standardavvikelse {2}\n"
+"[b]Arter fortfarande vid liv:[/b]\n"
+"  Average {3}; Standardavvikelse {4}\n"
+"[b]Per-patch Artnummer:[/b]\n"
+"  Average {5}; Standardavvikelse {6}\n"
+"[b]Per-patch totalbefolkning:[/b]\n"
+"  Average {7}; Standardavvikelse {8}\n"
+"[b]Mikrobarts Genomsnittlig Hex Storlek:[/b]\n"
+"  Average {9}; Standardavikkelse {10}\n"
+"[b]Generisk Organelldata:[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
@@ -264,9 +274,8 @@ msgid "ART_GALLERY"
 msgstr "Konst Galleri"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Artbefolkning"
+msgstr "Grattis!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
@@ -338,7 +347,13 @@ msgstr "automatiskt"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+msgstr ""
+"Den här panelen visar talen som auto-evolutionen funkar från. Den totala "
+"energin en art är kapabel av att fånga, och kosten per individ av arten, "
+"bestämmer den slutliga befolkningen. Auto-evolutionen använder en "
+"simplifierad modell av verkligheten för att beräkna hur bra en art utför "
+"baserat på energin de kan samla. För varje matkälla, det visas hur mycket "
+"energi arten"
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
 #, fuzzy
@@ -622,7 +637,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
-"Biodviersitetsökande arter från närliggande område ges gratis population"
+"Biodiversitetsökande arter från närliggande område ges gratis befolkning."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
