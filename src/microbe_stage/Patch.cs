@@ -474,7 +474,7 @@ public class Patch
     {
         Explored = true;
         Discovered = true;
-        Region.SetExplored();
+        Region.Explored = true;
 
         foreach (Patch patch in Adjacent)
         {

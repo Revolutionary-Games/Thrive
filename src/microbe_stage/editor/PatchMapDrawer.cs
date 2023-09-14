@@ -22,6 +22,7 @@ public class PatchMapDrawer : Control
 
     /// <summary>
     ///   This is true when in the auto-evo exploration tool, when in freebuild
+    ///   or when the "Reveal entire patch map" cheat is used
     /// </summary>
     [Export]
     public bool IgnoreFogOfWar;
