@@ -131,7 +131,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var ownerId = parent.CreateShapeOwner(shape);
         parent.ShapeOwnerAddShape(ownerId, shape);
-        parent.AddPilus(ownerId, isInjectisome ?? false);
+        parent.AddPilus(ownerId, isInjectisome == true);
         addedChildShapes.Add(ownerId);
     }
 
