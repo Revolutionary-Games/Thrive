@@ -107,6 +107,10 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     {
         SetUndoButtonStatus(canUndo && !Editor.CanCancelAction);
         SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
+
+        // Update the finish badge warning visibility aftrer updating action history
+        // because undoing and redoing actions can cause or fix warnings
+        UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>
@@ -146,17 +150,11 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     protected void Undo()
     {
         Editor.Undo();
-
-        // Update the finish badge warning visibility in case undoing an action caused or fixed the warning
-        UpdateFinishButtonWarningVisibility();
     }
 
     protected void Redo()
     {
         Editor.Redo();
-
-        // Update the finish badge warning visibility in case redoing an action caused or fixed the warning
-        UpdateFinishButtonWarningVisibility();
     }
 
     protected void SetUndoButtonStatus(bool enabled)
