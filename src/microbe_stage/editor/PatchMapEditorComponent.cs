@@ -78,6 +78,18 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        CheatManager.OnRevealEntirePatchMapCheatUsed += OnRevealEntirePatchMapCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        CheatManager.OnRevealEntirePatchMapCheatUsed -= OnRevealEntirePatchMapCheatUsed;
+    }
+
     public override void Init(TEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
@@ -177,6 +189,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
         detailsPanel.IsPatchMoveValid = IsPatchMoveValid(mapDrawer.SelectedPatch);
         detailsPanel.UpdateShownPatchDetails();
+
+        mapDrawer.IgnoreFogOfWar =
+            Editor.FreeBuilding || mapDrawer.IgnoreFogOfWar;
     }
 
     protected override void OnTranslationsChanged()
@@ -284,5 +299,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     private void MoveToPatchClicked()
     {
         SetPlayerPatch(mapDrawer.SelectedPatch);
+    }
+
+    private void OnRevealEntirePatchMapCheatUsed(object sender, EventArgs args)
+    {
+        mapDrawer.IgnoreFogOfWar = true;
+        mapDrawer.MarkDirty();
     }
 }
