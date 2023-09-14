@@ -470,11 +470,6 @@ public class Patch
         currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
     }
 
-    public override string ToString()
-    {
-        return $"Patch \"{Name}\"";
-    }
-
     public void SetExplored()
     {
         Explored = true;
@@ -485,6 +480,11 @@ public class Patch
         {
             patch.Discovered = true;
         }
+    }
+
+    public override string ToString()
+    {
+        return $"Patch \"{Name}\"";
     }
 
     private float GetAmbientCompound(Compound compound, CompoundAmountType option)

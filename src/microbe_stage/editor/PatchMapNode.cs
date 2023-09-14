@@ -28,8 +28,7 @@ public class PatchMapNode : MarginContainer
     public NodePath AdjacentPanelPath = null!;
 
     /// <summary>
-    ///  For patches adjacent to a discovered patch that
-    ///  have not been entered by the player
+    ///   For patches adjacent to a discovered patch that have not been entered by the player
     /// </summary>
     [Export]
     public NodePath QuestionMarkLabelPath = null!;
