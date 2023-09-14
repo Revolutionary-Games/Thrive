@@ -48,7 +48,7 @@ public class PilusComponent : ExternallyPositionedComponent
             // New ownerId
             var ownerId = currentShapesParent.CreateNewOwnerId(newShapeParent, transform, addedChildShapes[0]);
             var isInjectisome = organelle.Upgrades?.UnlockedFeatures.Contains(PILUS_INJECTISOME_UPGRADE_NAME);
-            newShapeParent.AddPilus(ownerId, isInjectisome ?? false);
+            newShapeParent.AddPilus(ownerId, isInjectisome == true);
 
             // Destroy the old shape owner
             DestroyShape();
