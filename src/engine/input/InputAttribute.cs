@@ -76,7 +76,7 @@ public abstract class InputAttribute : Attribute
     /// </summary>
     /// <param name="obj">The object to compare against</param>
     /// <returns>True if equal</returns>
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         return ReferenceEquals(this, obj);
     }

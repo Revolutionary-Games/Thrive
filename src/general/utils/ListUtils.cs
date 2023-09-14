@@ -32,4 +32,24 @@ public static class ListUtils
     {
         return items.Where(t => t != null)!;
     }
+
+    /// <summary>
+    ///   Find the index of first matching element
+    /// </summary>
+    /// <param name="list">The list to search through</param>
+    /// <param name="match">Predicate used to check each item</param>
+    /// <typeparam name="T">Type of elements</typeparam>
+    /// <returns>The matched index or -1 if not found</returns>
+    public static int FindIndex<T>(this IReadOnlyList<T> list, Predicate<T> match)
+    {
+        int length = list.Count;
+
+        for (int i = 0; i < length; ++i)
+        {
+            if (match.Invoke(list[i]))
+                return i;
+        }
+
+        return -1;
+    }
 }

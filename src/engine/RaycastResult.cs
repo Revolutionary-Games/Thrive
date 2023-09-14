@@ -61,7 +61,7 @@ public readonly struct RaycastResult : IEquatable<RaycastResult>
         return Rid.GetId() == other.Rid.GetId() && Shape == other.Shape;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         return obj is RaycastResult result && Equals(result);
     }

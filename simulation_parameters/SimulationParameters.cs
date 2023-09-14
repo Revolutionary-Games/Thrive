@@ -279,19 +279,21 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Returns all compounds that are clouds
+    ///   Returns all compounds that are clouds (cloud compounds are the ones that exist in the environment as fluid
+    ///   simulated "clouds" for microbes to hoover up)
     /// </summary>
-    public List<Compound> GetCloudCompounds()
+    /// <returns>A readonly list with all the cloud compounds</returns>
+    public IReadOnlyList<Compound> GetCloudCompounds()
     {
         return cachedCloudCompounds ??= ComputeCloudCompounds();
     }
 
-    public List<Enzyme> GetHydrolyticEnzymes()
+    public IReadOnlyList<Enzyme> GetHydrolyticEnzymes()
     {
         return cachedDigestiveEnzymes ??= ComputeHydrolyticEnzymes();
     }
 
-    public Dictionary<string, MusicCategory> GetMusicCategories()
+    public IReadOnlyDictionary<string, MusicCategory> GetMusicCategories()
     {
         return musicCategories;
     }
@@ -301,7 +303,7 @@ public class SimulationParameters : Node
         return helpTexts[name];
     }
 
-    public Dictionary<string, Gallery> GetGalleries()
+    public IReadOnlyDictionary<string, Gallery> GetGalleries()
     {
         return gallery;
     }

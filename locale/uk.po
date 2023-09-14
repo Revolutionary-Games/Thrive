@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 18:17+0200\n"
-"PO-Revision-Date: 2023-04-25 19:02+0000\n"
+"POT-Creation-Date: 2023-09-03 15:59+0200\n"
+"PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.0\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1472
@@ -72,14 +72,12 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Дія заблокована, поки не завершилася інша"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Підтвердити вихід"
+msgstr "Видалити"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Видова Популяція"
+msgstr "Подвоїти популяцію"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
 #, fuzzy
@@ -199,7 +197,7 @@ msgstr ""
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Ви вже піднеслися"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -270,14 +268,20 @@ msgid "ART_GALLERY"
 msgstr "Галерея"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Видова Популяція"
+msgstr "Вітаємо!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Ви піднеслися та закінчили гру. Вітаємо з досягненням кінця гри.\n"
+"\n"
+"Ви можете продовжити гру на Космічній Стадії з розблокованими Інструментами Бога, та погратися в пісочниці.\n"
+"\n"
+"Також можливо спуститися назад до Мікробної Стадії у даному збереженні, та знову пройти усі стадії з додатковими перками.\n"
+"\n"
+"Усього піднесень у цьому збереженні: {0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -409,7 +413,7 @@ msgstr "Автоматично ({0}x{1})"
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
 #: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Доступні проєкти споруд"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -423,7 +427,7 @@ msgstr "Стадія пробудження"
 msgid "AWARE_STAGE"
 msgstr "Стадія свідомості"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1000
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
 #: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
 #: ../src/general/NewGameSettings.tscn:1145
@@ -626,9 +630,8 @@ msgstr "Побудувати місто"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
 #: ../src/space_stage/gui/PlanetScreen.tscn:88
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "Побудувати структуру"
+msgstr "Черга будування"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -915,28 +918,8 @@ msgstr "Збільшує швидкість обертання великих к
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
 #: ../src/space_stage/gui/PlanetScreen.cs:118
 #: ../src/space_stage/gui/PlanetScreen.tscn:115
-#, fuzzy
 msgid "CITY_SHORT_STATISTICS"
-msgstr ""
-"[b]Покоління:[/b]\n"
-"  {0}\n"
-"[b]Усього ділянок:[/b]\n"
-"  {1}\n"
-"[b]Загальний час Авто-Ево:[/b]\n"
-"  {2}\n"
-"[b]Усього видів:[/b]\n"
-"  {3}\n"
-"[b]Види, що ще існують:[/b]\n"
-"  {4}\n"
-"[b]Кількість видів на ділянці:[/b]\n"
-"  Середня {5}; Стандартне відхилення {6}\n"
-"[b]Загальна популяція:[/b]\n"
-"  {7}\n"
-"[b]Вид з найбільшою популяцією:[/b]\n"
-"  {8}\n"
-"[b]Базові дані про види мікробів:[/b]\n"
-"  Середній розмір гекса: {9}\n"
-"[b]Загальні дані про органели:[/b]"
+msgstr "Населення: {0} Їжа: {1} Наука: {2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1072,7 +1055,9 @@ msgstr "Збірка в:"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:619
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 #: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "COMPOUNDS"
 msgstr "Сполуки"
@@ -1109,7 +1094,7 @@ msgstr "{0} концентрація зменшилась на {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} поглинуто"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "Знайдені сполуки:"
 
@@ -1126,9 +1111,8 @@ msgid "CONFIRM_CAPITAL"
 msgstr "Підтвердити"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "Підтвердити вихід"
+msgstr "Підтвердити видалення"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1010
 #: ../src/general/PauseMenu.tscn:311
@@ -1141,14 +1125,17 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Підтвердити перезапис"
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "Перейти до індустріальної стадії?"
+msgstr "Перейти до Стадії Піднесення?"
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
-msgstr "Розміщення фабрики продвине Вас на індустріальну стадію. Продовжити?"
+msgstr ""
+"Тепер Ви можете піднестися та досягнути Стадії Піднесення через активацію Воріт Піднесення.\n"
+"\n"
+"Це розблокує необмежену силу у вигляді деяких нових Інструментів Бога, які можливо буде використовувати у цьому збереженні.\n"
+"\n"
+"Піднесення означатиме, що Ви пройшли гру, але Ви зможете грати далі. Піднестися?"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
@@ -1159,14 +1146,17 @@ msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Розміщення фабрики продвине Вас на індустріальну стадію. Продовжити?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "Перейти до індустріальної стадії?"
+msgstr "Перейти до Космічної Стадії?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "Розміщення фабрики продвине Вас на індустріальну стадію. Продовжити?"
+msgstr ""
+"Тепер Ви можете перейти до Космічної Стадії, запустивши Ваш перший зореліт.\n"
+"\n"
+"Наразі у прототипах Ви не здатні повертати назад до планети, але у плани входить реалізація плавного переходу через зміну масштабу на Космічній Стадії.\n"
+"\n"
+"Скасування запуску зруйнує зореліт. Запустити зореліт?"
 
 #: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
@@ -1178,9 +1168,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Якісь налаштування невірні"
 
 #: ../src/industrial_stage/UnitType.cs:79
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Тританоп (блакитно-жовтий)"
+msgstr "Юніт: {0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -1194,7 +1183,7 @@ msgstr "Продовжити процвітання"
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Ви дісталися кінця \"завершеної\" частини Thrive.\n"
-"Якщо бажаєте, то можете продовжити, перейшовши до прототипів пізнішої стадії, включених до гри. Вони можуть бути дуже неповними, використовувати графічні заповнювачі й загалом бути дуже грубими. Вони були включені до складу гри для показу можливих майбутніх напрямків гри та наше загальне бачення зв'язку між етапами.\n"
+"Якщо бажаєте, то можете продовжити, перейшовши до прототипів пізнішої стадії, включених до гри. Вони можуть бути дуже неповними, використовувати графічні заповнювачі й загалом бути дуже грубими. Вони були включені до складу гри задля показу можливих майбутніх напрямків гри та наше загальне бачення зв'язку між етапами.\n"
 "\n"
 "Ви не будете здатні зберігати гру в більшій частині прототипів, якщо ви продовжите або повернетесь після продовження. Якщо ви бажаєте пізніше повернутися до цього етапу, будь ласка, зробіть збереження перед продовженням гри.\n"
 "\n"
@@ -1225,7 +1214,7 @@ msgstr "Мертва зона:"
 
 #: ../src/general/OptionsMenu.tscn:592
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Тип підказок кнопок контролера:"
 
 #: ../src/general/OptionsMenu.tscn:1390
 msgid "CONTROLLER_SENSITIVITY"
@@ -1262,7 +1251,7 @@ msgstr "Зворотня залежність"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr ""
+msgstr "Інгредієнти"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:184
 msgid "CRAFTING_KNOWN_ITEMS"
@@ -1333,7 +1322,7 @@ msgstr "Створити новий тип клітини"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Ви можете створювати новий тип клітини, дублюючи данні та надаючи нову назву. Типи клітин можна модифікувати для спеціалізації їх до різних ролей. Коли зміниться тип клітини, такі самі розміщені клітини теж будуть оновлені."
+msgstr "Ви можете створювати новий тип клітини, дублюючи дані та надаючи нову назву. Типи клітин можна модифікувати для спеціалізації їх до різних ролей. Коли зміниться тип клітини, такі самі розміщені клітини теж будуть оновлені."
 
 #: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
@@ -1349,7 +1338,7 @@ msgstr "Створити новий тип тканини"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Ви можете створювати новий тип тканин, дублюючи данні та надаючи їм нову назву. Типи тканин можна модифікувати за допомогою клітинного редактору, для спеціалізації їх до різних ролей."
+msgstr "Ви можете створювати новий тип тканин, дублюючи дані та надаючи їм нову назву. Типи тканин можна модифікувати за допомогою клітинного редактора, для спеціалізації їх до різних ролей."
 
 #: ../src/modding/ModUploader.cs:493
 msgid "CREATING_DOT_DOT_DOT"
@@ -1542,14 +1531,17 @@ msgid "DESCEND_BUTTON"
 msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
+msgstr "Ви дійсно хочете Спуститися?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "Цей вид має скам'яніти для збереження в музеї. Ви можете відкрити музей через Трайвопедію, або завантажити види з вільного редактору."
+msgstr ""
+"Спуск видалить Ваш статус піднесеного та поверне Вас до Мікробної Стадії. Від туди Ви зможете пройти гру заново у цьому збереженні.\n"
+"\n"
+"Ви отримаєте бонус за спуск у новому проходженні. У майбутніх версіях Ви зможете обрати бонус самостійно, але зараз це завжди 20-типроцентне зниження осморегуляції.\n"
+"\n"
+"Підтвердивши спуск, Ви зможете змінити налаштування гри. Наприклад, Ви зможете обрати новий сід, щоб грати у новому світі, або ж вимкнути ЗАКОН."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -1890,7 +1882,7 @@ msgstr "Цікавий факт: Один із перших ігрових ге�
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Порада: осморегуляція коштує 1 АТФ за секунду переміщення гексу (шестикутника) твоєї клітини, та кожен порожній гекс цитоплазми виробляє 5 АТФ, що означає те,що при нестачі енергії через осморегуляцію просто додайте кілька гексів цитоплазми без органел, чи видаліть останні."
+msgstr "Порада: осморегуляція коштує 1 АТФ за секунду переміщення гексу (шестикутника) твоєї клітини, та кожен порожній гекс цитоплазми виробляє 5 АТФ, тож при нестачі енергії через осморегуляцію просто додайте кілька гексів цитоплазми без органел, або видаліть інші органели."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
@@ -1935,7 +1927,7 @@ msgstr "Редактор"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1823
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Увійдіть до редактору та модифікуйте свої види"
+msgstr "Увійдіть до редактора та модифікуйте свій вид"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
@@ -1966,7 +1958,7 @@ msgstr "Увімкнути редактор"
 
 #: ../src/general/OptionsMenu.tscn:633
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Увімкнути світлові ефекти ГІК"
+msgstr "Увімкнути світлові ефекти GUI"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
@@ -2098,9 +2090,8 @@ msgstr "З'явилося заперечення, коли завантажув�
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
 #: ../src/space_stage/gui/PlanetScreen.tscn:65
-#, fuzzy
 msgid "EXISTING_BUILDINGS"
-msgstr "Введіть існуючий ID"
+msgstr "Споруди"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2517,7 +2508,7 @@ msgstr "Графічна команда"
 
 #: ../src/general/OptionsMenu.tscn:575
 msgid "GUI"
-msgstr "ГІК"
+msgstr "GUI"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
@@ -2533,7 +2524,7 @@ msgstr "Навігація по таблиці UI"
 
 #: ../src/general/OptionsMenu.tscn:824
 msgid "GUI_VOLUME"
-msgstr "Гучність ГІК"
+msgstr "Гучність GUI"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:196
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
@@ -2692,14 +2683,12 @@ msgid "INSPECTOR"
 msgstr "Інспектор"
 
 #: ../src/awakening_stage/InteractionType.cs:32
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Збирати"
+msgstr "Активувати Ворота Піднесення"
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Збирати"
+msgstr "Активувати Ворота Піднесення (БРАКУЄ ЕНЕРГІЇ)"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -2764,7 +2753,7 @@ msgstr "Внутрішнє ім'я має починатися з великої
 
 #: ../src/gui_common/charts/line/LineChart.cs:694
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Недійсні данні для ділянки"
+msgstr "Недійсні дані для ділянки"
 
 #: ../src/modding/ModManager.cs:299
 msgid "INVALID_ICON_PATH"
@@ -2870,8 +2859,8 @@ msgstr "Назад"
 #: ../src/engine/input/key_mapping/InputGroupList.cs:158
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
-"Конфліктів з {0}\n"
-"Хочете коректувати данні з {1}?"
+"Виявлено конфлікт з {0}\n"
+"Хочете видалити дані з {1}?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
@@ -3319,7 +3308,7 @@ msgstr "Дуже великий"
 msgid "LIMIT_VERY_SMALL"
 msgstr "Дуже малий"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:109
 msgid "LINE_COLOUR"
 msgstr "Колір лінії:"
 
@@ -3780,7 +3769,7 @@ msgstr "Ви також можете поглинати клітини, бакт
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Осморегуляція коштує [thrive:compound type=\"atp\"][/thrive:compound], що означає, чим більша Ваша клітина, тим більше Мітохондрій, Метаболосом чи Рустіціаніну (або цитоплазми, що виконує гліколіз) Вам потрібно, аби уникнути втрат [thrive:compound type=\"atp\"][/thrive:compound], коли Ви непорушні."
+msgstr "Осморегуляція коштує [thrive:compound type=\"atp\"][/thrive:compound], тож чим більша Ваша клітина, тим більше Мітохондрій, Метаболосом чи Рустіціаніну (або цитоплазми, що виконує гліколіз) Вам потрібно, аби уникнути втрат [thrive:compound type=\"atp\"][/thrive:compound], коли Ви непорушні."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -3790,7 +3779,7 @@ msgstr "У редакторі присутньо багато Органел, я
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Тепер, якщо ваша популяція знизиться до нуля, ви зникнете."
+msgstr "Якщо ваша популяція знизиться до нуля, ви зникнете."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -3829,7 +3818,7 @@ msgstr "Колесик миші (середина миші)"
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Млн"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Мінімальна кількість для виявлення:"
 
@@ -4145,11 +4134,11 @@ msgstr "Перейти до стадії пробудження?"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Ви збираєтеся вийти на суходіл. Це потрібно для переходу на наступний етап гри. Вийшовши на сушу ви не повернетесь назад.\n"
+"Ви збираєтеся вийти на суходіл. Це потрібно для переходу на наступний етап гри. Вийшовши на сушу, Ви не повернетесь назад.\n"
 "\n"
-"Наразі цей перехід на сушу різкіший, аніж заплановано, щоб правильно додати.\n"
+"Наразі цей перехід на сушу є різкішим за майбутню повноцінну реалізацію.\n"
 "\n"
-"Планв в тому, щоб перехід був поступовий, а не різкий."
+"План полягає в тому, щоб зробити перехід поступовим замість різкої зміни."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2021
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
@@ -4257,7 +4246,7 @@ msgstr "Біом: {0}"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (Незав.)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4381,11 +4370,11 @@ msgstr "Немає з чим взаємодіяти"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Пошкодження через нестачу АТФ"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1547
+#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Пошкодження через токсини у поглинутій матерії"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1493
+#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Немає {0} для поглинання цілі"
 
@@ -4586,7 +4575,7 @@ msgstr "Відкрити меню"
 
 #: ../src/general/OptionsMenu.tscn:937
 msgid "OPEN_TRANSLATION_SITE"
-msgstr "Допомоти з перекладом гри"
+msgstr "Допомогти з перекладом гри"
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
 msgid "OPERATION_PAUSED_DOT"
@@ -5343,10 +5332,6 @@ msgstr ""
 "Ви впевнені, що хочете вийти до головного меню?\n"
 "Увесь незбережений прогрес буде втрачено."
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:46
-msgid "REVEAL_ENTIRE_PATCH_MAP"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:776
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Відвідайте офіційний сайт Revolutionary Games"
@@ -5468,7 +5453,7 @@ msgstr "Видалення цього збереження неможливо б
 #: ../src/saving/SaveStatusOverlay.cs:175
 #: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
+msgstr "Повідомляючи про помилку збереження, будь ласка, прикладіть [color=#3796e1][url={0}]{1}[/url][/color] з [color=#3796e1][url={2}]каталогу журналів[/url][/color], оскільки ця інформація є критичною для розуміння причини помилки. Без цього файлу розробникам Thrive буде дуже складно виявити та полагодити проблему."
 
 #: ../src/saving/SaveStatusOverlay.cs:182
 #, fuzzy
@@ -5574,28 +5559,24 @@ msgid "SCALING_ON_INVERSE"
 msgstr "Зворотня залежність"
 
 #: ../src/general/OptionsMenu.tscn:1940
-#, fuzzy
 msgid "SCREEN_EFFECT"
-msgstr "Внутрішні ефекти:"
+msgstr "Екранні ефекти"
 
 #: ../simulation_parameters/common/screen_effects.json:13
-#, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
-msgstr "Внутрішні ефекти:"
+msgstr "Палітра GB"
 
 #: ../simulation_parameters/common/screen_effects.json:18
-#, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr "Внутрішні ефекти:"
+msgstr "Кольорова графіка GB"
 
 #: ../simulation_parameters/common/screen_effects.json:8
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Відтінки сірого"
 
 #: ../simulation_parameters/common/screen_effects.json:3
-#, fuzzy
 msgid "SCREEN_EFFECT_NONE"
-msgstr "Панель назв кнопок вибору"
+msgstr "Немає"
 
 #: ../src/general/OptionsMenu.tscn:1490 ../src/general/OptionsMenu.tscn:1523
 #: ../src/general/OptionsMenu.tscn:1524
@@ -5610,7 +5591,7 @@ msgstr "Пересування екрану (Scroll Lock)"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Пошук..."
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Радіус пошуку:"
 
@@ -5665,9 +5646,8 @@ msgstr "Обрати види"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:134
 #: ../src/society_stage/gui/TechWebGUI.tscn:56
-#, fuzzy
 msgid "SELECT_A_TECHNOLOGY"
-msgstr "Виберіть ділянку для перегляду деталей"
+msgstr "Оберіть технологію з TechWeb"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5874,9 +5854,8 @@ msgid "SPACE_STRUCTURE_HAS_RESOURCES"
 msgstr "Потрібні для конструювання матеріали були видані"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:65
-#, fuzzy
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr "Конструювання: {0}"
+msgstr "Немає додаткової інформації"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
 #, fuzzy
@@ -5891,7 +5870,7 @@ msgstr "Спавн амоніаку"
 msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
@@ -5912,6 +5891,7 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Спеціальна миша 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 msgid "SPECIES"
 msgstr "Види"
 
@@ -5967,7 +5947,12 @@ msgstr "Види розділенні за мутаційним поргом р�
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Види розділенні за мутаційним поргом частки популяції"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:366
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
+#, fuzzy
+msgid "SPECIES_TO_FIND"
+msgstr "Види:"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} з популяції: {1}"
 
@@ -6000,9 +5985,8 @@ msgid "START_GAME"
 msgstr "Розпочати гру"
 
 #: ../src/society_stage/gui/TechWebGUI.tscn:80
-#, fuzzy
 msgid "START_RESEARCH"
-msgstr "Потрібне перезавантаження"
+msgstr "Розпочати дослідження"
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:514
@@ -6143,9 +6127,8 @@ msgid "STRUCTURE"
 msgstr "Структури"
 
 #: ../simulation_parameters/space_stage/space_structures.json:26
-#, fuzzy
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Центр суспільства"
+msgstr "Ворота Піднесення"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
 #, fuzzy
@@ -6184,9 +6167,8 @@ msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr "Центр суспільства"
 
 #: ../simulation_parameters/awakening_stage/structures.json:92
-#, fuzzy
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr "Центр суспільства"
+msgstr "Фабрика на паровій тязі"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:783
 msgid "SUCCESSFUL_KILL"
@@ -6222,7 +6204,7 @@ msgstr "Супер Вправо"
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "SUPPORTER_PATRONS"
-msgstr "Ті що підтримали"
+msgstr "Ті, що підтримали"
 
 #: ../simulation_parameters/common/input_options.json:230
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -6264,10 +6246,14 @@ msgstr "Теги містять лише пробіли"
 msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
 
-#: ../simulation_parameters/awakening_stage/technologies.json:52
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
+msgid "TARGET_TYPE_COLON"
+msgstr "Тип:"
+
+#: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "Будування центра суспільства"
+msgstr "Піднесення"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
@@ -6309,9 +6295,8 @@ msgid "TECHNOLOGY_REQUIRED_LEVEL"
 msgstr "Будування центра суспільства"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
-#, fuzzy
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr "Будування центра суспільства"
+msgstr "Ракетне діло"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6322,9 +6307,8 @@ msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr "Будування центра суспільства"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:30
-#, fuzzy
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr "Будування центра суспільства"
+msgstr "Сила пару"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:828
@@ -6867,7 +6851,7 @@ msgstr "Збирати"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Проста ракета"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
@@ -6884,11 +6868,6 @@ msgstr "Невідома миша"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Невідомо на Windows"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
-#, fuzzy
-msgid "UNKNOWN_PATCH"
-msgstr "Невідомо"
 
 #: ../src/general/OptionsMenu.cs:1630
 msgid "UNKNOWN_VERSION"
