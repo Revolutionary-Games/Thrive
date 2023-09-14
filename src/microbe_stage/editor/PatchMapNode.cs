@@ -72,12 +72,6 @@ public class PatchMapNode : MarginContainer
     private bool discovered;
 
     /// <summary>
-    ///   True if the patch is adjasent to a explored patch
-    ///   but has not been entered by the player
-    /// </summary>
-    private bool renderQuestionMark;
-
-    /// <summary>
     ///   True if the patch is adjacent to the selected patch
     /// </summary>
     private bool adjacentToSelectedPatch;
@@ -100,6 +94,12 @@ public class PatchMapNode : MarginContainer
     public ShaderMaterial? MonochromeMaterial { get; set; }
 
     public Action<PatchMapNode>? SelectCallback { get; set; }
+
+    /// <summary>
+    ///   True if the patch is adjasent to a explored patch
+    ///   but has not been entered by the player
+    /// </summary>
+    public bool IsUnknown { get; set; }
 
     /// <summary>
     ///   Display the icon in color and make it highlightable/selectable.
@@ -126,15 +126,6 @@ public class PatchMapNode : MarginContainer
         {
             discovered = value;
             Visible = value;
-        }
-    }
-
-    public bool IsUnknown
-    {
-        get => renderQuestionMark;
-        set
-        {
-            renderQuestionMark = value;
         }
     }
 
