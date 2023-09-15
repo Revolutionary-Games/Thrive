@@ -19,7 +19,9 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     {
         "ar",
         "af",
+        "be",
         "bg",
+        "bn",
         "ca",
         "cs",
         "da",
@@ -42,6 +44,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "la",
         "lb_LU",
         "it",
+        "mk",
         "nb_NO",
         "nl",
         "nl_BE",
