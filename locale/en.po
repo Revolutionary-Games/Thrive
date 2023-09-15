@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-10 15:01+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2023-09-10 15:04+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -4339,11 +4339,11 @@ msgstr "Nothing to interact with"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Damaged due to not having any ATP"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1597
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Damaged by toxins in ingested matter"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1543
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Missing {0} to engulf target"
 
@@ -5006,7 +5006,7 @@ msgstr "population in patches:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
@@ -5162,7 +5162,7 @@ msgstr "Report"
 msgid "REPORT_BUG"
 msgstr "Report a Bug"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1159
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -6918,7 +6918,7 @@ msgstr "The vacuole is an internal membranous organelle used for storage in the 
 msgid "VACUOLE_IS_SPECIALIZED"
 msgstr "Specialized Vacuole"
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:131
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "The vacuole will store {0} units of all compounds"
 
@@ -6926,7 +6926,7 @@ msgstr "The vacuole will store {0} units of all compounds"
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Increases the storage space of the cell."
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:136
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "The vacuole will store {0} units of the selected compound"
 
