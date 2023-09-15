@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -13,6 +14,11 @@
     /// </remarks>
     public class SimulationCache
     {
+        private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+        private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+        private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
         private readonly WorldGenerationSettings worldSettings;
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
         private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
@@ -22,6 +28,14 @@
 
         private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
             new();
+
+        private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
+
+        private readonly Dictionary<(OrganelleDefinition, BiomeConditions, Compound), float>
+            cachedEnergyCreationScoreForOrganelle = new();
+
+        private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float>
+            cachedEnergyCreationScoreForSpecies = new();
 
         public SimulationCache(WorldGenerationSettings worldSettings)
         {
@@ -113,6 +127,87 @@
             return cached;
         }
 
+        public float GetEnergyCreationScoreForOrganelle(OrganelleDefinition organelle, BiomeConditions biomeConditions,
+            Compound compound)
+        {
+            var key = (organelle, biomeConditions, compound);
+            if (cachedEnergyCreationScoreForOrganelle.TryGetValue(key, out var cached))
+                return cached;
+
+            var energyCreationScore = 0.0f;
+
+            // We check generation from all processes of the cell
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                // ... that uses the given compound...
+                if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
+                {
+                    var processEfficiency = GetProcessMaximumSpeed(process, biomeConditions).Efficiency;
+
+                    // ... and that produce glucose
+                    if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
+                    {
+                        // Better ratio means that we transform stuff more efficiently and need less input
+                        var compoundRatio = glucoseAmount / inputAmount;
+
+                        // Better output is a proxy for more time dedicated to reproduction than energy production
+                        var absoluteOutput = glucoseAmount * processEfficiency;
+
+                        energyCreationScore += (float)(
+                            Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                            * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                            * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
+                    }
+
+                    // ... and that produce ATP
+                    if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
+                    {
+                        // Better ratio means that we transform stuff more efficiently and need less input
+                        var compoundRatio = atpAmount / inputAmount;
+
+                        // Better output is a proxy for more time dedicated to reproduction than energy production
+                        var absoluteOutput = atpAmount * processEfficiency;
+
+                        energyCreationScore += (float)(
+                            Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                            * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                            * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
+                    }
+                }
+            }
+
+            cachedEnergyCreationScoreForOrganelle.Add(key, energyCreationScore);
+            return energyCreationScore;
+        }
+
+        /// <summary>
+        ///   A measure of how good the species is for generating energy from a given compound.
+        /// </summary>
+        /// <returns>
+        ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
+        ///   so different implementations do not need to worry about scale.
+        /// </returns>
+        public float GetEnergyGenerationScoreForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions,
+            Compound compound)
+        {
+            var key = (species, biomeConditions, compound);
+
+            if (cachedEnergyCreationScoreForSpecies.TryGetValue(key, out var cached))
+                return cached;
+
+            var energyCreationScore = 0.0f;
+
+            // We check generation from all the processes of the cell.
+            foreach (var organelle in species.Organelles)
+            {
+                energyCreationScore += GetEnergyCreationScoreForOrganelle(organelle.Definition, biomeConditions,
+                    compound);
+            }
+
+            cachedEnergyCreationScoreForSpecies.Add(key, energyCreationScore);
+            return energyCreationScore;
+        }
+
         /// <summary>
         ///   Calculates a maximum speed for a process that can happen given the environmental. Environmental compounds
         ///   are always used at the average amount in auto-evo.
@@ -138,6 +233,44 @@
         public bool MatchesSettings(WorldGenerationSettings checkAgainst)
         {
             return worldSettings.Equals(checkAgainst);
+        }
+
+        public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(
+            MicrobeSpecies microbeSpecies)
+        {
+            if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
+                return cached;
+
+            var pilusScore = 0.0f;
+            var oxytoxyScore = 0.0f;
+            var mucilageScore = 0.0f;
+
+            foreach (var organelle in microbeSpecies.Organelles)
+            {
+                if (organelle.Definition.HasPilusComponent)
+                {
+                    pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+                    continue;
+                }
+
+                foreach (var process in organelle.Definition.RunnableProcesses)
+                {
+                    if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
+                    {
+                        oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                    }
+
+                    if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
+                    {
+                        mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
+                    }
+                }
+            }
+
+            var predationToolsRawScores = (pilusScore, oxytoxyScore, mucilageScore);
+
+            cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
+            return predationToolsRawScores;
         }
     }
 }
