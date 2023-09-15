@@ -10,18 +10,16 @@ msgstr ""
 "POT-Creation-Date: 2023-09-10 15:01+0200\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Ivan Bratović <ivanbratovic4@gmail.com>\n"
-"Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/hr/>\n"
+"Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: ../src/general/OptionsMenu.tscn:1472
+#: ../src/general/OptionsMenu.tscn:1468
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Stil 2D pokreta:"
 
@@ -33,7 +31,7 @@ msgstr "3D uređivač"
 msgid "3D_MOVEMENT"
 msgstr "3D kretanje"
 
-#: ../src/general/OptionsMenu.tscn:1504
+#: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Stil 3D pokreta:"
 
@@ -190,11 +188,11 @@ msgstr ""
 msgid "AMMONIA"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1680 ../src/general/OptionsMenu.tscn:1692
+#: ../src/general/OptionsMenu.tscn:1680
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1708 ../src/general/OptionsMenu.tscn:1720
+#: ../src/general/OptionsMenu.tscn:1708
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
@@ -219,11 +217,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2086 ../src/general/OptionsMenu.tscn:2098
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2095 ../src/general/OptionsMenu.tscn:2107
+#: ../src/general/OptionsMenu.tscn:2095
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
@@ -310,7 +308,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
 #: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1486
-#: ../src/general/OptionsMenu.tscn:1489 ../src/general/OptionsMenu.tscn:1490
 msgid "AUTO"
 msgstr ""
 
@@ -335,7 +332,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1669 ../src/general/OptionsMenu.tscn:1681
+#: ../src/general/OptionsMenu.tscn:1669
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
@@ -373,7 +370,6 @@ msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
 #: ../src/general/OptionsMenu.cs:1048 ../src/general/OptionsMenu.tscn:364
-#: ../src/general/OptionsMenu.cs:1045
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -402,7 +398,7 @@ msgstr "Stadij mikroba"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/OptionsMenu.tscn:2035
+#: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr ""
 
@@ -536,7 +532,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
-#: ../simulation_parameters/microbe_stage/organelles.json:517
 msgid "BINDING_AGENT"
 msgstr ""
 
@@ -549,7 +544,6 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
-#: ../src/general/OptionsMenu.tscn:1403
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -571,7 +565,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
-#: ../simulation_parameters/microbe_stage/organelles.json:762
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
@@ -638,7 +631,6 @@ msgstr ""
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:165
-#: ../src/general/OptionsMenu.tscn:2186
 msgid "CANCEL"
 msgstr ""
 
@@ -771,7 +763,7 @@ msgstr ""
 msgid "CHEATS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1762 ../src/general/OptionsMenu.tscn:1774
+#: ../src/general/OptionsMenu.tscn:1762
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
@@ -798,7 +790,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
-#: ../simulation_parameters/microbe_stage/organelles.json:680
 msgid "CHEMORECEPTOR"
 msgstr ""
 
@@ -847,7 +838,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
-#: ../simulation_parameters/microbe_stage/organelles.json:556
 msgid "CHLOROPLAST"
 msgstr ""
 
@@ -877,7 +867,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
-#: ../simulation_parameters/microbe_stage/organelles.json:828
 msgid "CILIA"
 msgstr ""
 
@@ -910,11 +899,10 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
-#: ../src/general/OptionsMenu.tscn:2261
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2104 ../src/general/OptionsMenu.tscn:2116
+#: ../src/general/OptionsMenu.tscn:2104
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
@@ -1014,7 +1002,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1992 ../src/general/OptionsMenu.tscn:2004
+#: ../src/general/OptionsMenu.tscn:1992
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
@@ -1054,7 +1042,6 @@ msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:95
-#: ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
@@ -1149,7 +1136,7 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1458 ../src/general/OptionsMenu.tscn:1462
+#: ../src/general/OptionsMenu.tscn:1458
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1166,7 +1153,7 @@ msgstr ""
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1388 ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1388
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1329,13 +1316,12 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1781 ../src/general/OptionsMenu.tscn:1793
+#: ../src/general/OptionsMenu.tscn:1781
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
-#: ../simulation_parameters/microbe_stage/organelles.json:587
 msgid "CYTOPLASM"
 msgstr ""
 
@@ -1400,7 +1386,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1514 ../src/general/OptionsMenu.cs:1511
+#: ../src/general/OptionsMenu.cs:1514
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1583,7 +1569,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2157 ../src/general/OptionsMenu.tscn:2169
+#: ../src/general/OptionsMenu.tscn:2157
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
@@ -1619,12 +1605,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1856 ../src/general/OptionsMenu.tscn:1868
+#: ../src/general/OptionsMenu.tscn:1856
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1854 ../src/general/OptionsMenu.tscn:1863
-#: ../src/general/OptionsMenu.tscn:1866 ../src/general/OptionsMenu.tscn:1875
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
@@ -1699,10 +1684,7 @@ msgstr "Višestanični stadij"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Zabavna činjenica: Didinium i Paramecium školski su primjer odnosa predatora "
-"i plijena koji se proučava već desetljećima. Jesi li ti Didinium ili "
-"Paramecium? Predator ili plijen?"
+msgstr "Zabavna činjenica: Didinium i Paramecium školski su primjer odnosa predatora i plijena koji se proučava već desetljećima. Jesi li ti Didinium ili Paramecium? Predator ili plijen?"
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
@@ -1746,9 +1728,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Jedan savjet: toksini se mogu koristiti za odbacivanje drugih toksina, ako "
-"ste dovoljno brzi."
+msgstr "Jedan savjet: toksini se mogu koristiti za odbacivanje drugih toksina, ako ste dovoljno brzi."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
@@ -1764,9 +1744,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade "
-"željeza."
+msgstr "Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade željeza."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
@@ -1786,11 +1764,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Jedan savjet: Osmoregulacija troši 1 ATP po sekundi po šesterokutnoj ćeliji "
-"koje vaša stanica ima, ali svaka prazna ćelija citoplazme također generira 5 "
-"ATP po sekundi. To znači da ako gubite ATP zbog osmoregulacije, samo dodajte "
-"nekoliko praznih ćelija citoplazme ili uklonite neke organele."
+msgstr "Jedan savjet: Osmoregulacija troši 1 ATP po sekundi po šesterokutnoj ćeliji koje vaša stanica ima, ali svaka prazna ćelija citoplazme također generira 5 ATP po sekundi. To znači da ako gubite ATP zbog osmoregulacije, samo dodajte nekoliko praznih ćelija citoplazme ili uklonite neke organele."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
@@ -1824,7 +1798,7 @@ msgstr ""
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1545 ../src/general/OptionsMenu.tscn:1557
+#: ../src/general/OptionsMenu.tscn:1545
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
@@ -1919,7 +1893,6 @@ msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2185 ../src/general/OptionsMenu.tscn:2193
-#: ../src/general/OptionsMenu.tscn:2197 ../src/general/OptionsMenu.tscn:2205
 msgid "ERROR"
 msgstr ""
 
@@ -1931,7 +1904,7 @@ msgstr ""
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195 ../src/general/OptionsMenu.tscn:2207
+#: ../src/general/OptionsMenu.tscn:2195
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -1971,12 +1944,11 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1964 ../src/general/OptionsMenu.tscn:1976
+#: ../src/general/OptionsMenu.tscn:1964
 msgid "EXACT_VERSION_COLON"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1962 ../src/general/OptionsMenu.tscn:1973
-#: ../src/general/OptionsMenu.tscn:1974 ../src/general/OptionsMenu.tscn:1985
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
@@ -2307,7 +2279,7 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1062 ../src/general/OptionsMenu.cs:1059
+#: ../src/general/OptionsMenu.cs:1062
 msgid "GLES2"
 msgstr ""
 
@@ -2319,7 +2291,7 @@ msgstr ""
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1067 ../src/general/OptionsMenu.cs:1064
+#: ../src/general/OptionsMenu.cs:1067
 msgid "GLES3"
 msgstr ""
 
@@ -2338,7 +2310,7 @@ msgstr ""
 msgid "GLUCOSE"
 msgstr ""
 
-#: ../src/general/IWorldEffect.cs:90 ../src/general/IWorldEffect.cs:85
+#: ../src/general/IWorldEffect.cs:90
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
@@ -2455,7 +2427,6 @@ msgid "HOME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1413
-#: ../src/general/OptionsMenu.tscn:1415
 msgid "HORIZONTAL_COLON"
 msgstr ""
 
@@ -2674,8 +2645,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1338
 #: ../src/general/OptionsMenu.tscn:1425 ../src/general/OptionsMenu.tscn:1447
-#: ../src/general/OptionsMenu.tscn:1318 ../src/general/OptionsMenu.tscn:1340
-#: ../src/general/OptionsMenu.tscn:1428 ../src/general/OptionsMenu.tscn:1451
 msgid "INVERTED"
 msgstr ""
 
@@ -2702,20 +2671,19 @@ msgstr ""
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1889 ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:1889
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1905 ../src/general/OptionsMenu.tscn:1917
+#: ../src/general/OptionsMenu.tscn:1905
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1905
-#: ../src/general/OptionsMenu.tscn:1916 ../src/general/OptionsMenu.tscn:1917
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1905 ../src/general/OptionsMenu.tscn:1917
+#: ../src/general/OptionsMenu.tscn:1905
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -2899,15 +2867,15 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1565 ../src/general/OptionsMenu.cs:1562
+#: ../src/general/OptionsMenu.cs:1565
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1561 ../src/general/OptionsMenu.cs:1558
+#: ../src/general/OptionsMenu.cs:1561
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1557 ../src/general/OptionsMenu.cs:1554
+#: ../src/general/OptionsMenu.cs:1557
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3227,8 +3195,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:131
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "LOADING_TIP"
-msgstr ""
-"Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
 
 #: ../src/saving/InProgressLoad.cs:177
 msgid "LOAD_FINISHED"
@@ -3273,7 +3240,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
-#: ../simulation_parameters/microbe_stage/organelles.json:877
 msgid "LYSOSOME"
 msgstr ""
 
@@ -3429,53 +3395,34 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokariotske strukture\n"
 "\n"
-"Citoplazma: ima prostor za pohranu i vrši glikolizu (Proizvodi male količine "
-"[thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound "
-"type=\"glucose\"][/thrive:compound])\n"
+"Citoplazma: ima prostor za pohranu i vrši glikolizu (Proizvodi male količine [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz "
-"[thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/"
-"thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu "
-"i zauzimaju 1 ćeliju\n"
+"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu i zauzimaju 1 ćeliju\n"
 "\n"
-"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/"
-"thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:"
-"compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 ćeliju\n"
+"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 ćeliju\n"
 "\n"
-"Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u "
-"[thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenaza: anaerobno pretvara atmosferski dušik i [thrive:compound "
-"type=\"atp\"][/thrive:compound] u [thrive:compound type=\"ammonia\"][/thrive:"
-"compound]\n"
+"Nitrogenaza: anaerobno pretvara atmosferski dušik i [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
-"Oksitoksizom: pretvara [thrive:compound type=\"atp\"][/thrive:compound] u "
-"[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"Oksitoksizom: pretvara [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
-"Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] "
-"pomoću temperaturnih gradijenata"
+"Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se "
-"unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti "
-"izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. "
-"Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma "
-"probava postaje učinkovitija."
+msgstr "Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma probava postaje učinkovitija."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Vanjski organeli\n"
 "\n"
-"Bič: Brže pomiče vašu stanicu trošeći [thrive:compound type=\"atp\"][/thrive:"
-"compound]\n"
+"Bič: Brže pomiče vašu stanicu trošeći [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Pilus: Može se koristiti za probadanje drugih stanica ili za obranu od "
-"njihovih toksina\n"
+"Pilus: Može se koristiti za probadanje drugih stanica ili za obranu od njihovih toksina\n"
 "\n"
 "Kemoreceptor: Omogućuje otkrivanje spojeva s veće udaljenosti\n"
 "\n"
@@ -3486,62 +3433,35 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Organele vezane za membranu\n"
 "\n"
-"Jezgra: Zauzima 11 ćelija i omogućuje evoluciju organela vezanih za "
-"membranu, udvostručuje veličinu vaše stanice i smanjuje nastalu štetu za 50% "
-"(može se razviti samo jednom)\n"
+"Jezgra: Zauzima 11 ćelija i omogućuje evoluciju organela vezanih za membranu, udvostručuje veličinu vaše stanice i smanjuje nastalu štetu za 50% (može se razviti samo jednom)\n"
 "\n"
-"Vezivo sredstvo: Omogućuje vezanje s drugim stanicama. Potreban za "
-"napredovanje u višestaničnu fazu.\n"
+"Vezivo sredstvo: Omogućuje vezanje s drugim stanicama. Potreban za napredovanje u višestaničnu fazu.\n"
 "\n"
-"Mitohondrij: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] iz "
-"[thrive:compound type=\"glucose\"][/thrive:compound] i atmosferskog O2, puno "
-"učinkovitije od citoplazme\n"
+"Mitohondrij: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound] i atmosferskog O2, puno učinkovitije od citoplazme\n"
 "\n"
-"Kloroplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od "
-"sunčeve svjetlosti i atmosferskog CO2\n"
+"Kloroplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od sunčeve svjetlosti i atmosferskog CO2\n"
 "\n"
-"Termoplast: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] "
-"pomoću temperaturnih gradijenata\n"
+"Termoplast: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata\n"
 "\n"
-"Lizosom: Sadrži probavne enzime. Enzimi ubrzavaju i poboljšavaju "
-"učinkovitost probave\n"
+"Lizosom: Sadrži probavne enzime. Enzimi ubrzavaju i poboljšavaju učinkovitost probave\n"
 "\n"
-"Kemoplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od "
-"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Kemoplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Plastid za fiksiranje dušika: stvara [thrive:compound type=\"ammonia\"][/"
-"thrive:compound] od [thrive:compound type=\"atp\"][/thrive:compound] i "
-"atmosferskog dušika i kisika\n"
+"Plastid za fiksiranje dušika: stvara [thrive:compound type=\"ammonia\"][/thrive:compound] od [thrive:compound type=\"atp\"][/thrive:compound] i atmosferskog dušika i kisika\n"
 "\n"
 "Vakuola: Pohranjuje 8 sakupljenih spojeva\n"
 "\n"
-"Vakuole toksina: proizvode toksine (nazvane [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound]) i omogućuju vam da ih otpustite "
-"nanoseći štetu na temelju količine dostupnog oksitoxya\n"
+"Vakuole toksina: proizvode toksine (nazvane [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i omogućuju vam da ih otpustite nanoseći štetu na temelju količine dostupnog oksitoxya\n"
 "\n"
-"Signalno sredstvo: Dozvoljava stanicama da stvaraju kemijske spojeve na koje "
-"druge stanice mogu reagirati"
+"Signalno sredstvo: Dozvoljava stanicama da stvaraju kemijske spojeve na koje druge stanice mogu reagirati"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Za svaku generaciju imate 100 mutacijskih bodova (MP) koje možete potrošiti, "
-"a svaka promjena (ili mutacija) koštat će određeni iznos tog MP-a. Dodavanje "
-"i uklanjanje organela košta MP. Međutim, uklanjanjem organela koji su "
-"postavljeni u trenutnoj mutaciji, vraća se MP za taj organel. Možete "
-"premjestiti ili potpuno ukloniti organel tako da je kliknete desnom tipkom "
-"miša i odaberete odgovarajuću radnju iz skočnog izbornika. Možete rotirati "
-"svoje organele dok ih postavljate pomoću [thrive:input]e_rotate_left[/thrive:"
-"input] i [thrive:input]e_rotate_right[/thrive:input]."
+msgstr "Za svaku generaciju imate 100 mutacijskih bodova (MP) koje možete potrošiti, a svaka promjena (ili mutacija) koštat će određeni iznos tog MP-a. Dodavanje i uklanjanje organela košta MP. Međutim, uklanjanjem organela koji su postavljeni u trenutnoj mutaciji, vraća se MP za taj organel. Možete premjestiti ili potpuno ukloniti organel tako da je kliknete desnom tipkom miša i odaberete odgovarajuću radnju iz skočnog izbornika. Možete rotirati svoje organele dok ih postavljate pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Prilikom svakog razmnožavanja, ući ćete u Uređivač Mikroba, gdje možete "
-"mijenjati svoju vrstu (dodavanjem, premještanjem ili uklanjanjem organela) "
-"kako biste povećali uspjeh svoje vrste. Svaki posjet uređivaču tijekom "
-"Stadija Mikroba predstavlja [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/"
-"thrive:constant] milijuna godina evolucije."
+msgstr "Prilikom svakog razmnožavanja, ući ćete u Uređivač Mikroba, gdje možete mijenjati svoju vrstu (dodavanjem, premještanjem ili uklanjanjem organela) kako biste povećali uspjeh svoje vrste. Svaki posjet uređivaču tijekom Stadija Mikroba predstavlja [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milijuna godina evolucije."
 
 #: ../src/general/MainMenu.tscn:407
 msgid "MICROBE_FREEBUILD_EDITOR"
@@ -3610,104 +3530,58 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
-"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
-"input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:"
-"input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. "
-"[thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. "
-"Kotač miša koristi se za podešavanje zumiranja."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Za razmnožavanje potrebno je podijeliti sve organele na dva dijela. Organeli "
-"trebaju [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:"
-"compound type=\"phosphates\"][/thrive:compound], i vremena kako bi se "
-"podijelili."
+msgstr "Za razmnožavanje potrebno je podijeliti sve organele na dva dijela. Organeli trebaju [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound], i vremena kako bi se podijelili."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Međutim, ako preživi dvadeset generacija s 300 jedinki, smatra se da ste "
-"pobijedili u trenutnoj igri. Nakon pobjede dobivate skočni prozor i možete "
-"nastaviti igrati kako želite."
+msgstr "Međutim, ako preživi dvadeset generacija s 300 jedinki, smatra se da ste pobijedili u trenutnoj igri. Nakon pobjede dobivate skočni prozor i možete nastaviti igrati kako želite."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Budite oprezni jer se druge vrste razvijaju i natječu usporedno s Vašom "
-"vrstom. Svaki put kada uđete u uređivač i oni se razvijaju."
+msgstr "Budite oprezni jer se druge vrste razvijaju i natječu usporedno s Vašom vrstom. Svaki put kada uđete u uređivač i oni se razvijaju."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Vezujuće sredstvo omogućuje vašoj stanici i ostalima njezine vrste da "
-"izgrade staničnu koloniju u kojoj stanice međusobno dijele spojeve koje "
-"apsorbiraju i proizvode. Uđite u način vezivanja pritiskom na [thrive:"
-"input]g_toggle_binding[/thrive:input]. Dok ste u koloniji, ne možete "
-"podijeliti ćeliju i koristiti stanični uređivač. Za ulazak u uređivač "
-"skupite potrebne spojeve i napustite koloniju pritiskom na [thrive:"
-"input]g_unbind_all[/thrive:input]. Velike stanične kolonije put su prema "
-"višestaničnosti."
+msgstr "Vezujuće sredstvo omogućuje vašoj stanici i ostalima njezine vrste da izgrade staničnu koloniju u kojoj stanice međusobno dijele spojeve koje apsorbiraju i proizvode. Uđite u način vezivanja pritiskom na [thrive:input]g_toggle_binding[/thrive:input]. Dok ste u koloniji, ne možete podijeliti ćeliju i koristiti stanični uređivač. Za ulazak u uređivač skupite potrebne spojeve i napustite koloniju pritiskom na [thrive:input]g_unbind_all[/thrive:input]. Velike stanične kolonije put su prema višestaničnosti."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr ""
-"Celulozne i hitinske stanične stijenke se naročito ne mogu probaviti bez "
-"potrebnog enzima koji ih može razgraditi."
+msgstr "Celulozne i hitinske stanične stijenke se naročito ne mogu probaviti bez potrebnog enzima koji ih može razgraditi."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr ""
-"Međutim, lizosomi su dostupni samo eukariotima. Prokarioti nemaju takve "
-"organele te im je zbog toga probava neučinkovita. To ne predstavlja veliki "
-"problem za male stanice, ali većim je stanicama dosta veliki nedostatak."
+msgstr "Međutim, lizosomi su dostupni samo eukariotima. Prokarioti nemaju takve organele te im je zbog toga probava neučinkovita. To ne predstavlja veliki problem za male stanice, ali većim je stanicama dosta veliki nedostatak."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"Stanica koristi [thrive:compound type=\"atp\"][/thrive:compound] kao izvor "
-"energije. Ako ga ponestane, stanica će umrijeti."
+msgstr "Stanica koristi [thrive:compound type=\"atp\"][/thrive:compound] kao izvor energije. Ako ga ponestane, stanica će umrijeti."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Za otključavanje uređivača i razmnožavanje, potrebno je ostati živ dovoljno "
-"dugo. Skupljanje [thrive:compound type=\"ammonia\"][/thrive:compound] "
-"(narančasti oblak) te [thrive:compound type=\"phosphates\"][/thrive:"
-"compound] (ljubičasti oblak) ubrzava stanični rast."
+msgstr "Za otključavanje uređivača i razmnožavanje, potrebno je ostati živ dovoljno dugo. Skupljanje [thrive:compound type=\"ammonia\"][/thrive:compound] (narančasti oblak) te [thrive:compound type=\"phosphates\"][/thrive:compound] (ljubičasti oblak) ubrzava stanični rast."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Stanica može gutati druge stanice, bakterije te komadiće željeza i drugih "
-"stanica koji su manji od nje same korištenjem [thrive:input]g_toggle_engulf[/"
-"thrive:input]. Dok stanica guta, troši dodatni [thrive:compound type=\"atp\"]"
-"[/thrive:compound] i sporije se kreće. Ponovno korištenje [thrive:"
-"input]g_toggle_engulf[/thrive:input] prekida gutanje."
+msgstr "Stanica može gutati druge stanice, bakterije te komadiće željeza i drugih stanica koji su manji od nje same korištenjem [thrive:input]g_toggle_engulf[/thrive:input]. Dok stanica guta, troši dodatni [thrive:compound type=\"atp\"][/thrive:compound] i sporije se kreće. Ponovno korištenje [thrive:input]g_toggle_engulf[/thrive:input] prekida gutanje."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregulacija troši [thrive:compound type=\"atp\"][/thrive:compound]. Što "
-"je veća stanica, to treba više mitohondrija, metabolosoma ili rusticijanina "
-"treba kako bi se spriječilo trošenje [thrive:compound type=\"atp\"][/thrive:"
-"compound] dok stoji na mjestu."
+msgstr "Osmoregulacija troši [thrive:compound type=\"atp\"][/thrive:compound]. Što je veća stanica, to treba više mitohondrija, metabolosoma ili rusticijanina treba kako bi se spriječilo trošenje [thrive:compound type=\"atp\"][/thrive:compound] dok stoji na mjestu."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"U uređivaču postoji mnogo organela koji se mogu razvijati, što omogućuje "
-"širok raspon različitih stilova igre."
+msgstr "U uređivaču postoji mnogo organela koji se mogu razvijati, što omogućuje širok raspon različitih stilova igre."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3725,18 +3599,12 @@ msgstr ""
 "Ljubičasti – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Smeđi – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] stvara [thrive:compound "
-"type=\"atp\"][/thrive:compound]."
+"[thrive:compound type=\"glucose\"][/thrive:compound] stvara [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] može se "
-"pretvoriti u [thrive:compound type=\"glucose\"][/thrive:compound] pomoću "
-"kemoplasta i kemosintetizirajućih proteina. [thrive:compound type=\"iron\"][/"
-"thrive:compound] se pomoću rusticijanina može pretvoriti u [thrive:compound "
-"type=\"atp\"][/thrive:compound]."
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] može se pretvoriti u [thrive:compound type=\"glucose\"][/thrive:compound] pomoću kemoplasta i kemosintetizirajućih proteina. [thrive:compound type=\"iron\"][/thrive:compound] se pomoću rusticijanina može pretvoriti u [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
@@ -3777,7 +3645,7 @@ msgstr ""
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Višestanični stadij"
 
-#: ../src/general/OptionsMenu.tscn:1917 ../src/general/OptionsMenu.tscn:1929
+#: ../src/general/OptionsMenu.tscn:1917
 msgid "MISC_FUN"
 msgstr ""
 
@@ -3795,7 +3663,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
-#: ../simulation_parameters/microbe_stage/organelles.json:450
 msgid "MITOCHONDRION"
 msgstr ""
 
@@ -3979,7 +3846,7 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1547
+#: ../src/general/OptionsMenu.tscn:1535
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
@@ -3987,7 +3854,7 @@ msgstr ""
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1344
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4282,12 +4149,10 @@ msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1597
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1543
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4349,7 +4214,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2203 ../src/general/OptionsMenu.tscn:2215
+#: ../src/general/OptionsMenu.tscn:2203
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
@@ -4359,7 +4224,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
-#: ../simulation_parameters/microbe_stage/organelles.json:654
 msgid "NUCLEUS"
 msgstr ""
 
@@ -4446,7 +4310,7 @@ msgstr ""
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1816 ../src/general/OptionsMenu.tscn:1828
+#: ../src/general/OptionsMenu.tscn:1816
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
@@ -4470,7 +4334,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1808 ../src/general/OptionsMenu.tscn:1820
+#: ../src/general/OptionsMenu.tscn:1808
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
@@ -4508,7 +4372,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#: ../simulation_parameters/microbe_stage/organelles.json:904
 msgid "ORGANELLE_AXON"
 msgstr ""
 
@@ -4523,7 +4386,6 @@ msgstr "Višestanični stadij"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
-#: ../simulation_parameters/microbe_stage/organelles.json:946
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
@@ -4729,7 +4591,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2213
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
-#: ../src/general/OptionsMenu.tscn:2225
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
 
@@ -4793,7 +4654,6 @@ msgstr ""
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
-#: ../src/general/IWorldEffect.cs:91
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -4880,7 +4740,7 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1486
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -4904,11 +4764,11 @@ msgstr ""
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1645 ../src/general/OptionsMenu.tscn:1657
+#: ../src/general/OptionsMenu.tscn:1645
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1653 ../src/general/OptionsMenu.tscn:1665
+#: ../src/general/OptionsMenu.tscn:1653
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
@@ -5089,7 +4949,6 @@ msgid "REPORT_BUG"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1159
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5122,7 +4981,6 @@ msgid "RESEARCH"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2034
-#: ../src/general/OptionsMenu.tscn:2046
 msgid "RESET"
 msgstr ""
 
@@ -5130,23 +4988,23 @@ msgstr ""
 msgid "RESET_DEADZONES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1879 ../src/general/OptionsMenu.tscn:1891
+#: ../src/general/OptionsMenu.tscn:1879
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2094 ../src/general/OptionsMenu.tscn:2106
+#: ../src/general/OptionsMenu.tscn:2094
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1604 ../src/general/OptionsMenu.tscn:1616
+#: ../src/general/OptionsMenu.tscn:1604
 msgid "RESET_KEYBINDINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2074 ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2074
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2085 ../src/general/OptionsMenu.tscn:2097
+#: ../src/general/OptionsMenu.tscn:2085
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
@@ -5319,11 +5177,10 @@ msgid "SAFE_MODE_TITLE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2048 ../src/saving/NewSaveMenu.tscn:80
-#: ../src/general/OptionsMenu.tscn:2060
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2147 ../src/general/OptionsMenu.tscn:2159
+#: ../src/general/OptionsMenu.tscn:2147
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
@@ -5425,19 +5282,18 @@ msgid "SAVING_SUCCEEDED"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1356 ../src/general/OptionsMenu.tscn:1357
-#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1359
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1357 ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1357
 msgid "SCALING_ON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1357 ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1357
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1928 ../src/general/OptionsMenu.tscn:1940
+#: ../src/general/OptionsMenu.tscn:1928
 msgid "SCREEN_EFFECT"
 msgstr ""
 
@@ -5458,8 +5314,7 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
-#: ../src/general/OptionsMenu.tscn:1520 ../src/general/OptionsMenu.tscn:1490
-#: ../src/general/OptionsMenu.tscn:1523 ../src/general/OptionsMenu.tscn:1524
+#: ../src/general/OptionsMenu.tscn:1520
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5585,11 +5440,11 @@ msgstr ""
 msgid "SHOW_HELP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1833 ../src/general/OptionsMenu.tscn:1845
+#: ../src/general/OptionsMenu.tscn:1833
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1831 ../src/general/OptionsMenu.tscn:1843
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
@@ -5597,15 +5452,15 @@ msgstr ""
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1743 ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1743
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1735 ../src/general/OptionsMenu.tscn:1747
+#: ../src/general/OptionsMenu.tscn:1735
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1750 ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1750
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
@@ -5613,13 +5468,12 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1824 ../src/general/OptionsMenu.tscn:1836
+#: ../src/general/OptionsMenu.tscn:1824
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
-#: ../simulation_parameters/microbe_stage/organelles.json:739
 msgid "SIGNALING_AGENT"
 msgstr ""
 
@@ -5679,7 +5533,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
-#: ../simulation_parameters/microbe_stage/organelles.json:713
 msgid "SLIME_JET"
 msgstr ""
 
@@ -6214,7 +6067,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
-#: ../simulation_parameters/microbe_stage/organelles.json:797
 msgid "THERMOPLAST"
 msgstr ""
 
@@ -6440,7 +6292,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
-#: ../simulation_parameters/microbe_stage/organelles.json:486
 msgid "TOXIN_VACUOLE"
 msgstr ""
 
@@ -6480,7 +6331,7 @@ msgstr ""
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205 ../src/general/OptionsMenu.tscn:2217
+#: ../src/general/OptionsMenu.tscn:2205
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
@@ -6503,17 +6354,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove "
-"mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, "
-"stoga nemojte štedjeti!\n"
+"Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
 "\n"
-"Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se "
-"sastoji od jednog dijela citoplazme.\n"
+"Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se sastoji od jednog dijela citoplazme.\n"
 "\n"
-"Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša "
-"kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati "
-"dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:"
-"input]e_rotate_right[/thrive:input]."
+"Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
@@ -6534,16 +6379,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Trebali biste se usredotočiti na specijalizaciju kako biste preživjeli na "
-"jednom ili dva izvora energije. Tako vam neće trebati mnogo različitih "
-"resursa odjednom da biste se održali na životu.\n"
+"Trebali biste se usredotočiti na specijalizaciju kako biste preživjeli na jednom ili dva izvora energije. Tako vam neće trebati mnogo različitih resursa odjednom da biste se održali na životu.\n"
 "\n"
-"Također, pažljivo razmislite o tome je li dodavanje novog dijela doista "
-"korisno. Ne morate uvijek mijenjati ono što već funkcionira. Održavanje "
-"svakog dijela košta ATP i zahtijeva više resursa za reprodukciju.\n"
+"Također, pažljivo razmislite o tome je li dodavanje novog dijela doista korisno. Ne morate uvijek mijenjati ono što već funkcionira. Održavanje svakog dijela košta ATP i zahtijeva više resursa za reprodukciju.\n"
 "\n"
-"Jedna od mogućih strategija je zadržati jednu ćeliju citoplazme i krenuti "
-"prema površini prije nego što razvijete organele za fotosintezu."
+"Jedna od mogućih strategija je zadržati jednu ćeliju citoplazme i krenuti prema površini prije nego što razvijete organele za fotosintezu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6610,7 +6450,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1626 ../src/general/OptionsMenu.cs:1623
+#: ../src/general/OptionsMenu.cs:1626
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -6642,7 +6482,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1072 ../src/general/OptionsMenu.cs:1069
+#: ../src/general/OptionsMenu.cs:1072
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -6654,7 +6494,7 @@ msgstr ""
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1633 ../src/general/OptionsMenu.cs:1630
+#: ../src/general/OptionsMenu.cs:1633
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -6662,7 +6502,7 @@ msgstr ""
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2124 ../src/general/OptionsMenu.tscn:2136
+#: ../src/general/OptionsMenu.tscn:2124
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
@@ -6671,22 +6511,18 @@ msgid "UNTITLED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:843
-#: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:844
-#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:840
-#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:839
-#: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -6722,7 +6558,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1770 ../src/general/OptionsMenu.tscn:1782
+#: ../src/general/OptionsMenu.tscn:1770
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
@@ -6734,7 +6570,7 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1371 ../src/general/OptionsMenu.tscn:1373
+#: ../src/general/OptionsMenu.tscn:1371
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6774,7 +6610,6 @@ msgid "VERSION_COLON"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1323 ../src/general/OptionsMenu.tscn:1431
-#: ../src/general/OptionsMenu.tscn:1324 ../src/general/OptionsMenu.tscn:1434
 msgid "VERTICAL_COLON"
 msgstr ""
 
@@ -6788,7 +6623,6 @@ msgid "VIDEO_MEMORY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.cs:1081 ../src/general/OptionsMenu.tscn:561
-#: ../src/general/OptionsMenu.cs:1078
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6801,11 +6635,11 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1842 ../src/general/OptionsMenu.tscn:1854
+#: ../src/general/OptionsMenu.tscn:1842
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1839 ../src/general/OptionsMenu.tscn:1851
+#: ../src/general/OptionsMenu.tscn:1839
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
@@ -6946,7 +6780,7 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1520 ../src/general/OptionsMenu.tscn:1524
+#: ../src/general/OptionsMenu.tscn:1520
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
