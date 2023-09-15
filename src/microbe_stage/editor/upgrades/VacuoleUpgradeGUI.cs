@@ -116,7 +116,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     private void UpdateGUI()
     {
-        // Update visibility of the compound slection
+        // Update visibility of the compound selection
         compoundSelection.Visible = isSpecializedCheckbox.Pressed;
 
         if (shownChoices == null)
