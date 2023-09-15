@@ -8,283 +8,257 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-10 15:01+0200\n"
-"PO-Revision-Date: 2023-02-06 07:13+0000\n"
-"Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
-"Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
-"Language: tok\n"
+"PO-Revision-Date: 2023-09-10 12:18+0000\n"
+"Last-Translator: Mahbeer Alam Sarker <mahbeeralamsarker@gmail.com>\n"
+"Language-Team: Bengali <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bn/>\n"
+"Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.0\n"
 "Generated-By: Thrive.Scripts 1.1.0.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr "tawa nasin 2D:"
+msgstr "দ্বিমাত্রিক নড়াচড়ার ধরন:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
-msgstr "ilo ante 3D"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
-msgstr "tawa 3D"
+msgstr "ত্রিমাত্রিক নড়াচড়া"
 
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr "tawa nasin 3D:"
+msgstr "ত্রিমাত্রিক নড়াচড়ার ধরন:"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
-msgstr "ijo ken"
+msgstr "সামর্থ্যসমূহ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
-msgstr "tawa ante"
+msgstr "সমাপ্ত"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
-msgstr "ni li tawa ante."
+msgstr "সমাপ্ত করা হয়েছে।"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
-msgstr "lon telo noka mute"
+msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
-msgstr "kama sona ({0:F1} / {1:F1})"
+msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:681
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "sina ken ala pali e ni tan sina pali ante"
+msgstr "অন্যটি হওয়ার কারনে কাজটি বন্ধ করা হয়েছে"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
 msgid "ACTION_DELETE"
-msgstr "weka"
+msgstr "মুছে ফেল"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "tu e kulupu"
+msgstr "দিগুণ জন সংখ্যা"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "kama ante pi sike ante"
+msgstr "সদৃশ ইউনিট"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr "অর্ধেক জন সংখ্যা"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
 msgid "ACTION_TELEPORT"
-msgstr "kama wawa lon ante"
+msgstr "স্থানান্তর"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
-msgstr "tawa mute"
+msgstr "সক্রিয়"
 
 #: ../src/general/OptionsMenu.tscn:1107
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "nanpa pi ijo pali:"
+msgstr "বর্তমান থ্রেডসমুূহ:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"ala li lon la, sike pi tawa mute li wile tawa mute\n"
-"sike pi tawa lili li wile awen. ijo li lon taso la, ona li wile tawa"
+"সক্রিয় জীবাণু ছুটে যাবে যখন আকর্ষণীয় কিছু ঘটবে না।\n"
+"সেসাইল জীবাণুগুলি স্থির থাকবে এবং অভিনয় করার আগে পরিবেশের পরিবর্তনের জন্য অপেক্ষা করবে।"
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr ""
+msgstr "অতিরিক্ত যাচাইকরণ একটি সমস্যা সনাক্ত করেছে: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "pali e nasin nena sin"
+msgstr "একটি নতুন কী বাইন্ডিং যোগ করুন"
 
 #: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
-msgstr "ante mute"
+msgstr "উন্নত"
 
 #: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "open e lipu pi ante mute"
+msgstr "উন্নত সেটআপ ভিউ খুলুন"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:90
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "pali pi kon ilo kepeken kon"
+msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
 msgid "AGENTS"
-msgstr ""
+msgstr "এজেন্টসমূহ"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
 msgid "AGENTS_COLON"
-msgstr ""
+msgstr "এজেন্টসমুূহ:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
 msgid "AGENT_NAME"
-msgstr ""
+msgstr "{0}এজেন্ট"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
-"sike utala li wile tawa wawa pi sike moku lon ma weka\n"
-"ona li wile utala e sike ike\n"
-"sike utala ala li wile tawa ala sike ante lon ma weka\n"
-"ona li wile ala kepeken kon utala tawa sike ike"
+"আক্রমণাত্মক জীবাণু বেশি দূরত্বে শিকারকে তাড়া করবে\n"
+"এবং আক্রমনিত হওয়ার পর শিকারীদের সাথে লড়াই করার সম্ভাবনা বেশি।\n"
+"শান্তিপূর্ণ জীবাণুরা বেশি দূরত্বে অন্যদের নিযুক্ত করবে না\n"
+"এবং শিকারীদের বিরুদ্ধে বিষ ব্যবহার করার সম্ভাবনা কম।"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
-msgstr "wile utala"
+msgstr "আগ্রাসী"
 
 #: ../src/general/NewGameSettings.tscn:475
 msgid "AI_MUTATION_RATE"
-msgstr "kama ante pi sike ante"
+msgstr "এআই প্রজাতির পরিবর্তন"
 
 #: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
 msgid "ALL"
-msgstr "ale"
+msgstr "সকল"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "প্রজাতিগুলিকে স্থানান্তরিত হওয়া নিষিদ্ধ করুন (যদি কোন ভাল স্থানান্তর না পাওয়া যায়)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
+msgstr "প্রজাতিকে মিউটেশন করা নিষিদ্ধ করুন (যদি কোন ভাল মিউটেশন পাওয়া না যায়)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "nanpa pi ma ale"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
-"[b]tenpo lon:[/b]\n"
-"  {0}\n"
-"[b]kule ale:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
-"[b]kule lon tenpo ni:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
-"[b]kule lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
-"[b]lon ale lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
-"[b]suli pi sike ante:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
-"[b]sona pi tomo lon sike:[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr "ni li lon"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
-msgstr "nena Alt"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:754
 msgid "AMBIANCE_VOLUME"
-msgstr "wawa pi kalama ma"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
-msgstr "kon ilo"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1680
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "nanpa ni: sona musi ilo lon ilo nanpa sina:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1708
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "nanpa ni: sona musi lili lon ilo nanpa sina:"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:101
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 msgid "APPEARANCE"
-msgstr "lukin sina"
+msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr "o pali"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
-msgstr "o kepeken nasin sin"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "APRIL"
-msgstr "tenpo mun tu tu"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2086
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "sina wile ala wile e ni: o weka e ante sina ale lon ni?"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2095
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "sina wile ala wile e ni: nena ale li kama sama ante ala?"
+msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
-msgstr "jan pi pali sitelen:"
+msgstr ""
 
 #: ../src/general/Asset.cs:50
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr ""
 
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
-msgstr "musi li tan jan {0}"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:520
 msgid "ART_GALLERY"
-msgstr "ma pi sitelen musi"
+msgstr ""
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "pona!"
+msgstr ""
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
-"sina kama wawa li pini e musi. sina pona!\n"
-"\n"
-"wile la sina ken musi kin kepeken ilo pi wawa mute lon ni.\n"
-"\n"
-"wile la sina ken weka e [your space stage creature]. sina ken kama lon tenpo pi sike wan kepeken wawa ante.\n"
-"\n"
-"nanpa pi kama wawa lon [Save] ni: {0}"
 
 #: ../src/modding/ModManager.cs:325
-#, fuzzy
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr "lipu Assembly li pana, la kulupu Assembly pi ante musi li wile"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:336
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
@@ -303,11 +277,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
 msgid "ATMOSPHERIC_GASSES"
-msgstr "kon lon sewi"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
-msgstr "ijo wawa ATP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
@@ -316,11 +290,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
-msgstr "pali pi wawa sike"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "PALI PI WAWA SIKE LI LILI!"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:146
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
@@ -362,7 +336,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr "{0:F1}% tawa pini. {1:n0}/{2:n0} ijo."
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1669
 msgid "AUTOSAVE_DURING_THE_GAME"
@@ -431,15 +405,15 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
-msgstr "nena Back"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "nena Backslash"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr "nena Backspace"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
@@ -449,7 +423,7 @@ msgstr "nena Backspace"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
 msgid "BASE_MOBILITY"
-msgstr "tawa wawa pi ante ala"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "BASE_MOVEMENT"
@@ -457,11 +431,11 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
-msgstr "ante lili"
+msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "open e lipu pi ante lili"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
@@ -913,22 +887,8 @@ msgstr ""
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
 #: ../src/space_stage/gui/PlanetScreen.cs:118
 #: ../src/space_stage/gui/PlanetScreen.tscn:115
-#, fuzzy
 msgid "CITY_SHORT_STATISTICS"
 msgstr ""
-"[b]tenpo lon:[/b]\n"
-"  {0}\n"
-"[b]kule ale:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
-"[b]kule lon tenpo ni:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
-"[b]kule lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
-"[b]lon ale lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
-"[b]suli pi sike ante:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
-"[b]sona pi tomo lon sike:[/b]"
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1024,9 +984,8 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "sona"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:169
 msgid "COMMON_EDITING_AND_STRATEGY"
@@ -1126,33 +1085,28 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr ""
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr ""
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr ""
 
 #: ../src/society_stage/SocietyStage.tscn:86
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr ""
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr ""
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr ""
 
 #: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
@@ -1492,9 +1446,8 @@ msgid "DESCEND_CONFIRMATION"
 msgstr ""
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -2581,52 +2534,44 @@ msgid "INSPECTOR"
 msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:32
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:17
-#, fuzzy
 msgid "INTERACTION_CONSTRUCT"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:463
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:8
-#, fuzzy
 msgid "INTERACTION_CRAFT"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:14
-#, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:453
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:20
-#, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:26
-#, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/awakening_stage/InteractionType.cs:11
-#, fuzzy
 msgid "INTERACTION_HARVEST"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:439
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
@@ -2690,9 +2635,8 @@ msgid "INVENTORY_ITEMS_ON_GROUND"
 msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:104
-#, fuzzy
 msgid "INVENTORY_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr ""
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:153
 msgid "INVENTORY_TOGGLE_CRAFTING"
@@ -5676,9 +5620,8 @@ msgid "START_CALIBRATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1201
-#, fuzzy
 msgid "START_GAME"
-msgstr "ma pi sitelen musi"
+msgstr ""
 
 #: ../src/society_stage/gui/TechWebGUI.tscn:80
 msgid "START_RESEARCH"
@@ -6425,14 +6368,12 @@ msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
-#, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
-#, fuzzy
 msgid "UNIT_ACTION_MOVE"
-msgstr "kama ante pi sike ante"
+msgstr ""
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
