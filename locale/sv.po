@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1468
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Tvådimensionell rörelsestil:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
@@ -33,7 +33,7 @@ msgstr "Tredimensionell rörelse"
 
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Tredimensionell rörelsestil:"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
@@ -54,12 +54,11 @@ msgstr "Abyssopelagisk"
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "Uppvakna ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Självmord"
+msgstr "Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft (axonvävnad)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:681
@@ -69,50 +68,49 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Åtgärd blockerad medan en annan pågår"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Bekräfta Stängning"
+msgstr "Radera"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
 #, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Artbefolkning"
+msgstr "Befolkningsdubblering"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Bekräfta Stängning"
+msgstr "Duplicera Enheter"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} med befolkning: {1}"
+msgstr "Halvera Befolkning"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Bekräfta Stängning"
+msgstr "Teleportera"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "Aktiv"
 
 #: ../src/general/OptionsMenu.tscn:1107
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Använda trådar:"
+msgstr "Nuvarande trådar:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
+#, fuzzy
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Aktiva mikrober springer och rullar omkring är ingenting händer.\n"
+"Fastsittande mikrober är stationära och väntar för omgivningen att ändra innan de agerar."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr ""
+msgstr "Ytterligare valideringar upptäckte ett problem: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
+#, fuzzy
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Lägg till ny tangentbindning"
 
 #: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
@@ -134,12 +132,11 @@ msgstr "Medel"
 #: ../src/microbe_stage/MicrobeHUD.cs:90
 #, fuzzy
 msgid "AGENTS_COLON"
-msgstr "föregående:"
+msgstr "Medel:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "Grotta"
+msgstr "{0}medel"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -154,14 +151,12 @@ msgid "AGGRESSIVE"
 msgstr "Aggressiv"
 
 #: ../src/general/NewGameSettings.tscn:475
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutationspoäng"
+msgstr "AI mutationshastighet"
 
 #: ../src/general/NewGameSettings.tscn:515
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+msgstr "(farten som AI arter muterar)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
@@ -177,14 +172,26 @@ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Organismstatistik"
+msgstr "Generisk Statistik Av Alla Världar"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Organismstatistik"
+msgstr ""
+"[b]Generationer:[/b]\n"
+"  {0}\n"
+"[b]Totala arter:[/b]\n"
+"  Genomsnitt {1}; Standardavvikelse {2}\n"
+"[b]Arter fortfarande vid liv:[/b]\n"
+"  Average {3}; Standardavvikelse {4}\n"
+"[b]Per-patch Artnummer:[/b]\n"
+"  Average {5}; Standardavvikelse {6}\n"
+"[b]Per-patch totalbefolkning:[/b]\n"
+"  Average {7}; Standardavvikelse {8}\n"
+"[b]Mikrobarts Genomsnittlig Hex Storlek:[/b]\n"
+"  Average {9}; Standardavikkelse {10}\n"
+"[b]Generisk Organelldata:[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
@@ -260,9 +267,8 @@ msgid "ART_GALLERY"
 msgstr "Konst Galleri"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Artbefolkning"
+msgstr "Grattis!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
@@ -333,7 +339,7 @@ msgstr "automatiskt"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+msgstr "Den här panelen visar talen som auto-evolutionen funkar från. Den totala energin en art är kapabel av att fånga, och kosten per individ av arten, bestämmer den slutliga befolkningen. Auto-evolutionen använder en simplifierad modell av verkligheten för att beräkna hur bra en art utför baserat på energin de kan samla. För varje matkälla, det visas hur mycket energi arten"
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
 #, fuzzy
@@ -565,7 +571,7 @@ msgstr "Stor järnbit"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Bindemedel"
@@ -594,13 +600,13 @@ msgstr "Sannolikhet att en ny art skapas för att höja biodiversiteten från et
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "Biodiversitetsökande arter från närliggande område ges gratis befolkning."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biodiversitetsökande art muteras när den skapas"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescerande vakuol"
@@ -833,7 +839,7 @@ msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som k
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
@@ -885,7 +891,7 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
@@ -916,7 +922,7 @@ msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} konsumtion"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Flimmerhår"
@@ -1423,7 +1429,7 @@ msgstr "Organismstatistik"
 msgid "CUSTOM_USERNAME"
 msgstr "Anpassat Användarnamn:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
@@ -3499,7 +3505,7 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Betrakta områden med upp till såhär många arter som att de har låg biodiversitet"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lysosom"
@@ -3915,7 +3921,7 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr "DU HAR FRODATS!"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitochondria"
@@ -4432,11 +4438,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4510,7 +4516,7 @@ msgstr "Hittade ingen screenshots mapp"
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Kärna"
@@ -4669,7 +4675,7 @@ msgstr "Hjälp"
 msgid "ORGANELLES"
 msgstr "Organeller"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4685,7 +4691,7 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Placera organell"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -5126,7 +5132,7 @@ msgstr "befolkning på platser:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "INVÅNARE:"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Plundring av {0}"
 
@@ -5289,7 +5295,7 @@ msgstr "Rapportera"
 msgid "REPORT_BUG"
 msgstr "Rapportera"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"
@@ -5802,6 +5808,11 @@ msgstr ""
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Välj en celltyp att redigera här från redigerarfliken"
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+#, fuzzy
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "Vald:"
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr "September"
@@ -5865,7 +5876,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Signaleringsmedel"
@@ -5932,7 +5943,7 @@ msgstr "Storlek:"
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "Slemmstråle"
@@ -6503,7 +6514,7 @@ msgstr "DU HAR FRODATS!"
 msgid "THEORY_TEAM"
 msgstr "Teori"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Termoplast"
@@ -6734,7 +6745,7 @@ msgstr "Totala sparningar:"
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6987,23 +6998,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Omgivning: {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -7076,9 +7085,23 @@ msgstr "Vakuol"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#, fuzzy
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#, fuzzy
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617

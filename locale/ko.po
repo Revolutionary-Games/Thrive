@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -565,7 +565,7 @@ msgstr "큰 철 덩어리"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} 십억"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "결합 기관"
@@ -600,7 +600,7 @@ msgstr "생물 다양성을 증진하는 주변 지역의 종에게 공짜 개�
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "생성 시 생물 다양성을 증진하는 종이 변이됨"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "생물발광 액포"
@@ -836,7 +836,7 @@ msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 �
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "화학 수용체"
@@ -888,7 +888,7 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 독소에 의한 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 드는 에너지가 적지만, 자원을 빠르게 흡수할 수 없고 속도가 더 느려집니다. [b]키틴 소화 효소는 이 벽을 소화할 수 있어[/b] 포식자의 삼킴에 취약하게 만듭니다."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "엽록체"
@@ -921,7 +921,7 @@ msgstr "화학 합성 단백질은 황화수소 화학 합성이라는 과정에
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "화합물 구름"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "섬모"
@@ -1428,7 +1428,7 @@ msgstr "생체 상태창"
 msgid "CUSTOM_USERNAME"
 msgstr "임의 사용자 이름:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "세포질"
@@ -3496,7 +3496,7 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "지역의 생물 다양성이 낮은 것으로 간주되게 하는 최대 생물종 수"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "리소좀"
@@ -3944,7 +3944,7 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr "번영했습니다!"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "미토콘드리아"
@@ -4461,11 +4461,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4543,7 +4543,7 @@ msgstr "스크린샷 폴더 열기"
 msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "핵"
@@ -4708,7 +4708,7 @@ msgstr "새로운 키 배치 추가"
 msgid "ORGANELLES"
 msgstr "세포 기관"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4724,7 +4724,7 @@ msgstr "이것으로 다른 세포를 찌르세요."
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "세포 기관 배치"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -5164,7 +5164,7 @@ msgstr "지역 내 개체수:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "개체수:"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -5326,7 +5326,7 @@ msgstr "보고"
 msgid "REPORT_BUG"
 msgstr "보고"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "생산"
@@ -5848,6 +5848,11 @@ msgstr ""
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+#, fuzzy
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "선택됨:"
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr ""
@@ -5915,7 +5920,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "신호 기관"
@@ -5982,7 +5987,7 @@ msgstr "크기:"
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "점액 분출"
@@ -6543,7 +6548,7 @@ msgstr "번영했습니다!"
 msgid "THEORY_TEAM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "열 세포"
@@ -6776,7 +6781,7 @@ msgstr "총 저장:"
 msgid "TOXIN_RESISTANCE"
 msgstr "독소 저항"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -7094,23 +7099,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "생태계: {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -7186,9 +7189,23 @@ msgstr "액포"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#, fuzzy
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#, fuzzy
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617

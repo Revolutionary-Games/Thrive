@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -554,7 +554,7 @@ msgstr "גוש ברזל גדול"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} מיליארד"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "מקשר"
@@ -587,7 +587,7 @@ msgstr "מהגדיל את מספר המינים של מגוון ביולוגי �
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "מינים המגדילים את המגוון הביולוגי עובר מוטציה עם היווצרותם"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "חלולית של ביולומינסנציה"
@@ -815,7 +815,7 @@ msgstr "הכימופלסט הוא אברון בעל קרום כפול המכיל
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compoundtype=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "כימורצפטור"
@@ -863,7 +863,7 @@ msgstr "כיטינאז מאפשרים לתא לפרק ממברנות העשוי�
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה מרעלנים. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b]כיטינאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "כלורופלסט"
@@ -892,7 +892,7 @@ msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהת�
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} צריכה"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "ריס"
@@ -1384,7 +1384,7 @@ msgstr "סטטיסטיקת האורגניזם"
 msgid "CUSTOM_USERNAME"
 msgstr "שם משתמש מותאם אישית:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "ציטופלזמה"
@@ -3427,7 +3427,7 @@ msgstr "מ"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "שקול אזורים עם עד כה מספר מינים בעלי מגוון ביולוגי נמוך"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "ליזוזום"
@@ -3883,7 +3883,7 @@ msgstr "פורמט חסר או לא חוקי של שדה חובה: {0}"
 msgid "MISSING_TITLE"
 msgstr "חסרה כותרת"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "מיטוכונדריון"
@@ -4393,11 +4393,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4468,7 +4468,7 @@ msgstr "לא נמצאה ספריית צילומי מסך"
 msgid "NO_SELECTED_MOD"
 msgstr "לא נבחר מוד"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "גרעין התא"
@@ -4631,7 +4631,7 @@ msgstr "שנה את ההגדרות שלך"
 msgid "ORGANELLES"
 msgstr "אברונים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4647,7 +4647,7 @@ msgstr "דקור תאים אחרים בעזרתו."
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "רב תאים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -5075,7 +5075,7 @@ msgstr "אכלוסיה באזורים:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "טריפה של {0}"
 
@@ -5232,7 +5232,7 @@ msgstr "תסקיר"
 msgid "REPORT_BUG"
 msgstr "תסקיר"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -5724,6 +5724,11 @@ msgstr ""
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "בחר סוג רקמה בשביל לערוך אותו כאן מהתג"
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+#, fuzzy
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "נבחרו:"
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr "ספטמבר"
@@ -5782,7 +5787,7 @@ msgstr "הפעל / השבת את חלון אזהרת התקדמות הלא שמ�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "חומר מאותת"
@@ -5841,7 +5846,7 @@ msgstr "גודל:"
 msgid "SLIDESHOW"
 msgstr "מצגת"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "סילון ריר"
@@ -6404,7 +6409,7 @@ msgstr "אתה שגשגת!"
 msgid "THEORY_TEAM"
 msgstr "צוות תיאוריה"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "תרמופלסט"
@@ -6630,7 +6635,7 @@ msgstr "נשמר בסך הכל:"
 msgid "TOXIN_RESISTANCE"
 msgstr "עמידות לרעלים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6928,23 +6933,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "ללא כותרת"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "ליפאז מאפשרים לתא לפרק את רוב סוגי הממברנות. התא שלך כבר מייצר את האנזים הזה ללא הליזוזום, אבל על ידי בחירה בסוג זה מאפשר לך להגביר את יעילותו."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -7015,8 +7018,22 @@ msgstr "חלולית"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "החלולית היא אברון קרום פנימי המשמש לאחסון בתא. הם מורכבים מכמה שלפוחיות, מבנים קרומים קטנים יותר שנמצאים בשימוש נרחב בתאים לאחסון, שהתמזגו יחד. היא מלאה במים המסוגלים להכיל מולקולות, אנזימים, מוצקים וחומרים אחרים. צורתם נוזלית ויכולה להשתנות בין התאים."
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#, fuzzy
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "מגדיל את שטח האחסון של התא."
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "מגדיל את שטח האחסון של התא."
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#, fuzzy
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "מגדיל את שטח האחסון של התא."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617

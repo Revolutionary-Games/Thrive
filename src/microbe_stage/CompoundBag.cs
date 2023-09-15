@@ -12,21 +12,20 @@ public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
 
-    /// <summary>
-    ///   Creates a new bag
-    /// </summary>
-    /// <param name="capacity">Specifies the initial capacity of the compound bag</param>
-    public CompoundBag(float capacity)
+    [JsonProperty]
+    private Dictionary<Compound, float>? compoundCapacities;
+
+    public CompoundBag(float nominalCapacity)
     {
-        Capacity = capacity;
+        NominalCapacity = nominalCapacity;
     }
 
     /// <summary>
-    ///   How much of each compound this bag can store.
-    ///   Currently a CompoundBag can hold the same amount of each compound.
+    ///   Specifies the default capacity for all compounds that do
+    ///   not have a specific capacity set in <see cref="compoundCapacities"/>
     /// </summary>
     [JsonProperty]
-    public float Capacity { get; set; }
+    public float NominalCapacity { get; set; }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
@@ -38,13 +37,24 @@ public class CompoundBag : ICompoundStorage
     /// <summary>
     ///   Gets the capacity for a given compound
     /// </summary>
-    /// <returns>Returns <see cref="Capacity"/> if the compound is useful, otherwise 0</returns>
+    /// <returns>
+    ///   Returns the capacity this bag has for storing the compound if it is useful, otherwise 0
+    /// </returns>
     public float GetCapacityForCompound(Compound compound)
     {
-        if (IsUseful(compound))
-            return Capacity;
+        if (!IsUseful(compound))
+            return 0;
 
-        return 0;
+        if (compoundCapacities != null && compoundCapacities.TryGetValue(compound, out var capacity))
+            return capacity;
+
+        return NominalCapacity;
+    }
+
+    public void SetCapacityForCompound(Compound compound, float capacity)
+    {
+        compoundCapacities ??= new Dictionary<Compound, float>();
+        compoundCapacities[compound] = capacity;
     }
 
     public float GetCompoundAmount(Compound compound)
@@ -83,7 +93,7 @@ public class CompoundBag : ICompoundStorage
 
         float existingAmount = GetCompoundAmount(compound);
 
-        float newAmount = Math.Min(existingAmount + amount, Capacity);
+        float newAmount = Math.Min(existingAmount + amount, GetCapacityForCompound(compound));
 
         Compounds[compound] = newAmount;
 
@@ -108,6 +118,11 @@ public class CompoundBag : ICompoundStorage
     public void ClearUseful()
     {
         usefulCompounds.Clear();
+    }
+
+    public void ClearSpecificCapacities()
+    {
+        compoundCapacities?.Clear();
     }
 
     public void SetUseful(Compound compound)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -565,7 +565,7 @@ msgstr "Potongan Besi Besar"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Agen Pelekat"
@@ -598,7 +598,7 @@ msgstr "Spesies peningkat biodiversitas dari daerah terdekat diberikan populasi 
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Spesies peningkat biodiversitas dimutasi saat penciptaan"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vakuola Bioluminesensi"
@@ -831,7 +831,7 @@ msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat men
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreseptor"
@@ -882,7 +882,7 @@ msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, p
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Membrane ini memiliki dinding, yang artinya membran ini memiliki perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan racun. Juga membutuhkan lebih sedikit energi untuk mempertahankan bentuk, tetapi memperlambat sel dan tidak dapat menyerap sumber daya dengan cepat."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Kloroplas"
@@ -912,7 +912,7 @@ msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju b
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "konsumsi {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Silia"
@@ -1410,7 +1410,7 @@ msgstr "Statistika Organisme"
 msgid "CUSTOM_USERNAME"
 msgstr "Nama Pengguna Kustom:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Sitoplasma"
@@ -3495,7 +3495,7 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Anggap daerah-daerah dengan jumlah spesies sebanyak ini memiliki biodiversitas yang rendah"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lisosom"
@@ -3941,7 +3941,7 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr "KAMU TELAH BERKEMBANG!"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitokondria"
@@ -4458,11 +4458,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4538,7 +4538,7 @@ msgstr "Buka Folder Tangkapan Layar"
 msgid "NO_SELECTED_MOD"
 msgstr "Terpilih:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Nukleus"
@@ -4700,7 +4700,7 @@ msgstr "Ubah setelan"
 msgid "ORGANELLES"
 msgstr "Organel"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4716,7 +4716,7 @@ msgstr "Tusuk sel lain dengan ini."
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Letakkan organel"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -5158,7 +5158,7 @@ msgstr "populasi di daerah-daerah:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULASI:"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predasi {0}"
 
@@ -5319,7 +5319,7 @@ msgstr "Laporan"
 msgid "REPORT_BUG"
 msgstr "Laporan"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 msgid "REPRODUCED"
 msgstr "bereproduksi"
 
@@ -5830,6 +5830,11 @@ msgstr ""
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+#, fuzzy
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "Terpilih:"
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr ""
@@ -5897,7 +5902,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Agen Persinyalan"
@@ -5960,7 +5965,7 @@ msgstr "Ukuran:"
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr ""
@@ -6537,7 +6542,7 @@ msgstr "KAMU TELAH BERKEMBANG!"
 msgid "THEORY_TEAM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Termoplas"
@@ -6768,7 +6773,7 @@ msgstr "Jumlah save total:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Kekebalan Racun"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -7082,23 +7087,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Bioma: {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -7174,8 +7177,22 @@ msgstr "Vakuola"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Vakuola adalah organel ber-membran internal yang digunakan untuk peyimpanan dalam sel. Mereka tersusun dari beberapa gelembung (vesikel), struktur ber-membran lebih kecil yang banyak digunakan oleh sel untuk penyimpanan, yang telah menyatu. Gelembung tersebut terisi air yang digunakan untuk menampung molekul, enzim, padatan dan zat lainnya. Bentuk mereka cair dan bervariasi antar sel."
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#, fuzzy
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "Menambah ruang penyimpanan sel."
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Menambah ruang penyimpanan sel."
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#, fuzzy
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Menambah ruang penyimpanan sel."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617

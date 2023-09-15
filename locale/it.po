@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -553,7 +553,7 @@ msgstr "Frammento di ferro grande"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mld"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Agente legante"
@@ -586,7 +586,7 @@ msgstr "Alle specie che aumentano la biodiversità che vengono da zone vicine vi
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Specie che aumentano la biodiversità sono mutate appena vengono create"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacuolo bioluminescente"
@@ -814,7 +814,7 @@ msgstr "Il chemioplasto è una struttura a doppia membrana. Contiene proteine ca
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Chemiorecettore"
@@ -862,7 +862,7 @@ msgstr "La chitinasi permette alla cellula di rompere le membrane in chitina. Og
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni da tossine. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La chitinasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Cloroplasto"
@@ -891,7 +891,7 @@ msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso a
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Consumo di {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Ciglia"
@@ -1384,7 +1384,7 @@ msgstr "Statistiche dell'organismo"
 msgid "CUSTOM_USERNAME"
 msgstr "Nome utente personalizzato:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Citoplasma"
@@ -3440,7 +3440,7 @@ msgstr "L"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Numero di specie per zona sopra il quale la zona stessa non è considerata a bassa biodiversità"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lisosoma"
@@ -3897,7 +3897,7 @@ msgstr "Formato mancante o non valido in un campo richiesto: {0}"
 msgid "MISSING_TITLE"
 msgstr "Il titolo è mancante"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitocondrio"
@@ -4427,11 +4427,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4503,7 +4503,7 @@ msgstr "Cartella degli screenshot non trovata"
 msgid "NO_SELECTED_MOD"
 msgstr "Nessuna mod selezionata"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Nucleo"
@@ -4667,7 +4667,7 @@ msgstr "Modifica le impostazioni di gioco"
 msgid "ORGANELLES"
 msgstr "Organuli"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4683,7 +4683,7 @@ msgstr "I pili sono strutture comuni a molti tipi di microrganismi. Assomigliano
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellulare"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -5113,7 +5113,7 @@ msgstr "popolazione nelle zone:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predazione di {0}"
 
@@ -5273,7 +5273,7 @@ msgstr "Riepilogo"
 msgid "REPORT_BUG"
 msgstr "Riepilogo"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 msgid "REPRODUCED"
 msgstr "si è riprodotto"
 
@@ -5770,6 +5770,11 @@ msgstr ""
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Seleziona un tipo di tessuto dal pannello Editor"
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+#, fuzzy
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "Selezionati:"
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr "Settembre"
@@ -5828,7 +5833,7 @@ msgstr "Abilita/disabilita la finestra di avvertimento sui progressi non salvati
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Agente di Segnalazione"
@@ -5887,7 +5892,7 @@ msgstr "Dimensioni:"
 msgid "SLIDESHOW"
 msgstr "Riproduzione automatica"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "Propulsore a melma"
@@ -6453,7 +6458,7 @@ msgstr "HAI PROSPERATO!"
 msgid "THEORY_TEAM"
 msgstr "Squadra Teorici"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Termoplasto"
@@ -6679,7 +6684,7 @@ msgstr "Salvataggi totali:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistenza alle Tossine"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6975,23 +6980,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Senza titolo"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che fornire una spinta direzionale, aiutano le cellule a roteare meglio."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "La lipasi permette alla cellula di rompere la maggior parte di tipi di membrana. La tua cellula produce un po' di lipasi anche senza bisogno di un lisosoma; ma selezionando quest'opzione ne aumenterai l'efficacia."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -7063,8 +7066,22 @@ msgstr "Vacuolo"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio di sostanze. È composto di diverse vesciche (cioè strutture membranose più piccole, usate comunemente nelle cellule per lo stoccaggio) che si sono fuse insieme. Il vacuolo è colmo d'acqua, usata per contenere molecole, enzimi, solidi e altre sostanze. La sua forma è fluida e può variare da cellula a cellula."
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#, fuzzy
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "Aumenta lo spazio di stoccaggio della cellula."
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Aumenta lo spazio di stoccaggio della cellula."
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#, fuzzy
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Aumenta lo spazio di stoccaggio della cellula."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617

@@ -70,10 +70,16 @@ public partial class Microbe
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
     ///   current organelles. This is here to prevent anyone from
-    ///   messing with this value if we used the Capacity from the
+    ///   messing with this value if we used the the
     ///   CompoundBag for the calculations that use this.
     /// </summary>
     private float organellesCapacity;
+
+    /// <summary>
+    ///   Stores additional capacity for compounds outside of organellesCapacity. Currently, this only stores
+    ///   additional capacity granted from specialized vacuoles
+    /// </summary>
+    private Dictionary<Compound, float> additionalCompoundCapacities = new();
 
     /// <summary>
     ///   True once all organelles are divided to not continuously run code that is triggered
@@ -390,7 +396,9 @@ public partial class Microbe
 
         foreach (var entry in Species.InitialCompounds)
         {
-            Compounds.AddCompound(entry.Key, entry.Value);
+            // Temporary code before proper initial compounds set method is added to CompoundBag
+            Compounds.Compounds.TryGetValue(entry.Key, out var existing);
+            Compounds.Compounds[entry.Key] = existing + entry.Value;
         }
     }
 
@@ -737,10 +745,10 @@ public partial class Microbe
             {
                 amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
             }
-            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
+            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.GetCapacityForCompound(type))
             {
                 // Vent the part that went over
-                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
+                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.GetCapacityForCompound(type));
 
                 amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent), Vector3.Back);
             }
@@ -1303,14 +1311,14 @@ public partial class Microbe
 
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
-        organellesCapacity += organelle.StorageCapacity;
-        Compounds.Capacity = organellesCapacity;
+        UpdateCapacity(organelle, false);
+        UpdateCompoundBagCapacities();
     }
 
     [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
-        organellesCapacity -= organelle.StorageCapacity;
+        UpdateCapacity(organelle, true);
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
@@ -1331,7 +1339,7 @@ public partial class Microbe
         cachedRotationSpeed = null;
         organelleMaxRenderPriorityDirty = true;
 
-        Compounds.Capacity = organellesCapacity;
+        UpdateCompoundBagCapacities();
     }
 
     /// <summary>
@@ -1339,8 +1347,47 @@ public partial class Microbe
     /// </summary>
     private void RecomputeOrganelleCapacity()
     {
-        organellesCapacity = organelles!.Sum(o => o.StorageCapacity);
-        Compounds.Capacity = organellesCapacity;
+        foreach (PlacedOrganelle organelle in organelles!)
+            UpdateCapacity(organelle, false);
+
+        UpdateCompoundBagCapacities();
+    }
+
+    /// <summary>
+    ///   Updates <see cref="organellesCapacity"/> and <see cref="additionalCompoundCapacities"/>
+    ///   to take into account the addition or removal of an organelle
+    /// </summary>
+    /// <param name="organelle">The organelle being placed or removed</param>
+    /// <param name="negative">Should be true if the organelle is being removed, otherwise false</param>
+    private void UpdateCapacity(PlacedOrganelle organelle, bool negative)
+    {
+        int sign = negative ? -1 : 1;
+
+        if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
+            storage.SpecializedFor != null)
+        {
+            Compound specialization = storage.SpecializedFor;
+            additionalCompoundCapacities.TryGetValue(specialization, out var existing);
+            additionalCompoundCapacities[specialization] = existing + organelle.StorageCapacity * 2 * sign;
+        }
+        else
+        {
+            organellesCapacity += organelle.StorageCapacity * sign;
+        }
+    }
+
+    /// <summary>
+    ///   Updates <see cref="Compounds"/> to adjust for changes in <see cref="organellesCapacity"/> and
+    ///   <see cref="additionalCompoundCapacities"/>
+    /// </summary>
+    private void UpdateCompoundBagCapacities()
+    {
+        Compounds.NominalCapacity = organellesCapacity;
+
+        Compounds.ClearSpecificCapacities();
+
+        foreach (var entry in additionalCompoundCapacities)
+            Compounds.SetCapacityForCompound(entry.Key, entry.Value + organellesCapacity);
     }
 
     private bool CheckHasSignalingAgent()
@@ -1641,7 +1688,7 @@ public partial class Microbe
     private void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result)
     {
         result.TryGetValue(glucose, out float existingGlucose);
-        result[glucose] = existingGlucose + Compounds.Capacity *
+        result[glucose] = existingGlucose + Compounds.GetCapacityForCompound(glucose) *
             Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 

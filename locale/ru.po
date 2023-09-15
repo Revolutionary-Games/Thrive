@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -559,7 +559,7 @@ msgstr "Большой кусок железа"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Млрд"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Связующее вещество"
@@ -592,7 +592,7 @@ msgstr "Дополнительная популяция для видов из �
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Мутировать вид, увеличивающий биоразнообразие, при создании"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолюминесцентная вакуоль"
@@ -817,7 +817,7 @@ msgstr "Хемопласт — двумембранная структура, с
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
@@ -865,7 +865,7 @@ msgstr "Хитиназа позволяет клетке разрушать хи
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что означает, что она обладает лучшей защитой от общего повреждения и, особенно, от повреждения токсинами. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Хитиназа может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Хлоропласт"
@@ -894,7 +894,7 @@ msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} потребления"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Ресничка"
@@ -1395,7 +1395,7 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr "Псевдоним пользователя:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Цитоплазма"
@@ -3378,7 +3378,7 @@ msgstr "Л"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Считать биомы с таким или меньшим количеством видов биомами с низким биоразнообразием"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Лизосома"
@@ -3832,7 +3832,7 @@ msgstr "Отсутствует или неверный формат обязат
 msgid "MISSING_TITLE"
 msgstr "Название отсутствует"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Митохондрия"
@@ -4339,11 +4339,11 @@ msgstr "Не с чем взаимодействовать"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Вы теряете здоровье из-за отсутствия АТФ"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Вы теряете здоровье из-за токсинов в поглощенном организме"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Не хватает {0} для поглощения организма"
 
@@ -4413,7 +4413,7 @@ msgstr "Папка скриншотов не найдена"
 msgid "NO_SELECTED_MOD"
 msgstr "Ни одного мода не выбрано"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Ядро"
@@ -4572,7 +4572,7 @@ msgstr "Сменить настройки"
 msgid "ORGANELLES"
 msgstr "Органеллы"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 msgid "ORGANELLE_AXON"
 msgstr "Аксон"
@@ -4585,7 +4585,7 @@ msgstr "Аксоны - нервные волокна, что использую�
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Многоклеточный"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Миофибрилла"
@@ -5006,7 +5006,7 @@ msgstr "Популяция в биомах:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Истребление {0}"
 
@@ -5162,7 +5162,7 @@ msgstr "Отчёт"
 msgid "REPORT_BUG"
 msgstr "Сообщить о баге"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 msgid "REPRODUCED"
 msgstr "Воспроизведено"
 
@@ -5642,6 +5642,11 @@ msgstr "Выбор структуры"
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Выберите тип ткани во вкладке редактора для изменения"
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+#, fuzzy
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "Выбрано:"
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr "Сентябрь"
@@ -5698,7 +5703,7 @@ msgstr "Включает / отключает предупреждение о н
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Показать ленту новостей Thrive (загрузка из интернета)"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Сигнальный агент"
@@ -5757,7 +5762,7 @@ msgstr "Размер:"
 msgid "SLIDESHOW"
 msgstr "Слайд-шоу"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "Сопло для слизи"
@@ -6308,7 +6313,7 @@ msgstr "Спасибо"
 msgid "THEORY_TEAM"
 msgstr "Теоретическая Команда"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Термопласт"
@@ -6542,7 +6547,7 @@ msgstr "Всего сохранений:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Устойчивость к Токсинам"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6837,21 +6842,19 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Без Имени"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Вытягивание ресничек"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Когда вы находитесь в режиме поглощения ([thrive:input]g_toggle_engulf[/thrive:input]) этот тип ресничек будет притягивать посторонние клетки к себе, т.е клетке игрока. Крайне полезно для захвата добычи."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Обычное, не улучшенное состояние"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr "Без обновления"
 
@@ -6922,8 +6925,22 @@ msgstr "Вакуоль"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Вакуоль - это внутренняя одномембранная органелла, используемая для хранения соединений в клетке. Она состоит из нескольких пузырьков, более мелких мембранных структур, широко используемых в клетках для хранения, которые слились вместе. Она заполнен водой, которая используется для содержания молекул, ферментов, твердых и других веществ. Форма вакуоли подвижна и может варьироваться в зависимости от клетки."
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#, fuzzy
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "Увеличивает пространство для хранения соединений в клетке."
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Увеличивает пространство для хранения соединений в клетке."
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#, fuzzy
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Увеличивает пространство для хранения соединений в клетке."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617

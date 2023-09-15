@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
-"PO-Revision-Date: 2023-09-11 19:27+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
+"PO-Revision-Date: 2023-09-10 15:04+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -559,7 +559,7 @@ msgstr "Big Iron Chunk"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Binding Agent"
@@ -592,7 +592,7 @@ msgstr "Biodiversity-increasing species from nearby patch is given free populati
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biodiversity-increasing species is mutated on creation"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
@@ -817,7 +817,7 @@ msgstr "The chemoplast is a double membrane structure containing proteins able t
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Chemoreceptor"
@@ -865,7 +865,7 @@ msgstr "Chitinase enables the cell to break down chitin membrane. Each addition 
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage. It also costs less energy to retain its form, but it is slower and cannot absorb resources quickly. [b]Chitinase can digest this wall[/b] making it vulnerable to engulfment from predators."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Chloroplast"
@@ -894,7 +894,7 @@ msgstr "Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scal
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} consumption"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Cilia"
@@ -1395,7 +1395,7 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr "Custom username:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Cytoplasm"
@@ -3378,7 +3378,7 @@ msgstr "L"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Consider patches with up to this many species having low biodiversity"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lysosome"
@@ -3832,7 +3832,7 @@ msgstr "Missing or invalid format of a required field: {0}"
 msgid "MISSING_TITLE"
 msgstr "Title is missing"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitochondrion"
@@ -4339,11 +4339,11 @@ msgstr "Nothing to interact with"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Damaged due to not having any ATP"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Damaged by toxins in ingested matter"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Missing {0} to engulf target"
 
@@ -4413,7 +4413,7 @@ msgstr "No screenshot directory found"
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Nucleus"
@@ -4572,7 +4572,7 @@ msgstr "Change your settings"
 msgid "ORGANELLES"
 msgstr "Organelles"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 msgid "ORGANELLE_AXON"
 msgstr "Axon"
@@ -4585,7 +4585,7 @@ msgstr "Axons are the nerve fibers that neurons use to connect to each other and
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellular"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Myofibril"
@@ -5006,7 +5006,7 @@ msgstr "population in patches:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
@@ -5162,7 +5162,7 @@ msgstr "Report"
 msgid "REPORT_BUG"
 msgstr "Report a Bug"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -5642,6 +5642,10 @@ msgstr "Select Structure to Place"
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Select a tissue type to edit here from the editor tab"
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "Select the compound the vacuole will store:"
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr "September"
@@ -5698,7 +5702,7 @@ msgstr "Enables / disables the unsaved progress warning popup for when the playe
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Show Thrive news feed (downloads from the internet)"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Signaling Agent"
@@ -5757,7 +5761,7 @@ msgstr "Size:"
 msgid "SLIDESHOW"
 msgstr "Slideshow"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "Slime Jet"
@@ -6308,7 +6312,7 @@ msgstr "Thank You"
 msgid "THEORY_TEAM"
 msgstr "Theory Team"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
@@ -6542,7 +6546,7 @@ msgstr "Total saves:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin Resistance"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6837,21 +6841,19 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Untitled"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Pulling Cilia"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "When in engulf mode ([thrive:input]g_toggle_engulf[/thrive:input]) this type of cilia will cause vortices in the water that pull in nearby objects. Useful for capturing prey."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "The default non-upgraded state"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr "No Upgrade"
 
@@ -6920,9 +6922,21 @@ msgstr "Vacuole"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "The vacuole is an internal membranous organelle used for storage in the cell. They are composed of several vesicles, smaller membranous structures widely used in cells for storage, that have fused together. It is filled with water which is used to contain molecules, enzymes, solids, and other substances. Their shape is fluid and can vary between cells."
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr "Specialized Vacuole"
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "The vacuole will store {0} units of all compounds"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Increases the storage space of the cell."
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
+msgstr "The vacuole will store {0} units of the selected compound"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617
 #: ../src/gui_common/CompoundAmount.cs:173

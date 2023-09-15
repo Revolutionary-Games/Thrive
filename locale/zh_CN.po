@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-11 19:25+0200\n"
+"POT-Creation-Date: 2023-09-15 13:02+0300\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -561,7 +561,7 @@ msgstr "大铁块"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} *10⁹"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../simulation_parameters/microbe_stage/organelles.json:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "连接器"
@@ -594,7 +594,7 @@ msgstr "从临近地区来的增加生物多样性的物种获得额外的种群
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "增加生物多样性的物种会在创造时被变异"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:775
+#: ../simulation_parameters/microbe_stage/organelles.json:763
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
@@ -819,7 +819,7 @@ msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:681
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "化学感受器"
@@ -867,7 +867,7 @@ msgstr "几丁质酶使细胞能够分解几丁质膜。每次添加都会增加
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。. [b]几丁质酶可以消化这堵墙[/b]，使其容易被捕食者吞噬。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:569
+#: ../simulation_parameters/microbe_stage/organelles.json:557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "叶绿体"
@@ -896,7 +896,7 @@ msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[t
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}消耗"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:841
+#: ../simulation_parameters/microbe_stage/organelles.json:829
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "纤毛"
@@ -1398,7 +1398,7 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
-#: ../simulation_parameters/microbe_stage/organelles.json:600
+#: ../simulation_parameters/microbe_stage/organelles.json:588
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "细胞质"
@@ -3382,7 +3382,7 @@ msgstr "L"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "将物种数量小于此的区块认为是生物多样性低"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:890
+#: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "溶酶体"
@@ -3836,7 +3836,7 @@ msgstr "缺少或无效的必填字段的格式：{0}"
 msgid "MISSING_TITLE"
 msgstr "缺少标题"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:463
+#: ../simulation_parameters/microbe_stage/organelles.json:451
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "线粒体"
@@ -4344,11 +4344,11 @@ msgstr "没有可以交互的物体"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因ATP耗尽而受伤"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1546
+#: ../src/microbe_stage/Microbe.Interior.cs:1593
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "由于摄入物体中的毒素而受伤"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1492
+#: ../src/microbe_stage/Microbe.Interior.cs:1539
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "没有用于吞噬目标的 {0}"
 
@@ -4418,7 +4418,7 @@ msgstr "找不到截图目录"
 msgid "NO_SELECTED_MOD"
 msgstr "未选择Mod"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:667
+#: ../simulation_parameters/microbe_stage/organelles.json:655
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "细胞核"
@@ -4577,7 +4577,7 @@ msgstr "改变你的设置"
 msgid "ORGANELLES"
 msgstr "细胞器"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:917
+#: ../simulation_parameters/microbe_stage/organelles.json:905
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 msgid "ORGANELLE_AXON"
 msgstr "轴突"
@@ -4590,7 +4590,7 @@ msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多细胞生物"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../simulation_parameters/microbe_stage/organelles.json:947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纤维"
@@ -5015,7 +5015,7 @@ msgstr "地区中的种群数量："
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
 
@@ -5171,7 +5171,7 @@ msgstr "报告"
 msgid "REPORT_BUG"
 msgstr "报告一个bug"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1150
+#: ../src/microbe_stage/Microbe.Interior.cs:1158
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
@@ -5428,7 +5428,7 @@ msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
 #: ../src/saving/SaveStatusOverlay.cs:175
 #: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
+msgstr "当上传保存错误信息时，请确保来自[color=#3796e1][url={2}]日志文件夹[/url][/color] 中的 [color=#3796e1][url={0}]{1}[/url][/color]文件被正确上传，因为这是 Thrive 开发人员找出保存错误原因的关键信息。 如果没有该文件，诊断和解决此问题将变得非常困难。"
 
 #: ../src/saving/SaveStatusOverlay.cs:182
 #, fuzzy
@@ -5657,6 +5657,11 @@ msgstr "选择要放置的结构"
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "从编辑器选项卡中选择要在此处编辑的组织类型"
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
+#, fuzzy
+msgid "SELECT_VACUOLE_COMPOUND_COLON"
+msgstr "选中的："
+
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
 msgstr "九月"
@@ -5713,7 +5718,7 @@ msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "显示 Thrive 新闻（联机下载）"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:752
+#: ../simulation_parameters/microbe_stage/organelles.json:740
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "信号剂"
@@ -5772,7 +5777,7 @@ msgstr "大小："
 msgid "SLIDESHOW"
 msgstr "幻灯片"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:726
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "黏液喷嘴"
@@ -6325,7 +6330,7 @@ msgstr "感谢"
 msgid "THEORY_TEAM"
 msgstr "理论家团队"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../simulation_parameters/microbe_stage/organelles.json:798
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "热能体"
@@ -6559,7 +6564,7 @@ msgstr "存档数："
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:499
+#: ../simulation_parameters/microbe_stage/organelles.json:487
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
@@ -6852,21 +6857,19 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "未命名"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL"
 msgstr "捕食纤毛"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:844
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "当处于胞吞模式时（[thrive:input]g_toggle_engulf[/thrive:input]），这种类型的纤毛会在水中产生涡流，将附近的物体拉近来捕猎。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:840
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "默认状态"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:851
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_NAME_NONE"
 msgstr "默认"
 
@@ -6937,8 +6940,22 @@ msgstr "液泡"
 msgid "VACUOLE_DESCRIPTION"
 msgstr "液泡是一个内部膜质细胞器，用于在细胞内储存。它们由几个囊泡组成，囊泡是在细胞中广泛用于储存的较小的膜结构，它们融合在一起。它充满了水，用来容纳分子、酶、固体和其他物质。它们的形状是不固定的，在不同的细胞之间可以有所不同。"
 
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
+msgid "VACUOLE_IS_SPECIALIZED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#, fuzzy
+msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
+msgstr "增加细胞的存储空间。"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "增加细胞的存储空间。"
+
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#, fuzzy
+msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "增加细胞的存储空间。"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617
