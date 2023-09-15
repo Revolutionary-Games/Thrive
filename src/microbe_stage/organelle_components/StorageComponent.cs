@@ -29,3 +29,27 @@ public class StorageComponentFactory : IOrganelleComponentFactory
         }
     }
 }
+
+[JSONDynamicTypeAllowed]
+public class StorageComponentUpgrades : IComponentSpecificUpgrades
+{
+    public StorageComponentUpgrades(Compound? specializedFor)
+    {
+        SpecializedFor = specializedFor;
+    }
+
+    public Compound? SpecializedFor { get; set; }
+
+    public bool Equals(IComponentSpecificUpgrades other)
+    {
+        if (other is not StorageComponentUpgrades otherVacuole)
+            return false;
+
+        return SpecializedFor == otherVacuole.SpecializedFor;
+    }
+
+    public object Clone()
+    {
+        return new StorageComponentUpgrades(SpecializedFor);
+    }
+}

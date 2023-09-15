@@ -588,6 +588,8 @@ public static class Constants
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
+    public const string VACUOLE_DEFAULT_COMPOUND_NAME = "glucose";
+
     /// <summary>
     ///   How much ATP does binding mode cost per second
     /// </summary>
