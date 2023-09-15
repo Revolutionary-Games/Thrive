@@ -1431,12 +1431,14 @@ msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr "Inversement proportionnel"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1083
+#, fuzzy
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr ""
+msgstr "Veuillez choisir une recette ci-dessus avant de fabriquer"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1104
+#, fuzzy
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr ""
+msgstr "Espace insuffisant pour prendre tous les produits fabriqués"
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
@@ -2531,7 +2533,7 @@ msgstr ""
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr "Publié a {0}"
+msgstr "Publié à {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
