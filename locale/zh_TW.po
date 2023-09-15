@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 13:02+0300\n"
+"POT-Creation-Date: 2023-09-15 19:18+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -563,7 +563,7 @@ msgstr "大鐵塊"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} 十億"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:518
+#: ../simulation_parameters/microbe_stage/organelles.json:531
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "連接器"
@@ -596,7 +596,7 @@ msgstr "從臨近地區來的增加生物多樣性的物種獲得額外的種群
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "增加生物多樣性的物種會在被創造時變異"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:763
+#: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
@@ -824,7 +824,7 @@ msgstr "化學體是一個雙膜結構，含有能夠將硫化氫、水和氣態
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]轉換為[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]濃度成正比。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:681
+#: ../simulation_parameters/microbe_stage/organelles.json:694
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "化學感受器"
@@ -872,7 +872,7 @@ msgstr "幾丁質酶使細胞能夠分解幾丁質膜。 每次添加都會增�
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "這種膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對毒素的傷害。它保持形態所需的能量也較少，但它的速度較慢，不能迅速吸收資源。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:557
+#: ../simulation_parameters/microbe_stage/organelles.json:570
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "葉綠體"
@@ -901,7 +901,7 @@ msgstr "產出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[t
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}消耗"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:829
+#: ../simulation_parameters/microbe_stage/organelles.json:842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "纖毛"
@@ -1394,7 +1394,7 @@ msgstr "生物統計"
 msgid "CUSTOM_USERNAME"
 msgstr "自定義用戶名："
 
-#: ../simulation_parameters/microbe_stage/organelles.json:588
+#: ../simulation_parameters/microbe_stage/organelles.json:601
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "細胞質"
@@ -1452,7 +1452,7 @@ msgstr "死區已重置"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:964
+#: ../src/microbe_stage/Microbe.Contact.cs:984
 msgid "DEATH"
 msgstr "死亡"
 
@@ -2088,7 +2088,7 @@ msgstr "存檔時出錯"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1230
+#: ../src/microbe_stage/Microbe.Contact.cs:1250
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
@@ -3510,7 +3510,7 @@ msgstr "L"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "將物種數少於此區塊的區塊視為低生物多樣性"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:878
+#: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #, fuzzy
 msgid "LYSOSOME"
@@ -3975,7 +3975,7 @@ msgstr "缺少或無效的必填字段的格式：{0}"
 msgid "MISSING_TITLE"
 msgstr "缺少標題"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:451
+#: ../simulation_parameters/microbe_stage/organelles.json:464
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "粒線體"
@@ -4493,23 +4493,23 @@ msgstr "這裡什麼都沒有"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "沒有可以交互的東西"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:368
+#: ../src/microbe_stage/Microbe.Contact.cs:388
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "ATP耗盡導致損傷"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1593
+#: ../src/microbe_stage/Microbe.Interior.cs:1601
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "攝入毒素導致損傷"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1539
+#: ../src/microbe_stage/Microbe.Interior.cs:1547
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "沒有吞噬目標需要的 {0}"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1788
+#: ../src/microbe_stage/Microbe.Contact.cs:1818
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "目前細胞大小不足以吞噬目標"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1783
+#: ../src/microbe_stage/Microbe.Contact.cs:1813
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "沒有足夠的儲存空間以攝入吞噬的目標"
 
@@ -4575,7 +4575,7 @@ msgstr "找不到截圖目錄"
 msgid "NO_SELECTED_MOD"
 msgstr "沒有被選取的MOD"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:655
+#: ../simulation_parameters/microbe_stage/organelles.json:668
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "細胞核"
@@ -4743,7 +4743,7 @@ msgstr "幫助"
 msgid "ORGANELLES"
 msgstr "細胞器"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:905
+#: ../simulation_parameters/microbe_stage/organelles.json:918
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4759,7 +4759,7 @@ msgstr "纖毛（單數：pilus）存在於許多微生物的表面，類似於�
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "放置細胞器"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:947
+#: ../simulation_parameters/microbe_stage/organelles.json:960
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -5364,7 +5364,7 @@ msgstr "報告"
 msgid "REPORT_BUG"
 msgstr "報告"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1158
+#: ../src/microbe_stage/Microbe.Interior.cs:1166
 msgid "REPRODUCED"
 msgstr "繁殖"
 
@@ -5943,7 +5943,7 @@ msgstr "當玩家試圖退出遊戲時，啟用/禁用未保存的進度警告�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "顯示 Thrive 新聞（從互聯網上下載）"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:740
+#: ../simulation_parameters/microbe_stage/organelles.json:753
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 #, fuzzy
 msgid "SIGNALING_AGENT"
@@ -6007,7 +6007,7 @@ msgstr "大小："
 msgid "SLIDESHOW"
 msgstr "展覽"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:714
+#: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "黏液噴射器"
@@ -6393,11 +6393,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:783
+#: ../src/microbe_stage/Microbe.Contact.cs:803
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:776
+#: ../src/microbe_stage/Microbe.Contact.cs:796
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功覓食"
 
@@ -6575,7 +6575,7 @@ msgstr "你已經茁壯繁盛了!"
 msgid "THEORY_TEAM"
 msgstr "理論團隊"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:798
+#: ../simulation_parameters/microbe_stage/organelles.json:811
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "熱能體"
@@ -6807,7 +6807,7 @@ msgstr "存檔數："
 msgid "TOXIN_RESISTANCE"
 msgstr "抗毒素"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:487
+#: ../simulation_parameters/microbe_stage/organelles.json:500
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -7118,21 +7118,23 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "未命名"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:843
+#: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:844
+#: ../simulation_parameters/microbe_stage/organelles.json:857
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "細胞的黏稠內臟。細胞質是離子，蛋白質和其他溶解水的物質的基本混合物，填充在細胞內部。它的其中一个功能是發糖酵解，將葡萄糖轉化為ATP能量。對於缺乏細胞器進行新陳代謝的細胞來說，就靠這個方法來獲取能量。它也被用來在細胞中保存分子，以及用來增加細胞的體積。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:840
+#: ../simulation_parameters/microbe_stage/organelles.json:31
+#: ../simulation_parameters/microbe_stage/organelles.json:853
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "細胞的黏稠內臟。細胞質是離子，蛋白質和其他溶解水的物質的基本混合物，填充在細胞內部。它的其中一个功能是發糖酵解，將葡萄糖轉化為ATP能量。對於缺乏細胞器進行新陳代謝的細胞來說，就靠這個方法來獲取能量。它也被用來在細胞中保存分子，以及用來增加細胞的體積。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:839
+#: ../simulation_parameters/microbe_stage/organelles.json:30
+#: ../simulation_parameters/microbe_stage/organelles.json:852
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
