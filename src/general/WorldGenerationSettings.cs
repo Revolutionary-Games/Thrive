@@ -92,6 +92,9 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
 
     [JsonIgnore]
+    public bool PatchMapExploration => Difficulty.PatchMapExploration;
+
+    [JsonIgnore]
     public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
 
     [JsonIgnore]
@@ -148,6 +151,7 @@ public class WorldGenerationSettings
             OsmoregulationMultiplier,
             TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
             TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
+            TranslationHelper.TranslateFeatureFlag(PatchMapExploration),
             TranslationHelper.TranslateFeatureFlag(LimitReproductionCompoundUseSpeed));
     }
 

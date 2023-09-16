@@ -97,6 +97,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath PassiveReproductionButtonPath = null!;
 
     [Export]
+    public NodePath PatchMapExplorationButtonPath = null!;
+
+    [Export]
     public NodePath LimitGrowthRateButtonPath = null!;
 
     [Export]
@@ -175,6 +178,7 @@ public class NewGameSettings : ControlWithInput
     private LineEdit osmoregulationMultiplierReadout = null!;
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
+    private Button patchMapExplorationButton = null!;
     private Button limitGrowthRateButton = null!;
 
     // Planet controls
@@ -257,6 +261,7 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
+        patchMapExplorationButton = GetNode<Button>(PatchMapExplorationButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
@@ -445,6 +450,7 @@ public class NewGameSettings : ControlWithInput
                 OsmoregulationMultiplierReadoutPath.Dispose();
                 FreeGlucoseCloudButtonPath.Dispose();
                 PassiveReproductionButtonPath.Dispose();
+                PatchMapExplorationButtonPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
                 LifeOriginButtonPath.Dispose();
                 LifeOriginButtonAdvancedPath.Dispose();
@@ -716,6 +722,9 @@ public class NewGameSettings : ControlWithInput
             if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
                 continue;
 
+            if (patchMapExplorationButton.Pressed != preset.PatchMapExploration)
+                continue;
+
             // If all values are equal to the values for a preset, use that preset
             difficultyPresetButton.Selected = preset.Index;
             difficultyPresetAdvancedButton.Selected = preset.Index;
@@ -782,6 +791,12 @@ public class NewGameSettings : ControlWithInput
     }
 
     private void OnPassiveReproductionToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnPatchMapExplorationToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();

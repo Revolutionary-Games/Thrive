@@ -45,6 +45,11 @@ public interface IDifficulty : IRegistryAssignable
     public bool PassiveReproduction { get; }
 
     /// <summary>
+    ///   Whether the patch map should be automatically fully revealed
+    /// </summary>
+    public bool PatchMapExploration { get; }
+
+    /// <summary>
     ///   Whether microbes are limited in how fast they can consume reproduction compounds to grow
     /// </summary>
     public bool LimitGrowthRate { get; }
@@ -64,6 +69,7 @@ public static class DifficultyHelpers
             OsmoregulationMultiplier = difficulty.OsmoregulationMultiplier,
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
             PassiveReproduction = difficulty.PassiveReproduction,
+            PatchMapExploration = difficulty.PatchMapExploration,
             LimitGrowthRate = difficulty.LimitGrowthRate,
         };
     }
@@ -81,6 +87,7 @@ public static class DifficultyHelpers
             $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
             $", Passive Reproduction: {difficulty.PassiveReproduction}" +
+            $", Patch Map Exploration: {difficulty.PatchMapExploration}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}";
     }
 }

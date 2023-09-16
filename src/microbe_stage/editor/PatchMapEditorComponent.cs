@@ -191,7 +191,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         detailsPanel.UpdateShownPatchDetails();
 
         mapDrawer.IgnoreFogOfWar =
-            Editor.FreeBuilding || mapDrawer.IgnoreFogOfWar;
+            Editor.FreeBuilding ||
+            !Editor.CurrentGame.GameWorld.WorldSettings.PatchMapExploration ||
+            mapDrawer.IgnoreFogOfWar;
     }
 
     protected override void OnTranslationsChanged()

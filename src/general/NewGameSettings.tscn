@@ -61,6 +61,7 @@ OsmoregulationMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedO
 OsmoregulationMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplierReadout")
 FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud")
 PassiveReproductionButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress")
+PatchMapExplorationButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11/PatchMapExploration")
 LimitGrowthRateButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
@@ -288,13 +289,13 @@ ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 700.0
-margin_bottom = 48.0
+margin_top = 257.0
+margin_right = 550.0
+margin_bottom = 292.0
 
 [node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 302.0
-margin_right = 432.0
-margin_bottom = 48.0
+margin_right = 130.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 pressed = true
@@ -303,9 +304,9 @@ group = SubResource( 5 )
 text = "DIFFICULTY"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 436.0
-margin_right = 566.0
-margin_bottom = 48.0
+margin_left = 134.0
+margin_right = 264.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
@@ -313,9 +314,9 @@ group = SubResource( 5 )
 text = "PLANET"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 570.0
-margin_right = 700.0
-margin_bottom = 48.0
+margin_left = 268.0
+margin_right = 398.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
@@ -324,9 +325,9 @@ text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_top = 269.0
+margin_top = 297.0
 margin_right = 700.0
-margin_bottom = 869.0
+margin_bottom = 897.0
 rect_min_size = Vector2( 700, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
@@ -347,12 +348,12 @@ margin_bottom = 583.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer"]
 margin_right = 668.0
-margin_bottom = 576.0
+margin_bottom = 631.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer"]
 margin_right = 648.0
-margin_bottom = 576.0
+margin_bottom = 631.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -792,10 +793,31 @@ custom_fonts/font = ExtResource( 3 )
 text = "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 autowrap = true
 
-[node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer11" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 margin_top = 531.0
 margin_right = 648.0
 margin_bottom = 576.0
+
+[node name="PatchMapExploration" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11" instance=ExtResource( 4 )]
+margin_right = 277.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+pressed = true
+text = "PATCH_MAP_EXPLORATION"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11"]
+margin_top = 29.0
+margin_right = 648.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "PATCH_MAP_EXPLORATION_EXPLANATION"
+autowrap = true
+
+[node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
+margin_top = 586.0
+margin_right = 648.0
+margin_bottom = 631.0
 
 [node name="LimitGrowthRate" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10" instance=ExtResource( 4 )]
 margin_right = 221.0
@@ -816,7 +838,7 @@ autowrap = true
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer"]
 margin_left = 652.0
 margin_right = 662.0
-margin_bottom = 576.0
+margin_bottom = 631.0
 rect_min_size = Vector2( 10, 0 )
 theme = ExtResource( 1 )
 custom_styles/separator = SubResource( 7 )
@@ -1221,6 +1243,7 @@ __meta__ = {
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier" to="." method="OnOsmoregulationMultiplierValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress" to="." method="OnPassiveReproductionToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11/PatchMapExploration" to="." method="OnPatchMapExplorationToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate" to="." method="OnGrowthRateToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]

@@ -52,6 +52,9 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     public bool PassiveReproduction { get; private set; }
 
     [JsonProperty]
+    public bool PatchMapExploration { get; private set; }
+
+    [JsonProperty]
     public bool LimitGrowthRate { get; private set; }
 
     public string InternalName { get; set; } = null!;
