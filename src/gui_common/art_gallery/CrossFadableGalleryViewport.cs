@@ -1,8 +1,8 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
-/// Handles fade effects in the gallery's model viewer. For generic fades, see
-/// <see cref="CrossFadableTextureRect"/> or <see cref="ScreenFade"/>.
+///   Handles fade effects in the gallery's model viewer. For generic fades, see
+///   <see cref="CrossFadableTextureRect"/> or <see cref="ScreenFade"/>.
 /// </summary>
 public class CrossFadableGalleryViewport : ViewportContainer
 {
@@ -16,7 +16,7 @@ public class CrossFadableGalleryViewport : ViewportContainer
     public delegate void Faded();
 
     /// <summary>
-    /// Triggers the gallery model viewer's crossfade effect.
+    ///   Triggers the gallery model viewer's crossfade effect.
     /// </summary>
     public bool FadeRequested
     {
