@@ -166,7 +166,8 @@ public class SaveList : ScrollContainer
                 item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
                 item.Connect(nameof(SaveListItem.OnDifferentVersionPrototypeLoaded), this,
                     nameof(OnDifferentVersionPrototypeLoaded));
-                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnProblemFreeLoaded), new Array { save });
+                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnProblemFreeLoaded),
+                    new Array { save });
 
                 item.SaveName = save;
                 savesList.AddChild(item);
