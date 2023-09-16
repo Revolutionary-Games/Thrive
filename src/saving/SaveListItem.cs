@@ -294,7 +294,7 @@ public class SaveListItem : PanelContainer
             return;
         }
 
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, LoadSave, true);
+        EmitSignal(nameof(OnProblemFreeSaveLoaded));
     }
 
     protected override void Dispose(bool disposing)
@@ -318,12 +318,6 @@ public class SaveListItem : PanelContainer
         }
 
         base.Dispose(disposing);
-    }
-
-    private void LoadSave()
-    {
-        SaveHelper.LoadSave(SaveName);
-        EmitSignal(nameof(OnProblemFreeSaveLoaded), saveName);
     }
 
     private void LoadSaveData()
