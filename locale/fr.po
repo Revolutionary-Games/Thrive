@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-14 17:04+0200\n"
+"POT-Creation-Date: 2023-09-16 11:06+0200\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: sadenar <andreas@intercessuri.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -120,11 +120,11 @@ msgstr "Des validations supplémentaires ont détecté un problème: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/general/NewGameSettings.tscn:1182
+#: ../src/general/NewGameSettings.tscn:1204
 msgid "ADVANCED_VIEW"
 msgstr "Avancée"
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1199
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Ouvrir la vue de configuration avancée"
 
@@ -159,11 +159,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agressif"
 
-#: ../src/general/NewGameSettings.tscn:475
+#: ../src/general/NewGameSettings.tscn:476
 msgid "AI_MUTATION_RATE"
 msgstr "Taux de mutation de l'IA"
 
-#: ../src/general/NewGameSettings.tscn:515
+#: ../src/general/NewGameSettings.tscn:516
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(vitesse de mutation des espèces controllées par l'IA)"
 
@@ -434,7 +434,7 @@ msgstr "Stade microbien"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1000
 #: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
 #: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
-#: ../src/general/NewGameSettings.tscn:1145
+#: ../src/general/NewGameSettings.tscn:1167
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -464,11 +464,11 @@ msgstr "Mobilité de base"
 msgid "BASE_MOVEMENT"
 msgstr "Mouvement de Base"
 
-#: ../src/general/NewGameSettings.tscn:1167
+#: ../src/general/NewGameSettings.tscn:1189
 msgid "BASIC_VIEW"
 msgstr "Basique"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1184
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Retour à la vue de la configuration basique"
 
@@ -1110,11 +1110,11 @@ msgstr "Équilibre des composants"
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuages de composés"
 
-#: ../src/general/NewGameSettings.tscn:534
+#: ../src/general/NewGameSettings.tscn:535
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Densité des nuages composites"
 
-#: ../src/general/NewGameSettings.tscn:574
+#: ../src/general/NewGameSettings.tscn:575
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(densité des nuages composites dans l'environnement)"
 
@@ -1186,12 +1186,12 @@ msgstr "(vitesse de mutation des espèces controllées par l'IA)"
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "(vitesse de mutation des espèces controllées par l'IA)"
 
-#: ../src/general/NewGameSettings.cs:404
-#: ../src/general/NewGameSettings.tscn:1198
+#: ../src/general/NewGameSettings.cs:409
+#: ../src/general/NewGameSettings.tscn:1220
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Commencer la partie avec ces paramètres"
 
-#: ../src/general/NewGameSettings.cs:411
+#: ../src/general/NewGameSettings.cs:416
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Certains paramètres sont invalides"
 
@@ -1459,19 +1459,19 @@ msgstr "Glycolyse Cytoplasmique"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:945
+#: ../src/general/NewGameSettings.tscn:967
 msgid "DAY_LENGTH"
 msgstr "Durée de la journée"
 
-#: ../src/general/NewGameSettings.tscn:988
+#: ../src/general/NewGameSettings.tscn:1010
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(durée en secondes en temps réel pour une journée de jeu)"
 
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:938
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Activer le cycle jour/nuit"
 
-#: ../src/general/NewGameSettings.tscn:925
+#: ../src/general/NewGameSettings.tscn:947
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(ATTENTION : la photosynthèse devient beaucoup moins viable)"
 
@@ -1640,12 +1640,12 @@ msgstr "Dévoré(e)"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Supporteurs DevBuilds"
 
-#: ../src/general/NewGameSettings.tscn:303
+#: ../src/general/NewGameSettings.tscn:304
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Difficulté"
 
-#: ../src/general/WorldGenerationSettings.cs:141
+#: ../src/general/WorldGenerationSettings.cs:144
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -1660,13 +1660,13 @@ msgstr ""
 "Gagner passivement du temps de reproduction : {8}\n"
 "Limiter l'utilisation des composés de croissance : {9}"
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:375
+#: ../src/general/NewGameSettings.tscn:128
+#: ../src/general/NewGameSettings.tscn:376
 msgid "DIFFICULTY_PRESET"
 msgstr "Difficulté prédéfinie"
 
-#: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:139
+#: ../simulation_parameters/common/difficulty_presets.json:45
+#: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Personnalisé"
 
@@ -1674,11 +1674,11 @@ msgstr "Personnalisé"
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr "Facile"
 
-#: ../simulation_parameters/common/difficulty_presets.json:29
+#: ../simulation_parameters/common/difficulty_presets.json:31
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Difficile"
 
-#: ../simulation_parameters/common/difficulty_presets.json:16
+#: ../simulation_parameters/common/difficulty_presets.json:17
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
@@ -1953,11 +1953,11 @@ msgstr "Voici un conseil, les bactéries sont plus dangereuses qu'elles n'y para
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Voici une astuce : vous pouvez pousser d'autres espèces à l'extinction si vous n'êtes assez pas prudent en les chassant. Les autres espèces peuvent faire de même."
 
-#: ../src/general/NewGameSettings.tscn:1122
+#: ../src/general/NewGameSettings.tscn:1144
 msgid "EASTER_EGGS"
 msgstr "Inclure les Easter eggs"
 
-#: ../src/general/NewGameSettings.tscn:1130
+#: ../src/general/NewGameSettings.tscn:1152
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(secrets apparaissant au hasard dans le jeu)"
 
@@ -2046,11 +2046,11 @@ msgstr "Étiquette de l'entité"
 msgid "ENVIRONMENT"
 msgstr "Environnement"
 
-#: ../src/general/NewGameSettings.tscn:652
+#: ../src/general/NewGameSettings.tscn:653
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Rétention environnementale de glucose"
 
-#: ../src/general/NewGameSettings.tscn:691
+#: ../src/general/NewGameSettings.tscn:692
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(proportion de glucose retenue dans l'environnement à chaque génération)"
 
@@ -2467,11 +2467,11 @@ msgstr "Delta : {0}"
 msgid "FREEBUILDING"
 msgstr "Construction Libre"
 
-#: ../src/general/NewGameSettings.tscn:763
+#: ../src/general/NewGameSettings.tscn:764
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Nuage de glucose à la sortie de l'éditeur"
 
-#: ../src/general/NewGameSettings.tscn:771
+#: ../src/general/NewGameSettings.tscn:772
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(commencer par un nuage de glucose à proximité de chaque génération)"
 
@@ -2717,11 +2717,11 @@ msgstr "L'identifiant n'est pas un nombre valide"
 msgid "ID_NUMBER"
 msgstr "Identifiant numérique"
 
-#: ../src/general/NewGameSettings.tscn:1101
+#: ../src/general/NewGameSettings.tscn:1123
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Inclure les prototypes des stades avancés"
 
-#: ../src/general/NewGameSettings.tscn:1109
+#: ../src/general/NewGameSettings.tscn:1131
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(certaines fonctionnalités peuvent être indisponibles une fois les étapes suivantes atteintes)"
 
@@ -3223,13 +3223,13 @@ msgstr "courrier"
 msgid "LAUNCHMEDIA"
 msgstr "média"
 
-#: ../src/general/NewGameSettings.tscn:155
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:156
+#: ../src/general/NewGameSettings.tscn:876
 msgid "LAWK_ONLY"
 msgstr "LAWK uniquement"
 
-#: ../src/general/NewGameSettings.tscn:162
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:163
+#: ../src/general/NewGameSettings.tscn:884
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restreint les parties et les capacités à la vie telle que nous la connaissons)"
 
@@ -3310,37 +3310,37 @@ msgstr "Licences"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Les licences s'appliquant aux différentes parties de Thrive sont affichées ici"
 
-#: ../src/general/NewGameSettings.tscn:181
-#: ../src/general/NewGameSettings.tscn:881
+#: ../src/general/NewGameSettings.tscn:182
+#: ../src/general/NewGameSettings.tscn:903
 msgid "LIFE_ORIGIN"
 msgstr "Origine de la vie"
 
-#: ../src/general/NewGameSettings.tscn:190
-#: ../src/general/NewGameSettings.tscn:890
+#: ../src/general/NewGameSettings.tscn:191
+#: ../src/general/NewGameSettings.tscn:912
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(emplacement de départ)"
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:209
+#: ../src/general/NewGameSettings.tscn:923
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermie (aléatoire)"
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:209
+#: ../src/general/NewGameSettings.tscn:923
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Petit bassin chaud"
 
-#: ../src/general/NewGameSettings.tscn:205
-#: ../src/general/NewGameSettings.tscn:898
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:920
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Certaines options peuvent être désactivées si l'option \"LAWK uniquement\" est activée"
 
-#: ../src/general/NewGameSettings.tscn:207
 #: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:209
+#: ../src/general/NewGameSettings.tscn:922
+#: ../src/general/NewGameSettings.tscn:923
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Cheminées hydrothermales"
@@ -3381,11 +3381,11 @@ msgstr "Lumière"
 msgid "LIMIT_EXTREME"
 msgstr "Extrême"
 
-#: ../src/general/NewGameSettings.tscn:805
+#: ../src/general/NewGameSettings.tscn:827
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Limiter l'utilisation du composé de croissance"
 
-#: ../src/general/NewGameSettings.tscn:813
+#: ../src/general/NewGameSettings.tscn:835
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
 
@@ -3949,7 +3949,7 @@ msgstr "Version :"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Il n'est pas permis d'afficher moins de {0} datasets !"
 
-#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:324 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Divers"
 
@@ -4352,11 +4352,11 @@ msgstr "Volume de la musique"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Tentatives de mutation par espèce"
 
-#: ../src/general/NewGameSettings.tscn:416
+#: ../src/general/NewGameSettings.tscn:417
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Multiplicateur de coût de mutation"
 
-#: ../src/general/NewGameSettings.tscn:456
+#: ../src/general/NewGameSettings.tscn:457
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(coût des organites, membranes et autres éléments dans l'éditeur)"
 
@@ -4425,7 +4425,7 @@ msgstr "Nouvelle partie"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Commencer une nouvelle partie"
 
-#: ../src/general/NewGameSettings.tscn:285
+#: ../src/general/NewGameSettings.tscn:286
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Remarque : vous pouvez modifier les options liées aux performances à tout moment dans le [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menu options[/url][/color] pour améliorer les performances du jeu"
 
@@ -4836,11 +4836,11 @@ msgstr "Osmorégulation"
 msgid "OSMOREGULATION_COST"
 msgstr "Coût en osmorégulation"
 
-#: ../src/general/NewGameSettings.tscn:710
+#: ../src/general/NewGameSettings.tscn:711
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Multiplicateur du coût de l'osmorégulation"
 
-#: ../src/general/NewGameSettings.tscn:750
+#: ../src/general/NewGameSettings.tscn:751
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(coût de l'osmorégulation des espèces du joueur)"
 
@@ -4942,11 +4942,11 @@ msgstr "Panoramique droit"
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramique vers le haut"
 
-#: ../src/general/NewGameSettings.tscn:784
+#: ../src/general/NewGameSettings.tscn:785
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Gagner passivement des progrès en matière de reproduction"
 
-#: ../src/general/NewGameSettings.tscn:792
+#: ../src/general/NewGameSettings.tscn:793
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"
 
@@ -4967,6 +4967,16 @@ msgstr "EXTINCTION DANS LE SECTEUR"
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
 msgstr "Carte des parcelles"
+
+#: ../src/general/NewGameSettings.tscn:806
+#, fuzzy
+msgid "PATCH_MAP_EXPLORATION"
+msgstr "(générer une carte des secteurs procéduralement ou utiliser la disposition par défaut)"
+
+#: ../src/general/NewGameSettings.tscn:814
+#, fuzzy
+msgid "PATCH_MAP_EXPLORATION_EXPLANATION"
+msgstr "(générer une carte des secteurs procéduralement ou utiliser la disposition par défaut)"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
@@ -5047,8 +5057,8 @@ msgstr "Pacifique"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:765
-#: ../src/general/WorldGenerationSettings.cs:147
+#: ../src/general/NewGameSettings.cs:774
+#: ../src/general/WorldGenerationSettings.cs:150
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
@@ -5100,12 +5110,12 @@ msgstr "Résistance Physique"
 msgid "PLACE_ORGANELLE"
 msgstr "Placer organite"
 
-#: ../src/general/NewGameSettings.tscn:313
+#: ../src/general/NewGameSettings.tscn:314
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planète"
 
-#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/general/WorldGenerationSettings.cs:163
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -5115,12 +5125,12 @@ msgstr ""
 "Durée du jour : {3} secondes\n"
 "Graine aléatoire de la planète : {4}"
 
-#: ../src/general/NewGameSettings.tscn:1067
+#: ../src/general/NewGameSettings.tscn:1089
 msgid "PLANET_GENERATION_TEASER"
 msgstr "La génération de planète arrive bientôt !"
 
-#: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:1001
+#: ../src/general/NewGameSettings.tscn:224
+#: ../src/general/NewGameSettings.tscn:1023
 msgid "PLANET_RANDOM_SEED"
 msgstr "Graine planétaire aléatoire"
 
@@ -5129,11 +5139,11 @@ msgstr "Graine planétaire aléatoire"
 msgid "PLAYER"
 msgstr "Cellule du joueur"
 
-#: ../src/general/NewGameSettings.tscn:593
+#: ../src/general/NewGameSettings.tscn:594
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Pénalité démographique à la mort du joueur"
 
-#: ../src/general/NewGameSettings.tscn:633
+#: ../src/general/NewGameSettings.tscn:634
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(coefficient de réduction de la population des espèces du joueur à chaque mort du joueur)"
 
@@ -5309,8 +5319,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Nom d'espèce aléatoire"
 
-#: ../src/general/NewGameSettings.tscn:242
-#: ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/NewGameSettings.tscn:243
+#: ../src/general/NewGameSettings.tscn:1036
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
 
@@ -5802,7 +5812,7 @@ msgid "SECRETE_SLIME"
 msgstr "Sécréter du mucilage"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:155
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:289
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:291
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:90
 #, fuzzy
@@ -6196,7 +6206,7 @@ msgstr "Démarrage"
 msgid "START_CALIBRATION"
 msgstr "Démarrer le calibrage"
 
-#: ../src/general/NewGameSettings.tscn:1201
+#: ../src/general/NewGameSettings.tscn:1223
 #, fuzzy
 msgid "START_GAME"
 msgstr "Sauvegarder"
@@ -7397,7 +7407,7 @@ msgstr "Erreur: {0}"
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Statistiques de l'Organisme"
 
-#: ../src/general/WorldGenerationSettings.cs:172
+#: ../src/general/WorldGenerationSettings.cs:176
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -7468,9 +7478,6 @@ msgstr "Dézoomer"
 
 #~ msgid "PATCH_MAP_TYPE_CLASSIC"
 #~ msgstr "Classique"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(générer une carte des secteurs procéduralement ou utiliser la disposition par défaut)"
 
 #~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
 #~ msgstr "Procédural"
