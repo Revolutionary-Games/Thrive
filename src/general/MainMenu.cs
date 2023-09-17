@@ -62,6 +62,9 @@ public class MainMenu : NodeWithInput
     public NodePath ModsInstalledButNotEnabledWarningPath = null!;
 
     [Export]
+    public NodePath LowPerformanceWarningPath = null!;
+
+    [Export]
     public NodePath SocialMediaContainerPath = null!;
 
     [Export]
@@ -149,6 +152,7 @@ public class MainMenu : NodeWithInput
     private CustomWindow safeModeWarning = null!;
 
     private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
+    private PermanentlyDismissibleDialog lowPerformanceWarning = null!;
     private PermanentlyDismissibleDialog thanksDialog = null!;
 
     private CenterContainer menus = null!;
@@ -169,6 +173,12 @@ public class MainMenu : NodeWithInput
     ///   The store specific page link. Defaults to the website link if we don't know a valid store name
     /// </summary>
     private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+
+    private float averageFrameRate;
+
+    private float secondsInMenu;
+
+    private bool canShowLowPerformanceWarning;
 
     public bool IsReturningToMenu { get; set; }
 
@@ -271,6 +281,25 @@ public class MainMenu : NodeWithInput
                         GD.PrintErr("Steam init has failed, showing failure popup");
                         steamFailedPopup.PopupCenteredShrink();
                     }
+                }
+            }
+
+            // Low menu performance will never be warned about if the popup has been dismissed,
+            // if 3D backgrounds have been disabled, if the popup has been shown but not dismissed
+            // on this menu session, or if the max framerate is set to 30
+            if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning)
+                && Settings.Instance.Menu3DBackgroundEnabled && canShowLowPerformanceWarning
+                && Settings.Instance.MaxFramesPerSecond != 30)
+            {
+                secondsInMenu += delta;
+
+                averageFrameRate = TrackMenuPerformance(delta);
+
+                WarnAboutLowPerformance();
+
+                if (secondsInMenu > 15)
+                {
+                    canShowLowPerformanceWarning = false;
                 }
             }
         }
@@ -380,6 +409,7 @@ public class MainMenu : NodeWithInput
                 ModLoadFailuresPath.Dispose();
                 SafeModeWarningPath.Dispose();
                 ModsInstalledButNotEnabledWarningPath.Dispose();
+                LowPerformanceWarningPath.Dispose();
                 SocialMediaContainerPath.Dispose();
                 WebsiteButtonsContainerPath.Dispose();
                 ItchButtonPath.Dispose();
@@ -453,6 +483,8 @@ public class MainMenu : NodeWithInput
 
         modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(
             ModsInstalledButNotEnabledWarningPath);
+        lowPerformanceWarning = GetNode<PermanentlyDismissibleDialog>(
+            LowPerformanceWarningPath);
         thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
         menus = GetNode<CenterContainer>(MenusPath);
 
@@ -467,6 +499,12 @@ public class MainMenu : NodeWithInput
 
         UpdateStoreVersionStatus();
         UpdateLauncherState();
+
+        if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning))
+        {
+            GD.Print("Low performance warning is not dismissed, beginning menu performance check");
+            canShowLowPerformanceWarning = true;
+        }
 
         // Hide patch notes when it does not want to be shown
         if (!Settings.Instance.ShowNewPatchNotes)
@@ -750,6 +788,33 @@ public class MainMenu : NodeWithInput
             GD.Print("Player has installed mods but no enabled ones, giving a heads up");
             modsInstalledButNotEnabledWarning.PopupIfNotDismissed();
         }
+    }
+
+    private float TrackMenuPerformance(float delta)
+    {
+        var currentFrameRate = 1 / delta;
+
+        // If this is the first frame, do not use the average of the frame delta and 0
+        if (averageFrameRate == 0)
+            return currentFrameRate;
+
+        // Not an exact average by any means, but good enough for this purpose
+        return (averageFrameRate + currentFrameRate) / 2;
+    }
+
+    private void WarnAboutLowPerformance()
+    {
+        if (averageFrameRate < 30 && secondsInMenu >= 15)
+        {
+            GD.Print($"Average frame rate is {averageFrameRate}, prompting to disable 3D backgrounds");
+            lowPerformanceWarning.PopupIfNotDismissed();
+            canShowLowPerformanceWarning = false;
+        }
+    }
+
+    private void OnLowPerformanceDialogConfirmed()
+    {
+        Settings.Instance.UpdateSettingExternally(Settings.Instance.Menu3DBackgroundEnabled, false);
     }
 
     private void NewGamePressed()

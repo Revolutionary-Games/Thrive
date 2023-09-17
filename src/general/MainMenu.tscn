@@ -132,6 +132,7 @@ SteamFailedPopupPath = NodePath("SteamFailedDialog")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
+LowPerformanceWarningPath = NodePath("LowPerformanceDialog")
 SocialMediaContainerPath = NodePath("MenuContainers/SocialMedia")
 WebsiteButtonsContainerPath = NodePath("MenuContainers/WebsiteButtons")
 ItchButtonPath = NodePath("MenuContainers/SocialMedia/ItchButton")
@@ -1003,6 +1004,12 @@ WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 
+[node name="LowPerformanceDialog" parent="." instance=ExtResource( 59 )]
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "LOW_MENU_PERFORMANCE"
+ShowCloseButton = false
+DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
+
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/Options" to="." method="OptionsPressed"]
@@ -1052,3 +1059,4 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
+[connection signal="Confirmed" from="LowPerformanceDialog" to="." method="OnLowPerformanceDialogConfirmed"]

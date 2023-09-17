@@ -3378,6 +3378,17 @@ msgstr "L"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Consider patches with up to this many species having low biodiversity"
 
+#: ../src/general/MainMenu.tscn:1009
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "Low Performance Detected"
+
+#: ../src/general/MainMenu.tscn:1010
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr ""
+"Your average framerate is very low.\n"
+"3D menu backgrounds are enabled, which can use a large amount of system resources. Disabling the option may greatly increase performance.\n"
+"Would you like to do this now?"
+
 #: ../simulation_parameters/microbe_stage/organelles.json:878
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"

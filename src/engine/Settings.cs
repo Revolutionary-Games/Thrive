@@ -830,6 +830,15 @@ public class Settings
         GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
     }
 
+    /// <summary>
+    ///   Currently only used by one dialog, called to update the specified setting without using the dedicated menu
+    /// </summary>
+    public void UpdateSettingExternally(SettingValue<bool> setting, bool value)
+    {
+        setting.Value = value;
+        ApplyAll();
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj == null)
