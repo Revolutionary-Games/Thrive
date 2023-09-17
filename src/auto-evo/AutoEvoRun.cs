@@ -331,8 +331,8 @@ public class AutoEvoRun
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     <see cref="CalculateAndApplyFinalExternalEffectSizes"/> needs to be called before this is called to have accurate
-    ///     numbers
+    ///     <see cref="CalculateAndApplyFinalExternalEffectSizes"/> needs to be called before this is called to have
+    ///     accurate numbers
     ///   </para>
     /// </remarks>
     /// <returns>The summary of external effects.</returns>
