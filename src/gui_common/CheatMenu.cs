@@ -92,6 +92,11 @@ public abstract class CheatMenu : CustomWindow
         CheatManager.NoAI = value;
     }
 
+    public void SetLockTime(bool value)
+    {
+        CheatManager.LockTime = value;
+    }
+
     public void SetSpeed(float value)
     {
         CheatManager.Speed = value;

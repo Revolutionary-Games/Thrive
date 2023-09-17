@@ -146,6 +146,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         base._EnterTree();
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
+        CheatManager.OnSetTimeCheatUsed += OnSetTimeCheatUsed;
     }
 
     public override void _ExitTree()
@@ -153,6 +154,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         base._ExitTree();
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
+        CheatManager.OnSetTimeCheatUsed -= OnSetTimeCheatUsed;
     }
 
     public override void _Process(float delta)
@@ -808,6 +810,11 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
     {
         spawner.DespawnAll();
+    }
+
+    private void OnSetTimeCheatUsed(object? sender, float timeFraction)
+    {
+        GameWorld.LightCycle.SetTime(timeFraction);
     }
 
     [DeserializedCallbackAllowed]

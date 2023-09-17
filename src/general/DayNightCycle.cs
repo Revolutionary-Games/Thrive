@@ -86,10 +86,15 @@ public class DayNightCycle
 
     public void Process(float delta)
     {
-        if (isEnabled)
+        if (isEnabled && !CheatManager.LockTime)
         {
             fractionOfDayElapsed = (fractionOfDayElapsed + delta / realTimePerDay) % 1;
         }
+    }
+
+    public void SetTime(float timeFraction)
+    {
+        fractionOfDayElapsed = timeFraction;
     }
 
     /// <summary>
