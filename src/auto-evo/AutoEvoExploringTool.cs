@@ -746,6 +746,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
         var results = autoEvoRun!.Results!;
         var gameWorld = world.GameProperties.GameWorld;
 
+        // This needs to be called before making any auto-evo summaries
+        autoEvoRun.CalculateAndApplyFinalExternalEffectSizes();
+
         // Make summary, this must be called before results are applied so that summary is correct
         world.RunResultsList.Add(results.MakeSummary(gameWorld.Map, true));
 
