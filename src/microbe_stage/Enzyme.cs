@@ -12,6 +12,9 @@ public class Enzyme : IRegistryType
     [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
+    [TranslateFrom(nameof(untranslatedDescription))]
+    public string Description = null!;
+
     /// <summary>
     ///   What this enzyme does.
     /// </summary>
@@ -19,6 +22,7 @@ public class Enzyme : IRegistryType
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
+    private string? untranslatedDescription;
 #pragma warning restore 169,649
 
     public enum EnzymeProperty
