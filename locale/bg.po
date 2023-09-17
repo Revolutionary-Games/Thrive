@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 13:02+0300\n"
+"POT-Creation-Date: 2023-09-17 14:16+0200\n"
 "PO-Revision-Date: 2023-08-30 08:51+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -792,7 +792,7 @@ msgstr "Промяна на симетрията"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:17
 msgid "CHEATS"
 msgstr "Кодове"
 
@@ -1567,7 +1567,7 @@ msgstr "Описание:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Описанието е твърде дълго"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:119
 msgid "DESPAWN_ENTITIES"
 msgstr "Прочистване"
 
@@ -2479,7 +2479,7 @@ msgstr "Концентрацията на глюкоза се понижи др�
 msgid "GLYCOLYSIS"
 msgstr "Гликолиза"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:45
 msgid "GODMODE"
 msgstr "Безсмъртие"
 
@@ -2657,7 +2657,7 @@ msgstr "(следващите етапи на играта не са завър�
 msgid "INDUSTRIAL_STAGE"
 msgstr "Индустриализация"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:38
 msgid "INFINITE_COMPOUNDS"
 msgstr "Пиршество"
 
@@ -3426,6 +3426,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "М"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr "Денонощен цикъл"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -4432,7 +4437,7 @@ msgstr "Не е започната."
 msgid "NOVEMBER"
 msgstr "Ноември"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:52
 msgid "NO_AI"
 msgstr "Самота"
 
@@ -5014,7 +5019,7 @@ msgstr "(определя мащаба на измиране на индивид
 msgid "PLAYER_DIED"
 msgstr "измиране"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:99
 msgid "PLAYER_DUPLICATE"
 msgstr "Удвояване"
 
@@ -5031,7 +5036,7 @@ msgstr "измиране на създанията"
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:73
 msgid "PLAYER_SPEED"
 msgstr ""
 "Вашата\n"
@@ -5742,6 +5747,10 @@ msgstr "Мудно"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Промяната на тази стойност се прилага при започване на нова игра"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "SET_TIME_TO_TARGET"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Ефекти"
@@ -5919,11 +5928,11 @@ msgstr ""
 msgid "SPAWN_AMMONIA"
 msgstr "Създаване на амоняк"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:109
 msgid "SPAWN_ENEMY"
 msgstr "Съперничество"
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -6300,6 +6309,11 @@ msgstr "Етикетите са празни"
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Снимка на екрана"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
+#, fuzzy
+msgid "TARGET_TIME"
+msgstr "Вид:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy

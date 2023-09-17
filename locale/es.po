@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 13:02+0300\n"
+"POT-Creation-Date: 2023-09-17 14:16+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -800,7 +800,7 @@ msgstr "Cambiar la simetría"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:17
 msgid "CHEATS"
 msgstr "Trucos"
 
@@ -1556,7 +1556,7 @@ msgstr "Descripción:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "La descripción es demasiado larga"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:119
 msgid "DESPAWN_ENTITIES"
 msgstr "Destruir todas las entidades"
 
@@ -2494,7 +2494,7 @@ msgstr "¡Las concentraciones de glucosa han bajado drásticamente!"
 msgid "GLYCOLYSIS"
 msgstr "Glicólisis"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:45
 msgid "GODMODE"
 msgstr "Modo Dios"
 
@@ -2674,7 +2674,7 @@ msgstr "(ciertas características no estarán disponibles cuando llegues a ciert
 msgid "INDUSTRIAL_STAGE"
 msgstr "Estadio Industrial"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:38
 msgid "INFINITE_COMPOUNDS"
 msgstr "Compuestos infinitos"
 
@@ -3458,6 +3458,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr "Habilitar ciclo día/noche"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -4469,7 +4474,7 @@ msgstr "Sin iniciar."
 msgid "NOVEMBER"
 msgstr "Noviembre"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:52
 msgid "NO_AI"
 msgstr "Sin IA"
 
@@ -5059,7 +5064,7 @@ msgstr "(Reducción en la población de la especie del jugador por cada muerte d
 msgid "PLAYER_DIED"
 msgstr "El jugador murió"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:99
 msgid "PLAYER_DUPLICATE"
 msgstr "Jugador duplicado"
 
@@ -5076,7 +5081,7 @@ msgstr "El jugador se extinguió"
 msgid "PLAYER_REPRODUCED"
 msgstr "El jugador se reprodujo"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:73
 msgid "PLAYER_SPEED"
 msgstr ""
 "Velocidad\n"
@@ -5797,6 +5802,10 @@ msgstr "sésil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Este valor solo se aplica a nuevos juegos empezados tras cambiar esta opción"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "SET_TIME_TO_TARGET"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Volumen de efectos"
@@ -5979,11 +5988,11 @@ msgstr "Construyendo: {0}"
 msgid "SPAWN_AMMONIA"
 msgstr "Crear amoníaco"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:109
 msgid "SPAWN_ENEMY"
 msgstr "Enemigo aparecido"
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No puedes usar el comando ya que el medio actual no contiene especies enemigas"
 
@@ -6370,6 +6379,11 @@ msgstr "No se ha indicado ninguna etiqueta"
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Tomar una captura de pantalla"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
+#, fuzzy
+msgid "TARGET_TIME"
+msgstr "Tipo:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 13:02+0300\n"
+"POT-Creation-Date: 2023-09-17 14:16+0200\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -791,7 +791,7 @@ msgstr "Змінити симетрію"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:17
 msgid "CHEATS"
 msgstr "Чити"
 
@@ -1551,7 +1551,7 @@ msgstr "Опис:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Опис надто довгий"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:119
 msgid "DESPAWN_ENTITIES"
 msgstr "Деспавн усіх сутностей"
 
@@ -2459,7 +2459,7 @@ msgstr "Концентрація глюкози раптово впала!"
 msgid "GLYCOLYSIS"
 msgstr "Гліколіз"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:45
 msgid "GODMODE"
 msgstr "Режим Бога"
 
@@ -2637,7 +2637,7 @@ msgstr "(деякі функції можуть бути недоступні к
 msgid "INDUSTRIAL_STAGE"
 msgstr "Індустріальна стадія"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:38
 msgid "INFINITE_COMPOUNDS"
 msgstr "Нескінченні сполуки"
 
@@ -3396,6 +3396,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr "Увімкнути цикл дня/ночі"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -4398,7 +4403,7 @@ msgstr "Не починати."
 msgid "NOVEMBER"
 msgstr "Листопад"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:52
 msgid "NO_AI"
 msgstr "Без ШІ"
 
@@ -4970,7 +4975,7 @@ msgstr "(коефіціент зменшення популяції виду г�
 msgid "PLAYER_DIED"
 msgstr "гравець помер"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:99
 msgid "PLAYER_DUPLICATE"
 msgstr "Дублікат гравця"
 
@@ -4986,7 +4991,7 @@ msgstr "Відносно гравця"
 msgid "PLAYER_REPRODUCED"
 msgstr "гравець розмножився"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:73
 msgid "PLAYER_SPEED"
 msgstr ""
 "Швидкість\n"
@@ -5691,6 +5696,10 @@ msgstr "Пасивні"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Це значення стосується тільки до нових ігор розпочатих після зміни налаштування"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "SET_TIME_TO_TARGET"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Гучність SFX"
@@ -5867,11 +5876,11 @@ msgstr "Конструювання: {0}"
 msgid "SPAWN_AMMONIA"
 msgstr "Спавн амоніаку"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:109
 msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
@@ -6246,6 +6255,11 @@ msgstr "Теги містять лише пробіли"
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
+#, fuzzy
+msgid "TARGET_TIME"
+msgstr "Тип:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy

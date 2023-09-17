@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 13:02+0300\n"
+"POT-Creation-Date: 2023-09-17 14:16+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -825,7 +825,7 @@ msgstr "Ŝanĝu la simetrion"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:17
 msgid "CHEATS"
 msgstr "Trompaĵoj"
 
@@ -1605,7 +1605,7 @@ msgstr "Priskribo:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Priskribo:"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:119
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
@@ -2548,7 +2548,7 @@ msgstr ""
 msgid "GLYCOLYSIS"
 msgstr "Glikolizo"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:45
 msgid "GODMODE"
 msgstr ""
 
@@ -2729,7 +2729,7 @@ msgstr ""
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:38
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "Kunmetaĵoj"
@@ -3527,6 +3527,10 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 msgid "LOCAL_INITIAL_LETTER"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+msgid "LOCK_DAY_NIGHT_CYCYLE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
@@ -4561,7 +4565,7 @@ msgstr "Nuligita."
 msgid "NOVEMBER"
 msgstr "Movado"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:52
 msgid "NO_AI"
 msgstr ""
 
@@ -5170,7 +5174,7 @@ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 msgid "PLAYER_DIED"
 msgstr "ludanto mortis"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:99
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "ludanto mortis"
@@ -5189,7 +5193,7 @@ msgstr "ludanto mortis"
 msgid "PLAYER_REPRODUCED"
 msgstr "ludanto reproduktita"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:73
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "ludanto mortis"
@@ -5938,6 +5942,10 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "SET_TIME_TO_TARGET"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Volumo de sonefektoj"
@@ -6155,11 +6163,11 @@ msgstr ""
 msgid "SPAWN_AMMONIA"
 msgstr "Generu amoniakon"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:109
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6549,6 +6557,11 @@ msgstr ""
 #: ../simulation_parameters/common/input_options.json:346
 msgid "TAKE_SCREENSHOT"
 msgstr "Prenu ekrankopion"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
+#, fuzzy
+msgid "TARGET_TIME"
+msgstr "SP:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
