@@ -814,7 +814,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
     private void OnSetTimeCheatUsed(object? sender, float timeFraction)
     {
-        GameWorld.LightCycle.SetTime(timeFraction);
+        GameWorld.LightCycle.FractionOfDayElapsed = timeFraction;
     }
 
     [DeserializedCallbackAllowed]
