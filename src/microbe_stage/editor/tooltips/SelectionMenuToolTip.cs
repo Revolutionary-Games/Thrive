@@ -210,6 +210,19 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     /// <summary>
+    ///   Sets the value of this tooltip's osmoregulation cost modifier.
+    /// </summary>
+    /// <param name="osmoregulationCost">The value to set the osmoregulation cost to.</param>
+    public void WriteOsmoregulationCost(float osmoregulationCost)
+    {
+        foreach (var modifier in modifierInfos)
+        {
+            if (modifier.Name == "osmoregulationCost")
+                modifier.ModifierValue = $"+{osmoregulationCost}";
+        }
+    }
+
+    /// <summary>
     ///   Sets the value of all the membrane type modifiers on this tooltip relative
     ///   to the referenceMembrane. This currently only reads from the pre-added modifier
     ///   UI elements on this tooltip and doesn't actually create them on runtime.

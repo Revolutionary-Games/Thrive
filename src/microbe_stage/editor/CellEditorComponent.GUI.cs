@@ -90,6 +90,25 @@ public partial class CellEditorComponent
             var tooltip = GetSelectionTooltip(membraneType.InternalName, "membraneSelection");
             tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
         }
+
+        // Osmoregulation cost is based on the membrane, so update the osmoregulation tooltips
+        // after updating the membrane
+        SetOsmoregulationTooltips();
+    }
+
+    private void SetOsmoregulationTooltips()
+    {
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+
+        foreach (var organelle in organelles)
+        {
+            float osmoregulationCost = organelle.HexCount * Membrane.OsmoregulationFactor
+                * Constants.ATP_COST_FOR_OSMOREGULATION
+                * Editor.CurrentGame.GameWorld.WorldSettings.OsmoregulationMultiplier;
+
+            var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
+            tooltip?.WriteOsmoregulationCost(osmoregulationCost);
+        }
     }
 
     /// <summary>
