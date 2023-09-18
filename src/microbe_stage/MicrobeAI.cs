@@ -177,7 +177,7 @@ public class MicrobeAI
 
         if (atpThreshold > 0.0f)
         {
-            if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpThreshold
+            if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.GetCapacityForCompound(atp) * atpThreshold
                 && microbe.Compounds.Any(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f))
             {
                 SetMoveSpeed(0.0f);
@@ -684,9 +684,8 @@ public class MicrobeAI
         IEnumerable<Compound> usefulCompounds = microbe.Compounds.Compounds.Keys;
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-        if (usefulCompounds.Any(
-                compound => IsVitalCompound(compound) &&
-                    microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
+        if (usefulCompounds.Any(c => IsVitalCompound(c) && microbe.Compounds.GetCompoundAmount(c) < 0.5f
+                * microbe.Compounds.GetCapacityForCompound(c)))
         {
             usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
         }
@@ -696,7 +695,8 @@ public class MicrobeAI
         {
             // The priority of a compound is inversely proportional to its availability
             // Should be tweaked with consumption
-            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound) / microbe.Compounds.Capacity;
+            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound) /
+                microbe.Compounds.GetCapacityForCompound(compound);
 
             compoundsSearchWeights.Add(compound, compoundPriority);
         }

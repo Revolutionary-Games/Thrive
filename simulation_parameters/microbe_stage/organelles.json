@@ -23,7 +23,20 @@
     "name": "ORGANELLE_PILUS",
     "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
     "editorButtonGroup": "External",
-    "editorButtonOrder": 2
+    "editorButtonOrder": 2,
+    "availableUpgrades": {
+      "none": {
+        "isDefault": true,
+        "name": "UPGRADE_NAME_NONE",
+        "description": "UPGRADE_DESCRIPTION_NONE"
+      },
+      "injectisome": {
+        "name": "UPGRADE_PILUS_INJECTISOME",
+        "description": "UPGRADE_PILUS_INJECTISOME_DESCRIPTION",
+        "mpCost": 25,
+        "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png"
+      }
+    }
   },
   "rusticyanin": {
     "mpCost": 45,
@@ -415,6 +428,7 @@
     "displayScene": "res://assets/models/organelles/Vacuole.tscn",
     "name": "VACUOLE",
     "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
+    "upgradeGUI": "res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn",
     "requiresNucleus": true,
     "editorButtonGroup": "Organelle",
     "editorButtonOrder": 8

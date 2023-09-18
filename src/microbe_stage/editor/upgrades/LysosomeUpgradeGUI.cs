@@ -101,19 +101,6 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         var enzyme = shownChoices[enzymes.Selected];
 
-        switch (enzyme.InternalName)
-        {
-            // TODO: having these translation keys in the JSON would make this more extensible to people just making
-            // simple modifications
-            case "lipase":
-                description.Text = TranslationServer.Translate("LIPASE_DESCRIPTION");
-                break;
-            case "cellulase":
-                description.Text = TranslationServer.Translate("CELLULASE_DESCRIPTION");
-                break;
-            case "chitinase":
-                description.Text = TranslationServer.Translate("CHITINASE_DESCRIPTION");
-                break;
-        }
+        description.Text = enzyme.Description;
     }
 }
