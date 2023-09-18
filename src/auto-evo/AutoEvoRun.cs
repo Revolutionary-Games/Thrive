@@ -237,7 +237,7 @@ public class AutoEvoRun
     }
 
     /// <summary>
-    ///   Applies things added by addExternalPopulationEffect and auto-evo results
+    ///   Applies computed auto-evo results to the world.
     /// </summary>
     /// <remarks>
     ///   <para>
