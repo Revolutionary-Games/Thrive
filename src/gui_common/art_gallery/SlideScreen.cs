@@ -63,6 +63,9 @@ public class SlideScreen : TopLevelContainer
     private bool slideshowMode;
     private bool slideControlsVisible;
 
+    [Signal]
+    private delegate void RequestFade();
+
     public List<GalleryCard>? Items
     {
         get => items;
@@ -122,6 +125,8 @@ public class SlideScreen : TopLevelContainer
 
         popupTween = GetNode<Tween>("PopupTween");
         toolbarTween = GetNode<Tween>("ToolbarTween");
+
+        Connect(nameof(RequestFade), modelViewerContainer, "BeginFade");
 
         UpdateScreen();
     }
@@ -338,8 +343,7 @@ public class SlideScreen : TopLevelContainer
 
         // If texture loading fails, the selected item is a model
         // These are handled here
-
-        modelViewerContainer!.FadeRequested = true;
+        EmitSignal(nameof(RequestFade));
     }
 
     private void UpdateScreen()
