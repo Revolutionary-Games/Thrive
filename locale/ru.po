@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-17 14:16+0200\n"
+"POT-Creation-Date: 2023-09-18 20:07+0200\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -2126,7 +2126,7 @@ msgstr "Вымерли из биома"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Исчезли с планеты"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 msgid "EXTINCT_IN_PATCH"
 msgstr "Вымерли в биоме"
 
@@ -3395,6 +3395,10 @@ msgstr "Лизосома — мембранная органелла, содер
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Содержит пищеварительные ферменты. Тип фермента может быть изменён. Только один фермент за раз."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -4943,7 +4947,7 @@ msgstr "Убыль популяции вида от смерти игрока"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(коэффициент уменьшения популяции вида с каждой смертью игрока)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "игрок умер"
 
@@ -4959,7 +4963,7 @@ msgstr "Игрок вымер"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Родственник игрока"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "игрок размножился"
 
@@ -5664,10 +5668,6 @@ msgstr "Оседлый"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Это значение начнёт работать при старте новой игры"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
-msgid "SET_TIME_TO_TARGET"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
@@ -5846,7 +5846,7 @@ msgstr "Создать аммиак"
 msgid "SPAWN_ENEMY"
 msgstr "Создать Противника"
 
-#: ../src/microbe_stage/MicrobeStage.cs:795
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Невозможно использовать чит Создать Противника, так как этот биом не содержит каких-либо видов противников"
 
@@ -6220,11 +6220,6 @@ msgstr "Теги содержат только пробелы"
 msgid "TAKE_SCREENSHOT"
 msgstr "Сделать снимок экрана"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
-#, fuzzy
-msgid "TARGET_TIME"
-msgstr "Тип цели:"
-
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 msgid "TARGET_TYPE_COLON"
 msgstr "Тип цели:"
@@ -6486,6 +6481,10 @@ msgstr "Популяция вида [b][u]{0}[/u][/b] увеличилась д�
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Времени прошло: {0:#,#} лет"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:142
+msgid "TIME_OF_DAY"
+msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -7179,6 +7178,10 @@ msgstr "Увеличить масштаб"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Тип цели:"
 
 #, fuzzy
 #~ msgid "BUILD_SPACE_STRUCTURE"

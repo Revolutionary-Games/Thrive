@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-17 14:16+0200\n"
+"POT-Creation-Date: 2023-09-18 20:07+0200\n"
 "PO-Revision-Date: 2023-06-26 06:04+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -2140,7 +2140,7 @@ msgstr "Extinta da região"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Extinta do planeta"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 msgid "EXTINCT_IN_PATCH"
 msgstr "extinta na região"
 
@@ -3433,6 +3433,10 @@ msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidro
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -4984,7 +4988,7 @@ msgstr "Penalidade na população por morte do jogador"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(coeficiente para a redução na população da espécie do jogador para cada morte)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
@@ -5000,7 +5004,7 @@ msgstr "O jogador foi extinto"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativo ao jogador"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduziu"
 
@@ -5718,10 +5722,6 @@ msgstr "Séssil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Esse valor só é aplicado à novos jogos, criados após alterar esta opção"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
-msgid "SET_TIME_TO_TARGET"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Volume dos efeitos sonoros"
@@ -5904,7 +5904,7 @@ msgstr "Gerar amônia"
 msgid "SPAWN_ENEMY"
 msgstr "Gerar Inimigo"
 
-#: ../src/microbe_stage/MicrobeStage.cs:795
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível usar comando para gerar inimigo pois essa região não contém nenhuma espécie inimiga"
 
@@ -6282,11 +6282,6 @@ msgstr "Etiquetas contém somente espaços em branco"
 msgid "TAKE_SCREENSHOT"
 msgstr "Capturar tela"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
-#, fuzzy
-msgid "TARGET_TIME"
-msgstr "Tipo:"
-
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
@@ -6550,6 +6545,10 @@ msgstr "A população de [b][u]{0}[/u][/b] aumentou para {1}"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Tempo Passado: {0:#,#} anos"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:142
+msgid "TIME_OF_DAY"
+msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -7246,6 +7245,10 @@ msgstr "Aumentar o zoom"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Tipo:"
 
 #, fuzzy
 #~ msgid "ENABLED"

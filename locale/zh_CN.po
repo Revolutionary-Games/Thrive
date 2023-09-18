@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-17 14:16+0200\n"
+"POT-Creation-Date: 2023-09-18 20:07+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2129,7 +2129,7 @@ msgstr "在这个地区里灭绝了"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "从这个星球上灭绝了"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 msgid "EXTINCT_IN_PATCH"
 msgstr "在这个地区里灭绝了"
 
@@ -3399,6 +3399,10 @@ msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一次只能选择一种酶。"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -4952,7 +4956,7 @@ msgstr "玩家死亡惩罚"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "（当玩家死亡时玩家物种的种群数量下降的系数）"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -4968,7 +4972,7 @@ msgstr "玩家已灭绝"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相对于玩家"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -5679,10 +5683,6 @@ msgstr "沉着"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "这个数值只对你改变选项后新开的存档有效"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
-msgid "SET_TIME_TO_TARGET"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "音效音量"
@@ -5861,7 +5861,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:795
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
@@ -6236,11 +6236,6 @@ msgstr "标签里只有空格"
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
-#, fuzzy
-msgid "TARGET_TIME"
-msgstr "类型："
-
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
@@ -6503,6 +6498,10 @@ msgstr "[b][u]{0}[/u][/b]的种群数量已增加到{1}"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "时间经过了{0:#,#}年"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:142
+msgid "TIME_OF_DAY"
+msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -7194,6 +7193,10 @@ msgstr "放大"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "类型："
 
 #, fuzzy
 #~ msgid "BUILD_SPACE_STRUCTURE"

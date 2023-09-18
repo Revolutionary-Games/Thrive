@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-17 14:16+0200\n"
+"POT-Creation-Date: 2023-09-18 20:07+0200\n"
 "PO-Revision-Date: 2023-08-30 08:51+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -2158,7 +2158,7 @@ msgstr "Изчезнаха от зоната"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Изчезнаха от планетата"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 msgid "EXTINCT_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
@@ -3448,6 +3448,10 @@ msgstr "Лизозомата е мембранен органел, съдърж�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -5015,7 +5019,7 @@ msgstr "Коефициент на измиране"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(определя мащаба на измиране на индивидите от Вашите създания)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "измиране"
 
@@ -5032,7 +5036,7 @@ msgstr "измиране на създанията"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "измиране на създанията"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
@@ -5747,10 +5751,6 @@ msgstr "Мудно"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Промяната на тази стойност се прилага при започване на нова игра"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
-msgid "SET_TIME_TO_TARGET"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "Ефекти"
@@ -5932,7 +5932,7 @@ msgstr "Създаване на амоняк"
 msgid "SPAWN_ENEMY"
 msgstr "Съперничество"
 
-#: ../src/microbe_stage/MicrobeStage.cs:795
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -6310,11 +6310,6 @@ msgstr "Етикетите са празни"
 msgid "TAKE_SCREENSHOT"
 msgstr "Снимка на екрана"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
-#, fuzzy
-msgid "TARGET_TIME"
-msgstr "Вид:"
-
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
@@ -6578,6 +6573,10 @@ msgstr "Популацията на [b][u]{0}[/u][/b] се увеличи на {
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Изминало време: {0:#,#} години"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:142
+msgid "TIME_OF_DAY"
+msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -7278,6 +7277,10 @@ msgstr "Приближаване"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Вид:"
 
 #, fuzzy
 #~ msgid "ENABLED"

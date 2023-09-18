@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-17 14:16+0200\n"
+"POT-Creation-Date: 2023-09-18 20:07+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -2198,7 +2198,7 @@ msgstr "Lapist välja surnud"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Planeedilt välja surnud"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "Lapist välja surnud"
@@ -3556,6 +3556,10 @@ msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad o
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 #, fuzzy
@@ -5178,7 +5182,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "mängija suri"
 
@@ -5195,7 +5199,7 @@ msgstr "Mängija on välja surnud"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Mängija on välja surnud"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "mängija reprodutseeritud"
 
@@ -5935,10 +5939,6 @@ msgstr "istuv"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "See väärtus kehtib ainult uutele mängudele, mis alustati pärast selle valiku muutmist"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
-msgid "SET_TIME_TO_TARGET"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "SFX helitugevus"
@@ -6139,7 +6139,7 @@ msgstr "Kudema ammoniaaki"
 msgid "SPAWN_ENEMY"
 msgstr "Kudema vaenlane"
 
-#: ../src/microbe_stage/MicrobeStage.cs:795
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ei saa kasutada vaenlase pettust, kuna see plaaster ei sisalda ühtegi vaenlase liiki"
 
@@ -6525,11 +6525,6 @@ msgstr "Sildid sisaldavad ainult tühikuid"
 msgid "TAKE_SCREENSHOT"
 msgstr "Tehke ekraanipilt"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
-#, fuzzy
-msgid "TARGET_TIME"
-msgstr "Tüüp:"
-
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
@@ -6787,6 +6782,10 @@ msgstr "[u]{0}[/u] elanikkond on kasvanud väärtuseni {1}"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:142
+msgid "TIME_OF_DAY"
+msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 #, fuzzy
@@ -7500,6 +7499,10 @@ msgstr "Suurenda"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Tüüp:"
 
 #, fuzzy
 #~ msgid "ENABLED"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-17 14:16+0200\n"
+"POT-Creation-Date: 2023-09-18 20:07+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -2181,7 +2181,7 @@ msgstr "從這個區域滅絕了"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "從這個星球滅絕了"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "從這個區域滅絕了"
@@ -3530,6 +3530,10 @@ msgstr "代謝體是一大堆被蛋白質殼包裹住的蛋白質。通過有氧
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。可以通過按下[thrive:input]g_fire_toxin[/thrive:input]來釋放毒素。"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 #, fuzzy
@@ -5137,7 +5141,7 @@ msgstr "玩家死亡懲罰"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -5154,7 +5158,7 @@ msgstr "玩家已滅絕"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "玩家已滅絕"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -5899,10 +5903,6 @@ msgstr "沉着"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "這個數值只對你改變選項後新開的存檔有效"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:131
-msgid "SET_TIME_TO_TARGET"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:789
 msgid "SFX_VOLUME"
 msgstr "特效音量"
@@ -6098,7 +6098,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敵人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:795
+#: ../src/microbe_stage/MicrobeStage.cs:793
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
@@ -6480,11 +6480,6 @@ msgstr "標籤裡只有空格"
 msgid "TAKE_SCREENSHOT"
 msgstr "截圖"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:143
-#, fuzzy
-msgid "TARGET_TIME"
-msgstr "生命值："
-
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
@@ -6743,6 +6738,10 @@ msgstr "[b][u]{0}[/u][/b] 人口已經增加到 {1}"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:142
+msgid "TIME_OF_DAY"
+msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 #, fuzzy
@@ -7462,6 +7461,10 @@ msgstr "放大"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "生命值："
 
 #, fuzzy
 #~ msgid "BUILD_SPACE_STRUCTURE"

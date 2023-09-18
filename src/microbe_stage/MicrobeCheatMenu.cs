@@ -30,7 +30,7 @@ public class MicrobeCheatMenu : CheatMenu
     public NodePath DespawnAllEntitiesPath = null!;
 
     [Export]
-    public NodePath SetTimePath = null!;
+    public NodePath ManuallySetTimePath = null!;
 
     [Export]
     public NodePath TargetTimePath = null!;
@@ -44,8 +44,8 @@ public class MicrobeCheatMenu : CheatMenu
     private Button playerDivide = null!;
     private Button spawnEnemy = null!;
     private Button despawnAllEntities = null!;
-    private Button setTime = null!;
-    private SpinBox targetTime = null!;
+    private CustomCheckBox manuallySetTime = null!;
+    private Slider targetTime = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -58,13 +58,12 @@ public class MicrobeCheatMenu : CheatMenu
         playerDivide = GetNode<Button>(PlayerDividePath);
         despawnAllEntities = GetNode<Button>(DespawnAllEntitiesPath);
         spawnEnemy = GetNode<Button>(SpawnEnemyPath);
-        setTime = GetNode<Button>(SetTimePath);
-        targetTime = GetNode<SpinBox>(TargetTimePath);
+        manuallySetTime = GetNode<CustomCheckBox>(ManuallySetTimePath);
+        targetTime = GetNode<Slider>(TargetTimePath);
 
         playerDivide.Connect("pressed", this, nameof(OnPlayerDivideClicked));
         spawnEnemy.Connect("pressed", this, nameof(OnSpawnEnemyClicked));
         despawnAllEntities.Connect("pressed", this, nameof(OnDespawnAllEntitiesClicked));
-        setTime.Connect("pressed", this, nameof(OnSetTimeClicked));
 
         base._Ready();
     }
@@ -92,7 +91,7 @@ public class MicrobeCheatMenu : CheatMenu
                 PlayerDividePath.Dispose();
                 SpawnEnemyPath.Dispose();
                 DespawnAllEntitiesPath.Dispose();
-                SetTimePath.Dispose();
+                ManuallySetTimePath.Dispose();
                 TargetTimePath.Dispose();
             }
         }
@@ -113,10 +112,5 @@ public class MicrobeCheatMenu : CheatMenu
     private void OnDespawnAllEntitiesClicked()
     {
         CheatManager.DespawnAllEntities();
-    }
-
-    private void OnSetTimeClicked()
-    {
-        CheatManager.SetTime((float)targetTime.Value);
     }
 }

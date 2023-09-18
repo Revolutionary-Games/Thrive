@@ -28,11 +28,6 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnDespawnAllEntitiesCheatUsed;
 
     /// <summary>
-    ///   Fired whenever the user uses the "Set Time" cheat
-    /// </summary>
-    public static event EventHandler<float>? OnSetTimeCheatUsed;
-
-    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -51,6 +46,16 @@ public static class CheatManager
     ///   Stops the time of day from changing
     /// </summary>
     public static bool LockTime { get; set; }
+
+    /// <summary>
+    ///   Time of day to be set if <see cref="ManuallySetTime"/> is enabled
+    /// </summary>
+    public static float DayNightFraction { get; set; }
+
+    /// <summary>
+    ///   Manually sets the time to <see cref="DayNightFraction"/>
+    /// </summary>
+    public static bool ManuallySetTime { get; set; }
 
     /// <summary>
     ///   Speed modifier for the player
@@ -89,11 +94,6 @@ public static class CheatManager
         OnDespawnAllEntitiesCheatUsed?.Invoke(null, EventArgs.Empty);
     }
 
-    public static void SetTime(float timeFraction)
-    {
-        OnSetTimeCheatUsed?.Invoke(null, timeFraction);
-    }
-
     public static void DisableAllCheats()
     {
         InfiniteCompounds = false;
@@ -101,6 +101,9 @@ public static class CheatManager
         NoAI = false;
         LockTime = false;
         Speed = 1.0f;
+
+        ManuallySetTime = false;
+        DayNightFraction = 0.0f;
 
         InfiniteMP = false;
         MoveToAnyPatch = false;

@@ -23,8 +23,8 @@ SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
 PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 SpawnEnemyPath = NodePath("VBoxContainer/SpawnEnemy")
 DespawnAllEntitiesPath = NodePath("VBoxContainer/DespawnAllEntities")
-SetTimePath = NodePath("VBoxContainer/SetTime")
-TargetTimePath = NodePath("VBoxContainer/TargetTime/SpinBox")
+ManuallySetTimePath = NodePath("VBoxContainer/ManuallySetTime")
+TargetTimePath = NodePath("VBoxContainer/TargetTime/TimeSlider")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 margin_right = 177.0
@@ -122,37 +122,40 @@ margin_top = 206.0
 margin_right = 202.0
 margin_bottom = 210.0
 
-[node name="SetTime" type="Button" parent="VBoxContainer" index="10"]
+[node name="ManuallySetTime" parent="VBoxContainer" index="10" instance=ExtResource( 4 )]
 margin_top = 214.0
 margin_right = 202.0
-margin_bottom = 241.0
+margin_bottom = 231.0
 custom_fonts/font = ExtResource( 3 )
-text = "SET_TIME_TO_TARGET"
+text = "MANUALLY_SET_TIME"
 
 [node name="TargetTime" type="HBoxContainer" parent="VBoxContainer" index="11"]
-margin_top = 245.0
+margin_top = 235.0
 margin_right = 202.0
-margin_bottom = 276.0
+margin_bottom = 252.0
 
 [node name="Label" type="Label" parent="VBoxContainer/TargetTime" index="0"]
-margin_top = 7.0
-margin_right = 91.0
-margin_bottom = 24.0
+margin_right = 93.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
-text = "TARGET_TIME"
+text = "TIME_OF_DAY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TargetTime" index="1"]
-margin_left = 95.0
-margin_right = 167.0
-margin_bottom = 31.0
+[node name="TimeSlider" type="HSlider" parent="VBoxContainer/TargetTime" index="1"]
+margin_left = 97.0
+margin_right = 202.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
-step = 0.1
+step = 0.01
 
 [connection signal="toggled" from="VBoxContainer/InfiniteCompounds" to="." method="SetInfiniteCompounds"]
 [connection signal="toggled" from="VBoxContainer/GodMode" to="." method="SetGodMode"]
 [connection signal="toggled" from="VBoxContainer/DisableAI" to="." method="SetDisableAI"]
 [connection signal="toggled" from="VBoxContainer/LockTime" to="." method="SetLockTime"]
 [connection signal="value_changed" from="VBoxContainer/Speed/SpeedSlider" to="." method="SetSpeed"]
+[connection signal="toggled" from="VBoxContainer/ManuallySetTime" to="." method="SetManuallySetTime"]
+[connection signal="value_changed" from="VBoxContainer/TargetTime/TimeSlider" to="." method="SetDayNightFraction"]
