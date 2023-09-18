@@ -45,7 +45,8 @@ public interface IDifficulty : IRegistryAssignable
     public bool PassiveReproduction { get; }
 
     /// <summary>
-    ///   Whether the patch map should be automatically fully revealed
+    ///   If true, the patch map will have to be discovered by the player instead of having the
+    ///   entire patch map revealed at the start
     /// </summary>
     public bool PatchMapExploration { get; }
 

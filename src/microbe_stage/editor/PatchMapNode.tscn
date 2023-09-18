@@ -96,6 +96,9 @@ margin_bottom = 48.0
 custom_fonts/font = ExtResource( 3 )
 text = "?"
 align = 1
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
