@@ -82,6 +82,8 @@ public class SaveList : ScrollContainer
     private bool wasVisible;
     private bool incompatibleIfNotUpgraded;
 
+    private bool isLoadingSave;
+
     [Signal]
     public delegate void OnSelectedChanged();
 
@@ -164,7 +166,8 @@ public class SaveList : ScrollContainer
                 item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
                 item.Connect(nameof(SaveListItem.OnDifferentVersionPrototypeLoaded), this,
                     nameof(OnDifferentVersionPrototypeLoaded));
-                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnSaveLoadedWithoutProblems));
+                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnProblemFreeLoaded),
+                    new Array { save });
 
                 item.SaveName = save;
                 savesList.AddChild(item);
@@ -286,6 +289,12 @@ public class SaveList : ScrollContainer
         loadInvalidConfirmDialog.PopupCenteredShrink();
     }
 
+    private void OnProblemFreeLoaded(string saveName)
+    {
+        saveToBeLoaded = saveName;
+        StartLoadTransition();
+    }
+
     private void OnKnownIncompatibleLoaded()
     {
         loadIncompatibleDialog.PopupCenteredShrink();
@@ -393,6 +402,17 @@ public class SaveList : ScrollContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        StartLoadTransition();
+    }
+
+    private void StartLoadTransition()
+    {
+        // If a load is already queued, don't queue another one
+        if (isLoadingSave)
+            return;
+
+        isLoadingSave = true;
+
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, LoadSave, true);
     }
 
@@ -410,12 +430,9 @@ public class SaveList : ScrollContainer
         }
 
         SaveHelper.LoadSave(saveToBeLoaded);
+
         EmitSignal(nameof(OnSaveLoaded), saveToBeLoaded);
         saveToBeLoaded = null;
-    }
-
-    private void OnSaveLoadedWithoutProblems(string saveName)
-    {
-        EmitSignal(nameof(OnSaveLoaded), saveName);
+        isLoadingSave = false;
     }
 }
