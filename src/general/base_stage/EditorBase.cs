@@ -832,7 +832,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
-        run.ApplyAllResultsAndEffects(FreeBuilding);
+        run.ApplyAllResults(FreeBuilding);
 
         // Add the current generation to history before resetting Auto-Evo
         CurrentGame.GameWorld.AddCurrentGenerationToHistory();

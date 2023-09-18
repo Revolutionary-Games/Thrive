@@ -754,7 +754,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         // Apply the results
         gameWorld.OnTimePassed(1);
-        autoEvoRun.ApplyAllResultsAndEffects(true);
+        autoEvoRun.ApplyAllResults(true);
         ++gameWorld.PlayerSpecies.Generation;
         ++world.CurrentGeneration;
 

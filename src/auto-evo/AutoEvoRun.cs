@@ -246,7 +246,7 @@ public class AutoEvoRun
     ///     that should be called even before generating the result summaries to make sure they are accurate.
     ///   </para>
     /// </remarks>
-    public void ApplyAllResultsAndEffects(bool playerCantGoExtinct)
+    public void ApplyAllResults(bool playerCantGoExtinct)
     {
         if (!Finished || Running)
         {
