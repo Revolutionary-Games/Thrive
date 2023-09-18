@@ -75,6 +75,8 @@ public class MicrobeCheatMenu : CheatMenu
         disableAI.Pressed = CheatManager.NoAI;
         lockTime.Pressed = CheatManager.LockTime;
         speed.Value = CheatManager.Speed;
+        manuallySetTime.Pressed = CheatManager.ManuallySetTime;
+        targetTime.Value = CheatManager.DayNightFraction;
     }
 
     protected override void Dispose(bool disposing)
