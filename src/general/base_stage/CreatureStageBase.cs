@@ -187,7 +187,7 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
             debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
         }
 
-        if (CheatManager.ManuallySetTime && !CheatManager.LockTime)
+        if (CheatManager.ManuallySetTime)
         {
             GameWorld.LightCycle.FractionOfDayElapsed = CheatManager.DayNightFraction;
         }
