@@ -582,7 +582,7 @@
         /// <param name="effects">
         ///   If not null these effects are applied to the population numbers.
         ///   Must be final effects with <see cref="ExternalEffect.Coefficient"/> set to 1 created by
-        ///   <see cref="AutoEvoRun.CalculateFinalExternalEffectSizes"/>
+        ///   <see cref="AutoEvoRun.CalculateAndApplyFinalExternalEffectSizes"/>
         /// </param>
         /// <returns>The generated summary text</returns>
         public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
@@ -766,26 +766,6 @@
                         }
                     }
 
-                    // Apply external effects
-                    if (effects != null && previousPopulations != null)
-                    {
-                        foreach (var effect in effects)
-                        {
-                            if (effect.Species == entry.Species && effect.Patch == patchPopulation.Key)
-                            {
-                                // ReSharper disable once CompareOfFloatsByEqualityOperator
-                                if (effect.Coefficient != 1)
-                                {
-                                    GD.PrintErr(
-                                        "CalculateFinalExternalEffectSizes has not been called to finalize" +
-                                        $" external effects passed to {nameof(MakeSummary)}");
-                                }
-
-                                adjustedPopulation += effect.Constant;
-                            }
-                        }
-                    }
-
                     // As the populations are added to all patches, even when the species is not there, we remove those
                     // from output if there is currently no population in a patch and there isn't one in
                     // previousPopulations
@@ -895,18 +875,6 @@
                     {
                         // All population splits off
                         finalPatchPopulation = 0;
-                    }
-
-                    // Apply external effects
-                    if (effects != null)
-                    {
-                        foreach (var effect in effects)
-                        {
-                            if (effect.Species == species && effect.Patch == patch)
-                            {
-                                finalPatchPopulation += effect.Constant;
-                            }
-                        }
                     }
 
                     if (globalPopulation <= 0)
