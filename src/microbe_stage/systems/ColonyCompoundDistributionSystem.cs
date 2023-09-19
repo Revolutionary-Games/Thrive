@@ -1,6 +1,5 @@
 namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -19,9 +18,11 @@ namespace Systems
         {
         }
 
-        protected override void Update(float state, in Entity entity)
+        protected override void Update(float delta, in Entity entity)
         {
-            throw new NotImplementedException();
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            colony.GetCompounds().DistributeCompoundSurplus();
         }
     }
 }

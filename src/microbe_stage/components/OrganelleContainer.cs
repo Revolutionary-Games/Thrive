@@ -123,6 +123,41 @@
             return species.Species is MicrobeSpecies && organelleContainer.HasBindingAgent;
         }
 
+        public static bool CanBind(this ref OrganelleContainer organelleContainer, Species species)
+        {
+            return species is MicrobeSpecies && organelleContainer.HasBindingAgent;
+        }
+
+        /// <summary>
+        ///   Returns true if this entity can bind with the target
+        /// </summary>
+        public static bool CanBindWith(this ref OrganelleContainer organelleContainer, Species ourSpecies,
+            Entity other)
+        {
+            // Can only bind with microbes
+            if (!other.Has<MicrobeSpeciesMember>())
+                return false;
+
+            // Cannot hijack the player
+            if (other.Has<PlayerMarker>())
+                return false;
+
+            // Cannot bind with other species (this explicitly doesn't use the ID check as this is a pretty important
+            // thing to never go wrong by binding a cell that shouldn't be bound to)
+            if (other.Get<MicrobeSpeciesMember>().Species != ourSpecies)
+                return false;
+
+            // Cannot hijack other colonies (TODO: yet)
+            if (other.Has<MicrobeColony>() || other.Has<MicrobeColonyMember>())
+                return false;
+
+            // Can't bind with dead things
+            if (other.Get<Health>().Dead)
+                return false;
+
+            return true;
+        }
+
         public static bool CanUnbind(this ref OrganelleContainer organelleContainer, ref SpeciesMember species,
             in Entity entity)
         {
@@ -447,6 +482,11 @@
             }
 
             return result;
+        }
+
+        public static float CalculateCellEntityWeight(int organelleCount)
+        {
+            return Constants.MICROBE_BASE_ENTITY_WEIGHT + organelleCount * Constants.ORGANELLE_ENTITY_WEIGHT;
         }
     }
 }

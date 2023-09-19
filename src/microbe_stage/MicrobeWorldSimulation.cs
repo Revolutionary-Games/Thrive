@@ -40,6 +40,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     // Microbe systems
     private AllCompoundsVentingSystem allCompoundsVentingSystem = null!;
     private CellBurstEffectSystem cellBurstEffectSystem = null!;
+    private ColonyBindingSystem colonyBindingSystem = null!;
+    private ColonyCompoundDistributionSystem colonyCompoundDistributionSystem = null!;
+    private ColonyStatsUpdateSystem colonyStatsUpdateSystem = null!;
     private CompoundAbsorptionSystem compoundAbsorptionSystem = null!;
     private DamageSoundSystem damageSoundSystem = null!;
     private EngulfedDigestionSystem engulfedDigestionSystem = null!;
@@ -48,6 +51,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private EntitySignalingSystem entitySignalingSystem = null!;
     private FluidCurrentsSystem fluidCurrentsSystem = null!;
     private MicrobeAISystem microbeAI = null!;
+    private MicrobeCollisionSoundSystem microbeCollisionSoundSystem = null!;
     private MicrobeDeathSystem microbeDeathSystem = null!;
     private MicrobeEventCallbackSystem microbeEventCallbackSystem = null!;
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
@@ -129,6 +133,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem, parallelRunner);
         cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
 
+        colonyBindingSystem = new ColonyBindingSystem(EntitySystem, parallelRunner);
+        colonyCompoundDistributionSystem = new ColonyCompoundDistributionSystem(EntitySystem, parallelRunner);
+        colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(EntitySystem, parallelRunner);
+
         // TODO: clouds currently only allow 2 thread to absorb at once
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
 
@@ -147,6 +155,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // TODO: this definitely needs to be (along with the process system) the first systems to be multithreaded
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
+        microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, parallelRunner);
         microbeDeathSystem = new MicrobeDeathSystem(EntitySystem, parallelRunner);
         microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, EntitySystem, parallelRunner);
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, parallelRunner);
@@ -157,7 +166,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, parallelRunner);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, parallelRunner);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, parallelRunner);
-        microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
+        microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, parallelRunner);
         tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, parallelRunner);
@@ -255,6 +264,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfedDigestionSystem.Update(delta);
         engulfedHandlingSystem.Update(delta);
 
+        colonyBindingSystem.Update(delta);
+
         spatialAttachSystem.Update(delta);
         spatialPositionSystem.Update(delta);
 
@@ -267,6 +278,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         pilusDamageSystem.Update(delta);
 
         ProcessSystem.Update(delta);
+
+        colonyCompoundDistributionSystem.Update(delta);
 
         osmoregulationAndHealingSystem.Update(delta);
 
@@ -282,6 +295,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         countLimitedDespawnSystem.Update(delta);
 
         SpawnSystem.Update(delta);
+
+        colonyStatsUpdateSystem.Update(delta);
 
         microbeEventCallbackSystem.Update(delta);
 
@@ -303,6 +318,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeFlashingSystem.Update(delta);
 
         damageSoundSystem.Update(delta);
+        microbeCollisionSoundSystem.Update(delta);
         soundEffectSystem.Update(delta);
 
         soundListenerSystem.Update(delta);
@@ -340,6 +356,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
             allCompoundsVentingSystem.Dispose();
             cellBurstEffectSystem.Dispose();
+            colonyBindingSystem.Dispose();
+            colonyCompoundDistributionSystem.Dispose();
+            colonyStatsUpdateSystem.Dispose();
             compoundAbsorptionSystem.Dispose();
             damageSoundSystem.Dispose();
             engulfedDigestionSystem.Dispose();
@@ -348,6 +367,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             entitySignalingSystem.Dispose();
             fluidCurrentsSystem.Dispose();
             microbeAI.Dispose();
+            microbeCollisionSoundSystem.Dispose();
             microbeDeathSystem.Dispose();
             microbeEventCallbackSystem.Dispose();
             microbeFlashingSystem.Dispose();

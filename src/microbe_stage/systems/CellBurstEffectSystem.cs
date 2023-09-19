@@ -14,6 +14,7 @@
     [With(typeof(CellBurstEffect))]
     [With(typeof(TimedLife))]
     [With(typeof(SpatialInstance))]
+    [RunsOnMainThread]
     public sealed class CellBurstEffectSystem : AEntitySetSystem<float>
     {
         public CellBurstEffectSystem(World world) : base(world, null)

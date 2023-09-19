@@ -115,14 +115,14 @@ public class CallbackEventArgs : TutorialEventArgs
 
 public class MicrobeColonyEventArgs : TutorialEventArgs
 {
-    public MicrobeColonyEventArgs(MicrobeColony? colony)
+    public MicrobeColonyEventArgs(bool hasColony, int memberCount)
     {
-        Colony = colony;
+        HasColony = hasColony;
+        MemberCount = memberCount;
     }
 
-    public MicrobeColony? Colony { get; }
-
-    public bool HasColony => Colony != null;
+    public bool HasColony { get; }
+    public int MemberCount { get; }
 }
 
 public class EnergyBalanceEventArgs : TutorialEventArgs

@@ -170,7 +170,18 @@ namespace Systems
                 // re-read it like this
                 var nodeToScale = organelle.OrganelleGraphics.GetParentSpatial();
 
-                nodeToScale.Transform = organelle.CalculateVisualsTransform();
+                if (!organelle.Definition.PositionedExternally)
+                {
+                    nodeToScale.Transform = organelle.CalculateVisualsTransform();
+                }
+                else
+                {
+                    // TODO: handle this somehow... (probably caching the position and rotation from last call in
+                    // the visuals system?)
+                    throw new NotImplementedException();
+
+                    // nodeToScale.Transform = organelle.CalculateVisualsTransformExternal();
+                }
             }
         }
 

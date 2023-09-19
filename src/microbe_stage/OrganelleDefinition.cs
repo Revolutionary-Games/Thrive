@@ -72,6 +72,12 @@ public class OrganelleDefinition : IRegistryType
     public string? DisplaySceneAnimation;
 
     /// <summary>
+    ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
+    ///   point outside from the cell)
+    /// </summary>
+    public bool PositionedExternally;
+
+    /// <summary>
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
     [JsonIgnore]
@@ -121,6 +127,12 @@ public class OrganelleDefinition : IRegistryType
     public OrganelleComponentFactoryInfo Components = null!;
 
     /// <summary>
+    ///   Lightweight feature tags that this organelle has. This is used for simple features that don't need the full
+    ///   features that <see cref="Components"/> provides.
+    /// </summary>
+    public OrganelleFeatureTag[] FeatureTags = Array.Empty<OrganelleFeatureTag>();
+
+    /// <summary>
     ///   Defines the processes this organelle does and their speed multipliers
     /// </summary>
     public Dictionary<string, float>? Processes;
@@ -130,7 +142,13 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public List<Hex> Hexes = null!;
 
-    public Dictionary<string, int>? Enzymes;
+    [JsonProperty(PropertyName = "enzymes")]
+    public Dictionary<string, int>? RawEnzymes;
+
+    /// <summary>
+    ///   Enzymes contained in this organelle
+    /// </summary>
+    public Dictionary<Enzyme, int> Enzymes = new();
 
     /// <summary>
     ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
@@ -247,6 +265,15 @@ public class OrganelleDefinition : IRegistryType
     public bool HasMovementComponent { get; private set; }
     public bool HasCiliaComponent { get; private set; }
 
+    /// <summary>
+    ///   True if this is an agent vacuole. Number of agent vacuoles determine how often a cell can shoot toxins.
+    /// </summary>
+    public bool HasAgentVacuoleComponent { get; private set; }
+
+    public bool HasSlimeJetComponent { get; private set; }
+
+    public bool HasBindingFeature { get; private set; }
+
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
@@ -285,10 +312,6 @@ public class OrganelleDefinition : IRegistryType
         return rotated;
     }
 
-
-
-
-
     /// <summary>
     ///   Returns true when this has the specified component factory.
     ///   For example <see cref="MovementComponentFactory"/>.
@@ -307,6 +330,22 @@ public class OrganelleDefinition : IRegistryType
         foreach (var factory in ComponentFactories)
         {
             if (factory is T)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Returns true when this has the specified organelle feature tag. These are lightweight alternative markers for
+    ///   supported features compared to <see cref="HasComponentFactory{T}"/>
+    /// </summary>
+    /// <returns>True when this has the feature</returns>
+    public bool HasFeatureTag(OrganelleFeatureTag featureTag)
+    {
+        foreach (var feature in FeatureTags)
+        {
+            if (featureTag == feature)
                 return true;
         }
 
@@ -442,6 +481,17 @@ public class OrganelleDefinition : IRegistryType
             }
         }
 
+        // Resolve enzymes from strings to Enzyme objects
+        if (RawEnzymes != null)
+        {
+            foreach (var entry in RawEnzymes)
+            {
+                var enzyme = parameters.GetEnzyme(entry.Key);
+
+                Enzymes[enzyme] = entry.Value;
+            }
+        }
+
         if (Unimplemented)
             return;
 
@@ -484,9 +534,13 @@ public class OrganelleDefinition : IRegistryType
 
     private void ComputeFactoryCache()
     {
-        HasPilusComponent = HasComponentFactory<PilusComponentFactory>();
+        HasPilusComponent = HasFeatureTag(OrganelleFeatureTag.Pilus);
         HasMovementComponent = HasComponentFactory<MovementComponentFactory>();
         HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
+        HasAgentVacuoleComponent = HasComponentFactory<AgentVacuoleComponentFactory>();
+        HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
+
+        HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
     }
 
     private void CalculateModelOffset()
@@ -511,19 +565,13 @@ public class OrganelleDefinition : IRegistryType
 
     public class OrganelleComponentFactoryInfo
     {
-        public NucleusComponentFactory? Nucleus;
         public StorageComponentFactory? Storage;
         public AgentVacuoleComponentFactory? AgentVacuole;
-        public BindingAgentComponentFactory? BindingAgent;
         public MovementComponentFactory? Movement;
         public SlimeJetComponentFactory? SlimeJet;
-        public PilusComponentFactory? Pilus;
         public ChemoreceptorComponentFactory? Chemoreceptor;
-        public SignalingAgentComponentFactory? SignalingAgent;
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
-        public AxonComponentFactory? Axon;
-        public MyofibrilComponentFactory? Myofibril;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -544,13 +592,6 @@ public class OrganelleDefinition : IRegistryType
         {
             count = 0;
 
-            if (Nucleus != null)
-            {
-                Nucleus.Check(name);
-                allFactories.Add(Nucleus);
-                ++count;
-            }
-
             if (Storage != null)
             {
                 Storage.Check(name);
@@ -562,13 +603,6 @@ public class OrganelleDefinition : IRegistryType
             {
                 AgentVacuole.Check(name);
                 allFactories.Add(AgentVacuole);
-                ++count;
-            }
-
-            if (BindingAgent != null)
-            {
-                BindingAgent.Check(name);
-                allFactories.Add(BindingAgent);
                 ++count;
             }
 
@@ -586,24 +620,10 @@ public class OrganelleDefinition : IRegistryType
                 ++count;
             }
 
-            if (Pilus != null)
-            {
-                Pilus.Check(name);
-                allFactories.Add(Pilus);
-                ++count;
-            }
-
             if (Chemoreceptor != null)
             {
                 Chemoreceptor.Check(name);
                 allFactories.Add(Chemoreceptor);
-                ++count;
-            }
-
-            if (SignalingAgent != null)
-            {
-                SignalingAgent.Check(name);
-                allFactories.Add(SignalingAgent);
                 ++count;
             }
 
@@ -618,20 +638,6 @@ public class OrganelleDefinition : IRegistryType
             {
                 Lysosome.Check(name);
                 allFactories.Add(Lysosome);
-                ++count;
-            }
-
-            if (Axon != null)
-            {
-                Axon.Check(name);
-                allFactories.Add(Axon);
-                ++count;
-            }
-
-            if (Myofibril != null)
-            {
-                Myofibril.Check(name);
-                allFactories.Add(Myofibril);
                 ++count;
             }
         }

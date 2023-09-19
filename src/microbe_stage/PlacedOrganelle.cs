@@ -26,16 +26,6 @@ public class PlacedOrganelle : IPositionedOrganelle
         Position = position;
         Orientation = orientation;
 
-        if (Definition.Enzymes != null)
-        {
-            foreach (var entry in Definition.Enzymes)
-            {
-                var enzyme = SimulationParameters.Instance.GetEnzyme(entry.Key);
-
-                StoredEnzymes[enzyme] = entry.Value;
-            }
-        }
-
         InitializeComponents();
 
         compoundsLeft ??= new Dictionary<Compound, float>();
@@ -128,22 +118,6 @@ public class PlacedOrganelle : IPositionedOrganelle
         }
     }
 
-    [JsonProperty]
-    public Dictionary<Enzyme, int> StoredEnzymes { get; private set; } = new();
-
-    /// <summary>
-    ///   True if this is an agent vacuole. Number of agent vacuoles
-    ///   determine how often a cell can shoot toxins.
-    /// </summary>
-    [JsonIgnore]
-    public bool IsAgentVacuole => HasComponent<AgentVacuoleComponent>();
-
-    [JsonIgnore]
-    public bool IsSlimeJet => HasComponent<SlimeJetComponent>();
-
-    [JsonIgnore]
-    public bool IsBindingAgent => HasComponent<BindingAgentComponent>();
-
     public static Color CalculateHSVForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
@@ -183,6 +157,7 @@ public class PlacedOrganelle : IPositionedOrganelle
         }
     }
 
+    // TODO: also determine this if is needed
     /// <summary>
     ///   The part of update that is allowed to modify Godot resources
     /// </summary>
@@ -359,6 +334,28 @@ public class PlacedOrganelle : IPositionedOrganelle
 
     public Transform CalculateVisualsTransform()
     {
+        var scale = CalculateTransformScale();
+
+        return new Transform(new Basis(
+                MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(scale, scale, scale)),
+            Hex.AxialToCartesian(Position) + Definition.ModelOffset);
+
+        // TODO: check is this still needed
+        // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
+        // OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
+    }
+
+    public Transform CalculateVisualsTransformExternal(Vector3 externalPosition, Quat orientation)
+    {
+        var scale = CalculateTransformScale();
+
+        // TODO: check that the rotation of ModelOffset works correctly here
+        return new Transform(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
+            externalPosition + orientation.Xform(Definition.ModelOffset));
+    }
+
+    private float CalculateTransformScale()
+    {
         float growth;
         if (Definition.ShouldScale)
         {
@@ -371,15 +368,7 @@ public class PlacedOrganelle : IPositionedOrganelle
 
         // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
         // intended way, but might be worse looking than before
-        return new Transform(new Basis(
-                MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(
-                Constants.DEFAULT_HEX_SIZE + growth, Constants.DEFAULT_HEX_SIZE + growth,
-                Constants.DEFAULT_HEX_SIZE + growth)),
-            Hex.AxialToCartesian(Position) + Definition.ModelOffset);
-
-        // TODO: check is this still needed
-        // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
-        // OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
+        return Constants.DEFAULT_HEX_SIZE + growth;
     }
 
     private void InitializeComponents()

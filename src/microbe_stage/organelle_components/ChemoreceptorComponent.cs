@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Adds radar capability to a cell
 /// </summary>
-public class ChemoreceptorComponent : ExternallyPositionedComponent
+public class ChemoreceptorComponent : IOrganelleComponent
 {
     // Either target compound or species should be null
     private Compound? targetCompound;
@@ -13,7 +13,7 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private float searchAmount;
     private Color lineColour = Colors.White;
 
-    public override void UpdateAsync(float delta)
+    public void OnAttachToCell(PlacedOrganelle organelle)
     {
         base.UpdateAsync(delta);
 
@@ -46,15 +46,11 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
         SetConfiguration((ChemoreceptorUpgrades)configuration);
     }
 
-    protected override bool NeedsUpdateAnyway()
+    public override void UpdateAsync(float delta)
     {
-        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2906
-        return organelle!.OrganelleGraphics!.Transform.basis == Transform.Identity.basis;
-    }
+        base.UpdateAsync(delta);
 
-    protected override void OnPositionChanged(Quat rotation, float angle, Vector3 membraneCoords)
-    {
-        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
+        organelle!.ParentMicrobe!.ReportActiveChemereception(targetCompound!, searchRange, searchAmount, lineColour);
     }
 
     private void SetConfiguration(ChemoreceptorUpgrades configuration)

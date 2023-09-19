@@ -118,6 +118,12 @@
         ///   Applies damage but takes microbe damage resistances into account. This should be (almost always) be used
         ///   for microbes to calculate the right damage rather than <see cref="DealDamage"/>
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: would it be cleaner design to bake in resistances / a damage callback into the base Health type
+        ///     so that no more entity type specific methods like this would be needed?
+        ///   </para>
+        /// </remarks>
         public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, float damage,
             string damageSource)
         {

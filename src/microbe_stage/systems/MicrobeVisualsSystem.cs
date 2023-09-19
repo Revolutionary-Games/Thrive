@@ -17,6 +17,7 @@
     [With(typeof(CellProperties))]
     [With(typeof(SpatialInstance))]
     [With(typeof(EntityMaterial))]
+    [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
         private readonly Lazy<PackedScene> membraneScene =
@@ -90,7 +91,10 @@
                 cellProperties.CreatedMembrane!.MaterialToEdit ??
                 throw new Exception("Membrane didn't set material to edit"));
 
-            // TODO: health value applying
+            // TODO: make the threaded membrane generation instead of forcing it here as getting the external organelle
+            // positions forces the full calculation of the membrane data (to no longer be marked dirty)
+
+            // TODO: health value applying (this should probably already work?)
 
             CreateOrganelleVisuals(spatialInstance.GraphicalInstance, ref organelleContainer, ref cellProperties);
 
@@ -155,10 +159,21 @@
 
                 inUseOrganelles.Add(placedOrganelle);
 
-                // TODO: external organelle positioning
+                Transform transform;
 
-                // Get the transform with right scale (growth) and position
-                var transform = placedOrganelle.CalculateVisualsTransform();
+                if (!placedOrganelle.Definition.PositionedExternally)
+                {
+                    // Get the transform with right scale (growth) and position
+                    transform = placedOrganelle.CalculateVisualsTransform();
+                }
+                else
+                {
+                    // Positioned externally
+                    var externalPosition = cellProperties.CalculateExternalOrganellePosition(placedOrganelle.Position,
+                        placedOrganelle.Orientation, out var rotation);
+
+                    transform = placedOrganelle.CalculateVisualsTransformExternal(externalPosition, rotation);
+                }
 
                 if (!organelleContainer.CreatedOrganelleVisuals.ContainsKey(placedOrganelle))
                 {

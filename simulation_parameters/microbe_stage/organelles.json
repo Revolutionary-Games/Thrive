@@ -12,14 +12,13 @@
       }
     ],
     "processes": {},
-    "components": {
-      "pilus": {}
-    },
+    "featureTags": ["Pilus"],
     "shouldScale": false,
     "prokaryoteChance": 0.5,
     "chanceToCreate": 0.5,
     "mass": 0.3,
     "displayScene": "res://assets/models/organelles/Pilus.tscn",
+    "positionedExternally": true,
     "name": "ORGANELLE_PILUS",
     "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
     "editorButtonGroup": "External",
@@ -397,6 +396,7 @@
     "displayScene": "res://assets/models/organelles/Flagellum.tscn",
     "displaySceneModelPath": "Armature001/Skeleton/flagella",
     "displaySceneAnimation": "AnimationPlayer",
+    "positionedExternally": true,
     "name": "FLAGELLUM",
     "productionColour": "#ff9721",
     "consumptionColour": "#ff9721",
@@ -521,9 +521,9 @@
     "components": {
       "storage": {
         "capacity": 1
-      },
-      "bindingAgent": {}
+      }
     },
+    "featureTags": ["BindingAgent"],
     "prokaryoteChance": 0,
     "chanceToCreate": 0,
     "mass": 0.1,
@@ -657,9 +657,9 @@
     "components": {
       "storage": {
         "capacity": 4
-      },
-      "nucleus": {}
+      }
     },
+    "featureTags": ["Nucleus"],
     "shouldScale": false,
     "prokaryoteChance": 0,
     "chanceToCreate": 0,
@@ -691,6 +691,7 @@
     "chanceToCreate": 0.2,
     "mass": 0.1,
     "displayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
+    "positionedExternally": true,
     "name": "CHEMORECEPTOR",
     "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
     "upgradeGUI": "res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn",
@@ -724,6 +725,7 @@
     "displayScene": "res://assets/models/organelles/SlimeJet.tscn",
     "displaySceneModelPath": "Armature/Skeleton/Cube",
     "displaySceneAnimation": "AnimationPlayer",
+    "positionedExternally": true,
     "name": "SLIME_JET",
     "consumptionColour": "#00ffcc",
     "iconPath": "res://assets/textures/gui/bevel/parts/SlimeJetIcon.png",
@@ -743,9 +745,7 @@
       }
     ],
     "processes": {},
-    "components": {
-      "signalingAgent": {}
-    },
+    "featureTags": ["SignalingAgent"],
     "prokaryoteChance": 0,
     "chanceToCreate": 0.4,
     "mass": 0.1,
@@ -839,6 +839,7 @@
     "displayScene": "res://assets/models/organelles/Cilia.tscn",
     "displaySceneModelPath": "Armature/Skeleton/Cube003",
     "displaySceneAnimation": "AnimationPlayer",
+    "positionedExternally": true,
     "name": "CILIA",
     "productionColour": "#ffae21",
     "consumptionColour": "#ffae21",
@@ -908,13 +909,12 @@
       }
     ],
     "processes": {},
-    "components": {
-      "axon": {}
-    },
+    "featureTags": ["Axon"],
     "prokaryoteChance": 0,
     "chanceToCreate": 0,
     "mass": 0.15,
     "displayScene": "res://assets/models/organelles/Axon.tscn",
+    "positionedExternally": true,
     "name": "ORGANELLE_AXON",
     "iconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
     "requiresNucleus": true,
@@ -950,9 +950,7 @@
       }
     ],
     "processes": {},
-    "components": {
-      "myofibril": {}
-    },
+    "featureTags": ["Myofibril"],
     "prokaryoteChance": 0,
     "chanceToCreate": 0,
     "mass": 0.2,

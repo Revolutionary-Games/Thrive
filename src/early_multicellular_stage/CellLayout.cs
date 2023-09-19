@@ -7,8 +7,15 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A list of positioned cells. Verifies that they don't overlap
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is a JSON reference so that <see cref="Components.MulticellularGrowth"/> can reference this from a
+///     species.
+///   </para>
+/// </remarks>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 [UseThriveSerializer]
+[JsonObject(IsReference = true)]
 public class CellLayout<T> : HexLayout<T>
     where T : class, IPositionedCell
 {

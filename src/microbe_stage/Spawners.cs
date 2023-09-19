@@ -430,14 +430,15 @@ public static class SpawnHelpers
             }
             else
             {
-                // TODO: should other cells also get this component to allow them to start regrowing after a colony
-                // is split apart?
-                entity.Set<MulticellularGrowth>();
-
                 usedCellProperties = earlyMulticellularSpecies.Cells[0];
                 var properties = new CellProperties(usedCellProperties);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
+
+                // TODO: should other cells also get this component to allow them to start regrowing after a colony
+                // is split apart?
+                entity.Set(new MulticellularGrowth(earlyMulticellularSpecies.Cells[0].CellType,
+                    earlyMulticellularSpecies));
             }
         }
         else if (species is MicrobeSpecies microbeSpecies)
@@ -543,6 +544,8 @@ public static class SpawnHelpers
             TrackVelocity = true,
         });
 
+        entity.Set<MicrobePhysicsExtraData>();
+
         entity.Set(new CollisionManagement
         {
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
@@ -593,7 +596,7 @@ public static class SpawnHelpers
 
         entity.Set(new ReadableName(new LocalizedString(species.FormattedName)));
 
-        return (recorder, Constants.MICROBE_BASE_ENTITY_WEIGHT + organelleCount * Constants.ORGANELLE_ENTITY_WEIGHT);
+        return (recorder, OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount));
     }
 
     /// <summary>
@@ -610,18 +613,25 @@ public static class SpawnHelpers
         // Chance to spawn fully grown or partially grown
         if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
         {
-            microbe.BecomeFullyGrownMulticellularColony();
+            throw new NotImplementedException();
+
+            // microbe.BecomeFullyGrownMulticellularColony();
         }
         else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
         {
             while (!microbe.IsFullyGrownMulticellular)
             {
-                microbe.AddMulticellularGrowthCell(true);
+                throw new NotImplementedException();
+
+                // microbe.AddMulticellularGrowthCell(true);
 
                 if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
                     break;
             }
         }
+
+        // TODO: need to adjust entity weight in the spawned entity
+        throw new NotImplementedException();
     }
 
     /// <summary>

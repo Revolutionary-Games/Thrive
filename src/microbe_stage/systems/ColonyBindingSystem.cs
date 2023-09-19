@@ -17,8 +17,10 @@ namespace Systems
     [With(typeof(Health))]
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(CompoundStorage))]
+    [With(typeof(OrganelleContainer))]
     [Without(typeof(AttachedToEntity))]
     [RunsBefore(typeof(MicrobeFlashingSystem))]
+    [WritesToComponent(typeof(Spawned))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     {
         private readonly Compound atp;
@@ -50,6 +52,16 @@ namespace Systems
             if (health.Dead)
                 return;
 
+            ref var organelles = ref entity.Get<OrganelleContainer>();
+            ref var ourSpecies = ref entity.Get<MicrobeSpeciesMember>();
+
+            if (!organelles.CanBind(ourSpecies.Species))
+            {
+                // Force exit binding mode if a cell that cannot bind has entered binding mode
+                control.State = MicrobeState.Normal;
+                return;
+            }
+
             // Drain atp
             var cost = Constants.BINDING_ATP_COST_PER_SECOND * delta;
 
@@ -71,33 +83,54 @@ namespace Systems
 
             if (count > 0)
             {
-                ref var ourSpecies = ref entity.Get<MicrobeSpeciesMember>();
-
                 for (int i = 0; i < count; ++i)
                 {
                     ref var collision = ref collisions![i];
 
-                    // Can bind with only members of our own species
-                    if (!collision.SecondEntity.Has<MicrobeSpeciesMember>())
+                    if (!organelles.CanBindWith(ourSpecies.Species, collision.SecondEntity))
                         continue;
 
-                    if (ourSpecies.Species != collision.SecondEntity.Get<MicrobeSpeciesMember>().Species)
+                    // Can't bind with an attached entity (engulfed entity for example)
+                    if (collision.SecondEntity.Has<AttachedToEntity>())
                         continue;
 
-                    // Can't bind with an existing colony or otherwise attached entity
-                    if (collision.SecondEntity.Has<MicrobeColony>() || collision.SecondEntity.Has<AttachedToEntity>())
-                        continue;
-
-                    ref var otherHealth = ref collision.SecondEntity.Get<Health>();
-
-                    // Can't bind with dead things
-                    if (otherHealth.Dead)
-                        continue;
+                    // TODO: skip if this body or other body hit is a pilus to disallow binding through it
+                    throw new NotImplementedException();
 
                     // Binding can proceed
-                    throw new NotImplementedException();
+                    BeginBind(collision.SecondEntity);
                 }
             }
+        }
+
+        private void BeginBind(in Entity other)
+        {
+            if (!other.IsAlive)
+            {
+                GD.PrintErr("Binding attempted on a dead entity");
+                return;
+            }
+
+            // Create a colony if there isn't one yet
+            if (Colony == null)
+            {
+                MicrobeColony.CreateColonyForMicrobe(this);
+
+                if (Colony == null)
+                {
+                    GD.PrintErr("An issue occured during colony creation!");
+                    return;
+                }
+
+                GD.Print("Created a new colony");
+            }
+
+            // Move out of binding state before adding the colony member to avoid accidental collisions being able to
+            // recursively trigger colony attachment
+            State = MicrobeState.Normal;
+            other.State = MicrobeState.Normal;
+
+            Colony.AddToColony(other, this);
         }
 
         /// <summary>

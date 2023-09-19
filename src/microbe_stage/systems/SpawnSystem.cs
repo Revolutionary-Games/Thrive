@@ -162,6 +162,9 @@
             if (!IsEnabled)
                 return;
 
+            // TODO: re-enable this system
+            return;
+
             elapsed += delta;
             despawnElapsed += delta;
 
@@ -197,7 +200,7 @@
             spawnedEntitiesSet.Complete();
         }
 
-        public void NotifyExternalEntitySpawned(Entity entity, float despawnRadiusSquared, float entityWeight)
+        public void NotifyExternalEntitySpawned(in EntityRecord entity, float despawnRadiusSquared, float entityWeight)
         {
             if (entityWeight <= 0)
                 throw new ArgumentException("weight needs to be positive", nameof(entityWeight));

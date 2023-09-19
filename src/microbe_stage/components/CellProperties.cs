@@ -63,6 +63,16 @@
 
     public static class CellPropertiesHelpers
     {
+        /// <summary>
+        ///   The default visual position if the organelle is on the microbe's center
+        ///   TODO: this should be made organelle type specific, chemoreceptors and pilus should point backward (in Godot
+        ///   coordinates to point forwards by default, and flagella should keep this current default value).
+        ///   Actually latest issue describing how this could be solved is:
+        ///   https://github.com/Revolutionary-Games/Thrive/issues/3620 and
+        ///   https://github.com/Revolutionary-Games/Thrive/issues/3109
+        /// </summary>
+        private static readonly Vector3 DefaultVisualPos = Vector3.Forward;
+
         public delegate void ModifyDividedCellCallback(ref EntityRecord entity);
 
         /// <summary>
@@ -72,9 +82,9 @@
         {
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
+                ref var colony = ref entity.Get<MicrobeColony>();
 
-                // TODO: implement checking other colony members
+                colony.CanEngulf();
             }
 
             return cellProperties.MembraneType.CanEngulf;
@@ -388,6 +398,38 @@
             return result;
         }
 
+        public static Vector3 CalculateExternalOrganellePosition(this ref CellProperties cellProperties,
+            Hex hexPosition, int orientation, out Quat rotation)
+        {
+            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3109
+            _ = orientation;
+
+            var membrane = cellProperties.CreatedMembrane;
+            if (membrane == null)
+            {
+                throw new InvalidOperationException(
+                    "Membrane is missing for cell properties, can't get external position");
+            }
+
+            var organellePos = Hex.AxialToCartesian(hexPosition);
+
+            Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+            var relativeOrganellePosition = middle - organellePos;
+
+            if (relativeOrganellePosition == Vector3.Zero)
+                relativeOrganellePosition = DefaultVisualPos;
+
+            Vector3 exit = middle - relativeOrganellePosition;
+            var membraneCoords = membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
+                exit.z);
+
+            var calculatedNewAngle = GetExternalOrganelleAngle(relativeOrganellePosition);
+
+            rotation = MathUtils.CreateRotationForExternal(calculatedNewAngle);
+
+            return membraneCoords;
+        }
+
         public static void ApplyMembraneWigglyness(this ref CellProperties cellProperties, Membrane targetMembrane)
         {
             targetMembrane.WigglyNess = cellProperties.MembraneType.BaseWigglyness -
@@ -397,6 +439,22 @@
             targetMembrane.MovementWigglyNess = cellProperties.MembraneType.MovementWigglyness -
                 (cellProperties.MembraneRigidity /
                     cellProperties.MembraneType.BaseWigglyness) * 0.2f;
+        }
+
+        /// <summary>
+        ///   Gets the angle of rotation of an externally placed organelle
+        /// </summary>
+        /// <param name="delta">The difference between the cell middle and the external organelle position</param>
+        private static float GetExternalOrganelleAngle(Vector3 delta)
+        {
+            float angle = Mathf.Atan2(-delta.z, delta.x);
+            if (angle < 0)
+            {
+                angle += 2 * Mathf.Pi;
+            }
+
+            angle = (angle * 180 / Mathf.Pi - 90) % 360;
+            return angle;
         }
     }
 }

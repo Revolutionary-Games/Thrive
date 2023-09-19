@@ -6,7 +6,6 @@
 public interface IOrganelleComponent
 {
     public void OnAttachToCell(PlacedOrganelle organelle);
-    public void OnDetachFromCell(PlacedOrganelle organelle);
 
     /// <summary>
     ///   This update is called from multiple threads at once so only operations that aren't timing sensitive between
@@ -17,6 +16,4 @@ public interface IOrganelleComponent
     public void UpdateAsync(float delta);
 
     public void UpdateSync();
-
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset);
 }

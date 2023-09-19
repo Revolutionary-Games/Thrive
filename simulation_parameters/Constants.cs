@@ -190,7 +190,7 @@ public static class Constants
     ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
     ///   heavier than normal microbes, as such this is set pretty high.
     /// </summary>
-    public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 1.15f;
+    public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 0.95f;
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
@@ -280,7 +280,7 @@ public static class Constants
     /// </summary>
     public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
 
-    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
+    public const float CONTACT_PENETRATION_TO_BUMP_SOUND = 0.1f;
 
     public const float INTERVAL_BETWEEN_SOUND_CACHE_CLEAR = 0.321f;
 
@@ -665,6 +665,8 @@ public static class Constants
     ///   Damage a single pilus stab does
     /// </summary>
     public const float PILUS_BASE_DAMAGE = 20.0f;
+
+    public const float PILUS_PHYSICS_SIZE = 4.7f;
 
     // TODO: remove
     /// <summary>
