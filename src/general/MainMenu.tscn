@@ -1059,4 +1059,5 @@ DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
+[connection signal="Cancelled" from="LowPerformanceDialog" to="LowPerformanceDialog" method="OnConfirmed"]
 [connection signal="Confirmed" from="LowPerformanceDialog" to="." method="OnLowPerformanceDialogConfirmed"]

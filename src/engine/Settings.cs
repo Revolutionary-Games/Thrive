@@ -124,7 +124,7 @@ public class Settings
     ///   Enable or disable 3D background scenes in the menu
     /// </summary>
     [JsonProperty]
-    public SettingValue<bool> Menu3DBackgroundEnabled { get; private set; } = new(true);
+    public SettingValue<bool> Menu3DBackgroundEnabled { get; set; } = new(true);
 
     /// <summary>
     ///   Display or hide part names in the editor, for accessibility reasons
@@ -828,15 +828,6 @@ public class Settings
         TranslationServer.SetLocale(language);
 
         GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
-    }
-
-    /// <summary>
-    ///   Currently only used by one dialog, called to update the specified setting without using the dedicated menu
-    /// </summary>
-    public void UpdateSettingExternally(SettingValue<bool> setting, bool value)
-    {
-        setting.Value = value;
-        ApplyAll();
     }
 
     public override bool Equals(object? obj)

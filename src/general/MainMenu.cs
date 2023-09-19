@@ -287,19 +287,18 @@ public class MainMenu : NodeWithInput
             // Low menu performance will never be warned about if the popup has been dismissed,
             // if 3D backgrounds have been disabled, if the popup has been shown but not dismissed
             // on this menu session, or if the max framerate is set to 30
+            // In addition, tracking only begins after one second in the menu
             if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning)
                 && Settings.Instance.Menu3DBackgroundEnabled && canShowLowPerformanceWarning
                 && Settings.Instance.MaxFramesPerSecond != 30)
             {
                 secondsInMenu += delta;
 
-                averageFrameRate = TrackMenuPerformance(delta);
-
-                WarnAboutLowPerformance();
-
-                if (secondsInMenu > 15)
+                if (secondsInMenu >= 1)
                 {
-                    canShowLowPerformanceWarning = false;
+                    averageFrameRate = TrackMenuPerformance();
+
+                    WarnAboutLowPerformance();
                 }
             }
         }
@@ -502,7 +501,6 @@ public class MainMenu : NodeWithInput
 
         if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning))
         {
-            GD.Print("Low performance warning is not dismissed, beginning menu performance check");
             canShowLowPerformanceWarning = true;
         }
 
@@ -790,11 +788,11 @@ public class MainMenu : NodeWithInput
         }
     }
 
-    private float TrackMenuPerformance(float delta)
+    private float TrackMenuPerformance()
     {
-        var currentFrameRate = 1 / delta;
+        var currentFrameRate = Engine.GetFramesPerSecond();
 
-        // If this is the first frame, do not use the average of the frame delta and 0
+        // If this is the first tracked frame, do not use the average of the frame delta and 0
         if (averageFrameRate == 0)
             return currentFrameRate;
 
@@ -804,7 +802,7 @@ public class MainMenu : NodeWithInput
 
     private void WarnAboutLowPerformance()
     {
-        if (averageFrameRate < 30 && secondsInMenu >= 15)
+        if (averageFrameRate < 30 && secondsInMenu >= 16 && !AreAnyMenuPopupsOpen())
         {
             GD.Print($"Average frame rate is {averageFrameRate}, prompting to disable 3D backgrounds");
             lowPerformanceWarning.PopupIfNotDismissed();
@@ -814,7 +812,21 @@ public class MainMenu : NodeWithInput
 
     private void OnLowPerformanceDialogConfirmed()
     {
-        Settings.Instance.UpdateSettingExternally(Settings.Instance.Menu3DBackgroundEnabled, false);
+        Settings.Instance.Menu3DBackgroundEnabled = new SettingValue<bool>(false);
+        Settings.Instance.ApplyGraphicsSettings();
+        Settings.Instance.Save();
+
+        // This doesn't seem to be called automatically if this setting is changed outside the designated method
+        OnMenuBackgroundTypeChanged(true);
+    }
+
+    /// <summary>
+    ///   True when any popup that appears in the menu is currently displayed.
+    /// </summary>
+    private bool AreAnyMenuPopupsOpen()
+    {
+        return gles2Popup.Visible || modLoadFailures.Visible || steamFailedPopup.Visible || safeModeWarning.Visible
+            || modsInstalledButNotEnabledWarning.Visible || thanksDialog.Visible || lowPerformanceWarning.Visible;
     }
 
     private void NewGamePressed()
