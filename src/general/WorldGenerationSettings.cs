@@ -92,7 +92,7 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
 
     [JsonIgnore]
-    public bool PatchMapExploration => Difficulty.PatchMapExploration;
+    public PatchMap.FogOfWarMode PatchMapExplorationMode => Difficulty.PatchMapExplorationMode;
 
     [JsonIgnore]
     public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
@@ -149,9 +149,9 @@ public class WorldGenerationSettings
             PlayerDeathPopulationPenalty,
             TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
             OsmoregulationMultiplier,
+            PatchMapExplorationMode.ToString(),
             TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
             TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
-            TranslationHelper.TranslateFeatureFlag(PatchMapExploration),
             TranslationHelper.TranslateFeatureFlag(LimitReproductionCompoundUseSpeed));
     }
 

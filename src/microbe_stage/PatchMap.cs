@@ -12,6 +12,13 @@ public class PatchMap : ISaveLoadable
 {
     private Patch? currentPatch;
 
+    public enum FogOfWarMode
+    {
+        Disabled,
+        Light,
+        Intense,
+    }
+
     /// <summary>
     ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>

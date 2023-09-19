@@ -97,7 +97,10 @@ public class NewGameSettings : ControlWithInput
     public NodePath PassiveReproductionButtonPath = null!;
 
     [Export]
-    public NodePath PatchMapExplorationButtonPath = null!;
+    public NodePath PatchMapExplorationModePath = null!;
+
+    [Export]
+    public NodePath PatchMapExplorationModeDescriptionPath = null!;
 
     [Export]
     public NodePath LimitGrowthRateButtonPath = null!;
@@ -178,8 +181,9 @@ public class NewGameSettings : ControlWithInput
     private LineEdit osmoregulationMultiplierReadout = null!;
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
-    private Button patchMapExplorationButton = null!;
     private Button limitGrowthRateButton = null!;
+    private OptionButton patchMapExplorationMode = null!;
+    private Label patchMapExplorationModeDescription = null!;
 
     // Planet controls
     private OptionButton lifeOriginButton = null!;
@@ -261,7 +265,8 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
-        patchMapExplorationButton = GetNode<Button>(PatchMapExplorationButtonPath);
+        patchMapExplorationMode = GetNode<OptionButton>(PatchMapExplorationModePath);
+        patchMapExplorationModeDescription = GetNode<Label>(PatchMapExplorationModeDescriptionPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
@@ -305,6 +310,10 @@ public class NewGameSettings : ControlWithInput
             difficultyPresetButton.AddItem(preset.UntranslatedName);
             difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
         }
+
+        patchMapExplorationMode.AddItem(TranslationServer.Translate("FOG_OF_WAR_DISABLED"));
+        patchMapExplorationMode.AddItem(TranslationServer.Translate("FOG_OF_WAR_LIGHT"));
+        patchMapExplorationMode.AddItem(TranslationServer.Translate("FOG_OF_WAR_INTENSE"));
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
@@ -373,6 +382,9 @@ public class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton.Pressed = difficulty.FreeGlucoseCloud;
         passiveReproductionButton.Pressed = difficulty.PassiveReproduction;
         limitGrowthRateButton.Pressed = difficulty.LimitGrowthRate;
+        patchMapExplorationMode.Selected = (int)difficulty.PatchMapExplorationMode;
+
+        UpdatePatchMapExplorationModeDescription(patchMapExplorationMode.Selected);
 
         UpdateSelectedDifficultyPresetControl();
 
@@ -450,7 +462,8 @@ public class NewGameSettings : ControlWithInput
                 OsmoregulationMultiplierReadoutPath.Dispose();
                 FreeGlucoseCloudButtonPath.Dispose();
                 PassiveReproductionButtonPath.Dispose();
-                PatchMapExplorationButtonPath.Dispose();
+                PatchMapExplorationModePath.Dispose();
+                PatchMapExplorationModeDescriptionPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
                 LifeOriginButtonPath.Dispose();
                 LifeOriginButtonAdvancedPath.Dispose();
@@ -550,6 +563,7 @@ public class NewGameSettings : ControlWithInput
                 FreeGlucoseCloud = freeGlucoseCloudButton.Pressed,
                 PassiveReproduction = passiveReproductionButton.Pressed,
                 LimitGrowthRate = limitGrowthRateButton.Pressed,
+                PatchMapExplorationMode = (PatchMap.FogOfWarMode)patchMapExplorationMode.Selected,
             };
 
             settings.Difficulty = customDifficulty;
@@ -682,6 +696,9 @@ public class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
         passiveReproductionButton.Pressed = preset.PassiveReproduction;
         limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
+        patchMapExplorationMode.Selected = (int)preset.PatchMapExplorationMode;
+
+        UpdatePatchMapExplorationModeDescription(patchMapExplorationMode.Selected);
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -722,7 +739,7 @@ public class NewGameSettings : ControlWithInput
             if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
                 continue;
 
-            if (patchMapExplorationButton.Pressed != preset.PatchMapExploration)
+            if (patchMapExplorationMode.Selected != (int)preset.PatchMapExplorationMode)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -796,7 +813,7 @@ public class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
-    private void OnPatchMapExplorationToggled(bool pressed)
+    private void OnPatchMapExplorationModeToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();
@@ -813,6 +830,34 @@ public class NewGameSettings : ControlWithInput
         // Set both buttons here as we only received a signal from one of them
         lifeOriginButton.Selected = index;
         lifeOriginButtonAdvanced.Selected = index;
+    }
+
+    private void OnPatchMapExplorationModeSelected(int index)
+    {
+        patchMapExplorationMode.Selected = index;
+
+        UpdatePatchMapExplorationModeDescription(index);
+
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void UpdatePatchMapExplorationModeDescription(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                patchMapExplorationModeDescription.Text =
+                    TranslationServer.Translate("FOG_OF_WAR_DISABLED_DESCRIPTION");
+                break;
+            case 1:
+                patchMapExplorationModeDescription.Text =
+                    TranslationServer.Translate("FOG_OF_WAR_LIGHT_DESCRIPTION");
+                break;
+            case 2:
+                patchMapExplorationModeDescription.Text =
+                    TranslationServer.Translate("FOG_OF_WAR_INTENSE_DESCRIPTION");
+                break;
+        }
     }
 
     // This and a few other callbacks are not currently needed to detect anything, but I left them in in case we

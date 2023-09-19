@@ -48,7 +48,7 @@ public interface IDifficulty : IRegistryAssignable
     ///   If true, the patch map will have to be discovered by the player instead of having the
     ///   entire patch map revealed at the start
     /// </summary>
-    public bool PatchMapExploration { get; }
+    public PatchMap.FogOfWarMode PatchMapExplorationMode { get; }
 
     /// <summary>
     ///   Whether microbes are limited in how fast they can consume reproduction compounds to grow
@@ -70,7 +70,7 @@ public static class DifficultyHelpers
             OsmoregulationMultiplier = difficulty.OsmoregulationMultiplier,
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
             PassiveReproduction = difficulty.PassiveReproduction,
-            PatchMapExploration = difficulty.PatchMapExploration,
+            PatchMapExplorationMode = difficulty.PatchMapExplorationMode,
             LimitGrowthRate = difficulty.LimitGrowthRate,
         };
     }
@@ -88,7 +88,7 @@ public static class DifficultyHelpers
             $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
             $", Passive Reproduction: {difficulty.PassiveReproduction}" +
-            $", Patch Map Exploration: {difficulty.PatchMapExploration}" +
+            $", Patch Map Exploration: {difficulty.PatchMapExplorationMode}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}";
     }
 }

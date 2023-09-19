@@ -10,7 +10,7 @@
     "osmoregulationMultiplier": 0.8,
     "freeGlucoseCloud": true,
     "passiveReproduction": true,
-    "patchMapExploration": true,
+    "patchMapExplorationMode": "Light",
     "limitGrowthRate": false
   },
   "normal": {
@@ -24,7 +24,7 @@
     "osmoregulationMultiplier": 1,
     "freeGlucoseCloud": true,
     "passiveReproduction": true,
-    "patchMapExploration": true,
+    "patchMapExplorationMode": "Intense",
     "limitGrowthRate": true
   },
   "hard": {
@@ -38,7 +38,7 @@
     "osmoregulationMultiplier": 1.2,
     "freeGlucoseCloud": false,
     "passiveReproduction": true,
-    "patchMapExploration": true,
+    "patchMapExplorationMode": "Intense",
     "limitGrowthRate": true
   },
   "custom": {

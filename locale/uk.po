@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-18 19:33+0200\n"
+"POT-Creation-Date: 2023-09-19 22:22+0200\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -112,11 +112,11 @@ msgstr "Додаткові перевірки виявили проблему: {
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Додати нову прив'язку клавіші"
 
-#: ../src/general/NewGameSettings.tscn:1204
+#: ../src/general/NewGameSettings.tscn:1221
 msgid "ADVANCED_VIEW"
 msgstr "Детальніше"
 
-#: ../src/general/NewGameSettings.tscn:1199
+#: ../src/general/NewGameSettings.tscn:1216
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Відкрити вікно розширених налаштувань"
 
@@ -149,11 +149,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Агресивність"
 
-#: ../src/general/NewGameSettings.tscn:476
+#: ../src/general/NewGameSettings.tscn:475
 msgid "AI_MUTATION_RATE"
 msgstr "Частота мутацій від ШІ"
 
-#: ../src/general/NewGameSettings.tscn:516
+#: ../src/general/NewGameSettings.tscn:515
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(швидкість з якою ШІ мутує вид)"
 
@@ -426,7 +426,7 @@ msgstr "Стадія свідомості"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1000
 #: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
 #: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
-#: ../src/general/NewGameSettings.tscn:1167
+#: ../src/general/NewGameSettings.tscn:1184
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -456,11 +456,11 @@ msgstr "Базова мобільність"
 msgid "BASE_MOVEMENT"
 msgstr "Базова швидкість"
 
-#: ../src/general/NewGameSettings.tscn:1189
+#: ../src/general/NewGameSettings.tscn:1206
 msgid "BASIC_VIEW"
 msgstr "Базовий"
 
-#: ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/NewGameSettings.tscn:1201
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Повернутися до базового вікна налаштувань"
 
@@ -1074,11 +1074,11 @@ msgstr "Баланс сполук"
 msgid "COMPOUND_CLOUDS"
 msgstr "Хмари сполук"
 
-#: ../src/general/NewGameSettings.tscn:535
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Щільність хмари сполук"
 
-#: ../src/general/NewGameSettings.tscn:575
+#: ../src/general/NewGameSettings.tscn:574
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(щільність хмари сполук у навколишньому серидовищі)"
 
@@ -1154,12 +1154,12 @@ msgstr ""
 "\n"
 "Скасування запуску зруйнує зореліт. Запустити зореліт?"
 
-#: ../src/general/NewGameSettings.cs:409
-#: ../src/general/NewGameSettings.tscn:1220
+#: ../src/general/NewGameSettings.cs:419
+#: ../src/general/NewGameSettings.tscn:1237
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Увійти в гру з цими налаштуваннями"
 
-#: ../src/general/NewGameSettings.cs:416
+#: ../src/general/NewGameSettings.cs:426
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Якісь налаштування невірні"
 
@@ -1419,19 +1419,19 @@ msgstr "Цитоплазматичний Гліколіз"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:967
+#: ../src/general/NewGameSettings.tscn:984
 msgid "DAY_LENGTH"
 msgstr "Тривалість дня"
 
-#: ../src/general/NewGameSettings.tscn:1010
+#: ../src/general/NewGameSettings.tscn:1027
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(тривалість у секундах реального часу)"
 
-#: ../src/general/NewGameSettings.tscn:938
+#: ../src/general/NewGameSettings.tscn:955
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Увімкнути цикл дня/ночі"
 
-#: ../src/general/NewGameSettings.tscn:947
+#: ../src/general/NewGameSettings.tscn:964
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(УВАГА: фотосинтез стає дуже нежиттєзабезпечувальним)"
 
@@ -1619,7 +1619,7 @@ msgstr ""
 "Ліміт використання сполук для росту: {9}"
 
 #: ../src/general/NewGameSettings.tscn:128
-#: ../src/general/NewGameSettings.tscn:376
+#: ../src/general/NewGameSettings.tscn:375
 msgid "DIFFICULTY_PRESET"
 msgstr "Передустанови складності"
 
@@ -1904,11 +1904,11 @@ msgstr "Порада: бактерія може бути сильнішою ні
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Порада: ти можеш впольовувати інші види до їх вимирання,яккщо не будете досьатньо обережні. Інші види можуть зробити це й з вами."
 
-#: ../src/general/NewGameSettings.tscn:1144
+#: ../src/general/NewGameSettings.tscn:1161
 msgid "EASTER_EGGS"
 msgstr "Додання великодок"
 
-#: ../src/general/NewGameSettings.tscn:1152
+#: ../src/general/NewGameSettings.tscn:1169
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(рандомно заспавнені секрети в грі)"
 
@@ -1993,11 +1993,11 @@ msgstr "Мітка сутності"
 msgid "ENVIRONMENT"
 msgstr "Оточення"
 
-#: ../src/general/NewGameSettings.tscn:653
+#: ../src/general/NewGameSettings.tscn:652
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Збереження глюкози в оточені"
 
-#: ../src/general/NewGameSettings.tscn:692
+#: ../src/general/NewGameSettings.tscn:691
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(частка глюкози, що залишається в навколишньому серидовищі кожну генерацію)"
 
@@ -2291,6 +2291,40 @@ msgstr ""
 "та можуть бути вимогливішими щодо брил.\n"
 "Розсіяні мікроби швидче відволікатимуться на нові цілі."
 
+#: ../src/general/NewGameSettings.cs:314
+#, fuzzy
+msgid "FOG_OF_WAR_DISABLED"
+msgstr ""
+"Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
+"Будь ласка, переконайтесь, що Ви запустили клієнт Steam та увійшли до правильного акаунту. Будь ласка, запустіть гру через клієнт Steam, якщо ця помилка не зникає."
+
+#: ../src/general/NewGameSettings.cs:839
+#, fuzzy
+msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
+msgstr ""
+"Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
+"Будь ласка, переконайтесь, що Ви запустили клієнт Steam та увійшли до правильного акаунту. Будь ласка, запустіть гру через клієнт Steam, якщо ця помилка не зникає."
+
+#: ../src/general/NewGameSettings.cs:316
+#, fuzzy
+msgid "FOG_OF_WAR_INTENSE"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#: ../src/general/NewGameSettings.cs:847
+#, fuzzy
+msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#: ../src/general/NewGameSettings.cs:315
+#, fuzzy
+msgid "FOG_OF_WAR_LIGHT"
+msgstr "Мій класний мод"
+
+#: ../src/general/NewGameSettings.cs:843
+#, fuzzy
+msgid "FOG_OF_WAR_LIGHT_DESCRIPTION"
+msgstr "Мій класний мод"
+
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
 msgstr "Ланцюг живлення"
@@ -2380,11 +2414,11 @@ msgstr "Дельта: {0}"
 msgid "FREEBUILDING"
 msgstr "Вільне конструктуювання"
 
-#: ../src/general/NewGameSettings.tscn:764
+#: ../src/general/NewGameSettings.tscn:802
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Безкоштовна глюкозна хмара, коли ви виходите з редактору"
 
-#: ../src/general/NewGameSettings.tscn:772
+#: ../src/general/NewGameSettings.tscn:810
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(початок з безкоштовною глюкозною хмарою біля кожної генерації)"
 
@@ -2625,11 +2659,11 @@ msgstr "ID з недійсним номером"
 msgid "ID_NUMBER"
 msgstr "НомерID"
 
-#: ../src/general/NewGameSettings.tscn:1123
+#: ../src/general/NewGameSettings.tscn:1140
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включаючи прототип пізньої стадії"
 
-#: ../src/general/NewGameSettings.tscn:1131
+#: ../src/general/NewGameSettings.tscn:1148
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(деякі функції можуть бути недоступні коли ви досягнете наступних етапів)"
 
@@ -3115,12 +3149,12 @@ msgid "LAUNCHMEDIA"
 msgstr "Медіа"
 
 #: ../src/general/NewGameSettings.tscn:156
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:893
 msgid "LAWK_ONLY"
 msgstr "Тільки ЗАКОН"
 
 #: ../src/general/NewGameSettings.tscn:163
-#: ../src/general/NewGameSettings.tscn:884
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(обмежує частини та властивості лише за Знаною Аналогією Конструювання Організмів Неземлян)"
 
@@ -3201,36 +3235,36 @@ msgid "LICENSES_COVERING_THRIVE"
 msgstr "Тут представлені ліцензії, які охоплюють частини Thrive"
 
 #: ../src/general/NewGameSettings.tscn:182
-#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:920
 msgid "LIFE_ORIGIN"
 msgstr "Походження життя"
 
 #: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:912
+#: ../src/general/NewGameSettings.tscn:929
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(початкова локація)"
 
 #: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:923
+#: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Панспермія (рандом)"
 
 #: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:923
+#: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Теплий маленький ставок"
 
 #: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:937
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Деякі налаштування можуть бути вимкнені, коли вімкнений тільки ЗАКОН"
 
 #: ../src/general/NewGameSettings.tscn:208
 #: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:922
-#: ../src/general/NewGameSettings.tscn:923
+#: ../src/general/NewGameSettings.tscn:939
+#: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гідротермальні джерела"
@@ -3268,11 +3302,11 @@ msgstr "Максимальне світло"
 msgid "LIMIT_EXTREME"
 msgstr "Екстримальний"
 
-#: ../src/general/NewGameSettings.tscn:827
+#: ../src/general/NewGameSettings.tscn:844
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Ліміт використання сполук для росту"
 
-#: ../src/general/NewGameSettings.tscn:835
+#: ../src/general/NewGameSettings.tscn:852
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(Коли ввімкнено обмеження швидкісті росту, а якщо вимкнено, лише сполуки вплинуть на швидкість росту)"
 
@@ -4207,11 +4241,11 @@ msgstr "Гучність музики"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Мутації на вид"
 
-#: ../src/general/NewGameSettings.tscn:417
+#: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Множник вартості мутації"
 
-#: ../src/general/NewGameSettings.tscn:457
+#: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(ціна органел, мембран та інших речей в редакторі)"
 
@@ -4676,11 +4710,11 @@ msgstr "Осморегуляція"
 msgid "OSMOREGULATION_COST"
 msgstr "Вартість осморегуляції"
 
-#: ../src/general/NewGameSettings.tscn:711
+#: ../src/general/NewGameSettings.tscn:710
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Множник вартості осморегуляції"
 
-#: ../src/general/NewGameSettings.tscn:751
+#: ../src/general/NewGameSettings.tscn:750
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(вартість осморегуляції виду гравця)"
 
@@ -4779,17 +4813,22 @@ msgstr "Повернути панораму вправо"
 msgid "PAN_CAMERA_UP"
 msgstr "Повернути панораму вгору"
 
-#: ../src/general/NewGameSettings.tscn:785
+#: ../src/general/NewGameSettings.tscn:823
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Пасивно збільшувати репродуктивний прогрес"
 
-#: ../src/general/NewGameSettings.tscn:793
+#: ../src/general/NewGameSettings.tscn:831
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
 
 #: ../src/gui_common/CreditsScroll.cs:297
 msgid "PAST_DEVELOPERS"
 msgstr "Колишні розробники"
+
+#: ../src/general/NewGameSettings.tscn:767
+#, fuzzy
+msgid "PATCH_EXPLORATION_MODE"
+msgstr "(процедурна генерація мапи ділянок або використання класичного макета)"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 msgid "PATCH_EXTINCTION_BOX_TEXT"
@@ -4804,16 +4843,6 @@ msgstr "ВИМИРАННЯ В ДІЛЯНЦІ"
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
 msgstr "Мапа Ділянок"
-
-#: ../src/general/NewGameSettings.tscn:806
-#, fuzzy
-msgid "PATCH_MAP_EXPLORATION"
-msgstr "(процедурна генерація мапи ділянок або використання класичного макета)"
-
-#: ../src/general/NewGameSettings.tscn:814
-#, fuzzy
-msgid "PATCH_MAP_EXPLORATION_EXPLANATION"
-msgstr "(процедурна генерація мапи ділянок або використання класичного макета)"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
@@ -4887,7 +4916,7 @@ msgstr "Мирність"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:774
+#: ../src/general/NewGameSettings.cs:787
 #: ../src/general/WorldGenerationSettings.cs:150
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
@@ -4955,12 +4984,12 @@ msgstr ""
 "Тривалість дня: {3} секунди\n"
 "Випадковий сід планети: {4}"
 
-#: ../src/general/NewGameSettings.tscn:1089
+#: ../src/general/NewGameSettings.tscn:1106
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Генерація планети пройшла успішно!"
 
 #: ../src/general/NewGameSettings.tscn:224
-#: ../src/general/NewGameSettings.tscn:1023
+#: ../src/general/NewGameSettings.tscn:1040
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
 
@@ -4968,11 +4997,11 @@ msgstr "Рандомний сід планети"
 msgid "PLAYER"
 msgstr "Гравець"
 
-#: ../src/general/NewGameSettings.tscn:594
+#: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Штраф популяції за смерть гравця"
 
-#: ../src/general/NewGameSettings.tscn:634
+#: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(коефіціент зменшення популяції виду гравця для кожної смерті гравця)"
 
@@ -5145,7 +5174,7 @@ msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Випадкова назва виду"
 
 #: ../src/general/NewGameSettings.tscn:243
-#: ../src/general/NewGameSettings.tscn:1036
+#: ../src/general/NewGameSettings.tscn:1053
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
 
@@ -5616,7 +5645,7 @@ msgid "SECRETE_SLIME"
 msgstr "Виділення слизу"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:155
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:291
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:299
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:90
 msgid "SEED_LABEL"
@@ -5990,7 +6019,7 @@ msgstr "Почати"
 msgid "START_CALIBRATION"
 msgstr "Початок калібрування"
 
-#: ../src/general/NewGameSettings.tscn:1223
+#: ../src/general/NewGameSettings.tscn:1240
 msgid "START_GAME"
 msgstr "Розпочати гру"
 
@@ -7211,6 +7240,10 @@ msgstr "Приблизитись"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "PATCH_MAP_EXPLORATION_EXPLANATION"
+#~ msgstr "(процедурна генерація мапи ділянок або використання класичного макета)"
 
 #, fuzzy
 #~ msgid "BUILD_SPACE_STRUCTURE"
