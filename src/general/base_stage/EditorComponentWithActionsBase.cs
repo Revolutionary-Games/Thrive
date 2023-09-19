@@ -107,6 +107,21 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     {
         SetUndoButtonStatus(canUndo && !Editor.CanCancelAction);
         SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
+
+        // Update the finish badge warning visibility after updating action history
+        // because undoing and redoing actions can cause or fix warnings
+        UpdateFinishButtonWarningVisibility();
+    }
+
+    /// <summary>
+    ///   Hides the finish button warning badge after the hide animation plays.
+    /// </summary>
+    /// <param name="animation">The name of the animation that just finished playing.</param>
+    public void HideFinishButtonWarningAfterAnimation(string animation)
+    {
+        // Before hiding the warning badge, make sure it's still supposed to be hidden
+        if (animation == "hide" && !ShowFinishButtonWarning)
+            finishButtonWarningBadge.Hide();
     }
 
     /// <summary>

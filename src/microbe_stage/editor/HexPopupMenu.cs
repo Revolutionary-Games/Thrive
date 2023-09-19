@@ -108,6 +108,8 @@ public abstract class HexPopupMenu : CustomPopupMenu
         }
     }
 
+    private bool IsInteractable => Visible && !Closing;
+
     public override void _Ready()
     {
         base._Ready();
@@ -130,7 +132,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
     [RunOnKeyDown("e_delete", Priority = 1)]
     public bool OnDeleteKeyPressed()
     {
-        if (Visible)
+        if (IsInteractable)
         {
             EmitSignal(nameof(DeletePressed));
 
@@ -146,7 +148,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
     [RunOnKeyDown("e_move", Priority = 1)]
     public bool OnMoveKeyPressed()
     {
-        if (Visible)
+        if (IsInteractable)
         {
             EmitSignal(nameof(MovePressed));
 
@@ -220,6 +222,9 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
     private void OnDeletePressed()
     {
+        if (!IsInteractable)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         EmitSignal(nameof(DeletePressed));
@@ -229,6 +234,9 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
     private void OnMovePressed()
     {
+        if (!IsInteractable)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         EmitSignal(nameof(MovePressed));
@@ -238,6 +246,9 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
     private void OnModifyPressed()
     {
+        if (!IsInteractable)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         EmitSignal(nameof(ModifyPressed));
