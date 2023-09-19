@@ -93,10 +93,10 @@ public partial class CellEditorComponent
 
         // Osmoregulation cost is based on the membrane, so update the osmoregulation tooltips
         // after updating the membrane
-        SetOsmoregulationTooltips();
+        UpdateOsmoregulationTooltips();
     }
 
-    private void SetOsmoregulationTooltips()
+    private void UpdateOsmoregulationTooltips()
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
@@ -108,7 +108,9 @@ public partial class CellEditorComponent
             float osmoregulationCost = organelle.HexCount * osmoregulationCostPerHex;
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
-            tooltip?.WriteOsmoregulationCost(osmoregulationCost);
+
+            if (tooltip != null)
+                tooltip.OsmoregulationCost = osmoregulationCost;
         }
     }
 
