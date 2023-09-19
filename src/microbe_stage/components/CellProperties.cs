@@ -158,6 +158,7 @@
             var direction = position.Rotation.Xform(Vector3.Right);
 
             // Start calculating separation distance
+            // TODO: fix for multihex organelles
             var organellePositions = organelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
 
             // TODO: switch this to using membrane radius as that'll hopefully fix the last few divide bugs
@@ -171,6 +172,8 @@
                 // Bigger separation for cell colonies
 
                 throw new NotImplementedException();
+
+                // TODO: there is still a problem with colonies being able to spawn inside each other
 
                 // var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
                 //
