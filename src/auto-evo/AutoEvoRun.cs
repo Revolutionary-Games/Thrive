@@ -237,23 +237,21 @@ public class AutoEvoRun
     }
 
     /// <summary>
-    ///   Applies things added by addExternalPopulationEffect and auto-evo results
+    ///   Applies computed auto-evo results to the world.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     This has to be called after this run is finished.
-    ///     <see cref="CalculateFinalExternalEffectSizes"/> must be called first,
+    ///     <see cref="CalculateAndApplyFinalExternalEffectSizes"/> must be called first,
     ///     that should be called even before generating the result summaries to make sure they are accurate.
     ///   </para>
     /// </remarks>
-    public void ApplyAllResultsAndEffects(bool playerCantGoExtinct)
+    public void ApplyAllResults(bool playerCantGoExtinct)
     {
         if (!Finished || Running)
         {
             throw new InvalidOperationException("Can't apply run results before it is done");
         }
-
-        ApplyExternalEffects();
 
         results.ApplyResults(Parameters.World, false);
 
@@ -263,9 +261,9 @@ public class AutoEvoRun
     /// <summary>
     ///   Calculates the final sizes of external effects. This is a separate method to unify the logic and avoid
     ///   bugs regarding when results are applied and what base populations are used in the external effects.
-    ///   Must be called before <see cref="ApplyExternalEffects"/> or <see cref="RunResults.MakeSummary"/> is called.
+    ///   Must be called before <see cref="RunResults.MakeSummary"/> is called.
     /// </summary>
-    public void CalculateFinalExternalEffectSizes()
+    public void CalculateAndApplyFinalExternalEffectSizes()
     {
         if (ExternalEffects.Count < 1)
             return;
@@ -307,6 +305,8 @@ public class AutoEvoRun
 
             adjustedPopulations[key] = newPopulation;
         }
+
+        ApplyExternalEffects();
     }
 
     /// <summary>
@@ -331,8 +331,8 @@ public class AutoEvoRun
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     <see cref="CalculateFinalExternalEffectSizes"/> needs to be called before this is called to have accurate
-    ///     numbers
+    ///     <see cref="CalculateAndApplyFinalExternalEffectSizes"/> needs to be called before this is called to have
+    ///     accurate numbers
     ///   </para>
     /// </remarks>
     /// <returns>The summary of external effects.</returns>

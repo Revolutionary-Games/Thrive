@@ -972,7 +972,6 @@ HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
 CenterText = false
 DialogType = 1
-PermanentDismissType = 0
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
 margin_right = 40.0
@@ -996,7 +995,6 @@ HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE"
 CenterText = false
 NoticeType = 1
-PermanentDismissType = 0
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
 margin_right = 40.0
