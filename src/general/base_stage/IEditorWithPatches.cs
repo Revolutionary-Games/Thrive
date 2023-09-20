@@ -6,4 +6,6 @@ public interface IEditorWithPatches : IEditor
     public Patch CurrentPatch { get; }
 
     public void OnCurrentPatchUpdated(Patch patch);
+
+    public void UpdateReportTabPatchSelector();
 }

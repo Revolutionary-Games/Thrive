@@ -599,6 +599,14 @@
             LocalizedStringBuilder PatchString(Patch patch)
             {
                 var builder2 = new LocalizedStringBuilder(80);
+
+                if (!patch.Explored)
+                {
+                    var unknownPatch = new LocalizedString("UNKNOWN_PATCH");
+                    builder2.Append(unknownPatch);
+                    return builder2;
+                }
+
                 if (!playerReadable)
                 {
                     builder2.Append(patch.ID);

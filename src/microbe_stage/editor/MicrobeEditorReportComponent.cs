@@ -141,7 +141,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         foreach (var patch in Editor.CurrentPatch.GetClosestConnectedPatches())
         {
-            reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
+            if (patch.Explored)
+                reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
         reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(Editor.CurrentPatch.ID));
@@ -156,6 +157,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         UpdateTimeline(selectedPatch);
 
         UpdateReportTabPatchName(currentOrSelectedPatch);
+
+        UpdateReportTabPatchSelector();
 
         UpdateReportTabPatchSelectorSelection(currentOrSelectedPatch.ID);
     }

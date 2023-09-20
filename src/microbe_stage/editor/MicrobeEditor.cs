@@ -95,6 +95,11 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
+    public void UpdateReportTabPatchSelector()
+    {
+        reportTab.UpdateReportTabPatchSelector();
+    }
+
     public override bool CancelCurrentAction()
     {
         if (!cellEditorTab.Visible)

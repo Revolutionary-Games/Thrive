@@ -271,6 +271,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             targetPatch = patch;
         }
 
+        targetPatch?.SetExplored();
         Editor.OnCurrentPatchUpdated(targetPatch ?? CurrentPatch);
         UpdatePlayerPatch(targetPatch);
     }
@@ -314,6 +315,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     private void OnRevealEntirePatchMapCheatUsed(object sender, EventArgs args)
     {
         mapDrawer.IgnoreFogOfWar = true;
+
+        foreach (var patch in mapDrawer.PlayerPatch!.GetAllConnectedPatches())
+            patch.SetExplored();
+
+        Editor.UpdateReportTabPatchSelector();
         mapDrawer.MarkDirty();
     }
 }

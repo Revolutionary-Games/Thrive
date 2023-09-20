@@ -115,6 +115,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
+    public void UpdateReportTabPatchSelector()
+    {
+        reportTab.UpdateReportTabPatchSelector();
+    }
+
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return history.WhatWouldActionsCost(actions);

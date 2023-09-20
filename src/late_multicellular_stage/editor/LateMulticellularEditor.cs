@@ -133,6 +133,11 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         UpdateBackgrounds(patch);
     }
 
+    public void UpdateReportTabPatchSelector()
+    {
+        reportTab.UpdateReportTabPatchSelector();
+    }
+
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return history.WhatWouldActionsCost(actions);
