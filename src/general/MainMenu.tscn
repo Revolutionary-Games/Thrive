@@ -972,6 +972,7 @@ HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
 CenterText = false
 DialogType = 1
+PermanentDismissType = 0
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
 margin_right = 40.0
@@ -995,6 +996,7 @@ HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE"
 CenterText = false
 NoticeType = 1
+PermanentDismissType = 0
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
 margin_right = 40.0
@@ -1009,6 +1011,9 @@ rect_min_size = Vector2( 500, 0 )
 WindowTitle = "LOW_MENU_PERFORMANCE"
 ShowCloseButton = false
 DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
+NoticeType = 2
+DialogType = 1
+PermanentDismissType = 1
 
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/LoadGame" to="." method="LoadGamePressed"]
@@ -1059,5 +1064,4 @@ DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
-[connection signal="Cancelled" from="LowPerformanceDialog" to="LowPerformanceDialog" method="OnConfirmed"]
 [connection signal="Confirmed" from="LowPerformanceDialog" to="." method="OnLowPerformanceDialogConfirmed"]

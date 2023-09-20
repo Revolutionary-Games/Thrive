@@ -178,7 +178,7 @@ public class MainMenu : NodeWithInput
 
     private float secondsInMenu;
 
-    private bool canShowLowPerformanceWarning;
+    private bool canShowLowPerformanceWarning = true;
 
     public bool IsReturningToMenu { get; set; }
 
@@ -286,11 +286,12 @@ public class MainMenu : NodeWithInput
 
             // Low menu performance will never be warned about if the popup has been dismissed,
             // if 3D backgrounds have been disabled, if the popup has been shown but not dismissed
-            // on this menu session, or if the max framerate is set to 30
+            // on this menu session, if the max framerate is set to 30, or if the options menu is open
             // In addition, tracking only begins after one second in the menu
             if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning)
                 && Settings.Instance.Menu3DBackgroundEnabled && canShowLowPerformanceWarning
-                && Settings.Instance.MaxFramesPerSecond != 30)
+                && (Settings.Instance.MaxFramesPerSecond > 30 || Settings.Instance.MaxFramesPerSecond == 0)
+                && !options.Visible)
             {
                 secondsInMenu += delta;
 
@@ -498,11 +499,6 @@ public class MainMenu : NodeWithInput
 
         UpdateStoreVersionStatus();
         UpdateLauncherState();
-
-        if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning))
-        {
-            canShowLowPerformanceWarning = true;
-        }
 
         // Hide patch notes when it does not want to be shown
         if (!Settings.Instance.ShowNewPatchNotes)
@@ -812,12 +808,8 @@ public class MainMenu : NodeWithInput
 
     private void OnLowPerformanceDialogConfirmed()
     {
-        Settings.Instance.Menu3DBackgroundEnabled = new SettingValue<bool>(false);
-        Settings.Instance.ApplyGraphicsSettings();
+        Settings.Instance.Menu3DBackgroundEnabled.Value = false;
         Settings.Instance.Save();
-
-        // This doesn't seem to be called automatically if this setting is changed outside the designated method
-        OnMenuBackgroundTypeChanged(true);
     }
 
     /// <summary>

@@ -124,7 +124,7 @@ public class Settings
     ///   Enable or disable 3D background scenes in the menu
     /// </summary>
     [JsonProperty]
-    public SettingValue<bool> Menu3DBackgroundEnabled { get; set; } = new(true);
+    public SettingValue<bool> Menu3DBackgroundEnabled { get; private set; } = new(true);
 
     /// <summary>
     ///   Display or hide part names in the editor, for accessibility reasons
