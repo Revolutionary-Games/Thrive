@@ -555,16 +555,26 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [DeserializedCallbackAllowed]
     private void DoStartCellTypeEditAction(StartCellTypeEditActionData data)
     {
-        if (selectedCellTypeToEdit == data.StartedCellTypeEdit)
-            return;
-
-        // This fixes complex cases where multiple types are redoing actions
-        selectedCellTypeToEdit = data.StartedCellTypeEdit;
-        cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+        SwapEditingCell(data.StartedCellTypeEdit);
     }
 
     [DeserializedCallbackAllowed]
     private void UndoStartCellTypeEditAction(StartCellTypeEditActionData data)
     {
+        SwapEditingCell(data.StartedCellTypeEdit);
+    }
+
+    private void SwapEditingCell(CellType newCell)
+    {
+        if (selectedCellTypeToEdit == newCell)
+            return;
+
+        // If we're switching to a new cell type, apply any changes made to the old one
+        if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
+            cellEditorTab.OnFinishEditing();
+
+        // This fixes complex cases where multiple types are undoing and redoing actions
+        selectedCellTypeToEdit = newCell;
+        cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
     }
 }
