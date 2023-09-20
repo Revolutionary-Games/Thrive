@@ -788,6 +788,11 @@ public partial class CellEditorComponent :
 
     public override void OnFinishEditing()
     {
+        OnFinishEditing(true);
+    }
+
+    public void OnFinishEditing(bool shouldRepositionToOrigin)
+    {
         var editedSpecies = Editor.EditedBaseSpecies;
         var editedProperties = Editor.EditedCellProperties;
 
@@ -807,7 +812,9 @@ public partial class CellEditorComponent :
             editedProperties.Organelles.Add(organelleToAdd);
         }
 
-        editedProperties.RepositionToOrigin();
+        if (shouldRepositionToOrigin)
+            editedProperties.RepositionToOrigin();
+
         editedProperties.CalculateRotationSpeed();
 
         // Update bacteria status

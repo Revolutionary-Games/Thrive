@@ -390,6 +390,13 @@ public partial class CellBodyPlanEditorComponent :
         editedSpecies.UpdateNameIfValid(newName);
 
         behaviourEditor.OnFinishEditing();
+
+        foreach (var cellType in cellTypeSelectionButtons.Values)
+        {
+            // During multicellular editing, we don't reposition cells to the origin
+            // because it messes up the aciton history, so do it here once editing is finished
+            cellType.CellType.RepositionToOrigin();
+        }
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
