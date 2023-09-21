@@ -171,6 +171,10 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        // If a modal won't close, don't do anything
+        if (!ModalManager.Instance.ClearModals())
+            return;
+
         if (OnFinish != null)
         {
             if (OnFinish!.Invoke(null))

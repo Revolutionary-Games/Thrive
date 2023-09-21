@@ -95,16 +95,23 @@ public class ModalManager : NodeWithInput
 
         var popup = modalStack.First();
 
-        if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
-            return false;
+        return HideModal(popup);
+    }
 
-        // This is emitted before closing to allow window using components to differentiate between "cancel" and
-        // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
-        if (popup is CustomWindow dialog)
-            dialog.EmitSignal(nameof(CustomWindow.Cancelled));
+    /// <summary>
+    /// Attempt to clear all open modals.
+    /// </summary>
+    /// <returns>Returns true if all modals were closed, false otherwise.</returns>
+    public bool ClearModals()
+    {
+        if (modalStack.Count <= 0)
+            return true;
 
-        popup.Close();
-        popup.Notification(Control.NotificationModalClose);
+        for (int i = 0; i < modalStack.Count; ++i)
+        {
+            if (!HideModal(modalStack[i]))
+                return false;
+        }
 
         return true;
     }
@@ -123,6 +130,28 @@ public class ModalManager : NodeWithInput
             return modal;
 
         return null;
+    }
+
+    /// <summary>
+    /// Attempts to hide the given modal.
+    /// This won't hide the modal if it's exclusive and doesn't allow closing on escape.
+    /// </summary>
+    /// <param name="popup">Modal to hide</param>
+    /// <returns>True if the modal was hidden</returns>
+    private static bool HideModal(TopLevelContainer popup)
+    {
+        if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
+            return false;
+
+        // This is emitted before closing to allow window using components to differentiate between "cancel" and
+        // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
+        if (popup is CustomWindow dialog)
+            dialog.EmitSignal(nameof(CustomWindow.Cancelled));
+
+        popup.Close();
+        popup.Notification(Control.NotificationModalClose);
+
+        return true;
     }
 
     private void UpdateModals()
