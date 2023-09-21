@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-20 13:02+0200\n"
-"PO-Revision-Date: 2023-09-15 09:59+0000\n"
-"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
+"PO-Revision-Date: 2023-09-21 09:24+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -1711,13 +1711,13 @@ msgstr "Discord topluluk sunucumuza katılın"
 
 #: ../src/general/OptionsMenu.tscn:1856
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Atlanan açılır pencereler:"
+msgstr "Atlanan pencereler:"
 
 #: ../src/general/OptionsMenu.tscn:1854 ../src/general/OptionsMenu.tscn:1863
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Bu kısım, kullanıcı tarafından kalıcı olarak atlanan kaç tane açılır pencere olduğunu gösterir.\n"
-"Eğer asıl görülmek istenen açılır pencereler atlandıysa, bütün atlanan açılır pencerelerin tekrar görülmesi için yandaki buton kullanılabilir."
+"Bu kısım, kullanıcı tarafından kalıcı olarak atlanan kaç tane pencere olduğunu gösterir.\n"
+"Eğer asıl görülmek istenen pencereler atlandıysa, bütün atlanan pencerelerin tekrar görülmesi için yandaki buton kullanılabilir."
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:39
 msgid "DISMISS_INFORMATION_PERMANENTLY"
@@ -3623,7 +3623,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Her kuşak başına, harcanacak 100 mutasyon puanınız (MP) vardır ve her bir değişiklik (veya mutasyon) belirli miktarda MP'ye mal olur. Organel eklemek ve kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen organellerin kaldırılması, o organelin değeri kadar MP'yi size geri iade eder. Bir organelin üzerine sağ tıklayarak ve açılır menüden uygun eylemi seçerek taşıyabilir veya tamamen kaldırabilirsiniz. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile organellerinizi döndürebilirsiniz."
+msgstr "Her kuşak başına, harcanacak 100 mutasyon puanınız (MP) vardır ve her bir değişiklik (veya mutasyon) belirli miktarda MP'ye mal olur. Organel eklemek ve kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen organellerin kaldırılması, o organelin değeri kadar MP'yi size geri iade eder. Bir organelin üzerine sağ tıklayarak ve açılan menüden uygun eylemi seçerek taşıyabilir veya tamamen kaldırabilirsiniz. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile organellerinizi döndürebilirsiniz."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -5214,7 +5214,7 @@ msgstr "Ölü Bölgeleri Sıfırla"
 
 #: ../src/general/OptionsMenu.tscn:1879
 msgid "RESET_DISMISSED_POPUPS"
-msgstr "Atlanan Açılır Pencereleri Sıfırla"
+msgstr "Atlanan Pencereleri Sıfırla"
 
 #: ../src/general/OptionsMenu.tscn:2094
 msgid "RESET_INPUTS_TO_DEFAULTS"
@@ -5456,7 +5456,7 @@ msgstr "Kayıt farklı bir sürüme sahip"
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 "Yüklemeye çalıştığınız kayıt sürümü oyunun sürümüyle eşleşmemektedir.\n"
-"Lütfen kaydı menüden manüel olarak yükleyin."
+"Lütfen kaydı menüden manuel olarak yükleyin."
 
 #: ../src/saving/InProgressLoad.cs:143
 msgid "SAVE_HAS_INVALID_GAME_STATE"
@@ -5484,7 +5484,7 @@ msgstr ". Zaten yüklü olan kaynakları serbest bırakma işlemi başarısız o
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "Manüel kayıt"
+msgstr "Manuel"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
@@ -5707,7 +5707,7 @@ msgstr "Kaydedilmemiş ilerlemeler uyarısını göster"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
-msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyarısı veren açılır pencereyi etkinleştirir / devre dışı bırakır."
+msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyarısı veren pencereyi etkinleştirir / devre dışı bırakır."
 
 #: ../src/general/OptionsMenu.tscn:1824
 msgid "SHOW_WEB_NEWS_FEED"
@@ -6199,11 +6199,11 @@ msgstr "SysRq"
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr "İkinci düzey sekmesini sola taşı"
+msgstr "Önceki ikinci düzey sekmeye git"
 
 #: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr "İkinci düzey sekmesini sağa taşı"
+msgstr "Sonraki ikinci düzey sekmeye git"
 
 #: ../simulation_parameters/common/input_options.json:265
 msgid "TAB_SWITCH_LEFT"
@@ -6643,7 +6643,7 @@ msgstr ""
 "\n"
 "Ekranın ortasındaki altıgen sizin hücreniz. Hücreniz bir tek sitoplazma parçasından oluşmaktadır.\n"
 "\n"
-"Devam etmek için soldaki panelden bir parça seçin. Daha sonra, onu yerleştirmek için altıgenin yanına sol tıklayın. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile parçaları döndürebilirsiniz."
+"Devam etmek için soldaki panelden bir parça seçin. Daha sonra, onu yerleştirmek için altıgenin yanındaki alana sol tıklayın. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile parçaları döndürebilirsiniz."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
@@ -6652,7 +6652,7 @@ msgstr ""
 "\n"
 "Hücrenizi başka türlü nasıl özelleştirebileceğinizi görmek için MP çubuğunun altında bulunan diğer sekmeleri keşfetmeyi deneyin.\n"
 "\n"
-"Doğal glukoz miktarı süratle azalacağı için, bu haşin dünyada hayatta kalmak için güvenilir bir enerji kaynağı bulmaya ihtiyacınız olacak.\n"
+"Doğal glukoz miktarı süratle azalacağı için, bu haşin dünyada hayatta kalmak için güvenilir bir enerji kaynağı bulmaya ihtiyacınız var.\n"
 "\n"
 "Bol şans!"
 
@@ -6674,16 +6674,16 @@ msgstr ""
 "\n"
 "Organel menüsünü göstermek için organellere sağ tıklayabilir ve organelleri kaldırmak için silme seçeneğini seçebilirsiniz.\n"
 "\n"
-"Eğer düzenleyicide herhangi bir yanlışlık yaparsanı, yaptığınız değişikliği geri alabilirsiniz.\n"
+"Eğer düzenleyicide herhangi bir yanlışlık yaparsanız, yaptığınız değişikliği geri alabilirsiniz.\n"
 "\n"
 "Devam etmek için geri al butonuna basın."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Menüde parçalar seçerken, onların neler yaptığını anlamak için sağda beliren araç ipuçlarına dikkat edin. Eğer onların işlevlerine dikkat etmezseniz, parçaların faydadan çok zararı olur.\n"
+"Menüde parçalar seçerken, onların neler yaptığını anlamak için sağda beliren araç ipuçlarına dikkat edin. Eğer parçaların işlevlerine dikkat etmezseniz, onların faydadan çok zararı olur.\n"
 "\n"
-"Sağda bulunan \"ATP Üretimi\" çubuğu, tükettiğiniz enerjiye kıyasla ne kadar enerji ürettiğinizi belirtir. Eğer üstteki çubuk alttaki çubuktan daha kısa ise, bu yeterli enerji üretmediğiniz anlamına gelir.\n"
+"Sağda bulunan \"ATP Üretimi\" çubuğu, tükettiğiniz enerjiye kıyasla ne kadar enerji ürettiğinizi gösterir. Eğer üstteki çubuk alttaki çubuktan daha kısa ise, bu yeterli enerji üretmediğiniz anlamına gelir.\n"
 "\n"
 "Devam etmek için yinele butonuna (geri al butonunun yanında) basın."
 
@@ -6692,9 +6692,9 @@ msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Bir ya da iki enerji kaynağına odaklanmalısınız. Böylece hayatta kalmak için, bütün kaynaklara birden ihtiyaç duymadan, yeterli ATP üretebilirsiniz.\n"
 "\n"
-"Ayrıca bir organeli eklemenin gerçekten yararlı olup olmadığını dikkatli bir şekilde göz önünde bulundurun. Her parçayı sürdürmek ATP'ye mal olduğu için ve çoğalmak için daha fazla kaynak gerektiği için, genellikle herhangi bir değişiklik yapmamak iyi bir seçimdir.\n"
+"Ayrıca bir organeli eklemenin gerçekten yararlı olup olmadığını dikkatli bir şekilde düşünün. Her bir parçayı sürdürmek ATP'ye mal olduğu için ve çoğalmak için daha fazla kaynak gerektirdiği için, genellikle herhangi bir değişiklik yapmamak iyi bir seçimdir.\n"
 "\n"
-"Olası bir strateji, bir tek altıgen sitoplazma olarak kalmak ve fotosentez organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
+"Oyunda kullanılabilecek olası bir strateji; bir tek altıgen sitoplazma olarak kalmak ve fotosentez organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6717,7 +6717,7 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Hücreniz, aynı anda yutulabilecek nesneler için sınırlı bir kapasiteye sahiptir. Bu sınır, hücrenizin büyüklüğüne dayanır; daha küçük hücreler daha az kapasiteye sahiptir.\n"
 "\n"
-"Bir hücre dolduğunda, daha fazla şey yutamaz. Yutmaya devam etmek için içeri alınmış bir ya da daha fazla nesnenin tamamen sindirilmesini bekleyin."
+"Bir hücre dolduğunda, başka bir şey yutamaz. Yutmaya devam etmek için içeri alınmış bir ya da daha fazla nesnenin tamamen sindirilmesini bekleyin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
@@ -6733,12 +6733,12 @@ msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Zorlanıyor musunuz? Yardım menüsünü inceleyin. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsiniz.\n"
 "\n"
-"Bir ipucu daha: Fare tekeri ile görüş alanını arttırabilirsiniz."
+"Bir ipucu daha: Fare tekeri ile görüş alanınızı arttırabilirsiniz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Yeterli miktarda [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] topladınız. Ancak çok hücreli olmayan bir koloni içinde olduğunuz için üremeye başlayamazsınız.\n"
+"Yeterli miktarda [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] topladınız. Ancak, çok hücreli olmayan bir koloni içinde bulunduğunuz için üremeye başlayamazsınız.\n"
 "\n"
 "Çok hücreli olmayı planlıyorsanız, koloniden ayrılıp editöre girmeniz gerekir.\n"
 "Gelişiminize devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılın."
@@ -6753,7 +6753,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Bağ koparma moduna girdiniz. Bu modda, bağını koparmak istediğiniz koloni üyelerine tıklayabilirsiniz.\n"
+"Bağ koparma moduna girdiniz. Bu modda, bağınızı koparmak istediğiniz koloni üyelerine tıklayabilirsiniz.\n"
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrenize tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsiniz."
 
@@ -6846,7 +6846,7 @@ msgstr "Bu Mod İçin Bilinmeyen Atölye ID'si"
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Kaydedilmemiş değişiklikler var.\n"
-"Devam etmek istiyor musunuz?"
+"Yine de devam etmek istiyor musunuz?"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:311
 msgid "UNTITLED"
@@ -6858,7 +6858,7 @@ msgstr "Çeken Sil"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:857
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Yutma modunda ([thrive:input]g_toggle_engulf[/thrive:input]), bu sil türü suda girdaplara yol açarak yakınlardaki nesneleri içine çeker. Av yakalamak için kullanışlıdır."
+msgstr "Yutma modunda ([thrive:input]g_toggle_engulf[/thrive:input]), bu sil türü suda girdaplara yol açarak yakınındaki nesneleri üzerine çeker. Av yakalamak için kullanışlıdır."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:31
 #: ../simulation_parameters/microbe_stage/organelles.json:853
@@ -6904,7 +6904,7 @@ msgstr "Evet"
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
-msgstr "Oto Harmony Yüklemeyi Kullan"
+msgstr "Oto Harmony Yüklemesini Kullan"
 
 #: ../src/modding/NewModGUI.tscn:439
 msgid "USE_AUTO_HARMONY_TOOLTIP"
@@ -6920,7 +6920,7 @@ msgstr "Biyoçeşitliliği arttıran tür oluşumu mevcut türlerden popülasyon
 
 #: ../src/general/OptionsMenu.tscn:1129
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr "Arkaplanda çalışan iş parçacığı sayısını elle ayarla"
+msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla"
 
 #: ../src/general/OptionsMenu.tscn:1371
 msgid "USE_VIRTUAL_WINDOW_SIZE"
@@ -6933,7 +6933,7 @@ msgstr "Koful"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
 msgid "VACUOLE_DESCRIPTION"
-msgstr "Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, hücrede geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan ve birbiriyle birleşen birkaç kesecikten oluşur. Kofulun içi; moleküller, enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri değişken ve hücreler arasında değişiklik gösterir."
+msgstr "Koful, hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, hücrede geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan ve birbiriyle birleşen birkaç kesecikten oluşurlar. Kofulun içi; moleküller, enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri değişkendir ve hücreler arasında değişiklik gösterirler."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
 msgid "VACUOLE_IS_SPECIALIZED"
@@ -6993,7 +6993,7 @@ msgstr "Yama Notlarını Görüntüle"
 
 #: ../src/general/OptionsMenu.tscn:1839
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr "En son veya tüm Thrive yama notlarını şimdi görüntüle"
+msgstr "En son ki veya tüm Thrive yama notlarını şimdi görüntüle"
 
 #: ../src/general/MainMenu.tscn:341
 msgid "VIEW_SOURCE_CODE"
@@ -7073,7 +7073,7 @@ msgstr "BAŞARDIN!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Tebrikler, Thrive'ın bu sürümünü kazanmayı başardınız! İsterseniz, bu mesaj gittikten sonra da oynamaya devam edebilirsiniz veya yeni bir konumda, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsiniz."
+msgstr "Tebrikler, Thrive'ın bu sürümünde kazanmayı başardınız! İsterseniz, bu mesaj gittikten sonra da oynamaya devam edebilirsiniz veya yeni bir konumda, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsiniz."
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -7101,11 +7101,11 @@ msgstr "Öğe Başlığı:"
 
 #: ../src/modding/ModUploader.cs:593
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr "Öğeyi Steam Atölyesi'ne yükleme başarılı"
+msgstr "Öğe, Steam Atölyesi'ne başarıyla yüklendi"
 
 #: ../src/modding/ModUploader.cs:589
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "Öğeyi Steam Atölyesi'ne yükleme başarılı ancak gösterilmeden önce Atölye [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/url][/color] kabul etmeniz gerekir"
+msgstr "Öğe, Steam Atölyesi'ne başarıyla yüklendi ancak gösterilmeden önce Atölye [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/url][/color] kabul etmeniz gerekir"
 
 #: ../src/modding/ModUploader.cs:653
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
@@ -7121,7 +7121,7 @@ msgstr "Dünya"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Dünyaların verileri başarıyla {0}'e aktarıldı"
+msgstr "Dünyaların verileri, {0} dosyasına başarıyla aktarıldı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
 msgid "WORLD_GENERAL_STATISTICS"
@@ -7169,8 +7169,8 @@ msgstr "YouTube kanalımızı ziyaret edin"
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
-"Thrive, açık kaynaklı bir projedir.\n"
-"Oyun ekibine başvurmadan, bir çekme isteği göndererek oyuna katkıda bulunabilirsiniz."
+"Thrive, açık kaynak kodlu bir projedir.\n"
+"Oyun ekibine başvurmaksızın, bir çekme isteği göndererek oyuna katkıda bulunabilirsiniz."
 
 #: ../src/gui_common/CreditsScroll.cs:337
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
