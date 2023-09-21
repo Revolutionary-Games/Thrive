@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -172,7 +172,7 @@ msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná do
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Obecné statistiky všech světů"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Statistika organizmu"
@@ -299,12 +299,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Zůstatek ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
@@ -419,7 +419,7 @@ msgstr "Mikrobiální Období"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "Zpět"
 
@@ -441,7 +441,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
@@ -751,11 +751,11 @@ msgstr "Buňka"
 msgid "CELLS"
 msgstr "Buňky"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Celulóza"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Celuláza umožnuje buňce rozkládat celulózovou membránu. Každá extra celuláza zvyšuje její efektivitu."
 
@@ -847,11 +847,11 @@ msgstr "Chemosyntéza"
 msgid "CHITIN"
 msgstr "Chitiny"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Chitináza"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Chitináza umožnuje buňce rozkládat chitinovou membránu. Každá extra chitináza zvyšuje její efektivitu."
 
@@ -909,7 +909,7 @@ msgstr "Zvyšuje rychlost otáčení velkých buněk."
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit stará uložení"
 
@@ -1371,7 +1371,7 @@ msgstr "Otevřít nápovědu"
 msgid "CURRENT_WORLD"
 msgstr "Současní vývojáři"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generace:[/b]\n"
@@ -1478,7 +1478,7 @@ msgstr "Výchozí výstupní zařízení"
 msgid "DELETE"
 msgstr "Smazat"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Smazání všech starých Automaticky a Rychle uložených her nelze vrátit, jste si jisti že permanentně chcete smazat následující?\n"
@@ -1491,7 +1491,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Smazat staré uložené hry?"
 
@@ -1503,19 +1503,19 @@ msgstr "Smazat organelu"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Smazat vybrané"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Smazat vybrané uložené hry?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Smazání vybraných uložení nelze vrátit zpět. Opravdu chceš trvale smazat {0} ?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Smazat tuto uloženou hru?"
 
@@ -1657,7 +1657,7 @@ msgstr "Rychlost trávení"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Rychlost trávení:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1963,11 +1963,11 @@ msgstr "Zapnout editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2171,6 +2171,21 @@ msgstr "Navštiv naší Facebook stránku"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Neúspěšné"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Můj úžasný mod"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Chyba: Nepodařilo se uložit nové nastavení."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2478,7 +2493,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala z {2} do {1}"
 
@@ -2851,7 +2866,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Hrajete prototypy pozdějších období, které jsou zahrnuty se hrou.\n"
@@ -3371,11 +3386,11 @@ msgstr "Barva čáry:"
 msgid "LIPASE"
 msgstr "Lipáza"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše buňka již produkuje nějaké množství tohoto enzymu bez lysozomu, ale vybráním tohoto typu zvýšíte efektivitu."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Načíst"
 
@@ -3383,7 +3398,7 @@ msgstr "Načíst"
 msgid "LOADING"
 msgstr "Načítání"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Nahrávání..."
@@ -3423,29 +3438,29 @@ msgstr "Nahrát hru"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Načíst předešlé uložené hry"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Uložená hra vybraná k načtení byla vytvořena v prototypu jiné verze Thrive.\n"
 "Kvůli tomu tato uložená hra nelze načíst, jelikož uložené hry prototypů nelze vylepšit na novější verzi.\n"
 "Udržování kompatibility uložených her z prototypů by bylo obrovské břemeno, jelikož věci jsou často přepsány, a psaní vylepšování pro prototypní uložené hry by velmi zpomalilo vývoj prototypů samotných."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Načíst nekompatibilní uloženou hru?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Vybraná uložená pozice nemůže být načtena z důvodu nekompatibility s touto verzí Thrive.\n"
 "Bohužel pro tuto verzi neexistuje převodník.\n"
 "Jelikož je Thrive v ranné fázi vývoje, není kompatibilita uložených pozic prioritou, a proto převodníky nefungují pro všechny verze."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Načíst neplatnou uloženou hru?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Z tohoto souboru nelze načíst informace o uložení.\n"
@@ -3605,7 +3620,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3694,8 +3709,8 @@ msgstr "Vždy, když zahájíš reprodukci, vstoupíš do editoru mikrobů, kde 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor mikrobů"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistika organizmu"
@@ -3917,7 +3932,7 @@ msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná pr
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4326,7 +4341,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Nový"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Tato uložená hra pochází z novější verze Thrive a je velmi pravděpodobně nekompatibilní.\n"
@@ -4490,15 +4505,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "Vypnuto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Neprobíhají žádné procesy"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Nebyly nalezeny žádné uložené hry"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Složka uložených pozic nebyla nalezena"
 
@@ -4573,7 +4588,7 @@ msgstr "Spáchat sebevraždu"
 msgid "OK"
 msgstr "OK"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Toto uložení pochází ze staré verze a může být nekompatibilní.\n"
@@ -4626,7 +4641,7 @@ msgstr "Otevřít nabídku organel"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Otevřít nápovědu"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Otevřít složku uložení"
 
@@ -4718,7 +4733,7 @@ msgstr "Tímto bodneš ostatní buňky."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
@@ -4966,8 +4981,8 @@ msgstr "Mírumilovnost"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5057,7 +5072,7 @@ msgstr "hráč zemřel"
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplicitní hráč"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
@@ -5236,7 +5251,7 @@ msgstr "Suroví:"
 msgid "READING_SAVE_DATA"
 msgstr "Načítám uložená data"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Připraveno"
@@ -5257,7 +5272,7 @@ msgstr "Navrátit"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Zopakovat poslední akci zpět"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Obnovit"
 
@@ -5492,12 +5507,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin (protein mědi)"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
@@ -5532,7 +5548,7 @@ msgstr "Uložit a pokračovat"
 msgid "SAVE_AUTOSAVE"
 msgstr "Automatické ukládání"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Smazání této uložené pozice nemůže být navráceno, jsi si jistý/á že chceš navždy smazat {0}?"
 
@@ -5580,7 +5596,7 @@ msgstr "Uložená pozice je neplatná"
 msgid "SAVE_IS_INVALID"
 msgstr "Uložená pozice je neplatná"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Vybraná uložená pozice je ze starší verze Thrive, ale může být převedena na novější verzi.\n"
@@ -5600,15 +5616,15 @@ msgstr "Manuální uložení"
 msgid "SAVE_QUICKSAVE"
 msgstr "Rychlé uložení"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "Využitý prostor:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Převod na novou verzi se nezdařil"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
@@ -5620,15 +5636,15 @@ msgstr "Uložení informací se nezdařilo kvůli výjimce: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Ukládání..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Uložení selhalo! Došlo k výjimce"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Uložení není momentálně k dispozici z důvodu:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání provedeno"
 
@@ -5704,7 +5720,7 @@ msgstr "Vyměšuj sliz"
 msgid "SEED_LABEL"
 msgstr "Seed planety: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "Vybráno:"
 
@@ -5712,15 +5728,15 @@ msgstr "Vybráno:"
 msgid "SELECTED_MOD"
 msgstr "Vybraný mod:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Vybraná uložená hra není kompatibilní"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Vybrané uložení je nekompatibilní prototyp"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Vybranou uloženou hru lze převést na novější verzi"
 
@@ -5889,7 +5905,7 @@ msgid "SIZE_COLON"
 msgstr "Velikost:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "Prezentace"
 
@@ -6575,35 +6591,35 @@ msgstr "Zobrazit globální události"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Zobrazit lokální události"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby zaplnil mezeru"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] zmizel z tohoto prostředí"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do tohoto prostředí z {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] populace se snížila na {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] populace se zvýšila na {1}"
 
@@ -6676,7 +6692,7 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Celková populace:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "Celkem uloženo:"
 
@@ -6726,7 +6742,7 @@ msgstr "Přidat výšky"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Zkuste udělat snímek obrazovky!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Zkus vytvořit uloženou pozici!"
 
@@ -7180,7 +7196,7 @@ msgstr "Čekání na automatickou evoluci:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "vyhynul na této planetě"
 

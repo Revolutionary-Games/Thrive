@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -178,7 +178,7 @@ msgstr "Fajok mutációkihagyásának engedélyezése (ha a rendszer nem talált
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Álltlános statisztika az összes világról"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Organizmus statisztikái"
@@ -305,12 +305,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP egyensúly"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP előállítás"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
 
@@ -423,7 +423,7 @@ msgstr "Tudatos fázis"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "Vissza"
 
@@ -445,7 +445,7 @@ msgstr "Törlés"
 msgid "BASE_MOBILITY"
 msgstr "Alap mozgékonyság"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Alap mozgás"
 
@@ -760,11 +760,11 @@ msgstr "Cellulóz"
 msgid "CELLS"
 msgstr "Sejtek"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Cellulóz"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
@@ -858,11 +858,11 @@ msgstr "Kemoszintézis"
 msgid "CHITIN"
 msgstr "Kitin"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Kitin"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
@@ -923,7 +923,7 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thri
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organizmus statisztikái"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Régi mentések törlése"
 
@@ -1386,7 +1386,7 @@ msgstr "Nyisd meg a segítség ablakot"
 msgid "CURRENT_WORLD"
 msgstr "Jelenlegi fejlesztők"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organizmus statisztikái"
@@ -1475,7 +1475,7 @@ msgstr "Alap kimeneti eszköz"
 msgid "DELETE"
 msgstr "Törlés"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
@@ -1488,7 +1488,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Törlöd a régi mentéseket?"
 
@@ -1500,19 +1500,19 @@ msgstr "Sejtszervecske törlése"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Mentés/-ek törlése"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Biztos törlöd a kiválasztott mentést/mentéseket?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Biztos végérvényesen törölni akarsz {0} mentést?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Törlöd ezt a mentést?"
 
@@ -1647,7 +1647,7 @@ msgstr "Kihalt fajok"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Sebesség:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1957,11 +1957,11 @@ msgstr "Szerkesztő engedélyezése"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI fényeffektjeinek engedélyezése"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2172,6 +2172,23 @@ msgstr "Játék szüneteltetése"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Hiba"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Az én király modom"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Hiba: A beállításokat nem sikerült menteni."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2483,7 +2500,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] populációjának egy része ide innen: {2}, ide: {1} vándorolt"
 
@@ -2854,7 +2871,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanóp (Piros-Zöld)"
@@ -3379,12 +3396,12 @@ msgstr "Vonal színe:"
 msgid "LIPASE"
 msgstr "Lipáz"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Töltés"
 
@@ -3392,7 +3409,7 @@ msgstr "Töltés"
 msgid "LOADING"
 msgstr "Betöltés"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Betöltés..."
@@ -3433,24 +3450,24 @@ msgstr "Játék betöltése"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Korábbi mentett játékok betöltése"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr "Betöltöd ezt az inkompatibilis mentést?"
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Betöltöd ezt az inkompatibilis mentést?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Betöltöd ezt az érvénytelen mentést?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "A mentési információt nem lehet betölteni ebből a fájlból.\n"
@@ -3613,7 +3630,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3702,8 +3719,8 @@ msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz bel
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Sejtszerkesztő"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
@@ -3923,7 +3940,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4342,7 +4359,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Új"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy eséllyel nem kompatibilis.\n"
@@ -4507,15 +4524,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "Kikapcsolva"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Nincs mentés"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "A mentések mappa nem található"
 
@@ -4589,7 +4606,7 @@ msgstr "Öngyilkosság"
 msgid "OK"
 msgstr "OK"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ez a mentés a Thrive egy régebbi verziójából való, és nem biztos, hogy kompatibilis.\n"
@@ -4642,7 +4659,7 @@ msgstr "Sejtszervecske menü megnyitása"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Nyisd meg a segítség ablakot"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Mentések mappájának megnyitása"
 
@@ -4736,7 +4753,7 @@ msgstr "Szúrd le a többi sejtet ezzel."
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Ozmoreguláció"
 
@@ -4987,8 +5004,8 @@ msgstr "Békés"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5078,7 +5095,7 @@ msgstr "A játékos meghalt"
 msgid "PLAYER_DUPLICATE"
 msgstr "A játékos megkettőzése"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "A játékos faja kihalt"
 
@@ -5258,7 +5275,7 @@ msgstr "Új név:"
 msgid "READING_SAVE_DATA"
 msgstr "Mentési információ olvasása"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 #, fuzzy
 msgid "READY"
@@ -5281,7 +5298,7 @@ msgstr "Helyrehoz"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Vond vissza az előző műveletet"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Frissítés"
 
@@ -5519,12 +5536,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Segítség"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
@@ -5559,7 +5577,7 @@ msgstr "Mentés és folytatás"
 msgid "SAVE_AUTOSAVE"
 msgstr "Automentés"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
 
@@ -5607,7 +5625,7 @@ msgstr "Érvénytelen"
 msgid "SAVE_IS_INVALID"
 msgstr "A mentés érvénytelen"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "A kijelölt mentés a Thrive egy régebbi verziójából való, de újabb verzióra lehet frissíteni.\n"
@@ -5627,15 +5645,15 @@ msgstr "Kézikönyv"
 msgid "SAVE_QUICKSAVE"
 msgstr "Gyorsmentés"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "Mérete:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "A mentés frissítése sikertelen"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
@@ -5649,15 +5667,15 @@ msgstr "Az információ mentése sikertelen a következő ok miatt: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Mentés..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "A mentés sikertelen! Hiba történt"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "A mentés nem sikerült a következő ok(ok)miatt:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Sikeres mentés"
 
@@ -5733,7 +5751,7 @@ msgstr ""
 msgid "SEED_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "Kijelölve:"
 
@@ -5741,16 +5759,16 @@ msgstr "Kijelölve:"
 msgid "SELECTED_MOD"
 msgstr "Kijelölt mod:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "A kiválasztott mentés nem kompatibilis"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "A kiválasztott mentés nem kompatibilis"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "A kiválasztott mentés frissíthető"
 
@@ -5926,7 +5944,7 @@ msgid "SIZE_COLON"
 msgstr "Méret:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "Diavetítés"
 
@@ -6619,35 +6637,35 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től, hogy betöltsön egy ökológiai niche-t"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] kihalt!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] eltűnt ebből a patch-ből"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "[u]{0}[/u] populációjának egy része ebbe a patch-be vándorolt ebből a patch-ből: {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] egyedszáma csökkent: {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] egyedszáma növekedett: {1}"
 
@@ -6720,7 +6738,7 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Teljes populáció:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "Összes mentés:"
 
@@ -6770,7 +6788,7 @@ msgstr "Magas hangok növelése"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Próbálj pár képernyőképet készíteni!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Próbálj egy mentést létrehozni!"
 
@@ -7216,7 +7234,7 @@ msgstr "Várakozás az auto-evo-ra:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "kihalt a bolygón"
 

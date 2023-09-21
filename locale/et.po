@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -189,7 +189,7 @@ msgstr "on muteerunud"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Organismi statistika"
@@ -312,12 +312,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP Tasakaal"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP tootmine"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP TOOTMINE LIIGA VÄHE!"
 
@@ -442,7 +442,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "tagasi"
 
@@ -465,7 +465,7 @@ msgstr "Tagasilükkeklahv"
 msgid "BASE_MOBILITY"
 msgstr "Liikuvus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Aluse liikumine"
 
@@ -783,12 +783,12 @@ msgstr "rakk"
 msgid "CELLS"
 msgstr "Rakud"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 #, fuzzy
 msgid "CELLULASE"
 msgstr "Tselluloos"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Vakuool on sisemine membraanne organell, mida kasutatakse rakus säilitamiseks. Need koosnevad mitmest vesiikulist, väiksematest membraanistruktuuridest, mida kasutatakse laialdaselt säilitamiseks rakkudes ja mis on kokku sulanud. See on täidetud veega, mida kasutatakse molekulide, ensüümide, tahkete ainete ja muude ainete sisaldamiseks. Nende kuju on vedel ja võib rakkude vahel varieeruda."
@@ -881,12 +881,12 @@ msgstr "Kemosüntees"
 msgid "CHITIN"
 msgstr "Kitiin"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 #, fuzzy
 msgid "CHITINASE"
 msgstr "Kitiin"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
@@ -947,7 +947,7 @@ msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [t
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vanade salvestuste puhastamine"
 
@@ -1421,7 +1421,7 @@ msgstr "Avage abiekraan"
 msgid "CURRENT_WORLD"
 msgstr "Praegused arendajad"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organismi statistika"
@@ -1514,7 +1514,7 @@ msgstr "Vaikimisi väljundseade"
 msgid "DELETE"
 msgstr "Kustuta"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
@@ -1527,7 +1527,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Kas kustutada vanad salvestused?"
 
@@ -1539,19 +1539,19 @@ msgstr "Kustuta Organelli"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Kustuta valitud"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Kas kustutada valitud salvestus(ed)?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Valitud salvestus(t)e kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite {0} salvestus(t) jäädavalt kustutada?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Kas kustutada see salvestus?"
 
@@ -1689,7 +1689,7 @@ msgstr "Ressursi neeldumiskiirus"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Kiirus:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -2005,11 +2005,11 @@ msgstr "Luba redaktor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Lubage GUI valgusefektid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2223,6 +2223,23 @@ msgstr "Peata mäng"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Ebaõnnestunud"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Minu suurepärane mod"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Viga: uute sätete salvestamine konfiguratsioonifaili nurjus."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr ""
+"Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
+"{0}"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2534,7 +2551,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohast {2} asukohta {1}"
 
@@ -2909,7 +2926,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Mängite hilisema etapi prototüüpe, mis on mänguga kaasas.\n"
@@ -3443,12 +3460,12 @@ msgstr "Joone värv:"
 msgid "LIPASE"
 msgstr "Lipaas"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Laadige"
 
@@ -3456,7 +3473,7 @@ msgstr "Laadige"
 msgid "LOADING"
 msgstr "Laadimine"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laadimine..."
@@ -3499,7 +3516,7 @@ msgstr "Laadi mäng"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
@@ -3507,22 +3524,22 @@ msgstr ""
 "Ja selle salvestamise uuendamiseks pole salvestamise uuendajat.\n"
 "Kuna Thrive on alles arendusjärgus, ei ole salvestamise ühilduvus kõrge prioriteediga, mistõttu pole kõigi versioonide jaoks salvestamise uuendajaid."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Kas laadida ühildumatu salvestus?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Laadimiseks valitud salvestus on teadaolevalt Thrive'i selle versiooniga ühildumatu.\n"
 "Ja selle salvestamise uuendamiseks pole salvestamise uuendajat.\n"
 "Kuna Thrive on alles arendusjärgus, ei ole salvestamise ühilduvus kõrge prioriteediga, mistõttu pole kõigi versioonide jaoks salvestamise uuendajaid."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Kas laadida kehtetu salvestamine?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Salvestamisteavet ei saanud sellest failist laadida.\n"
@@ -3672,7 +3689,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr ""
 
@@ -3792,8 +3809,8 @@ msgstr "Iga kord, kui paljunete, sisenete mikroobide redaktorisse, kus saate oma
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuildi redaktor"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organismi statistika"
@@ -4019,7 +4036,7 @@ msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraa
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4443,7 +4460,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Uus"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "See salvestamine pärineb Thrive'i uuemast versioonist ja tõenäoliselt ei ühildu.\n"
@@ -4609,15 +4626,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "töövõimetu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Protsesse pole"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Salvestusi ei leitud"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Salvestatud kataloogi ei leitud"
 
@@ -4690,7 +4707,7 @@ msgstr "vabasurm"
 msgid "OK"
 msgstr "Okei"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "See salvestamine pärineb Thrive'i vanast versioonist ja võib olla ühildumatu.\n"
@@ -4743,7 +4760,7 @@ msgstr "Ava Organelli menüü"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Avage abiekraan"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Avage Salvesta kataloog"
 
@@ -4837,7 +4854,7 @@ msgstr "Pussita sellega teisi rakke."
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "osmoregulatsioon"
 
@@ -5091,8 +5108,8 @@ msgstr "Rahulik"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5182,7 +5199,7 @@ msgstr "mängija suri"
 msgid "PLAYER_DUPLICATE"
 msgstr "Dubleeri pleier"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Mängija on välja surnud"
 
@@ -5364,7 +5381,7 @@ msgstr "Uus nimi:"
 msgid "READING_SAVE_DATA"
 msgstr "Salvestamisandmete lugemine"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 #, fuzzy
 msgid "READY"
@@ -5387,7 +5404,7 @@ msgstr "Tee uuesti"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Tehke viimane toiming uuesti"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Värskenda"
 
@@ -5627,12 +5644,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "rustitsüaniin"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
@@ -5667,7 +5685,7 @@ msgstr "Salvestage ja jätkake"
 msgid "SAVE_AUTOSAVE"
 msgstr "Automaatne salvestamine"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite faili {0} jäädavalt kustutada?"
 
@@ -5716,7 +5734,7 @@ msgstr "Kehtetu"
 msgid "SAVE_IS_INVALID"
 msgstr "Salvestamine on kehtetu"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Valitud salvestus pärineb Thrive'i vanemast versioonist, kuid seda saab täiendada.\n"
@@ -5736,15 +5754,15 @@ msgstr "Käsiraamat"
 msgid "SAVE_QUICKSAVE"
 msgstr "Kiire salvestamine"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "Kasutatud ruum:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Uuenduse salvestamine ebaõnnestus"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
@@ -5758,15 +5776,15 @@ msgstr "Teabe salvestamine ebaõnnestus erandi tõttu: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Salvestamine..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Salvestamine ebaõnnestus! Juhtus erand"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Salvestamine ei ole praegu võimalik järgmistel põhjustel:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvestamine õnnestus"
 
@@ -5842,7 +5860,7 @@ msgstr ""
 msgid "SEED_LABEL"
 msgstr "biome: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "Valitud:"
 
@@ -5850,16 +5868,16 @@ msgstr "Valitud:"
 msgid "SELECTED_MOD"
 msgstr "Valitud mod:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Valitud salvestamine ei ühildu"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Valitud salvestamine ei ühildu"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Valitud salvestus on täiendatav"
 
@@ -6032,7 +6050,7 @@ msgid "SIZE_COLON"
 msgstr "Suurus:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr ""
 
@@ -6739,35 +6757,35 @@ msgstr "Näita globaalseid sündmusi"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Näita kohalikke sündmusi"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] eraldus niši täitmiseks uue liigina [u]{1}[/u]-st"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] eraldus erineva valikusurve tõttu uuest liigist [u]{1}[/u]"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] on välja surnud!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] on sellelt paigalt kadunud"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Osa [u]{0}[/u] elanikkonnast on sellesse plaastrisse rännanud asukohast {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] elanikkond on vähenenud väärtusele {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] elanikkond on kasvanud väärtuseni {1}"
 
@@ -6844,7 +6862,7 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Rahvaarv kokku:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "Kokkuhoid:"
 
@@ -6895,7 +6913,7 @@ msgstr "Treble üles"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Proovige teha ekraanipilte!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Proovige salvestada!"
 
@@ -7353,7 +7371,7 @@ msgstr "Auto-evo ootel:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "suri planeedilt välja"
 

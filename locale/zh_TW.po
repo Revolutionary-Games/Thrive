@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -178,7 +178,7 @@ msgstr "允許物種不突變（如果沒有合適的突變）"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "全世界的生物統計"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
@@ -312,12 +312,12 @@ msgstr "ATP(三磷酸線苷)"
 msgid "ATP_BALANCE"
 msgstr "ATP平衡"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP產出"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP產出太低！"
 
@@ -431,7 +431,7 @@ msgstr "微生物階段"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "返回"
 
@@ -453,7 +453,7 @@ msgstr "返回"
 msgid "BASE_MOBILITY"
 msgstr "基本移動能力"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
@@ -764,11 +764,11 @@ msgstr "細胞"
 msgid "CELLS"
 msgstr "細胞"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "纖維素酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "纖維素酶使細胞能分解纖維素膜。 每一次添加都會增加其有效性。"
 
@@ -860,11 +860,11 @@ msgstr "化學合成"
 msgid "CHITIN"
 msgstr "幾丁質"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "幾丁質酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "幾丁質酶使細胞能夠分解幾丁質膜。 每次添加都會增加其有效性。"
 
@@ -922,7 +922,7 @@ msgstr "增加大體型細胞的轉向速度。"
 msgid "CITY_SHORT_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除舊存檔"
 
@@ -1385,7 +1385,7 @@ msgstr "打開幫助界面"
 msgid "CURRENT_WORLD"
 msgstr "當前開發人員"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "生物統計"
@@ -1481,7 +1481,7 @@ msgstr "默認輸出設備"
 msgid "DELETE"
 msgstr "刪除"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
@@ -1494,7 +1494,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 #, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "刪除舊存檔嗎？"
@@ -1507,20 +1507,20 @@ msgstr "刪除細胞器"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "刪除選取的"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 #, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "刪除被選取的存檔嗎？"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "刪除被選取的這些存檔將無法撤消，確定要永久刪除這{0}個存檔嗎？"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 #, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "刪除這個存檔嗎?"
@@ -1666,7 +1666,7 @@ msgstr "資源吸收速度"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "速度："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1986,11 +1986,11 @@ msgstr "啟用編輯器"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "啟用 GUI 光效效果"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2206,6 +2206,21 @@ msgstr "暫停遊戲"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "失敗"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "我極好的Mod"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "錯誤：無法將新設置保存至配置文件。"
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr "更新此存檔失敗，錯誤："
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2504,7 +2519,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b]人口的一部分已從 {2} 遷移到 {1}"
 
@@ -2879,7 +2894,7 @@ msgstr "地面"
 msgid "INVERTED"
 msgstr "已反轉"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "紅綠色盲"
@@ -3412,12 +3427,12 @@ msgstr "線條顏色："
 msgid "LIPASE"
 msgstr "脂肪脢"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr "細胞的黏稠內臟。細胞質是離子，蛋白質和其他溶解水的物質的基本混合物，填充在細胞內部。它的其中一个功能是發糖酵解，將葡萄糖轉化為ATP能量。對於缺乏細胞器進行新陳代謝的細胞來說，就靠這個方法來獲取能量。它也被用來在細胞中保存分子，以及用來增加細胞的體積。"
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "加載"
 
@@ -3425,7 +3440,7 @@ msgstr "加載"
 msgid "LOADING"
 msgstr "加載中"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 #, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
@@ -3469,7 +3484,7 @@ msgstr "讀取遊戲"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
@@ -3477,24 +3492,24 @@ msgstr ""
 "而且也沒有適用的存檔更新器。\n"
 "由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "載入不兼容的存檔？"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "選取的存檔已知會跟這個版本的Thrive不兼容。\n"
 "而且也沒有適用的存檔更新器。\n"
 "由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 #, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "載入無效的存檔？"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "無法從這個文件中載入存檔信息。\n"
@@ -3660,7 +3675,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3774,8 +3789,8 @@ msgstr "你每次繁殖時都會進入微生物編輯器，你可以在那改變
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "生物統計"
@@ -3988,7 +4003,7 @@ msgstr "細胞的發電站。線粒體（複數：線粒體）是一個雙膜結
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4384,7 +4399,7 @@ msgstr ""
 msgid "NEW"
 msgstr "新增"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "這個存檔是來自更新版本的Thrive的並且很可能不兼容。\n"
@@ -4555,15 +4570,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "已禁用"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "沒有處理"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "未找到存檔"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存檔目錄"
 
@@ -4638,7 +4653,7 @@ msgstr "自殺"
 msgid "OK"
 msgstr "確認"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "這個存檔是來自於更老版本的Thrive的，有可能不兼容。\n"
@@ -4693,7 +4708,7 @@ msgstr "打開細胞器菜單"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "打開幫助界面"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "打開存檔文件夾"
 
@@ -4787,7 +4802,7 @@ msgstr "用來刺其它細胞。"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "滲透調節"
 
@@ -5043,8 +5058,8 @@ msgstr "和平"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5140,7 +5155,7 @@ msgstr "玩家死亡"
 msgid "PLAYER_DUPLICATE"
 msgstr "玩家分裂"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已滅絕"
 
@@ -5324,7 +5339,7 @@ msgstr "速度："
 msgid "READING_SAVE_DATA"
 msgstr "讀取存檔數據中"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "已就緒"
@@ -5346,7 +5361,7 @@ msgstr "重做"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "重做上一個動作"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "刷新"
 
@@ -5588,12 +5603,13 @@ msgstr "運行{0}個世界"
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "鐵硫菌藍蛋白"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "鐵硫菌藍蛋白[Rusticyanin]能夠利用二氧化碳和氧將鐵從一種化學狀態氧化為另一種化學狀態。這個過程被稱作鐵呼吸，從中產出可被細胞收集的能量。"
@@ -5628,7 +5644,7 @@ msgstr "保存並繼續"
 msgid "SAVE_AUTOSAVE"
 msgstr "自動存檔"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "刪去的存檔無法復原，你確定要永久性刪除{0}嗎？"
 
@@ -5677,7 +5693,7 @@ msgstr "無效"
 msgid "SAVE_IS_INVALID"
 msgstr "存檔無效"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "選取的存檔是來自於舊版本的Thrive的，但是可以被更新。\n"
@@ -5697,15 +5713,15 @@ msgstr "手動"
 msgid "SAVE_QUICKSAVE"
 msgstr "快速存檔"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "已被使用的空間："
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "存檔更新失敗"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "更新此存檔失敗，錯誤："
 
@@ -5718,18 +5734,18 @@ msgstr "由於異常，保存信息失敗：{0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "創建中……"
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 "更新此存檔失敗，錯誤：\n"
 "{0}"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "當前情況下無法保存："
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
@@ -5805,7 +5821,7 @@ msgstr "分泌粘液"
 msgid "SEED_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "選取的："
 
@@ -5813,17 +5829,17 @@ msgstr "選取的："
 msgid "SELECTED_MOD"
 msgstr "被選取Mod："
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "選取的存檔不兼容"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "選取的存檔不兼容"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 #, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "選取的存檔無法更新"
@@ -6003,7 +6019,7 @@ msgid "SIZE_COLON"
 msgstr "大小："
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "展覽"
 
@@ -6694,35 +6710,35 @@ msgstr "顯示全球事件"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "顯示本地事件"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分離出來，作為一個新物種來填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] 由於不同的演化壓力，從 [b][u]{1}[/u][/b] 作為一個新物種分離出來"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b]已經滅絕了！"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] 已經從這個區域消失"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "部分[b][u]{0}[/u][/b]人口已從{1}遷移到此"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] 人口的一部分已遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b]人口已经減少到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] 人口已經增加到 {1}"
 
@@ -6797,7 +6813,7 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "總人口："
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "存檔數："
 
@@ -6848,7 +6864,7 @@ msgstr "高音提高"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "嘗試截一些圖吧！"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "試著存個檔吧！"
 
@@ -7316,7 +7332,7 @@ msgstr "等待auto-evo："
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "從這個星球上滅絕了"
 

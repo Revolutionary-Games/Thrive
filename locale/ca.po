@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -183,7 +183,7 @@ msgstr "ha mutat"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadístiques Generals de tots els mons"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
@@ -303,12 +303,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Equilibri d'ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "Producció d'ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
 
@@ -423,7 +423,7 @@ msgstr "Estadi de Microbi"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "Enrere"
 
@@ -445,7 +445,7 @@ msgstr "Enrere"
 msgid "BASE_MOBILITY"
 msgstr "Mobilitat base"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Capacitat de moviment"
 
@@ -762,11 +762,11 @@ msgstr "Cèl·lula"
 msgid "CELLS"
 msgstr "Cèl·lules"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Cel·lulasa"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "La cel·lulasa permet a la cèl·lula trencar membranes de cel·lulosa. Cada addició n'augmenta l'efectivitat."
 
@@ -858,11 +858,11 @@ msgstr "Quimiosíntesi"
 msgid "CHITIN"
 msgstr "Quitina"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Quitinasa"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "La quitinasa permet a la cèl·lula digerir membranes de quitina. Cada addició n'augmenta l'efectivitat."
 
@@ -920,7 +920,7 @@ msgstr "Augmenta la velocitat de gir de grans cèl·lules."
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Netejar els arxius de guardat antics"
 
@@ -1384,7 +1384,7 @@ msgstr "Obrir pantalla d'ajuda"
 msgid "CURRENT_WORLD"
 msgstr "Món Actual"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
@@ -1473,7 +1473,7 @@ msgstr "Aparell d'output per defecte"
 msgid "DELETE"
 msgstr "Eliminar"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "No es pot desfer eliminar tots els arxius de guardat Auto i Ràpids, estàs segur que vols eliminar permanentment els següents?\n"
@@ -1486,7 +1486,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur que el voleu eliminar permanentment?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 
@@ -1498,19 +1498,19 @@ msgstr "Eliminar orgànul"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur que el voleu eliminar permanentment?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Eliminar tot el que ha estat seleccionat"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Eliminar arxiu(s) de guardat seleccionat(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "L'acció d'eliminar els arxius de guardat seleccionats és irreversible. Esteu segur que voleu eliminar permanentment el següent nombre d'arxius: {0}?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Eliminar aquest arxiu de guardat?"
 
@@ -1644,7 +1644,7 @@ msgstr "Velocitat de Digestió"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Velocitat de Digestió:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1951,11 +1951,11 @@ msgstr "Habilitar l'editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectes de llum del GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2162,6 +2162,21 @@ msgstr "Pausar el joc"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Error"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "El Meu Mod Esbalaïdor"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Error: No s'ha pogut guardar la nova configuració."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr "Actualitzar l'arxiu de guardat especificat degut al següent error:"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2471,7 +2486,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1} des de {2}"
 
@@ -2843,7 +2858,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Estàs jugant els prototips d'estadis futurs, inclosos en el joc actual.\n"
@@ -3365,11 +3380,11 @@ msgstr "Color de la línia:"
 msgid "LIPASE"
 msgstr "Lipasa"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Carregar"
 
@@ -3377,7 +3392,7 @@ msgstr "Carregar"
 msgid "LOADING"
 msgstr "Carregant"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregant..."
@@ -3417,29 +3432,29 @@ msgstr "Carregar una partida"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Carregar arxius de guardat previs"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "L'arxiu de guardat seleccionat és un guardat fet en un prototip d'una versió de Thrive diferent.\n"
 "Degut a això, aquest guardat no pot ser carregat, ja que els guardats de prototips no es poden actualitzar.\n"
 "Mantenir la compatibilitat de guardat per als prototips seria un gran llast i faria alentir molt el desenvolupament de prototips."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat incompatible?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "L'arxiu de guardat seleccionat no és compatible amb la present versió de Thrive.\n"
 "I no hi ha cap actualitzador d'arxius de guardat per actualitzar aquest arxiu de guardat.\n"
 "Com que Thrive encara està en una fase primerenca de desenvolupament, la compatibilitat entre versions no és la major prioritat. Per això, encara no s'ha implementat un programa convertidor d'arxius de guardat."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat no vàlid?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "La informació de guardat no ha pogut ser carregada des d'aquest arxiu.\n"
@@ -3600,7 +3615,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3701,8 +3716,8 @@ msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podr
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Lliure de Microbi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
@@ -3926,7 +3941,7 @@ msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els M
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4337,7 +4352,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Nou"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Aquest arxiu de guardat pertany a una versió de Thrive més nova que l'actual i, probablement, sigui incompatible.\n"
@@ -4502,15 +4517,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "Inhabilitat"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Cap procés"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "No s'han trobat arxius de guardat"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "No s'ha trobar el directori d'arxius de guardat"
 
@@ -4585,7 +4600,7 @@ msgstr "Suicidi"
 msgid "OK"
 msgstr "D'acord"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Aquest arxiu de guardat pertany a una versió de Thrive antiga i, probablement, sigui incompatible.\n"
@@ -4638,7 +4653,7 @@ msgstr "Obrir menú d'orgànul"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Obrir pantalla d'ajuda"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Obrir el directori de guardats"
 
@@ -4731,7 +4746,7 @@ msgstr "Apunyala altres cèl·lules amb aquesta part."
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Osmoregulació"
 
@@ -4983,8 +4998,8 @@ msgstr "Pacífic"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5074,7 +5089,7 @@ msgstr "el jugador ha mort"
 msgid "PLAYER_DUPLICATE"
 msgstr "Jugador Duplicat"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Jugador extingit"
 
@@ -5254,7 +5269,7 @@ msgstr "Nou nom:"
 msgid "READING_SAVE_DATA"
 msgstr "Llegint les dades guardades"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 #, fuzzy
 msgid "READY"
@@ -5277,7 +5292,7 @@ msgstr "Refer l'acció"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Refer la darrera acció"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Refrescar"
 
@@ -5513,12 +5528,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Han passat: {0:#,#} anys"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
@@ -5553,7 +5569,7 @@ msgstr "Guardar i continuar"
 msgid "SAVE_AUTOSAVE"
 msgstr "Autoguardat"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur que voleu eliminar permanentment l'arxiu {0}?"
 
@@ -5601,7 +5617,7 @@ msgstr "No vàlid"
 msgid "SAVE_IS_INVALID"
 msgstr "El fitxer guardat no és vàlid"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "L'arxiu de guardat seleccionat és d'una versió més antiga de Thrive, però es pot actualitzar.\n"
@@ -5621,15 +5637,15 @@ msgstr "Manual"
 msgid "SAVE_QUICKSAVE"
 msgstr "Guardat ràpid"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "Espai emprat pels arxius:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Actualització d'arxiu de guardat fallida"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Actualitzar l'arxiu de guardat especificat degut al següent error:"
 
@@ -5641,15 +5657,15 @@ msgstr "La informació de guardat ha estat fallida degut a l'excepció: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Guardant..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "No s'ha pogut guardar! S'ha produït una excepció"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "No és possible guardar actualment degut a:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
@@ -5726,7 +5742,7 @@ msgstr "Secretar mucílag"
 msgid "SEED_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "Seleccionat:"
 
@@ -5734,15 +5750,15 @@ msgstr "Seleccionat:"
 msgid "SELECTED_MOD"
 msgstr "Mod Seleccionat:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "L'arxiu de guardat seleccionat és incompatible"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "L'arxiu de guardat seleccionat és un prototip incompatible"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "L'arxiu de guardat seleccionat es pot actualitzar"
 
@@ -5913,7 +5929,7 @@ msgid "SIZE_COLON"
 msgstr "Mida:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "Presentació de diapositives"
 
@@ -6600,35 +6616,35 @@ msgstr "Mostrar esdeveniments globals"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Mostrar esdeveniments locals"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a una nova espècie per omplir un nínxol"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a noves espècies degut a diferents pressions selectives"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] s'ha extingit!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] ha desaparegut de l'ecosistema"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a aquest ecosistema des de {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] població ha disminuït a {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] població ha augmentat a {1}"
 
@@ -6701,7 +6717,7 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Població Total:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "Nombre total d'arxius guardats:"
 
@@ -6751,7 +6767,7 @@ msgstr "Sons aguts amunt"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Intenta fer algunes captures de pantalla!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Intenta guardar una partida!"
 
@@ -7204,7 +7220,7 @@ msgstr "S'està esperant l'algorisme auto-evo:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "s'ha extingit del planeta"
 

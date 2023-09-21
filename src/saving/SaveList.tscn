@@ -23,7 +23,7 @@ LoadIncompatibleDialogPath = NodePath("MarginContainer/VBoxContainer/LoadKnownIn
 UpgradeSaveDialogPath = NodePath("MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog")
 UpgradeFailedDialogPath = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
 LoadIncompatiblePrototypeDialogPath = NodePath("MarginContainer/VBoxContainer/LoadIncompatiblePrototypeDialog")
-ErrorSaveDeletionFailedPath = NodePath("MarginContainer/VBoxContainer/ErrorSaveDeletionFailedDialog")
+SaveDeletionFailedErrorPath = NodePath("MarginContainer/VBoxContainer/ErrorSaveDeletionFailedDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0

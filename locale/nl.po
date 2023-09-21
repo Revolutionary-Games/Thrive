@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2023-06-22 05:54+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -172,7 +172,7 @@ msgstr "Sta soorten toe niet te muteren (als geen goede mutatie kon worden gevon
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generieke Statistieken voor Alle Werelden"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generaties:[/b]\n"
@@ -310,12 +310,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP-balans"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP Productie"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTIE TE LAAG!"
 
@@ -428,7 +428,7 @@ msgstr "Bewustzijnsfase"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "Terug"
 
@@ -450,7 +450,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Basismobiliteit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Basisbeweging"
 
@@ -758,11 +758,11 @@ msgstr "Cel"
 msgid "CELLS"
 msgstr "Cellen"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Cellulase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Cellulase maakt het mogelijk voor een cel om membranen van cellulose af te breken. Elke toevoeging verhoogt de effectiviteit."
 
@@ -854,11 +854,11 @@ msgstr "Chemosynthese"
 msgid "CHITIN"
 msgstr "Chitine"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Chitinase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Chitinase maakt het mogelijk voor de cel om chitinemembranen af te breken. Elke toevoeging verhoogt de effectiviteit."
 
@@ -915,7 +915,7 @@ msgstr "Verhoogt de draaisnelheid van grote cellen."
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Bevolking: {0} Voedsel: {1} Wetenschap: {2}"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Oude Opslagbestanden Opschonen"
 
@@ -1366,7 +1366,7 @@ msgstr "Huidige onderzoek: {0}({1})"
 msgid "CURRENT_WORLD"
 msgstr "Huidige Wereld"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generaties:[/b]\n"
@@ -1471,7 +1471,7 @@ msgstr "Standaard uitvoer apparaat"
 msgid "DELETE"
 msgstr "Verwijder"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Verwijderen van alle oude Auto en Snelle opslagbestanden kan niet ongedaan worden gemaakt. Weet je zeker dat je het volgende wil verwijderen?\n"
@@ -1484,7 +1484,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Oude opslagbestanden verwijderen?"
 
@@ -1496,19 +1496,19 @@ msgstr "Verwijder organellen"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Verwijder Geselecteerde"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Verwijder geselecteerde opslagbestand(en)?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Het verwijderen van geselecteerde opslagbestand(en) kan niet ongedaan worden gemaakt, weet je zeker dat je {0} opslagbestand(en) wil verwijderen?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Dit opgeslagen bestand verwijderen?"
 
@@ -1644,7 +1644,7 @@ msgstr "Verteringssnelheid"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Verteringssnelheid:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1944,11 +1944,11 @@ msgstr "Schakel de editor in"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2147,6 +2147,23 @@ msgstr "Bezoek onze Facebookpagina"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Mislukt"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Mijn Geweldige Mod"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr ""
+"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
+"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2429,7 +2446,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd van {1} naar {2}"
 
@@ -2788,7 +2805,7 @@ msgstr "Grond"
 msgid "INVERTED"
 msgstr "Omgekeerd"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Je speelt de latere faseprototypen die met het spel zijn meegeleverd.\n"
@@ -3303,11 +3320,11 @@ msgstr "Lijnkleur:"
 msgid "LIPASE"
 msgstr "Lipase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "Lipase maakt het mogelijk voor de cel om de meeste membranen af te breken. Je cel produceert al een beetje van dit enzym zonder lysosoom. Het selecteren van dit type zal de effectiviteit verhogen."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Laden"
 
@@ -3315,7 +3332,7 @@ msgstr "Laden"
 msgid "LOADING"
 msgstr "Laden"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laden..."
@@ -3355,29 +3372,29 @@ msgstr "Laad spel"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Laad eerder opgeslagen spellen"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Het opslagbestand wat is geselecteerd om te worden geladen is een opslagbestand gemaakt in een prototype met een andere Thrive versie.\n"
 "Dit opslagbestand kan niet worden geladen omdat opslagbestanden van prototypen niet bijgewerkt kunnen worden.\n"
 "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen bijwerkmethoden voor alle versies."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Het opslagbestand wat is geselecteerd om te worden geladen werkt niet goed met deze versie van Thrive.\n"
 "Er is geen opslagbestandbijwerker beschikbaar om dit opslagbestand bij te werken.\n"
 "Aangezien Thrive nog zeer vroeg in ontwikkeling is, is het bijhouden van compatibiliteit van opslagbestenden geen hoge prioriteit. Daartoe zijn er geen opslagbestandbijwerkers beschikbaar voor alle versies."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Ongeldig opgeslagen bestand laden?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Opgeslagen informatie kon niet worden geladen van dit bestand.\n"
@@ -3537,7 +3554,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3637,8 +3654,8 @@ msgstr "Elke keer dat je jezelf voortplant zal de Microbenbewerker worden geopen
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen bewerker"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 
@@ -3860,7 +3877,7 @@ msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. De snelheid schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Gemixt..."
 
@@ -4248,7 +4265,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Nieuw"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dit opgeslagen bestand is van een nieuwere versie van Thrive en is waarschijnlijk niet-compatibel.\n"
@@ -4410,15 +4427,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "Geen Mods Aangezet"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Geen processen"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Geen Opslagen Bestanden Gevonden"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Geen map voor opslagbestanden gevonden"
 
@@ -4491,7 +4508,7 @@ msgstr "Bezoek de officiële Revolutionary Games website"
 msgid "OK"
 msgstr "OK"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-compatibel zijn.\n"
@@ -4543,7 +4560,7 @@ msgstr "Open organel menu"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Open Onderzoeksvenster"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Open Map voor Opslagbestanden"
 
@@ -4629,7 +4646,7 @@ msgstr "Kan worden gebruikt om andere cellen te steken of te verdedigen tegen gi
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistieken"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Osmoregulatie"
 
@@ -4870,8 +4887,8 @@ msgstr "Vreedzaam"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -4964,7 +4981,7 @@ msgstr "speler stierf"
 msgid "PLAYER_DUPLICATE"
 msgstr "Dupliceer Speler"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
 
@@ -5142,7 +5159,7 @@ msgstr "Rauw:"
 msgid "READING_SAVE_DATA"
 msgstr "Opslagdata wordt gelezen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Klaar"
@@ -5163,7 +5180,7 @@ msgstr "Opnieuw Doen"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "De laatste actie opnieuw doen"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Ververs"
 
@@ -5389,12 +5406,13 @@ msgstr "Voor {0} Werelden Uit"
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Voer een zekere hoeveelheid werelden uit. De hoeveelheid generaties voor iedere wereld is bepaald door de ronddraaiende kist boven."
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rusticyanine"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een staat naar een andere to oxideren. Dit proces heeft [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
@@ -5430,7 +5448,7 @@ msgstr "Opslaan en doorgaan"
 msgid "SAVE_AUTOSAVE"
 msgstr "Automatisch opslaan"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
 
@@ -5478,7 +5496,7 @@ msgstr "Ongeldig"
 msgid "SAVE_IS_INVALID"
 msgstr "Opslagbestand is incorrect"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "De geselecteerde save is van een oudere versie van Thrive maar kan worden geüpgraded.\n"
@@ -5498,15 +5516,15 @@ msgstr "Handmatig"
 msgid "SAVE_QUICKSAVE"
 msgstr "Snel opslaan"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "Ruimte gebruikt:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Het upgraden van de save is mislukt"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
@@ -5518,15 +5536,15 @@ msgstr "Het opslaan van informatie is mislukt door uitzondering: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Opslaan..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Opslaan mislukt! Er heeft zich een uitzondering voorgedaan"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Opslaan is op dit moment niet mogelijk door:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Opslaan is gelukt"
 
@@ -5600,7 +5618,7 @@ msgstr "Slijm vrijlaten"
 msgid "SEED_LABEL"
 msgstr "Kiem van Planeet: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "Geselecteerd:"
 
@@ -5608,15 +5626,15 @@ msgstr "Geselecteerd:"
 msgid "SELECTED_MOD"
 msgstr "Geselecteerde Mod:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Geselecteerd opgeslagen bestand is niet-compatibel"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Geselecteerd opgeslagen bestand is een niet-compatibel prototype"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Geselecteerd opgeslagen bestand is upgradebaar"
 
@@ -5782,7 +5800,7 @@ msgid "SIZE_COLON"
 msgstr "Grootte:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "Diavoorstelling"
 
@@ -6477,35 +6495,35 @@ msgstr "Toon globale gebeurtenissen"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Toon lokale gebeurtenissen"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort om een niche te vullen"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort door een verschil in selectiedruk"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] is uitgestorven!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] is verdwenen van dit gebied"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd van dit gebied naar {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd naar {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "De bevolking van [b][u]{0}[/u][/b] is verminderd tot {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "De bevolking van [b][u]{0}[/u][/b] is vermeerderd tot {1}"
 
@@ -6577,7 +6595,7 @@ msgstr "Handbijl"
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Totale Bevolking:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "Totale hoeveelheid opslagbestanden:"
 
@@ -6626,7 +6644,7 @@ msgstr "Hoge tonen Harder"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Probeer enkele soorten te fossilizeren!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Probeer een opslagbestand te maken!"
 
@@ -7075,7 +7093,7 @@ msgstr "Wachten op auto-evo:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Welkom bij de Thriveopedia"
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "stierf uit op de planeet"
 

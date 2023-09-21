@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -171,7 +171,7 @@ msgstr "Позволить видам не мутировать (если не �
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Общая статистика всех миров"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Поколения:[/b]\n"
@@ -309,12 +309,12 @@ msgstr "АТФ"
 msgid "ATP_BALANCE"
 msgstr "Баланс АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "Производство АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "СЛИШКОМ НИЗКОЕ ПРОИЗВОДСТВО АТФ!"
 
@@ -427,7 +427,7 @@ msgstr "Стадия Сознания"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "Назад"
 
@@ -449,7 +449,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Базовая Мобильность"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Базовое Передвижение"
 
@@ -757,11 +757,11 @@ msgstr "Клетка"
 msgid "CELLS"
 msgstr "Клетки"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Целлюлаза"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Целлюлаза позволяет клетке разрушать целлюлозную мембрану. С количеством повышается эффективность."
 
@@ -853,11 +853,11 @@ msgstr "Хемосинтез"
 msgid "CHITIN"
 msgstr "Хитин"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Хитиназа"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Хитиназа позволяет клетке разрушать хитиновую мембрану. С количеством повышается эффективность."
 
@@ -914,7 +914,7 @@ msgstr "Повышает скорость поворота клеток."
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Популяция: {0} Еда: {1} Наука: {2}"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Удалить устаревшие сохранения"
 
@@ -1368,7 +1368,7 @@ msgstr "Сейчас исследуется: {0} {1}"
 msgid "CURRENT_WORLD"
 msgstr "Текущий мир"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Поколения:[/b]\n"
@@ -1473,7 +1473,7 @@ msgstr "Устройство вывода по умолчанию"
 msgid "DELETE"
 msgstr "Удалить"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Удаление всех старых автоматических и быстрых сохранений необратимо, вы действительно желаете навсегда удалить их?\n"
@@ -1485,7 +1485,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Удаление окаменелости не может быть отменено, вы действительно хотите удалить навсегда окаменелость?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Удалить старые сохранения?"
 
@@ -1497,19 +1497,19 @@ msgstr "Удалить органеллу"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Удалить выбранное"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Удалить выбранное(ые) сохранение(я)?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Удаление выбранного(ых) сохранения(й) будет невозможно отменить, вы действительно хотите перманентно удалить {0} сохранение(ий)?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Удалить это cохранение?"
 
@@ -1647,7 +1647,7 @@ msgstr "Скорость переваривания"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Скорость переваривания:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/сек"
 
@@ -1947,11 +1947,11 @@ msgstr "Включить редактор"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
@@ -2149,6 +2149,21 @@ msgstr "Посетить нашу страницу на Facebook"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Неудачно"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Мой потрясающий мод"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr "Файл окаменелости не может быть удалён"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2421,7 +2436,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "Г"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1} из {2}"
 
@@ -2774,7 +2789,7 @@ msgstr "Поверхность"
 msgid "INVERTED"
 msgstr "Инвертировать"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Вы играете в прототип последующей стадии, включённой в игру.\n"
@@ -3289,11 +3304,11 @@ msgstr "Цвет Линии:"
 msgid "LIPASE"
 msgstr "Липаза"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "Липаза позволяет клетке разрушать большинство типов мембран. Ваша клетка уже производит некоторые ферменты без лизосомы, но выбрав этот тип вы повысите эффективность."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Загрузить"
 
@@ -3301,7 +3316,7 @@ msgstr "Загрузить"
 msgid "LOADING"
 msgstr "Загрузка"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Загрузка..."
@@ -3341,29 +3356,29 @@ msgstr "Загрузить игру"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Загрузить сохраненные игры"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Выбранное для загрузки сохранение сделано в прототипе с помощью другой версии Thrive.\n"
 "Поэтому сохранение не может быть загружено, так как прототипы не могут быть обновлены.\n"
 "Поддержание совместимости сохранений прототипов будет очень сложно, так как многое перерабатывается и написание обновлений сохранений бы сильно замедлило разработку."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Загрузить несовместимое сохранение?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Известно, что выбранное для загрузки сохранение несовместимо с этой версией Thrive.\n"
 "И нет средства для обновления этого сохранения для новой версии.\n"
 "Поскольку Thrive все еще находится на ранней стадии разработки, совместимость с сохранениями не является приоритетной задачей, поэтому для всех версий не существует конвертера для сохранений."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Загрузить недействительное сохранение?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Сохранённая информация не может быть загружена из этого файла.\n"
@@ -3523,7 +3538,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} МиБ"
 
@@ -3623,8 +3638,8 @@ msgstr "Каждый раз размножаясь, вы можете войти
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Свободный микробный редактор"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Найдено {1} видов, среднее {2} которых"
 
@@ -3845,7 +3860,7 @@ msgstr "Электростанция клетки. Митохондрия — д
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Перемешано..."
 
@@ -4231,7 +4246,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Новый"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Это сохранение из новых версий Thrive и скорее всего несовместимо.\n"
@@ -4393,15 +4408,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "Отсутствуют включенные моды"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Клеточные процессы не происходят"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Не Найдено Сохранений"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Папка сохранений не найдена"
 
@@ -4474,7 +4489,7 @@ msgstr "Зайти на официальный сайт Revolutionary Games"
 msgid "OK"
 msgstr "ОК"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Это сохранение из старой версии Thrive и оно может быть несовместимо.\n"
@@ -4525,7 +4540,7 @@ msgstr "Открыть меню органеллы"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Открыть окно исследований"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Открыть папку сохранений"
 
@@ -4611,7 +4626,7 @@ msgstr "Проткните этим другие клетки."
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Осморегуляция"
 
@@ -4852,8 +4867,8 @@ msgstr "Мирный"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -4946,7 +4961,7 @@ msgstr "игрок умер"
 msgid "PLAYER_DUPLICATE"
 msgstr "Клонировать Игрока"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Игрок вымер"
 
@@ -5124,7 +5139,7 @@ msgstr "Сырое значение:"
 msgid "READING_SAVE_DATA"
 msgstr "Чтение данных сохранения"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Готово"
@@ -5145,7 +5160,7 @@ msgstr "Вернуть"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Вернуть последнее действие"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Обновить"
 
@@ -5370,12 +5385,13 @@ msgstr "Смоделируйте {0} миров"
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Запустить определенное количество миров, количество генераций на каждый мир определяется в меню сверху."
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Рустицианин"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию ([thrive:compound type=\"atp\"][/thrive:compound]) , которую клетка затем может собрать."
@@ -5412,7 +5428,7 @@ msgstr "Сохранить и продолжить"
 msgid "SAVE_AUTOSAVE"
 msgstr "Автосохранение"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Удаление текущего сохранения невозможно отменить, вы действительно желаете перманентно удалить {0}?"
 
@@ -5459,7 +5475,7 @@ msgstr "Недействительно"
 msgid "SAVE_IS_INVALID"
 msgstr "Сохранение сломано"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Выбранное сохранение взято из более старой версии Thrive, но может быть обновлено.\n"
@@ -5479,15 +5495,15 @@ msgstr "Ручное"
 msgid "SAVE_QUICKSAVE"
 msgstr "Быстрое Сохранение"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "Использовано места:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Не удалось обновить сохранение"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Обновление указанного сохранения не удалось выполнить из-за следующей ошибки:"
 
@@ -5499,15 +5515,15 @@ msgstr "Не удалось сохранить информацию из-за и
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Сохранение..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Сохранение не удалось! Произошла ошибка"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Сохранение сейчас невозможно по причине:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Сохранение успешно"
 
@@ -5577,7 +5593,7 @@ msgstr "Выделить слизь"
 msgid "SEED_LABEL"
 msgstr "Сид планеты: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "Выбрано:"
 
@@ -5585,15 +5601,15 @@ msgstr "Выбрано:"
 msgid "SELECTED_MOD"
 msgstr "Выбранный мод:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Выбранное сохранение несовместимо"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Выбрано сохранение с несовместимым прототипом"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Выбранное сохранение можно обновить"
 
@@ -5758,7 +5774,7 @@ msgid "SIZE_COLON"
 msgstr "Размер:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "Слайд-шоу"
 
@@ -6437,35 +6453,35 @@ msgstr "Показать глобальные события"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Показать местные события"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид, чтобы заполнить нишу"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид в связи с различными условиями отбора"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "Вид [b][u]{0}[/u][/b] вымер!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "Вид [b][u]{0}[/u][/b] исчез из этого биома"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в этот биом из {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Популяция вида [b][u]{0}[/u][/b] уменьшилась до {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Популяция вида [b][u]{0}[/u][/b] увеличилась до {1}"
 
@@ -6537,7 +6553,7 @@ msgstr "Ручной Топор"
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Общая Популяция:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "Всего сохранений:"
 
@@ -6586,7 +6602,7 @@ msgstr "TrebleUp"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Попробуйте сохранить окаменелости некоторых видов!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Попробуйте сделать сохранение!"
 
@@ -7033,7 +7049,7 @@ msgstr "Ожидание Авто-Эво:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Добро пожаловать в Thriveopedia"
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "вымерли с планеты"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-21 10:56+1000\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Daniel Heslop <daniel@heslop.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -172,7 +172,7 @@ msgstr "Verbiete der Spezies zu mutieren (wenn keine gute Mutation gefunden wird
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Allgemeine Statistiken aller Welten"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generationen:[/b]\n"
@@ -304,12 +304,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP-Saldo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktion"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTION ZU NIEDRIG!"
 
@@ -424,7 +424,7 @@ msgstr "Mikroben Stadium"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:111
 msgid "BACK"
 msgstr "Zurück"
 
@@ -446,7 +446,7 @@ msgstr "Rücktaste"
 msgid "BASE_MOBILITY"
 msgstr "Basis Mobilität"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Basisbewegung"
 
@@ -757,11 +757,11 @@ msgstr "Zelle"
 msgid "CELLS"
 msgstr "Zellen"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Zellulase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Cellulase ermöglicht es der Zelle Cellulose Membranen zu zersetzen. Dies erhöht die Effektivität des Prozesses."
 
@@ -853,11 +853,11 @@ msgstr "Chemo-Synthese"
 msgid "CHITIN"
 msgstr "Chitin"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Chitinase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Chitinase ermöglicht es der Zelle Chitin Membranen zu zersetzen. Dies erhöht die Effektivität des Prozesses."
 
@@ -915,7 +915,7 @@ msgstr "Erhöht die Wendigkeit von großen Zellen."
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismus-Statistik"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Alte Speicherstände aufräumen"
 
@@ -1375,7 +1375,7 @@ msgstr "Hilfemenü öffnen"
 msgid "CURRENT_WORLD"
 msgstr "Aktuelle Welt"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organismus-Statistik"
@@ -1460,7 +1460,7 @@ msgstr "Standardausgabegerät"
 msgid "DELETE"
 msgstr "Löschen"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Das Löschen aller alten Auto- und Schnellspeicherungen kann nicht rückgängig gemacht werden. Bist du sicher, dass du Folgendes dauerhaft löschen möchtest?\n"
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:191
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Alte Spieltände löschen?"
 
@@ -1485,19 +1485,19 @@ msgstr "Organelle löschen"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Ausgewählte löschen"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:184
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Ausgewählte(n) Spielstand/Spielstände wirklich löschen?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Das Löschen des/der ausgewählten Spielstandes/Spielständen kann nicht rückgängig gemacht werden. Bist du sicher, dass du die {0} Speicherung(en) dauerhaft löschen möchten?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Diesen Spielstand wirklich löschen?"
 
@@ -1633,7 +1633,7 @@ msgstr "Ressourcen-Absorptionsgeschwindigkeit"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Ressourcen-Absorptionsgeschwindigkeit:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1937,11 +1937,11 @@ msgstr "Editor aktivieren"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI-Lichteffekte aktivieren"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2142,6 +2142,23 @@ msgstr "Besuche unsere Facebook Seite"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Gescheitert"
+
+#: ../src/saving/SaveManagerGUI.tscn:210
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Mein fantastischer Mod"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:208
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist fehlgeschlagen."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr ""
+"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
+"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-Software, wenn dieser Fehler nicht anders verschwindet."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2444,7 +2461,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist von {1} in {2} migriert"
 
@@ -2815,7 +2832,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr "Invertiert"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Du spielst die späteren Prototypen, die dem Spiel beigefügt sind. \n"
@@ -3331,11 +3348,11 @@ msgstr "Linienfarbe:"
 msgid "LIPASE"
 msgstr "Lipase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "Lipase ermöglicht es der Zelle die meisten Membranen zu zersetzen. Etwas davon wird auch ohne Lysosom von deiner Zelle produziert, aber es hier auszuwählen erhöht die Effizienz des Prozesses."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Laden"
 
@@ -3343,7 +3360,7 @@ msgstr "Laden"
 msgid "LOADING"
 msgstr "Lädt"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Lädt..."
@@ -3383,29 +3400,29 @@ msgstr "Spiel laden"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Ein zuvor gespeichertes Spiel laden"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Der ausgewählte Spielstand wurde mit einem Prototyp einer anderen Thrive Version erstellt.\n"
 "Da Prototyp Spielstände nicht upgradebar sind, kann er nicht geladen werden.\n"
 "Kompatibilität von Speicherständen hat zur Zeit keine hohe Priorität, da es zu viel Arbeitsaufwand kosten würde bei den häufigen Änderungen der Prototypen Spreicherstands Upgrades verfügbar zu machen."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Inkompatiblen Speicherstand laden?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
 "Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
 "Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Ungültigen Speicherstand laden?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Aus dieser Datei konnten keine Speicherinformationen geladen werden.\n"
@@ -3565,7 +3582,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3653,8 +3670,8 @@ msgstr "Jedes Mal, wenn du dich reproduzierst, gelangst du in den Mikroben-Edito
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organismus-Statistik"
@@ -3876,7 +3893,7 @@ msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist e
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Gemischt..."
 
@@ -4267,7 +4284,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Neu"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dieser Speicherstand stammt aus einer neueren Version von Thrive und ist sehr wahrscheinlich inkompatibel.\n"
@@ -4429,15 +4446,15 @@ msgid "NO_MODS_ENABLED"
 msgstr "Keine Mods aktiv"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Keine Prozesse"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "keine Speicherstände gefunden"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:198
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Kein Speicherverzeichnis gefunden"
 
@@ -4511,7 +4528,7 @@ msgstr "Revolutionary Games website besuchen"
 msgid "OK"
 msgstr "OK"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dieser Speicherstand stammt aus einer alten Version von Thrive und ist möglicherweise inkompatibel.\n"
@@ -4564,7 +4581,7 @@ msgstr "Organellenmenü öffnen"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Hilfemenü öffnen"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Speicherverzeichnis öffnen"
 
@@ -4656,7 +4673,7 @@ msgstr "Steche damit andere Zellen."
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismus-Statistik"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
@@ -4902,8 +4919,8 @@ msgstr "Friedlich"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -4997,7 +5014,7 @@ msgstr "Spieler starb"
 msgid "PLAYER_DUPLICATE"
 msgstr "Spieler duplizieren"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
 
@@ -5176,7 +5193,7 @@ msgstr "Rohwert:"
 msgid "READING_SAVE_DATA"
 msgstr "Lesen von Speicherdaten"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Bereit"
@@ -5197,7 +5214,7 @@ msgstr "Wiederherstellen"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Letzte Aktion wiederholen"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Aktualisieren"
 
@@ -5430,12 +5447,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Tritt unserem Discord Server bei"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] zu nutzen um [thrive:compound type=\"iron\"][/thrive:compound] zu oxidieren. Dieser Prozess, der [b]Eisenatmung[/b] genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
@@ -5472,7 +5490,7 @@ msgstr "Speichern und fortfahren"
 msgid "SAVE_AUTOSAVE"
 msgstr "Autospeicherung"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du {0} dauerhaft löschen willst?"
 
@@ -5520,7 +5538,7 @@ msgstr "Ungülig"
 msgid "SAVE_IS_INVALID"
 msgstr "Speicherstand ist ungültig"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Die gewählte Speicherung stammt aus einer alten Thrive-Version, kann aber geupgraded werden.\n"
@@ -5540,15 +5558,15 @@ msgstr "Manuell"
 msgid "SAVE_QUICKSAVE"
 msgstr "Schnellspeicherung"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:143
 msgid "SAVE_SPACE_USED"
 msgstr "Genutzter Platz:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Speicherungsupgrade fehlgeschlagen"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
@@ -5562,15 +5580,15 @@ msgstr "Speichern der Informationen ist fehlgeschlagen: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Speichert..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Speichern fehlgeschlagen. Ein Fehler ist aufgetreten."
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Speichern ist aus folgenden Gründen nicht möglich:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Speichern erfolgreich"
 
@@ -5645,7 +5663,7 @@ msgstr "Schleim absondern"
 msgid "SEED_LABEL"
 msgstr "Planetenseed: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:163
 msgid "SELECTED_COLON"
 msgstr "Ausgewählt:"
 
@@ -5653,15 +5671,15 @@ msgstr "Ausgewählt:"
 msgid "SELECTED_MOD"
 msgstr "Ausgewählte Mods:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Der ausgewählte Speicherstand ist inkompatibel"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Der ausgewählte Speicherstand ist inkompatibel"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Der ausgewählte Speicherstand ist aktualisierbar"
 
@@ -5830,7 +5848,7 @@ msgid "SIZE_COLON"
 msgstr "Größe:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "Diashow"
 
@@ -6521,35 +6539,35 @@ msgstr "Globale Ereignisse anzeigen"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Lokale Ereignisse anzeigen"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] spaltet sich von [b][u]{1}[/u][/b] als neue Art ab, um eine Nische zu füllen"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] spaltet sich von [b][u]{1}[/u][/b] als neue Art ab aufgrund von unterschiedlichem Selektionsdruck"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] ist ausgestorben!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] ist aus diesem Gebiet verschwunden"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist von {1} in dieses Gebiet eingewandert"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist nach {1} migriert"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Die Bevölkerung von [b][u]{0}[/u][/b] hat sich auf {1} verringert"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Die Bevölkerung von [b][u]{0}[/u][/b] hat sich auf {1} gesteigert"
 
@@ -6622,7 +6640,7 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Gesamtbevölkerung:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:123
 msgid "TOTAL_SAVES"
 msgstr "Gesamtspeicherungen:"
 
@@ -6671,7 +6689,7 @@ msgstr "Hoch drei"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Versuche ein paar Fossilien zu machen!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Versuche das Spiel zu speichern!"
 
@@ -7128,7 +7146,7 @@ msgstr "Warte auf Auto-Evo:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Willkommen bei Thriveopedia"
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "wurde ausgelöscht"
 

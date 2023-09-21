@@ -56,7 +56,7 @@ public class SaveList : ScrollContainer
     public NodePath LoadIncompatiblePrototypeDialogPath = null!;
 
     [Export]
-    public NodePath ErrorSaveDeletionFailedPath = null!;
+    public NodePath SaveDeletionFailedErrorPath = null!;
 
 #pragma warning disable CA2213
     private Control loadingItem = null!;
@@ -114,7 +114,7 @@ public class SaveList : ScrollContainer
         upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
         upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
         loadIncompatiblePrototypeDialog = GetNode<CustomConfirmationDialog>(LoadIncompatiblePrototypeDialogPath);
-        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(ErrorSaveDeletionFailedPath);
+        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -230,7 +230,7 @@ public class SaveList : ScrollContainer
                 UpgradeSaveDialogPath.Dispose();
                 UpgradeFailedDialogPath.Dispose();
                 LoadIncompatiblePrototypeDialogPath.Dispose();
-                ErrorSaveDeletionFailedPath.Dispose();
+                SaveDeletionFailedErrorPath.Dispose();
             }
         }
 
