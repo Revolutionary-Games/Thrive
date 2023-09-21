@@ -314,7 +314,7 @@ public static class SaveHelper
         directory.Remove(finalPath);
 
         if (directory.FileExists(finalPath))
-            throw new IOException(finalPath);
+            throw new IOException($"Failed to delete: {finalPath}");
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)

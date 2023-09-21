@@ -42,7 +42,7 @@ public class SaveManagerGUI : Control
     public NodePath SaveDirectoryWarningDialogPath = null!;
 
     [Export]
-    public NodePath ErrorSaveDeletionFailedPath = null!;
+    public NodePath SaveDeletionFailedErrorPath = null!;
 
 #pragma warning disable CA2213
     private SaveList saveList = null!;
@@ -102,7 +102,7 @@ public class SaveManagerGUI : Control
         deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
         deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
         saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
-        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(ErrorSaveDeletionFailedPath);
+        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
@@ -161,7 +161,7 @@ public class SaveManagerGUI : Control
                 DeleteSelectedConfirmDialogPath.Dispose();
                 DeleteOldConfirmDialogPath.Dispose();
                 SaveDirectoryWarningDialogPath.Dispose();
-                ErrorSaveDeletionFailedPath.Dispose();
+                SaveDeletionFailedErrorPath.Dispose();
             }
         }
 
@@ -271,6 +271,7 @@ public class SaveManagerGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
+
         try
         {
             Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));

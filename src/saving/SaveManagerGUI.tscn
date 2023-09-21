@@ -21,7 +21,7 @@ DeleteOldButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
 DeleteSelectedConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
 DeleteOldConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
 SaveDirectoryWarningDialogPath = NodePath("CenterContainer/VBoxContainer/SaveDirectoryWarning")
-ErrorSaveDeletionFailedPath = NodePath("CenterContainer/ErrorSaveDeletionFailedDialog")
+SaveDeletionFailedErrorPath = NodePath("CenterContainer/SaveDeletionFailedDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -97,6 +97,7 @@ margin_right = 1000.0
 margin_bottom = 561.0
 size_flags_vertical = 3
 SelectableItems = true
+ErrorSaveDeletionFailedPath = null
 
 [node name="BottomBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 565.0
@@ -198,7 +199,7 @@ WindowTitle = "NO_SAVE_DIRECTORY"
 HideCancelButton = true
 DialogText = "TRY_MAKING_A_SAVE"
 
-[node name="ErrorSaveDeletionFailedDialog" parent="CenterContainer" instance=ExtResource( 4 )]
+[node name="SaveDeletionFailedDialog" parent="CenterContainer" instance=ExtResource( 4 )]
 margin_left = 440.0
 margin_top = 360.0
 margin_right = 840.0
@@ -206,7 +207,7 @@ margin_bottom = 360.0
 rect_min_size = Vector2( 400, 0 )
 WindowTitle = "FAILED_SAVE_DELETION"
 HideCancelButton = true
-DialogText = "FAILED_SAVE_DELETION_DESCRIPTION"
+DialogText = "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshButtonPressed"]
