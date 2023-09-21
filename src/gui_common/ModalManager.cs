@@ -95,25 +95,23 @@ public class ModalManager : NodeWithInput
 
         var popup = modalStack.First();
 
-        return HideModal(popup);
+        if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
+            return false;
+
+        HideModal(popup);
+
+        return true;
     }
 
     /// <summary>
     ///   Attempt to clear all open modals.
     /// </summary>
-    /// <returns>Returns true if all modals were closed, false otherwise.</returns>
-    public bool ClearModals()
+    public void ClearModals()
     {
-        if (modalStack.Count <= 0)
-            return true;
-
-        for (int i = 0; i < modalStack.Count; ++i)
+        foreach (var modal in modalStack)
         {
-            if (!HideModal(modalStack[i]))
-                return false;
+            HideModal(modal);
         }
-
-        return true;
     }
 
     /// <summary>
@@ -137,11 +135,10 @@ public class ModalManager : NodeWithInput
     ///   This won't hide the modal if it's exclusive and doesn't allow closing on escape.
     /// </summary>
     /// <param name="popup">Modal to hide</param>
-    /// <returns>True if the modal was hidden</returns>
-    private static bool HideModal(TopLevelContainer popup)
+    private static void HideModal(TopLevelContainer popup)
     {
-        if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
-            return false;
+        if (!popup.Visible)
+            return;
 
         // This is emitted before closing to allow window using components to differentiate between "cancel" and
         // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
@@ -150,8 +147,6 @@ public class ModalManager : NodeWithInput
 
         popup.Close();
         popup.Notification(Control.NotificationModalClose);
-
-        return true;
     }
 
     private void UpdateModals()
