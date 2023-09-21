@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-21 23:46+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -928,7 +928,7 @@ msgstr "清除旧存档"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "关闭"
@@ -2551,7 +2551,7 @@ msgstr "按住[thrive:input]g_free_cursor[/thrive:input]以显示鼠标指针"
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "长按以跳过"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 msgid "HOME"
 msgstr "主页"
 
@@ -4505,7 +4505,7 @@ msgstr "打开文件夹"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "打开化石目录"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "您确定想作为这个被选中的物种开始一局新的游戏吗？\n"
@@ -4734,15 +4734,15 @@ msgstr "Page Down"
 msgid "PAGEUP"
 msgstr "Page Up"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 msgid "PAGE_BACK"
 msgstr "转到上一页"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 msgid "PAGE_FORWARD"
 msgstr "转到下一页"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 msgid "PAGE_TITLE"
 msgstr "页面标题"
 
@@ -5582,6 +5582,10 @@ msgstr "滚卷锁定"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "搜索半径："
@@ -5598,7 +5602,7 @@ msgstr "喷射黏液"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
 msgstr "星球种子：{0}"
@@ -6541,7 +6545,7 @@ msgstr "打开物品栏"
 msgid "TOGGLE_METRICS"
 msgstr "切换参数显示"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "打开导航树状图"
 

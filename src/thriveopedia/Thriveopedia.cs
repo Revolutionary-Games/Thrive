@@ -118,8 +118,8 @@ public class Thriveopedia : ControlWithInput
             if (currentGame != null)
             {
                 AddPage("CurrentWorld");
-                AddPage("PatchMap", "CurrentWorld");
-                AddPage("EvolutionaryTree", "CurrentWorld");
+                AddPage("PatchMap");
+                AddPage("EvolutionaryTree");
             }
 
             // Notify all pages of the new game properties
@@ -270,19 +270,21 @@ public class Thriveopedia : ControlWithInput
     ///   Adds a page to the Thriveopedia
     /// </summary>
     /// <param name="name">The name of the page</param>
-    /// <param name="parentName">The name of the page's parent if applicable</param>
-    private void AddPage(string name, string? parentName = null)
+    private void AddPage(string name)
     {
-        // Avoid adding duplicate pages
         if (allPages.Keys.Any(p => p.PageName == name))
             throw new InvalidOperationException($"Attempted to add duplicate page with name {name}");
 
         // For now, load by direct reference to the Godot scene. Could be generalised in future.
         var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
+
+        if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
+            throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
+
         page.Connect(nameof(ThriveopediaPage.OnSceneChanged), this, nameof(HandleSceneChanged));
         pageContainer.AddChild(page);
-        allPages.Add(page, CreateTreeItem(page, parentName));
+        allPages.Add(page, CreateTreeItem(page, page.ParentPageName));
         page.Hide();
     }
 
@@ -388,6 +390,25 @@ public class Thriveopedia : ControlWithInput
     private void OnForwardPressed()
     {
         ChangePage(pageFuture.Pop().PageName, true, false);
+    }
+
+    private void OnSearchUpdated(string newText)
+    {
+        pageTree.Clear();
+        pageTree.CreateItem();
+
+        var pageList = allPages.Keys.ToList();
+        foreach (var page in pageList)
+        {
+            var children = pageList.Where(otherPage => otherPage.ParentPageName == page.PageName);
+
+            if (page.TranslatedPageName.ToLower().Contains(newText) ||
+                children.Any(child => child.TranslatedPageName.ToLower().Contains(newText)))
+            {
+                // We can assume a page is always before its children in the list of all pages
+                allPages[page] = CreateTreeItem(page, page.ParentPageName);
+            }
+        }
     }
 
     private void HandleSceneChanged()

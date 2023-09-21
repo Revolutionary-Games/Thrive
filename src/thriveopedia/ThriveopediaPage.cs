@@ -29,6 +29,8 @@ public abstract class ThriveopediaPage : PanelContainer
     /// </summary>
     public abstract string TranslatedPageName { get; }
 
+    public abstract string? ParentPageName { get; }
+
     /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu. When set, runs any
     ///   page-specific logic relating to the new game details.

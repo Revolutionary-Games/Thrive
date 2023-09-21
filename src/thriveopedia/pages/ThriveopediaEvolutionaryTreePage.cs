@@ -36,6 +36,8 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     public override string TranslatedPageName =>
         TranslationServer.Translate("THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE");
 
+    public override string ParentPageName => "CurrentWorld";
+
     public override void _Ready()
     {
         base._Ready();

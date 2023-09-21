@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-21 23:46+0100\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -934,7 +934,7 @@ msgstr "清除舊存檔"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "關閉"
@@ -2635,7 +2635,7 @@ msgstr "長按[thrive:input]g_free_cursor[/thrive:input]以顯示鼠標指針"
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "按住以顯示光標"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
@@ -4665,7 +4665,7 @@ msgstr "打開文件夾"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "打開日誌文件夾"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "你確定要使用此物種開始新遊戲嗎？\n"
@@ -4906,17 +4906,17 @@ msgstr "Page Down"
 msgid "PAGEUP"
 msgstr "Page Up"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "返回"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "前進"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "移除本地數據"
@@ -5794,6 +5794,10 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "搜索半徑："
@@ -5810,7 +5814,7 @@ msgstr "分泌粘液"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 #, fuzzy
 msgid "SEED_LABEL"
@@ -6784,7 +6788,7 @@ msgstr "切換連接模式"
 msgid "TOGGLE_METRICS"
 msgstr "切換參數顯示"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 

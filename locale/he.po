@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-21 23:46+0100\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -925,7 +925,7 @@ msgstr "נקה שמירות ישנות"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "סגור"
@@ -2578,7 +2578,7 @@ msgstr "החזק [thrive:input]g_free_cursor[/thrive:input] עבור סמן הע
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "החזק בשביל להראות את סמן העכבר"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 #, fuzzy
 msgid "HOME"
 msgstr "מקש Home"
@@ -4557,7 +4557,7 @@ msgstr "פתח תיקייה"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "פתח תקיית קבצי לוג"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4792,17 +4792,17 @@ msgstr "מקש Page Down"
 msgid "PAGEUP"
 msgstr "מקש Page Up"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "מקש חזור"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "מקש קדימה"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Thrive הופעל במצב בטוח"
@@ -5647,6 +5647,10 @@ msgstr "מקש Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "מחפש..."
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "רדיוס חיפוש:"
@@ -5663,7 +5667,7 @@ msgstr "הפרש ריר"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
 msgstr "זרע אקראי של כוכב לכת: {0}"
@@ -6612,7 +6616,7 @@ msgstr "החלף מצב קישור"
 msgid "TOGGLE_METRICS"
 msgstr "החלף את תצוגת המדדים"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 

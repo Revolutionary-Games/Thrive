@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-21 23:46+0100\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -956,7 +956,7 @@ msgstr "이전 저장 정리"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "닫기"
@@ -2625,7 +2625,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "눌러서 커서 보이기"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 msgid "HOME"
 msgstr ""
 
@@ -4636,7 +4636,7 @@ msgstr "로그 폴더 열기"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4875,17 +4875,17 @@ msgstr "아래쪽으로 시야 이동"
 msgid "PAGEUP"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "뒤로가기"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "앞으로 이동"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "세포 진행률"
@@ -5764,6 +5764,10 @@ msgstr ""
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "검색..."
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr ""
@@ -5780,7 +5784,7 @@ msgstr "점액 분비"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 #, fuzzy
 msgid "SEED_LABEL"
@@ -6757,7 +6761,7 @@ msgstr "결합 모드 켜고 끄기"
 msgid "TOGGLE_METRICS"
 msgstr "수치 표시 켜고 끄기"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
