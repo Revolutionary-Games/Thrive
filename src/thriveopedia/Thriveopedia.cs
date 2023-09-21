@@ -402,8 +402,8 @@ public class Thriveopedia : ControlWithInput
         {
             var children = pageList.Where(otherPage => otherPage.ParentPageName == page.PageName);
 
-            if (page.TranslatedPageName.ToLower().Contains(newText) ||
-                children.Any(child => child.TranslatedPageName.ToLower().Contains(newText)))
+            if (page.TranslatedPageName.ToLower().Contains(newText.ToLower()) ||
+                children.Any(child => child.TranslatedPageName.ToLower().Contains(newText.ToLower())))
             {
                 // We can assume a page is always before its children in the list of all pages
                 allPages[page] = CreateTreeItem(page, page.ParentPageName);
