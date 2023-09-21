@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 12:01+0200\n"
+"POT-Creation-Date: 2023-09-20 13:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -56,10 +56,7 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
-"Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць "
-"дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып "
-"клеткі)."
+msgstr "Перамясціцца на стадыю Абуджэння. Дасягома толькі калі ў вас ёсць дастатковая колькасць развітасці мозга (Размясціце аксон у які небудзь тып клеткі)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
 #: ../src/general/base_stage/EditorBase.cs:681
@@ -167,7 +164,6 @@ msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1004
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -239,7 +235,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:521 ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -285,13 +281,10 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "ATP_PRODUCTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -345,7 +338,7 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:419 ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:419
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -402,9 +395,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/MainMenu.tscn:463
-#: ../src/general/MainMenu.tscn:559 ../src/general/MainMenu.tscn:615
-#: ../src/general/MainMenu.tscn:938
+#: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr ""
 
@@ -427,7 +418,6 @@ msgid "BASE_MOBILITY"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -499,7 +489,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:433 ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -736,12 +726,10 @@ msgid "CELLS"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:8
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
 msgid "CELLULASE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:9
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 msgid "CELLULASE_DESCRIPTION"
 msgstr ""
 
@@ -834,12 +822,10 @@ msgid "CHITIN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:13
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
 msgid "CHITINASE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:14
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 
@@ -997,19 +983,19 @@ msgstr ""
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:676 ../src/general/MainMenu.tscn:675
+#: ../src/general/MainMenu.tscn:676
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671 ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:718 ../src/general/MainMenu.tscn:717
+#: ../src/general/MainMenu.tscn:718
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:713 ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1294,7 +1280,7 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357 ../src/general/MainMenu.tscn:356
+#: ../src/general/MainMenu.tscn:357
 msgid "CREDITS"
 msgstr ""
 
@@ -1324,7 +1310,6 @@ msgid "CURRENT_WORLD"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:962
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -1484,11 +1469,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:690 ../src/general/MainMenu.tscn:689
+#: ../src/general/MainMenu.tscn:690
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:685 ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1496,11 +1481,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:704 ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:704
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:699 ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1561,7 +1546,6 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1613,7 +1597,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:862 ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:862
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -1626,12 +1610,10 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:39
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr ""
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:42
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
@@ -1849,12 +1831,10 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
@@ -1984,7 +1964,7 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:365
+#: ../src/general/MainMenu.tscn:366
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2034,7 +2014,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:349 ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "EXTRAS"
 msgstr ""
 
@@ -2042,7 +2022,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:874 ../src/general/MainMenu.tscn:873
+#: ../src/general/MainMenu.tscn:874
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -2290,7 +2270,7 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:826 ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:826
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -2298,11 +2278,11 @@ msgstr ""
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:958 ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:960 ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -2314,7 +2294,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:937 ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -2678,7 +2658,7 @@ msgstr ""
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:802 ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:802
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -3052,7 +3032,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:531 ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:531
 msgid "LICENSES"
 msgstr ""
 
@@ -3173,7 +3153,6 @@ msgid "LIPASE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:4
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 msgid "LIPASE_DESCRIPTION"
 msgstr ""
 
@@ -3218,12 +3197,10 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
-#: ../src/general/MainMenu.tscn:315
 msgid "LOAD_GAME"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
-#: ../src/general/MainMenu.tscn:313
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3404,7 +3381,7 @@ msgid "MICROBES_COUNT"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:590 ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:590
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
@@ -3436,14 +3413,12 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:408 ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:408
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:976
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1020
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
@@ -3615,7 +3590,6 @@ msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 msgid "MIXED_DOT_DOT_DOT"
 msgstr ""
 
@@ -3640,11 +3614,11 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:508 ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:508
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:972 ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:972
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3730,11 +3704,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:986 ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:987 ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:987
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3995,11 +3969,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:304 ../src/general/MainMenu.tscn:303
+#: ../src/general/MainMenu.tscn:304
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:299 ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4138,13 +4112,12 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:970 ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:970
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
@@ -4208,11 +4181,11 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:662 ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:653 ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:653
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4301,12 +4274,10 @@ msgid "OPPORTUNISTIC"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
-#: ../src/general/MainMenu.tscn:324
 msgid "OPTIONS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
-#: ../src/general/MainMenu.tscn:322
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4354,7 +4325,6 @@ msgid "ORGANISM_STATISTICS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -4550,7 +4520,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:814 ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:814
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -4598,8 +4568,6 @@ msgstr ""
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -4821,13 +4789,12 @@ msgstr ""
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:378 ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:378
 msgid "QUIT"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
-#: ../src/general/PauseMenu.tscn:238 ../src/general/MainMenu.tscn:363
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4859,7 +4826,6 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
 msgid "READY"
 msgstr ""
 
@@ -4867,7 +4833,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:850 ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:850
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -4893,7 +4859,6 @@ msgid "REPORT"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
-#: ../src/general/MainMenu.tscn:730
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -5031,7 +4996,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:777 ../src/general/MainMenu.tscn:776
+#: ../src/general/MainMenu.tscn:777
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -5106,7 +5071,6 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
 msgid "RUSTICYANIN"
 msgstr ""
 
@@ -5119,11 +5083,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:982 ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:982
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:980 ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5139,7 +5103,7 @@ msgstr ""
 msgid "SAVE_AUTOSAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.cs:245 ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:245
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
@@ -5479,7 +5443,6 @@ msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:183
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
 msgid "SLIDESHOW"
 msgstr ""
 
@@ -5731,15 +5694,15 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1003 ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1003
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1005 ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1005
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:790 ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:790
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -5779,7 +5742,7 @@ msgstr ""
 msgid "STORAGE_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:651 ../src/general/MainMenu.cs:620
+#: ../src/general/MainMenu.cs:651
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -5999,7 +5962,6 @@ msgid "TESTING_TEAM"
 msgstr ""
 
 #: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6007,7 +5969,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993 ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:993
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -6067,7 +6029,6 @@ msgid "THREADS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
-#: ../src/general/MainMenu.tscn:494
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6131,37 +6092,35 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:962 ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:968 ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:884 ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:943 ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -6221,7 +6180,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:333 ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr ""
 
@@ -6364,7 +6323,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:886 ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:886
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
@@ -6596,7 +6555,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:341 ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:341
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -6609,7 +6568,6 @@ msgid "VISIBLE"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
-#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6641,7 +6599,7 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:842 ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
@@ -6762,7 +6720,7 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:838 ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:838
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
