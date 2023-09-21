@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -23,8 +23,15 @@
 [ext_resource path="res://assets/textures/gui/bevel/warningBadge.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=23]
+[ext_resource path="res://assets/textures/gui/bevel/HealthIcon.png" type="Texture" id=24]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=25]
+[ext_resource path="res://assets/textures/gui/bevel/SizeIcon.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/StorageIcon.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/SpeedIcon.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/gui/bevel/RotationIcon.png" type="Texture" id=29]
 [ext_resource path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" type="PackedScene" id=30]
+[ext_resource path="res://assets/textures/gui/bevel/DigestionIcon.png" type="Texture" id=31]
+[ext_resource path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" type="Texture" id=32]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=34]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=35]
 [ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=39]
@@ -33,8 +40,6 @@
 [ext_resource path="res://src/gui_common/SegmentedBar.tscn" type="PackedScene" id=44]
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=47]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=48]
-[ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=49]
 
 [sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 5.0
@@ -383,8 +388,7 @@ RotationSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxConta
 HpLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Hp")
 StorageLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
 DigestionSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
-DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/DigestionEfficiency")
-DigestionEfficiencyDetailsPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/DigestionEfficienyDetails")
+DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
 GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
 TotalPopulationLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total")
@@ -914,10 +918,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 344.0
-margin_top = 369.0
-margin_right = 660.0
-margin_bottom = 959.0
+margin_left = 360.0
+margin_top = 385.0
+margin_right = 676.0
+margin_bottom = 975.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1000,7 +1004,7 @@ mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer"]
 margin_right = 254.0
-margin_bottom = 332.0
+margin_bottom = 398.0
 mouse_filter = 1
 custom_constants/margin_right = 5
 custom_constants/margin_top = 0
@@ -1010,68 +1014,77 @@ custom_constants/margin_bottom = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer"]
 margin_left = 3.0
 margin_right = 249.0
-margin_bottom = 329.0
+margin_bottom = 395.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Speed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_right = 246.0
-Description = "SPEED_COLON"
-
-[node name="Rotation" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 23.0
-margin_right = 246.0
-margin_bottom = 42.0
-Description = "ROTATION_COLON"
-
 [node name="Hp" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 46.0
 margin_right = 246.0
-margin_bottom = 65.0
 Description = "HP_COLON"
+Icon = ExtResource( 24 )
 
 [node name="Size" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 69.0
+margin_top = 29.0
 margin_right = 246.0
-margin_bottom = 88.0
+margin_bottom = 54.0
 Description = "SIZE_COLON"
+Icon = ExtResource( 26 )
 
 [node name="Storage" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 92.0
+margin_top = 58.0
 margin_right = 246.0
-margin_bottom = 111.0
+margin_bottom = 83.0
 Description = "STORAGE_COLON"
+Icon = ExtResource( 27 )
 
-[node name="DigestionSpeed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 115.0
+[node name="HSeparator" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 87.0
 margin_right = 246.0
-margin_bottom = 134.0
-Description = "DIGESTION_SPEED_COLON"
+margin_bottom = 91.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 138.0
+[node name="Speed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 95.0
+margin_right = 246.0
+margin_bottom = 120.0
+Description = "SPEED_COLON"
+Icon = ExtResource( 28 )
+
+[node name="Rotation" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 124.0
+margin_right = 246.0
+margin_bottom = 149.0
+Description = "ROTATION_COLON"
+Icon = ExtResource( 29 )
+
+[node name="HSeparator2" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 153.0
 margin_right = 246.0
 margin_bottom = 157.0
 
-[node name="DigestionEfficiency" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
-margin_right = 199.0
-size_flags_horizontal = 0
-Description = "DIGESTION_EFFICIENCY_COLON"
-
-[node name="DigestionEfficienyDetails" type="TextureButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 203.0
-margin_right = 222.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 19, 19 )
-texture_normal = ExtResource( 49 )
-texture_pressed = ExtResource( 48 )
-texture_hover = ExtResource( 48 )
-expand = true
-
-[node name="Generation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="DigestionSpeed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 161.0
 margin_right = 246.0
-margin_bottom = 180.0
+margin_bottom = 186.0
+Description = "DIGESTION_SPEED_COLON"
+Icon = ExtResource( 32 )
+
+[node name="DigestionEfficiency" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 190.0
+margin_right = 242.0
+margin_bottom = 215.0
+size_flags_horizontal = 0
+Description = "DIGESTION_EFFICIENCY_COLON"
+Icon = ExtResource( 31 )
+
+[node name="HSeparator3" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 219.0
+margin_right = 246.0
+margin_bottom = 223.0
+
+[node name="Generation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 227.0
+margin_right = 246.0
+margin_bottom = 246.0
 
 [node name="Description" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
 margin_top = 1.0
@@ -1094,17 +1107,17 @@ __meta__ = {
 }
 
 [node name="VSeparator" type="VSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 184.0
+margin_top = 250.0
 margin_right = 246.0
-margin_bottom = 194.0
+margin_bottom = 260.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 20 )
 
 [node name="ATPBalancePanel" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 198.0
+margin_top = 264.0
 margin_right = 246.0
-margin_bottom = 290.0
+margin_bottom = 356.0
 mouse_filter = 1
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
@@ -1188,9 +1201,9 @@ align = 2
 autowrap = true
 
 [node name="VSeparator2" type="VSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 294.0
+margin_top = 360.0
 margin_right = 246.0
-margin_bottom = 304.0
+margin_bottom = 370.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 20 )
@@ -1198,9 +1211,9 @@ custom_styles/separator = SubResource( 20 )
 [node name="CompoundBalanceDisplay" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 42 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 308.0
+margin_top = 374.0
 margin_right = 246.0
-margin_bottom = 329.0
+margin_bottom = 395.0
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
 margin_top = 393.0
@@ -1286,7 +1299,7 @@ mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer"]
 margin_right = 263.0
-margin_bottom = 111.0
+margin_bottom = 117.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 5
@@ -1297,7 +1310,7 @@ custom_constants/margin_bottom = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer"]
 margin_left = 3.0
 margin_right = 258.0
-margin_bottom = 108.0
+margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1311,14 +1324,14 @@ text = "FAILED"
 [node name="Total" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 21.0
 margin_right = 255.0
-margin_bottom = 40.0
+margin_bottom = 46.0
 Description = "TOTAL_POPULATION_COLON"
 InvalidIcon = ExtResource( 20 )
 
 [node name="Best" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 44.0
+margin_top = 50.0
 margin_right = 255.0
-margin_bottom = 63.0
+margin_bottom = 69.0
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
 margin_top = 1.0
@@ -1341,9 +1354,9 @@ __meta__ = {
 }
 
 [node name="Worst" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 67.0
+margin_top = 73.0
 margin_right = 255.0
-margin_bottom = 86.0
+margin_bottom = 92.0
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
 margin_top = 1.0
@@ -1366,15 +1379,15 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 90.0
+margin_top = 96.0
 margin_right = 255.0
-margin_bottom = 94.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 0, 4 )
 
 [node name="VSeparator" type="VSeparator" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 98.0
+margin_top = 104.0
 margin_right = 255.0
-margin_bottom = 108.0
+margin_bottom = 114.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 6 )

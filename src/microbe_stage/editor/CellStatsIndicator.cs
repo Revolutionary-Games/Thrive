@@ -20,9 +20,13 @@ public class CellStatsIndicator : HBoxContainer
     [Export]
     public Texture? InvalidIcon;
 
+    [Export]
+    public Texture? Icon;
+
     private Label? descriptionLabel;
     private Label? valueLabel;
     private TextureRect? changeIndicator;
+    private TextureRect? iconRect;
 
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
@@ -93,11 +97,14 @@ public class CellStatsIndicator : HBoxContainer
         descriptionLabel = GetNode<Label>("Description");
         valueLabel = GetNode<Label>("Value");
         changeIndicator = GetNode<TextureRect>("Indicator");
+        iconRect = GetNode<TextureRect>("Icon");
 
         InvalidIcon ??= GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
 
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+
+        iconRect.Texture = Icon;
 
         UpdateChangeIndicator();
         UpdateDescription();
@@ -127,14 +134,16 @@ public class CellStatsIndicator : HBoxContainer
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {
             changeIndicator.RectMinSize = ChangeIndicatorSize;
-            changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
-            changeIndicator.Visible = Value != initialValue;
+
+            if (Value != initialValue)
+                changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
+            else
+                changeIndicator.Texture = null;
         }
         else
         {
             changeIndicator.RectMinSize = InvalidIndicatorSize;
             changeIndicator.Texture = InvalidIcon;
-            changeIndicator.Visible = true;
         }
     }
 

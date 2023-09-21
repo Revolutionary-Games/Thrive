@@ -4,25 +4,31 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/microbe_stage/editor/CellStatsIndicator.cs" type="Script" id=3]
 
-
 [node name="CellStatIndicator" type="HBoxContainer"]
-margin_right = 123.0
-margin_bottom = 19.0
+margin_right = 213.0
+margin_bottom = 25.0
 script = ExtResource( 3 )
 
 [node name="Indicator" type="TextureRect" parent="."]
-visible = false
-margin_top = 4.0
+margin_top = 7.0
 margin_right = 10.0
-margin_bottom = 14.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 10, 10 )
 size_flags_vertical = 4
 expand = true
 
+[node name="Icon" type="TextureRect" parent="."]
+margin_left = 14.0
+margin_right = 39.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+expand = true
+
 [node name="Description" type="Label" parent="."]
-margin_top = 1.0
-margin_right = 174.0
-margin_bottom = 18.0
+margin_left = 43.0
+margin_top = 4.0
+margin_right = 217.0
+margin_bottom = 21.0
 custom_fonts/font = ExtResource( 1 )
 text = "CELL_STAT_PLACEHOLDER"
 __meta__ = {
@@ -30,9 +36,10 @@ __meta__ = {
 }
 
 [node name="Value" type="Label" parent="."]
-margin_left = 178.0
-margin_right = 199.0
-margin_bottom = 19.0
+margin_left = 221.0
+margin_top = 3.0
+margin_right = 242.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 2 )
 text = "n/a"
 __meta__ = {
