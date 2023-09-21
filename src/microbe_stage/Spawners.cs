@@ -93,7 +93,7 @@ public static class SpawnHelpers
         {
             while (!microbe.IsFullyGrownMulticellular)
             {
-                microbe.AddMulticellularGrowthCell();
+                microbe.AddMulticellularGrowthCell(true);
 
                 if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
                     break;
