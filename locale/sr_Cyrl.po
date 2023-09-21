@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-20 12:02+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -185,7 +185,7 @@ msgstr "је мутирао"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Статистика Организма"
@@ -260,7 +260,7 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -305,12 +305,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP Равнотежа"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP Производња"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ПРОИЗВОДЊА ПРЕНИЗАК!"
 
@@ -369,7 +369,7 @@ msgstr "Аутоматско чување током игре"
 msgid "AUTO_EVO"
 msgstr "Аутоматска-Еволуција"
 
-#: ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:419
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "статус покретања:"
@@ -431,8 +431,8 @@ msgstr ""
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
-#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
+#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -462,7 +462,7 @@ msgstr "Назад"
 msgid "BASE_MOBILITY"
 msgstr "Мобилност"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Подразумевано Кретање"
 
@@ -541,7 +541,7 @@ msgstr "Понашање"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м испод нивоа мора"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -791,12 +791,12 @@ msgstr "Целулоза"
 msgid "CELLS"
 msgstr "Целулоза"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 #, fuzzy
 msgid "CELLULASE"
 msgstr "Целулоза"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
@@ -895,12 +895,12 @@ msgstr "Хемосинтеза"
 msgid "CHITIN"
 msgstr "Хитин"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 #, fuzzy
 msgid "CHITINASE"
 msgstr "Хитин"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
@@ -1079,20 +1079,20 @@ msgstr "Способности"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:675
+#: ../src/general/MainMenu.tscn:676
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/MainMenu.tscn:717
+#: ../src/general/MainMenu.tscn:718
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1408,7 +1408,7 @@ msgstr "Тражи..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Креирање објеката из саве"
 
-#: ../src/general/MainMenu.tscn:356
+#: ../src/general/MainMenu.tscn:357
 msgid "CREDITS"
 msgstr "Кредити"
 
@@ -1439,7 +1439,7 @@ msgstr "Отворите екран помоћи"
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Статистика Организма"
@@ -1618,11 +1618,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:689
+#: ../src/general/MainMenu.tscn:690
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1631,11 +1631,11 @@ msgstr "Додајте ново везивање тастера"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:704
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1699,7 +1699,7 @@ msgstr "Брзина Апсорпције Брзине"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Брзина:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1764,7 +1764,7 @@ msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
 "Повежите све постављене органеле једни са другима или поништите промене."
 
-#: ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:862
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1779,11 +1779,11 @@ msgstr "Брзина:"
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:39
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr ""
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:42
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
@@ -2019,11 +2019,11 @@ msgstr "Омогућите уређивач"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Спољни ефекти:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
@@ -2166,7 +2166,7 @@ msgstr "Препиши постојеће чување:"
 msgid "EXIT"
 msgstr "Изаћи"
 
-#: ../src/general/MainMenu.tscn:365
+#: ../src/general/MainMenu.tscn:366
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2221,7 +2221,7 @@ msgstr "Изаберите зону да бисте овде приказали 
 msgid "EXTINCT_SPECIES"
 msgstr "ИЗУМИРАЊЕ"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "EXTRAS"
 msgstr "Додатне"
 
@@ -2229,7 +2229,7 @@ msgstr "Додатне"
 msgid "EXTRA_OPTIONS"
 msgstr "Додатне Опције"
 
-#: ../src/general/MainMenu.tscn:873
+#: ../src/general/MainMenu.tscn:874
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2500,7 +2500,7 @@ msgstr "Генерација:"
 msgid "GENERATION_COLON"
 msgstr "Генерација:"
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:826
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2509,11 +2509,11 @@ msgstr "Додајте ново везивање тастера"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING"
 msgstr "Упозорење у режиму GLES2"
 
-#: ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће изазвати проблеме. Покушајте да ажурирате управљачке програме за видео и / или присилите АМД или Нвидиа графику да се користи за покретање програма Thrive."
 
@@ -2525,7 +2525,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -2915,7 +2915,7 @@ msgstr "Гвожђе"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Хемолитоаутотрофија гвожђа"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:802
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -3302,7 +3302,7 @@ msgstr "Леви миш"
 msgid "LEFT_MOUSE"
 msgstr "Леви миш"
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:531
 msgid "LICENSES"
 msgstr ""
 
@@ -3431,7 +3431,7 @@ msgstr "Боја"
 msgid "LIPASE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
@@ -3478,12 +3478,12 @@ msgstr "Притисните дугме поништи у уређивачу д�
 msgid "LOAD_FINISHED"
 msgstr "Учитавање завршено"
 
-#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Учитајте Игру"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -3525,6 +3525,16 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
+
+#: ../src/general/MainMenu.tscn:1009
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "Перформансе"
+
+#: ../src/general/MainMenu.tscn:1011
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
@@ -3694,7 +3704,7 @@ msgstr ""
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:590
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Учитавање Уређивача Микроба"
@@ -3779,12 +3789,12 @@ msgstr "Свака генерација имаш 100 мутациски поен
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Сваки пут када се размножавате, ући ћете у уређивач микроба, где можете да измените врсту (додавањем, премештањем или уклањањем органела) да бисте повећали успех своје врсте. Свака посета уреднику на сцени микроба представља 100 милиона година еволуције."
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:408
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Слободна-Градња Уређивач Микроба"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Статистика Организма"
@@ -4014,7 +4024,7 @@ msgstr "Моћ ћелије. Митохондрион (множина: мито�
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4041,11 +4051,11 @@ msgstr "Макните органелу"
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:508
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:972
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4136,11 +4146,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:987
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4423,11 +4433,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:303
+#: ../src/general/MainMenu.tscn:304
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4577,13 +4587,13 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
 
-#: ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:970
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Укључи тастери за варања"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Поставите органелу"
@@ -4657,11 +4667,11 @@ msgstr "Десни миш"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:653
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4758,11 +4768,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Опције"
 
-#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4816,7 +4826,7 @@ msgstr "Избодите друге ћелије са ово."
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Осморегулација"
 
@@ -5030,7 +5040,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Баш као и 99% свих врста које су икада постојале, и ваша врста је изумрла. Други ће наставити да попуњавају вашу нишу и просперирати, али то нећете бити ви. Бићете заборављени, неуспели експеримент у еволуцији."
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:814
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -5075,8 +5085,8 @@ msgstr ""
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5314,11 +5324,11 @@ msgstr "Учитајте брзу копију"
 msgid "QUICK_SAVE"
 msgstr "Брза копија"
 
-#: ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:378
 msgid "QUIT"
 msgstr "Одустати"
 
-#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
 #: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -5353,7 +5363,7 @@ msgstr "Брзина:"
 msgid "READING_SAVE_DATA"
 msgstr "Читање сачуваних података"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr ""
@@ -5362,7 +5372,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:850
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Наставити"
@@ -5388,7 +5398,7 @@ msgstr ""
 msgid "REPORT"
 msgstr "Извештај"
 
-#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Извештај"
@@ -5544,7 +5554,7 @@ msgstr "Вратите се у Мени"
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Вратите се у Мени"
 
-#: ../src/general/MainMenu.tscn:776
+#: ../src/general/MainMenu.tscn:777
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -5622,12 +5632,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Рустицијанин"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустицијанин је протеин који може да користи гасовити угљен-диоксид и кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може да сакупи."
@@ -5637,12 +5648,12 @@ msgstr "Рустицијанин је протеин који може да ко
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Рустицијанин је протеин који може да користи гасовити угљен-диоксид и кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може да сакупи."
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:982
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5658,7 +5669,7 @@ msgstr "Сачувај и настави"
 msgid "SAVE_AUTOSAVE"
 msgstr "Аутоматско чување"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:245
 msgid "SAVE_DELETE_WARNING"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно избрисати {0}?"
 
@@ -6046,7 +6057,7 @@ msgid "SIZE_COLON"
 msgstr "Величина:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr ""
 
@@ -6331,17 +6342,17 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Чување није успело! Догоди се изузетак"
 
-#: ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1005
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
-#: ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:790
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Наставити"
@@ -6384,7 +6395,7 @@ msgstr "Складиште"
 msgid "STORAGE_COLON"
 msgstr "Складиште"
 
-#: ../src/general/MainMenu.cs:620
+#: ../src/general/MainMenu.cs:651
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -6616,7 +6627,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6624,7 +6635,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:993
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
@@ -6689,7 +6700,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6753,38 +6764,38 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "генетски код:"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "се проширила на зоне:"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Врсте:"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Врсте:"
@@ -6850,7 +6861,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Укључи одвајање"
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr "Алати"
 
@@ -7085,7 +7096,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Погледај сад"
 
-#: ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:886
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -7350,7 +7361,7 @@ msgstr "Пећина"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Пећина"
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:341
 msgid "VIEW_SOURCE_CODE"
 msgstr "Погледајте Изворни Код"
 
@@ -7362,7 +7373,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
+#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7397,7 +7408,7 @@ msgstr "Чека се аутоматска-еволуција:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изумро на планети"
 
@@ -7526,7 +7537,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "године"
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:838
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Наставити"

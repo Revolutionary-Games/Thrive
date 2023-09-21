@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-20 12:02+0200\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -179,7 +179,7 @@ msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistika Organisme"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Statistika Organisme"
@@ -254,7 +254,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Seni oleh {0}"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
 msgstr "Galeri Seni"
 
@@ -301,12 +301,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Keseimbangan ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "Produksi ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKSI ATP TERLALU RENDAH!"
 
@@ -364,7 +364,7 @@ msgstr "Save otomatis ketika bermain"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:419
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Alat Penjelajah Auto-Evo"
 
@@ -418,8 +418,8 @@ msgid "AWARE_STAGE"
 msgstr "Tahapan Mikrob"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
-#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
+#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -447,7 +447,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Mobilitas"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
@@ -525,7 +525,7 @@ msgstr "Perilaku"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m di bawah permukaan laut"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -768,11 +768,11 @@ msgstr "Selulosa"
 msgid "CELLS"
 msgstr "Sel-sel"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Selulase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Vakuola adalah organel ber-membran internal yang digunakan untuk peyimpanan dalam sel. Mereka tersusun dari beberapa gelembung (vesikel), struktur ber-membran lebih kecil yang banyak digunakan oleh sel untuk penyimpanan, yang telah menyatu. Gelembung tersebut terisi air yang digunakan untuk menampung molekul, enzim, padatan dan zat lainnya. Bentuk mereka cair dan bervariasi antar sel."
@@ -869,11 +869,11 @@ msgstr "Kemosintesis"
 msgid "CHITIN"
 msgstr "Kitin"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Kitinase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
@@ -1044,20 +1044,20 @@ msgstr "Kemampuan"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:675
+#: ../src/general/MainMenu.tscn:676
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/general/MainMenu.tscn:717
+#: ../src/general/MainMenu.tscn:718
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -1369,7 +1369,7 @@ msgstr "Cari..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Membuat obyek dari save"
 
-#: ../src/general/MainMenu.tscn:356
+#: ../src/general/MainMenu.tscn:357
 msgid "CREDITS"
 msgstr "Kredit"
 
@@ -1401,7 +1401,7 @@ msgstr "Buka tampilan bantuan"
 msgid "CURRENT_WORLD"
 msgstr "Pengembang Masa Ini"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Statistika Organisme"
@@ -1581,12 +1581,12 @@ msgstr "Pendukung Devbuilds"
 msgid "DEVELOPERS"
 msgstr "Pengembang"
 
-#: ../src/general/MainMenu.tscn:689
+#: ../src/general/MainMenu.tscn:690
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Pengembangan didukung oleh Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1595,12 +1595,12 @@ msgstr "Tambah keybind baru"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Pengembangan didukung oleh Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:704
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Pengembang"
 
-#: ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1665,7 +1665,7 @@ msgstr "Kecepatan Serap Sumber Daya"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Kecepatan:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1726,7 +1726,7 @@ msgstr ""
 "Ada organel yang tidak tersambung dengan yang lainnya.\n"
 "Mohon sambungkan semua organel atau batalkan perubahanmu."
 
-#: ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:862
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -1741,11 +1741,11 @@ msgstr "Kecepatan:"
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:39
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr ""
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:42
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
@@ -1978,11 +1978,11 @@ msgstr "Aktifkan editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktifkan Efek Cahaya GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2124,7 +2124,7 @@ msgstr "Timpa save yang sudah ada:"
 msgid "EXIT"
 msgstr "Keluar"
 
-#: ../src/general/MainMenu.tscn:365
+#: ../src/general/MainMenu.tscn:366
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E"
@@ -2181,7 +2181,7 @@ msgstr "telah punah dari planet"
 msgid "EXTINCT_SPECIES"
 msgstr "KEPUNAHAN"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "EXTRAS"
 msgstr "Lainnya"
 
@@ -2189,7 +2189,7 @@ msgstr "Lainnya"
 msgid "EXTRA_OPTIONS"
 msgstr "Pilihan Ekstra"
 
-#: ../src/general/MainMenu.tscn:873
+#: ../src/general/MainMenu.tscn:874
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -2475,7 +2475,7 @@ msgstr "Generasi"
 msgid "GENERATION_COLON"
 msgstr "Generasi:"
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:826
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -2484,11 +2484,11 @@ msgstr "Keluar dari permainan"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING"
 msgstr "Peringatan Mode GLES2"
 
-#: ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
 
@@ -2500,7 +2500,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke {1} dari {2}"
 
@@ -2893,7 +2893,7 @@ msgstr "Besi"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Kemolitoautotrofi Besi"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:802
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -3273,7 +3273,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:531
 msgid "LICENSES"
 msgstr ""
 
@@ -3400,7 +3400,7 @@ msgstr "Warna"
 msgid "LIPASE"
 msgstr "Lipase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
@@ -3446,12 +3446,12 @@ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 msgid "LOAD_FINISHED"
 msgstr "Selesai memuat"
 
-#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Muat Permainan"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Muat permainan yang sudah disimpan"
 
@@ -3494,6 +3494,16 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Anggap daerah-daerah dengan jumlah spesies sebanyak ini memiliki biodiversitas yang rendah"
+
+#: ../src/general/MainMenu.tscn:1009
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "Performa"
+
+#: ../src/general/MainMenu.tscn:1011
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
@@ -3659,7 +3669,7 @@ msgid "MICROBES_COUNT"
 msgstr "Tahapan Mikrob"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:590
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editor Mikrob"
@@ -3725,12 +3735,12 @@ msgstr "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untu
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] juta tahun evolusi."
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:408
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Mikroba Bangun-bebas"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistika Organisme"
@@ -3954,7 +3964,7 @@ msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang t
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -3981,11 +3991,11 @@ msgstr "Hapus organel"
 msgid "MODIFY_TYPE"
 msgstr "Ubah Tipe"
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:508
 msgid "MODS"
 msgstr "Mod"
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:972
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4081,11 +4091,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr "Lisensi dan Libraries yang Digunakan"
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:987
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4362,11 +4372,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Populasi awal untuk spesies peningkat biodiversitas"
 
-#: ../src/general/MainMenu.tscn:303
+#: ../src/general/MainMenu.tscn:304
 msgid "NEW_GAME"
 msgstr "Permainan Baru"
 
-#: ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Mulai permainan baru"
 
@@ -4509,13 +4519,13 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Buka Direktori Save"
 
-#: ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:970
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Aktifkan tombol cheat"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Tidak ada proses"
 
@@ -4584,11 +4594,11 @@ msgstr "Daftar Spesies"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:653
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -4688,11 +4698,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Opsi"
 
-#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ubah setelan"
 
@@ -4745,7 +4755,7 @@ msgstr "Tusuk sel lain dengan ini."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organisme"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Osmoregulasi"
 
@@ -4958,7 +4968,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Seperti 99% dari segala spesies yang telah ada, spesiesmu telah mengalami kepunahan. Spesies lain akan mengisi relung-mu dan berkembang, tetapi itu bukan kamu. Kamu akan terlupakan, eksperimen gagal dalam evolusi."
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:814
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -5003,8 +5013,8 @@ msgstr ""
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5241,11 +5251,11 @@ msgstr "Muat cepat"
 msgid "QUICK_SAVE"
 msgstr "Simpan cepat"
 
-#: ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:378
 msgid "QUIT"
 msgstr "Keluar"
 
-#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Keluar dari permainan"
@@ -5279,7 +5289,7 @@ msgstr "Nama Baru:"
 msgid "READING_SAVE_DATA"
 msgstr "Membaca data save"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Siap"
@@ -5288,7 +5298,7 @@ msgstr "Siap"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:850
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Lanjutkan"
@@ -5314,7 +5324,7 @@ msgstr "Dalam kasus kepunahan, migrasi kembali ke daerah target"
 msgid "REPORT"
 msgstr "Laporan"
 
-#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Laporan"
@@ -5467,7 +5477,7 @@ msgstr ""
 "Apakah kamu yakin ingin keluar ke menu utama?\n"
 "Progress yang tidak disave akan hilang."
 
-#: ../src/general/MainMenu.tscn:776
+#: ../src/general/MainMenu.tscn:777
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Oleh Revolutionary Games Studio"
@@ -5542,12 +5552,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rustisianin"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida dan oksigen untuk mengoksidasi besi dari satu tahap kimiawi ke tahap yang lainnya. Proses ini, yang disebut Respirasi Besi, mengeluarkan energi yang kemudian dapat diambil oleh sel."
@@ -5556,12 +5567,12 @@ msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida da
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:982
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5577,7 +5588,7 @@ msgstr "Simpan dan lanjut"
 msgid "SAVE_AUTOSAVE"
 msgstr "Save otomatis"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:245
 msgid "SAVE_DELETE_WARNING"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus {0} secara permanen?"
 
@@ -5961,7 +5972,7 @@ msgid "SIZE_COLON"
 msgstr "Ukuran:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr ""
 
@@ -6238,19 +6249,19 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Gagal menyimpan! Terjadi eksepsi"
 
-#: ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1005
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Gagal memperbarui save karena error berikut:\n"
 "{0}"
 
-#: ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:790
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Lanjutkan"
@@ -6293,7 +6304,7 @@ msgstr "Penyimpanan"
 msgid "STORAGE_COLON"
 msgstr "Penyimpanan"
 
-#: ../src/general/MainMenu.cs:620
+#: ../src/general/MainMenu.cs:651
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Masuk sebagai {0}"
 
@@ -6518,7 +6529,7 @@ msgstr "Suhu"
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6533,7 +6544,7 @@ msgstr ""
 "\n"
 "Jika kamu menikmati game ini, tolong beritahu teman anda tentang kami."
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:993
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "KAMU TELAH BERKEMBANG!"
@@ -6595,7 +6606,7 @@ msgstr ""
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6660,35 +6671,35 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] berpisah dari [b][u]{1}[/u][/b] sebagai spesies baru untuk mengisi sebuah relung"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] berpisah dari [b][u]{1}[/u][/b] sebagai spesies baru karena tekanan seleksi yang berbeda"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] telah punah!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] telah lenyap dari daerah ini"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke daerah ini dari {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Populasi [b][u]{0}[/u][/b] telah menurun menjadi {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Populasi [b][u]{0}[/u][/b] telah meningkat menjadi {1}"
 
@@ -6750,7 +6761,7 @@ msgstr "Jeda"
 msgid "TOGGLE_UNBINDING"
 msgstr "Nyala/matikan pelepasan"
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr "Alat"
 
@@ -6985,7 +6996,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:886
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Ubah setelan"
@@ -7246,7 +7257,7 @@ msgstr "Gua"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Gua"
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:341
 msgid "VIEW_SOURCE_CODE"
 msgstr "Lihat Kode Sumber"
 
@@ -7258,7 +7269,7 @@ msgstr "Pendukung VIP"
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
+#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7290,7 +7301,7 @@ msgstr "Menunggu auto-evo:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "telah punah dari planet"
 
@@ -7419,7 +7430,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "tahun"
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:838
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Lanjutkan"

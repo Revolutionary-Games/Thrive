@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-20 12:02+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -173,7 +173,7 @@ msgstr "允许物种不变异（如果没有发现好的变异）"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "所有世界的生物数据"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]当前代：[/b]\n"
@@ -258,7 +258,7 @@ msgstr "“{0}” - {1}"
 msgid "ART_BY"
 msgstr "由{0}创作"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
 
@@ -311,12 +311,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP产出不足！"
 
@@ -372,7 +372,7 @@ msgstr "游戏中启用自动保存"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:419
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo探索工具"
 
@@ -423,8 +423,8 @@ msgid "AWARE_STAGE"
 msgstr "知觉阶段"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
-#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
+#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -451,7 +451,7 @@ msgstr "退格键"
 msgid "BASE_MOBILITY"
 msgstr "基础移动能力"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
@@ -523,7 +523,7 @@ msgstr "投机性"
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
 msgstr "载入"
 
@@ -759,11 +759,11 @@ msgstr "细胞"
 msgid "CELLS"
 msgstr "细胞"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "纤维素酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "纤维素酶使细胞能够分解纤维素膜。每次添加都会增加其有效性。"
 
@@ -855,11 +855,11 @@ msgstr "化学合成"
 msgid "CHITIN"
 msgstr "几丁质"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "几丁质酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "几丁质酶使细胞能够分解几丁质膜。每次添加都会增加其有效性。"
 
@@ -1026,19 +1026,19 @@ msgstr "常见能力"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "多功能编辑器和策略规划阶段"
 
-#: ../src/general/MainMenu.tscn:675
+#: ../src/general/MainMenu.tscn:676
 msgid "COMMUNITY_FORUM"
 msgstr "社区论坛"
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "在我们的社区论坛上加入Thrive社区"
 
-#: ../src/general/MainMenu.tscn:717
+#: ../src/general/MainMenu.tscn:718
 msgid "COMMUNITY_WIKI"
 msgstr "社区wiki"
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的社区wiki"
 
@@ -1342,7 +1342,7 @@ msgstr "创建中……"
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
 
-#: ../src/general/MainMenu.tscn:356
+#: ../src/general/MainMenu.tscn:357
 msgid "CREDITS"
 msgstr "制作人名单"
 
@@ -1371,7 +1371,7 @@ msgstr "当前正在研究：{0}（{1}）"
 msgid "CURRENT_WORLD"
 msgstr "当前世界"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]当前代：[/b]\n"
@@ -1564,11 +1564,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "开发者"
 
-#: ../src/general/MainMenu.tscn:689
+#: ../src/general/MainMenu.tscn:690
 msgid "DEVELOPMENT_FORUM"
 msgstr "开发论坛"
 
-#: ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "在开发论坛上了解开发进度"
 
@@ -1576,11 +1576,11 @@ msgstr "在开发论坛上了解开发进度"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "由Revolutionary Games Studio ry支持的开发"
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:704
 msgid "DEVELOPMENT_WIKI"
 msgstr "开发者wiki"
 
-#: ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的开发者wiki"
 
@@ -1650,7 +1650,7 @@ msgstr "消化速度"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "消化速度："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1708,7 +1708,7 @@ msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:862
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
@@ -1722,11 +1722,11 @@ msgstr ""
 "这显示了多少弹出窗口已被永久禁用。\n"
 "如果有一些你想要看到的弹出窗口被禁用了，旁边的那个按钮可以使所有被禁用的弹出窗口再次出现。"
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:39
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "不再显示"
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:42
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "不再警告"
 
@@ -1950,11 +1950,11 @@ msgstr "启用编辑器"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "启用GUI闪烁特效"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
@@ -2087,7 +2087,7 @@ msgstr "建筑"
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:365
+#: ../src/general/MainMenu.tscn:366
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至启动器"
 
@@ -2137,7 +2137,7 @@ msgstr "在这个地区里灭绝了"
 msgid "EXTINCT_SPECIES"
 msgstr "灭绝物种"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "EXTRAS"
 msgstr "额外内容"
 
@@ -2145,7 +2145,7 @@ msgstr "额外内容"
 msgid "EXTRA_OPTIONS"
 msgstr "额外选项"
 
-#: ../src/general/MainMenu.tscn:873
+#: ../src/general/MainMenu.tscn:874
 msgid "FACEBOOK_TOOLTIP"
 msgstr "访问我们的Facebook页面"
 
@@ -2400,7 +2400,7 @@ msgstr "世代"
 msgid "GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:826
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
@@ -2408,11 +2408,11 @@ msgstr "访问我们在GitHub上的代码仓库"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
@@ -2424,7 +2424,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "一部分[b][u]{0}[/u][/b]种群已经从{2}移民到了{1}"
 
@@ -2797,7 +2797,7 @@ msgstr "铁"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "铁化能无机自养"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:802
 msgid "ITCH_TOOLTIP"
 msgstr "访问我们在Itch.io上的页面"
 
@@ -3173,7 +3173,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "鼠标左键"
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:531
 msgid "LICENSES"
 msgstr "许可"
 
@@ -3293,7 +3293,7 @@ msgstr "线条颜色："
 msgid "LIPASE"
 msgstr "脂肪酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "脂肪酶使细胞能够分解大多数类型的膜。就算没有溶酶体你的细胞也能产生一些这种酶，但通过选择这种类型，你将增加其有效性。"
 
@@ -3336,12 +3336,12 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 msgid "LOAD_FINISHED"
 msgstr "载入完成"
 
-#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "载入之前保存的游戏"
 
@@ -3381,6 +3381,16 @@ msgstr "L"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "将物种数量小于此的区块认为是生物多样性低"
+
+#: ../src/general/MainMenu.tscn:1009
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "性能"
+
+#: ../src/general/MainMenu.tscn:1011
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一次只能选择一种酶。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
@@ -3540,7 +3550,7 @@ msgid "MICROBES_COUNT"
 msgstr "微生物计数："
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:590
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物编辑器"
@@ -3624,12 +3634,12 @@ msgstr "每一代，你都有100个变异点可供花费，任何变化都需要
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]x10⁶年的进化时间。"
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:408
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
@@ -3849,7 +3859,7 @@ msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "已混合......"
 
@@ -3874,11 +3884,11 @@ msgstr "修改细胞器"
 msgid "MODIFY_TYPE"
 msgstr "修改类型"
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:508
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:972
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "检测到安装的模组，但没有启用的模组。\n"
@@ -3967,11 +3977,11 @@ msgstr "内部（文件夹）名称："
 msgid "MOD_LICENSE"
 msgstr "此Mod的许可："
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:987
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
 
@@ -4250,11 +4260,11 @@ msgstr "新闻"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "增加生物多样性物种的初始种群数量"
 
-#: ../src/general/MainMenu.tscn:303
+#: ../src/general/MainMenu.tscn:304
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "开始新游戏"
 
@@ -4393,12 +4403,12 @@ msgstr "无事件记录"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目录"
 
-#: ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:970
 msgid "NO_MODS_ENABLED"
 msgstr "模组已禁用"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "不参与细胞过程"
 
@@ -4464,11 +4474,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "十月"
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE"
 msgstr "官方网站"
 
-#: ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:653
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "访问Revolutionary Games的官方网站"
 
@@ -4565,11 +4575,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "机会主义"
 
-#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "选项"
 
-#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "改变你的设置"
 
@@ -4616,7 +4626,7 @@ msgstr "可以被用来捅其它细胞或抵挡它们的毒素。"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "渗透调节"
 
@@ -4820,7 +4830,7 @@ msgstr ""
 "你的物种已经在这个地区中灭绝了。\n"
 "但这还没有结束，你仍然可以选择一个新的地区继续游玩！"
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:814
 msgid "PATREON_TOOLTIP"
 msgstr "访问我们在Patreon上的页面"
 
@@ -4861,8 +4871,8 @@ msgstr "和平"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5096,11 +5106,11 @@ msgstr "快速读档"
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
-#: ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:378
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "退出游戏"
@@ -5133,7 +5143,7 @@ msgstr "原始值："
 msgid "READING_SAVE_DATA"
 msgstr "读取存档数据中"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "准备就绪"
@@ -5142,7 +5152,7 @@ msgstr "准备就绪"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推荐的Thrive版本："
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:850
 msgid "REDDIT_TOOLTIP"
 msgstr "访问我们的subreddit页面"
 
@@ -5167,7 +5177,7 @@ msgstr "在目标地区灭绝的情况下，退还迁移的费用"
 msgid "REPORT"
 msgstr "报告"
 
-#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "报告一个bug"
 
@@ -5307,7 +5317,7 @@ msgstr ""
 "你确定要退出到主菜单吗？\n"
 "你会失去任何未保存的进度。"
 
-#: ../src/general/MainMenu.tscn:776
+#: ../src/general/MainMenu.tscn:777
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "访问Revolutionary Games Studio网站"
 
@@ -5379,12 +5389,13 @@ msgstr "运行{0}个世界"
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
@@ -5393,7 +5404,7 @@ msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:982
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "由于先前的启动错误，Thrive已在安全模式下启动。\n"
@@ -5405,7 +5416,7 @@ msgstr ""
 "\n"
 "如果你未能修复导致启动错误的问题，你在未来几次启动中将会崩溃数次并最后再次返回安全模式。"
 
-#: ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
@@ -5421,7 +5432,7 @@ msgstr "保存并继续"
 msgid "SAVE_AUTOSAVE"
 msgstr "自动保存"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:245
 msgid "SAVE_DELETE_WARNING"
 msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
 
@@ -5773,7 +5784,7 @@ msgid "SIZE_COLON"
 msgstr "大小："
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "幻灯片"
 
@@ -6036,17 +6047,17 @@ msgstr "Steam系统目前不可用，请重试"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "发生了未知的Steam错误"
 
-#: ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1003
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam 初始化失败"
 
-#: ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1005
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam 客户端库初始化失败，Steam 功能将不可用。\n"
 "请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
-#: ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:790
 msgid "STEAM_TOOLTIP"
 msgstr "访问我们在Steam上的页面"
 
@@ -6086,7 +6097,7 @@ msgstr "存储"
 msgid "STORAGE_COLON"
 msgstr "存储："
 
-#: ../src/general/MainMenu.cs:620
+#: ../src/general/MainMenu.cs:651
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
@@ -6306,7 +6317,7 @@ msgstr "温度"
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
@@ -6322,7 +6333,7 @@ msgstr ""
 "\n"
 "如果你喜欢这款游戏，记得也向你的朋友们推荐下。"
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:993
 msgid "THANK_YOU_TITLE"
 msgstr "感谢"
 
@@ -6381,7 +6392,7 @@ msgstr "这个mod是在Steam创意工坊下载的"
 msgid "THREADS"
 msgstr "线程："
 
-#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thrive百科"
 
@@ -6454,35 +6465,35 @@ msgstr "显示全球事件"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "显示本地事件"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种以填补一个生态位"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种，原因是演化压力"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] 已经灭绝了！"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b]已从本地区中消失"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "一部分[b][u]{0}[/u][/b]种群已经从{1}移民到了这个地区"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "一部分[b][u]{0}[/u][/b]种群已经移民到了{1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b]的种群数量已降低到{1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b]的种群数量已增加到{1}"
 
@@ -6542,7 +6553,7 @@ msgstr "暂停"
 msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr "工具"
 
@@ -6766,7 +6777,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
-#: ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:886
 msgid "TWITTER_TOOLTIP"
 msgstr "访问我们的推特"
 
@@ -7004,7 +7015,7 @@ msgstr "查看补丁说明"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "查看最近或所有的Thrive补丁信息"
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:341
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
 
@@ -7016,7 +7027,7 @@ msgstr "VIP 支持者"
 msgid "VISIBLE"
 msgstr "可见"
 
-#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
+#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "提出功能建议"
 
@@ -7048,7 +7059,7 @@ msgstr "等待auto-evo中："
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "欢迎来到Thrive百科"
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "从这个星球上灭绝了"
 
@@ -7171,7 +7182,7 @@ msgstr "Xbox X 系列"
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:838
 msgid "YOUTUBE_TOOLTIP"
 msgstr "访问我们的YouTube频道"
 

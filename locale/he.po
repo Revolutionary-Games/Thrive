@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-15 19:18+0200\n"
+"POT-Creation-Date: 2023-09-20 12:02+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -181,7 +181,7 @@ msgstr "מאפשר למינים לא לפתח מוטציות (אם לא ניתן
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
@@ -254,7 +254,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "ציור מאת {0}"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
 msgstr "גלרית אומנות"
 
@@ -301,12 +301,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "מאזן ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ייצור ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ייצור ATP נמוך מדי!"
 
@@ -362,7 +362,7 @@ msgstr "שמירה אוטומטית במהלך המשחק"
 msgid "AUTO_EVO"
 msgstr "מפתח - אוטומטי"
 
-#: ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:419
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "כלים חקר של מפתח-אוטומטי"
 
@@ -415,8 +415,8 @@ msgid "AWARE_STAGE"
 msgstr "שלב המיקרובי"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
-#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
+#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -443,7 +443,7 @@ msgstr "חזור"
 msgid "BASE_MOBILITY"
 msgstr "ניידות בסיסית"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "מהירות בסיסית"
 
@@ -515,7 +515,7 @@ msgstr "סתגלן"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}מ' מתחת פני הים"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -755,11 +755,11 @@ msgstr "תא"
 msgid "CELLS"
 msgstr "תאים"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "צילוטאז"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "צילולאז מאפשרים לתא לפרק ממברנות העשויות מתאית. כל תוספת מגדילה את יעילותו."
 
@@ -851,11 +851,11 @@ msgstr "כימוסינתזה"
 msgid "CHITIN"
 msgstr "כיטין"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "כיטינאז"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "כיטינאז מאפשרים לתא לפרק ממברנות העשויות מכיטין. כל תוספת מגבירה את יעילותו."
 
@@ -1024,19 +1024,19 @@ msgstr "יכולות"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:675
+#: ../src/general/MainMenu.tscn:676
 msgid "COMMUNITY_FORUM"
 msgstr "פורום קהילתי"
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "הצטרף לקהילת Thrive בפורום הקהילתי שלנו"
 
-#: ../src/general/MainMenu.tscn:717
+#: ../src/general/MainMenu.tscn:718
 msgid "COMMUNITY_WIKI"
 msgstr "ויקי קהילתי"
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "ראו את ויקי הקהילתי שלנו"
 
@@ -1343,7 +1343,7 @@ msgstr "יוצר..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "יוצר אובייקטים משמירה"
 
-#: ../src/general/MainMenu.tscn:356
+#: ../src/general/MainMenu.tscn:357
 msgid "CREDITS"
 msgstr "קרדיט"
 
@@ -1375,7 +1375,7 @@ msgstr "פתח את מסך העזרה"
 msgid "CURRENT_WORLD"
 msgstr "מפתחים נוכחים"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
@@ -1552,11 +1552,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "מפתחים"
 
-#: ../src/general/MainMenu.tscn:689
+#: ../src/general/MainMenu.tscn:690
 msgid "DEVELOPMENT_FORUM"
 msgstr "פורום מפתחים"
 
-#: ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "ראו עדכוני פיתוח בפורום המפתחים שלנו"
 
@@ -1564,11 +1564,11 @@ msgstr "ראו עדכוני פיתוח בפורום המפתחים שלנו"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "פיתוח נתמך על ידי Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:704
 msgid "DEVELOPMENT_WIKI"
 msgstr "ויקי מפתחים"
 
-#: ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "בקרו בויקי מפתחים שלנו"
 
@@ -1629,7 +1629,7 @@ msgstr "מהירות עיכול"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "מהירות עיכול:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0} לשנייה"
 
@@ -1687,7 +1687,7 @@ msgstr ""
 "ישנם אברונים שאינם מחוברים לשאר.\n"
 "בבקשה חבר את כל האברונים אחד עם השני או בטל את הפעולה."
 
-#: ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:862
 msgid "DISCORD_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
@@ -1704,11 +1704,11 @@ msgstr ""
 "ולרוב הוא ישאף לגושים.\n"
 "מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:39
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr ""
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:42
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
@@ -1935,11 +1935,11 @@ msgstr "הפעל את העורך"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
@@ -2073,7 +2073,7 @@ msgstr "הכנס ID קיים"
 msgid "EXIT"
 msgstr "יציאה"
 
-#: ../src/general/MainMenu.tscn:365
+#: ../src/general/MainMenu.tscn:366
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "מקש E"
@@ -2126,7 +2126,7 @@ msgstr "נכחד מהאזור"
 msgid "EXTINCT_SPECIES"
 msgstr "מינים נכחדים"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "EXTRAS"
 msgstr "תוספות"
 
@@ -2134,7 +2134,7 @@ msgstr "תוספות"
 msgid "EXTRA_OPTIONS"
 msgstr "אפשרויות נוספות"
 
-#: ../src/general/MainMenu.tscn:873
+#: ../src/general/MainMenu.tscn:874
 msgid "FACEBOOK_TOOLTIP"
 msgstr "בקרו באתר הפייסבוק שלנו"
 
@@ -2424,7 +2424,7 @@ msgstr "דורות"
 msgid "GENERATION_COLON"
 msgstr "דור:"
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:826
 msgid "GITHUB_TOOLTIP"
 msgstr "צפו בספריית GitHub שלנו"
 
@@ -2432,11 +2432,11 @@ msgstr "צפו בספריית GitHub שלנו"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING"
 msgstr "אזהרת GLES2"
 
-#: ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
@@ -2448,7 +2448,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "ג"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה מ{1} ל{2}"
 
@@ -2838,7 +2838,7 @@ msgstr "ברזל"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "כימוליתו-אוטוטרופי מברזל"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:802
 msgid "ITCH_TOOLTIP"
 msgstr "ראו את דף Itch.io שלנו"
 
@@ -3215,7 +3215,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "לחצן עכבר השמאלי"
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:531
 msgid "LICENSES"
 msgstr "רישיונות"
 
@@ -3338,7 +3338,7 @@ msgstr "צבע הקו:"
 msgid "LIPASE"
 msgstr "ליפאז"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "ליפאז מאפשרים לתא לפרק את רוב סוגי הממברנות. התא שלך כבר מייצר את האנזים הזה ללא הליזוזום, אבל על ידי בחירה בסוג זה מאפשר לך להגביר את יעילותו."
 
@@ -3381,12 +3381,12 @@ msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טע�
 msgid "LOAD_FINISHED"
 msgstr "טעינה הסתיימה"
 
-#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "טען שמירה"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "טען שמירות שנשמרו"
 
@@ -3426,6 +3426,16 @@ msgstr "מ"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "שקול אזורים עם עד כה מספר מינים בעלי מגוון ביולוגי נמוך"
+
+#: ../src/general/MainMenu.tscn:1009
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "ביצועים"
+
+#: ../src/general/MainMenu.tscn:1011
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
@@ -3587,7 +3597,7 @@ msgid "MICROBES_COUNT"
 msgstr "שלב המיקרובי"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:590
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "עורך המיקרובי"
@@ -3669,12 +3679,12 @@ msgstr "בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) �
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך (על ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל ביקור בעורך בשלב המיקרובי מייצג [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] מיליון שנות אבולוציה."
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:408
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "עורך ארגז חול המיקרובי"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
@@ -3896,7 +3906,7 @@ msgstr "תחנת הכוח של התא. המיטוכונדריון (ברבים: �
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -3922,11 +3932,11 @@ msgstr "שנה תפקוד אברון"
 msgid "MODIFY_TYPE"
 msgstr "שנה סוג"
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:508
 msgid "MODS"
 msgstr "מודים"
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:972
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "זוהה מודים מותקנים, אך אין מודים מופעלים.\n"
@@ -4015,11 +4025,11 @@ msgstr "שם (תיקייה) פנימי:"
 msgid "MOD_LICENSE"
 msgstr "רישיון המוד:"
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS"
 msgstr "שגיאה בעליית המוד"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:987
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "שגיאה קרתה בזמן שטען אחד או יותר מודים. תיעודם עשויים להכיל מידע נוסף."
 
@@ -4299,11 +4309,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "אוכלוסיה ראשונית למינים הגדלים במגוון הביולוגי"
 
-#: ../src/general/MainMenu.tscn:303
+#: ../src/general/MainMenu.tscn:304
 msgid "NEW_GAME"
 msgstr "משחק חדש"
 
-#: ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "התחל משחק חדש"
 
@@ -4443,12 +4453,12 @@ msgstr "לא תעדו אירועים"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "לא נמצאה ספריית שמירות"
 
-#: ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:970
 msgid "NO_MODS_ENABLED"
 msgstr "אין מודים מופעלים"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "אין תהליכים"
 
@@ -4515,11 +4525,11 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "אוקטובר"
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE"
 msgstr "אתר רשמי"
 
-#: ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:653
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "להיכנס לאתר הרשמי של Revolutionary Games"
 
@@ -4619,11 +4629,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "אופורטוניסטי"
 
-#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "אפשרויות"
 
-#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "שנה את ההגדרות שלך"
 
@@ -4675,7 +4685,7 @@ msgstr "דקור תאים אחרים בעזרתו."
 msgid "ORGANISM_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "אוסמורגולציה"
 
@@ -4882,7 +4892,7 @@ msgstr ""
 "המין שלך נכחד מהאזור זה.\n"
 "אבל זה עדין לא נגמר, אתה יכול עדין לבחור אזור חדש ולהמשיך שחק בו!"
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:814
 msgid "PATREON_TOOLTIP"
 msgstr "ראו את דף הפטריון שלנו"
 
@@ -4923,8 +4933,8 @@ msgstr "שלוו"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5156,11 +5166,11 @@ msgstr "טעינה מהירה"
 msgid "QUICK_SAVE"
 msgstr "שמירה מהירה"
 
-#: ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:378
 msgid "QUIT"
 msgstr "יציאה"
 
-#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "צא מהמשחק"
@@ -5193,7 +5203,7 @@ msgstr "לא מעובד:"
 msgid "READING_SAVE_DATA"
 msgstr "קורא שמירה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "מוכן"
@@ -5202,7 +5212,7 @@ msgstr "מוכן"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "המלצת Thrive:"
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:850
 msgid "REDDIT_TOOLTIP"
 msgstr "ראו בתת-נושא הרדייט שלנו"
 
@@ -5227,7 +5237,7 @@ msgstr "החזר הגירה במקרה של מהכחדה מאזור מטרה"
 msgid "REPORT"
 msgstr "תסקיר"
 
-#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "תסקיר"
@@ -5374,7 +5384,7 @@ msgstr ""
 "האם אתה בטוח שאתה רוצה לצאת לתפריט הראשי?\n"
 "אתה עלול לאבד כל פעולה לא שמורה."
 
-#: ../src/general/MainMenu.tscn:776
+#: ../src/general/MainMenu.tscn:777
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "בקרו באתר הרשמי של Revolutionary Games"
 
@@ -5447,12 +5457,13 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "רוסטיצינין"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "רוסטיצינין הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"carbondioxide\"][/thrive:compound] וב[thrive:compound type=\"oxygen\"][/thrive:compound] בכדי לחמצן ברזל ממצב כימי אחד למשנהו. תהליך זה, הנקרא [b]נשימת ברזל[/b], משחרר אנרגיה שהתא מסוגל לקצור."
@@ -5461,7 +5472,7 @@ msgstr "רוסטיצינין הוא חלבון המסוגל להשתמש ב[thri
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזם של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ו[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:982
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5470,7 +5481,7 @@ msgstr ""
 "מיקרובים אמיצים לא יפחדו מטורפים לידם\n"
 "והם נוטים לתקוף חזרה."
 
-#: ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive הופעל במצב בטוח"
 
@@ -5486,7 +5497,7 @@ msgstr "שמור והמשך"
 msgid "SAVE_AUTOSAVE"
 msgstr "שמירה אוטומטית"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:245
 msgid "SAVE_DELETE_WARNING"
 msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק לצמיתות את {0}?"
 
@@ -5842,7 +5853,7 @@ msgid "SIZE_COLON"
 msgstr "גודל:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "מצגת"
 
@@ -6111,17 +6122,17 @@ msgstr "Steam לא זמין כרגע, בבקשה נסה שוב"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "שגיאת Steam לא ידועה קרתה"
 
-#: ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "אתחול ספריית Steam נכשל"
 
-#: ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1005
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
 
-#: ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:790
 msgid "STEAM_TOOLTIP"
 msgstr "ראו את הדף הSteam שלנו"
 
@@ -6161,7 +6172,7 @@ msgstr "אחסון"
 msgid "STORAGE_COLON"
 msgstr "אחסון:"
 
-#: ../src/general/MainMenu.cs:620
+#: ../src/general/MainMenu.cs:651
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
 
@@ -6385,7 +6396,7 @@ msgstr "טמפ'."
 msgid "TESTING_TEAM"
 msgstr "צוות בודקים"
 
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6400,7 +6411,7 @@ msgstr ""
 "\n"
 "אם נהנתה מהמשחק, ספר לחבריך עלינו."
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:993
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "אתה שגשגת!"
@@ -6460,7 +6471,7 @@ msgstr "מוד זה הורד מSteam Workshop"
 msgid "THREADS"
 msgstr "נושאים:"
 
-#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "טראיבופדיה"
 
@@ -6524,35 +6535,35 @@ msgstr "הראה אירועים גלובליים"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "הראה אירועים מקומיים"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשביל למלא גומחה"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשל לחץ ברירה שונים"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] נכחד!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] נעלמה מאזור זה"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה לאזור זה מ{1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה ל{1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "אוכלוסיית [b][u]{0}[/u][/b] קטנה ל{1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "אוכלוסיית [b][u]{0}[/u][/b] גדלה ל{1}"
 
@@ -6613,7 +6624,7 @@ msgstr "עצור"
 msgid "TOGGLE_UNBINDING"
 msgstr "בטל מצב קישור"
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr "כלים"
 
@@ -6840,7 +6851,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
-#: ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:886
 msgid "TWITTER_TOOLTIP"
 msgstr "בקרו בעמוד בטוייטר שלנו"
 
@@ -7085,7 +7096,7 @@ msgstr "{0} {1}"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:341
 msgid "VIEW_SOURCE_CODE"
 msgstr "צפה בקוד מקור"
 
@@ -7097,7 +7108,7 @@ msgstr "תומכי VIP"
 msgid "VISIBLE"
 msgstr "גלוי"
 
-#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
+#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "הצע רעיון"
 
@@ -7129,7 +7140,7 @@ msgstr "מחכה למפתח האוטומטי:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "נכחד מהכוכב"
 
@@ -7253,7 +7264,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "שנים"
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:838
 msgid "YOUTUBE_TOOLTIP"
 msgstr "צפו באתר היוטיוב שלנו"
 
