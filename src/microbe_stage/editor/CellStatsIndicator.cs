@@ -137,10 +137,7 @@ public class CellStatsIndicator : HBoxContainer
     {
         if (disposing)
         {
-            if (ValuePath != null)
-            {
-                ValuePath.Dispose();
-            }
+            ValuePath?.Dispose();
         }
 
         base.Dispose(disposing);
