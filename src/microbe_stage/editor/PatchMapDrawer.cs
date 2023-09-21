@@ -506,8 +506,10 @@ public class PatchMapDrawer : Control
                 connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2, c.Key.y)));
 
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
-            var connectionsToDirections =
-                new Dictionary<Direction, List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance, int Id)>>();
+            var connectionsToDirections = new Dictionary<
+                Direction,
+                List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance, int Id)>
+            >();
 
             for (int i = 0; i < 4; ++i)
             {
@@ -519,13 +521,15 @@ public class PatchMapDrawer : Control
             {
                 if (Math.Abs(path[endpoint].x - path[intermediate].x) < MathUtils.EPSILON)
                 {
-                    connectionsToDirections[path[endpoint].y > path[intermediate].y ? Direction.Up : Direction.Down].Add((
+                    connectionsToDirections[
+                        path[endpoint].y > path[intermediate].y ? Direction.Up : Direction.Down].Add((
                         path, endpoint, intermediate,
                         Math.Abs(path[endpoint].y - path[intermediate].y), id));
                 }
                 else
                 {
-                    connectionsToDirections[path[endpoint].x > path[intermediate].x ? Direction.Left : Direction.Right].Add((
+                    connectionsToDirections[
+                        path[endpoint].x > path[intermediate].x ? Direction.Left : Direction.Right].Add((
                         path, endpoint, intermediate,
                         Math.Abs(path[endpoint].x - path[intermediate].x), id));
                 }
