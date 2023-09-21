@@ -50,8 +50,7 @@ public class PatchRegion
     ///   Regions this is next to, and the connecting patches in the other regions
     /// </summary>
     [JsonIgnore]
-    public Dictionary<PatchRegion, Patch?> Adjacent { get; } =
-        new Dictionary<PatchRegion, Patch?>();
+    public Dictionary<PatchRegion, Patch?> Adjacent { get; } = new();
 
     [JsonProperty]
     public float Height { get; set; }

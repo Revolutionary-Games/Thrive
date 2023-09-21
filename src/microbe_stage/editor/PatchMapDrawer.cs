@@ -380,7 +380,6 @@ public class PatchMapDrawer : Control
             foreach (var entry in region.Adjacent)
             {
                 var adjacent = entry.Key;
-                var connectingPatch = entry.Value;
 
                 var connectionKey = new Int2(region.ID, adjacent.ID);
                 var reverseConnectionKey = new Int2(adjacent.ID, region.ID);
