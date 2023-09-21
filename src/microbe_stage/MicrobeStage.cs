@@ -38,7 +38,10 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 #pragma warning restore CA2213
     private Vector3? guidancePosition;
 
-    private List<GuidanceLine> chemoreceptionLines = new();
+    /// <summary>
+    ///   Used to track chemoreception lines. If TargetMicrobe is null the target is static.
+    /// </summary>
+    private List<(GuidanceLine Line, Microbe? TargetMicrobe)> chemoreceptionLines = new();
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -613,7 +616,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
         Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
 
-        Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
+        Player.OnChemoreceptionInfo = HandlePlayerChemoreception;
 
         Player.OnIngestedByHostile = OnPlayerEngulfedByHostile;
 
@@ -863,11 +866,12 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     }
 
     /// <summary>
-    ///   Updates the chemoreception lines for stuff the player wants to detect
+    ///   Updates the chemoreception lines
     /// </summary>
     [DeserializedCallbackAllowed]
-    private void HandlePlayerChemoreceptionDetection(Microbe microbe,
-        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections)
+    private void HandlePlayerChemoreception(Microbe microbe,
+        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections,
+        IEnumerable<(Species Species, float Range, Color Colour)> activeSpeciesDetections)
     {
         if (microbe != Player)
             GD.PrintErr("Chemoreception data reported for non-player cell");
@@ -875,20 +879,22 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         int currentLineIndex = 0;
         var position = microbe.GlobalTransform.origin;
 
-        foreach (var tuple in microbe.GetDetectedCompounds(Clouds))
+        foreach (var detectedCompound in microbe.GetDetectedCompounds(Clouds))
         {
-            var line = GetOrCreateGuidanceLine(currentLineIndex++);
+            UpdateOrCreateGuidanceLine(currentLineIndex++,
+                null, detectedCompound.Colour, position, detectedCompound.Target, true);
+        }
 
-            line.Colour = tuple.Colour;
-            line.LineStart = position;
-            line.LineEnd = tuple.Target;
-            line.Visible = true;
+        foreach (var detectedSpecies in microbe.GetDetectedSpecies(microbeSystem))
+        {
+            UpdateOrCreateGuidanceLine(currentLineIndex++,
+                detectedSpecies.Microbe, detectedSpecies.Colour, position, detectedSpecies.Target, true);
         }
 
         // Remove excess lines
         while (currentLineIndex < chemoreceptionLines.Count)
         {
-            var line = chemoreceptionLines[chemoreceptionLines.Count - 1];
+            var line = chemoreceptionLines[chemoreceptionLines.Count - 1].Line;
             chemoreceptionLines.RemoveAt(chemoreceptionLines.Count - 1);
 
             RemoveChild(line);
@@ -900,32 +906,64 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     {
         if (Player == null || Player?.Dead == true)
         {
-            foreach (var chemoreceptionLine in chemoreceptionLines)
-                chemoreceptionLine.Visible = false;
+            foreach (var chemoreception in chemoreceptionLines)
+                chemoreception.Line.Visible = false;
 
             return;
         }
 
-        var position = Player!.GlobalTransform.origin;
+        var position = Player!.GlobalTranslation;
 
-        foreach (var chemoreceptionLine in chemoreceptionLines)
+        foreach (var chemoreception in chemoreceptionLines)
         {
-            if (chemoreceptionLine.Visible)
-                chemoreceptionLine.LineStart = position;
+            if (!chemoreception.Line.Visible)
+                continue;
+
+            chemoreception.Line.LineStart = position;
+
+            // The target needs to be updated for detected microbes but not compounds.
+            if (chemoreception.TargetMicrobe != null)
+            {
+                // Use colony parent position to avoid calling GlobalTranslation
+                if (chemoreception.TargetMicrobe.Colony != null)
+                {
+                    chemoreception.Line.LineEnd = chemoreception.TargetMicrobe.Colony.Master.Translation;
+                }
+                else
+                {
+                    chemoreception.Line.LineEnd = chemoreception.TargetMicrobe.Translation;
+                }
+            }
         }
     }
 
-    private GuidanceLine GetOrCreateGuidanceLine(int index)
+    private void UpdateOrCreateGuidanceLine(int index,
+        Microbe? targetMicrobe, Color colour, Vector3 lineStart, Vector3 lineEnd, bool visible)
     {
         if (index >= chemoreceptionLines.Count)
         {
             // The lines are created here and added as children of the stage because if they were in the microbe
             // then rotation and it moving cause implementation difficulties
             var line = new GuidanceLine();
+
             AddChild(line);
-            chemoreceptionLines.Add(line);
+            if (targetMicrobe != null)
+            {
+                chemoreceptionLines.Add((line, targetMicrobe));
+            }
+            else
+            {
+                chemoreceptionLines.Add((line, null));
+            }
+        }
+        else
+        {
+            chemoreceptionLines[index] = (chemoreceptionLines[index].Line, targetMicrobe);
         }
 
-        return chemoreceptionLines[index];
+        chemoreceptionLines[index].Line.Colour = colour;
+        chemoreceptionLines[index].Line.LineStart = lineStart;
+        chemoreceptionLines[index].Line.LineEnd = lineEnd;
+        chemoreceptionLines[index].Line.Visible = visible;
     }
 }

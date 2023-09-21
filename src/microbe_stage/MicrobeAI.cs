@@ -177,7 +177,7 @@ public class MicrobeAI
 
         if (atpThreshold > 0.0f)
         {
-            if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpThreshold
+            if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.GetCapacityForCompound(atp) * atpThreshold
                 && microbe.Compounds.Any(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f))
             {
                 SetMoveSpeed(0.0f);
@@ -255,7 +255,7 @@ public class MicrobeAI
         }
 
         // If there are no chunks, look for living prey to hunt
-        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+        var possiblePrey = GetNearestPreyItem(data.AllMicrobes, random);
         if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
             var prey = possiblePrey.GlobalTransform.origin;
@@ -368,7 +368,8 @@ public class MicrobeAI
     /// </summary>
     /// <returns>The nearest prey item.</returns>
     /// <param name="allMicrobes">All microbes.</param>
-    private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes)
+    /// <param name="random">Randomness source</param>
+    private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes, Random random)
     {
         var focused = focusedPrey.Value;
         if (focused != null)
@@ -400,7 +401,7 @@ public class MicrobeAI
             {
                 if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
-                    && CanTryToEatMicrobe(otherMicrobe))
+                    && CanTryToEatMicrobe(otherMicrobe, random))
                 {
                     if (chosenPrey == null ||
                         (chosenPrey.GlobalTransform.origin - microbe.Translation).LengthSquared() >
@@ -683,9 +684,8 @@ public class MicrobeAI
         IEnumerable<Compound> usefulCompounds = microbe.Compounds.Compounds.Keys;
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-        if (usefulCompounds.Any(
-                compound => IsVitalCompound(compound) &&
-                    microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
+        if (usefulCompounds.Any(c => IsVitalCompound(c) && microbe.Compounds.GetCompoundAmount(c) < 0.5f
+                * microbe.Compounds.GetCapacityForCompound(c)))
         {
             usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
         }
@@ -695,7 +695,8 @@ public class MicrobeAI
         {
             // The priority of a compound is inversely proportional to its availability
             // Should be tweaked with consumption
-            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound) / microbe.Compounds.Capacity;
+            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound) /
+                microbe.Compounds.GetCapacityForCompound(compound);
 
             compoundsSearchWeights.Add(compound, compoundPriority);
         }
@@ -740,7 +741,13 @@ public class MicrobeAI
             if (CanShootToxin())
             {
                 microbe.LookAtPoint = target;
-                microbe.QueueEmitToxin(oxytoxy);
+
+                // Hold fire until the target is lined up.
+                if (microbe.FacingDirection().Normalized().AngleTo(microbe.LookAtPoint.Normalized()) <
+                    0.1f + SpeciesActivity / (Constants.AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION * SpeciesFocus))
+                {
+                    microbe.QueueEmitToxin(oxytoxy);
+                }
             }
         }
     }
@@ -828,13 +835,22 @@ public class MicrobeAI
         pursuitThreshold *= 0.95f;
     }
 
-    private bool CanTryToEatMicrobe(Microbe targetMicrobe)
+    private bool CanTryToEatMicrobe(Microbe targetMicrobe, Random random)
     {
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
-        return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
-            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+        // sometimes the AI will randomly decide to try in vain to eat something
+        var choosingToEngulf = microbe.CanDigestObject(targetMicrobe) == Microbe.DigestCheckResult.Ok ||
+            random.NextDouble() <
+            Constants.AI_BAD_ENGULF_CHANCE * SpeciesOpportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+
+        var choosingToAttackWithToxin = SpeciesOpportunism
+            > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin();
+
+        return choosingToEngulf &&
+            targetMicrobe.Species != microbe.Species && (
+                choosingToAttackWithToxin
+                || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
     private bool CanShootToxin()

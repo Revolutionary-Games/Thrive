@@ -42,6 +42,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private Label? nameLabel;
     private Label? mpLabel;
     private Label? requiresNucleusLabel;
+    private ModifierInfoLabel? osmoregulationModifier;
     private CustomRichTextLabel? descriptionLabel;
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
@@ -52,6 +53,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string? description;
     private string processesDescription = string.Empty;
     private int mpCost;
+    private float osmoregulationCost;
     private bool requiresNucleus;
 
     [Export]
@@ -117,6 +119,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
+    public float OsmoregulationCost
+    {
+        get => osmoregulationCost;
+        set
+        {
+            osmoregulationCost = value;
+            UpdateOsmoregulationCost();
+        }
+    }
+
+    [Export]
     public bool RequiresNucleus
     {
         get => requiresNucleus;
@@ -157,6 +170,11 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         UpdateMpCost();
         UpdateRequiresNucleus();
         UpdateLists();
+
+        // Update osmoregulation cost last after the modifier list has been populated
+        // to make sure this tooltip even has an osmoregulation cost modifier
+        osmoregulationModifier = GetModifierInfo("osmoregulationCost");
+        UpdateOsmoregulationCost();
     }
 
     public override void _Notification(int what)
@@ -349,6 +367,14 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
 
         mpLabel.Text = cost;
+    }
+
+    private void UpdateOsmoregulationCost()
+    {
+        if (osmoregulationModifier == null)
+            return;
+
+        osmoregulationModifier.ModifierValue = $"+{osmoregulationCost.ToString("0.###", CultureInfo.CurrentCulture)}";
     }
 
     private void UpdateRequiresNucleus()

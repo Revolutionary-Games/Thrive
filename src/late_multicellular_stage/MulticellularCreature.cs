@@ -249,7 +249,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         Species = lateSpecies;
 
         // TODO: set from species
-        compounds.Capacity = 100;
+        compounds.NominalCapacity = 100;
 
         // TODO: better mass calculation
         Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);

@@ -588,6 +588,8 @@ public static class Constants
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
+    public const string VACUOLE_DEFAULT_COMPOUND_NAME = "glucose";
+
     /// <summary>
     ///   How much ATP does binding mode cost per second
     /// </summary>
@@ -597,6 +599,11 @@ public static class Constants
     ///   Damage a single pilus stab does
     /// </summary>
     public const float PILUS_BASE_DAMAGE = 20.0f;
+
+    /// <summary>
+    ///   Damage a single injectisome stab does
+    /// </summary>
+    public const float INJECTISOME_BASE_DAMAGE = 20.0f;
 
     /// <summary>
     ///   How much time (in seconds) a pilus applies invulnerability upon damage.
@@ -672,7 +679,7 @@ public static class Constants
     public const float CHEMORECEPTOR_AMOUNT_MIN = 1;
     public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
     public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
-    public const float CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL = 0.25f;
+    public const float CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL = 0.25f;
     public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>
@@ -740,6 +747,12 @@ public static class Constants
     // Cooldown for AI for toggling engulfing
     public const float AI_ENGULF_INTERVAL = 300;
 
+    /// <summary>
+    ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something
+    ///   it can't eat
+    /// </summary>
+    public const float AI_BAD_ENGULF_CHANCE = 0.15f;
+
     // Average number of calls to think method before doing expensive cloud-finding calculations
     public const int AI_STEPS_PER_SMELL = 20;
 
@@ -757,6 +770,8 @@ public static class Constants
 
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
     public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
+
+    public const float AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION = 5;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;

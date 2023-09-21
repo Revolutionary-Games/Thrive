@@ -28,8 +28,11 @@ public class ThriveTypeConverter : TypeConverter
             attr => attr.AttributeType == typeof(UseThriveConverterAttribute));
     }
 
-    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
     {
+        if (value == null)
+            return null;
+
         // Must have the dynamic type used on the object, otherwise this doesn't do many sensible things
         return ThriveJsonConverter.Instance.DeserializeObjectDynamic((string)value);
     }

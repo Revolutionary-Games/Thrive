@@ -27,7 +27,6 @@ public class LicensesDisplay : CustomWindow
         var steam = LoadFile(Constants.STEAM_LICENSE_FILE);
         var normal = LoadFile(Constants.LICENSE_FILE);
 
-        // var regex = new Regex(".*(^In addition to Godot Engine, Thrive uses the following.+\\z)",
         var regex = new Regex(".*(In addition to Godot Engine, Thrive uses the following.+)$",
             RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
@@ -38,6 +37,10 @@ public class LicensesDisplay : CustomWindow
         if (match.Success)
         {
             extraText = match.Groups[1].Value;
+        }
+        else
+        {
+            GD.PrintErr("Failed to insert Steam version used library licenses list");
         }
 
         return steam + extraText;

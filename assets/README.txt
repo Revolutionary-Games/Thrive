@@ -20,6 +20,9 @@ The following fonts are licensed under the SIL Open Font License
 
 SIL license text is included in "OFL.txt" file.
 
+In a packaged version of the game the assets may be included inside an
+archive file format instead of as separate plain files.
+
 
 Social License Info
 -------------------

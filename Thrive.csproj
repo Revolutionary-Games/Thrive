@@ -256,6 +256,7 @@
     <Compile Include="src\general\utils\TypeUtils.cs" />
     <Compile Include="src\general\utils\VersionUtils.cs" />
     <Compile Include="src\gui_common\AddWindowReorderingSupportToSiblings.cs" />
+    <Compile Include="src\gui_common\art_gallery\CrossFadableGalleryViewport.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\TopLevelContainer.cs" />
     <Compile Include="src\gui_common\CustomPopupMenu.cs" />
@@ -767,6 +768,7 @@
     <Compile Include="src\saving\serializers\RandomConverter.cs" />
     <Compile Include="test\MetaballTest.cs" />
     <Compile Include="test\WindowReorderingSupportTest.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\VacuoleUpgradeGUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
@@ -797,7 +799,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.1.1</Version>
+      <Version>13.3.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

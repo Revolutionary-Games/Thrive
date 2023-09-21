@@ -45,7 +45,7 @@ public class SlideScreen : TopLevelContainer
     private Button? closeButton;
     private Button? slideShowModeButton;
     private Label? slideTitleLabel;
-    private ViewportContainer? modelViewerContainer;
+    private CrossFadableGalleryViewport? modelViewerContainer;
     private Viewport? modelViewer;
     private Spatial? modelHolder;
     private OrbitCamera? modelViewerCamera;
@@ -114,7 +114,7 @@ public class SlideScreen : TopLevelContainer
         closeButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
         slideTitleLabel = GetNode<Label>(SlideTitleLabelPath);
-        modelViewerContainer = GetNode<ViewportContainer>(ModelViewerContainerPath);
+        modelViewerContainer = GetNode<CrossFadableGalleryViewport>(ModelViewerContainerPath);
         modelViewer = GetNode<Viewport>(ModelViewerPath);
         modelHolder = GetNode<Spatial>(ModelHolderPath);
         modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
@@ -332,6 +332,13 @@ public class SlideScreen : TopLevelContainer
 
         var item = items[currentSlideIndex];
         slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture;
+
+        if (slideTextureRect.Image != null)
+            return;
+
+        // If texture loading fails, the selected item is a model
+        // These are handled here
+        modelViewerContainer!.BeginFade();
     }
 
     private void UpdateScreen()

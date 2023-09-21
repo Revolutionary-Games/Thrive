@@ -14,7 +14,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private Label description = null!;
 #pragma warning restore CA2213
 
-    private List<Enzyme>? shownChoices;
+    private IReadOnlyList<Enzyme>? shownChoices;
 
     public override void _Ready()
     {
@@ -24,7 +24,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         enzymes.Clear();
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         shownChoices = SimulationParameters.Instance.GetHydrolyticEnzymes();
 
@@ -101,19 +101,6 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         var enzyme = shownChoices[enzymes.Selected];
 
-        switch (enzyme.InternalName)
-        {
-            // TODO: having these translation keys in the JSON would make this more extensible to people just making
-            // simple modifications
-            case "lipase":
-                description.Text = TranslationServer.Translate("LIPASE_DESCRIPTION");
-                break;
-            case "cellulase":
-                description.Text = TranslationServer.Translate("CELLULASE_DESCRIPTION");
-                break;
-            case "chitinase":
-                description.Text = TranslationServer.Translate("CHITINASE_DESCRIPTION");
-                break;
-        }
+        description.Text = enzyme.Description;
     }
 }
