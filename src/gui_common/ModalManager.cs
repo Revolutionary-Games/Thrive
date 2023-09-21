@@ -99,7 +99,7 @@ public class ModalManager : NodeWithInput
     }
 
     /// <summary>
-    /// Attempt to clear all open modals.
+    ///   Attempt to clear all open modals.
     /// </summary>
     /// <returns>Returns true if all modals were closed, false otherwise.</returns>
     public bool ClearModals()
@@ -133,8 +133,8 @@ public class ModalManager : NodeWithInput
     }
 
     /// <summary>
-    /// Attempts to hide the given modal.
-    /// This won't hide the modal if it's exclusive and doesn't allow closing on escape.
+    ///   Attempts to hide the given modal.
+    ///   This won't hide the modal if it's exclusive and doesn't allow closing on escape.
     /// </summary>
     /// <param name="popup">Modal to hide</param>
     /// <returns>True if the modal was hidden</returns>
