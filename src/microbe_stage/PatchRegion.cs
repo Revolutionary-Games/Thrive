@@ -47,10 +47,11 @@ public class PatchRegion
     public int ID { get; }
 
     /// <summary>
-    ///   Regions this is next to
+    ///   Regions this is next to, and the connecting patches in the other regions
     /// </summary>
     [JsonIgnore]
-    public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
+    public Dictionary<PatchRegion, Patch?> Adjacent { get; } =
+        new Dictionary<PatchRegion, Patch?>();
 
     [JsonProperty]
     public float Height { get; set; }
@@ -102,9 +103,9 @@ public class PatchRegion
     /// <summary>
     ///   Adds a connection to region
     /// </summary>
-    /// <returns>True if this was new, false if already added</returns>
-    public bool AddNeighbour(PatchRegion region)
+    public void AddNeighbour(PatchRegion region, Patch? connectingPatch)
     {
-        return Adjacent.Add(region);
+        if (!Adjacent.ContainsKey(region))
+            Adjacent.Add(region, connectingPatch);
     }
 }

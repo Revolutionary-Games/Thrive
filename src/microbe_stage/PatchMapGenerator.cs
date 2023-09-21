@@ -178,12 +178,21 @@ public static class PatchMapGenerator
     {
         patch1.AddNeighbour(patch2);
         patch2.AddNeighbour(patch1);
+
+        var region1 = patch1.Region;
+        var region2 = patch2.Region;
+
+        if (region1 != region2)
+        {
+            region1.Adjacent[region2] = patch2;
+            region2.Adjacent[region1] = patch1;
+        }
     }
 
     private static void LinkRegions(PatchRegion region1, PatchRegion region2)
     {
-        region1.AddNeighbour(region2);
-        region2.AddNeighbour(region1);
+        region1.AddNeighbour(region2, null);
+        region2.AddNeighbour(region1, null);
     }
 
     /// <summary>
@@ -583,7 +592,7 @@ public static class PatchMapGenerator
         {
             case PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea:
             {
-                foreach (var adjacent in region.Adjacent)
+                foreach (var adjacent in region.Adjacent.CloneShallow().Keys)
                 {
                     switch (adjacent.Type)
                     {
@@ -616,7 +625,7 @@ public static class PatchMapGenerator
 
             case PatchRegion.RegionType.Continent:
             {
-                foreach (var adjacent in region.Adjacent)
+                foreach (var adjacent in region.Adjacent.CloneShallow().Keys)
                 {
                     if (adjacent.Type == PatchRegion.RegionType.Continent)
                     {

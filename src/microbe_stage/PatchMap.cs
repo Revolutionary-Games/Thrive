@@ -429,7 +429,7 @@ public class PatchMap : ISaveLoadable
 
         foreach (var entry in Regions)
         {
-            foreach (var adjacent in entry.Value.Adjacent)
+            foreach (var adjacent in entry.Value.Adjacent.Keys)
             {
                 if (!ContainsRegionAdjacency(entry.Value.ID, adjacent.ID))
                     RegionAdjacencies.Add((entry.Value.ID, adjacent.ID));
@@ -444,6 +444,15 @@ public class PatchMap : ISaveLoadable
 
     private void RecreateAdjacencies()
     {
+        foreach (var (id1, id2) in RegionAdjacencies)
+        {
+            var region1 = Regions[id1];
+            var region2 = Regions[id2];
+
+            region1.AddNeighbour(region2, null);
+            region2.AddNeighbour(region1, null);
+        }
+
         foreach (var (id1, id2) in PatchAdjacencies)
         {
             var patch1 = Patches[id1];
@@ -451,15 +460,15 @@ public class PatchMap : ISaveLoadable
 
             patch1.AddNeighbour(patch2);
             patch2.AddNeighbour(patch1);
-        }
 
-        foreach (var (id1, id2) in RegionAdjacencies)
-        {
-            var region1 = Regions[id1];
-            var region2 = Regions[id2];
+            var region1 = patch1.Region;
+            var region2 = patch2.Region;
 
-            region1.AddNeighbour(region2);
-            region2.AddNeighbour(region1);
+            if (region1 != region2)
+            {
+                region1.Adjacent[region2] = patch2;
+                region2.Adjacent[region1] = patch1;
+            }
         }
     }
 }
