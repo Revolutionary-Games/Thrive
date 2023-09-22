@@ -94,6 +94,9 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public DayNightTutorial DayNightTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public BecomeMulticellularTutorial BecomeMulticellularTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -375,6 +378,7 @@ public class TutorialState : ITutorialInput
             LeaveColonyTutorial,
             EarlyMulticellularWelcome,
             DayNightTutorial,
+            BecomeMulticellularTutorial,
         };
     }
 }

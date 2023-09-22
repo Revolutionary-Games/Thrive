@@ -132,4 +132,9 @@ public enum TutorialEventType
     ///   Player enters a patch with more than 0 sunlight at noon
     /// </summary>
     MicrobePlayerEnterSunlightPatch,
+
+    /// <summary>
+    ///   The "Become multicellular" button is shown on screen
+    /// </summary>
+    MicrobeBecomeMulticellularAvailable,
 }

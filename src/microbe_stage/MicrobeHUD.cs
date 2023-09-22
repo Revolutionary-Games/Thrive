@@ -477,6 +477,13 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         multicellularButton.Visible = true;
 
+        // Show the become multicellular tutorial
+        if (stage.CurrentGame.TutorialState.Enabled)
+        {
+            stage.CurrentGame.TutorialState.SendEvent(
+                TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
+        }
+
         var newColonySize = player.Colony.ColonyMembers.Count;
 
         if (stage.MovingToEditor)

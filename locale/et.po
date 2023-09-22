@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-22 23:20+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -494,17 +494,17 @@ msgstr "Bass üles"
 msgid "BATHYPELAGIC"
 msgstr "Batüpelaagiline"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:545
+#: ../src/microbe_stage/MicrobeHUD.cs:552
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:509
+#: ../src/microbe_stage/MicrobeHUD.cs:516
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Hakka mitmerakuliseks ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "BEGIN_THRIVING"
 msgstr "Alustage õitsemist"
 
@@ -1211,7 +1211,7 @@ msgstr "Tritanope (sinine-kollane)"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Töötoa sisu laaditakse üles kaustast {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:420
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Alustage õitsemist"
@@ -2298,7 +2298,7 @@ msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse 
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1995
+#: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Tulista toksiini"
 
@@ -3831,7 +3831,17 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:232
+#, fuzzy
+msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
+msgstr ""
+"Koguge glükoosi (valged pilved), liikudes nende kohal.\n"
+"\n"
+"Teie rakk vajab elus püsimiseks energia tootmiseks glükoosi.\n"
+"\n"
+"Järgige joont oma rakust lähedalasuva glükoosini."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Koguge glükoosi (valged pilved), liikudes nende kohal.\n"
@@ -3840,14 +3850,14 @@ msgstr ""
 "\n"
 "Järgige joont oma rakust lähedalasuva glükoosini."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Lahtri juhtimiseks kasutage lahtri lähedal (ekraani keskel) kuvatavaid klahve ja lahtri orientatsiooni juhtimiseks hiirt.\n"
 "\n"
 "Jätkamiseks proovige mõni sekund kõiki klahve."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:150
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3855,7 +3865,7 @@ msgstr ""
 "\n"
 "Jätkamiseks proovige mõni sekund kõiki klahve."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3864,7 +3874,7 @@ msgstr ""
 "Kui teil on ATP, taastate tervist.\n"
 "Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Hoidke oma terviseribal silm peal ATP riba kõrval (all paremal).\n"
@@ -3953,7 +3963,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "Vesinik sulfiidist saab sünteesida glükoosi kasutades kemoplaste ja kemosünteesivaid valke. Rauaga saab toota ATP-d kasutades roote-tsüaniini."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
@@ -5841,7 +5851,7 @@ msgstr "merepõhi"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2040
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -5964,7 +5974,7 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
 msgid "SHOW_TUTORIALS"
 msgstr "Näita õpetusi"
 
@@ -6792,7 +6802,7 @@ msgid "TITLE_COLON"
 msgstr "Suurus:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2006
+#: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "Lülitage sidumine sisse"
 
@@ -6804,7 +6814,7 @@ msgstr "Neelamise sisse- ja väljalülitamine"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1982
+#: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Neelamise sisse- ja väljalülitamine"
 
@@ -6917,12 +6927,12 @@ msgstr "Proovige teha ekraanipilte!"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
 msgid "TUTORIAL"
 msgstr "Õpetus"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:397
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Mikroobide redaktori laadimine"
@@ -6998,7 +7008,7 @@ msgstr ""
 "\n"
 "Üks võimalik strateegia on jääda üheks tsütoplasma kuuendiks ja suunduda enne fotosünteesi organellide hankimist pinnalaikudele."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Olete kogunud piisavalt ressursse, et teie rakk saaks paljuneda.\n"
@@ -7007,7 +7017,7 @@ msgstr ""
 "\n"
 "Redaktorisse sisenemiseks vajutage suurt vilkuvat nuppu all paremal, kui olete valmis."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -7015,7 +7025,7 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:351
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -7023,7 +7033,7 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -7031,14 +7041,14 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Hädas? Kontrollige abimenüüd. Saate selle avada vasakus alanurgas oleva küsimärgi nupuga.\n"
 "\n"
 "Veel üks näpunäide: saate kerimisrattaga vaadet välja suumida."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:387
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -7046,20 +7056,20 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Paljunemiseks peate dubleerima kõik oma organellid, kogudes piisavalt ammoniaaki ja fosfaate.\n"
 "Vaadake all paremal asuvat suurt nuppu ümbritsevaid ribasid, et näha, kui palju rohkem vajate. Need ribad muutuvad täitmisel valgeks."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Olete sisenenud sidumise tühistamise režiimi. Selles režiimis saate klõpsata koloonia liikmetel, et need lahti siduda.\n"
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:340
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vaata nüüd"
 
@@ -7085,7 +7095,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Modifikatsioonide laadimiseks või mahalaadimiseks peate muudatused rakendama."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2018
+#: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "Vabastage kõik"
 
