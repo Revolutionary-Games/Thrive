@@ -8,7 +8,9 @@ public abstract class EditorCombinableActionData : CombinableActionData
     ///   The <see cref="CellType"/> the action was performed on.
     /// </summary>
     /// <remarks>
-    ///   In the microbe stage, this will always be null because there's only one <see cref="CellType"/>.
+    ///   <para>
+    ///     In the microbe stage, this will always be null because there's only one <see cref="CellType"/>.
+    ///   </para>
     /// </remarks>
     public CellType? CellType { get; set; }
 
