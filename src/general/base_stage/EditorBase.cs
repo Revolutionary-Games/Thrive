@@ -347,7 +347,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     [RunOnKeyDown("e_redo")]
-    public void Redo()
+    public virtual void Redo()
     {
         if (HasInProgressAction)
             return;
@@ -361,7 +361,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     [RunOnKeyDown("e_undo")]
-    public void Undo()
+    public virtual void Undo()
     {
         if (HasInProgressAction)
             return;
