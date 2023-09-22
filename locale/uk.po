@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-18 20:07+0200\n"
+"POT-Creation-Date: 2023-09-20 13:02+0200\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -174,7 +174,7 @@ msgstr "Дозволити виду не мутувати"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Загальна статистика усіх світів"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1001
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Покоління:[/b]\n"
@@ -259,7 +259,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Малюнок від {0}"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
 msgstr "Галерея"
 
@@ -312,12 +312,12 @@ msgstr "АТФ"
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:311
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "Продукування АТФ є замалим!"
 
@@ -373,7 +373,7 @@ msgstr "Автозбереження під час гри"
 msgid "AUTO_EVO"
 msgstr "Авто-ево"
 
-#: ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:419
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Інструменти дослідження Авто-ево"
 
@@ -424,8 +424,8 @@ msgid "AWARE_STAGE"
 msgstr "Стадія свідомості"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
-#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
+#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -452,7 +452,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Базова мобільність"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
 msgid "BASE_MOVEMENT"
 msgstr "Базова швидкість"
 
@@ -524,7 +524,7 @@ msgstr "Опортунізм"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м. нижче рівня моря"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
 msgstr "Бенчмарки"
 
@@ -562,7 +562,7 @@ msgstr "Великий шматок заліза"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Млрд"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:518
+#: ../simulation_parameters/microbe_stage/organelles.json:531
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "З'єднувальний агент"
@@ -595,7 +595,7 @@ msgstr "Видам із сусідніх біомів, що збільшують
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Розкол біорізноманіття– це матації"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:763
+#: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Біолюмінесцентна вакуоля"
@@ -760,11 +760,11 @@ msgstr "Клітина"
 msgid "CELLS"
 msgstr "Клітини"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
 msgstr "Целюлоза"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Целюлаза надає змогу клітині ламати целюлозні мембрани. Кожне додавання підвищить ефективність."
 
@@ -807,7 +807,7 @@ msgstr "Меню читів"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:353
+#: ../simulation_parameters/microbe_stage/organelles.json:366
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
@@ -820,7 +820,7 @@ msgstr "Хемопласт — це двохмембранна структур�
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] на [thrive:compound type=\"glucose\"][/thrive:compound]. Швидкість залежить від концентрації [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:681
+#: ../simulation_parameters/microbe_stage/organelles.json:694
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
@@ -833,7 +833,7 @@ msgstr "Усі клітини «бачають» лиш через хеморе�
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хеморецептор дозволяє відстежувати сполуки на відстані. Модифікуйте один раз, аби вибрати тип сполуки та колір та колір вказівної лінії."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:151
+#: ../simulation_parameters/microbe_stage/organelles.json:164
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезувальні білки"
@@ -856,11 +856,11 @@ msgstr "Хемосинтез"
 msgid "CHITIN"
 msgstr "Хітин"
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
 msgstr "Хітин"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Хітиназа надає змогу клітині ламати хітинові мембрани. Кожне додавання підвищить ефективність."
 
@@ -868,7 +868,7 @@ msgstr "Хітиназа надає змогу клітині ламати хі�
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має стінку, що означатиме, що внеї кращий загальний захист, особливо від токсинів. Це коштує менше енергії на збереження форми, але не так швидко поглинає ресурси і є повільнішим.[b]Хітиназа здатна перетравлювати цю стінку[/b] роблячи її вразливою для поглинання хижаками."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:557
+#: ../simulation_parameters/microbe_stage/organelles.json:570
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Хлоропласт"
@@ -897,7 +897,7 @@ msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. �
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} спожито/поглинуто"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:829
+#: ../simulation_parameters/microbe_stage/organelles.json:842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Війки"
@@ -1027,19 +1027,19 @@ msgstr "Загальні здібності"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "Загальний редактор та стратегічні стадії"
 
-#: ../src/general/MainMenu.tscn:675
+#: ../src/general/MainMenu.tscn:676
 msgid "COMMUNITY_FORUM"
 msgstr "Форум спільноти"
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Приєднуйтеся до спільноти Thrive на нашому форумі спільноти"
 
-#: ../src/general/MainMenu.tscn:717
+#: ../src/general/MainMenu.tscn:718
 msgid "COMMUNITY_WIKI"
 msgstr "Wiki спільноти"
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Відвідайте наше wiki спільноти"
 
@@ -1344,7 +1344,7 @@ msgstr "Створення..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Створюємо об'єкти зі збереження"
 
-#: ../src/general/MainMenu.tscn:356
+#: ../src/general/MainMenu.tscn:357
 msgid "CREDITS"
 msgstr "Титри"
 
@@ -1375,7 +1375,7 @@ msgstr "Відкрити екран досліджень"
 msgid "CURRENT_WORLD"
 msgstr "Поточний світ"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:962
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Покоління:[/b]\n"
@@ -1402,7 +1402,7 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr "Власне ім'я користувача:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:588
+#: ../simulation_parameters/microbe_stage/organelles.json:601
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Цитоплазма"
@@ -1451,7 +1451,7 @@ msgstr "Калібрування ертвої зони було скинуто"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Конфігурація мертвої зони"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:964
+#: ../src/microbe_stage/Microbe.Contact.cs:984
 msgid "DEATH"
 msgstr "Смерть"
 
@@ -1570,11 +1570,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Розробники"
 
-#: ../src/general/MainMenu.tscn:689
+#: ../src/general/MainMenu.tscn:690
 msgid "DEVELOPMENT_FORUM"
 msgstr "Форум розробки"
 
-#: ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Поглянути оновлення розробки на нашому форумі"
 
@@ -1582,11 +1582,11 @@ msgstr "Поглянути оновлення розробки на нашому
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Розробницька підтримка від Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:704
 msgid "DEVELOPMENT_WIKI"
 msgstr "Розробницьке wiki"
 
-#: ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Відвідайте наше розробницьке wiki"
 
@@ -1656,7 +1656,7 @@ msgstr "Швидкість травлення"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Швидкість травлення:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:158
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
@@ -1714,7 +1714,7 @@ msgstr ""
 "Тут розміщені органели, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені органели, або скасуйте зміни."
 
-#: ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:862
 msgid "DISCORD_TOOLTIP"
 msgstr "Приєднуйтесь до спільноти Discord серверу"
 
@@ -1728,11 +1728,11 @@ msgstr ""
 "Це показує як багато спливаючих вікон закрито користувачем остаточно.\n"
 "Якщо деякі спливаючі вікна закриті, та вони вам потрібні, тоді можна використати кнопку поблизу, щоб знову відновити спливаючі вікна."
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:30
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:39
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "Більше не показувати"
 
-#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:33
+#: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:42
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "Не попереджати про це"
 
@@ -1956,11 +1956,11 @@ msgstr "Увімкнути редактор"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Увімкнути світлові ефекти GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:382
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
@@ -2049,7 +2049,7 @@ msgstr "Помилка збереження"
 msgid "ESCAPE"
 msgstr "Вийти з повноекрання"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1230
+#: ../src/microbe_stage/Microbe.Contact.cs:1250
 msgid "ESCAPE_ENGULFING"
 msgstr "уникнення поглинання"
 
@@ -2093,7 +2093,7 @@ msgstr "Споруди"
 msgid "EXIT"
 msgstr "Вихід"
 
-#: ../src/general/MainMenu.tscn:365
+#: ../src/general/MainMenu.tscn:366
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Вийти до лаунчера"
 
@@ -2143,7 +2143,7 @@ msgstr "вимерли в ділянці"
 msgid "EXTINCT_SPECIES"
 msgstr "Вимерлі види"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "EXTRAS"
 msgstr "Додаткове"
 
@@ -2151,7 +2151,7 @@ msgstr "Додаткове"
 msgid "EXTRA_OPTIONS"
 msgstr "Додаткові налаштування"
 
-#: ../src/general/MainMenu.tscn:873
+#: ../src/general/MainMenu.tscn:874
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Відвідайте на сторінку Facebook"
 
@@ -2231,7 +2231,7 @@ msgstr "Завершення {0} генерацій"
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:387
+#: ../simulation_parameters/microbe_stage/organelles.json:400
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "FLAGELLUM"
 msgstr "Джгутик"
@@ -2416,7 +2416,7 @@ msgstr "Генерації"
 msgid "GENERATION_COLON"
 msgstr "Генерація:"
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:826
 msgid "GITHUB_TOOLTIP"
 msgstr "Відвідайте наше сховище у GitHub"
 
@@ -2424,11 +2424,11 @@ msgstr "Відвідайте наше сховище у GitHub"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING"
 msgstr "Режим попереджень GLES2"
 
-#: ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є перевіреним та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Thrive."
 
@@ -2440,7 +2440,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Частина популуляції [b][u]{0}[/u][/b] мігрувала до {1} з {2}"
 
@@ -2816,7 +2816,7 @@ msgstr "Залізо"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Хемолітоавтотрофія заліза"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:802
 msgid "ITCH_TOOLTIP"
 msgstr "Відвідайте"
 
@@ -3192,7 +3192,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "ЛКМ"
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:531
 msgid "LICENSES"
 msgstr "Ліцензія"
 
@@ -3312,7 +3312,7 @@ msgstr "Колір лінії:"
 msgid "LIPASE"
 msgstr "Ліпаза"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../simulation_parameters/microbe_stage/enzymes.json:4
 msgid "LIPASE_DESCRIPTION"
 msgstr "Ліпаза дозволяє клітині руйнувати більшість типів мембран. Ваша клітина вже виробляє частину цього ферменту без лізосом, проте обравши цей тип ви підвищите ефективність."
 
@@ -3355,12 +3355,12 @@ msgstr "Натисніть на кнопку скасувати, аби випр
 msgid "LOAD_FINISHED"
 msgstr "Завантаження завершено"
 
-#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Завантажити гру"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Завантажити раніше збережену гру"
 
@@ -3406,7 +3406,17 @@ msgstr "Увімкнути цикл дня/ночі"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Низький ліміт біорізноманіття"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:878
+#: ../src/general/MainMenu.tscn:1009
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "Продуктивність"
+
+#: ../src/general/MainMenu.tscn:1011
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr "Містить травні ферменти. Можна модифікувати тип вмістимого ферменту. Можна використовувати тільки один фермент за раз."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Лізосома"
@@ -3514,7 +3524,7 @@ msgstr "Меню"
 msgid "MESOPELAGIC"
 msgstr "Серединомор'я"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:250
+#: ../simulation_parameters/microbe_stage/organelles.json:263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:384
 msgid "METABOLOSOMES"
 msgstr "Метаболосоми"
@@ -3568,7 +3578,7 @@ msgid "MICROBES_COUNT"
 msgstr "Кількість бактерій:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:590
 msgid "MICROBE_BENCHMARK"
 msgstr "Мікробний бенчмарк"
 
@@ -3652,12 +3662,12 @@ msgstr "Кожного покоління ви отримуєте 100 очок �
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Ви розмножуєтесь щоразу, як заходите до Мікробного Редактора, де модна змінити свій вид (перміщати, додавати, видаляти органели) для підвищення успішності виду. Кожен візит до мікробного редактору представляє собою [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] міліон років еволюції."
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:408
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:973
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1017
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Знайдено в {1} видів, у середньому {2} кожен"
 
@@ -3866,7 +3876,7 @@ msgstr "Відсутній або недійсний формат обов'як�
 msgid "MISSING_TITLE"
 msgstr "Назва відсутня"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:451
+#: ../simulation_parameters/microbe_stage/organelles.json:464
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Мітохондрія"
@@ -3879,7 +3889,7 @@ msgstr "Енергостанція клітини. Мітохондрія є д�
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Змішаний..."
 
@@ -3904,11 +3914,11 @@ msgstr "Модифікувати органелу"
 msgid "MODIFY_TYPE"
 msgstr "Змінити тип"
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:508
 msgid "MODS"
 msgstr "Моди"
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:972
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Встановлений мод виявлено, але увімкнених модів нема.\n"
@@ -3997,11 +4007,11 @@ msgstr "Внутрішня (папкова) назва:"
 msgid "MOD_LICENSE"
 msgstr "Ліцензія на моду:"
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:986
 msgid "MOD_LOAD_ERRORS"
 msgstr "Помилки завантаження модифікації"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:987
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникли помилки під час завантаження декількох модифікацій. Додаткова інформація міститься у журналах."
 
@@ -4281,11 +4291,11 @@ msgstr "НОВИНИ"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Нове біорізноманіття збільшує видові популяції"
 
-#: ../src/general/MainMenu.tscn:303
+#: ../src/general/MainMenu.tscn:304
 msgid "NEW_GAME"
 msgstr "Нова гра"
 
-#: ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "почати нову гру"
 
@@ -4324,7 +4334,7 @@ msgstr "Перейти до наступної вкладки редактору
 msgid "NITROGEN"
 msgstr "Азот"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:87
+#: ../simulation_parameters/microbe_stage/organelles.json:100
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:781
 msgid "NITROGENASE"
 msgstr "Нітрогеназа"
@@ -4337,7 +4347,7 @@ msgstr "Нітрогеназа– це білок, що використовує
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:285
+#: ../simulation_parameters/microbe_stage/organelles.json:298
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Азотофіксуючі пластиди"
@@ -4371,23 +4381,23 @@ msgstr "Тут нічого"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Немає з чим взаємодіяти"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:368
+#: ../src/microbe_stage/Microbe.Contact.cs:388
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Пошкодження через нестачу АТФ"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1593
+#: ../src/microbe_stage/Microbe.Interior.cs:1601
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Пошкодження через токсини у поглинутій матерії"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1539
+#: ../src/microbe_stage/Microbe.Interior.cs:1547
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Немає {0} для поглинання цілі"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1788
+#: ../src/microbe_stage/Microbe.Contact.cs:1818
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Поточний розмір клітини замалий для поглинання цілі"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1783
+#: ../src/microbe_stage/Microbe.Contact.cs:1813
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Замало простору поглинутої матерії для поглинання цілі"
 
@@ -4424,12 +4434,12 @@ msgstr "Нема зафіксованих сполук"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Каталог викопувань не знайдено"
 
-#: ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:970
 msgid "NO_MODS_ENABLED"
 msgstr "Жоден мод не ввімкнений"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:201
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Процеси не відбуваються"
 
@@ -4449,7 +4459,7 @@ msgstr "Не знайдено каталог скріншотів"
 msgid "NO_SELECTED_MOD"
 msgstr "Немає вибраного моду"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:655
+#: ../simulation_parameters/microbe_stage/organelles.json:668
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Ядро"
@@ -4495,11 +4505,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Жовтень"
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE"
 msgstr "Офіційний сайт"
 
-#: ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:653
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
@@ -4597,11 +4607,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Упереджені"
 
-#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Налаштування"
 
-#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Зміна ваших налаштувань"
 
@@ -4609,7 +4619,7 @@ msgstr "Зміна ваших налаштувань"
 msgid "ORGANELLES"
 msgstr "Органели"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:905
+#: ../simulation_parameters/microbe_stage/organelles.json:918
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 msgid "ORGANELLE_AXON"
 msgstr "Аксон"
@@ -4622,7 +4632,7 @@ msgstr "Аксони є нервовими тканинами, що викори
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Багатоклітинна"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:947
+#: ../simulation_parameters/microbe_stage/organelles.json:960
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Міофібрила"
@@ -4648,7 +4658,7 @@ msgstr "Проштрихніть нею інші клітини."
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Організму"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:365
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "OSMOREGULATION"
 msgstr "Осморегуляція"
 
@@ -4724,7 +4734,7 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Кисень"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:187
+#: ../simulation_parameters/microbe_stage/organelles.json:200
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "OXYTOXISOME"
 msgstr "Окситоксисома"
@@ -4848,7 +4858,7 @@ msgstr "Зміни:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Оглянути повний лист змін цього релізу на [color=#3796e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:814
 msgid "PATREON_TOOLTIP"
 msgstr "Відвідайте"
 
@@ -4889,8 +4899,8 @@ msgstr "Мирність"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5108,7 +5118,7 @@ msgstr "Захист нових клітин від витісняючих ви�
 msgid "PROTEINS"
 msgstr "Білки"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:119
+#: ../simulation_parameters/microbe_stage/organelles.json:132
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
 
@@ -5124,11 +5134,11 @@ msgstr "Швидке завантаження"
 msgid "QUICK_SAVE"
 msgstr "Швидке збереження"
 
-#: ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:378
 msgid "QUIT"
 msgstr "Вихід"
 
-#: ../src/general/MainMenu.tscn:363 ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Вихід з гри"
@@ -5161,7 +5171,7 @@ msgstr "Вологість:"
 msgid "READING_SAVE_DATA"
 msgstr "Читання даних збереження"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:823
+#: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Готово"
@@ -5170,7 +5180,7 @@ msgstr "Готово"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Рекомендовані Thrive:"
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:850
 msgid "REDDIT_TOOLTIP"
 msgstr "Відвідайте наш subreddit"
 
@@ -5195,11 +5205,11 @@ msgstr "Повернення міграцій у вимираннях"
 msgid "REPORT"
 msgstr "Звіт"
 
-#: ../src/general/MainMenu.tscn:730 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Зробити баг-репорт"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1158
+#: ../src/microbe_stage/Microbe.Interior.cs:1166
 msgid "REPRODUCED"
 msgstr "розмножено"
 
@@ -5337,7 +5347,7 @@ msgstr ""
 "Ви впевнені, що хочете вийти до головного меню?\n"
 "Увесь незбережений прогрес буде втрачено."
 
-#: ../src/general/MainMenu.tscn:776
+#: ../src/general/MainMenu.tscn:777
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
@@ -5409,12 +5419,13 @@ msgstr "Запустити {0} Світів"
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Запустити декілька світів, кількість генерацій для кожного з них визначається через кнопку вибору зверху."
 
-#: ../simulation_parameters/microbe_stage/enzymes.json:15
-#: ../simulation_parameters/microbe_stage/organelles.json:55
+#: ../simulation_parameters/microbe_stage/enzymes.json:18
+#: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Рустіціанін"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустіціанін — це білок, що використовує [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound] для окиснення [thrive:compound type=\"iron\"][/thrive:compound] з одного хімічного стану в інший. Цей процес, що зветься [b]залізним диханням[/b], вивільняє енергію, яку клітина потім забирає."
@@ -5423,7 +5434,7 @@ msgstr "Рустіціанін — це білок, що використову�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"iron\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:982
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive запущена у безпечному режимі, бо попередній запуск не вдався.\n"
@@ -5435,7 +5446,7 @@ msgstr ""
 "\n"
 "Якщо вам невдасться вирішити проблему, котра запуску, вам доведеться перезавантажити та вимкнути Thrive кілька разів, для повернення у безпечний режим."
 
-#: ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:980
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive запущено в безпечному режимі"
 
@@ -5451,7 +5462,7 @@ msgstr "Зберегти й продовжити"
 msgid "SAVE_AUTOSAVE"
 msgstr "Автозбереження"
 
-#: ../src/saving/SaveList.cs:242
+#: ../src/saving/SaveList.cs:245
 msgid "SAVE_DELETE_WARNING"
 msgstr "Видалення цього збереження неможливо буде скасувати. Чи впевнені Ви, що хочете назавжди видалити {0}?"
 
@@ -5744,7 +5755,7 @@ msgstr "Вмикає / вимикає спливаюче вікно з попе�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Показувати новини Thrive (потребує Інтернету)"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:740
+#: ../simulation_parameters/microbe_stage/organelles.json:753
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Сигнальний агент"
@@ -5799,11 +5810,11 @@ msgid "SIZE_COLON"
 msgstr "Розмір:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:183
 msgid "SLIDESHOW"
 msgstr "Слайдшов"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:714
+#: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "Поросома"
@@ -6064,17 +6075,17 @@ msgstr "Steam наразі недоступний, будь-ласка повт�
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Сталася невідома помилка Steam"
 
-#: ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1003
 msgid "STEAM_INIT_FAILED"
 msgstr "Ініціалізація Steam не вдалася"
 
-#: ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1005
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
 "Будь ласка, переконайтесь, що Ви запустили клієнт Steam та увійшли до правильного акаунту. Будь ласка, запустіть гру через клієнт Steam, якщо ця помилка не зникає."
 
-#: ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:790
 msgid "STEAM_TOOLTIP"
 msgstr "Відвідайте нашу сторінку у Steam"
 
@@ -6114,7 +6125,7 @@ msgstr "Збереження"
 msgid "STORAGE_COLON"
 msgstr "Збереження:"
 
-#: ../src/general/MainMenu.cs:620
+#: ../src/general/MainMenu.cs:651
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ви увійшли як:{0}"
 
@@ -6180,11 +6191,11 @@ msgstr "Центр суспільства"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Фабрика на паровій тязі"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:783
+#: ../src/microbe_stage/Microbe.Contact.cs:803
 msgid "SUCCESSFUL_KILL"
 msgstr "вдале очищення"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:776
+#: ../src/microbe_stage/Microbe.Contact.cs:796
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "вдале очищення"
 
@@ -6342,7 +6353,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Команда тестувальників"
 
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Дякуємо за підтримку розробки Thrive, придбавши цю копію Thrive!\n"
@@ -6358,7 +6369,7 @@ msgstr ""
 "\n"
 "Якщо сподобалась гра будь-ласка роскажи друзям про нас (та про українське озвучення та переклади)."
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:993
 msgid "THANK_YOU_TITLE"
 msgstr "Дякуємо"
 
@@ -6366,7 +6377,7 @@ msgstr "Дякуємо"
 msgid "THEORY_TEAM"
 msgstr "Команда теоретиків"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:798
+#: ../simulation_parameters/microbe_stage/organelles.json:811
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Термопласт"
@@ -6379,7 +6390,7 @@ msgstr "Термопласти– це двохмембранні структу
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та температури."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:317
+#: ../simulation_parameters/microbe_stage/organelles.json:330
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 msgid "THERMOSYNTHASE"
 msgstr "Термосинтаза"
@@ -6417,7 +6428,7 @@ msgstr "Цей мод завантажений з майстерні Steam"
 msgid "THREADS"
 msgstr "Обрахунки:"
 
-#: ../src/general/MainMenu.tscn:494 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Трайвопедія"
 
@@ -6466,7 +6477,7 @@ msgstr "Ліцензії Thrive"
 msgid "THYLAKOID"
 msgstr "Тилакоїд"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:219
+#: ../simulation_parameters/microbe_stage/organelles.json:232
 msgid "THYLAKOIDS"
 msgstr "Тилакоїди"
 
@@ -6490,35 +6501,35 @@ msgstr "Показ глобальних подій"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Показ локальних подій"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] відокремилося від [b][u]{1}[/u][/b] як новий вид, щоб заповнити нішу"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] відокремились від [b][u]{1}[/u][/b] як новий вид через різні утиски відбору"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] повимирали!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] зникли з ділянки"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Частина популяції [b][u]{0}[/u][/b] мігрувала на цю ділянку з {1}"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Частина популяції [b][u]{0}[/u][/b] мігрувала до {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] населення зменшилося до {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b]населення збільшилось до {1}"
 
@@ -6582,7 +6593,7 @@ msgstr "Пауза"
 msgid "TOGGLE_UNBINDING"
 msgstr "Перемкнути роз'єднання"
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr "Інструменти"
 
@@ -6604,7 +6615,7 @@ msgstr "Загальні збереження:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Опір токсинам"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:487
+#: ../simulation_parameters/microbe_stage/organelles.json:500
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6808,7 +6819,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
 
-#: ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:886
 msgid "TWITTER_TOOLTIP"
 msgstr "Відвідайте"
 
@@ -6901,21 +6912,33 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Не названий"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:843
+#: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr "Стягувальні війки"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:844
+#: ../simulation_parameters/microbe_stage/organelles.json:857
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "У режими поглинання ([thrive:input]g_toggle_engulf[/thrive:input]) цей тип війок створюватиме завихрення у воді, що притягуватимуть близькі об'єкти. Корисно задля спіймання здобичі."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:840
+#: ../simulation_parameters/microbe_stage/organelles.json:31
+#: ../simulation_parameters/microbe_stage/organelles.json:853
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Стандартний немодифікований стан"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:839
+#: ../simulation_parameters/microbe_stage/organelles.json:30
+#: ../simulation_parameters/microbe_stage/organelles.json:852
 msgid "UPGRADE_NAME_NONE"
 msgstr "Без модифікацій"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:34
+#, fuzzy
+msgid "UPGRADE_PILUS_INJECTISOME"
+msgstr "У режими поглинання ([thrive:input]g_toggle_engulf[/thrive:input]) цей тип війок створюватиме завихрення у воді, що притягуватимуть близькі об'єкти. Корисно задля спіймання здобичі."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:35
+#, fuzzy
+msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
+msgstr "У режими поглинання ([thrive:input]g_toggle_engulf[/thrive:input]) цей тип війок створюватиме завихрення у воді, що притягуватимуть близькі об'єкти. Корисно задля спіймання здобичі."
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -6965,7 +6988,7 @@ msgstr "Встановити кількість фонових потоків в
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Використовувати віртуальний розмір вікна"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:416
+#: ../simulation_parameters/microbe_stage/organelles.json:429
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
 msgid "VACUOLE"
 msgstr "Вакуоля"
@@ -7036,7 +7059,7 @@ msgstr "Показати інформацію про зміни"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Показати останні з усіх новин про зміни Thrive зараз"
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:341
 msgid "VIEW_SOURCE_CODE"
 msgstr "Перегляд вихідного коду"
 
@@ -7048,7 +7071,7 @@ msgstr "VIP підтримка"
 msgid "VISIBLE"
 msgstr "Видимий"
 
-#: ../src/general/MainMenu.tscn:543 ../src/general/MainMenu.tscn:748
+#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Запропунувати функцію"
 
@@ -7080,7 +7103,7 @@ msgstr "Очікування на Авто-ево:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Ласкаво просимо до Трайвопедії"
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:842
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "вимерли на цілій планеті"
 
@@ -7203,7 +7226,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "роки"
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:838
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Відвідайте наш YouTube канал"
 

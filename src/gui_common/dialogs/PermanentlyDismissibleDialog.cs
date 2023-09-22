@@ -8,6 +8,9 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
     [Export]
     public DialogTypeEnum DialogType;
 
+    [Export]
+    public PermanentDismissTypeEnum PermanentDismissType = PermanentDismissTypeEnum.RememberOnConfirm;
+
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CustomCheckBox checkbox = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
@@ -16,6 +19,12 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
     {
         Information,
         Warning,
+    }
+
+    public enum PermanentDismissTypeEnum
+    {
+        RememberOnConfirm,
+        RememberOnCancel,
     }
 
     public override void _Ready()
@@ -53,7 +62,13 @@ public class PermanentlyDismissibleDialog : CustomConfirmationDialog
 
     private void OnConfirmed()
     {
-        if (checkbox.Pressed)
+        if (checkbox.Pressed && PermanentDismissType == PermanentDismissTypeEnum.RememberOnConfirm)
+            Settings.Instance.PermanentlyDismissNotice(NoticeType);
+    }
+
+    private void OnCancelled()
+    {
+        if (checkbox.Pressed && PermanentDismissType == PermanentDismissTypeEnum.RememberOnCancel)
             Settings.Instance.PermanentlyDismissNotice(NoticeType);
     }
 }
