@@ -29,6 +29,9 @@ public abstract class ThriveopediaPage : PanelContainer
     /// </summary>
     public abstract string TranslatedPageName { get; }
 
+    /// <summary>
+    ///   The internal name of the parent of this page in the tree, or null if this page is at the top level.
+    /// </summary>
     public abstract string? ParentPageName { get; }
 
     /// <summary>
