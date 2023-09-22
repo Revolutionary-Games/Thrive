@@ -7,6 +7,7 @@
 [node name="CellStatIndicator" type="HBoxContainer"]
 margin_right = 213.0
 margin_bottom = 25.0
+size_flags_horizontal = 3
 script = ExtResource( 3 )
 ValuePath = NodePath("HBoxContainer/Value")
 
@@ -40,6 +41,7 @@ __meta__ = {
 margin_left = 221.0
 margin_right = 242.0
 margin_bottom = 25.0
+size_flags_horizontal = 3
 alignment = 2
 
 [node name="Value" type="Label" parent="HBoxContainer"]

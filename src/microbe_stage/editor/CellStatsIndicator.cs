@@ -109,10 +109,6 @@ public class CellStatsIndicator : HBoxContainer
 
         iconRect.Texture = Icon;
 
-        // right align the values
-        SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-        GetNode<HBoxContainer>("HBoxContainer").SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-
         UpdateChangeIndicator();
         UpdateDescription();
         UpdateValue();
