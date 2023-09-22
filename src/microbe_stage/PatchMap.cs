@@ -5,19 +5,24 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
+///   Whether the fog of war should be disabled,
+///   mark patches adjacent to the player as explored,
+///   or mark only the patch the player has entered as explored
+/// </summary>
+public enum FogOfWarMode
+{
+    Disabled,
+    Normal,
+    Intense,
+}
+
+/// <summary>
 ///   A container for patches that are joined together
 /// </summary>
 [UseThriveSerializer]
 public class PatchMap : ISaveLoadable
 {
     private Patch? currentPatch;
-
-    public enum FogOfWarMode
-    {
-        Disabled,
-        Light,
-        Intense,
-    }
 
     /// <summary>
     ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS

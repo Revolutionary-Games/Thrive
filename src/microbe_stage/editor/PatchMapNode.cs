@@ -28,7 +28,7 @@ public class PatchMapNode : MarginContainer
     public NodePath AdjacentPanelPath = null!;
 
     /// <summary>
-    ///   For patches adjacent to a discovered patch that have not been entered by the player
+    ///   For patches that are discovered but whose details are not visible to the player
     /// </summary>
     [Export]
     public NodePath QuestionMarkLabelPath = null!;
@@ -67,11 +67,6 @@ public class PatchMapNode : MarginContainer
     private bool enabled = true;
 
     /// <summary>
-    ///   True if the player has visited the patch
-    /// </summary>
-    private bool discovered;
-
-    /// <summary>
     ///   True if the patch is adjacent to the selected patch
     /// </summary>
     private bool adjacentToSelectedPatch;
@@ -79,6 +74,28 @@ public class PatchMapNode : MarginContainer
     private float currentBlinkTime;
 
     private Patch? patch;
+
+    private PatchVisibilityState visibilityState;
+
+    public enum PatchVisibilityState
+    {
+        Undiscovered, // The patch should be invisible
+        Unknown, // The patch should be rendered as a question mark
+        Explored, // The patch sould be visible
+    }
+
+    /// <summary>
+    ///   Stores what <see cref="PatchVisibilityState"/> the patch is currently in
+    /// </summary>
+    public PatchVisibilityState VisibilityState
+    {
+        get => visibilityState;
+        set
+        {
+            visibilityState = value;
+            Visible = value != PatchVisibilityState.Undiscovered;
+        }
+    }
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
@@ -96,12 +113,6 @@ public class PatchMapNode : MarginContainer
     public Action<PatchMapNode>? SelectCallback { get; set; }
 
     /// <summary>
-    ///   True if the patch is adjasent to a explored patch
-    ///   but has not been entered by the player
-    /// </summary>
-    public bool IsUnknown { get; set; }
-
-    /// <summary>
     ///   Display the icon in color and make it highlightable/selectable.
     ///   Setting this to false removes current selection.
     /// </summary>
@@ -116,16 +127,6 @@ public class PatchMapNode : MarginContainer
 
             UpdateSelectHighlightRing();
             UpdateGreyscale();
-        }
-    }
-
-    public bool Discovered
-    {
-        get => discovered;
-        set
-        {
-            discovered = value;
-            Visible = value;
         }
     }
 
@@ -204,8 +205,8 @@ public class PatchMapNode : MarginContainer
         UpdateIcon();
         UpdateGreyscale();
 
-        Visible = Discovered;
-        questionMarkLabel.Visible = IsUnknown;
+        Visible = visibilityState != PatchVisibilityState.Undiscovered;
+        questionMarkLabel.Visible = visibilityState == PatchVisibilityState.Unknown;
     }
 
     public override void _Process(float delta)

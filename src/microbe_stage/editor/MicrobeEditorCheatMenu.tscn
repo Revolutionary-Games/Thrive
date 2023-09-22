@@ -49,3 +49,4 @@ __meta__ = {
 
 [connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
 [connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]
+[connection signal="pressed" from="VBoxContainer/RevealEntirePatchMap" to="." method="OnRevealEntirePatchMapClicked"]

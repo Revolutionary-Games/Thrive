@@ -563,7 +563,7 @@ public class NewGameSettings : ControlWithInput
                 FreeGlucoseCloud = freeGlucoseCloudButton.Pressed,
                 PassiveReproduction = passiveReproductionButton.Pressed,
                 LimitGrowthRate = limitGrowthRateButton.Pressed,
-                PatchMapExplorationMode = (PatchMap.FogOfWarMode)patchMapExplorationMode.Selected,
+                PatchMapExplorationMode = (FogOfWarMode)patchMapExplorationMode.Selected,
             };
 
             settings.Difficulty = customDifficulty;
@@ -808,12 +808,6 @@ public class NewGameSettings : ControlWithInput
     }
 
     private void OnPassiveReproductionToggled(bool pressed)
-    {
-        _ = pressed;
-        UpdateSelectedDifficultyPresetControl();
-    }
-
-    private void OnPatchMapExplorationModeToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();

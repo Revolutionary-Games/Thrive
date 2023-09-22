@@ -338,7 +338,7 @@ public class PatchMapDrawer : Control
     private bool ContainsSelectedExploredPatch(PatchRegion region)
     {
         return region.Patches.Any(p => GetPatchNode(p)?.Selected == true &&
-            GetPatchNode(p)?.IsUnknown == false);
+            GetPatchNode(p)?.VisibilityState == PatchMapNode.PatchVisibilityState.Explored);
     }
 
     private bool ContainsAdjacentToSelectedPatch(PatchRegion region)
@@ -839,7 +839,12 @@ public class PatchMapDrawer : Control
 
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
-            node.Discovered = entry.Value.Explored || setAsUnknown;
+            if (entry.Value.Explored)
+                node.VisibilityState = PatchMapNode.PatchVisibilityState.Explored;
+            else if (setAsUnknown)
+                node.VisibilityState = PatchMapNode.PatchVisibilityState.Unknown;
+            else
+                node.VisibilityState = PatchMapNode.PatchVisibilityState.Undiscovered;
 
             node.Patch = entry.Value;
 
@@ -853,7 +858,8 @@ public class PatchMapDrawer : Control
 
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
-            node.IsUnknown = setAsUnknown;
+            if (setAsUnknown)
+                node.VisibilityState = PatchMapNode.PatchVisibilityState.Unknown;
 
             AddChild(node);
             nodes.Add(node.Patch, node);

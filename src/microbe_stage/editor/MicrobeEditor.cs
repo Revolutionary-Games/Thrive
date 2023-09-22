@@ -92,6 +92,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
         reportTab.UpdatePatchDetails(patch);
 
+        reportTab.UpdateReportTabPatchSelector();
+
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 

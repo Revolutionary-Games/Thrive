@@ -192,7 +192,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         mapDrawer.IgnoreFogOfWar =
             Editor.FreeBuilding ||
-            Editor.CurrentGame.GameWorld.WorldSettings.PatchMapExplorationMode == PatchMap.FogOfWarMode.Disabled ||
+            Editor.CurrentGame.GameWorld.WorldSettings.PatchMapExplorationMode == FogOfWarMode.Disabled ||
             mapDrawer.IgnoreFogOfWar;
     }
 
@@ -280,10 +280,10 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
         patch?.SetExplored();
 
-        if (Editor.CurrentGame.GameWorld.WorldSettings.PatchMapExplorationMode != PatchMap.FogOfWarMode.Intense &&
+        if (Editor.CurrentGame.GameWorld.WorldSettings.PatchMapExplorationMode != FogOfWarMode.Intense &&
             patch != null)
         {
-            foreach (var adjacent in patch.Adjacent)
+            foreach (var adjacent in patch!.Adjacent)
                 adjacent.SetExplored();
         }
 

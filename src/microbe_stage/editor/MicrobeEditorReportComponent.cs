@@ -158,8 +158,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         UpdateReportTabPatchName(currentOrSelectedPatch);
 
-        UpdateReportTabPatchSelector();
-
         UpdateReportTabPatchSelectorSelection(currentOrSelectedPatch.ID);
     }
 
