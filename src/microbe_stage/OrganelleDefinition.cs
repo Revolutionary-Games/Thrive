@@ -235,6 +235,9 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public int HexCount => Hexes.Count;
 
+    [JsonIgnore]
+    public bool CanBeModified => !string.IsNullOrEmpty(UpgradeGUI) || AvailableUpgrades.Count > 0;
+
     public string InternalName { get; set; } = null!;
 
     // Faster checks for specific components

@@ -12,6 +12,7 @@ public class MicrobePartSelection : MarginContainer
 
     private Control contentContainer = null!;
     private Label? mpLabel;
+    private TextureRect? upgradeIcon;
     private Button? button;
     private TextureRect? iconRect;
     private Label? nameLabel;
@@ -19,6 +20,7 @@ public class MicrobePartSelection : MarginContainer
 
     private int mpCost;
     private Texture? partIcon;
+    private bool canBeModified;
     private string name = "Error: unset";
     private bool locked;
     private bool alwaysShowLabel;
@@ -42,6 +44,17 @@ public class MicrobePartSelection : MarginContainer
 
             mpCost = value;
             UpdateLabels();
+        }
+    }
+
+    [Export]
+    public bool CanBeModified
+    {
+        get => canBeModified;
+        set
+        {
+            canBeModified = value;
+            UpdateUpgradeIcon();
         }
     }
 
@@ -123,6 +136,7 @@ public class MicrobePartSelection : MarginContainer
         button = GetNode<Button>("VBoxContainer/Button");
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
         nameLabel = GetNode<Label>("VBoxContainer/Name");
+        upgradeIcon = GetNode<TextureRect>("VBoxContainer/Button/UpgradeIcon");
 
         OnDisplayPartNamesChanged(Settings.Instance.DisplayPartNames);
         Settings.Instance.DisplayPartNames.OnChanged += OnDisplayPartNamesChanged;
@@ -130,6 +144,7 @@ public class MicrobePartSelection : MarginContainer
         UpdateButton();
         UpdateLabels();
         UpdateIcon();
+        UpdateUpgradeIcon();
     }
 
     public override void _ExitTree()
@@ -195,6 +210,14 @@ public class MicrobePartSelection : MarginContainer
 
         if (Locked)
             iconRect.Modulate = Colors.Gray;
+    }
+
+    private void UpdateUpgradeIcon()
+    {
+        if (upgradeIcon == null)
+            return;
+
+        upgradeIcon.Visible = CanBeModified;
     }
 
     private void UpdateButton()

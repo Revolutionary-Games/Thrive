@@ -16,6 +16,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public NodePath MpLabelPath = null!;
 
     [Export]
+    public NodePath CanBeModifiedPath = null!;
+
+    [Export]
     public NodePath RequiresNucleusPath = null!;
 
     [Export]
@@ -41,6 +44,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     private Label? nameLabel;
     private Label? mpLabel;
+    private HBoxContainer? canBeModifiedLabel;
     private Label? requiresNucleusLabel;
     private ModifierInfoLabel? osmoregulationModifier;
     private CustomRichTextLabel? descriptionLabel;
@@ -54,6 +58,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string processesDescription = string.Empty;
     private int mpCost;
     private float osmoregulationCost;
+    private bool canBeModified;
     private bool requiresNucleus;
 
     [Export]
@@ -130,6 +135,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
+    public bool CanBeModified
+    {
+        get => canBeModified;
+        set
+        {
+            canBeModified = value;
+            UpdateCanBeModified();
+        }
+    }
+
+    [Export]
     public bool RequiresNucleus
     {
         get => requiresNucleus;
@@ -155,6 +171,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
+        canBeModifiedLabel = GetNode<HBoxContainer>(CanBeModifiedPath);
         requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
         descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
@@ -168,6 +185,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         UpdateDescription();
         UpdateProcessesDescription();
         UpdateMpCost();
+        UpdateCanBeModified();
         UpdateRequiresNucleus();
         UpdateLists();
 
@@ -304,6 +322,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             {
                 NameLabelPath.Dispose();
                 MpLabelPath.Dispose();
+                CanBeModifiedPath.Dispose();
                 RequiresNucleusPath.Dispose();
                 DescriptionLabelPath.Dispose();
                 ProcessesDescriptionLabelPath.Dispose();
@@ -375,6 +394,14 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             return;
 
         osmoregulationModifier.ModifierValue = $"+{osmoregulationCost.ToString("0.###", CultureInfo.CurrentCulture)}";
+    }
+
+    private void UpdateCanBeModified()
+    {
+        if (canBeModifiedLabel == null)
+            return;
+
+        canBeModifiedLabel.Visible = canBeModified;
     }
 
     private void UpdateRequiresNucleus()

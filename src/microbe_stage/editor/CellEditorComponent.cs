@@ -1357,7 +1357,7 @@ public partial class CellEditorComponent :
         organelleMenu.EnableMoveOption = MicrobeSize > 1;
 
         // Modify / upgrade possible when defined on the primary organelle definition
-        if (count > 0 && IsUpgradingPossibleFor(organelles.First().Definition))
+        if (count > 0 && organelles.First().Definition.CanBeModified)
         {
             organelleMenu.EnableModifyOption = true;
         }
@@ -1365,11 +1365,6 @@ public partial class CellEditorComponent :
         {
             organelleMenu.EnableModifyOption = false;
         }
-    }
-
-    private bool IsUpgradingPossibleFor(OrganelleDefinition organelleDefinition)
-    {
-        return !string.IsNullOrEmpty(organelleDefinition.UpgradeGUI) || organelleDefinition.AvailableUpgrades.Count > 0;
     }
 
     /// <summary>
@@ -1625,7 +1620,8 @@ public partial class CellEditorComponent :
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
-                var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
+                var organelleDefinition = GetOrganelleDefinition(organelleType);
+                var organelle = new OrganelleTemplate(organelleDefinition,
                     new Hex(attemptQ, attemptR), rotation);
 
                 var hexes = organelle.RotatedHexes.Select(h => h + new Hex(attemptQ, attemptR)).ToList();
@@ -1648,6 +1644,14 @@ public partial class CellEditorComponent :
                     foreach (var hex in hexes)
                     {
                         usedHexes.Add(hex);
+                    }
+
+                    if (organelleDefinition.CanBeModified &&
+                        Symmetry == HexEditorSymmetry.None &&
+                        (TutorialState == null || !TutorialState.Enabled || TutorialState.EditorUndoTutorial.Complete))
+                    {
+                        organelleMenu.SelectedOrganelles = new List<OrganelleTemplate> { organelle };
+                        OnModifyPressed();
                     }
                 }
             });
@@ -1952,7 +1956,7 @@ public partial class CellEditorComponent :
         var targetOrganelle = organelleMenu.SelectedOrganelles.First();
         var upgradeGUI = targetOrganelle.Definition.UpgradeGUI;
 
-        if (!IsUpgradingPossibleFor(targetOrganelle.Definition))
+        if (!targetOrganelle.Definition.CanBeModified)
         {
             GD.PrintErr("Attempted to modify an organelle that can't be upgraded");
             return;
@@ -2017,6 +2021,7 @@ public partial class CellEditorComponent :
             var control = (MicrobePartSelection)organelleSelectionButtonScene.Instance();
             control.Locked = organelle.Unimplemented;
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
+            control.CanBeModified = organelle.CanBeModified;
             control.PartName = organelle.UntranslatedName;
             control.SelectionGroup = organelleButtonGroup;
             control.MPCost = organelle.MPCost;

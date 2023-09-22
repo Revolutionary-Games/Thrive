@@ -706,7 +706,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
-margin_right = 318.0
+margin_right = 312.0
 margin_bottom = 160.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -914,10 +914,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 344.0
-margin_top = 369.0
-margin_right = 660.0
-margin_bottom = 959.0
+margin_left = 352.0
+margin_top = 377.0
+margin_right = 668.0
+margin_bottom = 967.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1285,7 +1285,7 @@ margin_bottom = 145.0
 mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer"]
-margin_right = 263.0
+margin_right = 207.0
 margin_bottom = 111.0
 mouse_filter = 1
 size_flags_horizontal = 3

@@ -259,6 +259,7 @@ public partial class CellEditorComponent
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
             if (tooltip != null)
             {
+                tooltip.CanBeModified = organelle.CanBeModified;
                 tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
             }
         }
