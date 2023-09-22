@@ -175,10 +175,10 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         return action;
     }
 
-    public bool HexPlacedThisSession<THex>(THex hex)
+    public bool HexPlacedThisSession<THex, TContext>(THex hex)
         where THex : class, IActionHex
     {
-        return History.OfType<HexPlacementActionData<THex>>().Any(a => a.PlacedHex == hex);
+        return History.OfType<HexPlacementActionData<THex, TContext>>().Any(a => a.PlacedHex == hex);
     }
 
     /// <summary>

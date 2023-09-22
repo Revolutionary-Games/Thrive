@@ -9,8 +9,8 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
 public partial class CellBodyPlanEditorComponent :
-    HexEditorComponentBase<EarlyMulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>>,
-    IGodotEarlyNodeResolve
+    HexEditorComponentBase<EarlyMulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
+        EarlyMulticellularSpecies>, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath? TabButtonsPath;
@@ -970,7 +970,8 @@ public partial class CellBodyPlanEditorComponent :
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
             editedMicrobeCells.Select(o =>
-                (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(), Editor.HexPlacedThisSession(o))), islands);
+                (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
+                Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islands);
 
         int nextFreeCell = 0;
 

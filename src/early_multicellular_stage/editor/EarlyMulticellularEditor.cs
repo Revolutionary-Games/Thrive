@@ -50,9 +50,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
 
-    [JsonProperty]
-    private bool newCellTypeEditHasStarted;
-
     public override bool CanCancelAction
     {
         get
@@ -128,10 +125,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         {
             foreach (var actionData in action.Data)
             {
-                if (actionData == null)
-                    continue;
-
-                actionData.CellType = selectedCellTypeToEdit;
+                if (actionData is EditorCombinableActionData<CellType> cellTypeData)
+                    cellTypeData.Context = selectedCellTypeToEdit;
             }
         }
 
@@ -157,7 +152,21 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     public override void Redo()
     {
         // TODO this assumes we'll never combine actions belonging to different cell types. Make sure that's true
-        CellType? cellType = history.ActionToRedo()?.Data.FirstOrDefault(data => data.CellType != null)?.CellType;
+        CellType? cellType = null;
+
+        var redoData = history.ActionToRedo()?.Data;
+
+        if (redoData != null)
+        {
+            foreach (var data in redoData)
+            {
+                if (data is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context != null)
+                {
+                    cellType = cellTypeData.Context;
+                    break;
+                }
+            }
+        }
 
         // If the action we're redoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
@@ -172,7 +181,21 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     public override void Undo()
     {
         // TODO this assumes we'll never combine actions belonging to different cell types. Make sure that's true
-        CellType? cellType = history.ActionToUndo()?.Data.FirstOrDefault(data => data.CellType != null)?.CellType;
+        CellType? cellType = null;
+
+        var undoData = history.ActionToUndo()?.Data;
+
+        if (undoData != null)
+        {
+            foreach (var data in undoData)
+            {
+                if (data is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context != null)
+                {
+                    cellType = cellTypeData.Context;
+                    break;
+                }
+            }
+        }
 
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one

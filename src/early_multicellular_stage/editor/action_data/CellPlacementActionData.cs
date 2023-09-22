@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
-public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTemplate>>
+public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTemplate>, EarlyMulticellularSpecies>
 {
     [JsonConstructor]
     public CellPlacementActionData(HexWithData<CellTemplate> hex, Hex location, int orientation) : base(hex, location,
@@ -20,14 +20,15 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
         return PlacedHex.Data?.CellType.MPCost ?? throw new InvalidOperationException("Hex with no data");
     }
 
-    protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<HexWithData<CellTemplate>> data)
+    protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<HexWithData<CellTemplate>,
+        EarlyMulticellularSpecies> data)
     {
         return new CellMoveActionData(data.RemovedHex, data.Location, Location,
             data.Orientation, Orientation);
     }
 
     protected override CombinableActionData CreateDerivedPlacementAction(
-        HexMoveActionData<HexWithData<CellTemplate>> data)
+        HexMoveActionData<HexWithData<CellTemplate>, EarlyMulticellularSpecies> data)
     {
         return new CellPlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
     }

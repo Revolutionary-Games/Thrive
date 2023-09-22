@@ -4,16 +4,6 @@ public abstract class EditorCombinableActionData : CombinableActionData
 {
     public float CostMultiplier { get; set; } = 1.0f;
 
-    /// <summary>
-    ///   The <see cref="CellType"/> the action was performed on.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     In the microbe stage, this will always be null because there's only one <see cref="CellType"/>.
-    ///   </para>
-    /// </remarks>
-    public CellType? CellType { get; set; }
-
     public virtual int CalculateCost()
     {
         return (int)Math.Min(CalculateCostInternal() * CostMultiplier, 100);
@@ -31,4 +21,12 @@ public abstract class EditorCombinableActionData : CombinableActionData
     }
 
     protected abstract int CalculateCostInternal();
+}
+
+public abstract class EditorCombinableActionData<TContext> : EditorCombinableActionData
+{
+    /// <summary>
+    ///   What this action was performed on.
+    /// </summary>
+    public TContext? Context { get; set; }
 }
