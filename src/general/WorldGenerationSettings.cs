@@ -92,7 +92,7 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
 
     [JsonIgnore]
-    public PatchMap.FogOfWarMode PatchMapExplorationMode => Difficulty.PatchMapExplorationMode;
+    public FogOfWarMode PatchMapExplorationMode => Difficulty.PatchMapExplorationMode;
 
     [JsonIgnore]
     public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;

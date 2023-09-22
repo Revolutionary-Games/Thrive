@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-19 22:22+0200\n"
+"POT-Creation-Date: 2023-09-22 21:29+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -60,9 +60,9 @@ msgstr "覺醒 ({0:F1} / {1:F1})"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "前往覺醒階段。達到一定腦力（帶有軸突的組織）後開放。"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:415
 #: ../src/general/base_stage/EditorBase.cs:681
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:469
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "正在進行其他行動"
@@ -114,11 +114,11 @@ msgstr "額外驗證檢測到了一個問題：{0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "添加新的綁定鍵位"
 
-#: ../src/general/NewGameSettings.tscn:1221
+#: ../src/general/NewGameSettings.tscn:1217
 msgid "ADVANCED_VIEW"
 msgstr "進階"
 
-#: ../src/general/NewGameSettings.tscn:1216
+#: ../src/general/NewGameSettings.tscn:1212
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "開啟進階選單"
 
@@ -153,11 +153,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "激進"
 
-#: ../src/general/NewGameSettings.tscn:475
+#: ../src/general/NewGameSettings.tscn:478
 msgid "AI_MUTATION_RATE"
 msgstr "人工智能突變率"
 
-#: ../src/general/NewGameSettings.tscn:515
+#: ../src/general/NewGameSettings.tscn:518
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "（人工智能物種突變的速度）"
 
@@ -297,7 +297,7 @@ msgstr ""
 "遊戲不能自動檢測是否啟用了超線程。\n"
 "這影響了默認的線程數，因為超線程並不像真正的CPU核心那樣快。"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:424
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:455
@@ -377,9 +377,9 @@ msgstr "Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo 探索工具"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:236
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:260
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:205
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo啟動失敗"
 
@@ -388,9 +388,9 @@ msgstr "Auto-evo啟動失敗"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo自動模擬 結果："
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:232
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:237
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:261
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:206
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
 
@@ -426,8 +426,8 @@ msgstr "微生物階段"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1000
 #: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
-#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
-#: ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:937
+#: ../src/general/NewGameSettings.tscn:1180
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -457,11 +457,11 @@ msgstr "基本移動能力"
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/general/NewGameSettings.tscn:1206
+#: ../src/general/NewGameSettings.tscn:1202
 msgid "BASIC_VIEW"
 msgstr "基本"
 
-#: ../src/general/NewGameSettings.tscn:1201
+#: ../src/general/NewGameSettings.tscn:1197
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "返回基本菜單"
 
@@ -1054,7 +1054,7 @@ msgid "COMPILED_AT_COLON"
 msgstr "編譯於："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:431
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
@@ -1080,11 +1080,11 @@ msgstr "化合物平衡"
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
 
-#: ../src/general/NewGameSettings.tscn:534
+#: ../src/general/NewGameSettings.tscn:537
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "化合物雲密度"
 
-#: ../src/general/NewGameSettings.tscn:574
+#: ../src/general/NewGameSettings.tscn:577
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "（環境中化合物雲的密度）"
 
@@ -1156,12 +1156,12 @@ msgstr "（人工智能物種突變的速度）"
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "（人工智能物種突變的速度）"
 
-#: ../src/general/NewGameSettings.cs:419
-#: ../src/general/NewGameSettings.tscn:1237
+#: ../src/general/NewGameSettings.cs:421
+#: ../src/general/NewGameSettings.tscn:1233
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "以當前設定進入遊戲"
 
-#: ../src/general/NewGameSettings.cs:426
+#: ../src/general/NewGameSettings.cs:428
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分設置無效"
 
@@ -1411,11 +1411,11 @@ msgstr "細胞質糖酵解"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:980
 msgid "DAY_LENGTH"
 msgstr "日長"
 
-#: ../src/general/NewGameSettings.tscn:1027
+#: ../src/general/NewGameSettings.tscn:1023
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
@@ -1424,11 +1424,11 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/NewGameSettings.tscn:955
+#: ../src/general/NewGameSettings.tscn:951
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "啟動晝夜循環"
 
-#: ../src/general/NewGameSettings.tscn:964
+#: ../src/general/NewGameSettings.tscn:960
 #, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "（提示：光合作用會被削弱）"
@@ -1606,7 +1606,7 @@ msgstr "被吞噬"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Devbuilds 支持者"
 
-#: ../src/general/NewGameSettings.tscn:304
+#: ../src/general/NewGameSettings.tscn:306
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "難度"
@@ -1626,8 +1626,8 @@ msgstr ""
 "被動獲得繁殖進度: {8}\n"
 "限制繁殖化合物的使用: {9}"
 
-#: ../src/general/NewGameSettings.tscn:128
-#: ../src/general/NewGameSettings.tscn:375
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:378
 msgid "DIFFICULTY_PRESET"
 msgstr "難度設定"
 
@@ -1927,11 +1927,11 @@ msgstr "一個提示：細菌可能比它們看上去要強。它們也許體型
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "一點提示:您可以獵殺其他物種到滅絕，它們同時也會被其他物種獵殺到滅絕。"
 
-#: ../src/general/NewGameSettings.tscn:1161
+#: ../src/general/NewGameSettings.tscn:1157
 msgid "EASTER_EGGS"
 msgstr "包含復活節彩蛋"
 
-#: ../src/general/NewGameSettings.tscn:1169
+#: ../src/general/NewGameSettings.tscn:1165
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -2024,11 +2024,11 @@ msgstr "生物群系：{0}"
 msgid "ENVIRONMENT"
 msgstr "環境"
 
-#: ../src/general/NewGameSettings.tscn:652
+#: ../src/general/NewGameSettings.tscn:655
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "環境葡萄糖保留度"
 
-#: ../src/general/NewGameSettings.tscn:691
+#: ../src/general/NewGameSettings.tscn:694
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
@@ -2171,13 +2171,13 @@ msgstr "就像曾經存在過的所有物種中的99%一樣，你的物種已經
 msgid "EXTINCTION_CAPITAL"
 msgstr "滅絕"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:438
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:449
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:439
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:450
 msgid "EXTINCT_FROM_PATCH"
 msgstr "從這個區域滅絕了"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:437
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:450
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:438
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "從這個星球滅絕了"
 
@@ -2352,7 +2352,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr "更新此存檔失敗，錯誤："
 
-#: ../src/general/NewGameSettings.cs:839
+#: ../src/general/NewGameSettings.cs:844
 #, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "更新此存檔失敗，錯誤："
@@ -2362,19 +2362,19 @@ msgstr "更新此存檔失敗，錯誤："
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "固氮酶是一種能用ATP和氮來產出氨的蛋白質，氨對細胞的生長至關重要。這個過程被稱作厭氧固氮。由於固氮酶是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行一些糖酵解。"
 
-#: ../src/general/NewGameSettings.cs:847
+#: ../src/general/NewGameSettings.cs:852
 #, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "固氮酶是一種能用ATP和氮來產出氨的蛋白質，氨對細胞的生長至關重要。這個過程被稱作厭氧固氮。由於固氮酶是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行一些糖酵解。"
 
 #: ../src/general/NewGameSettings.cs:315
 #, fuzzy
-msgid "FOG_OF_WAR_LIGHT"
+msgid "FOG_OF_WAR_NORMAL"
 msgstr "我極好的Mod"
 
-#: ../src/general/NewGameSettings.cs:843
+#: ../src/general/NewGameSettings.cs:848
 #, fuzzy
-msgid "FOG_OF_WAR_LIGHT_DESCRIPTION"
+msgid "FOG_OF_WAR_NORMAL_DESCRIPTION"
 msgstr "我極好的Mod"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
@@ -2469,11 +2469,11 @@ msgstr "每禎時間: {0}"
 msgid "FREEBUILDING"
 msgstr "自由編輯器"
 
-#: ../src/general/NewGameSettings.tscn:802
+#: ../src/general/NewGameSettings.tscn:798
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "離開編輯器時會出現額外的葡萄糖雲"
 
-#: ../src/general/NewGameSettings.tscn:810
+#: ../src/general/NewGameSettings.tscn:806
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2518,11 +2518,11 @@ msgstr "自殺"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
 
@@ -2534,7 +2534,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:977
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b]人口的一部分已從 {2} 遷移到 {1}"
 
@@ -2723,12 +2723,12 @@ msgstr "ID無效"
 msgid "ID_NUMBER"
 msgstr "編號"
 
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/NewGameSettings.tscn:1136
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "放置細胞器"
 
-#: ../src/general/NewGameSettings.tscn:1148
+#: ../src/general/NewGameSettings.tscn:1144
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "（進入測試階段後，一些功能可能無法使用）"
 
@@ -3225,14 +3225,14 @@ msgstr "郵件"
 msgid "LAUNCHMEDIA"
 msgstr "媒體"
 
-#: ../src/general/NewGameSettings.tscn:156
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:158
+#: ../src/general/NewGameSettings.tscn:889
 #, fuzzy
 msgid "LAWK_ONLY"
 msgstr "僅限至已知的生命形式"
 
-#: ../src/general/NewGameSettings.tscn:163
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:165
+#: ../src/general/NewGameSettings.tscn:897
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -3317,13 +3317,13 @@ msgstr "許可"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Thrive各部分內容的許可證在此處展示"
 
-#: ../src/general/NewGameSettings.tscn:182
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:916
 msgid "LIFE_ORIGIN"
 msgstr "生命起源"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:929
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:925
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -3332,28 +3332,28 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:936
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "胚種論（隨機）"
 
-#: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:936
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "溫暖的小水域"
 
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:937
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:933
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:939
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:936
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "海底熱泉"
@@ -3395,12 +3395,12 @@ msgstr "光"
 msgid "LIMIT_EXTREME"
 msgstr "額外內容"
 
-#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:840
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "確認"
 
-#: ../src/general/NewGameSettings.tscn:852
+#: ../src/general/NewGameSettings.tscn:848
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
@@ -3623,7 +3623,7 @@ msgid "MEDIASTOP"
 msgstr "媒體停止"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:403
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:167
 #: ../src/microbe_stage/editor/TimelineTab.cs:232
 msgid "MEGA_YEARS"
 msgstr "百萬年"
@@ -3975,7 +3975,7 @@ msgstr "最低："
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "不允許顯示少於 {0} 個數據集！"
 
-#: ../src/general/NewGameSettings.tscn:324 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:326 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "雜項"
 
@@ -4049,7 +4049,7 @@ msgstr "修改"
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "檢測到已安裝的模組，但沒有啟用的模組。\n"
@@ -4141,11 +4141,11 @@ msgstr "內部（文件夾）名稱："
 msgid "MOD_LICENSE"
 msgstr "Mod許可："
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加載錯誤"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
 
@@ -4360,11 +4360,11 @@ msgstr "音樂音量"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "突變點數"
 
-#: ../src/general/NewGameSettings.tscn:416
+#: ../src/general/NewGameSettings.tscn:419
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "突變成本係數"
 
-#: ../src/general/NewGameSettings.tscn:456
+#: ../src/general/NewGameSettings.tscn:459
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
@@ -4437,7 +4437,7 @@ msgstr "新遊戲"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
 
-#: ../src/general/NewGameSettings.tscn:286
+#: ../src/general/NewGameSettings.tscn:288
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "提示：你可以隨時在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]選項菜單[/url][/color]中調適性能相關選項以提高遊戲性能"
 
@@ -4579,7 +4579,7 @@ msgstr "沒有事件被記錄"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到存檔目錄"
 
-#: ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:968
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "已禁用"
@@ -4854,12 +4854,12 @@ msgstr "滲透調節"
 msgid "OSMOREGULATION_COST"
 msgstr "滲透調節消耗"
 
-#: ../src/general/NewGameSettings.tscn:710
+#: ../src/general/NewGameSettings.tscn:713
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "滲透調節消耗"
 
-#: ../src/general/NewGameSettings.tscn:750
+#: ../src/general/NewGameSettings.tscn:753
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "滲透調節消耗"
@@ -4961,12 +4961,12 @@ msgstr "向右平移"
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:819
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/general/NewGameSettings.tscn:831
+#: ../src/general/NewGameSettings.tscn:827
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
@@ -4975,7 +4975,7 @@ msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物�
 msgid "PAST_DEVELOPERS"
 msgstr "過去的開發人員"
 
-#: ../src/general/NewGameSettings.tscn:767
+#: ../src/general/NewGameSettings.tscn:770
 #, fuzzy
 msgid "PATCH_EXPLORATION_MODE"
 msgstr ""
@@ -5001,7 +5001,7 @@ msgstr "區域地圖"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:811
+#: ../src/microbe_stage/PatchMapGenerator.cs:820
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "洞穴"
@@ -5077,13 +5077,13 @@ msgstr "和平"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:787
+#: ../src/general/NewGameSettings.cs:791
 #: ../src/general/WorldGenerationSettings.cs:150
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:325
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
@@ -5130,7 +5130,7 @@ msgstr "物理抵抗力"
 msgid "PLACE_ORGANELLE"
 msgstr "放置細胞器"
 
-#: ../src/general/NewGameSettings.tscn:314
+#: ../src/general/NewGameSettings.tscn:316
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "星球"
@@ -5146,12 +5146,12 @@ msgstr ""
 "一天的長度：{4}秒\n"
 "世界隨機種子：{5}"
 
-#: ../src/general/NewGameSettings.tscn:1106
+#: ../src/general/NewGameSettings.tscn:1102
 msgid "PLANET_GENERATION_TEASER"
 msgstr "敬請期待行星生成功能！"
 
-#: ../src/general/NewGameSettings.tscn:224
-#: ../src/general/NewGameSettings.tscn:1040
+#: ../src/general/NewGameSettings.tscn:226
+#: ../src/general/NewGameSettings.tscn:1036
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成種子"
 
@@ -5160,11 +5160,11 @@ msgstr "世界生成種子"
 msgid "PLAYER"
 msgstr "玩家細胞"
 
-#: ../src/general/NewGameSettings.tscn:593
+#: ../src/general/NewGameSettings.tscn:596
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "玩家死亡懲罰"
 
-#: ../src/general/NewGameSettings.tscn:633
+#: ../src/general/NewGameSettings.tscn:636
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
@@ -5226,12 +5226,12 @@ msgstr "使用當前設置"
 msgid "POPULATION_CAPITAL"
 msgstr "人口："
 
-#: ../src/auto-evo/RunResults.cs:622
+#: ../src/auto-evo/RunResults.cs:630
 #, fuzzy
 msgid "POPULATION_COLON"
 msgstr "總人口："
 
-#: ../src/auto-evo/RunResults.cs:747
+#: ../src/auto-evo/RunResults.cs:755
 msgid "POPULATION_IN_PATCHES"
 msgstr "該區域人口:"
 
@@ -5268,7 +5268,7 @@ msgstr "預覽圖像不存在"
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr "預覽圖像文件太大"
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:645
 #, fuzzy
 msgid "PREVIOUS_COLON"
 msgstr "物種："
@@ -5341,8 +5341,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "隨機化物種名稱"
 
-#: ../src/general/NewGameSettings.tscn:243
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:245
+#: ../src/general/NewGameSettings.tscn:1049
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "暫停遊戲"
@@ -5596,27 +5596,27 @@ msgstr "在遊戲中啟用auto-evo"
 msgid "RUN_ONE_STEP"
 msgstr "運行一步"
 
-#: ../src/auto-evo/RunResults.cs:728
+#: ../src/auto-evo/RunResults.cs:736
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{2}由區域{2}派出{1}個生物擴散到：{0}"
 
-#: ../src/auto-evo/RunResults.cs:709
+#: ../src/auto-evo/RunResults.cs:717
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "基因編碼："
 
-#: ../src/auto-evo/RunResults.cs:668
+#: ../src/auto-evo/RunResults.cs:676
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:671
+#: ../src/auto-evo/RunResults.cs:679
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "由於不同的演化壓力而出現"
 
-#: ../src/auto-evo/RunResults.cs:655
+#: ../src/auto-evo/RunResults.cs:663
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "从{0}分支"
 
-#: ../src/auto-evo/RunResults.cs:688
+#: ../src/auto-evo/RunResults.cs:696
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "在一些地區的種群分支成了新的物種{0}："
 
@@ -5643,7 +5643,7 @@ msgstr "鐵硫菌藍蛋白[Rusticyanin]能夠利用二氧化碳和氧將鐵從�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"iron\"][/thrive:compound]轉換為thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的濃度成正比。"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:980
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5652,7 +5652,7 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:978
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "移除本地數據"
@@ -5839,7 +5839,7 @@ msgid "SECRETE_SLIME"
 msgstr "分泌粘液"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:155
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:299
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:303
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:90
 #, fuzzy
@@ -6160,12 +6160,12 @@ msgstr "物種："
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/RunResults.cs:704
+#: ../src/auto-evo/RunResults.cs:712
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "發生突變"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 msgid "SPECIES_LIST"
 msgstr "物種列表"
 
@@ -6214,7 +6214,7 @@ msgstr "速度"
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#: ../src/auto-evo/RunResults.cs:720
+#: ../src/auto-evo/RunResults.cs:728
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "傳播到的區域："
@@ -6231,7 +6231,7 @@ msgstr "啟動中"
 msgid "START_CALIBRATION"
 msgstr "開始校驗"
 
-#: ../src/general/NewGameSettings.tscn:1240
+#: ../src/general/NewGameSettings.tscn:1236
 #, fuzzy
 msgid "START_GAME"
 msgstr "保存遊戲"
@@ -6307,12 +6307,12 @@ msgstr "Steam系統目前不可用，請重試"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "發生了未知的Steam錯誤"
 
-#: ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1001
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam 客戶端庫初始化失敗"
 
-#: ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "更新此存檔失敗，錯誤："
@@ -6572,7 +6572,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:291
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:296
 msgid "TEMPERATURE"
@@ -6587,7 +6587,7 @@ msgstr "溫度"
 msgid "TESTING_TEAM"
 msgstr "測試團隊"
 
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:993
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6602,7 +6602,7 @@ msgstr ""
 "\n"
 "如果你喜歡這款遊戲，記得也向你的朋友們推薦下。"
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:991
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "你已經茁壯繁盛了!"
@@ -6646,7 +6646,7 @@ msgstr "產出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[t
 msgid "THERMOSYNTHESIS"
 msgstr "化學合成"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:183
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "環境中的葡萄糖已減少到原先量的{0}。"
 
@@ -6730,39 +6730,39 @@ msgstr "顯示全球事件"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "顯示本地事件"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:1002
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分離出來，作為一個新物種來填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:1008
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] 由於不同的演化壓力，從 [b][u]{1}[/u][/b] 作為一個新物種分離出來"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:924
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b]已經滅絕了！"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] 已經從這個區域消失"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:972
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "部分[b][u]{0}[/u][/b]人口已從{1}遷移到此"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:983
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] 人口的一部分已遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:940 ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b]人口已经減少到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:934 ../src/auto-evo/RunResults.cs:956
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] 人口已經增加到 {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:174
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
@@ -7136,6 +7136,7 @@ msgstr "鼠標未知鍵"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "此Mod的創意工坊編號未知"
 
+#: ../src/auto-evo/RunResults.cs:605
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #, fuzzy
 msgid "UNKNOWN_PATCH"
@@ -7331,11 +7332,11 @@ msgstr "等待auto-evo："
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:870
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "從這個星球上滅絕了"
 
-#: ../src/auto-evo/RunResults.cs:631
+#: ../src/auto-evo/RunResults.cs:639
 msgid "WENT_EXTINCT_IN"
 msgstr "在 {0} 中滅絕"
 
@@ -7446,11 +7447,11 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr "Xbox X 系列"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:422
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:424
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:431
 msgid "YEARS"
 msgstr "年"
 

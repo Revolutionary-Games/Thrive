@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-19 22:22+0200\n"
+"POT-Creation-Date: 2023-09-22 21:29+0200\n"
 "PO-Revision-Date: 2023-08-29 08:18+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -63,9 +63,9 @@ msgstr "Herää"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Herää"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:415
 #: ../src/general/base_stage/EditorBase.cs:681
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:469
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Toiminto estetty sillä toinen toiminto on kesken"
@@ -118,11 +118,11 @@ msgstr "Auto-evon suorittaminen epäonnistui"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/NewGameSettings.tscn:1221
+#: ../src/general/NewGameSettings.tscn:1217
 msgid "ADVANCED_VIEW"
 msgstr "Kehittynyt"
 
-#: ../src/general/NewGameSettings.tscn:1216
+#: ../src/general/NewGameSettings.tscn:1212
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
@@ -158,12 +158,12 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agressiivinen"
 
-#: ../src/general/NewGameSettings.tscn:475
+#: ../src/general/NewGameSettings.tscn:478
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutaatiopisteet"
 
-#: ../src/general/NewGameSettings.tscn:515
+#: ../src/general/NewGameSettings.tscn:518
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -294,7 +294,7 @@ msgstr ""
 "Hyperthreadingin päällä oloa ei voida automaattisesti tunnistaa.\n"
 "Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:424
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:455
@@ -377,9 +377,9 @@ msgstr "Auto-evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "suorituksen status:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:236
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:260
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:205
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
@@ -388,9 +388,9 @@ msgstr "Auto-evon suorittaminen epäonnistui"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo tulokset:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:232
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:237
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:261
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:206
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
@@ -434,8 +434,8 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1000
 #: ../src/general/MainMenu.tscn:463 ../src/general/MainMenu.tscn:559
-#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:938
-#: ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/MainMenu.tscn:615 ../src/general/MainMenu.tscn:937
+#: ../src/general/NewGameSettings.tscn:1180
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -466,11 +466,11 @@ msgstr "Liikkuvuus"
 msgid "BASE_MOVEMENT"
 msgstr "Perus liikkuminen"
 
-#: ../src/general/NewGameSettings.tscn:1206
+#: ../src/general/NewGameSettings.tscn:1202
 msgid "BASIC_VIEW"
 msgstr "Yksinkertainen"
 
-#: ../src/general/NewGameSettings.tscn:1201
+#: ../src/general/NewGameSettings.tscn:1197
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Kuole"
@@ -1088,7 +1088,7 @@ msgid "COMPILED_AT_COLON"
 msgstr "Käännetty ajanhetkellä:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:431
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
@@ -1115,12 +1115,12 @@ msgstr "Yhdisteiden tasapainopisteet"
 msgid "COMPOUND_CLOUDS"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/NewGameSettings.tscn:534
+#: ../src/general/NewGameSettings.tscn:537
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/NewGameSettings.tscn:574
+#: ../src/general/NewGameSettings.tscn:577
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1197,13 +1197,13 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.cs:419
-#: ../src/general/NewGameSettings.tscn:1237
+#: ../src/general/NewGameSettings.cs:421
+#: ../src/general/NewGameSettings.tscn:1233
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.cs:426
+#: ../src/general/NewGameSettings.cs:428
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pysäytysmenu"
@@ -1452,11 +1452,11 @@ msgstr "Soluliman glykolyysi"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:980
 msgid "DAY_LENGTH"
 msgstr "Vuorokauden pituus"
 
-#: ../src/general/NewGameSettings.tscn:1027
+#: ../src/general/NewGameSettings.tscn:1023
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
@@ -1465,11 +1465,11 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:955
+#: ../src/general/NewGameSettings.tscn:951
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:964
+#: ../src/general/NewGameSettings.tscn:960
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1645,7 +1645,7 @@ msgstr "Syöty"
 msgid "DEV_BUILD_PATRONS"
 msgstr "DevBuild-tukijat"
 
-#: ../src/general/NewGameSettings.tscn:304
+#: ../src/general/NewGameSettings.tscn:306
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Vaikeustaso"
@@ -1656,8 +1656,8 @@ msgstr "Vaikeustaso"
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Vaikeustason esiasetus"
 
-#: ../src/general/NewGameSettings.tscn:128
-#: ../src/general/NewGameSettings.tscn:375
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:378
 msgid "DIFFICULTY_PRESET"
 msgstr "Vaikeustason esiasetus"
 
@@ -1965,12 +1965,12 @@ msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näytt�
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
 
-#: ../src/general/NewGameSettings.tscn:1161
+#: ../src/general/NewGameSettings.tscn:1157
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "KIEMURTELEVIA JUTTUJA!!"
 
-#: ../src/general/NewGameSettings.tscn:1169
+#: ../src/general/NewGameSettings.tscn:1165
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -2066,11 +2066,11 @@ msgstr "Biomi: {0}"
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
-#: ../src/general/NewGameSettings.tscn:652
+#: ../src/general/NewGameSettings.tscn:655
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Ympäristön glukoosin säilyminen"
 
-#: ../src/general/NewGameSettings.tscn:691
+#: ../src/general/NewGameSettings.tscn:694
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -2213,14 +2213,14 @@ msgstr "Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on ku
 msgid "EXTINCTION_CAPITAL"
 msgstr "SUKUPUUTTO"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:438
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:449
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:439
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:450
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "sukupuuttoon planeetalta"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:437
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:450
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:438
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "sukupuuttoon planeetalta"
@@ -2395,7 +2395,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/general/NewGameSettings.cs:839
+#: ../src/general/NewGameSettings.cs:844
 #, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
@@ -2405,19 +2405,19 @@ msgstr "Pistä muita soluja tällä."
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
-#: ../src/general/NewGameSettings.cs:847
+#: ../src/general/NewGameSettings.cs:852
 #, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
 #: ../src/general/NewGameSettings.cs:315
 #, fuzzy
-msgid "FOG_OF_WAR_LIGHT"
+msgid "FOG_OF_WAR_NORMAL"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/general/NewGameSettings.cs:843
+#: ../src/general/NewGameSettings.cs:848
 #, fuzzy
-msgid "FOG_OF_WAR_LIGHT_DESCRIPTION"
+msgid "FOG_OF_WAR_NORMAL_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
@@ -2514,11 +2514,11 @@ msgstr "Ruutuaika: {0}"
 msgid "FREEBUILDING"
 msgstr "Vapaa rakentelu"
 
-#: ../src/general/NewGameSettings.tscn:802
+#: ../src/general/NewGameSettings.tscn:798
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:810
+#: ../src/general/NewGameSettings.tscn:806
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2564,11 +2564,11 @@ msgstr "Kuole"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-moodi Varoitus"
 
-#: ../src/general/MainMenu.tscn:959
+#: ../src/general/MainMenu.tscn:958
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -2580,7 +2580,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:977
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} alueelle {2}"
 
@@ -2764,12 +2764,12 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr "ID-Numero"
 
-#: ../src/general/NewGameSettings.tscn:1140
+#: ../src/general/NewGameSettings.tscn:1136
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Lisää soluelin"
 
-#: ../src/general/NewGameSettings.tscn:1148
+#: ../src/general/NewGameSettings.tscn:1144
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -3265,13 +3265,13 @@ msgstr ""
 msgid "LAUNCHMEDIA"
 msgstr "Media"
 
-#: ../src/general/NewGameSettings.tscn:156
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:158
+#: ../src/general/NewGameSettings.tscn:889
 msgid "LAWK_ONLY"
 msgstr "Vain LAWK"
 
-#: ../src/general/NewGameSettings.tscn:163
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:165
+#: ../src/general/NewGameSettings.tscn:897
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -3357,13 +3357,13 @@ msgstr "Lisenssit"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Lisenssit, jotka liittyvät Thriven osiin näytetään tässä"
 
-#: ../src/general/NewGameSettings.tscn:182
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:916
 msgid "LIFE_ORIGIN"
 msgstr "Elämän alkuperä"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:929
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:925
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -3372,28 +3372,28 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:936
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (satunnainen)"
 
-#: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:936
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr "Lämmin pieni allas"
 
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:937
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:933
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:939
-#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:936
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Mustat savuttajat"
@@ -3434,12 +3434,12 @@ msgstr "Valo"
 msgid "LIMIT_EXTREME"
 msgstr "Äärimmäinen"
 
-#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:840
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "VAHVISTA"
 
-#: ../src/general/NewGameSettings.tscn:852
+#: ../src/general/NewGameSettings.tscn:848
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -3653,7 +3653,7 @@ msgid "MEDIASTOP"
 msgstr "Pysäytä"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:403
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:167
 #: ../src/microbe_stage/editor/TimelineTab.cs:232
 msgid "MEGA_YEARS"
 msgstr "Ma"
@@ -4006,7 +4006,7 @@ msgstr "Versio:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lupaa näyttää vähempää kuin {0} datajoukko(a)!"
 
-#: ../src/general/NewGameSettings.tscn:324 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:326 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr "Muut"
 
@@ -4080,7 +4080,7 @@ msgstr "Vaihda tyyppiä"
 msgid "MODS"
 msgstr "Modit"
 
-#: ../src/general/MainMenu.tscn:971
+#: ../src/general/MainMenu.tscn:970
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4172,11 +4172,11 @@ msgstr "Sisäinen nimi (Kansio):"
 msgid "MOD_LICENSE"
 msgstr "Lisenssit"
 
-#: ../src/general/MainMenu.tscn:985
+#: ../src/general/MainMenu.tscn:984
 msgid "MOD_LOAD_ERRORS"
 msgstr "Modien latausvirheet"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat sisältää lisää tietoa."
 
@@ -4390,11 +4390,11 @@ msgstr "Musiikin voimakkuus"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutaatiopisteet"
 
-#: ../src/general/NewGameSettings.tscn:416
+#: ../src/general/NewGameSettings.tscn:419
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutaatiohinnan kerroin"
 
-#: ../src/general/NewGameSettings.tscn:456
+#: ../src/general/NewGameSettings.tscn:459
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
@@ -4467,7 +4467,7 @@ msgstr "Uusi Peli"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.tscn:286
+#: ../src/general/NewGameSettings.tscn:288
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4606,7 +4606,7 @@ msgstr "Tapahtumia ei tallennettu"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/general/MainMenu.tscn:969
+#: ../src/general/MainMenu.tscn:968
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Ei käytössä"
@@ -4877,12 +4877,12 @@ msgstr "Osmoregulaatio"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:710
+#: ../src/general/NewGameSettings.tscn:713
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:750
+#: ../src/general/NewGameSettings.tscn:753
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulaation energiantarve"
@@ -4984,12 +4984,12 @@ msgstr "Siirrä kameraa oikealle"
 msgid "PAN_CAMERA_UP"
 msgstr "Siirrä kameraa ylöspäin"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:819
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:831
+#: ../src/general/NewGameSettings.tscn:827
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -4998,7 +4998,7 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 msgid "PAST_DEVELOPERS"
 msgstr "Entiset kehittäjät"
 
-#: ../src/general/NewGameSettings.tscn:767
+#: ../src/general/NewGameSettings.tscn:770
 #, fuzzy
 msgid "PATCH_EXPLORATION_MODE"
 msgstr ""
@@ -5024,7 +5024,7 @@ msgstr "Aluekartta"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:811
+#: ../src/microbe_stage/PatchMapGenerator.cs:820
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -5098,13 +5098,13 @@ msgstr "Rauhallinen"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:616
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:787
+#: ../src/general/NewGameSettings.cs:791
 #: ../src/general/WorldGenerationSettings.cs:150
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:325
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
@@ -5151,7 +5151,7 @@ msgstr "Fyysinen kestävyys"
 msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
-#: ../src/general/NewGameSettings.tscn:314
+#: ../src/general/NewGameSettings.tscn:316
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeetta"
@@ -5162,12 +5162,12 @@ msgstr "Planeetta"
 msgid "PLANET_DETAILS_STRING"
 msgstr "Avaa lokien kansio"
 
-#: ../src/general/NewGameSettings.tscn:1106
+#: ../src/general/NewGameSettings.tscn:1102
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:224
-#: ../src/general/NewGameSettings.tscn:1040
+#: ../src/general/NewGameSettings.tscn:226
+#: ../src/general/NewGameSettings.tscn:1036
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
 
@@ -5176,11 +5176,11 @@ msgstr "Planeetan satunnainen lähtöarvo"
 msgid "PLAYER"
 msgstr "Pelaajan solu"
 
-#: ../src/general/NewGameSettings.tscn:593
+#: ../src/general/NewGameSettings.tscn:596
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:633
+#: ../src/general/NewGameSettings.tscn:636
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
@@ -5243,11 +5243,11 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
 
-#: ../src/auto-evo/RunResults.cs:622
+#: ../src/auto-evo/RunResults.cs:630
 msgid "POPULATION_COLON"
 msgstr "populaatio:"
 
-#: ../src/auto-evo/RunResults.cs:747
+#: ../src/auto-evo/RunResults.cs:755
 msgid "POPULATION_IN_PATCHES"
 msgstr "populaatio alueilla:"
 
@@ -5285,7 +5285,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:645
 msgid "PREVIOUS_COLON"
 msgstr "edellinen:"
 
@@ -5357,8 +5357,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Luo satunnainen lajin nimi"
 
-#: ../src/general/NewGameSettings.tscn:243
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:245
+#: ../src/general/NewGameSettings.tscn:1049
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Laita peli tauolle"
@@ -5611,27 +5611,27 @@ msgstr "Suorita auto-evo pelin aikana"
 msgid "RUN_ONE_STEP"
 msgstr "Aja Yksi Askel"
 
-#: ../src/auto-evo/RunResults.cs:728
+#: ../src/auto-evo/RunResults.cs:736
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} lähettämällä: {1} yksikköä populaatiota alueelta: {2}"
 
-#: ../src/auto-evo/RunResults.cs:709
+#: ../src/auto-evo/RunResults.cs:717
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "geneettinen koodi:"
 
-#: ../src/auto-evo/RunResults.cs:668
+#: ../src/auto-evo/RunResults.cs:676
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "ilmaantui täyttämään ekologisen lokeron"
 
-#: ../src/auto-evo/RunResults.cs:671
+#: ../src/auto-evo/RunResults.cs:679
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "syntyi eriävien valintapaineiden seurauksena"
 
-#: ../src/auto-evo/RunResults.cs:655
+#: ../src/auto-evo/RunResults.cs:663
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "erkani lajista: {0}"
 
-#: ../src/auto-evo/RunResults.cs:688
+#: ../src/auto-evo/RunResults.cs:696
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "populaatio joillain alueille jakaantui muodostamaan uuden lajin, {0}:"
 
@@ -5658,7 +5658,7 @@ msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea mu
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"iron\"]raudan[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus vaihtelee ympäristön [thrive:compound type=\"carbondioxide\"][/thrive:compound]n ja [thrive:compound type=\"oxygen\"][/thrive:compound]n mukaan."
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:980
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5667,7 +5667,7 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/MainMenu.tscn:979
+#: ../src/general/MainMenu.tscn:978
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Poista Paikallinen Data"
@@ -5850,7 +5850,7 @@ msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:155
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:299
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:303
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:90
 #, fuzzy
@@ -6187,11 +6187,11 @@ msgstr "Lajit:"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/RunResults.cs:704
+#: ../src/auto-evo/RunResults.cs:712
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "on saanut mutaation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 msgid "SPECIES_LIST"
 msgstr "Lista lajeista"
 
@@ -6239,7 +6239,7 @@ msgstr "Nopeus"
 msgid "SPEED_COLON"
 msgstr "Nopeus:"
 
-#: ../src/auto-evo/RunResults.cs:720
+#: ../src/auto-evo/RunResults.cs:728
 msgid "SPREAD_TO_PATCHES"
 msgstr "levisi alueille:"
 
@@ -6255,7 +6255,7 @@ msgstr "Aloitetaan"
 msgid "START_CALIBRATION"
 msgstr "Aloita kalibrointi"
 
-#: ../src/general/NewGameSettings.tscn:1240
+#: ../src/general/NewGameSettings.tscn:1236
 #, fuzzy
 msgid "START_GAME"
 msgstr "Tallenna Peli"
@@ -6334,12 +6334,12 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Tuntematon Steam-virhe tapahtui"
 
-#: ../src/general/MainMenu.tscn:1002
+#: ../src/general/MainMenu.tscn:1001
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
@@ -6603,7 +6603,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:291
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:296
 msgid "TEMPERATURE"
@@ -6618,7 +6618,7 @@ msgstr "Lämpö."
 msgid "TESTING_TEAM"
 msgstr "Testaustiimi"
 
-#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:994
+#: ../src/general/MainMenu.cs:252 ../src/general/MainMenu.tscn:993
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6633,7 +6633,7 @@ msgstr ""
 "\n"
 "Jos tykkäsit pelistä, kerrothan kavereillesi meistä."
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:991
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "OLET SELVIYTYNYT!"
@@ -6677,7 +6677,7 @@ msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. T
 msgid "THERMOSYNTHESIS"
 msgstr "Kemosynteesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:183
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."
 
@@ -6761,40 +6761,40 @@ msgstr "Näytä maailmanlaajuiset tapahtumat"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Näytä paikalliset tapahtumat"
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:1002
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta erikoistuen omaksi lajikseen"
 
-#: ../src/auto-evo/RunResults.cs:1000
+#: ../src/auto-evo/RunResults.cs:1008
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista johtuen"
 
-#: ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:924
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] on kuollut sukupuuttoon!"
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] on kadonnut tältä alueelta"
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:972
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} tälle alueelle"
 
-#: ../src/auto-evo/RunResults.cs:975
+#: ../src/auto-evo/RunResults.cs:983
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
 
-#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
+#: ../src/auto-evo/RunResults.cs:940 ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] populaatio on pienentynyt ja on nyt {1}"
 
-#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
+#: ../src/auto-evo/RunResults.cs:934 ../src/auto-evo/RunResults.cs:956
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] populaatio on kasvanut määrään {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:174
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
@@ -7154,6 +7154,7 @@ msgstr "Tuntematon hiiren painike"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tuntematon hiiren painike"
 
+#: ../src/auto-evo/RunResults.cs:605
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #, fuzzy
 msgid "UNKNOWN_PATCH"
@@ -7356,11 +7357,11 @@ msgstr "Odotetaan auto-evoa:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:870
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "sukupuuttoon planeetalta"
 
-#: ../src/auto-evo/RunResults.cs:631
+#: ../src/auto-evo/RunResults.cs:639
 msgid "WENT_EXTINCT_IN"
 msgstr "katosi alueelta: {0}"
 
@@ -7476,11 +7477,11 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:422
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:424
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:431
 msgid "YEARS"
 msgstr "vuotta"
 

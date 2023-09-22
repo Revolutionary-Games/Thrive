@@ -747,7 +747,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         var gameWorld = world.GameProperties.GameWorld;
 
         // Make summary, this must be called before results are applied so that summary is correct
-        world.RunResultsList.Add(results.MakeSummary(gameWorld.Map, true));
+        world.RunResultsList.Add(results.MakeSummary(gameWorld.Map, true, null, true));
 
         // Apply the results
         gameWorld.OnTimePassed(1);

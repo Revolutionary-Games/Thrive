@@ -271,20 +271,23 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             targetPatch = patch;
         }
 
-        targetPatch?.SetExplored();
+        if (targetPatch != null)
+            targetPatch.Explored = true;
+
         Editor.OnCurrentPatchUpdated(targetPatch ?? CurrentPatch);
         UpdatePlayerPatch(targetPatch);
     }
 
     private void UpdatePlayerPatch(Patch? patch)
     {
-        patch?.SetExplored();
+        if (patch != null)
+            patch.Explored = true;
 
         if (Editor.CurrentGame.GameWorld.WorldSettings.PatchMapExplorationMode != FogOfWarMode.Intense &&
             patch != null)
         {
             foreach (var adjacent in patch!.Adjacent)
-                adjacent.SetExplored();
+                adjacent.Explored = true;
         }
 
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
@@ -317,7 +320,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         mapDrawer.IgnoreFogOfWar = true;
 
         foreach (var patch in mapDrawer.PlayerPatch!.GetAllConnectedPatches())
-            patch.SetExplored();
+            patch.Explored = true;
 
         Editor.UpdateReportTabPatchSelector();
         mapDrawer.MarkDirty();

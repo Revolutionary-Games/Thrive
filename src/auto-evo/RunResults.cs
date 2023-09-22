@@ -586,7 +586,7 @@
         /// </param>
         /// <returns>The generated summary text</returns>
         public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
-            bool playerReadable = false, List<ExternalEffect>? effects = null)
+            bool playerReadable = false, List<ExternalEffect>? effects = null, bool ignoreFogOfWar = false)
         {
             if (previousPopulations != null && previousPopulations.CurrentPatch == null)
                 throw new ArgumentException("When previous populations is set, it must have current patch set");
@@ -600,7 +600,7 @@
             {
                 var builder2 = new LocalizedStringBuilder(80);
 
-                if (!patch.Explored)
+                if (!patch.Explored && !ignoreFogOfWar)
                 {
                     var unknownPatch = new LocalizedString("UNKNOWN_PATCH");
                     builder2.Append(unknownPatch);

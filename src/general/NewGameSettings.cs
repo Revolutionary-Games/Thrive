@@ -312,7 +312,7 @@ public class NewGameSettings : ControlWithInput
         }
 
         patchMapExplorationMode.AddItem(TranslationServer.Translate("FOG_OF_WAR_DISABLED"));
-        patchMapExplorationMode.AddItem(TranslationServer.Translate("FOG_OF_WAR_LIGHT"));
+        patchMapExplorationMode.AddItem(TranslationServer.Translate("FOG_OF_WAR_NORMAL"));
         patchMapExplorationMode.AddItem(TranslationServer.Translate("FOG_OF_WAR_INTENSE"));
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
@@ -845,7 +845,7 @@ public class NewGameSettings : ControlWithInput
                 break;
             case 1:
                 patchMapExplorationModeDescription.Text =
-                    TranslationServer.Translate("FOG_OF_WAR_LIGHT_DESCRIPTION");
+                    TranslationServer.Translate("FOG_OF_WAR_NORMAL_DESCRIPTION");
                 break;
             case 2:
                 patchMapExplorationModeDescription.Text =

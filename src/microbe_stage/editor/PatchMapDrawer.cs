@@ -739,7 +739,7 @@ public class PatchMapDrawer : Control
             var region1 = map.Regions[entry.Key.x];
             var region2 = map.Regions[entry.Key.y];
 
-            if ((!region1.Explored && !region2.Explored) && !IgnoreFogOfWar)
+            if (!region1.Explored && !region2.Explored && !IgnoreFogOfWar)
                 continue;
 
             var points = entry.Value;
@@ -828,7 +828,7 @@ public class PatchMapDrawer : Control
             var node = (PatchMapNode)nodeScene.Instance();
 
             if (IgnoreFogOfWar)
-                entry.Value.SetExplored();
+                entry.Value.Explored = true;
 
             // This renders the patch as a question mark if the patch is discovered
             // but has not been entered by the player

@@ -34,6 +34,9 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
+    [JsonProperty]
+    private bool explored;
+
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region)
     {
         Name = name;
@@ -91,8 +94,21 @@ public class Patch
     /// <summary>
     ///   True if player has entered the patch
     /// </summary>
-    [JsonProperty]
-    public bool Explored { get; private set; }
+    public bool Explored
+    {
+        get => explored;
+        set
+        {
+            explored = value;
+            Discovered = value;
+            Region.Explored = value;
+
+            foreach (Patch patch in Adjacent)
+            {
+                patch.Discovered = value;
+            }
+        }
+    }
 
     /// <summary>
     ///   True if the patch is discovered,
@@ -468,18 +484,6 @@ public class Patch
             return;
 
         currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
-    }
-
-    public void SetExplored()
-    {
-        Explored = true;
-        Discovered = true;
-        Region.Explored = true;
-
-        foreach (Patch patch in Adjacent)
-        {
-            patch.Discovered = true;
-        }
     }
 
     public override string ToString()
