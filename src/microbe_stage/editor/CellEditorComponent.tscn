@@ -918,10 +918,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 360.0
-margin_top = 385.0
-margin_right = 676.0
-margin_bottom = 975.0
+margin_left = 364.0
+margin_top = 389.0
+margin_right = 680.0
+margin_bottom = 979.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1070,9 +1070,8 @@ Icon = ExtResource( 32 )
 
 [node name="DigestionEfficiency" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 190.0
-margin_right = 242.0
+margin_right = 246.0
 margin_bottom = 215.0
-size_flags_horizontal = 0
 Description = "DIGESTION_EFFICIENCY_COLON"
 Icon = ExtResource( 31 )
 
