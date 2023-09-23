@@ -1865,8 +1865,7 @@ public partial class CellEditorComponent :
 
         // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
-        UpdateAlreadyPlacedHexes(
-            editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes,
+        UpdateAlreadyPlacedHexes(editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes,
             Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islands, microbePreviewMode);
 
         int nextFreeOrganelle = 0;

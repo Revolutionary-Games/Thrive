@@ -158,7 +158,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         var redoData = history.ActionToRedo()?.Data.FirstOrDefault();
 
         if (redoData is EditorCombinableActionData<CellType> cellTypeData)
-            cellType = cellTypeData?.Context;
+            cellType = cellTypeData.Context;
 
         // If the action we're redoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
@@ -179,7 +179,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         var undoData = history.ActionToUndo()?.Data.FirstOrDefault();
 
         if (undoData is EditorCombinableActionData<CellType> cellTypeData)
-            cellType = cellTypeData?.Context;
+            cellType = cellTypeData.Context;
 
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
