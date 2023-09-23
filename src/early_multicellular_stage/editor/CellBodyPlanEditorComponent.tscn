@@ -332,6 +332,7 @@ CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 CellPopupMenuPath = NodePath("CellPopupMenu")
+ReproductionOrderListPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer/OrderMarginContainer/OrderList")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -572,14 +573,18 @@ custom_styles/panel = SubResource( 8 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction"]
 margin_right = 414.0
-margin_bottom = 516.0
+margin_bottom = 518.0
 mouse_filter = 1
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer"]
+margin_right = 414.0
+margin_bottom = 23.0
+
+[node name="MethodMarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer"]
 margin_right = 414.0
 margin_bottom = 19.0
 mouse_filter = 1
@@ -589,29 +594,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer/MethodMarginContainer"]
 margin_right = 404.0
 margin_bottom = 19.0
 custom_constants/separation = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer/MethodMarginContainer/VBoxContainer"]
 margin_right = 404.0
 margin_bottom = 19.0
 
-[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer/MethodMarginContainer/VBoxContainer/HBoxContainer"]
 margin_top = 1.0
 margin_right = 179.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 14 )
 text = "REPRODUCTION_METHOD"
 
-[node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer/MethodMarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 183.0
 margin_right = 183.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 
-[node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer/MethodMarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 187.0
 margin_right = 404.0
 margin_bottom = 19.0
@@ -619,6 +624,15 @@ disabled = true
 text = "REPRODUCTION_BUDDING"
 items = [ "REPRODUCTION_BUDDING", null, false, 0, null ]
 selected = 0
+
+[node name="OrderMarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 414.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+
+[node name="OrderList" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/VBoxContainer/OrderMarginContainer"]
+margin_right = 414.0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 9 )]
 visible = false

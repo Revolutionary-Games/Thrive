@@ -57,6 +57,9 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     public NodePath CellPopupMenuPath = null!;
 
+    [Export]
+    public NodePath ReproductionOrderListPath = null!;
+
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -96,6 +99,10 @@ public partial class CellBodyPlanEditorComponent :
     private PackedScene microbeScene = null!;
 
     private CellPopupMenu cellPopupMenu = null!;
+
+    private VBoxContainer reproductionOrderList = null!;
+
+    private PackedScene reproductionOrderScene = null!;
 #pragma warning restore CA2213
 
     // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
@@ -146,6 +153,9 @@ public partial class CellBodyPlanEditorComponent :
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/CellTypeSelection.tscn");
 
+        reproductionOrderScene =
+            GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/ReproductionOrder.tscn");
+
         ApplySelectionMenuTab();
 
         RegisterTooltips();
@@ -190,6 +200,8 @@ public partial class CellBodyPlanEditorComponent :
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
 
         cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
+
+        reproductionOrderList = GetNode<VBoxContainer>(ReproductionOrderListPath);
     }
 
     public override void Init(EarlyMulticellularEditor owningEditor, bool fresh)
@@ -597,6 +609,7 @@ public partial class CellBodyPlanEditorComponent :
                 DuplicateCellTypeDialogPath.Dispose();
                 DuplicateCellTypeNamePath.Dispose();
                 CellPopupMenuPath.Dispose();
+                ReproductionOrderListPath.Dispose();
             }
         }
 
@@ -913,6 +926,53 @@ public partial class CellBodyPlanEditorComponent :
         activeActionName = cellTypeName;
 
         OnCurrentActionChanged();
+    }
+
+    private void UpdateReproductionOrderList()
+    {
+        // Clear the existing list using QueueFree because a simple Free will cause problems when MoveCellUp and
+        // MoveCellDown call this method
+        reproductionOrderList.QueueFreeChildren();
+
+        for (var index = 0; index < editedMicrobeCells.Count; index++)
+        {
+            var control = (ReproductionOrder)reproductionOrderScene.Instance();
+
+            control.Index = $"{index + 1}.";
+            var cell = editedMicrobeCells[index];
+            control.CellDescription = $"{cell.Data?.FormattedName} ({cell.Position.Q},{cell.Position.R})";
+
+            control.Connect(nameof(ReproductionOrder.OnCellUp), this, nameof(MoveCellUp));
+            control.Connect(nameof(ReproductionOrder.OnCellDown), this, nameof(MoveCellDown));
+
+            reproductionOrderList.AddChild(control);
+        }
+    }
+
+    private void MoveCellUp(int index)
+    {
+        // The displayed index for ReproductionOrder starts at 1 instead of 0, so subtract 1
+        --index;
+
+        if (index <= 0)
+            return;
+
+        editedMicrobeCells.SwapIndexes(index, index - 1);
+
+        UpdateReproductionOrderList();
+    }
+
+    private void MoveCellDown(int index)
+    {
+        // The displayed index for ReproductionOrder starts at 1 instead of 0, so subtract 1
+        --index;
+
+        if (index >= editedMicrobeCells.Count - 1)
+            return;
+
+        editedMicrobeCells.SwapIndexes(index, index + 1);
+
+        UpdateReproductionOrderList();
     }
 
     private void OnCurrentActionChanged()

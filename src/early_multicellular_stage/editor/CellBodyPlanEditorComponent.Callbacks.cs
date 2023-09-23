@@ -8,12 +8,16 @@ public partial class CellBodyPlanEditorComponent
     private void OnCellAdded(HexWithData<CellTemplate> hexWithData)
     {
         cellDataDirty = true;
+
+        UpdateReproductionOrderList();
     }
 
     [DeserializedCallbackAllowed]
     private void OnCellRemoved(HexWithData<CellTemplate> hexWithData)
     {
         cellDataDirty = true;
+
+        UpdateReproductionOrderList();
     }
 
     [DeserializedCallbackAllowed]

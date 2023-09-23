@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/textures/gui/bevel/ExpandUpIcon.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/ExpandDownIcon.png" type="Texture" id=2]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/early_multicellular_stage/editor/ReproductionOrder.cs" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.435294, 0.52549, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.396078, 0.623529, 0.584314, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ButtonGroup" id=5]
+
+[node name="ReproductionOrder" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1150.0
+margin_bottom = -700.0
+script = ExtResource( 4 )
+IndexPath = NodePath("HBoxContainer/Index")
+CellDescriptionPath = NodePath("HBoxContainer/CellDescription")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 130.0
+margin_bottom = 20.0
+
+[node name="Index" type="Label" parent="HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "1."
+
+[node name="CellDescription" type="Label" parent="HBoxContainer"]
+margin_left = 14.0
+margin_right = 102.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "Stem at 0,0"
+
+[node name="Down" type="Button" parent="HBoxContainer"]
+margin_left = 106.0
+margin_top = 2.0
+margin_right = 116.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 10 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+action_mode = 0
+group = SubResource( 5 )
+icon = ExtResource( 2 )
+expand_icon = true
+
+[node name="Up" type="Button" parent="HBoxContainer"]
+margin_left = 120.0
+margin_top = 2.0
+margin_right = 130.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 10 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+action_mode = 0
+group = SubResource( 5 )
+icon = ExtResource( 1 )
+expand_icon = true
+
+[connection signal="pressed" from="HBoxContainer/Down" to="." method="OnDownPressed"]
+[connection signal="pressed" from="HBoxContainer/Up" to="." method="OnUpPressed"]

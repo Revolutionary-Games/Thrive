@@ -172,6 +172,17 @@ public abstract class HexLayout<T> : ICollection<T>
     }
 
     /// <summary>
+    ///   Moves the item from <see cref="index1"/> to <see cref="index2"/> and the item from <see cref="index2"/> to
+    ///   <see cref="index1"/>.
+    /// </summary>
+    /// <param name="index1">The index of one of the items that should be swapped.</param>
+    /// <param name="index2">The index of the other item that should be swapped.</param>
+    public void SwapIndexes(int index1, int index2)
+    {
+        (existingHexes[index1], existingHexes[index2]) = (existingHexes[index2], existingHexes[index1]);
+    }
+
+    /// <summary>
     ///   Removes all existingHexes in this layout one by one
     /// </summary>
     public void Clear()
