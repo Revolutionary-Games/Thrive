@@ -34,6 +34,8 @@ public class PatchMapDrawer : Control
 
     private readonly Dictionary<Patch, PatchMapNode> nodes = new();
 
+    private readonly Dictionary<Int2, Line2D> regionLinkLines = new();
+
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
     /// </summary>
@@ -166,7 +168,14 @@ public class PatchMapDrawer : Control
         if (connections.Count == 0 || connectionsDirty)
         {
             connections.Clear();
+
+            foreach (var line in regionLinkLines.Values)
+                line.QueueFree();
+
+            regionLinkLines.Clear();
+
             CreateRegionLinks();
+
             connectionsDirty = false;
         }
 
@@ -329,6 +338,32 @@ public class PatchMapDrawer : Control
         DrawLine(center1, center2, connectionColor, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH, true);
     }
 
+    private void CreateLink(Vector2[] points, Color connectionColor, Int2 id)
+    {
+        var link = new Line2D
+        {
+            DefaultColor = connectionColor,
+            Points = points,
+            Width = Constants.PATCH_REGION_CONNECTION_LINE_WIDTH,
+        };
+
+        AddChild(link);
+        regionLinkLines.Add(id, link);
+    }
+
+    private void AddFadeToLine(Line2D line, bool reversed)
+    {
+        var gradient = new Gradient();
+        var color = line.DefaultColor;
+        Color transparent = new(color, 0);
+
+        gradient.AddPoint(0.5f, transparent);
+
+        gradient.SetColor(reversed ? 2 : 0, color);
+        gradient.SetColor(reversed ? 0 : 2, transparent);
+        line.Gradient = gradient;
+    }
+
     private PatchMapNode? GetPatchNode(Patch patch)
     {
         nodes.TryGetValue(patch, out var node);
@@ -394,6 +429,11 @@ public class PatchMapDrawer : Control
         }
 
         AdjustPathEndpoints();
+
+        foreach (var entry in connections)
+        {
+            CreateLink(entry.Value, DefaultConnectionColor, entry.Key);
+        }
     }
 
     /// <summary>
@@ -417,11 +457,11 @@ public class PatchMapDrawer : Control
         var endCenter = RegionCenter(end);
         var endRect = new Rect2(end.ScreenCoordinates, end.Size);
 
-        if (!start.Explored)
-            startCenter = PatchCenter(startPatch.ScreenCoordinates);
+        //if (!start.Explored)
+        //    startCenter = PatchCenter(startPatch.ScreenCoordinates);
 
-        if (!end.Explored)
-            endCenter = PatchCenter(endPatch.ScreenCoordinates);
+        //if (!end.Explored)
+        //    endCenter = PatchCenter(endPatch.ScreenCoordinates);
 
         var probablePaths = new List<(Vector2[] Path, int Priority)>();
 
@@ -537,33 +577,33 @@ public class PatchMapDrawer : Control
             // Endpoint position
             foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Left])
             {
-                var end = Map!.Regions[id];
+                //var end = Map!.Regions[id];
 
-                if (end.Explored)
+                //if (end.Explored)
                     path[endpoint].x -= region.Value.Width / 2;
             }
 
             foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Up])
             {
-                var end = Map!.Regions[id];
+                //var end = Map!.Regions[id];
 
-                if (end.Explored)
+                //if (end.Explored)
                     path[endpoint].y -= region.Value.Height / 2;
             }
 
             foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Right])
             {
-                var end = Map!.Regions[id];
+                //var end = Map!.Regions[id];
 
-                if (end.Explored)
+                //if (end.Explored)
                     path[endpoint].x += region.Value.Width / 2;
             }
 
             foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Down])
             {
-                var end = Map!.Regions[id];
+                //var end = Map!.Regions[id];
 
-                if (end.Explored)
+                //if (end.Explored)
                     path[endpoint].y += region.Value.Height / 2;
             }
 
@@ -731,35 +771,36 @@ public class PatchMapDrawer : Control
 
     private void DrawRegionLinks()
     {
-        var highlightedConnections = new List<Vector2[]>();
-
-        // We first draw the normal connections between regions
-        foreach (var entry in connections)
+        foreach (var entry in regionLinkLines)
         {
-            var region1 = map.Regions[entry.Key.x];
-            var region2 = map.Regions[entry.Key.y];
+            var start = map.Regions[entry.Key.x];
+            var end = map.Regions[entry.Key.y];
 
-            if (!region1.Explored && !region2.Explored && !IgnoreFogOfWar)
+            // If both regions are unexplored, don't render the line
+            if (!start.Explored && !end.Explored && !IgnoreFogOfWar)
+            {
+                entry.Value.Visible = false;
                 continue;
-
-            var points = entry.Value;
-            for (int i = 1; i < points.Length; i++)
-            {
-                DrawNodeLink(points[i - 1], points[i], DefaultConnectionColor);
             }
 
-            if (CheckHighlightedAdjacency(region1, region2))
-                highlightedConnections.Add(entry.Value);
-        }
+            entry.Value.Visible = true;
 
-        // Then we draw the the adjacent connections to the patch we selected
-        // Those connections have to be drawn over the normal connections so they're second
-        foreach (var points in highlightedConnections)
-        {
-            for (int i = 1; i < points.Length; i++)
-            {
-                DrawNodeLink(points[i - 1], points[i], HighlightedConnectionColor);
-            }
+            // Set the color of the line if highlighted
+            if (CheckHighlightedAdjacency(start, end))
+                entry.Value.DefaultColor = HighlightedConnectionColor;
+            else
+                entry.Value.DefaultColor = DefaultConnectionColor;
+
+            if (IgnoreFogOfWar)
+                return;
+
+            // Add a fade to the line if its ending at an unexplored region
+            if (!start.Explored)
+                AddFadeToLine(entry.Value, true);
+            else if (!end.Explored)
+                AddFadeToLine(entry.Value, false);
+            else
+                entry.Value.Gradient = null;
         }
     }
 
