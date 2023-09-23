@@ -17,6 +17,28 @@ public enum FogOfWarMode
 }
 
 /// <summary>
+///   The visibility of an element in the patch map.
+///   Currently used by <see cref="PatchRegion"/> and <see cref="PatchMapNode"/>
+/// </summary>
+public enum PatchMapVisibility
+{
+    /// <summary>
+    ///   Invisible to the player
+    /// </summary>
+    Undiscovered,
+
+    /// <summary>
+    ///   Visible to the player but details hidden
+    /// </summary>
+    Unknown,
+
+    /// <summary>
+    ///   Visible to the player and details shown
+    /// </summary>
+    Explored,
+}
+
+/// <summary>
 ///   A container for patches that are joined together
 /// </summary>
 [UseThriveSerializer]

@@ -179,7 +179,7 @@ public class PatchMapDrawer : Control
             connectionsDirty = false;
         }
 
-        DrawRegionLinks();
+        UpdateRegionLinks();
         DrawRegionBorders();
         DrawPatchLinks();
 
@@ -347,7 +347,7 @@ public class PatchMapDrawer : Control
             Width = Constants.PATCH_REGION_CONNECTION_LINE_WIDTH,
         };
 
-        AddChild(link);
+        GetParent().AddChild(link);
         regionLinkLines.Add(id, link);
     }
 
@@ -373,7 +373,7 @@ public class PatchMapDrawer : Control
     private bool ContainsSelectedExploredPatch(PatchRegion region)
     {
         return region.Patches.Any(p => GetPatchNode(p)?.Selected == true &&
-            GetPatchNode(p)?.VisibilityState == PatchMapNode.PatchVisibilityState.Explored);
+            GetPatchNode(p)?.VisibilityState == PatchMapVisibility.Explored);
     }
 
     private bool ContainsAdjacentToSelectedPatch(PatchRegion region)
@@ -457,11 +457,11 @@ public class PatchMapDrawer : Control
         var endCenter = RegionCenter(end);
         var endRect = new Rect2(end.ScreenCoordinates, end.Size);
 
-        //if (!start.Explored)
-        //    startCenter = PatchCenter(startPatch.ScreenCoordinates);
+        if (!start.Explored)
+            startCenter = PatchCenter(startPatch.ScreenCoordinates);
 
-        //if (!end.Explored)
-        //    endCenter = PatchCenter(endPatch.ScreenCoordinates);
+        if (!end.Explored)
+            endCenter = PatchCenter(endPatch.ScreenCoordinates);
 
         var probablePaths = new List<(Vector2[] Path, int Priority)>();
 
@@ -540,70 +540,79 @@ public class PatchMapDrawer : Control
             var connectionStartHere = connections.Where(p => p.Key.x == regionId);
             var connectionEndHere = connections.Where(p => p.Key.y == regionId);
 
-            var connectionTupleList = connectionStartHere.Select(c => (c.Value, 0, 1, c.Key.x)).ToList();
+            var connectionTupleList = connectionStartHere.Select(c => (c.Value, 0, 1, c.Key)).ToList();
             connectionTupleList.AddRange(
-                connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2, c.Key.y)));
+                connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2, c.Key)));
 
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
-            var connectionsToDirections = new Dictionary<
-                Direction,
-                List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance, int Id)>
-            >();
+            var connectionsToDirections = new Dictionary<Direction, List<RegionLink>>();
 
             for (int i = 0; i < 4; ++i)
             {
-                connectionsToDirections[(Direction)i] =
-                    new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance, int Id)>();
+                connectionsToDirections[(Direction)i] = new List<RegionLink>();
             }
 
             foreach (var (path, endpoint, intermediate, id) in connectionTupleList)
             {
                 if (Math.Abs(path[endpoint].x - path[intermediate].x) < MathUtils.EPSILON)
                 {
+                    var link = new RegionLink(id, path);
+
                     connectionsToDirections[
-                        path[endpoint].y > path[intermediate].y ? Direction.Up : Direction.Down].Add((
-                        path, endpoint, intermediate,
-                        Math.Abs(path[endpoint].y - path[intermediate].y), id));
+                        path[endpoint].y > path[intermediate].y ? Direction.Up : Direction.Down].Add(link);
+
+                    link.Endpoint = endpoint;
+                    link.Intermediate = intermediate;
+                    link.Distance = Math.Abs(path[endpoint].y - path[intermediate].y);
                 }
                 else
                 {
+                    var link = new RegionLink(id, path);
+
                     connectionsToDirections[
-                        path[endpoint].x > path[intermediate].x ? Direction.Left : Direction.Right].Add((
-                        path, endpoint, intermediate,
-                        Math.Abs(path[endpoint].x - path[intermediate].x), id));
+                        path[endpoint].x > path[intermediate].x ? Direction.Left : Direction.Right].Add(link);
+
+                    link.Endpoint = endpoint;
+                    link.Intermediate = intermediate;
+                    link.Distance = Math.Abs(path[endpoint].x - path[intermediate].x);
                 }
             }
 
             // Endpoint position
-            foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Left])
+            foreach (var link in connectionsToDirections[Direction.Left])
             {
-                //var end = Map!.Regions[id];
+                var (path, endpoint, _, _, id) = link.ToTuple();
 
-                //if (end.Explored)
+                var end = Map!.Regions[id.y];
+
+                if (end.Explored)
                     path[endpoint].x -= region.Value.Width / 2;
             }
 
-            foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Up])
+            foreach (var link in connectionsToDirections[Direction.Up])
             {
-                //var end = Map!.Regions[id];
+                var (path, endpoint, _, _, id) = link.ToTuple();
+                var end = Map!.Regions[id.y];
 
-                //if (end.Explored)
+                if (end.Explored)
                     path[endpoint].y -= region.Value.Height / 2;
             }
 
-            foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Right])
+            foreach (var link in connectionsToDirections[Direction.Right])
             {
-                //var end = Map!.Regions[id];
+                var (path, endpoint, _, _, id) = link.ToTuple();
+                var end = Map!.Regions[id.y];
 
-                //if (end.Explored)
+                if (end.Explored)
                     path[endpoint].x += region.Value.Width / 2;
             }
 
-            foreach (var (path, endpoint, _, _, id) in connectionsToDirections[Direction.Down])
+            foreach (var link in connectionsToDirections[Direction.Down])
             {
-                //var end = Map!.Regions[id];
+                var (path, endpoint, _, _, id) = link.ToTuple();
+                var end = Map!.Regions[id.y];
 
-                //if (end.Explored)
+                if (end.Explored)
                     path[endpoint].y += region.Value.Height / 2;
             }
 
@@ -623,10 +632,11 @@ public class PatchMapDrawer : Control
                     float right = (connectionsToDirection.Count - 1) / 2.0f;
                     float left = -right;
 
-                    foreach (var (path, endpoint, intermediate, _, id) in
-                             connectionsToDirection.OrderBy(t => t.Distance))
+                    foreach (var link in connectionsToDirection.OrderBy(t => t.Distance))
                     {
-                        var region1 = Map!.Regions[id];
+                        var (path, endpoint, intermediate, _, id) = link.ToTuple();
+
+                        var region1 = Map!.Regions[id.y];
                         if (!region1.Explored)
                             continue;
 
@@ -649,10 +659,11 @@ public class PatchMapDrawer : Control
                     float down = (connectionsToDirection.Count - 1) / 2.0f;
                     float up = -down;
 
-                    foreach (var (path, endpoint, intermediate, _, id) in
-                             connectionsToDirection.OrderBy(t => t.Distance))
+                    foreach (var link in connectionsToDirection.OrderBy(t => t.Distance))
                     {
-                        var region1 = Map!.Regions[id];
+                        var (path, endpoint, intermediate, _, id) = link.ToTuple();
+
+                        var region1 = Map!.Regions[id.y];
                         if (!region1.Explored)
                             continue;
 
@@ -769,7 +780,7 @@ public class PatchMapDrawer : Control
         return (regionIntersectionCount, pathIntersectionCount, startPointOverlapCount, priority);
     }
 
-    private void DrawRegionLinks()
+    private void UpdateRegionLinks()
     {
         foreach (var entry in regionLinkLines)
         {
@@ -795,9 +806,9 @@ public class PatchMapDrawer : Control
                 return;
 
             // Add a fade to the line if its ending at an unexplored region
-            if (!start.Explored)
+            if (start.VisibilityState == PatchMapVisibility.Undiscovered)
                 AddFadeToLine(entry.Value, true);
-            else if (!end.Explored)
+            else if (end.VisibilityState == PatchMapVisibility.Undiscovered)
                 AddFadeToLine(entry.Value, false);
             else
                 entry.Value.Gradient = null;
@@ -881,11 +892,11 @@ public class PatchMapDrawer : Control
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
             if (entry.Value.Explored)
-                node.VisibilityState = PatchMapNode.PatchVisibilityState.Explored;
+                node.VisibilityState = PatchMapVisibility.Explored;
             else if (setAsUnknown)
-                node.VisibilityState = PatchMapNode.PatchVisibilityState.Unknown;
+                node.VisibilityState = PatchMapVisibility.Unknown;
             else
-                node.VisibilityState = PatchMapNode.PatchVisibilityState.Undiscovered;
+                node.VisibilityState = PatchMapVisibility.Undiscovered;
 
             node.Patch = entry.Value;
 
@@ -900,7 +911,7 @@ public class PatchMapDrawer : Control
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
             if (setAsUnknown)
-                node.VisibilityState = PatchMapNode.PatchVisibilityState.Unknown;
+                node.VisibilityState = PatchMapVisibility.Unknown;
 
             AddChild(node);
             nodes.Add(node.Patch, node);
@@ -957,6 +968,31 @@ public class PatchMapDrawer : Control
         if (nodes.Values.Any(n => n.IsDirty))
         {
             dirty = true;
+        }
+    }
+
+    /// <summary>
+    ///   A link between two <see cref="PatchRegion"/>.
+    ///   Used in <see cref="AdjustPathEndpoints"/>
+    /// </summary>
+    private class RegionLink
+    {
+        public Int2 Id;
+        public Vector2[] Points;
+
+        public int? Endpoint = null;
+        public int? Intermediate = null;
+        public float? Distance = null;
+
+        public RegionLink(Int2 id, Vector2[] points)
+        {
+            Id = id;
+            Points = points;
+        }
+
+        public (Vector2[] Points, int Endpoint, int Intermediate, float Distance, Int2 Id) ToTuple()
+        {
+            return (Points, Endpoint!.Value, Intermediate!.Value, Distance!.Value, Id);
         }
     }
 }

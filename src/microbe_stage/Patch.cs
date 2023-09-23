@@ -101,10 +101,13 @@ public class Patch
         {
             explored = value;
             Discovered = value;
-            Region.Explored = value;
+            Region.VisibilityState = PatchMapVisibility.Explored;
 
             foreach (Patch patch in Adjacent)
             {
+                if (patch.Region.VisibilityState != PatchMapVisibility.Explored)
+                    patch.Region.VisibilityState = PatchMapVisibility.Unknown;
+
                 patch.Discovered = value;
             }
         }

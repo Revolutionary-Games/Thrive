@@ -75,25 +75,18 @@ public class PatchMapNode : MarginContainer
 
     private Patch? patch;
 
-    private PatchVisibilityState visibilityState;
-
-    public enum PatchVisibilityState
-    {
-        Undiscovered, // The patch should be invisible
-        Unknown, // The patch should be rendered as a question mark
-        Explored, // The patch sould be visible
-    }
+    private PatchMapVisibility visibilityState;
 
     /// <summary>
     ///   Stores what <see cref="PatchVisibilityState"/> the patch is currently in
     /// </summary>
-    public PatchVisibilityState VisibilityState
+    public PatchMapVisibility VisibilityState
     {
         get => visibilityState;
         set
         {
             visibilityState = value;
-            Visible = value != PatchVisibilityState.Undiscovered;
+            Visible = value != PatchMapVisibility.Undiscovered;
         }
     }
 
@@ -205,8 +198,8 @@ public class PatchMapNode : MarginContainer
         UpdateIcon();
         UpdateGreyscale();
 
-        Visible = visibilityState != PatchVisibilityState.Undiscovered;
-        questionMarkLabel.Visible = visibilityState == PatchVisibilityState.Unknown;
+        Visible = visibilityState != PatchMapVisibility.Undiscovered;
+        questionMarkLabel.Visible = visibilityState == PatchMapVisibility.Unknown;
     }
 
     public override void _Process(float delta)
