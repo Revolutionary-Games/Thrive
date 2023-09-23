@@ -29,4 +29,14 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
     ///   What this action was performed on.
     /// </summary>
     public TContext? Context { get; set; }
+
+    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    {
+        // If the other action was performed on a different context, we can't combine with it
+        if (other is not EditorCombinableActionData<TContext> editorActionData || editorActionData.Context == null ||
+            !editorActionData.Context.Equals(Context))
+            return ActionInterferenceMode.NoInterference;
+
+        return base.GetInterferenceModeWith(other);
+    }
 }
