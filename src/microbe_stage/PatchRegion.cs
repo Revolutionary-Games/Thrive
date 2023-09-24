@@ -59,10 +59,10 @@ public class PatchRegion
     public float Width { get; set; }
 
     [JsonProperty]
-    public PatchMapVisibility VisibilityState { get; set; }
+    public MapElementVisibility VisibilityState { get; set; }
 
     [JsonIgnore]
-    public bool Explored => VisibilityState == PatchMapVisibility.Explored;
+    public bool Explored => VisibilityState == MapElementVisibility.Explored;
 
     [JsonIgnore]
     public Vector2 Size

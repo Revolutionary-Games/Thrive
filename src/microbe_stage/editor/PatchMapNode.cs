@@ -75,18 +75,18 @@ public class PatchMapNode : MarginContainer
 
     private Patch? patch;
 
-    private PatchMapVisibility visibilityState;
+    private MapElementVisibility visibilityState;
 
     /// <summary>
     ///   Stores what <see cref="PatchVisibilityState"/> the patch is currently in
     /// </summary>
-    public PatchMapVisibility VisibilityState
+    public MapElementVisibility VisibilityState
     {
         get => visibilityState;
         set
         {
             visibilityState = value;
-            Visible = value != PatchMapVisibility.Undiscovered;
+            Visible = value != MapElementVisibility.Undiscovered;
         }
     }
 
@@ -198,8 +198,8 @@ public class PatchMapNode : MarginContainer
         UpdateIcon();
         UpdateGreyscale();
 
-        Visible = visibilityState != PatchMapVisibility.Undiscovered;
-        questionMarkLabel.Visible = visibilityState == PatchMapVisibility.Unknown;
+        Visible = visibilityState != MapElementVisibility.Undiscovered;
+        questionMarkLabel.Visible = visibilityState == MapElementVisibility.Unknown;
     }
 
     public override void _Process(float delta)

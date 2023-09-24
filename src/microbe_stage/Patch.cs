@@ -34,9 +34,6 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    [JsonProperty]
-    private bool explored;
-
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region)
     {
         Name = name;
@@ -96,29 +93,32 @@ public class Patch
     /// </summary>
     public bool Explored
     {
-        get => explored;
+        get => VisibilityState == MapElementVisibility.Explored;
         set
         {
-            explored = value;
-            Discovered = value;
-            Region.VisibilityState = PatchMapVisibility.Explored;
+            if (value)
+                VisibilityState = MapElementVisibility.Explored;
+            else
+                VisibilityState = MapElementVisibility.Undiscovered;
+
+            Region.VisibilityState = MapElementVisibility.Explored;
 
             foreach (Patch patch in Adjacent)
             {
-                if (patch.Region.VisibilityState != PatchMapVisibility.Explored)
-                    patch.Region.VisibilityState = PatchMapVisibility.Unknown;
+                if (!patch.Region.Explored)
+                    patch.Region.VisibilityState = MapElementVisibility.Unknown;
 
-                patch.Discovered = value;
+                if (!patch.Explored)
+                    patch.VisibilityState = MapElementVisibility.Unknown;
             }
         }
     }
 
-    /// <summary>
-    ///   True if the patch is discovered,
-    ///   this is the case if the patch is adjacent to a already explored patch
-    /// </summary>
     [JsonProperty]
-    public bool Discovered { get; set; }
+    public MapElementVisibility VisibilityState { get; private set; }
+
+    [JsonIgnore]
+    public bool Discovered => VisibilityState != MapElementVisibility.Undiscovered;
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI

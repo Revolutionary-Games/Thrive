@@ -35,6 +35,7 @@ public class PatchMapDrawer : Control
     private readonly Dictionary<Patch, PatchMapNode> nodes = new();
 
     private readonly Dictionary<Int2, Line2D> regionLinkLines = new();
+    private readonly Dictionary<int, Line2D> regionBorderLines = new();
 
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
@@ -167,20 +168,11 @@ public class PatchMapDrawer : Control
         // Create connections between regions if they dont exist or if they need to be re-drawn
         if (connections.Count == 0 || connectionsDirty)
         {
-            connections.Clear();
-
-            foreach (var line in regionLinkLines.Values)
-                line.QueueFree();
-
-            regionLinkLines.Clear();
-
-            CreateRegionLinks();
-
-            connectionsDirty = false;
+            RebuildGraphics();
         }
 
         UpdateRegionLinks();
-        DrawRegionBorders();
+        UpdateRegionBorders();
         DrawPatchLinks();
 
         // Scroll to player patch only when first drawn
@@ -333,6 +325,35 @@ public class PatchMapDrawer : Control
             pos.y + Constants.PATCH_NODE_RECT_LENGTH * 0.5f);
     }
 
+    /// <summary>
+    ///   Rebuild the region links and borders
+    /// </summary>
+    private void RebuildGraphics()
+    {
+        ClearObjects();
+
+        CreateRegionLinks();
+        CreateRegionBorders();
+
+        connectionsDirty = false;
+    }
+
+    /// <summary>
+    ///   Free all child Line2D objects and clear <see cref="connections"/>
+    /// </summary>
+    private void ClearObjects()
+    {
+        foreach (var line in regionLinkLines.Values)
+            line.QueueFree();
+
+        foreach (var line in regionBorderLines.Values)
+            line.QueueFree();
+
+        connections.Clear();
+        regionLinkLines.Clear();
+        regionBorderLines.Clear();
+    }
+
     private void DrawNodeLink(Vector2 center1, Vector2 center2, Color connectionColor)
     {
         DrawLine(center1, center2, connectionColor, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH, true);
@@ -347,8 +368,36 @@ public class PatchMapDrawer : Control
             Width = Constants.PATCH_REGION_CONNECTION_LINE_WIDTH,
         };
 
-        GetParent().AddChild(link);
+        AddChild(link);
         regionLinkLines.Add(id, link);
+    }
+
+    private void CreateRegionBorders()
+    {
+        foreach (var region in map.Regions.Values)
+        {
+            var pos = region.ScreenCoordinates;
+            var size = region.Size;
+
+            var points = new Vector2[]
+            {
+                pos,
+                new(pos.x + size.x, pos.y),
+                pos + size,
+                new(pos.x, pos.y + size.y),
+                new(pos.x, pos.y - Constants.PATCH_REGION_BORDER_WIDTH / 2),
+            };
+
+            var line = new Line2D
+            {
+                Points = points,
+                DefaultColor = Colors.DarkCyan,
+                Width = Constants.PATCH_REGION_BORDER_WIDTH,
+            };
+
+            AddChild(line);
+            regionBorderLines.Add(region.ID, line);
+        }
     }
 
     private void AddFadeToLine(Line2D line, bool reversed)
@@ -373,7 +422,7 @@ public class PatchMapDrawer : Control
     private bool ContainsSelectedExploredPatch(PatchRegion region)
     {
         return region.Patches.Any(p => GetPatchNode(p)?.Selected == true &&
-            GetPatchNode(p)?.VisibilityState == PatchMapVisibility.Explored);
+            GetPatchNode(p)?.VisibilityState == MapElementVisibility.Explored);
     }
 
     private bool ContainsAdjacentToSelectedPatch(PatchRegion region)
@@ -806,16 +855,16 @@ public class PatchMapDrawer : Control
                 return;
 
             // Add a fade to the line if its ending at an unexplored region
-            if (start.VisibilityState == PatchMapVisibility.Undiscovered)
+            if (start.VisibilityState == MapElementVisibility.Undiscovered)
                 AddFadeToLine(entry.Value, true);
-            else if (end.VisibilityState == PatchMapVisibility.Undiscovered)
+            else if (end.VisibilityState == MapElementVisibility.Undiscovered)
                 AddFadeToLine(entry.Value, false);
             else
                 entry.Value.Gradient = null;
         }
     }
 
-    private void DrawRegionBorders()
+    private void UpdateRegionBorders()
     {
         // Don't draw a border if there's only one region
         if (map.Regions.Count == 1)
@@ -823,11 +872,12 @@ public class PatchMapDrawer : Control
 
         foreach (var region in map.Regions.Values)
         {
-            if (!region.Explored && !IgnoreFogOfWar)
-                continue;
+            var line = regionBorderLines[region.ID];
 
-            DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
-                Colors.DarkCyan, false, Constants.PATCH_REGION_BORDER_WIDTH);
+            if (!IgnoreFogOfWar)
+                line.Visible = region.VisibilityState == MapElementVisibility.Explored;
+            else
+                line.Visible = true;
         }
     }
 
@@ -884,7 +934,7 @@ public class PatchMapDrawer : Control
 
             // This renders the patch as a question mark if the patch is discovered
             // but has not been entered by the player
-            var setAsUnknown = !entry.Value.Explored && entry.Value.Discovered;
+            var setAsUnknown = entry.Value.VisibilityState == MapElementVisibility.Unknown;
 
             node.MarginLeft = entry.Value.ScreenCoordinates.x;
             node.MarginTop = entry.Value.ScreenCoordinates.y;
@@ -892,11 +942,11 @@ public class PatchMapDrawer : Control
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
             if (entry.Value.Explored)
-                node.VisibilityState = PatchMapVisibility.Explored;
+                node.VisibilityState = MapElementVisibility.Explored;
             else if (setAsUnknown)
-                node.VisibilityState = PatchMapVisibility.Unknown;
+                node.VisibilityState = MapElementVisibility.Unknown;
             else
-                node.VisibilityState = PatchMapVisibility.Undiscovered;
+                node.VisibilityState = MapElementVisibility.Undiscovered;
 
             node.Patch = entry.Value;
 
@@ -911,7 +961,7 @@ public class PatchMapDrawer : Control
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
             if (setAsUnknown)
-                node.VisibilityState = PatchMapVisibility.Unknown;
+                node.VisibilityState = MapElementVisibility.Unknown;
 
             AddChild(node);
             nodes.Add(node.Patch, node);

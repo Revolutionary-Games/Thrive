@@ -18,9 +18,8 @@ public enum FogOfWarMode
 
 /// <summary>
 ///   The visibility of an element in the patch map.
-///   Currently used by <see cref="PatchRegion"/> and <see cref="PatchMapNode"/>
 /// </summary>
-public enum PatchMapVisibility
+public enum MapElementVisibility
 {
     /// <summary>
     ///   Invisible to the player
