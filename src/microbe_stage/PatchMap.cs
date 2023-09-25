@@ -29,7 +29,7 @@ public enum MapElementVisibility
     /// <summary>
     ///   Visible to the player but details hidden
     /// </summary>
-    Unknown,
+    Unexplored,
 
     /// <summary>
     ///   Visible to the player and details shown

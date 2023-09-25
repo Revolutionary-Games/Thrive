@@ -199,7 +199,7 @@ public class PatchMapNode : MarginContainer
         UpdateGreyscale();
 
         Visible = visibilityState != MapElementVisibility.Undiscovered;
-        questionMarkLabel.Visible = visibilityState == MapElementVisibility.Unknown;
+        questionMarkLabel.Visible = visibilityState == MapElementVisibility.Unexplored;
     }
 
     public override void _Process(float delta)

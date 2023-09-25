@@ -569,6 +569,67 @@ public class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
         }
 
+        // Discard all paths intersecting partially discovered regions
+        var pathsToDiscard = new List<Vector2[]>();
+
+        if (!start.Explored && start.DiscoveredPatches > 1)
+        {
+            foreach (var entry in probablePaths)
+            {
+                var point1 = entry.Path[0];
+                var point2 = entry.Path[1];
+
+                foreach (var patch in start.Patches)
+                {
+                    if (patch.VisibilityState == MapElementVisibility.Undiscovered)
+                        continue;
+
+                    if (patch == startPatch)
+                        continue;
+
+                    var rect = new Rect2(patch.ScreenCoordinates,
+                        Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
+
+                    if (SegmentRectangleIntersects(point1, point2, rect))
+                    {
+                        pathsToDiscard.Add(entry.Path);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!end.Explored && end.DiscoveredPatches > 1)
+        {
+            foreach (var entry in probablePaths)
+            {
+                var length = entry.Path.Length;
+                var point1 = entry.Path[length - 1];
+                var point2 = entry.Path[length - 2];
+
+                foreach (var patch in end.Patches)
+                {
+                    if (patch.VisibilityState == MapElementVisibility.Undiscovered)
+                        continue;
+
+                    if (patch == endPatch)
+                        continue;
+
+                    var rect = new Rect2(patch.ScreenCoordinates,
+                        Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
+
+                    if (SegmentRectangleIntersects(point1, point2, rect))
+                    {
+                        pathsToDiscard.Add(entry.Path);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // TODO: This is very bad for performance
+        probablePaths.RemoveAll(e => pathsToDiscard.Contains(e.Path));
+
         // Choose a best path
         return probablePaths.Select(p => (p.Path, CalculatePathPriorityTuple(p)))
             .OrderBy(p => p.Item2.RegionIntersectionCount)
@@ -628,41 +689,25 @@ public class PatchMapDrawer : Control
             }
 
             // Endpoint position
-            foreach (var link in connectionsToDirections[Direction.Left])
+            for (int i = 0; i < 4; i++)
             {
-                var (path, endpoint, _, _, id) = link.ToTuple();
+                var direction = (Direction)i;
 
-                var end = Map!.Regions[id.y];
+                foreach (var link in connectionsToDirections[direction])
+                {
+                    var (path, endpoint, _, _, id) = link.ToTuple();
+                    var endRegion = map.Regions[id.y]!;
+                    var startRegion = map.Regions[id.x]!;
+                    var incoming = endRegion == region.Value;
 
-                if (end.Explored)
-                    path[endpoint].x -= region.Value.Width / 2;
-            }
+                    var patchSize = new Vector2(Constants.PATCH_NODE_TEXTURE_RECT_LENGTH,
+                        Constants.PATCH_NODE_TEXTURE_RECT_LENGTH);
 
-            foreach (var link in connectionsToDirections[Direction.Up])
-            {
-                var (path, endpoint, _, _, id) = link.ToTuple();
-                var end = Map!.Regions[id.y];
+                    var targetRegion = incoming ? endRegion : startRegion;
+                    var size = targetRegion.Explored ? targetRegion.Size : patchSize;
 
-                if (end.Explored)
-                    path[endpoint].y -= region.Value.Height / 2;
-            }
-
-            foreach (var link in connectionsToDirections[Direction.Right])
-            {
-                var (path, endpoint, _, _, id) = link.ToTuple();
-                var end = Map!.Regions[id.y];
-
-                if (end.Explored)
-                    path[endpoint].x += region.Value.Width / 2;
-            }
-
-            foreach (var link in connectionsToDirections[Direction.Down])
-            {
-                var (path, endpoint, _, _, id) = link.ToTuple();
-                var end = Map!.Regions[id.y];
-
-                if (end.Explored)
-                    path[endpoint].y += region.Value.Height / 2;
+                    path[endpoint] = AdjustEndpoint(path[endpoint], size, direction);
+                }
             }
 
             // Separation
@@ -685,8 +730,10 @@ public class PatchMapDrawer : Control
                     {
                         var (path, endpoint, intermediate, _, id) = link.ToTuple();
 
-                        var region1 = Map!.Regions[id.y];
-                        if (!region1.Explored)
+                        var start = map.Regions[id.x]!;
+                        var end = map.Regions[id.y]!;
+
+                        if (!start.Explored && !end.Explored)
                             continue;
 
                         if (path.Length == 2 || path[2 * intermediate - endpoint].x > path[intermediate].x)
@@ -712,8 +759,10 @@ public class PatchMapDrawer : Control
                     {
                         var (path, endpoint, intermediate, _, id) = link.ToTuple();
 
-                        var region1 = Map!.Regions[id.y];
-                        if (!region1.Explored)
+                        var start = map.Regions[id.x]!;
+                        var end = map.Regions[id.y]!;
+
+                        if (!start.Explored && !end.Explored)
                             continue;
 
                         if (path.Length == 2 || path[2 * intermediate - endpoint].y > path[intermediate].y)
@@ -732,6 +781,29 @@ public class PatchMapDrawer : Control
                 }
             }
         }
+    }
+
+    private Vector2 AdjustEndpoint(Vector2 endpoint, Vector2 size, Direction direction)
+    {
+        Vector2 newEndpoint = endpoint;
+
+        switch (direction)
+        {
+            case Direction.Left:
+                newEndpoint.x -= size.x / 2;
+                break;
+            case Direction.Up:
+                newEndpoint.y -= size.y / 2;
+                break;
+            case Direction.Right:
+                newEndpoint.x += size.x / 2;
+                break;
+            case Direction.Down:
+                newEndpoint.y += size.y / 2;
+                break;
+        }
+
+        return newEndpoint;
     }
 
     /// <summary>
@@ -934,7 +1006,7 @@ public class PatchMapDrawer : Control
 
             // This renders the patch as a question mark if the patch is discovered
             // but has not been entered by the player
-            var setAsUnknown = entry.Value.VisibilityState == MapElementVisibility.Unknown;
+            var setAsUnknown = entry.Value.VisibilityState == MapElementVisibility.Unexplored;
 
             node.MarginLeft = entry.Value.ScreenCoordinates.x;
             node.MarginTop = entry.Value.ScreenCoordinates.y;
@@ -944,7 +1016,7 @@ public class PatchMapDrawer : Control
             if (entry.Value.Explored)
                 node.VisibilityState = MapElementVisibility.Explored;
             else if (setAsUnknown)
-                node.VisibilityState = MapElementVisibility.Unknown;
+                node.VisibilityState = MapElementVisibility.Unexplored;
             else
                 node.VisibilityState = MapElementVisibility.Undiscovered;
 
@@ -961,7 +1033,7 @@ public class PatchMapDrawer : Control
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
             if (setAsUnknown)
-                node.VisibilityState = MapElementVisibility.Unknown;
+                node.VisibilityState = MapElementVisibility.Unexplored;
 
             AddChild(node);
             nodes.Add(node.Patch, node);

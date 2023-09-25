@@ -106,10 +106,10 @@ public class Patch
             foreach (Patch patch in Adjacent)
             {
                 if (!patch.Region.Explored)
-                    patch.Region.VisibilityState = MapElementVisibility.Unknown;
+                    patch.Region.VisibilityState = MapElementVisibility.Unexplored;
 
                 if (!patch.Explored)
-                    patch.VisibilityState = MapElementVisibility.Unknown;
+                    patch.VisibilityState = MapElementVisibility.Unexplored;
             }
         }
     }

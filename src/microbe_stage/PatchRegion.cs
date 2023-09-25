@@ -65,6 +65,23 @@ public class PatchRegion
     public bool Explored => VisibilityState == MapElementVisibility.Explored;
 
     [JsonIgnore]
+    public int DiscoveredPatches
+    {
+        get
+        {
+            var count = 0;
+
+            foreach (var patch in Patches)
+            {
+                if (patch.VisibilityState != MapElementVisibility.Undiscovered)
+                    count++;
+            }
+
+            return count;
+        }
+    }
+
+    [JsonIgnore]
     public Vector2 Size
     {
         get => new(Width, Height);
