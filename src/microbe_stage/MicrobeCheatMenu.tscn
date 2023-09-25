@@ -18,42 +18,42 @@ Resizable = true
 InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
 GodModePath = NodePath("VBoxContainer/GodMode")
 DisableAIPath = NodePath("VBoxContainer/DisableAI")
+LockTimePath = NodePath("VBoxContainer/LockTime")
 SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
 PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 SpawnEnemyPath = NodePath("VBoxContainer/SpawnEnemy")
 DespawnAllEntitiesPath = NodePath("VBoxContainer/DespawnAllEntities")
+ManuallySetTimePath = NodePath("VBoxContainer/ManuallySetTime")
+TargetTimePath = NodePath("VBoxContainer/TargetTime/TimeSlider")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 margin_right = 177.0
 margin_bottom = 142.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="InfiniteCompounds" parent="VBoxContainer" index="0" instance=ExtResource( 4 )]
-margin_right = 177.0
+margin_right = 202.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "INFINITE_COMPOUNDS"
 
 [node name="GodMode" parent="VBoxContainer" index="1" instance=ExtResource( 4 )]
 margin_top = 21.0
-margin_right = 177.0
+margin_right = 202.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
 text = "GODMODE"
 
 [node name="DisableAI" parent="VBoxContainer" index="2" instance=ExtResource( 4 )]
 margin_top = 42.0
-margin_right = 177.0
+margin_right = 202.0
 margin_bottom = 59.0
 custom_fonts/font = ExtResource( 3 )
 text = "NO_AI"
 
 [node name="Speed" type="HBoxContainer" parent="VBoxContainer" index="3"]
-margin_top = 63.0
-margin_right = 177.0
-margin_bottom = 80.0
+margin_top = 84.0
+margin_right = 202.0
+margin_bottom = 101.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,7 +69,7 @@ __meta__ = {
 
 [node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Speed" index="1"]
 margin_left = 104.0
-margin_right = 177.0
+margin_right = 202.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -78,34 +78,84 @@ max_value = 5.0
 step = 0.5
 value = 1.0
 
-[node name="PlayerDuplicate" type="Button" parent="VBoxContainer" index="4"]
-margin_top = 84.0
-margin_right = 177.0
-margin_bottom = 111.0
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" index="4"]
+margin_top = 105.0
+margin_right = 202.0
+margin_bottom = 109.0
+
+[node name="PlayerDuplicate" type="Button" parent="VBoxContainer" index="5"]
+margin_top = 113.0
+margin_right = 202.0
+margin_bottom = 140.0
 custom_fonts/font = ExtResource( 3 )
 text = "PLAYER_DUPLICATE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpawnEnemy" type="Button" parent="VBoxContainer" index="5"]
-margin_top = 115.0
-margin_right = 177.0
-margin_bottom = 142.0
+[node name="SpawnEnemy" type="Button" parent="VBoxContainer" index="6"]
+margin_top = 144.0
+margin_right = 202.0
+margin_bottom = 171.0
 custom_fonts/font = ExtResource( 3 )
 text = "SPAWN_ENEMY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DespawnAllEntities" type="Button" parent="VBoxContainer" index="6"]
-margin_top = 146.0
-margin_right = 177.0
-margin_bottom = 173.0
+[node name="DespawnAllEntities" type="Button" parent="VBoxContainer" index="7"]
+margin_top = 175.0
+margin_right = 202.0
+margin_bottom = 202.0
 custom_fonts/font = ExtResource( 3 )
 text = "DESPAWN_ENTITIES"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="8"]
+margin_top = 206.0
+margin_right = 202.0
+margin_bottom = 210.0
+
+[node name="LockTime" parent="VBoxContainer" index="9" instance=ExtResource( 4 )]
+margin_top = 63.0
+margin_right = 202.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 3 )
+text = "LOCK_DAY_NIGHT_CYCYLE"
+
+[node name="ManuallySetTime" parent="VBoxContainer" index="10" instance=ExtResource( 4 )]
+margin_top = 214.0
+margin_right = 202.0
+margin_bottom = 231.0
+custom_fonts/font = ExtResource( 3 )
+text = "MANUALLY_SET_TIME"
+
+[node name="TargetTime" type="HBoxContainer" parent="VBoxContainer" index="11"]
+margin_top = 235.0
+margin_right = 202.0
+margin_bottom = 252.0
+
+[node name="Label" type="Label" parent="VBoxContainer/TargetTime" index="0"]
+margin_right = 93.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "TIME_OF_DAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeSlider" type="HSlider" parent="VBoxContainer/TargetTime" index="1"]
+margin_left = 97.0
+margin_right = 202.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
 
 [connection signal="toggled" from="VBoxContainer/InfiniteCompounds" to="." method="SetInfiniteCompounds"]
 [connection signal="toggled" from="VBoxContainer/GodMode" to="." method="SetGodMode"]
 [connection signal="toggled" from="VBoxContainer/DisableAI" to="." method="SetDisableAI"]
 [connection signal="value_changed" from="VBoxContainer/Speed/SpeedSlider" to="." method="SetSpeed"]
+[connection signal="toggled" from="VBoxContainer/LockTime" to="." method="SetLockTime"]
+[connection signal="toggled" from="VBoxContainer/ManuallySetTime" to="." method="SetManuallySetTime"]
+[connection signal="value_changed" from="VBoxContainer/TargetTime/TimeSlider" to="." method="SetDayNightFraction"]
