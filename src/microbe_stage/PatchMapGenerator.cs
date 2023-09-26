@@ -182,7 +182,7 @@ public static class PatchMapGenerator
         var region1 = patch1.Region;
         var region2 = patch2.Region;
 
-        if (region1 != region2)
+        if (region1.ID != region2.ID)
         {
             region1.SetConnectingPatch(region2, patch2);
             region2.SetConnectingPatch(region1, patch1);

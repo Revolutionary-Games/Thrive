@@ -35,7 +35,6 @@ public class PatchMapDrawer : Control
     private readonly Dictionary<Patch, PatchMapNode> nodes = new();
 
     private readonly Dictionary<Int2, Line2D> regionLinkLines = new();
-    private readonly Dictionary<int, Line2D> regionBorderLines = new();
 
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
@@ -172,7 +171,7 @@ public class PatchMapDrawer : Control
         }
 
         UpdateRegionLinks();
-        UpdateRegionBorders();
+        DrawRegionBorders();
         DrawPatchLinks();
 
         // Scroll to player patch only when first drawn
@@ -331,9 +330,7 @@ public class PatchMapDrawer : Control
     private void RebuildGraphics()
     {
         ClearObjects();
-
         CreateRegionLinks();
-        CreateRegionBorders();
 
         connectionsDirty = false;
     }
@@ -346,12 +343,8 @@ public class PatchMapDrawer : Control
         foreach (var line in regionLinkLines.Values)
             line.QueueFree();
 
-        foreach (var line in regionBorderLines.Values)
-            line.QueueFree();
-
         connections.Clear();
         regionLinkLines.Clear();
-        regionBorderLines.Clear();
     }
 
     private void DrawNodeLink(Vector2 center1, Vector2 center2, Color connectionColor)
@@ -372,41 +365,13 @@ public class PatchMapDrawer : Control
         regionLinkLines.Add(id, link);
     }
 
-    private void CreateRegionBorders()
-    {
-        foreach (var region in map.Regions.Values)
-        {
-            var pos = region.ScreenCoordinates;
-            var size = region.Size;
-
-            var points = new[]
-            {
-                pos,
-                new(pos.x + size.x, pos.y),
-                pos + size,
-                new(pos.x, pos.y + size.y),
-                new(pos.x, pos.y - Constants.PATCH_REGION_BORDER_WIDTH / 2),
-            };
-
-            var line = new Line2D
-            {
-                Points = points,
-                DefaultColor = Colors.DarkCyan,
-                Width = Constants.PATCH_REGION_BORDER_WIDTH,
-            };
-
-            AddChild(line);
-            regionBorderLines.Add(region.ID, line);
-        }
-    }
-
     private void AddFadeToLine(Line2D line, bool reversed)
     {
         var gradient = new Gradient();
         var color = line.DefaultColor;
         Color transparent = new(color, 0);
 
-        gradient.AddPoint(0.5f, transparent);
+        gradient.AddPoint(reversed ? 0.7f : 0.3f, transparent);
 
         gradient.SetColor(reversed ? 2 : 0, color);
         gradient.SetColor(reversed ? 0 : 2, transparent);
@@ -703,8 +668,12 @@ public class PatchMapDrawer : Control
                     var patchSize = new Vector2(Constants.PATCH_NODE_TEXTURE_RECT_LENGTH,
                         Constants.PATCH_NODE_TEXTURE_RECT_LENGTH);
 
+                    var borderVector = new Vector2(Constants.PATCH_REGION_BORDER_WIDTH,
+                        Constants.PATCH_REGION_BORDER_WIDTH);
+
                     var targetRegion = incoming ? endRegion : startRegion;
-                    var size = targetRegion.Explored ? targetRegion.Size : patchSize;
+                    var regionSize = targetRegion.Size + borderVector;
+                    var size = targetRegion.Explored ? regionSize : patchSize;
 
                     path[endpoint] = AdjustEndpoint(path[endpoint], size, direction);
                 }
@@ -936,7 +905,7 @@ public class PatchMapDrawer : Control
         }
     }
 
-    private void UpdateRegionBorders()
+    private void DrawRegionBorders()
     {
         // Don't draw a border if there's only one region
         if (map.Regions.Count == 1)
@@ -944,12 +913,11 @@ public class PatchMapDrawer : Control
 
         foreach (var region in map.Regions.Values)
         {
-            var line = regionBorderLines[region.ID];
+            if (!region.Explored && !IgnoreFogOfWar)
+                continue;
 
-            if (!IgnoreFogOfWar)
-                line.Visible = region.VisibilityState == MapElementVisibility.Explored;
-            else
-                line.Visible = true;
+            DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
+                Colors.DarkCyan, false, Constants.PATCH_REGION_BORDER_WIDTH);
         }
     }
 
