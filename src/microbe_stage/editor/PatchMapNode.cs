@@ -77,9 +77,6 @@ public class PatchMapNode : MarginContainer
 
     private MapElementVisibility visibilityState;
 
-    /// <summary>
-    ///   Stores what <see cref="PatchVisibilityState"/> the patch is currently in
-    /// </summary>
     public MapElementVisibility VisibilityState
     {
         get => visibilityState;

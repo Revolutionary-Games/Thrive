@@ -130,7 +130,6 @@ public class PatchRegion
 
     public void SetConnectingPatch(PatchRegion otherRegion, Patch patch)
     {
-        if (Adjacent[otherRegion] == null)
-            Adjacent[otherRegion] = patch;
+        Adjacent[otherRegion] ??= patch;
     }
 }

@@ -379,7 +379,7 @@ public class PatchMapDrawer : Control
             var pos = region.ScreenCoordinates;
             var size = region.Size;
 
-            var points = new Vector2[]
+            var points = new[]
             {
                 pos,
                 new(pos.x + size.x, pos.y),

@@ -286,7 +286,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         if (Editor.CurrentGame.GameWorld.WorldSettings.PatchMapExplorationMode != FogOfWarMode.Intense &&
             patch != null)
         {
-            foreach (var adjacent in patch!.Adjacent)
+            foreach (var adjacent in patch.Adjacent)
                 adjacent.Explored = true;
         }
 
