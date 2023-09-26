@@ -1102,9 +1102,9 @@ public class PatchMapDrawer : Control
         public Int2 Id;
         public Vector2[] Points;
 
-        public int? Endpoint = null;
-        public int? Intermediate = null;
-        public float? Distance = null;
+        public int? Endpoint;
+        public int? Intermediate;
+        public float? Distance;
 
         public RegionLink(Int2 id, Vector2[] points)
         {
