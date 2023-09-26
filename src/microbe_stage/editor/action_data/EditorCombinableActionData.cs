@@ -26,7 +26,8 @@ public abstract class EditorCombinableActionData : CombinableActionData
 public abstract class EditorCombinableActionData<TContext> : EditorCombinableActionData
 {
     /// <summary>
-    ///   What this action was performed on.
+    ///   The optional context this action was performed in. This is additional data in addition to the action target.
+    ///   Not all editors use context info.
     /// </summary>
     public TContext? Context { get; set; }
 
@@ -35,7 +36,9 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
         // If the other action was performed on a different context, we can't combine with it
         if (other is not EditorCombinableActionData<TContext> editorActionData || editorActionData.Context is null ||
             !editorActionData.Context.Equals(Context))
+        {
             return ActionInterferenceMode.NoInterference;
+        }
 
         return base.GetInterferenceModeWith(other);
     }

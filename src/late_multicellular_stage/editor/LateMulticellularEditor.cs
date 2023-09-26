@@ -169,42 +169,22 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     public override void Redo()
     {
-        CellType? cellType = null;
-
-        // We don't allow combining actions from different contexts,
-        // so we only need to check the first data for the cell type
-        var redoData = history.ActionToRedo()?.Data.FirstOrDefault();
-
-        if (redoData is EditorCombinableActionData<CellType> cellTypeData)
-            cellType = cellTypeData.Context;
+        var cellType = history.GetRedoContext<CellType>();
 
         // If the action we're redoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
-        if (cellType != null && cellType != selectedCellTypeToEdit)
-        {
-            SwapEditingCell(cellType);
-        }
+        SwapEditingCellIfNeeded(cellType);
 
         base.Redo();
     }
 
     public override void Undo()
     {
-        CellType? cellType = null;
-
-        // We don't allow combining actions from different contexts,
-        // so we only need to check the first data for the cell type
-        var undoData = history.ActionToUndo()?.Data.FirstOrDefault();
-
-        if (undoData is EditorCombinableActionData<CellType> cellTypeData)
-            cellType = cellTypeData.Context;
+        var cellType = history.GetUndoContext<CellType>();
 
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
-        if (cellType != null && cellType != selectedCellTypeToEdit)
-        {
-            SwapEditingCell(cellType);
-        }
+        SwapEditingCellIfNeeded(cellType);
 
         base.Undo();
     }
@@ -604,9 +584,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         bodyPlanEditorTab.OnTissueTypeEdited(selectedCellTypeToEdit);
     }
 
-    private void SwapEditingCell(CellType newCell)
+    private void SwapEditingCellIfNeeded(CellType? newCell)
     {
-        if (selectedCellTypeToEdit == newCell)
+        if (selectedCellTypeToEdit == newCell || newCell == null)
             return;
 
         // If we're switching to a new cell type, apply any changes made to the old one

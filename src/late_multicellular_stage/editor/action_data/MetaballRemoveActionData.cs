@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
-public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData<LateMulticellularSpecies>
+public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
     where TMetaball : Metaball
 {
     public TMetaball RemovedMetaball;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData<LateMulticellularSpecies>
+public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
     where TMetaball : Metaball
 {
     public TMetaball ResizedMetaball;
