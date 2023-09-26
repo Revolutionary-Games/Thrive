@@ -17,6 +17,8 @@
     [With(typeof(CompoundStorage))]
     [With(typeof(Physics))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(MicrobeColony))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
@@ -93,6 +95,10 @@
             CompoundBag compounds)
         {
             float rotationSpeed = organelles.RotationSpeed;
+
+            // Note that cilia rotation taking ATP is in CiliaComponent class
+            // TODO: especially as there's a comment in there about slowing down rotation when there isn't enough ATP
+            // for the cilia
 
             // Lower value is faster rotation
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
@@ -174,31 +180,25 @@
 
             var got = compounds.TakeCompound(atp, cost);
 
-            // TODO: speed from flagella
-
-            if (entity.Has<MicrobeColony>())
+            // Halve base movement speed if out of ATP
+            if (got < cost)
             {
-                // TODO: movement from colony member organelles
-                // // Colony members have their movement update before organelle update,
-                // // so that the movement organelles see the direction
-                // // The colony master should be already updated as the movement direction is either set by the
-                // // player input or
-                // // microbe AI, neither of which will happen concurrently, so this should always get the up to
-                // // date value
-                // if (Colony != null && Colony.Master != this)
-                //     MovementDirection = Colony.Master.MovementDirection;
+                // Not enough ATP to move at full speed
+                force *= 0.5f;
+            }
 
-                // Multiplies the movement factor as if the colony has the normal microbe speed
-                // Then it subtracts movement speed from 100% up to 75%(soft cap),
-                // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
-                // when specialized cells become a reality the cap could be lowered to encourage cell specialization
-                int memberCount;
+            // Speed from flagella (these also take ATP otherwise they won't work)
+            if (organelles.ThrustComponents != null && control.MovementDirection != Vector3.Zero)
+            {
+                foreach (var flagellum in organelles.ThrustComponents)
+                {
+                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity, delta);
+                }
+            }
 
-                throw new NotImplementedException();
-
-                force *= memberCount;
-                var seriesValue = 1 - 1 / (float)Math.Pow(2, memberCount - 1);
-                force -= (force * 0.15f) * seriesValue;
+            if (control.MovementDirection != Vector3.Zero && entity.Has<MicrobeColony>())
+            {
+                CalculateColonyImpactOnMovementForce(ref force, delta);
             }
 
             if (control.SlowedBySlime)
@@ -206,13 +206,6 @@
 
             if (control.State == MicrobeState.Engulf)
                 force *= 0.5f;
-
-            // Halve speed if out of ATP
-            if (got < cost)
-            {
-                // Not enough ATP to move at full speed
-                force *= 0.5f;
-            }
 
             force *= cellProperties.MembraneType.MovementFactor -
                 (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
@@ -229,9 +222,61 @@
                 force *= mass / 1000.0f * CheatManager.Speed;
             }
 
+            var movementVector = control.MovementDirection * force;
+
+            // Speed from jets (these are related to a non-rotated state of the cell so this is done before rotating
+            // by the transform)
+            if (organelles.SlimeJets is { Count: > 0 })
+            {
+                foreach (var jet in organelles.SlimeJets)
+                {
+                    if (!jet.Active)
+                        continue;
+
+                    // It might be better to consume the queued force always but, this probably results at most in just
+                    // one extra frame of thrust whenever the jets are engaged
+                    jet.ConsumeMovementForce(out var jetForce);
+                    movementVector += jetForce;
+                }
+            }
+
             // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
             // vector to work correctly
-            return position.Rotation.Xform(control.MovementDirection * force);
+            return position.Rotation.Xform(movementVector);
+        }
+
+        private void CalculateColonyImpactOnMovementForce(ref float force, float delta)
+        {
+            // TODO: movement from colony member organelles
+            // // Colony members have their movement update before organelle update,
+            // // so that the movement organelles see the direction
+            // // The colony master should be already updated as the movement direction is either set by the
+            // // player input or
+            // // microbe AI, neither of which will happen concurrently, so this should always get the up to
+            // // date value
+            // if (Colony != null && Colony.Master != this)
+            //     MovementDirection = Colony.Master.MovementDirection;
+
+            // Multiplies the movement factor as if the colony has the normal microbe speed
+            // Then it subtracts movement speed from 100% up to 75%(soft cap),
+            // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
+            // when specialized cells become a reality the cap could be lowered to encourage cell specialization
+            int memberCount;
+
+            throw new NotImplementedException();
+
+            force *= memberCount;
+            var seriesValue = 1 - 1 / (float)Math.Pow(2, memberCount - 1);
+            force -= (force * 0.15f) * seriesValue;
+
+            // // Flagella in colony members
+            // if (colonyMemberOrganelles.ThrustComponents != null)
+            // {
+            //     foreach (var flagellum in organelles.ThrustComponents)
+            //     {
+            //        force += flagellum.UseForMovement(control.MovementDirection, compounds, rotationInColony, delta);
+            //     }
+            // }
         }
     }
 }

@@ -59,6 +59,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeMovementSystem microbeMovementSystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
+    private OrganelleComponentFetchSystem organelleComponentFetchSystem = null!;
+    private OrganelleTickSystem organelleTickSystem = null!;
     private OsmoregulationAndHealingSystem osmoregulationAndHealingSystem = null!;
     private PilusDamageSystem pilusDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
@@ -163,6 +165,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
+        organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, parallelRunner);
+        organelleTickSystem = new OrganelleTickSystem(EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, parallelRunner);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, parallelRunner);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, parallelRunner);
@@ -284,6 +288,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.Update(delta);
 
         microbeReproductionSystem.Update(delta);
+        organelleComponentFetchSystem.Update(delta);
 
         if (RunAI)
         {
@@ -307,6 +312,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         slimeSlowdownSystem.Update(delta);
         microbeMovementSystem.Update(delta);
         microbeMovementSoundSystem.Update(delta);
+
+        organelleTickSystem.Update(delta);
 
         fadeOutActionSystem.Update(delta);
         physicsBodyControlSystem.Update(delta);
@@ -375,6 +382,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             microbeMovementSystem.Dispose();
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
+            organelleComponentFetchSystem.Dispose();
+            organelleTickSystem.Dispose();
             osmoregulationAndHealingSystem.Dispose();
             pilusDamageSystem.Dispose();
             slimeSlowdownSystem.Dispose();

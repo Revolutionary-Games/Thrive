@@ -90,7 +90,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     {
         foreach (var organelle in Organelles)
         {
-            if (organelle.Definition.HasComponentFactory<AxonComponentFactory>())
+            if (organelle.Definition.HasFeatureTag(OrganelleFeatureTag.Axon))
             {
                 return true;
             }

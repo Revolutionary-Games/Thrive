@@ -19,6 +19,8 @@ namespace Systems
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(WorldPosition))]
     [With(typeof(CompoundStorage))]
+    [ReadsComponent(typeof(Engulfable))]
+    [ReadsComponent(typeof(AttachedToEntity))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
     public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     {
@@ -57,16 +59,20 @@ namespace Systems
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
 
+            bool engulfed = entity.Has<Engulfable>() &&
+                entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
+
             // Fire queued agents
             if (control.QueuedToxinToEmit != null)
             {
                 EmitToxin(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                    control.QueuedToxinToEmit, compounds);
+                    control.QueuedToxinToEmit, compounds, engulfed);
                 control.QueuedToxinToEmit = null;
             }
 
             // This method itself checks for the preconditions on emitting slime
-            HandleSlimeSecretion(ref control, ref organelles, ref soundEffectPlayer, compounds, delta);
+            HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
+                ref position, compounds, engulfed, delta);
         }
 
         /// <summary>
@@ -95,9 +101,9 @@ namespace Systems
         /// </summary>
         private void EmitToxin(in Entity entity, ref MicrobeControl control, ref OrganelleContainer organelles,
             ref CellProperties cellProperties, ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position,
-            Compound agentType, CompoundBag compounds)
+            Compound agentType, CompoundBag compounds, bool engulfed)
         {
-            if (entity.Has<Engulfable>() && entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+            if (engulfed)
                 return;
 
             if (entity.Has<MicrobeColony>())
@@ -160,9 +166,10 @@ namespace Systems
             }
         }
 
-        private void HandleSlimeSecretion(ref MicrobeControl control, ref OrganelleContainer organelles,
-            ref SoundEffectPlayer soundEffectPlayer,
-            CompoundBag compounds, float delta)
+        private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,
+            ref OrganelleContainer organelles, ref CellProperties cellProperties,
+            ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition worldPosition,
+            CompoundBag compounds, bool engulfed, float delta)
         {
             // Ignore if we have no slime jets
             if (organelles.SlimeJets == null)
@@ -178,24 +185,42 @@ namespace Systems
             if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT * jetCount)
                 control.SlimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
 
+            // Don't emit slime when engulfed
+            if (engulfed)
+                control.QueuedSlimeSecretionTime = 0;
+
             // If we've been told to secrete slime and can do it, proceed
             if (control.QueuedSlimeSecretionTime > 0 && control.SlimeSecretionCooldown <= 0)
             {
                 // Play a sound only if we've just started, i.e. only if no jets are already active
-                if (organelles.SlimeJets.All(c => !c.AnimationActive))
+                if (organelles.SlimeJets.All(c => !c.Active))
                     soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
 
                 // Activate all jets, which will constantly secrete slime until we turn them off
                 foreach (var jet in organelles.SlimeJets)
-                    jet.AnimationActive = true;
+                {
+                    // Make sure this is animating
+                    jet.Active = true;
 
-                // TODO: put the actual slime secretion and speed increase here
+                    // Secrete the slime
+                    float slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
+                        compounds.GetCompoundAmount(mucilage));
+
+                    var direction = jet.GetDirection();
+
+                    // Eject mucilage at the maximum rate in the opposite direction to this organelle's rotation
+                    slimeToSecrete = cellProperties.EjectCompound(ref worldPosition, compounds, clouds, mucilage,
+                        slimeToSecrete, -direction, 2);
+
+                    // Queue movement force to be used by the movement system based on the amount of slime ejected
+                    jet.AddQueuedForce(entity, slimeToSecrete);
+                }
             }
             else
             {
                 // Deactivate the jets if we aren't supposed to secrete slime
                 foreach (var jet in organelles.SlimeJets)
-                    jet.AnimationActive = false;
+                    jet.Active = false;
             }
 
             control.QueuedSlimeSecretionTime -= delta;

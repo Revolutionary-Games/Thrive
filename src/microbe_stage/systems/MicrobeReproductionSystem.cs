@@ -421,10 +421,7 @@ namespace Systems
 
             // The position used here will be overridden with the right value when we manage to find a place
             // for this organelle
-            var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0)
-            {
-                Upgrades = organelle.Upgrades,
-            };
+            var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0, organelle.Upgrades);
 
             // Spiral search for space for the organelle
             int radius = 1;

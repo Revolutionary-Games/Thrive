@@ -20,11 +20,15 @@ public class PlacedOrganelle : IPositionedOrganelle
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
-    public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
+    [JsonConstructor]
+    public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation, OrganelleUpgrades? upgrades)
     {
         Definition = definition;
         Position = position;
         Orientation = orientation;
+
+        // Upgrades must be applied before initializing the components
+        Upgrades = upgrades;
 
         InitializeComponents();
 
@@ -32,7 +36,24 @@ public class PlacedOrganelle : IPositionedOrganelle
         ResetGrowth();
     }
 
-    public OrganelleDefinition Definition { get; set; }
+    /// <summary>
+    ///   JSON constructor that avoid re-running some core logic
+    /// </summary>
+    [JsonConstructor]
+    public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation,
+        Dictionary<Compound, float> compoundsLeft, OrganelleUpgrades? upgrades)
+    {
+        Definition = definition;
+        Position = position;
+        Orientation = orientation;
+        this.compoundsLeft = compoundsLeft;
+        Upgrades = upgrades;
+
+        // TODO: figure out if re-creating components on loading a save is the right approach
+        InitializeComponents();
+    }
+
+    public OrganelleDefinition Definition { get; }
 
     public Hex Position { get; set; }
 
@@ -85,7 +106,8 @@ public class PlacedOrganelle : IPositionedOrganelle
     public PlacedOrganelle? SisterOrganelle { get; set; }
 
     /// <summary>
-    ///   The components instantiated for this placed organelle. Throws if not currently in a microbe
+    ///   The components instantiated for this placed organelle. Not saved as components are re-created on save load.
+    ///   See the <see cref="Components.OrganelleContainer"/> comments about saving.
     /// </summary>
     [JsonIgnore]
     public List<IOrganelleComponent> Components { get; } = new();
@@ -94,7 +116,7 @@ public class PlacedOrganelle : IPositionedOrganelle
     ///   The upgrades that this organelle has which affect how the components function
     /// </summary>
     [JsonProperty]
-    public OrganelleUpgrades? Upgrades { get; set; }
+    public OrganelleUpgrades? Upgrades { get; private set; }
 
     /// <summary>
     ///   Computes the total storage capacity of this organelle
@@ -118,6 +140,14 @@ public class PlacedOrganelle : IPositionedOrganelle
         }
     }
 
+    /// <summary>
+    ///   Can be set by organelle components to override the enzymes returned by <see cref="GetEnzymes"/>. This is
+    ///   not saved right now as this is only used by <see cref="LysosomeComponent"/> which will re-add when the
+    ///   component is re-initialized.
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Enzyme, int>? OverriddenEnzymes { get; set; }
+
     public static Color CalculateHSVForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
@@ -128,6 +158,20 @@ public class PlacedOrganelle : IPositionedOrganelle
         return Color.FromHsv(hue, saturation * 2, brightness);
     }
 
+    /// <summary>
+    ///   Gets the effective enzymes provided by this organelle. TODO: allow this to change over time, right now only
+    ///   when organelles are attached this is effective
+    /// </summary>
+    /// <returns>Effective enzyme data for this organelle</returns>
+    public IReadOnlyDictionary<Enzyme, int> GetEnzymes()
+    {
+        if (OverriddenEnzymes != null)
+            return OverriddenEnzymes;
+
+        return Definition.Enzymes;
+    }
+
+    // TODO: remove if this stays unused
     /// <summary>
     ///   Checks if this organelle has the specified component type
     /// </summary>
@@ -142,32 +186,6 @@ public class PlacedOrganelle : IPositionedOrganelle
         }
 
         return false;
-    }
-
-    // TODO: actually call this if still needed
-    /// <summary>
-    ///   Called by microbe organelle update system
-    /// </summary>
-    /// <param name="delta">Time since last call</param>
-    public void UpdateAsync(float delta)
-    {
-        foreach (var component in Components)
-        {
-            component.UpdateAsync(delta);
-        }
-    }
-
-    // TODO: also determine this if is needed
-    /// <summary>
-    ///   The part of update that is allowed to modify Godot resources
-    /// </summary>
-    public void UpdateSync()
-    {
-        // Update each OrganelleComponent
-        foreach (var component in Components)
-        {
-            component.UpdateSync();
-        }
     }
 
     /// <summary>

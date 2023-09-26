@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Components;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -12,6 +15,8 @@ public class ChemoreceptorComponent : IOrganelleComponent
     private float searchRange;
     private float searchAmount;
     private Color lineColour = Colors.White;
+
+    public bool UsesSyncProcess => false;
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
@@ -46,11 +51,17 @@ public class ChemoreceptorComponent : IOrganelleComponent
         SetConfiguration((ChemoreceptorUpgrades)configuration);
     }
 
-    public override void UpdateAsync(float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
     {
-        base.UpdateAsync(delta);
+        organelleContainer.ActiveCompoundDetections ??=
+            new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
 
-        organelle!.ParentMicrobe!.ReportActiveChemereception(targetCompound!, searchRange, searchAmount, lineColour);
+        organelleContainer.ActiveCompoundDetections.Add((targetCompound!, searchRange, searchAmount, lineColour));
+    }
+
+    public void UpdateSync(in Entity microbeEntity, float delta)
+    {
+        throw new NotSupportedException();
     }
 
     private void SetConfiguration(ChemoreceptorUpgrades configuration)

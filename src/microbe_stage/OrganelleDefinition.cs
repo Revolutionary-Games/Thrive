@@ -274,6 +274,8 @@ public class OrganelleDefinition : IRegistryType
 
     public bool HasBindingFeature { get; private set; }
 
+    public bool HasSignalingFeature { get; private set; }
+
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
@@ -541,6 +543,7 @@ public class OrganelleDefinition : IRegistryType
         HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
 
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
+        HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
     }
 
     private void CalculateModelOffset()

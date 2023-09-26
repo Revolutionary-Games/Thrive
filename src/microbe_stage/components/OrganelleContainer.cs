@@ -14,18 +14,35 @@
     public struct OrganelleContainer
     {
         /// <summary>
-        ///   Instances of all the organelles in this entity
+        ///   Instances of all the organelles in this entity. This is saved but components are not saved. This means
+        ///   that components are re-created when a save is loaded.
         /// </summary>
         public OrganelleLayout<PlacedOrganelle>? Organelles;
 
         public Dictionary<Enzyme, int>? AvailableEnzymes;
 
+        // The following few component vectors exist to allow access ti update the state of a few organelle components
+        // from various systems to update the visuals state
+
+        // TODO: maybe move these component caches to a separate component to reduce this component's size?
         /// <summary>
         ///   The slime jets attached to this microbe. JsonIgnore as the components add themselves to this list each
-        ///   load.
+        ///   load (as they are recreated).
         /// </summary>
         [JsonIgnore]
         public List<SlimeJetComponent>? SlimeJets;
+
+        /// <summary>
+        ///   Flagellum components that need to be animated when the cell is moving at top speed
+        /// </summary>
+        [JsonIgnore]
+        public List<MovementComponent>? ThrustComponents;
+
+        /// <summary>
+        ///   Cilia components that need t obe animated when the cell is rotating fast
+        /// </summary>
+        [JsonIgnore]
+        public List<CiliaComponent>? RotationComponents;
 
         /// <summary>
         ///   Compound detections set by chemoreceptor organelles.
@@ -77,6 +94,13 @@
         /// </summary>
         [JsonIgnore]
         public bool OrganelleVisualsCreated;
+
+        /// <summary>
+        ///   Reset this if organelles are changed. Otherwise <see cref="SlimeJets"/> etc. variables won't work
+        ///   correctly
+        /// </summary>
+        [JsonIgnore]
+        public bool OrganelleComponentsCached;
 
         /// <summary>
         ///   Internal variable used by the <see cref="MicrobeVisualsSystem"/> to only create visuals for missing /
@@ -173,10 +197,7 @@
             foreach (var organelleTemplate in cellProperties.Organelles)
             {
                 container.Organelles.Add(new PlacedOrganelle(organelleTemplate.Definition, organelleTemplate.Position,
-                    organelleTemplate.Orientation)
-                {
-                    Upgrades = organelleTemplate.Upgrades,
-                });
+                    organelleTemplate.Orientation, organelleTemplate.Upgrades));
             }
 
             container.CalculateOrganelleLayoutStatistics();
@@ -227,6 +248,7 @@
         public static void OnOrganellesChanged(this ref OrganelleContainer container)
         {
             container.OrganelleVisualsCreated = false;
+            container.OrganelleComponentsCached = false;
 
             // TODO: should there be a specific system that refreshes this data?
             // CreateOrganelleLayout might need changes in that case to call this method immediately
@@ -289,6 +311,12 @@
             container.AvailableEnzymes?.Clear();
             container.AvailableEnzymes ??= new Dictionary<Enzyme, int>();
 
+            // TODO: should the cached components (like slime jets) be cleared here? or is it better to keep the old
+            // components around for a little bit?
+            // container.SlimeJets?.Clear(); etc...
+
+            container.OrganelleComponentsCached = false;
+
             // Cells have a minimum of at least one unit of lipase enzyme
             container.AvailableEnzymes[Lipase.Value] = 1;
 
@@ -310,32 +338,98 @@
 
             foreach (var organelle in container.Organelles)
             {
-                if (organelle.HasComponent<AgentVacuoleComponent>())
-                    ++container.AgentVacuoleCount;
+                foreach (var organelleComponent in organelle.Components)
+                {
+                    if (organelleComponent is AgentVacuoleComponent)
+                    {
+                        ++container.AgentVacuoleCount;
+                    }
+                    else if (organelleComponent is SlimeJetComponent slimeJetComponent)
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
+                    else if (organelleComponent is MovementComponent thrustComponent)
+                    {
+                        container.ThrustComponents ??= new List<MovementComponent>();
+                        container.ThrustComponents.Add(thrustComponent);
+                    }
+                    else if (organelleComponent is CiliaComponent rotationComponent)
+                    {
+                        container.RotationComponents ??= new List<CiliaComponent>();
+                        container.RotationComponents.Add(rotationComponent);
+                    }
+                }
 
-                if (organelle.HasComponent<SignalingAgentComponent>())
+                if (organelle.Definition.HasSignalingFeature)
                     container.HasSignalingAgent = true;
 
-                if (organelle.HasComponent<BindingAgentComponent>())
+                if (organelle.Definition.HasBindingFeature)
                     container.HasBindingAgent = true;
 
                 container.OrganellesCapacity = organelle.StorageCapacity;
 
-                if (organelle.StoredEnzymes.Count > 0)
+                var enzymes = organelle.GetEnzymes();
+
+                if (enzymes.Count > 0)
                 {
-                    foreach (var enzyme in organelle.StoredEnzymes)
+                    foreach (var enzyme in enzymes)
                     {
                         // Filter out invalid enzyme values
                         if (enzyme.Value <= 0)
+                        {
+                            if (enzyme.Value < 0)
+                            {
+                                GD.PrintErr("Enzyme amount in organelle is negative");
+                            }
+
                             continue;
+                        }
 
                         container.AvailableEnzymes.TryGetValue(enzyme.Key, out var existing);
                         container.AvailableEnzymes[enzyme.Key] = existing + enzyme.Value;
                     }
                 }
             }
+        }
 
-            // TODO: slime jets implementation
+        /// <summary>
+        ///   Finds the organelle components that are needed from the outside of the organelles and stores them in the
+        ///   lists in the container component. Updated by a system after
+        /// </summary>
+        public static void FetchLayoutOrganelleComponents(this ref OrganelleContainer container)
+        {
+            container.SlimeJets?.Clear();
+            container.ThrustComponents?.Clear();
+            container.RotationComponents?.Clear();
+
+            // This method can be safely called again if this happened to run too early
+            if (container.Organelles == null)
+                return;
+
+            foreach (var organelle in container.Organelles)
+            {
+                foreach (var organelleComponent in organelle.Components)
+                {
+                    if (organelleComponent is SlimeJetComponent slimeJetComponent)
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
+                    else if (organelleComponent is MovementComponent thrustComponent)
+                    {
+                        container.ThrustComponents ??= new List<MovementComponent>();
+                        container.ThrustComponents.Add(thrustComponent);
+                    }
+                    else if (organelleComponent is CiliaComponent rotationComponent)
+                    {
+                        container.RotationComponents ??= new List<CiliaComponent>();
+                        container.RotationComponents.Add(rotationComponent);
+                    }
+                }
+            }
+
+            container.OrganelleComponentsCached = true;
         }
 
         /// <summary>

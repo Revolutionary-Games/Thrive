@@ -187,7 +187,8 @@
         }
 
         /// <summary>
-        ///   Handles starting and turning up a looping sound effect. Used for microbe movement sound handling.
+        ///   Handles starting and turning up a looping sound effect. Used for microbe movement sound handling,
+        ///   for example.
         /// </summary>
         /// <returns>True when the sound is now playing, false if out of slots</returns>
         public static bool PlayGraduallyTurningUpLoopingSound(this ref SoundEffectPlayer soundEffectPlayer,
@@ -282,6 +283,7 @@
                         continue;
 
                     slot.Loop = false;
+                    slot.InternalAppliedState = false;
 
                     var targetVolume = slot.Volume - changeSpeed;
 
@@ -294,7 +296,6 @@
 
                     slot.Volume = targetVolume;
 
-                    slot.InternalAppliedState = false;
                     return true;
                 }
             }

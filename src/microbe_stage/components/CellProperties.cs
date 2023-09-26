@@ -71,7 +71,7 @@
         ///   https://github.com/Revolutionary-Games/Thrive/issues/3620 and
         ///   https://github.com/Revolutionary-Games/Thrive/issues/3109
         /// </summary>
-        private static readonly Vector3 DefaultVisualPos = Vector3.Forward;
+        public static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
         public delegate void ModifyDividedCellCallback(ref EntityRecord entity);
 
@@ -130,7 +130,7 @@
         /// <param name="maxAmount">The maximum amount to eject</param>
         /// <param name="direction">The direction in which to eject relative to the microbe</param>
         /// <param name="displacement">How far away from the microbe to eject</param>
-        /// <returns>THe amount of emitted compound, can be less than the <see cref="maxAmount"/></returns>
+        /// <returns>The amount of emitted compound, can be less than the <see cref="maxAmount"/></returns>
         public static float EjectCompound(this ref CellProperties cellProperties, ref WorldPosition cellPosition,
             CompoundBag compounds, CompoundCloudSystem compoundCloudSystem, Compound compound, float maxAmount,
             Vector3 direction, float displacement = 0)

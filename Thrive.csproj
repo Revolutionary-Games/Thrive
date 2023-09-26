@@ -123,6 +123,7 @@
     <Compile Include="src\early_multicellular_stage\IPositionedCell.cs" />
     <Compile Include="src\early_multicellular_stage\Microbe.Multicellular.cs" />
     <Compile Include="src\early_multicellular_stage\systems\MulticellularGrowthSystem.cs" />
+    <Compile Include="src\engine\attributes\ReadsComponentAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsAfterAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsBeforeAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsOnFrameAttribute.cs" />
@@ -657,6 +658,8 @@
     <Compile Include="src\microbe_stage\systems\MicrobeReproductionSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeShaderSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeVisualsSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\OrganelleComponentFetchSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\OrganelleTickSystem.cs" />
     <Compile Include="src\microbe_stage\systems\OsmoregulationAndHealingSystem.cs" />
     <Compile Include="src\microbe_stage\systems\PilusDamageSystem.cs" />
     <Compile Include="src\microbe_stage\systems\ProcessSystem.cs" />
