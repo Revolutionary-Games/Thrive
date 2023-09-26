@@ -1,5 +1,5 @@
 ﻿[JSONAlwaysDynamicType]
-public abstract class HexRemoveActionData<THex> : EditorCombinableActionData
+public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActionData<TContext>
     where THex : class, IActionHex
 {
     public THex RemovedHex;
@@ -21,7 +21,7 @@ public abstract class HexRemoveActionData<THex> : EditorCombinableActionData
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         // If this hex got placed in this session on the same position
-        if (other is HexPlacementActionData<THex> placementActionData &&
+        if (other is HexPlacementActionData<THex, TContext> placementActionData &&
             placementActionData.PlacedHex.MatchesDefinition(RemovedHex))
         {
             // If this hex got placed on the same position
@@ -33,7 +33,7 @@ public abstract class HexRemoveActionData<THex> : EditorCombinableActionData
         }
 
         // If this hex got moved in this session
-        if (other is HexMoveActionData<THex> moveActionData &&
+        if (other is HexMoveActionData<THex, TContext> moveActionData &&
             moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
             moveActionData.NewLocation == Location)
         {
@@ -45,15 +45,15 @@ public abstract class HexRemoveActionData<THex> : EditorCombinableActionData
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        if (other is HexPlacementActionData<THex> placementActionData)
+        if (other is HexPlacementActionData<THex, TContext> placementActionData)
         {
             return CreateDerivedMoveAction(placementActionData);
         }
 
-        return CreateDerivedRemoveAction((HexMoveActionData<THex>)other);
+        return CreateDerivedRemoveAction((HexMoveActionData<THex, TContext>)other);
     }
 
-    protected abstract CombinableActionData CreateDerivedMoveAction(HexPlacementActionData<THex> data);
+    protected abstract CombinableActionData CreateDerivedMoveAction(HexPlacementActionData<THex, TContext> data);
 
-    protected abstract CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<THex> data);
+    protected abstract CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<THex, TContext> data);
 }

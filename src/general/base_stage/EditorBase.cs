@@ -340,14 +340,14 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         mutationPointsCache = null;
     }
 
-    public bool HexPlacedThisSession<THex>(THex hex)
+    public bool HexPlacedThisSession<THex, TContext>(THex hex)
         where THex : class, IActionHex
     {
-        return history.HexPlacedThisSession(hex);
+        return history.HexPlacedThisSession<THex, TContext>(hex);
     }
 
     [RunOnKeyDown("e_redo")]
-    public void Redo()
+    public virtual void Redo()
     {
         if (HasInProgressAction)
             return;
@@ -361,7 +361,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     [RunOnKeyDown("e_undo")]
-    public void Undo()
+    public virtual void Undo()
     {
         if (HasInProgressAction)
             return;

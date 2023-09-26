@@ -175,10 +175,42 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         return action;
     }
 
-    public bool HexPlacedThisSession<THex>(THex hex)
+    public bool HexPlacedThisSession<THex, TContext>(THex hex)
         where THex : class, IActionHex
     {
-        return History.OfType<HexPlacementActionData<THex>>().Any(a => a.PlacedHex == hex);
+        return History.OfType<HexPlacementActionData<THex, TContext>>().Any(a => a.PlacedHex == hex);
+    }
+
+    /// <summary>
+    ///   If the next action to redo should be performed in a specific context, this returns that context.
+    /// </summary>
+    /// <typeparam name="TContext">The type of context to be returned.</typeparam>
+    /// <returns>The context the next action to redo should be performed in.</returns>
+    public TContext? GetRedoContext<TContext>()
+    {
+        return GetContext<TContext>(ActionToRedo());
+    }
+
+    /// <summary>
+    ///   If the next action to undo should be performed in a specific context, this returns that context.
+    /// </summary>
+    /// <typeparam name="TContext">The type of context to be returned.</typeparam>
+    /// <returns>The context the next action to undo should be performed in.</returns>
+    public TContext? GetUndoContext<TContext>()
+    {
+        return GetContext<TContext>(ActionToUndo());
+    }
+
+    private static TContext? GetContext<TContext>(TAction? action)
+    {
+        // We don't allow combining actions from different contexts,
+        // so we only need to check the first data for the context
+        var data = action?.Data.FirstOrDefault();
+
+        if (data is EditorCombinableActionData<TContext> specificData)
+            return specificData.Context;
+
+        return default;
     }
 
     /// <summary>
