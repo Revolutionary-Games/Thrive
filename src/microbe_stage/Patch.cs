@@ -88,28 +88,32 @@ public class Patch
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
 
-    /// <summary>
-    ///   True if player has entered the patch
-    /// </summary>
     public bool Explored
     {
         get => VisibilityState == MapElementVisibility.Explored;
         set
         {
             if (value)
-                VisibilityState = MapElementVisibility.Explored;
-            else
-                VisibilityState = MapElementVisibility.Undiscovered;
-
-            Region.VisibilityState = MapElementVisibility.Explored;
-
-            foreach (Patch patch in Adjacent)
             {
-                if (!patch.Region.Explored)
-                    patch.Region.VisibilityState = MapElementVisibility.Unexplored;
+                VisibilityState = MapElementVisibility.Explored;
+                Region.VisibilityState = MapElementVisibility.Explored;
+            }
+            else
+            {
+                VisibilityState = MapElementVisibility.Undiscovered;
+                Region.VisibilityState = MapElementVisibility.Undiscovered;
+            }
 
-                if (!patch.Explored)
-                    patch.VisibilityState = MapElementVisibility.Unexplored;
+            if (value)
+            {
+                foreach (Patch patch in Adjacent)
+                {
+                    if (!patch.Region.Explored)
+                        patch.Region.VisibilityState = MapElementVisibility.Unexplored;
+
+                    if (!patch.Explored)
+                        patch.VisibilityState = MapElementVisibility.Unexplored;
+                }
             }
         }
     }

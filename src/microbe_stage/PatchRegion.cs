@@ -122,9 +122,15 @@ public class PatchRegion
     /// <summary>
     ///   Adds a connection to region
     /// </summary>
-    public void AddNeighbour(PatchRegion region, Patch? connectingPatch)
+    public void AddNeighbour(PatchRegion region)
     {
         if (!Adjacent.ContainsKey(region))
-            Adjacent.Add(region, connectingPatch);
+            Adjacent.Add(region, null);
+    }
+
+    public void SetConnectingPatch(PatchRegion otherRegion, Patch patch)
+    {
+        if (Adjacent[otherRegion] == null)
+            Adjacent[otherRegion] = patch;
     }
 }

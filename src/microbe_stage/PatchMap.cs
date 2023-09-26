@@ -475,8 +475,8 @@ public class PatchMap : ISaveLoadable
             var region1 = Regions[id1];
             var region2 = Regions[id2];
 
-            region1.AddNeighbour(region2, null);
-            region2.AddNeighbour(region1, null);
+            region1.AddNeighbour(region2);
+            region2.AddNeighbour(region1);
         }
 
         foreach (var (id1, id2) in PatchAdjacencies)
@@ -492,8 +492,8 @@ public class PatchMap : ISaveLoadable
 
             if (region1 != region2)
             {
-                region1.Adjacent[region2] = patch2;
-                region2.Adjacent[region1] = patch1;
+                region1.SetConnectingPatch(region2, patch2);
+                region2.SetConnectingPatch(region1, patch1);
             }
         }
     }

@@ -184,15 +184,15 @@ public static class PatchMapGenerator
 
         if (region1 != region2)
         {
-            region1.Adjacent[region2] = patch2;
-            region2.Adjacent[region1] = patch1;
+            region1.SetConnectingPatch(region2, patch2);
+            region2.SetConnectingPatch(region1, patch1);
         }
     }
 
     private static void LinkRegions(PatchRegion region1, PatchRegion region2)
     {
-        region1.AddNeighbour(region2, null);
-        region2.AddNeighbour(region1, null);
+        region1.AddNeighbour(region2);
+        region2.AddNeighbour(region1);
     }
 
     /// <summary>
