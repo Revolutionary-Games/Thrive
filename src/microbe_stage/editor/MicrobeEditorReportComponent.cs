@@ -141,7 +141,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         foreach (var patch in Editor.CurrentPatch.GetClosestConnectedPatches())
         {
-            if (patch.Explored)
+            if (patch.Explored || Editor.FreeBuilding)
                 reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
