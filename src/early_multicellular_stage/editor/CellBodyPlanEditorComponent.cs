@@ -394,11 +394,9 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var cellType in Editor.EditedSpecies.CellTypes)
         {
             // During multicellular editing, we don't reposition cells to the origin
-            // because it messes up the aciton history, so do it here once editing is finished
-            cellType.RepositionToOrigin();
-
-            // Also recalculate rotation speed because that depends on position
-            cellType.CalculateRotationSpeed();
+            // because it messes up the action history, so do it here once editing is finished.
+            // We call UpdatePositionalProperties to also update anything dependant on the cell's position
+            cellType.UpdatePositionalProperties();
         }
     }
 

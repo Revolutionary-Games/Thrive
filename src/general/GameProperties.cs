@@ -158,7 +158,7 @@ public class GameProperties
                 continue;
 
             brainType.Organelles.Add(template);
-            brainType.RepositionToOrigin();
+            brainType.UpdatePositionalProperties();
             break;
         }
 

@@ -791,7 +791,7 @@ public partial class CellEditorComponent :
         OnFinishEditing(true);
     }
 
-    public void OnFinishEditing(bool shouldRepositionToOrigin)
+    public void OnFinishEditing(bool shouldUpdatePosition)
     {
         var editedSpecies = Editor.EditedBaseSpecies;
         var editedProperties = Editor.EditedCellProperties;
@@ -812,10 +812,8 @@ public partial class CellEditorComponent :
             editedProperties.Organelles.Add(organelleToAdd);
         }
 
-        if (shouldRepositionToOrigin)
-            editedProperties.RepositionToOrigin();
-
-        editedProperties.CalculateRotationSpeed();
+        if (shouldUpdatePosition)
+            editedProperties.UpdatePositionalProperties();
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;

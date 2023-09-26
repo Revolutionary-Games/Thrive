@@ -102,6 +102,12 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
     }
 
+    public void UpdatePositionalProperties()
+    {
+        RepositionToOrigin();
+        CalculateRotationSpeed();
+    }
+
     public override void UpdateInitialCompounds()
     {
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
