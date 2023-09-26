@@ -109,8 +109,6 @@
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellMoveActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellPlacementActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellRemoveActionData.cs" />
-    <Compile Include="src\early_multicellular_stage\editor\action_data\EndCellTypeEditActionData.cs" />
-    <Compile Include="src\early_multicellular_stage\editor\action_data\StartCellTypeEditActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.Callbacks.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellPopupMenu.cs" />
@@ -256,6 +254,7 @@
     <Compile Include="src\general\utils\TypeUtils.cs" />
     <Compile Include="src\general\utils\VersionUtils.cs" />
     <Compile Include="src\gui_common\AddWindowReorderingSupportToSiblings.cs" />
+    <Compile Include="src\gui_common\art_gallery\CrossFadableGalleryViewport.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\TopLevelContainer.cs" />
     <Compile Include="src\gui_common\CustomPopupMenu.cs" />
@@ -798,7 +797,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.3.1</Version>
+      <Version>13.4.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 using System.Linq;
 
 [JSONAlwaysDynamicType]
-public class OrganelleUpgradeActionData : EditorCombinableActionData
+public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 {
     public OrganelleUpgrades NewUpgrades;
     public OrganelleUpgrades OldUpgrades;
@@ -56,7 +56,8 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData
     {
         if (other is OrganelleUpgradeActionData upgradeActionData)
         {
-            return new OrganelleUpgradeActionData(upgradeActionData.OldUpgrades, NewUpgrades, UpgradedOrganelle);
+            return new OrganelleUpgradeActionData(upgradeActionData.OldUpgrades, NewUpgrades,
+                UpgradedOrganelle);
         }
 
         throw new NotSupportedException();

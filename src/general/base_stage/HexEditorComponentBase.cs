@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
 public abstract class
-    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove> :
+    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
         EditorComponentWithActionsBase<TEditor, TCombinedAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
@@ -1029,7 +1029,7 @@ public abstract class
     protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
     {
         // Allow only move actions with an in-progress move
-        return action.Data.Any(d => d is HexMoveActionData<THexMove>);
+        return action.Data.Any(d => d is HexMoveActionData<THexMove, TContext>);
     }
 
     /// <summary>

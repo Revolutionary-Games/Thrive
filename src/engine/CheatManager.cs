@@ -43,6 +43,21 @@ public static class CheatManager
     public static bool NoAI { get; set; }
 
     /// <summary>
+    ///   Stops the time of day from changing
+    /// </summary>
+    public static bool LockTime { get; set; }
+
+    /// <summary>
+    ///   Time of day to be set if <see cref="ManuallySetTime"/> is enabled
+    /// </summary>
+    public static float DayNightFraction { get; set; }
+
+    /// <summary>
+    ///   Manually sets the time to <see cref="DayNightFraction"/>
+    /// </summary>
+    public static bool ManuallySetTime { get; set; }
+
+    /// <summary>
     ///   Speed modifier for the player
     /// </summary>
     public static float Speed { get; set; }
@@ -84,7 +99,11 @@ public static class CheatManager
         InfiniteCompounds = false;
         GodMode = false;
         NoAI = false;
+        LockTime = false;
         Speed = 1.0f;
+
+        ManuallySetTime = false;
+        DayNightFraction = 0.0f;
 
         InfiniteMP = false;
         MoveToAnyPatch = false;

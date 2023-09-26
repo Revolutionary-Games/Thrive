@@ -47,6 +47,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     public override string PageName => "Museum";
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
 
+    public override string? ParentPageName => null;
+
     public override void _Ready()
     {
         base._Ready();
