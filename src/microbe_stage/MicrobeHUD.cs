@@ -56,7 +56,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private CustomWindow? winBox;
 #pragma warning restore CA2213
 
-    private bool becomeMulticellularTutorialTimerStarted = false;
+    private bool becomeMulticellularTutorialTimerStarted;
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
