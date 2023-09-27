@@ -84,9 +84,6 @@ public partial class CellEditorComponent :
     public NodePath DigestionEfficiencyLabelPath = null!;
 
     [Export]
-    public NodePath DigestionEfficiencyDetailsPath = null!;
-
-    [Export]
     public NodePath GenerationLabelPath = null!;
 
     [Export]
@@ -194,8 +191,6 @@ public partial class CellEditorComponent :
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
-
-    private TextureButton digestionEfficiencyDetails = null!;
 
     private Label generationLabel = null!;
 
@@ -573,7 +568,6 @@ public partial class CellEditorComponent :
         storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
-        digestionEfficiencyDetails = GetNode<TextureButton>(DigestionEfficiencyDetailsPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
         totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
@@ -1258,7 +1252,6 @@ public partial class CellEditorComponent :
                 StorageLabelPath.Dispose();
                 DigestionSpeedLabelPath.Dispose();
                 DigestionEfficiencyLabelPath.Dispose();
-                DigestionEfficiencyDetailsPath.Dispose();
                 GenerationLabelPath.Dispose();
                 AutoEvoPredictionPanelPath.Dispose();
                 TotalPopulationLabelPath.Dispose();
