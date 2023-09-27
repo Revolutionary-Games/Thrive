@@ -134,7 +134,7 @@ public enum TutorialEventType
     MicrobePlayerEnterSunlightPatch,
 
     /// <summary>
-    ///   The "Become multicellular" button is shown on screen
+    ///   The "Become multicellular" button is available to be clicked
     /// </summary>
     MicrobeBecomeMulticellularAvailable,
 }

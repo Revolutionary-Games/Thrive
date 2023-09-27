@@ -33,13 +33,5 @@
 
             return false;
         }
-
-        protected override void OnProcess(TutorialState overallState, float delta)
-        {
-            if (Time > Constants.HIDE_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER)
-            {
-                Hide();
-            }
-        }
     }
 }
