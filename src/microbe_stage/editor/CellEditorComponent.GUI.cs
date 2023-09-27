@@ -105,6 +105,10 @@ public partial class CellEditorComponent
 
         foreach (var organelle in organelles)
         {
+            // Don't bother updating the tooltips for organelles that aren't even shown
+            if (organelle.Unimplemented || organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
+                continue;
+
             float osmoregulationCost = organelle.HexCount * osmoregulationCostPerHex;
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");

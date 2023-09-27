@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-25 18:33+0100\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -305,12 +305,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP egyensúly"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:337
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:342
 msgid "ATP_PRODUCTION"
 msgstr "ATP előállítás"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
 
@@ -445,7 +445,7 @@ msgstr "Törlés"
 msgid "BASE_MOBILITY"
 msgstr "Alap mozgékonyság"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:397
 msgid "BASE_MOVEMENT"
 msgstr "Alap mozgás"
 
@@ -935,7 +935,7 @@ msgstr "Régi mentések törlése"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Bezár"
@@ -1547,7 +1547,7 @@ msgstr "Leírás:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "A leírás túl hosszú"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:111
 msgid "DESPAWN_ENTITIES"
 msgstr "Összes entitás eltüntetése"
 
@@ -1647,7 +1647,7 @@ msgstr "Kihalt fajok"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Sebesség:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1957,11 +1957,11 @@ msgstr "Szerkesztő engedélyezése"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI fényeffektjeinek engedélyezése"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:408
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2147,7 +2147,7 @@ msgstr "kihalt a bolygón"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "kihalt a bolygón"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "kihalt a bolygón"
@@ -2609,7 +2609,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Tartsd nyomva a kurzor megjelenítéséhez"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
@@ -3461,6 +3461,10 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr ""
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
@@ -3489,6 +3493,10 @@ msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. 
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3933,7 +3941,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:198
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4616,7 +4624,7 @@ msgstr "Mappa megnyitása"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Feljegyzés mappa megnyitása"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4746,7 +4754,7 @@ msgstr "Szúrd le a többi sejtet ezzel."
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:391
 msgid "OSMOREGULATION"
 msgstr "Ozmoreguláció"
 
@@ -4853,15 +4861,15 @@ msgstr "Page Down"
 msgid "PAGEUP"
 msgstr "Page Up"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 msgid "PAGE_BACK"
 msgstr "Vissza lapoz"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 msgid "PAGE_FORWARD"
 msgstr "Előre lapoz"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Helyi adatok törlése"
@@ -4997,8 +5005,8 @@ msgstr "Békés"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5080,11 +5088,11 @@ msgstr "A játékos halála utáni populáció egyedszámának csökkenése"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(a játékos halála után a játékos fajának a populációjának az egyedszámának csökkenése)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "A játékos meghalt"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 msgid "PLAYER_DUPLICATE"
 msgstr "A játékos megkettőzése"
 
@@ -5097,7 +5105,7 @@ msgstr "A játékos faja kihalt"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "A játékos faja kihalt"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "játékos szaporodott"
 
@@ -5722,6 +5730,10 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Keresés..."
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Keresési rádiusz:"
@@ -5738,7 +5750,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 #, fuzzy
 msgid "SEED_LABEL"
@@ -6018,7 +6030,7 @@ msgstr ""
 msgid "SPAWN_AMMONIA"
 msgstr "Ammónia létrehozása"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:101
 msgid "SPAWN_ENEMY"
 msgstr "Ellenség spawnolása"
 
@@ -6666,6 +6678,10 @@ msgstr "[u]{0}[/u] egyedszáma növekedett: {1}"
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
+msgid "TIME_OF_DAY"
+msgstr ""
+
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
 msgstr "Cím:"
@@ -6707,7 +6723,7 @@ msgstr "Összekapcsolás be/ki"
 msgid "TOGGLE_METRICS"
 msgstr "Metrikus kijelző ki/bekapcsolása"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7373,6 +7389,10 @@ msgstr "Közelítés"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Típus:"
 
 #, fuzzy
 #~ msgid "ENABLED"

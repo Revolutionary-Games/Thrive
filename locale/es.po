@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-25 18:33+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -311,12 +311,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Balance de ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:337
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:342
 msgid "ATP_PRODUCTION"
 msgstr "Producción de ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "¡PRODUCCIÓN DE ATP DEMASIADO BAJA!"
 
@@ -453,7 +453,7 @@ msgstr "Retroceso"
 msgid "BASE_MOBILITY"
 msgstr "Mobilidad"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:397
 msgid "BASE_MOVEMENT"
 msgstr "Movimiento Base"
 
@@ -939,7 +939,7 @@ msgstr "Limpiar archivos de guardado antiguos"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Cerrar"
@@ -1556,7 +1556,7 @@ msgstr "Descripción:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "La descripción es demasiado larga"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:111
 msgid "DESPAWN_ENTITIES"
 msgstr "Destruir todas las entidades"
 
@@ -1661,7 +1661,7 @@ msgstr "Velocidad de digestion"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Velocidad de Digestion:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1965,11 +1965,11 @@ msgstr "Activar editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectos de luz GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:408
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2152,7 +2152,7 @@ msgstr "Se extinguió del bioma"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Se extinguió del planeta"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 msgid "EXTINCT_IN_PATCH"
 msgstr "La especie se extinguió de la zona"
 
@@ -2605,7 +2605,7 @@ msgstr "Mantener [thrive:input]g_free_cursor[/thrive:input] para mostrar el curs
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Mantén pulsado para mostrar el cursor"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 msgid "HOME"
 msgstr "Inicio"
 
@@ -3459,6 +3459,11 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr "Habilitar ciclo día/noche"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Considerar zonas con igual o menor cantidad de especies como zonas de baja biodiversidad"
@@ -3485,6 +3490,10 @@ msgstr "El lisosoma es un orgánulo integrado a la membrana que contiene enzimas
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contiene enzimas digestivas. Puede ser modificado para cambiar el tipo de enzima que contiene. Solo se puede usar una enzima por lisosoma. Enzimas aumentan la velocidad y eficiencia de la digestion."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3941,7 +3950,7 @@ msgstr "La \"central energética\" de la célula. La mitocondria es una estructu
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. la tasa de conversión escala con la concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:198
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4601,7 +4610,7 @@ msgstr "Abrir carpeta"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Abrir carpeta de registros"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "¿Estás seguro de empezar una nueva partida con la especie seleccionada?\n"
@@ -4730,7 +4739,7 @@ msgstr "Puede usarse para atacar a otras células o para defenderse de sus toxin
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:391
 msgid "OSMOREGULATION"
 msgstr "Osmorregulación"
 
@@ -4838,15 +4847,15 @@ msgstr "Retrasar página (Re Pág)"
 msgid "PAGEUP"
 msgstr "Avanzar Página (Av Pág)"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 msgid "PAGE_BACK"
 msgstr "Volver"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 msgid "PAGE_FORWARD"
 msgstr "Seguir"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 msgid "PAGE_TITLE"
 msgstr "Título de la página"
 
@@ -4979,8 +4988,8 @@ msgstr "Pacífica"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5065,11 +5074,11 @@ msgstr "Penalization de población por muerte del jugador"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(Reducción en la población de la especie del jugador por cada muerte del mismo)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "El jugador murió"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 msgid "PLAYER_DUPLICATE"
 msgstr "Jugador duplicado"
 
@@ -5082,7 +5091,7 @@ msgstr "El jugador se extinguió"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "El jugador se extinguió"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "El jugador se reprodujo"
 
@@ -5702,6 +5711,10 @@ msgstr "Bloq Despl"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Buscar..."
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Buscan en el radio:"
@@ -5718,7 +5731,7 @@ msgstr "Secretar mucílago"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
 msgstr "Semilla del planeta: {0}"
@@ -5990,7 +6003,7 @@ msgstr "Construyendo: {0}"
 msgid "SPAWN_AMMONIA"
 msgstr "Crear amoníaco"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:101
 msgid "SPAWN_ENEMY"
 msgstr "Enemigo aparecido"
 
@@ -6658,6 +6671,10 @@ msgstr "La población de [b][u]{0}[/u][/b] ha incrementado a {1}"
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Tiempo transcurrido: {0:#,#} años"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
+msgid "TIME_OF_DAY"
+msgstr ""
+
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
 msgstr "Título:"
@@ -6699,7 +6716,7 @@ msgstr "Alternar unión"
 msgid "TOGGLE_METRICS"
 msgstr "Activar monitor FPS"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Activar/desactivar árbol de navegación"
 
@@ -7384,6 +7401,10 @@ msgstr "Hacer zoom"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Tipo:"
 
 #, fuzzy
 #~ msgid "BUILD_SPACE_STRUCTURE"

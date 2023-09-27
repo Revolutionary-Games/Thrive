@@ -2,7 +2,7 @@
 using Godot;
 
 [JSONAlwaysDynamicType]
-public class NewMicrobeActionData : EditorCombinableActionData
+public class NewMicrobeActionData : EditorCombinableActionData<EarlyMulticellularSpecies>
 {
     public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;
     public MembraneType OldMembrane;
@@ -10,8 +10,8 @@ public class NewMicrobeActionData : EditorCombinableActionData
     public BehaviourDictionary OldBehaviourValues;
     public Color OldMembraneColour;
 
-    public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles, MembraneType oldMembrane,
-        float oldRigidity, Color oldColour, BehaviourDictionary oldBehaviourValues)
+    public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles,
+        MembraneType oldMembrane, float oldRigidity, Color oldColour, BehaviourDictionary oldBehaviourValues)
     {
         OldEditedMicrobeOrganelles = oldEditedMicrobeOrganelles;
         OldMembrane = oldMembrane;

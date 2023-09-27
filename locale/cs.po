@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-25 18:33+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -299,12 +299,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Zůstatek ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:337
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:342
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
@@ -441,7 +441,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:397
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
@@ -921,7 +921,7 @@ msgstr "Vyčistit stará uložení"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -1550,7 +1550,7 @@ msgstr "Popis:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Popis je příliš dlouhý"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:111
 msgid "DESPAWN_ENTITIES"
 msgstr "Zlikvidovat všechny věci"
 
@@ -1657,7 +1657,7 @@ msgstr "Rychlost trávení"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Rychlost trávení:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1963,11 +1963,11 @@ msgstr "Zapnout editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:408
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2148,7 +2148,7 @@ msgstr "Vyhynul v této oblasti"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Vyhynul na této planetě"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 msgid "EXTINCT_IN_PATCH"
 msgstr "vyhynulý v tomto prostředí"
 
@@ -2609,7 +2609,7 @@ msgstr "Podržte [thrive:input]g_free_cursor[/thrive:input] pro kurzor"
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Podržte [thrive:input]g_free_cursor[/thrive:input] pro kurzor"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
@@ -3456,6 +3456,11 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr "Povolení cyklu den/noc"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Prostředí s tolikato druhy mají nízkou biodiverzitu"
@@ -3482,6 +3487,10 @@ msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytick
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enzymu, který obsahuje. Lysozomy jsou schopny obsahovat pouze jeden typ enzymu najednou. Enzymy zrychlují a zvyšují efektivitu trávení."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3927,7 +3936,7 @@ msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná pr
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:198
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4600,7 +4609,7 @@ msgstr "Otevřít složku"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Otevřít složku protokolů"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4728,7 +4737,7 @@ msgstr "Tímto bodneš ostatní buňky."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:391
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
@@ -4835,17 +4844,17 @@ msgstr "PgDown"
 msgid "PAGEUP"
 msgstr "PgUp"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "Zpět"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Dopředu"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Odstranit místní data"
@@ -4976,8 +4985,8 @@ msgstr "Mírumilovnost"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5059,11 +5068,11 @@ msgstr "Populační penalta za smrt hráče"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(součinitel snížení populace hráčova druhu za každou smrt hráče)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplicitní hráč"
 
@@ -5076,7 +5085,7 @@ msgstr "Hráč vyhynul"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
@@ -5694,6 +5703,10 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Vyhledat..."
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "Vyhledávací rádius:"
@@ -5710,7 +5723,7 @@ msgstr "Vyměšuj sliz"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
 msgstr "Seed planety: {0}"
@@ -5981,7 +5994,7 @@ msgstr ""
 msgid "SPAWN_AMMONIA"
 msgstr "Spawnout Amoniak"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:101
 msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
@@ -6622,6 +6635,10 @@ msgstr "[b][u]{0}[/u][/b] populace se zvýšila na {1}"
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Uplynutý čas: {0:#,#} let"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
+msgid "TIME_OF_DAY"
+msgstr ""
+
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
 msgstr "Název:"
@@ -6663,7 +6680,7 @@ msgstr "Přepnout spojování"
 msgid "TOGGLE_METRICS"
 msgstr "Přepnutí displaye metrik"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7336,6 +7353,10 @@ msgstr "Přiblížit"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Typ:"
 
 #, fuzzy
 #~ msgid "ENABLED"

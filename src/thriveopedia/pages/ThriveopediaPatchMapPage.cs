@@ -33,6 +33,8 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
 
+    public override string ParentPageName => "CurrentWorld";
+
     public override void _Ready()
     {
         base._Ready();

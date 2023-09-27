@@ -92,6 +92,21 @@ public abstract class CheatMenu : CustomWindow
         CheatManager.NoAI = value;
     }
 
+    public void SetLockTime(bool value)
+    {
+        CheatManager.LockTime = value;
+    }
+
+    public void SetDayNightFraction(float value)
+    {
+        CheatManager.DayNightFraction = value;
+    }
+
+    public void SetManuallySetTime(bool value)
+    {
+        CheatManager.ManuallySetTime = value;
+    }
+
     public void SetSpeed(float value)
     {
         CheatManager.Speed = value;

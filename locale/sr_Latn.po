@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-25 18:33+0100\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -304,12 +304,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP Ravnoteža"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:337
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:342
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -454,7 +454,7 @@ msgstr "Nazad"
 msgid "BASE_MOBILITY"
 msgstr "Mobilnost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:397
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -963,7 +963,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Zatvori"
@@ -1576,7 +1576,7 @@ msgstr "Generacija:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Generacija:"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:111
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
@@ -1673,7 +1673,7 @@ msgstr "Brzina Apsorpcije Brzine"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Brzina:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1991,11 +1991,11 @@ msgstr "Omogućite uređivač"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Spoljni efekti:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:408
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
@@ -2175,7 +2175,7 @@ msgstr ""
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "POPULACIJA:"
@@ -2612,7 +2612,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 msgid "HOME"
 msgstr ""
 
@@ -3465,6 +3465,10 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr ""
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
@@ -3494,6 +3498,10 @@ msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u st
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 #, fuzzy
@@ -3908,7 +3916,7 @@ msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membran
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:198
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Traži..."
@@ -4566,7 +4574,7 @@ msgstr ""
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4693,7 +4701,7 @@ msgstr "Izbodite druge ćelije sa ovo."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organizma"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:391
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -4803,17 +4811,17 @@ msgstr "Okrenite kameru nadole"
 msgid "PAGEUP"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "Nazad"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Kreni napred"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 msgid "PAGE_TITLE"
 msgstr ""
 
@@ -4945,8 +4953,8 @@ msgstr ""
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5028,11 +5036,11 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "igrač je umro"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "igrač je umro"
@@ -5047,7 +5055,7 @@ msgstr "igrač je umro"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "igrač je umro"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "Igrač se reprodukovao"
 
@@ -5687,6 +5695,10 @@ msgstr ""
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Traži..."
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr ""
@@ -5703,7 +5715,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
 msgstr ""
@@ -6000,7 +6012,7 @@ msgstr ""
 msgid "SPAWN_AMMONIA"
 msgstr "Stavite amonijak"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:101
 msgid "SPAWN_ENEMY"
 msgstr ""
 
@@ -6639,6 +6651,10 @@ msgstr ""
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
+msgid "TIME_OF_DAY"
+msgstr ""
+
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 #, fuzzy
 msgid "TITLE_COLON"
@@ -6685,7 +6701,7 @@ msgstr "Prebacite gutanje"
 msgid "TOGGLE_METRICS"
 msgstr "Prebacivanje FPS prikaza"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7316,6 +7332,10 @@ msgstr "Zumirati"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Odzumirati"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "Zdrav.:"
 
 #, fuzzy
 #~ msgid "ENABLED"

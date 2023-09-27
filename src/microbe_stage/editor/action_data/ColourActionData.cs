@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 [JSONAlwaysDynamicType]
-public class ColourActionData : EditorCombinableActionData
+public class ColourActionData : EditorCombinableActionData<CellType>
 {
     public Color NewColour;
     public Color PreviousColour;

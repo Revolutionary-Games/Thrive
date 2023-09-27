@@ -20,7 +20,7 @@ public abstract class CombinableActionData
     ///   Returns the interference mode with <paramref name="other"/>
     /// </returns>
     /// <exception cref="ArgumentException">Thrown when called with itself</exception>
-    public ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public virtual ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         if (ReferenceEquals(this, other))
             throw new ArgumentException("Do not call with itself", nameof(other));

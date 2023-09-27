@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 13:02+0200\n"
+"POT-Creation-Date: 2023-09-25 18:33+0100\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -312,12 +312,12 @@ msgstr "ATP(三磷酸線苷)"
 msgid "ATP_BALANCE"
 msgstr "ATP平衡"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:337
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:342
 msgid "ATP_PRODUCTION"
 msgstr "ATP產出"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP產出太低！"
 
@@ -453,7 +453,7 @@ msgstr "返回"
 msgid "BASE_MOBILITY"
 msgstr "基本移動能力"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:393
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:397
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
@@ -934,7 +934,7 @@ msgstr "清除舊存檔"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:315
+#: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "關閉"
@@ -1556,7 +1556,7 @@ msgstr "描述："
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "描述太長"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:111
 #, fuzzy
 msgid "DESPAWN_ENTITIES"
 msgstr "生成敵人"
@@ -1666,7 +1666,7 @@ msgstr "資源吸收速度"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "速度："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:180
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1986,11 +1986,11 @@ msgstr "啟用編輯器"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "啟用 GUI 光效效果"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:408
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2181,7 +2181,7 @@ msgstr "從這個區域滅絕了"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "從這個星球滅絕了"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:395
+#: ../src/general/base_stage/CreatureStageBase.cs:400
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "從這個區域滅絕了"
@@ -2635,7 +2635,7 @@ msgstr "長按[thrive:input]g_free_cursor[/thrive:input]以顯示鼠標指針"
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "按住以顯示光標"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:270
+#: ../src/thriveopedia/Thriveopedia.tscn:252
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
@@ -3505,6 +3505,11 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgstr "啟動晝夜循環"
+
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 #, fuzzy
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3535,6 +3540,10 @@ msgstr "代謝體是一大堆被蛋白質殼包裹住的蛋白質。通過有氧
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。可以通過按下[thrive:input]g_fire_toxin[/thrive:input]來釋放毒素。"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
+msgid "MANUALLY_SET_TIME"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 #, fuzzy
@@ -3998,7 +4007,7 @@ msgstr "細胞的發電站。線粒體（複數：線粒體）是一個雙膜結
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:198
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4665,7 +4674,7 @@ msgstr "打開文件夾"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "打開日誌文件夾"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "你確定要使用此物種開始新遊戲嗎？\n"
@@ -4797,7 +4806,7 @@ msgstr "用來刺其它細胞。"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:391
 msgid "OSMOREGULATION"
 msgstr "滲透調節"
 
@@ -4906,17 +4915,17 @@ msgstr "Page Down"
 msgid "PAGEUP"
 msgstr "Page Up"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:232
+#: ../src/thriveopedia/Thriveopedia.tscn:214
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "返回"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:251
+#: ../src/thriveopedia/Thriveopedia.tscn:233
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "前進"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:294
+#: ../src/thriveopedia/Thriveopedia.tscn:276
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "移除本地數據"
@@ -5053,8 +5062,8 @@ msgstr "和平"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:188
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:214
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5142,11 +5151,11 @@ msgstr "玩家死亡懲罰"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:339
+#: ../src/general/base_stage/CreatureStageBase.cs:344
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 msgid "PLAYER_DUPLICATE"
 msgstr "玩家分裂"
 
@@ -5159,7 +5168,7 @@ msgstr "玩家已滅絕"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "玩家已滅絕"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:283
+#: ../src/general/base_stage/CreatureStageBase.cs:288
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -5794,6 +5803,10 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
+#: ../src/thriveopedia/Thriveopedia.tscn:353
+msgid "SEARCH_PLACEHOLDER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
 msgstr "搜索半徑："
@@ -5810,7 +5823,7 @@ msgstr "分泌粘液"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 #, fuzzy
 msgid "SEED_LABEL"
@@ -6096,7 +6109,7 @@ msgstr "建造中：{0}"
 msgid "SPAWN_AMMONIA"
 msgstr "生成氨"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:101
 msgid "SPAWN_ENEMY"
 msgstr "生成敵人"
 
@@ -6741,6 +6754,10 @@ msgstr "[b][u]{0}[/u][/b] 人口已經增加到 {1}"
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
+msgid "TIME_OF_DAY"
+msgstr ""
+
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 #, fuzzy
 msgid "TITLE_COLON"
@@ -6784,7 +6801,7 @@ msgstr "切換連接模式"
 msgid "TOGGLE_METRICS"
 msgstr "切換參數顯示"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
+#: ../src/thriveopedia/Thriveopedia.tscn:194
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7471,6 +7488,10 @@ msgstr "放大"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#, fuzzy
+#~ msgid "TARGET_TIME"
+#~ msgstr "生命值："
 
 #, fuzzy
 #~ msgid "BUILD_SPACE_STRUCTURE"
