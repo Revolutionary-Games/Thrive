@@ -36,6 +36,38 @@ public static class MicrobeInternalCalculations
         return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
+    public static float GetNominalCapacityForOrganelle(OrganelleUpgrades? upgrades, OrganelleDefinition definition)
+    {
+        if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
+            storage.SpecializedFor != null)
+        {
+            return 0;
+        }
+
+        if (definition.Components.Storage == null)
+            return 0;
+
+        return definition.Components.Storage!.Capacity;
+    }
+
+    public static (Compound? Compound, float Capacity)
+        GetAdditionalCapacityForOrganelle(OrganelleUpgrades? upgrades, OrganelleDefinition definition)
+    {
+        if (definition.Components.Storage == null)
+            return (null, 0);
+
+        if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
+            storage.SpecializedFor != null)
+        {
+            var specialization = storage.SpecializedFor;
+            var capacity = definition.Components.Storage!.Capacity;
+            var extraCapacity = capacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER;
+            return (specialization, extraCapacity);
+        }
+
+        return (null, 0);
+    }
+
     public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles)
     {
         return organelles.Where(

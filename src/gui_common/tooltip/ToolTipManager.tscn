@@ -270,6 +270,14 @@ Positioning = 2
 DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 
 [node name="digestionEfficiencyDetails" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+HideOnMouseAction = false
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="storageDetails" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
 DisplayDelay = 0.0
 Positioning = 1
 HideOnMouseAction = false

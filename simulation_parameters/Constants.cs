@@ -591,6 +591,11 @@ public static class Constants
     public const string VACUOLE_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>
+    ///   How much the capacity of a specialized vacuole should be multiplied
+    /// </summary>
+    public const float VACUOLE_SPECIALIZED_MULTIPLIER = 2.0f;
+
+    /// <summary>
     ///   How much ATP does binding mode cost per second
     /// </summary>
     public const float BINDING_ATP_COST_PER_SECOND = 2.0f;

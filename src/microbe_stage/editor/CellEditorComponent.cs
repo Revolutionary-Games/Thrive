@@ -1037,9 +1037,33 @@ public partial class CellEditorComponent :
         return maxHitpoints;
     }
 
-    public float CalculateStorage()
+    public float GetNominalCapacity()
     {
-        return MicrobeInternalCalculations.CalculateCapacity(editedMicrobeOrganelles);
+        return editedMicrobeOrganelles.Sum(o => MicrobeInternalCalculations
+            .GetNominalCapacityForOrganelle(o.Upgrades, o.Definition));
+    }
+
+    public Dictionary<Compound, float> GetAdditionalCapacities()
+    {
+        var dict = new Dictionary<Compound, float>();
+
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            var capacity = MicrobeInternalCalculations
+                .GetAdditionalCapacityForOrganelle(organelle.Upgrades, organelle.Definition);
+
+            if (capacity.Compound == null)
+                continue;
+
+            if (dict.TryGetValue(capacity.Compound, out var currentCapacity))
+                dict[capacity.Compound] = currentCapacity + capacity.Capacity;
+            else
+                dict.Add(capacity.Compound, capacity.Capacity);
+        }
+
+        var nominalCap = GetNominalCapacity();
+        return dict.Select(e => new KeyValuePair<Compound, float>(e.Key, e.Value + nominalCap))
+            .ToDictionary(x => x.Key, x => x.Value);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -1777,7 +1801,7 @@ public partial class CellEditorComponent :
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(CalculateStorage());
+        UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
     }
