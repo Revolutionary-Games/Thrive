@@ -592,6 +592,9 @@
             if (previousPopulations != null && previousPopulations.CurrentPatch == null)
                 throw new ArgumentException("When previous populations is set, it must have current patch set");
 
+            if (!playerReadable)
+                ignoreFogOfWar = true;
+
             const bool resolveMigrations = true;
             const bool resolveSplits = true;
 

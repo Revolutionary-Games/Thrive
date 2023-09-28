@@ -319,8 +319,8 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
         mapDrawer.IgnoreFogOfWar = true;
 
-        foreach (var patch in mapDrawer.PlayerPatch!.GetAllConnectedPatches())
-            patch.Explored = true;
+        foreach (var entry in mapDrawer.Map!.Patches)
+            entry.Value.Explored = true;
 
         Editor.UpdateReportTabPatchSelector();
         mapDrawer.MarkDirty();

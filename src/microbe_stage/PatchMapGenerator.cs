@@ -592,7 +592,7 @@ public static class PatchMapGenerator
         {
             case PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea:
             {
-                foreach (var adjacent in region.Adjacent.CloneShallow().Keys)
+                foreach (var adjacent in region.Adjacent.Keys.ToList())
                 {
                     switch (adjacent.Type)
                     {
@@ -625,7 +625,7 @@ public static class PatchMapGenerator
 
             case PatchRegion.RegionType.Continent:
             {
-                foreach (var adjacent in region.Adjacent.CloneShallow().Keys)
+                foreach (var adjacent in region.Adjacent.Keys.ToList())
                 {
                     if (adjacent.Type == PatchRegion.RegionType.Continent)
                     {

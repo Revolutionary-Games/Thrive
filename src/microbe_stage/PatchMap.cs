@@ -5,39 +5,6 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Whether the fog of war should be disabled,
-///   mark patches adjacent to the player as explored,
-///   or mark only the patch the player has entered as explored
-/// </summary>
-public enum FogOfWarMode
-{
-    Disabled,
-    Normal,
-    Intense,
-}
-
-/// <summary>
-///   The visibility of an element in the patch map.
-/// </summary>
-public enum MapElementVisibility
-{
-    /// <summary>
-    ///   Invisible to the player
-    /// </summary>
-    Undiscovered,
-
-    /// <summary>
-    ///   Visible to the player but details hidden
-    /// </summary>
-    Unexplored,
-
-    /// <summary>
-    ///   Visible to the player and details shown
-    /// </summary>
-    Explored,
-}
-
-/// <summary>
 ///   A container for patches that are joined together
 /// </summary>
 [UseThriveSerializer]
