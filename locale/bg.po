@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-25 18:33+0100\n"
+"POT-Creation-Date: 2023-09-28 13:34+0300\n"
 "PO-Revision-Date: 2023-08-30 08:51+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -62,9 +62,9 @@ msgstr "Пробуждане"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Пробуждане"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
 #: ../src/general/base_stage/EditorBase.cs:681
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Последното действие не е завършено"
@@ -305,16 +305,16 @@ msgstr "Атмосферни газове"
 msgid "ATP"
 msgstr "АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1138
 msgid "ATP_BALANCE"
 msgstr "Баланс на АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:337
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:342
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:334
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION"
 msgstr "Производство на АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
 
@@ -339,7 +339,7 @@ msgstr "Август"
 msgid "AUTO"
 msgstr "Автоматично"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
 
@@ -347,12 +347,12 @@ msgstr "Това са стойностите, които използва про
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "популацията на {0} в {2} се промени с {1} индивида поради {3} на създанията"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноза"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Това е очакваната популация на Вашите създания според автоматичната еволюция.\n"
@@ -374,8 +374,8 @@ msgstr "Автоматична еволюция"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
@@ -385,8 +385,8 @@ msgstr "Автоматичната еволюция не успя да стар�
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:232
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:199
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Състояние:"
@@ -427,7 +427,7 @@ msgstr "Осъзнаване"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
 msgstr "Назад"
 
@@ -449,7 +449,7 @@ msgstr "Клавиш „Backspace“"
 msgid "BASE_MOBILITY"
 msgstr "Базова подвижност"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:397
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
 msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
@@ -493,7 +493,7 @@ msgstr "Започнете да процъфтявате"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
 msgstr "Поведение"
 
@@ -538,7 +538,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Резултати:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
 msgid "BEST_PATCH_COLON"
 msgstr "Процъфтява:"
 
@@ -669,7 +669,7 @@ msgstr "Отказ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТКАЗ"
 
@@ -778,7 +778,7 @@ msgstr "Целулозна"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става още по-бавна, както и усвояването на хранителните вещества. [b]Целулазата[/b] може да разгради стената на тази мембрана."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
 
@@ -938,7 +938,7 @@ msgstr ""
 "  Среден размер: {9}\n"
 "[b]Общи данни за органелите:[/b]"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Изтриване на старите записи"
 
@@ -947,7 +947,7 @@ msgstr "Изтриване на старите записи"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:297
@@ -975,7 +975,7 @@ msgstr "Крайбрежие"
 msgid "COLLISION_SHAPE"
 msgstr "Фигури на обектите"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:909
 msgid "COLOUR"
 msgstr "Цвят"
 
@@ -1500,7 +1500,7 @@ msgstr "По подразбиране"
 msgid "DELETE"
 msgstr "Премахване"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Изтриването на старите автоматични и бързи записи не може да бъде отменено, сигурни ли сте?\n"
@@ -1512,7 +1512,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Изтриването на фосила не може да бъде отменено, сигурни ли сте, че искате да го изтриете?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Изтриване на старите записи?"
 
@@ -1524,19 +1524,19 @@ msgstr "Премахване на органел"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Изтриване на избраните"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:183
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Изтриване на избраните записи?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете {0} запис(а)?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Изтриване на този запис?"
 
@@ -1660,7 +1660,7 @@ msgstr "Нормално"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Хранителна ефективност"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1075
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Хранителна ефективност:"
 
@@ -1668,7 +1668,7 @@ msgstr "Хранителна ефективност:"
 msgid "DIGESTION_SPEED"
 msgstr "Хранителна скорост"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1068
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Хранителна скорост:"
 
@@ -1720,11 +1720,11 @@ msgstr ""
 "Има кълба, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Несвързани органели"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Има органели, които не са свързани с останалите.\n"
@@ -1976,23 +1976,23 @@ msgstr "Активиране на редактора"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Светлинни ефекти"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:408
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2389
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
@@ -2132,7 +2132,7 @@ msgstr "Експортиране на данните за всички свет�
 msgid "EXPORT_SUCCESS"
 msgstr "Експортирането е успешно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:766
 msgid "EXTERNAL"
 msgstr "Външна"
 
@@ -2178,9 +2178,24 @@ msgstr "Допълнителни опции"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Отваряне на страницата ни във „Facebook“"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Неуспешна"
+
+#: ../src/saving/SaveManagerGUI.tscn:209
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Моята невероятна модификация"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Грешка: Неуспешно запазване на промените в конфигурационния файл."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr "Надграждането на записа е неуспешно поради следната грешка:"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2296,11 +2311,11 @@ msgstr "Завъртане:"
 msgid "FLOATING_HAZARD"
 msgstr "Опасен обект"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:863
 msgid "FLUID"
 msgstr "Мека"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:843
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Свойства"
 
@@ -2319,7 +2334,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Хранителна верига"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща енергийна стойност {3} с обща стойност на усвояване {4}"
 
@@ -2432,7 +2447,7 @@ msgstr "Общи"
 msgid "GENERATIONS"
 msgstr "Поколение"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1093
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
@@ -2602,7 +2617,7 @@ msgstr "Хоризонтална:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "Хоризонтална ос: {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1023
 msgid "HP_COLON"
 msgstr "ТЗ:"
 
@@ -2826,7 +2841,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr "Обръщане"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Това са следващите етапи на играта.\n"
@@ -3063,7 +3078,7 @@ msgstr "Този превод е в процес на разработка и е
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Този превод е в начален етап на разработка и е завършен на {0} %!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1332
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последният органел не може да бъде премахнат"
 
@@ -3269,16 +3284,16 @@ msgstr "Хидротермални комини"
 msgid "LIGHT"
 msgstr "Светлина"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:537
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "Средно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:474
 #, fuzzy
 msgid "LIGHT_LEVEL_CURRENT"
 msgstr "Нощ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:495
 msgid "LIGHT_LEVEL_DAY"
 msgstr "Ден"
 
@@ -3286,7 +3301,7 @@ msgstr "Ден"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} по пладне"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:516
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Нощ"
 
@@ -3346,7 +3361,7 @@ msgstr "Липаза"
 msgid "LIPASE_DESCRIPTION"
 msgstr "Позволява разграждането на повечето видове мембрани. Произвеждането на този ензим е възможно и без помощта на лизозомата, но добавянето му подобрява хранителната ефективност на клетката."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Зареждане"
 
@@ -3354,12 +3369,12 @@ msgstr "Зареждане"
 msgid "LOADING"
 msgstr "Зареждане"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Зареждане..."
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:92
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:89
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Зареждане на ранния многоклетъчен редактор"
 
@@ -3372,7 +3387,7 @@ msgstr "Зареждане на играта"
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:108
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:105
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Зареждане на многоклетъчния редактор"
 
@@ -3394,29 +3409,29 @@ msgstr "Зареждане"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Зареждане на запазените игри"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Избраният запис е създаден в следващите етапи на играта и е несъвместим с тази версия на „Thrive“.\n"
 "Надграждането не е възможно.\n"
 "Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, записите от следващите етапи на играта не могат да бъдат надградени."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Зареждане на несъвместим запис?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Избраният запис е несъвместим с тази версия на „Thrive“.\n"
 "Надграждането не е възможно.\n"
 "Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Зареждане на невалиден запис?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Запазената информация не може да бъде заредена.\n"
@@ -3534,7 +3549,7 @@ msgstr "Клавиш „Media Stop“"
 msgid "MEGA_YEARS"
 msgstr "млн. г."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:667
 msgid "MEMBRANE"
 msgstr "Мембрана"
 
@@ -3542,7 +3557,7 @@ msgstr "Мембрана"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Твърдост на мембраната"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:825
 msgid "MEMBRANE_TYPES"
 msgstr "Видове"
 
@@ -3595,7 +3610,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} МиБ"
 
@@ -3921,7 +3936,7 @@ msgstr "Това е основният източник на енергия на
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:198
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:197
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Смесена..."
 
@@ -4297,11 +4312,11 @@ msgstr "Биом: {0}"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Производството на АТФ е недостатъчно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Вашият микроб не произвежда достатъчно АТФ за да оцелее!\n"
@@ -4311,7 +4326,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Създаване"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Този запис е от по-нова версия на „Thrive“ и е несъвместим.\n"
@@ -4353,7 +4368,7 @@ msgstr "Наименование:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4456,7 +4471,7 @@ msgid "NO_AI"
 msgstr "Самота"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2428
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
@@ -4477,11 +4492,11 @@ msgstr "Няма включени модификации"
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Не се осъществяват клетъчни процеси"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Няма създадени записи"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:197
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Папката с записи не съществува"
 
@@ -4498,7 +4513,7 @@ msgstr "Няма"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1330
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Ядрото е необратима еволюция и не може да бъде премахнато,\n"
@@ -4520,8 +4535,8 @@ msgstr "Клавиш „Num Lock“"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2286
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2279
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4554,7 +4569,7 @@ msgstr "Отваряне на официалния сайт на „Revolutionar
 msgid "OK"
 msgstr "ОК"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Този запис е от стара версия на „Thrive“ и е несъвместим.\n"
@@ -4607,7 +4622,7 @@ msgstr "Отваряне на контекстното меню"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Отваряне на ръководството"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Отваряне на папката с записи"
 
@@ -4651,7 +4666,7 @@ msgstr "Настройки"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Отваряне на настройките"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 msgid "ORGANELLES"
 msgstr "Органели"
 
@@ -4665,7 +4680,7 @@ msgstr "Аксон"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Това са фини косъмчета върху клетъчната мембрана. Една клетка може да притежава от десетки до стотици пили, които имат различно предназначение, включително роля в хищничеството. Патогенните микроорганизми използват своите пили за вирулентност или за прикрепване и свързване към тъканите на гостоприемника си, или за нахлуване през клетъчната мембрана, за да достигнат до цитоплазмата. Съществуват различни видове пили, които не са еволюционно свързани помежду си и са резултат от конвергентна еволюция. Един организъм може да притежава няколка вида пили и постоянно да ги променя или заменя."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:784
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Късно многоклетъчно"
@@ -4693,11 +4708,11 @@ msgstr "Това са фини косъмчета върху клетъчнат�
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Пробожда другите клетки и предпазва от техните токсини."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:977
 msgid "ORGANISM_STATISTICS"
 msgstr "Характеристика"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:391
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr "Осморегулация"
 
@@ -5037,7 +5052,7 @@ msgstr "измиране"
 msgid "PLAYER_DUPLICATE"
 msgstr "Удвояване"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "измиране на създанията"
 
@@ -5094,7 +5109,7 @@ msgstr "популация:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2277
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2270
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5102,7 +5117,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Отваряне на подробна информация за прогнозата"
 
@@ -5159,7 +5174,7 @@ msgstr "Защитаване на новите преселени популац
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Защитаване на новите създания от максималния брой на обектите"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:757
 msgid "PROTEINS"
 msgstr "Протеини"
 
@@ -5237,7 +5252,7 @@ msgstr "Възстановяване"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Възстановяване на последното действие"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Опресняване"
 
@@ -5404,7 +5419,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Десен бутон"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:876
 msgid "RIGID"
 msgstr "Твърда"
 
@@ -5420,7 +5435,7 @@ msgstr "Завъртане наляво"
 msgid "ROTATE_RIGHT"
 msgstr "Завъртане надясно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1056
 msgid "ROTATION_COLON"
 msgstr "Завъртане:"
 
@@ -5507,7 +5522,7 @@ msgstr "Запазване на промените"
 msgid "SAVE_AUTOSAVE"
 msgstr "Автоматичен запис"
 
-#: ../src/saving/SaveList.cs:245
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Изтриването на записа не може да бъде отменено, сигурни ли сте, че искате да изтриете „{0}“?"
 
@@ -5555,7 +5570,7 @@ msgstr "Невалиден запис"
 msgid "SAVE_IS_INVALID"
 msgstr "Записът е невалиден"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Този запис е от стара версия на „Thrive“, но може да бъде надграден.\n"
@@ -5575,15 +5590,15 @@ msgstr "Ръчен запис"
 msgid "SAVE_QUICKSAVE"
 msgstr "Бърз запис"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:142
 msgid "SAVE_SPACE_USED"
 msgstr "Използвано място:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Надграждането на записа е неуспешно"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
 
@@ -5595,15 +5610,15 @@ msgstr "Запазването на информацията е неуспешн
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Запазване..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Запазването е неуспешно! Възникна грешка"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Запазването в момента не е възможно поради:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Запазването е успешно"
 
@@ -5653,7 +5668,7 @@ msgstr "за да увеличи скоростта"
 msgid "SCROLLLOCK"
 msgstr "Клавиш „Scroll Lock“"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:741
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Търсене..."
 
@@ -5682,7 +5697,7 @@ msgstr "Освобождаване на слуз"
 msgid "SEED_LABEL"
 msgstr "Идентификатор: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:162
 msgid "SELECTED_COLON"
 msgstr "Избрани:"
 
@@ -5690,15 +5705,15 @@ msgstr "Избрани:"
 msgid "SELECTED_MOD"
 msgstr "Избрана:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Избраният запис е несъвместим"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Избраният запис е от следващите етапи на играта и е несъвместим"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Избраният запис може да бъде надграден"
 
@@ -5861,7 +5876,7 @@ msgstr "Това е мембрана с здрава стена от силиц�
 msgid "SIXTEEN_TIMES"
 msgstr "16 пъти"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1030
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
@@ -6037,7 +6052,7 @@ msgstr "{0}: {1} индивида"
 msgid "SPEED"
 msgstr "Скорост"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "SPEED_COLON"
 msgstr "Скорост:"
 
@@ -6178,7 +6193,7 @@ msgstr "Спиране"
 msgid "STORAGE"
 msgstr "Съхранение"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "STORAGE_COLON"
 msgstr "Съхранение:"
 
@@ -6195,13 +6210,13 @@ msgstr "Микробен етап"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Стриктно съперничество (разликите между стойностите на усвояване са преувеличени)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:748
 msgid "STRUCTURAL"
 msgstr "Строеж"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
 msgstr "Структура"
 
@@ -6267,7 +6282,7 @@ msgstr "Извършване на самоубийство"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6654,11 +6669,11 @@ msgstr "Инструменти"
 msgid "TOOL_HAND_AXE"
 msgstr "Ръчна брадва"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Обща популация:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "TOTAL_SAVES"
 msgstr "Брой записи:"
 
@@ -6707,7 +6722,7 @@ msgstr "Клавиш „Treble Up“"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Трябва да направите няколко вкаменелости!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:199
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Трябва да направите поне един запис!"
 
@@ -7259,7 +7274,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
 msgid "WORST_PATCH_COLON"
 msgstr "Изчезва:"
 

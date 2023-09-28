@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -54,6 +55,9 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadIncompatiblePrototypeDialogPath = null!;
 
+    [Export]
+    public NodePath SaveDeletionFailedErrorPath = null!;
+
 #pragma warning disable CA2213
     private Control loadingItem = null!;
     private Control noSavesItem = null!;
@@ -66,6 +70,7 @@ public class SaveList : ScrollContainer
     private CustomConfirmationDialog upgradeSaveDialog = null!;
     private CustomConfirmationDialog loadIncompatiblePrototypeDialog = null!;
     private ErrorDialog upgradeFailedDialog = null!;
+    private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
@@ -109,6 +114,7 @@ public class SaveList : ScrollContainer
         upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
         upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
         loadIncompatiblePrototypeDialog = GetNode<CustomConfirmationDialog>(LoadIncompatiblePrototypeDialogPath);
+        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -224,6 +230,7 @@ public class SaveList : ScrollContainer
                 UpgradeSaveDialogPath.Dispose();
                 UpgradeFailedDialogPath.Dispose();
                 LoadIncompatiblePrototypeDialogPath.Dispose();
+                SaveDeletionFailedErrorPath.Dispose();
             }
         }
 
@@ -257,7 +264,17 @@ public class SaveList : ScrollContainer
         }
 
         GD.Print("Deleting save: ", saveToBeDeleted);
-        SaveHelper.DeleteSave(saveToBeDeleted);
+
+        try
+        {
+            SaveHelper.DeleteSave(saveToBeDeleted);
+        }
+        catch (IOException e)
+        {
+            errorSaveDeletionFailed.PopupCenteredShrink();
+            GD.Print("Failed to delete save: ", e.Message);
+        }
+
         saveToBeDeleted = null;
 
         Refresh();

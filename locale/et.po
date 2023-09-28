@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-25 18:33+0100\n"
+"POT-Creation-Date: 2023-09-28 13:34+0300\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -64,9 +64,9 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
 #: ../src/general/base_stage/EditorBase.cs:681
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -308,16 +308,16 @@ msgstr "Atmosfääri gaasid"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1138
 msgid "ATP_BALANCE"
 msgstr "ATP Tasakaal"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:337
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:342
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:334
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION"
 msgstr "ATP tootmine"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:343
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP TOOTMINE LIIGA VÄHE!"
 
@@ -342,7 +342,7 @@ msgstr "august"
 msgid "AUTO"
 msgstr "Automaatne"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
@@ -351,12 +351,12 @@ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. L
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo ennustus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "See paneel näitab redigeeritud liikide eeldatavat auto-evo populatsiooni arvu.\n"
@@ -379,8 +379,8 @@ msgstr "auto-evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "käitamise olek:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo käivitamine ebaõnnestus"
@@ -390,8 +390,8 @@ msgstr "Auto-evo käivitamine ebaõnnestus"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo tulemused:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:232
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:199
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "käitamise olek:"
@@ -442,7 +442,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
 msgstr "tagasi"
 
@@ -465,7 +465,7 @@ msgstr "Tagasilükkeklahv"
 msgid "BASE_MOBILITY"
 msgstr "Liikuvus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:397
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
 msgid "BASE_MOVEMENT"
 msgstr "Aluse liikumine"
 
@@ -510,7 +510,7 @@ msgstr "Alustage õitsemist"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
 msgstr "Käitumine"
 
@@ -560,7 +560,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
 msgid "BEST_PATCH_COLON"
 msgstr "Parim plaaster:"
 
@@ -691,7 +691,7 @@ msgstr "Tühista"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "TÜHISTAGE TEGEVUS"
 
@@ -802,7 +802,7 @@ msgstr "Tselluloos"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
@@ -947,7 +947,7 @@ msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [t
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/saving/SaveManagerGUI.tscn:84
+#: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vanade salvestuste puhastamine"
 
@@ -956,7 +956,7 @@ msgstr "Vanade salvestuste puhastamine"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:297
@@ -984,7 +984,7 @@ msgstr "Rannikuäärne"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:909
 msgid "COLOUR"
 msgstr "Värv"
 
@@ -1514,7 +1514,7 @@ msgstr "Vaikimisi väljundseade"
 msgid "DELETE"
 msgstr "Kustuta"
 
-#: ../src/saving/SaveManagerGUI.cs:257
+#: ../src/saving/SaveManagerGUI.cs:264
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
@@ -1527,7 +1527,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
-#: ../src/saving/SaveManagerGUI.tscn:195
+#: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Kas kustutada vanad salvestused?"
 
@@ -1539,19 +1539,19 @@ msgstr "Kustuta Organelli"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
-#: ../src/saving/SaveManagerGUI.tscn:76
+#: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
 msgstr "Kustuta valitud"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:183
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Kas kustutada valitud salvestus(ed)?"
 
-#: ../src/saving/SaveManagerGUI.cs:247
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Valitud salvestus(t)e kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite {0} salvestus(t) jäädavalt kustutada?"
 
-#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Kas kustutada see salvestus?"
 
@@ -1674,7 +1674,7 @@ msgstr "Keskmine"
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1075
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Kirjeldus on liiga pikk"
@@ -1684,7 +1684,7 @@ msgstr "Kirjeldus on liiga pikk"
 msgid "DIGESTION_SPEED"
 msgstr "Ressursi neeldumiskiirus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1068
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Kiirus:"
@@ -1739,11 +1739,11 @@ msgstr ""
 "Seal on paigutatud rakud, mis ei ole ülejäänud osadega ühendatud.\n"
 "Jätkamiseks ühendage kõik paigutatud lahtrid üksteisega."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Katkestatud organellid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Seal on paigutatud organellid, mis ei ole ülejäänud osaga ühendatud.\n"
@@ -2005,23 +2005,23 @@ msgstr "Luba redaktor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Lubage GUI valgusefektid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:408
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:371
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2389
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
 msgid "ENERGY_SOURCES"
 msgstr "Energiaallikad:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Kogutud energia on {0} individuaalse kuluga {1}, mille tulemuseks on korrigeerimata elanikkond {2}"
 
@@ -2172,7 +2172,7 @@ msgstr "Möödunud aeg: {0:#,#} aastat"
 msgid "EXPORT_SUCCESS"
 msgstr "{0} rööv"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:766
 msgid "EXTERNAL"
 msgstr "Väline"
 
@@ -2220,9 +2220,26 @@ msgstr "Lisavalikud"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Peata mäng"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Ebaõnnestunud"
+
+#: ../src/saving/SaveManagerGUI.tscn:209
+#, fuzzy
+msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
+msgstr "Minu suurepärane mod"
+
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
+#, fuzzy
+msgid "FAILED_SAVE_DELETION"
+msgstr "Viga: uute sätete salvestamine konfiguratsioonifaili nurjus."
+
+#: ../src/saving/SaveList.tscn:139
+#, fuzzy
+msgid "FAILED_SAVE_DELETION_DESCRIPTION"
+msgstr ""
+"Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
+"{0}"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2343,11 +2360,11 @@ msgstr "elanikkond:"
 msgid "FLOATING_HAZARD"
 msgstr "Ujuv oht"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:863
 msgid "FLUID"
 msgstr "Vedelik"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:843
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Vedelus / Jäikus"
 
@@ -2366,7 +2383,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Toiduahel"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (fitness: {2}) kogu saadaolev energia: {3} (kogu fitness: {4})"
 
@@ -2505,7 +2522,7 @@ msgstr "Põlvkond:"
 msgid "GENERATIONS"
 msgstr "Põlvkond:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1093
 msgid "GENERATION_COLON"
 msgstr "Põlvkond:"
 
@@ -2680,7 +2697,7 @@ msgstr "Versioon:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1023
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -2909,7 +2926,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:539
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Mängite hilisema etapi prototüüpe, mis on mänguga kaasas.\n"
@@ -3146,7 +3163,7 @@ msgstr "See keel on veel pooleli ({0}% valmis)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1332
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3364,16 +3381,16 @@ msgstr ""
 msgid "LIGHT"
 msgstr "Valgus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:537
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:474
 #, fuzzy
 msgid "LIGHT_LEVEL_CURRENT"
 msgstr "Ratas paremale"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:495
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -3381,7 +3398,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:516
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Ratas paremale"
@@ -3448,7 +3465,7 @@ msgstr "Lipaas"
 msgid "LIPASE_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
 msgstr "Laadige"
 
@@ -3456,12 +3473,12 @@ msgstr "Laadige"
 msgid "LOADING"
 msgstr "Laadimine"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:60
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laadimine..."
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:92
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:89
 #, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
@@ -3475,7 +3492,7 @@ msgstr "Mängu laadimine"
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:108
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:105
 #, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
@@ -3499,7 +3516,7 @@ msgstr "Laadi mäng"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/saving/SaveList.tscn:129
+#: ../src/saving/SaveList.tscn:130
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
@@ -3507,22 +3524,22 @@ msgstr ""
 "Ja selle salvestamise uuendamiseks pole salvestamise uuendajat.\n"
 "Kuna Thrive on alles arendusjärgus, ei ole salvestamise ühilduvus kõrge prioriteediga, mistõttu pole kõigi versioonide jaoks salvestamise uuendajaid."
 
-#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Kas laadida ühildumatu salvestus?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Laadimiseks valitud salvestus on teadaolevalt Thrive'i selle versiooniga ühildumatu.\n"
 "Ja selle salvestamise uuendamiseks pole salvestamise uuendajat.\n"
 "Kuna Thrive on alles arendusjärgus, ei ole salvestamise ühilduvus kõrge prioriteediga, mistõttu pole kõigi versioonide jaoks salvestamise uuendajaid."
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Kas laadida kehtetu salvestamine?"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Salvestamisteavet ei saanud sellest failist laadida.\n"
@@ -3644,7 +3661,7 @@ msgstr "Meediapeatus"
 msgid "MEGA_YEARS"
 msgstr "mega aastat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:667
 msgid "MEMBRANE"
 msgstr "välismembraan"
 
@@ -3652,7 +3669,7 @@ msgstr "välismembraan"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membraani jäikus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:825
 msgid "MEMBRANE_TYPES"
 msgstr "Membraani liigid"
 
@@ -3690,7 +3707,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:133
+#: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr ""
 
@@ -4037,7 +4054,7 @@ msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraa
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:198
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:197
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4447,11 +4464,11 @@ msgstr "biome: {0}"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatiivne ATP Tasakaal"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Teie mikroob ei tooda piisavalt ATP-d, et see ellu jääda!\n"
@@ -4461,7 +4478,7 @@ msgstr ""
 msgid "NEW"
 msgstr "Uus"
 
-#: ../src/saving/SaveList.tscn:78
+#: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "See salvestamine pärineb Thrive'i uuemast versioonist ja tõenäoliselt ei ühildu.\n"
@@ -4504,7 +4521,7 @@ msgstr "Uus nimi:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4608,7 +4625,7 @@ msgid "NO_AI"
 msgstr "AI puudub"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2428
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "NO_DATA_TO_SHOW"
 msgstr "Kuvatavaid andmeid pole"
 
@@ -4631,11 +4648,11 @@ msgstr "töövõimetu"
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Protsesse pole"
 
-#: ../src/saving/SaveList.tscn:51
+#: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Salvestusi ei leitud"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:197
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Salvestatud kataloogi ei leitud"
 
@@ -4652,7 +4669,7 @@ msgstr "Modifikatsiooni pole valitud"
 msgid "NUCLEUS"
 msgstr "Tuum"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1330
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4672,8 +4689,8 @@ msgstr "Numeratsioonilukk"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2286
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2279
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4708,7 +4725,7 @@ msgstr "vabasurm"
 msgid "OK"
 msgstr "Okei"
 
-#: ../src/saving/SaveList.tscn:86
+#: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "See salvestamine pärineb Thrive'i vanast versioonist ja võib olla ühildumatu.\n"
@@ -4761,7 +4778,7 @@ msgstr "Ava Organelli menüü"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Avage abiekraan"
 
-#: ../src/saving/SaveManagerGUI.tscn:95
+#: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Avage Salvesta kataloog"
 
@@ -4807,7 +4824,7 @@ msgstr "Valikud"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Abi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 msgid "ORGANELLES"
 msgstr "Organellid"
 
@@ -4822,7 +4839,7 @@ msgstr "Organellid"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenutab õhukesi karvu. Mikroorganismi pinnal võib esineda kümneid kuni sadu pilisid ja neil on üks mitmest eesmärgist, sealhulgas röövloomade rollist. Patogeensed mikroorganismid kasutavad pilisid virulentsuse tagamiseks kas peremeeskudede kinnitumiseks ja nendega seondumiseks või välismembraanist mööda tungimiseks, et pääseda tsütoplasmasse. Paljud sarnased pilid on olemas, kuid ei ole evolutsiooniliselt seotud ja on tekkinud konvergentse evolutsiooni tulemusena. Ühel organismil võib olla võime ekspresseerida mitut tüüpi pilisid ja neid, mis on pinnal, muudetakse ja asendatakse pidevalt."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:784
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
@@ -4851,11 +4868,11 @@ msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenuta
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Pussita sellega teisi rakke."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:977
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:391
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr "osmoregulatsioon"
 
@@ -5200,7 +5217,7 @@ msgstr "mängija suri"
 msgid "PLAYER_DUPLICATE"
 msgstr "Dubleeri pleier"
 
-#: ../src/saving/SaveHelper.cs:502
+#: ../src/saving/SaveHelper.cs:520
 msgid "PLAYER_EXTINCT"
 msgstr "Mängija on välja surnud"
 
@@ -5257,7 +5274,7 @@ msgstr "elanikkond:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populatsioon laikudena:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2277
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2270
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5265,7 +5282,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} rööv"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Vaadake ennustuse taga olevat üksikasjalikku teavet"
 
@@ -5322,7 +5339,7 @@ msgstr ""
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:757
 msgid "PROTEINS"
 msgstr "Valgud"
 
@@ -5405,7 +5422,7 @@ msgstr "Tee uuesti"
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Tehke viimane toiming uuesti"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
 msgstr "Värskenda"
 
@@ -5583,7 +5600,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Parem hiir"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:876
 msgid "RIGID"
 msgstr "Jäik"
 
@@ -5599,7 +5616,7 @@ msgstr "Pööra vasakule"
 msgid "ROTATE_RIGHT"
 msgstr "Pöörake paremale"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1056
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "elanikkond:"
@@ -5686,7 +5703,7 @@ msgstr "Salvestage ja jätkake"
 msgid "SAVE_AUTOSAVE"
 msgstr "Automaatne salvestamine"
 
-#: ../src/saving/SaveList.cs:245
+#: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite faili {0} jäädavalt kustutada?"
 
@@ -5735,7 +5752,7 @@ msgstr "Kehtetu"
 msgid "SAVE_IS_INVALID"
 msgstr "Salvestamine on kehtetu"
 
-#: ../src/saving/SaveList.tscn:113
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Valitud salvestus pärineb Thrive'i vanemast versioonist, kuid seda saab täiendada.\n"
@@ -5755,15 +5772,15 @@ msgstr "Käsiraamat"
 msgid "SAVE_QUICKSAVE"
 msgstr "Kiire salvestamine"
 
-#: ../src/saving/SaveManagerGUI.tscn:147
+#: ../src/saving/SaveManagerGUI.tscn:142
 msgid "SAVE_SPACE_USED"
 msgstr "Kasutatud ruum:"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Uuenduse salvestamine ebaõnnestus"
 
-#: ../src/saving/SaveList.tscn:120
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
@@ -5777,15 +5794,15 @@ msgstr "Teabe salvestamine ebaõnnestus erandi tõttu: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Salvestamine..."
 
-#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
+#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Salvestamine ebaõnnestus! Juhtus erand"
 
-#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Salvestamine ei ole praegu võimalik järgmistel põhjustel:"
 
-#: ../src/saving/SaveHelper.cs:533
+#: ../src/saving/SaveHelper.cs:551
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvestamine õnnestus"
 
@@ -5835,7 +5852,7 @@ msgstr ""
 msgid "SCROLLLOCK"
 msgstr "Kerimislukk"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:741
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Otsing..."
 
@@ -5865,7 +5882,7 @@ msgstr ""
 msgid "SEED_LABEL"
 msgstr "biome: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:167
+#: ../src/saving/SaveManagerGUI.tscn:162
 msgid "SELECTED_COLON"
 msgstr "Valitud:"
 
@@ -5873,16 +5890,16 @@ msgstr "Valitud:"
 msgid "SELECTED_MOD"
 msgstr "Valitud mod:"
 
-#: ../src/saving/SaveList.tscn:101
+#: ../src/saving/SaveList.tscn:102
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Valitud salvestamine ei ühildu"
 
-#: ../src/saving/SaveList.tscn:127
+#: ../src/saving/SaveList.tscn:128
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Valitud salvestamine ei ühildu"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:113
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Valitud salvestus on täiendatav"
 
@@ -6050,7 +6067,7 @@ msgstr "Sellel membraanil on tugev ränidioksiidi sein. See talub hästi üldist
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1030
 msgid "SIZE_COLON"
 msgstr "Suurus:"
 
@@ -6237,7 +6254,7 @@ msgstr "{0} elanikkonnaga: {1}"
 msgid "SPEED"
 msgstr "Kiirus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "SPEED_COLON"
 msgstr "Kiirus:"
 
@@ -6383,7 +6400,7 @@ msgstr "Peatus"
 msgid "STORAGE"
 msgstr "Varud"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Varud"
@@ -6408,13 +6425,13 @@ msgstr ""
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:748
 msgid "STRUCTURAL"
 msgstr "Struktuurne"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
 msgstr "Struktuur"
 
@@ -6480,7 +6497,7 @@ msgstr "vabasurm"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6867,11 +6884,11 @@ msgstr "Tööriistad"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Rahvaarv kokku:"
 
-#: ../src/saving/SaveManagerGUI.tscn:127
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "TOTAL_SAVES"
 msgstr "Kokkuhoid:"
 
@@ -6922,7 +6939,7 @@ msgstr "Treble üles"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Proovige teha ekraanipilte!"
 
-#: ../src/saving/SaveManagerGUI.tscn:204
+#: ../src/saving/SaveManagerGUI.tscn:199
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Proovige salvestada!"
 
@@ -7480,7 +7497,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Aluse liikumine"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
 msgid "WORST_PATCH_COLON"
 msgstr "Halvim plaaster:"
 
