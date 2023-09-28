@@ -57,9 +57,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     [JsonIgnore]
     public OrganelleLayout<OrganelleTemplate> Organelles => CellType.Organelles;
 
-    public void UpdatePositionalProperties()
+    public void RecalculatePositionAndStatistics()
     {
-        CellType.UpdatePositionalProperties();
+        CellType.RecalculatePositionAndStatistics();
     }
 
     public void UpdateNameIfValid(string newName)

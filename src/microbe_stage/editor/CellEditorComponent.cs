@@ -813,7 +813,7 @@ public partial class CellEditorComponent :
         }
 
         if (shouldUpdatePosition)
-            editedProperties.UpdatePositionalProperties();
+            editedProperties.RecalculatePositionAndStatistics();
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;

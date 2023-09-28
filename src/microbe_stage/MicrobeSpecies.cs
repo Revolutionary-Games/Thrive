@@ -95,6 +95,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public override void RepositionToOrigin()
     {
         Organelles.RepositionToOrigin();
+        CalculateRotationSpeed();
     }
 
     public void CalculateRotationSpeed()
@@ -102,10 +103,9 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
     }
 
-    public void UpdatePositionalProperties()
+    public void RecalculatePositionAndStatistics()
     {
         RepositionToOrigin();
-        CalculateRotationSpeed();
     }
 
     public override void UpdateInitialCompounds()
