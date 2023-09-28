@@ -23,6 +23,8 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     public override string PageName => "CurrentWorld";
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE");
 
+    public override string? ParentPageName => null;
+
     public override void _Ready()
     {
         base._Ready();

@@ -65,7 +65,7 @@ public partial class Microbe
     /// <summary>
     ///   Adds the next cell missing from this multicellular species' body plan to this microbe's colony
     /// </summary>
-    public void AddMulticellularGrowthCell()
+    public void AddMulticellularGrowthCell(bool keepCompounds = false)
     {
         if (Colony == null)
         {
@@ -77,7 +77,7 @@ public partial class Microbe
 
         var template = CastedMulticellularSpecies.Cells[nextBodyPlanCellToGrowIndex];
 
-        var cell = CreateMulticellularColonyMemberCell(template.CellType);
+        var cell = CreateMulticellularColonyMemberCell(template.CellType, keepCompounds);
         cell.MulticellularBodyPlanPartIndex = nextBodyPlanCellToGrowIndex;
 
         // We don't reset our state here in case we want to be in engulf mode
@@ -127,7 +127,7 @@ public partial class Microbe
     {
         while (!IsFullyGrownMulticellular)
         {
-            AddMulticellularGrowthCell();
+            AddMulticellularGrowthCell(true);
         }
     }
 
@@ -291,7 +291,7 @@ public partial class Microbe
         }
     }
 
-    private Microbe CreateMulticellularColonyMemberCell(CellType cellType)
+    private Microbe CreateMulticellularColonyMemberCell(CellType cellType, bool keepCompounds)
     {
         var newCell = SpawnHelpers.SpawnMicrobe(Species, Translation,
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame, cellType);
@@ -299,8 +299,11 @@ public partial class Microbe
         // Make it despawn like normal (if our colony is accidentally somehow disbanded)
         spawnSystem!.AddEntityToTrack(newCell);
 
-        // Remove the compounds from the created cell
-        newCell.Compounds.ClearCompounds();
+        if (!keepCompounds)
+        {
+            // Remove the compounds from the created cell
+            newCell.Compounds.ClearCompounds();
+        }
 
         // TODO: different sound effect?
         PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");

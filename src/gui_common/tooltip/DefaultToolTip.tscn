@@ -21,9 +21,6 @@ margin_bottom = 14.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 DescriptionLabelPath = NodePath("../DefaultTooltip/MarginContainer/VBoxContainer/Description")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

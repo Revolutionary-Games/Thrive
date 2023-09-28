@@ -20,9 +20,16 @@ public class CellStatsIndicator : HBoxContainer
     [Export]
     public Texture? InvalidIcon;
 
+    [Export]
+    public Texture? Icon;
+
+    [Export]
+    public NodePath? ValuePath = null;
+
     private Label? descriptionLabel;
     private Label? valueLabel;
     private TextureRect? changeIndicator;
+    private TextureRect? iconRect;
 
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
@@ -91,13 +98,16 @@ public class CellStatsIndicator : HBoxContainer
     public override void _Ready()
     {
         descriptionLabel = GetNode<Label>("Description");
-        valueLabel = GetNode<Label>("Value");
+        valueLabel = GetNode<Label>(ValuePath);
         changeIndicator = GetNode<TextureRect>("Indicator");
+        iconRect = GetNode<TextureRect>("Icon");
 
         InvalidIcon ??= GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
 
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+
+        iconRect.Texture = Icon;
 
         UpdateChangeIndicator();
         UpdateDescription();
@@ -117,6 +127,16 @@ public class CellStatsIndicator : HBoxContainer
     {
         initialValue = null;
         UpdateValue();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ValuePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateChangeIndicator()
