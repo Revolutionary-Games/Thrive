@@ -395,8 +395,7 @@ public partial class CellBodyPlanEditorComponent :
         {
             // During multicellular editing, we don't reposition cells to the origin
             // because it messes up the action history, so do it here once editing is finished.
-            // We call RecalculatePositionAndStatistics to also update anything dependant on the cell's position
-            cellType.RecalculatePositionAndStatistics();
+            cellType.RepositionToOrigin();
         }
     }
 

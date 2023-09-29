@@ -23,7 +23,7 @@ public interface ICellProperties
     /// <summary>
     ///   Repositions the cell to the origin and recalculates any properties dependant on its position.
     /// </summary>
-    public void RecalculatePositionAndStatistics();
+    public void RepositionToOrigin();
 
     public void UpdateNameIfValid(string newName);
 }

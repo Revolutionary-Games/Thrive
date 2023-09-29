@@ -65,10 +65,10 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     [JsonIgnore]
     public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
 
-    public void RecalculatePositionAndStatistics()
+    public void RepositionToOrigin()
     {
         Organelles.RepositionToOrigin();
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        CalculateRotationSpeed();
     }
 
     public void UpdateNameIfValid(string newName)
@@ -144,11 +144,6 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
         }
 
         return hash;
-    }
-
-    private void RepositionToOrigin()
-    {
-        Organelles.RepositionToOrigin();
     }
 
     private void CalculateRotationSpeed()

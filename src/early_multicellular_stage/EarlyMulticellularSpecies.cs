@@ -43,7 +43,7 @@ public class EarlyMulticellularSpecies : Species
         // Make certain these are all up to date
         foreach (var cellType in CellTypes)
         {
-            cellType.RecalculatePositionAndStatistics();
+            cellType.RepositionToOrigin();
         }
     }
 
