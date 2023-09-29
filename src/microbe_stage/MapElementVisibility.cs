@@ -6,15 +6,15 @@ public enum MapElementVisibility
     /// <summary>
     ///   Invisible to the player
     /// </summary>
-    Undiscovered,
+    Undiscovered = 0,
 
     /// <summary>
     ///   Visible to the player but details hidden
     /// </summary>
-    Unexplored,
+    Unexplored = 1,
 
     /// <summary>
     ///   Visible to the player and details shown
     /// </summary>
-    Explored,
+    Explored = 2,
 }

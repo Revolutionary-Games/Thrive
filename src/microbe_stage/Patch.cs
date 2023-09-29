@@ -47,17 +47,19 @@ public class Patch
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
-        : this(name, id, biomeTemplate, currentSnapshot)
+        : this(name, id, biomeTemplate, MapElementVisibility.Explored, currentSnapshot)
     {
         BiomeType = biomeType;
     }
 
     [JsonConstructor]
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, MapElementVisibility visibilityState, PatchSnapshot currentSnapshot)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
+        VisibilityState = visibilityState;
+        GD.Print(VisibilityState);
         this.currentSnapshot = currentSnapshot;
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
@@ -74,6 +76,9 @@ public class Patch
 
     [JsonProperty]
     public LocalizedString Name { get; private set; }
+
+    [JsonProperty]
+    public MapElementVisibility VisibilityState { get; private set; }
 
     /// <summary>
     ///   The region this patch belongs to. This has nullability suppression here to solve the circular dependency with
@@ -114,9 +119,6 @@ public class Patch
             }
         }
     }
-
-    [JsonProperty]
-    public MapElementVisibility VisibilityState { get; private set; }
 
     [JsonIgnore]
     public bool Discovered => VisibilityState != MapElementVisibility.Undiscovered;

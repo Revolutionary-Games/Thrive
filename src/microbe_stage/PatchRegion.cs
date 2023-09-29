@@ -21,13 +21,14 @@ public class PatchRegion
     }
 
     [JsonConstructor]
-    public PatchRegion(int id, string name, RegionType type, Vector2 screenCoordinates,
+    public PatchRegion(int id, string name, RegionType type, Vector2 screenCoordinates, MapElementVisibility visibilityState,
         float height, float width)
     {
         ID = id;
         Name = name;
         Type = type;
         ScreenCoordinates = screenCoordinates;
+        VisibilityState = visibilityState;
         Height = height;
         Width = width;
     }
@@ -39,6 +40,9 @@ public class PatchRegion
         Continent = 2,
         Predefined = 3,
     }
+
+    [JsonProperty]
+    public MapElementVisibility VisibilityState { get; set; }
 
     [JsonProperty]
     public RegionType Type { get; }
@@ -57,9 +61,6 @@ public class PatchRegion
 
     [JsonProperty]
     public float Width { get; set; }
-
-    [JsonProperty]
-    public MapElementVisibility VisibilityState { get; set; }
 
     [JsonIgnore]
     public bool Explored => VisibilityState == MapElementVisibility.Explored;
