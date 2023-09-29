@@ -51,12 +51,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private ProgressBar ingestedMatterBar = null!;
 
-    private Timer becomeMulticellularTutorialTimer = null!;
-
     private CustomWindow? winBox;
 #pragma warning restore CA2213
-
-    private bool becomeMulticellularTutorialTimerStarted;
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
@@ -87,15 +83,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
         unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
-
-        becomeMulticellularTutorialTimer = new Timer
-        {
-            OneShot = true,
-            WaitTime = Constants.OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER,
-        };
-
-        becomeMulticellularTutorialTimer.Connect("timeout", this, nameof(OnBecomeMulticellularTutorialTimerTimeout));
-        AddChild(becomeMulticellularTutorialTimer);
 
         mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
         mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
@@ -501,10 +488,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             bool canBecomeMulticellular = newColonySize >= Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
             multicellularButton.Disabled = !canBecomeMulticellular;
 
-            if (canBecomeMulticellular && !becomeMulticellularTutorialTimerStarted)
+            if (stage.CurrentGame.TutorialState.Enabled && canBecomeMulticellular)
             {
-                becomeMulticellularTutorialTimer.Start();
-                becomeMulticellularTutorialTimerStarted = true;
+                stage.CurrentGame.TutorialState.SendEvent(
+                    TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
             }
         }
 
@@ -633,14 +620,5 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
-    }
-
-    private void OnBecomeMulticellularTutorialTimerTimeout()
-    {
-        if (stage!.CurrentGame!.TutorialState.Enabled)
-        {
-            stage.CurrentGame.TutorialState.SendEvent(
-                TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
-        }
     }
 }

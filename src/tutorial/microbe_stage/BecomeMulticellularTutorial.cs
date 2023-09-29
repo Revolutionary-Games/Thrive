@@ -21,10 +21,10 @@
             {
                 case TutorialEventType.MicrobeBecomeMulticellularAvailable:
                 {
-                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
+                    if (!Complete && !ProcessWhileHidden && CanTrigger)
                     {
-                        Show();
-                        return true;
+                        ProcessWhileHidden = true;
+                        Time = 0;
                     }
 
                     break;
@@ -32,6 +32,15 @@
             }
 
             return false;
+        }
+
+        protected override void OnProcess(TutorialState overallState, float delta)
+        {
+            if (Time > Constants.OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER && !HasBeenShown &&
+                !overallState.TutorialActive())
+            {
+                Show();
+            }
         }
     }
 }
