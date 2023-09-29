@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-28 13:34+0300\n"
-"PO-Revision-Date: 2023-09-22 12:00+0000\n"
+"PO-Revision-Date: 2023-09-29 06:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -2151,19 +2151,16 @@ msgid "FAILED"
 msgstr "Başarısız"
 
 #: ../src/saving/SaveManagerGUI.tscn:209
-#, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Benim Harika Modum"
+msgstr "Hata: Bir ya da daha fazla kayıt dosyası silinemedi."
 
 #: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
-#, fuzzy
 msgid "FAILED_SAVE_DELETION"
-msgstr "Hata: Yeni ayarlar yapılandırma dosyasına kaydedilemedi."
+msgstr "Hata: Kayıt silme başarısız"
 
 #: ../src/saving/SaveList.tscn:139
-#, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr "Fosil dosyası silinemedi"
+msgstr "Kayıt dosyası silinemedi."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -3390,9 +3387,8 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "Y"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
-#, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr "Gece gündüz döngüsünü etkinleştir"
+msgstr "Gece Gündüz Döngüsünü Durdur"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3424,7 +3420,7 @@ msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek i�
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Günün Saatini Manuel Olarak Ayarla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -5594,7 +5590,7 @@ msgstr "Ara..."
 
 #: ../src/thriveopedia/Thriveopedia.tscn:353
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Ara..."
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
@@ -6514,7 +6510,7 @@ msgstr "Geçen Zaman: {0:#,#} yıl"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Saat"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
