@@ -1364,10 +1364,10 @@ public partial class Microbe
         int sign = negative ? -1 : 1;
 
         organellesCapacity += MicrobeInternalCalculations
-            .GetNominalCapacityForOrganelle(organelle.Upgrades, organelle.Definition) * sign;
+            .GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades) * sign;
 
         var capacityTuple = MicrobeInternalCalculations
-            .GetAdditionalCapacityForOrganelle(organelle.Upgrades, organelle.Definition);
+            .GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
         if (capacityTuple.Compound == null)
             return;

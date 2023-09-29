@@ -36,7 +36,38 @@ public static class MicrobeInternalCalculations
         return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
-    public static float GetNominalCapacityForOrganelle(OrganelleUpgrades? upgrades, OrganelleDefinition definition)
+    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles)
+    {
+        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
+    }
+
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<OrganelleTemplate> organelles)
+    {
+        var capacities = new Dictionary<Compound, float>();
+        var nominalCap = GetTotalNominalCapacity(organelles);
+
+        foreach (var organelle in organelles)
+        {
+            var capacity = MicrobeInternalCalculations
+                .GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+            if (capacity.Compound == null)
+                continue;
+
+            if (capacities.TryGetValue(capacity.Compound, out var currentCapacity))
+            {
+                capacities[capacity.Compound] = currentCapacity + capacity.Capacity;
+            }
+            else
+            {
+                capacities.Add(capacity.Compound, capacity.Capacity + nominalCap);
+            }
+        }
+
+        return capacities;
+    }
+
+    public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
             storage.SpecializedFor != null)
@@ -51,7 +82,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static (Compound? Compound, float Capacity)
-        GetAdditionalCapacityForOrganelle(OrganelleUpgrades? upgrades, OrganelleDefinition definition)
+        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
     {
         if (definition.Components.Storage == null)
             return (null, 0);

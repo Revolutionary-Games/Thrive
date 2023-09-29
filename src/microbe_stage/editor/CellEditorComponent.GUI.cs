@@ -179,15 +179,21 @@ public partial class CellEditorComponent
     {
         storageLabel.Value = nominalStorage;
 
-        var tooltip = ToolTipManager.Instance.GetToolTip("storageDetails", "editor");
-        var tooltipLoaded = tooltip != null;
-
         if (storage.Count == 0)
         {
             storageLabel.UnRegisterFirstToolTipForControl();
-
             return;
         }
+
+        var tooltip = ToolTipManager.Instance.GetToolTip("storageDetails", "editor");
+        if (tooltip == null)
+        {
+            GD.PrintErr("Can't update storage tooltip");
+            return;
+        }
+
+        if (!storageLabel.IsToolTipRegistered(tooltip))
+            storageLabel.RegisterToolTipForControl(tooltip, true);
 
         var description = new LocalizedStringBuilder(100);
 
@@ -205,12 +211,7 @@ public partial class CellEditorComponent
             description.Append(entry.Value);
         }
 
-        storageLabel.RegisterToolTipForControl("storageDetails", "editor");
-
-        if (tooltipLoaded)
-            tooltip!.Description = description.ToString();
-        else
-            GD.PrintErr("Can't update storage tooltip");
+        tooltip.Description = description.ToString();
     }
 
     private void UpdateTotalDigestionSpeed(float speed)
