@@ -99,7 +99,7 @@ public class GameProperties
     ///     this way
     ///   </para>
     /// </remarks>
-    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
+    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings,bool freebuild = false)
     {
         var game = new GameProperties(settings);
 
