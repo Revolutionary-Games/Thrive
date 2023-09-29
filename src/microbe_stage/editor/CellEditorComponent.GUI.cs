@@ -177,7 +177,7 @@ public partial class CellEditorComponent
 
     private void UpdateStorage(float nominalStorage, Dictionary<Compound, float> storage)
     {
-        storageLabel.Value = nominalStorage;
+        storageLabel.Value = (float)Math.Round(nominalStorage, 1);
 
         if (storage.Count == 0)
         {
