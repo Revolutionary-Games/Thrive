@@ -9,226 +9,225 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public class MainMenu : NodeWithInput
 {
-	/// <summary>
-	///   Index of the current menu.
-	/// </summary>
-	[Export]
-	public uint CurrentMenuIndex;
+        /// <summary>
+        ///   Index of the current menu.
+        /// </summary>
+        [Export]
+        public uint CurrentMenuIndex;
 
-	[Export]
-	public NodePath? ThriveLogoPath;
+        [Export]
+        public NodePath? ThriveLogoPath;
 
-	[SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
-	[Export]
-	public List<Texture> MenuBackgrounds = null!;
+        [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
+        [Export]
+        public List<Texture> MenuBackgrounds = null!;
 
-	[Export(PropertyHint.File, "*.tscn")]
-	public List<string> Menu3DBackgroundScenes = null!;
+        [Export(PropertyHint.File, "*.tscn")]
+        public List<string> Menu3DBackgroundScenes = null!;
 
-	[Export]
-	public NodePath FreebuildButtonPath = null!;
+        [Export]
+        public NodePath FreebuildButtonPath = null!;
 
-	[Export]
-	public NodePath MulticellularFreebuildButtonPath = null!;
+        [Export]
+        public NodePath MulticellularFreebuildButtonPath = null!;
 
-	[Export]
-	public NodePath AutoEvoExploringButtonPath = null!;
+        [Export]
+        public NodePath AutoEvoExploringButtonPath = null!;
 
-	[Export]
-	public NodePath MicrobeBenchmarkButtonPath = null!;
+        [Export]
+        public NodePath MicrobeBenchmarkButtonPath = null!;
 
-	[Export]
-	public NodePath ExitToLauncherButtonPath = null!;
+        [Export]
+        public NodePath ExitToLauncherButtonPath = null!;
 
-	[Export]
-	public NodePath CreditsContainerPath = null!;
+        [Export]
+        public NodePath CreditsContainerPath = null!;
 
-	[Export]
-	public NodePath CreditsScrollPath = null!;
+        [Export]
+        public NodePath CreditsScrollPath = null!;
 
-	[Export]
-	public NodePath LicensesDisplayPath = null!;
+        [Export]
+        public NodePath LicensesDisplayPath = null!;
 
-	[Export]
-	public NodePath GLES2PopupPath = null!;
+        [Export]
+        public NodePath GLES2PopupPath = null!;
 
-	[Export]
-	public NodePath SteamFailedPopupPath = null!;
+        [Export]
+        public NodePath SteamFailedPopupPath = null!;
 
-	[Export]
-	public NodePath ModLoadFailuresPath = null!;
+        [Export]
+        public NodePath ModLoadFailuresPath = null!;
 
-	[Export]
-	public NodePath SafeModeWarningPath = null!;
+        [Export]
+        public NodePath SafeModeWarningPath = null!;
 
 	[Export]
 	public NodePath ModsInstalledButNotEnabledWarningPath = null!;
 
-	[Export]
-	public NodePath LowPerformanceWarningPath = null!;
+        [Export]
+        public NodePath LowPerformanceWarningPath = null!;
 
-	[Export]
-	public NodePath SocialMediaContainerPath = null!;
+        [Export]
+        public NodePath SocialMediaContainerPath = null!;
 
-	[Export]
-	public NodePath WebsiteButtonsContainerPath = null!;
+        [Export]
+        public NodePath WebsiteButtonsContainerPath = null!;
 
-	[Export]
-	public NodePath ItchButtonPath = null!;
+        [Export]
+        public NodePath ItchButtonPath = null!;
 
-	[Export]
-	public NodePath PatreonButtonPath = null!;
+        [Export]
+        public NodePath PatreonButtonPath = null!;
 
-	[Export]
-	public NodePath StoreLoggedInDisplayPath = null!;
+        [Export]
+        public NodePath StoreLoggedInDisplayPath = null!;
 
-	[Export]
-	public NodePath ModManagerPath = null!;
+        [Export]
+        public NodePath ModManagerPath = null!;
 
-	[Export]
-	public NodePath GalleryViewerPath = null!;
+        [Export]
+        public NodePath GalleryViewerPath = null!;
 
-	[Export]
-	public NodePath NewsFeedPath = null!;
+        [Export]
+        public NodePath NewsFeedPath = null!;
 
-	[Export]
-	public NodePath NewsFeedDisablerPath = null!;
+        [Export]
+        public NodePath NewsFeedDisablerPath = null!;
 
-	[Export]
-	public NodePath PatchNotesPath = null!;
+        [Export]
+        public NodePath PatchNotesPath = null!;
 
-	[Export]
-	public NodePath PatchNotesDisablerPath = null!;
+        [Export]
+        public NodePath PatchNotesDisablerPath = null!;
 
-	[Export]
-	public NodePath FeedPositionerPath = null!;
+        [Export]
+        public NodePath FeedPositionerPath = null!;
 
-	[Export]
-	public NodePath ThanksDialogPath = null!;
+        [Export]
+        public NodePath ThanksDialogPath = null!;
 
-	[Export]
-	public NodePath MenusPath = null!;
+        [Export]
+        public NodePath MenusPath = null!;
 
 #pragma warning disable CA2213
-	private TextureRect background = null!;
-	private Spatial? created3DBackground;
+        private TextureRect background = null!;
+        private Spatial? created3DBackground;
 
-	private TextureRect thriveLogo = null!;
-	private OptionsMenu options = null!;
-	private NewGameSettings newGameSettings = null!;
-	private AnimationPlayer guiAnimations = null!;
-	private SaveManagerGUI saves = null!;
-	private Thriveopedia thriveopedia = null!;
-	private ModManager modManager = null!;
-	private GalleryViewer galleryViewer = null!;
+        private TextureRect thriveLogo = null!;
+        private OptionsMenu options = null!;
+        private NewGameSettings newGameSettings = null!;
+        private AnimationPlayer guiAnimations = null!;
+        private SaveManagerGUI saves = null!;
+        private Thriveopedia thriveopedia = null!;
+        private ModManager modManager = null!;
+        private GalleryViewer galleryViewer = null!;
 
-	private ThriveFeedDisplayer newsFeed = null!;
-	private Control newsFeedDisabler = null!;
+        private ThriveFeedDisplayer newsFeed = null!;
+        private Control newsFeedDisabler = null!;
 
-	private PatchNotesDisplayer patchNotes = null!;
-	private Control patchNotesDisabler = null!;
+        private PatchNotesDisplayer patchNotes = null!;
+        private Control patchNotesDisabler = null!;
 
-	private Control feedPositioner = null!;
+        private Control feedPositioner = null!;
 
-	private Control creditsContainer = null!;
-	private CreditsScroll credits = null!;
-	private LicensesDisplay licensesDisplay = null!;
-	private Button freebuildButton = null!;
-	private Button multicellularfreebuildButton = null!;
-	private Button autoEvoExploringButton = null!;
-	private Button microbeBenchmarkButton = null!;
+        private Control creditsContainer = null!;
+        private CreditsScroll credits = null!;
+        private LicensesDisplay licensesDisplay = null!;
+        private Button freebuildButton = null!;
+        private Button multicellularfreebuildButton = null!;
+        private Button autoEvoExploringButton = null!;
+        private Button microbeBenchmarkButton = null!;
 
-	private Button exitToLauncherButton = null!;
+        private Button exitToLauncherButton = null!;
 
-	private Label storeLoggedInDisplay = null!;
+        private Label storeLoggedInDisplay = null!;
 
-	private Control socialMediaContainer = null!;
-	private PopupPanel websiteButtonsContainer = null!;
+        private Control socialMediaContainer = null!;
+        private PopupPanel websiteButtonsContainer = null!;
 
-	private TextureButton itchButton = null!;
-	private TextureButton patreonButton = null!;
+        private TextureButton itchButton = null!;
+        private TextureButton patreonButton = null!;
 
-	private CustomConfirmationDialog gles2Popup = null!;
-	private ErrorDialog modLoadFailures = null!;
+        private CustomConfirmationDialog gles2Popup = null!;
+        private ErrorDialog modLoadFailures = null!;
 
-	private CustomConfirmationDialog steamFailedPopup = null!;
+        private CustomConfirmationDialog steamFailedPopup = null!;
 
-	private CustomWindow safeModeWarning = null!;
+        private CustomWindow safeModeWarning = null!;
 
-	private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
-	private PermanentlyDismissibleDialog lowPerformanceWarning = null!;
-	private PermanentlyDismissibleDialog thanksDialog = null!;
+        private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
+        private PermanentlyDismissibleDialog lowPerformanceWarning = null!;
+        private PermanentlyDismissibleDialog thanksDialog = null!;
 
-	private CenterContainer menus = null!;
+        private CenterContainer menus = null!;
 #pragma warning restore CA2213
 
-	private Array? menuArray;
+        private Array? menuArray;
 
-	private bool introVideoPassed;
+        private bool introVideoPassed;
 
-	private float timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
+        private float timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
 
-	/// <summary>
-	///   True when we are able to show the thanks for buying popup due to being a store version
-	/// </summary>
-	private bool canShowThanks;
+        /// <summary>
+        ///   True when we are able to show the thanks for buying popup due to being a store version
+        /// </summary>
+        private bool canShowThanks;
 
-	/// <summary>
-	///   The store specific page link. Defaults to the website link if we don't know a valid store name
-	/// </summary>
-	private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+        /// <summary>
+        ///   The store specific page link. Defaults to the website link if we don't know a valid store name
+        /// </summary>
+        private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
 
-	private float averageFrameRate;
+        private float averageFrameRate;
 
-	private float secondsInMenu;
+        private float secondsInMenu;
 
-	private bool canShowLowPerformanceWarning = true;
+        private bool canShowLowPerformanceWarning = true;
 
-	public bool IsReturningToMenu { get; set; }
+        public bool IsReturningToMenu { get; set; }
 
-	public static void OnEnteringGame()
-	{
-		CheatManager.OnCheatsDisabled();
-		SaveHelper.ClearLastSaveTime();
-		LastPlayedVersion.MarkCurrentVersionAsPlayed();
-	}
+        public static void OnEnteringGame()
+        {
+                CheatManager.OnCheatsDisabled();
+                SaveHelper.ClearLastSaveTime();
+                LastPlayedVersion.MarkCurrentVersionAsPlayed();
+        }
 
-	public override void _Ready()
-	{
-		// Unpause the game as the MainMenu should never be paused.
-		PauseManager.Instance.ForceClear();
-		MouseCaptureManager.ForceDisableCapture();
+        public override void _Ready()
+        {
+                // Unpause the game as the MainMenu should never be paused.
+                PauseManager.Instance.ForceClear();
+                MouseCaptureManager.ForceDisableCapture();
 
-		RunMenuSetup();
+                RunMenuSetup();
 
-		// Start intro video
-		if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
-			SafeModeStartupHandler.AreVideosAllowed())
-		{
-			// Hide menu buttons to prevent them grabbing focus during intro video
-			GetCurrentMenu()?.Hide();
+                // Start intro video
+                if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
+                        SafeModeStartupHandler.AreVideosAllowed())
+                {
+                        // Hide menu buttons to prevent them grabbing focus during intro video
+                        GetCurrentMenu()?.Hide();
 
-			SafeModeStartupHandler.ReportBeforeVideoPlaying();
-			TransitionManager.Instance.AddSequence(
-				TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
-		}
-		else
-		{
-			OnIntroEnded();
-		}
+                        SafeModeStartupHandler.ReportBeforeVideoPlaying();
+                        TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
+                }
+                else
+                {
+                        OnIntroEnded();
+                }
 
-		// Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
-		TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
+                // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
+                TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
-		CheckModFailures();
+                CheckModFailures();
 
-		// Start this early here to make sure this is ready as soon as possible
-		// In the case where patch notes take up the news feed, this is still not a complete waste as if the player
-		// exits to the menu after playing a bit they'll see the news feed
-		if (Settings.Instance.ThriveNewsFeedEnabled)
-		{
-			ThriveNewsFeed.GetFeedContents();
-		}
+                // Start this early here to make sure this is ready as soon as possible
+                // In the case where patch notes take up the news feed, this is still not a complete waste as if the player
+                // exits to the menu after playing a bit they'll see the news feed
+                if (Settings.Instance.ThriveNewsFeedEnabled)
+                {
+                        ThriveNewsFeed.GetFeedContents();
+                }
 	}
 
 	public override void _EnterTree()
