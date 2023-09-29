@@ -584,7 +584,7 @@
         ///   Must be final effects with <see cref="ExternalEffect.Coefficient"/> set to 1 created by
         ///   <see cref="AutoEvoRun.CalculateFinalExternalEffectSizes"/>
         /// </param>
-        /// <param name="ignoreFogOfWar">If ture ignore fog of war</param>
+        /// <param name="ignoreFogOfWar">If true ignore fog of war</param>
         /// <returns>The generated summary text</returns>
         public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect>? effects = null, bool ignoreFogOfWar = false)
