@@ -97,15 +97,7 @@ public class Patch
             {
                 VisibilityState = MapElementVisibility.Explored;
                 Region.VisibilityState = MapElementVisibility.Explored;
-            }
-            else
-            {
-                VisibilityState = MapElementVisibility.Undiscovered;
-                Region.VisibilityState = MapElementVisibility.Undiscovered;
-            }
 
-            if (value)
-            {
                 foreach (Patch patch in Adjacent)
                 {
                     if (!patch.Region.Explored)
@@ -114,6 +106,11 @@ public class Patch
                     if (!patch.Explored)
                         patch.VisibilityState = MapElementVisibility.Unexplored;
                 }
+            }
+            else
+            {
+                VisibilityState = MapElementVisibility.Undiscovered;
+                Region.VisibilityState = MapElementVisibility.Undiscovered;
             }
         }
     }

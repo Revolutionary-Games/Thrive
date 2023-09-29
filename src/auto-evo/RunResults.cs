@@ -592,6 +592,7 @@
             if (previousPopulations != null && previousPopulations.CurrentPatch == null)
                 throw new ArgumentException("When previous populations is set, it must have current patch set");
 
+            // If the summary is not seen by the player, there is no need to obfuscate the patch names
             if (!playerReadable)
                 ignoreFogOfWar = true;
 

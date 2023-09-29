@@ -325,7 +325,7 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   Rebuild the region links and borders
+    ///   Rebuild the region links
     /// </summary>
     private void RebuildGraphics()
     {
@@ -888,20 +888,30 @@ public class PatchMapDrawer : Control
 
             // Set the color of the line if highlighted
             if (CheckHighlightedAdjacency(start, end))
+            {
                 entry.Value.DefaultColor = HighlightedConnectionColor;
+            }
             else
+            {
                 entry.Value.DefaultColor = DefaultConnectionColor;
+            }
 
             if (IgnoreFogOfWar)
                 return;
 
             // Add a fade to the line if its ending at an unexplored region
             if (start.VisibilityState == MapElementVisibility.Undiscovered)
+            {
                 AddFadeToLine(entry.Value, true);
+            }
             else if (end.VisibilityState == MapElementVisibility.Undiscovered)
+            {
                 AddFadeToLine(entry.Value, false);
+            }
             else
+            {
                 entry.Value.Gradient = null;
+            }
         }
     }
 
