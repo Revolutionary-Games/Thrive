@@ -99,7 +99,7 @@ public class GameProperties
     ///     this way
     ///   </para>
     /// </remarks>
-    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings)
+    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
     {
         var game = new GameProperties(settings);
 
@@ -109,6 +109,13 @@ public class GameProperties
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
 
         game.EnterPrototypes();
+
+        if (freebuild)
+        {
+            game.EnterFreeBuild();
+            game.GameWorld.GenerateRandomSpeciesForFreeBuild();
+            game.TutorialState.Enabled = false;
+        }
 
         return game;
     }
