@@ -137,6 +137,16 @@ public partial class CellEditorComponent
     [DeserializedCallbackAllowed]
     private void UndoOrganelleMoveAction(OrganelleMoveActionData data)
     {
+        if (IsMulticellularEditor)
+        {
+            // Try to recover if there is a new organelle instance we should act on instead
+            var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
+                o.Position == data.NewLocation && o.Orientation == data.NewRotation);
+
+            if (newlyInitializedOrganelle != null)
+                data.MovedHex = newlyInitializedOrganelle;
+        }
+
         data.MovedHex.Position = data.OldLocation;
         data.MovedHex.Orientation = data.OldRotation;
 
