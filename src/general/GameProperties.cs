@@ -110,6 +110,7 @@ public class GameProperties
 
         game.EnterPrototypes();
 
+        //TODO: generate multicellular species for freebuild
         if (freebuild)
         {
             game.EnterFreeBuild();
