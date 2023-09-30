@@ -61,7 +61,7 @@ public class MainMenu : NodeWithInput
         [Export]
         public NodePath SafeModeWarningPath = null!;
 
-	[Export]
+        [Export]
         public NodePath ModsInstalledButNotEnabledWarningPath = null!;
 
         [Export]
@@ -210,7 +210,7 @@ public class MainMenu : NodeWithInput
 
                         SafeModeStartupHandler.ReportBeforeVideoPlaying();
                         TransitionManager.Instance.AddSequence(
-			        TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
+                                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
                 }
                 else
                 {
@@ -252,7 +252,7 @@ public class MainMenu : NodeWithInput
                 base._Process(delta);
 
                 // Do startup success only after the intro video is played 
-		// or skipped (and this is the first time in this run
+                // or skipped (and this is the first time in this run
                 // that we are in the menu)
                 if (introVideoPassed && !IsReturningToMenu)
                 {
@@ -263,11 +263,13 @@ public class MainMenu : NodeWithInput
                                                 DismissibleNotice.ThanksForBuying)
                                         && !SteamFailed())
                                 {
-	                                GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
+                                        GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
 
-                                        // The text has a store link template, so we need to update the right links into it
+                                        // The text has a store link template, 
+					// so we need to update the right links into it
                                         thanksDialog.DialogText =
-                                                TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+                                                TranslationServer.Translate(
+                                                        "THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
                                         thanksDialog.PopupCenteredShrink();
                                 }
@@ -565,7 +567,7 @@ public class MainMenu : NodeWithInput
                 }
 
                 // We can get by waiting one frame before the 
-		// missing background is visible, this slightly reduces the lag
+                // missing background is visible, this slightly reduces the lag
                 // lag spike when loading the main menu
                 Invoke.Instance.Queue(() =>
                 {
@@ -609,8 +611,7 @@ public class MainMenu : NodeWithInput
                 {
                         if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
                         {
-                                GD.Print(
-                                        $"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
+                                GD.Print($"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
                         }
                 }
 
@@ -737,8 +738,9 @@ public class MainMenu : NodeWithInput
 
                 // Display menu buttons that were hidden to prevent them grabbing focus during intro video
                 GetCurrentMenu()?.Show();
-
-                // Load the menu background only here as the 3D ones are performance intensive so they aren't very nice to
+		
+                // Load the menu background only here as the 
+                // 3D ones are performance intensive so they aren't very nice to
                 // consume power unnecessarily while showing the video
                 RandomizeBackground();
         }
