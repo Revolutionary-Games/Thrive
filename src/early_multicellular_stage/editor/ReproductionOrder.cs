@@ -19,6 +19,7 @@ public class ReproductionOrder : MarginContainer
 
     private string index = "Error: unset";
     private string cellDescription = "Error: unset";
+    private bool isIsland;
 
     [Signal]
     public delegate void OnCellUp(int index);
@@ -52,6 +53,16 @@ public class ReproductionOrder : MarginContainer
         }
     }
 
+    public bool IsIsland
+    {
+        get => isIsland;
+        set
+        {
+            isIsland = value;
+            UpdateColor();
+        }
+    }
+
     public override void _Ready()
     {
         indexLabel = GetNode<Label>(IndexPath);
@@ -59,26 +70,21 @@ public class ReproductionOrder : MarginContainer
 
         UpdateIndex();
         UpdateCellDescription();
+        UpdateColor();
     }
 
     public void OnUpPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (int.TryParse(index.Trim('.'), out var indexInt))
-        {
-            EmitSignal(nameof(OnCellUp), indexInt);
-        }
+        EmitSignal(nameof(OnCellUp), GetParsedIndex());
     }
 
     public void OnDownPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (int.TryParse(index.Trim('.'), out var indexInt))
-        {
-            EmitSignal(nameof(OnCellDown), indexInt);
-        }
+        EmitSignal(nameof(OnCellDown), GetParsedIndex());
     }
 
     private void UpdateIndex()
@@ -91,5 +97,22 @@ public class ReproductionOrder : MarginContainer
     {
         if (cellDescriptionLabel != null)
             cellDescriptionLabel.Text = cellDescription;
+    }
+
+    private void UpdateColor()
+    {
+        if (indexLabel != null)
+            indexLabel.SelfModulate = IsIsland ? Colors.Red : Colors.White;
+
+        if (cellDescriptionLabel != null)
+            cellDescriptionLabel.SelfModulate = IsIsland ? Colors.Red : Colors.White;
+    }
+
+    private int GetParsedIndex()
+    {
+        if (int.TryParse(index.Trim('.'), out var indexInt))
+            return indexInt - 1;
+
+        return -1;
     }
 }
