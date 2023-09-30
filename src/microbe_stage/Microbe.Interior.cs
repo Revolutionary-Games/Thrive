@@ -388,7 +388,7 @@ public partial class Microbe
         var worldSettings = GameWorld.WorldSettings;
 
         // Fraction of day that is night
-        var nightTimeFraction = 1 - setting.DaytimeFraction;
+        var nightTimeFraction = 1 - worldSettings.DaytimeFraction;
 
         // Shifts fraction so the day ends exactly 1 (ignoring padding).
         var shiftedDay = (GameWorld.LightCycle.FractionOfDayElapsed + nightTimeFraction / 2 +
@@ -402,15 +402,15 @@ public partial class Microbe
                 throw new ArgumentNullException();
 
             var remainingNight = nightTimeFraction - shiftedDay;
-            double remaningNightTime =
-                (remainingNight + Constants.INITIAL_COMPOUND_MORNING_PADDING_FRACTION) * setting.DayLength;
+            var remainingNightTime =
+                (remainingNight + Constants.INITIAL_COMPOUND_MORNING_PADDING_FRACTION) * worldSettings.DayLength;
 
             var biomeConditions = GameWorld.Map.CurrentPatch!.Biome;
             var compoundBalances = ProcessSystem.ComputeCompoundBalance(organelles.Select(o => o.Definition),
                 biomeConditions, CompoundAmountType.Current);
 
             Compounds.AddCompound(glucose, Constants.INITIAL_COMPOUND_NIGHT_MULTIPLIER *
-                (float)(-compoundBalances[glucose].Balance * remaningNightTime));
+                (float)(-compoundBalances[glucose].Balance * remainingNightTime));
         }
     }
 
@@ -1225,7 +1225,7 @@ public partial class Microbe
         }
 
         if (Species.PlayerSpecies)
-            osmoregulationCost *= CurrentGame.GameWorld.WorldSettings.OsmoregulationMultiplier;
+            osmoregulationCost *= GameWorld.WorldSettings.OsmoregulationMultiplier;
 
         Compounds.TakeCompound(atp, osmoregulationCost);
     }

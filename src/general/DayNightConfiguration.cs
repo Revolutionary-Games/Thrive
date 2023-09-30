@@ -24,6 +24,13 @@ public class DayNightConfiguration : IRegistryType
     [JsonProperty]
     public float DaytimeFraction { get; private set; }
 
+    /// <summary>
+    ///   Fraction of the in-game day which does not has sunlight.
+    /// </summary>
+    [JsonIgnore]
+    public float NighttimeFraction { get; private set; }
+
+
     public void Check(string name)
     {
         if (HoursPerDay < 0.0f)
