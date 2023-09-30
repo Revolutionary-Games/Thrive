@@ -266,7 +266,7 @@ public class MainMenu : NodeWithInput
                                         GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
 
                                         // The text has a store link template, 
-					// so we need to update the right links into it
+                                        // so we need to update the right links into it
                                         thanksDialog.DialogText =
                                                 TranslationServer.Translate(
                                                         "THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
@@ -349,7 +349,7 @@ public class MainMenu : NodeWithInput
                         throw new InvalidOperationException("Main menu has not been initialized");
 
                 // Hide the website button container whenever anything else is pressed, 
-		// and only display the social media icons
+                // and only display the social media icons
                 // if a menu is visible
                 websiteButtonsContainer.Visible = false;
                 socialMediaContainer.Visible = index != uint.MaxValue;
@@ -738,7 +738,7 @@ public class MainMenu : NodeWithInput
 
                 // Display menu buttons that were hidden to prevent them grabbing focus during intro video
                 GetCurrentMenu()?.Show();
-		
+
                 // Load the menu background only here as the 
                 // 3D ones are performance intensive so they aren't very nice to
                 // consume power unnecessarily while showing the video
