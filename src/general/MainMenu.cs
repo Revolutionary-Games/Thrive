@@ -62,7 +62,7 @@ public class MainMenu : NodeWithInput
         public NodePath SafeModeWarningPath = null!;
 
 	[Export]
-	public NodePath ModsInstalledButNotEnabledWarningPath = null!;
+        public NodePath ModsInstalledButNotEnabledWarningPath = null!;
 
         [Export]
         public NodePath LowPerformanceWarningPath = null!;
@@ -209,20 +209,23 @@ public class MainMenu : NodeWithInput
                         GetCurrentMenu()?.Hide();
 
                         SafeModeStartupHandler.ReportBeforeVideoPlaying();
-                        TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
+                        TransitionManager.Instance.AddSequence(
+			        TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
                 }
                 else
                 {
                         OnIntroEnded();
                 }
 
-                // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
+                // Let all suppressed deletions happen
+                //(if we came back directly from the editor that was loaded from a save)
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
                 CheckModFailures();
 
                 // Start this early here to make sure this is ready as soon as possible
-                // In the case where patch notes take up the news feed, this is still not a complete waste as if the player
+                // In the case where patch notes take up the news feed, 
+                // this is still not a complete waste as if the player
                 // exits to the menu after playing a bit they'll see the news feed
                 if (Settings.Instance.ThriveNewsFeedEnabled)
                 {
@@ -248,14 +251,16 @@ public class MainMenu : NodeWithInput
         {
                 base._Process(delta);
 
-                // Do startup success only after the intro video is played or skipped (and this is the first time in this run
+                // Do startup success only after the intro video is played 
+		// or skipped (and this is the first time in this run
                 // that we are in the menu)
                 if (introVideoPassed && !IsReturningToMenu)
                 {
                         if (canShowThanks)
                         {
                                         if (!IsReturningToMenu &&
-                                        !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying)
+                                        !Settings.Instance.IsNoticePermanentlyDismissed(
+                                                DismissibleNotice.ThanksForBuying)
                                         && !SteamFailed())
                                 {
 	                                GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
@@ -291,7 +296,8 @@ public class MainMenu : NodeWithInput
                         // if 3D backgrounds have been disabled, if the popup has been shown but not dismissed
                         // on this menu session, or if the max framerate is set to 30
                         // In addition, tracking only begins after one second in the menu
-                        if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning)
+                        if (!Settings.Instance.IsNoticePermanentlyDismissed(
+                                DismissibleNotice.LowPerformanceWarning)
                                 && Settings.Instance.Menu3DBackgroundEnabled && canShowLowPerformanceWarning
                                 && (Settings.Instance.MaxFramesPerSecond > 30 || Settings.Instance.MaxFramesPerSecond == 0))
                         {
@@ -300,7 +306,7 @@ public class MainMenu : NodeWithInput
                                 if (secondsInMenu >= 1)
                                 {
                                         averageFrameRate = TrackMenuPerformance();
-					
+
                                         WarnAboutLowPerformance();
                                 }
                        }
@@ -340,7 +346,8 @@ public class MainMenu : NodeWithInput
                 if (menuArray == null)
                         throw new InvalidOperationException("Main menu has not been initialized");
 
-                // Hide the website button container whenever anything else is pressed, and only display the social media icons
+                // Hide the website button container whenever anything else is pressed, 
+		// and only display the social media icons
                 // if a menu is visible
                 websiteButtonsContainer.Visible = false;
                 socialMediaContainer.Visible = index != uint.MaxValue;
@@ -557,7 +564,8 @@ public class MainMenu : NodeWithInput
                         return;
                 }
 
-                // We can get by waiting one frame before the missing background is visible, this slightly reduces the lag
+                // We can get by waiting one frame before the 
+		// missing background is visible, this slightly reduces the lag
                 // lag spike when loading the main menu
                 Invoke.Instance.Queue(() =>
                 {
@@ -586,7 +594,8 @@ public class MainMenu : NodeWithInput
                 if (menuArray.Count <= 0)
                         throw new InvalidOperationException("Main menu has no menus");
 
-                        return CurrentMenuIndex == uint.MaxValue ? null : menus.GetChild<Control>((int)CurrentMenuIndex);
+                        return CurrentMenuIndex == uint.MaxValue ? null : menus.GetChild<Control>(
+                                (int)CurrentMenuIndex);
         }
 
         private void OnMenuBackgroundTypeChanged(bool value)
@@ -600,7 +609,8 @@ public class MainMenu : NodeWithInput
                 {
                         if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
                         {
-                                GD.Print($"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
+                                GD.Print(
+                                        $"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
                         }
                 }
 
