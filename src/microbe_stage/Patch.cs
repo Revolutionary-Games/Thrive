@@ -59,7 +59,6 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         VisibilityState = visibilityState;
-        GD.Print(VisibilityState);
         this.currentSnapshot = currentSnapshot;
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");

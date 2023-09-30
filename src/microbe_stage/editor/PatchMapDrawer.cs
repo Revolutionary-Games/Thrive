@@ -991,12 +991,7 @@ public class PatchMapDrawer : Control
 
             node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
-            if (entry.Value.Explored)
-                node.VisibilityState = MapElementVisibility.Explored;
-            else if (setAsUnknown)
-                node.VisibilityState = MapElementVisibility.Unexplored;
-            else
-                node.VisibilityState = MapElementVisibility.Undiscovered;
+            node.VisibilityState = entry.Value.VisibilityState;
 
             node.Patch = entry.Value;
 
@@ -1009,9 +1004,6 @@ public class PatchMapDrawer : Control
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
-
-            if (setAsUnknown)
-                node.VisibilityState = MapElementVisibility.Unexplored;
 
             AddChild(node);
             nodes.Add(node.Patch, node);
