@@ -44,12 +44,12 @@ public static class MicrobeInternalCalculations
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<OrganelleTemplate> organelles)
     {
         var capacities = new Dictionary<Compound, float>();
-        var nominalCap = GetTotalNominalCapacity(organelles);
+        var totalNominalCap = 0.0f;
 
         foreach (var organelle in organelles)
         {
-            var capacity = MicrobeInternalCalculations
-                .GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            var capacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+            totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
             if (capacity.Compound == null)
                 continue;
@@ -60,9 +60,12 @@ public static class MicrobeInternalCalculations
             }
             else
             {
-                capacities.Add(capacity.Compound, capacity.Capacity + nominalCap);
+                capacities.Add(capacity.Compound, capacity.Capacity);
             }
         }
+
+        foreach (var compound in capacities.Keys.ToList())
+            capacities[compound] += totalNominalCap;
 
         return capacities;
     }
