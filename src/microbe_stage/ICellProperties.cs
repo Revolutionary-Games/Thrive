@@ -21,12 +21,10 @@ public interface ICellProperties
     public string FormattedName { get; }
 
     /// <summary>
-    ///   Calculates the rotation speed of a cell. This is and <see cref="RepositionToOrigin"/> are separately here
-    ///   to allow the cell editor to skip some stuff <see cref="Species.OnEdited"/> does.
+    ///   Repositions the cell to the origin and recalculates any properties dependant on its position.
     /// </summary>
-    public void CalculateRotationSpeed();
-
     public void RepositionToOrigin();
+
     public void UpdateNameIfValid(string newName);
 }
 

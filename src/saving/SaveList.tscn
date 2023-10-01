@@ -23,6 +23,7 @@ LoadIncompatibleDialogPath = NodePath("MarginContainer/VBoxContainer/LoadKnownIn
 UpgradeSaveDialogPath = NodePath("MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog")
 UpgradeFailedDialogPath = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
 LoadIncompatiblePrototypeDialogPath = NodePath("MarginContainer/VBoxContainer/LoadIncompatiblePrototypeDialog")
+SaveDeletionFailedErrorPath = NodePath("MarginContainer/VBoxContainer/ErrorSaveDeletionFailedDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0
@@ -127,6 +128,15 @@ rect_min_size = Vector2( 700, 0 )
 WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 HideCancelButton = true
 DialogText = "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+
+[node name="ErrorSaveDeletionFailedDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 4.0
+margin_right = 1270.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "FAILED_SAVE_DELETION"
+HideCancelButton = true
+DialogText = "FAILED_SAVE_DELETION_DESCRIPTION"
 
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]

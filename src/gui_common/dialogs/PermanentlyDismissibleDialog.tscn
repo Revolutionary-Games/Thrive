@@ -9,6 +9,7 @@
 script = ExtResource( 5 )
 NoticeType = 0
 DialogType = 0
+PermanentDismissType = 0
 
 [node name="VBoxContainer" parent="." index="0"]
 margin_right = 193.0
@@ -81,4 +82,5 @@ margin_right = 159.0
 margin_left = 163.0
 margin_right = 178.0
 
+[connection signal="Cancelled" from="." to="." method="OnCancelled"]
 [connection signal="Confirmed" from="." to="." method="OnConfirmed"]

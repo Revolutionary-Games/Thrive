@@ -186,6 +186,11 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
             var childCount = rootOfDynamicallySpawned.GetChildCount();
             debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
         }
+
+        if (CheatManager.ManuallySetTime)
+        {
+            GameWorld.LightCycle.FractionOfDayElapsed = CheatManager.DayNightFraction;
+        }
     }
 
     public override void _Notification(int what)

@@ -3,6 +3,6 @@
 /// </summary>
 public interface IHexEditor : IEditor
 {
-    public bool HexPlacedThisSession<THex>(THex hex)
+    public bool HexPlacedThisSession<THex, TContext>(THex hex)
         where THex : class, IActionHex;
 }

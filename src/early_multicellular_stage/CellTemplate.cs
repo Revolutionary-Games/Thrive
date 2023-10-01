@@ -62,11 +62,6 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
         CellType.RepositionToOrigin();
     }
 
-    public void CalculateRotationSpeed()
-    {
-        CellType.CalculateRotationSpeed();
-    }
-
     public void UpdateNameIfValid(string newName)
     {
         CellType.UpdateNameIfValid(newName);

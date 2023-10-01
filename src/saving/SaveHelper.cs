@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Directory = Godot.Directory;
+using File = Godot.File;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -311,7 +314,7 @@ public static class SaveHelper
         directory.Remove(finalPath);
 
         if (directory.FileExists(finalPath))
-            GD.PrintErr("Failed to delete: ", finalPath);
+            throw new IOException($"Failed to delete: {finalPath}");
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -330,7 +333,15 @@ public static class SaveHelper
             {
                 GD.Print("Found more ", nameStartsWith, " files than specified in settings; ",
                     "deleting current oldest ", nameStartsWith, " file: ", currentSaveNames[0]);
-                DeleteSave(currentSaveNames[0]);
+                try
+                {
+                    DeleteSave(currentSaveNames[0]);
+                }
+                catch (IOException e)
+                {
+                    GD.PrintErr(e.Message);
+                }
+
                 currentSaveNames.RemoveAt(0);
             }
         }
@@ -355,7 +366,14 @@ public static class SaveHelper
                 else
                 {
                     savesDeleted.Add(save);
-                    DeleteSave(save);
+                    try
+                    {
+                        DeleteSave(save);
+                    }
+                    catch (IOException e)
+                    {
+                        GD.PrintErr(e.Message);
+                    }
                 }
             }
         }
