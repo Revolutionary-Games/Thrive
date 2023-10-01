@@ -352,7 +352,7 @@ public class PatchMapDrawer : Control
         DrawLine(center1, center2, connectionColor, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH, true);
     }
 
-    private void CreateLinks(Vector2[] points, Color connectionColor, Int2 id)
+    private void CreateLink(Vector2[] points, Color connectionColor, Int2 id)
     {
         var link = new Line2D
         {
@@ -436,12 +436,8 @@ public class PatchMapDrawer : Control
 
                 var connectionTuples = region.ConnectingPatches[adjacent.ID];
 
-                GD.Print($"{region.Name} ({adjacent.Name})");
-
                 if (connectionTuples.Count == 1 || adjacent.DiscoveredPatches == 0)
                 {
-                    GD.Print("Simple connection");
-
                     var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, 0);
                     connections.Add(connectionKey, pathToAdjacent);
                     continue;
@@ -449,8 +445,14 @@ public class PatchMapDrawer : Control
 
                 for (int i = 0; i < connectionTuples.Count; i++)
                 {
+                    var (to, from) = connectionTuples[i];
+
+                    if (!to.Discovered || !from.Discovered)
+                        continue;
+
                     var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, i);
                     connections.Add(connectionKey, pathToAdjacent);
+                    break;
                 }
             }
         }
@@ -458,7 +460,7 @@ public class PatchMapDrawer : Control
         AdjustPathEndpoints();
 
         foreach (var entry in connections)
-            CreateLinks(entry.Value, DefaultConnectionColor, entry.Key);
+            CreateLink(entry.Value, DefaultConnectionColor, entry.Key);
     }
 
     /// <summary>
