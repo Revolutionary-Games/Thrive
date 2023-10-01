@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/thriveopedia/Thriveopedia.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -14,10 +14,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonActive.png" type="Texture" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=15]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=16]
-[ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=17]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonDisabled.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/closeButton.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/closeButtonHover.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/closeButtonActive.png" type="Texture" id=21]
@@ -31,7 +27,7 @@
 resource_name = "Collapse"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("PageTree:rect_min_size")
+tracks/0/path = NodePath("VBoxContainer/PageTree:rect_min_size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -73,7 +69,7 @@ tracks/2/keys = {
 resource_name = "Expand"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("PageTree:rect_min_size")
+tracks/0/path = NodePath("VBoxContainer/PageTree:rect_min_size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -114,7 +110,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("PageTree:rect_min_size")
+tracks/0/path = NodePath("VBoxContainer/PageTree:rect_min_size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -161,7 +157,7 @@ PageContainerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Margi
 PageTreeContainerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2")
 PageTreeContainerAnimPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/AnimationPlayer")
 PageTitlePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/PageTitle")
-PageTreePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/PageTree")
+PageTreePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 HomePagePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
 [node name="Overlay" type="ColorRect" parent="."]
@@ -204,35 +200,21 @@ texture_hover = ExtResource( 23 )
 texture_focused = ExtResource( 23 )
 expand = true
 
-[node name="SearchButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 39.0
-margin_right = 74.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-focus_mode = 0
-disabled = true
-texture_normal = ExtResource( 17 )
-texture_pressed = ExtResource( 15 )
-texture_hover = ExtResource( 16 )
-texture_disabled = ExtResource( 18 )
-texture_focused = ExtResource( 16 )
-expand = true
-
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 78.0
-margin_right = 113.0
+margin_left = 39.0
+margin_right = 114.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 35, 0 )
+rect_min_size = Vector2( 75, 0 )
 
 [node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 117.0
-margin_right = 152.0
+margin_left = 118.0
+margin_right = 153.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "PAGE_BACK"
 focus_neighbour_left = NodePath("../CollapseTreeButton")
 focus_neighbour_right = NodePath("../ForwardButton")
-focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/PageTree")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../ForwardButton")
 focus_previous = NodePath("../CollapseTreeButton")
 disabled = true
@@ -244,14 +226,14 @@ texture_focused = ExtResource( 13 )
 expand = true
 
 [node name="ForwardButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 156.0
-margin_right = 191.0
+margin_left = 157.0
+margin_right = 192.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "PAGE_FORWARD"
 focus_neighbour_left = NodePath("../BackButton")
 focus_neighbour_right = NodePath("../HomeButton")
-focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/PageTree")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../HomeButton")
 focus_previous = NodePath("../BackButton")
 disabled = true
@@ -263,14 +245,14 @@ texture_focused = ExtResource( 10 )
 expand = true
 
 [node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 195.0
-margin_right = 230.0
+margin_left = 196.0
+margin_right = 231.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "HOME"
 focus_neighbour_left = NodePath("../ForwardButton")
 focus_neighbour_right = NodePath("../CloseButton")
-focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/PageTree")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../CloseButton")
 focus_previous = NodePath("../ForwardButton")
 texture_normal = ExtResource( 4 )
@@ -280,22 +262,22 @@ texture_focused = ExtResource( 3 )
 expand = true
 
 [node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 234.0
-margin_right = 242.0
+margin_left = 235.0
+margin_right = 243.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 8, 0 )
 
 [node name="PageTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 246.0
+margin_left = 247.0
 margin_top = 2.0
-margin_right = 378.0
+margin_right = 379.0
 margin_bottom = 33.0
 custom_fonts/font = ExtResource( 25 )
 text = "PAGE_TITLE"
 align = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 382.0
+margin_left = 383.0
 margin_right = 1207.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
@@ -343,12 +325,41 @@ custom_constants/margin_top = 15
 custom_constants/margin_left = 1
 custom_constants/margin_bottom = 15
 
-[node name="PageTree" type="Tree" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
 margin_left = 1.0
 margin_top = 15.0
 margin_right = 214.0
 margin_bottom = 633.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer"]
+margin_right = 213.0
+margin_bottom = 36.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 15.0
+margin_right = 213.0
+margin_bottom = 31.0
+
+[node name="SearchInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_right = 198.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+placeholder_text = "SEARCH_PLACEHOLDER"
+placeholder_alpha = 0.4
+
+[node name="PageTree" type="Tree" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 213.0
+margin_bottom = 618.0
 rect_min_size = Vector2( 213, 300 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
 anims/Collapse = SubResource( 1 )
@@ -373,4 +384,5 @@ margin_bottom = 650.0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/HomeButton" to="." method="OnHomePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="OnClosePressed"]
-[connection signal="cell_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SearchInput" to="." method="OnSearchUpdated"]
+[connection signal="cell_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]

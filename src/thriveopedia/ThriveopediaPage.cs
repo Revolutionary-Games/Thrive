@@ -30,6 +30,11 @@ public abstract class ThriveopediaPage : PanelContainer
     public abstract string TranslatedPageName { get; }
 
     /// <summary>
+    ///   The internal name of the parent of this page in the tree, or null if this page is at the top level.
+    /// </summary>
+    public abstract string? ParentPageName { get; }
+
+    /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu. When set, runs any
     ///   page-specific logic relating to the new game details.
     /// </summary>

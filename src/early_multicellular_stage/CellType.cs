@@ -68,11 +68,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public void RepositionToOrigin()
     {
         Organelles.RepositionToOrigin();
-    }
-
-    public void CalculateRotationSpeed()
-    {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        CalculateRotationSpeed();
     }
 
     public void UpdateNameIfValid(string newName)
@@ -148,5 +144,10 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
         }
 
         return hash;
+    }
+
+    private void CalculateRotationSpeed()
+    {
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
     }
 }

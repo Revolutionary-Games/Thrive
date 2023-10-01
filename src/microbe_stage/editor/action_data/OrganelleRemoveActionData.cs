@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
-public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate>
+public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, CellType>
 {
     /// <summary>
     ///   Used for replacing Cytoplasm. If true this action is free.
@@ -42,13 +42,15 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate>
         return ActionInterferenceMode.NoInterference;
     }
 
-    protected override CombinableActionData CreateDerivedMoveAction(HexPlacementActionData<OrganelleTemplate> data)
+    protected override CombinableActionData CreateDerivedMoveAction(
+        HexPlacementActionData<OrganelleTemplate, CellType> data)
     {
         return new OrganelleMoveActionData(data.PlacedHex, Location, data.Location,
             Orientation, data.Orientation);
     }
 
-    protected override CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<OrganelleTemplate> data)
+    protected override CombinableActionData CreateDerivedRemoveAction(
+        HexMoveActionData<OrganelleTemplate, CellType> data)
     {
         return new OrganelleRemoveActionData(RemovedHex, data.OldLocation, data.OldRotation)
             { GotReplaced = GotReplaced };
