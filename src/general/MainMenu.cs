@@ -210,7 +210,8 @@ public class MainMenu : NodeWithInput
 
                         SafeModeStartupHandler.ReportBeforeVideoPlaying();
                         TransitionManager.Instance.AddSequence(
-                                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
+                                TransitionManager.Instance.CreateCutscene(
+                                "res://assets/videos/intro.ogv"), OnIntroEnded);
                 }
                 else
                 {
@@ -263,7 +264,8 @@ public class MainMenu : NodeWithInput
                                                 DismissibleNotice.ThanksForBuying)
                                         && !SteamFailed())
                                 {
-                                        GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
+                                        GD.Print(
+                                                "We are most likely a store version of Thrive, showing the thanks dialog");
 
                                         // The text has a store link template, 
                                         // so we need to update the right links into it
@@ -301,7 +303,8 @@ public class MainMenu : NodeWithInput
                         if (!Settings.Instance.IsNoticePermanentlyDismissed(
                                 DismissibleNotice.LowPerformanceWarning)
                                 && Settings.Instance.Menu3DBackgroundEnabled && canShowLowPerformanceWarning
-                                && (Settings.Instance.MaxFramesPerSecond > 30 || Settings.Instance.MaxFramesPerSecond == 0))
+                                && (Settings.Instance.MaxFramesPerSecond > 30 
+                                || Settings.Instance.MaxFramesPerSecond == 0))
                         {
                                 secondsInMenu += delta;
 
@@ -611,7 +614,8 @@ public class MainMenu : NodeWithInput
                 {
                         if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
                         {
-                                GD.Print($"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
+                                GD.Print(
+                                        $"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
                         }
                 }
 
@@ -833,7 +837,8 @@ public class MainMenu : NodeWithInput
         /// </summary>
         private bool AreAnyMenuPopupsOpen()
         {
-                return gles2Popup.Visible || modLoadFailures.Visible || steamFailedPopup.Visible || safeModeWarning.Visible
+                return gles2Popup.Visible || modLoadFailures.Visible 
+                        || steamFailedPopup.Visible || safeModeWarning.Visible
                         || modsInstalledButNotEnabledWarning.Visible || thanksDialog.Visible || lowPerformanceWarning.Visible;
         }
 
@@ -874,7 +879,8 @@ public class MainMenu : NodeWithInput
                         OnEnteringGame();
 
                         // Instantiate a new editor scene
-                        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+                        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(
+                                mainGameState.MicrobeEditor).Instance();
 
                         // Start freebuild game
                         editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
@@ -896,10 +902,12 @@ public class MainMenu : NodeWithInput
                         OnEnteringGame();
 
                         // Instantiate a new editor scene
-                        var editor = (EarlyMulticellularEditor)SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor).Instance();
+                        var editor = (EarlyMulticellularEditor)SceneManager.Instance.LoadScene(
+                                MainGameState.EarlyMulticellularEditor).Instance();
 
                         // Start freebuild game
-                        editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings(), true);
+                        editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(
+                                new WorldGenerationSettings(), true);
 
                         // Switch to the editor scene
                         SceneManager.Instance.SwitchToScene(editor);
@@ -912,7 +920,8 @@ public class MainMenu : NodeWithInput
 
                 autoEvoExploringButton.Disabled = true;
 
-                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+                TransitionManager.Instance.AddSequence(
+                        ScreenFade.FadeType.FadeOut, 0.1f,
                         () => { SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);
         }
 
@@ -1084,7 +1093,8 @@ public class MainMenu : NodeWithInput
 
                 if (created3DBackground != null)
                 {
-                        // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
+                        // Hide the 3D background while in the gallery as it is a 
+                        // fullscreen popup and rendering the expensive 3D
                         // scene underneath it is not the best
                         created3DBackground.Visible = false;
                 }
@@ -1137,14 +1147,16 @@ public class MainMenu : NodeWithInput
                 microbeBenchmarkButton.Disabled = true;
 
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
-                        () => { SceneManager.Instance.SwitchToScene("res://src/benchmark/microbe/MicrobeBenchmark.tscn"); }, false);
+                        () => { SceneManager.Instance.SwitchToScene(
+                        "res://src/benchmark/microbe/MicrobeBenchmark.tscn"); }, false);
         }
 
         private void OnNewGameIntroVideoStarted()
         {
                 if (created3DBackground != null)
                 {
-                        // Hide the background again when playing a video as the 3D backgrounds are performance intensive
+                        // Hide the background again when playing a video as the 
+                        // 3D backgrounds are performance intensive
                         created3DBackground.Visible = false;
                 }
         }
