@@ -265,7 +265,7 @@ public class MainMenu : NodeWithInput
                                         && !SteamFailed())
                                 {
                                         GD.Print(
-                                                "We are most likely a store version of Thrive, showing the thanks dialog");
+                                        "We are most likely a store version of Thrive, showing the thanks dialog");
 
                                         // The text has a store link template, 
                                         // so we need to update the right links into it
@@ -615,7 +615,7 @@ public class MainMenu : NodeWithInput
                         if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
                         {
                                 GD.Print(
-                                        $"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
+                                $"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
                         }
                 }
 
@@ -839,7 +839,8 @@ public class MainMenu : NodeWithInput
         {
                 return gles2Popup.Visible || modLoadFailures.Visible 
                         || steamFailedPopup.Visible || safeModeWarning.Visible
-                        || modsInstalledButNotEnabledWarning.Visible || thanksDialog.Visible || lowPerformanceWarning.Visible;
+                        || modsInstalledButNotEnabledWarning.Visible 
+                        || thanksDialog.Visible || lowPerformanceWarning.Visible;
         }
 
         private void NewGamePressed()
@@ -922,7 +923,8 @@ public class MainMenu : NodeWithInput
 
                 TransitionManager.Instance.AddSequence(
                         ScreenFade.FadeType.FadeOut, 0.1f,
-                        () => { SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);
+                        () => { SceneManager.Instance.SwitchToScene(
+                        "res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);
         }
 
         // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good
