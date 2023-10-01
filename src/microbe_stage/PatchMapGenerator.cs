@@ -184,8 +184,8 @@ public static class PatchMapGenerator
 
         if (region1.ID != region2.ID)
         {
-            region1.SetConnectingPatch(region2, patch2);
-            region2.SetConnectingPatch(region1, patch1);
+            region1.SetConnectingPatch(region2, patch2, patch1);
+            region2.SetConnectingPatch(region1, patch1, patch2);
         }
     }
 
@@ -592,7 +592,7 @@ public static class PatchMapGenerator
         {
             case PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea:
             {
-                foreach (var adjacent in region.Adjacent.Keys.ToList())
+                foreach (var adjacent in region.Adjacent)
                 {
                     switch (adjacent.Type)
                     {
@@ -625,7 +625,7 @@ public static class PatchMapGenerator
 
             case PatchRegion.RegionType.Continent:
             {
-                foreach (var adjacent in region.Adjacent.Keys.ToList())
+                foreach (var adjacent in region.Adjacent)
                 {
                     if (adjacent.Type == PatchRegion.RegionType.Continent)
                     {

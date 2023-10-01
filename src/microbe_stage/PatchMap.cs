@@ -422,7 +422,7 @@ public class PatchMap : ISaveLoadable
 
         foreach (var entry in Regions)
         {
-            foreach (var adjacent in entry.Value.Adjacent.Keys)
+            foreach (var adjacent in entry.Value.Adjacent)
             {
                 if (!ContainsRegionAdjacency(entry.Value.ID, adjacent.ID))
                     RegionAdjacencies.Add((entry.Value.ID, adjacent.ID));
@@ -459,8 +459,8 @@ public class PatchMap : ISaveLoadable
 
             if (region1 != region2)
             {
-                region1.SetConnectingPatch(region2, patch2);
-                region2.SetConnectingPatch(region1, patch1);
+                region1.SetConnectingPatch(region2, patch2, patch1);
+                region2.SetConnectingPatch(region1, patch1, patch2);
             }
         }
     }

@@ -352,7 +352,7 @@ public class PatchMapDrawer : Control
         DrawLine(center1, center2, connectionColor, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH, true);
     }
 
-    private void CreateLink(Vector2[] points, Color connectionColor, Int2 id)
+    private void CreateLinks(Vector2[] points, Color connectionColor, Int2 id)
     {
         var link = new Line2D
         {
@@ -426,28 +426,39 @@ public class PatchMapDrawer : Control
         // When ordered by distance to center, central regions will be linked first, which reduces intersections.
         foreach (var region in map.Regions.Values.OrderBy(r => mapCenter.DistanceSquaredTo(r.ScreenCoordinates)))
         {
-            foreach (var entry in region.Adjacent)
+            foreach (var adjacent in region.Adjacent)
             {
-                var adjacent = entry.Key;
-
                 var connectionKey = new Int2(region.ID, adjacent.ID);
                 var reverseConnectionKey = new Int2(adjacent.ID, region.ID);
 
                 if (connections.ContainsKey(connectionKey) || connections.ContainsKey(reverseConnectionKey))
                     continue;
 
-                var pathToAdjacent = GetLeastIntersectingPath(region, adjacent);
+                var connectionTuples = region.ConnectingPatches[adjacent.ID];
 
-                connections.Add(connectionKey, pathToAdjacent);
+                GD.Print($"{region.Name} ({adjacent.Name})");
+
+                if (connectionTuples.Count == 1 || adjacent.DiscoveredPatches == 0)
+                {
+                    GD.Print("Simple connection");
+
+                    var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, 0);
+                    connections.Add(connectionKey, pathToAdjacent);
+                    continue;
+                }
+
+                for (int i = 0; i < connectionTuples.Count; i++)
+                {
+                    var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, i);
+                    connections.Add(connectionKey, pathToAdjacent);
+                }
             }
         }
 
         AdjustPathEndpoints();
 
         foreach (var entry in connections)
-        {
-            CreateLink(entry.Value, DefaultConnectionColor, entry.Key);
-        }
+            CreateLinks(entry.Value, DefaultConnectionColor, entry.Key);
     }
 
     /// <summary>
@@ -461,10 +472,9 @@ public class PatchMapDrawer : Control
     ///   </para>
     /// </remarks>
     /// <returns>Path represented in a Vector2 array</returns>
-    private Vector2[] GetLeastIntersectingPath(PatchRegion start, PatchRegion end)
+    private Vector2[] GetLeastIntersectingPath(PatchRegion start, PatchRegion end, int connectionIndex)
     {
-        var startPatch = end.Adjacent[start]!;
-        var endPatch = start.Adjacent[end]!;
+        var (endPatch, startPatch) = start.ConnectingPatches[end.ID][connectionIndex];
 
         var startCenter = RegionCenter(start);
         var startRect = new Rect2(start.ScreenCoordinates, start.Size);
@@ -534,7 +544,7 @@ public class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
         }
 
-        // Discard all paths intersecting partially discovered regions
+        // Discard all paths intersecting patches in partially discovered regions
         var pathsToDiscard = new List<Vector2[]>();
 
         if (!start.Explored && start.DiscoveredPatches > 1)
@@ -592,7 +602,7 @@ public class PatchMapDrawer : Control
             }
         }
 
-        // TODO: This is very bad for performance
+        // TODO: There is probably a better way to do this
         probablePaths.RemoveAll(e => pathsToDiscard.Contains(e.Path));
 
         // Choose a best path
@@ -654,6 +664,12 @@ public class PatchMapDrawer : Control
             }
 
             // Endpoint position
+            var patchSize = new Vector2(Constants.PATCH_NODE_TEXTURE_RECT_LENGTH,
+                Constants.PATCH_NODE_TEXTURE_RECT_LENGTH);
+
+            var borderVector = new Vector2(Constants.PATCH_REGION_BORDER_WIDTH,
+                Constants.PATCH_REGION_BORDER_WIDTH);
+
             for (int i = 0; i < 4; i++)
             {
                 var direction = (Direction)i;
@@ -663,15 +679,10 @@ public class PatchMapDrawer : Control
                     var (path, endpoint, _, _, id) = link.ToTuple();
                     var endRegion = map.Regions[id.y]!;
                     var startRegion = map.Regions[id.x]!;
+
                     var incoming = endRegion == region.Value;
-
-                    var patchSize = new Vector2(Constants.PATCH_NODE_TEXTURE_RECT_LENGTH,
-                        Constants.PATCH_NODE_TEXTURE_RECT_LENGTH);
-
-                    var borderVector = new Vector2(Constants.PATCH_REGION_BORDER_WIDTH,
-                        Constants.PATCH_REGION_BORDER_WIDTH);
-
                     var targetRegion = incoming ? endRegion : startRegion;
+
                     var regionSize = targetRegion.Size + borderVector;
                     var size = targetRegion.Explored ? regionSize : patchSize;
 
@@ -682,15 +693,16 @@ public class PatchMapDrawer : Control
             // Separation
             const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
 
-            for (int direction = 0; direction < 4; ++direction)
+            for (int i = 0; i < 4; ++i)
             {
-                var connectionsToDirection = connectionsToDirections[(Direction)direction];
+                var direction = (Direction)i;
+                var connectionsToDirection = connectionsToDirections[direction];
 
                 // Only when we have more than 1 connections do we need to offset them
                 if (connectionsToDirection.Count <= 1)
                     continue;
 
-                if (direction is 1 or 3)
+                if (direction is Direction.Up or Direction.Down)
                 {
                     float right = (connectionsToDirection.Count - 1) / 2.0f;
                     float left = -right;
@@ -941,7 +953,7 @@ public class PatchMapDrawer : Control
                 // Only draw connections if patches belong to the same region
                 if (patch.Region.ID == adjacent.Region.ID)
                 {
-                    if (!patch.Region.Explored && !IgnoreFogOfWar)
+                    if (patch.Region.DiscoveredPatches == 0 && !IgnoreFogOfWar)
                         continue;
 
                     if ((!patch.Discovered || !adjacent.Discovered) && !IgnoreFogOfWar)

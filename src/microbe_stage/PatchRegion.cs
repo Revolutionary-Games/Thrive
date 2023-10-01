@@ -51,10 +51,16 @@ public class PatchRegion
     public int ID { get; }
 
     /// <summary>
-    ///   Regions this is next to, and the connecting patches in the other regions
+    ///   Regions this is next to
     /// </summary>
     [JsonIgnore]
-    public Dictionary<PatchRegion, Patch?> Adjacent { get; } = new();
+    public HashSet<PatchRegion> Adjacent { get; } = new();
+
+    /// <summary>
+    ///   The IDs of adjacent regions, and the patches this region connects to
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<int, List<(Patch To, Patch From)>> ConnectingPatches { get; set; } = new();
 
     [JsonProperty]
     public float Height { get; set; }
@@ -74,7 +80,7 @@ public class PatchRegion
 
             foreach (var patch in Patches)
             {
-                if (patch.VisibilityState != MapElementVisibility.Undiscovered)
+                if (patch.Discovered)
                     count++;
             }
 
@@ -125,12 +131,24 @@ public class PatchRegion
     /// </summary>
     public void AddNeighbour(PatchRegion region)
     {
-        if (!Adjacent.ContainsKey(region))
-            Adjacent.Add(region, null);
+        Adjacent.Add(region);
     }
 
-    public void SetConnectingPatch(PatchRegion otherRegion, Patch patch)
+    public void SetConnectingPatch(PatchRegion otherRegion, Patch to, Patch from)
     {
-        Adjacent[otherRegion] ??= patch;
+        if (ConnectingPatches.TryGetValue(otherRegion.ID, out var patches))
+        {
+            if (patches.Contains((to, from)))
+                return;
+
+            patches.Add((to, from));
+        }
+        else
+        {
+            ConnectingPatches[otherRegion.ID] = new()
+            {
+                (to, from),
+            };
+        }
     }
 }
