@@ -967,9 +967,12 @@ public partial class CellBodyPlanEditorComponent :
         if (index <= 0)
             return;
 
-        editedMicrobeCells.SwapIndexes(index, index - 1);
+        var data = new CellReproductionOrderActionData(index, index - 1);
 
-        UpdateReproductionOrderList();
+        var action = new SingleEditorAction<CellReproductionOrderActionData>(DoCellReproductionOrderAction,
+            UndoCellReproductionOrderAction, data);
+
+        EnqueueAction(new CombinedEditorAction(action));
     }
 
     private void MoveCellDown(int index)
@@ -977,9 +980,12 @@ public partial class CellBodyPlanEditorComponent :
         if (index >= editedMicrobeCells.Count - 1)
             return;
 
-        editedMicrobeCells.SwapIndexes(index, index + 1);
+        var data = new CellReproductionOrderActionData(index, index + 1);
 
-        UpdateReproductionOrderList();
+        var action = new SingleEditorAction<CellReproductionOrderActionData>(DoCellReproductionOrderAction,
+            UndoCellReproductionOrderAction, data);
+
+        EnqueueAction(new CombinedEditorAction(action));
     }
 
     private void UpdateReproductionOrderLabels()

@@ -70,4 +70,20 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateAlreadyPlacedVisuals();
     }
+
+    [DeserializedCallbackAllowed]
+    private void DoCellReproductionOrderAction(CellReproductionOrderActionData data)
+    {
+        editedMicrobeCells.SwapIndexes(data.OldIndex, data.NewIndex);
+
+        UpdateReproductionOrderList();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoCellReproductionOrderAction(CellReproductionOrderActionData data)
+    {
+        editedMicrobeCells.SwapIndexes(data.NewIndex, data.OldIndex);
+
+        UpdateReproductionOrderList();
+    }
 }
