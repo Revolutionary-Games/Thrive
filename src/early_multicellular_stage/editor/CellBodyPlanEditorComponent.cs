@@ -122,6 +122,9 @@ public partial class CellBodyPlanEditorComponent :
     [Signal]
     public delegate void OnCellTypeToEditSelected(string name);
 
+    [Signal]
+    public delegate void OnSelectCellType(string typeName);
+
     public enum SelectionMenuTab
     {
         Structure,
@@ -1129,7 +1132,11 @@ public partial class CellBodyPlanEditorComponent :
         Editor.EditedSpecies.CellTypes.Add(newType);
         GD.Print("New cell type created: ", newType.TypeName);
 
+        EmitSignal(nameof(OnSelectCellType), newType.TypeName);
+
         UpdateCellTypeSelections();
+
+        OnCellToPlaceSelected(newType.TypeName);
 
         duplicateCellTypeDialog.Hide();
     }

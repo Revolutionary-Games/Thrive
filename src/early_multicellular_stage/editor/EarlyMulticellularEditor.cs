@@ -418,6 +418,18 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         reportTab.UpdatePatchDetails(patch, patch);
     }
 
+    private void OnSelectCellType(string typeName)
+    {
+        var newTypeToSelect = EditedSpecies.CellTypes.First(c => c.TypeName == typeName);
+
+        if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToSelect)
+        {
+            selectedCellTypeToEdit = newTypeToSelect;
+
+            cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+        }
+    }
+
     private void OnStartEditingCellType(string name)
     {
         if (CanCancelAction)
