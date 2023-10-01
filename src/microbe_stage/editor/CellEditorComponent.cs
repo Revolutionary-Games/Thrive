@@ -1620,8 +1620,7 @@ public partial class CellEditorComponent :
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
-                var organelleDefinition = GetOrganelleDefinition(organelleType);
-                var organelle = new OrganelleTemplate(organelleDefinition,
+                var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
                     new Hex(attemptQ, attemptR), rotation);
 
                 var hexes = organelle.RotatedHexes.Select(h => h + new Hex(attemptQ, attemptR)).ToList();
@@ -1644,14 +1643,6 @@ public partial class CellEditorComponent :
                     foreach (var hex in hexes)
                     {
                         usedHexes.Add(hex);
-                    }
-
-                    if (organelleDefinition.CanBeModified &&
-                        Symmetry == HexEditorSymmetry.None &&
-                        (TutorialState == null || !TutorialState.Enabled || TutorialState.EditorUndoTutorial.Complete))
-                    {
-                        organelleMenu.SelectedOrganelles = new List<OrganelleTemplate> { organelle };
-                        OnModifyPressed();
                     }
                 }
             });
