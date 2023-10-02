@@ -224,6 +224,14 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
+    protected override void OnEnterEditor()
+    {
+        base.OnEnterEditor();
+
+        if (!IsLoadedFromSave)
+            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularEditor, EventArgs.Empty, this);
+    }
+
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
     {
         // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets

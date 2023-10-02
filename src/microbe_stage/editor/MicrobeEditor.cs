@@ -41,10 +41,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     [JsonProperty]
     private MicrobeSpecies? editedSpecies;
 
-    [JsonIgnore]
-    public TutorialState TutorialState => CurrentGame.TutorialState ??
-        throw new InvalidOperationException("Editor doesn't have current game set yet");
-
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
     [JsonIgnore]

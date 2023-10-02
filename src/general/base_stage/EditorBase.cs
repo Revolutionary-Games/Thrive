@@ -121,6 +121,13 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     /// <summary>
+    ///   Accesses the current tutorial data
+    /// </summary>
+    [JsonIgnore]
+    public TutorialState TutorialState => CurrentGame.TutorialState ??
+        throw new InvalidOperationException("Editor doesn't have current game set yet");
+
+    /// <summary>
     ///   If set the editor returns to this stage. The CurrentGame
     ///   should be shared with this stage. If not set returns to a newly created instance of the stage
     /// </summary>
