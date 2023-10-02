@@ -41,31 +41,33 @@ public static class MicrobeInternalCalculations
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<OrganelleTemplate> organelles)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(ICollection<OrganelleTemplate> organelles)
     {
-        var capacities = new Dictionary<Compound, float>();
         var totalNominalCap = 0.0f;
 
         foreach (var organelle in organelles)
         {
-            var capacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
             totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+        }
 
-            if (capacity.Compound == null)
+        var capacities = new Dictionary<Compound, float>();
+
+        foreach (var organelle in organelles)
+        {
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+            if (specificCapacity.Compound == null)
                 continue;
 
-            if (capacities.TryGetValue(capacity.Compound, out var currentCapacity))
+            if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
             {
-                capacities[capacity.Compound] = currentCapacity + capacity.Capacity;
+                capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
             }
             else
             {
-                capacities.Add(capacity.Compound, capacity.Capacity);
+                capacities.Add(specificCapacity.Compound, specificCapacity.Capacity + totalNominalCap);
             }
         }
-
-        foreach (var compound in capacities.Keys.ToList())
-            capacities[compound] += totalNominalCap;
 
         return capacities;
     }
@@ -108,7 +110,7 @@ public static class MicrobeInternalCalculations
             o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
     }
 
-    public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
+    public static float CalculateSpeed(ICollection<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity)
     {
         float microbeMass = Constants.MICROBE_BASE_MASS;
@@ -127,9 +129,7 @@ public static class MicrobeInternalCalculations
         float rightDirectionFactor;
         float leftDirectionFactor;
 
-        var organellesList = organelles.ToList();
-
-        foreach (var organelle in organellesList)
+        foreach (var organelle in organelles)
         {
             microbeMass += organelle.Definition.Mass;
 
@@ -155,7 +155,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        var maximumMovementDirection = MaximumSpeedDirection(organellesList);
+        var maximumMovementDirection = MaximumSpeedDirection(organelles);
 
         // Maximum-force direction is not normalized so we need to normalize it here
         maximumMovementDirection = maximumMovementDirection.Normalized();
